@@ -1,3 +1,7 @@
+## 0.0.1+2
+
+ - **REFACTOR**: added theme test folder.
+
 ## 0.0.1+1
 
  - **REFACTOR**: code cleanup for linter usage.
