@@ -1,0 +1,3 @@
+#TODO: Change path to package once published on github
+include: ../utilities/analysis_options.yaml
+

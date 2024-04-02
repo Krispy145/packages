@@ -1,0 +1,294 @@
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/data/models/appbars/appbar_model.dart';
+import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
+import 'package:theme/data/models/badges/badge_model.dart';
+import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
+import 'package:theme/data/models/buttons/button_style_model.dart';
+import 'package:theme/data/models/buttons/floating_action_button_model.dart';
+import 'package:theme/data/models/buttons/toggle_button_model.dart';
+import 'package:theme/data/models/cards/card_model.dart';
+import 'package:theme/data/models/checkboxes/checkbox_model.dart';
+import 'package:theme/data/models/chips/chip_model.dart';
+import 'package:theme/data/models/colors/color_schemes.dart';
+import 'package:theme/data/models/dialogs/dialog_model.dart';
+import 'package:theme/data/models/drawers/drawer_model.dart';
+import 'package:theme/data/models/dropdowns/dropdown_model.dart';
+import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
+import 'package:theme/data/models/list_tiles/list_tile_model.dart';
+import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
+import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
+import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
+import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
+import 'package:theme/data/models/popup_menus/popup_menu_model.dart';
+import 'package:theme/data/models/progress_indicators/progress_indicator_model.dart';
+import 'package:theme/data/models/radios/radio_model.dart';
+import 'package:theme/data/models/scrollbars/scrollbar_model.dart';
+import 'package:theme/data/models/search_bars/search_bar_model.dart';
+import 'package:theme/data/models/search_views/search_view_model.dart';
+import 'package:theme/data/models/sliders/slider_model.dart';
+import 'package:theme/data/models/snackbars/snackbar_model.dart';
+import 'package:theme/data/models/switches/switch_model.dart';
+import 'package:theme/data/models/tab_bars/tab_bar_model.dart';
+import 'package:theme/data/models/text/text_types.dart';
+import 'package:theme/data/models/tooltips/tooltip_model.dart';
+
+part 'theme.freezed.dart';
+part 'theme.g.dart';
+
+/// [ComponentThemesModel] is a wrapper for [ColorSchemes] and [TextTypes] that allows you to use [ColorSchemes] and [TextTypes] to
+/// create a ThemeData object.
+
+@unfreezed
+abstract class ComponentThemesModel with _$ComponentThemesModel {
+  /// [ComponentThemesModel] constructor
+  factory ComponentThemesModel({
+    required final String id,
+    String? name,
+    Map<String, ButtonStyleModel>? elevatedButtons,
+    Map<String, ButtonStyleModel>? filledButtons,
+    Map<String, ButtonStyleModel>? outlinedButtons,
+    Map<String, ButtonStyleModel>? textButtons,
+    Map<String, ToggleButtonModel>? toggleButtons,
+    Map<String, ButtonStyleModel>? iconButtons,
+    Map<String, FloatingActionButtonModel>? floatingActionButtons,
+    Map<String, ButtonStyleModel>? menuButtons,
+    Map<String, ButtonStyleModel>? segmentedButtons,
+    Map<String, InputDecorationModel>? inputDecorations,
+    Map<String, BoxDecorationModel>? boxDecorations,
+    Map<String, CardModel>? cards,
+    Map<String, SnackbarModel>? snackbars,
+    Map<String, BadgeModel>? badges,
+    Map<String, AppbarModel>? appbars,
+    Map<String, BottomAppbarModel>? bottomAppbars,
+    Map<String, DropdownModel>? dropdowns,
+    Map<String, ChipModel>? chips,
+    Map<String, DialogModel>? dialogs,
+    Map<String, PopupMenuModel>? popupMenus,
+    Map<String, SliderModel>? sliders,
+    Map<String, ScrollbarModel>? scrollbars,
+    Map<String, TooltipModel>? tooltips,
+    Map<String, NavigationRailModel>? navigationRails,
+    Map<String, CheckboxModel>? checkboxes,
+    Map<String, RadioModel>? radios,
+    Map<String, SwitchModel>? switches,
+    Map<String, DrawerModel>? drawers,
+    Map<String, ListTileModel>? listTiles,
+    Map<String, MenuModel>? menus,
+    Map<String, MenuBarModel>? menuBars,
+    Map<String, NavigationBarModel>? navigationBars,
+    Map<String, NavigationDrawerModel>? navigationDrawers,
+    Map<String, ProgressIndicatorModel>? progressIndicators,
+    Map<String, SearchBarModel>? searchBars,
+    Map<String, SearchViewModel>? searchViews,
+    Map<String, TabBarModel>? tabBars,
+  }) = _ComponentThemesModel;
+  ComponentThemesModel._();
+
+// TODO: Make nice ;)
+  T? getComponentThemeFromStyleType<T>(String styleType) {
+    if (T.toString() == "ThemeData") {
+      return ThemeData(
+        elevatedButtonTheme: elevatedButtons?[styleType]?.toElevatedButtonThemeData(),
+        outlinedButtonTheme: outlinedButtons?[styleType]?.toOutlinedButtonThemeData(),
+        textButtonTheme: textButtons?[styleType]?.toTextButtonThemeData(),
+        iconButtonTheme: iconButtons?[styleType]?.toIconButtonThemeData(),
+        filledButtonTheme: filledButtons?[styleType]?.toFilledButtonThemeData(),
+        menuButtonTheme: menuButtons?[styleType]?.toMenuButtonThemeData(),
+        segmentedButtonTheme: segmentedButtons?[styleType]?.toSegmentedButtonThemeData(),
+        toggleButtonsTheme: toggleButtons?[styleType]?.asToggleButtonThemeData(),
+        floatingActionButtonTheme: floatingActionButtons?[styleType]?.asFloatingActionButtonThemeData(),
+      ) as T;
+      // return buttons?.toThemeData(styleType) as T;
+    } else if (T.toString() == "InputDecorationTheme?") {
+      return inputDecorations?[styleType]?.asInputDecorationTheme(styleTypeName: styleType) as T;
+    } else if (T.toString() == "BoxDecoration?") {
+      return boxDecorations?[styleType]?.asBoxDecoration(styleTypeName: styleType) as T;
+    } else if (T.toString() == "CardTheme?") {
+      return cards?[styleType]?.asCardTheme(styleTypeName: styleType) as T;
+    } else if (T.toString() == "SnackBarThemeData?") {
+      return snackbars?[styleType]?.asSnackBarThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "BadgeThemeData?") {
+      return badges?[styleType]?.asBadgeThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "AppBarTheme?") {
+      return appbars?[styleType]?.asAppBarTheme(styleTypeName: styleType) as T;
+    } else if (T.toString() == "BottomAppBarTheme?") {
+      return bottomAppbars?[styleType]?.asBottomAppBarTheme(styleTypeName: styleType) as T;
+    } else if (T.toString() == "DropdownMenuThemeData?") {
+      return dropdowns?[styleType]?.asDropdownMenuThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "ChipThemeData?") {
+      return chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "DialogTheme?") {
+      return dialogs?[styleType]?.asDialogTheme(styleTypeName: styleType) as T;
+    } else if (T.toString() == "PopupMenuThemeData?") {
+      return popupMenus?[styleType]?.asPopupMenuThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "SliderThemeData?") {
+      return sliders?[styleType]?.asSliderThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "ScrollbarThemeData?") {
+      return scrollbars?[styleType]?.asScrollbarThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "TooltipThemeData?") {
+      return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "TooltipThemeData?") {
+      return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "NavigationRailThemeData?") {
+      return navigationRails?[styleType]?.asNavigationRailThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "CheckboxThemeData?") {
+      return checkboxes?[styleType]?.asCheckboxThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "RadioThemeData?") {
+      return radios?[styleType]?.asRadioThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "SwitchThemeData?") {
+      return switches?[styleType]?.asSwitchThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "DrawerThemeData?") {
+      return drawers?[styleType]?.asDrawerThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "ListTileThemeData?") {
+      return listTiles?[styleType]?.asListTileThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "MenuStyle?") {
+      return menus?[styleType]?.asMenuStyle(styleTypeName: styleType) as T;
+    } else if (T.toString() == "MenuBarThemeData?") {
+      return menuBars?[styleType]?.asMenuBarThemeData(styleTypeName: styleType) as T;
+    } else if (T.toString() == "NavigationBarThemeData?") {
+      return navigationBars?[styleType]?.asNavigationBarThemeData(styleTypeName: styleType) as T;
+    } else {
+      return null;
+    }
+  }
+
+  // static ComponentThemesModel defaultComponentThemesModel() {
+  //   return ComponentThemesModel(
+  //     id: primaryThemeId,
+  //     name: primaryStyle,
+  //     elevatedButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+  //     filledButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+  //     outlinedButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+  //     textButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+  //     toggleButtons: {
+  //       AppTheme.styleType: ToggleButtonModel.defaultToggleButtonStyle(),
+  //     },
+  //     iconButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+  //     floatingActionButtons: {
+  //       AppTheme.styleType: FloatingActionButtonModel.defaultFloatingActionButtonStyle(),
+  //     },
+  //     menuButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+  //     segmentedButtons: {
+  //       AppTheme.styleType: ButtonStyleModel(),
+  //     },
+
+  //     // buttonStyles: ButtonStyles.defaultButtonStyles(),
+  //     inputDecorations: {
+  //       AppTheme.styleType: InputDecorationModel.defaultInputDecorationModel(),
+  //     },
+  //     boxDecorations: {
+  //       AppTheme.styleType: BoxDecorationModel.defaultBoxDecorationModel(),
+  //     },
+  //     cards: {
+  //       AppTheme.styleType: CardModel.defaultCardModel(),
+  //     },
+  //     snackbars: {
+  //       AppTheme.styleType: SnackbarModel.defaultSnackbarModel(),
+  //     },
+  //     badges: {
+  //       AppTheme.styleType: BadgeModel.defaultBadgeModel(),
+  //     },
+  //     appbars: {
+  //       AppTheme.styleType: AppbarModel.defaultAppbarModel(),
+  //     },
+  //     bottomAppbars: {
+  //       AppTheme.styleType: BottomAppbarModel.defaultBottomAppbarModel(),
+  //     },
+  //     dropdowns: {
+  //       AppTheme.styleType: DropdownModel.defaultDropdownModel(),
+  //     },
+  //     chips: {
+  //       AppTheme.styleType: ChipModel.defaultChipModel(),
+  //     },
+  //     dialogs: {
+  //       AppTheme.styleType: DialogModel.defaultDialogModel(),
+  //     },
+  //     popupMenus: {
+  //       AppTheme.styleType: PopupMenuModel.defaultPopupMenuModel(),
+  //     },
+  //     sliders: {
+  //       AppTheme.styleType: SliderModel.defaultSliderModel(),
+  //     },
+  //     scrollbars: {
+  //       AppTheme.styleType: ScrollbarModel.defaultScrollbarModel(),
+  //     },
+  //     tooltips: {
+  //       AppTheme.styleType: TooltipModel.defaultTooltipModel(),
+  //     },
+  //     navigationRails: {
+  //       AppTheme.styleType: NavigationRailModel.defaultNavigationRailModel(),
+  //     },
+  //     checkboxes: {
+  //       AppTheme.styleType: CheckboxModel.defaultCheckboxModel(),
+  //     },
+  //     radios: {
+  //       AppTheme.styleType: RadioModel.defaultRadioModel(),
+  //     },
+  //     switches: {
+  //       AppTheme.styleType: SwitchModel.defaultSwitchModel(),
+  //     },
+  //     drawers: {
+  //       AppTheme.styleType: DrawerModel.defaultDrawerModel(),
+  //     },
+  //     listTiles: {
+  //       AppTheme.styleType: ListTileModel.defaultListTileModel(),
+  //     },
+  //     menus: {
+  //       AppTheme.styleType: MenuModel.defaultMenuModel(),
+  //     },
+  //     menuBars: {
+  //       AppTheme.styleType: MenuBarModel.defaultMenuBarModel(),
+  //     },
+  //     navigationBars: {
+  //       AppTheme.styleType: NavigationBarModel.defaultNavigationBarModel(),
+  //     },
+  //     navigationDrawers: {
+  //       AppTheme.styleType: NavigationDrawerModel.defaultNavigationDrawerModel(),
+  //     },
+  //     progressIndicators: {
+  //       AppTheme.styleType: ProgressIndicatorModel.defaultProgressIndicatorModel(),
+  //     },
+  //     searchBars: {
+  //       AppTheme.styleType: SearchBarModel.defaultSearchBarModel(),
+  //     },
+  //     searchViews: {
+  //       AppTheme.styleType: SearchViewModel.defaultSearchViewModel(),
+  //     },
+  //     tabBars: {
+  //       AppTheme.styleType: TabBarModel.defaultTabBarModel(),
+  //     },
+  //   );
+  // }
+
+  /// [ComponentThemesModel.fromJson] is a factory method that allows you to create a [ComponentThemesModel] from a JSON file.
+  factory ComponentThemesModel.fromJson(Map<String, dynamic> json) => _$ComponentThemesModelFromJson(json);
+}
+
+@unfreezed
+abstract class BaseThemeModel with _$BaseThemeModel {
+  /// [BaseThemeModel] constructor
+  factory BaseThemeModel({
+    required final String id,
+    String? name,
+    required Map<String, ColorSchemes> colors,
+    Map<String, TextTypes>? textStyles,
+  }) = _BaseThemeModel;
+  BaseThemeModel._();
+
+  /// [BaseThemeModel.fromJson] is a factory method that allows you to create a [BaseThemeModel] from a JSON file.
+  factory BaseThemeModel.fromJson(Map<String, dynamic> json) => _$BaseThemeModelFromJson(json);
+}

@@ -1,0 +1,22 @@
+name: packages
+
+packages:
+  - admob
+  - authentication
+  - deeplinks
+  - navigation
+  - notifications
+  - theme
+  - utilities
+  - widgets
+
+scripts:
+  analyze:
+    exec: dart analyze .
+  gen:
+    exec: "dart pub run build_runner build --delete-conflicting-outputs"
+
+command:
+  clean:
+    hooks:
+      post: melos exec --flutter --concurrency=3 -- "flutter clean && flutter pub get"
