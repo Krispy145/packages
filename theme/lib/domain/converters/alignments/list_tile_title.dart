@@ -4,22 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:utilities/logger/logger.dart';
 
-class ListTileTitleAlignmentConverter
-    implements JsonConverter<ListTileTitleAlignment?, String?> {
+class ListTileTitleAlignmentConverter implements JsonConverter<ListTileTitleAlignment?, String?> {
   const ListTileTitleAlignmentConverter();
 
   /// This example shows how to use the [ListTileTitleAlignmentConverter]:
   ListTileTitleAlignment? example(ListTileTitleAlignment type) {
     final json = const ListTileTitleAlignmentConverter().toJson(type);
-    final Map<String, dynamic> response = jsonDecode(json!);
-    final alignment =
-        const ListTileTitleAlignmentConverter().fromJson(response['alignment']);
-    AppLogger.print("LIST-TILE-ALIGNMENT fromJson -> $alignment",
-        [PackageFeatures.converters]);
-    final convertedJson = const ListTileTitleAlignmentConverter()
-        .toJson(ListTileTitleAlignment.center);
-    AppLogger.print("LIST-TILE-ALIGNMENT toJson -> $convertedJson",
-        [PackageFeatures.converters]);
+    final response = jsonDecode(json!) as Map<String, String>;
+    final alignment = const ListTileTitleAlignmentConverter().fromJson(response['alignment']);
+    AppLogger.print(
+      "LIST-TILE-ALIGNMENT fromJson -> $alignment",
+      [PackageFeatures.converters],
+    );
+    final convertedJson = const ListTileTitleAlignmentConverter().toJson(ListTileTitleAlignment.center);
+    AppLogger.print(
+      "LIST-TILE-ALIGNMENT toJson -> $convertedJson",
+      [PackageFeatures.converters],
+    );
     return alignment;
   }
 

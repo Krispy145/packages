@@ -19,15 +19,16 @@ class LinearGradientConverter implements JsonConverter<LinearGradient?, dynamic>
 
   @override
   LinearGradient? fromJson(dynamic json) {
+    json = json as Map<String, dynamic>?;
     if (json == null) {
       return null;
     }
     return LinearGradient(
-      begin: const AlignmentConverter().fromJson(json['begin']) ?? Alignment.centerLeft,
-      end: const AlignmentConverter().fromJson(json['end']) ?? Alignment.centerRight,
+      begin: const AlignmentConverter().fromJson(json['begin'] as String?) ?? Alignment.centerLeft,
+      end: const AlignmentConverter().fromJson(json['end'] as String?) ?? Alignment.centerRight,
       colors: (json['colors'] as List<dynamic>).map((dynamic e) => const ColorConverter().fromJson(e) ?? Colors.transparent).toList(),
       stops: (json['stops'] as List<dynamic>?)?.map((dynamic e) => e as double).toList(),
-      tileMode: const TileModeConverter().fromJson(json['tileMode']) ?? TileMode.clamp,
+      tileMode: const TileModeConverter().fromJson(json['tileMode'] as String?) ?? TileMode.clamp,
     );
   }
 
@@ -39,7 +40,7 @@ class LinearGradientConverter implements JsonConverter<LinearGradient?, dynamic>
     return {
       'begin': const AlignmentConverter().toJson(instance.begin.resolve(TextDirection.ltr)),
       'end': const AlignmentConverter().toJson(instance.end.resolve(TextDirection.ltr)),
-      'colors': instance.colors.map((Color e) => const ColorConverter().toJson(e)).toList(),
+      'colors': instance.colors.map((e) => const ColorConverter().toJson(e)).toList(),
       'stops': instance.stops,
       'tileMode': const TileModeConverter().toJson(instance.tileMode),
     };

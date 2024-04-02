@@ -33,24 +33,24 @@ class MapEditor extends StatelessWidget {
 
   Widget _buildMapEditor(BuildContext context, Map<dynamic, dynamic> map, List<String> keys) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: map.entries.map((entry) {
-          final key = entry.key;
+          final key = entry.key as String;
           final value = entry.value;
-          final List<String> updatedKeys = List.from(keys)..add(key);
-          final Widget? valueEditor = buildValueEditor(value, updatedKeys, (keys, updatedValue) {
+          final updatedKeys = List<String>.from(keys)..add(key);
+          final valueEditor = buildValueEditor(value, updatedKeys, (keys, updatedValue) {
             AppLogger.print("Calling on changed in MapEditorStore with $keys and $updatedValue", [PackageFeatures.theme]);
             mapEditorStore.updateValue(keys, updatedValue);
           });
           if (valueEditor != null) {
             return ExpansionTile(
-              title: Text(key.toString()),
-              children: [Padding(padding: const EdgeInsets.only(left: 16.0), child: valueEditor)],
+              title: Text(key),
+              children: [Padding(padding: const EdgeInsets.only(left: 16), child: valueEditor)],
             );
           } else if (value is Map<dynamic, dynamic>) {
-            return _buildExpansionTile(context, key.toString(), value, updatedKeys);
+            return _buildExpansionTile(context, key, value, updatedKeys);
           }
           // return ExpansionTile(
           //   title: Text(key.toString()),
@@ -78,7 +78,7 @@ class MapEditor extends StatelessWidget {
       ),
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 16.0),
+          padding: const EdgeInsets.only(left: 16),
           child: _buildMapEditor(context, map, keys),
         ),
       ],
@@ -89,9 +89,9 @@ class MapEditor extends StatelessWidget {
   /// When calling the onChanged function, it passes the keys and the new value to the store.
   /// Convert value from dynamic to the appropriate type when passing into the field
   /// Convert the changed value back to the format from the map when calling the onChanged function
-  Widget? buildValueEditor(dynamic value, List<String> keys, Function(List<String> keys, dynamic value) onChanged) {
+  Widget? buildValueEditor(dynamic value, List<String> keys, void Function(List<String> keys, dynamic value) onChanged) {
     if (value is String) {
-      for (var element in enumComponentProperties) {
+      for (final element in enumComponentProperties) {
         if (element.values.map((e) => e.name).contains(value)) {
           // if ((keys.last == 'type' && element.keyMatcher(keys[keys.length - 2])) || element.keyMatcher(keys.last) || element.values.map((e) => e.name).contains(value)) {
           AppLogger.print("ENUM: Found a match for ${element.name} -> $keys", [PackageFeatures.theme]);

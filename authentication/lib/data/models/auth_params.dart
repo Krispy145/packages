@@ -172,33 +172,26 @@ class AuthParams {
 
   factory AuthParams.fromMap(Map<String, dynamic> map) {
     return AuthParams._(
-      id: map['id'],
-      email: map['email'],
-      password: map['password'],
-      phoneNumber: map['phoneNumber'],
-      displayName: map['displayName'],
-      photoUrl: map['photoUrl'],
-      accessToken: map['accessToken'],
-      idToken: map['idToken'],
-      nonce: map['nonce'],
-      refreshToken: map['refreshToken'],
-      authType:
-          AuthType.values.firstWhere((element) => element == map['authType']),
-      authStatus: AuthStatus.values
-          .firstWhere((element) => element == map['authStatus']),
-      createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'])
-          : null,
-      updatedAt: map['updatedAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'])
-          : null,
+      id: map['id'] as String?,
+      email: map['email'] as String?,
+      password: map['password'] as String?,
+      phoneNumber: map['phoneNumber'] as String?,
+      displayName: map['displayName'] as String?,
+      photoUrl: map['photoUrl'] as String?,
+      accessToken: map['accessToken'] as String?,
+      idToken: map['idToken'] as String?,
+      nonce: map['nonce'] as String?,
+      refreshToken: map['refreshToken'] as String?,
+      authType: AuthType.values.firstWhere((element) => element == map['authType']),
+      authStatus: AuthStatus.values.firstWhere((element) => element == map['authStatus']),
+      createdAt: map['createdAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int) : null,
+      updatedAt: map['updatedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int) : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory AuthParams.fromJson(String source) =>
-      AuthParams.fromMap(json.decode(source));
+  factory AuthParams.fromJson(String source) => AuthParams.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

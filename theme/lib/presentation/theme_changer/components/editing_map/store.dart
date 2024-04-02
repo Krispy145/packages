@@ -10,7 +10,7 @@ abstract class _MapEditorStore with Store {
   _MapEditorStore({required this.onMapChanged, Map<String, dynamic>? initialData}) : mapData = ObservableMap.of(initialData ?? {});
 
   /// Callback that is called whenever the map is changed.
-  final Function(Map<String, dynamic> data)? onMapChanged;
+  final void Function(Map<String, dynamic> data)? onMapChanged;
 
   @observable
   late ObservableMap<String, dynamic> mapData;
@@ -27,15 +27,15 @@ abstract class _MapEditorStore with Store {
   }
 
   void _setNestedValue(ObservableMap<String, dynamic> currentMap, List<String> keys, dynamic value) {
-    for (int i = 0; i < keys.length - 1; i++) {
+    for (var i = 0; i < keys.length - 1; i++) {
       if (!currentMap.containsKey(keys[i])) {
         // Automatically convert nested maps to observable maps
         currentMap[keys[i]] = ObservableMap<String, dynamic>();
       } else if (currentMap[keys[i]] is! ObservableMap<String, dynamic>) {
         // Convert nested map to observable map if it's not already
-        currentMap[keys[i]] = ObservableMap<String, dynamic>.of(currentMap[keys[i]]);
+        currentMap[keys[i]] = ObservableMap<String, dynamic>.of(currentMap[keys[i]] as Map<String, dynamic>);
       }
-      currentMap = currentMap[keys[i]];
+      currentMap = currentMap[keys[i]] as ObservableMap<String, dynamic>;
     }
     currentMap[keys.last] = value;
   }

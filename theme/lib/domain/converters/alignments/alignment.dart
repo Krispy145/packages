@@ -22,14 +22,17 @@ class AlignmentConverter implements JsonConverter<Alignment?, String?> {
   /// This example shows how to use the [AlignmentConverter]:
   Alignment? example(AlignmentType type) {
     final json = const AlignmentConverter().toJson(_typeToAlignment(type));
-    final Map<String, dynamic> response = jsonDecode(json!);
-    final alignment =
-        const AlignmentConverter().fromJson(response['alignment']);
+    final response = jsonDecode(json!) as Map<String, String>;
+    final alignment = const AlignmentConverter().fromJson(response['alignment']);
     AppLogger.print(
-        "ALIGNMENT fromJson -> $alignment", [PackageFeatures.converters]);
+      "ALIGNMENT fromJson -> $alignment",
+      [PackageFeatures.converters],
+    );
     final convertedJson = const AlignmentConverter().toJson(Alignment.center);
     AppLogger.print(
-        "ALIGNMENT toJson -> $convertedJson", [PackageFeatures.converters]);
+      "ALIGNMENT toJson -> $convertedJson",
+      [PackageFeatures.converters],
+    );
     return alignment;
   }
 

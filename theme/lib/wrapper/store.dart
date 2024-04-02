@@ -56,7 +56,7 @@ abstract class StyleTypeBaseStore extends LoadStateStore with Store {
   }
 
   @action
-  toggleThemeMode() {
+  void toggleThemeMode() {
     currentThemeMode = isDark ? ThemeMode.light : ThemeMode.dark;
   }
 

@@ -5,7 +5,7 @@
 
 // class StringChanger extends StatefulWidget {
 //   final String currentString;
-//   final Function(BuildContext context, String newString) onStringChanged;
+//   final void Function(BuildContext context, String newString) onStringChanged;
 //   const StringChanger({super.key, required this.currentString, required this.onStringChanged});
 
 //   @override

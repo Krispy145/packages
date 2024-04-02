@@ -44,12 +44,12 @@ class BoxDecorationConverter implements JsonConverter<Map<BoxBorderType, BoxDeco
     return {
       BoxBorderType.values.firstWhere((e) => e.name == json.keys.first): BoxDecoration(
         color: const ColorConverter().fromJson(json.values.first['color']),
-        border: const BoxBorderConverter().fromJson(json.values.first['border'])?.values.first,
+        border: const BoxBorderConverter().fromJson(json.values.first['border'] as Map<String, dynamic>)?.values.first,
         borderRadius: const BorderRadiusConverter().fromJson(json.values.first['borderRadius']),
         boxShadow: _boxShadowFromJson(json.values.first),
         gradient: const GradientConverter().fromJson(json.values.first['gradient']),
-        backgroundBlendMode: const BlendModeConverter().fromJson(json.values.first['backgroundBlendMode']),
-        shape: const BoxShapeConverter().fromJson(json.values.first['shape']) ?? BoxShape.rectangle,
+        backgroundBlendMode: const BlendModeConverter().fromJson(json.values.first['backgroundBlendMode'] as String),
+        shape: const BoxShapeConverter().fromJson(json.values.first['shape'] as String) ?? BoxShape.rectangle,
       ),
     };
   }
@@ -76,7 +76,7 @@ class BoxDecorationConverter implements JsonConverter<Map<BoxBorderType, BoxDeco
     if (instance == null) {
       return null;
     }
-    Map<String, dynamic> jsonValue = {};
+    final jsonValue = <String, dynamic>{};
 
     if (instance.values.first?.color != null) {
       jsonValue['color'] = const ColorConverter().toJson(instance.values.first?.color);
@@ -100,7 +100,7 @@ class BoxDecorationConverter implements JsonConverter<Map<BoxBorderType, BoxDeco
       jsonValue['shape'] = const BoxShapeConverter().toJson(instance.values.first?.shape);
     }
 
-    Map<String, dynamic> json = {};
+    final json = <String, dynamic>{};
     json[instance.keys.first.name] = jsonValue;
     return json;
   }

@@ -24,12 +24,12 @@ class ThemeComponentEditor extends MapEditor {
     if (headerBuilder != null) {
       return headerBuilder!(context);
     }
-    return Text(title.toString(), style: Theme.of(context).textTheme.titleLarge);
+    return Text(title, style: Theme.of(context).textTheme.titleLarge);
   }
 
   @override
-  Widget? buildValueEditor(dynamic value, List<String> keys, Function(List<String> keys, dynamic value) onChanged) {
-    if (keys.last.toLowerCase().contains("textstyle")) {
+  Widget? buildValueEditor(dynamic value, List<String> keys, void Function(List<String> keys, dynamic value) onChanged) {
+    if (keys.last.toLowerCase().contains("textstyle") && value is String?) {
       // Working
       return TextStyleFormField(
         initialValue: value,
@@ -48,7 +48,7 @@ class ThemeComponentEditor extends MapEditor {
         initialValue: value,
         onChanged: (newValue) => onChanged(keys, newValue),
       );
-    } else if (keys.last.toLowerCase().contains("color")) {
+    } else if (keys.last.toLowerCase().contains("color") && value is String?) {
       // Not working
       return ThemeColorFormField(
         initialValue: value,
@@ -62,7 +62,7 @@ class ThemeComponentEditor extends MapEditor {
       );
     } else if (value is String) {
       // Enums not matching right :'(
-      for (var element in enumComponentProperties) {
+      for (final element in enumComponentProperties) {
         if (element.values.map((e) => e.name).contains(value)) {
           // if ((keys.last == 'type' && element.keyMatcher(keys[keys.length - 2])) || element.keyMatcher(keys.last) || element.values.map((e) => e.name).contains(value)) {
           AppLogger.print("ENUM: Found a match for ${element.name} -> $keys", [PackageFeatures.theme]);
@@ -101,13 +101,13 @@ final List<EnumComponentProperties> enumComponentProperties = [
   EnumComponentProperties(
     name: "Font Style",
     values: FontStyle.values,
-    keyMatcher: (String key) => RegExp('[a-z]*font[a-z]*style').hasMatch(key.toLowerCase()),
-    valueMatcher: (String value) => FontStyle.values.contains(value),
+    keyMatcher: (key) => RegExp('[a-z]*font[a-z]*style').hasMatch(key.toLowerCase()),
+    valueMatcher: (value) => FontStyle.values.contains(value),
   ),
   EnumComponentProperties(
     name: "Shape",
     values: BoxShape.values,
-    keyMatcher: (String key) => key.toLowerCase().contains('shape'),
-    valueMatcher: (String value) => BoxShape.values.contains(value),
+    keyMatcher: (key) => key.toLowerCase().contains('shape'),
+    valueMatcher: (value) => BoxShape.values.contains(value),
   ),
 ];

@@ -10,15 +10,17 @@ class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
   /// This example shows how to use the [TabAlignmentConverter]:
   TabAlignment? example(TabAlignment type) {
     final json = const TabAlignmentConverter().toJson(type);
-    final Map<String, dynamic> response = jsonDecode(json!);
-    final alignment =
-        const TabAlignmentConverter().fromJson(response['alignment']);
-    AppLogger.print("LIST-TILE-ALIGNMENT fromJson -> $alignment",
-        [PackageFeatures.converters]);
-    final convertedJson =
-        const TabAlignmentConverter().toJson(TabAlignment.center);
-    AppLogger.print("LIST-TILE-ALIGNMENT toJson -> $convertedJson",
-        [PackageFeatures.converters]);
+    final response = jsonDecode(json!) as Map<String, String>;
+    final alignment = const TabAlignmentConverter().fromJson(response['alignment']);
+    AppLogger.print(
+      "LIST-TILE-ALIGNMENT fromJson -> $alignment",
+      [PackageFeatures.converters],
+    );
+    final convertedJson = const TabAlignmentConverter().toJson(TabAlignment.center);
+    AppLogger.print(
+      "LIST-TILE-ALIGNMENT toJson -> $convertedJson",
+      [PackageFeatures.converters],
+    );
     return alignment;
   }
 

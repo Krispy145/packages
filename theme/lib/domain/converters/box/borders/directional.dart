@@ -19,7 +19,7 @@ class BoxBorderDirectionalConverter implements JsonConverter<BoxBorder?, Map<Str
       "left": ${const BoxBorderSideConverter().example()},
     }
     """;
-    final Map<String, dynamic> response = jsonDecode(json);
+    final response = jsonDecode(json) as Map<String, dynamic>;
     final border = const BoxBorderDirectionalConverter().fromJson(response);
     AppLogger.print("BOX-BORDER fromJson -> $border", [PackageFeatures.converters]);
     final convertedJson = const BoxBorderDirectionalConverter().toJson(border);
@@ -45,7 +45,7 @@ class BoxBorderDirectionalConverter implements JsonConverter<BoxBorder?, Map<Str
     if (instance == null || instance is! BorderDirectional) {
       return null;
     }
-    final Map<String, dynamic> json = {};
+    final json = <String, dynamic>{};
     if (instance.top != BorderSide.none) {
       json['top'] = const BorderSideConverter().toJson(instance.top);
     }

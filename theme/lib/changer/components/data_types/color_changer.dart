@@ -6,7 +6,7 @@
 // import 'package:utilities/sizes/spacers.dart';
 
 // class ColorChangerView extends StatefulWidget {
-//   final Function(BuildContext context, String newColor) onColorChanged;
+//   final void Function(BuildContext context, String newColor) onColorChanged;
 //   final String? currentColorString;
 //   const ColorChangerView({super.key, required this.currentColorString, required this.onColorChanged});
 

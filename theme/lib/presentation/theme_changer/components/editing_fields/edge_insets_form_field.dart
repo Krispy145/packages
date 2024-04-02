@@ -7,7 +7,7 @@ enum _EdgeInsetsTypes { all, symmetric, only, zero }
 
 class EdgeInsetsFormField extends StatefulWidget {
   late final EdgeInsets initialValue;
-  final Function(EdgeInsets newEdgeInsets) onChanged;
+  final void Function(EdgeInsets newEdgeInsets) onChanged;
 
   EdgeInsetsFormField({super.key, required EdgeInsets? initialValue, required this.onChanged}) {
     this.initialValue = initialValue ?? const EdgeInsets.all(0);

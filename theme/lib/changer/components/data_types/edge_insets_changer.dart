@@ -8,7 +8,7 @@
 
 // class EdgeInsetsChangerView extends StatefulWidget {
 //   late final EdgeInsets initial;
-//   final Function(BuildContext context, EdgeInsets newEdgeInsets) onEdgeInsetsChanged;
+//   final void Function(BuildContext context, EdgeInsets newEdgeInsets) onEdgeInsetsChanged;
 
 //   EdgeInsetsChangerView({super.key, required EdgeInsets? initialEdgeInsets, required this.onEdgeInsetsChanged}) {
 //     initial = initialEdgeInsets ?? const EdgeInsets.all(0);

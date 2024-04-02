@@ -17,13 +17,17 @@ class TileModeConverter implements JsonConverter<TileMode?, String?> {
   /// This example shows how to use the [TileModeConverter]:
   TileMode? example(TileModeType type) {
     final json = const TileModeConverter().toJson(_typeToTileMode(type));
-    final Map<String, dynamic> response = jsonDecode(json!);
-    final tileMode = const TileModeConverter().fromJson(response['tileMode']);
+    final response = jsonDecode(json!) as Map<String, dynamic>;
+    final tileMode = const TileModeConverter().fromJson(response['tileMode'] as String?);
     AppLogger.print(
-        "TILE-MODE fromJson -> $tileMode", [PackageFeatures.converters]);
+      "TILE-MODE fromJson -> $tileMode",
+      [PackageFeatures.converters],
+    );
     final convertedJson = const TileModeConverter().toJson(TileMode.clamp);
     AppLogger.print(
-        "TILE-MODE toJson -> $convertedJson", [PackageFeatures.converters]);
+      "TILE-MODE toJson -> $convertedJson",
+      [PackageFeatures.converters],
+    );
     return tileMode;
   }
 

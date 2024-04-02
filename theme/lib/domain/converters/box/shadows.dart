@@ -12,15 +12,15 @@ class BoxShadowsConverter implements JsonConverter<List<BoxShadow>?, List<Map<St
       const [
         BoxShadow(
           color: Colors.transparent,
-          blurRadius: 1.0,
-          spreadRadius: 1.0,
-          offset: Offset(1.0, 1.0),
+          blurRadius: 1,
+          spreadRadius: 1,
+          offset: Offset(1, 1),
         ),
         BoxShadow(
           color: Colors.transparent,
-          blurRadius: 1.0,
-          spreadRadius: 1.0,
-          offset: Offset(1.0, 1.0),
+          blurRadius: 1,
+          spreadRadius: 1,
+          offset: Offset(1, 1),
         ),
       ],
     );
@@ -35,9 +35,9 @@ class BoxShadowsConverter implements JsonConverter<List<BoxShadow>?, List<Map<St
     if (json == null) {
       return null;
     }
-    final List<BoxShadow> boxShadows = [];
-    for (final item in json) {
-      final BoxShadow? boxShadow = const BoxShadowConverter().fromJson(item);
+    final boxShadows = <BoxShadow>[];
+    for (final item in json as List) {
+      final boxShadow = const BoxShadowConverter().fromJson(item);
       if (boxShadow != null) {
         boxShadows.add(boxShadow);
       }
@@ -50,9 +50,9 @@ class BoxShadowsConverter implements JsonConverter<List<BoxShadow>?, List<Map<St
     if (instance == null) {
       return null;
     }
-    final List<Map<String, dynamic>> json = [];
+    final json = <Map<String, dynamic>>[];
     for (final item in instance) {
-      final Map<String, dynamic>? shadow = const BoxShadowConverter().toJson(item);
+      final shadow = const BoxShadowConverter().toJson(item);
       if (shadow != null) {
         json.add(shadow);
       }

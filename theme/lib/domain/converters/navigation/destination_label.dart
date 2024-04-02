@@ -10,29 +10,31 @@ enum NavigationDestinationLabelType {
   onlyShowSelected,
 }
 
-class NavigationDestinationLabelConverter
-    implements JsonConverter<NavigationDestinationLabelBehavior?, String?> {
+class NavigationDestinationLabelConverter implements JsonConverter<NavigationDestinationLabelBehavior?, String?> {
   const NavigationDestinationLabelConverter();
 
   /// This example shows how to use the [NavigationDestinationLabelConverter]:
   NavigationDestinationLabelBehavior? example(
-      NavigationDestinationLabelType type) {
-    final json = const NavigationDestinationLabelConverter()
-        .toJson(_typeToNavigationDestinationLabel(type));
-    final Map<String, dynamic> response = jsonDecode(json!);
-    final alignment = const NavigationDestinationLabelConverter()
-        .fromJson(response['alignment']);
+    NavigationDestinationLabelType type,
+  ) {
+    final json = const NavigationDestinationLabelConverter().toJson(_typeToNavigationDestinationLabel(type));
+    final response = jsonDecode(json!) as Map<String, dynamic>;
+    final alignment = const NavigationDestinationLabelConverter().fromJson(response['alignment'] as String?);
     AppLogger.print(
-        "ALIGNMENT fromJson -> $alignment", [PackageFeatures.converters]);
-    final convertedJson = const NavigationDestinationLabelConverter()
-        .toJson(NavigationDestinationLabelBehavior.alwaysShow);
+      "ALIGNMENT fromJson -> $alignment",
+      [PackageFeatures.converters],
+    );
+    final convertedJson = const NavigationDestinationLabelConverter().toJson(NavigationDestinationLabelBehavior.alwaysShow);
     AppLogger.print(
-        "ALIGNMENT toJson -> $convertedJson", [PackageFeatures.converters]);
+      "ALIGNMENT toJson -> $convertedJson",
+      [PackageFeatures.converters],
+    );
     return alignment;
   }
 
   NavigationDestinationLabelBehavior _typeToNavigationDestinationLabel(
-      NavigationDestinationLabelType type) {
+    NavigationDestinationLabelType type,
+  ) {
     switch (type) {
       case NavigationDestinationLabelType.alwaysShow:
         return NavigationDestinationLabelBehavior.alwaysShow;

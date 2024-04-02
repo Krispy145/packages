@@ -36,7 +36,7 @@ class AssetsThemeDataSource<T> implements ThemeDataSource<T> {
   @override
   Future<T?> get(String id) async {
     final rootBundleKeyWithId = rootBundleKey;
-    T? data = await _tryLoadJson(rootBundleKeyWithId);
+    final data = await _tryLoadJson(rootBundleKeyWithId);
 
     return data;
   }
@@ -92,7 +92,7 @@ class AssetsThemeDataSource<T> implements ThemeDataSource<T> {
     final results = <T?>[];
     for (final query in queries.entries) {
       if (query.value == rootBundleKey) {
-        final searchResult = await get(query.value);
+        final searchResult = await get(query.value as String);
         results.add(searchResult);
       }
     }

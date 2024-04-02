@@ -4,7 +4,7 @@ class BoolFormField extends StatefulWidget {
   const BoolFormField({super.key, required this.onChanged, required this.initialValue});
 
   final bool initialValue;
-  final Function(bool) onChanged;
+  final void Function(bool) onChanged;
 
   @override
   State<BoolFormField> createState() => _BoolFormFieldState();

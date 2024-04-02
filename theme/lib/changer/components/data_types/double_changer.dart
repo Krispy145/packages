@@ -5,7 +5,7 @@
 
 // class DoubleChanger extends StatefulWidget {
 //   final double currentDouble;
-//   final Function(BuildContext context, double newDouble) onDoubleChanged;
+//   final void Function(BuildContext context, double newDouble) onDoubleChanged;
 //   const DoubleChanger({super.key, required this.currentDouble, required this.onDoubleChanged});
 
 //   @override

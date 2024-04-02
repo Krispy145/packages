@@ -6,7 +6,7 @@ import 'package:utilities/sizes/spacers.dart';
 
 class TextStyleFormField extends StatefulWidget {
   final String? initialValue;
-  final Function(String?) onChanged;
+  final void Function(String?) onChanged;
 
   const TextStyleFormField({super.key, required this.initialValue, required this.onChanged});
 
@@ -34,13 +34,12 @@ class _TextStyleFormFieldState extends State<TextStyleFormField> {
       height: 200,
       child: SingleChildScrollView(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: AppTheme.textStyleTypes()!.toJson().entries.map((entry) {
-              final styleTitle = entry.key;
-              final value = TextStyleSizes.fromJson(entry.value);
-              return Column(
-                  children: value.toJson().entries.map((entry) {
+          mainAxisSize: MainAxisSize.min,
+          children: AppTheme.textStyleTypes()!.toJson().entries.map((entry) {
+            final styleTitle = entry.key;
+            final value = TextStyleSizes.fromJson(entry.value as Map<String, dynamic>);
+            return Column(
+              children: value.toJson().entries.map((entry) {
                 final title = entry.key;
                 return InkWell(
                   onTap: () => _setNewTextStyle("$styleTitle-$title"),
@@ -56,23 +55,24 @@ class _TextStyleFormFieldState extends State<TextStyleFormField> {
                     ],
                   ),
                 );
-              }).toList());
-            }).toList()
-            // ..add(
-            //   Column(
-            //     children: [
-            //       Sizes.m.spacer(),
-            //       ElevatedButton(
-            //         onPressed: () {
-            //           widget.onChanged(value);
-            //           Navigator.of(context).pop();
-            //         },
-            //         child: const Text('Change'),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            ),
+              }).toList(),
+            );
+          }).toList(),
+          // ..add(
+          //   Column(
+          //     children: [
+          //       Sizes.m.spacer(),
+          //       ElevatedButton(
+          //         onPressed: () {
+          //           widget.onChanged(value);
+          //           Navigator.of(context).pop();
+          //         },
+          //         child: const Text('Change'),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+        ),
       ),
     );
   }

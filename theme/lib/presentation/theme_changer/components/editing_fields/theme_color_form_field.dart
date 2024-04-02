@@ -9,7 +9,7 @@ class ThemeColorFormField extends StatefulWidget {
   const ThemeColorFormField({super.key, required this.onChanged, required this.initialValue});
 
   final String? initialValue;
-  final Function(String?) onChanged;
+  final void Function(String?) onChanged;
 
   @override
   State<ThemeColorFormField> createState() => _ThemeColorFormFieldState();

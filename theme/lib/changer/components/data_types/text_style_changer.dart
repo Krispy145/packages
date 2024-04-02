@@ -7,7 +7,7 @@
 
 // class TextStyleChangerView extends StatefulWidget {
 //   final String? currentTextStyleString;
-//   final Function(BuildContext context, String newTextStyle) onTextStyleChanged;
+//   final void Function(BuildContext context, String newTextStyle) onTextStyleChanged;
 //   const TextStyleChangerView({super.key, required this.currentTextStyleString, required this.onTextStyleChanged});
 
 //   @override

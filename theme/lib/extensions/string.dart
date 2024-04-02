@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/app/app_theme.dart';
-import 'package:theme/domain/converters/colors/color.dart';
 import 'package:theme/data/models/text/text_style_model.dart';
 import 'package:theme/data/models/text/text_style_sizes.dart';
 import 'package:theme/data/models/text/text_types.dart';
+import 'package:theme/domain/converters/colors/color.dart';
 
 extension ColorFromString on String {
   Color? toColor({String? styleType}) {
@@ -20,10 +20,10 @@ extension ColorFromString on String {
     if (currentColorAndKey != null) {
       return const ColorConverter().fromJson(currentColorAndKey.value);
     }
-    dynamic colorValue = json.decode(this);
+    final dynamic colorValue = json.decode(this);
     if (colorValue is List) {
-      final List<double> colorList = [];
-      for (var element in colorValue) {
+      final colorList = <double>[];
+      for (final element in colorValue) {
         if (element is int) {
           colorList.add(element.toDouble());
         } else if (element is double) {
@@ -73,7 +73,7 @@ extension ColorFromString on String {
     if (startsWith("{")) {
       try {
         final jsonMap = json.decode(this);
-        return TextStyleModel.fromJson(jsonMap);
+        return TextStyleModel.fromJson(jsonMap as Map<String, dynamic>);
       } catch (e) {
         return null;
       }

@@ -10,13 +10,17 @@ class BoxShapeConverter implements JsonConverter<BoxShape?, String?> {
   /// This example shows how to use the [BoxShapeConverter]:
   BoxShape? example() {
     final json = const BoxShapeConverter().toJson(BoxShape.circle);
-    final Map<String, dynamic> response = jsonDecode(json!);
+    final response = jsonDecode(json!) as Map<String, String>;
     final boxShape = const BoxShapeConverter().fromJson(response['shape']);
     AppLogger.print(
-        "BOX-SHAPE fromJson -> $boxShape", [PackageFeatures.converters]);
+      "BOX-SHAPE fromJson -> $boxShape",
+      [PackageFeatures.converters],
+    );
     final convertedJson = const BoxShapeConverter().toJson(boxShape);
     AppLogger.print(
-        "BOX-SHAPE toJson -> $convertedJson", [PackageFeatures.converters]);
+      "BOX-SHAPE toJson -> $convertedJson",
+      [PackageFeatures.converters],
+    );
     return boxShape;
   }
 

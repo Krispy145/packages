@@ -6,7 +6,6 @@ import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
 import 'package:theme/data/models/buttons/button_style_model.dart';
-import 'package:theme/data/models/buttons/button_styles.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
