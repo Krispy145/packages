@@ -19,7 +19,7 @@ analyzer:
 
 linter:
   rules:
-    package_api_docs: false
+    public_member_api_docs: false
     leading_newlines_in_multiline_strings: false
     avoid_classes_with_only_static_members: false
     discarded_futures: false
