@@ -20,47 +20,49 @@ InputDecorationModel _$InputDecorationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$InputDecorationModel {
-  String? get labelStyle => throw _privateConstructorUsedError;
-  String? get floatingLabelStyle => throw _privateConstructorUsedError;
-  String? get helperStyle => throw _privateConstructorUsedError;
-  int? get helperMaxLines => throw _privateConstructorUsedError;
-  String? get hintStyle => throw _privateConstructorUsedError;
-  Duration? get hintFadeDuration => throw _privateConstructorUsedError;
-  String? get errorStyle => throw _privateConstructorUsedError;
-  int? get errorMaxLines => throw _privateConstructorUsedError;
-  bool get isDense => throw _privateConstructorUsedError;
+  String? get labelStyle_textStyle => throw _privateConstructorUsedError;
+  String? get floatingLabelStyle_textStyle =>
+      throw _privateConstructorUsedError;
+  String? get helperStyle_textStyle => throw _privateConstructorUsedError;
+  int? get helperMaxLines_int => throw _privateConstructorUsedError;
+  String? get hintStyle_textStyle => throw _privateConstructorUsedError;
+  Duration? get hintFadeDuration_duration => throw _privateConstructorUsedError;
+  String? get errorStyle_textStyle => throw _privateConstructorUsedError;
+  int? get errorMaxLines_int => throw _privateConstructorUsedError;
+  bool get isDense_bool => throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding => throw _privateConstructorUsedError;
-  bool get isCollapsed => throw _privateConstructorUsedError;
-  String? get iconColor => throw _privateConstructorUsedError;
-  String? get prefixStyle => throw _privateConstructorUsedError;
-  String? get prefixIconColor => throw _privateConstructorUsedError;
-  String? get suffixStyle => throw _privateConstructorUsedError;
-  String? get suffixIconColor => throw _privateConstructorUsedError;
-  String? get counterStyle => throw _privateConstructorUsedError;
-  bool get filled => throw _privateConstructorUsedError;
-  String? get fillColor => throw _privateConstructorUsedError;
-  @BorderSideConverter()
-  BorderSide? get activeIndicatorBorder => throw _privateConstructorUsedError;
-  @BorderSideConverter()
-  BorderSide? get outlineBorder => throw _privateConstructorUsedError;
-  String? get focusColor => throw _privateConstructorUsedError;
-  String? get hoverColor => throw _privateConstructorUsedError;
-  @InputBorderConverter()
-  InputBorder? get errorBorder => throw _privateConstructorUsedError;
-  @InputBorderConverter()
-  InputBorder? get focusedBorder => throw _privateConstructorUsedError;
-  @InputBorderConverter()
-  InputBorder? get focusedErrorBorder => throw _privateConstructorUsedError;
-  @InputBorderConverter()
-  InputBorder? get disabledBorder => throw _privateConstructorUsedError;
-  @InputBorderConverter()
-  InputBorder? get enabledBorder => throw _privateConstructorUsedError;
-  @InputBorderConverter()
-  InputBorder? get border => throw _privateConstructorUsedError;
-  bool get alignLabelWithHint => throw _privateConstructorUsedError;
-  @BoxConstraintsConverter()
-  BoxConstraints? get constraints => throw _privateConstructorUsedError;
+  EdgeInsets? get contentPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
+  bool get isCollapsed_bool => throw _privateConstructorUsedError;
+  String? get iconColor_color => throw _privateConstructorUsedError;
+  String? get prefixStyle_textStyle => throw _privateConstructorUsedError;
+  String? get prefixIconColor_color => throw _privateConstructorUsedError;
+  String? get suffixStyle_textStyle => throw _privateConstructorUsedError;
+  String? get suffixIconColor_color => throw _privateConstructorUsedError;
+  String? get counterStyle_textStyle => throw _privateConstructorUsedError;
+  bool get filled_bool => throw _privateConstructorUsedError;
+  String? get fillColor_color => throw _privateConstructorUsedError;
+  BorderSideModel? get activeIndicatorBorder_borderSide =>
+      throw _privateConstructorUsedError;
+  BorderSideModel? get outlineBorder_borderSide =>
+      throw _privateConstructorUsedError;
+  String? get focusColor_color => throw _privateConstructorUsedError;
+  String? get hoverColor_color => throw _privateConstructorUsedError;
+  InputBorderModel? get errorBorder_inputBorder =>
+      throw _privateConstructorUsedError;
+  InputBorderModel? get focusedBorder_inputBorder =>
+      throw _privateConstructorUsedError;
+  InputBorderModel? get focusedErrorBorder_inputBorder =>
+      throw _privateConstructorUsedError;
+  InputBorderModel? get disabledBorder_inputBorder =>
+      throw _privateConstructorUsedError;
+  InputBorderModel? get enabledBorder_inputBorder =>
+      throw _privateConstructorUsedError;
+  InputBorderModel? get border_inputBorder =>
+      throw _privateConstructorUsedError;
+  bool get alignLabelWithHint_bool => throw _privateConstructorUsedError;
+  BoxConstraintsModel? get constraints_boxConstraints =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,37 +77,47 @@ abstract class $InputDecorationModelCopyWith<$Res> {
       _$InputDecorationModelCopyWithImpl<$Res, InputDecorationModel>;
   @useResult
   $Res call(
-      {String? labelStyle,
-      String? floatingLabelStyle,
-      String? helperStyle,
-      int? helperMaxLines,
-      String? hintStyle,
-      Duration? hintFadeDuration,
-      String? errorStyle,
-      int? errorMaxLines,
-      bool isDense,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding,
-      bool isCollapsed,
-      String? iconColor,
-      String? prefixStyle,
-      String? prefixIconColor,
-      String? suffixStyle,
-      String? suffixIconColor,
-      String? counterStyle,
-      bool filled,
-      String? fillColor,
-      @BorderSideConverter() BorderSide? activeIndicatorBorder,
-      @BorderSideConverter() BorderSide? outlineBorder,
-      String? focusColor,
-      String? hoverColor,
-      @InputBorderConverter() InputBorder? errorBorder,
-      @InputBorderConverter() InputBorder? focusedBorder,
-      @InputBorderConverter() InputBorder? focusedErrorBorder,
-      @InputBorderConverter() InputBorder? disabledBorder,
-      @InputBorderConverter() InputBorder? enabledBorder,
-      @InputBorderConverter() InputBorder? border,
-      bool alignLabelWithHint,
-      @BoxConstraintsConverter() BoxConstraints? constraints});
+      {String? labelStyle_textStyle,
+      String? floatingLabelStyle_textStyle,
+      String? helperStyle_textStyle,
+      int? helperMaxLines_int,
+      String? hintStyle_textStyle,
+      Duration? hintFadeDuration_duration,
+      String? errorStyle_textStyle,
+      int? errorMaxLines_int,
+      bool isDense_bool,
+      @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+      bool isCollapsed_bool,
+      String? iconColor_color,
+      String? prefixStyle_textStyle,
+      String? prefixIconColor_color,
+      String? suffixStyle_textStyle,
+      String? suffixIconColor_color,
+      String? counterStyle_textStyle,
+      bool filled_bool,
+      String? fillColor_color,
+      BorderSideModel? activeIndicatorBorder_borderSide,
+      BorderSideModel? outlineBorder_borderSide,
+      String? focusColor_color,
+      String? hoverColor_color,
+      InputBorderModel? errorBorder_inputBorder,
+      InputBorderModel? focusedBorder_inputBorder,
+      InputBorderModel? focusedErrorBorder_inputBorder,
+      InputBorderModel? disabledBorder_inputBorder,
+      InputBorderModel? enabledBorder_inputBorder,
+      InputBorderModel? border_inputBorder,
+      bool alignLabelWithHint_bool,
+      BoxConstraintsModel? constraints_boxConstraints});
+
+  $BorderSideModelCopyWith<$Res>? get activeIndicatorBorder_borderSide;
+  $BorderSideModelCopyWith<$Res>? get outlineBorder_borderSide;
+  $InputBorderModelCopyWith<$Res>? get errorBorder_inputBorder;
+  $InputBorderModelCopyWith<$Res>? get focusedBorder_inputBorder;
+  $InputBorderModelCopyWith<$Res>? get focusedErrorBorder_inputBorder;
+  $InputBorderModelCopyWith<$Res>? get disabledBorder_inputBorder;
+  $InputBorderModelCopyWith<$Res>? get enabledBorder_inputBorder;
+  $InputBorderModelCopyWith<$Res>? get border_inputBorder;
+  $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
 }
 
 /// @nodoc
@@ -122,164 +134,283 @@ class _$InputDecorationModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? labelStyle = freezed,
-    Object? floatingLabelStyle = freezed,
-    Object? helperStyle = freezed,
-    Object? helperMaxLines = freezed,
-    Object? hintStyle = freezed,
-    Object? hintFadeDuration = freezed,
-    Object? errorStyle = freezed,
-    Object? errorMaxLines = freezed,
-    Object? isDense = null,
-    Object? contentPadding = freezed,
-    Object? isCollapsed = null,
-    Object? iconColor = freezed,
-    Object? prefixStyle = freezed,
-    Object? prefixIconColor = freezed,
-    Object? suffixStyle = freezed,
-    Object? suffixIconColor = freezed,
-    Object? counterStyle = freezed,
-    Object? filled = null,
-    Object? fillColor = freezed,
-    Object? activeIndicatorBorder = freezed,
-    Object? outlineBorder = freezed,
-    Object? focusColor = freezed,
-    Object? hoverColor = freezed,
-    Object? errorBorder = freezed,
-    Object? focusedBorder = freezed,
-    Object? focusedErrorBorder = freezed,
-    Object? disabledBorder = freezed,
-    Object? enabledBorder = freezed,
-    Object? border = freezed,
-    Object? alignLabelWithHint = null,
-    Object? constraints = freezed,
+    Object? labelStyle_textStyle = freezed,
+    Object? floatingLabelStyle_textStyle = freezed,
+    Object? helperStyle_textStyle = freezed,
+    Object? helperMaxLines_int = freezed,
+    Object? hintStyle_textStyle = freezed,
+    Object? hintFadeDuration_duration = freezed,
+    Object? errorStyle_textStyle = freezed,
+    Object? errorMaxLines_int = freezed,
+    Object? isDense_bool = null,
+    Object? contentPadding_edgeInsets = freezed,
+    Object? isCollapsed_bool = null,
+    Object? iconColor_color = freezed,
+    Object? prefixStyle_textStyle = freezed,
+    Object? prefixIconColor_color = freezed,
+    Object? suffixStyle_textStyle = freezed,
+    Object? suffixIconColor_color = freezed,
+    Object? counterStyle_textStyle = freezed,
+    Object? filled_bool = null,
+    Object? fillColor_color = freezed,
+    Object? activeIndicatorBorder_borderSide = freezed,
+    Object? outlineBorder_borderSide = freezed,
+    Object? focusColor_color = freezed,
+    Object? hoverColor_color = freezed,
+    Object? errorBorder_inputBorder = freezed,
+    Object? focusedBorder_inputBorder = freezed,
+    Object? focusedErrorBorder_inputBorder = freezed,
+    Object? disabledBorder_inputBorder = freezed,
+    Object? enabledBorder_inputBorder = freezed,
+    Object? border_inputBorder = freezed,
+    Object? alignLabelWithHint_bool = null,
+    Object? constraints_boxConstraints = freezed,
   }) {
     return _then(_value.copyWith(
-      labelStyle: freezed == labelStyle
-          ? _value.labelStyle
-          : labelStyle // ignore: cast_nullable_to_non_nullable
+      labelStyle_textStyle: freezed == labelStyle_textStyle
+          ? _value.labelStyle_textStyle
+          : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      floatingLabelStyle: freezed == floatingLabelStyle
-          ? _value.floatingLabelStyle
-          : floatingLabelStyle // ignore: cast_nullable_to_non_nullable
+      floatingLabelStyle_textStyle: freezed == floatingLabelStyle_textStyle
+          ? _value.floatingLabelStyle_textStyle
+          : floatingLabelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      helperStyle: freezed == helperStyle
-          ? _value.helperStyle
-          : helperStyle // ignore: cast_nullable_to_non_nullable
+      helperStyle_textStyle: freezed == helperStyle_textStyle
+          ? _value.helperStyle_textStyle
+          : helperStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      helperMaxLines: freezed == helperMaxLines
-          ? _value.helperMaxLines
-          : helperMaxLines // ignore: cast_nullable_to_non_nullable
+      helperMaxLines_int: freezed == helperMaxLines_int
+          ? _value.helperMaxLines_int
+          : helperMaxLines_int // ignore: cast_nullable_to_non_nullable
               as int?,
-      hintStyle: freezed == hintStyle
-          ? _value.hintStyle
-          : hintStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyle: freezed == hintStyle_textStyle
+          ? _value.hintStyle_textStyle
+          : hintStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      hintFadeDuration: freezed == hintFadeDuration
-          ? _value.hintFadeDuration
-          : hintFadeDuration // ignore: cast_nullable_to_non_nullable
+      hintFadeDuration_duration: freezed == hintFadeDuration_duration
+          ? _value.hintFadeDuration_duration
+          : hintFadeDuration_duration // ignore: cast_nullable_to_non_nullable
               as Duration?,
-      errorStyle: freezed == errorStyle
-          ? _value.errorStyle
-          : errorStyle // ignore: cast_nullable_to_non_nullable
+      errorStyle_textStyle: freezed == errorStyle_textStyle
+          ? _value.errorStyle_textStyle
+          : errorStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      errorMaxLines: freezed == errorMaxLines
-          ? _value.errorMaxLines
-          : errorMaxLines // ignore: cast_nullable_to_non_nullable
+      errorMaxLines_int: freezed == errorMaxLines_int
+          ? _value.errorMaxLines_int
+          : errorMaxLines_int // ignore: cast_nullable_to_non_nullable
               as int?,
-      isDense: null == isDense
-          ? _value.isDense
-          : isDense // ignore: cast_nullable_to_non_nullable
+      isDense_bool: null == isDense_bool
+          ? _value.isDense_bool
+          : isDense_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      contentPadding: freezed == contentPadding
-          ? _value.contentPadding
-          : contentPadding // ignore: cast_nullable_to_non_nullable
+      contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
+          ? _value.contentPadding_edgeInsets
+          : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      isCollapsed: null == isCollapsed
-          ? _value.isCollapsed
-          : isCollapsed // ignore: cast_nullable_to_non_nullable
+      isCollapsed_bool: null == isCollapsed_bool
+          ? _value.isCollapsed_bool
+          : isCollapsed_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      iconColor_color: freezed == iconColor_color
+          ? _value.iconColor_color
+          : iconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixStyle: freezed == prefixStyle
-          ? _value.prefixStyle
-          : prefixStyle // ignore: cast_nullable_to_non_nullable
+      prefixStyle_textStyle: freezed == prefixStyle_textStyle
+          ? _value.prefixStyle_textStyle
+          : prefixStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixIconColor: freezed == prefixIconColor
-          ? _value.prefixIconColor
-          : prefixIconColor // ignore: cast_nullable_to_non_nullable
+      prefixIconColor_color: freezed == prefixIconColor_color
+          ? _value.prefixIconColor_color
+          : prefixIconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixStyle: freezed == suffixStyle
-          ? _value.suffixStyle
-          : suffixStyle // ignore: cast_nullable_to_non_nullable
+      suffixStyle_textStyle: freezed == suffixStyle_textStyle
+          ? _value.suffixStyle_textStyle
+          : suffixStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixIconColor: freezed == suffixIconColor
-          ? _value.suffixIconColor
-          : suffixIconColor // ignore: cast_nullable_to_non_nullable
+      suffixIconColor_color: freezed == suffixIconColor_color
+          ? _value.suffixIconColor_color
+          : suffixIconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      counterStyle: freezed == counterStyle
-          ? _value.counterStyle
-          : counterStyle // ignore: cast_nullable_to_non_nullable
+      counterStyle_textStyle: freezed == counterStyle_textStyle
+          ? _value.counterStyle_textStyle
+          : counterStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      filled: null == filled
-          ? _value.filled
-          : filled // ignore: cast_nullable_to_non_nullable
+      filled_bool: null == filled_bool
+          ? _value.filled_bool
+          : filled_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      fillColor: freezed == fillColor
-          ? _value.fillColor
-          : fillColor // ignore: cast_nullable_to_non_nullable
+      fillColor_color: freezed == fillColor_color
+          ? _value.fillColor_color
+          : fillColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      activeIndicatorBorder: freezed == activeIndicatorBorder
-          ? _value.activeIndicatorBorder
-          : activeIndicatorBorder // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      outlineBorder: freezed == outlineBorder
-          ? _value.outlineBorder
-          : outlineBorder // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      focusColor: freezed == focusColor
-          ? _value.focusColor
-          : focusColor // ignore: cast_nullable_to_non_nullable
+      activeIndicatorBorder_borderSide: freezed ==
+              activeIndicatorBorder_borderSide
+          ? _value.activeIndicatorBorder_borderSide
+          : activeIndicatorBorder_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      outlineBorder_borderSide: freezed == outlineBorder_borderSide
+          ? _value.outlineBorder_borderSide
+          : outlineBorder_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      focusColor_color: freezed == focusColor_color
+          ? _value.focusColor_color
+          : focusColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor: freezed == hoverColor
-          ? _value.hoverColor
-          : hoverColor // ignore: cast_nullable_to_non_nullable
+      hoverColor_color: freezed == hoverColor_color
+          ? _value.hoverColor_color
+          : hoverColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      errorBorder: freezed == errorBorder
-          ? _value.errorBorder
-          : errorBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      focusedBorder: freezed == focusedBorder
-          ? _value.focusedBorder
-          : focusedBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      focusedErrorBorder: freezed == focusedErrorBorder
-          ? _value.focusedErrorBorder
-          : focusedErrorBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      disabledBorder: freezed == disabledBorder
-          ? _value.disabledBorder
-          : disabledBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      enabledBorder: freezed == enabledBorder
-          ? _value.enabledBorder
-          : enabledBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      border: freezed == border
-          ? _value.border
-          : border // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      alignLabelWithHint: null == alignLabelWithHint
-          ? _value.alignLabelWithHint
-          : alignLabelWithHint // ignore: cast_nullable_to_non_nullable
+      errorBorder_inputBorder: freezed == errorBorder_inputBorder
+          ? _value.errorBorder_inputBorder
+          : errorBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      focusedBorder_inputBorder: freezed == focusedBorder_inputBorder
+          ? _value.focusedBorder_inputBorder
+          : focusedBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      focusedErrorBorder_inputBorder: freezed == focusedErrorBorder_inputBorder
+          ? _value.focusedErrorBorder_inputBorder
+          : focusedErrorBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      disabledBorder_inputBorder: freezed == disabledBorder_inputBorder
+          ? _value.disabledBorder_inputBorder
+          : disabledBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      enabledBorder_inputBorder: freezed == enabledBorder_inputBorder
+          ? _value.enabledBorder_inputBorder
+          : enabledBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      border_inputBorder: freezed == border_inputBorder
+          ? _value.border_inputBorder
+          : border_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      alignLabelWithHint_bool: null == alignLabelWithHint_bool
+          ? _value.alignLabelWithHint_bool
+          : alignLabelWithHint_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      constraints: freezed == constraints
-          ? _value.constraints
-          : constraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
+      constraints_boxConstraints: freezed == constraints_boxConstraints
+          ? _value.constraints_boxConstraints
+          : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderSideModelCopyWith<$Res>? get activeIndicatorBorder_borderSide {
+    if (_value.activeIndicatorBorder_borderSide == null) {
+      return null;
+    }
+
+    return $BorderSideModelCopyWith<$Res>(
+        _value.activeIndicatorBorder_borderSide!, (value) {
+      return _then(
+          _value.copyWith(activeIndicatorBorder_borderSide: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderSideModelCopyWith<$Res>? get outlineBorder_borderSide {
+    if (_value.outlineBorder_borderSide == null) {
+      return null;
+    }
+
+    return $BorderSideModelCopyWith<$Res>(_value.outlineBorder_borderSide!,
+        (value) {
+      return _then(_value.copyWith(outlineBorder_borderSide: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputBorderModelCopyWith<$Res>? get errorBorder_inputBorder {
+    if (_value.errorBorder_inputBorder == null) {
+      return null;
+    }
+
+    return $InputBorderModelCopyWith<$Res>(_value.errorBorder_inputBorder!,
+        (value) {
+      return _then(_value.copyWith(errorBorder_inputBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputBorderModelCopyWith<$Res>? get focusedBorder_inputBorder {
+    if (_value.focusedBorder_inputBorder == null) {
+      return null;
+    }
+
+    return $InputBorderModelCopyWith<$Res>(_value.focusedBorder_inputBorder!,
+        (value) {
+      return _then(_value.copyWith(focusedBorder_inputBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputBorderModelCopyWith<$Res>? get focusedErrorBorder_inputBorder {
+    if (_value.focusedErrorBorder_inputBorder == null) {
+      return null;
+    }
+
+    return $InputBorderModelCopyWith<$Res>(
+        _value.focusedErrorBorder_inputBorder!, (value) {
+      return _then(
+          _value.copyWith(focusedErrorBorder_inputBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputBorderModelCopyWith<$Res>? get disabledBorder_inputBorder {
+    if (_value.disabledBorder_inputBorder == null) {
+      return null;
+    }
+
+    return $InputBorderModelCopyWith<$Res>(_value.disabledBorder_inputBorder!,
+        (value) {
+      return _then(_value.copyWith(disabledBorder_inputBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputBorderModelCopyWith<$Res>? get enabledBorder_inputBorder {
+    if (_value.enabledBorder_inputBorder == null) {
+      return null;
+    }
+
+    return $InputBorderModelCopyWith<$Res>(_value.enabledBorder_inputBorder!,
+        (value) {
+      return _then(_value.copyWith(enabledBorder_inputBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $InputBorderModelCopyWith<$Res>? get border_inputBorder {
+    if (_value.border_inputBorder == null) {
+      return null;
+    }
+
+    return $InputBorderModelCopyWith<$Res>(_value.border_inputBorder!, (value) {
+      return _then(_value.copyWith(border_inputBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints {
+    if (_value.constraints_boxConstraints == null) {
+      return null;
+    }
+
+    return $BoxConstraintsModelCopyWith<$Res>(
+        _value.constraints_boxConstraints!, (value) {
+      return _then(_value.copyWith(constraints_boxConstraints: value) as $Val);
+    });
   }
 }
 
@@ -292,37 +423,56 @@ abstract class _$$InputDecorationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? labelStyle,
-      String? floatingLabelStyle,
-      String? helperStyle,
-      int? helperMaxLines,
-      String? hintStyle,
-      Duration? hintFadeDuration,
-      String? errorStyle,
-      int? errorMaxLines,
-      bool isDense,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding,
-      bool isCollapsed,
-      String? iconColor,
-      String? prefixStyle,
-      String? prefixIconColor,
-      String? suffixStyle,
-      String? suffixIconColor,
-      String? counterStyle,
-      bool filled,
-      String? fillColor,
-      @BorderSideConverter() BorderSide? activeIndicatorBorder,
-      @BorderSideConverter() BorderSide? outlineBorder,
-      String? focusColor,
-      String? hoverColor,
-      @InputBorderConverter() InputBorder? errorBorder,
-      @InputBorderConverter() InputBorder? focusedBorder,
-      @InputBorderConverter() InputBorder? focusedErrorBorder,
-      @InputBorderConverter() InputBorder? disabledBorder,
-      @InputBorderConverter() InputBorder? enabledBorder,
-      @InputBorderConverter() InputBorder? border,
-      bool alignLabelWithHint,
-      @BoxConstraintsConverter() BoxConstraints? constraints});
+      {String? labelStyle_textStyle,
+      String? floatingLabelStyle_textStyle,
+      String? helperStyle_textStyle,
+      int? helperMaxLines_int,
+      String? hintStyle_textStyle,
+      Duration? hintFadeDuration_duration,
+      String? errorStyle_textStyle,
+      int? errorMaxLines_int,
+      bool isDense_bool,
+      @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+      bool isCollapsed_bool,
+      String? iconColor_color,
+      String? prefixStyle_textStyle,
+      String? prefixIconColor_color,
+      String? suffixStyle_textStyle,
+      String? suffixIconColor_color,
+      String? counterStyle_textStyle,
+      bool filled_bool,
+      String? fillColor_color,
+      BorderSideModel? activeIndicatorBorder_borderSide,
+      BorderSideModel? outlineBorder_borderSide,
+      String? focusColor_color,
+      String? hoverColor_color,
+      InputBorderModel? errorBorder_inputBorder,
+      InputBorderModel? focusedBorder_inputBorder,
+      InputBorderModel? focusedErrorBorder_inputBorder,
+      InputBorderModel? disabledBorder_inputBorder,
+      InputBorderModel? enabledBorder_inputBorder,
+      InputBorderModel? border_inputBorder,
+      bool alignLabelWithHint_bool,
+      BoxConstraintsModel? constraints_boxConstraints});
+
+  @override
+  $BorderSideModelCopyWith<$Res>? get activeIndicatorBorder_borderSide;
+  @override
+  $BorderSideModelCopyWith<$Res>? get outlineBorder_borderSide;
+  @override
+  $InputBorderModelCopyWith<$Res>? get errorBorder_inputBorder;
+  @override
+  $InputBorderModelCopyWith<$Res>? get focusedBorder_inputBorder;
+  @override
+  $InputBorderModelCopyWith<$Res>? get focusedErrorBorder_inputBorder;
+  @override
+  $InputBorderModelCopyWith<$Res>? get disabledBorder_inputBorder;
+  @override
+  $InputBorderModelCopyWith<$Res>? get enabledBorder_inputBorder;
+  @override
+  $InputBorderModelCopyWith<$Res>? get border_inputBorder;
+  @override
+  $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
 }
 
 /// @nodoc
@@ -336,163 +486,164 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? labelStyle = freezed,
-    Object? floatingLabelStyle = freezed,
-    Object? helperStyle = freezed,
-    Object? helperMaxLines = freezed,
-    Object? hintStyle = freezed,
-    Object? hintFadeDuration = freezed,
-    Object? errorStyle = freezed,
-    Object? errorMaxLines = freezed,
-    Object? isDense = null,
-    Object? contentPadding = freezed,
-    Object? isCollapsed = null,
-    Object? iconColor = freezed,
-    Object? prefixStyle = freezed,
-    Object? prefixIconColor = freezed,
-    Object? suffixStyle = freezed,
-    Object? suffixIconColor = freezed,
-    Object? counterStyle = freezed,
-    Object? filled = null,
-    Object? fillColor = freezed,
-    Object? activeIndicatorBorder = freezed,
-    Object? outlineBorder = freezed,
-    Object? focusColor = freezed,
-    Object? hoverColor = freezed,
-    Object? errorBorder = freezed,
-    Object? focusedBorder = freezed,
-    Object? focusedErrorBorder = freezed,
-    Object? disabledBorder = freezed,
-    Object? enabledBorder = freezed,
-    Object? border = freezed,
-    Object? alignLabelWithHint = null,
-    Object? constraints = freezed,
+    Object? labelStyle_textStyle = freezed,
+    Object? floatingLabelStyle_textStyle = freezed,
+    Object? helperStyle_textStyle = freezed,
+    Object? helperMaxLines_int = freezed,
+    Object? hintStyle_textStyle = freezed,
+    Object? hintFadeDuration_duration = freezed,
+    Object? errorStyle_textStyle = freezed,
+    Object? errorMaxLines_int = freezed,
+    Object? isDense_bool = null,
+    Object? contentPadding_edgeInsets = freezed,
+    Object? isCollapsed_bool = null,
+    Object? iconColor_color = freezed,
+    Object? prefixStyle_textStyle = freezed,
+    Object? prefixIconColor_color = freezed,
+    Object? suffixStyle_textStyle = freezed,
+    Object? suffixIconColor_color = freezed,
+    Object? counterStyle_textStyle = freezed,
+    Object? filled_bool = null,
+    Object? fillColor_color = freezed,
+    Object? activeIndicatorBorder_borderSide = freezed,
+    Object? outlineBorder_borderSide = freezed,
+    Object? focusColor_color = freezed,
+    Object? hoverColor_color = freezed,
+    Object? errorBorder_inputBorder = freezed,
+    Object? focusedBorder_inputBorder = freezed,
+    Object? focusedErrorBorder_inputBorder = freezed,
+    Object? disabledBorder_inputBorder = freezed,
+    Object? enabledBorder_inputBorder = freezed,
+    Object? border_inputBorder = freezed,
+    Object? alignLabelWithHint_bool = null,
+    Object? constraints_boxConstraints = freezed,
   }) {
     return _then(_$InputDecorationModelImpl(
-      labelStyle: freezed == labelStyle
-          ? _value.labelStyle
-          : labelStyle // ignore: cast_nullable_to_non_nullable
+      labelStyle_textStyle: freezed == labelStyle_textStyle
+          ? _value.labelStyle_textStyle
+          : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      floatingLabelStyle: freezed == floatingLabelStyle
-          ? _value.floatingLabelStyle
-          : floatingLabelStyle // ignore: cast_nullable_to_non_nullable
+      floatingLabelStyle_textStyle: freezed == floatingLabelStyle_textStyle
+          ? _value.floatingLabelStyle_textStyle
+          : floatingLabelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      helperStyle: freezed == helperStyle
-          ? _value.helperStyle
-          : helperStyle // ignore: cast_nullable_to_non_nullable
+      helperStyle_textStyle: freezed == helperStyle_textStyle
+          ? _value.helperStyle_textStyle
+          : helperStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      helperMaxLines: freezed == helperMaxLines
-          ? _value.helperMaxLines
-          : helperMaxLines // ignore: cast_nullable_to_non_nullable
+      helperMaxLines_int: freezed == helperMaxLines_int
+          ? _value.helperMaxLines_int
+          : helperMaxLines_int // ignore: cast_nullable_to_non_nullable
               as int?,
-      hintStyle: freezed == hintStyle
-          ? _value.hintStyle
-          : hintStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyle: freezed == hintStyle_textStyle
+          ? _value.hintStyle_textStyle
+          : hintStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      hintFadeDuration: freezed == hintFadeDuration
-          ? _value.hintFadeDuration
-          : hintFadeDuration // ignore: cast_nullable_to_non_nullable
+      hintFadeDuration_duration: freezed == hintFadeDuration_duration
+          ? _value.hintFadeDuration_duration
+          : hintFadeDuration_duration // ignore: cast_nullable_to_non_nullable
               as Duration?,
-      errorStyle: freezed == errorStyle
-          ? _value.errorStyle
-          : errorStyle // ignore: cast_nullable_to_non_nullable
+      errorStyle_textStyle: freezed == errorStyle_textStyle
+          ? _value.errorStyle_textStyle
+          : errorStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      errorMaxLines: freezed == errorMaxLines
-          ? _value.errorMaxLines
-          : errorMaxLines // ignore: cast_nullable_to_non_nullable
+      errorMaxLines_int: freezed == errorMaxLines_int
+          ? _value.errorMaxLines_int
+          : errorMaxLines_int // ignore: cast_nullable_to_non_nullable
               as int?,
-      isDense: null == isDense
-          ? _value.isDense
-          : isDense // ignore: cast_nullable_to_non_nullable
+      isDense_bool: null == isDense_bool
+          ? _value.isDense_bool
+          : isDense_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      contentPadding: freezed == contentPadding
-          ? _value.contentPadding
-          : contentPadding // ignore: cast_nullable_to_non_nullable
+      contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
+          ? _value.contentPadding_edgeInsets
+          : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      isCollapsed: null == isCollapsed
-          ? _value.isCollapsed
-          : isCollapsed // ignore: cast_nullable_to_non_nullable
+      isCollapsed_bool: null == isCollapsed_bool
+          ? _value.isCollapsed_bool
+          : isCollapsed_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      iconColor_color: freezed == iconColor_color
+          ? _value.iconColor_color
+          : iconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixStyle: freezed == prefixStyle
-          ? _value.prefixStyle
-          : prefixStyle // ignore: cast_nullable_to_non_nullable
+      prefixStyle_textStyle: freezed == prefixStyle_textStyle
+          ? _value.prefixStyle_textStyle
+          : prefixStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixIconColor: freezed == prefixIconColor
-          ? _value.prefixIconColor
-          : prefixIconColor // ignore: cast_nullable_to_non_nullable
+      prefixIconColor_color: freezed == prefixIconColor_color
+          ? _value.prefixIconColor_color
+          : prefixIconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixStyle: freezed == suffixStyle
-          ? _value.suffixStyle
-          : suffixStyle // ignore: cast_nullable_to_non_nullable
+      suffixStyle_textStyle: freezed == suffixStyle_textStyle
+          ? _value.suffixStyle_textStyle
+          : suffixStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixIconColor: freezed == suffixIconColor
-          ? _value.suffixIconColor
-          : suffixIconColor // ignore: cast_nullable_to_non_nullable
+      suffixIconColor_color: freezed == suffixIconColor_color
+          ? _value.suffixIconColor_color
+          : suffixIconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      counterStyle: freezed == counterStyle
-          ? _value.counterStyle
-          : counterStyle // ignore: cast_nullable_to_non_nullable
+      counterStyle_textStyle: freezed == counterStyle_textStyle
+          ? _value.counterStyle_textStyle
+          : counterStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      filled: null == filled
-          ? _value.filled
-          : filled // ignore: cast_nullable_to_non_nullable
+      filled_bool: null == filled_bool
+          ? _value.filled_bool
+          : filled_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      fillColor: freezed == fillColor
-          ? _value.fillColor
-          : fillColor // ignore: cast_nullable_to_non_nullable
+      fillColor_color: freezed == fillColor_color
+          ? _value.fillColor_color
+          : fillColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      activeIndicatorBorder: freezed == activeIndicatorBorder
-          ? _value.activeIndicatorBorder
-          : activeIndicatorBorder // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      outlineBorder: freezed == outlineBorder
-          ? _value.outlineBorder
-          : outlineBorder // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      focusColor: freezed == focusColor
-          ? _value.focusColor
-          : focusColor // ignore: cast_nullable_to_non_nullable
+      activeIndicatorBorder_borderSide: freezed ==
+              activeIndicatorBorder_borderSide
+          ? _value.activeIndicatorBorder_borderSide
+          : activeIndicatorBorder_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      outlineBorder_borderSide: freezed == outlineBorder_borderSide
+          ? _value.outlineBorder_borderSide
+          : outlineBorder_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      focusColor_color: freezed == focusColor_color
+          ? _value.focusColor_color
+          : focusColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor: freezed == hoverColor
-          ? _value.hoverColor
-          : hoverColor // ignore: cast_nullable_to_non_nullable
+      hoverColor_color: freezed == hoverColor_color
+          ? _value.hoverColor_color
+          : hoverColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      errorBorder: freezed == errorBorder
-          ? _value.errorBorder
-          : errorBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      focusedBorder: freezed == focusedBorder
-          ? _value.focusedBorder
-          : focusedBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      focusedErrorBorder: freezed == focusedErrorBorder
-          ? _value.focusedErrorBorder
-          : focusedErrorBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      disabledBorder: freezed == disabledBorder
-          ? _value.disabledBorder
-          : disabledBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      enabledBorder: freezed == enabledBorder
-          ? _value.enabledBorder
-          : enabledBorder // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      border: freezed == border
-          ? _value.border
-          : border // ignore: cast_nullable_to_non_nullable
-              as InputBorder?,
-      alignLabelWithHint: null == alignLabelWithHint
-          ? _value.alignLabelWithHint
-          : alignLabelWithHint // ignore: cast_nullable_to_non_nullable
+      errorBorder_inputBorder: freezed == errorBorder_inputBorder
+          ? _value.errorBorder_inputBorder
+          : errorBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      focusedBorder_inputBorder: freezed == focusedBorder_inputBorder
+          ? _value.focusedBorder_inputBorder
+          : focusedBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      focusedErrorBorder_inputBorder: freezed == focusedErrorBorder_inputBorder
+          ? _value.focusedErrorBorder_inputBorder
+          : focusedErrorBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      disabledBorder_inputBorder: freezed == disabledBorder_inputBorder
+          ? _value.disabledBorder_inputBorder
+          : disabledBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      enabledBorder_inputBorder: freezed == enabledBorder_inputBorder
+          ? _value.enabledBorder_inputBorder
+          : enabledBorder_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      border_inputBorder: freezed == border_inputBorder
+          ? _value.border_inputBorder
+          : border_inputBorder // ignore: cast_nullable_to_non_nullable
+              as InputBorderModel?,
+      alignLabelWithHint_bool: null == alignLabelWithHint_bool
+          ? _value.alignLabelWithHint_bool
+          : alignLabelWithHint_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      constraints: freezed == constraints
-          ? _value.constraints
-          : constraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
+      constraints_boxConstraints: freezed == constraints_boxConstraints
+          ? _value.constraints_boxConstraints
+          : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
     ));
   }
 }
@@ -501,122 +652,120 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InputDecorationModelImpl extends _InputDecorationModel {
   const _$InputDecorationModelImpl(
-      {this.labelStyle,
-      this.floatingLabelStyle,
-      this.helperStyle,
-      this.helperMaxLines,
-      this.hintStyle,
-      this.hintFadeDuration,
-      this.errorStyle,
-      this.errorMaxLines,
-      this.isDense = false,
-      @EdgeInsetsConverter() this.contentPadding,
-      this.isCollapsed = false,
-      this.iconColor,
-      this.prefixStyle,
-      this.prefixIconColor,
-      this.suffixStyle,
-      this.suffixIconColor,
-      this.counterStyle,
-      this.filled = false,
-      this.fillColor,
-      @BorderSideConverter() this.activeIndicatorBorder,
-      @BorderSideConverter() this.outlineBorder,
-      this.focusColor,
-      this.hoverColor,
-      @InputBorderConverter() this.errorBorder,
-      @InputBorderConverter() this.focusedBorder,
-      @InputBorderConverter() this.focusedErrorBorder,
-      @InputBorderConverter() this.disabledBorder,
-      @InputBorderConverter() this.enabledBorder,
-      @InputBorderConverter() this.border,
-      this.alignLabelWithHint = false,
-      @BoxConstraintsConverter() this.constraints})
+      {this.labelStyle_textStyle,
+      this.floatingLabelStyle_textStyle,
+      this.helperStyle_textStyle,
+      this.helperMaxLines_int,
+      this.hintStyle_textStyle,
+      this.hintFadeDuration_duration,
+      this.errorStyle_textStyle,
+      this.errorMaxLines_int,
+      this.isDense_bool = false,
+      @EdgeInsetsConverter() this.contentPadding_edgeInsets,
+      this.isCollapsed_bool = false,
+      this.iconColor_color,
+      this.prefixStyle_textStyle,
+      this.prefixIconColor_color,
+      this.suffixStyle_textStyle,
+      this.suffixIconColor_color,
+      this.counterStyle_textStyle,
+      this.filled_bool = false,
+      this.fillColor_color,
+      this.activeIndicatorBorder_borderSide,
+      this.outlineBorder_borderSide,
+      this.focusColor_color,
+      this.hoverColor_color,
+      this.errorBorder_inputBorder = const InputBorderModel(),
+      this.focusedBorder_inputBorder = const InputBorderModel(),
+      this.focusedErrorBorder_inputBorder = const InputBorderModel(),
+      this.disabledBorder_inputBorder = const InputBorderModel(),
+      this.enabledBorder_inputBorder = const InputBorderModel(),
+      this.border_inputBorder = const InputBorderModel(),
+      this.alignLabelWithHint_bool = false,
+      this.constraints_boxConstraints = const BoxConstraintsModel()})
       : super._();
 
   factory _$InputDecorationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$InputDecorationModelImplFromJson(json);
 
   @override
-  final String? labelStyle;
+  final String? labelStyle_textStyle;
   @override
-  final String? floatingLabelStyle;
+  final String? floatingLabelStyle_textStyle;
   @override
-  final String? helperStyle;
+  final String? helperStyle_textStyle;
   @override
-  final int? helperMaxLines;
+  final int? helperMaxLines_int;
   @override
-  final String? hintStyle;
+  final String? hintStyle_textStyle;
   @override
-  final Duration? hintFadeDuration;
+  final Duration? hintFadeDuration_duration;
   @override
-  final String? errorStyle;
+  final String? errorStyle_textStyle;
   @override
-  final int? errorMaxLines;
+  final int? errorMaxLines_int;
   @override
   @JsonKey()
-  final bool isDense;
+  final bool isDense_bool;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? contentPadding;
+  final EdgeInsets? contentPadding_edgeInsets;
   @override
   @JsonKey()
-  final bool isCollapsed;
+  final bool isCollapsed_bool;
   @override
-  final String? iconColor;
+  final String? iconColor_color;
   @override
-  final String? prefixStyle;
+  final String? prefixStyle_textStyle;
   @override
-  final String? prefixIconColor;
+  final String? prefixIconColor_color;
   @override
-  final String? suffixStyle;
+  final String? suffixStyle_textStyle;
   @override
-  final String? suffixIconColor;
+  final String? suffixIconColor_color;
   @override
-  final String? counterStyle;
-  @override
-  @JsonKey()
-  final bool filled;
-  @override
-  final String? fillColor;
-  @override
-  @BorderSideConverter()
-  final BorderSide? activeIndicatorBorder;
-  @override
-  @BorderSideConverter()
-  final BorderSide? outlineBorder;
-  @override
-  final String? focusColor;
-  @override
-  final String? hoverColor;
-  @override
-  @InputBorderConverter()
-  final InputBorder? errorBorder;
-  @override
-  @InputBorderConverter()
-  final InputBorder? focusedBorder;
-  @override
-  @InputBorderConverter()
-  final InputBorder? focusedErrorBorder;
-  @override
-  @InputBorderConverter()
-  final InputBorder? disabledBorder;
-  @override
-  @InputBorderConverter()
-  final InputBorder? enabledBorder;
-  @override
-  @InputBorderConverter()
-  final InputBorder? border;
+  final String? counterStyle_textStyle;
   @override
   @JsonKey()
-  final bool alignLabelWithHint;
+  final bool filled_bool;
   @override
-  @BoxConstraintsConverter()
-  final BoxConstraints? constraints;
+  final String? fillColor_color;
+  @override
+  final BorderSideModel? activeIndicatorBorder_borderSide;
+  @override
+  final BorderSideModel? outlineBorder_borderSide;
+  @override
+  final String? focusColor_color;
+  @override
+  final String? hoverColor_color;
+  @override
+  @JsonKey()
+  final InputBorderModel? errorBorder_inputBorder;
+  @override
+  @JsonKey()
+  final InputBorderModel? focusedBorder_inputBorder;
+  @override
+  @JsonKey()
+  final InputBorderModel? focusedErrorBorder_inputBorder;
+  @override
+  @JsonKey()
+  final InputBorderModel? disabledBorder_inputBorder;
+  @override
+  @JsonKey()
+  final InputBorderModel? enabledBorder_inputBorder;
+  @override
+  @JsonKey()
+  final InputBorderModel? border_inputBorder;
+  @override
+  @JsonKey()
+  final bool alignLabelWithHint_bool;
+  @override
+  @JsonKey()
+  final BoxConstraintsModel? constraints_boxConstraints;
 
   @override
   String toString() {
-    return 'InputDecorationModel(labelStyle: $labelStyle, floatingLabelStyle: $floatingLabelStyle, helperStyle: $helperStyle, helperMaxLines: $helperMaxLines, hintStyle: $hintStyle, hintFadeDuration: $hintFadeDuration, errorStyle: $errorStyle, errorMaxLines: $errorMaxLines, isDense: $isDense, contentPadding: $contentPadding, isCollapsed: $isCollapsed, iconColor: $iconColor, prefixStyle: $prefixStyle, prefixIconColor: $prefixIconColor, suffixStyle: $suffixStyle, suffixIconColor: $suffixIconColor, counterStyle: $counterStyle, filled: $filled, fillColor: $fillColor, activeIndicatorBorder: $activeIndicatorBorder, outlineBorder: $outlineBorder, focusColor: $focusColor, hoverColor: $hoverColor, errorBorder: $errorBorder, focusedBorder: $focusedBorder, focusedErrorBorder: $focusedErrorBorder, disabledBorder: $disabledBorder, enabledBorder: $enabledBorder, border: $border, alignLabelWithHint: $alignLabelWithHint, constraints: $constraints)';
+    return 'InputDecorationModel(labelStyle_textStyle: $labelStyle_textStyle, floatingLabelStyle_textStyle: $floatingLabelStyle_textStyle, helperStyle_textStyle: $helperStyle_textStyle, helperMaxLines_int: $helperMaxLines_int, hintStyle_textStyle: $hintStyle_textStyle, hintFadeDuration_duration: $hintFadeDuration_duration, errorStyle_textStyle: $errorStyle_textStyle, errorMaxLines_int: $errorMaxLines_int, isDense_bool: $isDense_bool, contentPadding_edgeInsets: $contentPadding_edgeInsets, isCollapsed_bool: $isCollapsed_bool, iconColor_color: $iconColor_color, prefixStyle_textStyle: $prefixStyle_textStyle, prefixIconColor_color: $prefixIconColor_color, suffixStyle_textStyle: $suffixStyle_textStyle, suffixIconColor_color: $suffixIconColor_color, counterStyle_textStyle: $counterStyle_textStyle, filled_bool: $filled_bool, fillColor_color: $fillColor_color, activeIndicatorBorder_borderSide: $activeIndicatorBorder_borderSide, outlineBorder_borderSide: $outlineBorder_borderSide, focusColor_color: $focusColor_color, hoverColor_color: $hoverColor_color, errorBorder_inputBorder: $errorBorder_inputBorder, focusedBorder_inputBorder: $focusedBorder_inputBorder, focusedErrorBorder_inputBorder: $focusedErrorBorder_inputBorder, disabledBorder_inputBorder: $disabledBorder_inputBorder, enabledBorder_inputBorder: $enabledBorder_inputBorder, border_inputBorder: $border_inputBorder, alignLabelWithHint_bool: $alignLabelWithHint_bool, constraints_boxConstraints: $constraints_boxConstraints)';
   }
 
   @override
@@ -624,102 +773,101 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InputDecorationModelImpl &&
-            (identical(other.labelStyle, labelStyle) ||
-                other.labelStyle == labelStyle) &&
-            (identical(other.floatingLabelStyle, floatingLabelStyle) ||
-                other.floatingLabelStyle == floatingLabelStyle) &&
-            (identical(other.helperStyle, helperStyle) ||
-                other.helperStyle == helperStyle) &&
-            (identical(other.helperMaxLines, helperMaxLines) ||
-                other.helperMaxLines == helperMaxLines) &&
-            (identical(other.hintStyle, hintStyle) ||
-                other.hintStyle == hintStyle) &&
-            (identical(other.hintFadeDuration, hintFadeDuration) ||
-                other.hintFadeDuration == hintFadeDuration) &&
-            (identical(other.errorStyle, errorStyle) ||
-                other.errorStyle == errorStyle) &&
-            (identical(other.errorMaxLines, errorMaxLines) ||
-                other.errorMaxLines == errorMaxLines) &&
-            (identical(other.isDense, isDense) || other.isDense == isDense) &&
-            (identical(other.contentPadding, contentPadding) ||
-                other.contentPadding == contentPadding) &&
-            (identical(other.isCollapsed, isCollapsed) ||
-                other.isCollapsed == isCollapsed) &&
-            (identical(other.iconColor, iconColor) ||
-                other.iconColor == iconColor) &&
-            (identical(other.prefixStyle, prefixStyle) ||
-                other.prefixStyle == prefixStyle) &&
-            (identical(other.prefixIconColor, prefixIconColor) ||
-                other.prefixIconColor == prefixIconColor) &&
-            (identical(other.suffixStyle, suffixStyle) ||
-                other.suffixStyle == suffixStyle) &&
-            (identical(other.suffixIconColor, suffixIconColor) ||
-                other.suffixIconColor == suffixIconColor) &&
-            (identical(other.counterStyle, counterStyle) ||
-                other.counterStyle == counterStyle) &&
-            (identical(other.filled, filled) || other.filled == filled) &&
-            (identical(other.fillColor, fillColor) ||
-                other.fillColor == fillColor) &&
-            (identical(other.activeIndicatorBorder, activeIndicatorBorder) ||
-                other.activeIndicatorBorder == activeIndicatorBorder) &&
-            (identical(other.outlineBorder, outlineBorder) ||
-                other.outlineBorder == outlineBorder) &&
-            (identical(other.focusColor, focusColor) ||
-                other.focusColor == focusColor) &&
-            (identical(other.hoverColor, hoverColor) ||
-                other.hoverColor == hoverColor) &&
-            (identical(other.errorBorder, errorBorder) ||
-                other.errorBorder == errorBorder) &&
-            (identical(other.focusedBorder, focusedBorder) ||
-                other.focusedBorder == focusedBorder) &&
-            (identical(other.focusedErrorBorder, focusedErrorBorder) ||
-                other.focusedErrorBorder == focusedErrorBorder) &&
-            (identical(other.disabledBorder, disabledBorder) ||
-                other.disabledBorder == disabledBorder) &&
-            (identical(other.enabledBorder, enabledBorder) ||
-                other.enabledBorder == enabledBorder) &&
-            (identical(other.border, border) || other.border == border) &&
-            (identical(other.alignLabelWithHint, alignLabelWithHint) ||
-                other.alignLabelWithHint == alignLabelWithHint) &&
-            (identical(other.constraints, constraints) ||
-                other.constraints == constraints));
+            (identical(other.labelStyle_textStyle, labelStyle_textStyle) ||
+                other.labelStyle_textStyle == labelStyle_textStyle) &&
+            (identical(other.floatingLabelStyle_textStyle, floatingLabelStyle_textStyle) ||
+                other.floatingLabelStyle_textStyle ==
+                    floatingLabelStyle_textStyle) &&
+            (identical(other.helperStyle_textStyle, helperStyle_textStyle) ||
+                other.helperStyle_textStyle == helperStyle_textStyle) &&
+            (identical(other.helperMaxLines_int, helperMaxLines_int) ||
+                other.helperMaxLines_int == helperMaxLines_int) &&
+            (identical(other.hintStyle_textStyle, hintStyle_textStyle) ||
+                other.hintStyle_textStyle == hintStyle_textStyle) &&
+            (identical(other.hintFadeDuration_duration, hintFadeDuration_duration) ||
+                other.hintFadeDuration_duration == hintFadeDuration_duration) &&
+            (identical(other.errorStyle_textStyle, errorStyle_textStyle) ||
+                other.errorStyle_textStyle == errorStyle_textStyle) &&
+            (identical(other.errorMaxLines_int, errorMaxLines_int) ||
+                other.errorMaxLines_int == errorMaxLines_int) &&
+            (identical(other.isDense_bool, isDense_bool) ||
+                other.isDense_bool == isDense_bool) &&
+            (identical(other.contentPadding_edgeInsets, contentPadding_edgeInsets) ||
+                other.contentPadding_edgeInsets == contentPadding_edgeInsets) &&
+            (identical(other.isCollapsed_bool, isCollapsed_bool) ||
+                other.isCollapsed_bool == isCollapsed_bool) &&
+            (identical(other.iconColor_color, iconColor_color) ||
+                other.iconColor_color == iconColor_color) &&
+            (identical(other.prefixStyle_textStyle, prefixStyle_textStyle) ||
+                other.prefixStyle_textStyle == prefixStyle_textStyle) &&
+            (identical(other.prefixIconColor_color, prefixIconColor_color) ||
+                other.prefixIconColor_color == prefixIconColor_color) &&
+            (identical(other.suffixStyle_textStyle, suffixStyle_textStyle) ||
+                other.suffixStyle_textStyle == suffixStyle_textStyle) &&
+            (identical(other.suffixIconColor_color, suffixIconColor_color) ||
+                other.suffixIconColor_color == suffixIconColor_color) &&
+            (identical(other.counterStyle_textStyle, counterStyle_textStyle) ||
+                other.counterStyle_textStyle == counterStyle_textStyle) &&
+            (identical(other.filled_bool, filled_bool) ||
+                other.filled_bool == filled_bool) &&
+            (identical(other.fillColor_color, fillColor_color) ||
+                other.fillColor_color == fillColor_color) &&
+            (identical(other.activeIndicatorBorder_borderSide, activeIndicatorBorder_borderSide) ||
+                other.activeIndicatorBorder_borderSide ==
+                    activeIndicatorBorder_borderSide) &&
+            (identical(other.outlineBorder_borderSide, outlineBorder_borderSide) ||
+                other.outlineBorder_borderSide == outlineBorder_borderSide) &&
+            (identical(other.focusColor_color, focusColor_color) ||
+                other.focusColor_color == focusColor_color) &&
+            (identical(other.hoverColor_color, hoverColor_color) ||
+                other.hoverColor_color == hoverColor_color) &&
+            (identical(other.errorBorder_inputBorder, errorBorder_inputBorder) ||
+                other.errorBorder_inputBorder == errorBorder_inputBorder) &&
+            (identical(other.focusedBorder_inputBorder, focusedBorder_inputBorder) ||
+                other.focusedBorder_inputBorder == focusedBorder_inputBorder) &&
+            (identical(other.focusedErrorBorder_inputBorder, focusedErrorBorder_inputBorder) || other.focusedErrorBorder_inputBorder == focusedErrorBorder_inputBorder) &&
+            (identical(other.disabledBorder_inputBorder, disabledBorder_inputBorder) || other.disabledBorder_inputBorder == disabledBorder_inputBorder) &&
+            (identical(other.enabledBorder_inputBorder, enabledBorder_inputBorder) || other.enabledBorder_inputBorder == enabledBorder_inputBorder) &&
+            (identical(other.border_inputBorder, border_inputBorder) || other.border_inputBorder == border_inputBorder) &&
+            (identical(other.alignLabelWithHint_bool, alignLabelWithHint_bool) || other.alignLabelWithHint_bool == alignLabelWithHint_bool) &&
+            (identical(other.constraints_boxConstraints, constraints_boxConstraints) || other.constraints_boxConstraints == constraints_boxConstraints));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        labelStyle,
-        floatingLabelStyle,
-        helperStyle,
-        helperMaxLines,
-        hintStyle,
-        hintFadeDuration,
-        errorStyle,
-        errorMaxLines,
-        isDense,
-        contentPadding,
-        isCollapsed,
-        iconColor,
-        prefixStyle,
-        prefixIconColor,
-        suffixStyle,
-        suffixIconColor,
-        counterStyle,
-        filled,
-        fillColor,
-        activeIndicatorBorder,
-        outlineBorder,
-        focusColor,
-        hoverColor,
-        errorBorder,
-        focusedBorder,
-        focusedErrorBorder,
-        disabledBorder,
-        enabledBorder,
-        border,
-        alignLabelWithHint,
-        constraints
+        labelStyle_textStyle,
+        floatingLabelStyle_textStyle,
+        helperStyle_textStyle,
+        helperMaxLines_int,
+        hintStyle_textStyle,
+        hintFadeDuration_duration,
+        errorStyle_textStyle,
+        errorMaxLines_int,
+        isDense_bool,
+        contentPadding_edgeInsets,
+        isCollapsed_bool,
+        iconColor_color,
+        prefixStyle_textStyle,
+        prefixIconColor_color,
+        suffixStyle_textStyle,
+        suffixIconColor_color,
+        counterStyle_textStyle,
+        filled_bool,
+        fillColor_color,
+        activeIndicatorBorder_borderSide,
+        outlineBorder_borderSide,
+        focusColor_color,
+        hoverColor_color,
+        errorBorder_inputBorder,
+        focusedBorder_inputBorder,
+        focusedErrorBorder_inputBorder,
+        disabledBorder_inputBorder,
+        enabledBorder_inputBorder,
+        border_inputBorder,
+        alignLabelWithHint_bool,
+        constraints_boxConstraints
       ]);
 
   @JsonKey(ignore: true)
@@ -740,37 +888,37 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
 
 abstract class _InputDecorationModel extends InputDecorationModel {
   const factory _InputDecorationModel(
-          {final String? labelStyle,
-          final String? floatingLabelStyle,
-          final String? helperStyle,
-          final int? helperMaxLines,
-          final String? hintStyle,
-          final Duration? hintFadeDuration,
-          final String? errorStyle,
-          final int? errorMaxLines,
-          final bool isDense,
-          @EdgeInsetsConverter() final EdgeInsets? contentPadding,
-          final bool isCollapsed,
-          final String? iconColor,
-          final String? prefixStyle,
-          final String? prefixIconColor,
-          final String? suffixStyle,
-          final String? suffixIconColor,
-          final String? counterStyle,
-          final bool filled,
-          final String? fillColor,
-          @BorderSideConverter() final BorderSide? activeIndicatorBorder,
-          @BorderSideConverter() final BorderSide? outlineBorder,
-          final String? focusColor,
-          final String? hoverColor,
-          @InputBorderConverter() final InputBorder? errorBorder,
-          @InputBorderConverter() final InputBorder? focusedBorder,
-          @InputBorderConverter() final InputBorder? focusedErrorBorder,
-          @InputBorderConverter() final InputBorder? disabledBorder,
-          @InputBorderConverter() final InputBorder? enabledBorder,
-          @InputBorderConverter() final InputBorder? border,
-          final bool alignLabelWithHint,
-          @BoxConstraintsConverter() final BoxConstraints? constraints}) =
+          {final String? labelStyle_textStyle,
+          final String? floatingLabelStyle_textStyle,
+          final String? helperStyle_textStyle,
+          final int? helperMaxLines_int,
+          final String? hintStyle_textStyle,
+          final Duration? hintFadeDuration_duration,
+          final String? errorStyle_textStyle,
+          final int? errorMaxLines_int,
+          final bool isDense_bool,
+          @EdgeInsetsConverter() final EdgeInsets? contentPadding_edgeInsets,
+          final bool isCollapsed_bool,
+          final String? iconColor_color,
+          final String? prefixStyle_textStyle,
+          final String? prefixIconColor_color,
+          final String? suffixStyle_textStyle,
+          final String? suffixIconColor_color,
+          final String? counterStyle_textStyle,
+          final bool filled_bool,
+          final String? fillColor_color,
+          final BorderSideModel? activeIndicatorBorder_borderSide,
+          final BorderSideModel? outlineBorder_borderSide,
+          final String? focusColor_color,
+          final String? hoverColor_color,
+          final InputBorderModel? errorBorder_inputBorder,
+          final InputBorderModel? focusedBorder_inputBorder,
+          final InputBorderModel? focusedErrorBorder_inputBorder,
+          final InputBorderModel? disabledBorder_inputBorder,
+          final InputBorderModel? enabledBorder_inputBorder,
+          final InputBorderModel? border_inputBorder,
+          final bool alignLabelWithHint_bool,
+          final BoxConstraintsModel? constraints_boxConstraints}) =
       _$InputDecorationModelImpl;
   const _InputDecorationModel._() : super._();
 
@@ -778,77 +926,68 @@ abstract class _InputDecorationModel extends InputDecorationModel {
       _$InputDecorationModelImpl.fromJson;
 
   @override
-  String? get labelStyle;
+  String? get labelStyle_textStyle;
   @override
-  String? get floatingLabelStyle;
+  String? get floatingLabelStyle_textStyle;
   @override
-  String? get helperStyle;
+  String? get helperStyle_textStyle;
   @override
-  int? get helperMaxLines;
+  int? get helperMaxLines_int;
   @override
-  String? get hintStyle;
+  String? get hintStyle_textStyle;
   @override
-  Duration? get hintFadeDuration;
+  Duration? get hintFadeDuration_duration;
   @override
-  String? get errorStyle;
+  String? get errorStyle_textStyle;
   @override
-  int? get errorMaxLines;
+  int? get errorMaxLines_int;
   @override
-  bool get isDense;
+  bool get isDense_bool;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding;
+  EdgeInsets? get contentPadding_edgeInsets;
   @override
-  bool get isCollapsed;
+  bool get isCollapsed_bool;
   @override
-  String? get iconColor;
+  String? get iconColor_color;
   @override
-  String? get prefixStyle;
+  String? get prefixStyle_textStyle;
   @override
-  String? get prefixIconColor;
+  String? get prefixIconColor_color;
   @override
-  String? get suffixStyle;
+  String? get suffixStyle_textStyle;
   @override
-  String? get suffixIconColor;
+  String? get suffixIconColor_color;
   @override
-  String? get counterStyle;
+  String? get counterStyle_textStyle;
   @override
-  bool get filled;
+  bool get filled_bool;
   @override
-  String? get fillColor;
+  String? get fillColor_color;
   @override
-  @BorderSideConverter()
-  BorderSide? get activeIndicatorBorder;
+  BorderSideModel? get activeIndicatorBorder_borderSide;
   @override
-  @BorderSideConverter()
-  BorderSide? get outlineBorder;
+  BorderSideModel? get outlineBorder_borderSide;
   @override
-  String? get focusColor;
+  String? get focusColor_color;
   @override
-  String? get hoverColor;
+  String? get hoverColor_color;
   @override
-  @InputBorderConverter()
-  InputBorder? get errorBorder;
+  InputBorderModel? get errorBorder_inputBorder;
   @override
-  @InputBorderConverter()
-  InputBorder? get focusedBorder;
+  InputBorderModel? get focusedBorder_inputBorder;
   @override
-  @InputBorderConverter()
-  InputBorder? get focusedErrorBorder;
+  InputBorderModel? get focusedErrorBorder_inputBorder;
   @override
-  @InputBorderConverter()
-  InputBorder? get disabledBorder;
+  InputBorderModel? get disabledBorder_inputBorder;
   @override
-  @InputBorderConverter()
-  InputBorder? get enabledBorder;
+  InputBorderModel? get enabledBorder_inputBorder;
   @override
-  @InputBorderConverter()
-  InputBorder? get border;
+  InputBorderModel? get border_inputBorder;
   @override
-  bool get alignLabelWithHint;
+  bool get alignLabelWithHint_bool;
   @override
-  @BoxConstraintsConverter()
-  BoxConstraints? get constraints;
+  BoxConstraintsModel? get constraints_boxConstraints;
   @override
   @JsonKey(ignore: true)
   _$$InputDecorationModelImplCopyWith<_$InputDecorationModelImpl>

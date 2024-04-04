@@ -8,22 +8,25 @@ part of 'card_model.dart';
 
 _$CardModelImpl _$$CardModelImplFromJson(Map<String, dynamic> json) =>
     _$CardModelImpl(
-      color: json['color'] as String?,
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      margin: const EdgeInsetsConverter()
-          .fromJson(json['margin'] as Map<String, dynamic>?),
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
+      color_color: json['color_color'] as String?,
+      shadowColor_color: json['shadowColor_color'] as String?,
+      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      margin_edgeInsets: const EdgeInsetsConverter()
+          .fromJson(json['margin_edgeInsets'] as Map<String, dynamic>?),
+      shape_shapeBorder: json['shape_shapeBorder'] == null
+          ? null
+          : ShapeBorderModel.fromJson(
+              json['shape_shapeBorder'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CardModelImplToJson(_$CardModelImpl instance) =>
     <String, dynamic>{
-      'color': instance.color,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'elevation': instance.elevation,
-      'margin': const EdgeInsetsConverter().toJson(instance.margin),
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
+      'color_color': instance.color_color,
+      'shadowColor_color': instance.shadowColor_color,
+      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'elevation_double': instance.elevation_double,
+      'margin_edgeInsets':
+          const EdgeInsetsConverter().toJson(instance.margin_edgeInsets),
+      'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
     };

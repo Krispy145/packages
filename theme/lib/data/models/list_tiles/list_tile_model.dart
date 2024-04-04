@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/alignments/list_tile_title.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'list_tile_model.freezed.dart';
 part 'list_tile_model.g.dart';
@@ -11,22 +13,24 @@ part 'list_tile_model.g.dart';
 @freezed
 class ListTileModel with _$ListTileModel {
   const factory ListTileModel({
-    bool? dense,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    String? selectedColor,
-    String? iconColor,
-    String? textColor,
-    String? titleTextStyle,
-    String? subtitleTextStyle,
-    String? leadingAndTrailingTextStyle,
-    @EdgeInsetsConverter() EdgeInsets? contentPadding,
-    String? tileColor,
-    String? selectedTileColor,
-    double? horizontalTitleGap,
-    double? minVerticalPadding,
-    double? minLeadingWidth,
-    bool? enableFeedback,
-    @ListTileTitleAlignmentConverter() ListTileTitleAlignment? titleAlignment,
+    bool? dense_bool,
+    // @OutlinedBorderConverter()
+    ShapeBorderModel? shape_shapeBorder,
+    ThemeColorString? selectedColor_color,
+    ThemeColorString? iconColor_color,
+    ThemeColorString? textColor_color,
+    TextStyleString? titleTextStyle_textStyle,
+    TextStyleString? subtitleTextStyle_textStyle,
+    TextStyleString? leadingAndTrailingTextStyle_textStyle,
+    @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+    ThemeColorString? tileColor_color,
+    ThemeColorString? selectedTileColor_color,
+    double? horizontalTitleGap_double,
+    double? minVerticalPadding_double,
+    double? minLeadingWidth_double,
+    bool? enableFeedback_bool,
+    // @ListTileTitleAlignmentConverter()
+    ListTileTitleAlignment? titleAlignment_enum_listTileTitleAlignment,
   }) = _ListTileModel;
 
   const ListTileModel._();
@@ -67,21 +71,21 @@ class ListTileModel with _$ListTileModel {
 
   ListTileThemeData asListTileThemeData({String? styleTypeName}) {
     return ListTileThemeData(
-      dense: dense,
-      shape: shape,
-      selectedColor: selectedColor?.toColor(styleType: styleTypeName),
-      iconColor: iconColor?.toColor(styleType: styleTypeName),
-      textColor: textColor?.toColor(styleType: styleTypeName),
-      titleTextStyle: titleTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      subtitleTextStyle: subtitleTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      leadingAndTrailingTextStyle: leadingAndTrailingTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentPadding: contentPadding,
-      tileColor: tileColor?.toColor(styleType: styleTypeName),
-      selectedTileColor: selectedTileColor?.toColor(styleType: styleTypeName),
-      horizontalTitleGap: horizontalTitleGap,
-      minVerticalPadding: minVerticalPadding,
-      minLeadingWidth: minLeadingWidth,
-      enableFeedback: enableFeedback,
+      dense: dense_bool,
+      shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
+      selectedColor: selectedColor_color?.toColor(styleType: styleTypeName),
+      iconColor: iconColor_color?.toColor(styleType: styleTypeName),
+      textColor: textColor_color?.toColor(styleType: styleTypeName),
+      titleTextStyle: titleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      subtitleTextStyle: subtitleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      leadingAndTrailingTextStyle: leadingAndTrailingTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      contentPadding: contentPadding_edgeInsets,
+      tileColor: tileColor_color?.toColor(styleType: styleTypeName),
+      selectedTileColor: selectedTileColor_color?.toColor(styleType: styleTypeName),
+      horizontalTitleGap: horizontalTitleGap_double,
+      minVerticalPadding: minVerticalPadding_double,
+      minLeadingWidth: minLeadingWidth_double,
+      enableFeedback: enableFeedback_bool,
     );
   }
 }

@@ -8,36 +8,38 @@ part of 'appbar_model.dart';
 
 _$AppbarModelImpl _$$AppbarModelImplFromJson(Map<String, dynamic> json) =>
     _$AppbarModelImpl(
-      color: json['color'] as String?,
-      backgroundColor: json['backgroundColor'] as String?,
-      foregroundColor: json['foregroundColor'] as String?,
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      scrolledUnderElevation:
-          (json['scrolledUnderElevation'] as num?)?.toDouble(),
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
-      centerTitle: json['centerTitle'] as bool?,
-      titleSpacing: (json['titleSpacing'] as num?)?.toDouble(),
-      toolbarHeight: (json['toolbarHeight'] as num?)?.toDouble(),
-      toolbarTextStyle: json['toolbarTextStyle'] as String?,
-      titleTextStyle: json['titleTextStyle'] as String?,
+      color_color: json['color_color'] as String?,
+      backgroundColor_color: json['backgroundColor_color'] as String?,
+      foregroundColor_color: json['foregroundColor_color'] as String?,
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      scrolledUnderElevation_double:
+          (json['scrolledUnderElevation_double'] as num?)?.toDouble(),
+      shadowColor_color: json['shadowColor_color'] as String?,
+      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      shape_shapeBorder: json['shape_shapeBorder'] == null
+          ? null
+          : ShapeBorderModel.fromJson(
+              json['shape_shapeBorder'] as Map<String, dynamic>),
+      centerTitle_bool: json['centerTitle_bool'] as bool?,
+      titleSpacing_double: (json['titleSpacing_double'] as num?)?.toDouble(),
+      toolbarHeight_double: (json['toolbarHeight_double'] as num?)?.toDouble(),
+      toolbarTextStyle_textStyle: json['toolbarTextStyle_textStyle'] as String?,
+      titleTextStyle_textStyle: json['titleTextStyle_textStyle'] as String?,
     );
 
 Map<String, dynamic> _$$AppbarModelImplToJson(_$AppbarModelImpl instance) =>
     <String, dynamic>{
-      'color': instance.color,
-      'backgroundColor': instance.backgroundColor,
-      'foregroundColor': instance.foregroundColor,
-      'elevation': instance.elevation,
-      'scrolledUnderElevation': instance.scrolledUnderElevation,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
-      'centerTitle': instance.centerTitle,
-      'titleSpacing': instance.titleSpacing,
-      'toolbarHeight': instance.toolbarHeight,
-      'toolbarTextStyle': instance.toolbarTextStyle,
-      'titleTextStyle': instance.titleTextStyle,
+      'color_color': instance.color_color,
+      'backgroundColor_color': instance.backgroundColor_color,
+      'foregroundColor_color': instance.foregroundColor_color,
+      'elevation_double': instance.elevation_double,
+      'scrolledUnderElevation_double': instance.scrolledUnderElevation_double,
+      'shadowColor_color': instance.shadowColor_color,
+      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
+      'centerTitle_bool': instance.centerTitle_bool,
+      'titleSpacing_double': instance.titleSpacing_double,
+      'toolbarHeight_double': instance.toolbarHeight_double,
+      'toolbarTextStyle_textStyle': instance.toolbarTextStyle_textStyle,
+      'titleTextStyle_textStyle': instance.titleTextStyle_textStyle,
     };

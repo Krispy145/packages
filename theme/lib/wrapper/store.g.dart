@@ -96,7 +96,7 @@ mixin _$StyleTypeThemeStore on StyleTypeBaseStore, Store {
   }
 
   @override
-  dynamic toggleThemeMode() {
+  void toggleThemeMode() {
     final _$actionInfo = _$StyleTypeBaseStoreActionController.startAction(
         name: 'StyleTypeBaseStore.toggleThemeMode');
     try {

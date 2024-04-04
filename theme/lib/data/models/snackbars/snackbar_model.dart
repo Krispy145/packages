@@ -1,8 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/data/models/borders/outlined_border_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'snackbar_model.freezed.dart';
 part 'snackbar_model.g.dart';
@@ -10,20 +13,20 @@ part 'snackbar_model.g.dart';
 @freezed
 class SnackbarModel with _$SnackbarModel {
   const factory SnackbarModel({
-    String? backgroundColor,
-    String? actionTextColor,
-    String? disabledActionTextColor,
-    String? contentTextStyle,
-    double? elevation,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    @Default(SnackBarBehavior.floating) SnackBarBehavior behavior,
-    double? width,
-    @EdgeInsetsConverter() EdgeInsets? insetPadding,
-    bool? showCloseIcon,
-    String? closeIconColor,
-    double? actionOverflowThreshold,
-    String? actionBackgroundColor,
-    String? disabledActionBackgroundColor,
+    ThemeColorString? backgroundColor_color,
+    ThemeColorString? actionTextColor_color,
+    ThemeColorString? disabledActionTextColor_color,
+    TextStyleString? contentTextStyle_textStyle,
+    double? elevation_double,
+    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
+    @Default(SnackBarBehavior.floating) SnackBarBehavior behavior_enum_snackBarBehavior,
+    double? width_double,
+    @EdgeInsetsConverter() EdgeInsets? insetPadding_edgeInsets,
+    bool? showCloseIcon_bool,
+    ThemeColorString? closeIconColor_color,
+    double? actionOverflowThreshold_double,
+    ThemeColorString? actionBackgroundColor_color,
+    ThemeColorString? disabledActionBackgroundColor_color,
   }) = _SnackbarModel;
 
   const SnackbarModel._();
@@ -63,19 +66,19 @@ class SnackbarModel with _$SnackbarModel {
 
   SnackBarThemeData asSnackBarThemeData({String? styleTypeName}) {
     return SnackBarThemeData(
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      actionTextColor: actionTextColor?.toColor(styleType: styleTypeName),
-      disabledActionTextColor: disabledActionTextColor?.toColor(styleType: styleTypeName),
-      contentTextStyle: contentTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      elevation: elevation,
-      shape: shape,
-      behavior: behavior,
-      width: width,
-      insetPadding: insetPadding,
-      showCloseIcon: showCloseIcon,
-      actionOverflowThreshold: actionOverflowThreshold,
-      actionBackgroundColor: actionBackgroundColor?.toColor(styleType: styleTypeName),
-      disabledActionBackgroundColor: disabledActionBackgroundColor?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      actionTextColor: actionTextColor_color?.toColor(styleType: styleTypeName),
+      disabledActionTextColor: disabledActionTextColor_color?.toColor(styleType: styleTypeName),
+      contentTextStyle: contentTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      elevation: elevation_double,
+      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      behavior: behavior_enum_snackBarBehavior,
+      width: width_double,
+      insetPadding: insetPadding_edgeInsets,
+      showCloseIcon: showCloseIcon_bool,
+      actionOverflowThreshold: actionOverflowThreshold_double,
+      actionBackgroundColor: actionBackgroundColor_color?.toColor(styleType: styleTypeName),
+      disabledActionBackgroundColor: disabledActionBackgroundColor_color?.toColor(styleType: styleTypeName),
     );
   }
 }

@@ -1,7 +1,10 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'popup_menu_model.freezed.dart';
 part 'popup_menu_model.g.dart';
@@ -9,17 +12,17 @@ part 'popup_menu_model.g.dart';
 @freezed
 class PopupMenuModel with _$PopupMenuModel {
   const factory PopupMenuModel({
-    String? color,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    double? elevation,
-    String? shadowColor,
-    String? surfaceTintColor,
-    String? textStyle,
-    String? labelTextStyle,
-    bool? enableFeedback,
+    ThemeColorString? color_color,
+    ShapeBorderModel? shape_shapeBorder,
+    double? elevation_double,
+    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_color,
+    TextStyleString? textStyle_textStyle,
+    TextStyleString? labelTextStyle_textStyle,
+    bool? enableFeedback_bool,
     @Default(PopupMenuPosition.under) PopupMenuPosition position,
-    String? iconColor,
-    double? iconSize,
+    ThemeColorString? iconColor_color,
+    double? iconSize_double,
   }) = _PopupMenuModel;
 
   const PopupMenuModel._();
@@ -50,16 +53,16 @@ class PopupMenuModel with _$PopupMenuModel {
 
   PopupMenuThemeData asPopupMenuThemeData({String? styleTypeName}) {
     return PopupMenuThemeData(
-      color: color?.toColor(styleType: styleTypeName),
-      shape: shape,
-      elevation: elevation,
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      textStyle: textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      enableFeedback: enableFeedback,
+      color: color_color?.toColor(styleType: styleTypeName),
+      shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
+      elevation: elevation_double,
+      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      textStyle: textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      enableFeedback: enableFeedback_bool,
       position: position,
-      iconColor: iconColor?.toColor(styleType: styleTypeName),
-      iconSize: iconSize,
+      iconColor: iconColor_color?.toColor(styleType: styleTypeName),
+      iconSize: iconSize_double,
     );
   }
 }

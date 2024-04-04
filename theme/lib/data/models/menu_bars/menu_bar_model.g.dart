@@ -10,7 +10,7 @@ _$MenuBarModelImpl _$$MenuBarModelImplFromJson(Map<String, dynamic> json) =>
     _$MenuBarModelImpl(
       style: json['style'] == null
           ? null
-          : MenuModel.fromJson(json['style'] as Map<String, dynamic>),
+          : MenuStyleModel.fromJson(json['style'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$MenuBarModelImplToJson(_$MenuBarModelImpl instance) =>

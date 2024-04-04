@@ -20,22 +20,25 @@ SnackbarModel _$SnackbarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SnackbarModel {
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  String? get actionTextColor => throw _privateConstructorUsedError;
-  String? get disabledActionTextColor => throw _privateConstructorUsedError;
-  String? get contentTextStyle => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  SnackBarBehavior get behavior => throw _privateConstructorUsedError;
-  double? get width => throw _privateConstructorUsedError;
+  String? get backgroundColor_color => throw _privateConstructorUsedError;
+  String? get actionTextColor_color => throw _privateConstructorUsedError;
+  String? get disabledActionTextColor_color =>
+      throw _privateConstructorUsedError;
+  String? get contentTextStyle_textStyle => throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  OutlinedBorderModel? get shape_outlinedBorder =>
+      throw _privateConstructorUsedError;
+  SnackBarBehavior get behavior_enum_snackBarBehavior =>
+      throw _privateConstructorUsedError;
+  double? get width_double => throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get insetPadding => throw _privateConstructorUsedError;
-  bool? get showCloseIcon => throw _privateConstructorUsedError;
-  String? get closeIconColor => throw _privateConstructorUsedError;
-  double? get actionOverflowThreshold => throw _privateConstructorUsedError;
-  String? get actionBackgroundColor => throw _privateConstructorUsedError;
-  String? get disabledActionBackgroundColor =>
+  EdgeInsets? get insetPadding_edgeInsets => throw _privateConstructorUsedError;
+  bool? get showCloseIcon_bool => throw _privateConstructorUsedError;
+  String? get closeIconColor_color => throw _privateConstructorUsedError;
+  double? get actionOverflowThreshold_double =>
+      throw _privateConstructorUsedError;
+  String? get actionBackgroundColor_color => throw _privateConstructorUsedError;
+  String? get disabledActionBackgroundColor_color =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,20 +54,22 @@ abstract class $SnackbarModelCopyWith<$Res> {
       _$SnackbarModelCopyWithImpl<$Res, SnackbarModel>;
   @useResult
   $Res call(
-      {String? backgroundColor,
-      String? actionTextColor,
-      String? disabledActionTextColor,
-      String? contentTextStyle,
-      double? elevation,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      SnackBarBehavior behavior,
-      double? width,
-      @EdgeInsetsConverter() EdgeInsets? insetPadding,
-      bool? showCloseIcon,
-      String? closeIconColor,
-      double? actionOverflowThreshold,
-      String? actionBackgroundColor,
-      String? disabledActionBackgroundColor});
+      {String? backgroundColor_color,
+      String? actionTextColor_color,
+      String? disabledActionTextColor_color,
+      String? contentTextStyle_textStyle,
+      double? elevation_double,
+      OutlinedBorderModel? shape_outlinedBorder,
+      SnackBarBehavior behavior_enum_snackBarBehavior,
+      double? width_double,
+      @EdgeInsetsConverter() EdgeInsets? insetPadding_edgeInsets,
+      bool? showCloseIcon_bool,
+      String? closeIconColor_color,
+      double? actionOverflowThreshold_double,
+      String? actionBackgroundColor_color,
+      String? disabledActionBackgroundColor_color});
+
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
 }
 
 /// @nodoc
@@ -80,79 +85,93 @@ class _$SnackbarModelCopyWithImpl<$Res, $Val extends SnackbarModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor = freezed,
-    Object? actionTextColor = freezed,
-    Object? disabledActionTextColor = freezed,
-    Object? contentTextStyle = freezed,
-    Object? elevation = freezed,
-    Object? shape = freezed,
-    Object? behavior = null,
-    Object? width = freezed,
-    Object? insetPadding = freezed,
-    Object? showCloseIcon = freezed,
-    Object? closeIconColor = freezed,
-    Object? actionOverflowThreshold = freezed,
-    Object? actionBackgroundColor = freezed,
-    Object? disabledActionBackgroundColor = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? actionTextColor_color = freezed,
+    Object? disabledActionTextColor_color = freezed,
+    Object? contentTextStyle_textStyle = freezed,
+    Object? elevation_double = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? behavior_enum_snackBarBehavior = null,
+    Object? width_double = freezed,
+    Object? insetPadding_edgeInsets = freezed,
+    Object? showCloseIcon_bool = freezed,
+    Object? closeIconColor_color = freezed,
+    Object? actionOverflowThreshold_double = freezed,
+    Object? actionBackgroundColor_color = freezed,
+    Object? disabledActionBackgroundColor_color = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      actionTextColor: freezed == actionTextColor
-          ? _value.actionTextColor
-          : actionTextColor // ignore: cast_nullable_to_non_nullable
+      actionTextColor_color: freezed == actionTextColor_color
+          ? _value.actionTextColor_color
+          : actionTextColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActionTextColor: freezed == disabledActionTextColor
-          ? _value.disabledActionTextColor
-          : disabledActionTextColor // ignore: cast_nullable_to_non_nullable
+      disabledActionTextColor_color: freezed == disabledActionTextColor_color
+          ? _value.disabledActionTextColor_color
+          : disabledActionTextColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      contentTextStyle: freezed == contentTextStyle
-          ? _value.contentTextStyle
-          : contentTextStyle // ignore: cast_nullable_to_non_nullable
+      contentTextStyle_textStyle: freezed == contentTextStyle_textStyle
+          ? _value.contentTextStyle_textStyle
+          : contentTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      behavior: null == behavior
-          ? _value.behavior
-          : behavior // ignore: cast_nullable_to_non_nullable
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      behavior_enum_snackBarBehavior: null == behavior_enum_snackBarBehavior
+          ? _value.behavior_enum_snackBarBehavior
+          : behavior_enum_snackBarBehavior // ignore: cast_nullable_to_non_nullable
               as SnackBarBehavior,
-      width: freezed == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
+      width_double: freezed == width_double
+          ? _value.width_double
+          : width_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      insetPadding: freezed == insetPadding
-          ? _value.insetPadding
-          : insetPadding // ignore: cast_nullable_to_non_nullable
+      insetPadding_edgeInsets: freezed == insetPadding_edgeInsets
+          ? _value.insetPadding_edgeInsets
+          : insetPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      showCloseIcon: freezed == showCloseIcon
-          ? _value.showCloseIcon
-          : showCloseIcon // ignore: cast_nullable_to_non_nullable
+      showCloseIcon_bool: freezed == showCloseIcon_bool
+          ? _value.showCloseIcon_bool
+          : showCloseIcon_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      closeIconColor: freezed == closeIconColor
-          ? _value.closeIconColor
-          : closeIconColor // ignore: cast_nullable_to_non_nullable
+      closeIconColor_color: freezed == closeIconColor_color
+          ? _value.closeIconColor_color
+          : closeIconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      actionOverflowThreshold: freezed == actionOverflowThreshold
-          ? _value.actionOverflowThreshold
-          : actionOverflowThreshold // ignore: cast_nullable_to_non_nullable
+      actionOverflowThreshold_double: freezed == actionOverflowThreshold_double
+          ? _value.actionOverflowThreshold_double
+          : actionOverflowThreshold_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      actionBackgroundColor: freezed == actionBackgroundColor
-          ? _value.actionBackgroundColor
-          : actionBackgroundColor // ignore: cast_nullable_to_non_nullable
+      actionBackgroundColor_color: freezed == actionBackgroundColor_color
+          ? _value.actionBackgroundColor_color
+          : actionBackgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActionBackgroundColor: freezed == disabledActionBackgroundColor
-          ? _value.disabledActionBackgroundColor
-          : disabledActionBackgroundColor // ignore: cast_nullable_to_non_nullable
+      disabledActionBackgroundColor_color: freezed ==
+              disabledActionBackgroundColor_color
+          ? _value.disabledActionBackgroundColor_color
+          : disabledActionBackgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder {
+    if (_value.shape_outlinedBorder == null) {
+      return null;
+    }
+
+    return $OutlinedBorderModelCopyWith<$Res>(_value.shape_outlinedBorder!,
+        (value) {
+      return _then(_value.copyWith(shape_outlinedBorder: value) as $Val);
+    });
   }
 }
 
@@ -165,20 +184,23 @@ abstract class _$$SnackbarModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor,
-      String? actionTextColor,
-      String? disabledActionTextColor,
-      String? contentTextStyle,
-      double? elevation,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      SnackBarBehavior behavior,
-      double? width,
-      @EdgeInsetsConverter() EdgeInsets? insetPadding,
-      bool? showCloseIcon,
-      String? closeIconColor,
-      double? actionOverflowThreshold,
-      String? actionBackgroundColor,
-      String? disabledActionBackgroundColor});
+      {String? backgroundColor_color,
+      String? actionTextColor_color,
+      String? disabledActionTextColor_color,
+      String? contentTextStyle_textStyle,
+      double? elevation_double,
+      OutlinedBorderModel? shape_outlinedBorder,
+      SnackBarBehavior behavior_enum_snackBarBehavior,
+      double? width_double,
+      @EdgeInsetsConverter() EdgeInsets? insetPadding_edgeInsets,
+      bool? showCloseIcon_bool,
+      String? closeIconColor_color,
+      double? actionOverflowThreshold_double,
+      String? actionBackgroundColor_color,
+      String? disabledActionBackgroundColor_color});
+
+  @override
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
 }
 
 /// @nodoc
@@ -192,77 +214,78 @@ class __$$SnackbarModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor = freezed,
-    Object? actionTextColor = freezed,
-    Object? disabledActionTextColor = freezed,
-    Object? contentTextStyle = freezed,
-    Object? elevation = freezed,
-    Object? shape = freezed,
-    Object? behavior = null,
-    Object? width = freezed,
-    Object? insetPadding = freezed,
-    Object? showCloseIcon = freezed,
-    Object? closeIconColor = freezed,
-    Object? actionOverflowThreshold = freezed,
-    Object? actionBackgroundColor = freezed,
-    Object? disabledActionBackgroundColor = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? actionTextColor_color = freezed,
+    Object? disabledActionTextColor_color = freezed,
+    Object? contentTextStyle_textStyle = freezed,
+    Object? elevation_double = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? behavior_enum_snackBarBehavior = null,
+    Object? width_double = freezed,
+    Object? insetPadding_edgeInsets = freezed,
+    Object? showCloseIcon_bool = freezed,
+    Object? closeIconColor_color = freezed,
+    Object? actionOverflowThreshold_double = freezed,
+    Object? actionBackgroundColor_color = freezed,
+    Object? disabledActionBackgroundColor_color = freezed,
   }) {
     return _then(_$SnackbarModelImpl(
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      actionTextColor: freezed == actionTextColor
-          ? _value.actionTextColor
-          : actionTextColor // ignore: cast_nullable_to_non_nullable
+      actionTextColor_color: freezed == actionTextColor_color
+          ? _value.actionTextColor_color
+          : actionTextColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActionTextColor: freezed == disabledActionTextColor
-          ? _value.disabledActionTextColor
-          : disabledActionTextColor // ignore: cast_nullable_to_non_nullable
+      disabledActionTextColor_color: freezed == disabledActionTextColor_color
+          ? _value.disabledActionTextColor_color
+          : disabledActionTextColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      contentTextStyle: freezed == contentTextStyle
-          ? _value.contentTextStyle
-          : contentTextStyle // ignore: cast_nullable_to_non_nullable
+      contentTextStyle_textStyle: freezed == contentTextStyle_textStyle
+          ? _value.contentTextStyle_textStyle
+          : contentTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      behavior: null == behavior
-          ? _value.behavior
-          : behavior // ignore: cast_nullable_to_non_nullable
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      behavior_enum_snackBarBehavior: null == behavior_enum_snackBarBehavior
+          ? _value.behavior_enum_snackBarBehavior
+          : behavior_enum_snackBarBehavior // ignore: cast_nullable_to_non_nullable
               as SnackBarBehavior,
-      width: freezed == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
+      width_double: freezed == width_double
+          ? _value.width_double
+          : width_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      insetPadding: freezed == insetPadding
-          ? _value.insetPadding
-          : insetPadding // ignore: cast_nullable_to_non_nullable
+      insetPadding_edgeInsets: freezed == insetPadding_edgeInsets
+          ? _value.insetPadding_edgeInsets
+          : insetPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      showCloseIcon: freezed == showCloseIcon
-          ? _value.showCloseIcon
-          : showCloseIcon // ignore: cast_nullable_to_non_nullable
+      showCloseIcon_bool: freezed == showCloseIcon_bool
+          ? _value.showCloseIcon_bool
+          : showCloseIcon_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      closeIconColor: freezed == closeIconColor
-          ? _value.closeIconColor
-          : closeIconColor // ignore: cast_nullable_to_non_nullable
+      closeIconColor_color: freezed == closeIconColor_color
+          ? _value.closeIconColor_color
+          : closeIconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      actionOverflowThreshold: freezed == actionOverflowThreshold
-          ? _value.actionOverflowThreshold
-          : actionOverflowThreshold // ignore: cast_nullable_to_non_nullable
+      actionOverflowThreshold_double: freezed == actionOverflowThreshold_double
+          ? _value.actionOverflowThreshold_double
+          : actionOverflowThreshold_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      actionBackgroundColor: freezed == actionBackgroundColor
-          ? _value.actionBackgroundColor
-          : actionBackgroundColor // ignore: cast_nullable_to_non_nullable
+      actionBackgroundColor_color: freezed == actionBackgroundColor_color
+          ? _value.actionBackgroundColor_color
+          : actionBackgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActionBackgroundColor: freezed == disabledActionBackgroundColor
-          ? _value.disabledActionBackgroundColor
-          : disabledActionBackgroundColor // ignore: cast_nullable_to_non_nullable
+      disabledActionBackgroundColor_color: freezed ==
+              disabledActionBackgroundColor_color
+          ? _value.disabledActionBackgroundColor_color
+          : disabledActionBackgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -272,60 +295,60 @@ class __$$SnackbarModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SnackbarModelImpl extends _SnackbarModel {
   const _$SnackbarModelImpl(
-      {this.backgroundColor,
-      this.actionTextColor,
-      this.disabledActionTextColor,
-      this.contentTextStyle,
-      this.elevation,
-      @OutlinedBorderConverter() this.shape,
-      this.behavior = SnackBarBehavior.floating,
-      this.width,
-      @EdgeInsetsConverter() this.insetPadding,
-      this.showCloseIcon,
-      this.closeIconColor,
-      this.actionOverflowThreshold,
-      this.actionBackgroundColor,
-      this.disabledActionBackgroundColor})
+      {this.backgroundColor_color,
+      this.actionTextColor_color,
+      this.disabledActionTextColor_color,
+      this.contentTextStyle_textStyle,
+      this.elevation_double,
+      this.shape_outlinedBorder = const OutlinedBorderModel(),
+      this.behavior_enum_snackBarBehavior = SnackBarBehavior.floating,
+      this.width_double,
+      @EdgeInsetsConverter() this.insetPadding_edgeInsets,
+      this.showCloseIcon_bool,
+      this.closeIconColor_color,
+      this.actionOverflowThreshold_double,
+      this.actionBackgroundColor_color,
+      this.disabledActionBackgroundColor_color})
       : super._();
 
   factory _$SnackbarModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SnackbarModelImplFromJson(json);
 
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_color;
   @override
-  final String? actionTextColor;
+  final String? actionTextColor_color;
   @override
-  final String? disabledActionTextColor;
+  final String? disabledActionTextColor_color;
   @override
-  final String? contentTextStyle;
+  final String? contentTextStyle_textStyle;
   @override
-  final double? elevation;
-  @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  final double? elevation_double;
   @override
   @JsonKey()
-  final SnackBarBehavior behavior;
+  final OutlinedBorderModel? shape_outlinedBorder;
   @override
-  final double? width;
+  @JsonKey()
+  final SnackBarBehavior behavior_enum_snackBarBehavior;
+  @override
+  final double? width_double;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? insetPadding;
+  final EdgeInsets? insetPadding_edgeInsets;
   @override
-  final bool? showCloseIcon;
+  final bool? showCloseIcon_bool;
   @override
-  final String? closeIconColor;
+  final String? closeIconColor_color;
   @override
-  final double? actionOverflowThreshold;
+  final double? actionOverflowThreshold_double;
   @override
-  final String? actionBackgroundColor;
+  final String? actionBackgroundColor_color;
   @override
-  final String? disabledActionBackgroundColor;
+  final String? disabledActionBackgroundColor_color;
 
   @override
   String toString() {
-    return 'SnackbarModel(backgroundColor: $backgroundColor, actionTextColor: $actionTextColor, disabledActionTextColor: $disabledActionTextColor, contentTextStyle: $contentTextStyle, elevation: $elevation, shape: $shape, behavior: $behavior, width: $width, insetPadding: $insetPadding, showCloseIcon: $showCloseIcon, closeIconColor: $closeIconColor, actionOverflowThreshold: $actionOverflowThreshold, actionBackgroundColor: $actionBackgroundColor, disabledActionBackgroundColor: $disabledActionBackgroundColor)';
+    return 'SnackbarModel(backgroundColor_color: $backgroundColor_color, actionTextColor_color: $actionTextColor_color, disabledActionTextColor_color: $disabledActionTextColor_color, contentTextStyle_textStyle: $contentTextStyle_textStyle, elevation_double: $elevation_double, shape_outlinedBorder: $shape_outlinedBorder, behavior_enum_snackBarBehavior: $behavior_enum_snackBarBehavior, width_double: $width_double, insetPadding_edgeInsets: $insetPadding_edgeInsets, showCloseIcon_bool: $showCloseIcon_bool, closeIconColor_color: $closeIconColor_color, actionOverflowThreshold_double: $actionOverflowThreshold_double, actionBackgroundColor_color: $actionBackgroundColor_color, disabledActionBackgroundColor_color: $disabledActionBackgroundColor_color)';
   }
 
   @override
@@ -333,56 +356,62 @@ class _$SnackbarModelImpl extends _SnackbarModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SnackbarModelImpl &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.actionTextColor, actionTextColor) ||
-                other.actionTextColor == actionTextColor) &&
-            (identical(
-                    other.disabledActionTextColor, disabledActionTextColor) ||
-                other.disabledActionTextColor == disabledActionTextColor) &&
-            (identical(other.contentTextStyle, contentTextStyle) ||
-                other.contentTextStyle == contentTextStyle) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.behavior, behavior) ||
-                other.behavior == behavior) &&
-            (identical(other.width, width) || other.width == width) &&
-            (identical(other.insetPadding, insetPadding) ||
-                other.insetPadding == insetPadding) &&
-            (identical(other.showCloseIcon, showCloseIcon) ||
-                other.showCloseIcon == showCloseIcon) &&
-            (identical(other.closeIconColor, closeIconColor) ||
-                other.closeIconColor == closeIconColor) &&
-            (identical(
-                    other.actionOverflowThreshold, actionOverflowThreshold) ||
-                other.actionOverflowThreshold == actionOverflowThreshold) &&
-            (identical(other.actionBackgroundColor, actionBackgroundColor) ||
-                other.actionBackgroundColor == actionBackgroundColor) &&
-            (identical(other.disabledActionBackgroundColor,
-                    disabledActionBackgroundColor) ||
-                other.disabledActionBackgroundColor ==
-                    disabledActionBackgroundColor));
+            (identical(other.backgroundColor_color, backgroundColor_color) ||
+                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.actionTextColor_color, actionTextColor_color) ||
+                other.actionTextColor_color == actionTextColor_color) &&
+            (identical(other.disabledActionTextColor_color, disabledActionTextColor_color) ||
+                other.disabledActionTextColor_color ==
+                    disabledActionTextColor_color) &&
+            (identical(other.contentTextStyle_textStyle, contentTextStyle_textStyle) ||
+                other.contentTextStyle_textStyle ==
+                    contentTextStyle_textStyle) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
+                other.shape_outlinedBorder == shape_outlinedBorder) &&
+            (identical(other.behavior_enum_snackBarBehavior, behavior_enum_snackBarBehavior) ||
+                other.behavior_enum_snackBarBehavior ==
+                    behavior_enum_snackBarBehavior) &&
+            (identical(other.width_double, width_double) ||
+                other.width_double == width_double) &&
+            (identical(other.insetPadding_edgeInsets, insetPadding_edgeInsets) ||
+                other.insetPadding_edgeInsets == insetPadding_edgeInsets) &&
+            (identical(other.showCloseIcon_bool, showCloseIcon_bool) ||
+                other.showCloseIcon_bool == showCloseIcon_bool) &&
+            (identical(other.closeIconColor_color, closeIconColor_color) ||
+                other.closeIconColor_color == closeIconColor_color) &&
+            (identical(other.actionOverflowThreshold_double,
+                    actionOverflowThreshold_double) ||
+                other.actionOverflowThreshold_double ==
+                    actionOverflowThreshold_double) &&
+            (identical(other.actionBackgroundColor_color, actionBackgroundColor_color) ||
+                other.actionBackgroundColor_color ==
+                    actionBackgroundColor_color) &&
+            (identical(other.disabledActionBackgroundColor_color,
+                    disabledActionBackgroundColor_color) ||
+                other.disabledActionBackgroundColor_color ==
+                    disabledActionBackgroundColor_color));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor,
-      actionTextColor,
-      disabledActionTextColor,
-      contentTextStyle,
-      elevation,
-      shape,
-      behavior,
-      width,
-      insetPadding,
-      showCloseIcon,
-      closeIconColor,
-      actionOverflowThreshold,
-      actionBackgroundColor,
-      disabledActionBackgroundColor);
+      backgroundColor_color,
+      actionTextColor_color,
+      disabledActionTextColor_color,
+      contentTextStyle_textStyle,
+      elevation_double,
+      shape_outlinedBorder,
+      behavior_enum_snackBarBehavior,
+      width_double,
+      insetPadding_edgeInsets,
+      showCloseIcon_bool,
+      closeIconColor_color,
+      actionOverflowThreshold_double,
+      actionBackgroundColor_color,
+      disabledActionBackgroundColor_color);
 
   @JsonKey(ignore: true)
   @override
@@ -400,55 +429,54 @@ class _$SnackbarModelImpl extends _SnackbarModel {
 
 abstract class _SnackbarModel extends SnackbarModel {
   const factory _SnackbarModel(
-      {final String? backgroundColor,
-      final String? actionTextColor,
-      final String? disabledActionTextColor,
-      final String? contentTextStyle,
-      final double? elevation,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      final SnackBarBehavior behavior,
-      final double? width,
-      @EdgeInsetsConverter() final EdgeInsets? insetPadding,
-      final bool? showCloseIcon,
-      final String? closeIconColor,
-      final double? actionOverflowThreshold,
-      final String? actionBackgroundColor,
-      final String? disabledActionBackgroundColor}) = _$SnackbarModelImpl;
+      {final String? backgroundColor_color,
+      final String? actionTextColor_color,
+      final String? disabledActionTextColor_color,
+      final String? contentTextStyle_textStyle,
+      final double? elevation_double,
+      final OutlinedBorderModel? shape_outlinedBorder,
+      final SnackBarBehavior behavior_enum_snackBarBehavior,
+      final double? width_double,
+      @EdgeInsetsConverter() final EdgeInsets? insetPadding_edgeInsets,
+      final bool? showCloseIcon_bool,
+      final String? closeIconColor_color,
+      final double? actionOverflowThreshold_double,
+      final String? actionBackgroundColor_color,
+      final String? disabledActionBackgroundColor_color}) = _$SnackbarModelImpl;
   const _SnackbarModel._() : super._();
 
   factory _SnackbarModel.fromJson(Map<String, dynamic> json) =
       _$SnackbarModelImpl.fromJson;
 
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_color;
   @override
-  String? get actionTextColor;
+  String? get actionTextColor_color;
   @override
-  String? get disabledActionTextColor;
+  String? get disabledActionTextColor_color;
   @override
-  String? get contentTextStyle;
+  String? get contentTextStyle_textStyle;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  OutlinedBorderModel? get shape_outlinedBorder;
   @override
-  SnackBarBehavior get behavior;
+  SnackBarBehavior get behavior_enum_snackBarBehavior;
   @override
-  double? get width;
+  double? get width_double;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get insetPadding;
+  EdgeInsets? get insetPadding_edgeInsets;
   @override
-  bool? get showCloseIcon;
+  bool? get showCloseIcon_bool;
   @override
-  String? get closeIconColor;
+  String? get closeIconColor_color;
   @override
-  double? get actionOverflowThreshold;
+  double? get actionOverflowThreshold_double;
   @override
-  String? get actionBackgroundColor;
+  String? get actionBackgroundColor_color;
   @override
-  String? get disabledActionBackgroundColor;
+  String? get disabledActionBackgroundColor_color;
   @override
   @JsonKey(ignore: true)
   _$$SnackbarModelImplCopyWith<_$SnackbarModelImpl> get copyWith =>

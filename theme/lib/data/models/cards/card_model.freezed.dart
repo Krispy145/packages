@@ -20,14 +20,14 @@ CardModel _$CardModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CardModel {
-  String? get color => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
+  String? get color_color => throw _privateConstructorUsedError;
+  String? get shadowColor_color => throw _privateConstructorUsedError;
+  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get margin => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
+  EdgeInsets? get margin_edgeInsets =>
+      throw _privateConstructorUsedError; // @OutlinedBorderConverter()
+  ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,12 +41,14 @@ abstract class $CardModelCopyWith<$Res> {
       _$CardModelCopyWithImpl<$Res, CardModel>;
   @useResult
   $Res call(
-      {String? color,
-      String? shadowColor,
-      String? surfaceTintColor,
-      double? elevation,
-      @EdgeInsetsConverter() EdgeInsets? margin,
-      @OutlinedBorderConverter() OutlinedBorder? shape});
+      {String? color_color,
+      String? shadowColor_color,
+      String? surfaceTintColor_color,
+      double? elevation_double,
+      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      ShapeBorderModel? shape_shapeBorder});
+
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
 
 /// @nodoc
@@ -62,39 +64,51 @@ class _$CardModelCopyWithImpl<$Res, $Val extends CardModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? elevation = freezed,
-    Object? margin = freezed,
-    Object? shape = freezed,
+    Object? color_color = freezed,
+    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? margin_edgeInsets = freezed,
+    Object? shape_shapeBorder = freezed,
   }) {
     return _then(_value.copyWith(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_color: freezed == color_color
+          ? _value.color_color
+          : color_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_color: freezed == shadowColor_color
+          ? _value.shadowColor_color
+          : shadowColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_color: freezed == surfaceTintColor_color
+          ? _value.surfaceTintColor_color
+          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      margin: freezed == margin
-          ? _value.margin
-          : margin // ignore: cast_nullable_to_non_nullable
+      margin_edgeInsets: freezed == margin_edgeInsets
+          ? _value.margin_edgeInsets
+          : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder {
+    if (_value.shape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.shape_shapeBorder!, (value) {
+      return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
+    });
   }
 }
 
@@ -107,12 +121,15 @@ abstract class _$$CardModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color,
-      String? shadowColor,
-      String? surfaceTintColor,
-      double? elevation,
-      @EdgeInsetsConverter() EdgeInsets? margin,
-      @OutlinedBorderConverter() OutlinedBorder? shape});
+      {String? color_color,
+      String? shadowColor_color,
+      String? surfaceTintColor_color,
+      double? elevation_double,
+      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      ShapeBorderModel? shape_shapeBorder});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
 
 /// @nodoc
@@ -126,38 +143,38 @@ class __$$CardModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? elevation = freezed,
-    Object? margin = freezed,
-    Object? shape = freezed,
+    Object? color_color = freezed,
+    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? margin_edgeInsets = freezed,
+    Object? shape_shapeBorder = freezed,
   }) {
     return _then(_$CardModelImpl(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_color: freezed == color_color
+          ? _value.color_color
+          : color_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_color: freezed == shadowColor_color
+          ? _value.shadowColor_color
+          : shadowColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_color: freezed == surfaceTintColor_color
+          ? _value.surfaceTintColor_color
+          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      margin: freezed == margin
-          ? _value.margin
-          : margin // ignore: cast_nullable_to_non_nullable
+      margin_edgeInsets: freezed == margin_edgeInsets
+          ? _value.margin_edgeInsets
+          : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
     ));
   }
 }
@@ -166,35 +183,35 @@ class __$$CardModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CardModelImpl extends _CardModel {
   const _$CardModelImpl(
-      {this.color,
-      this.shadowColor,
-      this.surfaceTintColor,
-      this.elevation,
-      @EdgeInsetsConverter() this.margin,
-      @OutlinedBorderConverter() this.shape})
+      {this.color_color,
+      this.shadowColor_color,
+      this.surfaceTintColor_color,
+      this.elevation_double,
+      @EdgeInsetsConverter() this.margin_edgeInsets,
+      this.shape_shapeBorder})
       : super._();
 
   factory _$CardModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CardModelImplFromJson(json);
 
   @override
-  final String? color;
+  final String? color_color;
   @override
-  final String? shadowColor;
+  final String? shadowColor_color;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_color;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? margin;
+  final EdgeInsets? margin_edgeInsets;
+// @OutlinedBorderConverter()
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  final ShapeBorderModel? shape_shapeBorder;
 
   @override
   String toString() {
-    return 'CardModel(color: $color, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, elevation: $elevation, margin: $margin, shape: $shape)';
+    return 'CardModel(color_color: $color_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, elevation_double: $elevation_double, margin_edgeInsets: $margin_edgeInsets, shape_shapeBorder: $shape_shapeBorder)';
   }
 
   @override
@@ -202,21 +219,30 @@ class _$CardModelImpl extends _CardModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardModelImpl &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.margin, margin) || other.margin == margin) &&
-            (identical(other.shape, shape) || other.shape == shape));
+            (identical(other.color_color, color_color) ||
+                other.color_color == color_color) &&
+            (identical(other.shadowColor_color, shadowColor_color) ||
+                other.shadowColor_color == shadowColor_color) &&
+            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
+                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.margin_edgeInsets, margin_edgeInsets) ||
+                other.margin_edgeInsets == margin_edgeInsets) &&
+            (identical(other.shape_shapeBorder, shape_shapeBorder) ||
+                other.shape_shapeBorder == shape_shapeBorder));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, color, shadowColor,
-      surfaceTintColor, elevation, margin, shape);
+  int get hashCode => Object.hash(
+      runtimeType,
+      color_color,
+      shadowColor_color,
+      surfaceTintColor_color,
+      elevation_double,
+      margin_edgeInsets,
+      shape_shapeBorder);
 
   @JsonKey(ignore: true)
   @override
@@ -234,32 +260,30 @@ class _$CardModelImpl extends _CardModel {
 
 abstract class _CardModel extends CardModel {
   const factory _CardModel(
-          {final String? color,
-          final String? shadowColor,
-          final String? surfaceTintColor,
-          final double? elevation,
-          @EdgeInsetsConverter() final EdgeInsets? margin,
-          @OutlinedBorderConverter() final OutlinedBorder? shape}) =
-      _$CardModelImpl;
+      {final String? color_color,
+      final String? shadowColor_color,
+      final String? surfaceTintColor_color,
+      final double? elevation_double,
+      @EdgeInsetsConverter() final EdgeInsets? margin_edgeInsets,
+      final ShapeBorderModel? shape_shapeBorder}) = _$CardModelImpl;
   const _CardModel._() : super._();
 
   factory _CardModel.fromJson(Map<String, dynamic> json) =
       _$CardModelImpl.fromJson;
 
   @override
-  String? get color;
+  String? get color_color;
   @override
-  String? get shadowColor;
+  String? get shadowColor_color;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_color;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get margin;
-  @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  EdgeInsets? get margin_edgeInsets;
+  @override // @OutlinedBorderConverter()
+  ShapeBorderModel? get shape_shapeBorder;
   @override
   @JsonKey(ignore: true)
   _$$CardModelImplCopyWith<_$CardModelImpl> get copyWith =>

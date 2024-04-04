@@ -1,23 +1,27 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/domain/converters/navigation/destination_label.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'navigation_bar_model.freezed.dart';
 part 'navigation_bar_model.g.dart';
 
 @freezed
 class NavigationBarModel with _$NavigationBarModel {
-  const factory NavigationBarModel({
-    double? height,
-    String? backgroundColor,
-    double? elevation,
-    String? shadowColor,
-    String? surfaceTintColor,
-    String? indicatorColor,
-    @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-    String? labelTextStyle,
+  factory NavigationBarModel({
+    double? height_double,
+    ThemeColorString? backgroundColor_color,
+    double? elevation_double,
+    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? indicatorColor_color,
+    // @OutlinedBorderConverter()
+    ShapeBorderModel? indicatorShape_shapeBorder,
+    TextStyleString? labelTextStyle_textStyle,
     @NavigationDestinationLabelConverter() NavigationDestinationLabelBehavior? labelBehavior,
   }) = _NavigationBarModel;
 
@@ -41,14 +45,14 @@ class NavigationBarModel with _$NavigationBarModel {
 
   NavigationBarThemeData asNavigationBarThemeData({String? styleTypeName}) {
     return NavigationBarThemeData(
-      height: height,
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      elevation: elevation,
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      indicatorColor: indicatorColor?.toColor(styleType: styleTypeName),
-      indicatorShape: indicatorShape,
-      labelTextStyle: MaterialStateProperty.all(labelTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      height: height_double,
+      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      elevation: elevation_double,
+      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
+      indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
+      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
       labelBehavior: labelBehavior,
     );
   }

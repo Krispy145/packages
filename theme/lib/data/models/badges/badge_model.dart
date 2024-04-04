@@ -3,7 +3,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/domain/converters/alignments/alignment.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/domain/converters/offset/offset.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'badge_model.freezed.dart';
 part 'badge_model.g.dart';
@@ -11,14 +12,14 @@ part 'badge_model.g.dart';
 @freezed
 class BadgeModel with _$BadgeModel {
   const factory BadgeModel({
-    String? backgroundColor,
-    String? textColor,
-    double? smallSize,
-    double? largeSize,
-    String? textStyle,
-    @EdgeInsetsConverter() EdgeInsets? padding,
-    @AlignmentConverter() Alignment? alignment,
-    @OffsetConverter() Offset? offset,
+    ThemeColorString? backgroundColor_color,
+    ThemeColorString? textColor_color,
+    double? smallSize_double,
+    double? largeSize_double,
+    String? textStyle_textStyle,
+    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @AlignmentConverter() Alignment? alignment_alignment,
+    @OffsetConverter() Offset? offset_offset,
   }) = _BadgeModel;
 
   const BadgeModel._();
@@ -45,14 +46,14 @@ class BadgeModel with _$BadgeModel {
 
   BadgeThemeData asBadgeThemeData({String? styleTypeName}) {
     return BadgeThemeData(
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      textColor: textColor?.toColor(styleType: styleTypeName),
-      smallSize: smallSize,
-      largeSize: largeSize,
-      textStyle: textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      padding: padding,
-      alignment: alignment,
-      offset: offset,
+      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      textColor: textColor_color?.toColor(styleType: styleTypeName),
+      smallSize: smallSize_double,
+      largeSize: largeSize_double,
+      textStyle: textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      padding: padding_edgeInsets,
+      alignment: alignment_alignment,
+      offset: offset_offset,
     );
   }
 }

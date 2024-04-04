@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/app/app_theme.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/components/color_circle.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/sizes/spacers.dart';
@@ -8,8 +8,8 @@ import 'package:utilities/sizes/spacers.dart';
 class ThemeColorFormField extends StatefulWidget {
   const ThemeColorFormField({super.key, required this.onChanged, required this.initialValue});
 
-  final String? initialValue;
-  final void Function(String?) onChanged;
+  final ThemeColorString? initialValue;
+  final void Function(ThemeColorString?) onChanged;
 
   @override
   State<ThemeColorFormField> createState() => _ThemeColorFormFieldState();
@@ -22,7 +22,7 @@ class _ThemeColorFormFieldState extends State<ThemeColorFormField> {
     super.initState();
   }
 
-  late String? value;
+  late ThemeColorString? value;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,6 @@ class _ThemeColorFormFieldState extends State<ThemeColorFormField> {
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: AppTheme.currentColorModel!.toJson().entries.map((entry) {
                 final colorName = entry.key;
@@ -68,7 +67,7 @@ class _ThemeColorFormFieldState extends State<ThemeColorFormField> {
               }).toList(),
             ),
           ),
-        )
+        ),
       ],
     );
   }

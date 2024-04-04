@@ -3,6 +3,8 @@ import 'package:utilities/data_sources/remote/supabase.dart';
 
 import '_source.dart';
 
+// TODO: Move supabase client to envied file
+
 /// [SupabaseDigitalOasisDataSource] is a class that implements [DigitalOasisDataSource] interface.
 class SupabaseDigitalOasisDataSource<T> extends SupabaseDataSource<T> implements DigitalOasisDataSource<T> {
   /// [SupabaseDigitalOasisDataSource] constructor.

@@ -20,21 +20,25 @@ TabBarModel _$TabBarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TabBarModel {
-  @BoxDecorationConverter()
-  Map<BoxBorderType, BoxDecoration?>? get indicator =>
+// @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
+  BoxDecorationModel? get indicator_boxDecoration =>
+      throw _privateConstructorUsedError; // TODO: Set up DecorationModel that can also be other types of decoration
+  String? get indicatorColor_color => throw _privateConstructorUsedError;
+  String? get dividerColor_color => throw _privateConstructorUsedError;
+  TabBarIndicatorSize? get indicatorSize_enum_tabBarIndicatorSize =>
       throw _privateConstructorUsedError;
-  String? get indicatorColor => throw _privateConstructorUsedError;
-  String? get dividerColor => throw _privateConstructorUsedError;
-  double? get dividerHeight => throw _privateConstructorUsedError;
-  String? get labelColor => throw _privateConstructorUsedError;
+  double? get dividerHeight_double => throw _privateConstructorUsedError;
+  String? get labelColor_color => throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding => throw _privateConstructorUsedError;
-  String? get labelStyle => throw _privateConstructorUsedError;
-  String? get unselectedLabelColor => throw _privateConstructorUsedError;
-  String? get unselectedLabelStyle => throw _privateConstructorUsedError;
-  String? get overlayColor => throw _privateConstructorUsedError;
-  @TabAlignmentConverter()
-  TabAlignment? get tabAlignment => throw _privateConstructorUsedError;
+  EdgeInsets? get labelPadding_edgeInsets => throw _privateConstructorUsedError;
+  String? get labelStyle_textStyle => throw _privateConstructorUsedError;
+  String? get unselectedLabelColor_color => throw _privateConstructorUsedError;
+  String? get unselectedLabelStyle_textStyle =>
+      throw _privateConstructorUsedError;
+  String? get overlayColor_color =>
+      throw _privateConstructorUsedError; // @TabAlignmentConverter()
+  TabAlignment? get tabAlignment_enum_tabAlignment =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,17 +53,20 @@ abstract class $TabBarModelCopyWith<$Res> {
       _$TabBarModelCopyWithImpl<$Res, TabBarModel>;
   @useResult
   $Res call(
-      {@BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
-      String? indicatorColor,
-      String? dividerColor,
-      double? dividerHeight,
-      String? labelColor,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding,
-      String? labelStyle,
-      String? unselectedLabelColor,
-      String? unselectedLabelStyle,
-      String? overlayColor,
-      @TabAlignmentConverter() TabAlignment? tabAlignment});
+      {BoxDecorationModel? indicator_boxDecoration,
+      String? indicatorColor_color,
+      String? dividerColor_color,
+      TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
+      double? dividerHeight_double,
+      String? labelColor_color,
+      @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
+      String? labelStyle_textStyle,
+      String? unselectedLabelColor_color,
+      String? unselectedLabelStyle_textStyle,
+      String? overlayColor_color,
+      TabAlignment? tabAlignment_enum_tabAlignment});
+
+  $BoxDecorationModelCopyWith<$Res>? get indicator_boxDecoration;
 }
 
 /// @nodoc
@@ -75,64 +82,83 @@ class _$TabBarModelCopyWithImpl<$Res, $Val extends TabBarModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? indicator = freezed,
-    Object? indicatorColor = freezed,
-    Object? dividerColor = freezed,
-    Object? dividerHeight = freezed,
-    Object? labelColor = freezed,
-    Object? labelPadding = freezed,
-    Object? labelStyle = freezed,
-    Object? unselectedLabelColor = freezed,
-    Object? unselectedLabelStyle = freezed,
-    Object? overlayColor = freezed,
-    Object? tabAlignment = freezed,
+    Object? indicator_boxDecoration = freezed,
+    Object? indicatorColor_color = freezed,
+    Object? dividerColor_color = freezed,
+    Object? indicatorSize_enum_tabBarIndicatorSize = freezed,
+    Object? dividerHeight_double = freezed,
+    Object? labelColor_color = freezed,
+    Object? labelPadding_edgeInsets = freezed,
+    Object? labelStyle_textStyle = freezed,
+    Object? unselectedLabelColor_color = freezed,
+    Object? unselectedLabelStyle_textStyle = freezed,
+    Object? overlayColor_color = freezed,
+    Object? tabAlignment_enum_tabAlignment = freezed,
   }) {
     return _then(_value.copyWith(
-      indicator: freezed == indicator
-          ? _value.indicator
-          : indicator // ignore: cast_nullable_to_non_nullable
-              as Map<BoxBorderType, BoxDecoration?>?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicator_boxDecoration: freezed == indicator_boxDecoration
+          ? _value.indicator_boxDecoration
+          : indicator_boxDecoration // ignore: cast_nullable_to_non_nullable
+              as BoxDecorationModel?,
+      indicatorColor_color: freezed == indicatorColor_color
+          ? _value.indicatorColor_color
+          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      dividerColor: freezed == dividerColor
-          ? _value.dividerColor
-          : dividerColor // ignore: cast_nullable_to_non_nullable
+      dividerColor_color: freezed == dividerColor_color
+          ? _value.dividerColor_color
+          : dividerColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      dividerHeight: freezed == dividerHeight
-          ? _value.dividerHeight
-          : dividerHeight // ignore: cast_nullable_to_non_nullable
+      indicatorSize_enum_tabBarIndicatorSize: freezed ==
+              indicatorSize_enum_tabBarIndicatorSize
+          ? _value.indicatorSize_enum_tabBarIndicatorSize
+          : indicatorSize_enum_tabBarIndicatorSize // ignore: cast_nullable_to_non_nullable
+              as TabBarIndicatorSize?,
+      dividerHeight_double: freezed == dividerHeight_double
+          ? _value.dividerHeight_double
+          : dividerHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      labelColor: freezed == labelColor
-          ? _value.labelColor
-          : labelColor // ignore: cast_nullable_to_non_nullable
+      labelColor_color: freezed == labelColor_color
+          ? _value.labelColor_color
+          : labelColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelPadding: freezed == labelPadding
-          ? _value.labelPadding
-          : labelPadding // ignore: cast_nullable_to_non_nullable
+      labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
+          ? _value.labelPadding_edgeInsets
+          : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      labelStyle: freezed == labelStyle
-          ? _value.labelStyle
-          : labelStyle // ignore: cast_nullable_to_non_nullable
+      labelStyle_textStyle: freezed == labelStyle_textStyle
+          ? _value.labelStyle_textStyle
+          : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      unselectedLabelColor: freezed == unselectedLabelColor
-          ? _value.unselectedLabelColor
-          : unselectedLabelColor // ignore: cast_nullable_to_non_nullable
+      unselectedLabelColor_color: freezed == unselectedLabelColor_color
+          ? _value.unselectedLabelColor_color
+          : unselectedLabelColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      unselectedLabelStyle: freezed == unselectedLabelStyle
-          ? _value.unselectedLabelStyle
-          : unselectedLabelStyle // ignore: cast_nullable_to_non_nullable
+      unselectedLabelStyle_textStyle: freezed == unselectedLabelStyle_textStyle
+          ? _value.unselectedLabelStyle_textStyle
+          : unselectedLabelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_color: freezed == overlayColor_color
+          ? _value.overlayColor_color
+          : overlayColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      tabAlignment: freezed == tabAlignment
-          ? _value.tabAlignment
-          : tabAlignment // ignore: cast_nullable_to_non_nullable
+      tabAlignment_enum_tabAlignment: freezed == tabAlignment_enum_tabAlignment
+          ? _value.tabAlignment_enum_tabAlignment
+          : tabAlignment_enum_tabAlignment // ignore: cast_nullable_to_non_nullable
               as TabAlignment?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxDecorationModelCopyWith<$Res>? get indicator_boxDecoration {
+    if (_value.indicator_boxDecoration == null) {
+      return null;
+    }
+
+    return $BoxDecorationModelCopyWith<$Res>(_value.indicator_boxDecoration!,
+        (value) {
+      return _then(_value.copyWith(indicator_boxDecoration: value) as $Val);
+    });
   }
 }
 
@@ -145,17 +171,21 @@ abstract class _$$TabBarModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
-      String? indicatorColor,
-      String? dividerColor,
-      double? dividerHeight,
-      String? labelColor,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding,
-      String? labelStyle,
-      String? unselectedLabelColor,
-      String? unselectedLabelStyle,
-      String? overlayColor,
-      @TabAlignmentConverter() TabAlignment? tabAlignment});
+      {BoxDecorationModel? indicator_boxDecoration,
+      String? indicatorColor_color,
+      String? dividerColor_color,
+      TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
+      double? dividerHeight_double,
+      String? labelColor_color,
+      @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
+      String? labelStyle_textStyle,
+      String? unselectedLabelColor_color,
+      String? unselectedLabelStyle_textStyle,
+      String? overlayColor_color,
+      TabAlignment? tabAlignment_enum_tabAlignment});
+
+  @override
+  $BoxDecorationModelCopyWith<$Res>? get indicator_boxDecoration;
 }
 
 /// @nodoc
@@ -169,62 +199,68 @@ class __$$TabBarModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? indicator = freezed,
-    Object? indicatorColor = freezed,
-    Object? dividerColor = freezed,
-    Object? dividerHeight = freezed,
-    Object? labelColor = freezed,
-    Object? labelPadding = freezed,
-    Object? labelStyle = freezed,
-    Object? unselectedLabelColor = freezed,
-    Object? unselectedLabelStyle = freezed,
-    Object? overlayColor = freezed,
-    Object? tabAlignment = freezed,
+    Object? indicator_boxDecoration = freezed,
+    Object? indicatorColor_color = freezed,
+    Object? dividerColor_color = freezed,
+    Object? indicatorSize_enum_tabBarIndicatorSize = freezed,
+    Object? dividerHeight_double = freezed,
+    Object? labelColor_color = freezed,
+    Object? labelPadding_edgeInsets = freezed,
+    Object? labelStyle_textStyle = freezed,
+    Object? unselectedLabelColor_color = freezed,
+    Object? unselectedLabelStyle_textStyle = freezed,
+    Object? overlayColor_color = freezed,
+    Object? tabAlignment_enum_tabAlignment = freezed,
   }) {
     return _then(_$TabBarModelImpl(
-      indicator: freezed == indicator
-          ? _value._indicator
-          : indicator // ignore: cast_nullable_to_non_nullable
-              as Map<BoxBorderType, BoxDecoration?>?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicator_boxDecoration: freezed == indicator_boxDecoration
+          ? _value.indicator_boxDecoration
+          : indicator_boxDecoration // ignore: cast_nullable_to_non_nullable
+              as BoxDecorationModel?,
+      indicatorColor_color: freezed == indicatorColor_color
+          ? _value.indicatorColor_color
+          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      dividerColor: freezed == dividerColor
-          ? _value.dividerColor
-          : dividerColor // ignore: cast_nullable_to_non_nullable
+      dividerColor_color: freezed == dividerColor_color
+          ? _value.dividerColor_color
+          : dividerColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      dividerHeight: freezed == dividerHeight
-          ? _value.dividerHeight
-          : dividerHeight // ignore: cast_nullable_to_non_nullable
+      indicatorSize_enum_tabBarIndicatorSize: freezed ==
+              indicatorSize_enum_tabBarIndicatorSize
+          ? _value.indicatorSize_enum_tabBarIndicatorSize
+          : indicatorSize_enum_tabBarIndicatorSize // ignore: cast_nullable_to_non_nullable
+              as TabBarIndicatorSize?,
+      dividerHeight_double: freezed == dividerHeight_double
+          ? _value.dividerHeight_double
+          : dividerHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      labelColor: freezed == labelColor
-          ? _value.labelColor
-          : labelColor // ignore: cast_nullable_to_non_nullable
+      labelColor_color: freezed == labelColor_color
+          ? _value.labelColor_color
+          : labelColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelPadding: freezed == labelPadding
-          ? _value.labelPadding
-          : labelPadding // ignore: cast_nullable_to_non_nullable
+      labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
+          ? _value.labelPadding_edgeInsets
+          : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      labelStyle: freezed == labelStyle
-          ? _value.labelStyle
-          : labelStyle // ignore: cast_nullable_to_non_nullable
+      labelStyle_textStyle: freezed == labelStyle_textStyle
+          ? _value.labelStyle_textStyle
+          : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      unselectedLabelColor: freezed == unselectedLabelColor
-          ? _value.unselectedLabelColor
-          : unselectedLabelColor // ignore: cast_nullable_to_non_nullable
+      unselectedLabelColor_color: freezed == unselectedLabelColor_color
+          ? _value.unselectedLabelColor_color
+          : unselectedLabelColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      unselectedLabelStyle: freezed == unselectedLabelStyle
-          ? _value.unselectedLabelStyle
-          : unselectedLabelStyle // ignore: cast_nullable_to_non_nullable
+      unselectedLabelStyle_textStyle: freezed == unselectedLabelStyle_textStyle
+          ? _value.unselectedLabelStyle_textStyle
+          : unselectedLabelStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_color: freezed == overlayColor_color
+          ? _value.overlayColor_color
+          : overlayColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      tabAlignment: freezed == tabAlignment
-          ? _value.tabAlignment
-          : tabAlignment // ignore: cast_nullable_to_non_nullable
+      tabAlignment_enum_tabAlignment: freezed == tabAlignment_enum_tabAlignment
+          ? _value.tabAlignment_enum_tabAlignment
+          : tabAlignment_enum_tabAlignment // ignore: cast_nullable_to_non_nullable
               as TabAlignment?,
     ));
   }
@@ -234,61 +270,55 @@ class __$$TabBarModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TabBarModelImpl extends _TabBarModel {
   const _$TabBarModelImpl(
-      {@BoxDecorationConverter()
-      final Map<BoxBorderType, BoxDecoration?>? indicator,
-      this.indicatorColor,
-      this.dividerColor,
-      this.dividerHeight,
-      this.labelColor,
-      @EdgeInsetsConverter() this.labelPadding,
-      this.labelStyle,
-      this.unselectedLabelColor,
-      this.unselectedLabelStyle,
-      this.overlayColor,
-      @TabAlignmentConverter() this.tabAlignment})
-      : _indicator = indicator,
-        super._();
+      {this.indicator_boxDecoration,
+      this.indicatorColor_color,
+      this.dividerColor_color,
+      this.indicatorSize_enum_tabBarIndicatorSize,
+      this.dividerHeight_double,
+      this.labelColor_color,
+      @EdgeInsetsConverter() this.labelPadding_edgeInsets,
+      this.labelStyle_textStyle,
+      this.unselectedLabelColor_color,
+      this.unselectedLabelStyle_textStyle,
+      this.overlayColor_color,
+      this.tabAlignment_enum_tabAlignment})
+      : super._();
 
   factory _$TabBarModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TabBarModelImplFromJson(json);
 
-  final Map<BoxBorderType, BoxDecoration?>? _indicator;
+// @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
   @override
-  @BoxDecorationConverter()
-  Map<BoxBorderType, BoxDecoration?>? get indicator {
-    final value = _indicator;
-    if (value == null) return null;
-    if (_indicator is EqualUnmodifiableMapView) return _indicator;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
+  final BoxDecorationModel? indicator_boxDecoration;
+// TODO: Set up DecorationModel that can also be other types of decoration
   @override
-  final String? indicatorColor;
+  final String? indicatorColor_color;
   @override
-  final String? dividerColor;
+  final String? dividerColor_color;
   @override
-  final double? dividerHeight;
+  final TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize;
   @override
-  final String? labelColor;
+  final double? dividerHeight_double;
+  @override
+  final String? labelColor_color;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? labelPadding;
+  final EdgeInsets? labelPadding_edgeInsets;
   @override
-  final String? labelStyle;
+  final String? labelStyle_textStyle;
   @override
-  final String? unselectedLabelColor;
+  final String? unselectedLabelColor_color;
   @override
-  final String? unselectedLabelStyle;
+  final String? unselectedLabelStyle_textStyle;
   @override
-  final String? overlayColor;
+  final String? overlayColor_color;
+// @TabAlignmentConverter()
   @override
-  @TabAlignmentConverter()
-  final TabAlignment? tabAlignment;
+  final TabAlignment? tabAlignment_enum_tabAlignment;
 
   @override
   String toString() {
-    return 'TabBarModel(indicator: $indicator, indicatorColor: $indicatorColor, dividerColor: $dividerColor, dividerHeight: $dividerHeight, labelColor: $labelColor, labelPadding: $labelPadding, labelStyle: $labelStyle, unselectedLabelColor: $unselectedLabelColor, unselectedLabelStyle: $unselectedLabelStyle, overlayColor: $overlayColor, tabAlignment: $tabAlignment)';
+    return 'TabBarModel(indicator_boxDecoration: $indicator_boxDecoration, indicatorColor_color: $indicatorColor_color, dividerColor_color: $dividerColor_color, indicatorSize_enum_tabBarIndicatorSize: $indicatorSize_enum_tabBarIndicatorSize, dividerHeight_double: $dividerHeight_double, labelColor_color: $labelColor_color, labelPadding_edgeInsets: $labelPadding_edgeInsets, labelStyle_textStyle: $labelStyle_textStyle, unselectedLabelColor_color: $unselectedLabelColor_color, unselectedLabelStyle_textStyle: $unselectedLabelStyle_textStyle, overlayColor_color: $overlayColor_color, tabAlignment_enum_tabAlignment: $tabAlignment_enum_tabAlignment)';
   }
 
   @override
@@ -296,45 +326,55 @@ class _$TabBarModelImpl extends _TabBarModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TabBarModelImpl &&
-            const DeepCollectionEquality()
-                .equals(other._indicator, _indicator) &&
-            (identical(other.indicatorColor, indicatorColor) ||
-                other.indicatorColor == indicatorColor) &&
-            (identical(other.dividerColor, dividerColor) ||
-                other.dividerColor == dividerColor) &&
-            (identical(other.dividerHeight, dividerHeight) ||
-                other.dividerHeight == dividerHeight) &&
-            (identical(other.labelColor, labelColor) ||
-                other.labelColor == labelColor) &&
-            (identical(other.labelPadding, labelPadding) ||
-                other.labelPadding == labelPadding) &&
-            (identical(other.labelStyle, labelStyle) ||
-                other.labelStyle == labelStyle) &&
-            (identical(other.unselectedLabelColor, unselectedLabelColor) ||
-                other.unselectedLabelColor == unselectedLabelColor) &&
-            (identical(other.unselectedLabelStyle, unselectedLabelStyle) ||
-                other.unselectedLabelStyle == unselectedLabelStyle) &&
-            (identical(other.overlayColor, overlayColor) ||
-                other.overlayColor == overlayColor) &&
-            (identical(other.tabAlignment, tabAlignment) ||
-                other.tabAlignment == tabAlignment));
+            (identical(other.indicator_boxDecoration, indicator_boxDecoration) ||
+                other.indicator_boxDecoration == indicator_boxDecoration) &&
+            (identical(other.indicatorColor_color, indicatorColor_color) ||
+                other.indicatorColor_color == indicatorColor_color) &&
+            (identical(other.dividerColor_color, dividerColor_color) ||
+                other.dividerColor_color == dividerColor_color) &&
+            (identical(other.indicatorSize_enum_tabBarIndicatorSize,
+                    indicatorSize_enum_tabBarIndicatorSize) ||
+                other.indicatorSize_enum_tabBarIndicatorSize ==
+                    indicatorSize_enum_tabBarIndicatorSize) &&
+            (identical(other.dividerHeight_double, dividerHeight_double) ||
+                other.dividerHeight_double == dividerHeight_double) &&
+            (identical(other.labelColor_color, labelColor_color) ||
+                other.labelColor_color == labelColor_color) &&
+            (identical(other.labelPadding_edgeInsets, labelPadding_edgeInsets) ||
+                other.labelPadding_edgeInsets == labelPadding_edgeInsets) &&
+            (identical(other.labelStyle_textStyle, labelStyle_textStyle) ||
+                other.labelStyle_textStyle == labelStyle_textStyle) &&
+            (identical(other.unselectedLabelColor_color, unselectedLabelColor_color) ||
+                other.unselectedLabelColor_color ==
+                    unselectedLabelColor_color) &&
+            (identical(other.unselectedLabelStyle_textStyle,
+                    unselectedLabelStyle_textStyle) ||
+                other.unselectedLabelStyle_textStyle ==
+                    unselectedLabelStyle_textStyle) &&
+            (identical(other.overlayColor_color, overlayColor_color) ||
+                other.overlayColor_color == overlayColor_color) &&
+            (identical(other.tabAlignment_enum_tabAlignment,
+                    tabAlignment_enum_tabAlignment) ||
+                other.tabAlignment_enum_tabAlignment ==
+                    tabAlignment_enum_tabAlignment));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_indicator),
-      indicatorColor,
-      dividerColor,
-      dividerHeight,
-      labelColor,
-      labelPadding,
-      labelStyle,
-      unselectedLabelColor,
-      unselectedLabelStyle,
-      overlayColor,
-      tabAlignment);
+      indicator_boxDecoration,
+      indicatorColor_color,
+      dividerColor_color,
+      indicatorSize_enum_tabBarIndicatorSize,
+      dividerHeight_double,
+      labelColor_color,
+      labelPadding_edgeInsets,
+      labelStyle_textStyle,
+      unselectedLabelColor_color,
+      unselectedLabelStyle_textStyle,
+      overlayColor_color,
+      tabAlignment_enum_tabAlignment);
 
   @JsonKey(ignore: true)
   @override
@@ -352,49 +392,48 @@ class _$TabBarModelImpl extends _TabBarModel {
 
 abstract class _TabBarModel extends TabBarModel {
   const factory _TabBarModel(
-          {@BoxDecorationConverter()
-          final Map<BoxBorderType, BoxDecoration?>? indicator,
-          final String? indicatorColor,
-          final String? dividerColor,
-          final double? dividerHeight,
-          final String? labelColor,
-          @EdgeInsetsConverter() final EdgeInsets? labelPadding,
-          final String? labelStyle,
-          final String? unselectedLabelColor,
-          final String? unselectedLabelStyle,
-          final String? overlayColor,
-          @TabAlignmentConverter() final TabAlignment? tabAlignment}) =
-      _$TabBarModelImpl;
+      {final BoxDecorationModel? indicator_boxDecoration,
+      final String? indicatorColor_color,
+      final String? dividerColor_color,
+      final TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
+      final double? dividerHeight_double,
+      final String? labelColor_color,
+      @EdgeInsetsConverter() final EdgeInsets? labelPadding_edgeInsets,
+      final String? labelStyle_textStyle,
+      final String? unselectedLabelColor_color,
+      final String? unselectedLabelStyle_textStyle,
+      final String? overlayColor_color,
+      final TabAlignment? tabAlignment_enum_tabAlignment}) = _$TabBarModelImpl;
   const _TabBarModel._() : super._();
 
   factory _TabBarModel.fromJson(Map<String, dynamic> json) =
       _$TabBarModelImpl.fromJson;
 
+  @override // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
+  BoxDecorationModel? get indicator_boxDecoration;
+  @override // TODO: Set up DecorationModel that can also be other types of decoration
+  String? get indicatorColor_color;
   @override
-  @BoxDecorationConverter()
-  Map<BoxBorderType, BoxDecoration?>? get indicator;
+  String? get dividerColor_color;
   @override
-  String? get indicatorColor;
+  TabBarIndicatorSize? get indicatorSize_enum_tabBarIndicatorSize;
   @override
-  String? get dividerColor;
+  double? get dividerHeight_double;
   @override
-  double? get dividerHeight;
-  @override
-  String? get labelColor;
+  String? get labelColor_color;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding;
+  EdgeInsets? get labelPadding_edgeInsets;
   @override
-  String? get labelStyle;
+  String? get labelStyle_textStyle;
   @override
-  String? get unselectedLabelColor;
+  String? get unselectedLabelColor_color;
   @override
-  String? get unselectedLabelStyle;
+  String? get unselectedLabelStyle_textStyle;
   @override
-  String? get overlayColor;
-  @override
-  @TabAlignmentConverter()
-  TabAlignment? get tabAlignment;
+  String? get overlayColor_color;
+  @override // @TabAlignmentConverter()
+  TabAlignment? get tabAlignment_enum_tabAlignment;
   @override
   @JsonKey(ignore: true)
   _$$TabBarModelImplCopyWith<_$TabBarModelImpl> get copyWith =>

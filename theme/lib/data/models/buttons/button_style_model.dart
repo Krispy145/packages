@@ -1,34 +1,39 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/border_side/border_side.dart';
+import 'package:theme/data/models/borders/border_side_model.dart';
+import 'package:theme/data/models/borders/outlined_border_model.dart';
+import 'package:theme/data/models/general/size_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/domain/converters/sizes/size.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'button_style_model.freezed.dart';
 part 'button_style_model.g.dart';
 
 @unfreezed
 class ButtonStyleModel with _$ButtonStyleModel {
-  ButtonStyleModel._();
   factory ButtonStyleModel({
-    String? textStyle,
-    String? backgroundColor,
-    String? foregroundColor,
-    String? overlayColor,
-    String? shadowColor,
-    String? surfaceTintColor,
-    double? elevation,
-    @EdgeInsetsConverter() EdgeInsets? padding,
-    @SizeConverter() Size? minimumSize,
-    @SizeConverter() Size? fixedSize,
-    @SizeConverter() Size? maximumSize,
-    String? iconColor,
-    double? iconSize,
-    @BorderSideConverter() BorderSide? side,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
+    TextStyleString? textStyle_textStyle,
+    ThemeColorString? backgroundColor_color,
+    ThemeColorString? foregroundColor_color,
+    ThemeColorString? overlayColor_color,
+    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_color,
+    double? elevation_double,
+    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @Default(SizeModel()) SizeModel? minimumSize_size,
+    @Default(SizeModel()) SizeModel? fixedSize_size,
+    @Default(SizeModel()) SizeModel? maximumSize_size,
+    String? iconColor_color,
+    double? iconSize_double,
+    // @BorderSideConverter()
+    @Default(BorderSideModel()) BorderSideModel? side_borderSide,
+    // @OutlinedBorderConverter()
+    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
   }) = _ButtonStyleModel;
+  ButtonStyleModel._();
 
   ElevatedButtonThemeData toElevatedButtonThemeData() {
     return ElevatedButtonThemeData(style: asButtonStyle());
@@ -88,18 +93,18 @@ class ButtonStyleModel with _$ButtonStyleModel {
 
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     return ButtonStyle(
-      textStyle: MaterialStateProperty.all(textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      backgroundColor: MaterialStateProperty.all(backgroundColor?.toColor(styleType: styleTypeName)),
-      foregroundColor: MaterialStateProperty.all(foregroundColor?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor?.toColor(styleType: styleTypeName)),
-      shadowColor: MaterialStateProperty.all(shadowColor?.toColor(styleType: styleTypeName)),
-      elevation: MaterialStateProperty.all(elevation),
-      padding: MaterialStateProperty.all(padding),
-      minimumSize: MaterialStateProperty.all(minimumSize),
-      fixedSize: MaterialStateProperty.all(fixedSize),
-      maximumSize: MaterialStateProperty.all(maximumSize),
-      side: MaterialStateProperty.all(side),
-      shape: MaterialStateProperty.all(shape),
+      textStyle: MaterialStateProperty.all(textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      backgroundColor: MaterialStateProperty.all(backgroundColor_color?.toColor(styleType: styleTypeName)),
+      foregroundColor: MaterialStateProperty.all(foregroundColor_color?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      shadowColor: MaterialStateProperty.all(shadowColor_color?.toColor(styleType: styleTypeName)),
+      elevation: MaterialStateProperty.all(elevation_double),
+      padding: MaterialStateProperty.all(padding_edgeInsets),
+      minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),
+      fixedSize: MaterialStateProperty.all(fixedSize_size?.asSize(styleTypeName: styleTypeName)),
+      maximumSize: MaterialStateProperty.all(maximumSize_size?.asSize(styleTypeName: styleTypeName)),
+      side: MaterialStateProperty.all(side_borderSide?.asBorderSide(styleTypeName: styleTypeName)),
+      shape: MaterialStateProperty.all(shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName)),
     );
   }
 

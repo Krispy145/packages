@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:utilities/sizes/spacers.dart';
 
 class DoubleFormField extends StatefulWidget {
-  final double initialValue;
+  final double? initialValue;
   final double increment;
   final void Function(double? newDouble) onChanged;
-  const DoubleFormField({super.key, required this.initialValue, required this.onChanged, required this.increment});
+  const DoubleFormField({super.key, this.initialValue, required this.onChanged, required this.increment});
 
   @override
   State<DoubleFormField> createState() => _DoubleChangerState();

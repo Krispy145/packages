@@ -15,7 +15,7 @@ import 'package:theme/data/models/dropdowns/dropdown_model.dart';
 import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
 import 'package:theme/data/models/list_tiles/list_tile_model.dart';
 import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
-import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/menus/menu_style_model.dart';
 import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
 import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
 import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
@@ -32,6 +32,7 @@ import 'package:theme/data/models/tab_bars/tab_bar_model.dart';
 import 'package:theme/data/models/text/text_style_model.dart';
 import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
+import 'package:theme/data/sources/theme/_source.dart';
 
 import '/data/repositories/_repositories.dart';
 import '/data/sources/digital_oasis/_source.dart';
@@ -43,245 +44,245 @@ class DigitalOasisDataRepository {
   DigitalOasisDataSource<BaseThemeModel> get baseThemesDataSource => _dataSourceByType<BaseThemeModel>(
         'baseThemes',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => BaseThemeModel.fromJson(map),
+        convertDataTypeFromMap: BaseThemeModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ColorModel> get colorsDataSource => _dataSourceByType<ColorModel>(
         'colors',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ColorModel.fromJson(map),
+        convertDataTypeFromMap: ColorModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<TextStyleModel> get textStylesDataSource => _dataSourceByType<TextStyleModel>(
         'textStyles',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => TextStyleModel.fromJson(map),
+        convertDataTypeFromMap: TextStyleModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ComponentThemesModel?> get componentsThemesDataSource => _dataSourceByType<ComponentThemesModel>(
         'componentsThemes',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ComponentThemesModel.fromJson(map),
+        convertDataTypeFromMap: ComponentThemesModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ButtonStyleModel?> get buttonsDataSource => _dataSourceByType<ButtonStyleModel>(
         'buttons',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ButtonStyleModel.fromJson(map),
+        convertDataTypeFromMap: ButtonStyleModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<FloatingActionButtonModel?> get floatingActionButtonsDataSource => _dataSourceByType<FloatingActionButtonModel>(
         'floatingActionButtons',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => FloatingActionButtonModel.fromJson(map),
+        convertDataTypeFromMap: FloatingActionButtonModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ToggleButtonModel?> get toggleButtonsDataSource => _dataSourceByType<ToggleButtonModel>(
         'toggleButtons',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ToggleButtonModel.fromJson(map),
+        convertDataTypeFromMap: ToggleButtonModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<InputDecorationModel?> get inputDecorationsDataSource => _dataSourceByType<InputDecorationModel>(
         'inputDecorations',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => InputDecorationModel.fromJson(map),
+        convertDataTypeFromMap: InputDecorationModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<BoxDecorationModel?> get boxDecorationsDataSource => _dataSourceByType<BoxDecorationModel>(
         'boxDecorations',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => BoxDecorationModel.fromJson(map),
+        convertDataTypeFromMap: BoxDecorationModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<CardModel?> get cardsDataSource => _dataSourceByType<CardModel>(
         'cards',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => CardModel.fromJson(map),
+        convertDataTypeFromMap: CardModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<SnackbarModel?> get snackbarsDataSource => _dataSourceByType<SnackbarModel>(
         'snackbars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => SnackbarModel.fromJson(map),
+        convertDataTypeFromMap: SnackbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<BadgeModel?> get badgesDataSource => _dataSourceByType<BadgeModel>(
         'badges',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => BadgeModel.fromJson(map),
+        convertDataTypeFromMap: BadgeModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<AppbarModel?> get appbarsDataSource => _dataSourceByType<AppbarModel>(
         'appbars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => AppbarModel.fromJson(map),
+        convertDataTypeFromMap: AppbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<BottomAppbarModel?> get bottomAppbarsDataSource => _dataSourceByType<BottomAppbarModel>(
         'bottomAppbars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => BottomAppbarModel.fromJson(map),
+        convertDataTypeFromMap: BottomAppbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<DropdownModel?> get dropdownsDataSource => _dataSourceByType<DropdownModel>(
         'dropdowns',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => DropdownModel.fromJson(map),
+        convertDataTypeFromMap: DropdownModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ChipModel?> get chipsDataSource => _dataSourceByType<ChipModel>(
         'chips',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ChipModel.fromJson(map),
+        convertDataTypeFromMap: ChipModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<DialogModel?> get dialogsDataSource => _dataSourceByType<DialogModel>(
         'dialogs',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => DialogModel.fromJson(map),
+        convertDataTypeFromMap: DialogModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<PopupMenuModel?> get popupMenusDataSource => _dataSourceByType<PopupMenuModel>(
         'popupMenus',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => PopupMenuModel.fromJson(map),
+        convertDataTypeFromMap: PopupMenuModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<SliderModel?> get slidersDataSource => _dataSourceByType<SliderModel>(
         'sliders',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => SliderModel.fromJson(map),
+        convertDataTypeFromMap: SliderModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ScrollbarModel?> get scrollbarsDataSource => _dataSourceByType<ScrollbarModel>(
         'scrollbars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ScrollbarModel.fromJson(map),
+        convertDataTypeFromMap: ScrollbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<TooltipModel?> get tooltipsDataSource => _dataSourceByType<TooltipModel>(
         'tooltips',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => TooltipModel.fromJson(map),
+        convertDataTypeFromMap: TooltipModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<NavigationRailModel?> get navigationRailsDataSource => _dataSourceByType<NavigationRailModel>(
         'navigationRails',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => NavigationRailModel.fromJson(map),
+        convertDataTypeFromMap: NavigationRailModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<CheckboxModel?> get checkboxesDataSource => _dataSourceByType<CheckboxModel>(
         'checkboxes',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => CheckboxModel.fromJson(map),
+        convertDataTypeFromMap: CheckboxModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<RadioModel?> get radiosDataSource => _dataSourceByType<RadioModel>(
         'radios',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => RadioModel.fromJson(map),
+        convertDataTypeFromMap: RadioModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<SwitchModel?> get switchesDataSource => _dataSourceByType<SwitchModel>(
         'switches',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => SwitchModel.fromJson(map),
+        convertDataTypeFromMap: SwitchModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<DrawerModel?> get drawersDataSource => _dataSourceByType<DrawerModel>(
         'drawers',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => DrawerModel.fromJson(map),
+        convertDataTypeFromMap: DrawerModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ListTileModel?> get listTilesDataSource => _dataSourceByType<ListTileModel>(
         'listTiles',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ListTileModel.fromJson(map),
+        convertDataTypeFromMap: ListTileModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DigitalOasisDataSource<MenuModel?> get menuStylesDataSource => _dataSourceByType<MenuModel>(
+  DigitalOasisDataSource<MenuStyleModel?> get menuStylesDataSource => _dataSourceByType<MenuStyleModel>(
         'menuStyles',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => MenuModel.fromJson(map),
+        convertDataTypeFromMap: MenuStyleModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<MenuBarModel?> get menuBarsDataSource => _dataSourceByType<MenuBarModel>(
         'menuBars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => MenuBarModel.fromJson(map),
+        convertDataTypeFromMap: MenuBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<NavigationBarModel?> get navigationBarsDataSource => _dataSourceByType<NavigationBarModel>(
         'navigationBars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => NavigationBarModel.fromJson(map),
+        convertDataTypeFromMap: NavigationBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<NavigationDrawerModel?> get navigationDrawersDataSource => _dataSourceByType<NavigationDrawerModel>(
         'navigationDrawers',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => NavigationDrawerModel.fromJson(map),
+        convertDataTypeFromMap: NavigationDrawerModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<ProgressIndicatorModel?> get progressIndicatorsDataSource => _dataSourceByType<ProgressIndicatorModel>(
         'progressIndicators',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => ProgressIndicatorModel.fromJson(map),
+        convertDataTypeFromMap: ProgressIndicatorModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<SearchBarModel?> get searchBarsDataSource => _dataSourceByType<SearchBarModel>(
         'searchBars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => SearchBarModel.fromJson(map),
+        convertDataTypeFromMap: SearchBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<SearchViewModel?> get searchViewsDataSource => _dataSourceByType<SearchViewModel>(
         'searchViews',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => SearchViewModel.fromJson(map),
+        convertDataTypeFromMap: SearchViewModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DigitalOasisDataSource<TabBarModel?> get tabBarStylesDataSource => _dataSourceByType<TabBarModel>(
         'tabBars',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: (map) => TabBarModel.fromJson(map),
+        convertDataTypeFromMap: TabBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 

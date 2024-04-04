@@ -32,12 +32,12 @@ class TextStyleView extends StatelessWidget {
                   ColoredBox(
                     color: AppTheme.currentColorModel?.primary ?? Colors.blue,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           StyleTypeWrapper(
-                            styleTypeName: "DOORDONOTTHEREISNOTRY",
+                            styleTypeName: "DO",
                             child: (context, _) => Text(
                               type,
                               style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Theme.of(context).colorScheme.primary),
@@ -64,49 +64,51 @@ class TextStyleView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          content: Observer(builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: sizeValue.entries.map(
-                                  (e) {
-                                    final title = e.key;
-                                    final value = e.value;
-                                    if (value is String) {
-                                      return TextFormField(
-                                        initialValue: value,
-                                        onChanged: (newString) => store.setTextStyleModel(type, size, title, newString),
-                                      );
+                          content: Observer(
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Column(
+                                  children: sizeValue.entries.map(
+                                    (e) {
+                                      final title = e.key;
+                                      final value = e.value;
+                                      if (value is String) {
+                                        return TextFormField(
+                                          initialValue: value,
+                                          onChanged: (newString) => store.setTextStyleModel(type, size, title, newString),
+                                        );
 
-                                      // return StringChanger(
-                                      //     currentString: value,
-                                      //     onStringChanged: (context, newString) {
-                                      //       store.setTextStyleModel(type, size, title, newString);
-                                      //     });
-                                    }
-                                    if (value is double) {
-                                      return DoubleFormField(
-                                        initialValue: value,
-                                        increment: 1,
-                                        onChanged: (newDouble) => store.setTextStyleModel(type, size, title, newDouble),
-                                      );
-                                      // return DoubleChanger(
-                                      //     currentDouble: value,
-                                      //     onDoubleChanged: (context, newDouble) {
-                                      //       final textTypes = store.setTextStyleModel(type, size, title, newDouble);
-                                      //       ThemeChanger.changeBaseThemeModel(
-                                      //         model: AppTheme.baseThemeModel.copyWith(
-                                      //           textStyles: {AppTheme.styleType: textTypes ?? TextTypes.defaultTextTypes()},
-                                      //         ),
-                                      //       );
-                                      //     });
-                                    }
-                                    return const SizedBox();
-                                  },
-                                ).toList(),
-                              ),
-                            );
-                          }),
+                                        // return StringChanger(
+                                        //     currentString: value,
+                                        //     onStringChanged: (context, newString) {
+                                        //       store.setTextStyleModel(type, size, title, newString);
+                                        //     });
+                                      }
+                                      if (value is double) {
+                                        return DoubleFormField(
+                                          initialValue: value,
+                                          increment: 1,
+                                          onChanged: (newDouble) => store.setTextStyleModel(type, size, title, newDouble),
+                                        );
+                                        // return DoubleChanger(
+                                        //     currentDouble: value,
+                                        //     onDoubleChanged: (context, newDouble) {
+                                        //       final textTypes = store.setTextStyleModel(type, size, title, newDouble);
+                                        //       ThemeChanger.changeBaseThemeModel(
+                                        //         model: AppTheme.baseThemeModel.copyWith(
+                                        //           textStyles: {AppTheme.styleType: textTypes ?? TextTypes.defaultTextTypes()},
+                                        //         ),
+                                        //       );
+                                        //     });
+                                      }
+                                      return const SizedBox();
+                                    },
+                                  ).toList(),
+                                ),
+                              );
+                            },
+                          ),
                         );
                       },
                     ).toList(),

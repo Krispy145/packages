@@ -157,7 +157,7 @@ mixin _$ThemeStateStore on ThemeStateBaseStore, Store {
   }
 
   @override
-  dynamic toggleThemeMode() {
+  void toggleThemeMode() {
     final _$actionInfo = _$ThemeStateBaseStoreActionController.startAction(
         name: 'ThemeStateBaseStore.toggleThemeMode');
     try {

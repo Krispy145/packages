@@ -8,46 +8,63 @@ part of 'list_tile_model.dart';
 
 _$ListTileModelImpl _$$ListTileModelImplFromJson(Map<String, dynamic> json) =>
     _$ListTileModelImpl(
-      dense: json['dense'] as bool?,
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
-      selectedColor: json['selectedColor'] as String?,
-      iconColor: json['iconColor'] as String?,
-      textColor: json['textColor'] as String?,
-      titleTextStyle: json['titleTextStyle'] as String?,
-      subtitleTextStyle: json['subtitleTextStyle'] as String?,
-      leadingAndTrailingTextStyle:
-          json['leadingAndTrailingTextStyle'] as String?,
-      contentPadding: const EdgeInsetsConverter()
-          .fromJson(json['contentPadding'] as Map<String, dynamic>?),
-      tileColor: json['tileColor'] as String?,
-      selectedTileColor: json['selectedTileColor'] as String?,
-      horizontalTitleGap: (json['horizontalTitleGap'] as num?)?.toDouble(),
-      minVerticalPadding: (json['minVerticalPadding'] as num?)?.toDouble(),
-      minLeadingWidth: (json['minLeadingWidth'] as num?)?.toDouble(),
-      enableFeedback: json['enableFeedback'] as bool?,
-      titleAlignment: const ListTileTitleAlignmentConverter()
-          .fromJson(json['titleAlignment'] as String?),
+      dense_bool: json['dense_bool'] as bool?,
+      shape_shapeBorder: json['shape_shapeBorder'] == null
+          ? null
+          : ShapeBorderModel.fromJson(
+              json['shape_shapeBorder'] as Map<String, dynamic>),
+      selectedColor_color: json['selectedColor_color'] as String?,
+      iconColor_color: json['iconColor_color'] as String?,
+      textColor_color: json['textColor_color'] as String?,
+      titleTextStyle_textStyle: json['titleTextStyle_textStyle'] as String?,
+      subtitleTextStyle_textStyle:
+          json['subtitleTextStyle_textStyle'] as String?,
+      leadingAndTrailingTextStyle_textStyle:
+          json['leadingAndTrailingTextStyle_textStyle'] as String?,
+      contentPadding_edgeInsets: const EdgeInsetsConverter()
+          .fromJson(json['contentPadding_edgeInsets'] as Map<String, dynamic>?),
+      tileColor_color: json['tileColor_color'] as String?,
+      selectedTileColor_color: json['selectedTileColor_color'] as String?,
+      horizontalTitleGap_double:
+          (json['horizontalTitleGap_double'] as num?)?.toDouble(),
+      minVerticalPadding_double:
+          (json['minVerticalPadding_double'] as num?)?.toDouble(),
+      minLeadingWidth_double:
+          (json['minLeadingWidth_double'] as num?)?.toDouble(),
+      enableFeedback_bool: json['enableFeedback_bool'] as bool?,
+      titleAlignment_enum_listTileTitleAlignment: $enumDecodeNullable(
+          _$ListTileTitleAlignmentEnumMap,
+          json['titleAlignment_enum_listTileTitleAlignment']),
     );
 
 Map<String, dynamic> _$$ListTileModelImplToJson(_$ListTileModelImpl instance) =>
     <String, dynamic>{
-      'dense': instance.dense,
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
-      'selectedColor': instance.selectedColor,
-      'iconColor': instance.iconColor,
-      'textColor': instance.textColor,
-      'titleTextStyle': instance.titleTextStyle,
-      'subtitleTextStyle': instance.subtitleTextStyle,
-      'leadingAndTrailingTextStyle': instance.leadingAndTrailingTextStyle,
-      'contentPadding':
-          const EdgeInsetsConverter().toJson(instance.contentPadding),
-      'tileColor': instance.tileColor,
-      'selectedTileColor': instance.selectedTileColor,
-      'horizontalTitleGap': instance.horizontalTitleGap,
-      'minVerticalPadding': instance.minVerticalPadding,
-      'minLeadingWidth': instance.minLeadingWidth,
-      'enableFeedback': instance.enableFeedback,
-      'titleAlignment': const ListTileTitleAlignmentConverter()
-          .toJson(instance.titleAlignment),
+      'dense_bool': instance.dense_bool,
+      'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
+      'selectedColor_color': instance.selectedColor_color,
+      'iconColor_color': instance.iconColor_color,
+      'textColor_color': instance.textColor_color,
+      'titleTextStyle_textStyle': instance.titleTextStyle_textStyle,
+      'subtitleTextStyle_textStyle': instance.subtitleTextStyle_textStyle,
+      'leadingAndTrailingTextStyle_textStyle':
+          instance.leadingAndTrailingTextStyle_textStyle,
+      'contentPadding_edgeInsets': const EdgeInsetsConverter()
+          .toJson(instance.contentPadding_edgeInsets),
+      'tileColor_color': instance.tileColor_color,
+      'selectedTileColor_color': instance.selectedTileColor_color,
+      'horizontalTitleGap_double': instance.horizontalTitleGap_double,
+      'minVerticalPadding_double': instance.minVerticalPadding_double,
+      'minLeadingWidth_double': instance.minLeadingWidth_double,
+      'enableFeedback_bool': instance.enableFeedback_bool,
+      'titleAlignment_enum_listTileTitleAlignment':
+          _$ListTileTitleAlignmentEnumMap[
+              instance.titleAlignment_enum_listTileTitleAlignment],
     };
+
+const _$ListTileTitleAlignmentEnumMap = {
+  ListTileTitleAlignment.threeLine: 'threeLine',
+  ListTileTitleAlignment.titleHeight: 'titleHeight',
+  ListTileTitleAlignment.top: 'top',
+  ListTileTitleAlignment.center: 'center',
+  ListTileTitleAlignment.bottom: 'bottom',
+};

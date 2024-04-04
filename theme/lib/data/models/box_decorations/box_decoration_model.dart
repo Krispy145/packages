@@ -1,12 +1,13 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/border_radius/border_radius.dart';
-import 'package:theme/domain/converters/box/borders/border.dart';
+import 'package:theme/data/models/borders/border_radius_model.dart';
+import 'package:theme/data/models/borders/box_border_model.dart';
 import 'package:theme/domain/converters/box/shadows.dart';
-import 'package:theme/domain/converters/box/shape.dart';
 import 'package:theme/domain/converters/colors/gradients/gradient.dart';
 import 'package:theme/domain/converters/modes/blend.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'box_decoration_model.freezed.dart';
 part 'box_decoration_model.g.dart';
@@ -14,13 +15,16 @@ part 'box_decoration_model.g.dart';
 @freezed
 class BoxDecorationModel with _$BoxDecorationModel {
   const factory BoxDecorationModel({
-    String? color,
-    @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
-    @BorderRadiusConverter() BorderRadius? borderRadius,
-    @BoxShadowsConverter() List<BoxShadow>? boxShadows,
-    @GradientConverter() Gradient? gradient,
-    @BlendModeConverter() BlendMode? backgroundBlendMode,
-    @BoxShapeConverter() @Default(BoxShape.rectangle) BoxShape? shape,
+    ThemeColorString? color_color,
+    // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
+    BoxBorderModel? border_boxBorder,
+    // @BorderRadiusConverter() BorderRadius? borderRadius,
+    BorderRadiusModel? borderRadius_borderRadius,
+    @BoxShadowsConverter() List<BoxShadow>? boxShadows_list_boxShadow,
+    @GradientConverter() Gradient? gradient_gradient,
+    @BlendModeConverter() BlendMode? backgroundBlendMode_blendMode,
+    // @BoxShapeConverter()
+    @Default(BoxShape.rectangle) BoxShape? shape_enum_boxShape,
   }) = _BoxDecorationModel;
 
   const BoxDecorationModel._();
@@ -69,13 +73,13 @@ class BoxDecorationModel with _$BoxDecorationModel {
 
   BoxDecoration asBoxDecoration({String? styleTypeName}) {
     return BoxDecoration(
-      color: color?.toColor(styleType: styleTypeName),
-      border: border?.values.first,
-      borderRadius: borderRadius,
-      boxShadow: boxShadows,
-      gradient: gradient,
-      backgroundBlendMode: backgroundBlendMode,
-      shape: shape ?? BoxShape.rectangle,
+      color: color_color?.toColor(styleType: styleTypeName),
+      border: border_boxBorder?.asBoxBorder(styleTypeName: styleTypeName),
+      borderRadius: borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName),
+      boxShadow: boxShadows_list_boxShadow,
+      gradient: gradient_gradient,
+      backgroundBlendMode: backgroundBlendMode_blendMode,
+      shape: shape_enum_boxShape ?? BoxShape.rectangle,
     );
   }
 }

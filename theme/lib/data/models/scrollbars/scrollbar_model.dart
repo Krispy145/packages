@@ -1,7 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/domain/converters/radius/radius.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'scrollbar_model.freezed.dart';
 part 'scrollbar_model.g.dart';
@@ -9,17 +11,17 @@ part 'scrollbar_model.g.dart';
 @freezed
 class ScrollbarModel with _$ScrollbarModel {
   const factory ScrollbarModel({
-    bool? thumbVisibility,
-    double? thickness,
-    bool? trackVisibility,
-    @RadiusConverter() Radius? radius,
-    String? thumbColor,
-    String? trackColor,
-    String? trackBorderColor,
-    double? crossAxisMargin,
-    double? mainAxisMargin,
-    double? minThumbLength,
-    bool? interactive,
+    bool? thumbVisibility_bool,
+    double? thickness_double,
+    bool? trackVisibility_bool,
+    @RadiusConverter() Radius? radius_radius,
+    ThemeColorString? thumbColor_color,
+    ThemeColorString? trackColor_color,
+    ThemeColorString? trackBorderColor_color,
+    double? crossAxisMargin_double,
+    double? mainAxisMargin_double,
+    double? minThumbLength_double,
+    bool? interactive_bool,
   }) = _ScrollbarModel;
 
   const ScrollbarModel._();
@@ -44,17 +46,17 @@ class ScrollbarModel with _$ScrollbarModel {
 
   ScrollbarThemeData asScrollbarThemeData({String? styleTypeName}) {
     return ScrollbarThemeData(
-      thumbVisibility: MaterialStateProperty.all(thumbVisibility),
-      thickness: MaterialStateProperty.all(thickness),
-      trackVisibility: MaterialStateProperty.all(trackVisibility),
-      radius: radius,
-      thumbColor: MaterialStateProperty.all(thumbColor?.toColor(styleType: styleTypeName)),
-      trackColor: MaterialStateProperty.all(trackColor?.toColor(styleType: styleTypeName)),
-      trackBorderColor: MaterialStateProperty.all(trackBorderColor?.toColor(styleType: styleTypeName)),
-      crossAxisMargin: crossAxisMargin,
-      mainAxisMargin: mainAxisMargin,
-      minThumbLength: minThumbLength,
-      interactive: interactive,
+      thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
+      thickness: MaterialStateProperty.all(thickness_double),
+      trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
+      radius: radius_radius,
+      thumbColor: MaterialStateProperty.all(thumbColor_color?.toColor(styleType: styleTypeName)),
+      trackColor: MaterialStateProperty.all(trackColor_color?.toColor(styleType: styleTypeName)),
+      trackBorderColor: MaterialStateProperty.all(trackBorderColor_color?.toColor(styleType: styleTypeName)),
+      crossAxisMargin: crossAxisMargin_double,
+      mainAxisMargin: mainAxisMargin_double,
+      minThumbLength: minThumbLength_double,
+      interactive: interactive_bool,
     );
   }
 }

@@ -8,30 +8,32 @@ part of 'badge_model.dart';
 
 _$BadgeModelImpl _$$BadgeModelImplFromJson(Map<String, dynamic> json) =>
     _$BadgeModelImpl(
-      backgroundColor: json['backgroundColor'] as String?,
-      textColor: json['textColor'] as String?,
-      smallSize: (json['smallSize'] as num?)?.toDouble(),
-      largeSize: (json['largeSize'] as num?)?.toDouble(),
-      textStyle: json['textStyle'] as String?,
-      padding: const EdgeInsetsConverter()
-          .fromJson(json['padding'] as Map<String, dynamic>?),
-      alignment:
-          const AlignmentConverter().fromJson(json['alignment'] as String?),
-      offset: const OffsetConverter()
-          .fromJson(json['offset'] as Map<String, dynamic>?),
+      backgroundColor_color: json['backgroundColor_color'] as String?,
+      textColor_color: json['textColor_color'] as String?,
+      smallSize_double: (json['smallSize_double'] as num?)?.toDouble(),
+      largeSize_double: (json['largeSize_double'] as num?)?.toDouble(),
+      textStyle_textStyle: json['textStyle_textStyle'] as String?,
+      padding_edgeInsets: const EdgeInsetsConverter()
+          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
+      alignment_alignment: const AlignmentConverter()
+          .fromJson(json['alignment_alignment'] as String?),
+      offset_offset: const OffsetConverter()
+          .fromJson(json['offset_offset'] as Map<String, dynamic>?),
     );
 
 Map<String, dynamic> _$$BadgeModelImplToJson(_$BadgeModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor': instance.backgroundColor,
-      'textColor': instance.textColor,
-      'smallSize': instance.smallSize,
-      'largeSize': instance.largeSize,
-      'textStyle': instance.textStyle,
-      'padding': const EdgeInsetsConverter().toJson(instance.padding),
-      'alignment': const AlignmentConverter().toJson(instance.alignment),
-      'offset': _$JsonConverterToJson<Map<String, dynamic>?, Offset>(
-          instance.offset, const OffsetConverter().toJson),
+      'backgroundColor_color': instance.backgroundColor_color,
+      'textColor_color': instance.textColor_color,
+      'smallSize_double': instance.smallSize_double,
+      'largeSize_double': instance.largeSize_double,
+      'textStyle_textStyle': instance.textStyle_textStyle,
+      'padding_edgeInsets':
+          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
+      'alignment_alignment':
+          const AlignmentConverter().toJson(instance.alignment_alignment),
+      'offset_offset': _$JsonConverterToJson<Map<String, dynamic>?, Offset>(
+          instance.offset_offset, const OffsetConverter().toJson),
     };
 
 Json? _$JsonConverterToJson<Json, Value>(

@@ -20,24 +20,24 @@ TooltipModel _$TooltipModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TooltipModel {
-  double? get height => throw _privateConstructorUsedError;
+  double? get height_double => throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get padding => throw _privateConstructorUsedError;
+  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get margin => throw _privateConstructorUsedError;
-  double? get verticalOffset => throw _privateConstructorUsedError;
-  bool? get preferBelow => throw _privateConstructorUsedError;
-  bool? get excludeFromSemantics => throw _privateConstructorUsedError;
-  @BoxDecorationConverter()
-  Map<BoxBorderType, BoxDecoration?>? get decoration =>
-      throw _privateConstructorUsedError;
-  String? get textStyle =>
+  EdgeInsets? get margin_edgeInsets => throw _privateConstructorUsedError;
+  double? get verticalOffset_double => throw _privateConstructorUsedError;
+  bool? get preferBelow_bool => throw _privateConstructorUsedError;
+  bool? get excludeFromSemantics_bool => throw _privateConstructorUsedError;
+  BoxDecorationModel? get decoration_boxDecoration =>
+      throw _privateConstructorUsedError; // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
+  String? get textStyle_textStyle => throw _privateConstructorUsedError;
+  TextAlign? get textAlign_enum_textAlign =>
       throw _privateConstructorUsedError; //TODO: implement these converters
-// TextAlign? textAlign,
-// Duration? waitDuration,
-// Duration? showDuration,
-// TooltipTriggerMode? triggerMode,
-  bool? get enableFeedback => throw _privateConstructorUsedError;
+  Duration? get waitDuration_duration => throw _privateConstructorUsedError;
+  Duration? get showDuration_duration => throw _privateConstructorUsedError;
+  TooltipTriggerMode? get triggerMode_enum_tooltipTriggerMode =>
+      throw _privateConstructorUsedError;
+  bool? get enableFeedback_bool => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,15 +52,21 @@ abstract class $TooltipModelCopyWith<$Res> {
       _$TooltipModelCopyWithImpl<$Res, TooltipModel>;
   @useResult
   $Res call(
-      {double? height,
-      @EdgeInsetsConverter() EdgeInsets? padding,
-      @EdgeInsetsConverter() EdgeInsets? margin,
-      double? verticalOffset,
-      bool? preferBelow,
-      bool? excludeFromSemantics,
-      @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
-      String? textStyle,
-      bool? enableFeedback});
+      {double? height_double,
+      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      double? verticalOffset_double,
+      bool? preferBelow_bool,
+      bool? excludeFromSemantics_bool,
+      BoxDecorationModel? decoration_boxDecoration,
+      String? textStyle_textStyle,
+      TextAlign? textAlign_enum_textAlign,
+      Duration? waitDuration_duration,
+      Duration? showDuration_duration,
+      TooltipTriggerMode? triggerMode_enum_tooltipTriggerMode,
+      bool? enableFeedback_bool});
+
+  $BoxDecorationModelCopyWith<$Res>? get decoration_boxDecoration;
 }
 
 /// @nodoc
@@ -76,54 +82,88 @@ class _$TooltipModelCopyWithImpl<$Res, $Val extends TooltipModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? height = freezed,
-    Object? padding = freezed,
-    Object? margin = freezed,
-    Object? verticalOffset = freezed,
-    Object? preferBelow = freezed,
-    Object? excludeFromSemantics = freezed,
-    Object? decoration = freezed,
-    Object? textStyle = freezed,
-    Object? enableFeedback = freezed,
+    Object? height_double = freezed,
+    Object? padding_edgeInsets = freezed,
+    Object? margin_edgeInsets = freezed,
+    Object? verticalOffset_double = freezed,
+    Object? preferBelow_bool = freezed,
+    Object? excludeFromSemantics_bool = freezed,
+    Object? decoration_boxDecoration = freezed,
+    Object? textStyle_textStyle = freezed,
+    Object? textAlign_enum_textAlign = freezed,
+    Object? waitDuration_duration = freezed,
+    Object? showDuration_duration = freezed,
+    Object? triggerMode_enum_tooltipTriggerMode = freezed,
+    Object? enableFeedback_bool = freezed,
   }) {
     return _then(_value.copyWith(
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      height_double: freezed == height_double
+          ? _value.height_double
+          : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
+      padding_edgeInsets: freezed == padding_edgeInsets
+          ? _value.padding_edgeInsets
+          : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      margin: freezed == margin
-          ? _value.margin
-          : margin // ignore: cast_nullable_to_non_nullable
+      margin_edgeInsets: freezed == margin_edgeInsets
+          ? _value.margin_edgeInsets
+          : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      verticalOffset: freezed == verticalOffset
-          ? _value.verticalOffset
-          : verticalOffset // ignore: cast_nullable_to_non_nullable
+      verticalOffset_double: freezed == verticalOffset_double
+          ? _value.verticalOffset_double
+          : verticalOffset_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      preferBelow: freezed == preferBelow
-          ? _value.preferBelow
-          : preferBelow // ignore: cast_nullable_to_non_nullable
+      preferBelow_bool: freezed == preferBelow_bool
+          ? _value.preferBelow_bool
+          : preferBelow_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      excludeFromSemantics: freezed == excludeFromSemantics
-          ? _value.excludeFromSemantics
-          : excludeFromSemantics // ignore: cast_nullable_to_non_nullable
+      excludeFromSemantics_bool: freezed == excludeFromSemantics_bool
+          ? _value.excludeFromSemantics_bool
+          : excludeFromSemantics_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      decoration: freezed == decoration
-          ? _value.decoration
-          : decoration // ignore: cast_nullable_to_non_nullable
-              as Map<BoxBorderType, BoxDecoration?>?,
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      decoration_boxDecoration: freezed == decoration_boxDecoration
+          ? _value.decoration_boxDecoration
+          : decoration_boxDecoration // ignore: cast_nullable_to_non_nullable
+              as BoxDecorationModel?,
+      textStyle_textStyle: freezed == textStyle_textStyle
+          ? _value.textStyle_textStyle
+          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      textAlign_enum_textAlign: freezed == textAlign_enum_textAlign
+          ? _value.textAlign_enum_textAlign
+          : textAlign_enum_textAlign // ignore: cast_nullable_to_non_nullable
+              as TextAlign?,
+      waitDuration_duration: freezed == waitDuration_duration
+          ? _value.waitDuration_duration
+          : waitDuration_duration // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      showDuration_duration: freezed == showDuration_duration
+          ? _value.showDuration_duration
+          : showDuration_duration // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      triggerMode_enum_tooltipTriggerMode: freezed ==
+              triggerMode_enum_tooltipTriggerMode
+          ? _value.triggerMode_enum_tooltipTriggerMode
+          : triggerMode_enum_tooltipTriggerMode // ignore: cast_nullable_to_non_nullable
+              as TooltipTriggerMode?,
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxDecorationModelCopyWith<$Res>? get decoration_boxDecoration {
+    if (_value.decoration_boxDecoration == null) {
+      return null;
+    }
+
+    return $BoxDecorationModelCopyWith<$Res>(_value.decoration_boxDecoration!,
+        (value) {
+      return _then(_value.copyWith(decoration_boxDecoration: value) as $Val);
+    });
   }
 }
 
@@ -136,15 +176,22 @@ abstract class _$$TooltipModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double? height,
-      @EdgeInsetsConverter() EdgeInsets? padding,
-      @EdgeInsetsConverter() EdgeInsets? margin,
-      double? verticalOffset,
-      bool? preferBelow,
-      bool? excludeFromSemantics,
-      @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
-      String? textStyle,
-      bool? enableFeedback});
+      {double? height_double,
+      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      double? verticalOffset_double,
+      bool? preferBelow_bool,
+      bool? excludeFromSemantics_bool,
+      BoxDecorationModel? decoration_boxDecoration,
+      String? textStyle_textStyle,
+      TextAlign? textAlign_enum_textAlign,
+      Duration? waitDuration_duration,
+      Duration? showDuration_duration,
+      TooltipTriggerMode? triggerMode_enum_tooltipTriggerMode,
+      bool? enableFeedback_bool});
+
+  @override
+  $BoxDecorationModelCopyWith<$Res>? get decoration_boxDecoration;
 }
 
 /// @nodoc
@@ -158,52 +205,73 @@ class __$$TooltipModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? height = freezed,
-    Object? padding = freezed,
-    Object? margin = freezed,
-    Object? verticalOffset = freezed,
-    Object? preferBelow = freezed,
-    Object? excludeFromSemantics = freezed,
-    Object? decoration = freezed,
-    Object? textStyle = freezed,
-    Object? enableFeedback = freezed,
+    Object? height_double = freezed,
+    Object? padding_edgeInsets = freezed,
+    Object? margin_edgeInsets = freezed,
+    Object? verticalOffset_double = freezed,
+    Object? preferBelow_bool = freezed,
+    Object? excludeFromSemantics_bool = freezed,
+    Object? decoration_boxDecoration = freezed,
+    Object? textStyle_textStyle = freezed,
+    Object? textAlign_enum_textAlign = freezed,
+    Object? waitDuration_duration = freezed,
+    Object? showDuration_duration = freezed,
+    Object? triggerMode_enum_tooltipTriggerMode = freezed,
+    Object? enableFeedback_bool = freezed,
   }) {
     return _then(_$TooltipModelImpl(
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      height_double: freezed == height_double
+          ? _value.height_double
+          : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
+      padding_edgeInsets: freezed == padding_edgeInsets
+          ? _value.padding_edgeInsets
+          : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      margin: freezed == margin
-          ? _value.margin
-          : margin // ignore: cast_nullable_to_non_nullable
+      margin_edgeInsets: freezed == margin_edgeInsets
+          ? _value.margin_edgeInsets
+          : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      verticalOffset: freezed == verticalOffset
-          ? _value.verticalOffset
-          : verticalOffset // ignore: cast_nullable_to_non_nullable
+      verticalOffset_double: freezed == verticalOffset_double
+          ? _value.verticalOffset_double
+          : verticalOffset_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      preferBelow: freezed == preferBelow
-          ? _value.preferBelow
-          : preferBelow // ignore: cast_nullable_to_non_nullable
+      preferBelow_bool: freezed == preferBelow_bool
+          ? _value.preferBelow_bool
+          : preferBelow_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      excludeFromSemantics: freezed == excludeFromSemantics
-          ? _value.excludeFromSemantics
-          : excludeFromSemantics // ignore: cast_nullable_to_non_nullable
+      excludeFromSemantics_bool: freezed == excludeFromSemantics_bool
+          ? _value.excludeFromSemantics_bool
+          : excludeFromSemantics_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      decoration: freezed == decoration
-          ? _value._decoration
-          : decoration // ignore: cast_nullable_to_non_nullable
-              as Map<BoxBorderType, BoxDecoration?>?,
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      decoration_boxDecoration: freezed == decoration_boxDecoration
+          ? _value.decoration_boxDecoration
+          : decoration_boxDecoration // ignore: cast_nullable_to_non_nullable
+              as BoxDecorationModel?,
+      textStyle_textStyle: freezed == textStyle_textStyle
+          ? _value.textStyle_textStyle
+          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      textAlign_enum_textAlign: freezed == textAlign_enum_textAlign
+          ? _value.textAlign_enum_textAlign
+          : textAlign_enum_textAlign // ignore: cast_nullable_to_non_nullable
+              as TextAlign?,
+      waitDuration_duration: freezed == waitDuration_duration
+          ? _value.waitDuration_duration
+          : waitDuration_duration // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      showDuration_duration: freezed == showDuration_duration
+          ? _value.showDuration_duration
+          : showDuration_duration // ignore: cast_nullable_to_non_nullable
+              as Duration?,
+      triggerMode_enum_tooltipTriggerMode: freezed ==
+              triggerMode_enum_tooltipTriggerMode
+          ? _value.triggerMode_enum_tooltipTriggerMode
+          : triggerMode_enum_tooltipTriggerMode // ignore: cast_nullable_to_non_nullable
+              as TooltipTriggerMode?,
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -213,60 +281,58 @@ class __$$TooltipModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TooltipModelImpl extends _TooltipModel {
   const _$TooltipModelImpl(
-      {this.height,
-      @EdgeInsetsConverter() this.padding,
-      @EdgeInsetsConverter() this.margin,
-      this.verticalOffset,
-      this.preferBelow,
-      this.excludeFromSemantics,
-      @BoxDecorationConverter()
-      final Map<BoxBorderType, BoxDecoration?>? decoration,
-      this.textStyle,
-      this.enableFeedback})
-      : _decoration = decoration,
-        super._();
+      {this.height_double,
+      @EdgeInsetsConverter() this.padding_edgeInsets,
+      @EdgeInsetsConverter() this.margin_edgeInsets,
+      this.verticalOffset_double,
+      this.preferBelow_bool,
+      this.excludeFromSemantics_bool,
+      this.decoration_boxDecoration,
+      this.textStyle_textStyle,
+      this.textAlign_enum_textAlign,
+      this.waitDuration_duration,
+      this.showDuration_duration,
+      this.triggerMode_enum_tooltipTriggerMode,
+      this.enableFeedback_bool})
+      : super._();
 
   factory _$TooltipModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$TooltipModelImplFromJson(json);
 
   @override
-  final double? height;
+  final double? height_double;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? padding;
+  final EdgeInsets? padding_edgeInsets;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? margin;
+  final EdgeInsets? margin_edgeInsets;
   @override
-  final double? verticalOffset;
+  final double? verticalOffset_double;
   @override
-  final bool? preferBelow;
+  final bool? preferBelow_bool;
   @override
-  final bool? excludeFromSemantics;
-  final Map<BoxBorderType, BoxDecoration?>? _decoration;
+  final bool? excludeFromSemantics_bool;
   @override
-  @BoxDecorationConverter()
-  Map<BoxBorderType, BoxDecoration?>? get decoration {
-    final value = _decoration;
-    if (value == null) return null;
-    if (_decoration is EqualUnmodifiableMapView) return _decoration;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
+  final BoxDecorationModel? decoration_boxDecoration;
+// @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
   @override
-  final String? textStyle;
+  final String? textStyle_textStyle;
+  @override
+  final TextAlign? textAlign_enum_textAlign;
 //TODO: implement these converters
-// TextAlign? textAlign,
-// Duration? waitDuration,
-// Duration? showDuration,
-// TooltipTriggerMode? triggerMode,
   @override
-  final bool? enableFeedback;
+  final Duration? waitDuration_duration;
+  @override
+  final Duration? showDuration_duration;
+  @override
+  final TooltipTriggerMode? triggerMode_enum_tooltipTriggerMode;
+  @override
+  final bool? enableFeedback_bool;
 
   @override
   String toString() {
-    return 'TooltipModel(height: $height, padding: $padding, margin: $margin, verticalOffset: $verticalOffset, preferBelow: $preferBelow, excludeFromSemantics: $excludeFromSemantics, decoration: $decoration, textStyle: $textStyle, enableFeedback: $enableFeedback)';
+    return 'TooltipModel(height_double: $height_double, padding_edgeInsets: $padding_edgeInsets, margin_edgeInsets: $margin_edgeInsets, verticalOffset_double: $verticalOffset_double, preferBelow_bool: $preferBelow_bool, excludeFromSemantics_bool: $excludeFromSemantics_bool, decoration_boxDecoration: $decoration_boxDecoration, textStyle_textStyle: $textStyle_textStyle, textAlign_enum_textAlign: $textAlign_enum_textAlign, waitDuration_duration: $waitDuration_duration, showDuration_duration: $showDuration_duration, triggerMode_enum_tooltipTriggerMode: $triggerMode_enum_tooltipTriggerMode, enableFeedback_bool: $enableFeedback_bool)';
   }
 
   @override
@@ -274,36 +340,56 @@ class _$TooltipModelImpl extends _TooltipModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TooltipModelImpl &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.padding, padding) || other.padding == padding) &&
-            (identical(other.margin, margin) || other.margin == margin) &&
-            (identical(other.verticalOffset, verticalOffset) ||
-                other.verticalOffset == verticalOffset) &&
-            (identical(other.preferBelow, preferBelow) ||
-                other.preferBelow == preferBelow) &&
-            (identical(other.excludeFromSemantics, excludeFromSemantics) ||
-                other.excludeFromSemantics == excludeFromSemantics) &&
-            const DeepCollectionEquality()
-                .equals(other._decoration, _decoration) &&
-            (identical(other.textStyle, textStyle) ||
-                other.textStyle == textStyle) &&
-            (identical(other.enableFeedback, enableFeedback) ||
-                other.enableFeedback == enableFeedback));
+            (identical(other.height_double, height_double) ||
+                other.height_double == height_double) &&
+            (identical(other.padding_edgeInsets, padding_edgeInsets) ||
+                other.padding_edgeInsets == padding_edgeInsets) &&
+            (identical(other.margin_edgeInsets, margin_edgeInsets) ||
+                other.margin_edgeInsets == margin_edgeInsets) &&
+            (identical(other.verticalOffset_double, verticalOffset_double) ||
+                other.verticalOffset_double == verticalOffset_double) &&
+            (identical(other.preferBelow_bool, preferBelow_bool) ||
+                other.preferBelow_bool == preferBelow_bool) &&
+            (identical(other.excludeFromSemantics_bool,
+                    excludeFromSemantics_bool) ||
+                other.excludeFromSemantics_bool == excludeFromSemantics_bool) &&
+            (identical(
+                    other.decoration_boxDecoration, decoration_boxDecoration) ||
+                other.decoration_boxDecoration == decoration_boxDecoration) &&
+            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
+                other.textStyle_textStyle == textStyle_textStyle) &&
+            (identical(
+                    other.textAlign_enum_textAlign, textAlign_enum_textAlign) ||
+                other.textAlign_enum_textAlign == textAlign_enum_textAlign) &&
+            (identical(other.waitDuration_duration, waitDuration_duration) ||
+                other.waitDuration_duration == waitDuration_duration) &&
+            (identical(other.showDuration_duration, showDuration_duration) ||
+                other.showDuration_duration == showDuration_duration) &&
+            (identical(other.triggerMode_enum_tooltipTriggerMode,
+                    triggerMode_enum_tooltipTriggerMode) ||
+                other.triggerMode_enum_tooltipTriggerMode ==
+                    triggerMode_enum_tooltipTriggerMode) &&
+            (identical(other.enableFeedback_bool, enableFeedback_bool) ||
+                other.enableFeedback_bool == enableFeedback_bool));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      height,
-      padding,
-      margin,
-      verticalOffset,
-      preferBelow,
-      excludeFromSemantics,
-      const DeepCollectionEquality().hash(_decoration),
-      textStyle,
-      enableFeedback);
+      height_double,
+      padding_edgeInsets,
+      margin_edgeInsets,
+      verticalOffset_double,
+      preferBelow_bool,
+      excludeFromSemantics_bool,
+      decoration_boxDecoration,
+      textStyle_textStyle,
+      textAlign_enum_textAlign,
+      waitDuration_duration,
+      showDuration_duration,
+      triggerMode_enum_tooltipTriggerMode,
+      enableFeedback_bool);
 
   @JsonKey(ignore: true)
   @override
@@ -321,46 +407,52 @@ class _$TooltipModelImpl extends _TooltipModel {
 
 abstract class _TooltipModel extends TooltipModel {
   const factory _TooltipModel(
-      {final double? height,
-      @EdgeInsetsConverter() final EdgeInsets? padding,
-      @EdgeInsetsConverter() final EdgeInsets? margin,
-      final double? verticalOffset,
-      final bool? preferBelow,
-      final bool? excludeFromSemantics,
-      @BoxDecorationConverter()
-      final Map<BoxBorderType, BoxDecoration?>? decoration,
-      final String? textStyle,
-      final bool? enableFeedback}) = _$TooltipModelImpl;
+      {final double? height_double,
+      @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets,
+      @EdgeInsetsConverter() final EdgeInsets? margin_edgeInsets,
+      final double? verticalOffset_double,
+      final bool? preferBelow_bool,
+      final bool? excludeFromSemantics_bool,
+      final BoxDecorationModel? decoration_boxDecoration,
+      final String? textStyle_textStyle,
+      final TextAlign? textAlign_enum_textAlign,
+      final Duration? waitDuration_duration,
+      final Duration? showDuration_duration,
+      final TooltipTriggerMode? triggerMode_enum_tooltipTriggerMode,
+      final bool? enableFeedback_bool}) = _$TooltipModelImpl;
   const _TooltipModel._() : super._();
 
   factory _TooltipModel.fromJson(Map<String, dynamic> json) =
       _$TooltipModelImpl.fromJson;
 
   @override
-  double? get height;
+  double? get height_double;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get padding;
+  EdgeInsets? get padding_edgeInsets;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get margin;
+  EdgeInsets? get margin_edgeInsets;
   @override
-  double? get verticalOffset;
+  double? get verticalOffset_double;
   @override
-  bool? get preferBelow;
+  bool? get preferBelow_bool;
   @override
-  bool? get excludeFromSemantics;
+  bool? get excludeFromSemantics_bool;
   @override
-  @BoxDecorationConverter()
-  Map<BoxBorderType, BoxDecoration?>? get decoration;
+  BoxDecorationModel? get decoration_boxDecoration;
+  @override // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
+  String? get textStyle_textStyle;
   @override
-  String? get textStyle;
+  TextAlign? get textAlign_enum_textAlign;
   @override //TODO: implement these converters
-// TextAlign? textAlign,
-// Duration? waitDuration,
-// Duration? showDuration,
-// TooltipTriggerMode? triggerMode,
-  bool? get enableFeedback;
+  Duration? get waitDuration_duration;
+  @override
+  Duration? get showDuration_duration;
+  @override
+  TooltipTriggerMode? get triggerMode_enum_tooltipTriggerMode;
+  @override
+  bool? get enableFeedback_bool;
   @override
   @JsonKey(ignore: true)
   _$$TooltipModelImplCopyWith<_$TooltipModelImpl> get copyWith =>

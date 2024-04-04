@@ -20,15 +20,16 @@ NavigationBarModel _$NavigationBarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NavigationBarModel {
-  double? get height => throw _privateConstructorUsedError;
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  String? get indicatorColor => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get indicatorShape => throw _privateConstructorUsedError;
-  String? get labelTextStyle => throw _privateConstructorUsedError;
+  double? get height_double => throw _privateConstructorUsedError;
+  String? get backgroundColor_color => throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get shadowColor_color => throw _privateConstructorUsedError;
+  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  String? get indicatorColor_color =>
+      throw _privateConstructorUsedError; // @OutlinedBorderConverter()
+  ShapeBorderModel? get indicatorShape_shapeBorder =>
+      throw _privateConstructorUsedError;
+  String? get labelTextStyle_textStyle => throw _privateConstructorUsedError;
   @NavigationDestinationLabelConverter()
   NavigationDestinationLabelBehavior? get labelBehavior =>
       throw _privateConstructorUsedError;
@@ -46,16 +47,18 @@ abstract class $NavigationBarModelCopyWith<$Res> {
       _$NavigationBarModelCopyWithImpl<$Res, NavigationBarModel>;
   @useResult
   $Res call(
-      {double? height,
-      String? backgroundColor,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? indicatorColor,
-      @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-      String? labelTextStyle,
+      {double? height_double,
+      String? backgroundColor_color,
+      double? elevation_double,
+      String? shadowColor_color,
+      String? surfaceTintColor_color,
+      String? indicatorColor_color,
+      ShapeBorderModel? indicatorShape_shapeBorder,
+      String? labelTextStyle_textStyle,
       @NavigationDestinationLabelConverter()
       NavigationDestinationLabelBehavior? labelBehavior});
+
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
 }
 
 /// @nodoc
@@ -71,54 +74,67 @@ class _$NavigationBarModelCopyWithImpl<$Res, $Val extends NavigationBarModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? height = freezed,
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? indicatorColor = freezed,
-    Object? indicatorShape = freezed,
-    Object? labelTextStyle = freezed,
+    Object? height_double = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_color = freezed,
+    Object? indicatorColor_color = freezed,
+    Object? indicatorShape_shapeBorder = freezed,
+    Object? labelTextStyle_textStyle = freezed,
     Object? labelBehavior = freezed,
   }) {
     return _then(_value.copyWith(
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      height_double: freezed == height_double
+          ? _value.height_double
+          : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_color: freezed == shadowColor_color
+          ? _value.shadowColor_color
+          : shadowColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_color: freezed == surfaceTintColor_color
+          ? _value.surfaceTintColor_color
+          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicatorColor_color: freezed == indicatorColor_color
+          ? _value.indicatorColor_color
+          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorShape: freezed == indicatorShape
-          ? _value.indicatorShape
-          : indicatorShape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      labelTextStyle: freezed == labelTextStyle
-          ? _value.labelTextStyle
-          : labelTextStyle // ignore: cast_nullable_to_non_nullable
+      indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
+          ? _value.indicatorShape_shapeBorder
+          : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
+          ? _value.labelTextStyle_textStyle
+          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
       labelBehavior: freezed == labelBehavior
           ? _value.labelBehavior
           : labelBehavior // ignore: cast_nullable_to_non_nullable
               as NavigationDestinationLabelBehavior?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder {
+    if (_value.indicatorShape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.indicatorShape_shapeBorder!,
+        (value) {
+      return _then(_value.copyWith(indicatorShape_shapeBorder: value) as $Val);
+    });
   }
 }
 
@@ -131,16 +147,19 @@ abstract class _$$NavigationBarModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double? height,
-      String? backgroundColor,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? indicatorColor,
-      @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-      String? labelTextStyle,
+      {double? height_double,
+      String? backgroundColor_color,
+      double? elevation_double,
+      String? shadowColor_color,
+      String? surfaceTintColor_color,
+      String? indicatorColor_color,
+      ShapeBorderModel? indicatorShape_shapeBorder,
+      String? labelTextStyle_textStyle,
       @NavigationDestinationLabelConverter()
       NavigationDestinationLabelBehavior? labelBehavior});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
 }
 
 /// @nodoc
@@ -154,48 +173,48 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? height = freezed,
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? indicatorColor = freezed,
-    Object? indicatorShape = freezed,
-    Object? labelTextStyle = freezed,
+    Object? height_double = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_color = freezed,
+    Object? indicatorColor_color = freezed,
+    Object? indicatorShape_shapeBorder = freezed,
+    Object? labelTextStyle_textStyle = freezed,
     Object? labelBehavior = freezed,
   }) {
     return _then(_$NavigationBarModelImpl(
-      height: freezed == height
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
+      height_double: freezed == height_double
+          ? _value.height_double
+          : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_color: freezed == shadowColor_color
+          ? _value.shadowColor_color
+          : shadowColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_color: freezed == surfaceTintColor_color
+          ? _value.surfaceTintColor_color
+          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicatorColor_color: freezed == indicatorColor_color
+          ? _value.indicatorColor_color
+          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorShape: freezed == indicatorShape
-          ? _value.indicatorShape
-          : indicatorShape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      labelTextStyle: freezed == labelTextStyle
-          ? _value.labelTextStyle
-          : labelTextStyle // ignore: cast_nullable_to_non_nullable
+      indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
+          ? _value.indicatorShape_shapeBorder
+          : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
+          ? _value.labelTextStyle_textStyle
+          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
       labelBehavior: freezed == labelBehavior
           ? _value.labelBehavior
@@ -208,15 +227,15 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$NavigationBarModelImpl extends _NavigationBarModel {
-  const _$NavigationBarModelImpl(
-      {this.height,
-      this.backgroundColor,
-      this.elevation,
-      this.shadowColor,
-      this.surfaceTintColor,
-      this.indicatorColor,
-      @OutlinedBorderConverter() this.indicatorShape,
-      this.labelTextStyle,
+  _$NavigationBarModelImpl(
+      {this.height_double,
+      this.backgroundColor_color,
+      this.elevation_double,
+      this.shadowColor_color,
+      this.surfaceTintColor_color,
+      this.indicatorColor_color,
+      this.indicatorShape_shapeBorder,
+      this.labelTextStyle_textStyle,
       @NavigationDestinationLabelConverter() this.labelBehavior})
       : super._();
 
@@ -224,29 +243,29 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
       _$$NavigationBarModelImplFromJson(json);
 
   @override
-  final double? height;
+  final double? height_double;
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_color;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final String? shadowColor;
+  final String? shadowColor_color;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_color;
   @override
-  final String? indicatorColor;
+  final String? indicatorColor_color;
+// @OutlinedBorderConverter()
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? indicatorShape;
+  final ShapeBorderModel? indicatorShape_shapeBorder;
   @override
-  final String? labelTextStyle;
+  final String? labelTextStyle_textStyle;
   @override
   @NavigationDestinationLabelConverter()
   final NavigationDestinationLabelBehavior? labelBehavior;
 
   @override
   String toString() {
-    return 'NavigationBarModel(height: $height, backgroundColor: $backgroundColor, elevation: $elevation, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, indicatorColor: $indicatorColor, indicatorShape: $indicatorShape, labelTextStyle: $labelTextStyle, labelBehavior: $labelBehavior)';
+    return 'NavigationBarModel(height_double: $height_double, backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, indicatorColor_color: $indicatorColor_color, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, labelTextStyle_textStyle: $labelTextStyle_textStyle, labelBehavior: $labelBehavior)';
   }
 
   @override
@@ -254,21 +273,25 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NavigationBarModelImpl &&
-            (identical(other.height, height) || other.height == height) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.indicatorColor, indicatorColor) ||
-                other.indicatorColor == indicatorColor) &&
-            (identical(other.indicatorShape, indicatorShape) ||
-                other.indicatorShape == indicatorShape) &&
-            (identical(other.labelTextStyle, labelTextStyle) ||
-                other.labelTextStyle == labelTextStyle) &&
+            (identical(other.height_double, height_double) ||
+                other.height_double == height_double) &&
+            (identical(other.backgroundColor_color, backgroundColor_color) ||
+                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.shadowColor_color, shadowColor_color) ||
+                other.shadowColor_color == shadowColor_color) &&
+            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
+                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.indicatorColor_color, indicatorColor_color) ||
+                other.indicatorColor_color == indicatorColor_color) &&
+            (identical(other.indicatorShape_shapeBorder,
+                    indicatorShape_shapeBorder) ||
+                other.indicatorShape_shapeBorder ==
+                    indicatorShape_shapeBorder) &&
+            (identical(
+                    other.labelTextStyle_textStyle, labelTextStyle_textStyle) ||
+                other.labelTextStyle_textStyle == labelTextStyle_textStyle) &&
             (identical(other.labelBehavior, labelBehavior) ||
                 other.labelBehavior == labelBehavior));
   }
@@ -277,14 +300,14 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      height,
-      backgroundColor,
-      elevation,
-      shadowColor,
-      surfaceTintColor,
-      indicatorColor,
-      indicatorShape,
-      labelTextStyle,
+      height_double,
+      backgroundColor_color,
+      elevation_double,
+      shadowColor_color,
+      surfaceTintColor_color,
+      indicatorColor_color,
+      indicatorShape_shapeBorder,
+      labelTextStyle_textStyle,
       labelBehavior);
 
   @JsonKey(ignore: true)
@@ -303,40 +326,39 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
 }
 
 abstract class _NavigationBarModel extends NavigationBarModel {
-  const factory _NavigationBarModel(
-          {final double? height,
-          final String? backgroundColor,
-          final double? elevation,
-          final String? shadowColor,
-          final String? surfaceTintColor,
-          final String? indicatorColor,
-          @OutlinedBorderConverter() final OutlinedBorder? indicatorShape,
-          final String? labelTextStyle,
+  factory _NavigationBarModel(
+          {final double? height_double,
+          final String? backgroundColor_color,
+          final double? elevation_double,
+          final String? shadowColor_color,
+          final String? surfaceTintColor_color,
+          final String? indicatorColor_color,
+          final ShapeBorderModel? indicatorShape_shapeBorder,
+          final String? labelTextStyle_textStyle,
           @NavigationDestinationLabelConverter()
           final NavigationDestinationLabelBehavior? labelBehavior}) =
       _$NavigationBarModelImpl;
-  const _NavigationBarModel._() : super._();
+  _NavigationBarModel._() : super._();
 
   factory _NavigationBarModel.fromJson(Map<String, dynamic> json) =
       _$NavigationBarModelImpl.fromJson;
 
   @override
-  double? get height;
+  double? get height_double;
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_color;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  String? get shadowColor;
+  String? get shadowColor_color;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_color;
   @override
-  String? get indicatorColor;
+  String? get indicatorColor_color;
+  @override // @OutlinedBorderConverter()
+  ShapeBorderModel? get indicatorShape_shapeBorder;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get indicatorShape;
-  @override
-  String? get labelTextStyle;
+  String? get labelTextStyle_textStyle;
   @override
   @NavigationDestinationLabelConverter()
   NavigationDestinationLabelBehavior? get labelBehavior;

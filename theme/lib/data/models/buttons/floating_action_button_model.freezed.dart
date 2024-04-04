@@ -21,35 +21,34 @@ FloatingActionButtonModel _$FloatingActionButtonModelFromJson(
 
 /// @nodoc
 mixin _$FloatingActionButtonModel {
-  String? get foregroundColor => throw _privateConstructorUsedError;
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  String? get focusColor => throw _privateConstructorUsedError;
-  String? get hoverColor => throw _privateConstructorUsedError;
-  String? get splashColor => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  double? get focusElevation => throw _privateConstructorUsedError;
-  double? get hoverElevation => throw _privateConstructorUsedError;
-  double? get disabledElevation => throw _privateConstructorUsedError;
-  double? get highlightElevation => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  bool? get enableFeedback => throw _privateConstructorUsedError;
-  double? get iconSize => throw _privateConstructorUsedError;
-  @BoxConstraintsConverter()
-  BoxConstraints? get sizeConstraints => throw _privateConstructorUsedError;
-  @BoxConstraintsConverter()
-  BoxConstraints? get smallSizeConstraints =>
+  String? get foregroundColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_color => throw _privateConstructorUsedError;
+  String? get focusColor_color => throw _privateConstructorUsedError;
+  String? get hoverColor_color => throw _privateConstructorUsedError;
+  String? get splashColor_color => throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  double? get focusElevation_double => throw _privateConstructorUsedError;
+  double? get hoverElevation_double => throw _privateConstructorUsedError;
+  double? get disabledElevation_double => throw _privateConstructorUsedError;
+  double? get highlightElevation_double => throw _privateConstructorUsedError;
+  ShapeBorderModel? get shape_shapeBorder =>
+      throw _privateConstructorUsedError; // TODO: Change to ShapeBorderModel
+  bool? get enableFeedback_bool => throw _privateConstructorUsedError;
+  double? get iconSize_double => throw _privateConstructorUsedError;
+  BoxConstraintsModel? get sizeConstraints_boxConstraints =>
       throw _privateConstructorUsedError;
-  @BoxConstraintsConverter()
-  BoxConstraints? get largeSizeConstraints =>
+  BoxConstraintsModel? get smallSizeConstraints_boxConstraints =>
       throw _privateConstructorUsedError;
-  @BoxConstraintsConverter()
-  BoxConstraints? get extendedSizeConstraints =>
+  BoxConstraintsModel? get largeSizeConstraints_boxConstraints =>
       throw _privateConstructorUsedError;
-  double? get extendedIconLabelSpacing => throw _privateConstructorUsedError;
+  BoxConstraintsModel? get extendedSizeConstraints_boxConstraints =>
+      throw _privateConstructorUsedError;
+  double? get extendedIconLabelSpacing_double =>
+      throw _privateConstructorUsedError;
   @EdgeInsetsConverter()
-  EdgeInsets? get extendedPadding => throw _privateConstructorUsedError;
-  String? get extendedTextStyle => throw _privateConstructorUsedError;
+  EdgeInsets? get extendedPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
+  String? get extendedTextStyle_textStyle => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -64,26 +63,33 @@ abstract class $FloatingActionButtonModelCopyWith<$Res> {
       _$FloatingActionButtonModelCopyWithImpl<$Res, FloatingActionButtonModel>;
   @useResult
   $Res call(
-      {String? foregroundColor,
-      String? backgroundColor,
-      String? focusColor,
-      String? hoverColor,
-      String? splashColor,
-      double? elevation,
-      double? focusElevation,
-      double? hoverElevation,
-      double? disabledElevation,
-      double? highlightElevation,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      bool? enableFeedback,
-      double? iconSize,
-      @BoxConstraintsConverter() BoxConstraints? sizeConstraints,
-      @BoxConstraintsConverter() BoxConstraints? smallSizeConstraints,
-      @BoxConstraintsConverter() BoxConstraints? largeSizeConstraints,
-      @BoxConstraintsConverter() BoxConstraints? extendedSizeConstraints,
-      double? extendedIconLabelSpacing,
-      @EdgeInsetsConverter() EdgeInsets? extendedPadding,
-      String? extendedTextStyle});
+      {String? foregroundColor_color,
+      String? backgroundColor_color,
+      String? focusColor_color,
+      String? hoverColor_color,
+      String? splashColor_color,
+      double? elevation_double,
+      double? focusElevation_double,
+      double? hoverElevation_double,
+      double? disabledElevation_double,
+      double? highlightElevation_double,
+      ShapeBorderModel? shape_shapeBorder,
+      bool? enableFeedback_bool,
+      double? iconSize_double,
+      BoxConstraintsModel? sizeConstraints_boxConstraints,
+      BoxConstraintsModel? smallSizeConstraints_boxConstraints,
+      BoxConstraintsModel? largeSizeConstraints_boxConstraints,
+      BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
+      double? extendedIconLabelSpacing_double,
+      @EdgeInsetsConverter() EdgeInsets? extendedPadding_edgeInsets,
+      String? extendedTextStyle_textStyle});
+
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  $BoxConstraintsModelCopyWith<$Res>? get sizeConstraints_boxConstraints;
+  $BoxConstraintsModelCopyWith<$Res>? get smallSizeConstraints_boxConstraints;
+  $BoxConstraintsModelCopyWith<$Res>? get largeSizeConstraints_boxConstraints;
+  $BoxConstraintsModelCopyWith<$Res>?
+      get extendedSizeConstraints_boxConstraints;
 }
 
 /// @nodoc
@@ -100,109 +106,182 @@ class _$FloatingActionButtonModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? foregroundColor = freezed,
-    Object? backgroundColor = freezed,
-    Object? focusColor = freezed,
-    Object? hoverColor = freezed,
-    Object? splashColor = freezed,
-    Object? elevation = freezed,
-    Object? focusElevation = freezed,
-    Object? hoverElevation = freezed,
-    Object? disabledElevation = freezed,
-    Object? highlightElevation = freezed,
-    Object? shape = freezed,
-    Object? enableFeedback = freezed,
-    Object? iconSize = freezed,
-    Object? sizeConstraints = freezed,
-    Object? smallSizeConstraints = freezed,
-    Object? largeSizeConstraints = freezed,
-    Object? extendedSizeConstraints = freezed,
-    Object? extendedIconLabelSpacing = freezed,
-    Object? extendedPadding = freezed,
-    Object? extendedTextStyle = freezed,
+    Object? foregroundColor_color = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? focusColor_color = freezed,
+    Object? hoverColor_color = freezed,
+    Object? splashColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? focusElevation_double = freezed,
+    Object? hoverElevation_double = freezed,
+    Object? disabledElevation_double = freezed,
+    Object? highlightElevation_double = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? enableFeedback_bool = freezed,
+    Object? iconSize_double = freezed,
+    Object? sizeConstraints_boxConstraints = freezed,
+    Object? smallSizeConstraints_boxConstraints = freezed,
+    Object? largeSizeConstraints_boxConstraints = freezed,
+    Object? extendedSizeConstraints_boxConstraints = freezed,
+    Object? extendedIconLabelSpacing_double = freezed,
+    Object? extendedPadding_edgeInsets = freezed,
+    Object? extendedTextStyle_textStyle = freezed,
   }) {
     return _then(_value.copyWith(
-      foregroundColor: freezed == foregroundColor
-          ? _value.foregroundColor
-          : foregroundColor // ignore: cast_nullable_to_non_nullable
+      foregroundColor_color: freezed == foregroundColor_color
+          ? _value.foregroundColor_color
+          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      focusColor: freezed == focusColor
-          ? _value.focusColor
-          : focusColor // ignore: cast_nullable_to_non_nullable
+      focusColor_color: freezed == focusColor_color
+          ? _value.focusColor_color
+          : focusColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor: freezed == hoverColor
-          ? _value.hoverColor
-          : hoverColor // ignore: cast_nullable_to_non_nullable
+      hoverColor_color: freezed == hoverColor_color
+          ? _value.hoverColor_color
+          : hoverColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashColor: freezed == splashColor
-          ? _value.splashColor
-          : splashColor // ignore: cast_nullable_to_non_nullable
+      splashColor_color: freezed == splashColor_color
+          ? _value.splashColor_color
+          : splashColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      focusElevation: freezed == focusElevation
-          ? _value.focusElevation
-          : focusElevation // ignore: cast_nullable_to_non_nullable
+      focusElevation_double: freezed == focusElevation_double
+          ? _value.focusElevation_double
+          : focusElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      hoverElevation: freezed == hoverElevation
-          ? _value.hoverElevation
-          : hoverElevation // ignore: cast_nullable_to_non_nullable
+      hoverElevation_double: freezed == hoverElevation_double
+          ? _value.hoverElevation_double
+          : hoverElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      disabledElevation: freezed == disabledElevation
-          ? _value.disabledElevation
-          : disabledElevation // ignore: cast_nullable_to_non_nullable
+      disabledElevation_double: freezed == disabledElevation_double
+          ? _value.disabledElevation_double
+          : disabledElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      highlightElevation: freezed == highlightElevation
-          ? _value.highlightElevation
-          : highlightElevation // ignore: cast_nullable_to_non_nullable
+      highlightElevation_double: freezed == highlightElevation_double
+          ? _value.highlightElevation_double
+          : highlightElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      iconSize: freezed == iconSize
-          ? _value.iconSize
-          : iconSize // ignore: cast_nullable_to_non_nullable
+      iconSize_double: freezed == iconSize_double
+          ? _value.iconSize_double
+          : iconSize_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      sizeConstraints: freezed == sizeConstraints
-          ? _value.sizeConstraints
-          : sizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      smallSizeConstraints: freezed == smallSizeConstraints
-          ? _value.smallSizeConstraints
-          : smallSizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      largeSizeConstraints: freezed == largeSizeConstraints
-          ? _value.largeSizeConstraints
-          : largeSizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      extendedSizeConstraints: freezed == extendedSizeConstraints
-          ? _value.extendedSizeConstraints
-          : extendedSizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      extendedIconLabelSpacing: freezed == extendedIconLabelSpacing
-          ? _value.extendedIconLabelSpacing
-          : extendedIconLabelSpacing // ignore: cast_nullable_to_non_nullable
+      sizeConstraints_boxConstraints: freezed == sizeConstraints_boxConstraints
+          ? _value.sizeConstraints_boxConstraints
+          : sizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      smallSizeConstraints_boxConstraints: freezed ==
+              smallSizeConstraints_boxConstraints
+          ? _value.smallSizeConstraints_boxConstraints
+          : smallSizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      largeSizeConstraints_boxConstraints: freezed ==
+              largeSizeConstraints_boxConstraints
+          ? _value.largeSizeConstraints_boxConstraints
+          : largeSizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      extendedSizeConstraints_boxConstraints: freezed ==
+              extendedSizeConstraints_boxConstraints
+          ? _value.extendedSizeConstraints_boxConstraints
+          : extendedSizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      extendedIconLabelSpacing_double: freezed ==
+              extendedIconLabelSpacing_double
+          ? _value.extendedIconLabelSpacing_double
+          : extendedIconLabelSpacing_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      extendedPadding: freezed == extendedPadding
-          ? _value.extendedPadding
-          : extendedPadding // ignore: cast_nullable_to_non_nullable
+      extendedPadding_edgeInsets: freezed == extendedPadding_edgeInsets
+          ? _value.extendedPadding_edgeInsets
+          : extendedPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      extendedTextStyle: freezed == extendedTextStyle
-          ? _value.extendedTextStyle
-          : extendedTextStyle // ignore: cast_nullable_to_non_nullable
+      extendedTextStyle_textStyle: freezed == extendedTextStyle_textStyle
+          ? _value.extendedTextStyle_textStyle
+          : extendedTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder {
+    if (_value.shape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.shape_shapeBorder!, (value) {
+      return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxConstraintsModelCopyWith<$Res>? get sizeConstraints_boxConstraints {
+    if (_value.sizeConstraints_boxConstraints == null) {
+      return null;
+    }
+
+    return $BoxConstraintsModelCopyWith<$Res>(
+        _value.sizeConstraints_boxConstraints!, (value) {
+      return _then(
+          _value.copyWith(sizeConstraints_boxConstraints: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxConstraintsModelCopyWith<$Res>? get smallSizeConstraints_boxConstraints {
+    if (_value.smallSizeConstraints_boxConstraints == null) {
+      return null;
+    }
+
+    return $BoxConstraintsModelCopyWith<$Res>(
+        _value.smallSizeConstraints_boxConstraints!, (value) {
+      return _then(
+          _value.copyWith(smallSizeConstraints_boxConstraints: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxConstraintsModelCopyWith<$Res>? get largeSizeConstraints_boxConstraints {
+    if (_value.largeSizeConstraints_boxConstraints == null) {
+      return null;
+    }
+
+    return $BoxConstraintsModelCopyWith<$Res>(
+        _value.largeSizeConstraints_boxConstraints!, (value) {
+      return _then(
+          _value.copyWith(largeSizeConstraints_boxConstraints: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxConstraintsModelCopyWith<$Res>?
+      get extendedSizeConstraints_boxConstraints {
+    if (_value.extendedSizeConstraints_boxConstraints == null) {
+      return null;
+    }
+
+    return $BoxConstraintsModelCopyWith<$Res>(
+        _value.extendedSizeConstraints_boxConstraints!, (value) {
+      return _then(_value.copyWith(
+          extendedSizeConstraints_boxConstraints: value) as $Val);
+    });
   }
 }
 
@@ -216,26 +295,38 @@ abstract class _$$FloatingActionButtonModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? foregroundColor,
-      String? backgroundColor,
-      String? focusColor,
-      String? hoverColor,
-      String? splashColor,
-      double? elevation,
-      double? focusElevation,
-      double? hoverElevation,
-      double? disabledElevation,
-      double? highlightElevation,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      bool? enableFeedback,
-      double? iconSize,
-      @BoxConstraintsConverter() BoxConstraints? sizeConstraints,
-      @BoxConstraintsConverter() BoxConstraints? smallSizeConstraints,
-      @BoxConstraintsConverter() BoxConstraints? largeSizeConstraints,
-      @BoxConstraintsConverter() BoxConstraints? extendedSizeConstraints,
-      double? extendedIconLabelSpacing,
-      @EdgeInsetsConverter() EdgeInsets? extendedPadding,
-      String? extendedTextStyle});
+      {String? foregroundColor_color,
+      String? backgroundColor_color,
+      String? focusColor_color,
+      String? hoverColor_color,
+      String? splashColor_color,
+      double? elevation_double,
+      double? focusElevation_double,
+      double? hoverElevation_double,
+      double? disabledElevation_double,
+      double? highlightElevation_double,
+      ShapeBorderModel? shape_shapeBorder,
+      bool? enableFeedback_bool,
+      double? iconSize_double,
+      BoxConstraintsModel? sizeConstraints_boxConstraints,
+      BoxConstraintsModel? smallSizeConstraints_boxConstraints,
+      BoxConstraintsModel? largeSizeConstraints_boxConstraints,
+      BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
+      double? extendedIconLabelSpacing_double,
+      @EdgeInsetsConverter() EdgeInsets? extendedPadding_edgeInsets,
+      String? extendedTextStyle_textStyle});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  @override
+  $BoxConstraintsModelCopyWith<$Res>? get sizeConstraints_boxConstraints;
+  @override
+  $BoxConstraintsModelCopyWith<$Res>? get smallSizeConstraints_boxConstraints;
+  @override
+  $BoxConstraintsModelCopyWith<$Res>? get largeSizeConstraints_boxConstraints;
+  @override
+  $BoxConstraintsModelCopyWith<$Res>?
+      get extendedSizeConstraints_boxConstraints;
 }
 
 /// @nodoc
@@ -251,107 +342,111 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? foregroundColor = freezed,
-    Object? backgroundColor = freezed,
-    Object? focusColor = freezed,
-    Object? hoverColor = freezed,
-    Object? splashColor = freezed,
-    Object? elevation = freezed,
-    Object? focusElevation = freezed,
-    Object? hoverElevation = freezed,
-    Object? disabledElevation = freezed,
-    Object? highlightElevation = freezed,
-    Object? shape = freezed,
-    Object? enableFeedback = freezed,
-    Object? iconSize = freezed,
-    Object? sizeConstraints = freezed,
-    Object? smallSizeConstraints = freezed,
-    Object? largeSizeConstraints = freezed,
-    Object? extendedSizeConstraints = freezed,
-    Object? extendedIconLabelSpacing = freezed,
-    Object? extendedPadding = freezed,
-    Object? extendedTextStyle = freezed,
+    Object? foregroundColor_color = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? focusColor_color = freezed,
+    Object? hoverColor_color = freezed,
+    Object? splashColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? focusElevation_double = freezed,
+    Object? hoverElevation_double = freezed,
+    Object? disabledElevation_double = freezed,
+    Object? highlightElevation_double = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? enableFeedback_bool = freezed,
+    Object? iconSize_double = freezed,
+    Object? sizeConstraints_boxConstraints = freezed,
+    Object? smallSizeConstraints_boxConstraints = freezed,
+    Object? largeSizeConstraints_boxConstraints = freezed,
+    Object? extendedSizeConstraints_boxConstraints = freezed,
+    Object? extendedIconLabelSpacing_double = freezed,
+    Object? extendedPadding_edgeInsets = freezed,
+    Object? extendedTextStyle_textStyle = freezed,
   }) {
     return _then(_$FloatingActionButtonModelImpl(
-      foregroundColor: freezed == foregroundColor
-          ? _value.foregroundColor
-          : foregroundColor // ignore: cast_nullable_to_non_nullable
+      foregroundColor_color: freezed == foregroundColor_color
+          ? _value.foregroundColor_color
+          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      focusColor: freezed == focusColor
-          ? _value.focusColor
-          : focusColor // ignore: cast_nullable_to_non_nullable
+      focusColor_color: freezed == focusColor_color
+          ? _value.focusColor_color
+          : focusColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor: freezed == hoverColor
-          ? _value.hoverColor
-          : hoverColor // ignore: cast_nullable_to_non_nullable
+      hoverColor_color: freezed == hoverColor_color
+          ? _value.hoverColor_color
+          : hoverColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashColor: freezed == splashColor
-          ? _value.splashColor
-          : splashColor // ignore: cast_nullable_to_non_nullable
+      splashColor_color: freezed == splashColor_color
+          ? _value.splashColor_color
+          : splashColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      focusElevation: freezed == focusElevation
-          ? _value.focusElevation
-          : focusElevation // ignore: cast_nullable_to_non_nullable
+      focusElevation_double: freezed == focusElevation_double
+          ? _value.focusElevation_double
+          : focusElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      hoverElevation: freezed == hoverElevation
-          ? _value.hoverElevation
-          : hoverElevation // ignore: cast_nullable_to_non_nullable
+      hoverElevation_double: freezed == hoverElevation_double
+          ? _value.hoverElevation_double
+          : hoverElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      disabledElevation: freezed == disabledElevation
-          ? _value.disabledElevation
-          : disabledElevation // ignore: cast_nullable_to_non_nullable
+      disabledElevation_double: freezed == disabledElevation_double
+          ? _value.disabledElevation_double
+          : disabledElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      highlightElevation: freezed == highlightElevation
-          ? _value.highlightElevation
-          : highlightElevation // ignore: cast_nullable_to_non_nullable
+      highlightElevation_double: freezed == highlightElevation_double
+          ? _value.highlightElevation_double
+          : highlightElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      iconSize: freezed == iconSize
-          ? _value.iconSize
-          : iconSize // ignore: cast_nullable_to_non_nullable
+      iconSize_double: freezed == iconSize_double
+          ? _value.iconSize_double
+          : iconSize_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      sizeConstraints: freezed == sizeConstraints
-          ? _value.sizeConstraints
-          : sizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      smallSizeConstraints: freezed == smallSizeConstraints
-          ? _value.smallSizeConstraints
-          : smallSizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      largeSizeConstraints: freezed == largeSizeConstraints
-          ? _value.largeSizeConstraints
-          : largeSizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      extendedSizeConstraints: freezed == extendedSizeConstraints
-          ? _value.extendedSizeConstraints
-          : extendedSizeConstraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      extendedIconLabelSpacing: freezed == extendedIconLabelSpacing
-          ? _value.extendedIconLabelSpacing
-          : extendedIconLabelSpacing // ignore: cast_nullable_to_non_nullable
+      sizeConstraints_boxConstraints: freezed == sizeConstraints_boxConstraints
+          ? _value.sizeConstraints_boxConstraints
+          : sizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      smallSizeConstraints_boxConstraints: freezed ==
+              smallSizeConstraints_boxConstraints
+          ? _value.smallSizeConstraints_boxConstraints
+          : smallSizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      largeSizeConstraints_boxConstraints: freezed ==
+              largeSizeConstraints_boxConstraints
+          ? _value.largeSizeConstraints_boxConstraints
+          : largeSizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      extendedSizeConstraints_boxConstraints: freezed ==
+              extendedSizeConstraints_boxConstraints
+          ? _value.extendedSizeConstraints_boxConstraints
+          : extendedSizeConstraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      extendedIconLabelSpacing_double: freezed ==
+              extendedIconLabelSpacing_double
+          ? _value.extendedIconLabelSpacing_double
+          : extendedIconLabelSpacing_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      extendedPadding: freezed == extendedPadding
-          ? _value.extendedPadding
-          : extendedPadding // ignore: cast_nullable_to_non_nullable
+      extendedPadding_edgeInsets: freezed == extendedPadding_edgeInsets
+          ? _value.extendedPadding_edgeInsets
+          : extendedPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsets?,
-      extendedTextStyle: freezed == extendedTextStyle
-          ? _value.extendedTextStyle
-          : extendedTextStyle // ignore: cast_nullable_to_non_nullable
+      extendedTextStyle_textStyle: freezed == extendedTextStyle_textStyle
+          ? _value.extendedTextStyle_textStyle
+          : extendedTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -361,81 +456,81 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
   const _$FloatingActionButtonModelImpl(
-      {this.foregroundColor,
-      this.backgroundColor,
-      this.focusColor,
-      this.hoverColor,
-      this.splashColor,
-      this.elevation,
-      this.focusElevation,
-      this.hoverElevation,
-      this.disabledElevation,
-      this.highlightElevation,
-      @OutlinedBorderConverter() this.shape,
-      this.enableFeedback,
-      this.iconSize,
-      @BoxConstraintsConverter() this.sizeConstraints,
-      @BoxConstraintsConverter() this.smallSizeConstraints,
-      @BoxConstraintsConverter() this.largeSizeConstraints,
-      @BoxConstraintsConverter() this.extendedSizeConstraints,
-      this.extendedIconLabelSpacing,
-      @EdgeInsetsConverter() this.extendedPadding,
-      this.extendedTextStyle})
+      {this.foregroundColor_color,
+      this.backgroundColor_color,
+      this.focusColor_color,
+      this.hoverColor_color,
+      this.splashColor_color,
+      this.elevation_double,
+      this.focusElevation_double,
+      this.hoverElevation_double,
+      this.disabledElevation_double,
+      this.highlightElevation_double,
+      this.shape_shapeBorder,
+      this.enableFeedback_bool,
+      this.iconSize_double,
+      this.sizeConstraints_boxConstraints = const BoxConstraintsModel(),
+      this.smallSizeConstraints_boxConstraints = const BoxConstraintsModel(),
+      this.largeSizeConstraints_boxConstraints = const BoxConstraintsModel(),
+      this.extendedSizeConstraints_boxConstraints = const BoxConstraintsModel(),
+      this.extendedIconLabelSpacing_double,
+      @EdgeInsetsConverter() this.extendedPadding_edgeInsets,
+      this.extendedTextStyle_textStyle})
       : super._();
 
   factory _$FloatingActionButtonModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FloatingActionButtonModelImplFromJson(json);
 
   @override
-  final String? foregroundColor;
+  final String? foregroundColor_color;
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_color;
   @override
-  final String? focusColor;
+  final String? focusColor_color;
   @override
-  final String? hoverColor;
+  final String? hoverColor_color;
   @override
-  final String? splashColor;
+  final String? splashColor_color;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final double? focusElevation;
+  final double? focusElevation_double;
   @override
-  final double? hoverElevation;
+  final double? hoverElevation_double;
   @override
-  final double? disabledElevation;
+  final double? disabledElevation_double;
   @override
-  final double? highlightElevation;
+  final double? highlightElevation_double;
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  final ShapeBorderModel? shape_shapeBorder;
+// TODO: Change to ShapeBorderModel
   @override
-  final bool? enableFeedback;
+  final bool? enableFeedback_bool;
   @override
-  final double? iconSize;
+  final double? iconSize_double;
   @override
-  @BoxConstraintsConverter()
-  final BoxConstraints? sizeConstraints;
+  @JsonKey()
+  final BoxConstraintsModel? sizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  final BoxConstraints? smallSizeConstraints;
+  @JsonKey()
+  final BoxConstraintsModel? smallSizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  final BoxConstraints? largeSizeConstraints;
+  @JsonKey()
+  final BoxConstraintsModel? largeSizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  final BoxConstraints? extendedSizeConstraints;
+  @JsonKey()
+  final BoxConstraintsModel? extendedSizeConstraints_boxConstraints;
   @override
-  final double? extendedIconLabelSpacing;
+  final double? extendedIconLabelSpacing_double;
   @override
   @EdgeInsetsConverter()
-  final EdgeInsets? extendedPadding;
+  final EdgeInsets? extendedPadding_edgeInsets;
   @override
-  final String? extendedTextStyle;
+  final String? extendedTextStyle_textStyle;
 
   @override
   String toString() {
-    return 'FloatingActionButtonModel(foregroundColor: $foregroundColor, backgroundColor: $backgroundColor, focusColor: $focusColor, hoverColor: $hoverColor, splashColor: $splashColor, elevation: $elevation, focusElevation: $focusElevation, hoverElevation: $hoverElevation, disabledElevation: $disabledElevation, highlightElevation: $highlightElevation, shape: $shape, enableFeedback: $enableFeedback, iconSize: $iconSize, sizeConstraints: $sizeConstraints, smallSizeConstraints: $smallSizeConstraints, largeSizeConstraints: $largeSizeConstraints, extendedSizeConstraints: $extendedSizeConstraints, extendedIconLabelSpacing: $extendedIconLabelSpacing, extendedPadding: $extendedPadding, extendedTextStyle: $extendedTextStyle)';
+    return 'FloatingActionButtonModel(foregroundColor_color: $foregroundColor_color, backgroundColor_color: $backgroundColor_color, focusColor_color: $focusColor_color, hoverColor_color: $hoverColor_color, splashColor_color: $splashColor_color, elevation_double: $elevation_double, focusElevation_double: $focusElevation_double, hoverElevation_double: $hoverElevation_double, disabledElevation_double: $disabledElevation_double, highlightElevation_double: $highlightElevation_double, shape_shapeBorder: $shape_shapeBorder, enableFeedback_bool: $enableFeedback_bool, iconSize_double: $iconSize_double, sizeConstraints_boxConstraints: $sizeConstraints_boxConstraints, smallSizeConstraints_boxConstraints: $smallSizeConstraints_boxConstraints, largeSizeConstraints_boxConstraints: $largeSizeConstraints_boxConstraints, extendedSizeConstraints_boxConstraints: $extendedSizeConstraints_boxConstraints, extendedIconLabelSpacing_double: $extendedIconLabelSpacing_double, extendedPadding_edgeInsets: $extendedPadding_edgeInsets, extendedTextStyle_textStyle: $extendedTextStyle_textStyle)';
   }
 
   @override
@@ -443,73 +538,79 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FloatingActionButtonModelImpl &&
-            (identical(other.foregroundColor, foregroundColor) ||
-                other.foregroundColor == foregroundColor) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.focusColor, focusColor) ||
-                other.focusColor == focusColor) &&
-            (identical(other.hoverColor, hoverColor) ||
-                other.hoverColor == hoverColor) &&
-            (identical(other.splashColor, splashColor) ||
-                other.splashColor == splashColor) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.focusElevation, focusElevation) ||
-                other.focusElevation == focusElevation) &&
-            (identical(other.hoverElevation, hoverElevation) ||
-                other.hoverElevation == hoverElevation) &&
-            (identical(other.disabledElevation, disabledElevation) ||
-                other.disabledElevation == disabledElevation) &&
-            (identical(other.highlightElevation, highlightElevation) ||
-                other.highlightElevation == highlightElevation) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.enableFeedback, enableFeedback) ||
-                other.enableFeedback == enableFeedback) &&
-            (identical(other.iconSize, iconSize) ||
-                other.iconSize == iconSize) &&
-            (identical(other.sizeConstraints, sizeConstraints) ||
-                other.sizeConstraints == sizeConstraints) &&
-            (identical(other.smallSizeConstraints, smallSizeConstraints) ||
-                other.smallSizeConstraints == smallSizeConstraints) &&
-            (identical(other.largeSizeConstraints, largeSizeConstraints) ||
-                other.largeSizeConstraints == largeSizeConstraints) &&
-            (identical(
-                    other.extendedSizeConstraints, extendedSizeConstraints) ||
-                other.extendedSizeConstraints == extendedSizeConstraints) &&
-            (identical(
-                    other.extendedIconLabelSpacing, extendedIconLabelSpacing) ||
-                other.extendedIconLabelSpacing == extendedIconLabelSpacing) &&
-            (identical(other.extendedPadding, extendedPadding) ||
-                other.extendedPadding == extendedPadding) &&
-            (identical(other.extendedTextStyle, extendedTextStyle) ||
-                other.extendedTextStyle == extendedTextStyle));
+            (identical(other.foregroundColor_color, foregroundColor_color) ||
+                other.foregroundColor_color == foregroundColor_color) &&
+            (identical(other.backgroundColor_color, backgroundColor_color) ||
+                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.focusColor_color, focusColor_color) ||
+                other.focusColor_color == focusColor_color) &&
+            (identical(other.hoverColor_color, hoverColor_color) ||
+                other.hoverColor_color == hoverColor_color) &&
+            (identical(other.splashColor_color, splashColor_color) ||
+                other.splashColor_color == splashColor_color) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.focusElevation_double, focusElevation_double) ||
+                other.focusElevation_double == focusElevation_double) &&
+            (identical(other.hoverElevation_double, hoverElevation_double) ||
+                other.hoverElevation_double == hoverElevation_double) &&
+            (identical(other.disabledElevation_double, disabledElevation_double) ||
+                other.disabledElevation_double == disabledElevation_double) &&
+            (identical(other.highlightElevation_double, highlightElevation_double) ||
+                other.highlightElevation_double == highlightElevation_double) &&
+            (identical(other.shape_shapeBorder, shape_shapeBorder) ||
+                other.shape_shapeBorder == shape_shapeBorder) &&
+            (identical(other.enableFeedback_bool, enableFeedback_bool) ||
+                other.enableFeedback_bool == enableFeedback_bool) &&
+            (identical(other.iconSize_double, iconSize_double) ||
+                other.iconSize_double == iconSize_double) &&
+            (identical(other.sizeConstraints_boxConstraints, sizeConstraints_boxConstraints) ||
+                other.sizeConstraints_boxConstraints ==
+                    sizeConstraints_boxConstraints) &&
+            (identical(other.smallSizeConstraints_boxConstraints, smallSizeConstraints_boxConstraints) ||
+                other.smallSizeConstraints_boxConstraints ==
+                    smallSizeConstraints_boxConstraints) &&
+            (identical(other.largeSizeConstraints_boxConstraints, largeSizeConstraints_boxConstraints) ||
+                other.largeSizeConstraints_boxConstraints ==
+                    largeSizeConstraints_boxConstraints) &&
+            (identical(other.extendedSizeConstraints_boxConstraints,
+                    extendedSizeConstraints_boxConstraints) ||
+                other.extendedSizeConstraints_boxConstraints ==
+                    extendedSizeConstraints_boxConstraints) &&
+            (identical(other.extendedIconLabelSpacing_double, extendedIconLabelSpacing_double) ||
+                other.extendedIconLabelSpacing_double ==
+                    extendedIconLabelSpacing_double) &&
+            (identical(other.extendedPadding_edgeInsets, extendedPadding_edgeInsets) ||
+                other.extendedPadding_edgeInsets ==
+                    extendedPadding_edgeInsets) &&
+            (identical(other.extendedTextStyle_textStyle, extendedTextStyle_textStyle) ||
+                other.extendedTextStyle_textStyle == extendedTextStyle_textStyle));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        foregroundColor,
-        backgroundColor,
-        focusColor,
-        hoverColor,
-        splashColor,
-        elevation,
-        focusElevation,
-        hoverElevation,
-        disabledElevation,
-        highlightElevation,
-        shape,
-        enableFeedback,
-        iconSize,
-        sizeConstraints,
-        smallSizeConstraints,
-        largeSizeConstraints,
-        extendedSizeConstraints,
-        extendedIconLabelSpacing,
-        extendedPadding,
-        extendedTextStyle
+        foregroundColor_color,
+        backgroundColor_color,
+        focusColor_color,
+        hoverColor_color,
+        splashColor_color,
+        elevation_double,
+        focusElevation_double,
+        hoverElevation_double,
+        disabledElevation_double,
+        highlightElevation_double,
+        shape_shapeBorder,
+        enableFeedback_bool,
+        iconSize_double,
+        sizeConstraints_boxConstraints,
+        smallSizeConstraints_boxConstraints,
+        largeSizeConstraints_boxConstraints,
+        extendedSizeConstraints_boxConstraints,
+        extendedIconLabelSpacing_double,
+        extendedPadding_edgeInsets,
+        extendedTextStyle_textStyle
       ]);
 
   @JsonKey(ignore: true)
@@ -529,77 +630,73 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
 
 abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
   const factory _FloatingActionButtonModel(
-      {final String? foregroundColor,
-      final String? backgroundColor,
-      final String? focusColor,
-      final String? hoverColor,
-      final String? splashColor,
-      final double? elevation,
-      final double? focusElevation,
-      final double? hoverElevation,
-      final double? disabledElevation,
-      final double? highlightElevation,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      final bool? enableFeedback,
-      final double? iconSize,
-      @BoxConstraintsConverter() final BoxConstraints? sizeConstraints,
-      @BoxConstraintsConverter() final BoxConstraints? smallSizeConstraints,
-      @BoxConstraintsConverter() final BoxConstraints? largeSizeConstraints,
-      @BoxConstraintsConverter() final BoxConstraints? extendedSizeConstraints,
-      final double? extendedIconLabelSpacing,
-      @EdgeInsetsConverter() final EdgeInsets? extendedPadding,
-      final String? extendedTextStyle}) = _$FloatingActionButtonModelImpl;
+          {final String? foregroundColor_color,
+          final String? backgroundColor_color,
+          final String? focusColor_color,
+          final String? hoverColor_color,
+          final String? splashColor_color,
+          final double? elevation_double,
+          final double? focusElevation_double,
+          final double? hoverElevation_double,
+          final double? disabledElevation_double,
+          final double? highlightElevation_double,
+          final ShapeBorderModel? shape_shapeBorder,
+          final bool? enableFeedback_bool,
+          final double? iconSize_double,
+          final BoxConstraintsModel? sizeConstraints_boxConstraints,
+          final BoxConstraintsModel? smallSizeConstraints_boxConstraints,
+          final BoxConstraintsModel? largeSizeConstraints_boxConstraints,
+          final BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
+          final double? extendedIconLabelSpacing_double,
+          @EdgeInsetsConverter() final EdgeInsets? extendedPadding_edgeInsets,
+          final String? extendedTextStyle_textStyle}) =
+      _$FloatingActionButtonModelImpl;
   const _FloatingActionButtonModel._() : super._();
 
   factory _FloatingActionButtonModel.fromJson(Map<String, dynamic> json) =
       _$FloatingActionButtonModelImpl.fromJson;
 
   @override
-  String? get foregroundColor;
+  String? get foregroundColor_color;
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_color;
   @override
-  String? get focusColor;
+  String? get focusColor_color;
   @override
-  String? get hoverColor;
+  String? get hoverColor_color;
   @override
-  String? get splashColor;
+  String? get splashColor_color;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  double? get focusElevation;
+  double? get focusElevation_double;
   @override
-  double? get hoverElevation;
+  double? get hoverElevation_double;
   @override
-  double? get disabledElevation;
+  double? get disabledElevation_double;
   @override
-  double? get highlightElevation;
+  double? get highlightElevation_double;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  ShapeBorderModel? get shape_shapeBorder;
+  @override // TODO: Change to ShapeBorderModel
+  bool? get enableFeedback_bool;
   @override
-  bool? get enableFeedback;
+  double? get iconSize_double;
   @override
-  double? get iconSize;
+  BoxConstraintsModel? get sizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  BoxConstraints? get sizeConstraints;
+  BoxConstraintsModel? get smallSizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  BoxConstraints? get smallSizeConstraints;
+  BoxConstraintsModel? get largeSizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  BoxConstraints? get largeSizeConstraints;
+  BoxConstraintsModel? get extendedSizeConstraints_boxConstraints;
   @override
-  @BoxConstraintsConverter()
-  BoxConstraints? get extendedSizeConstraints;
-  @override
-  double? get extendedIconLabelSpacing;
+  double? get extendedIconLabelSpacing_double;
   @override
   @EdgeInsetsConverter()
-  EdgeInsets? get extendedPadding;
+  EdgeInsets? get extendedPadding_edgeInsets;
   @override
-  String? get extendedTextStyle;
+  String? get extendedTextStyle_textStyle;
   @override
   @JsonKey(ignore: true)
   _$$FloatingActionButtonModelImplCopyWith<_$FloatingActionButtonModelImpl>

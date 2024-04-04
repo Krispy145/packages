@@ -1,74 +1,14 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
 import 'package:theme/app/app_theme.dart';
 import 'package:theme/data/models/text/text_style_model.dart';
 import 'package:theme/data/models/text/text_style_sizes.dart';
 import 'package:theme/data/models/text/text_types.dart';
-import 'package:theme/domain/converters/colors/color.dart';
 
-extension ColorFromString on String {
-  Color? toColor({String? styleType}) {
-    if (startsWith("#")) {
-      return _getColorFromHex(this);
-    }
-    final lightColorModel = AppTheme.colorStyles(styleTypeName: styleType).light.toJson();
-    final darkColorModel = AppTheme.colorStyles(styleTypeName: styleType).dark.toJson();
-    final currentColorModel = AppTheme.isDark ? darkColorModel : lightColorModel;
-    final currentColorAndKey = currentColorModel.entries.firstWhereOrNull((element) => element.key == this);
-    if (currentColorAndKey != null) {
-      return const ColorConverter().fromJson(currentColorAndKey.value);
-    }
-    final dynamic colorValue = json.decode(this);
-    if (colorValue is List) {
-      final colorList = <double>[];
-      for (final element in colorValue) {
-        if (element is int) {
-          colorList.add(element.toDouble());
-        } else if (element is double) {
-          colorList.add(element);
-        }
-      }
-      return _getColorFromRGB(colorList);
-    }
-    return null;
-  }
+typedef TextStyleString = String;
 
-  Color _getColorFromRGB(List<double> colorValue) {
-    // Check if the list has 3 elements (R, G, B) or 4 elements (R, G, B, A)
-    final alpha = (colorValue.length == 4)
-        ? (colorValue[3] * 255)
-        : colorValue.length == 4
-            ? colorValue[3]
-            : 255;
-    return Color.fromRGBO(
-      colorValue[0].toInt(),
-      colorValue[1].toInt(),
-      colorValue[2].toInt(),
-      alpha / 255,
-    );
-  }
-
-  Color? _getColorFromHex(String hexColor) {
-    // Remove any leading '#' character
-    if (hexColor.isNotEmpty && hexColor[0] == '#') {
-      hexColor = hexColor.substring(1);
-    }
-
-    // Parse the hex color code
-    final parsedColor = int.tryParse(hexColor, radix: 16) ?? 0xFF000000;
-
-    // Ensure the alpha channel is included (8 characters) or set to 255 (opaque)
-    if (hexColor.length == 6) {
-      return Color(0xFF000000 | parsedColor);
-    } else if (hexColor.length == 8) {
-      return Color(parsedColor);
-    } else {
-      return null;
-    }
-  }
-
+extension TextStyleStringExtension on TextStyleString {
   TextStyleModel? toTextStyleModel({String? styleType}) {
     if (startsWith("{")) {
       try {

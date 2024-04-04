@@ -20,7 +20,7 @@ MenuBarModel _$MenuBarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MenuBarModel {
-  MenuModel? get style => throw _privateConstructorUsedError;
+  MenuStyleModel? get style => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,9 +34,9 @@ abstract class $MenuBarModelCopyWith<$Res> {
           MenuBarModel value, $Res Function(MenuBarModel) then) =
       _$MenuBarModelCopyWithImpl<$Res, MenuBarModel>;
   @useResult
-  $Res call({MenuModel? style});
+  $Res call({MenuStyleModel? style});
 
-  $MenuModelCopyWith<$Res>? get style;
+  $MenuStyleModelCopyWith<$Res>? get style;
 }
 
 /// @nodoc
@@ -58,18 +58,18 @@ class _$MenuBarModelCopyWithImpl<$Res, $Val extends MenuBarModel>
       style: freezed == style
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
-              as MenuModel?,
+              as MenuStyleModel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MenuModelCopyWith<$Res>? get style {
+  $MenuStyleModelCopyWith<$Res>? get style {
     if (_value.style == null) {
       return null;
     }
 
-    return $MenuModelCopyWith<$Res>(_value.style!, (value) {
+    return $MenuStyleModelCopyWith<$Res>(_value.style!, (value) {
       return _then(_value.copyWith(style: value) as $Val);
     });
   }
@@ -83,10 +83,10 @@ abstract class _$$MenuBarModelImplCopyWith<$Res>
       __$$MenuBarModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({MenuModel? style});
+  $Res call({MenuStyleModel? style});
 
   @override
-  $MenuModelCopyWith<$Res>? get style;
+  $MenuStyleModelCopyWith<$Res>? get style;
 }
 
 /// @nodoc
@@ -106,7 +106,7 @@ class __$$MenuBarModelImplCopyWithImpl<$Res>
       style: freezed == style
           ? _value.style
           : style // ignore: cast_nullable_to_non_nullable
-              as MenuModel?,
+              as MenuStyleModel?,
     ));
   }
 }
@@ -120,7 +120,7 @@ class _$MenuBarModelImpl extends _MenuBarModel {
       _$$MenuBarModelImplFromJson(json);
 
   @override
-  final MenuModel? style;
+  final MenuStyleModel? style;
 
   @override
   String toString() {
@@ -154,14 +154,15 @@ class _$MenuBarModelImpl extends _MenuBarModel {
 }
 
 abstract class _MenuBarModel extends MenuBarModel {
-  const factory _MenuBarModel({final MenuModel? style}) = _$MenuBarModelImpl;
+  const factory _MenuBarModel({final MenuStyleModel? style}) =
+      _$MenuBarModelImpl;
   const _MenuBarModel._() : super._();
 
   factory _MenuBarModel.fromJson(Map<String, dynamic> json) =
       _$MenuBarModelImpl.fromJson;
 
   @override
-  MenuModel? get style;
+  MenuStyleModel? get style;
   @override
   @JsonKey(ignore: true)
   _$$MenuBarModelImplCopyWith<_$MenuBarModelImpl> get copyWith =>

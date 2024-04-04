@@ -20,18 +20,17 @@ PopupMenuModel _$PopupMenuModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PopupMenuModel {
-  String? get color => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  String? get textStyle => throw _privateConstructorUsedError;
-  String? get labelTextStyle => throw _privateConstructorUsedError;
-  bool? get enableFeedback => throw _privateConstructorUsedError;
+  String? get color_color => throw _privateConstructorUsedError;
+  ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get shadowColor_color => throw _privateConstructorUsedError;
+  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  String? get textStyle_textStyle => throw _privateConstructorUsedError;
+  String? get labelTextStyle_textStyle => throw _privateConstructorUsedError;
+  bool? get enableFeedback_bool => throw _privateConstructorUsedError;
   PopupMenuPosition get position => throw _privateConstructorUsedError;
-  String? get iconColor => throw _privateConstructorUsedError;
-  double? get iconSize => throw _privateConstructorUsedError;
+  String? get iconColor_color => throw _privateConstructorUsedError;
+  double? get iconSize_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,17 +45,19 @@ abstract class $PopupMenuModelCopyWith<$Res> {
       _$PopupMenuModelCopyWithImpl<$Res, PopupMenuModel>;
   @useResult
   $Res call(
-      {String? color,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? textStyle,
-      String? labelTextStyle,
-      bool? enableFeedback,
+      {String? color_color,
+      ShapeBorderModel? shape_shapeBorder,
+      double? elevation_double,
+      String? shadowColor_color,
+      String? surfaceTintColor_color,
+      String? textStyle_textStyle,
+      String? labelTextStyle_textStyle,
+      bool? enableFeedback_bool,
       PopupMenuPosition position,
-      String? iconColor,
-      double? iconSize});
+      String? iconColor_color,
+      double? iconSize_double});
+
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
 
 /// @nodoc
@@ -72,64 +73,76 @@ class _$PopupMenuModelCopyWithImpl<$Res, $Val extends PopupMenuModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? shape = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? textStyle = freezed,
-    Object? labelTextStyle = freezed,
-    Object? enableFeedback = freezed,
+    Object? color_color = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_color = freezed,
+    Object? textStyle_textStyle = freezed,
+    Object? labelTextStyle_textStyle = freezed,
+    Object? enableFeedback_bool = freezed,
     Object? position = null,
-    Object? iconColor = freezed,
-    Object? iconSize = freezed,
+    Object? iconColor_color = freezed,
+    Object? iconSize_double = freezed,
   }) {
     return _then(_value.copyWith(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_color: freezed == color_color
+          ? _value.color_color
+          : color_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_color: freezed == shadowColor_color
+          ? _value.shadowColor_color
+          : shadowColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_color: freezed == surfaceTintColor_color
+          ? _value.surfaceTintColor_color
+          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyle: freezed == textStyle_textStyle
+          ? _value.textStyle_textStyle
+          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelTextStyle: freezed == labelTextStyle
-          ? _value.labelTextStyle
-          : labelTextStyle // ignore: cast_nullable_to_non_nullable
+      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
+          ? _value.labelTextStyle_textStyle
+          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as PopupMenuPosition,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      iconColor_color: freezed == iconColor_color
+          ? _value.iconColor_color
+          : iconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      iconSize: freezed == iconSize
-          ? _value.iconSize
-          : iconSize // ignore: cast_nullable_to_non_nullable
+      iconSize_double: freezed == iconSize_double
+          ? _value.iconSize_double
+          : iconSize_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder {
+    if (_value.shape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.shape_shapeBorder!, (value) {
+      return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
+    });
   }
 }
 
@@ -142,17 +155,20 @@ abstract class _$$PopupMenuModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? textStyle,
-      String? labelTextStyle,
-      bool? enableFeedback,
+      {String? color_color,
+      ShapeBorderModel? shape_shapeBorder,
+      double? elevation_double,
+      String? shadowColor_color,
+      String? surfaceTintColor_color,
+      String? textStyle_textStyle,
+      String? labelTextStyle_textStyle,
+      bool? enableFeedback_bool,
       PopupMenuPosition position,
-      String? iconColor,
-      double? iconSize});
+      String? iconColor_color,
+      double? iconSize_double});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
 
 /// @nodoc
@@ -166,62 +182,62 @@ class __$$PopupMenuModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? shape = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? textStyle = freezed,
-    Object? labelTextStyle = freezed,
-    Object? enableFeedback = freezed,
+    Object? color_color = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_color = freezed,
+    Object? textStyle_textStyle = freezed,
+    Object? labelTextStyle_textStyle = freezed,
+    Object? enableFeedback_bool = freezed,
     Object? position = null,
-    Object? iconColor = freezed,
-    Object? iconSize = freezed,
+    Object? iconColor_color = freezed,
+    Object? iconSize_double = freezed,
   }) {
     return _then(_$PopupMenuModelImpl(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_color: freezed == color_color
+          ? _value.color_color
+          : color_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_color: freezed == shadowColor_color
+          ? _value.shadowColor_color
+          : shadowColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_color: freezed == surfaceTintColor_color
+          ? _value.surfaceTintColor_color
+          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyle: freezed == textStyle_textStyle
+          ? _value.textStyle_textStyle
+          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelTextStyle: freezed == labelTextStyle
-          ? _value.labelTextStyle
-          : labelTextStyle // ignore: cast_nullable_to_non_nullable
+      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
+          ? _value.labelTextStyle_textStyle
+          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as PopupMenuPosition,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      iconColor_color: freezed == iconColor_color
+          ? _value.iconColor_color
+          : iconColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      iconSize: freezed == iconSize
-          ? _value.iconSize
-          : iconSize // ignore: cast_nullable_to_non_nullable
+      iconSize_double: freezed == iconSize_double
+          ? _value.iconSize_double
+          : iconSize_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -231,50 +247,49 @@ class __$$PopupMenuModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PopupMenuModelImpl extends _PopupMenuModel {
   const _$PopupMenuModelImpl(
-      {this.color,
-      @OutlinedBorderConverter() this.shape,
-      this.elevation,
-      this.shadowColor,
-      this.surfaceTintColor,
-      this.textStyle,
-      this.labelTextStyle,
-      this.enableFeedback,
+      {this.color_color,
+      this.shape_shapeBorder,
+      this.elevation_double,
+      this.shadowColor_color,
+      this.surfaceTintColor_color,
+      this.textStyle_textStyle,
+      this.labelTextStyle_textStyle,
+      this.enableFeedback_bool,
       this.position = PopupMenuPosition.under,
-      this.iconColor,
-      this.iconSize})
+      this.iconColor_color,
+      this.iconSize_double})
       : super._();
 
   factory _$PopupMenuModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$PopupMenuModelImplFromJson(json);
 
   @override
-  final String? color;
+  final String? color_color;
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  final ShapeBorderModel? shape_shapeBorder;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final String? shadowColor;
+  final String? shadowColor_color;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_color;
   @override
-  final String? textStyle;
+  final String? textStyle_textStyle;
   @override
-  final String? labelTextStyle;
+  final String? labelTextStyle_textStyle;
   @override
-  final bool? enableFeedback;
+  final bool? enableFeedback_bool;
   @override
   @JsonKey()
   final PopupMenuPosition position;
   @override
-  final String? iconColor;
+  final String? iconColor_color;
   @override
-  final double? iconSize;
+  final double? iconSize_double;
 
   @override
   String toString() {
-    return 'PopupMenuModel(color: $color, shape: $shape, elevation: $elevation, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, textStyle: $textStyle, labelTextStyle: $labelTextStyle, enableFeedback: $enableFeedback, position: $position, iconColor: $iconColor, iconSize: $iconSize)';
+    return 'PopupMenuModel(color_color: $color_color, shape_shapeBorder: $shape_shapeBorder, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, textStyle_textStyle: $textStyle_textStyle, labelTextStyle_textStyle: $labelTextStyle_textStyle, enableFeedback_bool: $enableFeedback_bool, position: $position, iconColor_color: $iconColor_color, iconSize_double: $iconSize_double)';
   }
 
   @override
@@ -282,43 +297,46 @@ class _$PopupMenuModelImpl extends _PopupMenuModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PopupMenuModelImpl &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.textStyle, textStyle) ||
-                other.textStyle == textStyle) &&
-            (identical(other.labelTextStyle, labelTextStyle) ||
-                other.labelTextStyle == labelTextStyle) &&
-            (identical(other.enableFeedback, enableFeedback) ||
-                other.enableFeedback == enableFeedback) &&
+            (identical(other.color_color, color_color) ||
+                other.color_color == color_color) &&
+            (identical(other.shape_shapeBorder, shape_shapeBorder) ||
+                other.shape_shapeBorder == shape_shapeBorder) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.shadowColor_color, shadowColor_color) ||
+                other.shadowColor_color == shadowColor_color) &&
+            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
+                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
+                other.textStyle_textStyle == textStyle_textStyle) &&
+            (identical(
+                    other.labelTextStyle_textStyle, labelTextStyle_textStyle) ||
+                other.labelTextStyle_textStyle == labelTextStyle_textStyle) &&
+            (identical(other.enableFeedback_bool, enableFeedback_bool) ||
+                other.enableFeedback_bool == enableFeedback_bool) &&
             (identical(other.position, position) ||
                 other.position == position) &&
-            (identical(other.iconColor, iconColor) ||
-                other.iconColor == iconColor) &&
-            (identical(other.iconSize, iconSize) ||
-                other.iconSize == iconSize));
+            (identical(other.iconColor_color, iconColor_color) ||
+                other.iconColor_color == iconColor_color) &&
+            (identical(other.iconSize_double, iconSize_double) ||
+                other.iconSize_double == iconSize_double));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color,
-      shape,
-      elevation,
-      shadowColor,
-      surfaceTintColor,
-      textStyle,
-      labelTextStyle,
-      enableFeedback,
+      color_color,
+      shape_shapeBorder,
+      elevation_double,
+      shadowColor_color,
+      surfaceTintColor_color,
+      textStyle_textStyle,
+      labelTextStyle_textStyle,
+      enableFeedback_bool,
       position,
-      iconColor,
-      iconSize);
+      iconColor_color,
+      iconSize_double);
 
   @JsonKey(ignore: true)
   @override
@@ -337,45 +355,44 @@ class _$PopupMenuModelImpl extends _PopupMenuModel {
 
 abstract class _PopupMenuModel extends PopupMenuModel {
   const factory _PopupMenuModel(
-      {final String? color,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      final double? elevation,
-      final String? shadowColor,
-      final String? surfaceTintColor,
-      final String? textStyle,
-      final String? labelTextStyle,
-      final bool? enableFeedback,
+      {final String? color_color,
+      final ShapeBorderModel? shape_shapeBorder,
+      final double? elevation_double,
+      final String? shadowColor_color,
+      final String? surfaceTintColor_color,
+      final String? textStyle_textStyle,
+      final String? labelTextStyle_textStyle,
+      final bool? enableFeedback_bool,
       final PopupMenuPosition position,
-      final String? iconColor,
-      final double? iconSize}) = _$PopupMenuModelImpl;
+      final String? iconColor_color,
+      final double? iconSize_double}) = _$PopupMenuModelImpl;
   const _PopupMenuModel._() : super._();
 
   factory _PopupMenuModel.fromJson(Map<String, dynamic> json) =
       _$PopupMenuModelImpl.fromJson;
 
   @override
-  String? get color;
+  String? get color_color;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  ShapeBorderModel? get shape_shapeBorder;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  String? get shadowColor;
+  String? get shadowColor_color;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_color;
   @override
-  String? get textStyle;
+  String? get textStyle_textStyle;
   @override
-  String? get labelTextStyle;
+  String? get labelTextStyle_textStyle;
   @override
-  bool? get enableFeedback;
+  bool? get enableFeedback_bool;
   @override
   PopupMenuPosition get position;
   @override
-  String? get iconColor;
+  String? get iconColor_color;
   @override
-  double? get iconSize;
+  double? get iconSize_double;
   @override
   @JsonKey(ignore: true)
   _$$PopupMenuModelImplCopyWith<_$PopupMenuModelImpl> get copyWith =>

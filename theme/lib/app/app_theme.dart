@@ -19,7 +19,7 @@ import 'package:theme/data/models/dropdowns/dropdown_model.dart';
 import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
 import 'package:theme/data/models/list_tiles/list_tile_model.dart';
 import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
-import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/menus/menu_style_model.dart';
 import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
 import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
 import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
@@ -142,7 +142,7 @@ class AppTheme {
   static ListTileModel? listTileStyles({String? styleTypeName}) => componentThemesModel?.listTiles?[styleTypeName ?? styleType];
 
   /// [menuStyles] is a getter that returns the [MenuStyles] instance.
-  static MenuModel? menuStyles({String? styleTypeName}) => componentThemesModel?.menus?[styleTypeName ?? styleType];
+  static MenuStyleModel? menuStyles({String? styleTypeName}) => componentThemesModel?.menus?[styleTypeName ?? styleType];
 
   /// [menuBarStyles] is a getter that returns the [MenuBarStyles] instance.
   static MenuBarModel? menuBarStyles({String? styleTypeName}) => componentThemesModel?.menuBars?[styleTypeName ?? styleType];

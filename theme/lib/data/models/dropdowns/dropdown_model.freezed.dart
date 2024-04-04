@@ -20,10 +20,10 @@ DropdownModel _$DropdownModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DropdownModel {
-  String? get textStyle => throw _privateConstructorUsedError;
-  InputDecorationModel? get inputDecoration =>
+  String? get textStyle_textStyle => throw _privateConstructorUsedError;
+  InputDecorationModel? get inputDecoration_inputDecoration =>
       throw _privateConstructorUsedError;
-  MenuModel? get menuStyle => throw _privateConstructorUsedError;
+  MenuStyleModel? get menuStyle_menu => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,12 +38,12 @@ abstract class $DropdownModelCopyWith<$Res> {
       _$DropdownModelCopyWithImpl<$Res, DropdownModel>;
   @useResult
   $Res call(
-      {String? textStyle,
-      InputDecorationModel? inputDecoration,
-      MenuModel? menuStyle});
+      {String? textStyle_textStyle,
+      InputDecorationModel? inputDecoration_inputDecoration,
+      MenuStyleModel? menuStyle_menu});
 
-  $InputDecorationModelCopyWith<$Res>? get inputDecoration;
-  $MenuModelCopyWith<$Res>? get menuStyle;
+  $InputDecorationModelCopyWith<$Res>? get inputDecoration_inputDecoration;
+  $MenuStyleModelCopyWith<$Res>? get menuStyle_menu;
 }
 
 /// @nodoc
@@ -59,48 +59,50 @@ class _$DropdownModelCopyWithImpl<$Res, $Val extends DropdownModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textStyle = freezed,
-    Object? inputDecoration = freezed,
-    Object? menuStyle = freezed,
+    Object? textStyle_textStyle = freezed,
+    Object? inputDecoration_inputDecoration = freezed,
+    Object? menuStyle_menu = freezed,
   }) {
     return _then(_value.copyWith(
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyle: freezed == textStyle_textStyle
+          ? _value.textStyle_textStyle
+          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      inputDecoration: freezed == inputDecoration
-          ? _value.inputDecoration
-          : inputDecoration // ignore: cast_nullable_to_non_nullable
+      inputDecoration_inputDecoration: freezed ==
+              inputDecoration_inputDecoration
+          ? _value.inputDecoration_inputDecoration
+          : inputDecoration_inputDecoration // ignore: cast_nullable_to_non_nullable
               as InputDecorationModel?,
-      menuStyle: freezed == menuStyle
-          ? _value.menuStyle
-          : menuStyle // ignore: cast_nullable_to_non_nullable
-              as MenuModel?,
+      menuStyle_menu: freezed == menuStyle_menu
+          ? _value.menuStyle_menu
+          : menuStyle_menu // ignore: cast_nullable_to_non_nullable
+              as MenuStyleModel?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $InputDecorationModelCopyWith<$Res>? get inputDecoration {
-    if (_value.inputDecoration == null) {
+  $InputDecorationModelCopyWith<$Res>? get inputDecoration_inputDecoration {
+    if (_value.inputDecoration_inputDecoration == null) {
       return null;
     }
 
-    return $InputDecorationModelCopyWith<$Res>(_value.inputDecoration!,
-        (value) {
-      return _then(_value.copyWith(inputDecoration: value) as $Val);
+    return $InputDecorationModelCopyWith<$Res>(
+        _value.inputDecoration_inputDecoration!, (value) {
+      return _then(
+          _value.copyWith(inputDecoration_inputDecoration: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $MenuModelCopyWith<$Res>? get menuStyle {
-    if (_value.menuStyle == null) {
+  $MenuStyleModelCopyWith<$Res>? get menuStyle_menu {
+    if (_value.menuStyle_menu == null) {
       return null;
     }
 
-    return $MenuModelCopyWith<$Res>(_value.menuStyle!, (value) {
-      return _then(_value.copyWith(menuStyle: value) as $Val);
+    return $MenuStyleModelCopyWith<$Res>(_value.menuStyle_menu!, (value) {
+      return _then(_value.copyWith(menuStyle_menu: value) as $Val);
     });
   }
 }
@@ -114,14 +116,14 @@ abstract class _$$DropdownModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? textStyle,
-      InputDecorationModel? inputDecoration,
-      MenuModel? menuStyle});
+      {String? textStyle_textStyle,
+      InputDecorationModel? inputDecoration_inputDecoration,
+      MenuStyleModel? menuStyle_menu});
 
   @override
-  $InputDecorationModelCopyWith<$Res>? get inputDecoration;
+  $InputDecorationModelCopyWith<$Res>? get inputDecoration_inputDecoration;
   @override
-  $MenuModelCopyWith<$Res>? get menuStyle;
+  $MenuStyleModelCopyWith<$Res>? get menuStyle_menu;
 }
 
 /// @nodoc
@@ -135,23 +137,24 @@ class __$$DropdownModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textStyle = freezed,
-    Object? inputDecoration = freezed,
-    Object? menuStyle = freezed,
+    Object? textStyle_textStyle = freezed,
+    Object? inputDecoration_inputDecoration = freezed,
+    Object? menuStyle_menu = freezed,
   }) {
     return _then(_$DropdownModelImpl(
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyle: freezed == textStyle_textStyle
+          ? _value.textStyle_textStyle
+          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      inputDecoration: freezed == inputDecoration
-          ? _value.inputDecoration
-          : inputDecoration // ignore: cast_nullable_to_non_nullable
+      inputDecoration_inputDecoration: freezed ==
+              inputDecoration_inputDecoration
+          ? _value.inputDecoration_inputDecoration
+          : inputDecoration_inputDecoration // ignore: cast_nullable_to_non_nullable
               as InputDecorationModel?,
-      menuStyle: freezed == menuStyle
-          ? _value.menuStyle
-          : menuStyle // ignore: cast_nullable_to_non_nullable
-              as MenuModel?,
+      menuStyle_menu: freezed == menuStyle_menu
+          ? _value.menuStyle_menu
+          : menuStyle_menu // ignore: cast_nullable_to_non_nullable
+              as MenuStyleModel?,
     ));
   }
 }
@@ -160,22 +163,24 @@ class __$$DropdownModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DropdownModelImpl extends _DropdownModel {
   const _$DropdownModelImpl(
-      {this.textStyle, this.inputDecoration, this.menuStyle})
+      {this.textStyle_textStyle,
+      this.inputDecoration_inputDecoration,
+      this.menuStyle_menu})
       : super._();
 
   factory _$DropdownModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DropdownModelImplFromJson(json);
 
   @override
-  final String? textStyle;
+  final String? textStyle_textStyle;
   @override
-  final InputDecorationModel? inputDecoration;
+  final InputDecorationModel? inputDecoration_inputDecoration;
   @override
-  final MenuModel? menuStyle;
+  final MenuStyleModel? menuStyle_menu;
 
   @override
   String toString() {
-    return 'DropdownModel(textStyle: $textStyle, inputDecoration: $inputDecoration, menuStyle: $menuStyle)';
+    return 'DropdownModel(textStyle_textStyle: $textStyle_textStyle, inputDecoration_inputDecoration: $inputDecoration_inputDecoration, menuStyle_menu: $menuStyle_menu)';
   }
 
   @override
@@ -183,18 +188,20 @@ class _$DropdownModelImpl extends _DropdownModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DropdownModelImpl &&
-            (identical(other.textStyle, textStyle) ||
-                other.textStyle == textStyle) &&
-            (identical(other.inputDecoration, inputDecoration) ||
-                other.inputDecoration == inputDecoration) &&
-            (identical(other.menuStyle, menuStyle) ||
-                other.menuStyle == menuStyle));
+            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
+                other.textStyle_textStyle == textStyle_textStyle) &&
+            (identical(other.inputDecoration_inputDecoration,
+                    inputDecoration_inputDecoration) ||
+                other.inputDecoration_inputDecoration ==
+                    inputDecoration_inputDecoration) &&
+            (identical(other.menuStyle_menu, menuStyle_menu) ||
+                other.menuStyle_menu == menuStyle_menu));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, textStyle, inputDecoration, menuStyle);
+  int get hashCode => Object.hash(runtimeType, textStyle_textStyle,
+      inputDecoration_inputDecoration, menuStyle_menu);
 
   @JsonKey(ignore: true)
   @override
@@ -212,20 +219,20 @@ class _$DropdownModelImpl extends _DropdownModel {
 
 abstract class _DropdownModel extends DropdownModel {
   const factory _DropdownModel(
-      {final String? textStyle,
-      final InputDecorationModel? inputDecoration,
-      final MenuModel? menuStyle}) = _$DropdownModelImpl;
+      {final String? textStyle_textStyle,
+      final InputDecorationModel? inputDecoration_inputDecoration,
+      final MenuStyleModel? menuStyle_menu}) = _$DropdownModelImpl;
   const _DropdownModel._() : super._();
 
   factory _DropdownModel.fromJson(Map<String, dynamic> json) =
       _$DropdownModelImpl.fromJson;
 
   @override
-  String? get textStyle;
+  String? get textStyle_textStyle;
   @override
-  InputDecorationModel? get inputDecoration;
+  InputDecorationModel? get inputDecoration_inputDecoration;
   @override
-  MenuModel? get menuStyle;
+  MenuStyleModel? get menuStyle_menu;
   @override
   @JsonKey(ignore: true)
   _$$DropdownModelImplCopyWith<_$DropdownModelImpl> get copyWith =>

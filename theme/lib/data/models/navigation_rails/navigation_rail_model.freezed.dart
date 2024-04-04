@@ -20,19 +20,22 @@ NavigationRailModel _$NavigationRailModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NavigationRailModel {
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  String? get unselectedLabelTextStyle => throw _privateConstructorUsedError;
-  String? get selectedLabelTextStyle => throw _privateConstructorUsedError;
-  double? get groupAlignment => throw _privateConstructorUsedError;
-  @NavigationRailLabelConverter()
-  NavigationRailLabelType? get labelType => throw _privateConstructorUsedError;
-  bool? get useIndicator => throw _privateConstructorUsedError;
-  String? get indicatorColor => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get indicatorShape => throw _privateConstructorUsedError;
-  double? get minWidth => throw _privateConstructorUsedError;
-  double? get minExtendedWidth => throw _privateConstructorUsedError;
+  String? get backgroundColor_color => throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get unselectedLabelTextStyle_textStyle =>
+      throw _privateConstructorUsedError;
+  String? get selectedLabelTextStyle_textStyle =>
+      throw _privateConstructorUsedError;
+  double? get groupAlignment_double =>
+      throw _privateConstructorUsedError; // @NavigationRailLabelConverter()
+  NavigationRailLabelType? get labelType_enum_navigationRailLabelType =>
+      throw _privateConstructorUsedError;
+  bool? get useIndicator_bool => throw _privateConstructorUsedError;
+  String? get indicatorColor_color => throw _privateConstructorUsedError;
+  ShapeBorderModel? get indicatorShape_shapeBorder =>
+      throw _privateConstructorUsedError;
+  double? get minWidth_double => throw _privateConstructorUsedError;
+  double? get minExtendedWidth_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,17 +50,19 @@ abstract class $NavigationRailModelCopyWith<$Res> {
       _$NavigationRailModelCopyWithImpl<$Res, NavigationRailModel>;
   @useResult
   $Res call(
-      {String? backgroundColor,
-      double? elevation,
-      String? unselectedLabelTextStyle,
-      String? selectedLabelTextStyle,
-      double? groupAlignment,
-      @NavigationRailLabelConverter() NavigationRailLabelType? labelType,
-      bool? useIndicator,
-      String? indicatorColor,
-      @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-      double? minWidth,
-      double? minExtendedWidth});
+      {String? backgroundColor_color,
+      double? elevation_double,
+      String? unselectedLabelTextStyle_textStyle,
+      String? selectedLabelTextStyle_textStyle,
+      double? groupAlignment_double,
+      NavigationRailLabelType? labelType_enum_navigationRailLabelType,
+      bool? useIndicator_bool,
+      String? indicatorColor_color,
+      ShapeBorderModel? indicatorShape_shapeBorder,
+      double? minWidth_double,
+      double? minExtendedWidth_double});
+
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
 }
 
 /// @nodoc
@@ -73,64 +78,80 @@ class _$NavigationRailModelCopyWithImpl<$Res, $Val extends NavigationRailModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? unselectedLabelTextStyle = freezed,
-    Object? selectedLabelTextStyle = freezed,
-    Object? groupAlignment = freezed,
-    Object? labelType = freezed,
-    Object? useIndicator = freezed,
-    Object? indicatorColor = freezed,
-    Object? indicatorShape = freezed,
-    Object? minWidth = freezed,
-    Object? minExtendedWidth = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? unselectedLabelTextStyle_textStyle = freezed,
+    Object? selectedLabelTextStyle_textStyle = freezed,
+    Object? groupAlignment_double = freezed,
+    Object? labelType_enum_navigationRailLabelType = freezed,
+    Object? useIndicator_bool = freezed,
+    Object? indicatorColor_color = freezed,
+    Object? indicatorShape_shapeBorder = freezed,
+    Object? minWidth_double = freezed,
+    Object? minExtendedWidth_double = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      unselectedLabelTextStyle: freezed == unselectedLabelTextStyle
-          ? _value.unselectedLabelTextStyle
-          : unselectedLabelTextStyle // ignore: cast_nullable_to_non_nullable
+      unselectedLabelTextStyle_textStyle: freezed ==
+              unselectedLabelTextStyle_textStyle
+          ? _value.unselectedLabelTextStyle_textStyle
+          : unselectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedLabelTextStyle: freezed == selectedLabelTextStyle
-          ? _value.selectedLabelTextStyle
-          : selectedLabelTextStyle // ignore: cast_nullable_to_non_nullable
+      selectedLabelTextStyle_textStyle: freezed ==
+              selectedLabelTextStyle_textStyle
+          ? _value.selectedLabelTextStyle_textStyle
+          : selectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      groupAlignment: freezed == groupAlignment
-          ? _value.groupAlignment
-          : groupAlignment // ignore: cast_nullable_to_non_nullable
+      groupAlignment_double: freezed == groupAlignment_double
+          ? _value.groupAlignment_double
+          : groupAlignment_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      labelType: freezed == labelType
-          ? _value.labelType
-          : labelType // ignore: cast_nullable_to_non_nullable
+      labelType_enum_navigationRailLabelType: freezed ==
+              labelType_enum_navigationRailLabelType
+          ? _value.labelType_enum_navigationRailLabelType
+          : labelType_enum_navigationRailLabelType // ignore: cast_nullable_to_non_nullable
               as NavigationRailLabelType?,
-      useIndicator: freezed == useIndicator
-          ? _value.useIndicator
-          : useIndicator // ignore: cast_nullable_to_non_nullable
+      useIndicator_bool: freezed == useIndicator_bool
+          ? _value.useIndicator_bool
+          : useIndicator_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicatorColor_color: freezed == indicatorColor_color
+          ? _value.indicatorColor_color
+          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorShape: freezed == indicatorShape
-          ? _value.indicatorShape
-          : indicatorShape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      minWidth: freezed == minWidth
-          ? _value.minWidth
-          : minWidth // ignore: cast_nullable_to_non_nullable
+      indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
+          ? _value.indicatorShape_shapeBorder
+          : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      minWidth_double: freezed == minWidth_double
+          ? _value.minWidth_double
+          : minWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      minExtendedWidth: freezed == minExtendedWidth
-          ? _value.minExtendedWidth
-          : minExtendedWidth // ignore: cast_nullable_to_non_nullable
+      minExtendedWidth_double: freezed == minExtendedWidth_double
+          ? _value.minExtendedWidth_double
+          : minExtendedWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder {
+    if (_value.indicatorShape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.indicatorShape_shapeBorder!,
+        (value) {
+      return _then(_value.copyWith(indicatorShape_shapeBorder: value) as $Val);
+    });
   }
 }
 
@@ -143,17 +164,20 @@ abstract class _$$NavigationRailModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor,
-      double? elevation,
-      String? unselectedLabelTextStyle,
-      String? selectedLabelTextStyle,
-      double? groupAlignment,
-      @NavigationRailLabelConverter() NavigationRailLabelType? labelType,
-      bool? useIndicator,
-      String? indicatorColor,
-      @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-      double? minWidth,
-      double? minExtendedWidth});
+      {String? backgroundColor_color,
+      double? elevation_double,
+      String? unselectedLabelTextStyle_textStyle,
+      String? selectedLabelTextStyle_textStyle,
+      double? groupAlignment_double,
+      NavigationRailLabelType? labelType_enum_navigationRailLabelType,
+      bool? useIndicator_bool,
+      String? indicatorColor_color,
+      ShapeBorderModel? indicatorShape_shapeBorder,
+      double? minWidth_double,
+      double? minExtendedWidth_double});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
 }
 
 /// @nodoc
@@ -167,62 +191,65 @@ class __$$NavigationRailModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? unselectedLabelTextStyle = freezed,
-    Object? selectedLabelTextStyle = freezed,
-    Object? groupAlignment = freezed,
-    Object? labelType = freezed,
-    Object? useIndicator = freezed,
-    Object? indicatorColor = freezed,
-    Object? indicatorShape = freezed,
-    Object? minWidth = freezed,
-    Object? minExtendedWidth = freezed,
+    Object? backgroundColor_color = freezed,
+    Object? elevation_double = freezed,
+    Object? unselectedLabelTextStyle_textStyle = freezed,
+    Object? selectedLabelTextStyle_textStyle = freezed,
+    Object? groupAlignment_double = freezed,
+    Object? labelType_enum_navigationRailLabelType = freezed,
+    Object? useIndicator_bool = freezed,
+    Object? indicatorColor_color = freezed,
+    Object? indicatorShape_shapeBorder = freezed,
+    Object? minWidth_double = freezed,
+    Object? minExtendedWidth_double = freezed,
   }) {
     return _then(_$NavigationRailModelImpl(
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_color: freezed == backgroundColor_color
+          ? _value.backgroundColor_color
+          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      unselectedLabelTextStyle: freezed == unselectedLabelTextStyle
-          ? _value.unselectedLabelTextStyle
-          : unselectedLabelTextStyle // ignore: cast_nullable_to_non_nullable
+      unselectedLabelTextStyle_textStyle: freezed ==
+              unselectedLabelTextStyle_textStyle
+          ? _value.unselectedLabelTextStyle_textStyle
+          : unselectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedLabelTextStyle: freezed == selectedLabelTextStyle
-          ? _value.selectedLabelTextStyle
-          : selectedLabelTextStyle // ignore: cast_nullable_to_non_nullable
+      selectedLabelTextStyle_textStyle: freezed ==
+              selectedLabelTextStyle_textStyle
+          ? _value.selectedLabelTextStyle_textStyle
+          : selectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      groupAlignment: freezed == groupAlignment
-          ? _value.groupAlignment
-          : groupAlignment // ignore: cast_nullable_to_non_nullable
+      groupAlignment_double: freezed == groupAlignment_double
+          ? _value.groupAlignment_double
+          : groupAlignment_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      labelType: freezed == labelType
-          ? _value.labelType
-          : labelType // ignore: cast_nullable_to_non_nullable
+      labelType_enum_navigationRailLabelType: freezed ==
+              labelType_enum_navigationRailLabelType
+          ? _value.labelType_enum_navigationRailLabelType
+          : labelType_enum_navigationRailLabelType // ignore: cast_nullable_to_non_nullable
               as NavigationRailLabelType?,
-      useIndicator: freezed == useIndicator
-          ? _value.useIndicator
-          : useIndicator // ignore: cast_nullable_to_non_nullable
+      useIndicator_bool: freezed == useIndicator_bool
+          ? _value.useIndicator_bool
+          : useIndicator_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicatorColor_color: freezed == indicatorColor_color
+          ? _value.indicatorColor_color
+          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorShape: freezed == indicatorShape
-          ? _value.indicatorShape
-          : indicatorShape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      minWidth: freezed == minWidth
-          ? _value.minWidth
-          : minWidth // ignore: cast_nullable_to_non_nullable
+      indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
+          ? _value.indicatorShape_shapeBorder
+          : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      minWidth_double: freezed == minWidth_double
+          ? _value.minWidth_double
+          : minWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      minExtendedWidth: freezed == minExtendedWidth
-          ? _value.minExtendedWidth
-          : minExtendedWidth // ignore: cast_nullable_to_non_nullable
+      minExtendedWidth_double: freezed == minExtendedWidth_double
+          ? _value.minExtendedWidth_double
+          : minExtendedWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -232,50 +259,49 @@ class __$$NavigationRailModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NavigationRailModelImpl extends _NavigationRailModel {
   const _$NavigationRailModelImpl(
-      {this.backgroundColor,
-      this.elevation,
-      this.unselectedLabelTextStyle,
-      this.selectedLabelTextStyle,
-      this.groupAlignment,
-      @NavigationRailLabelConverter() this.labelType,
-      this.useIndicator,
-      this.indicatorColor,
-      @OutlinedBorderConverter() this.indicatorShape,
-      this.minWidth,
-      this.minExtendedWidth})
+      {this.backgroundColor_color,
+      this.elevation_double,
+      this.unselectedLabelTextStyle_textStyle,
+      this.selectedLabelTextStyle_textStyle,
+      this.groupAlignment_double,
+      this.labelType_enum_navigationRailLabelType,
+      this.useIndicator_bool,
+      this.indicatorColor_color,
+      this.indicatorShape_shapeBorder,
+      this.minWidth_double,
+      this.minExtendedWidth_double})
       : super._();
 
   factory _$NavigationRailModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NavigationRailModelImplFromJson(json);
 
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_color;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final String? unselectedLabelTextStyle;
+  final String? unselectedLabelTextStyle_textStyle;
   @override
-  final String? selectedLabelTextStyle;
+  final String? selectedLabelTextStyle_textStyle;
   @override
-  final double? groupAlignment;
+  final double? groupAlignment_double;
+// @NavigationRailLabelConverter()
   @override
-  @NavigationRailLabelConverter()
-  final NavigationRailLabelType? labelType;
+  final NavigationRailLabelType? labelType_enum_navigationRailLabelType;
   @override
-  final bool? useIndicator;
+  final bool? useIndicator_bool;
   @override
-  final String? indicatorColor;
+  final String? indicatorColor_color;
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? indicatorShape;
+  final ShapeBorderModel? indicatorShape_shapeBorder;
   @override
-  final double? minWidth;
+  final double? minWidth_double;
   @override
-  final double? minExtendedWidth;
+  final double? minExtendedWidth_double;
 
   @override
   String toString() {
-    return 'NavigationRailModel(backgroundColor: $backgroundColor, elevation: $elevation, unselectedLabelTextStyle: $unselectedLabelTextStyle, selectedLabelTextStyle: $selectedLabelTextStyle, groupAlignment: $groupAlignment, labelType: $labelType, useIndicator: $useIndicator, indicatorColor: $indicatorColor, indicatorShape: $indicatorShape, minWidth: $minWidth, minExtendedWidth: $minExtendedWidth)';
+    return 'NavigationRailModel(backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, unselectedLabelTextStyle_textStyle: $unselectedLabelTextStyle_textStyle, selectedLabelTextStyle_textStyle: $selectedLabelTextStyle_textStyle, groupAlignment_double: $groupAlignment_double, labelType_enum_navigationRailLabelType: $labelType_enum_navigationRailLabelType, useIndicator_bool: $useIndicator_bool, indicatorColor_color: $indicatorColor_color, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, minWidth_double: $minWidth_double, minExtendedWidth_double: $minExtendedWidth_double)';
   }
 
   @override
@@ -283,46 +309,54 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NavigationRailModelImpl &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
+            (identical(other.backgroundColor_color, backgroundColor_color) ||
+                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.unselectedLabelTextStyle_textStyle,
+                    unselectedLabelTextStyle_textStyle) ||
+                other.unselectedLabelTextStyle_textStyle ==
+                    unselectedLabelTextStyle_textStyle) &&
+            (identical(other.selectedLabelTextStyle_textStyle,
+                    selectedLabelTextStyle_textStyle) ||
+                other.selectedLabelTextStyle_textStyle ==
+                    selectedLabelTextStyle_textStyle) &&
+            (identical(other.groupAlignment_double, groupAlignment_double) ||
+                other.groupAlignment_double == groupAlignment_double) &&
+            (identical(other.labelType_enum_navigationRailLabelType,
+                    labelType_enum_navigationRailLabelType) ||
+                other.labelType_enum_navigationRailLabelType ==
+                    labelType_enum_navigationRailLabelType) &&
+            (identical(other.useIndicator_bool, useIndicator_bool) ||
+                other.useIndicator_bool == useIndicator_bool) &&
+            (identical(other.indicatorColor_color, indicatorColor_color) ||
+                other.indicatorColor_color == indicatorColor_color) &&
+            (identical(other.indicatorShape_shapeBorder,
+                    indicatorShape_shapeBorder) ||
+                other.indicatorShape_shapeBorder ==
+                    indicatorShape_shapeBorder) &&
+            (identical(other.minWidth_double, minWidth_double) ||
+                other.minWidth_double == minWidth_double) &&
             (identical(
-                    other.unselectedLabelTextStyle, unselectedLabelTextStyle) ||
-                other.unselectedLabelTextStyle == unselectedLabelTextStyle) &&
-            (identical(other.selectedLabelTextStyle, selectedLabelTextStyle) ||
-                other.selectedLabelTextStyle == selectedLabelTextStyle) &&
-            (identical(other.groupAlignment, groupAlignment) ||
-                other.groupAlignment == groupAlignment) &&
-            (identical(other.labelType, labelType) ||
-                other.labelType == labelType) &&
-            (identical(other.useIndicator, useIndicator) ||
-                other.useIndicator == useIndicator) &&
-            (identical(other.indicatorColor, indicatorColor) ||
-                other.indicatorColor == indicatorColor) &&
-            (identical(other.indicatorShape, indicatorShape) ||
-                other.indicatorShape == indicatorShape) &&
-            (identical(other.minWidth, minWidth) ||
-                other.minWidth == minWidth) &&
-            (identical(other.minExtendedWidth, minExtendedWidth) ||
-                other.minExtendedWidth == minExtendedWidth));
+                    other.minExtendedWidth_double, minExtendedWidth_double) ||
+                other.minExtendedWidth_double == minExtendedWidth_double));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor,
-      elevation,
-      unselectedLabelTextStyle,
-      selectedLabelTextStyle,
-      groupAlignment,
-      labelType,
-      useIndicator,
-      indicatorColor,
-      indicatorShape,
-      minWidth,
-      minExtendedWidth);
+      backgroundColor_color,
+      elevation_double,
+      unselectedLabelTextStyle_textStyle,
+      selectedLabelTextStyle_textStyle,
+      groupAlignment_double,
+      labelType_enum_navigationRailLabelType,
+      useIndicator_bool,
+      indicatorColor_color,
+      indicatorShape_shapeBorder,
+      minWidth_double,
+      minExtendedWidth_double);
 
   @JsonKey(ignore: true)
   @override
@@ -341,46 +375,44 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
 
 abstract class _NavigationRailModel extends NavigationRailModel {
   const factory _NavigationRailModel(
-      {final String? backgroundColor,
-      final double? elevation,
-      final String? unselectedLabelTextStyle,
-      final String? selectedLabelTextStyle,
-      final double? groupAlignment,
-      @NavigationRailLabelConverter() final NavigationRailLabelType? labelType,
-      final bool? useIndicator,
-      final String? indicatorColor,
-      @OutlinedBorderConverter() final OutlinedBorder? indicatorShape,
-      final double? minWidth,
-      final double? minExtendedWidth}) = _$NavigationRailModelImpl;
+      {final String? backgroundColor_color,
+      final double? elevation_double,
+      final String? unselectedLabelTextStyle_textStyle,
+      final String? selectedLabelTextStyle_textStyle,
+      final double? groupAlignment_double,
+      final NavigationRailLabelType? labelType_enum_navigationRailLabelType,
+      final bool? useIndicator_bool,
+      final String? indicatorColor_color,
+      final ShapeBorderModel? indicatorShape_shapeBorder,
+      final double? minWidth_double,
+      final double? minExtendedWidth_double}) = _$NavigationRailModelImpl;
   const _NavigationRailModel._() : super._();
 
   factory _NavigationRailModel.fromJson(Map<String, dynamic> json) =
       _$NavigationRailModelImpl.fromJson;
 
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_color;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  String? get unselectedLabelTextStyle;
+  String? get unselectedLabelTextStyle_textStyle;
   @override
-  String? get selectedLabelTextStyle;
+  String? get selectedLabelTextStyle_textStyle;
   @override
-  double? get groupAlignment;
+  double? get groupAlignment_double;
+  @override // @NavigationRailLabelConverter()
+  NavigationRailLabelType? get labelType_enum_navigationRailLabelType;
   @override
-  @NavigationRailLabelConverter()
-  NavigationRailLabelType? get labelType;
+  bool? get useIndicator_bool;
   @override
-  bool? get useIndicator;
+  String? get indicatorColor_color;
   @override
-  String? get indicatorColor;
+  ShapeBorderModel? get indicatorShape_shapeBorder;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get indicatorShape;
+  double? get minWidth_double;
   @override
-  double? get minWidth;
-  @override
-  double? get minExtendedWidth;
+  double? get minExtendedWidth_double;
   @override
   @JsonKey(ignore: true)
   _$$NavigationRailModelImplCopyWith<_$NavigationRailModelImpl> get copyWith =>

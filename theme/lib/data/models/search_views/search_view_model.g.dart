@@ -9,31 +9,37 @@ part of 'search_view_model.dart';
 _$SearchViewModelImpl _$$SearchViewModelImplFromJson(
         Map<String, dynamic> json) =>
     _$SearchViewModelImpl(
-      backgroundColor: json['backgroundColor'] as String?,
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      constraints: const BoxConstraintsConverter()
-          .fromJson(json['constraints'] as Map<String, dynamic>?),
-      side: const BorderSideConverter()
-          .fromJson(json['side'] as Map<String, dynamic>?),
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
-      headerTextStyle: json['headerTextStyle'] as String?,
-      headerHintStyle: json['headerHintStyle'] as String?,
-      dividerColor: json['dividerColor'] as String?,
+      backgroundColor_color: json['backgroundColor_color'] as String?,
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      constraints_boxConstraints: json['constraints_boxConstraints'] == null
+          ? const BoxConstraintsModel()
+          : BoxConstraintsModel.fromJson(
+              json['constraints_boxConstraints'] as Map<String, dynamic>),
+      side_borderSide: json['side_borderSide'] == null
+          ? null
+          : BorderSideModel.fromJson(
+              json['side_borderSide'] as Map<String, dynamic>),
+      shape_outlinedBorder: json['shape_outlinedBorder'] == null
+          ? const OutlinedBorderModel()
+          : OutlinedBorderModel.fromJson(
+              json['shape_outlinedBorder'] as Map<String, dynamic>),
+      headerTextStyle_textStyle: json['headerTextStyle_textStyle'] as String?,
+      headerHintStyle_textStyle: json['headerHintStyle_textStyle'] as String?,
+      dividerColor_color: json['dividerColor_color'] as String?,
     );
 
 Map<String, dynamic> _$$SearchViewModelImplToJson(
         _$SearchViewModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor': instance.backgroundColor,
-      'elevation': instance.elevation,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'constraints':
-          const BoxConstraintsConverter().toJson(instance.constraints),
-      'side': const BorderSideConverter().toJson(instance.side),
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
-      'headerTextStyle': instance.headerTextStyle,
-      'headerHintStyle': instance.headerHintStyle,
-      'dividerColor': instance.dividerColor,
+      'backgroundColor_color': instance.backgroundColor_color,
+      'elevation_double': instance.elevation_double,
+      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'constraints_boxConstraints':
+          instance.constraints_boxConstraints?.toJson(),
+      'side_borderSide': instance.side_borderSide?.toJson(),
+      'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
+      'headerTextStyle_textStyle': instance.headerTextStyle_textStyle,
+      'headerHintStyle_textStyle': instance.headerHintStyle_textStyle,
+      'dividerColor_color': instance.dividerColor_color,
     };

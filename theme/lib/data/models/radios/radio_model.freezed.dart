@@ -20,9 +20,9 @@ RadioModel _$RadioModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$RadioModel {
-  String? get fillColor => throw _privateConstructorUsedError;
-  String? get overlayColor => throw _privateConstructorUsedError;
-  double? get splashRadius => throw _privateConstructorUsedError;
+  String? get fillColor_color => throw _privateConstructorUsedError;
+  String? get overlayColor_color => throw _privateConstructorUsedError;
+  double? get splashRadius_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,10 @@ abstract class $RadioModelCopyWith<$Res> {
           RadioModel value, $Res Function(RadioModel) then) =
       _$RadioModelCopyWithImpl<$Res, RadioModel>;
   @useResult
-  $Res call({String? fillColor, String? overlayColor, double? splashRadius});
+  $Res call(
+      {String? fillColor_color,
+      String? overlayColor_color,
+      double? splashRadius_double});
 }
 
 /// @nodoc
@@ -52,22 +55,22 @@ class _$RadioModelCopyWithImpl<$Res, $Val extends RadioModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fillColor = freezed,
-    Object? overlayColor = freezed,
-    Object? splashRadius = freezed,
+    Object? fillColor_color = freezed,
+    Object? overlayColor_color = freezed,
+    Object? splashRadius_double = freezed,
   }) {
     return _then(_value.copyWith(
-      fillColor: freezed == fillColor
-          ? _value.fillColor
-          : fillColor // ignore: cast_nullable_to_non_nullable
+      fillColor_color: freezed == fillColor_color
+          ? _value.fillColor_color
+          : fillColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_color: freezed == overlayColor_color
+          ? _value.overlayColor_color
+          : overlayColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashRadius: freezed == splashRadius
-          ? _value.splashRadius
-          : splashRadius // ignore: cast_nullable_to_non_nullable
+      splashRadius_double: freezed == splashRadius_double
+          ? _value.splashRadius_double
+          : splashRadius_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
   }
@@ -81,7 +84,10 @@ abstract class _$$RadioModelImplCopyWith<$Res>
       __$$RadioModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? fillColor, String? overlayColor, double? splashRadius});
+  $Res call(
+      {String? fillColor_color,
+      String? overlayColor_color,
+      double? splashRadius_double});
 }
 
 /// @nodoc
@@ -95,22 +101,22 @@ class __$$RadioModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fillColor = freezed,
-    Object? overlayColor = freezed,
-    Object? splashRadius = freezed,
+    Object? fillColor_color = freezed,
+    Object? overlayColor_color = freezed,
+    Object? splashRadius_double = freezed,
   }) {
     return _then(_$RadioModelImpl(
-      fillColor: freezed == fillColor
-          ? _value.fillColor
-          : fillColor // ignore: cast_nullable_to_non_nullable
+      fillColor_color: freezed == fillColor_color
+          ? _value.fillColor_color
+          : fillColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_color: freezed == overlayColor_color
+          ? _value.overlayColor_color
+          : overlayColor_color // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashRadius: freezed == splashRadius
-          ? _value.splashRadius
-          : splashRadius // ignore: cast_nullable_to_non_nullable
+      splashRadius_double: freezed == splashRadius_double
+          ? _value.splashRadius_double
+          : splashRadius_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -119,22 +125,23 @@ class __$$RadioModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RadioModelImpl extends _RadioModel {
-  const _$RadioModelImpl({this.fillColor, this.overlayColor, this.splashRadius})
+  const _$RadioModelImpl(
+      {this.fillColor_color, this.overlayColor_color, this.splashRadius_double})
       : super._();
 
   factory _$RadioModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RadioModelImplFromJson(json);
 
   @override
-  final String? fillColor;
+  final String? fillColor_color;
   @override
-  final String? overlayColor;
+  final String? overlayColor_color;
   @override
-  final double? splashRadius;
+  final double? splashRadius_double;
 
   @override
   String toString() {
-    return 'RadioModel(fillColor: $fillColor, overlayColor: $overlayColor, splashRadius: $splashRadius)';
+    return 'RadioModel(fillColor_color: $fillColor_color, overlayColor_color: $overlayColor_color, splashRadius_double: $splashRadius_double)';
   }
 
   @override
@@ -142,18 +149,18 @@ class _$RadioModelImpl extends _RadioModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RadioModelImpl &&
-            (identical(other.fillColor, fillColor) ||
-                other.fillColor == fillColor) &&
-            (identical(other.overlayColor, overlayColor) ||
-                other.overlayColor == overlayColor) &&
-            (identical(other.splashRadius, splashRadius) ||
-                other.splashRadius == splashRadius));
+            (identical(other.fillColor_color, fillColor_color) ||
+                other.fillColor_color == fillColor_color) &&
+            (identical(other.overlayColor_color, overlayColor_color) ||
+                other.overlayColor_color == overlayColor_color) &&
+            (identical(other.splashRadius_double, splashRadius_double) ||
+                other.splashRadius_double == splashRadius_double));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, fillColor, overlayColor, splashRadius);
+  int get hashCode => Object.hash(
+      runtimeType, fillColor_color, overlayColor_color, splashRadius_double);
 
   @JsonKey(ignore: true)
   @override
@@ -171,20 +178,20 @@ class _$RadioModelImpl extends _RadioModel {
 
 abstract class _RadioModel extends RadioModel {
   const factory _RadioModel(
-      {final String? fillColor,
-      final String? overlayColor,
-      final double? splashRadius}) = _$RadioModelImpl;
+      {final String? fillColor_color,
+      final String? overlayColor_color,
+      final double? splashRadius_double}) = _$RadioModelImpl;
   const _RadioModel._() : super._();
 
   factory _RadioModel.fromJson(Map<String, dynamic> json) =
       _$RadioModelImpl.fromJson;
 
   @override
-  String? get fillColor;
+  String? get fillColor_color;
   @override
-  String? get overlayColor;
+  String? get overlayColor_color;
   @override
-  double? get splashRadius;
+  double? get splashRadius_double;
   @override
   @JsonKey(ignore: true)
   _$$RadioModelImplCopyWith<_$RadioModelImpl> get copyWith =>

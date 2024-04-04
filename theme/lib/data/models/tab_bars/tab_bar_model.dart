@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/alignments/tab.dart';
-import 'package:theme/domain/converters/box/borders/border.dart';
-import 'package:theme/domain/converters/box_decoration/box_decoration.dart';
+import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'tab_bar_model.freezed.dart';
 part 'tab_bar_model.g.dart';
@@ -12,17 +11,20 @@ part 'tab_bar_model.g.dart';
 @freezed
 class TabBarModel with _$TabBarModel {
   const factory TabBarModel({
-    @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
-    String? indicatorColor,
-    String? dividerColor,
-    double? dividerHeight,
-    String? labelColor,
-    @EdgeInsetsConverter() EdgeInsets? labelPadding,
-    String? labelStyle,
-    String? unselectedLabelColor,
-    String? unselectedLabelStyle,
-    String? overlayColor,
-    @TabAlignmentConverter() TabAlignment? tabAlignment,
+    // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
+    BoxDecorationModel? indicator_boxDecoration, // TODO: Set up DecorationModel that can also be other types of decoration
+    ThemeColorString? indicatorColor_color,
+    ThemeColorString? dividerColor_color,
+    TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
+    double? dividerHeight_double,
+    ThemeColorString? labelColor_color,
+    @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
+    TextStyleString? labelStyle_textStyle,
+    ThemeColorString? unselectedLabelColor_color,
+    TextStyleString? unselectedLabelStyle_textStyle,
+    ThemeColorString? overlayColor_color,
+    // @TabAlignmentConverter()
+    TabAlignment? tabAlignment_enum_tabAlignment,
   }) = _TabBarModel;
 
   const TabBarModel._();
@@ -54,16 +56,16 @@ class TabBarModel with _$TabBarModel {
 
   TabBarTheme asTabBarTheme({String? styleTypeName}) {
     return TabBarTheme(
-      indicator: indicator?.values.first,
+      indicator: indicator_boxDecoration?.asBoxDecoration(styleTypeName: styleTypeName),
       indicatorSize: TabBarIndicatorSize.tab,
-      indicatorColor: indicatorColor?.toColor(styleType: styleTypeName),
-      labelColor: labelColor?.toColor(styleType: styleTypeName),
-      labelPadding: labelPadding,
-      labelStyle: labelStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      unselectedLabelColor: unselectedLabelColor?.toColor(styleType: styleTypeName),
-      unselectedLabelStyle: unselectedLabelStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      overlayColor: MaterialStateProperty.all(overlayColor?.toColor(styleType: styleTypeName)),
-      tabAlignment: tabAlignment,
+      indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
+      labelColor: labelColor_color?.toColor(styleType: styleTypeName),
+      labelPadding: labelPadding_edgeInsets,
+      labelStyle: labelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      unselectedLabelColor: unselectedLabelColor_color?.toColor(styleType: styleTypeName),
+      unselectedLabelStyle: unselectedLabelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      tabAlignment: tabAlignment_enum_tabAlignment,
     );
   }
 }

@@ -1,10 +1,13 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/border_side/border_side.dart';
-import 'package:theme/domain/converters/box/constraints.dart';
+import 'package:theme/data/models/borders/border_side_model.dart';
+import 'package:theme/data/models/borders/outlined_border_model.dart';
+import 'package:theme/data/models/box_constraints_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'search_bar_model.freezed.dart';
 part 'search_bar_model.g.dart';
@@ -12,18 +15,20 @@ part 'search_bar_model.g.dart';
 @freezed
 class SearchBarModel with _$SearchBarModel {
   const factory SearchBarModel({
-    double? elevation,
-    String? backgroundColor,
-    String? shadowColor,
-    String? surfaceTintColor,
-    String? overlayColor,
-    @BorderSideConverter() BorderSide? side,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    @EdgeInsetsConverter() EdgeInsets? padding,
-    String? textStyle,
-    String? hintStyle,
-    @BoxConstraintsConverter() BoxConstraints? constraints,
-    @Default(TextCapitalization.none) TextCapitalization? textCapitalization,
+    double? elevation_double,
+    ThemeColorString? backgroundColor_color,
+    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? overlayColor_color,
+    // @BorderSideConverter()
+    BorderSideModel? side_borderSide,
+    // @OutlinedBorderConverter()
+    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
+    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    TextStyleString? textStyle_textStyle,
+    TextStyleString? hintStyle_textStyle,
+    @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
+    @Default(TextCapitalization.none) TextCapitalization? textCapitalization_enum_textCapitalization,
   }) = _SearchBarModel;
 
   const SearchBarModel._();
@@ -68,18 +73,18 @@ class SearchBarModel with _$SearchBarModel {
 
   SearchBarThemeData asSearchBarThemeData({String? styleTypeName}) {
     return SearchBarThemeData(
-      elevation: MaterialStateProperty.all(elevation),
-      backgroundColor: MaterialStateProperty.all(backgroundColor?.toColor(styleType: styleTypeName)),
-      shadowColor: MaterialStateProperty.all(shadowColor?.toColor(styleType: styleTypeName)),
-      surfaceTintColor: MaterialStateProperty.all(surfaceTintColor?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor?.toColor(styleType: styleTypeName)),
-      side: MaterialStateProperty.all(side),
-      shape: MaterialStateProperty.all(shape),
-      padding: MaterialStateProperty.all(padding),
-      textStyle: MaterialStateProperty.all(textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      hintStyle: MaterialStateProperty.all(hintStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      constraints: constraints,
-      textCapitalization: textCapitalization,
+      elevation: MaterialStateProperty.all(elevation_double),
+      backgroundColor: MaterialStateProperty.all(backgroundColor_color?.toColor(styleType: styleTypeName)),
+      shadowColor: MaterialStateProperty.all(shadowColor_color?.toColor(styleType: styleTypeName)),
+      surfaceTintColor: MaterialStateProperty.all(surfaceTintColor_color?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      side: MaterialStateProperty.all(side_borderSide?.asBorderSide(styleTypeName: styleTypeName)),
+      shape: MaterialStateProperty.all(shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName)),
+      padding: MaterialStateProperty.all(padding_edgeInsets),
+      textStyle: MaterialStateProperty.all(textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      hintStyle: MaterialStateProperty.all(hintStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      textCapitalization: textCapitalization_enum_textCapitalization,
     );
   }
 }

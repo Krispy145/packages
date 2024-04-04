@@ -1,7 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/borders/outlined_border_model.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'drawer_model.freezed.dart';
 part 'drawer_model.g.dart';
@@ -9,56 +11,32 @@ part 'drawer_model.g.dart';
 @freezed
 class DrawerModel with _$DrawerModel {
   const factory DrawerModel({
-    String? backgroundColor,
-    String? scrimColor,
-    double? elevation,
-    String? shadowColor,
-    String? surfaceTintColor,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    @OutlinedBorderConverter() OutlinedBorder? endShape,
-    double? width,
+    ThemeColorString? backgroundColor_color,
+    ThemeColorString? scrimColor_color,
+    double? elevation_double,
+    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_color,
+    // @OutlinedBorderConverter()
+    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
+    // @OutlinedBorderConverter()
+    @Default(OutlinedBorderModel()) OutlinedBorderModel? endShape_outlinedBorder,
+    double? width_double,
   }) = _DrawerModel;
 
   const DrawerModel._();
 
   factory DrawerModel.fromJson(Map<String, dynamic> json) => _$DrawerModelFromJson(json);
-  // static DrawerModel defaultDrawerModel() {
-  //   return const DrawerModel(
-  //     backgroundColor: "surface",
-  //     scrimColor: "surface",
-  //     elevation: 16.0,
-  //     shadowColor: "outline",
-  //     surfaceTintColor: "surface",
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(0.0),
-  //         topRight: Radius.circular(0.0),
-  //         bottomLeft: Radius.circular(0.0),
-  //         bottomRight: Radius.circular(0.0),
-  //       ),
-  //     ),
-  //     endShape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(0.0),
-  //         topRight: Radius.circular(0.0),
-  //         bottomLeft: Radius.circular(0.0),
-  //         bottomRight: Radius.circular(0.0),
-  //       ),
-  //     ),
-  //     width: 304.0,
-  //   );
-  // }
 
   DrawerThemeData asDrawerThemeData({String? styleTypeName}) {
     return DrawerThemeData(
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      scrimColor: scrimColor?.toColor(styleType: styleTypeName),
-      elevation: elevation,
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      shape: shape,
-      endShape: endShape,
-      width: width,
+      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      scrimColor: scrimColor_color?.toColor(styleType: styleTypeName),
+      elevation: elevation_double,
+      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      endShape: endShape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      width: width_double,
     );
   }
 }

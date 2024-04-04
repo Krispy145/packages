@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/domain/converters/sizes/size.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
+import 'package:theme/data/models/general/size_model.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'navigation_drawer_model.freezed.dart';
 part 'navigation_drawer_model.g.dart';
@@ -10,15 +11,16 @@ part 'navigation_drawer_model.g.dart';
 @freezed
 class NavigationDrawerModel with _$NavigationDrawerModel {
   const factory NavigationDrawerModel({
-    double? tileHeight,
-    String? backgroundColor,
-    double? elevation,
-    String? shadowColor,
-    String? surfaceTintColor,
-    String? indicatorColor,
-    @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-    @SizeConverter() Size? indicatorSize,
-    String? labelTextStyle,
+    double? tileHeight_double,
+    ThemeColorString? backgroundColor_color,
+    double? elevation_double,
+    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? indicatorColor_color,
+    // @OutlinedBorderConverter()
+    @Default(ShapeBorderModel()) ShapeBorderModel? indicatorShape_shapeBorder,
+    @Default(SizeModel()) SizeModel? indicatorSize_size,
+    TextStyleString? labelTextStyle_textStyle,
   }) = _NavigationDrawerModel;
 
   const NavigationDrawerModel._();
@@ -48,15 +50,15 @@ class NavigationDrawerModel with _$NavigationDrawerModel {
 
   NavigationDrawerThemeData asNavigationDrawerThemeData({String? styleTypeName}) {
     return NavigationDrawerThemeData(
-      tileHeight: tileHeight,
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      elevation: elevation,
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      indicatorColor: indicatorColor?.toColor(styleType: styleTypeName),
-      indicatorShape: indicatorShape,
-      indicatorSize: indicatorSize,
-      labelTextStyle: MaterialStateProperty.all(labelTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      tileHeight: tileHeight_double,
+      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      elevation: elevation_double,
+      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
+      indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
+      indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
+      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
     );
   }
 }

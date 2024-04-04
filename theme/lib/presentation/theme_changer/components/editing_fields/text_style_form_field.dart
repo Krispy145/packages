@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:theme/app/app_theme.dart';
 import 'package:theme/data/models/text/text_style_sizes.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
 import 'package:utilities/sizes/spacers.dart';
 
 class TextStyleFormField extends StatefulWidget {
-  final String? initialValue;
+  final TextStyleString? initialValue;
   final void Function(String?) onChanged;
 
   const TextStyleFormField({super.key, required this.initialValue, required this.onChanged});
@@ -15,7 +15,7 @@ class TextStyleFormField extends StatefulWidget {
 }
 
 class _TextStyleFormFieldState extends State<TextStyleFormField> {
-  late String? value;
+  late TextStyleString? value;
 
   @override
   void initState() {
@@ -23,7 +23,7 @@ class _TextStyleFormFieldState extends State<TextStyleFormField> {
     _setNewTextStyle(widget.initialValue);
   }
 
-  void _setNewTextStyle(String? newValue) {
+  void _setNewTextStyle(TextStyleString? newValue) {
     setState(() => value = newValue);
     widget.onChanged(newValue);
   }
