@@ -17,7 +17,7 @@ enum InputBorderType {
 @freezed
 class InputBorderModel with _$InputBorderModel {
   const factory InputBorderModel({
-    InputBorderType? type_enum_inputBorderType,
+    @Default(InputBorderType.none) InputBorderType? type_enum_inputBorderType,
     @Default(BorderRadiusModel()) BorderRadiusModel? borderRadius_borderRadius,
     @Default(BorderSideModel()) BorderSideModel? borderSide_borderSide,
     double? gapPadding_double,
