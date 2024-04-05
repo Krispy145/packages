@@ -6,7 +6,8 @@ import 'package:theme/data/models/borders/outlined_border_model.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/bool_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/bool/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/bool/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius_form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/double_form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/form_field.dart';
@@ -71,25 +72,26 @@ class ThemeComponentEditor extends MapEditor {
       case "_int":
         return DoubleFormField(
           initialValue: value as double?,
-          increment: 1,
           onChanged: (newValue) => onChanged(keys, newValue),
         );
       case "_bool":
-        return BoolFormField(
-          initialValue: value as bool?,
-          onChanged: (newValue) => onChanged(keys, newValue),
+        final store = BoolFormFieldStore(
+          value: value as bool?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
         );
+        return BoolFormField(store: store);
       case "_string":
         return TextFormField(
           initialValue: value as String?,
           onChanged: (newValue) => onChanged(keys, newValue),
         );
       case "_edgeInsets":
+        final store = EdgeInsetsFormFieldStore(
+          value: const EdgeInsetsConverter().fromJson(value) ?? EdgeInsets.zero,
+          onValueChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
+        );
         return EdgeInsetsFormField(
-          store: EdgeInsetsFormFieldStore(
-            value: const EdgeInsetsConverter().fromJson(value) ?? EdgeInsets.zero,
-            onValueChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
-          ),
+          store: store,
         );
       case "_color":
         return ThemeColorFormField(
