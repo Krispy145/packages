@@ -7,8 +7,12 @@ import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius_form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/double_form_field.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/input_border_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/outlined_border_form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/text_style_form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_map/view.dart';
@@ -65,7 +69,6 @@ class ThemeComponentEditor extends MapEditor {
           onChanged: (newValue) => onChanged(keys, newValue),
         );
       case "_int":
-        // TODO: Figure out how to handle ints better
         return DoubleFormField(
           initialValue: value as double?,
           increment: 1,
@@ -83,8 +86,10 @@ class ThemeComponentEditor extends MapEditor {
         );
       case "_edgeInsets":
         return EdgeInsetsFormField(
-          initialValue: const EdgeInsetsConverter().fromJson(value),
-          onChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
+          store: EdgeInsetsFormFieldStore(
+            value: const EdgeInsetsConverter().fromJson(value) ?? EdgeInsets.zero,
+            onValueChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
+          ),
         );
       case "_color":
         return ThemeColorFormField(
@@ -96,66 +101,27 @@ class ThemeComponentEditor extends MapEditor {
           initialValue: value as TextStyleString?,
           onChanged: (newValue) => onChanged(keys, newValue),
         );
-      case "_size":
-      case "_boxConstraints":
-      case "_borderSide":
-      case "_shapeBorder":
+      // case "_borderSide":
+      //   return BorderSideFormField(initialValue: value != null ? BorderSideModel.fromJson(value as Map<String, dynamic>) : null, onChanged: (newValue) => onChanged(keys, newValue?.toJson()));
+      case "_borderRadius":
+        return BorderRadiusFormField(
+          initialValue: value != null ? BorderRadiusModel.fromJson(value as Map<String, dynamic>) : null,
+          onChanged: (newValue) => onChanged(keys, newValue.toJson()),
+        );
       case "_outlinedBorder":
+        return OutlinedBorderFormField(
+          initialValue: value != null ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>) : null,
+          onChanged: (newValue) => onChanged(keys, newValue.toJson()),
+        );
       case "_inputBorder":
+        return InputBorderFormField(
+          initialValue: value != null ? InputBorderModel.fromJson(value as Map<String, dynamic>) : null,
+          onChanged: (newValue) => onChanged(keys, newValue.toJson()),
+        );
+      case "_shapeBorder":
       default:
         return null;
     }
-
-    // if (keys.last.toLowerCase().contains("textstyle") && value is String?) {
-    //   // Working
-    //   return TextStyleFormField(
-    //     initialValue: value,
-    //     onChanged: (newValue) => onChanged(keys, newValue),
-    //   );
-    // } else if (value is double) {
-    //   // Working
-    //   return DoubleFormField(
-    //     initialValue: value,
-    //     increment: 1,
-    //     onChanged: (newValue) => onChanged(keys, newValue),
-    //   );
-    // } else if (value is bool) {
-    //   // Resetting on click
-    //   return BoolFormField(
-    //     initialValue: value,
-    //     onChanged: (newValue) => onChanged(keys, newValue),
-    //   );
-    // } else if (keys.last.toLowerCase().contains("color") && value is String?) {
-    //   // Not working
-    //   return ThemeColorFormField(
-    //     initialValue: value,
-    //     onChanged: (newValue) => onChanged(keys, newValue),
-    //   );
-    // } else if (keys.last.toLowerCase().contains("padding") || keys.last.toLowerCase().contains("margin")) {
-    //   //
-    //   return EdgeInsetsFormField(
-    //     initialValue: const EdgeInsetsConverter().fromJson(value),
-    //     onChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
-    //   );
-    // } else if (value is String) {
-    //   // Enums not matching right :'(
-    //   for (final element in enumComponentProperties) {
-    //     if (element.values.map((e) => e.name).contains(value)) {
-    //       // if ((keys.last == 'type' && element.keyMatcher(keys[keys.length - 2])) || element.keyMatcher(keys.last) || element.values.map((e) => e.name).contains(value)) {
-    //       AppLogger.print("ENUM: Found a match for ${element.name} -> $keys", [PackageFeatures.theme]);
-    //       return DropdownButton(
-    //         value: element.values.firstWhere((element) => element.toString().toLowerCase() == value.toLowerCase()),
-    //         onChanged: (newValue) => onChanged(keys, newValue.toString()),
-    //         items: element.values.map((e) => DropdownMenuItem<Enum>(value: e, child: Text(e.toString()))).toList(),
-    //       );
-    //     }
-    //   }
-    //   // AppLogger.print("NOT ENUM: Found a match for -> $keys", [PackageFeatures.theme]);
-    //   return TextFormField(
-    //     initialValue: value,
-    //     onChanged: (newValue) => onChanged(keys, newValue),
-    //   );
-    // }
   }
 }
 
@@ -186,4 +152,5 @@ final List<EnumComponentProperties> enumComponentProperties = [
   EnumComponentProperties(name: "inputBorderType", values: InputBorderType.values),
   EnumComponentProperties(name: "outlinedBorderType", values: OutlinedBorderType.values),
   EnumComponentProperties(name: "shapeBorderType", values: ShapeBorderType.values),
+  EnumComponentProperties(name: "borderStyle", values: BorderStyle.values),
 ];

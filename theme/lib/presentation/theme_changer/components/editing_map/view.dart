@@ -17,7 +17,6 @@ class MapEditor extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(mapEditorStore.mapData.toString()),
               buildHeader(context),
               _buildMapEditor(context, mapEditorStore.mapData, []),
             ],
@@ -47,6 +46,7 @@ class MapEditor extends StatelessWidget {
           if (valueEditor != null) {
             return ExpansionTile(
               title: Text(key),
+              expandedAlignment: Alignment.topLeft,
               children: [Padding(padding: const EdgeInsets.only(left: 16), child: valueEditor)],
             );
           } else if (value is Map<dynamic, dynamic>) {
@@ -94,8 +94,5 @@ class MapEditor extends StatelessWidget {
       );
     }
     return null;
-    // else {
-    //   return const Text('Unsupported Type');
-    // }
   }
 }

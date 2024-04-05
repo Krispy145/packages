@@ -6,7 +6,9 @@ class DoubleFormField extends StatefulWidget {
   final double? initialValue;
   final double increment;
   final void Function(double? newDouble) onChanged;
-  const DoubleFormField({super.key, this.initialValue, required this.onChanged, required this.increment});
+  final bool enabled;
+  final bool showButtons;
+  const DoubleFormField({super.key, this.initialValue, required this.onChanged, this.increment = 1, this.enabled = true, this.showButtons = true});
 
   @override
   State<DoubleFormField> createState() => _DoubleChangerState();
@@ -17,7 +19,7 @@ class _DoubleChangerState extends State<DoubleFormField> {
 
   @override
   void initState() {
-    _controller = TextEditingController(text: widget.initialValue.toString());
+    _controller = TextEditingController(text: widget.initialValue?.toString());
     super.initState();
   }
 
@@ -41,26 +43,32 @@ class _DoubleChangerState extends State<DoubleFormField> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            IconButton.filled(
-              icon: const Icon(Icons.remove, color: Colors.white),
-              onPressed: () => setState(() => addToValueInController(-widget.increment)),
-            ),
+            if (widget.showButtons)
+              IconButton.filled(
+                icon: const Icon(Icons.remove, color: Colors.white),
+                onPressed: () => setState(() => addToValueInController(-widget.increment)),
+              ),
             Sizes.s.spacer(vertical: false),
-            Expanded(
+            SizedBox(
+              width: 100,
               child: TextField(
+                decoration: const InputDecoration(border: UnderlineInputBorder()),
                 controller: _controller,
                 keyboardType: TextInputType.number,
+                enabled: widget.enabled,
                 onChanged: (value) => widget.onChanged(double.tryParse(value)),
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
+                  FilteringTextInputFormatter.digitsOnly,
+                  // FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),
                 ],
               ),
             ),
             Sizes.s.spacer(vertical: false),
-            IconButton.filled(
-              icon: const Icon(Icons.add, color: Colors.white),
-              onPressed: () => setState(() => addToValueInController(widget.increment)),
-            ),
+            if (widget.showButtons)
+              IconButton.filled(
+                icon: const Icon(Icons.add, color: Colors.white),
+                onPressed: () => setState(() => addToValueInController(widget.increment)),
+              ),
           ],
         ),
       ],
