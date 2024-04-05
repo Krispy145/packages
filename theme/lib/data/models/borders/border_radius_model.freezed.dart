@@ -166,7 +166,7 @@ class __$$BorderRadiusModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BorderRadiusModelImpl extends _BorderRadiusModel {
   const _$BorderRadiusModelImpl(
-      {this.type_enum_borderRadiusType,
+      {this.type_enum_borderRadiusType = BorderRadiusType.circular,
       this.topLeft_double,
       this.topRight_double,
       this.bottomLeft_double,
@@ -178,6 +178,7 @@ class _$BorderRadiusModelImpl extends _BorderRadiusModel {
       _$$BorderRadiusModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final BorderRadiusType? type_enum_borderRadiusType;
   @override
   final double? topLeft_double;

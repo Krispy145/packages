@@ -7,7 +7,7 @@ part 'border_radius_model.freezed.dart';
 part 'border_radius_model.g.dart';
 
 enum BorderRadiusType {
-  all,
+  // all,
   circular,
   only,
 }
@@ -15,7 +15,7 @@ enum BorderRadiusType {
 @freezed
 class BorderRadiusModel with _$BorderRadiusModel {
   const factory BorderRadiusModel({
-    BorderRadiusType? type_enum_borderRadiusType,
+    @Default(BorderRadiusType.circular) BorderRadiusType? type_enum_borderRadiusType,
     double? topLeft_double,
     double? topRight_double,
     double? bottomLeft_double,
@@ -29,8 +29,8 @@ class BorderRadiusModel with _$BorderRadiusModel {
 
   BorderRadius? asBorderRadius({String? styleTypeName}) {
     switch (type_enum_borderRadiusType) {
-      case BorderRadiusType.all:
-        return BorderRadius.all(all_double != null ? Radius.circular(all_double!) : Radius.zero);
+      // case BorderRadiusType.all:
+      //   return BorderRadius.all(all_double != null ? Radius.circular(all_double!) : Radius.zero);
       case BorderRadiusType.only:
         return BorderRadius.only(
           topLeft: topLeft_double != null ? Radius.circular(topLeft_double!) : Radius.zero,

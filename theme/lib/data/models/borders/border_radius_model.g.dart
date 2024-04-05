@@ -10,7 +10,8 @@ _$BorderRadiusModelImpl _$$BorderRadiusModelImplFromJson(
         Map<String, dynamic> json) =>
     _$BorderRadiusModelImpl(
       type_enum_borderRadiusType: $enumDecodeNullable(
-          _$BorderRadiusTypeEnumMap, json['type_enum_borderRadiusType']),
+              _$BorderRadiusTypeEnumMap, json['type_enum_borderRadiusType']) ??
+          BorderRadiusType.circular,
       topLeft_double: (json['topLeft_double'] as num?)?.toDouble(),
       topRight_double: (json['topRight_double'] as num?)?.toDouble(),
       bottomLeft_double: (json['bottomLeft_double'] as num?)?.toDouble(),
@@ -31,7 +32,6 @@ Map<String, dynamic> _$$BorderRadiusModelImplToJson(
     };
 
 const _$BorderRadiusTypeEnumMap = {
-  BorderRadiusType.all: 'all',
   BorderRadiusType.circular: 'circular',
   BorderRadiusType.only: 'only',
 };
