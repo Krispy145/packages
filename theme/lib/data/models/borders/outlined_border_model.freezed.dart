@@ -23,7 +23,8 @@ mixin _$OutlinedBorderModel {
   OutlinedBorderType? get type_enum_outlinedBorderType =>
       throw _privateConstructorUsedError;
   BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
-  double? get borderRadius_double => throw _privateConstructorUsedError;
+  BorderRadiusModel? get borderRadius_borderRadius =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,9 +41,10 @@ abstract class $OutlinedBorderModelCopyWith<$Res> {
   $Res call(
       {OutlinedBorderType? type_enum_outlinedBorderType,
       BorderSideModel? side_borderSide,
-      double? borderRadius_double});
+      BorderRadiusModel? borderRadius_borderRadius});
 
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
+  $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius;
 }
 
 /// @nodoc
@@ -60,7 +62,7 @@ class _$OutlinedBorderModelCopyWithImpl<$Res, $Val extends OutlinedBorderModel>
   $Res call({
     Object? type_enum_outlinedBorderType = freezed,
     Object? side_borderSide = freezed,
-    Object? borderRadius_double = freezed,
+    Object? borderRadius_borderRadius = freezed,
   }) {
     return _then(_value.copyWith(
       type_enum_outlinedBorderType: freezed == type_enum_outlinedBorderType
@@ -71,10 +73,10 @@ class _$OutlinedBorderModelCopyWithImpl<$Res, $Val extends OutlinedBorderModel>
           ? _value.side_borderSide
           : side_borderSide // ignore: cast_nullable_to_non_nullable
               as BorderSideModel?,
-      borderRadius_double: freezed == borderRadius_double
-          ? _value.borderRadius_double
-          : borderRadius_double // ignore: cast_nullable_to_non_nullable
-              as double?,
+      borderRadius_borderRadius: freezed == borderRadius_borderRadius
+          ? _value.borderRadius_borderRadius
+          : borderRadius_borderRadius // ignore: cast_nullable_to_non_nullable
+              as BorderRadiusModel?,
     ) as $Val);
   }
 
@@ -87,6 +89,19 @@ class _$OutlinedBorderModelCopyWithImpl<$Res, $Val extends OutlinedBorderModel>
 
     return $BorderSideModelCopyWith<$Res>(_value.side_borderSide!, (value) {
       return _then(_value.copyWith(side_borderSide: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius {
+    if (_value.borderRadius_borderRadius == null) {
+      return null;
+    }
+
+    return $BorderRadiusModelCopyWith<$Res>(_value.borderRadius_borderRadius!,
+        (value) {
+      return _then(_value.copyWith(borderRadius_borderRadius: value) as $Val);
     });
   }
 }
@@ -102,10 +117,12 @@ abstract class _$$OutlinedBorderModelImplCopyWith<$Res>
   $Res call(
       {OutlinedBorderType? type_enum_outlinedBorderType,
       BorderSideModel? side_borderSide,
-      double? borderRadius_double});
+      BorderRadiusModel? borderRadius_borderRadius});
 
   @override
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
+  @override
+  $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius;
 }
 
 /// @nodoc
@@ -121,7 +138,7 @@ class __$$OutlinedBorderModelImplCopyWithImpl<$Res>
   $Res call({
     Object? type_enum_outlinedBorderType = freezed,
     Object? side_borderSide = freezed,
-    Object? borderRadius_double = freezed,
+    Object? borderRadius_borderRadius = freezed,
   }) {
     return _then(_$OutlinedBorderModelImpl(
       type_enum_outlinedBorderType: freezed == type_enum_outlinedBorderType
@@ -132,10 +149,10 @@ class __$$OutlinedBorderModelImplCopyWithImpl<$Res>
           ? _value.side_borderSide
           : side_borderSide // ignore: cast_nullable_to_non_nullable
               as BorderSideModel?,
-      borderRadius_double: freezed == borderRadius_double
-          ? _value.borderRadius_double
-          : borderRadius_double // ignore: cast_nullable_to_non_nullable
-              as double?,
+      borderRadius_borderRadius: freezed == borderRadius_borderRadius
+          ? _value.borderRadius_borderRadius
+          : borderRadius_borderRadius // ignore: cast_nullable_to_non_nullable
+              as BorderRadiusModel?,
     ));
   }
 }
@@ -144,25 +161,28 @@ class __$$OutlinedBorderModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$OutlinedBorderModelImpl extends _OutlinedBorderModel {
   const _$OutlinedBorderModelImpl(
-      {this.type_enum_outlinedBorderType,
+      {this.type_enum_outlinedBorderType =
+          OutlinedBorderType.roundedRectangleBorder,
       this.side_borderSide = const BorderSideModel(),
-      this.borderRadius_double})
+      this.borderRadius_borderRadius = const BorderRadiusModel()})
       : super._();
 
   factory _$OutlinedBorderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$OutlinedBorderModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final OutlinedBorderType? type_enum_outlinedBorderType;
   @override
   @JsonKey()
   final BorderSideModel? side_borderSide;
   @override
-  final double? borderRadius_double;
+  @JsonKey()
+  final BorderRadiusModel? borderRadius_borderRadius;
 
   @override
   String toString() {
-    return 'OutlinedBorderModel(type_enum_outlinedBorderType: $type_enum_outlinedBorderType, side_borderSide: $side_borderSide, borderRadius_double: $borderRadius_double)';
+    return 'OutlinedBorderModel(type_enum_outlinedBorderType: $type_enum_outlinedBorderType, side_borderSide: $side_borderSide, borderRadius_borderRadius: $borderRadius_borderRadius)';
   }
 
   @override
@@ -176,14 +196,15 @@ class _$OutlinedBorderModelImpl extends _OutlinedBorderModel {
                     type_enum_outlinedBorderType) &&
             (identical(other.side_borderSide, side_borderSide) ||
                 other.side_borderSide == side_borderSide) &&
-            (identical(other.borderRadius_double, borderRadius_double) ||
-                other.borderRadius_double == borderRadius_double));
+            (identical(other.borderRadius_borderRadius,
+                    borderRadius_borderRadius) ||
+                other.borderRadius_borderRadius == borderRadius_borderRadius));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, type_enum_outlinedBorderType,
-      side_borderSide, borderRadius_double);
+      side_borderSide, borderRadius_borderRadius);
 
   @JsonKey(ignore: true)
   @override
@@ -202,9 +223,10 @@ class _$OutlinedBorderModelImpl extends _OutlinedBorderModel {
 
 abstract class _OutlinedBorderModel extends OutlinedBorderModel {
   const factory _OutlinedBorderModel(
-      {final OutlinedBorderType? type_enum_outlinedBorderType,
-      final BorderSideModel? side_borderSide,
-      final double? borderRadius_double}) = _$OutlinedBorderModelImpl;
+          {final OutlinedBorderType? type_enum_outlinedBorderType,
+          final BorderSideModel? side_borderSide,
+          final BorderRadiusModel? borderRadius_borderRadius}) =
+      _$OutlinedBorderModelImpl;
   const _OutlinedBorderModel._() : super._();
 
   factory _OutlinedBorderModel.fromJson(Map<String, dynamic> json) =
@@ -215,7 +237,7 @@ abstract class _OutlinedBorderModel extends OutlinedBorderModel {
   @override
   BorderSideModel? get side_borderSide;
   @override
-  double? get borderRadius_double;
+  BorderRadiusModel? get borderRadius_borderRadius;
   @override
   @JsonKey(ignore: true)
   _$$OutlinedBorderModelImplCopyWith<_$OutlinedBorderModelImpl> get copyWith =>

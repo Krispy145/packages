@@ -10,7 +10,8 @@ _$InputBorderModelImpl _$$InputBorderModelImplFromJson(
         Map<String, dynamic> json) =>
     _$InputBorderModelImpl(
       type_enum_inputBorderType: $enumDecodeNullable(
-          _$InputBorderTypeEnumMap, json['type_enum_inputBorderType']),
+              _$InputBorderTypeEnumMap, json['type_enum_inputBorderType']) ??
+          InputBorderType.none,
       borderRadius_borderRadius: json['borderRadius_borderRadius'] == null
           ? const BorderRadiusModel()
           : BorderRadiusModel.fromJson(

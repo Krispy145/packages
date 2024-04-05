@@ -176,7 +176,7 @@ class __$$InputBorderModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InputBorderModelImpl extends _InputBorderModel {
   const _$InputBorderModelImpl(
-      {this.type_enum_inputBorderType,
+      {this.type_enum_inputBorderType = InputBorderType.none,
       this.borderRadius_borderRadius = const BorderRadiusModel(),
       this.borderSide_borderSide = const BorderSideModel(),
       this.gapPadding_double})
@@ -186,6 +186,7 @@ class _$InputBorderModelImpl extends _InputBorderModel {
       _$$InputBorderModelImplFromJson(json);
 
   @override
+  @JsonKey()
   final InputBorderType? type_enum_inputBorderType;
   @override
   @JsonKey()
