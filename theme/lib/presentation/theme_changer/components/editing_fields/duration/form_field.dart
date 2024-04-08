@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/duration/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/int/form_field.dart';
+
+class DurationFormField extends StatelessWidget {
+  const DurationFormField({super.key, required this.store});
+
+  final DurationFormFieldStore store;
+
+  double get formFieldWidth => 100;
+
+  @override
+  Widget build(BuildContext context) {
+    return Observer(
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                IntFormField(store: store.daysStore),
+                IntFormField(store: store.hoursStore),
+                IntFormField(store: store.minutesStore),
+                IntFormField(store: store.secondsStore),
+                IntFormField(store: store.millisecondsStore),
+                IntFormField(store: store.microsecondsStore),
+              ].map((e) => SizedBox(width: formFieldWidth, child: e)).toList(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

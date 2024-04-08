@@ -8,12 +8,12 @@ part 'duration_model.g.dart';
 @freezed
 class DurationModel with _$DurationModel {
   const factory DurationModel({
-    @Default(0) final int days_int,
-    @Default(0) final int hours_int,
-    @Default(0) final int minutes_int,
-    @Default(0) final int seconds_int,
-    @Default(0) final int milliseconds_int,
-    @Default(0) final int microseconds_int,
+    final int? days_int,
+    final int? hours_int,
+    final int? minutes_int,
+    final int? seconds_int,
+    final int? milliseconds_int,
+    final int? microseconds_int,
   }) = _DurationModel;
 
   const DurationModel._();
@@ -22,12 +22,12 @@ class DurationModel with _$DurationModel {
 
   Duration? asDuration({String? styleTypeName}) {
     return Duration(
-      days: days_int,
-      hours: hours_int,
-      minutes: minutes_int,
-      seconds: seconds_int,
-      milliseconds: milliseconds_int,
-      microseconds: microseconds_int,
+      days: days_int ?? 0,
+      hours: hours_int ?? 0,
+      minutes: minutes_int ?? 0,
+      seconds: seconds_int ?? 0,
+      milliseconds: milliseconds_int ?? 0,
+      microseconds: microseconds_int ?? 0,
     );
   }
 }

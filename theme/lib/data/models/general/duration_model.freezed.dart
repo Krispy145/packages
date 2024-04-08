@@ -20,12 +20,12 @@ DurationModel _$DurationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DurationModel {
-  int get days_int => throw _privateConstructorUsedError;
-  int get hours_int => throw _privateConstructorUsedError;
-  int get minutes_int => throw _privateConstructorUsedError;
-  int get seconds_int => throw _privateConstructorUsedError;
-  int get milliseconds_int => throw _privateConstructorUsedError;
-  int get microseconds_int => throw _privateConstructorUsedError;
+  int? get days_int => throw _privateConstructorUsedError;
+  int? get hours_int => throw _privateConstructorUsedError;
+  int? get minutes_int => throw _privateConstructorUsedError;
+  int? get seconds_int => throw _privateConstructorUsedError;
+  int? get milliseconds_int => throw _privateConstructorUsedError;
+  int? get microseconds_int => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +40,12 @@ abstract class $DurationModelCopyWith<$Res> {
       _$DurationModelCopyWithImpl<$Res, DurationModel>;
   @useResult
   $Res call(
-      {int days_int,
-      int hours_int,
-      int minutes_int,
-      int seconds_int,
-      int milliseconds_int,
-      int microseconds_int});
+      {int? days_int,
+      int? hours_int,
+      int? minutes_int,
+      int? seconds_int,
+      int? milliseconds_int,
+      int? microseconds_int});
 }
 
 /// @nodoc
@@ -61,38 +61,38 @@ class _$DurationModelCopyWithImpl<$Res, $Val extends DurationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? days_int = null,
-    Object? hours_int = null,
-    Object? minutes_int = null,
-    Object? seconds_int = null,
-    Object? milliseconds_int = null,
-    Object? microseconds_int = null,
+    Object? days_int = freezed,
+    Object? hours_int = freezed,
+    Object? minutes_int = freezed,
+    Object? seconds_int = freezed,
+    Object? milliseconds_int = freezed,
+    Object? microseconds_int = freezed,
   }) {
     return _then(_value.copyWith(
-      days_int: null == days_int
+      days_int: freezed == days_int
           ? _value.days_int
           : days_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      hours_int: null == hours_int
+              as int?,
+      hours_int: freezed == hours_int
           ? _value.hours_int
           : hours_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      minutes_int: null == minutes_int
+              as int?,
+      minutes_int: freezed == minutes_int
           ? _value.minutes_int
           : minutes_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      seconds_int: null == seconds_int
+              as int?,
+      seconds_int: freezed == seconds_int
           ? _value.seconds_int
           : seconds_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      milliseconds_int: null == milliseconds_int
+              as int?,
+      milliseconds_int: freezed == milliseconds_int
           ? _value.milliseconds_int
           : milliseconds_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      microseconds_int: null == microseconds_int
+              as int?,
+      microseconds_int: freezed == microseconds_int
           ? _value.microseconds_int
           : microseconds_int // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -106,12 +106,12 @@ abstract class _$$DurationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int days_int,
-      int hours_int,
-      int minutes_int,
-      int seconds_int,
-      int milliseconds_int,
-      int microseconds_int});
+      {int? days_int,
+      int? hours_int,
+      int? minutes_int,
+      int? seconds_int,
+      int? milliseconds_int,
+      int? microseconds_int});
 }
 
 /// @nodoc
@@ -125,38 +125,38 @@ class __$$DurationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? days_int = null,
-    Object? hours_int = null,
-    Object? minutes_int = null,
-    Object? seconds_int = null,
-    Object? milliseconds_int = null,
-    Object? microseconds_int = null,
+    Object? days_int = freezed,
+    Object? hours_int = freezed,
+    Object? minutes_int = freezed,
+    Object? seconds_int = freezed,
+    Object? milliseconds_int = freezed,
+    Object? microseconds_int = freezed,
   }) {
     return _then(_$DurationModelImpl(
-      days_int: null == days_int
+      days_int: freezed == days_int
           ? _value.days_int
           : days_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      hours_int: null == hours_int
+              as int?,
+      hours_int: freezed == hours_int
           ? _value.hours_int
           : hours_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      minutes_int: null == minutes_int
+              as int?,
+      minutes_int: freezed == minutes_int
           ? _value.minutes_int
           : minutes_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      seconds_int: null == seconds_int
+              as int?,
+      seconds_int: freezed == seconds_int
           ? _value.seconds_int
           : seconds_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      milliseconds_int: null == milliseconds_int
+              as int?,
+      milliseconds_int: freezed == milliseconds_int
           ? _value.milliseconds_int
           : milliseconds_int // ignore: cast_nullable_to_non_nullable
-              as int,
-      microseconds_int: null == microseconds_int
+              as int?,
+      microseconds_int: freezed == microseconds_int
           ? _value.microseconds_int
           : microseconds_int // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -165,35 +165,29 @@ class __$$DurationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DurationModelImpl extends _DurationModel {
   const _$DurationModelImpl(
-      {this.days_int = 0,
-      this.hours_int = 0,
-      this.minutes_int = 0,
-      this.seconds_int = 0,
-      this.milliseconds_int = 0,
-      this.microseconds_int = 0})
+      {this.days_int,
+      this.hours_int,
+      this.minutes_int,
+      this.seconds_int,
+      this.milliseconds_int,
+      this.microseconds_int})
       : super._();
 
   factory _$DurationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DurationModelImplFromJson(json);
 
   @override
-  @JsonKey()
-  final int days_int;
+  final int? days_int;
   @override
-  @JsonKey()
-  final int hours_int;
+  final int? hours_int;
   @override
-  @JsonKey()
-  final int minutes_int;
+  final int? minutes_int;
   @override
-  @JsonKey()
-  final int seconds_int;
+  final int? seconds_int;
   @override
-  @JsonKey()
-  final int milliseconds_int;
+  final int? milliseconds_int;
   @override
-  @JsonKey()
-  final int microseconds_int;
+  final int? microseconds_int;
 
   @override
   String toString() {
@@ -240,29 +234,29 @@ class _$DurationModelImpl extends _DurationModel {
 
 abstract class _DurationModel extends DurationModel {
   const factory _DurationModel(
-      {final int days_int,
-      final int hours_int,
-      final int minutes_int,
-      final int seconds_int,
-      final int milliseconds_int,
-      final int microseconds_int}) = _$DurationModelImpl;
+      {final int? days_int,
+      final int? hours_int,
+      final int? minutes_int,
+      final int? seconds_int,
+      final int? milliseconds_int,
+      final int? microseconds_int}) = _$DurationModelImpl;
   const _DurationModel._() : super._();
 
   factory _DurationModel.fromJson(Map<String, dynamic> json) =
       _$DurationModelImpl.fromJson;
 
   @override
-  int get days_int;
+  int? get days_int;
   @override
-  int get hours_int;
+  int? get hours_int;
   @override
-  int get minutes_int;
+  int? get minutes_int;
   @override
-  int get seconds_int;
+  int? get seconds_int;
   @override
-  int get milliseconds_int;
+  int? get milliseconds_int;
   @override
-  int get microseconds_int;
+  int? get microseconds_int;
   @override
   @JsonKey(ignore: true)
   _$$DurationModelImplCopyWith<_$DurationModelImpl> get copyWith =>

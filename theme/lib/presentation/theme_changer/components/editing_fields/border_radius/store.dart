@@ -10,6 +10,17 @@ part 'store.g.dart';
 class BorderRadiusFormFieldStore = _BorderRadiusFormFieldStore with _$BorderRadiusFormFieldStore;
 
 abstract class _BorderRadiusFormFieldStore extends BaseFormFieldStore<BorderRadiusModel> with Store {
+  _BorderRadiusFormFieldStore({super.value = const BorderRadiusModel(), required super.onValueChanged}) {
+    type = value.type_enum_borderRadiusType ?? BorderRadiusType.circular;
+    // On Type Changed
+    // reaction<BorderRadiusType>(
+    //   (reaction) => type,
+    //   (newType) {
+    //   },
+    // );
+    // On Value Changed
+    // reaction<BorderRadiusModel>((reaction) => value, (newValue) {});
+  }
   late BorderRadiusType type;
 
   late final allController = TextEditingController(text: value.all_double?.toString());
@@ -41,16 +52,5 @@ abstract class _BorderRadiusFormFieldStore extends BaseFormFieldStore<BorderRadi
 
   void onBottomRightChanged(String bottomRightValue) {
     value = value.copyWith(bottomRight_double: double.tryParse(bottomRightValue));
-  }
-
-  _BorderRadiusFormFieldStore({super.value = const BorderRadiusModel(), required super.onValueChanged}) {
-    // On Type Changed
-    // reaction<BorderRadiusType>(
-    //   (reaction) => type,
-    //   (newType) {
-    //   },
-    // );
-    // On Value Changed
-    // reaction<BorderRadiusModel>((reaction) => value, (newValue) {});
   }
 }
