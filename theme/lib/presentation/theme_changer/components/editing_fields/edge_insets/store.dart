@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/base/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/double/store.dart';
 
 part 'store.g.dart';
 
@@ -28,17 +29,17 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsets> 
     );
     // On Value Changed
     reaction<EdgeInsets>((reaction) => value, (newValue) {
-      topController.text = newValue.top.toString();
-      bottomController.text = newValue.bottom.toString();
-      leftController.text = newValue.left.toString();
-      rightController.text = newValue.right.toString();
+      // topController.text = newValue.top.toString();
+      // bottomController.text = newValue.bottom.toString();
+      // leftController.text = newValue.left.toString();
+      // rightController.text = newValue.right.toString();
     });
   }
 
-  late final TextEditingController topController = TextEditingController(text: value.top.toString());
-  late final TextEditingController leftController = TextEditingController(text: value.left.toString());
-  late final TextEditingController bottomController = TextEditingController(text: value.bottom.toString());
-  late final TextEditingController rightController = TextEditingController(text: value.right.toString());
+  late final DoubleFormFieldStore topStore = DoubleFormFieldStore(value: value.top, onValueChanged: onTopFieldChanged, showButtons: false);
+  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(value: value.left, onValueChanged: onLeftFieldChanged, showButtons: false);
+  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(value: value.bottom, onValueChanged: onBottomFieldChanged, showButtons: false);
+  late final DoubleFormFieldStore rightStore = DoubleFormFieldStore(value: value.right, onValueChanged: onRightFieldChanged, showButtons: false);
 
   @observable
   EdgeInsetsTypes type = EdgeInsetsTypes.all;

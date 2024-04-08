@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/double_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/double/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/store.dart';
 import 'package:utilities/helpers/extensions/string.dart';
 
@@ -26,40 +26,24 @@ class EdgeInsetsFormField extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                DoubleFormField(
-                  onChanged: store.onTopFieldChanged,
-                  enabled: store.topEnabled,
-                  showButtons: false,
-                ),
+                DoubleFormField(store: store.topStore),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                DoubleFormField(
-                  onChanged: store.onLeftFieldChanged,
-                  enabled: store.leftEnabled,
-                  showButtons: false,
-                ),
+                DoubleFormField(store: store.leftStore),
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Container(color: Theme.of(context).primaryColor, padding: store.value, child: Container(width: 40, height: 40, color: Colors.grey)),
                 ),
-                DoubleFormField(
-                  onChanged: store.onRightFieldChanged,
-                  enabled: store.rightEnabled,
-                  showButtons: false,
-                ),
+                DoubleFormField(store: store.rightStore),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                DoubleFormField(
-                  onChanged: store.onBottomFieldChanged,
-                  enabled: store.bottomEnabled,
-                  showButtons: false,
-                ),
+                DoubleFormField(store: store.bottomStore),
               ],
             ),
           ],

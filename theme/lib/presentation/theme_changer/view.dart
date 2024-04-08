@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
+import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/input_border_model.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
@@ -8,14 +9,22 @@ import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/store.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius_form_field.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/double_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/border_side/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/border_side/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/double/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/double/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/store.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/input_border_form_field.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/outlined_border_form_field.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/text_style_form_field.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/input_border/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/input_border/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/outlined_border/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/outlined_border/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/text_style_string/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/text_style_string/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_string/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_string/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_map/view.dart';
 import 'package:utilities/logger/logger.dart';
 
@@ -64,16 +73,12 @@ class ThemeComponentEditor extends MapEditor {
 
     switch (valueType) {
       case "_double":
-        return DoubleFormField(
-          initialValue: value as double?,
-          increment: 0.1,
-          onChanged: (newValue) => onChanged(keys, newValue),
-        );
+        final store = DoubleFormFieldStore(value: value as double?, onValueChanged: (newValue) => onChanged(keys, newValue), increment: 0.1);
+        return DoubleFormField(store: store);
+
       case "_int":
-        return DoubleFormField(
-          initialValue: value as double?,
-          onChanged: (newValue) => onChanged(keys, newValue),
-        );
+        final store = DoubleFormFieldStore(value: value as double?, onValueChanged: (newValue) => onChanged(keys, newValue));
+        return DoubleFormField(store: store);
       case "_bool":
         final store = BoolFormFieldStore(
           value: value as bool?,
@@ -94,32 +99,32 @@ class ThemeComponentEditor extends MapEditor {
           store: store,
         );
       case "_color":
-        return ThemeColorFormField(
-          initialValue: value as String?,
-          onChanged: (newValue) => onChanged(keys, newValue),
-        );
+        final store = ThemeColorStringFormFieldStore(value: value as String?, onValueChanged: (newValue) => onChanged(keys, newValue));
+        return ThemeColorStringFormField(store: store);
       case "_textStyle":
-        return TextStyleFormField(
-          initialValue: value as TextStyleString?,
-          onChanged: (newValue) => onChanged(keys, newValue),
+        final store = TextStyleStringFormFieldStore(value: value as TextStyleString?, onValueChanged: (newValue) => onChanged(keys, newValue));
+        return TextStyleStringFormField(store: store);
+      case "_borderSide":
+        final store = BorderSideFormFieldStore(
+          value: value != null ? BorderSideModel.fromJson(value as Map<String, dynamic>) : const BorderSideModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
         );
-      // case "_borderSide":
-      //   return BorderSideFormField(initialValue: value != null ? BorderSideModel.fromJson(value as Map<String, dynamic>) : null, onChanged: (newValue) => onChanged(keys, newValue?.toJson()));
+        return BorderSideFormField(store: store);
       case "_borderRadius":
-        return BorderRadiusFormField(
-          initialValue: value != null ? BorderRadiusModel.fromJson(value as Map<String, dynamic>) : null,
-          onChanged: (newValue) => onChanged(keys, newValue.toJson()),
-        );
+        final store = BorderRadiusFormFieldStore(onValueChanged: (newValue) => onChanged(keys, newValue.toJson()), value: BorderRadiusModel.fromJson(value as Map<String, dynamic>? ?? {}));
+        return BorderRadiusFormField(store: store);
       case "_outlinedBorder":
-        return OutlinedBorderFormField(
-          initialValue: value != null ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>) : null,
-          onChanged: (newValue) => onChanged(keys, newValue.toJson()),
+        final store = OutlinedBorderFormFieldStore(
+          value: value != null ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>) : const OutlinedBorderModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
         );
+        return OutlinedBorderFormField(store: store);
       case "_inputBorder":
-        return InputBorderFormField(
-          initialValue: value != null ? InputBorderModel.fromJson(value as Map<String, dynamic>) : null,
-          onChanged: (newValue) => onChanged(keys, newValue.toJson()),
+        final store = InputBorderFormFieldStore(
+          value: value != null ? InputBorderModel.fromJson(value as Map<String, dynamic>) : const InputBorderModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
         );
+        return InputBorderFormField(store: store);
       case "_shapeBorder":
       default:
         return null;

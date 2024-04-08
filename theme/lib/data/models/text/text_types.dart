@@ -50,16 +50,16 @@ abstract class TextTypes with _$TextTypes {
     );
   }
 
-  // /// [defaultTextTypes] returns a [TextTypes] with default values.
-  // static TextTypes defaultTextTypes() {
-  //   return TextTypes(
-  //     display: TextStyleSizes.defaultStyleSizes(),
-  //     headline: TextStyleSizes.defaultStyleSizes(),
-  //     title: TextStyleSizes.defaultStyleSizes(),
-  //     body: TextStyleSizes.defaultStyleSizes(),
-  //     label: TextStyleSizes.defaultStyleSizes(),
-  //   );
-  // }
+  /// [defaultTextTypes] returns a [TextTypes] with default values.
+  static TextTypes defaultTextTypes() {
+    return TextTypes(
+      display: TextStyleSizes.defaultStyleSizes(),
+      headline: TextStyleSizes.defaultStyleSizes(),
+      title: TextStyleSizes.defaultStyleSizes(),
+      body: TextStyleSizes.defaultStyleSizes(),
+      label: TextStyleSizes.defaultStyleSizes(),
+    );
+  }
 
   /// [TextStyles.fromJson] is a factory method that allows you to create a [TextTypes] from a JSON file.
   factory TextTypes.fromJson(Map<String, dynamic> json) => _$TextTypesFromJson(json);

@@ -2,9 +2,12 @@ import 'package:accordion/accordion.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/app/app_theme.dart';
+import 'package:theme/changer/changer.dart';
 import 'package:theme/changer/components/textStyles/store.dart';
 import 'package:theme/data/models/text/text_style_model.dart';
-import 'package:theme/presentation/theme_changer/components/editing_fields/double_form_field.dart';
+import 'package:theme/data/models/text/text_types.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/double/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/double/store.dart';
 import 'package:theme/wrapper/wrapper.dart';
 import 'package:utilities/helpers/extensions/build_context.dart';
 
@@ -86,11 +89,18 @@ class TextStyleView extends StatelessWidget {
                                         //     });
                                       }
                                       if (value is double) {
-                                        return DoubleFormField(
-                                          initialValue: value,
-                                          increment: 1,
-                                          onChanged: (newDouble) => store.setTextStyleModel(type, size, title, newDouble),
+                                        final doubleStore = DoubleFormFieldStore(
+                                          value: value,
+                                          onValueChanged: (newDouble) {
+                                            final textTypes = store.setTextStyleModel(type, size, title, newDouble);
+                                            ThemeChanger.changeBaseThemeModel(
+                                              model: AppTheme.baseThemeModel.copyWith(
+                                                textStyles: {AppTheme.styleType: textTypes ?? TextTypes.defaultTextTypes()},
+                                              ),
+                                            );
+                                          },
                                         );
+                                        return DoubleFormField(store: doubleStore);
                                         // return DoubleChanger(
                                         //     currentDouble: value,
                                         //     onDoubleChanged: (context, newDouble) {

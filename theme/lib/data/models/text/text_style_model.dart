@@ -36,15 +36,15 @@ class TextStyleModel with _$TextStyleModel {
     );
   }
 
-  // /// [defaultStyles] returns a [TextStyleModel] with default values.
-  // static TextStyleModel defaultStyles() {
-  //   return const TextStyleModel(
-  //     fontFamilyName: 'Roboto',
-  //     fontFamilyStyle: 'italic',
-  //     fontWeight: 400.0,
-  //     fontSize: 14,
-  //     lineHeight: 1.5,
-  //     letterSpacing: 0.15,
-  //   );
-  // }
+  /// [defaultStyles] returns a [TextStyleModel] with default values.
+  static TextStyleModel defaultStyles() {
+    return const TextStyleModel(
+      fontFamilyName_string: 'Roboto',
+      fontFamilyStyle_enum_fontStyle: FontStyle.italic,
+      fontWeight_double: 400,
+      fontSize_double: 14,
+      lineHeight_double: 1.5,
+      letterSpacing_double: 0.15,
+    );
+  }
 }

@@ -23,14 +23,14 @@ abstract class TextStyleSizes with _$TextStyleSizes {
   }) = _TextStyleSizes;
   const TextStyleSizes._();
 
-  // /// [defaultStyleSizes] returns a [TextStyleSizes] with default values.
-  // static TextStyleSizes defaultStyleSizes() {
-  //   return TextStyleSizes(
-  //     large: TextStyleModel.defaultStyles(),
-  //     medium: TextStyleModel.defaultStyles(),
-  //     small: TextStyleModel.defaultStyles(),
-  //   );
-  // }
+  /// [defaultStyleSizes] returns a [TextStyleSizes] with default values.
+  static TextStyleSizes defaultStyleSizes() {
+    return TextStyleSizes(
+      large: TextStyleModel.defaultStyles(),
+      medium: TextStyleModel.defaultStyles(),
+      small: TextStyleModel.defaultStyles(),
+    );
+  }
 
   /// [TextStyleSizes.fromJson] is a factory method that allows you to create a [TextStyleSizes] from a JSON file.
   factory TextStyleSizes.fromJson(Map<String, dynamic> json) => _$TextStyleSizesFromJson(json);
