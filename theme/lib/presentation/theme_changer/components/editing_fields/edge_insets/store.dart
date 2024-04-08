@@ -10,7 +10,7 @@ enum EdgeInsetsTypes { all, symmetric, only, zero }
 class EdgeInsetsFormFieldStore = _EdgeInsetsFormFieldStore with _$EdgeInsetsFormFieldStore;
 
 abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsets> with Store {
-  _EdgeInsetsFormFieldStore({required super.value, required super.onValueChanged}) {
+  _EdgeInsetsFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
     // On Type Changed
     reaction<EdgeInsetsTypes>(
       (reaction) => type,
@@ -36,10 +36,10 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsets> 
     });
   }
 
-  late final DoubleFormFieldStore topStore = DoubleFormFieldStore(value: value.top, onValueChanged: onTopFieldChanged, showButtons: false);
-  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(value: value.left, onValueChanged: onLeftFieldChanged, showButtons: false);
-  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(value: value.bottom, onValueChanged: onBottomFieldChanged, showButtons: false);
-  late final DoubleFormFieldStore rightStore = DoubleFormFieldStore(value: value.right, onValueChanged: onRightFieldChanged, showButtons: false);
+  late final DoubleFormFieldStore topStore = DoubleFormFieldStore(value: value.top, onValueChanged: onTopFieldChanged, showButtons: false, title: 'Top');
+  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(value: value.left, onValueChanged: onLeftFieldChanged, showButtons: false, title: 'Bottom');
+  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(value: value.bottom, onValueChanged: onBottomFieldChanged, showButtons: false, title: 'Left');
+  late final DoubleFormFieldStore rightStore = DoubleFormFieldStore(value: value.right, onValueChanged: onRightFieldChanged, showButtons: false, title: 'Right');
 
   @observable
   EdgeInsetsTypes type = EdgeInsetsTypes.all;

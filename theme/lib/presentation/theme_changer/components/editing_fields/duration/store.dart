@@ -8,7 +8,7 @@ part 'store.g.dart';
 class DurationFormFieldStore = _DurationFormFieldStore with _$DurationFormFieldStore;
 
 abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel> with Store {
-  _DurationFormFieldStore({required super.value, required super.onValueChanged}) {
+  _DurationFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
     // On Value Changed
     // reaction<DurationModel>((reaction) => value, (newValue) {
     // topController.text = newValue.top.toString();
@@ -24,6 +24,7 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (days) {
       if (days != null) value = value.copyWith(days_int: days);
     },
+    title: 'Days',
   );
 
   late final hoursStore = IntFormFieldStore(
@@ -32,6 +33,7 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (hours) {
       if (hours != null) value = value.copyWith(hours_int: hours);
     },
+    title: "Hours",
   );
 
   late final minutesStore = IntFormFieldStore(
@@ -40,6 +42,7 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (minutes) {
       if (minutes != null) value = value.copyWith(minutes_int: minutes);
     },
+    title: "Minutes",
   );
 
   late final secondsStore = IntFormFieldStore(
@@ -48,6 +51,7 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (seconds) {
       if (seconds != null) value = value.copyWith(seconds_int: seconds);
     },
+    title: "Seconds",
   );
 
   late final millisecondsStore = IntFormFieldStore(
@@ -56,6 +60,7 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (milliseconds) {
       if (milliseconds != null) value = value.copyWith(milliseconds_int: milliseconds);
     },
+    title: "Milliseconds",
   );
 
   late final microsecondsStore = IntFormFieldStore(
@@ -64,5 +69,6 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (microseconds) {
       if (microseconds != null) value = value.copyWith(microseconds_int: microseconds);
     },
+    title: "Microseconds",
   );
 }

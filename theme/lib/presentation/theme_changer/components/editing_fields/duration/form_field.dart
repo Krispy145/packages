@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/duration/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/int/form_field.dart';
 
-class DurationFormField extends StatelessWidget {
-  const DurationFormField({super.key, required this.store});
-
-  final DurationFormFieldStore store;
+class DurationFormField extends BaseFormField<DurationFormFieldStore> {
+  const DurationFormField({super.key, required super.store});
 
   double get formFieldWidth => 100;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius/store.dart';
 import 'package:utilities/helpers/extensions/string.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-class BorderRadiusFormField extends StatelessWidget {
-  const BorderRadiusFormField({super.key, required this.store});
-
-  final BorderRadiusFormFieldStore store;
+class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
+  const BorderRadiusFormField({super.key, required super.store});
 
   double get doubleFormFieldWidth => 180;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/enum/store.dart';
 
-class EnumFormField extends StatelessWidget {
-  const EnumFormField({super.key, required this.store});
-
-  final EnumFormFieldStore store;
+class EnumFormField extends BaseFormField<EnumFormFieldStore> {
+  const EnumFormField({super.key, required super.store});
 
   double get doubleFormFieldWidth => 180;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Row(

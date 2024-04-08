@@ -8,7 +8,7 @@ part 'store.g.dart';
 class IntFormFieldStore = _IntFormFieldStore with _$IntFormFieldStore;
 
 abstract class _IntFormFieldStore extends BaseFormFieldStore<int?> with Store {
-  _IntFormFieldStore({required super.value, required super.onValueChanged, this.increment = 1, this.showButtons = true}) {
+  _IntFormFieldStore({required super.value, required super.onValueChanged, this.increment = 1, this.showButtons = true, required super.title}) {
     // On Value Changed
     reaction<int?>((reaction) => value, (newValue) {
       textController.setTextIfNotEqual(newValue.toString());

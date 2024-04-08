@@ -10,6 +10,7 @@ abstract class _EnumFormFieldStore extends BaseFormFieldStore<Enum?> with Store 
     required super.value,
     required super.onValueChanged,
     required this.options,
+    required super.title,
   });
 
   final List<Enum> options;

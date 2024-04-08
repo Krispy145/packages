@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/data/models/borders/input_border_model.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/border_side/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/double/form_field.dart';
@@ -9,13 +10,11 @@ import 'package:theme/presentation/theme_changer/components/editing_fields/input
 import 'package:utilities/helpers/extensions/string.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-class InputBorderFormField extends StatelessWidget {
-  const InputBorderFormField({super.key, required this.store});
-
-  final InputBorderFormFieldStore store;
+class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
+  const InputBorderFormField({super.key, required super.store});
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

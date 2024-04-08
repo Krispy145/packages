@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/double/store.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-class DoubleFormField extends StatelessWidget {
-  const DoubleFormField({super.key, required this.store});
-
-  final DoubleFormFieldStore store;
+class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
+  const DoubleFormField({super.key, required super.store});
 
   double get doubleFormFieldWidth => 180;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

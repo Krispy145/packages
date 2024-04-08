@@ -11,7 +11,7 @@ part 'store.g.dart';
 class OutlinedBorderFormFieldStore = _OutlinedBorderFormFieldStore with _$OutlinedBorderFormFieldStore;
 
 abstract class _OutlinedBorderFormFieldStore extends BaseFormFieldStore<OutlinedBorderModel> with Store {
-  _OutlinedBorderFormFieldStore({required super.value, required super.onValueChanged}) {
+  _OutlinedBorderFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
     outlinedBorderType = value.type_enum_outlinedBorderType ?? OutlinedBorderType.roundedRectangleBorder;
 
     // On Type Changed
@@ -59,9 +59,14 @@ abstract class _OutlinedBorderFormFieldStore extends BaseFormFieldStore<Outlined
   late final borderSideStore = BorderSideFormFieldStore(
     value: value.side_borderSide ?? const BorderSideModel(),
     onValueChanged: onBorderSideChanged,
+    title: 'Border Side',
   );
 
-  late final borderRadiusStore = BorderRadiusFormFieldStore(onValueChanged: onBorderRadiusChanged, value: value.borderRadius_borderRadius ?? const BorderRadiusModel());
+  late final borderRadiusStore = BorderRadiusFormFieldStore(
+    onValueChanged: onBorderRadiusChanged,
+    value: value.borderRadius_borderRadius ?? const BorderRadiusModel(),
+    title: 'Border Radius',
+  );
 
   @action
   void onTypeChanged(OutlinedBorderType type) {

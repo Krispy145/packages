@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/store.dart';
 
-class BoolFormField extends StatelessWidget {
-  const BoolFormField({super.key, required this.store});
-
-  final BoolFormFieldStore store;
+class BoolFormField extends BaseFormField<BoolFormFieldStore> {
+  const BoolFormField({super.key, required super.store});
 
   double get doubleFormFieldWidth => 180;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (store.value != null)
-              Switch(
-                value: store.value!,
+            Visibility(
+              visible: store.value != null,
+              child: Switch(
+                value: store.value ?? false,
                 onChanged: (newValue) {
                   store.value = newValue;
                 },
               ),
+            ),
             FilledButton(
               child: Text(store.value == null ? "Set Value" : "Clear Value"),
               onPressed: () {

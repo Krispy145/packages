@@ -57,6 +57,7 @@ class ThemeComponentEditor extends MapEditor {
       AppLogger.print("$currentKey doesn't have _ format", [PackageFeatures.theme], type: LoggerType.error);
       return null;
     }
+    final formattedKey = currentKey.substring(0, currentKey.indexOf('_'));
     final valueType = currentKey.substring(currentKey.indexOf('_'));
 
     if (valueType.startsWith("_enum")) {
@@ -76,62 +77,87 @@ class ThemeComponentEditor extends MapEditor {
 
     switch (valueType) {
       case "_double":
-        final store = DoubleFormFieldStore(value: value as double?, onValueChanged: (newValue) => onChanged(keys, newValue), increment: 0.1);
+        final store = DoubleFormFieldStore(
+          value: value as double?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
+          increment: 0.1,
+          title: formattedKey,
+        );
         return DoubleFormField(store: store);
       case "_int":
-        final store = DoubleFormFieldStore(value: value as double?, onValueChanged: (newValue) => onChanged(keys, newValue));
+        final store = DoubleFormFieldStore(
+          value: value as double?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
+          title: formattedKey,
+        );
         return DoubleFormField(store: store);
       case "_bool":
         final store = BoolFormFieldStore(
           value: value as bool?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
+          title: formattedKey,
         );
         return BoolFormField(store: store);
       case "_string":
         return TextFormField(
           initialValue: value as String?,
           onChanged: (newValue) => onChanged(keys, newValue),
+          // title: formattedKey,
         );
       case "_edgeInsets":
         final store = EdgeInsetsFormFieldStore(
           value: const EdgeInsetsConverter().fromJson(value) ?? EdgeInsets.zero,
           onValueChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
+          title: formattedKey,
         );
         return EdgeInsetsFormField(store: store);
       case "_color":
-        final store = ThemeColorStringFormFieldStore(value: value as String?, onValueChanged: (newValue) => onChanged(keys, newValue));
+        final store = ThemeColorStringFormFieldStore(
+          value: value as String?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
+          title: formattedKey,
+        );
         return ThemeColorStringFormField(store: store);
       case "_textStyle":
-        final store = TextStyleStringFormFieldStore(value: value as TextStyleString?, onValueChanged: (newValue) => onChanged(keys, newValue));
+        final store = TextStyleStringFormFieldStore(
+          value: value as TextStyleString?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
+          title: formattedKey,
+        );
         return TextStyleStringFormField(store: store);
       case "_borderSide":
         final store = BorderSideFormFieldStore(
           value: value != null ? BorderSideModel.fromJson(value as Map<String, dynamic>) : const BorderSideModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          title: formattedKey,
         );
         return BorderSideFormField(store: store);
       case "_borderRadius":
         final store = BorderRadiusFormFieldStore(
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           value: BorderRadiusModel.fromJson(value as Map<String, dynamic>? ?? {}),
+          title: formattedKey,
         );
         return BorderRadiusFormField(store: store);
       case "_outlinedBorder":
         final store = OutlinedBorderFormFieldStore(
           value: value != null ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>) : const OutlinedBorderModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          title: formattedKey,
         );
         return OutlinedBorderFormField(store: store);
       case "_inputBorder":
         final store = InputBorderFormFieldStore(
           value: value != null ? InputBorderModel.fromJson(value as Map<String, dynamic>) : const InputBorderModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          title: formattedKey,
         );
         return InputBorderFormField(store: store);
       case "_duration":
         final store = DurationFormFieldStore(
           value: value != null ? DurationModel.fromJson(value as Map<String, dynamic>) : const DurationModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          title: formattedKey,
         );
         return DurationFormField(store: store);
       case "_shapeBorder":

@@ -9,7 +9,9 @@ class BaseFormFieldStore<T> = _BaseFormFieldStore<T> with _$BaseFormFieldStore<T
 abstract class _BaseFormFieldStore<T> with Store {
   final void Function(T) onValueChanged;
 
-  _BaseFormFieldStore({required this.value, required this.onValueChanged}) {
+  final String title;
+
+  _BaseFormFieldStore({required this.title, required this.value, required this.onValueChanged}) {
     reaction((r) => value, onValueChanged);
   }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/int/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/int/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_map/store.dart';
 import 'package:utilities/logger/logger.dart';
 
@@ -83,15 +85,17 @@ class MapEditor extends StatelessWidget {
         onChanged: (newValue) => onChanged(keys, newValue),
       );
     } else if (value is int) {
-      return TextFormField(
-        initialValue: value.toString(),
-        keyboardType: TextInputType.number,
-        onChanged: (newValue) => onChanged(keys, int.parse(newValue)),
+      final store = IntFormFieldStore(
+        value: value,
+        onValueChanged: (newValue) => onChanged(keys, newValue),
+        title: keys.last,
       );
+      return IntFormField(store: store);
     } else if (value is bool) {
       final store = BoolFormFieldStore(
         value: value,
         onValueChanged: (newValue) => onChanged(keys, newValue),
+        title: keys.last,
       );
       return BoolFormField(store: store);
     }

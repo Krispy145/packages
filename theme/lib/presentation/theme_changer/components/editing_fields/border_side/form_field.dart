@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/border_side/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/double/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/enum/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_string/form_field.dart';
 
-class BorderSideFormField extends StatelessWidget {
-  const BorderSideFormField({super.key, required this.store});
-
-  final BorderSideFormFieldStore store;
+class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
+  const BorderSideFormField({super.key, required super.store});
 
   double get doubleFormFieldWidth => 180;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

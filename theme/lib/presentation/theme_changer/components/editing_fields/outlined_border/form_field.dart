@@ -45,56 +45,6 @@ class OutlinedBorderFormField extends StatelessWidget {
           ],
         );
       },
-      //       return Column(
-      //         mainAxisSize: MainAxisSize.min,
-      //         children: [
-      //           SegmentedButton<OutlinedBorderTypes>(
-      //             segments: InputBorderTypes.values.map((type) => ButtonSegment<InputBorderTypes>(value: type, label: Text(type.name.toTitleCase()))).toList(),
-      //             selected: {store.type},
-      //             onSelectionChanged: (newSelection) => store.type = newSelection.first,
-      //           ),
-      //           Row(
-      //             mainAxisAlignment: MainAxisAlignment.center,
-      //             children: [
-      //               DoubleFormField(
-      //                 onChanged: store.onTopFieldChanged,
-      //                 enabled: store.topEnabled,
-      //                 showButtons: false,
-      //               ),
-      //             ],
-      //           ),
-      //           Row(
-      //             mainAxisAlignment: MainAxisAlignment.center,
-      //             children: [
-      //               DoubleFormField(
-      //                 onChanged: store.onLeftFieldChanged,
-      //                 enabled: store.leftEnabled,
-      //                 showButtons: false,
-      //               ),
-      //               Padding(
-      //                 padding: const InputBorder.all(8),
-      //                 child: Container(color: Theme.of(context).primaryColor, padding: store.value, child: Container(width: 40, height: 40, color: Colors.grey)),
-      //               ),
-      //               DoubleFormField(
-      //                 onChanged: store.onRightFieldChanged,
-      //                 enabled: store.rightEnabled,
-      //                 showButtons: false,
-      //               ),
-      //             ],
-      //           ),
-      //           Row(
-      //             mainAxisAlignment: MainAxisAlignment.center,
-      //             children: [
-      //               DoubleFormField(
-      //                 onChanged: store.onBottomFieldChanged,
-      //                 enabled: store.bottomEnabled,
-      //                 showButtons: false,
-      //               ),
-      //             ],
-      //           ),
-      //         ],
-      //       );
-      // },
     );
   }
 }

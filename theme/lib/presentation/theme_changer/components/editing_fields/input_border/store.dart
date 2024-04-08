@@ -12,7 +12,7 @@ part 'store.g.dart';
 class InputBorderFormFieldStore = _InputBorderFormFieldStore with _$InputBorderFormFieldStore;
 
 abstract class _InputBorderFormFieldStore extends BaseFormFieldStore<InputBorderModel> with Store {
-  _InputBorderFormFieldStore({required super.value, required super.onValueChanged}) {
+  _InputBorderFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
     type = value.type_enum_inputBorderType ?? InputBorderType.none;
   }
 
@@ -21,14 +21,16 @@ abstract class _InputBorderFormFieldStore extends BaseFormFieldStore<InputBorder
   late final borderRadiusStore = BorderRadiusFormFieldStore(
     onValueChanged: onBorderRadiusChanged,
     value: value.borderRadius_borderRadius ?? const BorderRadiusModel(),
+    title: 'Border Radius',
   );
 
   late final borderSideStore = BorderSideFormFieldStore(
     value: value.borderSide_borderSide ?? const BorderSideModel(),
     onValueChanged: onBorderSideChanged,
+    title: 'Border Side',
   );
 
-  late final gapPaddingStore = DoubleFormFieldStore(onValueChanged: onGapPaddingChanged, value: value.gapPadding_double);
+  late final gapPaddingStore = DoubleFormFieldStore(onValueChanged: onGapPaddingChanged, value: value.gapPadding_double, title: 'Gap Padding');
 
   @action
   void onTypeChanged(InputBorderType newType) {

@@ -7,7 +7,7 @@ part 'store.g.dart';
 class ThemeColorStringFormFieldStore = _ThemeColorStringFormFieldStore with _$ThemeColorStringFormFieldStore;
 
 abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<ThemeColorString?> with Store {
-  _ThemeColorStringFormFieldStore({required super.value, required super.onValueChanged}) {
+  _ThemeColorStringFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
     // On Value Changed
     // reaction<ThemeColorString?>((reaction) => value, (newValue) {
     // });

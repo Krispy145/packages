@@ -99,6 +99,7 @@ class TextStyleView extends StatelessWidget {
                                               ),
                                             );
                                           },
+                                          title: 'Double',
                                         );
                                         return DoubleFormField(store: doubleStore);
                                         // return DoubleChanger(
