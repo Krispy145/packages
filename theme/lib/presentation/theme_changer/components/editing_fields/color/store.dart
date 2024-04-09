@@ -3,7 +3,6 @@ import 'package:mobx/mobx.dart';
 import 'package:theme/changer/components/colors/view.dart';
 import 'package:theme/domain/converters/colors/color.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/base/store.dart';
-import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
 
@@ -15,15 +14,13 @@ abstract class _ColorFormFieldStore extends BaseFormFieldStore<DOColor> with Sto
     required super.value,
     required super.onValueChanged,
     required super.title,
-  }) {
-    // ignore: prefer_const_constructors
-    color = ColorConverter().fromJson(value.value) ?? Colors.transparent;
-  }
+  });
 
   /// [color] to change.
   @observable
-  late Color color;
+  late Color color = const ColorConverter().fromJson(value.value) ?? Colors.transparent;
 
+  /// Updates the [value] color of the field, triggering an update of the theme
   @action
   void onDone() {
     value = MapEntry(
@@ -32,6 +29,7 @@ abstract class _ColorFormFieldStore extends BaseFormFieldStore<DOColor> with Sto
     );
   }
 
+  /// Updates the [color] property within the field (not the field's [value])
   @action
   void updateColor({double? red, double? green, double? blue, double? opacity}) {
     final newColorList = [
@@ -40,8 +38,6 @@ abstract class _ColorFormFieldStore extends BaseFormFieldStore<DOColor> with Sto
       blue?.roundToDouble() ?? color.blue.toDouble(),
       opacity ?? color.opacity,
     ];
-    AppLogger.print('updateColor: $newColorList', [PackageFeatures.theme]);
     color = const ColorConverter().fromJson(newColorList) ?? Colors.transparent;
-    AppLogger.print('color: ${color.red} ${color.green} ${color.blue} ${color.opacity}, ${color == const ColorConverter().fromJson(value.value)}', [PackageFeatures.theme]);
   }
 }

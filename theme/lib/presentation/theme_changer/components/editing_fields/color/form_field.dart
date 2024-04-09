@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/color/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/components/color_circle.dart';
-import 'package:utilities/logger/logger.dart';
 import 'package:utilities/sizes/spacers.dart';
 
 /// [ColorFormField] to change color scheme colors for the theme.
@@ -18,7 +17,6 @@ class ColorFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppLogger.print('rebuild widget: ${store.color.red} ${store.color.green} ${store.color.blue} ${store.color.opacity}', [PackageFeatures.theme]);
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Observer(
