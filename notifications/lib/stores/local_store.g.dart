@@ -8,10 +8,9 @@ part of 'local_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
+mixin _$LocalNotificationsStore on _LocalNotificationsStore, Store {
   late final _$_notificationsEnabledAtom = Atom(
-      name: 'LocalNotificationsBaseStore._notificationsEnabled',
-      context: context);
+      name: '_LocalNotificationsStore._notificationsEnabled', context: context);
 
   @override
   bool get _notificationsEnabled {
@@ -28,7 +27,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$darwinNotificationCategoriesAtom = Atom(
-      name: 'LocalNotificationsBaseStore.darwinNotificationCategories',
+      name: '_LocalNotificationsStore.darwinNotificationCategories',
       context: context);
 
   @override
@@ -47,7 +46,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$requestPermissionsAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore.requestPermissions',
+      '_LocalNotificationsStore.requestPermissions',
       context: context);
 
   @override
@@ -57,7 +56,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$initializeAsyncAction =
-      AsyncAction('LocalNotificationsBaseStore.initialize', context: context);
+      AsyncAction('_LocalNotificationsStore.initialize', context: context);
 
   @override
   Future<void> initialize() {
@@ -65,7 +64,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$showAsyncAction =
-      AsyncAction('LocalNotificationsBaseStore.show', context: context);
+      AsyncAction('_LocalNotificationsStore.show', context: context);
 
   @override
   Future<void> show(
@@ -76,7 +75,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$periodicallyShowAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore.periodicallyShow',
+      '_LocalNotificationsStore.periodicallyShow',
       context: context);
 
   @override
@@ -88,9 +87,8 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
         notification: notification, details: details, interval: interval));
   }
 
-  late final _$zonedScheduleAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore.zonedSchedule',
-      context: context);
+  late final _$zonedScheduleAsyncAction =
+      AsyncAction('_LocalNotificationsStore.zonedSchedule', context: context);
 
   @override
   Future<void> zonedSchedule(
@@ -109,7 +107,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$createAndroidNotificationChannelAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore.createAndroidNotificationChannel',
+      '_LocalNotificationsStore.createAndroidNotificationChannel',
       context: context);
 
   @override
@@ -120,7 +118,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$deleteAndroidNotificationChannelAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore.deleteAndroidNotificationChannel',
+      '_LocalNotificationsStore.deleteAndroidNotificationChannel',
       context: context);
 
   @override
@@ -130,7 +128,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$updateActiveNotificationsListAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore.updateActiveNotificationsList',
+      '_LocalNotificationsStore.updateActiveNotificationsList',
       context: context);
 
   @override
@@ -140,7 +138,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$deleteAsyncAction =
-      AsyncAction('LocalNotificationsBaseStore.delete', context: context);
+      AsyncAction('_LocalNotificationsStore.delete', context: context);
 
   @override
   Future<void> delete(String id) {
@@ -148,7 +146,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$deleteAllAsyncAction =
-      AsyncAction('LocalNotificationsBaseStore.deleteAll', context: context);
+      AsyncAction('_LocalNotificationsStore.deleteAll', context: context);
 
   @override
   Future<void> deleteAll() {
@@ -156,7 +154,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$_getActiveNotificationsAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore._getActiveNotifications',
+      '_LocalNotificationsStore._getActiveNotifications',
       context: context);
 
   @override
@@ -166,7 +164,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$_configureLocalTimeZoneAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore._configureLocalTimeZone',
+      '_LocalNotificationsStore._configureLocalTimeZone',
       context: context);
 
   @override
@@ -176,7 +174,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$_initializeDarwinAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore._initializeDarwin',
+      '_LocalNotificationsStore._initializeDarwin',
       context: context);
 
   @override
@@ -185,7 +183,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$_initializeLinuxAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore._initializeLinux',
+      '_LocalNotificationsStore._initializeLinux',
       context: context);
 
   @override
@@ -194,7 +192,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$_handleInitialNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore._handleInitialNotification',
+      '_LocalNotificationsStore._handleInitialNotification',
       context: context);
 
   @override
@@ -204,7 +202,7 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
   }
 
   late final _$_onDidReceiveNotificationResponseAsyncAction = AsyncAction(
-      'LocalNotificationsBaseStore._onDidReceiveNotificationResponse',
+      '_LocalNotificationsStore._onDidReceiveNotificationResponse',
       context: context);
 
   @override
@@ -216,72 +214,66 @@ mixin _$LocalNotificationsStore on LocalNotificationsBaseStore, Store {
             updateBadge: updateBadge));
   }
 
-  late final _$LocalNotificationsBaseStoreActionController =
-      ActionController(name: 'LocalNotificationsBaseStore', context: context);
+  late final _$_LocalNotificationsStoreActionController =
+      ActionController(name: '_LocalNotificationsStore', context: context);
 
   @override
   NotificationDetails notificationDetails(
       {LocalAndroidNotificationDetails? localNotificationDetails}) {
-    final _$actionInfo = _$LocalNotificationsBaseStoreActionController
-        .startAction(name: 'LocalNotificationsBaseStore.notificationDetails');
+    final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(
+        name: '_LocalNotificationsStore.notificationDetails');
     try {
       return super.notificationDetails(
           localNotificationDetails: localNotificationDetails);
     } finally {
-      _$LocalNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_LocalNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setDarwinNotificationCategories(
       List<DarwinNotificationCategory> categories) {
-    final _$actionInfo =
-        _$LocalNotificationsBaseStoreActionController.startAction(
-            name:
-                'LocalNotificationsBaseStore.setDarwinNotificationCategories');
+    final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(
+        name: '_LocalNotificationsStore.setDarwinNotificationCategories');
     try {
       return super.setDarwinNotificationCategories(categories);
     } finally {
-      _$LocalNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_LocalNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   NotificationModel? _convertNotificationResponseToModel(
       NotificationResponse notificationResponse) {
-    final _$actionInfo = _$LocalNotificationsBaseStoreActionController.startAction(
-        name:
-            'LocalNotificationsBaseStore._convertNotificationResponseToModel');
+    final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(
+        name: '_LocalNotificationsStore._convertNotificationResponseToModel');
     try {
       return super._convertNotificationResponseToModel(notificationResponse);
     } finally {
-      _$LocalNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_LocalNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   ObservableList<NotificationModel?> _convertActiveNotificationsToModel(
       List<ActiveNotification> activeNotifications) {
-    final _$actionInfo =
-        _$LocalNotificationsBaseStoreActionController.startAction(
-            name:
-                'LocalNotificationsBaseStore._convertActiveNotificationsToModel');
+    final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(
+        name: '_LocalNotificationsStore._convertActiveNotificationsToModel');
     try {
       return super._convertActiveNotificationsToModel(activeNotifications);
     } finally {
-      _$LocalNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_LocalNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void _onDidReceiveLocalNotification(NotificationModel? notification) {
-    final _$actionInfo =
-        _$LocalNotificationsBaseStoreActionController.startAction(
-            name: 'LocalNotificationsBaseStore._onDidReceiveLocalNotification');
+    final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(
+        name: '_LocalNotificationsStore._onDidReceiveLocalNotification');
     try {
       return super._onDidReceiveLocalNotification(notification);
     } finally {
-      _$LocalNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_LocalNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 

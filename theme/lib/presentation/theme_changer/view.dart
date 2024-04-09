@@ -53,7 +53,12 @@ class ThemeComponentEditor extends MapEditor {
   }
 
   @override
-  Widget? buildValueEditor(BuildContext context, dynamic value, List<String> keys, void Function(List<String> keys, dynamic value) onChanged) {
+  Widget? buildValueEditor(
+    BuildContext context,
+    dynamic value,
+    List<String> keys,
+    void Function(List<String> keys, dynamic value) onChanged,
+  ) {
     final currentKey = keys.last;
     if (!currentKey.contains('_')) {
       AppLogger.print("$currentKey doesn't have _ format", [PackageFeatures.theme], type: LoggerType.error);
@@ -69,11 +74,15 @@ class ThemeComponentEditor extends MapEditor {
         AppLogger.print("$enumName not found (enum)", [PackageFeatures.theme], type: LoggerType.error);
         return null;
       }
-      final enumInitalValue = enumProperties.values.firstWhereOrNull((element) => element.name == value as String?);
+      final enumInitialValue = enumProperties.values.firstWhereOrNull((element) => element.name == value as String?);
       return DropdownButton(
-        value: enumInitalValue,
+        value: enumInitialValue,
         onChanged: (newValue) => onChanged(keys, newValue?.name),
-        items: enumProperties.values.map((enumValue) => DropdownMenuItem<Enum>(value: enumValue, child: Text(enumValue.name))).toList(),
+        items: enumProperties.values
+            .map(
+              (enumValue) => DropdownMenuItem<Enum>(value: enumValue, child: Text(enumValue.name)),
+            )
+            .toList(),
       );
     }
 

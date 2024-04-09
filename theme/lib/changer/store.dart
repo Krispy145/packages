@@ -3,18 +3,18 @@ import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
 
-/// [ComponentThemeChangerStore] is a class that uses [ComponentThemeChangerBaseStore] to manage state of the colorSchemes feature.
-class ComponentThemeChangerStore<T> = ComponentThemeChangerBaseStore<T> with _$ComponentThemeChangerStore<T>;
+/// [ComponentThemeChangerStore] is a class that uses [_ComponentThemeChangerStore] to manage state of the colorSchemes feature.
+class ComponentThemeChangerStore<T> = _ComponentThemeChangerStore<T> with _$ComponentThemeChangerStore<T>;
 
-/// [ComponentThemeChangerBaseStore] is a class that manages the state of the colorSchemes feature.
-abstract class ComponentThemeChangerBaseStore<T> with Store {
+/// [_ComponentThemeChangerStore] is a class that manages the state of the colorSchemes feature.
+abstract class _ComponentThemeChangerStore<T> with Store {
   final Map<String, dynamic> Function(T data) convertComponentThemeToMap;
   final T Function(Map<String, dynamic> data) convertComponentThemeFromMap;
   final void Function(T newTheme) onUpdateComponentTheme;
   final T defaultComponentTheme;
   final T? currentComponentTheme;
 
-  ComponentThemeChangerBaseStore({
+  _ComponentThemeChangerStore({
     required this.onUpdateComponentTheme,
     required this.defaultComponentTheme,
     required this.currentComponentTheme,
@@ -22,13 +22,13 @@ abstract class ComponentThemeChangerBaseStore<T> with Store {
     required this.convertComponentThemeFromMap,
   });
 
-  /// [selectedColor] is a property that stores the selected color from the current scheme.
+  /// [componentThemeMap] is a map that stores the current component theme.
   @observable
   // ignore: prefer_const_constructors
   late ObservableMap<String, dynamic> componentThemeMap =
       currentComponentTheme != null ? ObservableMap.of(convertComponentThemeToMap(currentComponentTheme as T)) : ObservableMap.of(convertComponentThemeToMap(defaultComponentTheme));
 
-  /// [getMergedMap] is a combination of the current and default component themes, with the current values taking priority
+  /// [mergedMap] is a map that merges the default and current component theme.
   @computed
   Map<String, dynamic> get mergedMap {
     if (currentComponentTheme != null) {
@@ -42,14 +42,14 @@ abstract class ComponentThemeChangerBaseStore<T> with Store {
   late MapEntry<String, dynamic> currentMapEntry =
       currentComponentTheme != null ? convertComponentThemeToMap(currentComponentTheme as T).entries.first : convertComponentThemeToMap(defaultComponentTheme).entries.first;
 
-  /// [selectedColor] is a method that sets the selected color from the current scheme.
+  /// [setMapEntry] is a method that sets the current map entry.
   @action
   void setMapEntry(MapEntry<String, dynamic> value) {
     currentMapEntry = value;
     AppLogger.print('currentAppbarMapEntry: $currentMapEntry', [PackageFeatures.theme]);
   }
 
-  /// [setColorModel] is a method that sets the current model.
+  /// [setMapEntryInMap] is a method that sets the current map entry in the map.
   @action
   T setMapEntryInMap() {
     try {

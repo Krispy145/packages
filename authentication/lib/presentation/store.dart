@@ -6,16 +6,16 @@
 
 // part 'store.g.dart';
 
-// /// [AuthenticationStore] is a class that uses [AuthenticationBaseStore] to manage state of the authentication feature.
-// class AuthenticationStore = AuthenticationBaseStore with _$AuthenticationStore;
+// /// [AuthenticationStore] is a class that uses [_AuthenticationStore] to manage state of the authentication feature.
+// class AuthenticationStore = _AuthenticationStore with _$AuthenticationStore;
 
-// /// [AuthenticationBaseStore] is a class that manages the state of the authentication feature.
-// abstract class AuthenticationBaseStore with Store {
+// /// [_AuthenticationStore] is a class that manages the state of the authentication feature.
+// abstract class _AuthenticationStore with Store {
 //   /// [repository] is an instance of [AuthenticationRepository].
 //   final AuthenticationRepository repository;
 
-//   /// [AuthenticationBaseStore] constructor.
-//   AuthenticationBaseStore({required this.repository});
+//   /// [_AuthenticationStore] constructor.
+//   _AuthenticationStore({required this.repository});
 
 //   /// [authentications] is an observable list of [AuthenticationModel]s.
 //   @observable

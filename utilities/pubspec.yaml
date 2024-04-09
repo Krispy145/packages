@@ -2,10 +2,10 @@ name: utilities
 description: A new Flutter package project.
 version: 0.0.1+2
 homepage:
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: ">=3.0.5 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -32,11 +32,11 @@ dependencies:
   universal_html: ^2.2.4
   get_it: ^7.6.4
   theme:
-  #  git:
-  #     url: git@github.com:digital-oasis-llc-fz/theme.git
-  #     ref: v0.0.1
+    #  git:
+    #     url: git@github.com:digital-oasis-llc-fz/theme.git
+    #     ref: v0.0.1
     path: ../../packages/theme
-  
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,7 +44,7 @@ dev_dependencies:
   mobx_codegen: ^2.3.0
   freezed: ^2.4.1
   json_serializable: ^6.7.1
-  build_runner:  
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

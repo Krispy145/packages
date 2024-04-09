@@ -19,7 +19,14 @@ class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SegmentedButton<EdgeInsetsTypes>(
-              segments: EdgeInsetsTypes.values.map((type) => ButtonSegment<EdgeInsetsTypes>(value: type, label: Text(type.name.toTitleCase()))).toList(),
+              segments: EdgeInsetsTypes.values
+                  .map(
+                    (type) => ButtonSegment<EdgeInsetsTypes>(
+                      value: type,
+                      label: Text(type.name.toTitleCase()),
+                    ),
+                  )
+                  .toList(),
               selected: {store.type},
               onSelectionChanged: (newSelection) => store.type = newSelection.first,
             ),

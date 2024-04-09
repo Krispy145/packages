@@ -6,11 +6,11 @@ import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
 
-/// [ColorSchemesStore] is a class that uses [ColorSchemesBaseStore] to manage state of the colorSchemes feature.
-class ColorSchemesStore = ColorSchemesBaseStore with _$ColorSchemesStore;
+/// [ColorSchemesStore] is a class that uses [_ColorSchemesStore] to manage state of the colorSchemes feature.
+class ColorSchemesStore = _ColorSchemesStore with _$ColorSchemesStore;
 
-/// [ColorSchemesBaseStore] is a class that manages the state of the colorSchemes feature.
-abstract class ColorSchemesBaseStore with Store {
+/// [_ColorSchemesStore] is a class that manages the state of the colorSchemes feature.
+abstract class _ColorSchemesStore with Store {
   /// [selectedColor] is a property that stores the selected color from the current scheme.
   @observable
   // ignore: prefer_const_constructors

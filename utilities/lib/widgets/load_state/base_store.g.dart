@@ -8,49 +8,49 @@ part of 'base_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$LoadStateStore on LoadStateBaseStore, Store {
+mixin _$LoadStateStore on _LoadStateStore, Store {
   Computed<bool>? _$isInitialComputed;
 
   @override
   bool get isInitial =>
       (_$isInitialComputed ??= Computed<bool>(() => super.isInitial,
-              name: 'LoadStateBaseStore.isInitial'))
+              name: '_LoadStateStore.isInitial'))
           .value;
   Computed<bool>? _$isLoadingComputed;
 
   @override
   bool get isLoading =>
       (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
-              name: 'LoadStateBaseStore.isLoading'))
+              name: '_LoadStateStore.isLoading'))
           .value;
   Computed<bool>? _$isLoadedComputed;
 
   @override
   bool get isLoaded =>
       (_$isLoadedComputed ??= Computed<bool>(() => super.isLoaded,
-              name: 'LoadStateBaseStore.isLoaded'))
+              name: '_LoadStateStore.isLoaded'))
           .value;
   Computed<bool>? _$isEmptyComputed;
 
   @override
-  bool get isEmpty => (_$isEmptyComputed ??= Computed<bool>(() => super.isEmpty,
-          name: 'LoadStateBaseStore.isEmpty'))
+  bool get isEmpty => (_$isEmptyComputed ??=
+          Computed<bool>(() => super.isEmpty, name: '_LoadStateStore.isEmpty'))
       .value;
   Computed<bool>? _$isErrorComputed;
 
   @override
-  bool get isError => (_$isErrorComputed ??= Computed<bool>(() => super.isError,
-          name: 'LoadStateBaseStore.isError'))
+  bool get isError => (_$isErrorComputed ??=
+          Computed<bool>(() => super.isError, name: '_LoadStateStore.isError'))
       .value;
   Computed<bool>? _$isIdleComputed;
 
   @override
   bool get isIdle => (_$isIdleComputed ??=
-          Computed<bool>(() => super.isIdle, name: 'LoadStateBaseStore.isIdle'))
+          Computed<bool>(() => super.isIdle, name: '_LoadStateStore.isIdle'))
       .value;
 
   late final _$currentStateAtom =
-      Atom(name: 'LoadStateBaseStore.currentState', context: context);
+      Atom(name: '_LoadStateStore.currentState', context: context);
 
   @override
   LoadState get currentState {
@@ -65,72 +65,72 @@ mixin _$LoadStateStore on LoadStateBaseStore, Store {
     });
   }
 
-  late final _$LoadStateBaseStoreActionController =
-      ActionController(name: 'LoadStateBaseStore', context: context);
+  late final _$_LoadStateStoreActionController =
+      ActionController(name: '_LoadStateStore', context: context);
 
   @override
   void setInitial() {
-    final _$actionInfo = _$LoadStateBaseStoreActionController.startAction(
-        name: 'LoadStateBaseStore.setInitial');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setInitial');
     try {
       return super.setInitial();
     } finally {
-      _$LoadStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setLoading() {
-    final _$actionInfo = _$LoadStateBaseStoreActionController.startAction(
-        name: 'LoadStateBaseStore.setLoading');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setLoading');
     try {
       return super.setLoading();
     } finally {
-      _$LoadStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setLoaded() {
-    final _$actionInfo = _$LoadStateBaseStoreActionController.startAction(
-        name: 'LoadStateBaseStore.setLoaded');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setLoaded');
     try {
       return super.setLoaded();
     } finally {
-      _$LoadStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setEmpty() {
-    final _$actionInfo = _$LoadStateBaseStoreActionController.startAction(
-        name: 'LoadStateBaseStore.setEmpty');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setEmpty');
     try {
       return super.setEmpty();
     } finally {
-      _$LoadStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setError() {
-    final _$actionInfo = _$LoadStateBaseStoreActionController.startAction(
-        name: 'LoadStateBaseStore.setError');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setError');
     try {
       return super.setError();
     } finally {
-      _$LoadStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setIdle() {
-    final _$actionInfo = _$LoadStateBaseStoreActionController.startAction(
-        name: 'LoadStateBaseStore.setIdle');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setIdle');
     try {
       return super.setIdle();
     } finally {
-      _$LoadStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 

@@ -12,10 +12,10 @@ enum AuthState {
 }
 
 /// [AuthStateStore] is the store that will be used to manage the state of the authentication.
-class AuthStateStore = AuthStateBaseStore with _$AuthStateStore;
+class AuthStateStore = _AuthStateStore with _$AuthStateStore;
 
-/// [AuthStateBaseStore] is the base store that will be used to manage the state of the authentication.
-abstract class AuthStateBaseStore with Store {
+/// [_AuthStateStore] is the base store that will be used to manage the state of the authentication.
+abstract class _AuthStateStore with Store {
   /// [currentState] is the state that will be used to manage the state of the authentication.
   @observable
   AuthState currentState = AuthState.unauthenticated;

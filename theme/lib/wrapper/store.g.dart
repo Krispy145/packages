@@ -8,13 +8,13 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$StyleTypeThemeStore on StyleTypeBaseStore, Store {
+mixin _$StyleTypeThemeStore on _StyleTypeStore, Store {
   Computed<BaseThemeModel>? _$baseThemeModelComputed;
 
   @override
   BaseThemeModel get baseThemeModel => (_$baseThemeModelComputed ??=
           Computed<BaseThemeModel>(() => super.baseThemeModel,
-              name: 'StyleTypeBaseStore.baseThemeModel'))
+              name: '_StyleTypeStore.baseThemeModel'))
       .value;
   Computed<ComponentThemesModel?>? _$componentThemesModelComputed;
 
@@ -22,51 +22,51 @@ mixin _$StyleTypeThemeStore on StyleTypeBaseStore, Store {
   ComponentThemesModel? get componentThemesModel =>
       (_$componentThemesModelComputed ??= Computed<ComponentThemesModel?>(
               () => super.componentThemesModel,
-              name: 'StyleTypeBaseStore.componentThemesModel'))
+              name: '_StyleTypeStore.componentThemesModel'))
           .value;
   Computed<bool>? _$isDarkComputed;
 
   @override
   bool get isDark => (_$isDarkComputed ??=
-          Computed<bool>(() => super.isDark, name: 'StyleTypeBaseStore.isDark'))
+          Computed<bool>(() => super.isDark, name: '_StyleTypeStore.isDark'))
       .value;
   Computed<bool>? _$isLightComputed;
 
   @override
-  bool get isLight => (_$isLightComputed ??= Computed<bool>(() => super.isLight,
-          name: 'StyleTypeBaseStore.isLight'))
+  bool get isLight => (_$isLightComputed ??=
+          Computed<bool>(() => super.isLight, name: '_StyleTypeStore.isLight'))
       .value;
   Computed<ColorModel?>? _$currentColorModelComputed;
 
   @override
   ColorModel? get currentColorModel => (_$currentColorModelComputed ??=
           Computed<ColorModel?>(() => super.currentColorModel,
-              name: 'StyleTypeBaseStore.currentColorModel'))
+              name: '_StyleTypeStore.currentColorModel'))
       .value;
   Computed<ThemeData>? _$currentThemeComputed;
 
   @override
   ThemeData get currentTheme =>
       (_$currentThemeComputed ??= Computed<ThemeData>(() => super.currentTheme,
-              name: 'StyleTypeBaseStore.currentTheme'))
+              name: '_StyleTypeStore.currentTheme'))
           .value;
   Computed<ThemeData>? _$lightThemeComputed;
 
   @override
   ThemeData get lightTheme =>
       (_$lightThemeComputed ??= Computed<ThemeData>(() => super.lightTheme,
-              name: 'StyleTypeBaseStore.lightTheme'))
+              name: '_StyleTypeStore.lightTheme'))
           .value;
   Computed<ThemeData>? _$darkThemeComputed;
 
   @override
   ThemeData get darkTheme =>
       (_$darkThemeComputed ??= Computed<ThemeData>(() => super.darkTheme,
-              name: 'StyleTypeBaseStore.darkTheme'))
+              name: '_StyleTypeStore.darkTheme'))
           .value;
 
   late final _$currentThemeModeAtom =
-      Atom(name: 'StyleTypeBaseStore.currentThemeMode', context: context);
+      Atom(name: '_StyleTypeStore.currentThemeMode', context: context);
 
   @override
   ThemeMode get currentThemeMode {
@@ -81,39 +81,39 @@ mixin _$StyleTypeThemeStore on StyleTypeBaseStore, Store {
     });
   }
 
-  late final _$StyleTypeBaseStoreActionController =
-      ActionController(name: 'StyleTypeBaseStore', context: context);
+  late final _$_StyleTypeStoreActionController =
+      ActionController(name: '_StyleTypeStore', context: context);
 
   @override
   void setStyleType(String newStyleType) {
-    final _$actionInfo = _$StyleTypeBaseStoreActionController.startAction(
-        name: 'StyleTypeBaseStore.setStyleType');
+    final _$actionInfo = _$_StyleTypeStoreActionController.startAction(
+        name: '_StyleTypeStore.setStyleType');
     try {
       return super.setStyleType(newStyleType);
     } finally {
-      _$StyleTypeBaseStoreActionController.endAction(_$actionInfo);
+      _$_StyleTypeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void toggleThemeMode() {
-    final _$actionInfo = _$StyleTypeBaseStoreActionController.startAction(
-        name: 'StyleTypeBaseStore.toggleThemeMode');
+    final _$actionInfo = _$_StyleTypeStoreActionController.startAction(
+        name: '_StyleTypeStore.toggleThemeMode');
     try {
       return super.toggleThemeMode();
     } finally {
-      _$StyleTypeBaseStoreActionController.endAction(_$actionInfo);
+      _$_StyleTypeStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setThemeMode(ThemeMode newThemeMode) {
-    final _$actionInfo = _$StyleTypeBaseStoreActionController.startAction(
-        name: 'StyleTypeBaseStore.setThemeMode');
+    final _$actionInfo = _$_StyleTypeStoreActionController.startAction(
+        name: '_StyleTypeStore.setThemeMode');
     try {
       return super.setThemeMode(newThemeMode);
     } finally {
-      _$StyleTypeBaseStoreActionController.endAction(_$actionInfo);
+      _$_StyleTypeStoreActionController.endAction(_$actionInfo);
     }
   }
 
