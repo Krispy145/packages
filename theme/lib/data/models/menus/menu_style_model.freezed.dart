@@ -24,16 +24,15 @@ mixin _$MenuStyleModel {
   String? get shadowColor_color => throw _privateConstructorUsedError;
   String? get surfaceTintColor_color => throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
   SizeModel? get minimumSize_size => throw _privateConstructorUsedError;
   SizeModel? get fixedSize_size => throw _privateConstructorUsedError;
   SizeModel? get maximumSize_size => throw _privateConstructorUsedError;
   BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
   OutlinedBorderModel? get shape_outlinedBorder =>
+      throw _privateConstructorUsedError; // @AlignmentConverter()
+  AlignmentOptions? get alignment_enum_alignmentOptions =>
       throw _privateConstructorUsedError;
-  @AlignmentConverter()
-  Alignment? get alignment_alignment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -52,14 +51,15 @@ abstract class $MenuStyleModelCopyWith<$Res> {
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      @AlignmentConverter() Alignment? alignment_alignment});
+      AlignmentOptions? alignment_enum_alignmentOptions});
 
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   $SizeModelCopyWith<$Res>? get minimumSize_size;
   $SizeModelCopyWith<$Res>? get fixedSize_size;
   $SizeModelCopyWith<$Res>? get maximumSize_size;
@@ -90,7 +90,7 @@ class _$MenuStyleModelCopyWithImpl<$Res, $Val extends MenuStyleModel>
     Object? maximumSize_size = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
-    Object? alignment_alignment = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
   }) {
     return _then(_value.copyWith(
       backgroundColor_color: freezed == backgroundColor_color
@@ -112,7 +112,7 @@ class _$MenuStyleModelCopyWithImpl<$Res, $Val extends MenuStyleModel>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       minimumSize_size: freezed == minimumSize_size
           ? _value.minimumSize_size
           : minimumSize_size // ignore: cast_nullable_to_non_nullable
@@ -133,11 +133,24 @@ class _$MenuStyleModelCopyWithImpl<$Res, $Val extends MenuStyleModel>
           ? _value.shape_outlinedBorder
           : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
               as OutlinedBorderModel?,
-      alignment_alignment: freezed == alignment_alignment
-          ? _value.alignment_alignment
-          : alignment_alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
   }
 
   @override
@@ -215,14 +228,16 @@ abstract class _$$MenuModelImplCopyWith<$Res>
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      @AlignmentConverter() Alignment? alignment_alignment});
+      AlignmentOptions? alignment_enum_alignmentOptions});
 
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   @override
   $SizeModelCopyWith<$Res>? get minimumSize_size;
   @override
@@ -256,7 +271,7 @@ class __$$MenuModelImplCopyWithImpl<$Res>
     Object? maximumSize_size = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
-    Object? alignment_alignment = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
   }) {
     return _then(_$MenuModelImpl(
       backgroundColor_color: freezed == backgroundColor_color
@@ -278,7 +293,7 @@ class __$$MenuModelImplCopyWithImpl<$Res>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       minimumSize_size: freezed == minimumSize_size
           ? _value.minimumSize_size
           : minimumSize_size // ignore: cast_nullable_to_non_nullable
@@ -299,10 +314,11 @@ class __$$MenuModelImplCopyWithImpl<$Res>
           ? _value.shape_outlinedBorder
           : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
               as OutlinedBorderModel?,
-      alignment_alignment: freezed == alignment_alignment
-          ? _value.alignment_alignment
-          : alignment_alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
     ));
   }
 }
@@ -315,13 +331,13 @@ class _$MenuModelImpl extends _MenuModel {
       this.shadowColor_color,
       this.surfaceTintColor_color,
       this.elevation_double,
-      @EdgeInsetsConverter() this.padding_edgeInsets,
+      this.padding_edgeInsets = const EdgeInsetsModel(),
       this.minimumSize_size = const SizeModel(),
       this.fixedSize_size = const SizeModel(),
       this.maximumSize_size = const SizeModel(),
       this.side_borderSide = const BorderSideModel(),
       this.shape_outlinedBorder = const OutlinedBorderModel(),
-      @AlignmentConverter() this.alignment_alignment})
+      this.alignment_enum_alignmentOptions = AlignmentOptions.center})
       : super._();
 
   factory _$MenuModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -336,8 +352,8 @@ class _$MenuModelImpl extends _MenuModel {
   @override
   final double? elevation_double;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
   @override
   @JsonKey()
   final SizeModel? minimumSize_size;
@@ -353,13 +369,14 @@ class _$MenuModelImpl extends _MenuModel {
   @override
   @JsonKey()
   final OutlinedBorderModel? shape_outlinedBorder;
+// @AlignmentConverter()
   @override
-  @AlignmentConverter()
-  final Alignment? alignment_alignment;
+  @JsonKey()
+  final AlignmentOptions? alignment_enum_alignmentOptions;
 
   @override
   String toString() {
-    return 'MenuStyleModel(backgroundColor_color: $backgroundColor_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, alignment_alignment: $alignment_alignment)';
+    return 'MenuStyleModel(backgroundColor_color: $backgroundColor_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions)';
   }
 
   @override
@@ -387,8 +404,10 @@ class _$MenuModelImpl extends _MenuModel {
                 other.side_borderSide == side_borderSide) &&
             (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
                 other.shape_outlinedBorder == shape_outlinedBorder) &&
-            (identical(other.alignment_alignment, alignment_alignment) ||
-                other.alignment_alignment == alignment_alignment));
+            (identical(other.alignment_enum_alignmentOptions,
+                    alignment_enum_alignmentOptions) ||
+                other.alignment_enum_alignmentOptions ==
+                    alignment_enum_alignmentOptions));
   }
 
   @JsonKey(ignore: true)
@@ -405,7 +424,7 @@ class _$MenuModelImpl extends _MenuModel {
       maximumSize_size,
       side_borderSide,
       shape_outlinedBorder,
-      alignment_alignment);
+      alignment_enum_alignmentOptions);
 
   @JsonKey(ignore: true)
   @override
@@ -427,13 +446,13 @@ abstract class _MenuModel extends MenuStyleModel {
           final String? shadowColor_color,
           final String? surfaceTintColor_color,
           final double? elevation_double,
-          @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets,
+          final EdgeInsetsModel? padding_edgeInsets,
           final SizeModel? minimumSize_size,
           final SizeModel? fixedSize_size,
           final SizeModel? maximumSize_size,
           final BorderSideModel? side_borderSide,
           final OutlinedBorderModel? shape_outlinedBorder,
-          @AlignmentConverter() final Alignment? alignment_alignment}) =
+          final AlignmentOptions? alignment_enum_alignmentOptions}) =
       _$MenuModelImpl;
   const _MenuModel._() : super._();
 
@@ -449,8 +468,7 @@ abstract class _MenuModel extends MenuStyleModel {
   @override
   double? get elevation_double;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
   SizeModel? get minimumSize_size;
   @override
@@ -461,9 +479,8 @@ abstract class _MenuModel extends MenuStyleModel {
   BorderSideModel? get side_borderSide;
   @override
   OutlinedBorderModel? get shape_outlinedBorder;
-  @override
-  @AlignmentConverter()
-  Alignment? get alignment_alignment;
+  @override // @AlignmentConverter()
+  AlignmentOptions? get alignment_enum_alignmentOptions;
   @override
   @JsonKey(ignore: true)
   _$$MenuModelImplCopyWith<_$MenuModelImpl> get copyWith =>

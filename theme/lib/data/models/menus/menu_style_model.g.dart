@@ -12,8 +12,10 @@ _$MenuModelImpl _$$MenuModelImplFromJson(Map<String, dynamic> json) =>
       shadowColor_color: json['shadowColor_color'] as String?,
       surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
       minimumSize_size: json['minimumSize_size'] == null
           ? const SizeModel()
           : SizeModel.fromJson(
@@ -33,8 +35,10 @@ _$MenuModelImpl _$$MenuModelImplFromJson(Map<String, dynamic> json) =>
           ? const OutlinedBorderModel()
           : OutlinedBorderModel.fromJson(
               json['shape_outlinedBorder'] as Map<String, dynamic>),
-      alignment_alignment: const AlignmentConverter()
-          .fromJson(json['alignment_alignment'] as String?),
+      alignment_enum_alignmentOptions: $enumDecodeNullable(
+              _$AlignmentOptionsEnumMap,
+              json['alignment_enum_alignmentOptions']) ??
+          AlignmentOptions.center,
     );
 
 Map<String, dynamic> _$$MenuModelImplToJson(_$MenuModelImpl instance) =>
@@ -43,13 +47,24 @@ Map<String, dynamic> _$$MenuModelImplToJson(_$MenuModelImpl instance) =>
       'shadowColor_color': instance.shadowColor_color,
       'surfaceTintColor_color': instance.surfaceTintColor_color,
       'elevation_double': instance.elevation_double,
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'minimumSize_size': instance.minimumSize_size?.toJson(),
       'fixedSize_size': instance.fixedSize_size?.toJson(),
       'maximumSize_size': instance.maximumSize_size?.toJson(),
       'side_borderSide': instance.side_borderSide?.toJson(),
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
-      'alignment_alignment':
-          const AlignmentConverter().toJson(instance.alignment_alignment),
+      'alignment_enum_alignmentOptions':
+          _$AlignmentOptionsEnumMap[instance.alignment_enum_alignmentOptions],
     };
+
+const _$AlignmentOptionsEnumMap = {
+  AlignmentOptions.topLeft: 'topLeft',
+  AlignmentOptions.topCenter: 'topCenter',
+  AlignmentOptions.topRight: 'topRight',
+  AlignmentOptions.centerLeft: 'centerLeft',
+  AlignmentOptions.center: 'center',
+  AlignmentOptions.centerRight: 'centerRight',
+  AlignmentOptions.bottomLeft: 'bottomLeft',
+  AlignmentOptions.bottomCenter: 'bottomCenter',
+  AlignmentOptions.bottomRight: 'bottomRight',
+};

@@ -25,8 +25,7 @@ mixin _$BottomAppbarModel {
   double? get height_double => throw _privateConstructorUsedError;
   String? get surfaceTintColor_color => throw _privateConstructorUsedError;
   String? get shadowColor_color => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +45,9 @@ abstract class $BottomAppbarModelCopyWith<$Res> {
       double? height_double,
       String? surfaceTintColor_color,
       String? shadowColor_color,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets});
+      EdgeInsetsModel? padding_edgeInsets});
+
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
 }
 
 /// @nodoc
@@ -93,8 +94,20 @@ class _$BottomAppbarModelCopyWithImpl<$Res, $Val extends BottomAppbarModel>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
   }
 }
 
@@ -112,7 +125,10 @@ abstract class _$$BottomAppbarModelImplCopyWith<$Res>
       double? height_double,
       String? surfaceTintColor_color,
       String? shadowColor_color,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets});
+      EdgeInsetsModel? padding_edgeInsets});
+
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
 }
 
 /// @nodoc
@@ -157,7 +173,7 @@ class __$$BottomAppbarModelImplCopyWithImpl<$Res>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
     ));
   }
 }
@@ -171,7 +187,7 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
       this.height_double,
       this.surfaceTintColor_color,
       this.shadowColor_color,
-      @EdgeInsetsConverter() this.padding_edgeInsets})
+      this.padding_edgeInsets = const EdgeInsetsModel()})
       : super._();
 
   factory _$BottomAppbarModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -188,8 +204,8 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
   @override
   final String? shadowColor_color;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
 
   @override
   String toString() {
@@ -243,13 +259,12 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
 
 abstract class _BottomAppbarModel extends BottomAppbarModel {
   const factory _BottomAppbarModel(
-          {final String? color_color,
-          final double? elevation_double,
-          final double? height_double,
-          final String? surfaceTintColor_color,
-          final String? shadowColor_color,
-          @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets}) =
-      _$BottomAppbarModelImpl;
+      {final String? color_color,
+      final double? elevation_double,
+      final double? height_double,
+      final String? surfaceTintColor_color,
+      final String? shadowColor_color,
+      final EdgeInsetsModel? padding_edgeInsets}) = _$BottomAppbarModelImpl;
   const _BottomAppbarModel._() : super._();
 
   factory _BottomAppbarModel.fromJson(Map<String, dynamic> json) =
@@ -266,8 +281,7 @@ abstract class _BottomAppbarModel extends BottomAppbarModel {
   @override
   String? get shadowColor_color;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
   @JsonKey(ignore: true)
   _$$BottomAppbarModelImplCopyWith<_$BottomAppbarModelImpl> get copyWith =>

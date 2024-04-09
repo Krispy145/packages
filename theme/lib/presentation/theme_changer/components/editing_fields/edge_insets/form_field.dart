@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/double/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/store.dart';
@@ -34,7 +35,7 @@ class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
                 DoubleFormField(store: store.leftStore),
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Container(color: Theme.of(context).primaryColor, padding: store.value, child: Container(width: 40, height: 40, color: Colors.grey)),
+                  child: Container(color: Theme.of(context).primaryColor, padding: store.value.asEdgeInsets(), child: Container(width: 40, height: 40, color: Colors.grey)),
                 ),
                 DoubleFormField(store: store.rightStore),
               ],

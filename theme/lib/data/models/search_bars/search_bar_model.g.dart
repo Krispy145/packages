@@ -21,8 +21,10 @@ _$SearchBarModelImpl _$$SearchBarModelImplFromJson(Map<String, dynamic> json) =>
           ? const OutlinedBorderModel()
           : OutlinedBorderModel.fromJson(
               json['shape_outlinedBorder'] as Map<String, dynamic>),
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
       textStyle_textStyle: json['textStyle_textStyle'] as String?,
       hintStyle_textStyle: json['hintStyle_textStyle'] as String?,
       constraints_boxConstraints: json['constraints_boxConstraints'] == null
@@ -45,8 +47,7 @@ Map<String, dynamic> _$$SearchBarModelImplToJson(
       'overlayColor_color': instance.overlayColor_color,
       'side_borderSide': instance.side_borderSide?.toJson(),
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'textStyle_textStyle': instance.textStyle_textStyle,
       'hintStyle_textStyle': instance.hintStyle_textStyle,
       'constraints_boxConstraints':

@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/data/models/general/size_model.dart';
-import 'package:theme/domain/converters/alignments/alignment.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
 part 'menu_style_model.freezed.dart';
@@ -19,13 +19,14 @@ class MenuStyleModel with _$MenuStyleModel {
     ThemeColorString? shadowColor_color,
     ThemeColorString? surfaceTintColor_color,
     double? elevation_double,
-    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     @Default(SizeModel()) SizeModel? minimumSize_size,
     @Default(SizeModel()) SizeModel? fixedSize_size,
     @Default(SizeModel()) SizeModel? maximumSize_size,
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-    @AlignmentConverter() Alignment? alignment_alignment,
+    // @AlignmentConverter()
+    @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
   }) = _MenuModel;
 
   const MenuStyleModel._();
@@ -66,13 +67,13 @@ class MenuStyleModel with _$MenuStyleModel {
       shadowColor: MaterialStateProperty.all(shadowColor_color?.toColor(styleType: styleTypeName)),
       surfaceTintColor: MaterialStateProperty.all(surfaceTintColor_color?.toColor(styleType: styleTypeName)),
       elevation: MaterialStateProperty.all(elevation_double),
-      padding: MaterialStateProperty.all(padding_edgeInsets ?? EdgeInsets.zero),
+      padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero),
       minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),
       fixedSize: MaterialStateProperty.all(fixedSize_size?.asSize(styleTypeName: styleTypeName)),
       maximumSize: MaterialStateProperty.all(maximumSize_size?.asSize(styleTypeName: styleTypeName)),
       side: MaterialStateProperty.all(side_borderSide?.asBorderSide(styleTypeName: styleTypeName)),
       shape: MaterialStateProperty.all(shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName)),
-      alignment: alignment_alignment,
+      alignment: alignment_enum_alignmentOptions?.alignment,
     );
   }
 

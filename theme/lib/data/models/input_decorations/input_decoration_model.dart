@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/input_border_model.dart';
 import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -24,7 +24,7 @@ class InputDecorationModel with _$InputDecorationModel {
     TextStyleString? errorStyle_textStyle,
     int? errorMaxLines_int,
     @Default(false) bool isDense_bool,
-    @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? contentPadding_edgeInsets,
     @Default(false) bool isCollapsed_bool,
     ThemeColorString? iconColor_color,
     TextStyleString? prefixStyle_textStyle,
@@ -34,8 +34,8 @@ class InputDecorationModel with _$InputDecorationModel {
     TextStyleString? counterStyle_textStyle,
     @Default(false) bool filled_bool,
     ThemeColorString? fillColor_color,
-    BorderSideModel? activeIndicatorBorder_borderSide,
-    BorderSideModel? outlineBorder_borderSide,
+    @Default(BorderSideModel()) BorderSideModel? activeIndicatorBorder_borderSide,
+    @Default(BorderSideModel()) BorderSideModel? outlineBorder_borderSide,
     ThemeColorString? focusColor_color,
     ThemeColorString? hoverColor_color,
     @Default(InputBorderModel()) InputBorderModel? errorBorder_inputBorder,
@@ -140,7 +140,7 @@ class InputDecorationModel with _$InputDecorationModel {
       errorStyle: errorStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       errorMaxLines: errorMaxLines_int,
       isDense: isDense_bool,
-      contentPadding: contentPadding_edgeInsets,
+      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       isCollapsed: isCollapsed_bool,
       iconColor: iconColor_color?.toColor(styleType: styleTypeName),
       prefixStyle: prefixStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
@@ -174,7 +174,7 @@ class InputDecorationModel with _$InputDecorationModel {
       errorStyle: errorStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       errorMaxLines: errorMaxLines_int,
       isDense: isDense_bool,
-      contentPadding: contentPadding_edgeInsets,
+      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       isCollapsed: isCollapsed_bool,
       iconColor: iconColor_color?.toColor(styleType: styleTypeName),
       prefixStyle: prefixStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,

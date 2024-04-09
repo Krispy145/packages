@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -21,7 +21,7 @@ class SnackbarModel with _$SnackbarModel {
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     @Default(SnackBarBehavior.floating) SnackBarBehavior behavior_enum_snackBarBehavior,
     double? width_double,
-    @EdgeInsetsConverter() EdgeInsets? insetPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? insetPadding_edgeInsets,
     bool? showCloseIcon_bool,
     ThemeColorString? closeIconColor_color,
     double? actionOverflowThreshold_double,
@@ -74,7 +74,7 @@ class SnackbarModel with _$SnackbarModel {
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       behavior: behavior_enum_snackBarBehavior,
       width: width_double,
-      insetPadding: insetPadding_edgeInsets,
+      insetPadding: insetPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       showCloseIcon: showCloseIcon_bool,
       actionOverflowThreshold: actionOverflowThreshold_double,
       actionBackgroundColor: actionBackgroundColor_color?.toColor(styleType: styleTypeName),

@@ -21,10 +21,8 @@ TooltipModel _$TooltipModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TooltipModel {
   double? get height_double => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get margin_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get margin_edgeInsets => throw _privateConstructorUsedError;
   double? get verticalOffset_double => throw _privateConstructorUsedError;
   bool? get preferBelow_bool => throw _privateConstructorUsedError;
   bool? get excludeFromSemantics_bool => throw _privateConstructorUsedError;
@@ -53,8 +51,8 @@ abstract class $TooltipModelCopyWith<$Res> {
   @useResult
   $Res call(
       {double? height_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
-      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
+      EdgeInsetsModel? margin_edgeInsets,
       double? verticalOffset_double,
       bool? preferBelow_bool,
       bool? excludeFromSemantics_bool,
@@ -66,6 +64,8 @@ abstract class $TooltipModelCopyWith<$Res> {
       TooltipTriggerMode? triggerMode_enum_tooltipTriggerMode,
       bool? enableFeedback_bool});
 
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  $EdgeInsetsModelCopyWith<$Res>? get margin_edgeInsets;
   $BoxDecorationModelCopyWith<$Res>? get decoration_boxDecoration;
 }
 
@@ -104,11 +104,11 @@ class _$TooltipModelCopyWithImpl<$Res, $Val extends TooltipModel>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       margin_edgeInsets: freezed == margin_edgeInsets
           ? _value.margin_edgeInsets
           : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       verticalOffset_double: freezed == verticalOffset_double
           ? _value.verticalOffset_double
           : verticalOffset_double // ignore: cast_nullable_to_non_nullable
@@ -155,6 +155,30 @@ class _$TooltipModelCopyWithImpl<$Res, $Val extends TooltipModel>
 
   @override
   @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get margin_edgeInsets {
+    if (_value.margin_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.margin_edgeInsets!, (value) {
+      return _then(_value.copyWith(margin_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $BoxDecorationModelCopyWith<$Res>? get decoration_boxDecoration {
     if (_value.decoration_boxDecoration == null) {
       return null;
@@ -177,8 +201,8 @@ abstract class _$$TooltipModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {double? height_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
-      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
+      EdgeInsetsModel? margin_edgeInsets,
       double? verticalOffset_double,
       bool? preferBelow_bool,
       bool? excludeFromSemantics_bool,
@@ -190,6 +214,10 @@ abstract class _$$TooltipModelImplCopyWith<$Res>
       TooltipTriggerMode? triggerMode_enum_tooltipTriggerMode,
       bool? enableFeedback_bool});
 
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get margin_edgeInsets;
   @override
   $BoxDecorationModelCopyWith<$Res>? get decoration_boxDecoration;
 }
@@ -227,11 +255,11 @@ class __$$TooltipModelImplCopyWithImpl<$Res>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       margin_edgeInsets: freezed == margin_edgeInsets
           ? _value.margin_edgeInsets
           : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       verticalOffset_double: freezed == verticalOffset_double
           ? _value.verticalOffset_double
           : verticalOffset_double // ignore: cast_nullable_to_non_nullable
@@ -282,8 +310,8 @@ class __$$TooltipModelImplCopyWithImpl<$Res>
 class _$TooltipModelImpl extends _TooltipModel {
   const _$TooltipModelImpl(
       {this.height_double,
-      @EdgeInsetsConverter() this.padding_edgeInsets,
-      @EdgeInsetsConverter() this.margin_edgeInsets,
+      this.padding_edgeInsets = const EdgeInsetsModel(),
+      this.margin_edgeInsets = const EdgeInsetsModel(),
       this.verticalOffset_double,
       this.preferBelow_bool,
       this.excludeFromSemantics_bool,
@@ -302,11 +330,11 @@ class _$TooltipModelImpl extends _TooltipModel {
   @override
   final double? height_double;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? margin_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? margin_edgeInsets;
   @override
   final double? verticalOffset_double;
   @override
@@ -408,8 +436,8 @@ class _$TooltipModelImpl extends _TooltipModel {
 abstract class _TooltipModel extends TooltipModel {
   const factory _TooltipModel(
       {final double? height_double,
-      @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets,
-      @EdgeInsetsConverter() final EdgeInsets? margin_edgeInsets,
+      final EdgeInsetsModel? padding_edgeInsets,
+      final EdgeInsetsModel? margin_edgeInsets,
       final double? verticalOffset_double,
       final bool? preferBelow_bool,
       final bool? excludeFromSemantics_bool,
@@ -428,11 +456,9 @@ abstract class _TooltipModel extends TooltipModel {
   @override
   double? get height_double;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get margin_edgeInsets;
+  EdgeInsetsModel? get margin_edgeInsets;
   @override
   double? get verticalOffset_double;
   @override

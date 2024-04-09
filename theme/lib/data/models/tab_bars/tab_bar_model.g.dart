@@ -19,8 +19,10 @@ _$TabBarModelImpl _$$TabBarModelImplFromJson(Map<String, dynamic> json) =>
           json['indicatorSize_enum_tabBarIndicatorSize']),
       dividerHeight_double: (json['dividerHeight_double'] as num?)?.toDouble(),
       labelColor_color: json['labelColor_color'] as String?,
-      labelPadding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['labelPadding_edgeInsets'] as Map<String, dynamic>?),
+      labelPadding_edgeInsets: json['labelPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['labelPadding_edgeInsets'] as Map<String, dynamic>),
       labelStyle_textStyle: json['labelStyle_textStyle'] as String?,
       unselectedLabelColor_color: json['unselectedLabelColor_color'] as String?,
       unselectedLabelStyle_textStyle:
@@ -39,8 +41,7 @@ Map<String, dynamic> _$$TabBarModelImplToJson(_$TabBarModelImpl instance) =>
           instance.indicatorSize_enum_tabBarIndicatorSize],
       'dividerHeight_double': instance.dividerHeight_double,
       'labelColor_color': instance.labelColor_color,
-      'labelPadding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.labelPadding_edgeInsets),
+      'labelPadding_edgeInsets': instance.labelPadding_edgeInsets?.toJson(),
       'labelStyle_textStyle': instance.labelStyle_textStyle,
       'unselectedLabelColor_color': instance.unselectedLabelColor_color,
       'unselectedLabelStyle_textStyle': instance.unselectedLabelStyle_textStyle,

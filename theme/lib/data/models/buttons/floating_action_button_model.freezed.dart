@@ -45,8 +45,7 @@ mixin _$FloatingActionButtonModel {
       throw _privateConstructorUsedError;
   double? get extendedIconLabelSpacing_double =>
       throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get extendedPadding_edgeInsets =>
+  EdgeInsetsModel? get extendedPadding_edgeInsets =>
       throw _privateConstructorUsedError;
   String? get extendedTextStyle_textStyle => throw _privateConstructorUsedError;
 
@@ -81,7 +80,7 @@ abstract class $FloatingActionButtonModelCopyWith<$Res> {
       BoxConstraintsModel? largeSizeConstraints_boxConstraints,
       BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
       double? extendedIconLabelSpacing_double,
-      @EdgeInsetsConverter() EdgeInsets? extendedPadding_edgeInsets,
+      EdgeInsetsModel? extendedPadding_edgeInsets,
       String? extendedTextStyle_textStyle});
 
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
@@ -90,6 +89,7 @@ abstract class $FloatingActionButtonModelCopyWith<$Res> {
   $BoxConstraintsModelCopyWith<$Res>? get largeSizeConstraints_boxConstraints;
   $BoxConstraintsModelCopyWith<$Res>?
       get extendedSizeConstraints_boxConstraints;
+  $EdgeInsetsModelCopyWith<$Res>? get extendedPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -207,7 +207,7 @@ class _$FloatingActionButtonModelCopyWithImpl<$Res,
       extendedPadding_edgeInsets: freezed == extendedPadding_edgeInsets
           ? _value.extendedPadding_edgeInsets
           : extendedPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       extendedTextStyle_textStyle: freezed == extendedTextStyle_textStyle
           ? _value.extendedTextStyle_textStyle
           : extendedTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
@@ -283,6 +283,19 @@ class _$FloatingActionButtonModelCopyWithImpl<$Res,
           extendedSizeConstraints_boxConstraints: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get extendedPadding_edgeInsets {
+    if (_value.extendedPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.extendedPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(extendedPadding_edgeInsets: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -313,7 +326,7 @@ abstract class _$$FloatingActionButtonModelImplCopyWith<$Res>
       BoxConstraintsModel? largeSizeConstraints_boxConstraints,
       BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
       double? extendedIconLabelSpacing_double,
-      @EdgeInsetsConverter() EdgeInsets? extendedPadding_edgeInsets,
+      EdgeInsetsModel? extendedPadding_edgeInsets,
       String? extendedTextStyle_textStyle});
 
   @override
@@ -327,6 +340,8 @@ abstract class _$$FloatingActionButtonModelImplCopyWith<$Res>
   @override
   $BoxConstraintsModelCopyWith<$Res>?
       get extendedSizeConstraints_boxConstraints;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get extendedPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -443,7 +458,7 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
       extendedPadding_edgeInsets: freezed == extendedPadding_edgeInsets
           ? _value.extendedPadding_edgeInsets
           : extendedPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       extendedTextStyle_textStyle: freezed == extendedTextStyle_textStyle
           ? _value.extendedTextStyle_textStyle
           : extendedTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
@@ -474,7 +489,7 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
       this.largeSizeConstraints_boxConstraints = const BoxConstraintsModel(),
       this.extendedSizeConstraints_boxConstraints = const BoxConstraintsModel(),
       this.extendedIconLabelSpacing_double,
-      @EdgeInsetsConverter() this.extendedPadding_edgeInsets,
+      this.extendedPadding_edgeInsets = const EdgeInsetsModel(),
       this.extendedTextStyle_textStyle})
       : super._();
 
@@ -523,8 +538,8 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
   @override
   final double? extendedIconLabelSpacing_double;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? extendedPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? extendedPadding_edgeInsets;
   @override
   final String? extendedTextStyle_textStyle;
 
@@ -648,7 +663,7 @@ abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
           final BoxConstraintsModel? largeSizeConstraints_boxConstraints,
           final BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
           final double? extendedIconLabelSpacing_double,
-          @EdgeInsetsConverter() final EdgeInsets? extendedPadding_edgeInsets,
+          final EdgeInsetsModel? extendedPadding_edgeInsets,
           final String? extendedTextStyle_textStyle}) =
       _$FloatingActionButtonModelImpl;
   const _FloatingActionButtonModel._() : super._();
@@ -693,8 +708,7 @@ abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
   @override
   double? get extendedIconLabelSpacing_double;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get extendedPadding_edgeInsets;
+  EdgeInsetsModel? get extendedPadding_edgeInsets;
   @override
   String? get extendedTextStyle_textStyle;
   @override

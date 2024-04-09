@@ -24,14 +24,11 @@ mixin _$SearchBarModel {
   String? get backgroundColor_color => throw _privateConstructorUsedError;
   String? get shadowColor_color => throw _privateConstructorUsedError;
   String? get surfaceTintColor_color => throw _privateConstructorUsedError;
-  String? get overlayColor_color =>
-      throw _privateConstructorUsedError; // @BorderSideConverter()
-  BorderSideModel? get side_borderSide =>
-      throw _privateConstructorUsedError; // @OutlinedBorderConverter()
+  String? get overlayColor_color => throw _privateConstructorUsedError;
+  BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
   OutlinedBorderModel? get shape_outlinedBorder =>
       throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
   String? get textStyle_textStyle => throw _privateConstructorUsedError;
   String? get hintStyle_textStyle => throw _privateConstructorUsedError;
   BoxConstraintsModel? get constraints_boxConstraints =>
@@ -59,7 +56,7 @@ abstract class $SearchBarModelCopyWith<$Res> {
       String? overlayColor_color,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       String? textStyle_textStyle,
       String? hintStyle_textStyle,
       BoxConstraintsModel? constraints_boxConstraints,
@@ -67,6 +64,7 @@ abstract class $SearchBarModelCopyWith<$Res> {
 
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
   $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
 }
 
@@ -128,7 +126,7 @@ class _$SearchBarModelCopyWithImpl<$Res, $Val extends SearchBarModel>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       textStyle_textStyle: freezed == textStyle_textStyle
           ? _value.textStyle_textStyle
           : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
@@ -176,6 +174,18 @@ class _$SearchBarModelCopyWithImpl<$Res, $Val extends SearchBarModel>
 
   @override
   @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints {
     if (_value.constraints_boxConstraints == null) {
       return null;
@@ -204,7 +214,7 @@ abstract class _$$SearchBarModelImplCopyWith<$Res>
       String? overlayColor_color,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       String? textStyle_textStyle,
       String? hintStyle_textStyle,
       BoxConstraintsModel? constraints_boxConstraints,
@@ -214,6 +224,8 @@ abstract class _$$SearchBarModelImplCopyWith<$Res>
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
   @override
   $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   @override
   $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
 }
@@ -274,7 +286,7 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       textStyle_textStyle: freezed == textStyle_textStyle
           ? _value.textStyle_textStyle
           : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
@@ -307,7 +319,7 @@ class _$SearchBarModelImpl extends _SearchBarModel {
       this.overlayColor_color,
       this.side_borderSide,
       this.shape_outlinedBorder = const OutlinedBorderModel(),
-      @EdgeInsetsConverter() this.padding_edgeInsets,
+      this.padding_edgeInsets = const EdgeInsetsModel(),
       this.textStyle_textStyle,
       this.hintStyle_textStyle,
       this.constraints_boxConstraints = const BoxConstraintsModel(),
@@ -328,16 +340,14 @@ class _$SearchBarModelImpl extends _SearchBarModel {
   final String? surfaceTintColor_color;
   @override
   final String? overlayColor_color;
-// @BorderSideConverter()
   @override
   final BorderSideModel? side_borderSide;
-// @OutlinedBorderConverter()
   @override
   @JsonKey()
   final OutlinedBorderModel? shape_outlinedBorder;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
   @override
   final String? textStyle_textStyle;
   @override
@@ -430,7 +440,7 @@ abstract class _SearchBarModel extends SearchBarModel {
       final String? overlayColor_color,
       final BorderSideModel? side_borderSide,
       final OutlinedBorderModel? shape_outlinedBorder,
-      @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets,
+      final EdgeInsetsModel? padding_edgeInsets,
       final String? textStyle_textStyle,
       final String? hintStyle_textStyle,
       final BoxConstraintsModel? constraints_boxConstraints,
@@ -451,13 +461,12 @@ abstract class _SearchBarModel extends SearchBarModel {
   String? get surfaceTintColor_color;
   @override
   String? get overlayColor_color;
-  @override // @BorderSideConverter()
+  @override
   BorderSideModel? get side_borderSide;
-  @override // @OutlinedBorderConverter()
+  @override
   OutlinedBorderModel? get shape_outlinedBorder;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
   String? get textStyle_textStyle;
   @override

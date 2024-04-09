@@ -20,8 +20,9 @@ _$NavigationBarModelImpl _$$NavigationBarModelImplFromJson(
           : ShapeBorderModel.fromJson(
               json['indicatorShape_shapeBorder'] as Map<String, dynamic>),
       labelTextStyle_textStyle: json['labelTextStyle_textStyle'] as String?,
-      labelBehavior: const NavigationDestinationLabelConverter()
-          .fromJson(json['labelBehavior'] as String?),
+      labelBehavior_enum_navigationDestinationLabelBehavior:
+          $enumDecodeNullable(_$NavigationDestinationLabelBehaviorEnumMap,
+              json['labelBehavior_enum_navigationDestinationLabelBehavior']),
     );
 
 Map<String, dynamic> _$$NavigationBarModelImplToJson(
@@ -36,6 +37,13 @@ Map<String, dynamic> _$$NavigationBarModelImplToJson(
       'indicatorShape_shapeBorder':
           instance.indicatorShape_shapeBorder?.toJson(),
       'labelTextStyle_textStyle': instance.labelTextStyle_textStyle,
-      'labelBehavior': const NavigationDestinationLabelConverter()
-          .toJson(instance.labelBehavior),
+      'labelBehavior_enum_navigationDestinationLabelBehavior':
+          _$NavigationDestinationLabelBehaviorEnumMap[
+              instance.labelBehavior_enum_navigationDestinationLabelBehavior],
     };
+
+const _$NavigationDestinationLabelBehaviorEnumMap = {
+  NavigationDestinationLabelBehavior.alwaysShow: 'alwaysShow',
+  NavigationDestinationLabelBehavior.alwaysHide: 'alwaysHide',
+  NavigationDestinationLabelBehavior.onlyShowSelected: 'onlyShowSelected',
+};

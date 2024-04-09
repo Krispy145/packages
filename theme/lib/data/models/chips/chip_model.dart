@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -25,8 +25,8 @@ class ChipModel with _$ChipModel {
     ThemeColorString? selectedShadowColor_color,
     bool? showCheckmark_bool,
     ThemeColorString? checkmarkColor_color,
-    @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
-    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? labelPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     BorderSideModel? side_borderSide,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     TextStyleString? labelStyle_textStyle,
@@ -95,8 +95,8 @@ class ChipModel with _$ChipModel {
       selectedShadowColor: selectedShadowColor_color?.toColor(styleType: styleTypeName),
       showCheckmark: showCheckmark_bool,
       checkmarkColor: checkmarkColor_color?.toColor(styleType: styleTypeName),
-      labelPadding: labelPadding_edgeInsets,
-      padding: padding_edgeInsets,
+      labelPadding: labelPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       labelStyle: labelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,

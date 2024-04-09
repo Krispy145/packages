@@ -9,10 +9,14 @@ part of 'tooltip_model.dart';
 _$TooltipModelImpl _$$TooltipModelImplFromJson(Map<String, dynamic> json) =>
     _$TooltipModelImpl(
       height_double: (json['height_double'] as num?)?.toDouble(),
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
-      margin_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['margin_edgeInsets'] as Map<String, dynamic>?),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
+      margin_edgeInsets: json['margin_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['margin_edgeInsets'] as Map<String, dynamic>),
       verticalOffset_double:
           (json['verticalOffset_double'] as num?)?.toDouble(),
       preferBelow_bool: json['preferBelow_bool'] as bool?,
@@ -39,10 +43,8 @@ _$TooltipModelImpl _$$TooltipModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$TooltipModelImplToJson(_$TooltipModelImpl instance) =>
     <String, dynamic>{
       'height_double': instance.height_double,
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
-      'margin_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.margin_edgeInsets),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
+      'margin_edgeInsets': instance.margin_edgeInsets?.toJson(),
       'verticalOffset_double': instance.verticalOffset_double,
       'preferBelow_bool': instance.preferBelow_bool,
       'excludeFromSemantics_bool': instance.excludeFromSemantics_bool,

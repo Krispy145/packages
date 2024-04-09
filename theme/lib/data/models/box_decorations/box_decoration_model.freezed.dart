@@ -25,15 +25,14 @@ mixin _$BoxDecorationModel {
   BoxBorderModel? get border_boxBorder =>
       throw _privateConstructorUsedError; // @BorderRadiusConverter() BorderRadius? borderRadius,
   BorderRadiusModel? get borderRadius_borderRadius =>
+      throw _privateConstructorUsedError; // @BoxShadowsConverter()
+  List<BoxShadowModel>? get boxShadows_list_boxShadow =>
+      throw _privateConstructorUsedError; // TODO: box shadows
+// @GradientConverter()
+  GradientModel? get gradient_gradient =>
+      throw _privateConstructorUsedError; // TODO: Gradient
+  BlendMode? get backgroundBlendMode_enum_blendMode =>
       throw _privateConstructorUsedError;
-  @BoxShadowsConverter()
-  List<BoxShadow>? get boxShadows_list_boxShadow =>
-      throw _privateConstructorUsedError;
-  @GradientConverter()
-  Gradient? get gradient_gradient => throw _privateConstructorUsedError;
-  @BlendModeConverter()
-  BlendMode? get backgroundBlendMode_blendMode =>
-      throw _privateConstructorUsedError; // @BoxShapeConverter()
   BoxShape? get shape_enum_boxShape => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,13 +51,14 @@ abstract class $BoxDecorationModelCopyWith<$Res> {
       {String? color_color,
       BoxBorderModel? border_boxBorder,
       BorderRadiusModel? borderRadius_borderRadius,
-      @BoxShadowsConverter() List<BoxShadow>? boxShadows_list_boxShadow,
-      @GradientConverter() Gradient? gradient_gradient,
-      @BlendModeConverter() BlendMode? backgroundBlendMode_blendMode,
+      List<BoxShadowModel>? boxShadows_list_boxShadow,
+      GradientModel? gradient_gradient,
+      BlendMode? backgroundBlendMode_enum_blendMode,
       BoxShape? shape_enum_boxShape});
 
   $BoxBorderModelCopyWith<$Res>? get border_boxBorder;
   $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius;
+  $GradientModelCopyWith<$Res>? get gradient_gradient;
 }
 
 /// @nodoc
@@ -79,7 +79,7 @@ class _$BoxDecorationModelCopyWithImpl<$Res, $Val extends BoxDecorationModel>
     Object? borderRadius_borderRadius = freezed,
     Object? boxShadows_list_boxShadow = freezed,
     Object? gradient_gradient = freezed,
-    Object? backgroundBlendMode_blendMode = freezed,
+    Object? backgroundBlendMode_enum_blendMode = freezed,
     Object? shape_enum_boxShape = freezed,
   }) {
     return _then(_value.copyWith(
@@ -98,14 +98,15 @@ class _$BoxDecorationModelCopyWithImpl<$Res, $Val extends BoxDecorationModel>
       boxShadows_list_boxShadow: freezed == boxShadows_list_boxShadow
           ? _value.boxShadows_list_boxShadow
           : boxShadows_list_boxShadow // ignore: cast_nullable_to_non_nullable
-              as List<BoxShadow>?,
+              as List<BoxShadowModel>?,
       gradient_gradient: freezed == gradient_gradient
           ? _value.gradient_gradient
           : gradient_gradient // ignore: cast_nullable_to_non_nullable
-              as Gradient?,
-      backgroundBlendMode_blendMode: freezed == backgroundBlendMode_blendMode
-          ? _value.backgroundBlendMode_blendMode
-          : backgroundBlendMode_blendMode // ignore: cast_nullable_to_non_nullable
+              as GradientModel?,
+      backgroundBlendMode_enum_blendMode: freezed ==
+              backgroundBlendMode_enum_blendMode
+          ? _value.backgroundBlendMode_enum_blendMode
+          : backgroundBlendMode_enum_blendMode // ignore: cast_nullable_to_non_nullable
               as BlendMode?,
       shape_enum_boxShape: freezed == shape_enum_boxShape
           ? _value.shape_enum_boxShape
@@ -138,6 +139,18 @@ class _$BoxDecorationModelCopyWithImpl<$Res, $Val extends BoxDecorationModel>
       return _then(_value.copyWith(borderRadius_borderRadius: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GradientModelCopyWith<$Res>? get gradient_gradient {
+    if (_value.gradient_gradient == null) {
+      return null;
+    }
+
+    return $GradientModelCopyWith<$Res>(_value.gradient_gradient!, (value) {
+      return _then(_value.copyWith(gradient_gradient: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -152,15 +165,17 @@ abstract class _$$BoxDecorationModelImplCopyWith<$Res>
       {String? color_color,
       BoxBorderModel? border_boxBorder,
       BorderRadiusModel? borderRadius_borderRadius,
-      @BoxShadowsConverter() List<BoxShadow>? boxShadows_list_boxShadow,
-      @GradientConverter() Gradient? gradient_gradient,
-      @BlendModeConverter() BlendMode? backgroundBlendMode_blendMode,
+      List<BoxShadowModel>? boxShadows_list_boxShadow,
+      GradientModel? gradient_gradient,
+      BlendMode? backgroundBlendMode_enum_blendMode,
       BoxShape? shape_enum_boxShape});
 
   @override
   $BoxBorderModelCopyWith<$Res>? get border_boxBorder;
   @override
   $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius;
+  @override
+  $GradientModelCopyWith<$Res>? get gradient_gradient;
 }
 
 /// @nodoc
@@ -179,7 +194,7 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
     Object? borderRadius_borderRadius = freezed,
     Object? boxShadows_list_boxShadow = freezed,
     Object? gradient_gradient = freezed,
-    Object? backgroundBlendMode_blendMode = freezed,
+    Object? backgroundBlendMode_enum_blendMode = freezed,
     Object? shape_enum_boxShape = freezed,
   }) {
     return _then(_$BoxDecorationModelImpl(
@@ -198,14 +213,15 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
       boxShadows_list_boxShadow: freezed == boxShadows_list_boxShadow
           ? _value._boxShadows_list_boxShadow
           : boxShadows_list_boxShadow // ignore: cast_nullable_to_non_nullable
-              as List<BoxShadow>?,
+              as List<BoxShadowModel>?,
       gradient_gradient: freezed == gradient_gradient
           ? _value.gradient_gradient
           : gradient_gradient // ignore: cast_nullable_to_non_nullable
-              as Gradient?,
-      backgroundBlendMode_blendMode: freezed == backgroundBlendMode_blendMode
-          ? _value.backgroundBlendMode_blendMode
-          : backgroundBlendMode_blendMode // ignore: cast_nullable_to_non_nullable
+              as GradientModel?,
+      backgroundBlendMode_enum_blendMode: freezed ==
+              backgroundBlendMode_enum_blendMode
+          ? _value.backgroundBlendMode_enum_blendMode
+          : backgroundBlendMode_enum_blendMode // ignore: cast_nullable_to_non_nullable
               as BlendMode?,
       shape_enum_boxShape: freezed == shape_enum_boxShape
           ? _value.shape_enum_boxShape
@@ -222,9 +238,9 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
       {this.color_color,
       this.border_boxBorder,
       this.borderRadius_borderRadius,
-      @BoxShadowsConverter() final List<BoxShadow>? boxShadows_list_boxShadow,
-      @GradientConverter() this.gradient_gradient,
-      @BlendModeConverter() this.backgroundBlendMode_blendMode,
+      final List<BoxShadowModel>? boxShadows_list_boxShadow = const [],
+      this.gradient_gradient = const GradientModel(),
+      this.backgroundBlendMode_enum_blendMode,
       this.shape_enum_boxShape = BoxShape.rectangle})
       : _boxShadows_list_boxShadow = boxShadows_list_boxShadow,
         super._();
@@ -240,10 +256,12 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
 // @BorderRadiusConverter() BorderRadius? borderRadius,
   @override
   final BorderRadiusModel? borderRadius_borderRadius;
-  final List<BoxShadow>? _boxShadows_list_boxShadow;
+// @BoxShadowsConverter()
+  final List<BoxShadowModel>? _boxShadows_list_boxShadow;
+// @BoxShadowsConverter()
   @override
-  @BoxShadowsConverter()
-  List<BoxShadow>? get boxShadows_list_boxShadow {
+  @JsonKey()
+  List<BoxShadowModel>? get boxShadows_list_boxShadow {
     final value = _boxShadows_list_boxShadow;
     if (value == null) return null;
     if (_boxShadows_list_boxShadow is EqualUnmodifiableListView)
@@ -252,20 +270,21 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
     return EqualUnmodifiableListView(value);
   }
 
+// TODO: box shadows
+// @GradientConverter()
   @override
-  @GradientConverter()
-  final Gradient? gradient_gradient;
+  @JsonKey()
+  final GradientModel? gradient_gradient;
+// TODO: Gradient
   @override
-  @BlendModeConverter()
-  final BlendMode? backgroundBlendMode_blendMode;
-// @BoxShapeConverter()
+  final BlendMode? backgroundBlendMode_enum_blendMode;
   @override
   @JsonKey()
   final BoxShape? shape_enum_boxShape;
 
   @override
   String toString() {
-    return 'BoxDecorationModel(color_color: $color_color, border_boxBorder: $border_boxBorder, borderRadius_borderRadius: $borderRadius_borderRadius, boxShadows_list_boxShadow: $boxShadows_list_boxShadow, gradient_gradient: $gradient_gradient, backgroundBlendMode_blendMode: $backgroundBlendMode_blendMode, shape_enum_boxShape: $shape_enum_boxShape)';
+    return 'BoxDecorationModel(color_color: $color_color, border_boxBorder: $border_boxBorder, borderRadius_borderRadius: $borderRadius_borderRadius, boxShadows_list_boxShadow: $boxShadows_list_boxShadow, gradient_gradient: $gradient_gradient, backgroundBlendMode_enum_blendMode: $backgroundBlendMode_enum_blendMode, shape_enum_boxShape: $shape_enum_boxShape)';
   }
 
   @override
@@ -284,10 +303,10 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
                 other._boxShadows_list_boxShadow, _boxShadows_list_boxShadow) &&
             (identical(other.gradient_gradient, gradient_gradient) ||
                 other.gradient_gradient == gradient_gradient) &&
-            (identical(other.backgroundBlendMode_blendMode,
-                    backgroundBlendMode_blendMode) ||
-                other.backgroundBlendMode_blendMode ==
-                    backgroundBlendMode_blendMode) &&
+            (identical(other.backgroundBlendMode_enum_blendMode,
+                    backgroundBlendMode_enum_blendMode) ||
+                other.backgroundBlendMode_enum_blendMode ==
+                    backgroundBlendMode_enum_blendMode) &&
             (identical(other.shape_enum_boxShape, shape_enum_boxShape) ||
                 other.shape_enum_boxShape == shape_enum_boxShape));
   }
@@ -301,7 +320,7 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
       borderRadius_borderRadius,
       const DeepCollectionEquality().hash(_boxShadows_list_boxShadow),
       gradient_gradient,
-      backgroundBlendMode_blendMode,
+      backgroundBlendMode_enum_blendMode,
       shape_enum_boxShape);
 
   @JsonKey(ignore: true)
@@ -324,9 +343,9 @@ abstract class _BoxDecorationModel extends BoxDecorationModel {
       {final String? color_color,
       final BoxBorderModel? border_boxBorder,
       final BorderRadiusModel? borderRadius_borderRadius,
-      @BoxShadowsConverter() final List<BoxShadow>? boxShadows_list_boxShadow,
-      @GradientConverter() final Gradient? gradient_gradient,
-      @BlendModeConverter() final BlendMode? backgroundBlendMode_blendMode,
+      final List<BoxShadowModel>? boxShadows_list_boxShadow,
+      final GradientModel? gradient_gradient,
+      final BlendMode? backgroundBlendMode_enum_blendMode,
       final BoxShape? shape_enum_boxShape}) = _$BoxDecorationModelImpl;
   const _BoxDecorationModel._() : super._();
 
@@ -339,16 +358,14 @@ abstract class _BoxDecorationModel extends BoxDecorationModel {
   BoxBorderModel? get border_boxBorder;
   @override // @BorderRadiusConverter() BorderRadius? borderRadius,
   BorderRadiusModel? get borderRadius_borderRadius;
+  @override // @BoxShadowsConverter()
+  List<BoxShadowModel>? get boxShadows_list_boxShadow;
+  @override // TODO: box shadows
+// @GradientConverter()
+  GradientModel? get gradient_gradient;
+  @override // TODO: Gradient
+  BlendMode? get backgroundBlendMode_enum_blendMode;
   @override
-  @BoxShadowsConverter()
-  List<BoxShadow>? get boxShadows_list_boxShadow;
-  @override
-  @GradientConverter()
-  Gradient? get gradient_gradient;
-  @override
-  @BlendModeConverter()
-  BlendMode? get backgroundBlendMode_blendMode;
-  @override // @BoxShapeConverter()
   BoxShape? get shape_enum_boxShape;
   @override
   @JsonKey(ignore: true)

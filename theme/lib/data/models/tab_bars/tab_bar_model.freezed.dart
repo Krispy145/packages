@@ -29,8 +29,8 @@ mixin _$TabBarModel {
       throw _privateConstructorUsedError;
   double? get dividerHeight_double => throw _privateConstructorUsedError;
   String? get labelColor_color => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get labelPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
   String? get labelStyle_textStyle => throw _privateConstructorUsedError;
   String? get unselectedLabelColor_color => throw _privateConstructorUsedError;
   String? get unselectedLabelStyle_textStyle =>
@@ -59,7 +59,7 @@ abstract class $TabBarModelCopyWith<$Res> {
       TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
       double? dividerHeight_double,
       String? labelColor_color,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
+      EdgeInsetsModel? labelPadding_edgeInsets,
       String? labelStyle_textStyle,
       String? unselectedLabelColor_color,
       String? unselectedLabelStyle_textStyle,
@@ -67,6 +67,7 @@ abstract class $TabBarModelCopyWith<$Res> {
       TabAlignment? tabAlignment_enum_tabAlignment});
 
   $BoxDecorationModelCopyWith<$Res>? get indicator_boxDecoration;
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -124,7 +125,7 @@ class _$TabBarModelCopyWithImpl<$Res, $Val extends TabBarModel>
       labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
           ? _value.labelPadding_edgeInsets
           : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       labelStyle_textStyle: freezed == labelStyle_textStyle
           ? _value.labelStyle_textStyle
           : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
@@ -160,6 +161,19 @@ class _$TabBarModelCopyWithImpl<$Res, $Val extends TabBarModel>
       return _then(_value.copyWith(indicator_boxDecoration: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets {
+    if (_value.labelPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.labelPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(labelPadding_edgeInsets: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -177,7 +191,7 @@ abstract class _$$TabBarModelImplCopyWith<$Res>
       TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
       double? dividerHeight_double,
       String? labelColor_color,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
+      EdgeInsetsModel? labelPadding_edgeInsets,
       String? labelStyle_textStyle,
       String? unselectedLabelColor_color,
       String? unselectedLabelStyle_textStyle,
@@ -186,6 +200,8 @@ abstract class _$$TabBarModelImplCopyWith<$Res>
 
   @override
   $BoxDecorationModelCopyWith<$Res>? get indicator_boxDecoration;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -241,7 +257,7 @@ class __$$TabBarModelImplCopyWithImpl<$Res>
       labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
           ? _value.labelPadding_edgeInsets
           : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       labelStyle_textStyle: freezed == labelStyle_textStyle
           ? _value.labelStyle_textStyle
           : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
@@ -276,7 +292,7 @@ class _$TabBarModelImpl extends _TabBarModel {
       this.indicatorSize_enum_tabBarIndicatorSize,
       this.dividerHeight_double,
       this.labelColor_color,
-      @EdgeInsetsConverter() this.labelPadding_edgeInsets,
+      this.labelPadding_edgeInsets = const EdgeInsetsModel(),
       this.labelStyle_textStyle,
       this.unselectedLabelColor_color,
       this.unselectedLabelStyle_textStyle,
@@ -302,8 +318,8 @@ class _$TabBarModelImpl extends _TabBarModel {
   @override
   final String? labelColor_color;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? labelPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? labelPadding_edgeInsets;
   @override
   final String? labelStyle_textStyle;
   @override
@@ -398,7 +414,7 @@ abstract class _TabBarModel extends TabBarModel {
       final TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
       final double? dividerHeight_double,
       final String? labelColor_color,
-      @EdgeInsetsConverter() final EdgeInsets? labelPadding_edgeInsets,
+      final EdgeInsetsModel? labelPadding_edgeInsets,
       final String? labelStyle_textStyle,
       final String? unselectedLabelColor_color,
       final String? unselectedLabelStyle_textStyle,
@@ -422,8 +438,7 @@ abstract class _TabBarModel extends TabBarModel {
   @override
   String? get labelColor_color;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding_edgeInsets;
+  EdgeInsetsModel? get labelPadding_edgeInsets;
   @override
   String? get labelStyle_textStyle;
   @override

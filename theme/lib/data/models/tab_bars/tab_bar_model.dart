@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -18,7 +18,7 @@ class TabBarModel with _$TabBarModel {
     TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
     double? dividerHeight_double,
     ThemeColorString? labelColor_color,
-    @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? labelPadding_edgeInsets,
     TextStyleString? labelStyle_textStyle,
     ThemeColorString? unselectedLabelColor_color,
     TextStyleString? unselectedLabelStyle_textStyle,
@@ -60,7 +60,7 @@ class TabBarModel with _$TabBarModel {
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
       labelColor: labelColor_color?.toColor(styleType: styleTypeName),
-      labelPadding: labelPadding_edgeInsets,
+      labelPadding: labelPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       labelStyle: labelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       unselectedLabelColor: unselectedLabelColor_color?.toColor(styleType: styleTypeName),
       unselectedLabelStyle: unselectedLabelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,

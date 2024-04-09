@@ -26,13 +26,12 @@ mixin _$DialogModel {
   String? get surfaceTintColor_color =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
   ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
-  @AlignmentConverter()
-  Alignment? get alignment_alignment => throw _privateConstructorUsedError;
+  AlignmentOptions? get alignment_enum_alignmentOptions =>
+      throw _privateConstructorUsedError;
   String? get iconColor_color => throw _privateConstructorUsedError;
   String? get titleTextStyle_textStyle => throw _privateConstructorUsedError;
   String? get contentTextStyle_textStyle => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get actionsPadding_edgeInsets =>
+  EdgeInsetsModel? get actionsPadding_edgeInsets =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,13 +52,14 @@ abstract class $DialogModelCopyWith<$Res> {
       String? shadowColor_color,
       String? surfaceTintColor_color,
       ShapeBorderModel? shape_shapeBorder,
-      @AlignmentConverter() Alignment? alignment_alignment,
+      AlignmentOptions? alignment_enum_alignmentOptions,
       String? iconColor_color,
       String? titleTextStyle_textStyle,
       String? contentTextStyle_textStyle,
-      @EdgeInsetsConverter() EdgeInsets? actionsPadding_edgeInsets});
+      EdgeInsetsModel? actionsPadding_edgeInsets});
 
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get actionsPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -80,7 +80,7 @@ class _$DialogModelCopyWithImpl<$Res, $Val extends DialogModel>
     Object? shadowColor_color = freezed,
     Object? surfaceTintColor_color = freezed,
     Object? shape_shapeBorder = freezed,
-    Object? alignment_alignment = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
     Object? iconColor_color = freezed,
     Object? titleTextStyle_textStyle = freezed,
     Object? contentTextStyle_textStyle = freezed,
@@ -107,10 +107,11 @@ class _$DialogModelCopyWithImpl<$Res, $Val extends DialogModel>
           ? _value.shape_shapeBorder
           : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
-      alignment_alignment: freezed == alignment_alignment
-          ? _value.alignment_alignment
-          : alignment_alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
       iconColor_color: freezed == iconColor_color
           ? _value.iconColor_color
           : iconColor_color // ignore: cast_nullable_to_non_nullable
@@ -126,7 +127,7 @@ class _$DialogModelCopyWithImpl<$Res, $Val extends DialogModel>
       actionsPadding_edgeInsets: freezed == actionsPadding_edgeInsets
           ? _value.actionsPadding_edgeInsets
           : actionsPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
     ) as $Val);
   }
 
@@ -139,6 +140,19 @@ class _$DialogModelCopyWithImpl<$Res, $Val extends DialogModel>
 
     return $ShapeBorderModelCopyWith<$Res>(_value.shape_shapeBorder!, (value) {
       return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get actionsPadding_edgeInsets {
+    if (_value.actionsPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.actionsPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(actionsPadding_edgeInsets: value) as $Val);
     });
   }
 }
@@ -157,14 +171,16 @@ abstract class _$$DialogModelImplCopyWith<$Res>
       String? shadowColor_color,
       String? surfaceTintColor_color,
       ShapeBorderModel? shape_shapeBorder,
-      @AlignmentConverter() Alignment? alignment_alignment,
+      AlignmentOptions? alignment_enum_alignmentOptions,
       String? iconColor_color,
       String? titleTextStyle_textStyle,
       String? contentTextStyle_textStyle,
-      @EdgeInsetsConverter() EdgeInsets? actionsPadding_edgeInsets});
+      EdgeInsetsModel? actionsPadding_edgeInsets});
 
   @override
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get actionsPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -183,7 +199,7 @@ class __$$DialogModelImplCopyWithImpl<$Res>
     Object? shadowColor_color = freezed,
     Object? surfaceTintColor_color = freezed,
     Object? shape_shapeBorder = freezed,
-    Object? alignment_alignment = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
     Object? iconColor_color = freezed,
     Object? titleTextStyle_textStyle = freezed,
     Object? contentTextStyle_textStyle = freezed,
@@ -210,10 +226,11 @@ class __$$DialogModelImplCopyWithImpl<$Res>
           ? _value.shape_shapeBorder
           : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
-      alignment_alignment: freezed == alignment_alignment
-          ? _value.alignment_alignment
-          : alignment_alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
       iconColor_color: freezed == iconColor_color
           ? _value.iconColor_color
           : iconColor_color // ignore: cast_nullable_to_non_nullable
@@ -229,7 +246,7 @@ class __$$DialogModelImplCopyWithImpl<$Res>
       actionsPadding_edgeInsets: freezed == actionsPadding_edgeInsets
           ? _value.actionsPadding_edgeInsets
           : actionsPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
     ));
   }
 }
@@ -243,11 +260,11 @@ class _$DialogModelImpl extends _DialogModel {
       this.shadowColor_color,
       this.surfaceTintColor_color,
       this.shape_shapeBorder,
-      @AlignmentConverter() this.alignment_alignment,
+      this.alignment_enum_alignmentOptions,
       this.iconColor_color,
       this.titleTextStyle_textStyle,
       this.contentTextStyle_textStyle,
-      @EdgeInsetsConverter() this.actionsPadding_edgeInsets})
+      this.actionsPadding_edgeInsets = const EdgeInsetsModel()})
       : super._();
 
   factory _$DialogModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -265,8 +282,7 @@ class _$DialogModelImpl extends _DialogModel {
   @override
   final ShapeBorderModel? shape_shapeBorder;
   @override
-  @AlignmentConverter()
-  final Alignment? alignment_alignment;
+  final AlignmentOptions? alignment_enum_alignmentOptions;
   @override
   final String? iconColor_color;
   @override
@@ -274,12 +290,12 @@ class _$DialogModelImpl extends _DialogModel {
   @override
   final String? contentTextStyle_textStyle;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? actionsPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? actionsPadding_edgeInsets;
 
   @override
   String toString() {
-    return 'DialogModel(backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, shape_shapeBorder: $shape_shapeBorder, alignment_alignment: $alignment_alignment, iconColor_color: $iconColor_color, titleTextStyle_textStyle: $titleTextStyle_textStyle, contentTextStyle_textStyle: $contentTextStyle_textStyle, actionsPadding_edgeInsets: $actionsPadding_edgeInsets)';
+    return 'DialogModel(backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, shape_shapeBorder: $shape_shapeBorder, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions, iconColor_color: $iconColor_color, titleTextStyle_textStyle: $titleTextStyle_textStyle, contentTextStyle_textStyle: $contentTextStyle_textStyle, actionsPadding_edgeInsets: $actionsPadding_edgeInsets)';
   }
 
   @override
@@ -297,8 +313,10 @@ class _$DialogModelImpl extends _DialogModel {
                 other.surfaceTintColor_color == surfaceTintColor_color) &&
             (identical(other.shape_shapeBorder, shape_shapeBorder) ||
                 other.shape_shapeBorder == shape_shapeBorder) &&
-            (identical(other.alignment_alignment, alignment_alignment) ||
-                other.alignment_alignment == alignment_alignment) &&
+            (identical(other.alignment_enum_alignmentOptions,
+                    alignment_enum_alignmentOptions) ||
+                other.alignment_enum_alignmentOptions ==
+                    alignment_enum_alignmentOptions) &&
             (identical(other.iconColor_color, iconColor_color) ||
                 other.iconColor_color == iconColor_color) &&
             (identical(
@@ -322,7 +340,7 @@ class _$DialogModelImpl extends _DialogModel {
       shadowColor_color,
       surfaceTintColor_color,
       shape_shapeBorder,
-      alignment_alignment,
+      alignment_enum_alignmentOptions,
       iconColor_color,
       titleTextStyle_textStyle,
       contentTextStyle_textStyle,
@@ -344,17 +362,16 @@ class _$DialogModelImpl extends _DialogModel {
 
 abstract class _DialogModel extends DialogModel {
   const factory _DialogModel(
-          {final String? backgroundColor_color,
-          final double? elevation_double,
-          final String? shadowColor_color,
-          final String? surfaceTintColor_color,
-          final ShapeBorderModel? shape_shapeBorder,
-          @AlignmentConverter() final Alignment? alignment_alignment,
-          final String? iconColor_color,
-          final String? titleTextStyle_textStyle,
-          final String? contentTextStyle_textStyle,
-          @EdgeInsetsConverter() final EdgeInsets? actionsPadding_edgeInsets}) =
-      _$DialogModelImpl;
+      {final String? backgroundColor_color,
+      final double? elevation_double,
+      final String? shadowColor_color,
+      final String? surfaceTintColor_color,
+      final ShapeBorderModel? shape_shapeBorder,
+      final AlignmentOptions? alignment_enum_alignmentOptions,
+      final String? iconColor_color,
+      final String? titleTextStyle_textStyle,
+      final String? contentTextStyle_textStyle,
+      final EdgeInsetsModel? actionsPadding_edgeInsets}) = _$DialogModelImpl;
   const _DialogModel._() : super._();
 
   factory _DialogModel.fromJson(Map<String, dynamic> json) =
@@ -371,8 +388,7 @@ abstract class _DialogModel extends DialogModel {
   @override // @OutlinedBorderConverter()
   ShapeBorderModel? get shape_shapeBorder;
   @override
-  @AlignmentConverter()
-  Alignment? get alignment_alignment;
+  AlignmentOptions? get alignment_enum_alignmentOptions;
   @override
   String? get iconColor_color;
   @override
@@ -380,8 +396,7 @@ abstract class _DialogModel extends DialogModel {
   @override
   String? get contentTextStyle_textStyle;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get actionsPadding_edgeInsets;
+  EdgeInsetsModel? get actionsPadding_edgeInsets;
   @override
   @JsonKey(ignore: true)
   _$$DialogModelImplCopyWith<_$DialogModelImpl> get copyWith =>

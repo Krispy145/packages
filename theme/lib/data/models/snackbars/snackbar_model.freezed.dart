@@ -31,8 +31,8 @@ mixin _$SnackbarModel {
   SnackBarBehavior get behavior_enum_snackBarBehavior =>
       throw _privateConstructorUsedError;
   double? get width_double => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get insetPadding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get insetPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
   bool? get showCloseIcon_bool => throw _privateConstructorUsedError;
   String? get closeIconColor_color => throw _privateConstructorUsedError;
   double? get actionOverflowThreshold_double =>
@@ -62,7 +62,7 @@ abstract class $SnackbarModelCopyWith<$Res> {
       OutlinedBorderModel? shape_outlinedBorder,
       SnackBarBehavior behavior_enum_snackBarBehavior,
       double? width_double,
-      @EdgeInsetsConverter() EdgeInsets? insetPadding_edgeInsets,
+      EdgeInsetsModel? insetPadding_edgeInsets,
       bool? showCloseIcon_bool,
       String? closeIconColor_color,
       double? actionOverflowThreshold_double,
@@ -70,6 +70,7 @@ abstract class $SnackbarModelCopyWith<$Res> {
       String? disabledActionBackgroundColor_color});
 
   $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get insetPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -136,7 +137,7 @@ class _$SnackbarModelCopyWithImpl<$Res, $Val extends SnackbarModel>
       insetPadding_edgeInsets: freezed == insetPadding_edgeInsets
           ? _value.insetPadding_edgeInsets
           : insetPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       showCloseIcon_bool: freezed == showCloseIcon_bool
           ? _value.showCloseIcon_bool
           : showCloseIcon_bool // ignore: cast_nullable_to_non_nullable
@@ -173,6 +174,19 @@ class _$SnackbarModelCopyWithImpl<$Res, $Val extends SnackbarModel>
       return _then(_value.copyWith(shape_outlinedBorder: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get insetPadding_edgeInsets {
+    if (_value.insetPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.insetPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(insetPadding_edgeInsets: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -192,7 +206,7 @@ abstract class _$$SnackbarModelImplCopyWith<$Res>
       OutlinedBorderModel? shape_outlinedBorder,
       SnackBarBehavior behavior_enum_snackBarBehavior,
       double? width_double,
-      @EdgeInsetsConverter() EdgeInsets? insetPadding_edgeInsets,
+      EdgeInsetsModel? insetPadding_edgeInsets,
       bool? showCloseIcon_bool,
       String? closeIconColor_color,
       double? actionOverflowThreshold_double,
@@ -201,6 +215,8 @@ abstract class _$$SnackbarModelImplCopyWith<$Res>
 
   @override
   $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get insetPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -265,7 +281,7 @@ class __$$SnackbarModelImplCopyWithImpl<$Res>
       insetPadding_edgeInsets: freezed == insetPadding_edgeInsets
           ? _value.insetPadding_edgeInsets
           : insetPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       showCloseIcon_bool: freezed == showCloseIcon_bool
           ? _value.showCloseIcon_bool
           : showCloseIcon_bool // ignore: cast_nullable_to_non_nullable
@@ -303,7 +319,7 @@ class _$SnackbarModelImpl extends _SnackbarModel {
       this.shape_outlinedBorder = const OutlinedBorderModel(),
       this.behavior_enum_snackBarBehavior = SnackBarBehavior.floating,
       this.width_double,
-      @EdgeInsetsConverter() this.insetPadding_edgeInsets,
+      this.insetPadding_edgeInsets = const EdgeInsetsModel(),
       this.showCloseIcon_bool,
       this.closeIconColor_color,
       this.actionOverflowThreshold_double,
@@ -333,8 +349,8 @@ class _$SnackbarModelImpl extends _SnackbarModel {
   @override
   final double? width_double;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? insetPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? insetPadding_edgeInsets;
   @override
   final bool? showCloseIcon_bool;
   @override
@@ -437,7 +453,7 @@ abstract class _SnackbarModel extends SnackbarModel {
       final OutlinedBorderModel? shape_outlinedBorder,
       final SnackBarBehavior behavior_enum_snackBarBehavior,
       final double? width_double,
-      @EdgeInsetsConverter() final EdgeInsets? insetPadding_edgeInsets,
+      final EdgeInsetsModel? insetPadding_edgeInsets,
       final bool? showCloseIcon_bool,
       final String? closeIconColor_color,
       final double? actionOverflowThreshold_double,
@@ -465,8 +481,7 @@ abstract class _SnackbarModel extends SnackbarModel {
   @override
   double? get width_double;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get insetPadding_edgeInsets;
+  EdgeInsetsModel? get insetPadding_edgeInsets;
   @override
   bool? get showCloseIcon_bool;
   @override

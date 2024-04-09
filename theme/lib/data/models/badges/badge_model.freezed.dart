@@ -25,12 +25,10 @@ mixin _$BadgeModel {
   double? get smallSize_double => throw _privateConstructorUsedError;
   double? get largeSize_double => throw _privateConstructorUsedError;
   String? get textStyle_textStyle => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
-  @AlignmentConverter()
-  Alignment? get alignment_alignment => throw _privateConstructorUsedError;
-  @OffsetConverter()
-  Offset? get offset_offset => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
+  AlignmentOptions? get alignment_enum_alignmentOptions =>
+      throw _privateConstructorUsedError;
+  OffsetModel? get offset_offset => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,9 +48,12 @@ abstract class $BadgeModelCopyWith<$Res> {
       double? smallSize_double,
       double? largeSize_double,
       String? textStyle_textStyle,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
-      @AlignmentConverter() Alignment? alignment_alignment,
-      @OffsetConverter() Offset? offset_offset});
+      EdgeInsetsModel? padding_edgeInsets,
+      AlignmentOptions? alignment_enum_alignmentOptions,
+      OffsetModel? offset_offset});
+
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  $OffsetModelCopyWith<$Res>? get offset_offset;
 }
 
 /// @nodoc
@@ -74,7 +75,7 @@ class _$BadgeModelCopyWithImpl<$Res, $Val extends BadgeModel>
     Object? largeSize_double = freezed,
     Object? textStyle_textStyle = freezed,
     Object? padding_edgeInsets = freezed,
-    Object? alignment_alignment = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
     Object? offset_offset = freezed,
   }) {
     return _then(_value.copyWith(
@@ -101,16 +102,41 @@ class _$BadgeModelCopyWithImpl<$Res, $Val extends BadgeModel>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      alignment_alignment: freezed == alignment_alignment
-          ? _value.alignment_alignment
-          : alignment_alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
+              as EdgeInsetsModel?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
       offset_offset: freezed == offset_offset
           ? _value.offset_offset
           : offset_offset // ignore: cast_nullable_to_non_nullable
-              as Offset?,
+              as OffsetModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OffsetModelCopyWith<$Res>? get offset_offset {
+    if (_value.offset_offset == null) {
+      return null;
+    }
+
+    return $OffsetModelCopyWith<$Res>(_value.offset_offset!, (value) {
+      return _then(_value.copyWith(offset_offset: value) as $Val);
+    });
   }
 }
 
@@ -128,9 +154,14 @@ abstract class _$$BadgeModelImplCopyWith<$Res>
       double? smallSize_double,
       double? largeSize_double,
       String? textStyle_textStyle,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
-      @AlignmentConverter() Alignment? alignment_alignment,
-      @OffsetConverter() Offset? offset_offset});
+      EdgeInsetsModel? padding_edgeInsets,
+      AlignmentOptions? alignment_enum_alignmentOptions,
+      OffsetModel? offset_offset});
+
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  @override
+  $OffsetModelCopyWith<$Res>? get offset_offset;
 }
 
 /// @nodoc
@@ -150,7 +181,7 @@ class __$$BadgeModelImplCopyWithImpl<$Res>
     Object? largeSize_double = freezed,
     Object? textStyle_textStyle = freezed,
     Object? padding_edgeInsets = freezed,
-    Object? alignment_alignment = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
     Object? offset_offset = freezed,
   }) {
     return _then(_$BadgeModelImpl(
@@ -177,15 +208,16 @@ class __$$BadgeModelImplCopyWithImpl<$Res>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      alignment_alignment: freezed == alignment_alignment
-          ? _value.alignment_alignment
-          : alignment_alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
+              as EdgeInsetsModel?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
       offset_offset: freezed == offset_offset
           ? _value.offset_offset
           : offset_offset // ignore: cast_nullable_to_non_nullable
-              as Offset?,
+              as OffsetModel?,
     ));
   }
 }
@@ -199,9 +231,9 @@ class _$BadgeModelImpl extends _BadgeModel {
       this.smallSize_double,
       this.largeSize_double,
       this.textStyle_textStyle,
-      @EdgeInsetsConverter() this.padding_edgeInsets,
-      @AlignmentConverter() this.alignment_alignment,
-      @OffsetConverter() this.offset_offset})
+      this.padding_edgeInsets = const EdgeInsetsModel(),
+      this.alignment_enum_alignmentOptions = AlignmentOptions.center,
+      this.offset_offset = const OffsetModel()})
       : super._();
 
   factory _$BadgeModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -218,18 +250,18 @@ class _$BadgeModelImpl extends _BadgeModel {
   @override
   final String? textStyle_textStyle;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
   @override
-  @AlignmentConverter()
-  final Alignment? alignment_alignment;
+  @JsonKey()
+  final AlignmentOptions? alignment_enum_alignmentOptions;
   @override
-  @OffsetConverter()
-  final Offset? offset_offset;
+  @JsonKey()
+  final OffsetModel? offset_offset;
 
   @override
   String toString() {
-    return 'BadgeModel(backgroundColor_color: $backgroundColor_color, textColor_color: $textColor_color, smallSize_double: $smallSize_double, largeSize_double: $largeSize_double, textStyle_textStyle: $textStyle_textStyle, padding_edgeInsets: $padding_edgeInsets, alignment_alignment: $alignment_alignment, offset_offset: $offset_offset)';
+    return 'BadgeModel(backgroundColor_color: $backgroundColor_color, textColor_color: $textColor_color, smallSize_double: $smallSize_double, largeSize_double: $largeSize_double, textStyle_textStyle: $textStyle_textStyle, padding_edgeInsets: $padding_edgeInsets, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions, offset_offset: $offset_offset)';
   }
 
   @override
@@ -249,8 +281,10 @@ class _$BadgeModelImpl extends _BadgeModel {
                 other.textStyle_textStyle == textStyle_textStyle) &&
             (identical(other.padding_edgeInsets, padding_edgeInsets) ||
                 other.padding_edgeInsets == padding_edgeInsets) &&
-            (identical(other.alignment_alignment, alignment_alignment) ||
-                other.alignment_alignment == alignment_alignment) &&
+            (identical(other.alignment_enum_alignmentOptions,
+                    alignment_enum_alignmentOptions) ||
+                other.alignment_enum_alignmentOptions ==
+                    alignment_enum_alignmentOptions) &&
             (identical(other.offset_offset, offset_offset) ||
                 other.offset_offset == offset_offset));
   }
@@ -265,7 +299,7 @@ class _$BadgeModelImpl extends _BadgeModel {
       largeSize_double,
       textStyle_textStyle,
       padding_edgeInsets,
-      alignment_alignment,
+      alignment_enum_alignmentOptions,
       offset_offset);
 
   @JsonKey(ignore: true)
@@ -289,9 +323,9 @@ abstract class _BadgeModel extends BadgeModel {
       final double? smallSize_double,
       final double? largeSize_double,
       final String? textStyle_textStyle,
-      @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets,
-      @AlignmentConverter() final Alignment? alignment_alignment,
-      @OffsetConverter() final Offset? offset_offset}) = _$BadgeModelImpl;
+      final EdgeInsetsModel? padding_edgeInsets,
+      final AlignmentOptions? alignment_enum_alignmentOptions,
+      final OffsetModel? offset_offset}) = _$BadgeModelImpl;
   const _BadgeModel._() : super._();
 
   factory _BadgeModel.fromJson(Map<String, dynamic> json) =
@@ -308,14 +342,11 @@ abstract class _BadgeModel extends BadgeModel {
   @override
   String? get textStyle_textStyle;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
-  @AlignmentConverter()
-  Alignment? get alignment_alignment;
+  AlignmentOptions? get alignment_enum_alignmentOptions;
   @override
-  @OffsetConverter()
-  Offset? get offset_offset;
+  OffsetModel? get offset_offset;
   @override
   @JsonKey(ignore: true)
   _$$BadgeModelImplCopyWith<_$BadgeModelImpl> get copyWith =>

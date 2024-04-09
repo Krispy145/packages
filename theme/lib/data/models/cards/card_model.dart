@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
 part 'card_model.freezed.dart';
@@ -14,7 +14,7 @@ class CardModel with _$CardModel {
     ThemeColorString? shadowColor_color,
     ThemeColorString? surfaceTintColor_color,
     double? elevation_double,
-    @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? margin_edgeInsets,
     // @OutlinedBorderConverter()
     ShapeBorderModel? shape_shapeBorder,
   }) = _CardModel;
@@ -52,7 +52,7 @@ class CardModel with _$CardModel {
       shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
       surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      margin: margin_edgeInsets,
+      margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
     );
   }

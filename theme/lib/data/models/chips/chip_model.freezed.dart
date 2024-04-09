@@ -32,10 +32,9 @@ mixin _$ChipModel {
   String? get selectedShadowColor_color => throw _privateConstructorUsedError;
   bool? get showCheckmark_bool => throw _privateConstructorUsedError;
   String? get checkmarkColor_color => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding_edgeInsets => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
+  EdgeInsetsModel? get labelPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
   BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
   OutlinedBorderModel? get shape_outlinedBorder =>
       throw _privateConstructorUsedError;
@@ -68,8 +67,8 @@ abstract class $ChipModelCopyWith<$Res> {
       String? selectedShadowColor_color,
       bool? showCheckmark_bool,
       String? checkmarkColor_color,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? labelPadding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
       String? labelStyle_textStyle,
@@ -77,6 +76,8 @@ abstract class $ChipModelCopyWith<$Res> {
       double? elevation_double,
       double? pressElevation_double});
 
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets;
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
   $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
 }
@@ -162,11 +163,11 @@ class _$ChipModelCopyWithImpl<$Res, $Val extends ChipModel>
       labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
           ? _value.labelPadding_edgeInsets
           : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       side_borderSide: freezed == side_borderSide
           ? _value.side_borderSide
           : side_borderSide // ignore: cast_nullable_to_non_nullable
@@ -192,6 +193,31 @@ class _$ChipModelCopyWithImpl<$Res, $Val extends ChipModel>
           : pressElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets {
+    if (_value.labelPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.labelPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(labelPadding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
   }
 
   @override
@@ -240,8 +266,8 @@ abstract class _$$ChipModelImplCopyWith<$Res>
       String? selectedShadowColor_color,
       bool? showCheckmark_bool,
       String? checkmarkColor_color,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding_edgeInsets,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? labelPadding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
       String? labelStyle_textStyle,
@@ -249,6 +275,10 @@ abstract class _$$ChipModelImplCopyWith<$Res>
       double? elevation_double,
       double? pressElevation_double});
 
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   @override
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
   @override
@@ -334,11 +364,11 @@ class __$$ChipModelImplCopyWithImpl<$Res>
       labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
           ? _value.labelPadding_edgeInsets
           : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       side_borderSide: freezed == side_borderSide
           ? _value.side_borderSide
           : side_borderSide // ignore: cast_nullable_to_non_nullable
@@ -382,8 +412,8 @@ class _$ChipModelImpl extends _ChipModel {
       this.selectedShadowColor_color,
       this.showCheckmark_bool,
       this.checkmarkColor_color,
-      @EdgeInsetsConverter() this.labelPadding_edgeInsets,
-      @EdgeInsetsConverter() this.padding_edgeInsets,
+      this.labelPadding_edgeInsets = const EdgeInsetsModel(),
+      this.padding_edgeInsets = const EdgeInsetsModel(),
       this.side_borderSide,
       this.shape_outlinedBorder = const OutlinedBorderModel(),
       this.labelStyle_textStyle,
@@ -418,11 +448,11 @@ class _$ChipModelImpl extends _ChipModel {
   @override
   final String? checkmarkColor_color;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? labelPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? labelPadding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
   @override
   final BorderSideModel? side_borderSide;
   @override
@@ -543,8 +573,8 @@ abstract class _ChipModel extends ChipModel {
       final String? selectedShadowColor_color,
       final bool? showCheckmark_bool,
       final String? checkmarkColor_color,
-      @EdgeInsetsConverter() final EdgeInsets? labelPadding_edgeInsets,
-      @EdgeInsetsConverter() final EdgeInsets? padding_edgeInsets,
+      final EdgeInsetsModel? labelPadding_edgeInsets,
+      final EdgeInsetsModel? padding_edgeInsets,
       final BorderSideModel? side_borderSide,
       final OutlinedBorderModel? shape_outlinedBorder,
       final String? labelStyle_textStyle,
@@ -579,11 +609,9 @@ abstract class _ChipModel extends ChipModel {
   @override
   String? get checkmarkColor_color;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding_edgeInsets;
+  EdgeInsetsModel? get labelPadding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
   BorderSideModel? get side_borderSide;
   @override

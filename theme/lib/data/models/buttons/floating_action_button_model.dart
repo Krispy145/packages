@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -32,7 +32,7 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
     @Default(BoxConstraintsModel()) BoxConstraintsModel? largeSizeConstraints_boxConstraints,
     @Default(BoxConstraintsModel()) BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
     double? extendedIconLabelSpacing_double,
-    @EdgeInsetsConverter() EdgeInsets? extendedPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? extendedPadding_edgeInsets,
     TextStyleString? extendedTextStyle_textStyle,
   }) = _FloatingActionButtonModel;
 
@@ -58,7 +58,7 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
       largeSizeConstraints: largeSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
       extendedSizeConstraints: extendedSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
       extendedIconLabelSpacing: extendedIconLabelSpacing_double,
-      extendedPadding: extendedPadding_edgeInsets,
+      extendedPadding: extendedPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       extendedTextStyle: extendedTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
     );
   }

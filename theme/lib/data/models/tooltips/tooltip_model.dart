@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
 
@@ -13,8 +14,8 @@ part 'tooltip_model.g.dart';
 class TooltipModel with _$TooltipModel {
   const factory TooltipModel({
     double? height_double,
-    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
-    @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? margin_edgeInsets,
     double? verticalOffset_double,
     bool? preferBelow_bool,
     bool? excludeFromSemantics_bool,
@@ -55,8 +56,8 @@ class TooltipModel with _$TooltipModel {
   TooltipThemeData asTooltipThemeData({String? styleTypeName}) {
     return TooltipThemeData(
       height: height_double,
-      padding: padding_edgeInsets,
-      margin: margin_edgeInsets,
+      padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       verticalOffset: verticalOffset_double,
       preferBelow: preferBelow_bool,
       excludeFromSemantics: excludeFromSemantics_bool,

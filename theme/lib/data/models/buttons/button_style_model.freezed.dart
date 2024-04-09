@@ -37,10 +37,8 @@ mixin _$ButtonStyleModel {
       throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   set elevation_double(double? value) => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  set padding_edgeInsets(EdgeInsets? value) =>
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
+  set padding_edgeInsets(EdgeInsetsModel? value) =>
       throw _privateConstructorUsedError;
   SizeModel? get minimumSize_size => throw _privateConstructorUsedError;
   set minimumSize_size(SizeModel? value) => throw _privateConstructorUsedError;
@@ -82,7 +80,7 @@ abstract class $ButtonStyleModelCopyWith<$Res> {
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
@@ -91,6 +89,7 @@ abstract class $ButtonStyleModelCopyWith<$Res> {
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder});
 
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   $SizeModelCopyWith<$Res>? get minimumSize_size;
   $SizeModelCopyWith<$Res>? get fixedSize_size;
   $SizeModelCopyWith<$Res>? get maximumSize_size;
@@ -159,7 +158,7 @@ class _$ButtonStyleModelCopyWithImpl<$Res, $Val extends ButtonStyleModel>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       minimumSize_size: freezed == minimumSize_size
           ? _value.minimumSize_size
           : minimumSize_size // ignore: cast_nullable_to_non_nullable
@@ -189,6 +188,18 @@ class _$ButtonStyleModelCopyWithImpl<$Res, $Val extends ButtonStyleModel>
           : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
               as OutlinedBorderModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
   }
 
   @override
@@ -269,7 +280,7 @@ abstract class _$$ButtonStyleModelImplCopyWith<$Res>
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
@@ -278,6 +289,8 @@ abstract class _$$ButtonStyleModelImplCopyWith<$Res>
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder});
 
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
   @override
   $SizeModelCopyWith<$Res>? get minimumSize_size;
   @override
@@ -349,7 +362,7 @@ class __$$ButtonStyleModelImplCopyWithImpl<$Res>
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       minimumSize_size: freezed == minimumSize_size
           ? _value.minimumSize_size
           : minimumSize_size // ignore: cast_nullable_to_non_nullable
@@ -393,7 +406,7 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
       this.shadowColor_color,
       this.surfaceTintColor_color,
       this.elevation_double,
-      @EdgeInsetsConverter() this.padding_edgeInsets,
+      this.padding_edgeInsets = const EdgeInsetsModel(),
       this.minimumSize_size = const SizeModel(),
       this.fixedSize_size = const SizeModel(),
       this.maximumSize_size = const SizeModel(),
@@ -421,8 +434,8 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
   @override
   double? elevation_double;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? padding_edgeInsets;
+  @JsonKey()
+  EdgeInsetsModel? padding_edgeInsets;
   @override
   @JsonKey()
   SizeModel? minimumSize_size;
@@ -474,7 +487,7 @@ abstract class _ButtonStyleModel extends ButtonStyleModel {
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
@@ -509,10 +522,8 @@ abstract class _ButtonStyleModel extends ButtonStyleModel {
   double? get elevation_double;
   set elevation_double(double? value);
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding_edgeInsets;
-  @EdgeInsetsConverter()
-  set padding_edgeInsets(EdgeInsets? value);
+  EdgeInsetsModel? get padding_edgeInsets;
+  set padding_edgeInsets(EdgeInsetsModel? value);
   @override
   SizeModel? get minimumSize_size;
   set minimumSize_size(SizeModel? value);

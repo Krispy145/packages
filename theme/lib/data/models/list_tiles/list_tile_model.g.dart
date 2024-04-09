@@ -21,8 +21,10 @@ _$ListTileModelImpl _$$ListTileModelImplFromJson(Map<String, dynamic> json) =>
           json['subtitleTextStyle_textStyle'] as String?,
       leadingAndTrailingTextStyle_textStyle:
           json['leadingAndTrailingTextStyle_textStyle'] as String?,
-      contentPadding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['contentPadding_edgeInsets'] as Map<String, dynamic>?),
+      contentPadding_edgeInsets: json['contentPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['contentPadding_edgeInsets'] as Map<String, dynamic>),
       tileColor_color: json['tileColor_color'] as String?,
       selectedTileColor_color: json['selectedTileColor_color'] as String?,
       horizontalTitleGap_double:
@@ -48,8 +50,7 @@ Map<String, dynamic> _$$ListTileModelImplToJson(_$ListTileModelImpl instance) =>
       'subtitleTextStyle_textStyle': instance.subtitleTextStyle_textStyle,
       'leadingAndTrailingTextStyle_textStyle':
           instance.leadingAndTrailingTextStyle_textStyle,
-      'contentPadding_edgeInsets': const EdgeInsetsConverter()
-          .toJson(instance.contentPadding_edgeInsets),
+      'contentPadding_edgeInsets': instance.contentPadding_edgeInsets?.toJson(),
       'tileColor_color': instance.tileColor_color,
       'selectedTileColor_color': instance.selectedTileColor_color,
       'horizontalTitleGap_double': instance.horizontalTitleGap_double,

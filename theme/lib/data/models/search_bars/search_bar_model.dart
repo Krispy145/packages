@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
 import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -20,11 +20,9 @@ class SearchBarModel with _$SearchBarModel {
     ThemeColorString? shadowColor_color,
     ThemeColorString? surfaceTintColor_color,
     ThemeColorString? overlayColor_color,
-    // @BorderSideConverter()
     BorderSideModel? side_borderSide,
-    // @OutlinedBorderConverter()
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     TextStyleString? textStyle_textStyle,
     TextStyleString? hintStyle_textStyle,
     @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
@@ -80,7 +78,7 @@ class SearchBarModel with _$SearchBarModel {
       overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
       side: MaterialStateProperty.all(side_borderSide?.asBorderSide(styleTypeName: styleTypeName)),
       shape: MaterialStateProperty.all(shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName)),
-      padding: MaterialStateProperty.all(padding_edgeInsets),
+      padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero),
       textStyle: MaterialStateProperty.all(textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
       hintStyle: MaterialStateProperty.all(hintStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
       constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),

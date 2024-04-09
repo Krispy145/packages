@@ -22,9 +22,9 @@ ScrollbarModel _$ScrollbarModelFromJson(Map<String, dynamic> json) {
 mixin _$ScrollbarModel {
   bool? get thumbVisibility_bool => throw _privateConstructorUsedError;
   double? get thickness_double => throw _privateConstructorUsedError;
-  bool? get trackVisibility_bool => throw _privateConstructorUsedError;
-  @RadiusConverter()
-  Radius? get radius_radius => throw _privateConstructorUsedError;
+  bool? get trackVisibility_bool =>
+      throw _privateConstructorUsedError; // @RadiusConverter() Radius?
+  double? get radius_double => throw _privateConstructorUsedError;
   String? get thumbColor_color => throw _privateConstructorUsedError;
   String? get trackColor_color => throw _privateConstructorUsedError;
   String? get trackBorderColor_color => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $ScrollbarModelCopyWith<$Res> {
       {bool? thumbVisibility_bool,
       double? thickness_double,
       bool? trackVisibility_bool,
-      @RadiusConverter() Radius? radius_radius,
+      double? radius_double,
       String? thumbColor_color,
       String? trackColor_color,
       String? trackBorderColor_color,
@@ -75,7 +75,7 @@ class _$ScrollbarModelCopyWithImpl<$Res, $Val extends ScrollbarModel>
     Object? thumbVisibility_bool = freezed,
     Object? thickness_double = freezed,
     Object? trackVisibility_bool = freezed,
-    Object? radius_radius = freezed,
+    Object? radius_double = freezed,
     Object? thumbColor_color = freezed,
     Object? trackColor_color = freezed,
     Object? trackBorderColor_color = freezed,
@@ -97,10 +97,10 @@ class _$ScrollbarModelCopyWithImpl<$Res, $Val extends ScrollbarModel>
           ? _value.trackVisibility_bool
           : trackVisibility_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      radius_radius: freezed == radius_radius
-          ? _value.radius_radius
-          : radius_radius // ignore: cast_nullable_to_non_nullable
-              as Radius?,
+      radius_double: freezed == radius_double
+          ? _value.radius_double
+          : radius_double // ignore: cast_nullable_to_non_nullable
+              as double?,
       thumbColor_color: freezed == thumbColor_color
           ? _value.thumbColor_color
           : thumbColor_color // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ abstract class _$$ScrollbarModelImplCopyWith<$Res>
       {bool? thumbVisibility_bool,
       double? thickness_double,
       bool? trackVisibility_bool,
-      @RadiusConverter() Radius? radius_radius,
+      double? radius_double,
       String? thumbColor_color,
       String? trackColor_color,
       String? trackBorderColor_color,
@@ -169,7 +169,7 @@ class __$$ScrollbarModelImplCopyWithImpl<$Res>
     Object? thumbVisibility_bool = freezed,
     Object? thickness_double = freezed,
     Object? trackVisibility_bool = freezed,
-    Object? radius_radius = freezed,
+    Object? radius_double = freezed,
     Object? thumbColor_color = freezed,
     Object? trackColor_color = freezed,
     Object? trackBorderColor_color = freezed,
@@ -191,10 +191,10 @@ class __$$ScrollbarModelImplCopyWithImpl<$Res>
           ? _value.trackVisibility_bool
           : trackVisibility_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      radius_radius: freezed == radius_radius
-          ? _value.radius_radius
-          : radius_radius // ignore: cast_nullable_to_non_nullable
-              as Radius?,
+      radius_double: freezed == radius_double
+          ? _value.radius_double
+          : radius_double // ignore: cast_nullable_to_non_nullable
+              as double?,
       thumbColor_color: freezed == thumbColor_color
           ? _value.thumbColor_color
           : thumbColor_color // ignore: cast_nullable_to_non_nullable
@@ -234,7 +234,7 @@ class _$ScrollbarModelImpl extends _ScrollbarModel {
       {this.thumbVisibility_bool,
       this.thickness_double,
       this.trackVisibility_bool,
-      @RadiusConverter() this.radius_radius,
+      this.radius_double,
       this.thumbColor_color,
       this.trackColor_color,
       this.trackBorderColor_color,
@@ -253,9 +253,9 @@ class _$ScrollbarModelImpl extends _ScrollbarModel {
   final double? thickness_double;
   @override
   final bool? trackVisibility_bool;
+// @RadiusConverter() Radius?
   @override
-  @RadiusConverter()
-  final Radius? radius_radius;
+  final double? radius_double;
   @override
   final String? thumbColor_color;
   @override
@@ -273,7 +273,7 @@ class _$ScrollbarModelImpl extends _ScrollbarModel {
 
   @override
   String toString() {
-    return 'ScrollbarModel(thumbVisibility_bool: $thumbVisibility_bool, thickness_double: $thickness_double, trackVisibility_bool: $trackVisibility_bool, radius_radius: $radius_radius, thumbColor_color: $thumbColor_color, trackColor_color: $trackColor_color, trackBorderColor_color: $trackBorderColor_color, crossAxisMargin_double: $crossAxisMargin_double, mainAxisMargin_double: $mainAxisMargin_double, minThumbLength_double: $minThumbLength_double, interactive_bool: $interactive_bool)';
+    return 'ScrollbarModel(thumbVisibility_bool: $thumbVisibility_bool, thickness_double: $thickness_double, trackVisibility_bool: $trackVisibility_bool, radius_double: $radius_double, thumbColor_color: $thumbColor_color, trackColor_color: $trackColor_color, trackBorderColor_color: $trackBorderColor_color, crossAxisMargin_double: $crossAxisMargin_double, mainAxisMargin_double: $mainAxisMargin_double, minThumbLength_double: $minThumbLength_double, interactive_bool: $interactive_bool)';
   }
 
   @override
@@ -287,8 +287,8 @@ class _$ScrollbarModelImpl extends _ScrollbarModel {
                 other.thickness_double == thickness_double) &&
             (identical(other.trackVisibility_bool, trackVisibility_bool) ||
                 other.trackVisibility_bool == trackVisibility_bool) &&
-            (identical(other.radius_radius, radius_radius) ||
-                other.radius_radius == radius_radius) &&
+            (identical(other.radius_double, radius_double) ||
+                other.radius_double == radius_double) &&
             (identical(other.thumbColor_color, thumbColor_color) ||
                 other.thumbColor_color == thumbColor_color) &&
             (identical(other.trackColor_color, trackColor_color) ||
@@ -312,7 +312,7 @@ class _$ScrollbarModelImpl extends _ScrollbarModel {
       thumbVisibility_bool,
       thickness_double,
       trackVisibility_bool,
-      radius_radius,
+      radius_double,
       thumbColor_color,
       trackColor_color,
       trackBorderColor_color,
@@ -341,7 +341,7 @@ abstract class _ScrollbarModel extends ScrollbarModel {
       {final bool? thumbVisibility_bool,
       final double? thickness_double,
       final bool? trackVisibility_bool,
-      @RadiusConverter() final Radius? radius_radius,
+      final double? radius_double,
       final String? thumbColor_color,
       final String? trackColor_color,
       final String? trackBorderColor_color,
@@ -360,9 +360,8 @@ abstract class _ScrollbarModel extends ScrollbarModel {
   double? get thickness_double;
   @override
   bool? get trackVisibility_bool;
-  @override
-  @RadiusConverter()
-  Radius? get radius_radius;
+  @override // @RadiusConverter() Radius?
+  double? get radius_double;
   @override
   String? get thumbColor_color;
   @override

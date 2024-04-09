@@ -13,12 +13,17 @@ _$BadgeModelImpl _$$BadgeModelImplFromJson(Map<String, dynamic> json) =>
       smallSize_double: (json['smallSize_double'] as num?)?.toDouble(),
       largeSize_double: (json['largeSize_double'] as num?)?.toDouble(),
       textStyle_textStyle: json['textStyle_textStyle'] as String?,
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
-      alignment_alignment: const AlignmentConverter()
-          .fromJson(json['alignment_alignment'] as String?),
-      offset_offset: const OffsetConverter()
-          .fromJson(json['offset_offset'] as Map<String, dynamic>?),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
+      alignment_enum_alignmentOptions: $enumDecodeNullable(
+              _$AlignmentOptionsEnumMap,
+              json['alignment_enum_alignmentOptions']) ??
+          AlignmentOptions.center,
+      offset_offset: json['offset_offset'] == null
+          ? const OffsetModel()
+          : OffsetModel.fromJson(json['offset_offset'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$BadgeModelImplToJson(_$BadgeModelImpl instance) =>
@@ -28,16 +33,20 @@ Map<String, dynamic> _$$BadgeModelImplToJson(_$BadgeModelImpl instance) =>
       'smallSize_double': instance.smallSize_double,
       'largeSize_double': instance.largeSize_double,
       'textStyle_textStyle': instance.textStyle_textStyle,
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
-      'alignment_alignment':
-          const AlignmentConverter().toJson(instance.alignment_alignment),
-      'offset_offset': _$JsonConverterToJson<Map<String, dynamic>?, Offset>(
-          instance.offset_offset, const OffsetConverter().toJson),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
+      'alignment_enum_alignmentOptions':
+          _$AlignmentOptionsEnumMap[instance.alignment_enum_alignmentOptions],
+      'offset_offset': instance.offset_offset?.toJson(),
     };
 
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+const _$AlignmentOptionsEnumMap = {
+  AlignmentOptions.topLeft: 'topLeft',
+  AlignmentOptions.topCenter: 'topCenter',
+  AlignmentOptions.topRight: 'topRight',
+  AlignmentOptions.centerLeft: 'centerLeft',
+  AlignmentOptions.center: 'center',
+  AlignmentOptions.centerRight: 'centerRight',
+  AlignmentOptions.bottomLeft: 'bottomLeft',
+  AlignmentOptions.bottomCenter: 'bottomCenter',
+  AlignmentOptions.bottomRight: 'bottomRight',
+};

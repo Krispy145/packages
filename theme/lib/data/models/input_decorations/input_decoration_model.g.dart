@@ -21,8 +21,10 @@ _$InputDecorationModelImpl _$$InputDecorationModelImplFromJson(
       errorStyle_textStyle: json['errorStyle_textStyle'] as String?,
       errorMaxLines_int: json['errorMaxLines_int'] as int?,
       isDense_bool: json['isDense_bool'] as bool? ?? false,
-      contentPadding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['contentPadding_edgeInsets'] as Map<String, dynamic>?),
+      contentPadding_edgeInsets: json['contentPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['contentPadding_edgeInsets'] as Map<String, dynamic>),
       isCollapsed_bool: json['isCollapsed_bool'] as bool? ?? false,
       iconColor_color: json['iconColor_color'] as String?,
       prefixStyle_textStyle: json['prefixStyle_textStyle'] as String?,
@@ -90,8 +92,7 @@ Map<String, dynamic> _$$InputDecorationModelImplToJson(
       'errorStyle_textStyle': instance.errorStyle_textStyle,
       'errorMaxLines_int': instance.errorMaxLines_int,
       'isDense_bool': instance.isDense_bool,
-      'contentPadding_edgeInsets': const EdgeInsetsConverter()
-          .toJson(instance.contentPadding_edgeInsets),
+      'contentPadding_edgeInsets': instance.contentPadding_edgeInsets?.toJson(),
       'isCollapsed_bool': instance.isCollapsed_bool,
       'iconColor_color': instance.iconColor_color,
       'prefixStyle_textStyle': instance.prefixStyle_textStyle,

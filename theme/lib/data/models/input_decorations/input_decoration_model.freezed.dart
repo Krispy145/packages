@@ -30,8 +30,7 @@ mixin _$InputDecorationModel {
   String? get errorStyle_textStyle => throw _privateConstructorUsedError;
   int? get errorMaxLines_int => throw _privateConstructorUsedError;
   bool get isDense_bool => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding_edgeInsets =>
+  EdgeInsetsModel? get contentPadding_edgeInsets =>
       throw _privateConstructorUsedError;
   bool get isCollapsed_bool => throw _privateConstructorUsedError;
   String? get iconColor_color => throw _privateConstructorUsedError;
@@ -86,7 +85,7 @@ abstract class $InputDecorationModelCopyWith<$Res> {
       String? errorStyle_textStyle,
       int? errorMaxLines_int,
       bool isDense_bool,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+      EdgeInsetsModel? contentPadding_edgeInsets,
       bool isCollapsed_bool,
       String? iconColor_color,
       String? prefixStyle_textStyle,
@@ -109,6 +108,7 @@ abstract class $InputDecorationModelCopyWith<$Res> {
       bool alignLabelWithHint_bool,
       BoxConstraintsModel? constraints_boxConstraints});
 
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets;
   $BorderSideModelCopyWith<$Res>? get activeIndicatorBorder_borderSide;
   $BorderSideModelCopyWith<$Res>? get outlineBorder_borderSide;
   $InputBorderModelCopyWith<$Res>? get errorBorder_inputBorder;
@@ -206,7 +206,7 @@ class _$InputDecorationModelCopyWithImpl<$Res,
       contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
           ? _value.contentPadding_edgeInsets
           : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       isCollapsed_bool: null == isCollapsed_bool
           ? _value.isCollapsed_bool
           : isCollapsed_bool // ignore: cast_nullable_to_non_nullable
@@ -293,6 +293,19 @@ class _$InputDecorationModelCopyWithImpl<$Res,
           : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
               as BoxConstraintsModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets {
+    if (_value.contentPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.contentPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(contentPadding_edgeInsets: value) as $Val);
+    });
   }
 
   @override
@@ -432,7 +445,7 @@ abstract class _$$InputDecorationModelImplCopyWith<$Res>
       String? errorStyle_textStyle,
       int? errorMaxLines_int,
       bool isDense_bool,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+      EdgeInsetsModel? contentPadding_edgeInsets,
       bool isCollapsed_bool,
       String? iconColor_color,
       String? prefixStyle_textStyle,
@@ -455,6 +468,8 @@ abstract class _$$InputDecorationModelImplCopyWith<$Res>
       bool alignLabelWithHint_bool,
       BoxConstraintsModel? constraints_boxConstraints});
 
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets;
   @override
   $BorderSideModelCopyWith<$Res>? get activeIndicatorBorder_borderSide;
   @override
@@ -558,7 +573,7 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
       contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
           ? _value.contentPadding_edgeInsets
           : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       isCollapsed_bool: null == isCollapsed_bool
           ? _value.isCollapsed_bool
           : isCollapsed_bool // ignore: cast_nullable_to_non_nullable
@@ -661,7 +676,7 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
       this.errorStyle_textStyle,
       this.errorMaxLines_int,
       this.isDense_bool = false,
-      @EdgeInsetsConverter() this.contentPadding_edgeInsets,
+      this.contentPadding_edgeInsets = const EdgeInsetsModel(),
       this.isCollapsed_bool = false,
       this.iconColor_color,
       this.prefixStyle_textStyle,
@@ -708,8 +723,8 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
   @JsonKey()
   final bool isDense_bool;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? contentPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? contentPadding_edgeInsets;
   @override
   @JsonKey()
   final bool isCollapsed_bool;
@@ -897,7 +912,7 @@ abstract class _InputDecorationModel extends InputDecorationModel {
           final String? errorStyle_textStyle,
           final int? errorMaxLines_int,
           final bool isDense_bool,
-          @EdgeInsetsConverter() final EdgeInsets? contentPadding_edgeInsets,
+          final EdgeInsetsModel? contentPadding_edgeInsets,
           final bool isCollapsed_bool,
           final String? iconColor_color,
           final String? prefixStyle_textStyle,
@@ -944,8 +959,7 @@ abstract class _InputDecorationModel extends InputDecorationModel {
   @override
   bool get isDense_bool;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding_edgeInsets;
+  EdgeInsetsModel? get contentPadding_edgeInsets;
   @override
   bool get isCollapsed_bool;
   @override

@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/domain/converters/alignments/alignment.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -20,11 +20,11 @@ class DialogModel with _$DialogModel {
     ThemeColorString? surfaceTintColor_color,
     // @OutlinedBorderConverter()
     ShapeBorderModel? shape_shapeBorder,
-    @AlignmentConverter() Alignment? alignment_alignment,
+    AlignmentOptions? alignment_enum_alignmentOptions,
     ThemeColorString? iconColor_color,
     TextStyleString? titleTextStyle_textStyle,
     TextStyleString? contentTextStyle_textStyle,
-    @EdgeInsetsConverter() EdgeInsets? actionsPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? actionsPadding_edgeInsets,
   }) = _DialogModel;
 
   const DialogModel._();
@@ -64,11 +64,11 @@ class DialogModel with _$DialogModel {
       elevation: elevation_double,
       shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
-      alignment: alignment_alignment,
+      alignment: alignment_enum_alignmentOptions?.alignment,
       iconColor: iconColor_color?.toColor(styleType: styleTypeName),
       titleTextStyle: titleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       contentTextStyle: contentTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      actionsPadding: actionsPadding_edgeInsets,
+      actionsPadding: actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }
 }

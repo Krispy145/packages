@@ -30,8 +30,7 @@ mixin _$ListTileModel {
   String? get subtitleTextStyle_textStyle => throw _privateConstructorUsedError;
   String? get leadingAndTrailingTextStyle_textStyle =>
       throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding_edgeInsets =>
+  EdgeInsetsModel? get contentPadding_edgeInsets =>
       throw _privateConstructorUsedError;
   String? get tileColor_color => throw _privateConstructorUsedError;
   String? get selectedTileColor_color => throw _privateConstructorUsedError;
@@ -64,7 +63,7 @@ abstract class $ListTileModelCopyWith<$Res> {
       String? titleTextStyle_textStyle,
       String? subtitleTextStyle_textStyle,
       String? leadingAndTrailingTextStyle_textStyle,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+      EdgeInsetsModel? contentPadding_edgeInsets,
       String? tileColor_color,
       String? selectedTileColor_color,
       double? horizontalTitleGap_double,
@@ -74,6 +73,7 @@ abstract class $ListTileModelCopyWith<$Res> {
       ListTileTitleAlignment? titleAlignment_enum_listTileTitleAlignment});
 
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -143,7 +143,7 @@ class _$ListTileModelCopyWithImpl<$Res, $Val extends ListTileModel>
       contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
           ? _value.contentPadding_edgeInsets
           : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       tileColor_color: freezed == tileColor_color
           ? _value.tileColor_color
           : tileColor_color // ignore: cast_nullable_to_non_nullable
@@ -187,6 +187,19 @@ class _$ListTileModelCopyWithImpl<$Res, $Val extends ListTileModel>
       return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets {
+    if (_value.contentPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.contentPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(contentPadding_edgeInsets: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -206,7 +219,7 @@ abstract class _$$ListTileModelImplCopyWith<$Res>
       String? titleTextStyle_textStyle,
       String? subtitleTextStyle_textStyle,
       String? leadingAndTrailingTextStyle_textStyle,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+      EdgeInsetsModel? contentPadding_edgeInsets,
       String? tileColor_color,
       String? selectedTileColor_color,
       double? horizontalTitleGap_double,
@@ -217,6 +230,8 @@ abstract class _$$ListTileModelImplCopyWith<$Res>
 
   @override
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -284,7 +299,7 @@ class __$$ListTileModelImplCopyWithImpl<$Res>
       contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
           ? _value.contentPadding_edgeInsets
           : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       tileColor_color: freezed == tileColor_color
           ? _value.tileColor_color
           : tileColor_color // ignore: cast_nullable_to_non_nullable
@@ -330,7 +345,7 @@ class _$ListTileModelImpl extends _ListTileModel {
       this.titleTextStyle_textStyle,
       this.subtitleTextStyle_textStyle,
       this.leadingAndTrailingTextStyle_textStyle,
-      @EdgeInsetsConverter() this.contentPadding_edgeInsets,
+      this.contentPadding_edgeInsets = const EdgeInsetsModel(),
       this.tileColor_color,
       this.selectedTileColor_color,
       this.horizontalTitleGap_double,
@@ -361,8 +376,8 @@ class _$ListTileModelImpl extends _ListTileModel {
   @override
   final String? leadingAndTrailingTextStyle_textStyle;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? contentPadding_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? contentPadding_edgeInsets;
   @override
   final String? tileColor_color;
   @override
@@ -473,7 +488,7 @@ abstract class _ListTileModel extends ListTileModel {
       final String? titleTextStyle_textStyle,
       final String? subtitleTextStyle_textStyle,
       final String? leadingAndTrailingTextStyle_textStyle,
-      @EdgeInsetsConverter() final EdgeInsets? contentPadding_edgeInsets,
+      final EdgeInsetsModel? contentPadding_edgeInsets,
       final String? tileColor_color,
       final String? selectedTileColor_color,
       final double? horizontalTitleGap_double,
@@ -504,8 +519,7 @@ abstract class _ListTileModel extends ListTileModel {
   @override
   String? get leadingAndTrailingTextStyle_textStyle;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding_edgeInsets;
+  EdgeInsetsModel? get contentPadding_edgeInsets;
   @override
   String? get tileColor_color;
   @override

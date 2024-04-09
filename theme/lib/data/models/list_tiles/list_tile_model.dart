@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -22,7 +22,7 @@ class ListTileModel with _$ListTileModel {
     TextStyleString? titleTextStyle_textStyle,
     TextStyleString? subtitleTextStyle_textStyle,
     TextStyleString? leadingAndTrailingTextStyle_textStyle,
-    @EdgeInsetsConverter() EdgeInsets? contentPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? contentPadding_edgeInsets,
     ThemeColorString? tileColor_color,
     ThemeColorString? selectedTileColor_color,
     double? horizontalTitleGap_double,
@@ -79,7 +79,7 @@ class ListTileModel with _$ListTileModel {
       titleTextStyle: titleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       subtitleTextStyle: subtitleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       leadingAndTrailingTextStyle: leadingAndTrailingTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentPadding: contentPadding_edgeInsets,
+      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       tileColor: tileColor_color?.toColor(styleType: styleTypeName),
       selectedTileColor: selectedTileColor_color?.toColor(styleType: styleTypeName),
       horizontalTitleGap: horizontalTitleGap_double,

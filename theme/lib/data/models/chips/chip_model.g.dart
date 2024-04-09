@@ -20,10 +20,14 @@ _$ChipModelImpl _$$ChipModelImplFromJson(Map<String, dynamic> json) =>
       selectedShadowColor_color: json['selectedShadowColor_color'] as String?,
       showCheckmark_bool: json['showCheckmark_bool'] as bool?,
       checkmarkColor_color: json['checkmarkColor_color'] as String?,
-      labelPadding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['labelPadding_edgeInsets'] as Map<String, dynamic>?),
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
+      labelPadding_edgeInsets: json['labelPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['labelPadding_edgeInsets'] as Map<String, dynamic>),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
       side_borderSide: json['side_borderSide'] == null
           ? null
           : BorderSideModel.fromJson(
@@ -53,10 +57,8 @@ Map<String, dynamic> _$$ChipModelImplToJson(_$ChipModelImpl instance) =>
       'selectedShadowColor_color': instance.selectedShadowColor_color,
       'showCheckmark_bool': instance.showCheckmark_bool,
       'checkmarkColor_color': instance.checkmarkColor_color,
-      'labelPadding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.labelPadding_edgeInsets),
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
+      'labelPadding_edgeInsets': instance.labelPadding_edgeInsets?.toJson(),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'side_borderSide': instance.side_borderSide?.toJson(),
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
       'labelStyle_textStyle': instance.labelStyle_textStyle,

@@ -16,13 +16,15 @@ _$DialogModelImpl _$$DialogModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ShapeBorderModel.fromJson(
               json['shape_shapeBorder'] as Map<String, dynamic>),
-      alignment_alignment: const AlignmentConverter()
-          .fromJson(json['alignment_alignment'] as String?),
+      alignment_enum_alignmentOptions: $enumDecodeNullable(
+          _$AlignmentOptionsEnumMap, json['alignment_enum_alignmentOptions']),
       iconColor_color: json['iconColor_color'] as String?,
       titleTextStyle_textStyle: json['titleTextStyle_textStyle'] as String?,
       contentTextStyle_textStyle: json['contentTextStyle_textStyle'] as String?,
-      actionsPadding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['actionsPadding_edgeInsets'] as Map<String, dynamic>?),
+      actionsPadding_edgeInsets: json['actionsPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['actionsPadding_edgeInsets'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DialogModelImplToJson(_$DialogModelImpl instance) =>
@@ -32,11 +34,22 @@ Map<String, dynamic> _$$DialogModelImplToJson(_$DialogModelImpl instance) =>
       'shadowColor_color': instance.shadowColor_color,
       'surfaceTintColor_color': instance.surfaceTintColor_color,
       'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
-      'alignment_alignment':
-          const AlignmentConverter().toJson(instance.alignment_alignment),
+      'alignment_enum_alignmentOptions':
+          _$AlignmentOptionsEnumMap[instance.alignment_enum_alignmentOptions],
       'iconColor_color': instance.iconColor_color,
       'titleTextStyle_textStyle': instance.titleTextStyle_textStyle,
       'contentTextStyle_textStyle': instance.contentTextStyle_textStyle,
-      'actionsPadding_edgeInsets': const EdgeInsetsConverter()
-          .toJson(instance.actionsPadding_edgeInsets),
+      'actionsPadding_edgeInsets': instance.actionsPadding_edgeInsets?.toJson(),
     };
+
+const _$AlignmentOptionsEnumMap = {
+  AlignmentOptions.topLeft: 'topLeft',
+  AlignmentOptions.topCenter: 'topCenter',
+  AlignmentOptions.topRight: 'topRight',
+  AlignmentOptions.centerLeft: 'centerLeft',
+  AlignmentOptions.center: 'center',
+  AlignmentOptions.centerRight: 'centerRight',
+  AlignmentOptions.bottomLeft: 'bottomLeft',
+  AlignmentOptions.bottomCenter: 'bottomCenter',
+  AlignmentOptions.bottomRight: 'bottomRight',
+};

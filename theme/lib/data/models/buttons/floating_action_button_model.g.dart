@@ -54,8 +54,10 @@ _$FloatingActionButtonModelImpl _$$FloatingActionButtonModelImplFromJson(
                       as Map<String, dynamic>),
       extendedIconLabelSpacing_double:
           (json['extendedIconLabelSpacing_double'] as num?)?.toDouble(),
-      extendedPadding_edgeInsets: const EdgeInsetsConverter().fromJson(
-          json['extendedPadding_edgeInsets'] as Map<String, dynamic>?),
+      extendedPadding_edgeInsets: json['extendedPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['extendedPadding_edgeInsets'] as Map<String, dynamic>),
       extendedTextStyle_textStyle:
           json['extendedTextStyle_textStyle'] as String?,
     );
@@ -86,7 +88,7 @@ Map<String, dynamic> _$$FloatingActionButtonModelImplToJson(
           instance.extendedSizeConstraints_boxConstraints?.toJson(),
       'extendedIconLabelSpacing_double':
           instance.extendedIconLabelSpacing_double,
-      'extendedPadding_edgeInsets': const EdgeInsetsConverter()
-          .toJson(instance.extendedPadding_edgeInsets),
+      'extendedPadding_edgeInsets':
+          instance.extendedPadding_edgeInsets?.toJson(),
       'extendedTextStyle_textStyle': instance.extendedTextStyle_textStyle,
     };

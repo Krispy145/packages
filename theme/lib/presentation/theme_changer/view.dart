@@ -1,12 +1,13 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/input_border_model.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/data/models/general/duration_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/store.dart';
@@ -106,8 +107,8 @@ class ThemeComponentEditor extends MapEditor {
         );
       case "_edgeInsets":
         final store = EdgeInsetsFormFieldStore(
-          value: const EdgeInsetsConverter().fromJson(value) ?? EdgeInsets.zero,
-          onValueChanged: (newValue) => onChanged(keys, const EdgeInsetsConverter().toJson(newValue)),
+          value: value != null ? EdgeInsetsModel.fromJson(value as Map<String, dynamic>) : const EdgeInsetsModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           title: formattedKey,
         );
         return EdgeInsetsFormField(store: store);
@@ -195,4 +196,8 @@ final List<EnumComponentProperties> enumComponentProperties = [
   EnumComponentProperties(name: "outlinedBorderType", values: OutlinedBorderType.values),
   EnumComponentProperties(name: "shapeBorderType", values: ShapeBorderType.values),
   EnumComponentProperties(name: "borderStyle", values: BorderStyle.values),
+  EnumComponentProperties(name: "materialTapTargetSize", values: MaterialTapTargetSize.values),
+  EnumComponentProperties(name: "materialType", values: MaterialType.values),
+  EnumComponentProperties(name: "navigationDestinationLabelConverter", values: NavigationDestinationLabelBehavior.values),
+  EnumComponentProperties(name: "alignmentOptions", values: AlignmentOptions.values),
 ];

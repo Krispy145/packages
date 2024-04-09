@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
 part 'bottom_appbar_model.freezed.dart';
@@ -14,7 +14,7 @@ class BottomAppbarModel with _$BottomAppbarModel {
     double? height_double,
     ThemeColorString? surfaceTintColor_color,
     ThemeColorString? shadowColor_color,
-    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
   }) = _BottomAppbarModel;
 
   const BottomAppbarModel._();
@@ -44,7 +44,7 @@ class BottomAppbarModel with _$BottomAppbarModel {
       height: height_double,
       surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
       shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
-      padding: padding_edgeInsets,
+      padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }
 }

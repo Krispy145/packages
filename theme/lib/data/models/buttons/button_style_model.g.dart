@@ -16,8 +16,10 @@ _$ButtonStyleModelImpl _$$ButtonStyleModelImplFromJson(
       shadowColor_color: json['shadowColor_color'] as String?,
       surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
       minimumSize_size: json['minimumSize_size'] == null
           ? const SizeModel()
           : SizeModel.fromJson(
@@ -51,8 +53,7 @@ Map<String, dynamic> _$$ButtonStyleModelImplToJson(
       'shadowColor_color': instance.shadowColor_color,
       'surfaceTintColor_color': instance.surfaceTintColor_color,
       'elevation_double': instance.elevation_double,
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'minimumSize_size': instance.minimumSize_size?.toJson(),
       'fixedSize_size': instance.fixedSize_size?.toJson(),
       'maximumSize_size': instance.maximumSize_size?.toJson(),

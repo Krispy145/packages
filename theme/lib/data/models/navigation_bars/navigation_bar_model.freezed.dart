@@ -29,10 +29,11 @@ mixin _$NavigationBarModel {
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
   ShapeBorderModel? get indicatorShape_shapeBorder =>
       throw _privateConstructorUsedError;
-  String? get labelTextStyle_textStyle => throw _privateConstructorUsedError;
-  @NavigationDestinationLabelConverter()
-  NavigationDestinationLabelBehavior? get labelBehavior =>
-      throw _privateConstructorUsedError;
+  String? get labelTextStyle_textStyle =>
+      throw _privateConstructorUsedError; // @NavigationDestinationLabelConverter()
+  NavigationDestinationLabelBehavior?
+      get labelBehavior_enum_navigationDestinationLabelBehavior =>
+          throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,8 +56,8 @@ abstract class $NavigationBarModelCopyWith<$Res> {
       String? indicatorColor_color,
       ShapeBorderModel? indicatorShape_shapeBorder,
       String? labelTextStyle_textStyle,
-      @NavigationDestinationLabelConverter()
-      NavigationDestinationLabelBehavior? labelBehavior});
+      NavigationDestinationLabelBehavior?
+          labelBehavior_enum_navigationDestinationLabelBehavior});
 
   $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
 }
@@ -82,7 +83,7 @@ class _$NavigationBarModelCopyWithImpl<$Res, $Val extends NavigationBarModel>
     Object? indicatorColor_color = freezed,
     Object? indicatorShape_shapeBorder = freezed,
     Object? labelTextStyle_textStyle = freezed,
-    Object? labelBehavior = freezed,
+    Object? labelBehavior_enum_navigationDestinationLabelBehavior = freezed,
   }) {
     return _then(_value.copyWith(
       height_double: freezed == height_double
@@ -117,9 +118,10 @@ class _$NavigationBarModelCopyWithImpl<$Res, $Val extends NavigationBarModel>
           ? _value.labelTextStyle_textStyle
           : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelBehavior: freezed == labelBehavior
-          ? _value.labelBehavior
-          : labelBehavior // ignore: cast_nullable_to_non_nullable
+      labelBehavior_enum_navigationDestinationLabelBehavior: freezed ==
+              labelBehavior_enum_navigationDestinationLabelBehavior
+          ? _value.labelBehavior_enum_navigationDestinationLabelBehavior
+          : labelBehavior_enum_navigationDestinationLabelBehavior // ignore: cast_nullable_to_non_nullable
               as NavigationDestinationLabelBehavior?,
     ) as $Val);
   }
@@ -155,8 +157,8 @@ abstract class _$$NavigationBarModelImplCopyWith<$Res>
       String? indicatorColor_color,
       ShapeBorderModel? indicatorShape_shapeBorder,
       String? labelTextStyle_textStyle,
-      @NavigationDestinationLabelConverter()
-      NavigationDestinationLabelBehavior? labelBehavior});
+      NavigationDestinationLabelBehavior?
+          labelBehavior_enum_navigationDestinationLabelBehavior});
 
   @override
   $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
@@ -181,7 +183,7 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
     Object? indicatorColor_color = freezed,
     Object? indicatorShape_shapeBorder = freezed,
     Object? labelTextStyle_textStyle = freezed,
-    Object? labelBehavior = freezed,
+    Object? labelBehavior_enum_navigationDestinationLabelBehavior = freezed,
   }) {
     return _then(_$NavigationBarModelImpl(
       height_double: freezed == height_double
@@ -216,9 +218,10 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
           ? _value.labelTextStyle_textStyle
           : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelBehavior: freezed == labelBehavior
-          ? _value.labelBehavior
-          : labelBehavior // ignore: cast_nullable_to_non_nullable
+      labelBehavior_enum_navigationDestinationLabelBehavior: freezed ==
+              labelBehavior_enum_navigationDestinationLabelBehavior
+          ? _value.labelBehavior_enum_navigationDestinationLabelBehavior
+          : labelBehavior_enum_navigationDestinationLabelBehavior // ignore: cast_nullable_to_non_nullable
               as NavigationDestinationLabelBehavior?,
     ));
   }
@@ -236,7 +239,7 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
       this.indicatorColor_color,
       this.indicatorShape_shapeBorder,
       this.labelTextStyle_textStyle,
-      @NavigationDestinationLabelConverter() this.labelBehavior})
+      this.labelBehavior_enum_navigationDestinationLabelBehavior})
       : super._();
 
   factory _$NavigationBarModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -259,13 +262,14 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
   final ShapeBorderModel? indicatorShape_shapeBorder;
   @override
   final String? labelTextStyle_textStyle;
+// @NavigationDestinationLabelConverter()
   @override
-  @NavigationDestinationLabelConverter()
-  final NavigationDestinationLabelBehavior? labelBehavior;
+  final NavigationDestinationLabelBehavior?
+      labelBehavior_enum_navigationDestinationLabelBehavior;
 
   @override
   String toString() {
-    return 'NavigationBarModel(height_double: $height_double, backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, indicatorColor_color: $indicatorColor_color, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, labelTextStyle_textStyle: $labelTextStyle_textStyle, labelBehavior: $labelBehavior)';
+    return 'NavigationBarModel(height_double: $height_double, backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, indicatorColor_color: $indicatorColor_color, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, labelTextStyle_textStyle: $labelTextStyle_textStyle, labelBehavior_enum_navigationDestinationLabelBehavior: $labelBehavior_enum_navigationDestinationLabelBehavior)';
   }
 
   @override
@@ -292,8 +296,11 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
             (identical(
                     other.labelTextStyle_textStyle, labelTextStyle_textStyle) ||
                 other.labelTextStyle_textStyle == labelTextStyle_textStyle) &&
-            (identical(other.labelBehavior, labelBehavior) ||
-                other.labelBehavior == labelBehavior));
+            (identical(
+                    other.labelBehavior_enum_navigationDestinationLabelBehavior,
+                    labelBehavior_enum_navigationDestinationLabelBehavior) ||
+                other.labelBehavior_enum_navigationDestinationLabelBehavior ==
+                    labelBehavior_enum_navigationDestinationLabelBehavior));
   }
 
   @JsonKey(ignore: true)
@@ -308,7 +315,7 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
       indicatorColor_color,
       indicatorShape_shapeBorder,
       labelTextStyle_textStyle,
-      labelBehavior);
+      labelBehavior_enum_navigationDestinationLabelBehavior);
 
   @JsonKey(ignore: true)
   @override
@@ -335,8 +342,8 @@ abstract class _NavigationBarModel extends NavigationBarModel {
           final String? indicatorColor_color,
           final ShapeBorderModel? indicatorShape_shapeBorder,
           final String? labelTextStyle_textStyle,
-          @NavigationDestinationLabelConverter()
-          final NavigationDestinationLabelBehavior? labelBehavior}) =
+          final NavigationDestinationLabelBehavior?
+              labelBehavior_enum_navigationDestinationLabelBehavior}) =
       _$NavigationBarModelImpl;
   _NavigationBarModel._() : super._();
 
@@ -359,9 +366,9 @@ abstract class _NavigationBarModel extends NavigationBarModel {
   ShapeBorderModel? get indicatorShape_shapeBorder;
   @override
   String? get labelTextStyle_textStyle;
-  @override
-  @NavigationDestinationLabelConverter()
-  NavigationDestinationLabelBehavior? get labelBehavior;
+  @override // @NavigationDestinationLabelConverter()
+  NavigationDestinationLabelBehavior?
+      get labelBehavior_enum_navigationDestinationLabelBehavior;
   @override
   @JsonKey(ignore: true)
   _$$NavigationBarModelImplCopyWith<_$NavigationBarModelImpl> get copyWith =>

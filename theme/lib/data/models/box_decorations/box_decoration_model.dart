@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
 import 'package:theme/data/models/borders/box_border_model.dart';
-import 'package:theme/domain/converters/box/shadows.dart';
-import 'package:theme/domain/converters/colors/gradients/gradient.dart';
-import 'package:theme/domain/converters/modes/blend.dart';
+import 'package:theme/data/models/box_decorations/box_shadow_model.dart';
+import 'package:theme/data/models/gradient_model.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
 part 'box_decoration_model.freezed.dart';
@@ -20,10 +19,11 @@ class BoxDecorationModel with _$BoxDecorationModel {
     BoxBorderModel? border_boxBorder,
     // @BorderRadiusConverter() BorderRadius? borderRadius,
     BorderRadiusModel? borderRadius_borderRadius,
-    @BoxShadowsConverter() List<BoxShadow>? boxShadows_list_boxShadow,
-    @GradientConverter() Gradient? gradient_gradient,
-    @BlendModeConverter() BlendMode? backgroundBlendMode_blendMode,
-    // @BoxShapeConverter()
+    // @BoxShadowsConverter()
+    @Default([]) List<BoxShadowModel>? boxShadows_list_boxShadow,
+    // @GradientConverter()
+    @Default(GradientModel()) GradientModel? gradient_gradient,
+    BlendMode? backgroundBlendMode_enum_blendMode,
     @Default(BoxShape.rectangle) BoxShape? shape_enum_boxShape,
   }) = _BoxDecorationModel;
 
@@ -76,9 +76,9 @@ class BoxDecorationModel with _$BoxDecorationModel {
       color: color_color?.toColor(styleType: styleTypeName),
       border: border_boxBorder?.asBoxBorder(styleTypeName: styleTypeName),
       borderRadius: borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName),
-      boxShadow: boxShadows_list_boxShadow,
-      gradient: gradient_gradient,
-      backgroundBlendMode: backgroundBlendMode_blendMode,
+      boxShadow: boxShadows_list_boxShadow?.map((e) => e.asBoxShadow(styleTypeName: styleTypeName)).toList() ?? [],
+      gradient: gradient_gradient?.asGradient(styleTypeName: styleTypeName),
+      backgroundBlendMode: backgroundBlendMode_enum_blendMode,
       shape: shape_enum_boxShape ?? BoxShape.rectangle,
     );
   }

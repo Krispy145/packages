@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/radius/radius.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
 part 'scrollbar_model.freezed.dart';
@@ -14,7 +13,8 @@ class ScrollbarModel with _$ScrollbarModel {
     bool? thumbVisibility_bool,
     double? thickness_double,
     bool? trackVisibility_bool,
-    @RadiusConverter() Radius? radius_radius,
+    // @RadiusConverter() Radius?
+    double? radius_double,
     ThemeColorString? thumbColor_color,
     ThemeColorString? trackColor_color,
     ThemeColorString? trackBorderColor_color,
@@ -49,7 +49,7 @@ class ScrollbarModel with _$ScrollbarModel {
       thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
       thickness: MaterialStateProperty.all(thickness_double),
       trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
-      radius: radius_radius,
+      radius: radius_double != null ? Radius.circular(radius_double!) : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
       thumbColor: MaterialStateProperty.all(thumbColor_color?.toColor(styleType: styleTypeName)),
       trackColor: MaterialStateProperty.all(trackColor_color?.toColor(styleType: styleTypeName)),
       trackBorderColor: MaterialStateProperty.all(trackBorderColor_color?.toColor(styleType: styleTypeName)),

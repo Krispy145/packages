@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/data/models/general/size_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -22,11 +22,11 @@ class ButtonStyleModel with _$ButtonStyleModel {
     ThemeColorString? shadowColor_color,
     ThemeColorString? surfaceTintColor_color,
     double? elevation_double,
-    @EdgeInsetsConverter() EdgeInsets? padding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     @Default(SizeModel()) SizeModel? minimumSize_size,
     @Default(SizeModel()) SizeModel? fixedSize_size,
     @Default(SizeModel()) SizeModel? maximumSize_size,
-    String? iconColor_color,
+    ThemeColorString? iconColor_color,
     double? iconSize_double,
     // @BorderSideConverter()
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
@@ -99,7 +99,7 @@ class ButtonStyleModel with _$ButtonStyleModel {
       overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
       shadowColor: MaterialStateProperty.all(shadowColor_color?.toColor(styleType: styleTypeName)),
       elevation: MaterialStateProperty.all(elevation_double),
-      padding: MaterialStateProperty.all(padding_edgeInsets),
+      padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName)),
       minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),
       fixedSize: MaterialStateProperty.all(fixedSize_size?.asSize(styleTypeName: styleTypeName)),
       maximumSize: MaterialStateProperty.all(maximumSize_size?.asSize(styleTypeName: styleTypeName)),

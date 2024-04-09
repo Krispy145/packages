@@ -14,8 +14,10 @@ _$BottomAppbarModelImpl _$$BottomAppbarModelImplFromJson(
       height_double: (json['height_double'] as num?)?.toDouble(),
       surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
       shadowColor_color: json['shadowColor_color'] as String?,
-      padding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['padding_edgeInsets'] as Map<String, dynamic>?),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$BottomAppbarModelImplToJson(
@@ -26,6 +28,5 @@ Map<String, dynamic> _$$BottomAppbarModelImplToJson(
       'height_double': instance.height_double,
       'surfaceTintColor_color': instance.surfaceTintColor_color,
       'shadowColor_color': instance.shadowColor_color,
-      'padding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.padding_edgeInsets),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
     };

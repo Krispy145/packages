@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/domain/converters/navigation/destination_label.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
@@ -22,7 +21,8 @@ class NavigationBarModel with _$NavigationBarModel {
     // @OutlinedBorderConverter()
     ShapeBorderModel? indicatorShape_shapeBorder,
     TextStyleString? labelTextStyle_textStyle,
-    @NavigationDestinationLabelConverter() NavigationDestinationLabelBehavior? labelBehavior,
+    // @NavigationDestinationLabelConverter()
+    NavigationDestinationLabelBehavior? labelBehavior_enum_navigationDestinationLabelBehavior,
   }) = _NavigationBarModel;
 
   const NavigationBarModel._();
@@ -53,7 +53,7 @@ class NavigationBarModel with _$NavigationBarModel {
       indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      labelBehavior: labelBehavior,
+      labelBehavior: labelBehavior_enum_navigationDestinationLabelBehavior,
     );
   }
 }

@@ -24,8 +24,7 @@ mixin _$CardModel {
   String? get shadowColor_color => throw _privateConstructorUsedError;
   String? get surfaceTintColor_color => throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get margin_edgeInsets =>
+  EdgeInsetsModel? get margin_edgeInsets =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
   ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
 
@@ -45,9 +44,10 @@ abstract class $CardModelCopyWith<$Res> {
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      EdgeInsetsModel? margin_edgeInsets,
       ShapeBorderModel? shape_shapeBorder});
 
+  $EdgeInsetsModelCopyWith<$Res>? get margin_edgeInsets;
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
 
@@ -91,12 +91,24 @@ class _$CardModelCopyWithImpl<$Res, $Val extends CardModel>
       margin_edgeInsets: freezed == margin_edgeInsets
           ? _value.margin_edgeInsets
           : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       shape_shapeBorder: freezed == shape_shapeBorder
           ? _value.shape_shapeBorder
           : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get margin_edgeInsets {
+    if (_value.margin_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.margin_edgeInsets!, (value) {
+      return _then(_value.copyWith(margin_edgeInsets: value) as $Val);
+    });
   }
 
   @override
@@ -125,9 +137,11 @@ abstract class _$$CardModelImplCopyWith<$Res>
       String? shadowColor_color,
       String? surfaceTintColor_color,
       double? elevation_double,
-      @EdgeInsetsConverter() EdgeInsets? margin_edgeInsets,
+      EdgeInsetsModel? margin_edgeInsets,
       ShapeBorderModel? shape_shapeBorder});
 
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get margin_edgeInsets;
   @override
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
@@ -170,7 +184,7 @@ class __$$CardModelImplCopyWithImpl<$Res>
       margin_edgeInsets: freezed == margin_edgeInsets
           ? _value.margin_edgeInsets
           : margin_edgeInsets // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+              as EdgeInsetsModel?,
       shape_shapeBorder: freezed == shape_shapeBorder
           ? _value.shape_shapeBorder
           : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
@@ -187,7 +201,7 @@ class _$CardModelImpl extends _CardModel {
       this.shadowColor_color,
       this.surfaceTintColor_color,
       this.elevation_double,
-      @EdgeInsetsConverter() this.margin_edgeInsets,
+      this.margin_edgeInsets = const EdgeInsetsModel(),
       this.shape_shapeBorder})
       : super._();
 
@@ -203,8 +217,8 @@ class _$CardModelImpl extends _CardModel {
   @override
   final double? elevation_double;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? margin_edgeInsets;
+  @JsonKey()
+  final EdgeInsetsModel? margin_edgeInsets;
 // @OutlinedBorderConverter()
   @override
   final ShapeBorderModel? shape_shapeBorder;
@@ -264,7 +278,7 @@ abstract class _CardModel extends CardModel {
       final String? shadowColor_color,
       final String? surfaceTintColor_color,
       final double? elevation_double,
-      @EdgeInsetsConverter() final EdgeInsets? margin_edgeInsets,
+      final EdgeInsetsModel? margin_edgeInsets,
       final ShapeBorderModel? shape_shapeBorder}) = _$CardModelImpl;
   const _CardModel._() : super._();
 
@@ -280,8 +294,7 @@ abstract class _CardModel extends CardModel {
   @override
   double? get elevation_double;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get margin_edgeInsets;
+  EdgeInsetsModel? get margin_edgeInsets;
   @override // @OutlinedBorderConverter()
   ShapeBorderModel? get shape_shapeBorder;
   @override

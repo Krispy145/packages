@@ -23,8 +23,10 @@ _$SnackbarModelImpl _$$SnackbarModelImplFromJson(Map<String, dynamic> json) =>
               json['behavior_enum_snackBarBehavior']) ??
           SnackBarBehavior.floating,
       width_double: (json['width_double'] as num?)?.toDouble(),
-      insetPadding_edgeInsets: const EdgeInsetsConverter()
-          .fromJson(json['insetPadding_edgeInsets'] as Map<String, dynamic>?),
+      insetPadding_edgeInsets: json['insetPadding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['insetPadding_edgeInsets'] as Map<String, dynamic>),
       showCloseIcon_bool: json['showCloseIcon_bool'] as bool?,
       closeIconColor_color: json['closeIconColor_color'] as String?,
       actionOverflowThreshold_double:
@@ -46,8 +48,7 @@ Map<String, dynamic> _$$SnackbarModelImplToJson(_$SnackbarModelImpl instance) =>
       'behavior_enum_snackBarBehavior':
           _$SnackBarBehaviorEnumMap[instance.behavior_enum_snackBarBehavior]!,
       'width_double': instance.width_double,
-      'insetPadding_edgeInsets':
-          const EdgeInsetsConverter().toJson(instance.insetPadding_edgeInsets),
+      'insetPadding_edgeInsets': instance.insetPadding_edgeInsets?.toJson(),
       'showCloseIcon_bool': instance.showCloseIcon_bool,
       'closeIconColor_color': instance.closeIconColor_color,
       'actionOverflowThreshold_double': instance.actionOverflowThreshold_double,
