@@ -12,16 +12,16 @@ part 'popup_menu_model.g.dart';
 @freezed
 class PopupMenuModel with _$PopupMenuModel {
   const factory PopupMenuModel({
-    ThemeColorString? color_color,
+    ThemeColorString? color_themeColorString,
     ShapeBorderModel? shape_shapeBorder,
     double? elevation_double,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
-    TextStyleString? textStyle_textStyle,
-    TextStyleString? labelTextStyle_textStyle,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    TextStyleString? textStyle_textStyleString,
+    TextStyleString? labelTextStyle_textStyleString,
     bool? enableFeedback_bool,
     @Default(PopupMenuPosition.under) PopupMenuPosition position,
-    ThemeColorString? iconColor_color,
+    ThemeColorString? iconColor_themeColorString,
     double? iconSize_double,
   }) = _PopupMenuModel;
 
@@ -53,15 +53,15 @@ class PopupMenuModel with _$PopupMenuModel {
 
   PopupMenuThemeData asPopupMenuThemeData({String? styleTypeName}) {
     return PopupMenuThemeData(
-      color: color_color?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
-      textStyle: textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       enableFeedback: enableFeedback_bool,
       position: position,
-      iconColor: iconColor_color?.toColor(styleType: styleTypeName),
+      iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
       iconSize: iconSize_double,
     );
   }

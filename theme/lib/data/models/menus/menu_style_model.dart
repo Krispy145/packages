@@ -15,9 +15,9 @@ part 'menu_style_model.g.dart';
 @freezed
 class MenuStyleModel with _$MenuStyleModel {
   const factory MenuStyleModel({
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
     double? elevation_double,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     @Default(SizeModel()) SizeModel? minimumSize_size,
@@ -63,9 +63,9 @@ class MenuStyleModel with _$MenuStyleModel {
 
   MenuStyle asMenuStyle({String? styleTypeName}) {
     return MenuStyle(
-      backgroundColor: MaterialStateProperty.all(backgroundColor_color?.toColor(styleType: styleTypeName)),
-      shadowColor: MaterialStateProperty.all(shadowColor_color?.toColor(styleType: styleTypeName)),
-      surfaceTintColor: MaterialStateProperty.all(surfaceTintColor_color?.toColor(styleType: styleTypeName)),
+      backgroundColor: MaterialStateProperty.all(backgroundColor_themeColorString?.toColor(styleType: styleTypeName)),
+      shadowColor: MaterialStateProperty.all(shadowColor_themeColorString?.toColor(styleType: styleTypeName)),
+      surfaceTintColor: MaterialStateProperty.all(surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName)),
       elevation: MaterialStateProperty.all(elevation_double),
       padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero),
       minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),

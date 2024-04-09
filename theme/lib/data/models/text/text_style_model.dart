@@ -13,12 +13,12 @@ class TextStyleModel with _$TextStyleModel {
   /// [TextStyleModel] constructor
   const factory TextStyleModel({
     final String? fontFamilyName_string,
-    final FontStyle? fontFamilyStyle_enum_fontStyle,
+    @Default(FontStyle.normal) final FontStyle? fontFamilyStyle_enum_fontStyle,
     final double? fontWeight_double,
     final double? fontSize_double,
     final double? lineHeight_double,
     final double? letterSpacing_double,
-  }) = _TextStyleModel;
+  }) = _textStyleStringModel;
   const TextStyleModel._();
 
   /// [TextStyleModel.fromJson] is a factory method that allows you to create a [TextStyleModel] from a JSON file.
@@ -37,14 +37,14 @@ class TextStyleModel with _$TextStyleModel {
   }
 
   /// [defaultStyles] returns a [TextStyleModel] with default values.
-  static TextStyleModel defaultStyles() {
-    return const TextStyleModel(
-      fontFamilyName_string: 'Roboto',
-      fontFamilyStyle_enum_fontStyle: FontStyle.italic,
-      fontWeight_double: 400,
-      fontSize_double: 14,
-      lineHeight_double: 1.5,
-      letterSpacing_double: 0.15,
-    );
-  }
+  // static TextStyleModel defaultStyles() {
+  //   return const TextStyleModel(
+  //     fontFamilyName_string: 'Roboto',
+  //     fontFamilyStyle_enum_fontStyle: FontStyle.italic,
+  //     fontWeight_double: 400,
+  //     fontSize_double: 14,
+  //     lineHeight_double: 1.5,
+  //     letterSpacing_double: 0.15,
+  //   );
+  // }
 }

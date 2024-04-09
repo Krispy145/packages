@@ -9,11 +9,16 @@ part of 'floating_action_button_model.dart';
 _$FloatingActionButtonModelImpl _$$FloatingActionButtonModelImplFromJson(
         Map<String, dynamic> json) =>
     _$FloatingActionButtonModelImpl(
-      foregroundColor_color: json['foregroundColor_color'] as String?,
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      focusColor_color: json['focusColor_color'] as String?,
-      hoverColor_color: json['hoverColor_color'] as String?,
-      splashColor_color: json['splashColor_color'] as String?,
+      foregroundColor_themeColorString:
+          json['foregroundColor_themeColorString'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      focusColor_themeColorString:
+          json['focusColor_themeColorString'] as String?,
+      hoverColor_themeColorString:
+          json['hoverColor_themeColorString'] as String?,
+      splashColor_themeColorString:
+          json['splashColor_themeColorString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
       focusElevation_double:
           (json['focusElevation_double'] as num?)?.toDouble(),
@@ -58,18 +63,20 @@ _$FloatingActionButtonModelImpl _$$FloatingActionButtonModelImplFromJson(
           ? const EdgeInsetsModel()
           : EdgeInsetsModel.fromJson(
               json['extendedPadding_edgeInsets'] as Map<String, dynamic>),
-      extendedTextStyle_textStyle:
-          json['extendedTextStyle_textStyle'] as String?,
+      extendedTextStyle_textStyleString:
+          json['extendedTextStyle_textStyleString'] as String?,
     );
 
 Map<String, dynamic> _$$FloatingActionButtonModelImplToJson(
         _$FloatingActionButtonModelImpl instance) =>
     <String, dynamic>{
-      'foregroundColor_color': instance.foregroundColor_color,
-      'backgroundColor_color': instance.backgroundColor_color,
-      'focusColor_color': instance.focusColor_color,
-      'hoverColor_color': instance.hoverColor_color,
-      'splashColor_color': instance.splashColor_color,
+      'foregroundColor_themeColorString':
+          instance.foregroundColor_themeColorString,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'focusColor_themeColorString': instance.focusColor_themeColorString,
+      'hoverColor_themeColorString': instance.hoverColor_themeColorString,
+      'splashColor_themeColorString': instance.splashColor_themeColorString,
       'elevation_double': instance.elevation_double,
       'focusElevation_double': instance.focusElevation_double,
       'hoverElevation_double': instance.hoverElevation_double,
@@ -90,5 +97,6 @@ Map<String, dynamic> _$$FloatingActionButtonModelImplToJson(
           instance.extendedIconLabelSpacing_double,
       'extendedPadding_edgeInsets':
           instance.extendedPadding_edgeInsets?.toJson(),
-      'extendedTextStyle_textStyle': instance.extendedTextStyle_textStyle,
+      'extendedTextStyle_textStyleString':
+          instance.extendedTextStyle_textStyleString,
     };

@@ -20,9 +20,11 @@ CardModel _$CardModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CardModel {
-  String? get color_color => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   EdgeInsetsModel? get margin_edgeInsets =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
@@ -40,9 +42,9 @@ abstract class $CardModelCopyWith<$Res> {
       _$CardModelCopyWithImpl<$Res, CardModel>;
   @useResult
   $Res call(
-      {String? color_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? color_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? margin_edgeInsets,
       ShapeBorderModel? shape_shapeBorder});
@@ -64,25 +66,26 @@ class _$CardModelCopyWithImpl<$Res, $Val extends CardModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? color_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? margin_edgeInsets = freezed,
     Object? shape_shapeBorder = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -133,9 +136,9 @@ abstract class _$$CardModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? color_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? margin_edgeInsets,
       ShapeBorderModel? shape_shapeBorder});
@@ -157,25 +160,26 @@ class __$$CardModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? color_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? margin_edgeInsets = freezed,
     Object? shape_shapeBorder = freezed,
   }) {
     return _then(_$CardModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -197,9 +201,9 @@ class __$$CardModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CardModelImpl extends _CardModel {
   const _$CardModelImpl(
-      {this.color_color,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
+      {this.color_themeColorString,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
       this.elevation_double,
       this.margin_edgeInsets = const EdgeInsetsModel(),
       this.shape_shapeBorder})
@@ -209,11 +213,11 @@ class _$CardModelImpl extends _CardModel {
       _$$CardModelImplFromJson(json);
 
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
   final double? elevation_double;
   @override
@@ -225,7 +229,7 @@ class _$CardModelImpl extends _CardModel {
 
   @override
   String toString() {
-    return 'CardModel(color_color: $color_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, elevation_double: $elevation_double, margin_edgeInsets: $margin_edgeInsets, shape_shapeBorder: $shape_shapeBorder)';
+    return 'CardModel(color_themeColorString: $color_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, elevation_double: $elevation_double, margin_edgeInsets: $margin_edgeInsets, shape_shapeBorder: $shape_shapeBorder)';
   }
 
   @override
@@ -233,12 +237,16 @@ class _$CardModelImpl extends _CardModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CardModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
+            (identical(other.shadowColor_themeColorString,
+                    shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
             (identical(other.margin_edgeInsets, margin_edgeInsets) ||
@@ -251,9 +259,9 @@ class _$CardModelImpl extends _CardModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color_color,
-      shadowColor_color,
-      surfaceTintColor_color,
+      color_themeColorString,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
       elevation_double,
       margin_edgeInsets,
       shape_shapeBorder);
@@ -274,9 +282,9 @@ class _$CardModelImpl extends _CardModel {
 
 abstract class _CardModel extends CardModel {
   const factory _CardModel(
-      {final String? color_color,
-      final String? shadowColor_color,
-      final String? surfaceTintColor_color,
+      {final String? color_themeColorString,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
       final double? elevation_double,
       final EdgeInsetsModel? margin_edgeInsets,
       final ShapeBorderModel? shape_shapeBorder}) = _$CardModelImpl;
@@ -286,11 +294,11 @@ abstract class _CardModel extends CardModel {
       _$CardModelImpl.fromJson;
 
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
   double? get elevation_double;
   @override

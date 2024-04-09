@@ -20,11 +20,13 @@ DrawerModel _$DrawerModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DrawerModel {
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  String? get scrimColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get scrimColor_themeColorString => throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color =>
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
   OutlinedBorderModel? get shape_outlinedBorder =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
@@ -45,11 +47,11 @@ abstract class $DrawerModelCopyWith<$Res> {
       _$DrawerModelCopyWithImpl<$Res, DrawerModel>;
   @useResult
   $Res call(
-      {String? backgroundColor_color,
-      String? scrimColor_color,
+      {String? backgroundColor_themeColorString,
+      String? scrimColor_themeColorString,
       double? elevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       OutlinedBorderModel? shape_outlinedBorder,
       OutlinedBorderModel? endShape_outlinedBorder,
       double? width_double});
@@ -71,35 +73,37 @@ class _$DrawerModelCopyWithImpl<$Res, $Val extends DrawerModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
-    Object? scrimColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? scrimColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? shape_outlinedBorder = freezed,
     Object? endShape_outlinedBorder = freezed,
     Object? width_double = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      scrimColor_color: freezed == scrimColor_color
-          ? _value.scrimColor_color
-          : scrimColor_color // ignore: cast_nullable_to_non_nullable
+      scrimColor_themeColorString: freezed == scrimColor_themeColorString
+          ? _value.scrimColor_themeColorString
+          : scrimColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       shape_outlinedBorder: freezed == shape_outlinedBorder
           ? _value.shape_outlinedBorder
@@ -152,11 +156,11 @@ abstract class _$$DrawerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor_color,
-      String? scrimColor_color,
+      {String? backgroundColor_themeColorString,
+      String? scrimColor_themeColorString,
       double? elevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       OutlinedBorderModel? shape_outlinedBorder,
       OutlinedBorderModel? endShape_outlinedBorder,
       double? width_double});
@@ -178,35 +182,37 @@ class __$$DrawerModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
-    Object? scrimColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? scrimColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? shape_outlinedBorder = freezed,
     Object? endShape_outlinedBorder = freezed,
     Object? width_double = freezed,
   }) {
     return _then(_$DrawerModelImpl(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      scrimColor_color: freezed == scrimColor_color
-          ? _value.scrimColor_color
-          : scrimColor_color // ignore: cast_nullable_to_non_nullable
+      scrimColor_themeColorString: freezed == scrimColor_themeColorString
+          ? _value.scrimColor_themeColorString
+          : scrimColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       shape_outlinedBorder: freezed == shape_outlinedBorder
           ? _value.shape_outlinedBorder
@@ -228,11 +234,11 @@ class __$$DrawerModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DrawerModelImpl extends _DrawerModel {
   const _$DrawerModelImpl(
-      {this.backgroundColor_color,
-      this.scrimColor_color,
+      {this.backgroundColor_themeColorString,
+      this.scrimColor_themeColorString,
       this.elevation_double,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
       this.shape_outlinedBorder = const OutlinedBorderModel(),
       this.endShape_outlinedBorder = const OutlinedBorderModel(),
       this.width_double})
@@ -242,15 +248,15 @@ class _$DrawerModelImpl extends _DrawerModel {
       _$$DrawerModelImplFromJson(json);
 
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? scrimColor_color;
+  final String? scrimColor_themeColorString;
   @override
   final double? elevation_double;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
 // @OutlinedBorderConverter()
   @override
   @JsonKey()
@@ -264,7 +270,7 @@ class _$DrawerModelImpl extends _DrawerModel {
 
   @override
   String toString() {
-    return 'DrawerModel(backgroundColor_color: $backgroundColor_color, scrimColor_color: $scrimColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, shape_outlinedBorder: $shape_outlinedBorder, endShape_outlinedBorder: $endShape_outlinedBorder, width_double: $width_double)';
+    return 'DrawerModel(backgroundColor_themeColorString: $backgroundColor_themeColorString, scrimColor_themeColorString: $scrimColor_themeColorString, elevation_double: $elevation_double, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, shape_outlinedBorder: $shape_outlinedBorder, endShape_outlinedBorder: $endShape_outlinedBorder, width_double: $width_double)';
   }
 
   @override
@@ -272,16 +278,24 @@ class _$DrawerModelImpl extends _DrawerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DrawerModelImpl &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
-            (identical(other.scrimColor_color, scrimColor_color) ||
-                other.scrimColor_color == scrimColor_color) &&
+            (identical(other.backgroundColor_themeColorString,
+                    backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.scrimColor_themeColorString,
+                    scrimColor_themeColorString) ||
+                other.scrimColor_themeColorString ==
+                    scrimColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.shadowColor_themeColorString,
+                    shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
             (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
                 other.shape_outlinedBorder == shape_outlinedBorder) &&
             (identical(
@@ -295,11 +309,11 @@ class _$DrawerModelImpl extends _DrawerModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor_color,
-      scrimColor_color,
+      backgroundColor_themeColorString,
+      scrimColor_themeColorString,
       elevation_double,
-      shadowColor_color,
-      surfaceTintColor_color,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
       shape_outlinedBorder,
       endShape_outlinedBorder,
       width_double);
@@ -320,11 +334,11 @@ class _$DrawerModelImpl extends _DrawerModel {
 
 abstract class _DrawerModel extends DrawerModel {
   const factory _DrawerModel(
-      {final String? backgroundColor_color,
-      final String? scrimColor_color,
+      {final String? backgroundColor_themeColorString,
+      final String? scrimColor_themeColorString,
       final double? elevation_double,
-      final String? shadowColor_color,
-      final String? surfaceTintColor_color,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
       final OutlinedBorderModel? shape_outlinedBorder,
       final OutlinedBorderModel? endShape_outlinedBorder,
       final double? width_double}) = _$DrawerModelImpl;
@@ -334,15 +348,15 @@ abstract class _DrawerModel extends DrawerModel {
       _$DrawerModelImpl.fromJson;
 
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get scrimColor_color;
+  String? get scrimColor_themeColorString;
   @override
   double? get elevation_double;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override // @OutlinedBorderConverter()
   OutlinedBorderModel? get shape_outlinedBorder;
   @override // @OutlinedBorderConverter()

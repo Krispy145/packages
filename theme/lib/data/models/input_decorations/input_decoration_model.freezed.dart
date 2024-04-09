@@ -20,33 +20,36 @@ InputDecorationModel _$InputDecorationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$InputDecorationModel {
-  String? get labelStyle_textStyle => throw _privateConstructorUsedError;
-  String? get floatingLabelStyle_textStyle =>
+  String? get labelStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get floatingLabelStyle_textStyleString =>
       throw _privateConstructorUsedError;
-  String? get helperStyle_textStyle => throw _privateConstructorUsedError;
+  String? get helperStyle_textStyleString => throw _privateConstructorUsedError;
   int? get helperMaxLines_int => throw _privateConstructorUsedError;
-  String? get hintStyle_textStyle => throw _privateConstructorUsedError;
+  String? get hintStyle_textStyleString => throw _privateConstructorUsedError;
   Duration? get hintFadeDuration_duration => throw _privateConstructorUsedError;
-  String? get errorStyle_textStyle => throw _privateConstructorUsedError;
+  String? get errorStyle_textStyleString => throw _privateConstructorUsedError;
   int? get errorMaxLines_int => throw _privateConstructorUsedError;
   bool get isDense_bool => throw _privateConstructorUsedError;
   EdgeInsetsModel? get contentPadding_edgeInsets =>
       throw _privateConstructorUsedError;
   bool get isCollapsed_bool => throw _privateConstructorUsedError;
-  String? get iconColor_color => throw _privateConstructorUsedError;
-  String? get prefixStyle_textStyle => throw _privateConstructorUsedError;
-  String? get prefixIconColor_color => throw _privateConstructorUsedError;
-  String? get suffixStyle_textStyle => throw _privateConstructorUsedError;
-  String? get suffixIconColor_color => throw _privateConstructorUsedError;
-  String? get counterStyle_textStyle => throw _privateConstructorUsedError;
+  String? get iconColor_themeColorString => throw _privateConstructorUsedError;
+  String? get prefixStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get prefixIconColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get suffixStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get suffixIconColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get counterStyle_textStyleString =>
+      throw _privateConstructorUsedError;
   bool get filled_bool => throw _privateConstructorUsedError;
-  String? get fillColor_color => throw _privateConstructorUsedError;
+  String? get fillColor_themeColorString => throw _privateConstructorUsedError;
   BorderSideModel? get activeIndicatorBorder_borderSide =>
       throw _privateConstructorUsedError;
   BorderSideModel? get outlineBorder_borderSide =>
       throw _privateConstructorUsedError;
-  String? get focusColor_color => throw _privateConstructorUsedError;
-  String? get hoverColor_color => throw _privateConstructorUsedError;
+  String? get focusColor_themeColorString => throw _privateConstructorUsedError;
+  String? get hoverColor_themeColorString => throw _privateConstructorUsedError;
   InputBorderModel? get errorBorder_inputBorder =>
       throw _privateConstructorUsedError;
   InputBorderModel? get focusedBorder_inputBorder =>
@@ -76,29 +79,29 @@ abstract class $InputDecorationModelCopyWith<$Res> {
       _$InputDecorationModelCopyWithImpl<$Res, InputDecorationModel>;
   @useResult
   $Res call(
-      {String? labelStyle_textStyle,
-      String? floatingLabelStyle_textStyle,
-      String? helperStyle_textStyle,
+      {String? labelStyle_textStyleString,
+      String? floatingLabelStyle_textStyleString,
+      String? helperStyle_textStyleString,
       int? helperMaxLines_int,
-      String? hintStyle_textStyle,
+      String? hintStyle_textStyleString,
       Duration? hintFadeDuration_duration,
-      String? errorStyle_textStyle,
+      String? errorStyle_textStyleString,
       int? errorMaxLines_int,
       bool isDense_bool,
       EdgeInsetsModel? contentPadding_edgeInsets,
       bool isCollapsed_bool,
-      String? iconColor_color,
-      String? prefixStyle_textStyle,
-      String? prefixIconColor_color,
-      String? suffixStyle_textStyle,
-      String? suffixIconColor_color,
-      String? counterStyle_textStyle,
+      String? iconColor_themeColorString,
+      String? prefixStyle_textStyleString,
+      String? prefixIconColor_themeColorString,
+      String? suffixStyle_textStyleString,
+      String? suffixIconColor_themeColorString,
+      String? counterStyle_textStyleString,
       bool filled_bool,
-      String? fillColor_color,
+      String? fillColor_themeColorString,
       BorderSideModel? activeIndicatorBorder_borderSide,
       BorderSideModel? outlineBorder_borderSide,
-      String? focusColor_color,
-      String? hoverColor_color,
+      String? focusColor_themeColorString,
+      String? hoverColor_themeColorString,
       InputBorderModel? errorBorder_inputBorder,
       InputBorderModel? focusedBorder_inputBorder,
       InputBorderModel? focusedErrorBorder_inputBorder,
@@ -134,29 +137,29 @@ class _$InputDecorationModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? labelStyle_textStyle = freezed,
-    Object? floatingLabelStyle_textStyle = freezed,
-    Object? helperStyle_textStyle = freezed,
+    Object? labelStyle_textStyleString = freezed,
+    Object? floatingLabelStyle_textStyleString = freezed,
+    Object? helperStyle_textStyleString = freezed,
     Object? helperMaxLines_int = freezed,
-    Object? hintStyle_textStyle = freezed,
+    Object? hintStyle_textStyleString = freezed,
     Object? hintFadeDuration_duration = freezed,
-    Object? errorStyle_textStyle = freezed,
+    Object? errorStyle_textStyleString = freezed,
     Object? errorMaxLines_int = freezed,
     Object? isDense_bool = null,
     Object? contentPadding_edgeInsets = freezed,
     Object? isCollapsed_bool = null,
-    Object? iconColor_color = freezed,
-    Object? prefixStyle_textStyle = freezed,
-    Object? prefixIconColor_color = freezed,
-    Object? suffixStyle_textStyle = freezed,
-    Object? suffixIconColor_color = freezed,
-    Object? counterStyle_textStyle = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? prefixStyle_textStyleString = freezed,
+    Object? prefixIconColor_themeColorString = freezed,
+    Object? suffixStyle_textStyleString = freezed,
+    Object? suffixIconColor_themeColorString = freezed,
+    Object? counterStyle_textStyleString = freezed,
     Object? filled_bool = null,
-    Object? fillColor_color = freezed,
+    Object? fillColor_themeColorString = freezed,
     Object? activeIndicatorBorder_borderSide = freezed,
     Object? outlineBorder_borderSide = freezed,
-    Object? focusColor_color = freezed,
-    Object? hoverColor_color = freezed,
+    Object? focusColor_themeColorString = freezed,
+    Object? hoverColor_themeColorString = freezed,
     Object? errorBorder_inputBorder = freezed,
     Object? focusedBorder_inputBorder = freezed,
     Object? focusedErrorBorder_inputBorder = freezed,
@@ -167,33 +170,34 @@ class _$InputDecorationModelCopyWithImpl<$Res,
     Object? constraints_boxConstraints = freezed,
   }) {
     return _then(_value.copyWith(
-      labelStyle_textStyle: freezed == labelStyle_textStyle
-          ? _value.labelStyle_textStyle
-          : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      labelStyle_textStyleString: freezed == labelStyle_textStyleString
+          ? _value.labelStyle_textStyleString
+          : labelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      floatingLabelStyle_textStyle: freezed == floatingLabelStyle_textStyle
-          ? _value.floatingLabelStyle_textStyle
-          : floatingLabelStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      floatingLabelStyle_textStyleString: freezed ==
+              floatingLabelStyle_textStyleString
+          ? _value.floatingLabelStyle_textStyleString
+          : floatingLabelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      helperStyle_textStyle: freezed == helperStyle_textStyle
-          ? _value.helperStyle_textStyle
-          : helperStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      helperStyle_textStyleString: freezed == helperStyle_textStyleString
+          ? _value.helperStyle_textStyleString
+          : helperStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       helperMaxLines_int: freezed == helperMaxLines_int
           ? _value.helperMaxLines_int
           : helperMaxLines_int // ignore: cast_nullable_to_non_nullable
               as int?,
-      hintStyle_textStyle: freezed == hintStyle_textStyle
-          ? _value.hintStyle_textStyle
-          : hintStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyleString: freezed == hintStyle_textStyleString
+          ? _value.hintStyle_textStyleString
+          : hintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       hintFadeDuration_duration: freezed == hintFadeDuration_duration
           ? _value.hintFadeDuration_duration
           : hintFadeDuration_duration // ignore: cast_nullable_to_non_nullable
               as Duration?,
-      errorStyle_textStyle: freezed == errorStyle_textStyle
-          ? _value.errorStyle_textStyle
-          : errorStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      errorStyle_textStyleString: freezed == errorStyle_textStyleString
+          ? _value.errorStyle_textStyleString
+          : errorStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       errorMaxLines_int: freezed == errorMaxLines_int
           ? _value.errorMaxLines_int
@@ -211,37 +215,39 @@ class _$InputDecorationModelCopyWithImpl<$Res,
           ? _value.isCollapsed_bool
           : isCollapsed_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixStyle_textStyle: freezed == prefixStyle_textStyle
-          ? _value.prefixStyle_textStyle
-          : prefixStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      prefixStyle_textStyleString: freezed == prefixStyle_textStyleString
+          ? _value.prefixStyle_textStyleString
+          : prefixStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixIconColor_color: freezed == prefixIconColor_color
-          ? _value.prefixIconColor_color
-          : prefixIconColor_color // ignore: cast_nullable_to_non_nullable
+      prefixIconColor_themeColorString: freezed ==
+              prefixIconColor_themeColorString
+          ? _value.prefixIconColor_themeColorString
+          : prefixIconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixStyle_textStyle: freezed == suffixStyle_textStyle
-          ? _value.suffixStyle_textStyle
-          : suffixStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      suffixStyle_textStyleString: freezed == suffixStyle_textStyleString
+          ? _value.suffixStyle_textStyleString
+          : suffixStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixIconColor_color: freezed == suffixIconColor_color
-          ? _value.suffixIconColor_color
-          : suffixIconColor_color // ignore: cast_nullable_to_non_nullable
+      suffixIconColor_themeColorString: freezed ==
+              suffixIconColor_themeColorString
+          ? _value.suffixIconColor_themeColorString
+          : suffixIconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      counterStyle_textStyle: freezed == counterStyle_textStyle
-          ? _value.counterStyle_textStyle
-          : counterStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      counterStyle_textStyleString: freezed == counterStyle_textStyleString
+          ? _value.counterStyle_textStyleString
+          : counterStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       filled_bool: null == filled_bool
           ? _value.filled_bool
           : filled_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      fillColor_color: freezed == fillColor_color
-          ? _value.fillColor_color
-          : fillColor_color // ignore: cast_nullable_to_non_nullable
+      fillColor_themeColorString: freezed == fillColor_themeColorString
+          ? _value.fillColor_themeColorString
+          : fillColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       activeIndicatorBorder_borderSide: freezed ==
               activeIndicatorBorder_borderSide
@@ -252,13 +258,13 @@ class _$InputDecorationModelCopyWithImpl<$Res,
           ? _value.outlineBorder_borderSide
           : outlineBorder_borderSide // ignore: cast_nullable_to_non_nullable
               as BorderSideModel?,
-      focusColor_color: freezed == focusColor_color
-          ? _value.focusColor_color
-          : focusColor_color // ignore: cast_nullable_to_non_nullable
+      focusColor_themeColorString: freezed == focusColor_themeColorString
+          ? _value.focusColor_themeColorString
+          : focusColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor_color: freezed == hoverColor_color
-          ? _value.hoverColor_color
-          : hoverColor_color // ignore: cast_nullable_to_non_nullable
+      hoverColor_themeColorString: freezed == hoverColor_themeColorString
+          ? _value.hoverColor_themeColorString
+          : hoverColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       errorBorder_inputBorder: freezed == errorBorder_inputBorder
           ? _value.errorBorder_inputBorder
@@ -436,29 +442,29 @@ abstract class _$$InputDecorationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? labelStyle_textStyle,
-      String? floatingLabelStyle_textStyle,
-      String? helperStyle_textStyle,
+      {String? labelStyle_textStyleString,
+      String? floatingLabelStyle_textStyleString,
+      String? helperStyle_textStyleString,
       int? helperMaxLines_int,
-      String? hintStyle_textStyle,
+      String? hintStyle_textStyleString,
       Duration? hintFadeDuration_duration,
-      String? errorStyle_textStyle,
+      String? errorStyle_textStyleString,
       int? errorMaxLines_int,
       bool isDense_bool,
       EdgeInsetsModel? contentPadding_edgeInsets,
       bool isCollapsed_bool,
-      String? iconColor_color,
-      String? prefixStyle_textStyle,
-      String? prefixIconColor_color,
-      String? suffixStyle_textStyle,
-      String? suffixIconColor_color,
-      String? counterStyle_textStyle,
+      String? iconColor_themeColorString,
+      String? prefixStyle_textStyleString,
+      String? prefixIconColor_themeColorString,
+      String? suffixStyle_textStyleString,
+      String? suffixIconColor_themeColorString,
+      String? counterStyle_textStyleString,
       bool filled_bool,
-      String? fillColor_color,
+      String? fillColor_themeColorString,
       BorderSideModel? activeIndicatorBorder_borderSide,
       BorderSideModel? outlineBorder_borderSide,
-      String? focusColor_color,
-      String? hoverColor_color,
+      String? focusColor_themeColorString,
+      String? hoverColor_themeColorString,
       InputBorderModel? errorBorder_inputBorder,
       InputBorderModel? focusedBorder_inputBorder,
       InputBorderModel? focusedErrorBorder_inputBorder,
@@ -501,29 +507,29 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? labelStyle_textStyle = freezed,
-    Object? floatingLabelStyle_textStyle = freezed,
-    Object? helperStyle_textStyle = freezed,
+    Object? labelStyle_textStyleString = freezed,
+    Object? floatingLabelStyle_textStyleString = freezed,
+    Object? helperStyle_textStyleString = freezed,
     Object? helperMaxLines_int = freezed,
-    Object? hintStyle_textStyle = freezed,
+    Object? hintStyle_textStyleString = freezed,
     Object? hintFadeDuration_duration = freezed,
-    Object? errorStyle_textStyle = freezed,
+    Object? errorStyle_textStyleString = freezed,
     Object? errorMaxLines_int = freezed,
     Object? isDense_bool = null,
     Object? contentPadding_edgeInsets = freezed,
     Object? isCollapsed_bool = null,
-    Object? iconColor_color = freezed,
-    Object? prefixStyle_textStyle = freezed,
-    Object? prefixIconColor_color = freezed,
-    Object? suffixStyle_textStyle = freezed,
-    Object? suffixIconColor_color = freezed,
-    Object? counterStyle_textStyle = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? prefixStyle_textStyleString = freezed,
+    Object? prefixIconColor_themeColorString = freezed,
+    Object? suffixStyle_textStyleString = freezed,
+    Object? suffixIconColor_themeColorString = freezed,
+    Object? counterStyle_textStyleString = freezed,
     Object? filled_bool = null,
-    Object? fillColor_color = freezed,
+    Object? fillColor_themeColorString = freezed,
     Object? activeIndicatorBorder_borderSide = freezed,
     Object? outlineBorder_borderSide = freezed,
-    Object? focusColor_color = freezed,
-    Object? hoverColor_color = freezed,
+    Object? focusColor_themeColorString = freezed,
+    Object? hoverColor_themeColorString = freezed,
     Object? errorBorder_inputBorder = freezed,
     Object? focusedBorder_inputBorder = freezed,
     Object? focusedErrorBorder_inputBorder = freezed,
@@ -534,33 +540,34 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
     Object? constraints_boxConstraints = freezed,
   }) {
     return _then(_$InputDecorationModelImpl(
-      labelStyle_textStyle: freezed == labelStyle_textStyle
-          ? _value.labelStyle_textStyle
-          : labelStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      labelStyle_textStyleString: freezed == labelStyle_textStyleString
+          ? _value.labelStyle_textStyleString
+          : labelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      floatingLabelStyle_textStyle: freezed == floatingLabelStyle_textStyle
-          ? _value.floatingLabelStyle_textStyle
-          : floatingLabelStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      floatingLabelStyle_textStyleString: freezed ==
+              floatingLabelStyle_textStyleString
+          ? _value.floatingLabelStyle_textStyleString
+          : floatingLabelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      helperStyle_textStyle: freezed == helperStyle_textStyle
-          ? _value.helperStyle_textStyle
-          : helperStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      helperStyle_textStyleString: freezed == helperStyle_textStyleString
+          ? _value.helperStyle_textStyleString
+          : helperStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       helperMaxLines_int: freezed == helperMaxLines_int
           ? _value.helperMaxLines_int
           : helperMaxLines_int // ignore: cast_nullable_to_non_nullable
               as int?,
-      hintStyle_textStyle: freezed == hintStyle_textStyle
-          ? _value.hintStyle_textStyle
-          : hintStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyleString: freezed == hintStyle_textStyleString
+          ? _value.hintStyle_textStyleString
+          : hintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       hintFadeDuration_duration: freezed == hintFadeDuration_duration
           ? _value.hintFadeDuration_duration
           : hintFadeDuration_duration // ignore: cast_nullable_to_non_nullable
               as Duration?,
-      errorStyle_textStyle: freezed == errorStyle_textStyle
-          ? _value.errorStyle_textStyle
-          : errorStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      errorStyle_textStyleString: freezed == errorStyle_textStyleString
+          ? _value.errorStyle_textStyleString
+          : errorStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       errorMaxLines_int: freezed == errorMaxLines_int
           ? _value.errorMaxLines_int
@@ -578,37 +585,39 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
           ? _value.isCollapsed_bool
           : isCollapsed_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixStyle_textStyle: freezed == prefixStyle_textStyle
-          ? _value.prefixStyle_textStyle
-          : prefixStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      prefixStyle_textStyleString: freezed == prefixStyle_textStyleString
+          ? _value.prefixStyle_textStyleString
+          : prefixStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      prefixIconColor_color: freezed == prefixIconColor_color
-          ? _value.prefixIconColor_color
-          : prefixIconColor_color // ignore: cast_nullable_to_non_nullable
+      prefixIconColor_themeColorString: freezed ==
+              prefixIconColor_themeColorString
+          ? _value.prefixIconColor_themeColorString
+          : prefixIconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixStyle_textStyle: freezed == suffixStyle_textStyle
-          ? _value.suffixStyle_textStyle
-          : suffixStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      suffixStyle_textStyleString: freezed == suffixStyle_textStyleString
+          ? _value.suffixStyle_textStyleString
+          : suffixStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      suffixIconColor_color: freezed == suffixIconColor_color
-          ? _value.suffixIconColor_color
-          : suffixIconColor_color // ignore: cast_nullable_to_non_nullable
+      suffixIconColor_themeColorString: freezed ==
+              suffixIconColor_themeColorString
+          ? _value.suffixIconColor_themeColorString
+          : suffixIconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      counterStyle_textStyle: freezed == counterStyle_textStyle
-          ? _value.counterStyle_textStyle
-          : counterStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      counterStyle_textStyleString: freezed == counterStyle_textStyleString
+          ? _value.counterStyle_textStyleString
+          : counterStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       filled_bool: null == filled_bool
           ? _value.filled_bool
           : filled_bool // ignore: cast_nullable_to_non_nullable
               as bool,
-      fillColor_color: freezed == fillColor_color
-          ? _value.fillColor_color
-          : fillColor_color // ignore: cast_nullable_to_non_nullable
+      fillColor_themeColorString: freezed == fillColor_themeColorString
+          ? _value.fillColor_themeColorString
+          : fillColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       activeIndicatorBorder_borderSide: freezed ==
               activeIndicatorBorder_borderSide
@@ -619,13 +628,13 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
           ? _value.outlineBorder_borderSide
           : outlineBorder_borderSide // ignore: cast_nullable_to_non_nullable
               as BorderSideModel?,
-      focusColor_color: freezed == focusColor_color
-          ? _value.focusColor_color
-          : focusColor_color // ignore: cast_nullable_to_non_nullable
+      focusColor_themeColorString: freezed == focusColor_themeColorString
+          ? _value.focusColor_themeColorString
+          : focusColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor_color: freezed == hoverColor_color
-          ? _value.hoverColor_color
-          : hoverColor_color // ignore: cast_nullable_to_non_nullable
+      hoverColor_themeColorString: freezed == hoverColor_themeColorString
+          ? _value.hoverColor_themeColorString
+          : hoverColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       errorBorder_inputBorder: freezed == errorBorder_inputBorder
           ? _value.errorBorder_inputBorder
@@ -667,29 +676,29 @@ class __$$InputDecorationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$InputDecorationModelImpl extends _InputDecorationModel {
   const _$InputDecorationModelImpl(
-      {this.labelStyle_textStyle,
-      this.floatingLabelStyle_textStyle,
-      this.helperStyle_textStyle,
+      {this.labelStyle_textStyleString,
+      this.floatingLabelStyle_textStyleString,
+      this.helperStyle_textStyleString,
       this.helperMaxLines_int,
-      this.hintStyle_textStyle,
+      this.hintStyle_textStyleString,
       this.hintFadeDuration_duration,
-      this.errorStyle_textStyle,
+      this.errorStyle_textStyleString,
       this.errorMaxLines_int,
       this.isDense_bool = false,
       this.contentPadding_edgeInsets = const EdgeInsetsModel(),
       this.isCollapsed_bool = false,
-      this.iconColor_color,
-      this.prefixStyle_textStyle,
-      this.prefixIconColor_color,
-      this.suffixStyle_textStyle,
-      this.suffixIconColor_color,
-      this.counterStyle_textStyle,
+      this.iconColor_themeColorString,
+      this.prefixStyle_textStyleString,
+      this.prefixIconColor_themeColorString,
+      this.suffixStyle_textStyleString,
+      this.suffixIconColor_themeColorString,
+      this.counterStyle_textStyleString,
       this.filled_bool = false,
-      this.fillColor_color,
-      this.activeIndicatorBorder_borderSide,
-      this.outlineBorder_borderSide,
-      this.focusColor_color,
-      this.hoverColor_color,
+      this.fillColor_themeColorString,
+      this.activeIndicatorBorder_borderSide = const BorderSideModel(),
+      this.outlineBorder_borderSide = const BorderSideModel(),
+      this.focusColor_themeColorString,
+      this.hoverColor_themeColorString,
       this.errorBorder_inputBorder = const InputBorderModel(),
       this.focusedBorder_inputBorder = const InputBorderModel(),
       this.focusedErrorBorder_inputBorder = const InputBorderModel(),
@@ -704,19 +713,19 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
       _$$InputDecorationModelImplFromJson(json);
 
   @override
-  final String? labelStyle_textStyle;
+  final String? labelStyle_textStyleString;
   @override
-  final String? floatingLabelStyle_textStyle;
+  final String? floatingLabelStyle_textStyleString;
   @override
-  final String? helperStyle_textStyle;
+  final String? helperStyle_textStyleString;
   @override
   final int? helperMaxLines_int;
   @override
-  final String? hintStyle_textStyle;
+  final String? hintStyle_textStyleString;
   @override
   final Duration? hintFadeDuration_duration;
   @override
-  final String? errorStyle_textStyle;
+  final String? errorStyle_textStyleString;
   @override
   final int? errorMaxLines_int;
   @override
@@ -729,30 +738,32 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
   @JsonKey()
   final bool isCollapsed_bool;
   @override
-  final String? iconColor_color;
+  final String? iconColor_themeColorString;
   @override
-  final String? prefixStyle_textStyle;
+  final String? prefixStyle_textStyleString;
   @override
-  final String? prefixIconColor_color;
+  final String? prefixIconColor_themeColorString;
   @override
-  final String? suffixStyle_textStyle;
+  final String? suffixStyle_textStyleString;
   @override
-  final String? suffixIconColor_color;
+  final String? suffixIconColor_themeColorString;
   @override
-  final String? counterStyle_textStyle;
+  final String? counterStyle_textStyleString;
   @override
   @JsonKey()
   final bool filled_bool;
   @override
-  final String? fillColor_color;
+  final String? fillColor_themeColorString;
   @override
+  @JsonKey()
   final BorderSideModel? activeIndicatorBorder_borderSide;
   @override
+  @JsonKey()
   final BorderSideModel? outlineBorder_borderSide;
   @override
-  final String? focusColor_color;
+  final String? focusColor_themeColorString;
   @override
-  final String? hoverColor_color;
+  final String? hoverColor_themeColorString;
   @override
   @JsonKey()
   final InputBorderModel? errorBorder_inputBorder;
@@ -780,7 +791,7 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
 
   @override
   String toString() {
-    return 'InputDecorationModel(labelStyle_textStyle: $labelStyle_textStyle, floatingLabelStyle_textStyle: $floatingLabelStyle_textStyle, helperStyle_textStyle: $helperStyle_textStyle, helperMaxLines_int: $helperMaxLines_int, hintStyle_textStyle: $hintStyle_textStyle, hintFadeDuration_duration: $hintFadeDuration_duration, errorStyle_textStyle: $errorStyle_textStyle, errorMaxLines_int: $errorMaxLines_int, isDense_bool: $isDense_bool, contentPadding_edgeInsets: $contentPadding_edgeInsets, isCollapsed_bool: $isCollapsed_bool, iconColor_color: $iconColor_color, prefixStyle_textStyle: $prefixStyle_textStyle, prefixIconColor_color: $prefixIconColor_color, suffixStyle_textStyle: $suffixStyle_textStyle, suffixIconColor_color: $suffixIconColor_color, counterStyle_textStyle: $counterStyle_textStyle, filled_bool: $filled_bool, fillColor_color: $fillColor_color, activeIndicatorBorder_borderSide: $activeIndicatorBorder_borderSide, outlineBorder_borderSide: $outlineBorder_borderSide, focusColor_color: $focusColor_color, hoverColor_color: $hoverColor_color, errorBorder_inputBorder: $errorBorder_inputBorder, focusedBorder_inputBorder: $focusedBorder_inputBorder, focusedErrorBorder_inputBorder: $focusedErrorBorder_inputBorder, disabledBorder_inputBorder: $disabledBorder_inputBorder, enabledBorder_inputBorder: $enabledBorder_inputBorder, border_inputBorder: $border_inputBorder, alignLabelWithHint_bool: $alignLabelWithHint_bool, constraints_boxConstraints: $constraints_boxConstraints)';
+    return 'InputDecorationModel(labelStyle_textStyleString: $labelStyle_textStyleString, floatingLabelStyle_textStyleString: $floatingLabelStyle_textStyleString, helperStyle_textStyleString: $helperStyle_textStyleString, helperMaxLines_int: $helperMaxLines_int, hintStyle_textStyleString: $hintStyle_textStyleString, hintFadeDuration_duration: $hintFadeDuration_duration, errorStyle_textStyleString: $errorStyle_textStyleString, errorMaxLines_int: $errorMaxLines_int, isDense_bool: $isDense_bool, contentPadding_edgeInsets: $contentPadding_edgeInsets, isCollapsed_bool: $isCollapsed_bool, iconColor_themeColorString: $iconColor_themeColorString, prefixStyle_textStyleString: $prefixStyle_textStyleString, prefixIconColor_themeColorString: $prefixIconColor_themeColorString, suffixStyle_textStyleString: $suffixStyle_textStyleString, suffixIconColor_themeColorString: $suffixIconColor_themeColorString, counterStyle_textStyleString: $counterStyle_textStyleString, filled_bool: $filled_bool, fillColor_themeColorString: $fillColor_themeColorString, activeIndicatorBorder_borderSide: $activeIndicatorBorder_borderSide, outlineBorder_borderSide: $outlineBorder_borderSide, focusColor_themeColorString: $focusColor_themeColorString, hoverColor_themeColorString: $hoverColor_themeColorString, errorBorder_inputBorder: $errorBorder_inputBorder, focusedBorder_inputBorder: $focusedBorder_inputBorder, focusedErrorBorder_inputBorder: $focusedErrorBorder_inputBorder, disabledBorder_inputBorder: $disabledBorder_inputBorder, enabledBorder_inputBorder: $enabledBorder_inputBorder, border_inputBorder: $border_inputBorder, alignLabelWithHint_bool: $alignLabelWithHint_bool, constraints_boxConstraints: $constraints_boxConstraints)';
   }
 
   @override
@@ -788,21 +799,24 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InputDecorationModelImpl &&
-            (identical(other.labelStyle_textStyle, labelStyle_textStyle) ||
-                other.labelStyle_textStyle == labelStyle_textStyle) &&
-            (identical(other.floatingLabelStyle_textStyle, floatingLabelStyle_textStyle) ||
-                other.floatingLabelStyle_textStyle ==
-                    floatingLabelStyle_textStyle) &&
-            (identical(other.helperStyle_textStyle, helperStyle_textStyle) ||
-                other.helperStyle_textStyle == helperStyle_textStyle) &&
+            (identical(other.labelStyle_textStyleString, labelStyle_textStyleString) ||
+                other.labelStyle_textStyleString ==
+                    labelStyle_textStyleString) &&
+            (identical(other.floatingLabelStyle_textStyleString, floatingLabelStyle_textStyleString) ||
+                other.floatingLabelStyle_textStyleString ==
+                    floatingLabelStyle_textStyleString) &&
+            (identical(other.helperStyle_textStyleString, helperStyle_textStyleString) ||
+                other.helperStyle_textStyleString ==
+                    helperStyle_textStyleString) &&
             (identical(other.helperMaxLines_int, helperMaxLines_int) ||
                 other.helperMaxLines_int == helperMaxLines_int) &&
-            (identical(other.hintStyle_textStyle, hintStyle_textStyle) ||
-                other.hintStyle_textStyle == hintStyle_textStyle) &&
+            (identical(other.hintStyle_textStyleString, hintStyle_textStyleString) ||
+                other.hintStyle_textStyleString == hintStyle_textStyleString) &&
             (identical(other.hintFadeDuration_duration, hintFadeDuration_duration) ||
                 other.hintFadeDuration_duration == hintFadeDuration_duration) &&
-            (identical(other.errorStyle_textStyle, errorStyle_textStyle) ||
-                other.errorStyle_textStyle == errorStyle_textStyle) &&
+            (identical(other.errorStyle_textStyleString, errorStyle_textStyleString) ||
+                other.errorStyle_textStyleString ==
+                    errorStyle_textStyleString) &&
             (identical(other.errorMaxLines_int, errorMaxLines_int) ||
                 other.errorMaxLines_int == errorMaxLines_int) &&
             (identical(other.isDense_bool, isDense_bool) ||
@@ -811,35 +825,27 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
                 other.contentPadding_edgeInsets == contentPadding_edgeInsets) &&
             (identical(other.isCollapsed_bool, isCollapsed_bool) ||
                 other.isCollapsed_bool == isCollapsed_bool) &&
-            (identical(other.iconColor_color, iconColor_color) ||
-                other.iconColor_color == iconColor_color) &&
-            (identical(other.prefixStyle_textStyle, prefixStyle_textStyle) ||
-                other.prefixStyle_textStyle == prefixStyle_textStyle) &&
-            (identical(other.prefixIconColor_color, prefixIconColor_color) ||
-                other.prefixIconColor_color == prefixIconColor_color) &&
-            (identical(other.suffixStyle_textStyle, suffixStyle_textStyle) ||
-                other.suffixStyle_textStyle == suffixStyle_textStyle) &&
-            (identical(other.suffixIconColor_color, suffixIconColor_color) ||
-                other.suffixIconColor_color == suffixIconColor_color) &&
-            (identical(other.counterStyle_textStyle, counterStyle_textStyle) ||
-                other.counterStyle_textStyle == counterStyle_textStyle) &&
-            (identical(other.filled_bool, filled_bool) ||
-                other.filled_bool == filled_bool) &&
-            (identical(other.fillColor_color, fillColor_color) ||
-                other.fillColor_color == fillColor_color) &&
-            (identical(other.activeIndicatorBorder_borderSide, activeIndicatorBorder_borderSide) ||
-                other.activeIndicatorBorder_borderSide ==
-                    activeIndicatorBorder_borderSide) &&
-            (identical(other.outlineBorder_borderSide, outlineBorder_borderSide) ||
-                other.outlineBorder_borderSide == outlineBorder_borderSide) &&
-            (identical(other.focusColor_color, focusColor_color) ||
-                other.focusColor_color == focusColor_color) &&
-            (identical(other.hoverColor_color, hoverColor_color) ||
-                other.hoverColor_color == hoverColor_color) &&
-            (identical(other.errorBorder_inputBorder, errorBorder_inputBorder) ||
-                other.errorBorder_inputBorder == errorBorder_inputBorder) &&
-            (identical(other.focusedBorder_inputBorder, focusedBorder_inputBorder) ||
-                other.focusedBorder_inputBorder == focusedBorder_inputBorder) &&
+            (identical(other.iconColor_themeColorString, iconColor_themeColorString) ||
+                other.iconColor_themeColorString ==
+                    iconColor_themeColorString) &&
+            (identical(other.prefixStyle_textStyleString, prefixStyle_textStyleString) ||
+                other.prefixStyle_textStyleString ==
+                    prefixStyle_textStyleString) &&
+            (identical(other.prefixIconColor_themeColorString, prefixIconColor_themeColorString) ||
+                other.prefixIconColor_themeColorString ==
+                    prefixIconColor_themeColorString) &&
+            (identical(other.suffixStyle_textStyleString, suffixStyle_textStyleString) ||
+                other.suffixStyle_textStyleString == suffixStyle_textStyleString) &&
+            (identical(other.suffixIconColor_themeColorString, suffixIconColor_themeColorString) || other.suffixIconColor_themeColorString == suffixIconColor_themeColorString) &&
+            (identical(other.counterStyle_textStyleString, counterStyle_textStyleString) || other.counterStyle_textStyleString == counterStyle_textStyleString) &&
+            (identical(other.filled_bool, filled_bool) || other.filled_bool == filled_bool) &&
+            (identical(other.fillColor_themeColorString, fillColor_themeColorString) || other.fillColor_themeColorString == fillColor_themeColorString) &&
+            (identical(other.activeIndicatorBorder_borderSide, activeIndicatorBorder_borderSide) || other.activeIndicatorBorder_borderSide == activeIndicatorBorder_borderSide) &&
+            (identical(other.outlineBorder_borderSide, outlineBorder_borderSide) || other.outlineBorder_borderSide == outlineBorder_borderSide) &&
+            (identical(other.focusColor_themeColorString, focusColor_themeColorString) || other.focusColor_themeColorString == focusColor_themeColorString) &&
+            (identical(other.hoverColor_themeColorString, hoverColor_themeColorString) || other.hoverColor_themeColorString == hoverColor_themeColorString) &&
+            (identical(other.errorBorder_inputBorder, errorBorder_inputBorder) || other.errorBorder_inputBorder == errorBorder_inputBorder) &&
+            (identical(other.focusedBorder_inputBorder, focusedBorder_inputBorder) || other.focusedBorder_inputBorder == focusedBorder_inputBorder) &&
             (identical(other.focusedErrorBorder_inputBorder, focusedErrorBorder_inputBorder) || other.focusedErrorBorder_inputBorder == focusedErrorBorder_inputBorder) &&
             (identical(other.disabledBorder_inputBorder, disabledBorder_inputBorder) || other.disabledBorder_inputBorder == disabledBorder_inputBorder) &&
             (identical(other.enabledBorder_inputBorder, enabledBorder_inputBorder) || other.enabledBorder_inputBorder == enabledBorder_inputBorder) &&
@@ -852,29 +858,29 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        labelStyle_textStyle,
-        floatingLabelStyle_textStyle,
-        helperStyle_textStyle,
+        labelStyle_textStyleString,
+        floatingLabelStyle_textStyleString,
+        helperStyle_textStyleString,
         helperMaxLines_int,
-        hintStyle_textStyle,
+        hintStyle_textStyleString,
         hintFadeDuration_duration,
-        errorStyle_textStyle,
+        errorStyle_textStyleString,
         errorMaxLines_int,
         isDense_bool,
         contentPadding_edgeInsets,
         isCollapsed_bool,
-        iconColor_color,
-        prefixStyle_textStyle,
-        prefixIconColor_color,
-        suffixStyle_textStyle,
-        suffixIconColor_color,
-        counterStyle_textStyle,
+        iconColor_themeColorString,
+        prefixStyle_textStyleString,
+        prefixIconColor_themeColorString,
+        suffixStyle_textStyleString,
+        suffixIconColor_themeColorString,
+        counterStyle_textStyleString,
         filled_bool,
-        fillColor_color,
+        fillColor_themeColorString,
         activeIndicatorBorder_borderSide,
         outlineBorder_borderSide,
-        focusColor_color,
-        hoverColor_color,
+        focusColor_themeColorString,
+        hoverColor_themeColorString,
         errorBorder_inputBorder,
         focusedBorder_inputBorder,
         focusedErrorBorder_inputBorder,
@@ -903,29 +909,29 @@ class _$InputDecorationModelImpl extends _InputDecorationModel {
 
 abstract class _InputDecorationModel extends InputDecorationModel {
   const factory _InputDecorationModel(
-          {final String? labelStyle_textStyle,
-          final String? floatingLabelStyle_textStyle,
-          final String? helperStyle_textStyle,
+          {final String? labelStyle_textStyleString,
+          final String? floatingLabelStyle_textStyleString,
+          final String? helperStyle_textStyleString,
           final int? helperMaxLines_int,
-          final String? hintStyle_textStyle,
+          final String? hintStyle_textStyleString,
           final Duration? hintFadeDuration_duration,
-          final String? errorStyle_textStyle,
+          final String? errorStyle_textStyleString,
           final int? errorMaxLines_int,
           final bool isDense_bool,
           final EdgeInsetsModel? contentPadding_edgeInsets,
           final bool isCollapsed_bool,
-          final String? iconColor_color,
-          final String? prefixStyle_textStyle,
-          final String? prefixIconColor_color,
-          final String? suffixStyle_textStyle,
-          final String? suffixIconColor_color,
-          final String? counterStyle_textStyle,
+          final String? iconColor_themeColorString,
+          final String? prefixStyle_textStyleString,
+          final String? prefixIconColor_themeColorString,
+          final String? suffixStyle_textStyleString,
+          final String? suffixIconColor_themeColorString,
+          final String? counterStyle_textStyleString,
           final bool filled_bool,
-          final String? fillColor_color,
+          final String? fillColor_themeColorString,
           final BorderSideModel? activeIndicatorBorder_borderSide,
           final BorderSideModel? outlineBorder_borderSide,
-          final String? focusColor_color,
-          final String? hoverColor_color,
+          final String? focusColor_themeColorString,
+          final String? hoverColor_themeColorString,
           final InputBorderModel? errorBorder_inputBorder,
           final InputBorderModel? focusedBorder_inputBorder,
           final InputBorderModel? focusedErrorBorder_inputBorder,
@@ -941,19 +947,19 @@ abstract class _InputDecorationModel extends InputDecorationModel {
       _$InputDecorationModelImpl.fromJson;
 
   @override
-  String? get labelStyle_textStyle;
+  String? get labelStyle_textStyleString;
   @override
-  String? get floatingLabelStyle_textStyle;
+  String? get floatingLabelStyle_textStyleString;
   @override
-  String? get helperStyle_textStyle;
+  String? get helperStyle_textStyleString;
   @override
   int? get helperMaxLines_int;
   @override
-  String? get hintStyle_textStyle;
+  String? get hintStyle_textStyleString;
   @override
   Duration? get hintFadeDuration_duration;
   @override
-  String? get errorStyle_textStyle;
+  String? get errorStyle_textStyleString;
   @override
   int? get errorMaxLines_int;
   @override
@@ -963,29 +969,29 @@ abstract class _InputDecorationModel extends InputDecorationModel {
   @override
   bool get isCollapsed_bool;
   @override
-  String? get iconColor_color;
+  String? get iconColor_themeColorString;
   @override
-  String? get prefixStyle_textStyle;
+  String? get prefixStyle_textStyleString;
   @override
-  String? get prefixIconColor_color;
+  String? get prefixIconColor_themeColorString;
   @override
-  String? get suffixStyle_textStyle;
+  String? get suffixStyle_textStyleString;
   @override
-  String? get suffixIconColor_color;
+  String? get suffixIconColor_themeColorString;
   @override
-  String? get counterStyle_textStyle;
+  String? get counterStyle_textStyleString;
   @override
   bool get filled_bool;
   @override
-  String? get fillColor_color;
+  String? get fillColor_themeColorString;
   @override
   BorderSideModel? get activeIndicatorBorder_borderSide;
   @override
   BorderSideModel? get outlineBorder_borderSide;
   @override
-  String? get focusColor_color;
+  String? get focusColor_themeColorString;
   @override
-  String? get hoverColor_color;
+  String? get hoverColor_themeColorString;
   @override
   InputBorderModel? get errorBorder_inputBorder;
   @override

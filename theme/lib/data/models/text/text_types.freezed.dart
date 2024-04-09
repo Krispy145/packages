@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TextTypes _$TextTypesFromJson(Map<String, dynamic> json) {
-  return _TextStyles.fromJson(json);
+  return _textStyleStrings.fromJson(json);
 }
 
 /// @nodoc
@@ -156,11 +156,11 @@ class _$TextTypesCopyWithImpl<$Res, $Val extends TextTypes>
 }
 
 /// @nodoc
-abstract class _$$TextStylesImplCopyWith<$Res>
+abstract class _$$textStyleStringsImplCopyWith<$Res>
     implements $TextTypesCopyWith<$Res> {
-  factory _$$TextStylesImplCopyWith(
-          _$TextStylesImpl value, $Res Function(_$TextStylesImpl) then) =
-      __$$TextStylesImplCopyWithImpl<$Res>;
+  factory _$$textStyleStringsImplCopyWith(_$textStyleStringsImpl value,
+          $Res Function(_$textStyleStringsImpl) then) =
+      __$$textStyleStringsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -183,11 +183,11 @@ abstract class _$$TextStylesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TextStylesImplCopyWithImpl<$Res>
-    extends _$TextTypesCopyWithImpl<$Res, _$TextStylesImpl>
-    implements _$$TextStylesImplCopyWith<$Res> {
-  __$$TextStylesImplCopyWithImpl(
-      _$TextStylesImpl _value, $Res Function(_$TextStylesImpl) _then)
+class __$$textStyleStringsImplCopyWithImpl<$Res>
+    extends _$TextTypesCopyWithImpl<$Res, _$textStyleStringsImpl>
+    implements _$$textStyleStringsImplCopyWith<$Res> {
+  __$$textStyleStringsImplCopyWithImpl(_$textStyleStringsImpl _value,
+      $Res Function(_$textStyleStringsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -199,7 +199,7 @@ class __$$TextStylesImplCopyWithImpl<$Res>
     Object? body = freezed,
     Object? label = freezed,
   }) {
-    return _then(_$TextStylesImpl(
+    return _then(_$textStyleStringsImpl(
       display: freezed == display
           ? _value.display
           : display // ignore: cast_nullable_to_non_nullable
@@ -226,13 +226,13 @@ class __$$TextStylesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TextStylesImpl extends _TextStyles {
-  const _$TextStylesImpl(
+class _$textStyleStringsImpl extends _textStyleStrings {
+  const _$textStyleStringsImpl(
       {this.display, this.headline, this.title, this.body, this.label})
       : super._();
 
-  factory _$TextStylesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TextStylesImplFromJson(json);
+  factory _$textStyleStringsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$textStyleStringsImplFromJson(json);
 
   @override
   final TextStyleSizes? display;
@@ -254,7 +254,7 @@ class _$TextStylesImpl extends _TextStyles {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TextStylesImpl &&
+            other is _$textStyleStringsImpl &&
             (identical(other.display, display) || other.display == display) &&
             (identical(other.headline, headline) ||
                 other.headline == headline) &&
@@ -271,28 +271,29 @@ class _$TextStylesImpl extends _TextStyles {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TextStylesImplCopyWith<_$TextStylesImpl> get copyWith =>
-      __$$TextStylesImplCopyWithImpl<_$TextStylesImpl>(this, _$identity);
+  _$$textStyleStringsImplCopyWith<_$textStyleStringsImpl> get copyWith =>
+      __$$textStyleStringsImplCopyWithImpl<_$textStyleStringsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TextStylesImplToJson(
+    return _$$textStyleStringsImplToJson(
       this,
     );
   }
 }
 
-abstract class _TextStyles extends TextTypes {
-  const factory _TextStyles(
+abstract class _textStyleStrings extends TextTypes {
+  const factory _textStyleStrings(
       {final TextStyleSizes? display,
       final TextStyleSizes? headline,
       final TextStyleSizes? title,
       final TextStyleSizes? body,
-      final TextStyleSizes? label}) = _$TextStylesImpl;
-  const _TextStyles._() : super._();
+      final TextStyleSizes? label}) = _$textStyleStringsImpl;
+  const _textStyleStrings._() : super._();
 
-  factory _TextStyles.fromJson(Map<String, dynamic> json) =
-      _$TextStylesImpl.fromJson;
+  factory _textStyleStrings.fromJson(Map<String, dynamic> json) =
+      _$textStyleStringsImpl.fromJson;
 
   @override
   TextStyleSizes? get display;
@@ -306,6 +307,6 @@ abstract class _TextStyles extends TextTypes {
   TextStyleSizes? get label;
   @override
   @JsonKey(ignore: true)
-  _$$TextStylesImplCopyWith<_$TextStylesImpl> get copyWith =>
+  _$$textStyleStringsImplCopyWith<_$textStyleStringsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

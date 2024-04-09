@@ -10,11 +10,11 @@ part 'switch_model.g.dart';
 @freezed
 class SwitchModel with _$SwitchModel {
   const factory SwitchModel({
-    ThemeColorString? thumbColor_color,
-    ThemeColorString? trackColor_color,
-    ThemeColorString? trackOutlineColor_color,
+    ThemeColorString? thumbColor_themeColorString,
+    ThemeColorString? trackColor_themeColorString,
+    ThemeColorString? trackOutlineColor_themeColorString,
     double? trackOutlineWidth_double,
-    ThemeColorString? overlayColor_color,
+    ThemeColorString? overlayColor_themeColorString,
     double? splashRadius_double,
   }) = _SwitchModel;
 
@@ -35,11 +35,11 @@ class SwitchModel with _$SwitchModel {
 
   SwitchThemeData asSwitchThemeData({String? styleTypeName}) {
     return SwitchThemeData(
-      thumbColor: MaterialStateProperty.all(thumbColor_color?.toColor(styleType: styleTypeName)),
-      trackColor: MaterialStateProperty.all(trackColor_color?.toColor(styleType: styleTypeName)),
-      trackOutlineColor: MaterialStateProperty.all(trackOutlineColor_color?.toColor(styleType: styleTypeName)),
+      thumbColor: MaterialStateProperty.all(thumbColor_themeColorString?.toColor(styleType: styleTypeName)),
+      trackColor: MaterialStateProperty.all(trackColor_themeColorString?.toColor(styleType: styleTypeName)),
+      trackOutlineColor: MaterialStateProperty.all(trackOutlineColor_themeColorString?.toColor(styleType: styleTypeName)),
       trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth_double),
-      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
       splashRadius: splashRadius_double,
     );
   }

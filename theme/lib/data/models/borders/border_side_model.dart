@@ -10,7 +10,7 @@ part 'border_side_model.g.dart';
 @freezed
 class BorderSideModel with _$BorderSideModel {
   const factory BorderSideModel({
-    final ThemeColorString? color_color,
+    final ThemeColorString? color_themeColorString,
     final double? width_double,
     final BorderStyle? style_enum_borderStyle,
     final double? strokeAlign_double,
@@ -22,7 +22,7 @@ class BorderSideModel with _$BorderSideModel {
 
   BorderSide asBorderSide({String? styleTypeName}) {
     return BorderSide(
-      color: color_color?.toColor() ?? const Color(0xFF000000),
+      color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
       width: width_double ?? 1.0,
       style: style_enum_borderStyle ?? BorderStyle.solid,
       strokeAlign: strokeAlign_double ?? BorderSide.strokeAlignInside,

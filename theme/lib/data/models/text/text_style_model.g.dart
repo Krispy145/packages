@@ -6,19 +6,21 @@ part of 'text_style_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TextStyleModelImpl _$$TextStyleModelImplFromJson(Map<String, dynamic> json) =>
-    _$TextStyleModelImpl(
+_$textStyleStringModelImpl _$$textStyleStringModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$textStyleStringModelImpl(
       fontFamilyName_string: json['fontFamilyName_string'] as String?,
       fontFamilyStyle_enum_fontStyle: $enumDecodeNullable(
-          _$FontStyleEnumMap, json['fontFamilyStyle_enum_fontStyle']),
+              _$FontStyleEnumMap, json['fontFamilyStyle_enum_fontStyle']) ??
+          FontStyle.normal,
       fontWeight_double: (json['fontWeight_double'] as num?)?.toDouble(),
       fontSize_double: (json['fontSize_double'] as num?)?.toDouble(),
       lineHeight_double: (json['lineHeight_double'] as num?)?.toDouble(),
       letterSpacing_double: (json['letterSpacing_double'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$$TextStyleModelImplToJson(
-        _$TextStyleModelImpl instance) =>
+Map<String, dynamic> _$$textStyleStringModelImplToJson(
+        _$textStyleStringModelImpl instance) =>
     <String, dynamic>{
       'fontFamilyName_string': instance.fontFamilyName_string,
       'fontFamilyStyle_enum_fontStyle':

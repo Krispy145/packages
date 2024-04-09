@@ -46,11 +46,11 @@ enum AlignmentOptions {
 @freezed
 class BadgeModel with _$BadgeModel {
   const factory BadgeModel({
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? textColor_color,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? textColor_themeColorString,
     double? smallSize_double,
     double? largeSize_double,
-    TextStyleString? textStyle_textStyle,
+    TextStyleString? textStyle_textStyleString,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
     @Default(OffsetModel()) OffsetModel? offset_offset,
@@ -80,11 +80,11 @@ class BadgeModel with _$BadgeModel {
 
   BadgeThemeData asBadgeThemeData({String? styleTypeName}) {
     return BadgeThemeData(
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
-      textColor: textColor_color?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      textColor: textColor_themeColorString?.toColor(styleType: styleTypeName),
       smallSize: smallSize_double,
       largeSize: largeSize_double,
-      textStyle: textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       alignment: alignment_enum_alignmentOptions?.alignment,
       offset: offset_offset?.asOffset(styleTypeName: styleTypeName),

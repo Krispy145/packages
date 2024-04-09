@@ -8,11 +8,11 @@ part 'progress_indicator_model.g.dart';
 @freezed
 class ProgressIndicatorModel with _$ProgressIndicatorModel {
   const factory ProgressIndicatorModel({
-    ThemeColorString? color_color,
-    ThemeColorString? linearTrackColor_color,
+    ThemeColorString? color_themeColorString,
+    ThemeColorString? linearTrackColor_themeColorString,
     double? linearMinHeight_double,
-    ThemeColorString? circularTrackColor_color,
-    ThemeColorString? refreshBackgroundColor_color,
+    ThemeColorString? circularTrackColor_themeColorString,
+    ThemeColorString? refreshBackgroundColor_themeColorString,
   }) = _ProgressIndicatorModel;
 
   const ProgressIndicatorModel._();
@@ -31,11 +31,11 @@ class ProgressIndicatorModel with _$ProgressIndicatorModel {
 
   ProgressIndicatorThemeData asProgressIndicatorThemeData({String? styleTypeName}) {
     return ProgressIndicatorThemeData(
-      color: color_color?.toColor(styleType: styleTypeName),
-      linearTrackColor: linearTrackColor_color?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
+      linearTrackColor: linearTrackColor_themeColorString?.toColor(styleType: styleTypeName),
       linearMinHeight: linearMinHeight_double,
-      circularTrackColor: circularTrackColor_color?.toColor(styleType: styleTypeName),
-      refreshBackgroundColor: refreshBackgroundColor_color?.toColor(styleType: styleTypeName),
+      circularTrackColor: circularTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      refreshBackgroundColor: refreshBackgroundColor_themeColorString?.toColor(styleType: styleTypeName),
     );
   }
 }

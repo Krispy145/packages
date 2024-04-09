@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TextStyleSizes _$TextStyleSizesFromJson(Map<String, dynamic> json) {
-  return _TextStyleSizes.fromJson(json);
+  return _textStyleStringSizes.fromJson(json);
 }
 
 /// @nodoc
@@ -115,11 +115,11 @@ class _$TextStyleSizesCopyWithImpl<$Res, $Val extends TextStyleSizes>
 }
 
 /// @nodoc
-abstract class _$$TextStyleSizesImplCopyWith<$Res>
+abstract class _$$textStyleStringSizesImplCopyWith<$Res>
     implements $TextStyleSizesCopyWith<$Res> {
-  factory _$$TextStyleSizesImplCopyWith(_$TextStyleSizesImpl value,
-          $Res Function(_$TextStyleSizesImpl) then) =
-      __$$TextStyleSizesImplCopyWithImpl<$Res>;
+  factory _$$textStyleStringSizesImplCopyWith(_$textStyleStringSizesImpl value,
+          $Res Function(_$textStyleStringSizesImpl) then) =
+      __$$textStyleStringSizesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -134,11 +134,11 @@ abstract class _$$TextStyleSizesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TextStyleSizesImplCopyWithImpl<$Res>
-    extends _$TextStyleSizesCopyWithImpl<$Res, _$TextStyleSizesImpl>
-    implements _$$TextStyleSizesImplCopyWith<$Res> {
-  __$$TextStyleSizesImplCopyWithImpl(
-      _$TextStyleSizesImpl _value, $Res Function(_$TextStyleSizesImpl) _then)
+class __$$textStyleStringSizesImplCopyWithImpl<$Res>
+    extends _$TextStyleSizesCopyWithImpl<$Res, _$textStyleStringSizesImpl>
+    implements _$$textStyleStringSizesImplCopyWith<$Res> {
+  __$$textStyleStringSizesImplCopyWithImpl(_$textStyleStringSizesImpl _value,
+      $Res Function(_$textStyleStringSizesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -148,7 +148,7 @@ class __$$TextStyleSizesImplCopyWithImpl<$Res>
     Object? medium = freezed,
     Object? small = freezed,
   }) {
-    return _then(_$TextStyleSizesImpl(
+    return _then(_$textStyleStringSizesImpl(
       large: freezed == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
@@ -167,11 +167,12 @@ class __$$TextStyleSizesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TextStyleSizesImpl extends _TextStyleSizes {
-  const _$TextStyleSizesImpl({this.large, this.medium, this.small}) : super._();
+class _$textStyleStringSizesImpl extends _textStyleStringSizes {
+  const _$textStyleStringSizesImpl({this.large, this.medium, this.small})
+      : super._();
 
-  factory _$TextStyleSizesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TextStyleSizesImplFromJson(json);
+  factory _$textStyleStringSizesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$textStyleStringSizesImplFromJson(json);
 
   @override
   final TextStyleModel? large;
@@ -189,7 +190,7 @@ class _$TextStyleSizesImpl extends _TextStyleSizes {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TextStyleSizesImpl &&
+            other is _$textStyleStringSizesImpl &&
             (identical(other.large, large) || other.large == large) &&
             (identical(other.medium, medium) || other.medium == medium) &&
             (identical(other.small, small) || other.small == small));
@@ -202,27 +203,28 @@ class _$TextStyleSizesImpl extends _TextStyleSizes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TextStyleSizesImplCopyWith<_$TextStyleSizesImpl> get copyWith =>
-      __$$TextStyleSizesImplCopyWithImpl<_$TextStyleSizesImpl>(
-          this, _$identity);
+  _$$textStyleStringSizesImplCopyWith<_$textStyleStringSizesImpl>
+      get copyWith =>
+          __$$textStyleStringSizesImplCopyWithImpl<_$textStyleStringSizesImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TextStyleSizesImplToJson(
+    return _$$textStyleStringSizesImplToJson(
       this,
     );
   }
 }
 
-abstract class _TextStyleSizes extends TextStyleSizes {
-  const factory _TextStyleSizes(
+abstract class _textStyleStringSizes extends TextStyleSizes {
+  const factory _textStyleStringSizes(
       {final TextStyleModel? large,
       final TextStyleModel? medium,
-      final TextStyleModel? small}) = _$TextStyleSizesImpl;
-  const _TextStyleSizes._() : super._();
+      final TextStyleModel? small}) = _$textStyleStringSizesImpl;
+  const _textStyleStringSizes._() : super._();
 
-  factory _TextStyleSizes.fromJson(Map<String, dynamic> json) =
-      _$TextStyleSizesImpl.fromJson;
+  factory _textStyleStringSizes.fromJson(Map<String, dynamic> json) =
+      _$textStyleStringSizesImpl.fromJson;
 
   @override
   TextStyleModel? get large;
@@ -232,6 +234,6 @@ abstract class _TextStyleSizes extends TextStyleSizes {
   TextStyleModel? get small;
   @override
   @JsonKey(ignore: true)
-  _$$TextStyleSizesImplCopyWith<_$TextStyleSizesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$textStyleStringSizesImplCopyWith<_$textStyleStringSizesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -3,8 +3,8 @@
 // import 'package:theme/converters/colors/color.dart';
 // import 'package:theme/wrapper/app_theme.dart';
 
-// part 'brightness_color_model.freezed.dart';
-// part 'brightness_color_model.g.dart';
+// part 'brightness_themeColorString_model.freezed.dart';
+// part 'brightness_themeColorString_model.g.dart';
 
 // @freezed
 // class BrightnessColorModel with _$BrightnessColorModel {

@@ -8,8 +8,8 @@ part 'radio_model.g.dart';
 @freezed
 class RadioModel with _$RadioModel {
   const factory RadioModel({
-    ThemeColorString? fillColor_color,
-    ThemeColorString? overlayColor_color,
+    ThemeColorString? fillColor_themeColorString,
+    ThemeColorString? overlayColor_themeColorString,
     double? splashRadius_double,
   }) = _RadioModel;
 
@@ -27,8 +27,8 @@ class RadioModel with _$RadioModel {
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
-      fillColor: MaterialStateProperty.all(fillColor_color?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      fillColor: MaterialStateProperty.all(fillColor_themeColorString?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
       splashRadius: splashRadius_double,
     );
   }

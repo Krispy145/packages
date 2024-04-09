@@ -12,9 +12,9 @@ part 'checkbox_model.g.dart';
 @freezed
 class CheckboxModel with _$CheckboxModel {
   const factory CheckboxModel({
-    ThemeColorString? fillColor_color,
-    ThemeColorString? checkColor_color,
-    ThemeColorString? overlayColor_color,
+    ThemeColorString? fillColor_themeColorString,
+    ThemeColorString? checkColor_themeColorString,
+    ThemeColorString? overlayColor_themeColorString,
     double? splashRadius_double,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
@@ -46,9 +46,9 @@ class CheckboxModel with _$CheckboxModel {
 
   CheckboxThemeData asCheckboxThemeData({String? styleTypeName}) {
     return CheckboxThemeData(
-      fillColor: MaterialStateProperty.all(fillColor_color?.toColor(styleType: styleTypeName)),
-      checkColor: MaterialStateProperty.all(checkColor_color?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      fillColor: MaterialStateProperty.all(fillColor_themeColorString?.toColor(styleType: styleTypeName)),
+      checkColor: MaterialStateProperty.all(checkColor_themeColorString?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
       splashRadius: splashRadius_double,
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),

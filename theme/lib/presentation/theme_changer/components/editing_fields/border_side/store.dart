@@ -32,7 +32,8 @@ abstract class _BorderSideFormFieldStore extends BaseFormFieldStore<BorderSideMo
   late final widthStore = DoubleFormFieldStore(onValueChanged: (newWidth) => onValueChanged(value.copyWith(width_double: newWidth)), value: value.width_double, title: 'Width');
   late final strokeAlignStore =
       DoubleFormFieldStore(onValueChanged: (newStrokeAlign) => onValueChanged(value.copyWith(strokeAlign_double: newStrokeAlign)), value: value.strokeAlign_double, title: 'Stroke Align');
-  late final colorStore = ThemeColorStringFormFieldStore(onValueChanged: (newColor) => onValueChanged(value.copyWith(color_color: newColor)), value: value.color_color, title: 'Color');
+  late final colorStore =
+      ThemeColorStringFormFieldStore(onValueChanged: (newColor) => onValueChanged(value.copyWith(color_themeColorString: newColor)), value: value.color_themeColorString, title: 'Color');
   late final styleStore = EnumFormFieldStore(
     onValueChanged: (newStyle) => onValueChanged(value.copyWith(style_enum_borderStyle: newStyle as BorderStyle?)),
     value: value.style_enum_borderStyle,

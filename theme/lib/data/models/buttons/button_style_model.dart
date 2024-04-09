@@ -15,18 +15,18 @@ part 'button_style_model.g.dart';
 @unfreezed
 class ButtonStyleModel with _$ButtonStyleModel {
   factory ButtonStyleModel({
-    TextStyleString? textStyle_textStyle,
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? foregroundColor_color,
-    ThemeColorString? overlayColor_color,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
+    TextStyleString? textStyle_textStyleString,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? foregroundColor_themeColorString,
+    ThemeColorString? overlayColor_themeColorString,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
     double? elevation_double,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     @Default(SizeModel()) SizeModel? minimumSize_size,
     @Default(SizeModel()) SizeModel? fixedSize_size,
     @Default(SizeModel()) SizeModel? maximumSize_size,
-    ThemeColorString? iconColor_color,
+    ThemeColorString? iconColor_themeColorString,
     double? iconSize_double,
     // @BorderSideConverter()
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
@@ -93,11 +93,11 @@ class ButtonStyleModel with _$ButtonStyleModel {
 
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     return ButtonStyle(
-      textStyle: MaterialStateProperty.all(textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      backgroundColor: MaterialStateProperty.all(backgroundColor_color?.toColor(styleType: styleTypeName)),
-      foregroundColor: MaterialStateProperty.all(foregroundColor_color?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
-      shadowColor: MaterialStateProperty.all(shadowColor_color?.toColor(styleType: styleTypeName)),
+      textStyle: MaterialStateProperty.all(textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      backgroundColor: MaterialStateProperty.all(backgroundColor_themeColorString?.toColor(styleType: styleTypeName)),
+      foregroundColor: MaterialStateProperty.all(foregroundColor_themeColorString?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
+      shadowColor: MaterialStateProperty.all(shadowColor_themeColorString?.toColor(styleType: styleTypeName)),
       elevation: MaterialStateProperty.all(elevation_double),
       padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName)),
       minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),

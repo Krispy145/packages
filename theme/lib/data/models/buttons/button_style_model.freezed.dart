@@ -20,20 +20,28 @@ ButtonStyleModel _$ButtonStyleModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ButtonStyleModel {
-  String? get textStyle_textStyle => throw _privateConstructorUsedError;
-  set textStyle_textStyle(String? value) => throw _privateConstructorUsedError;
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  set backgroundColor_color(String? value) =>
+  String? get textStyle_textStyleString => throw _privateConstructorUsedError;
+  set textStyle_textStyleString(String? value) =>
       throw _privateConstructorUsedError;
-  String? get foregroundColor_color => throw _privateConstructorUsedError;
-  set foregroundColor_color(String? value) =>
+  String? get backgroundColor_themeColorString =>
       throw _privateConstructorUsedError;
-  String? get overlayColor_color => throw _privateConstructorUsedError;
-  set overlayColor_color(String? value) => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  set shadowColor_color(String? value) => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
-  set surfaceTintColor_color(String? value) =>
+  set backgroundColor_themeColorString(String? value) =>
+      throw _privateConstructorUsedError;
+  String? get foregroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  set foregroundColor_themeColorString(String? value) =>
+      throw _privateConstructorUsedError;
+  String? get overlayColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  set overlayColor_themeColorString(String? value) =>
+      throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  set shadowColor_themeColorString(String? value) =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  set surfaceTintColor_themeColorString(String? value) =>
       throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   set elevation_double(double? value) => throw _privateConstructorUsedError;
@@ -46,8 +54,9 @@ mixin _$ButtonStyleModel {
   set fixedSize_size(SizeModel? value) => throw _privateConstructorUsedError;
   SizeModel? get maximumSize_size => throw _privateConstructorUsedError;
   set maximumSize_size(SizeModel? value) => throw _privateConstructorUsedError;
-  String? get iconColor_color => throw _privateConstructorUsedError;
-  set iconColor_color(String? value) => throw _privateConstructorUsedError;
+  String? get iconColor_themeColorString => throw _privateConstructorUsedError;
+  set iconColor_themeColorString(String? value) =>
+      throw _privateConstructorUsedError;
   double? get iconSize_double => throw _privateConstructorUsedError;
   set iconSize_double(double? value) =>
       throw _privateConstructorUsedError; // @BorderSideConverter()
@@ -73,18 +82,18 @@ abstract class $ButtonStyleModelCopyWith<$Res> {
       _$ButtonStyleModelCopyWithImpl<$Res, ButtonStyleModel>;
   @useResult
   $Res call(
-      {String? textStyle_textStyle,
-      String? backgroundColor_color,
-      String? foregroundColor_color,
-      String? overlayColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? textStyle_textStyleString,
+      String? backgroundColor_themeColorString,
+      String? foregroundColor_themeColorString,
+      String? overlayColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
-      String? iconColor_color,
+      String? iconColor_themeColorString,
       double? iconSize_double,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder});
@@ -110,46 +119,49 @@ class _$ButtonStyleModelCopyWithImpl<$Res, $Val extends ButtonStyleModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textStyle_textStyle = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? foregroundColor_color = freezed,
-    Object? overlayColor_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? foregroundColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? padding_edgeInsets = freezed,
     Object? minimumSize_size = freezed,
     Object? fixedSize_size = freezed,
     Object? maximumSize_size = freezed,
-    Object? iconColor_color = freezed,
+    Object? iconColor_themeColorString = freezed,
     Object? iconSize_double = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
   }) {
     return _then(_value.copyWith(
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      foregroundColor_color: freezed == foregroundColor_color
-          ? _value.foregroundColor_color
-          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
+      foregroundColor_themeColorString: freezed ==
+              foregroundColor_themeColorString
+          ? _value.foregroundColor_themeColorString
+          : foregroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor_color: freezed == overlayColor_color
-          ? _value.overlayColor_color
-          : overlayColor_color // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -171,9 +183,9 @@ class _$ButtonStyleModelCopyWithImpl<$Res, $Val extends ButtonStyleModel>
           ? _value.maximumSize_size
           : maximumSize_size // ignore: cast_nullable_to_non_nullable
               as SizeModel?,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       iconSize_double: freezed == iconSize_double
           ? _value.iconSize_double
@@ -273,18 +285,18 @@ abstract class _$$ButtonStyleModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? textStyle_textStyle,
-      String? backgroundColor_color,
-      String? foregroundColor_color,
-      String? overlayColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? textStyle_textStyleString,
+      String? backgroundColor_themeColorString,
+      String? foregroundColor_themeColorString,
+      String? overlayColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
-      String? iconColor_color,
+      String? iconColor_themeColorString,
       double? iconSize_double,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder});
@@ -314,46 +326,49 @@ class __$$ButtonStyleModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textStyle_textStyle = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? foregroundColor_color = freezed,
-    Object? overlayColor_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? foregroundColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? padding_edgeInsets = freezed,
     Object? minimumSize_size = freezed,
     Object? fixedSize_size = freezed,
     Object? maximumSize_size = freezed,
-    Object? iconColor_color = freezed,
+    Object? iconColor_themeColorString = freezed,
     Object? iconSize_double = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
   }) {
     return _then(_$ButtonStyleModelImpl(
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      foregroundColor_color: freezed == foregroundColor_color
-          ? _value.foregroundColor_color
-          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
+      foregroundColor_themeColorString: freezed ==
+              foregroundColor_themeColorString
+          ? _value.foregroundColor_themeColorString
+          : foregroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor_color: freezed == overlayColor_color
-          ? _value.overlayColor_color
-          : overlayColor_color // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -375,9 +390,9 @@ class __$$ButtonStyleModelImplCopyWithImpl<$Res>
           ? _value.maximumSize_size
           : maximumSize_size // ignore: cast_nullable_to_non_nullable
               as SizeModel?,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       iconSize_double: freezed == iconSize_double
           ? _value.iconSize_double
@@ -399,18 +414,18 @@ class __$$ButtonStyleModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ButtonStyleModelImpl extends _ButtonStyleModel {
   _$ButtonStyleModelImpl(
-      {this.textStyle_textStyle,
-      this.backgroundColor_color,
-      this.foregroundColor_color,
-      this.overlayColor_color,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
+      {this.textStyle_textStyleString,
+      this.backgroundColor_themeColorString,
+      this.foregroundColor_themeColorString,
+      this.overlayColor_themeColorString,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
       this.elevation_double,
       this.padding_edgeInsets = const EdgeInsetsModel(),
       this.minimumSize_size = const SizeModel(),
       this.fixedSize_size = const SizeModel(),
       this.maximumSize_size = const SizeModel(),
-      this.iconColor_color,
+      this.iconColor_themeColorString,
       this.iconSize_double,
       this.side_borderSide = const BorderSideModel(),
       this.shape_outlinedBorder = const OutlinedBorderModel()})
@@ -420,17 +435,17 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
       _$$ButtonStyleModelImplFromJson(json);
 
   @override
-  String? textStyle_textStyle;
+  String? textStyle_textStyleString;
   @override
-  String? backgroundColor_color;
+  String? backgroundColor_themeColorString;
   @override
-  String? foregroundColor_color;
+  String? foregroundColor_themeColorString;
   @override
-  String? overlayColor_color;
+  String? overlayColor_themeColorString;
   @override
-  String? shadowColor_color;
+  String? shadowColor_themeColorString;
   @override
-  String? surfaceTintColor_color;
+  String? surfaceTintColor_themeColorString;
   @override
   double? elevation_double;
   @override
@@ -446,7 +461,7 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
   @JsonKey()
   SizeModel? maximumSize_size;
   @override
-  String? iconColor_color;
+  String? iconColor_themeColorString;
   @override
   double? iconSize_double;
 // @BorderSideConverter()
@@ -460,7 +475,7 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
 
   @override
   String toString() {
-    return 'ButtonStyleModel(textStyle_textStyle: $textStyle_textStyle, backgroundColor_color: $backgroundColor_color, foregroundColor_color: $foregroundColor_color, overlayColor_color: $overlayColor_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, iconColor_color: $iconColor_color, iconSize_double: $iconSize_double, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder)';
+    return 'ButtonStyleModel(textStyle_textStyleString: $textStyle_textStyleString, backgroundColor_themeColorString: $backgroundColor_themeColorString, foregroundColor_themeColorString: $foregroundColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, iconColor_themeColorString: $iconColor_themeColorString, iconSize_double: $iconSize_double, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder)';
   }
 
   @JsonKey(ignore: true)
@@ -480,18 +495,18 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
 
 abstract class _ButtonStyleModel extends ButtonStyleModel {
   factory _ButtonStyleModel(
-      {String? textStyle_textStyle,
-      String? backgroundColor_color,
-      String? foregroundColor_color,
-      String? overlayColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? textStyle_textStyleString,
+      String? backgroundColor_themeColorString,
+      String? foregroundColor_themeColorString,
+      String? overlayColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
       SizeModel? fixedSize_size,
       SizeModel? maximumSize_size,
-      String? iconColor_color,
+      String? iconColor_themeColorString,
       double? iconSize_double,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder}) = _$ButtonStyleModelImpl;
@@ -501,23 +516,23 @@ abstract class _ButtonStyleModel extends ButtonStyleModel {
       _$ButtonStyleModelImpl.fromJson;
 
   @override
-  String? get textStyle_textStyle;
-  set textStyle_textStyle(String? value);
+  String? get textStyle_textStyleString;
+  set textStyle_textStyleString(String? value);
   @override
-  String? get backgroundColor_color;
-  set backgroundColor_color(String? value);
+  String? get backgroundColor_themeColorString;
+  set backgroundColor_themeColorString(String? value);
   @override
-  String? get foregroundColor_color;
-  set foregroundColor_color(String? value);
+  String? get foregroundColor_themeColorString;
+  set foregroundColor_themeColorString(String? value);
   @override
-  String? get overlayColor_color;
-  set overlayColor_color(String? value);
+  String? get overlayColor_themeColorString;
+  set overlayColor_themeColorString(String? value);
   @override
-  String? get shadowColor_color;
-  set shadowColor_color(String? value);
+  String? get shadowColor_themeColorString;
+  set shadowColor_themeColorString(String? value);
   @override
-  String? get surfaceTintColor_color;
-  set surfaceTintColor_color(String? value);
+  String? get surfaceTintColor_themeColorString;
+  set surfaceTintColor_themeColorString(String? value);
   @override
   double? get elevation_double;
   set elevation_double(double? value);
@@ -534,8 +549,8 @@ abstract class _ButtonStyleModel extends ButtonStyleModel {
   SizeModel? get maximumSize_size;
   set maximumSize_size(SizeModel? value);
   @override
-  String? get iconColor_color;
-  set iconColor_color(String? value);
+  String? get iconColor_themeColorString;
+  set iconColor_themeColorString(String? value);
   @override
   double? get iconSize_double;
   set iconSize_double(double? value);

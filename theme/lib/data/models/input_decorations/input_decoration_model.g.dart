@@ -9,16 +9,17 @@ part of 'input_decoration_model.dart';
 _$InputDecorationModelImpl _$$InputDecorationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$InputDecorationModelImpl(
-      labelStyle_textStyle: json['labelStyle_textStyle'] as String?,
-      floatingLabelStyle_textStyle:
-          json['floatingLabelStyle_textStyle'] as String?,
-      helperStyle_textStyle: json['helperStyle_textStyle'] as String?,
+      labelStyle_textStyleString: json['labelStyle_textStyleString'] as String?,
+      floatingLabelStyle_textStyleString:
+          json['floatingLabelStyle_textStyleString'] as String?,
+      helperStyle_textStyleString:
+          json['helperStyle_textStyleString'] as String?,
       helperMaxLines_int: json['helperMaxLines_int'] as int?,
-      hintStyle_textStyle: json['hintStyle_textStyle'] as String?,
+      hintStyle_textStyleString: json['hintStyle_textStyleString'] as String?,
       hintFadeDuration_duration: json['hintFadeDuration_duration'] == null
           ? null
           : Duration(microseconds: json['hintFadeDuration_duration'] as int),
-      errorStyle_textStyle: json['errorStyle_textStyle'] as String?,
+      errorStyle_textStyleString: json['errorStyle_textStyleString'] as String?,
       errorMaxLines_int: json['errorMaxLines_int'] as int?,
       isDense_bool: json['isDense_bool'] as bool? ?? false,
       contentPadding_edgeInsets: json['contentPadding_edgeInsets'] == null
@@ -26,26 +27,33 @@ _$InputDecorationModelImpl _$$InputDecorationModelImplFromJson(
           : EdgeInsetsModel.fromJson(
               json['contentPadding_edgeInsets'] as Map<String, dynamic>),
       isCollapsed_bool: json['isCollapsed_bool'] as bool? ?? false,
-      iconColor_color: json['iconColor_color'] as String?,
-      prefixStyle_textStyle: json['prefixStyle_textStyle'] as String?,
-      prefixIconColor_color: json['prefixIconColor_color'] as String?,
-      suffixStyle_textStyle: json['suffixStyle_textStyle'] as String?,
-      suffixIconColor_color: json['suffixIconColor_color'] as String?,
-      counterStyle_textStyle: json['counterStyle_textStyle'] as String?,
+      iconColor_themeColorString: json['iconColor_themeColorString'] as String?,
+      prefixStyle_textStyleString:
+          json['prefixStyle_textStyleString'] as String?,
+      prefixIconColor_themeColorString:
+          json['prefixIconColor_themeColorString'] as String?,
+      suffixStyle_textStyleString:
+          json['suffixStyle_textStyleString'] as String?,
+      suffixIconColor_themeColorString:
+          json['suffixIconColor_themeColorString'] as String?,
+      counterStyle_textStyleString:
+          json['counterStyle_textStyleString'] as String?,
       filled_bool: json['filled_bool'] as bool? ?? false,
-      fillColor_color: json['fillColor_color'] as String?,
+      fillColor_themeColorString: json['fillColor_themeColorString'] as String?,
       activeIndicatorBorder_borderSide:
           json['activeIndicatorBorder_borderSide'] == null
-              ? null
+              ? const BorderSideModel()
               : BorderSideModel.fromJson(
                   json['activeIndicatorBorder_borderSide']
                       as Map<String, dynamic>),
       outlineBorder_borderSide: json['outlineBorder_borderSide'] == null
-          ? null
+          ? const BorderSideModel()
           : BorderSideModel.fromJson(
               json['outlineBorder_borderSide'] as Map<String, dynamic>),
-      focusColor_color: json['focusColor_color'] as String?,
-      hoverColor_color: json['hoverColor_color'] as String?,
+      focusColor_themeColorString:
+          json['focusColor_themeColorString'] as String?,
+      hoverColor_themeColorString:
+          json['hoverColor_themeColorString'] as String?,
       errorBorder_inputBorder: json['errorBorder_inputBorder'] == null
           ? const InputBorderModel()
           : InputBorderModel.fromJson(
@@ -82,31 +90,34 @@ _$InputDecorationModelImpl _$$InputDecorationModelImplFromJson(
 Map<String, dynamic> _$$InputDecorationModelImplToJson(
         _$InputDecorationModelImpl instance) =>
     <String, dynamic>{
-      'labelStyle_textStyle': instance.labelStyle_textStyle,
-      'floatingLabelStyle_textStyle': instance.floatingLabelStyle_textStyle,
-      'helperStyle_textStyle': instance.helperStyle_textStyle,
+      'labelStyle_textStyleString': instance.labelStyle_textStyleString,
+      'floatingLabelStyle_textStyleString':
+          instance.floatingLabelStyle_textStyleString,
+      'helperStyle_textStyleString': instance.helperStyle_textStyleString,
       'helperMaxLines_int': instance.helperMaxLines_int,
-      'hintStyle_textStyle': instance.hintStyle_textStyle,
+      'hintStyle_textStyleString': instance.hintStyle_textStyleString,
       'hintFadeDuration_duration':
           instance.hintFadeDuration_duration?.inMicroseconds,
-      'errorStyle_textStyle': instance.errorStyle_textStyle,
+      'errorStyle_textStyleString': instance.errorStyle_textStyleString,
       'errorMaxLines_int': instance.errorMaxLines_int,
       'isDense_bool': instance.isDense_bool,
       'contentPadding_edgeInsets': instance.contentPadding_edgeInsets?.toJson(),
       'isCollapsed_bool': instance.isCollapsed_bool,
-      'iconColor_color': instance.iconColor_color,
-      'prefixStyle_textStyle': instance.prefixStyle_textStyle,
-      'prefixIconColor_color': instance.prefixIconColor_color,
-      'suffixStyle_textStyle': instance.suffixStyle_textStyle,
-      'suffixIconColor_color': instance.suffixIconColor_color,
-      'counterStyle_textStyle': instance.counterStyle_textStyle,
+      'iconColor_themeColorString': instance.iconColor_themeColorString,
+      'prefixStyle_textStyleString': instance.prefixStyle_textStyleString,
+      'prefixIconColor_themeColorString':
+          instance.prefixIconColor_themeColorString,
+      'suffixStyle_textStyleString': instance.suffixStyle_textStyleString,
+      'suffixIconColor_themeColorString':
+          instance.suffixIconColor_themeColorString,
+      'counterStyle_textStyleString': instance.counterStyle_textStyleString,
       'filled_bool': instance.filled_bool,
-      'fillColor_color': instance.fillColor_color,
+      'fillColor_themeColorString': instance.fillColor_themeColorString,
       'activeIndicatorBorder_borderSide':
           instance.activeIndicatorBorder_borderSide?.toJson(),
       'outlineBorder_borderSide': instance.outlineBorder_borderSide?.toJson(),
-      'focusColor_color': instance.focusColor_color,
-      'hoverColor_color': instance.hoverColor_color,
+      'focusColor_themeColorString': instance.focusColor_themeColorString,
+      'hoverColor_themeColorString': instance.hoverColor_themeColorString,
       'errorBorder_inputBorder': instance.errorBorder_inputBorder?.toJson(),
       'focusedBorder_inputBorder': instance.focusedBorder_inputBorder?.toJson(),
       'focusedErrorBorder_inputBorder':

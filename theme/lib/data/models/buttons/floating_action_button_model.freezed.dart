@@ -21,11 +21,14 @@ FloatingActionButtonModel _$FloatingActionButtonModelFromJson(
 
 /// @nodoc
 mixin _$FloatingActionButtonModel {
-  String? get foregroundColor_color => throw _privateConstructorUsedError;
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  String? get focusColor_color => throw _privateConstructorUsedError;
-  String? get hoverColor_color => throw _privateConstructorUsedError;
-  String? get splashColor_color => throw _privateConstructorUsedError;
+  String? get foregroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get focusColor_themeColorString => throw _privateConstructorUsedError;
+  String? get hoverColor_themeColorString => throw _privateConstructorUsedError;
+  String? get splashColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   double? get focusElevation_double => throw _privateConstructorUsedError;
   double? get hoverElevation_double => throw _privateConstructorUsedError;
@@ -47,7 +50,8 @@ mixin _$FloatingActionButtonModel {
       throw _privateConstructorUsedError;
   EdgeInsetsModel? get extendedPadding_edgeInsets =>
       throw _privateConstructorUsedError;
-  String? get extendedTextStyle_textStyle => throw _privateConstructorUsedError;
+  String? get extendedTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,11 +66,11 @@ abstract class $FloatingActionButtonModelCopyWith<$Res> {
       _$FloatingActionButtonModelCopyWithImpl<$Res, FloatingActionButtonModel>;
   @useResult
   $Res call(
-      {String? foregroundColor_color,
-      String? backgroundColor_color,
-      String? focusColor_color,
-      String? hoverColor_color,
-      String? splashColor_color,
+      {String? foregroundColor_themeColorString,
+      String? backgroundColor_themeColorString,
+      String? focusColor_themeColorString,
+      String? hoverColor_themeColorString,
+      String? splashColor_themeColorString,
       double? elevation_double,
       double? focusElevation_double,
       double? hoverElevation_double,
@@ -81,7 +85,7 @@ abstract class $FloatingActionButtonModelCopyWith<$Res> {
       BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
       double? extendedIconLabelSpacing_double,
       EdgeInsetsModel? extendedPadding_edgeInsets,
-      String? extendedTextStyle_textStyle});
+      String? extendedTextStyle_textStyleString});
 
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
   $BoxConstraintsModelCopyWith<$Res>? get sizeConstraints_boxConstraints;
@@ -106,11 +110,11 @@ class _$FloatingActionButtonModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? foregroundColor_color = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? focusColor_color = freezed,
-    Object? hoverColor_color = freezed,
-    Object? splashColor_color = freezed,
+    Object? foregroundColor_themeColorString = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? focusColor_themeColorString = freezed,
+    Object? hoverColor_themeColorString = freezed,
+    Object? splashColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? focusElevation_double = freezed,
     Object? hoverElevation_double = freezed,
@@ -125,28 +129,30 @@ class _$FloatingActionButtonModelCopyWithImpl<$Res,
     Object? extendedSizeConstraints_boxConstraints = freezed,
     Object? extendedIconLabelSpacing_double = freezed,
     Object? extendedPadding_edgeInsets = freezed,
-    Object? extendedTextStyle_textStyle = freezed,
+    Object? extendedTextStyle_textStyleString = freezed,
   }) {
     return _then(_value.copyWith(
-      foregroundColor_color: freezed == foregroundColor_color
-          ? _value.foregroundColor_color
-          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
+      foregroundColor_themeColorString: freezed ==
+              foregroundColor_themeColorString
+          ? _value.foregroundColor_themeColorString
+          : foregroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      focusColor_color: freezed == focusColor_color
-          ? _value.focusColor_color
-          : focusColor_color // ignore: cast_nullable_to_non_nullable
+      focusColor_themeColorString: freezed == focusColor_themeColorString
+          ? _value.focusColor_themeColorString
+          : focusColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor_color: freezed == hoverColor_color
-          ? _value.hoverColor_color
-          : hoverColor_color // ignore: cast_nullable_to_non_nullable
+      hoverColor_themeColorString: freezed == hoverColor_themeColorString
+          ? _value.hoverColor_themeColorString
+          : hoverColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashColor_color: freezed == splashColor_color
-          ? _value.splashColor_color
-          : splashColor_color // ignore: cast_nullable_to_non_nullable
+      splashColor_themeColorString: freezed == splashColor_themeColorString
+          ? _value.splashColor_themeColorString
+          : splashColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -208,9 +214,10 @@ class _$FloatingActionButtonModelCopyWithImpl<$Res,
           ? _value.extendedPadding_edgeInsets
           : extendedPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsetsModel?,
-      extendedTextStyle_textStyle: freezed == extendedTextStyle_textStyle
-          ? _value.extendedTextStyle_textStyle
-          : extendedTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      extendedTextStyle_textStyleString: freezed ==
+              extendedTextStyle_textStyleString
+          ? _value.extendedTextStyle_textStyleString
+          : extendedTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -308,11 +315,11 @@ abstract class _$$FloatingActionButtonModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? foregroundColor_color,
-      String? backgroundColor_color,
-      String? focusColor_color,
-      String? hoverColor_color,
-      String? splashColor_color,
+      {String? foregroundColor_themeColorString,
+      String? backgroundColor_themeColorString,
+      String? focusColor_themeColorString,
+      String? hoverColor_themeColorString,
+      String? splashColor_themeColorString,
       double? elevation_double,
       double? focusElevation_double,
       double? hoverElevation_double,
@@ -327,7 +334,7 @@ abstract class _$$FloatingActionButtonModelImplCopyWith<$Res>
       BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
       double? extendedIconLabelSpacing_double,
       EdgeInsetsModel? extendedPadding_edgeInsets,
-      String? extendedTextStyle_textStyle});
+      String? extendedTextStyle_textStyleString});
 
   @override
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
@@ -357,11 +364,11 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? foregroundColor_color = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? focusColor_color = freezed,
-    Object? hoverColor_color = freezed,
-    Object? splashColor_color = freezed,
+    Object? foregroundColor_themeColorString = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? focusColor_themeColorString = freezed,
+    Object? hoverColor_themeColorString = freezed,
+    Object? splashColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? focusElevation_double = freezed,
     Object? hoverElevation_double = freezed,
@@ -376,28 +383,30 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
     Object? extendedSizeConstraints_boxConstraints = freezed,
     Object? extendedIconLabelSpacing_double = freezed,
     Object? extendedPadding_edgeInsets = freezed,
-    Object? extendedTextStyle_textStyle = freezed,
+    Object? extendedTextStyle_textStyleString = freezed,
   }) {
     return _then(_$FloatingActionButtonModelImpl(
-      foregroundColor_color: freezed == foregroundColor_color
-          ? _value.foregroundColor_color
-          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
+      foregroundColor_themeColorString: freezed ==
+              foregroundColor_themeColorString
+          ? _value.foregroundColor_themeColorString
+          : foregroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      focusColor_color: freezed == focusColor_color
-          ? _value.focusColor_color
-          : focusColor_color // ignore: cast_nullable_to_non_nullable
+      focusColor_themeColorString: freezed == focusColor_themeColorString
+          ? _value.focusColor_themeColorString
+          : focusColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor_color: freezed == hoverColor_color
-          ? _value.hoverColor_color
-          : hoverColor_color // ignore: cast_nullable_to_non_nullable
+      hoverColor_themeColorString: freezed == hoverColor_themeColorString
+          ? _value.hoverColor_themeColorString
+          : hoverColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashColor_color: freezed == splashColor_color
-          ? _value.splashColor_color
-          : splashColor_color // ignore: cast_nullable_to_non_nullable
+      splashColor_themeColorString: freezed == splashColor_themeColorString
+          ? _value.splashColor_themeColorString
+          : splashColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -459,9 +468,10 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
           ? _value.extendedPadding_edgeInsets
           : extendedPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsetsModel?,
-      extendedTextStyle_textStyle: freezed == extendedTextStyle_textStyle
-          ? _value.extendedTextStyle_textStyle
-          : extendedTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      extendedTextStyle_textStyleString: freezed ==
+              extendedTextStyle_textStyleString
+          ? _value.extendedTextStyle_textStyleString
+          : extendedTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -471,11 +481,11 @@ class __$$FloatingActionButtonModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
   const _$FloatingActionButtonModelImpl(
-      {this.foregroundColor_color,
-      this.backgroundColor_color,
-      this.focusColor_color,
-      this.hoverColor_color,
-      this.splashColor_color,
+      {this.foregroundColor_themeColorString,
+      this.backgroundColor_themeColorString,
+      this.focusColor_themeColorString,
+      this.hoverColor_themeColorString,
+      this.splashColor_themeColorString,
       this.elevation_double,
       this.focusElevation_double,
       this.hoverElevation_double,
@@ -490,22 +500,22 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
       this.extendedSizeConstraints_boxConstraints = const BoxConstraintsModel(),
       this.extendedIconLabelSpacing_double,
       this.extendedPadding_edgeInsets = const EdgeInsetsModel(),
-      this.extendedTextStyle_textStyle})
+      this.extendedTextStyle_textStyleString})
       : super._();
 
   factory _$FloatingActionButtonModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$FloatingActionButtonModelImplFromJson(json);
 
   @override
-  final String? foregroundColor_color;
+  final String? foregroundColor_themeColorString;
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? focusColor_color;
+  final String? focusColor_themeColorString;
   @override
-  final String? hoverColor_color;
+  final String? hoverColor_themeColorString;
   @override
-  final String? splashColor_color;
+  final String? splashColor_themeColorString;
   @override
   final double? elevation_double;
   @override
@@ -541,11 +551,11 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
   @JsonKey()
   final EdgeInsetsModel? extendedPadding_edgeInsets;
   @override
-  final String? extendedTextStyle_textStyle;
+  final String? extendedTextStyle_textStyleString;
 
   @override
   String toString() {
-    return 'FloatingActionButtonModel(foregroundColor_color: $foregroundColor_color, backgroundColor_color: $backgroundColor_color, focusColor_color: $focusColor_color, hoverColor_color: $hoverColor_color, splashColor_color: $splashColor_color, elevation_double: $elevation_double, focusElevation_double: $focusElevation_double, hoverElevation_double: $hoverElevation_double, disabledElevation_double: $disabledElevation_double, highlightElevation_double: $highlightElevation_double, shape_shapeBorder: $shape_shapeBorder, enableFeedback_bool: $enableFeedback_bool, iconSize_double: $iconSize_double, sizeConstraints_boxConstraints: $sizeConstraints_boxConstraints, smallSizeConstraints_boxConstraints: $smallSizeConstraints_boxConstraints, largeSizeConstraints_boxConstraints: $largeSizeConstraints_boxConstraints, extendedSizeConstraints_boxConstraints: $extendedSizeConstraints_boxConstraints, extendedIconLabelSpacing_double: $extendedIconLabelSpacing_double, extendedPadding_edgeInsets: $extendedPadding_edgeInsets, extendedTextStyle_textStyle: $extendedTextStyle_textStyle)';
+    return 'FloatingActionButtonModel(foregroundColor_themeColorString: $foregroundColor_themeColorString, backgroundColor_themeColorString: $backgroundColor_themeColorString, focusColor_themeColorString: $focusColor_themeColorString, hoverColor_themeColorString: $hoverColor_themeColorString, splashColor_themeColorString: $splashColor_themeColorString, elevation_double: $elevation_double, focusElevation_double: $focusElevation_double, hoverElevation_double: $hoverElevation_double, disabledElevation_double: $disabledElevation_double, highlightElevation_double: $highlightElevation_double, shape_shapeBorder: $shape_shapeBorder, enableFeedback_bool: $enableFeedback_bool, iconSize_double: $iconSize_double, sizeConstraints_boxConstraints: $sizeConstraints_boxConstraints, smallSizeConstraints_boxConstraints: $smallSizeConstraints_boxConstraints, largeSizeConstraints_boxConstraints: $largeSizeConstraints_boxConstraints, extendedSizeConstraints_boxConstraints: $extendedSizeConstraints_boxConstraints, extendedIconLabelSpacing_double: $extendedIconLabelSpacing_double, extendedPadding_edgeInsets: $extendedPadding_edgeInsets, extendedTextStyle_textStyleString: $extendedTextStyle_textStyleString)';
   }
 
   @override
@@ -553,16 +563,21 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FloatingActionButtonModelImpl &&
-            (identical(other.foregroundColor_color, foregroundColor_color) ||
-                other.foregroundColor_color == foregroundColor_color) &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
-            (identical(other.focusColor_color, focusColor_color) ||
-                other.focusColor_color == focusColor_color) &&
-            (identical(other.hoverColor_color, hoverColor_color) ||
-                other.hoverColor_color == hoverColor_color) &&
-            (identical(other.splashColor_color, splashColor_color) ||
-                other.splashColor_color == splashColor_color) &&
+            (identical(other.foregroundColor_themeColorString, foregroundColor_themeColorString) ||
+                other.foregroundColor_themeColorString ==
+                    foregroundColor_themeColorString) &&
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.focusColor_themeColorString, focusColor_themeColorString) ||
+                other.focusColor_themeColorString ==
+                    focusColor_themeColorString) &&
+            (identical(other.hoverColor_themeColorString, hoverColor_themeColorString) ||
+                other.hoverColor_themeColorString ==
+                    hoverColor_themeColorString) &&
+            (identical(other.splashColor_themeColorString, splashColor_themeColorString) ||
+                other.splashColor_themeColorString ==
+                    splashColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
             (identical(other.focusElevation_double, focusElevation_double) ||
@@ -588,29 +603,21 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
             (identical(other.largeSizeConstraints_boxConstraints, largeSizeConstraints_boxConstraints) ||
                 other.largeSizeConstraints_boxConstraints ==
                     largeSizeConstraints_boxConstraints) &&
-            (identical(other.extendedSizeConstraints_boxConstraints,
-                    extendedSizeConstraints_boxConstraints) ||
-                other.extendedSizeConstraints_boxConstraints ==
-                    extendedSizeConstraints_boxConstraints) &&
-            (identical(other.extendedIconLabelSpacing_double, extendedIconLabelSpacing_double) ||
-                other.extendedIconLabelSpacing_double ==
-                    extendedIconLabelSpacing_double) &&
-            (identical(other.extendedPadding_edgeInsets, extendedPadding_edgeInsets) ||
-                other.extendedPadding_edgeInsets ==
-                    extendedPadding_edgeInsets) &&
-            (identical(other.extendedTextStyle_textStyle, extendedTextStyle_textStyle) ||
-                other.extendedTextStyle_textStyle == extendedTextStyle_textStyle));
+            (identical(other.extendedSizeConstraints_boxConstraints, extendedSizeConstraints_boxConstraints) || other.extendedSizeConstraints_boxConstraints == extendedSizeConstraints_boxConstraints) &&
+            (identical(other.extendedIconLabelSpacing_double, extendedIconLabelSpacing_double) || other.extendedIconLabelSpacing_double == extendedIconLabelSpacing_double) &&
+            (identical(other.extendedPadding_edgeInsets, extendedPadding_edgeInsets) || other.extendedPadding_edgeInsets == extendedPadding_edgeInsets) &&
+            (identical(other.extendedTextStyle_textStyleString, extendedTextStyle_textStyleString) || other.extendedTextStyle_textStyleString == extendedTextStyle_textStyleString));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        foregroundColor_color,
-        backgroundColor_color,
-        focusColor_color,
-        hoverColor_color,
-        splashColor_color,
+        foregroundColor_themeColorString,
+        backgroundColor_themeColorString,
+        focusColor_themeColorString,
+        hoverColor_themeColorString,
+        splashColor_themeColorString,
         elevation_double,
         focusElevation_double,
         hoverElevation_double,
@@ -625,7 +632,7 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
         extendedSizeConstraints_boxConstraints,
         extendedIconLabelSpacing_double,
         extendedPadding_edgeInsets,
-        extendedTextStyle_textStyle
+        extendedTextStyle_textStyleString
       ]);
 
   @JsonKey(ignore: true)
@@ -645,11 +652,11 @@ class _$FloatingActionButtonModelImpl extends _FloatingActionButtonModel {
 
 abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
   const factory _FloatingActionButtonModel(
-          {final String? foregroundColor_color,
-          final String? backgroundColor_color,
-          final String? focusColor_color,
-          final String? hoverColor_color,
-          final String? splashColor_color,
+          {final String? foregroundColor_themeColorString,
+          final String? backgroundColor_themeColorString,
+          final String? focusColor_themeColorString,
+          final String? hoverColor_themeColorString,
+          final String? splashColor_themeColorString,
           final double? elevation_double,
           final double? focusElevation_double,
           final double? hoverElevation_double,
@@ -664,7 +671,7 @@ abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
           final BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
           final double? extendedIconLabelSpacing_double,
           final EdgeInsetsModel? extendedPadding_edgeInsets,
-          final String? extendedTextStyle_textStyle}) =
+          final String? extendedTextStyle_textStyleString}) =
       _$FloatingActionButtonModelImpl;
   const _FloatingActionButtonModel._() : super._();
 
@@ -672,15 +679,15 @@ abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
       _$FloatingActionButtonModelImpl.fromJson;
 
   @override
-  String? get foregroundColor_color;
+  String? get foregroundColor_themeColorString;
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get focusColor_color;
+  String? get focusColor_themeColorString;
   @override
-  String? get hoverColor_color;
+  String? get hoverColor_themeColorString;
   @override
-  String? get splashColor_color;
+  String? get splashColor_themeColorString;
   @override
   double? get elevation_double;
   @override
@@ -710,7 +717,7 @@ abstract class _FloatingActionButtonModel extends FloatingActionButtonModel {
   @override
   EdgeInsetsModel? get extendedPadding_edgeInsets;
   @override
-  String? get extendedTextStyle_textStyle;
+  String? get extendedTextStyle_textStyleString;
   @override
   @JsonKey(ignore: true)
   _$$FloatingActionButtonModelImplCopyWith<_$FloatingActionButtonModelImpl>

@@ -9,7 +9,7 @@ part of 'box_decoration_model.dart';
 _$BoxDecorationModelImpl _$$BoxDecorationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$BoxDecorationModelImpl(
-      color_color: json['color_color'] as String?,
+      color_themeColorString: json['color_themeColorString'] as String?,
       border_boxBorder: json['border_boxBorder'] == null
           ? null
           : BoxBorderModel.fromJson(
@@ -37,7 +37,7 @@ _$BoxDecorationModelImpl _$$BoxDecorationModelImplFromJson(
 Map<String, dynamic> _$$BoxDecorationModelImplToJson(
         _$BoxDecorationModelImpl instance) =>
     <String, dynamic>{
-      'color_color': instance.color_color,
+      'color_themeColorString': instance.color_themeColorString,
       'border_boxBorder': instance.border_boxBorder?.toJson(),
       'borderRadius_borderRadius': instance.borderRadius_borderRadius?.toJson(),
       'boxShadows_list_boxShadow':

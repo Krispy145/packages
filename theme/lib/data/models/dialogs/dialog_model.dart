@@ -14,16 +14,16 @@ part 'dialog_model.g.dart';
 @freezed
 class DialogModel with _$DialogModel {
   const factory DialogModel({
-    ThemeColorString? backgroundColor_color,
+    ThemeColorString? backgroundColor_themeColorString,
     double? elevation_double,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
     // @OutlinedBorderConverter()
     ShapeBorderModel? shape_shapeBorder,
     AlignmentOptions? alignment_enum_alignmentOptions,
-    ThemeColorString? iconColor_color,
-    TextStyleString? titleTextStyle_textStyle,
-    TextStyleString? contentTextStyle_textStyle,
+    ThemeColorString? iconColor_themeColorString,
+    TextStyleString? titleTextStyle_textStyleString,
+    TextStyleString? contentTextStyle_textStyleString,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? actionsPadding_edgeInsets,
   }) = _DialogModel;
 
@@ -60,14 +60,14 @@ class DialogModel with _$DialogModel {
 
   DialogTheme asDialogTheme({String? styleTypeName}) {
     return DialogTheme(
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       alignment: alignment_enum_alignmentOptions?.alignment,
-      iconColor: iconColor_color?.toColor(styleType: styleTypeName),
-      titleTextStyle: titleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentTextStyle: contentTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
+      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       actionsPadding: actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }

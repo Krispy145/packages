@@ -9,6 +9,7 @@ import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/data/models/general/duration_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/bool/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/border_radius/form_field.dart';
@@ -112,14 +113,14 @@ class ThemeComponentEditor extends MapEditor {
           title: formattedKey,
         );
         return EdgeInsetsFormField(store: store);
-      case "_color":
+      case "_themeColorString":
         final store = ThemeColorStringFormFieldStore(
-          value: value as String?,
+          value: value as ThemeColorString?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: formattedKey,
         );
         return ThemeColorStringFormField(store: store);
-      case "_textStyle":
+      case "_textStyleString":
         final store = TextStyleStringFormFieldStore(
           value: value as TextStyleString?,
           onValueChanged: (newValue) => onChanged(keys, newValue),

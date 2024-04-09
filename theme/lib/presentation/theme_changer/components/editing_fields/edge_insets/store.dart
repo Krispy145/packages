@@ -35,8 +35,8 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
   }
 
   late final DoubleFormFieldStore topStore = DoubleFormFieldStore(value: value.top_double, onValueChanged: onTopFieldChanged, showButtons: false, title: 'Top');
-  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(value: value.left_double, onValueChanged: onLeftFieldChanged, showButtons: false, title: 'Bottom');
-  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(value: value.bottom_double, onValueChanged: onBottomFieldChanged, showButtons: false, title: 'Left');
+  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(value: value.left_double, onValueChanged: onLeftFieldChanged, showButtons: false, title: 'Left');
+  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(value: value.bottom_double, onValueChanged: onBottomFieldChanged, showButtons: false, title: 'Bottom');
   late final DoubleFormFieldStore rightStore = DoubleFormFieldStore(value: value.right_double, onValueChanged: onRightFieldChanged, showButtons: false, title: 'Right');
 
   @observable

@@ -21,16 +21,20 @@ SearchBarModel _$SearchBarModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SearchBarModel {
   double? get elevation_double => throw _privateConstructorUsedError;
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
-  String? get overlayColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get overlayColor_themeColorString =>
+      throw _privateConstructorUsedError;
   BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
   OutlinedBorderModel? get shape_outlinedBorder =>
       throw _privateConstructorUsedError;
   EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
-  String? get textStyle_textStyle => throw _privateConstructorUsedError;
-  String? get hintStyle_textStyle => throw _privateConstructorUsedError;
+  String? get textStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get hintStyle_textStyleString => throw _privateConstructorUsedError;
   BoxConstraintsModel? get constraints_boxConstraints =>
       throw _privateConstructorUsedError;
   TextCapitalization? get textCapitalization_enum_textCapitalization =>
@@ -50,15 +54,15 @@ abstract class $SearchBarModelCopyWith<$Res> {
   @useResult
   $Res call(
       {double? elevation_double,
-      String? backgroundColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
-      String? overlayColor_color,
+      String? backgroundColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? overlayColor_themeColorString,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
       EdgeInsetsModel? padding_edgeInsets,
-      String? textStyle_textStyle,
-      String? hintStyle_textStyle,
+      String? textStyle_textStyleString,
+      String? hintStyle_textStyleString,
       BoxConstraintsModel? constraints_boxConstraints,
       TextCapitalization? textCapitalization_enum_textCapitalization});
 
@@ -82,15 +86,15 @@ class _$SearchBarModelCopyWithImpl<$Res, $Val extends SearchBarModel>
   @override
   $Res call({
     Object? elevation_double = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? overlayColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
     Object? padding_edgeInsets = freezed,
-    Object? textStyle_textStyle = freezed,
-    Object? hintStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? hintStyle_textStyleString = freezed,
     Object? constraints_boxConstraints = freezed,
     Object? textCapitalization_enum_textCapitalization = freezed,
   }) {
@@ -99,21 +103,23 @@ class _$SearchBarModelCopyWithImpl<$Res, $Val extends SearchBarModel>
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor_color: freezed == overlayColor_color
-          ? _value.overlayColor_color
-          : overlayColor_color // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       side_borderSide: freezed == side_borderSide
           ? _value.side_borderSide
@@ -127,13 +133,13 @@ class _$SearchBarModelCopyWithImpl<$Res, $Val extends SearchBarModel>
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsetsModel?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hintStyle_textStyle: freezed == hintStyle_textStyle
-          ? _value.hintStyle_textStyle
-          : hintStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyleString: freezed == hintStyle_textStyleString
+          ? _value.hintStyle_textStyleString
+          : hintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       constraints_boxConstraints: freezed == constraints_boxConstraints
           ? _value.constraints_boxConstraints
@@ -208,15 +214,15 @@ abstract class _$$SearchBarModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {double? elevation_double,
-      String? backgroundColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
-      String? overlayColor_color,
+      String? backgroundColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? overlayColor_themeColorString,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
       EdgeInsetsModel? padding_edgeInsets,
-      String? textStyle_textStyle,
-      String? hintStyle_textStyle,
+      String? textStyle_textStyleString,
+      String? hintStyle_textStyleString,
       BoxConstraintsModel? constraints_boxConstraints,
       TextCapitalization? textCapitalization_enum_textCapitalization});
 
@@ -242,15 +248,15 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? elevation_double = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? overlayColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
     Object? padding_edgeInsets = freezed,
-    Object? textStyle_textStyle = freezed,
-    Object? hintStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? hintStyle_textStyleString = freezed,
     Object? constraints_boxConstraints = freezed,
     Object? textCapitalization_enum_textCapitalization = freezed,
   }) {
@@ -259,21 +265,23 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor_color: freezed == overlayColor_color
-          ? _value.overlayColor_color
-          : overlayColor_color // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       side_borderSide: freezed == side_borderSide
           ? _value.side_borderSide
@@ -287,13 +295,13 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
           ? _value.padding_edgeInsets
           : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsetsModel?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hintStyle_textStyle: freezed == hintStyle_textStyle
-          ? _value.hintStyle_textStyle
-          : hintStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyleString: freezed == hintStyle_textStyleString
+          ? _value.hintStyle_textStyleString
+          : hintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       constraints_boxConstraints: freezed == constraints_boxConstraints
           ? _value.constraints_boxConstraints
@@ -313,15 +321,15 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
 class _$SearchBarModelImpl extends _SearchBarModel {
   const _$SearchBarModelImpl(
       {this.elevation_double,
-      this.backgroundColor_color,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
-      this.overlayColor_color,
+      this.backgroundColor_themeColorString,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.overlayColor_themeColorString,
       this.side_borderSide,
       this.shape_outlinedBorder = const OutlinedBorderModel(),
       this.padding_edgeInsets = const EdgeInsetsModel(),
-      this.textStyle_textStyle,
-      this.hintStyle_textStyle,
+      this.textStyle_textStyleString,
+      this.hintStyle_textStyleString,
       this.constraints_boxConstraints = const BoxConstraintsModel(),
       this.textCapitalization_enum_textCapitalization =
           TextCapitalization.none})
@@ -333,13 +341,13 @@ class _$SearchBarModelImpl extends _SearchBarModel {
   @override
   final double? elevation_double;
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? overlayColor_color;
+  final String? overlayColor_themeColorString;
   @override
   final BorderSideModel? side_borderSide;
   @override
@@ -349,9 +357,9 @@ class _$SearchBarModelImpl extends _SearchBarModel {
   @JsonKey()
   final EdgeInsetsModel? padding_edgeInsets;
   @override
-  final String? textStyle_textStyle;
+  final String? textStyle_textStyleString;
   @override
-  final String? hintStyle_textStyle;
+  final String? hintStyle_textStyleString;
   @override
   @JsonKey()
   final BoxConstraintsModel? constraints_boxConstraints;
@@ -361,7 +369,7 @@ class _$SearchBarModelImpl extends _SearchBarModel {
 
   @override
   String toString() {
-    return 'SearchBarModel(elevation_double: $elevation_double, backgroundColor_color: $backgroundColor_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, overlayColor_color: $overlayColor_color, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, padding_edgeInsets: $padding_edgeInsets, textStyle_textStyle: $textStyle_textStyle, hintStyle_textStyle: $hintStyle_textStyle, constraints_boxConstraints: $constraints_boxConstraints, textCapitalization_enum_textCapitalization: $textCapitalization_enum_textCapitalization)';
+    return 'SearchBarModel(elevation_double: $elevation_double, backgroundColor_themeColorString: $backgroundColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, padding_edgeInsets: $padding_edgeInsets, textStyle_textStyleString: $textStyle_textStyleString, hintStyle_textStyleString: $hintStyle_textStyleString, constraints_boxConstraints: $constraints_boxConstraints, textCapitalization_enum_textCapitalization: $textCapitalization_enum_textCapitalization)';
   }
 
   @override
@@ -371,26 +379,30 @@ class _$SearchBarModelImpl extends _SearchBarModel {
             other is _$SearchBarModelImpl &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
-            (identical(other.overlayColor_color, overlayColor_color) ||
-                other.overlayColor_color == overlayColor_color) &&
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.overlayColor_themeColorString, overlayColor_themeColorString) ||
+                other.overlayColor_themeColorString ==
+                    overlayColor_themeColorString) &&
             (identical(other.side_borderSide, side_borderSide) ||
                 other.side_borderSide == side_borderSide) &&
             (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
                 other.shape_outlinedBorder == shape_outlinedBorder) &&
             (identical(other.padding_edgeInsets, padding_edgeInsets) ||
                 other.padding_edgeInsets == padding_edgeInsets) &&
-            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
-                other.textStyle_textStyle == textStyle_textStyle) &&
-            (identical(other.hintStyle_textStyle, hintStyle_textStyle) ||
-                other.hintStyle_textStyle == hintStyle_textStyle) &&
-            (identical(other.constraints_boxConstraints,
-                    constraints_boxConstraints) ||
+            (identical(other.textStyle_textStyleString, textStyle_textStyleString) ||
+                other.textStyle_textStyleString == textStyle_textStyleString) &&
+            (identical(other.hintStyle_textStyleString, hintStyle_textStyleString) ||
+                other.hintStyle_textStyleString == hintStyle_textStyleString) &&
+            (identical(other.constraints_boxConstraints, constraints_boxConstraints) ||
                 other.constraints_boxConstraints ==
                     constraints_boxConstraints) &&
             (identical(other.textCapitalization_enum_textCapitalization,
@@ -404,15 +416,15 @@ class _$SearchBarModelImpl extends _SearchBarModel {
   int get hashCode => Object.hash(
       runtimeType,
       elevation_double,
-      backgroundColor_color,
-      shadowColor_color,
-      surfaceTintColor_color,
-      overlayColor_color,
+      backgroundColor_themeColorString,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
+      overlayColor_themeColorString,
       side_borderSide,
       shape_outlinedBorder,
       padding_edgeInsets,
-      textStyle_textStyle,
-      hintStyle_textStyle,
+      textStyle_textStyleString,
+      hintStyle_textStyleString,
       constraints_boxConstraints,
       textCapitalization_enum_textCapitalization);
 
@@ -434,15 +446,15 @@ class _$SearchBarModelImpl extends _SearchBarModel {
 abstract class _SearchBarModel extends SearchBarModel {
   const factory _SearchBarModel(
       {final double? elevation_double,
-      final String? backgroundColor_color,
-      final String? shadowColor_color,
-      final String? surfaceTintColor_color,
-      final String? overlayColor_color,
+      final String? backgroundColor_themeColorString,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
+      final String? overlayColor_themeColorString,
       final BorderSideModel? side_borderSide,
       final OutlinedBorderModel? shape_outlinedBorder,
       final EdgeInsetsModel? padding_edgeInsets,
-      final String? textStyle_textStyle,
-      final String? hintStyle_textStyle,
+      final String? textStyle_textStyleString,
+      final String? hintStyle_textStyleString,
       final BoxConstraintsModel? constraints_boxConstraints,
       final TextCapitalization?
           textCapitalization_enum_textCapitalization}) = _$SearchBarModelImpl;
@@ -454,13 +466,13 @@ abstract class _SearchBarModel extends SearchBarModel {
   @override
   double? get elevation_double;
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get overlayColor_color;
+  String? get overlayColor_themeColorString;
   @override
   BorderSideModel? get side_borderSide;
   @override
@@ -468,9 +480,9 @@ abstract class _SearchBarModel extends SearchBarModel {
   @override
   EdgeInsetsModel? get padding_edgeInsets;
   @override
-  String? get textStyle_textStyle;
+  String? get textStyle_textStyleString;
   @override
-  String? get hintStyle_textStyle;
+  String? get hintStyle_textStyleString;
   @override
   BoxConstraintsModel? get constraints_boxConstraints;
   @override

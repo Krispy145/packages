@@ -14,15 +14,15 @@ part 'search_view_model.g.dart';
 @freezed
 class SearchViewModel with _$SearchViewModel {
   const factory SearchViewModel({
-    ThemeColorString? backgroundColor_color,
+    ThemeColorString? backgroundColor_themeColorString,
     double? elevation_double,
-    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? surfaceTintColor_themeColorString,
     @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
     BorderSideModel? side_borderSide,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-    TextStyleString? headerTextStyle_textStyle,
-    TextStyleString? headerHintStyle_textStyle,
-    ThemeColorString? dividerColor_color,
+    TextStyleString? headerTextStyle_textStyleString,
+    TextStyleString? headerHintStyle_textStyleString,
+    ThemeColorString? dividerColor_themeColorString,
   }) = _SearchViewModel;
 
   const SearchViewModel._();
@@ -60,15 +60,15 @@ class SearchViewModel with _$SearchViewModel {
 
   SearchViewThemeData asSearchViewThemeData({String? styleTypeName}) {
     return SearchViewThemeData(
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
-      headerTextStyle: headerTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      headerHintStyle: headerHintStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      dividerColor: dividerColor_color?.toColor(styleType: styleTypeName),
+      headerTextStyle: headerTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      headerHintStyle: headerHintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      dividerColor: dividerColor_themeColorString?.toColor(styleType: styleTypeName),
     );
   }
 }

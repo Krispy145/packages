@@ -28,7 +28,7 @@ mixin _$TooltipModel {
   bool? get excludeFromSemantics_bool => throw _privateConstructorUsedError;
   BoxDecorationModel? get decoration_boxDecoration =>
       throw _privateConstructorUsedError; // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
-  String? get textStyle_textStyle => throw _privateConstructorUsedError;
+  String? get textStyle_textStyleString => throw _privateConstructorUsedError;
   TextAlign? get textAlign_enum_textAlign =>
       throw _privateConstructorUsedError; //TODO: implement these converters
   Duration? get waitDuration_duration => throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $TooltipModelCopyWith<$Res> {
       bool? preferBelow_bool,
       bool? excludeFromSemantics_bool,
       BoxDecorationModel? decoration_boxDecoration,
-      String? textStyle_textStyle,
+      String? textStyle_textStyleString,
       TextAlign? textAlign_enum_textAlign,
       Duration? waitDuration_duration,
       Duration? showDuration_duration,
@@ -89,7 +89,7 @@ class _$TooltipModelCopyWithImpl<$Res, $Val extends TooltipModel>
     Object? preferBelow_bool = freezed,
     Object? excludeFromSemantics_bool = freezed,
     Object? decoration_boxDecoration = freezed,
-    Object? textStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
     Object? textAlign_enum_textAlign = freezed,
     Object? waitDuration_duration = freezed,
     Object? showDuration_duration = freezed,
@@ -125,9 +125,9 @@ class _$TooltipModelCopyWithImpl<$Res, $Val extends TooltipModel>
           ? _value.decoration_boxDecoration
           : decoration_boxDecoration // ignore: cast_nullable_to_non_nullable
               as BoxDecorationModel?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       textAlign_enum_textAlign: freezed == textAlign_enum_textAlign
           ? _value.textAlign_enum_textAlign
@@ -207,7 +207,7 @@ abstract class _$$TooltipModelImplCopyWith<$Res>
       bool? preferBelow_bool,
       bool? excludeFromSemantics_bool,
       BoxDecorationModel? decoration_boxDecoration,
-      String? textStyle_textStyle,
+      String? textStyle_textStyleString,
       TextAlign? textAlign_enum_textAlign,
       Duration? waitDuration_duration,
       Duration? showDuration_duration,
@@ -240,7 +240,7 @@ class __$$TooltipModelImplCopyWithImpl<$Res>
     Object? preferBelow_bool = freezed,
     Object? excludeFromSemantics_bool = freezed,
     Object? decoration_boxDecoration = freezed,
-    Object? textStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
     Object? textAlign_enum_textAlign = freezed,
     Object? waitDuration_duration = freezed,
     Object? showDuration_duration = freezed,
@@ -276,9 +276,9 @@ class __$$TooltipModelImplCopyWithImpl<$Res>
           ? _value.decoration_boxDecoration
           : decoration_boxDecoration // ignore: cast_nullable_to_non_nullable
               as BoxDecorationModel?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       textAlign_enum_textAlign: freezed == textAlign_enum_textAlign
           ? _value.textAlign_enum_textAlign
@@ -316,7 +316,7 @@ class _$TooltipModelImpl extends _TooltipModel {
       this.preferBelow_bool,
       this.excludeFromSemantics_bool,
       this.decoration_boxDecoration,
-      this.textStyle_textStyle,
+      this.textStyle_textStyleString,
       this.textAlign_enum_textAlign,
       this.waitDuration_duration,
       this.showDuration_duration,
@@ -345,7 +345,7 @@ class _$TooltipModelImpl extends _TooltipModel {
   final BoxDecorationModel? decoration_boxDecoration;
 // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
   @override
-  final String? textStyle_textStyle;
+  final String? textStyle_textStyleString;
   @override
   final TextAlign? textAlign_enum_textAlign;
 //TODO: implement these converters
@@ -360,7 +360,7 @@ class _$TooltipModelImpl extends _TooltipModel {
 
   @override
   String toString() {
-    return 'TooltipModel(height_double: $height_double, padding_edgeInsets: $padding_edgeInsets, margin_edgeInsets: $margin_edgeInsets, verticalOffset_double: $verticalOffset_double, preferBelow_bool: $preferBelow_bool, excludeFromSemantics_bool: $excludeFromSemantics_bool, decoration_boxDecoration: $decoration_boxDecoration, textStyle_textStyle: $textStyle_textStyle, textAlign_enum_textAlign: $textAlign_enum_textAlign, waitDuration_duration: $waitDuration_duration, showDuration_duration: $showDuration_duration, triggerMode_enum_tooltipTriggerMode: $triggerMode_enum_tooltipTriggerMode, enableFeedback_bool: $enableFeedback_bool)';
+    return 'TooltipModel(height_double: $height_double, padding_edgeInsets: $padding_edgeInsets, margin_edgeInsets: $margin_edgeInsets, verticalOffset_double: $verticalOffset_double, preferBelow_bool: $preferBelow_bool, excludeFromSemantics_bool: $excludeFromSemantics_bool, decoration_boxDecoration: $decoration_boxDecoration, textStyle_textStyleString: $textStyle_textStyleString, textAlign_enum_textAlign: $textAlign_enum_textAlign, waitDuration_duration: $waitDuration_duration, showDuration_duration: $showDuration_duration, triggerMode_enum_tooltipTriggerMode: $triggerMode_enum_tooltipTriggerMode, enableFeedback_bool: $enableFeedback_bool)';
   }
 
   @override
@@ -384,8 +384,9 @@ class _$TooltipModelImpl extends _TooltipModel {
             (identical(
                     other.decoration_boxDecoration, decoration_boxDecoration) ||
                 other.decoration_boxDecoration == decoration_boxDecoration) &&
-            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
-                other.textStyle_textStyle == textStyle_textStyle) &&
+            (identical(other.textStyle_textStyleString,
+                    textStyle_textStyleString) ||
+                other.textStyle_textStyleString == textStyle_textStyleString) &&
             (identical(
                     other.textAlign_enum_textAlign, textAlign_enum_textAlign) ||
                 other.textAlign_enum_textAlign == textAlign_enum_textAlign) &&
@@ -412,7 +413,7 @@ class _$TooltipModelImpl extends _TooltipModel {
       preferBelow_bool,
       excludeFromSemantics_bool,
       decoration_boxDecoration,
-      textStyle_textStyle,
+      textStyle_textStyleString,
       textAlign_enum_textAlign,
       waitDuration_duration,
       showDuration_duration,
@@ -442,7 +443,7 @@ abstract class _TooltipModel extends TooltipModel {
       final bool? preferBelow_bool,
       final bool? excludeFromSemantics_bool,
       final BoxDecorationModel? decoration_boxDecoration,
-      final String? textStyle_textStyle,
+      final String? textStyle_textStyleString,
       final TextAlign? textAlign_enum_textAlign,
       final Duration? waitDuration_duration,
       final Duration? showDuration_duration,
@@ -468,7 +469,7 @@ abstract class _TooltipModel extends TooltipModel {
   @override
   BoxDecorationModel? get decoration_boxDecoration;
   @override // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
-  String? get textStyle_textStyle;
+  String? get textStyle_textStyleString;
   @override
   TextAlign? get textAlign_enum_textAlign;
   @override //TODO: implement these converters

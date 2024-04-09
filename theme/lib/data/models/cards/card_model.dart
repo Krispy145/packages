@@ -10,9 +10,9 @@ part 'card_model.g.dart';
 @freezed
 class CardModel with _$CardModel {
   const factory CardModel({
-    ThemeColorString? color_color,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? color_themeColorString,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
     double? elevation_double,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? margin_edgeInsets,
     // @OutlinedBorderConverter()
@@ -48,9 +48,9 @@ class CardModel with _$CardModel {
 
   CardTheme asCardTheme({String? styleTypeName}) {
     return CardTheme(
-      color: color_color?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),

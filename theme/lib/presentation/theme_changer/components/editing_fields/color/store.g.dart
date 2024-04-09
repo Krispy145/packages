@@ -8,9 +8,9 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ColorFormFieldStore on _ColorFormFieldStore, Store {
+mixin _$ColorFormFieldStore on _themeColorStringFormFieldStore, Store {
   late final _$colorAtom =
-      Atom(name: '_ColorFormFieldStore.color', context: context);
+      Atom(name: '_themeColorStringFormFieldStore.color', context: context);
 
   @override
   Color get color {
@@ -29,30 +29,31 @@ mixin _$ColorFormFieldStore on _ColorFormFieldStore, Store {
     });
   }
 
-  late final _$_ColorFormFieldStoreActionController =
-      ActionController(name: '_ColorFormFieldStore', context: context);
+  late final _$_themeColorStringFormFieldStoreActionController =
+      ActionController(
+          name: '_themeColorStringFormFieldStore', context: context);
 
   @override
   void onDone() {
-    final _$actionInfo = _$_ColorFormFieldStoreActionController.startAction(
-        name: '_ColorFormFieldStore.onDone');
+    final _$actionInfo = _$_themeColorStringFormFieldStoreActionController
+        .startAction(name: '_themeColorStringFormFieldStore.onDone');
     try {
       return super.onDone();
     } finally {
-      _$_ColorFormFieldStoreActionController.endAction(_$actionInfo);
+      _$_themeColorStringFormFieldStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void updateColor(
       {double? red, double? green, double? blue, double? opacity}) {
-    final _$actionInfo = _$_ColorFormFieldStoreActionController.startAction(
-        name: '_ColorFormFieldStore.updateColor');
+    final _$actionInfo = _$_themeColorStringFormFieldStoreActionController
+        .startAction(name: '_themeColorStringFormFieldStore.updateColor');
     try {
       return super
           .updateColor(red: red, green: green, blue: blue, opacity: opacity);
     } finally {
-      _$_ColorFormFieldStoreActionController.endAction(_$actionInfo);
+      _$_themeColorStringFormFieldStoreActionController.endAction(_$actionInfo);
     }
   }
 

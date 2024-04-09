@@ -8,14 +8,15 @@ part of 'radio_model.dart';
 
 _$RadioModelImpl _$$RadioModelImplFromJson(Map<String, dynamic> json) =>
     _$RadioModelImpl(
-      fillColor_color: json['fillColor_color'] as String?,
-      overlayColor_color: json['overlayColor_color'] as String?,
+      fillColor_themeColorString: json['fillColor_themeColorString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
       splashRadius_double: (json['splashRadius_double'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$RadioModelImplToJson(_$RadioModelImpl instance) =>
     <String, dynamic>{
-      'fillColor_color': instance.fillColor_color,
-      'overlayColor_color': instance.overlayColor_color,
+      'fillColor_themeColorString': instance.fillColor_themeColorString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
       'splashRadius_double': instance.splashRadius_double,
     };

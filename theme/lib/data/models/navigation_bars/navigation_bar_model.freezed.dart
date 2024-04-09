@@ -21,15 +21,18 @@ NavigationBarModel _$NavigationBarModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NavigationBarModel {
   double? get height_double => throw _privateConstructorUsedError;
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
-  String? get indicatorColor_color =>
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get indicatorColor_themeColorString =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
   ShapeBorderModel? get indicatorShape_shapeBorder =>
       throw _privateConstructorUsedError;
-  String? get labelTextStyle_textStyle =>
+  String? get labelTextStyle_textStyleString =>
       throw _privateConstructorUsedError; // @NavigationDestinationLabelConverter()
   NavigationDestinationLabelBehavior?
       get labelBehavior_enum_navigationDestinationLabelBehavior =>
@@ -49,13 +52,13 @@ abstract class $NavigationBarModelCopyWith<$Res> {
   @useResult
   $Res call(
       {double? height_double,
-      String? backgroundColor_color,
+      String? backgroundColor_themeColorString,
       double? elevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
-      String? indicatorColor_color,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? indicatorColor_themeColorString,
       ShapeBorderModel? indicatorShape_shapeBorder,
-      String? labelTextStyle_textStyle,
+      String? labelTextStyle_textStyleString,
       NavigationDestinationLabelBehavior?
           labelBehavior_enum_navigationDestinationLabelBehavior});
 
@@ -76,13 +79,13 @@ class _$NavigationBarModelCopyWithImpl<$Res, $Val extends NavigationBarModel>
   @override
   $Res call({
     Object? height_double = freezed,
-    Object? backgroundColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? indicatorColor_color = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? indicatorColor_themeColorString = freezed,
     Object? indicatorShape_shapeBorder = freezed,
-    Object? labelTextStyle_textStyle = freezed,
+    Object? labelTextStyle_textStyleString = freezed,
     Object? labelBehavior_enum_navigationDestinationLabelBehavior = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,33 +93,36 @@ class _$NavigationBarModelCopyWithImpl<$Res, $Val extends NavigationBarModel>
           ? _value.height_double
           : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorColor_color: freezed == indicatorColor_color
-          ? _value.indicatorColor_color
-          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
+      indicatorColor_themeColorString: freezed ==
+              indicatorColor_themeColorString
+          ? _value.indicatorColor_themeColorString
+          : indicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
           ? _value.indicatorShape_shapeBorder
           : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
-      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
-          ? _value.labelTextStyle_textStyle
-          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      labelTextStyle_textStyleString: freezed == labelTextStyle_textStyleString
+          ? _value.labelTextStyle_textStyleString
+          : labelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       labelBehavior_enum_navigationDestinationLabelBehavior: freezed ==
               labelBehavior_enum_navigationDestinationLabelBehavior
@@ -150,13 +156,13 @@ abstract class _$$NavigationBarModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {double? height_double,
-      String? backgroundColor_color,
+      String? backgroundColor_themeColorString,
       double? elevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
-      String? indicatorColor_color,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? indicatorColor_themeColorString,
       ShapeBorderModel? indicatorShape_shapeBorder,
-      String? labelTextStyle_textStyle,
+      String? labelTextStyle_textStyleString,
       NavigationDestinationLabelBehavior?
           labelBehavior_enum_navigationDestinationLabelBehavior});
 
@@ -176,13 +182,13 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? height_double = freezed,
-    Object? backgroundColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? indicatorColor_color = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? indicatorColor_themeColorString = freezed,
     Object? indicatorShape_shapeBorder = freezed,
-    Object? labelTextStyle_textStyle = freezed,
+    Object? labelTextStyle_textStyleString = freezed,
     Object? labelBehavior_enum_navigationDestinationLabelBehavior = freezed,
   }) {
     return _then(_$NavigationBarModelImpl(
@@ -190,33 +196,36 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
           ? _value.height_double
           : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorColor_color: freezed == indicatorColor_color
-          ? _value.indicatorColor_color
-          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
+      indicatorColor_themeColorString: freezed ==
+              indicatorColor_themeColorString
+          ? _value.indicatorColor_themeColorString
+          : indicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
           ? _value.indicatorShape_shapeBorder
           : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
-      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
-          ? _value.labelTextStyle_textStyle
-          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      labelTextStyle_textStyleString: freezed == labelTextStyle_textStyleString
+          ? _value.labelTextStyle_textStyleString
+          : labelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       labelBehavior_enum_navigationDestinationLabelBehavior: freezed ==
               labelBehavior_enum_navigationDestinationLabelBehavior
@@ -232,13 +241,13 @@ class __$$NavigationBarModelImplCopyWithImpl<$Res>
 class _$NavigationBarModelImpl extends _NavigationBarModel {
   _$NavigationBarModelImpl(
       {this.height_double,
-      this.backgroundColor_color,
+      this.backgroundColor_themeColorString,
       this.elevation_double,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
-      this.indicatorColor_color,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.indicatorColor_themeColorString,
       this.indicatorShape_shapeBorder,
-      this.labelTextStyle_textStyle,
+      this.labelTextStyle_textStyleString,
       this.labelBehavior_enum_navigationDestinationLabelBehavior})
       : super._();
 
@@ -248,20 +257,20 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
   @override
   final double? height_double;
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
   final double? elevation_double;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? indicatorColor_color;
+  final String? indicatorColor_themeColorString;
 // @OutlinedBorderConverter()
   @override
   final ShapeBorderModel? indicatorShape_shapeBorder;
   @override
-  final String? labelTextStyle_textStyle;
+  final String? labelTextStyle_textStyleString;
 // @NavigationDestinationLabelConverter()
   @override
   final NavigationDestinationLabelBehavior?
@@ -269,7 +278,7 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
 
   @override
   String toString() {
-    return 'NavigationBarModel(height_double: $height_double, backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, indicatorColor_color: $indicatorColor_color, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, labelTextStyle_textStyle: $labelTextStyle_textStyle, labelBehavior_enum_navigationDestinationLabelBehavior: $labelBehavior_enum_navigationDestinationLabelBehavior)';
+    return 'NavigationBarModel(height_double: $height_double, backgroundColor_themeColorString: $backgroundColor_themeColorString, elevation_double: $elevation_double, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, indicatorColor_themeColorString: $indicatorColor_themeColorString, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, labelTextStyle_textStyleString: $labelTextStyle_textStyleString, labelBehavior_enum_navigationDestinationLabelBehavior: $labelBehavior_enum_navigationDestinationLabelBehavior)';
   }
 
   @override
@@ -279,23 +288,28 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
             other is _$NavigationBarModelImpl &&
             (identical(other.height_double, height_double) ||
                 other.height_double == height_double) &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.backgroundColor_themeColorString,
+                    backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
-            (identical(other.indicatorColor_color, indicatorColor_color) ||
-                other.indicatorColor_color == indicatorColor_color) &&
-            (identical(other.indicatorShape_shapeBorder,
-                    indicatorShape_shapeBorder) ||
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.indicatorColor_themeColorString, indicatorColor_themeColorString) ||
+                other.indicatorColor_themeColorString ==
+                    indicatorColor_themeColorString) &&
+            (identical(other.indicatorShape_shapeBorder, indicatorShape_shapeBorder) ||
                 other.indicatorShape_shapeBorder ==
                     indicatorShape_shapeBorder) &&
-            (identical(
-                    other.labelTextStyle_textStyle, labelTextStyle_textStyle) ||
-                other.labelTextStyle_textStyle == labelTextStyle_textStyle) &&
+            (identical(other.labelTextStyle_textStyleString, labelTextStyle_textStyleString) ||
+                other.labelTextStyle_textStyleString ==
+                    labelTextStyle_textStyleString) &&
             (identical(
                     other.labelBehavior_enum_navigationDestinationLabelBehavior,
                     labelBehavior_enum_navigationDestinationLabelBehavior) ||
@@ -308,13 +322,13 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
   int get hashCode => Object.hash(
       runtimeType,
       height_double,
-      backgroundColor_color,
+      backgroundColor_themeColorString,
       elevation_double,
-      shadowColor_color,
-      surfaceTintColor_color,
-      indicatorColor_color,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
+      indicatorColor_themeColorString,
       indicatorShape_shapeBorder,
-      labelTextStyle_textStyle,
+      labelTextStyle_textStyleString,
       labelBehavior_enum_navigationDestinationLabelBehavior);
 
   @JsonKey(ignore: true)
@@ -335,13 +349,13 @@ class _$NavigationBarModelImpl extends _NavigationBarModel {
 abstract class _NavigationBarModel extends NavigationBarModel {
   factory _NavigationBarModel(
           {final double? height_double,
-          final String? backgroundColor_color,
+          final String? backgroundColor_themeColorString,
           final double? elevation_double,
-          final String? shadowColor_color,
-          final String? surfaceTintColor_color,
-          final String? indicatorColor_color,
+          final String? shadowColor_themeColorString,
+          final String? surfaceTintColor_themeColorString,
+          final String? indicatorColor_themeColorString,
           final ShapeBorderModel? indicatorShape_shapeBorder,
-          final String? labelTextStyle_textStyle,
+          final String? labelTextStyle_textStyleString,
           final NavigationDestinationLabelBehavior?
               labelBehavior_enum_navigationDestinationLabelBehavior}) =
       _$NavigationBarModelImpl;
@@ -353,19 +367,19 @@ abstract class _NavigationBarModel extends NavigationBarModel {
   @override
   double? get height_double;
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
   double? get elevation_double;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get indicatorColor_color;
+  String? get indicatorColor_themeColorString;
   @override // @OutlinedBorderConverter()
   ShapeBorderModel? get indicatorShape_shapeBorder;
   @override
-  String? get labelTextStyle_textStyle;
+  String? get labelTextStyle_textStyleString;
   @override // @NavigationDestinationLabelConverter()
   NavigationDestinationLabelBehavior?
       get labelBehavior_enum_navigationDestinationLabelBehavior;

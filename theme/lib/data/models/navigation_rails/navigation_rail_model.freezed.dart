@@ -20,18 +20,20 @@ NavigationRailModel _$NavigationRailModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NavigationRailModel {
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  double? get elevation_double => throw _privateConstructorUsedError;
-  String? get unselectedLabelTextStyle_textStyle =>
+  String? get backgroundColor_themeColorString =>
       throw _privateConstructorUsedError;
-  String? get selectedLabelTextStyle_textStyle =>
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get unselectedLabelTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get selectedLabelTextStyle_textStyleString =>
       throw _privateConstructorUsedError;
   double? get groupAlignment_double =>
       throw _privateConstructorUsedError; // @NavigationRailLabelConverter()
   NavigationRailLabelType? get labelType_enum_navigationRailLabelType =>
       throw _privateConstructorUsedError;
   bool? get useIndicator_bool => throw _privateConstructorUsedError;
-  String? get indicatorColor_color => throw _privateConstructorUsedError;
+  String? get indicatorColor_themeColorString =>
+      throw _privateConstructorUsedError;
   ShapeBorderModel? get indicatorShape_shapeBorder =>
       throw _privateConstructorUsedError;
   double? get minWidth_double => throw _privateConstructorUsedError;
@@ -50,14 +52,14 @@ abstract class $NavigationRailModelCopyWith<$Res> {
       _$NavigationRailModelCopyWithImpl<$Res, NavigationRailModel>;
   @useResult
   $Res call(
-      {String? backgroundColor_color,
+      {String? backgroundColor_themeColorString,
       double? elevation_double,
-      String? unselectedLabelTextStyle_textStyle,
-      String? selectedLabelTextStyle_textStyle,
+      String? unselectedLabelTextStyle_textStyleString,
+      String? selectedLabelTextStyle_textStyleString,
       double? groupAlignment_double,
       NavigationRailLabelType? labelType_enum_navigationRailLabelType,
       bool? useIndicator_bool,
-      String? indicatorColor_color,
+      String? indicatorColor_themeColorString,
       ShapeBorderModel? indicatorShape_shapeBorder,
       double? minWidth_double,
       double? minExtendedWidth_double});
@@ -78,36 +80,37 @@ class _$NavigationRailModelCopyWithImpl<$Res, $Val extends NavigationRailModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? unselectedLabelTextStyle_textStyle = freezed,
-    Object? selectedLabelTextStyle_textStyle = freezed,
+    Object? unselectedLabelTextStyle_textStyleString = freezed,
+    Object? selectedLabelTextStyle_textStyleString = freezed,
     Object? groupAlignment_double = freezed,
     Object? labelType_enum_navigationRailLabelType = freezed,
     Object? useIndicator_bool = freezed,
-    Object? indicatorColor_color = freezed,
+    Object? indicatorColor_themeColorString = freezed,
     Object? indicatorShape_shapeBorder = freezed,
     Object? minWidth_double = freezed,
     Object? minExtendedWidth_double = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      unselectedLabelTextStyle_textStyle: freezed ==
-              unselectedLabelTextStyle_textStyle
-          ? _value.unselectedLabelTextStyle_textStyle
-          : unselectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      unselectedLabelTextStyle_textStyleString: freezed ==
+              unselectedLabelTextStyle_textStyleString
+          ? _value.unselectedLabelTextStyle_textStyleString
+          : unselectedLabelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedLabelTextStyle_textStyle: freezed ==
-              selectedLabelTextStyle_textStyle
-          ? _value.selectedLabelTextStyle_textStyle
-          : selectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      selectedLabelTextStyle_textStyleString: freezed ==
+              selectedLabelTextStyle_textStyleString
+          ? _value.selectedLabelTextStyle_textStyleString
+          : selectedLabelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       groupAlignment_double: freezed == groupAlignment_double
           ? _value.groupAlignment_double
@@ -122,9 +125,10 @@ class _$NavigationRailModelCopyWithImpl<$Res, $Val extends NavigationRailModel>
           ? _value.useIndicator_bool
           : useIndicator_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      indicatorColor_color: freezed == indicatorColor_color
-          ? _value.indicatorColor_color
-          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
+      indicatorColor_themeColorString: freezed ==
+              indicatorColor_themeColorString
+          ? _value.indicatorColor_themeColorString
+          : indicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
           ? _value.indicatorShape_shapeBorder
@@ -164,14 +168,14 @@ abstract class _$$NavigationRailModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor_color,
+      {String? backgroundColor_themeColorString,
       double? elevation_double,
-      String? unselectedLabelTextStyle_textStyle,
-      String? selectedLabelTextStyle_textStyle,
+      String? unselectedLabelTextStyle_textStyleString,
+      String? selectedLabelTextStyle_textStyleString,
       double? groupAlignment_double,
       NavigationRailLabelType? labelType_enum_navigationRailLabelType,
       bool? useIndicator_bool,
-      String? indicatorColor_color,
+      String? indicatorColor_themeColorString,
       ShapeBorderModel? indicatorShape_shapeBorder,
       double? minWidth_double,
       double? minExtendedWidth_double});
@@ -191,36 +195,37 @@ class __$$NavigationRailModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? unselectedLabelTextStyle_textStyle = freezed,
-    Object? selectedLabelTextStyle_textStyle = freezed,
+    Object? unselectedLabelTextStyle_textStyleString = freezed,
+    Object? selectedLabelTextStyle_textStyleString = freezed,
     Object? groupAlignment_double = freezed,
     Object? labelType_enum_navigationRailLabelType = freezed,
     Object? useIndicator_bool = freezed,
-    Object? indicatorColor_color = freezed,
+    Object? indicatorColor_themeColorString = freezed,
     Object? indicatorShape_shapeBorder = freezed,
     Object? minWidth_double = freezed,
     Object? minExtendedWidth_double = freezed,
   }) {
     return _then(_$NavigationRailModelImpl(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      unselectedLabelTextStyle_textStyle: freezed ==
-              unselectedLabelTextStyle_textStyle
-          ? _value.unselectedLabelTextStyle_textStyle
-          : unselectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      unselectedLabelTextStyle_textStyleString: freezed ==
+              unselectedLabelTextStyle_textStyleString
+          ? _value.unselectedLabelTextStyle_textStyleString
+          : unselectedLabelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedLabelTextStyle_textStyle: freezed ==
-              selectedLabelTextStyle_textStyle
-          ? _value.selectedLabelTextStyle_textStyle
-          : selectedLabelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      selectedLabelTextStyle_textStyleString: freezed ==
+              selectedLabelTextStyle_textStyleString
+          ? _value.selectedLabelTextStyle_textStyleString
+          : selectedLabelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       groupAlignment_double: freezed == groupAlignment_double
           ? _value.groupAlignment_double
@@ -235,9 +240,10 @@ class __$$NavigationRailModelImplCopyWithImpl<$Res>
           ? _value.useIndicator_bool
           : useIndicator_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      indicatorColor_color: freezed == indicatorColor_color
-          ? _value.indicatorColor_color
-          : indicatorColor_color // ignore: cast_nullable_to_non_nullable
+      indicatorColor_themeColorString: freezed ==
+              indicatorColor_themeColorString
+          ? _value.indicatorColor_themeColorString
+          : indicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
           ? _value.indicatorShape_shapeBorder
@@ -259,14 +265,14 @@ class __$$NavigationRailModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NavigationRailModelImpl extends _NavigationRailModel {
   const _$NavigationRailModelImpl(
-      {this.backgroundColor_color,
+      {this.backgroundColor_themeColorString,
       this.elevation_double,
-      this.unselectedLabelTextStyle_textStyle,
-      this.selectedLabelTextStyle_textStyle,
+      this.unselectedLabelTextStyle_textStyleString,
+      this.selectedLabelTextStyle_textStyleString,
       this.groupAlignment_double,
       this.labelType_enum_navigationRailLabelType,
       this.useIndicator_bool,
-      this.indicatorColor_color,
+      this.indicatorColor_themeColorString,
       this.indicatorShape_shapeBorder,
       this.minWidth_double,
       this.minExtendedWidth_double})
@@ -276,13 +282,13 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
       _$$NavigationRailModelImplFromJson(json);
 
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
   final double? elevation_double;
   @override
-  final String? unselectedLabelTextStyle_textStyle;
+  final String? unselectedLabelTextStyle_textStyleString;
   @override
-  final String? selectedLabelTextStyle_textStyle;
+  final String? selectedLabelTextStyle_textStyleString;
   @override
   final double? groupAlignment_double;
 // @NavigationRailLabelConverter()
@@ -291,7 +297,7 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
   @override
   final bool? useIndicator_bool;
   @override
-  final String? indicatorColor_color;
+  final String? indicatorColor_themeColorString;
   @override
   final ShapeBorderModel? indicatorShape_shapeBorder;
   @override
@@ -301,7 +307,7 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
 
   @override
   String toString() {
-    return 'NavigationRailModel(backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, unselectedLabelTextStyle_textStyle: $unselectedLabelTextStyle_textStyle, selectedLabelTextStyle_textStyle: $selectedLabelTextStyle_textStyle, groupAlignment_double: $groupAlignment_double, labelType_enum_navigationRailLabelType: $labelType_enum_navigationRailLabelType, useIndicator_bool: $useIndicator_bool, indicatorColor_color: $indicatorColor_color, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, minWidth_double: $minWidth_double, minExtendedWidth_double: $minExtendedWidth_double)';
+    return 'NavigationRailModel(backgroundColor_themeColorString: $backgroundColor_themeColorString, elevation_double: $elevation_double, unselectedLabelTextStyle_textStyleString: $unselectedLabelTextStyle_textStyleString, selectedLabelTextStyle_textStyleString: $selectedLabelTextStyle_textStyleString, groupAlignment_double: $groupAlignment_double, labelType_enum_navigationRailLabelType: $labelType_enum_navigationRailLabelType, useIndicator_bool: $useIndicator_bool, indicatorColor_themeColorString: $indicatorColor_themeColorString, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, minWidth_double: $minWidth_double, minExtendedWidth_double: $minExtendedWidth_double)';
   }
 
   @override
@@ -309,18 +315,19 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NavigationRailModelImpl &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.unselectedLabelTextStyle_textStyle,
-                    unselectedLabelTextStyle_textStyle) ||
-                other.unselectedLabelTextStyle_textStyle ==
-                    unselectedLabelTextStyle_textStyle) &&
-            (identical(other.selectedLabelTextStyle_textStyle,
-                    selectedLabelTextStyle_textStyle) ||
-                other.selectedLabelTextStyle_textStyle ==
-                    selectedLabelTextStyle_textStyle) &&
+            (identical(other.unselectedLabelTextStyle_textStyleString,
+                    unselectedLabelTextStyle_textStyleString) ||
+                other.unselectedLabelTextStyle_textStyleString ==
+                    unselectedLabelTextStyle_textStyleString) &&
+            (identical(other.selectedLabelTextStyle_textStyleString,
+                    selectedLabelTextStyle_textStyleString) ||
+                other.selectedLabelTextStyle_textStyleString ==
+                    selectedLabelTextStyle_textStyleString) &&
             (identical(other.groupAlignment_double, groupAlignment_double) ||
                 other.groupAlignment_double == groupAlignment_double) &&
             (identical(other.labelType_enum_navigationRailLabelType,
@@ -329,16 +336,15 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
                     labelType_enum_navigationRailLabelType) &&
             (identical(other.useIndicator_bool, useIndicator_bool) ||
                 other.useIndicator_bool == useIndicator_bool) &&
-            (identical(other.indicatorColor_color, indicatorColor_color) ||
-                other.indicatorColor_color == indicatorColor_color) &&
-            (identical(other.indicatorShape_shapeBorder,
-                    indicatorShape_shapeBorder) ||
+            (identical(other.indicatorColor_themeColorString, indicatorColor_themeColorString) ||
+                other.indicatorColor_themeColorString ==
+                    indicatorColor_themeColorString) &&
+            (identical(other.indicatorShape_shapeBorder, indicatorShape_shapeBorder) ||
                 other.indicatorShape_shapeBorder ==
                     indicatorShape_shapeBorder) &&
             (identical(other.minWidth_double, minWidth_double) ||
                 other.minWidth_double == minWidth_double) &&
-            (identical(
-                    other.minExtendedWidth_double, minExtendedWidth_double) ||
+            (identical(other.minExtendedWidth_double, minExtendedWidth_double) ||
                 other.minExtendedWidth_double == minExtendedWidth_double));
   }
 
@@ -346,14 +352,14 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor_color,
+      backgroundColor_themeColorString,
       elevation_double,
-      unselectedLabelTextStyle_textStyle,
-      selectedLabelTextStyle_textStyle,
+      unselectedLabelTextStyle_textStyleString,
+      selectedLabelTextStyle_textStyleString,
       groupAlignment_double,
       labelType_enum_navigationRailLabelType,
       useIndicator_bool,
-      indicatorColor_color,
+      indicatorColor_themeColorString,
       indicatorShape_shapeBorder,
       minWidth_double,
       minExtendedWidth_double);
@@ -375,14 +381,14 @@ class _$NavigationRailModelImpl extends _NavigationRailModel {
 
 abstract class _NavigationRailModel extends NavigationRailModel {
   const factory _NavigationRailModel(
-      {final String? backgroundColor_color,
+      {final String? backgroundColor_themeColorString,
       final double? elevation_double,
-      final String? unselectedLabelTextStyle_textStyle,
-      final String? selectedLabelTextStyle_textStyle,
+      final String? unselectedLabelTextStyle_textStyleString,
+      final String? selectedLabelTextStyle_textStyleString,
       final double? groupAlignment_double,
       final NavigationRailLabelType? labelType_enum_navigationRailLabelType,
       final bool? useIndicator_bool,
-      final String? indicatorColor_color,
+      final String? indicatorColor_themeColorString,
       final ShapeBorderModel? indicatorShape_shapeBorder,
       final double? minWidth_double,
       final double? minExtendedWidth_double}) = _$NavigationRailModelImpl;
@@ -392,13 +398,13 @@ abstract class _NavigationRailModel extends NavigationRailModel {
       _$NavigationRailModelImpl.fromJson;
 
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
   double? get elevation_double;
   @override
-  String? get unselectedLabelTextStyle_textStyle;
+  String? get unselectedLabelTextStyle_textStyleString;
   @override
-  String? get selectedLabelTextStyle_textStyle;
+  String? get selectedLabelTextStyle_textStyleString;
   @override
   double? get groupAlignment_double;
   @override // @NavigationRailLabelConverter()
@@ -406,7 +412,7 @@ abstract class _NavigationRailModel extends NavigationRailModel {
   @override
   bool? get useIndicator_bool;
   @override
-  String? get indicatorColor_color;
+  String? get indicatorColor_themeColorString;
   @override
   ShapeBorderModel? get indicatorShape_shapeBorder;
   @override

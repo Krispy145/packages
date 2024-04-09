@@ -17,7 +17,7 @@ abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with St
   final double increment;
   final bool showButtons;
 
-  late final TextEditingController textController = TextEditingController(text: value.toString());
+  late final TextEditingController textController = TextEditingController(text: value?.toString());
 
   @action
   void add() {
@@ -38,6 +38,7 @@ abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with St
   }
 }
 
+// TODO: Move to utilities
 extension TextEditingControllerExtension on TextEditingController {
   void setTextIfNotEqual(String text) {
     if (text != this.text) {

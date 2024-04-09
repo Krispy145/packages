@@ -8,9 +8,11 @@ part of 'checkbox_model.dart';
 
 _$CheckboxModelImpl _$$CheckboxModelImplFromJson(Map<String, dynamic> json) =>
     _$CheckboxModelImpl(
-      fillColor_color: json['fillColor_color'] as String?,
-      checkColor_color: json['checkColor_color'] as String?,
-      overlayColor_color: json['overlayColor_color'] as String?,
+      fillColor_themeColorString: json['fillColor_themeColorString'] as String?,
+      checkColor_themeColorString:
+          json['checkColor_themeColorString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
       splashRadius_double: (json['splashRadius_double'] as num?)?.toDouble(),
       shape_outlinedBorder: json['shape_outlinedBorder'] == null
           ? const OutlinedBorderModel()
@@ -24,9 +26,9 @@ _$CheckboxModelImpl _$$CheckboxModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$CheckboxModelImplToJson(_$CheckboxModelImpl instance) =>
     <String, dynamic>{
-      'fillColor_color': instance.fillColor_color,
-      'checkColor_color': instance.checkColor_color,
-      'overlayColor_color': instance.overlayColor_color,
+      'fillColor_themeColorString': instance.fillColor_themeColorString,
+      'checkColor_themeColorString': instance.checkColor_themeColorString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
       'splashRadius_double': instance.splashRadius_double,
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
       'side_borderSide': instance.side_borderSide?.toJson(),

@@ -20,11 +20,13 @@ BottomAppbarModel _$BottomAppbarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BottomAppbarModel {
-  String? get color_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   double? get height_double => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
   EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,11 +42,11 @@ abstract class $BottomAppbarModelCopyWith<$Res> {
       _$BottomAppbarModelCopyWithImpl<$Res, BottomAppbarModel>;
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       double? elevation_double,
       double? height_double,
-      String? surfaceTintColor_color,
-      String? shadowColor_color,
+      String? surfaceTintColor_themeColorString,
+      String? shadowColor_themeColorString,
       EdgeInsetsModel? padding_edgeInsets});
 
   $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
@@ -63,17 +65,17 @@ class _$BottomAppbarModelCopyWithImpl<$Res, $Val extends BottomAppbarModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? height_double = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
     Object? padding_edgeInsets = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -83,13 +85,14 @@ class _$BottomAppbarModelCopyWithImpl<$Res, $Val extends BottomAppbarModel>
           ? _value.height_double
           : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
@@ -120,11 +123,11 @@ abstract class _$$BottomAppbarModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       double? elevation_double,
       double? height_double,
-      String? surfaceTintColor_color,
-      String? shadowColor_color,
+      String? surfaceTintColor_themeColorString,
+      String? shadowColor_themeColorString,
       EdgeInsetsModel? padding_edgeInsets});
 
   @override
@@ -142,17 +145,17 @@ class __$$BottomAppbarModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? height_double = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? shadowColor_color = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
     Object? padding_edgeInsets = freezed,
   }) {
     return _then(_$BottomAppbarModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -162,13 +165,14 @@ class __$$BottomAppbarModelImplCopyWithImpl<$Res>
           ? _value.height_double
           : height_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
@@ -182,11 +186,11 @@ class __$$BottomAppbarModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BottomAppbarModelImpl extends _BottomAppbarModel {
   const _$BottomAppbarModelImpl(
-      {this.color_color,
+      {this.color_themeColorString,
       this.elevation_double,
       this.height_double,
-      this.surfaceTintColor_color,
-      this.shadowColor_color,
+      this.surfaceTintColor_themeColorString,
+      this.shadowColor_themeColorString,
       this.padding_edgeInsets = const EdgeInsetsModel()})
       : super._();
 
@@ -194,22 +198,22 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
       _$$BottomAppbarModelImplFromJson(json);
 
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
   final double? elevation_double;
   @override
   final double? height_double;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
   @JsonKey()
   final EdgeInsetsModel? padding_edgeInsets;
 
   @override
   String toString() {
-    return 'BottomAppbarModel(color_color: $color_color, elevation_double: $elevation_double, height_double: $height_double, surfaceTintColor_color: $surfaceTintColor_color, shadowColor_color: $shadowColor_color, padding_edgeInsets: $padding_edgeInsets)';
+    return 'BottomAppbarModel(color_themeColorString: $color_themeColorString, elevation_double: $elevation_double, height_double: $height_double, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, padding_edgeInsets: $padding_edgeInsets)';
   }
 
   @override
@@ -217,16 +221,20 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BottomAppbarModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
             (identical(other.height_double, height_double) ||
                 other.height_double == height_double) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.shadowColor_themeColorString,
+                    shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
             (identical(other.padding_edgeInsets, padding_edgeInsets) ||
                 other.padding_edgeInsets == padding_edgeInsets));
   }
@@ -235,11 +243,11 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color_color,
+      color_themeColorString,
       elevation_double,
       height_double,
-      surfaceTintColor_color,
-      shadowColor_color,
+      surfaceTintColor_themeColorString,
+      shadowColor_themeColorString,
       padding_edgeInsets);
 
   @JsonKey(ignore: true)
@@ -259,11 +267,11 @@ class _$BottomAppbarModelImpl extends _BottomAppbarModel {
 
 abstract class _BottomAppbarModel extends BottomAppbarModel {
   const factory _BottomAppbarModel(
-      {final String? color_color,
+      {final String? color_themeColorString,
       final double? elevation_double,
       final double? height_double,
-      final String? surfaceTintColor_color,
-      final String? shadowColor_color,
+      final String? surfaceTintColor_themeColorString,
+      final String? shadowColor_themeColorString,
       final EdgeInsetsModel? padding_edgeInsets}) = _$BottomAppbarModelImpl;
   const _BottomAppbarModel._() : super._();
 
@@ -271,15 +279,15 @@ abstract class _BottomAppbarModel extends BottomAppbarModel {
       _$BottomAppbarModelImpl.fromJson;
 
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override
   double? get elevation_double;
   @override
   double? get height_double;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
   EdgeInsetsModel? get padding_edgeInsets;
   @override

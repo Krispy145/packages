@@ -20,16 +20,19 @@ PopupMenuModel _$PopupMenuModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PopupMenuModel {
-  String? get color_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
   ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
-  String? get textStyle_textStyle => throw _privateConstructorUsedError;
-  String? get labelTextStyle_textStyle => throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get textStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get labelTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
   bool? get enableFeedback_bool => throw _privateConstructorUsedError;
   PopupMenuPosition get position => throw _privateConstructorUsedError;
-  String? get iconColor_color => throw _privateConstructorUsedError;
+  String? get iconColor_themeColorString => throw _privateConstructorUsedError;
   double? get iconSize_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,16 +48,16 @@ abstract class $PopupMenuModelCopyWith<$Res> {
       _$PopupMenuModelCopyWithImpl<$Res, PopupMenuModel>;
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       ShapeBorderModel? shape_shapeBorder,
       double? elevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
-      String? textStyle_textStyle,
-      String? labelTextStyle_textStyle,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? textStyle_textStyleString,
+      String? labelTextStyle_textStyleString,
       bool? enableFeedback_bool,
       PopupMenuPosition position,
-      String? iconColor_color,
+      String? iconColor_themeColorString,
       double? iconSize_double});
 
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
@@ -73,22 +76,22 @@ class _$PopupMenuModelCopyWithImpl<$Res, $Val extends PopupMenuModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? shape_shapeBorder = freezed,
     Object? elevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? textStyle_textStyle = freezed,
-    Object? labelTextStyle_textStyle = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? labelTextStyle_textStyleString = freezed,
     Object? enableFeedback_bool = freezed,
     Object? position = null,
-    Object? iconColor_color = freezed,
+    Object? iconColor_themeColorString = freezed,
     Object? iconSize_double = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       shape_shapeBorder: freezed == shape_shapeBorder
           ? _value.shape_shapeBorder
@@ -98,21 +101,22 @@ class _$PopupMenuModelCopyWithImpl<$Res, $Val extends PopupMenuModel>
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
-          ? _value.labelTextStyle_textStyle
-          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      labelTextStyle_textStyleString: freezed == labelTextStyle_textStyleString
+          ? _value.labelTextStyle_textStyleString
+          : labelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       enableFeedback_bool: freezed == enableFeedback_bool
           ? _value.enableFeedback_bool
@@ -122,9 +126,9 @@ class _$PopupMenuModelCopyWithImpl<$Res, $Val extends PopupMenuModel>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as PopupMenuPosition,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       iconSize_double: freezed == iconSize_double
           ? _value.iconSize_double
@@ -155,16 +159,16 @@ abstract class _$$PopupMenuModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       ShapeBorderModel? shape_shapeBorder,
       double? elevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
-      String? textStyle_textStyle,
-      String? labelTextStyle_textStyle,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? textStyle_textStyleString,
+      String? labelTextStyle_textStyleString,
       bool? enableFeedback_bool,
       PopupMenuPosition position,
-      String? iconColor_color,
+      String? iconColor_themeColorString,
       double? iconSize_double});
 
   @override
@@ -182,22 +186,22 @@ class __$$PopupMenuModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? shape_shapeBorder = freezed,
     Object? elevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
-    Object? textStyle_textStyle = freezed,
-    Object? labelTextStyle_textStyle = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? labelTextStyle_textStyleString = freezed,
     Object? enableFeedback_bool = freezed,
     Object? position = null,
-    Object? iconColor_color = freezed,
+    Object? iconColor_themeColorString = freezed,
     Object? iconSize_double = freezed,
   }) {
     return _then(_$PopupMenuModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       shape_shapeBorder: freezed == shape_shapeBorder
           ? _value.shape_shapeBorder
@@ -207,21 +211,22 @@ class __$$PopupMenuModelImplCopyWithImpl<$Res>
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelTextStyle_textStyle: freezed == labelTextStyle_textStyle
-          ? _value.labelTextStyle_textStyle
-          : labelTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      labelTextStyle_textStyleString: freezed == labelTextStyle_textStyleString
+          ? _value.labelTextStyle_textStyleString
+          : labelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       enableFeedback_bool: freezed == enableFeedback_bool
           ? _value.enableFeedback_bool
@@ -231,9 +236,9 @@ class __$$PopupMenuModelImplCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as PopupMenuPosition,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       iconSize_double: freezed == iconSize_double
           ? _value.iconSize_double
@@ -247,16 +252,16 @@ class __$$PopupMenuModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PopupMenuModelImpl extends _PopupMenuModel {
   const _$PopupMenuModelImpl(
-      {this.color_color,
+      {this.color_themeColorString,
       this.shape_shapeBorder,
       this.elevation_double,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
-      this.textStyle_textStyle,
-      this.labelTextStyle_textStyle,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.textStyle_textStyleString,
+      this.labelTextStyle_textStyleString,
       this.enableFeedback_bool,
       this.position = PopupMenuPosition.under,
-      this.iconColor_color,
+      this.iconColor_themeColorString,
       this.iconSize_double})
       : super._();
 
@@ -264,32 +269,32 @@ class _$PopupMenuModelImpl extends _PopupMenuModel {
       _$$PopupMenuModelImplFromJson(json);
 
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
   final ShapeBorderModel? shape_shapeBorder;
   @override
   final double? elevation_double;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? textStyle_textStyle;
+  final String? textStyle_textStyleString;
   @override
-  final String? labelTextStyle_textStyle;
+  final String? labelTextStyle_textStyleString;
   @override
   final bool? enableFeedback_bool;
   @override
   @JsonKey()
   final PopupMenuPosition position;
   @override
-  final String? iconColor_color;
+  final String? iconColor_themeColorString;
   @override
   final double? iconSize_double;
 
   @override
   String toString() {
-    return 'PopupMenuModel(color_color: $color_color, shape_shapeBorder: $shape_shapeBorder, elevation_double: $elevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, textStyle_textStyle: $textStyle_textStyle, labelTextStyle_textStyle: $labelTextStyle_textStyle, enableFeedback_bool: $enableFeedback_bool, position: $position, iconColor_color: $iconColor_color, iconSize_double: $iconSize_double)';
+    return 'PopupMenuModel(color_themeColorString: $color_themeColorString, shape_shapeBorder: $shape_shapeBorder, elevation_double: $elevation_double, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, textStyle_textStyleString: $textStyle_textStyleString, labelTextStyle_textStyleString: $labelTextStyle_textStyleString, enableFeedback_bool: $enableFeedback_bool, position: $position, iconColor_themeColorString: $iconColor_themeColorString, iconSize_double: $iconSize_double)';
   }
 
   @override
@@ -297,27 +302,34 @@ class _$PopupMenuModelImpl extends _PopupMenuModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PopupMenuModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.shape_shapeBorder, shape_shapeBorder) ||
                 other.shape_shapeBorder == shape_shapeBorder) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
-            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
-                other.textStyle_textStyle == textStyle_textStyle) &&
-            (identical(
-                    other.labelTextStyle_textStyle, labelTextStyle_textStyle) ||
-                other.labelTextStyle_textStyle == labelTextStyle_textStyle) &&
+            (identical(other.shadowColor_themeColorString,
+                    shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.textStyle_textStyleString, textStyle_textStyleString) ||
+                other.textStyle_textStyleString == textStyle_textStyleString) &&
+            (identical(other.labelTextStyle_textStyleString,
+                    labelTextStyle_textStyleString) ||
+                other.labelTextStyle_textStyleString ==
+                    labelTextStyle_textStyleString) &&
             (identical(other.enableFeedback_bool, enableFeedback_bool) ||
                 other.enableFeedback_bool == enableFeedback_bool) &&
             (identical(other.position, position) ||
                 other.position == position) &&
-            (identical(other.iconColor_color, iconColor_color) ||
-                other.iconColor_color == iconColor_color) &&
+            (identical(other.iconColor_themeColorString,
+                    iconColor_themeColorString) ||
+                other.iconColor_themeColorString ==
+                    iconColor_themeColorString) &&
             (identical(other.iconSize_double, iconSize_double) ||
                 other.iconSize_double == iconSize_double));
   }
@@ -326,16 +338,16 @@ class _$PopupMenuModelImpl extends _PopupMenuModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color_color,
+      color_themeColorString,
       shape_shapeBorder,
       elevation_double,
-      shadowColor_color,
-      surfaceTintColor_color,
-      textStyle_textStyle,
-      labelTextStyle_textStyle,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
+      textStyle_textStyleString,
+      labelTextStyle_textStyleString,
       enableFeedback_bool,
       position,
-      iconColor_color,
+      iconColor_themeColorString,
       iconSize_double);
 
   @JsonKey(ignore: true)
@@ -355,16 +367,16 @@ class _$PopupMenuModelImpl extends _PopupMenuModel {
 
 abstract class _PopupMenuModel extends PopupMenuModel {
   const factory _PopupMenuModel(
-      {final String? color_color,
+      {final String? color_themeColorString,
       final ShapeBorderModel? shape_shapeBorder,
       final double? elevation_double,
-      final String? shadowColor_color,
-      final String? surfaceTintColor_color,
-      final String? textStyle_textStyle,
-      final String? labelTextStyle_textStyle,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
+      final String? textStyle_textStyleString,
+      final String? labelTextStyle_textStyleString,
       final bool? enableFeedback_bool,
       final PopupMenuPosition position,
-      final String? iconColor_color,
+      final String? iconColor_themeColorString,
       final double? iconSize_double}) = _$PopupMenuModelImpl;
   const _PopupMenuModel._() : super._();
 
@@ -372,25 +384,25 @@ abstract class _PopupMenuModel extends PopupMenuModel {
       _$PopupMenuModelImpl.fromJson;
 
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override
   ShapeBorderModel? get shape_shapeBorder;
   @override
   double? get elevation_double;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get textStyle_textStyle;
+  String? get textStyle_textStyleString;
   @override
-  String? get labelTextStyle_textStyle;
+  String? get labelTextStyle_textStyleString;
   @override
   bool? get enableFeedback_bool;
   @override
   PopupMenuPosition get position;
   @override
-  String? get iconColor_color;
+  String? get iconColor_themeColorString;
   @override
   double? get iconSize_double;
   @override

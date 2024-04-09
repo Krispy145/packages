@@ -12,7 +12,7 @@ part 'dropdown_model.g.dart';
 @freezed
 class DropdownModel with _$DropdownModel {
   const factory DropdownModel({
-    TextStyleString? textStyle_textStyle,
+    TextStyleString? textStyle_textStyleString,
     InputDecorationModel? inputDecoration_inputDecoration,
     MenuStyleModel? menuStyle_menu,
   }) = _DropdownModel;
@@ -31,7 +31,7 @@ class DropdownModel with _$DropdownModel {
 
   DropdownMenuThemeData asDropdownMenuThemeData({String? styleTypeName}) {
     return DropdownMenuThemeData(
-      textStyle: textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       inputDecorationTheme: inputDecoration_inputDecoration?.asInputDecorationTheme(),
       menuStyle: menuStyle_menu?.asMenuStyle(),
     );

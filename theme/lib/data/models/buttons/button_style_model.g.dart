@@ -9,12 +9,17 @@ part of 'button_style_model.dart';
 _$ButtonStyleModelImpl _$$ButtonStyleModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ButtonStyleModelImpl(
-      textStyle_textStyle: json['textStyle_textStyle'] as String?,
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      foregroundColor_color: json['foregroundColor_color'] as String?,
-      overlayColor_color: json['overlayColor_color'] as String?,
-      shadowColor_color: json['shadowColor_color'] as String?,
-      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      foregroundColor_themeColorString:
+          json['foregroundColor_themeColorString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
       padding_edgeInsets: json['padding_edgeInsets'] == null
           ? const EdgeInsetsModel()
@@ -31,7 +36,7 @@ _$ButtonStyleModelImpl _$$ButtonStyleModelImplFromJson(
           ? const SizeModel()
           : SizeModel.fromJson(
               json['maximumSize_size'] as Map<String, dynamic>),
-      iconColor_color: json['iconColor_color'] as String?,
+      iconColor_themeColorString: json['iconColor_themeColorString'] as String?,
       iconSize_double: (json['iconSize_double'] as num?)?.toDouble(),
       side_borderSide: json['side_borderSide'] == null
           ? const BorderSideModel()
@@ -46,18 +51,21 @@ _$ButtonStyleModelImpl _$$ButtonStyleModelImplFromJson(
 Map<String, dynamic> _$$ButtonStyleModelImplToJson(
         _$ButtonStyleModelImpl instance) =>
     <String, dynamic>{
-      'textStyle_textStyle': instance.textStyle_textStyle,
-      'backgroundColor_color': instance.backgroundColor_color,
-      'foregroundColor_color': instance.foregroundColor_color,
-      'overlayColor_color': instance.overlayColor_color,
-      'shadowColor_color': instance.shadowColor_color,
-      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'foregroundColor_themeColorString':
+          instance.foregroundColor_themeColorString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
       'elevation_double': instance.elevation_double,
       'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'minimumSize_size': instance.minimumSize_size?.toJson(),
       'fixedSize_size': instance.fixedSize_size?.toJson(),
       'maximumSize_size': instance.maximumSize_size?.toJson(),
-      'iconColor_color': instance.iconColor_color,
+      'iconColor_themeColorString': instance.iconColor_themeColorString,
       'iconSize_double': instance.iconSize_double,
       'side_borderSide': instance.side_borderSide?.toJson(),
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),

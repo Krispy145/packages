@@ -1,10 +1,10 @@
 // import 'package:flutter/services.dart';
 // import 'package:freezed_annotation/freezed_annotation.dart';
 // import 'package:theme/converters/colors/color_from_base_theme.dart';
-// import 'package:theme/domain/models/colors/brightness_color_model.dart';
+// import 'package:theme/domain/models/colors/brightness_themeColorString_model.dart';
 
-// part 'base_theme_color_model.freezed.dart';
-// part 'base_theme_color_model.g.dart';
+// part 'base_theme_themeColorString_model.freezed.dart';
+// part 'base_theme_themeColorString_model.g.dart';
 
 // @freezed
 // class BaseThemeColorModel with _$BaseThemeColorModel {

@@ -12,22 +12,27 @@ _$TabBarModelImpl _$$TabBarModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : BoxDecorationModel.fromJson(
               json['indicator_boxDecoration'] as Map<String, dynamic>),
-      indicatorColor_color: json['indicatorColor_color'] as String?,
-      dividerColor_color: json['dividerColor_color'] as String?,
+      indicatorColor_themeColorString:
+          json['indicatorColor_themeColorString'] as String?,
+      dividerColor_themeColorString:
+          json['dividerColor_themeColorString'] as String?,
       indicatorSize_enum_tabBarIndicatorSize: $enumDecodeNullable(
           _$TabBarIndicatorSizeEnumMap,
           json['indicatorSize_enum_tabBarIndicatorSize']),
       dividerHeight_double: (json['dividerHeight_double'] as num?)?.toDouble(),
-      labelColor_color: json['labelColor_color'] as String?,
+      labelColor_themeColorString:
+          json['labelColor_themeColorString'] as String?,
       labelPadding_edgeInsets: json['labelPadding_edgeInsets'] == null
           ? const EdgeInsetsModel()
           : EdgeInsetsModel.fromJson(
               json['labelPadding_edgeInsets'] as Map<String, dynamic>),
-      labelStyle_textStyle: json['labelStyle_textStyle'] as String?,
-      unselectedLabelColor_color: json['unselectedLabelColor_color'] as String?,
-      unselectedLabelStyle_textStyle:
-          json['unselectedLabelStyle_textStyle'] as String?,
-      overlayColor_color: json['overlayColor_color'] as String?,
+      labelStyle_textStyleString: json['labelStyle_textStyleString'] as String?,
+      unselectedLabelColor_themeColorString:
+          json['unselectedLabelColor_themeColorString'] as String?,
+      unselectedLabelStyle_textStyleString:
+          json['unselectedLabelStyle_textStyleString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
       tabAlignment_enum_tabAlignment: $enumDecodeNullable(
           _$TabAlignmentEnumMap, json['tabAlignment_enum_tabAlignment']),
     );
@@ -35,17 +40,20 @@ _$TabBarModelImpl _$$TabBarModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$TabBarModelImplToJson(_$TabBarModelImpl instance) =>
     <String, dynamic>{
       'indicator_boxDecoration': instance.indicator_boxDecoration?.toJson(),
-      'indicatorColor_color': instance.indicatorColor_color,
-      'dividerColor_color': instance.dividerColor_color,
+      'indicatorColor_themeColorString':
+          instance.indicatorColor_themeColorString,
+      'dividerColor_themeColorString': instance.dividerColor_themeColorString,
       'indicatorSize_enum_tabBarIndicatorSize': _$TabBarIndicatorSizeEnumMap[
           instance.indicatorSize_enum_tabBarIndicatorSize],
       'dividerHeight_double': instance.dividerHeight_double,
-      'labelColor_color': instance.labelColor_color,
+      'labelColor_themeColorString': instance.labelColor_themeColorString,
       'labelPadding_edgeInsets': instance.labelPadding_edgeInsets?.toJson(),
-      'labelStyle_textStyle': instance.labelStyle_textStyle,
-      'unselectedLabelColor_color': instance.unselectedLabelColor_color,
-      'unselectedLabelStyle_textStyle': instance.unselectedLabelStyle_textStyle,
-      'overlayColor_color': instance.overlayColor_color,
+      'labelStyle_textStyleString': instance.labelStyle_textStyleString,
+      'unselectedLabelColor_themeColorString':
+          instance.unselectedLabelColor_themeColorString,
+      'unselectedLabelStyle_textStyleString':
+          instance.unselectedLabelStyle_textStyleString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
       'tabAlignment_enum_tabAlignment':
           _$TabAlignmentEnumMap[instance.tabAlignment_enum_tabAlignment],
     };

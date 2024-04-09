@@ -13,20 +13,20 @@ part 'snackbar_model.g.dart';
 @freezed
 class SnackbarModel with _$SnackbarModel {
   const factory SnackbarModel({
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? actionTextColor_color,
-    ThemeColorString? disabledActionTextColor_color,
-    TextStyleString? contentTextStyle_textStyle,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? actionTextColor_themeColorString,
+    ThemeColorString? disabledActionTextColor_themeColorString,
+    TextStyleString? contentTextStyle_textStyleString,
     double? elevation_double,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     @Default(SnackBarBehavior.floating) SnackBarBehavior behavior_enum_snackBarBehavior,
     double? width_double,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? insetPadding_edgeInsets,
     bool? showCloseIcon_bool,
-    ThemeColorString? closeIconColor_color,
+    ThemeColorString? closeIconColor_themeColorString,
     double? actionOverflowThreshold_double,
-    ThemeColorString? actionBackgroundColor_color,
-    ThemeColorString? disabledActionBackgroundColor_color,
+    ThemeColorString? actionBackgroundColor_themeColorString,
+    ThemeColorString? disabledActionBackgroundColor_themeColorString,
   }) = _SnackbarModel;
 
   const SnackbarModel._();
@@ -66,10 +66,10 @@ class SnackbarModel with _$SnackbarModel {
 
   SnackBarThemeData asSnackBarThemeData({String? styleTypeName}) {
     return SnackBarThemeData(
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
-      actionTextColor: actionTextColor_color?.toColor(styleType: styleTypeName),
-      disabledActionTextColor: disabledActionTextColor_color?.toColor(styleType: styleTypeName),
-      contentTextStyle: contentTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      actionTextColor: actionTextColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledActionTextColor: disabledActionTextColor_themeColorString?.toColor(styleType: styleTypeName),
+      contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       elevation: elevation_double,
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       behavior: behavior_enum_snackBarBehavior,
@@ -77,8 +77,8 @@ class SnackbarModel with _$SnackbarModel {
       insetPadding: insetPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       showCloseIcon: showCloseIcon_bool,
       actionOverflowThreshold: actionOverflowThreshold_double,
-      actionBackgroundColor: actionBackgroundColor_color?.toColor(styleType: styleTypeName),
-      disabledActionBackgroundColor: disabledActionBackgroundColor_color?.toColor(styleType: styleTypeName),
+      actionBackgroundColor: actionBackgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledActionBackgroundColor: disabledActionBackgroundColor_themeColorString?.toColor(styleType: styleTypeName),
     );
   }
 }

@@ -12,19 +12,19 @@ part 'appbar_model.g.dart';
 @freezed
 class AppbarModel with _$AppbarModel {
   const factory AppbarModel({
-    ThemeColorString? color_color,
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? foregroundColor_color,
+    ThemeColorString? color_themeColorString,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? foregroundColor_themeColorString,
     double? elevation_double,
     double? scrolledUnderElevation_double,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
     ShapeBorderModel? shape_shapeBorder,
     bool? centerTitle_bool,
     double? titleSpacing_double,
     double? toolbarHeight_double,
-    TextStyleString? toolbarTextStyle_textStyle,
-    TextStyleString? titleTextStyle_textStyle,
+    TextStyleString? toolbarTextStyle_textStyleString,
+    TextStyleString? titleTextStyle_textStyleString,
   }) = _AppbarModel;
 
   const AppbarModel._();
@@ -49,19 +49,19 @@ class AppbarModel with _$AppbarModel {
 
   AppBarTheme asAppBarTheme({String? styleTypeName}) {
     return AppBarTheme(
-      color: color_color?.toColor(styleType: styleTypeName),
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
-      foregroundColor: foregroundColor_color?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       centerTitle: centerTitle_bool,
       titleSpacing: titleSpacing_double,
       toolbarHeight: toolbarHeight_double,
-      toolbarTextStyle: toolbarTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      titleTextStyle: titleTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle.copyWith(
-            color: foregroundColor_color?.toColor(styleType: styleTypeName),
+      toolbarTextStyle: toolbarTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle.copyWith(
+            color: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
           ),
     );
   }

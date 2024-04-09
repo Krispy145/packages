@@ -25,7 +25,7 @@ _$TooltipModelImpl _$$TooltipModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : BoxDecorationModel.fromJson(
               json['decoration_boxDecoration'] as Map<String, dynamic>),
-      textStyle_textStyle: json['textStyle_textStyle'] as String?,
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
       textAlign_enum_textAlign: $enumDecodeNullable(
           _$TextAlignEnumMap, json['textAlign_enum_textAlign']),
       waitDuration_duration: json['waitDuration_duration'] == null
@@ -49,7 +49,7 @@ Map<String, dynamic> _$$TooltipModelImplToJson(_$TooltipModelImpl instance) =>
       'preferBelow_bool': instance.preferBelow_bool,
       'excludeFromSemantics_bool': instance.excludeFromSemantics_bool,
       'decoration_boxDecoration': instance.decoration_boxDecoration?.toJson(),
-      'textStyle_textStyle': instance.textStyle_textStyle,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
       'textAlign_enum_textAlign':
           _$TextAlignEnumMap[instance.textAlign_enum_textAlign],
       'waitDuration_duration': instance.waitDuration_duration?.inMicroseconds,

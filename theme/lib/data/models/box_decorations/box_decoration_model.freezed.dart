@@ -20,17 +20,15 @@ BoxDecorationModel _$BoxDecorationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BoxDecorationModel {
-  String? get color_color =>
+  String? get color_themeColorString =>
       throw _privateConstructorUsedError; // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
   BoxBorderModel? get border_boxBorder =>
       throw _privateConstructorUsedError; // @BorderRadiusConverter() BorderRadius? borderRadius,
   BorderRadiusModel? get borderRadius_borderRadius =>
       throw _privateConstructorUsedError; // @BoxShadowsConverter()
   List<BoxShadowModel>? get boxShadows_list_boxShadow =>
-      throw _privateConstructorUsedError; // TODO: box shadows
-// @GradientConverter()
-  GradientModel? get gradient_gradient =>
-      throw _privateConstructorUsedError; // TODO: Gradient
+      throw _privateConstructorUsedError; // @GradientConverter()
+  GradientModel? get gradient_gradient => throw _privateConstructorUsedError;
   BlendMode? get backgroundBlendMode_enum_blendMode =>
       throw _privateConstructorUsedError;
   BoxShape? get shape_enum_boxShape => throw _privateConstructorUsedError;
@@ -48,7 +46,7 @@ abstract class $BoxDecorationModelCopyWith<$Res> {
       _$BoxDecorationModelCopyWithImpl<$Res, BoxDecorationModel>;
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       BoxBorderModel? border_boxBorder,
       BorderRadiusModel? borderRadius_borderRadius,
       List<BoxShadowModel>? boxShadows_list_boxShadow,
@@ -74,7 +72,7 @@ class _$BoxDecorationModelCopyWithImpl<$Res, $Val extends BoxDecorationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? border_boxBorder = freezed,
     Object? borderRadius_borderRadius = freezed,
     Object? boxShadows_list_boxShadow = freezed,
@@ -83,9 +81,9 @@ class _$BoxDecorationModelCopyWithImpl<$Res, $Val extends BoxDecorationModel>
     Object? shape_enum_boxShape = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       border_boxBorder: freezed == border_boxBorder
           ? _value.border_boxBorder
@@ -162,7 +160,7 @@ abstract class _$$BoxDecorationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       BoxBorderModel? border_boxBorder,
       BorderRadiusModel? borderRadius_borderRadius,
       List<BoxShadowModel>? boxShadows_list_boxShadow,
@@ -189,7 +187,7 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? border_boxBorder = freezed,
     Object? borderRadius_borderRadius = freezed,
     Object? boxShadows_list_boxShadow = freezed,
@@ -198,9 +196,9 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
     Object? shape_enum_boxShape = freezed,
   }) {
     return _then(_$BoxDecorationModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       border_boxBorder: freezed == border_boxBorder
           ? _value.border_boxBorder
@@ -235,7 +233,7 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BoxDecorationModelImpl extends _BoxDecorationModel {
   const _$BoxDecorationModelImpl(
-      {this.color_color,
+      {this.color_themeColorString,
       this.border_boxBorder,
       this.borderRadius_borderRadius,
       final List<BoxShadowModel>? boxShadows_list_boxShadow = const [],
@@ -249,7 +247,7 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
       _$$BoxDecorationModelImplFromJson(json);
 
   @override
-  final String? color_color;
+  final String? color_themeColorString;
 // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
   @override
   final BoxBorderModel? border_boxBorder;
@@ -270,12 +268,10 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
     return EqualUnmodifiableListView(value);
   }
 
-// TODO: box shadows
 // @GradientConverter()
   @override
   @JsonKey()
   final GradientModel? gradient_gradient;
-// TODO: Gradient
   @override
   final BlendMode? backgroundBlendMode_enum_blendMode;
   @override
@@ -284,7 +280,7 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
 
   @override
   String toString() {
-    return 'BoxDecorationModel(color_color: $color_color, border_boxBorder: $border_boxBorder, borderRadius_borderRadius: $borderRadius_borderRadius, boxShadows_list_boxShadow: $boxShadows_list_boxShadow, gradient_gradient: $gradient_gradient, backgroundBlendMode_enum_blendMode: $backgroundBlendMode_enum_blendMode, shape_enum_boxShape: $shape_enum_boxShape)';
+    return 'BoxDecorationModel(color_themeColorString: $color_themeColorString, border_boxBorder: $border_boxBorder, borderRadius_borderRadius: $borderRadius_borderRadius, boxShadows_list_boxShadow: $boxShadows_list_boxShadow, gradient_gradient: $gradient_gradient, backgroundBlendMode_enum_blendMode: $backgroundBlendMode_enum_blendMode, shape_enum_boxShape: $shape_enum_boxShape)';
   }
 
   @override
@@ -292,8 +288,8 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BoxDecorationModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.border_boxBorder, border_boxBorder) ||
                 other.border_boxBorder == border_boxBorder) &&
             (identical(other.borderRadius_borderRadius,
@@ -315,7 +311,7 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color_color,
+      color_themeColorString,
       border_boxBorder,
       borderRadius_borderRadius,
       const DeepCollectionEquality().hash(_boxShadows_list_boxShadow),
@@ -340,7 +336,7 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
 
 abstract class _BoxDecorationModel extends BoxDecorationModel {
   const factory _BoxDecorationModel(
-      {final String? color_color,
+      {final String? color_themeColorString,
       final BoxBorderModel? border_boxBorder,
       final BorderRadiusModel? borderRadius_borderRadius,
       final List<BoxShadowModel>? boxShadows_list_boxShadow,
@@ -353,17 +349,16 @@ abstract class _BoxDecorationModel extends BoxDecorationModel {
       _$BoxDecorationModelImpl.fromJson;
 
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
   BoxBorderModel? get border_boxBorder;
   @override // @BorderRadiusConverter() BorderRadius? borderRadius,
   BorderRadiusModel? get borderRadius_borderRadius;
   @override // @BoxShadowsConverter()
   List<BoxShadowModel>? get boxShadows_list_boxShadow;
-  @override // TODO: box shadows
-// @GradientConverter()
+  @override // @GradientConverter()
   GradientModel? get gradient_gradient;
-  @override // TODO: Gradient
+  @override
   BlendMode? get backgroundBlendMode_enum_blendMode;
   @override
   BoxShape? get shape_enum_boxShape;

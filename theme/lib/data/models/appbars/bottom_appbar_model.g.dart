@@ -9,11 +9,13 @@ part of 'bottom_appbar_model.dart';
 _$BottomAppbarModelImpl _$$BottomAppbarModelImplFromJson(
         Map<String, dynamic> json) =>
     _$BottomAppbarModelImpl(
-      color_color: json['color_color'] as String?,
+      color_themeColorString: json['color_themeColorString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
       height_double: (json['height_double'] as num?)?.toDouble(),
-      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
-      shadowColor_color: json['shadowColor_color'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
       padding_edgeInsets: json['padding_edgeInsets'] == null
           ? const EdgeInsetsModel()
           : EdgeInsetsModel.fromJson(
@@ -23,10 +25,11 @@ _$BottomAppbarModelImpl _$$BottomAppbarModelImplFromJson(
 Map<String, dynamic> _$$BottomAppbarModelImplToJson(
         _$BottomAppbarModelImpl instance) =>
     <String, dynamic>{
-      'color_color': instance.color_color,
+      'color_themeColorString': instance.color_themeColorString,
       'elevation_double': instance.elevation_double,
       'height_double': instance.height_double,
-      'surfaceTintColor_color': instance.surfaceTintColor_color,
-      'shadowColor_color': instance.shadowColor_color,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
       'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
     };

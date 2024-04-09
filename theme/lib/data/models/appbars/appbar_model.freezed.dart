@@ -20,20 +20,26 @@ AppbarModel _$AppbarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AppbarModel {
-  String? get color_color => throw _privateConstructorUsedError;
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  String? get foregroundColor_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get foregroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   double? get scrolledUnderElevation_double =>
       throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
   ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
   bool? get centerTitle_bool => throw _privateConstructorUsedError;
   double? get titleSpacing_double => throw _privateConstructorUsedError;
   double? get toolbarHeight_double => throw _privateConstructorUsedError;
-  String? get toolbarTextStyle_textStyle => throw _privateConstructorUsedError;
-  String? get titleTextStyle_textStyle => throw _privateConstructorUsedError;
+  String? get toolbarTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get titleTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,19 +54,19 @@ abstract class $AppbarModelCopyWith<$Res> {
       _$AppbarModelCopyWithImpl<$Res, AppbarModel>;
   @useResult
   $Res call(
-      {String? color_color,
-      String? backgroundColor_color,
-      String? foregroundColor_color,
+      {String? color_themeColorString,
+      String? backgroundColor_themeColorString,
+      String? foregroundColor_themeColorString,
       double? elevation_double,
       double? scrolledUnderElevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       ShapeBorderModel? shape_shapeBorder,
       bool? centerTitle_bool,
       double? titleSpacing_double,
       double? toolbarHeight_double,
-      String? toolbarTextStyle_textStyle,
-      String? titleTextStyle_textStyle});
+      String? toolbarTextStyle_textStyleString,
+      String? titleTextStyle_textStyleString});
 
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
 }
@@ -78,32 +84,34 @@ class _$AppbarModelCopyWithImpl<$Res, $Val extends AppbarModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? foregroundColor_color = freezed,
+    Object? color_themeColorString = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? foregroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? scrolledUnderElevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? shape_shapeBorder = freezed,
     Object? centerTitle_bool = freezed,
     Object? titleSpacing_double = freezed,
     Object? toolbarHeight_double = freezed,
-    Object? toolbarTextStyle_textStyle = freezed,
-    Object? titleTextStyle_textStyle = freezed,
+    Object? toolbarTextStyle_textStyleString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      foregroundColor_color: freezed == foregroundColor_color
-          ? _value.foregroundColor_color
-          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
+      foregroundColor_themeColorString: freezed ==
+              foregroundColor_themeColorString
+          ? _value.foregroundColor_themeColorString
+          : foregroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -113,13 +121,14 @@ class _$AppbarModelCopyWithImpl<$Res, $Val extends AppbarModel>
           ? _value.scrolledUnderElevation_double
           : scrolledUnderElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       shape_shapeBorder: freezed == shape_shapeBorder
           ? _value.shape_shapeBorder
@@ -137,13 +146,14 @@ class _$AppbarModelCopyWithImpl<$Res, $Val extends AppbarModel>
           ? _value.toolbarHeight_double
           : toolbarHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      toolbarTextStyle_textStyle: freezed == toolbarTextStyle_textStyle
-          ? _value.toolbarTextStyle_textStyle
-          : toolbarTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      toolbarTextStyle_textStyleString: freezed ==
+              toolbarTextStyle_textStyleString
+          ? _value.toolbarTextStyle_textStyleString
+          : toolbarTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle_textStyle: freezed == titleTextStyle_textStyle
-          ? _value.titleTextStyle_textStyle
-          : titleTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -170,19 +180,19 @@ abstract class _$$AppbarModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
-      String? backgroundColor_color,
-      String? foregroundColor_color,
+      {String? color_themeColorString,
+      String? backgroundColor_themeColorString,
+      String? foregroundColor_themeColorString,
       double? elevation_double,
       double? scrolledUnderElevation_double,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       ShapeBorderModel? shape_shapeBorder,
       bool? centerTitle_bool,
       double? titleSpacing_double,
       double? toolbarHeight_double,
-      String? toolbarTextStyle_textStyle,
-      String? titleTextStyle_textStyle});
+      String? toolbarTextStyle_textStyleString,
+      String? titleTextStyle_textStyleString});
 
   @override
   $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
@@ -199,32 +209,34 @@ class __$$AppbarModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
-    Object? backgroundColor_color = freezed,
-    Object? foregroundColor_color = freezed,
+    Object? color_themeColorString = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? foregroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? scrolledUnderElevation_double = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? shape_shapeBorder = freezed,
     Object? centerTitle_bool = freezed,
     Object? titleSpacing_double = freezed,
     Object? toolbarHeight_double = freezed,
-    Object? toolbarTextStyle_textStyle = freezed,
-    Object? titleTextStyle_textStyle = freezed,
+    Object? toolbarTextStyle_textStyleString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
   }) {
     return _then(_$AppbarModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      foregroundColor_color: freezed == foregroundColor_color
-          ? _value.foregroundColor_color
-          : foregroundColor_color // ignore: cast_nullable_to_non_nullable
+      foregroundColor_themeColorString: freezed ==
+              foregroundColor_themeColorString
+          ? _value.foregroundColor_themeColorString
+          : foregroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -234,13 +246,14 @@ class __$$AppbarModelImplCopyWithImpl<$Res>
           ? _value.scrolledUnderElevation_double
           : scrolledUnderElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       shape_shapeBorder: freezed == shape_shapeBorder
           ? _value.shape_shapeBorder
@@ -258,13 +271,14 @@ class __$$AppbarModelImplCopyWithImpl<$Res>
           ? _value.toolbarHeight_double
           : toolbarHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      toolbarTextStyle_textStyle: freezed == toolbarTextStyle_textStyle
-          ? _value.toolbarTextStyle_textStyle
-          : toolbarTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      toolbarTextStyle_textStyleString: freezed ==
+              toolbarTextStyle_textStyleString
+          ? _value.toolbarTextStyle_textStyleString
+          : toolbarTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle_textStyle: freezed == titleTextStyle_textStyle
-          ? _value.titleTextStyle_textStyle
-          : titleTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -274,38 +288,38 @@ class __$$AppbarModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppbarModelImpl extends _AppbarModel {
   const _$AppbarModelImpl(
-      {this.color_color,
-      this.backgroundColor_color,
-      this.foregroundColor_color,
+      {this.color_themeColorString,
+      this.backgroundColor_themeColorString,
+      this.foregroundColor_themeColorString,
       this.elevation_double,
       this.scrolledUnderElevation_double,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
       this.shape_shapeBorder,
       this.centerTitle_bool,
       this.titleSpacing_double,
       this.toolbarHeight_double,
-      this.toolbarTextStyle_textStyle,
-      this.titleTextStyle_textStyle})
+      this.toolbarTextStyle_textStyleString,
+      this.titleTextStyle_textStyleString})
       : super._();
 
   factory _$AppbarModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppbarModelImplFromJson(json);
 
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? foregroundColor_color;
+  final String? foregroundColor_themeColorString;
   @override
   final double? elevation_double;
   @override
   final double? scrolledUnderElevation_double;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
   final ShapeBorderModel? shape_shapeBorder;
   @override
@@ -315,13 +329,13 @@ class _$AppbarModelImpl extends _AppbarModel {
   @override
   final double? toolbarHeight_double;
   @override
-  final String? toolbarTextStyle_textStyle;
+  final String? toolbarTextStyle_textStyleString;
   @override
-  final String? titleTextStyle_textStyle;
+  final String? titleTextStyle_textStyleString;
 
   @override
   String toString() {
-    return 'AppbarModel(color_color: $color_color, backgroundColor_color: $backgroundColor_color, foregroundColor_color: $foregroundColor_color, elevation_double: $elevation_double, scrolledUnderElevation_double: $scrolledUnderElevation_double, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, shape_shapeBorder: $shape_shapeBorder, centerTitle_bool: $centerTitle_bool, titleSpacing_double: $titleSpacing_double, toolbarHeight_double: $toolbarHeight_double, toolbarTextStyle_textStyle: $toolbarTextStyle_textStyle, titleTextStyle_textStyle: $titleTextStyle_textStyle)';
+    return 'AppbarModel(color_themeColorString: $color_themeColorString, backgroundColor_themeColorString: $backgroundColor_themeColorString, foregroundColor_themeColorString: $foregroundColor_themeColorString, elevation_double: $elevation_double, scrolledUnderElevation_double: $scrolledUnderElevation_double, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, shape_shapeBorder: $shape_shapeBorder, centerTitle_bool: $centerTitle_bool, titleSpacing_double: $titleSpacing_double, toolbarHeight_double: $toolbarHeight_double, toolbarTextStyle_textStyleString: $toolbarTextStyle_textStyleString, titleTextStyle_textStyleString: $titleTextStyle_textStyleString)';
   }
 
   @override
@@ -329,22 +343,26 @@ class _$AppbarModelImpl extends _AppbarModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppbarModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
-            (identical(other.foregroundColor_color, foregroundColor_color) ||
-                other.foregroundColor_color == foregroundColor_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.foregroundColor_themeColorString, foregroundColor_themeColorString) ||
+                other.foregroundColor_themeColorString ==
+                    foregroundColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.scrolledUnderElevation_double,
-                    scrolledUnderElevation_double) ||
+            (identical(other.scrolledUnderElevation_double, scrolledUnderElevation_double) ||
                 other.scrolledUnderElevation_double ==
                     scrolledUnderElevation_double) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
             (identical(other.shape_shapeBorder, shape_shapeBorder) ||
                 other.shape_shapeBorder == shape_shapeBorder) &&
             (identical(other.centerTitle_bool, centerTitle_bool) ||
@@ -353,32 +371,32 @@ class _$AppbarModelImpl extends _AppbarModel {
                 other.titleSpacing_double == titleSpacing_double) &&
             (identical(other.toolbarHeight_double, toolbarHeight_double) ||
                 other.toolbarHeight_double == toolbarHeight_double) &&
-            (identical(other.toolbarTextStyle_textStyle,
-                    toolbarTextStyle_textStyle) ||
-                other.toolbarTextStyle_textStyle ==
-                    toolbarTextStyle_textStyle) &&
-            (identical(
-                    other.titleTextStyle_textStyle, titleTextStyle_textStyle) ||
-                other.titleTextStyle_textStyle == titleTextStyle_textStyle));
+            (identical(other.toolbarTextStyle_textStyleString,
+                    toolbarTextStyle_textStyleString) ||
+                other.toolbarTextStyle_textStyleString ==
+                    toolbarTextStyle_textStyleString) &&
+            (identical(other.titleTextStyle_textStyleString, titleTextStyle_textStyleString) ||
+                other.titleTextStyle_textStyleString ==
+                    titleTextStyle_textStyleString));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color_color,
-      backgroundColor_color,
-      foregroundColor_color,
+      color_themeColorString,
+      backgroundColor_themeColorString,
+      foregroundColor_themeColorString,
       elevation_double,
       scrolledUnderElevation_double,
-      shadowColor_color,
-      surfaceTintColor_color,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
       shape_shapeBorder,
       centerTitle_bool,
       titleSpacing_double,
       toolbarHeight_double,
-      toolbarTextStyle_textStyle,
-      titleTextStyle_textStyle);
+      toolbarTextStyle_textStyleString,
+      titleTextStyle_textStyleString);
 
   @JsonKey(ignore: true)
   @override
@@ -396,38 +414,38 @@ class _$AppbarModelImpl extends _AppbarModel {
 
 abstract class _AppbarModel extends AppbarModel {
   const factory _AppbarModel(
-      {final String? color_color,
-      final String? backgroundColor_color,
-      final String? foregroundColor_color,
+      {final String? color_themeColorString,
+      final String? backgroundColor_themeColorString,
+      final String? foregroundColor_themeColorString,
       final double? elevation_double,
       final double? scrolledUnderElevation_double,
-      final String? shadowColor_color,
-      final String? surfaceTintColor_color,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
       final ShapeBorderModel? shape_shapeBorder,
       final bool? centerTitle_bool,
       final double? titleSpacing_double,
       final double? toolbarHeight_double,
-      final String? toolbarTextStyle_textStyle,
-      final String? titleTextStyle_textStyle}) = _$AppbarModelImpl;
+      final String? toolbarTextStyle_textStyleString,
+      final String? titleTextStyle_textStyleString}) = _$AppbarModelImpl;
   const _AppbarModel._() : super._();
 
   factory _AppbarModel.fromJson(Map<String, dynamic> json) =
       _$AppbarModelImpl.fromJson;
 
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get foregroundColor_color;
+  String? get foregroundColor_themeColorString;
   @override
   double? get elevation_double;
   @override
   double? get scrolledUnderElevation_double;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
   ShapeBorderModel? get shape_shapeBorder;
   @override
@@ -437,9 +455,9 @@ abstract class _AppbarModel extends AppbarModel {
   @override
   double? get toolbarHeight_double;
   @override
-  String? get toolbarTextStyle_textStyle;
+  String? get toolbarTextStyle_textStyleString;
   @override
-  String? get titleTextStyle_textStyle;
+  String? get titleTextStyle_textStyleString;
   @override
   @JsonKey(ignore: true)
   _$$AppbarModelImplCopyWith<_$AppbarModelImpl> get copyWith =>

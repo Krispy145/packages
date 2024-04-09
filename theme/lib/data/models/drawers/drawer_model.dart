@@ -11,11 +11,11 @@ part 'drawer_model.g.dart';
 @freezed
 class DrawerModel with _$DrawerModel {
   const factory DrawerModel({
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? scrimColor_color,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? scrimColor_themeColorString,
     double? elevation_double,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
     // @OutlinedBorderConverter()
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     // @OutlinedBorderConverter()
@@ -29,11 +29,11 @@ class DrawerModel with _$DrawerModel {
 
   DrawerThemeData asDrawerThemeData({String? styleTypeName}) {
     return DrawerThemeData(
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
-      scrimColor: scrimColor_color?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      scrimColor: scrimColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       endShape: endShape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       width: width_double,

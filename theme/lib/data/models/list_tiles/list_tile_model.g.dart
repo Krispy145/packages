@@ -13,20 +13,23 @@ _$ListTileModelImpl _$$ListTileModelImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ShapeBorderModel.fromJson(
               json['shape_shapeBorder'] as Map<String, dynamic>),
-      selectedColor_color: json['selectedColor_color'] as String?,
-      iconColor_color: json['iconColor_color'] as String?,
-      textColor_color: json['textColor_color'] as String?,
-      titleTextStyle_textStyle: json['titleTextStyle_textStyle'] as String?,
-      subtitleTextStyle_textStyle:
-          json['subtitleTextStyle_textStyle'] as String?,
-      leadingAndTrailingTextStyle_textStyle:
-          json['leadingAndTrailingTextStyle_textStyle'] as String?,
+      selectedColor_themeColorString:
+          json['selectedColor_themeColorString'] as String?,
+      iconColor_themeColorString: json['iconColor_themeColorString'] as String?,
+      textColor_themeColorString: json['textColor_themeColorString'] as String?,
+      titleTextStyle_textStyleString:
+          json['titleTextStyle_textStyleString'] as String?,
+      subtitleTextStyle_textStyleString:
+          json['subtitleTextStyle_textStyleString'] as String?,
+      leadingAndTrailingTextStyle_textStyleString:
+          json['leadingAndTrailingTextStyle_textStyleString'] as String?,
       contentPadding_edgeInsets: json['contentPadding_edgeInsets'] == null
           ? const EdgeInsetsModel()
           : EdgeInsetsModel.fromJson(
               json['contentPadding_edgeInsets'] as Map<String, dynamic>),
-      tileColor_color: json['tileColor_color'] as String?,
-      selectedTileColor_color: json['selectedTileColor_color'] as String?,
+      tileColor_themeColorString: json['tileColor_themeColorString'] as String?,
+      selectedTileColor_themeColorString:
+          json['selectedTileColor_themeColorString'] as String?,
       horizontalTitleGap_double:
           (json['horizontalTitleGap_double'] as num?)?.toDouble(),
       minVerticalPadding_double:
@@ -43,16 +46,18 @@ Map<String, dynamic> _$$ListTileModelImplToJson(_$ListTileModelImpl instance) =>
     <String, dynamic>{
       'dense_bool': instance.dense_bool,
       'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
-      'selectedColor_color': instance.selectedColor_color,
-      'iconColor_color': instance.iconColor_color,
-      'textColor_color': instance.textColor_color,
-      'titleTextStyle_textStyle': instance.titleTextStyle_textStyle,
-      'subtitleTextStyle_textStyle': instance.subtitleTextStyle_textStyle,
-      'leadingAndTrailingTextStyle_textStyle':
-          instance.leadingAndTrailingTextStyle_textStyle,
+      'selectedColor_themeColorString': instance.selectedColor_themeColorString,
+      'iconColor_themeColorString': instance.iconColor_themeColorString,
+      'textColor_themeColorString': instance.textColor_themeColorString,
+      'titleTextStyle_textStyleString': instance.titleTextStyle_textStyleString,
+      'subtitleTextStyle_textStyleString':
+          instance.subtitleTextStyle_textStyleString,
+      'leadingAndTrailingTextStyle_textStyleString':
+          instance.leadingAndTrailingTextStyle_textStyleString,
       'contentPadding_edgeInsets': instance.contentPadding_edgeInsets?.toJson(),
-      'tileColor_color': instance.tileColor_color,
-      'selectedTileColor_color': instance.selectedTileColor_color,
+      'tileColor_themeColorString': instance.tileColor_themeColorString,
+      'selectedTileColor_themeColorString':
+          instance.selectedTileColor_themeColorString,
       'horizontalTitleGap_double': instance.horizontalTitleGap_double,
       'minVerticalPadding_double': instance.minVerticalPadding_double,
       'minLeadingWidth_double': instance.minLeadingWidth_double,

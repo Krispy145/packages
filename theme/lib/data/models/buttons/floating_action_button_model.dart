@@ -14,11 +14,11 @@ part 'floating_action_button_model.g.dart';
 @freezed
 class FloatingActionButtonModel with _$FloatingActionButtonModel {
   const factory FloatingActionButtonModel({
-    ThemeColorString? foregroundColor_color,
-    ThemeColorString? backgroundColor_color,
-    ThemeColorString? focusColor_color,
-    ThemeColorString? hoverColor_color,
-    ThemeColorString? splashColor_color,
+    ThemeColorString? foregroundColor_themeColorString,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? focusColor_themeColorString,
+    ThemeColorString? hoverColor_themeColorString,
+    ThemeColorString? splashColor_themeColorString,
     double? elevation_double,
     double? focusElevation_double,
     double? hoverElevation_double,
@@ -33,18 +33,18 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
     @Default(BoxConstraintsModel()) BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
     double? extendedIconLabelSpacing_double,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? extendedPadding_edgeInsets,
-    TextStyleString? extendedTextStyle_textStyle,
+    TextStyleString? extendedTextStyle_textStyleString,
   }) = _FloatingActionButtonModel;
 
   const FloatingActionButtonModel._();
 
   FloatingActionButtonThemeData asFloatingActionButtonThemeData({String? styleTypeName}) {
     return FloatingActionButtonThemeData(
-      foregroundColor: foregroundColor_color?.toColor(styleType: styleTypeName),
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_color?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_color?.toColor(styleType: styleTypeName),
-      splashColor: splashColor_color?.toColor(styleType: styleTypeName),
+      foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      splashColor: splashColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       focusElevation: focusElevation_double,
       hoverElevation: hoverElevation_double,
@@ -59,17 +59,17 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
       extendedSizeConstraints: extendedSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
       extendedIconLabelSpacing: extendedIconLabelSpacing_double,
       extendedPadding: extendedPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-      extendedTextStyle: extendedTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      extendedTextStyle: extendedTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
     );
   }
 
   // static FloatingActionButtonModel defaultFloatingActionButtonStyle() {
   //   return const FloatingActionButtonModel(
-  //     foregroundColor_color: 'onPrimary',
-  //     backgroundColor_color: 'primary',
-  //     focusColor_color: 'onPrimary',
-  //     hoverColor_color: 'onPrimary',
-  //     splashColor_color: 'onPrimary',
+  //     foregroundColor_themeColorString: 'onPrimary',
+  //     backgroundColor_themeColorString: 'primary',
+  //     focusColor_themeColorString: 'onPrimary',
+  //     hoverColor_themeColorString: 'onPrimary',
+  //     splashColor_themeColorString: 'onPrimary',
   //     elevation: 6,
   //     focusElevation: 8,
   //     hoverElevation: 8,

@@ -8,7 +8,7 @@ part of 'box_shadow_model.dart';
 
 _$BoxShadowModelImpl _$$BoxShadowModelImplFromJson(Map<String, dynamic> json) =>
     _$BoxShadowModelImpl(
-      color_color: json['color_color'] as String?,
+      color_themeColorString: json['color_themeColorString'] as String?,
       offset_offset: json['offset_offset'] == null
           ? const OffsetModel()
           : OffsetModel.fromJson(json['offset_offset'] as Map<String, dynamic>),
@@ -19,7 +19,7 @@ _$BoxShadowModelImpl _$$BoxShadowModelImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$BoxShadowModelImplToJson(
         _$BoxShadowModelImpl instance) =>
     <String, dynamic>{
-      'color_color': instance.color_color,
+      'color_themeColorString': instance.color_themeColorString,
       'offset_offset': instance.offset_offset?.toJson(),
       'blurRadius_double': instance.blurRadius_double,
       'spreadRadius_double': instance.spreadRadius_double,

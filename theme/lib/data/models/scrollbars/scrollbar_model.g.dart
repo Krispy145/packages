@@ -12,9 +12,12 @@ _$ScrollbarModelImpl _$$ScrollbarModelImplFromJson(Map<String, dynamic> json) =>
       thickness_double: (json['thickness_double'] as num?)?.toDouble(),
       trackVisibility_bool: json['trackVisibility_bool'] as bool?,
       radius_double: (json['radius_double'] as num?)?.toDouble(),
-      thumbColor_color: json['thumbColor_color'] as String?,
-      trackColor_color: json['trackColor_color'] as String?,
-      trackBorderColor_color: json['trackBorderColor_color'] as String?,
+      thumbColor_themeColorString:
+          json['thumbColor_themeColorString'] as String?,
+      trackColor_themeColorString:
+          json['trackColor_themeColorString'] as String?,
+      trackBorderColor_themeColorString:
+          json['trackBorderColor_themeColorString'] as String?,
       crossAxisMargin_double:
           (json['crossAxisMargin_double'] as num?)?.toDouble(),
       mainAxisMargin_double:
@@ -31,9 +34,10 @@ Map<String, dynamic> _$$ScrollbarModelImplToJson(
       'thickness_double': instance.thickness_double,
       'trackVisibility_bool': instance.trackVisibility_bool,
       'radius_double': instance.radius_double,
-      'thumbColor_color': instance.thumbColor_color,
-      'trackColor_color': instance.trackColor_color,
-      'trackBorderColor_color': instance.trackBorderColor_color,
+      'thumbColor_themeColorString': instance.thumbColor_themeColorString,
+      'trackColor_themeColorString': instance.trackColor_themeColorString,
+      'trackBorderColor_themeColorString':
+          instance.trackBorderColor_themeColorString,
       'crossAxisMargin_double': instance.crossAxisMargin_double,
       'mainAxisMargin_double': instance.mainAxisMargin_double,
       'minThumbLength_double': instance.minThumbLength_double,

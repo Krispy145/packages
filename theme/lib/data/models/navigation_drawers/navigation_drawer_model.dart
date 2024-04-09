@@ -12,15 +12,15 @@ part 'navigation_drawer_model.g.dart';
 class NavigationDrawerModel with _$NavigationDrawerModel {
   const factory NavigationDrawerModel({
     double? tileHeight_double,
-    ThemeColorString? backgroundColor_color,
+    ThemeColorString? backgroundColor_themeColorString,
     double? elevation_double,
-    ThemeColorString? shadowColor_color,
-    ThemeColorString? surfaceTintColor_color,
-    ThemeColorString? indicatorColor_color,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    ThemeColorString? indicatorColor_themeColorString,
     // @OutlinedBorderConverter()
     @Default(ShapeBorderModel()) ShapeBorderModel? indicatorShape_shapeBorder,
     @Default(SizeModel()) SizeModel? indicatorSize_size,
-    TextStyleString? labelTextStyle_textStyle,
+    TextStyleString? labelTextStyle_textStyleString,
   }) = _NavigationDrawerModel;
 
   const NavigationDrawerModel._();
@@ -51,14 +51,14 @@ class NavigationDrawerModel with _$NavigationDrawerModel {
   NavigationDrawerThemeData asNavigationDrawerThemeData({String? styleTypeName}) {
     return NavigationDrawerThemeData(
       tileHeight: tileHeight_double,
-      backgroundColor: backgroundColor_color?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
-      indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
-      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
     );
   }
 }

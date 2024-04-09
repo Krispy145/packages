@@ -23,17 +23,21 @@ mixin _$ListTileModel {
   bool? get dense_bool =>
       throw _privateConstructorUsedError; // @OutlinedBorderConverter()
   ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
-  String? get selectedColor_color => throw _privateConstructorUsedError;
-  String? get iconColor_color => throw _privateConstructorUsedError;
-  String? get textColor_color => throw _privateConstructorUsedError;
-  String? get titleTextStyle_textStyle => throw _privateConstructorUsedError;
-  String? get subtitleTextStyle_textStyle => throw _privateConstructorUsedError;
-  String? get leadingAndTrailingTextStyle_textStyle =>
+  String? get selectedColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get iconColor_themeColorString => throw _privateConstructorUsedError;
+  String? get textColor_themeColorString => throw _privateConstructorUsedError;
+  String? get titleTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get subtitleTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get leadingAndTrailingTextStyle_textStyleString =>
       throw _privateConstructorUsedError;
   EdgeInsetsModel? get contentPadding_edgeInsets =>
       throw _privateConstructorUsedError;
-  String? get tileColor_color => throw _privateConstructorUsedError;
-  String? get selectedTileColor_color => throw _privateConstructorUsedError;
+  String? get tileColor_themeColorString => throw _privateConstructorUsedError;
+  String? get selectedTileColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get horizontalTitleGap_double => throw _privateConstructorUsedError;
   double? get minVerticalPadding_double => throw _privateConstructorUsedError;
   double? get minLeadingWidth_double => throw _privateConstructorUsedError;
@@ -57,15 +61,15 @@ abstract class $ListTileModelCopyWith<$Res> {
   $Res call(
       {bool? dense_bool,
       ShapeBorderModel? shape_shapeBorder,
-      String? selectedColor_color,
-      String? iconColor_color,
-      String? textColor_color,
-      String? titleTextStyle_textStyle,
-      String? subtitleTextStyle_textStyle,
-      String? leadingAndTrailingTextStyle_textStyle,
+      String? selectedColor_themeColorString,
+      String? iconColor_themeColorString,
+      String? textColor_themeColorString,
+      String? titleTextStyle_textStyleString,
+      String? subtitleTextStyle_textStyleString,
+      String? leadingAndTrailingTextStyle_textStyleString,
       EdgeInsetsModel? contentPadding_edgeInsets,
-      String? tileColor_color,
-      String? selectedTileColor_color,
+      String? tileColor_themeColorString,
+      String? selectedTileColor_themeColorString,
       double? horizontalTitleGap_double,
       double? minVerticalPadding_double,
       double? minLeadingWidth_double,
@@ -91,15 +95,15 @@ class _$ListTileModelCopyWithImpl<$Res, $Val extends ListTileModel>
   $Res call({
     Object? dense_bool = freezed,
     Object? shape_shapeBorder = freezed,
-    Object? selectedColor_color = freezed,
-    Object? iconColor_color = freezed,
-    Object? textColor_color = freezed,
-    Object? titleTextStyle_textStyle = freezed,
-    Object? subtitleTextStyle_textStyle = freezed,
-    Object? leadingAndTrailingTextStyle_textStyle = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? textColor_themeColorString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
+    Object? subtitleTextStyle_textStyleString = freezed,
+    Object? leadingAndTrailingTextStyle_textStyleString = freezed,
     Object? contentPadding_edgeInsets = freezed,
-    Object? tileColor_color = freezed,
-    Object? selectedTileColor_color = freezed,
+    Object? tileColor_themeColorString = freezed,
+    Object? selectedTileColor_themeColorString = freezed,
     Object? horizontalTitleGap_double = freezed,
     Object? minVerticalPadding_double = freezed,
     Object? minLeadingWidth_double = freezed,
@@ -115,42 +119,44 @@ class _$ListTileModelCopyWithImpl<$Res, $Val extends ListTileModel>
           ? _value.shape_shapeBorder
           : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
-      selectedColor_color: freezed == selectedColor_color
-          ? _value.selectedColor_color
-          : selectedColor_color // ignore: cast_nullable_to_non_nullable
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textColor_color: freezed == textColor_color
-          ? _value.textColor_color
-          : textColor_color // ignore: cast_nullable_to_non_nullable
+      textColor_themeColorString: freezed == textColor_themeColorString
+          ? _value.textColor_themeColorString
+          : textColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle_textStyle: freezed == titleTextStyle_textStyle
-          ? _value.titleTextStyle_textStyle
-          : titleTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      subtitleTextStyle_textStyle: freezed == subtitleTextStyle_textStyle
-          ? _value.subtitleTextStyle_textStyle
-          : subtitleTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      subtitleTextStyle_textStyleString: freezed ==
+              subtitleTextStyle_textStyleString
+          ? _value.subtitleTextStyle_textStyleString
+          : subtitleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      leadingAndTrailingTextStyle_textStyle: freezed ==
-              leadingAndTrailingTextStyle_textStyle
-          ? _value.leadingAndTrailingTextStyle_textStyle
-          : leadingAndTrailingTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      leadingAndTrailingTextStyle_textStyleString: freezed ==
+              leadingAndTrailingTextStyle_textStyleString
+          ? _value.leadingAndTrailingTextStyle_textStyleString
+          : leadingAndTrailingTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
           ? _value.contentPadding_edgeInsets
           : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsetsModel?,
-      tileColor_color: freezed == tileColor_color
-          ? _value.tileColor_color
-          : tileColor_color // ignore: cast_nullable_to_non_nullable
+      tileColor_themeColorString: freezed == tileColor_themeColorString
+          ? _value.tileColor_themeColorString
+          : tileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedTileColor_color: freezed == selectedTileColor_color
-          ? _value.selectedTileColor_color
-          : selectedTileColor_color // ignore: cast_nullable_to_non_nullable
+      selectedTileColor_themeColorString: freezed ==
+              selectedTileColor_themeColorString
+          ? _value.selectedTileColor_themeColorString
+          : selectedTileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       horizontalTitleGap_double: freezed == horizontalTitleGap_double
           ? _value.horizontalTitleGap_double
@@ -213,15 +219,15 @@ abstract class _$$ListTileModelImplCopyWith<$Res>
   $Res call(
       {bool? dense_bool,
       ShapeBorderModel? shape_shapeBorder,
-      String? selectedColor_color,
-      String? iconColor_color,
-      String? textColor_color,
-      String? titleTextStyle_textStyle,
-      String? subtitleTextStyle_textStyle,
-      String? leadingAndTrailingTextStyle_textStyle,
+      String? selectedColor_themeColorString,
+      String? iconColor_themeColorString,
+      String? textColor_themeColorString,
+      String? titleTextStyle_textStyleString,
+      String? subtitleTextStyle_textStyleString,
+      String? leadingAndTrailingTextStyle_textStyleString,
       EdgeInsetsModel? contentPadding_edgeInsets,
-      String? tileColor_color,
-      String? selectedTileColor_color,
+      String? tileColor_themeColorString,
+      String? selectedTileColor_themeColorString,
       double? horizontalTitleGap_double,
       double? minVerticalPadding_double,
       double? minLeadingWidth_double,
@@ -247,15 +253,15 @@ class __$$ListTileModelImplCopyWithImpl<$Res>
   $Res call({
     Object? dense_bool = freezed,
     Object? shape_shapeBorder = freezed,
-    Object? selectedColor_color = freezed,
-    Object? iconColor_color = freezed,
-    Object? textColor_color = freezed,
-    Object? titleTextStyle_textStyle = freezed,
-    Object? subtitleTextStyle_textStyle = freezed,
-    Object? leadingAndTrailingTextStyle_textStyle = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? textColor_themeColorString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
+    Object? subtitleTextStyle_textStyleString = freezed,
+    Object? leadingAndTrailingTextStyle_textStyleString = freezed,
     Object? contentPadding_edgeInsets = freezed,
-    Object? tileColor_color = freezed,
-    Object? selectedTileColor_color = freezed,
+    Object? tileColor_themeColorString = freezed,
+    Object? selectedTileColor_themeColorString = freezed,
     Object? horizontalTitleGap_double = freezed,
     Object? minVerticalPadding_double = freezed,
     Object? minLeadingWidth_double = freezed,
@@ -271,42 +277,44 @@ class __$$ListTileModelImplCopyWithImpl<$Res>
           ? _value.shape_shapeBorder
           : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
               as ShapeBorderModel?,
-      selectedColor_color: freezed == selectedColor_color
-          ? _value.selectedColor_color
-          : selectedColor_color // ignore: cast_nullable_to_non_nullable
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      iconColor_color: freezed == iconColor_color
-          ? _value.iconColor_color
-          : iconColor_color // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textColor_color: freezed == textColor_color
-          ? _value.textColor_color
-          : textColor_color // ignore: cast_nullable_to_non_nullable
+      textColor_themeColorString: freezed == textColor_themeColorString
+          ? _value.textColor_themeColorString
+          : textColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle_textStyle: freezed == titleTextStyle_textStyle
-          ? _value.titleTextStyle_textStyle
-          : titleTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      subtitleTextStyle_textStyle: freezed == subtitleTextStyle_textStyle
-          ? _value.subtitleTextStyle_textStyle
-          : subtitleTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      subtitleTextStyle_textStyleString: freezed ==
+              subtitleTextStyle_textStyleString
+          ? _value.subtitleTextStyle_textStyleString
+          : subtitleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      leadingAndTrailingTextStyle_textStyle: freezed ==
-              leadingAndTrailingTextStyle_textStyle
-          ? _value.leadingAndTrailingTextStyle_textStyle
-          : leadingAndTrailingTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      leadingAndTrailingTextStyle_textStyleString: freezed ==
+              leadingAndTrailingTextStyle_textStyleString
+          ? _value.leadingAndTrailingTextStyle_textStyleString
+          : leadingAndTrailingTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
           ? _value.contentPadding_edgeInsets
           : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
               as EdgeInsetsModel?,
-      tileColor_color: freezed == tileColor_color
-          ? _value.tileColor_color
-          : tileColor_color // ignore: cast_nullable_to_non_nullable
+      tileColor_themeColorString: freezed == tileColor_themeColorString
+          ? _value.tileColor_themeColorString
+          : tileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedTileColor_color: freezed == selectedTileColor_color
-          ? _value.selectedTileColor_color
-          : selectedTileColor_color // ignore: cast_nullable_to_non_nullable
+      selectedTileColor_themeColorString: freezed ==
+              selectedTileColor_themeColorString
+          ? _value.selectedTileColor_themeColorString
+          : selectedTileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       horizontalTitleGap_double: freezed == horizontalTitleGap_double
           ? _value.horizontalTitleGap_double
@@ -339,15 +347,15 @@ class _$ListTileModelImpl extends _ListTileModel {
   const _$ListTileModelImpl(
       {this.dense_bool,
       this.shape_shapeBorder,
-      this.selectedColor_color,
-      this.iconColor_color,
-      this.textColor_color,
-      this.titleTextStyle_textStyle,
-      this.subtitleTextStyle_textStyle,
-      this.leadingAndTrailingTextStyle_textStyle,
+      this.selectedColor_themeColorString,
+      this.iconColor_themeColorString,
+      this.textColor_themeColorString,
+      this.titleTextStyle_textStyleString,
+      this.subtitleTextStyle_textStyleString,
+      this.leadingAndTrailingTextStyle_textStyleString,
       this.contentPadding_edgeInsets = const EdgeInsetsModel(),
-      this.tileColor_color,
-      this.selectedTileColor_color,
+      this.tileColor_themeColorString,
+      this.selectedTileColor_themeColorString,
       this.horizontalTitleGap_double,
       this.minVerticalPadding_double,
       this.minLeadingWidth_double,
@@ -364,24 +372,24 @@ class _$ListTileModelImpl extends _ListTileModel {
   @override
   final ShapeBorderModel? shape_shapeBorder;
   @override
-  final String? selectedColor_color;
+  final String? selectedColor_themeColorString;
   @override
-  final String? iconColor_color;
+  final String? iconColor_themeColorString;
   @override
-  final String? textColor_color;
+  final String? textColor_themeColorString;
   @override
-  final String? titleTextStyle_textStyle;
+  final String? titleTextStyle_textStyleString;
   @override
-  final String? subtitleTextStyle_textStyle;
+  final String? subtitleTextStyle_textStyleString;
   @override
-  final String? leadingAndTrailingTextStyle_textStyle;
+  final String? leadingAndTrailingTextStyle_textStyleString;
   @override
   @JsonKey()
   final EdgeInsetsModel? contentPadding_edgeInsets;
   @override
-  final String? tileColor_color;
+  final String? tileColor_themeColorString;
   @override
-  final String? selectedTileColor_color;
+  final String? selectedTileColor_themeColorString;
   @override
   final double? horizontalTitleGap_double;
   @override
@@ -396,7 +404,7 @@ class _$ListTileModelImpl extends _ListTileModel {
 
   @override
   String toString() {
-    return 'ListTileModel(dense_bool: $dense_bool, shape_shapeBorder: $shape_shapeBorder, selectedColor_color: $selectedColor_color, iconColor_color: $iconColor_color, textColor_color: $textColor_color, titleTextStyle_textStyle: $titleTextStyle_textStyle, subtitleTextStyle_textStyle: $subtitleTextStyle_textStyle, leadingAndTrailingTextStyle_textStyle: $leadingAndTrailingTextStyle_textStyle, contentPadding_edgeInsets: $contentPadding_edgeInsets, tileColor_color: $tileColor_color, selectedTileColor_color: $selectedTileColor_color, horizontalTitleGap_double: $horizontalTitleGap_double, minVerticalPadding_double: $minVerticalPadding_double, minLeadingWidth_double: $minLeadingWidth_double, enableFeedback_bool: $enableFeedback_bool, titleAlignment_enum_listTileTitleAlignment: $titleAlignment_enum_listTileTitleAlignment)';
+    return 'ListTileModel(dense_bool: $dense_bool, shape_shapeBorder: $shape_shapeBorder, selectedColor_themeColorString: $selectedColor_themeColorString, iconColor_themeColorString: $iconColor_themeColorString, textColor_themeColorString: $textColor_themeColorString, titleTextStyle_textStyleString: $titleTextStyle_textStyleString, subtitleTextStyle_textStyleString: $subtitleTextStyle_textStyleString, leadingAndTrailingTextStyle_textStyleString: $leadingAndTrailingTextStyle_textStyleString, contentPadding_edgeInsets: $contentPadding_edgeInsets, tileColor_themeColorString: $tileColor_themeColorString, selectedTileColor_themeColorString: $selectedTileColor_themeColorString, horizontalTitleGap_double: $horizontalTitleGap_double, minVerticalPadding_double: $minVerticalPadding_double, minLeadingWidth_double: $minLeadingWidth_double, enableFeedback_bool: $enableFeedback_bool, titleAlignment_enum_listTileTitleAlignment: $titleAlignment_enum_listTileTitleAlignment)';
   }
 
   @override
@@ -408,27 +416,32 @@ class _$ListTileModelImpl extends _ListTileModel {
                 other.dense_bool == dense_bool) &&
             (identical(other.shape_shapeBorder, shape_shapeBorder) ||
                 other.shape_shapeBorder == shape_shapeBorder) &&
-            (identical(other.selectedColor_color, selectedColor_color) ||
-                other.selectedColor_color == selectedColor_color) &&
-            (identical(other.iconColor_color, iconColor_color) ||
-                other.iconColor_color == iconColor_color) &&
-            (identical(other.textColor_color, textColor_color) ||
-                other.textColor_color == textColor_color) &&
-            (identical(
-                    other.titleTextStyle_textStyle, titleTextStyle_textStyle) ||
-                other.titleTextStyle_textStyle == titleTextStyle_textStyle) &&
-            (identical(other.subtitleTextStyle_textStyle, subtitleTextStyle_textStyle) ||
-                other.subtitleTextStyle_textStyle ==
-                    subtitleTextStyle_textStyle) &&
-            (identical(other.leadingAndTrailingTextStyle_textStyle, leadingAndTrailingTextStyle_textStyle) ||
-                other.leadingAndTrailingTextStyle_textStyle ==
-                    leadingAndTrailingTextStyle_textStyle) &&
+            (identical(other.selectedColor_themeColorString, selectedColor_themeColorString) ||
+                other.selectedColor_themeColorString ==
+                    selectedColor_themeColorString) &&
+            (identical(other.iconColor_themeColorString, iconColor_themeColorString) ||
+                other.iconColor_themeColorString ==
+                    iconColor_themeColorString) &&
+            (identical(other.textColor_themeColorString, textColor_themeColorString) ||
+                other.textColor_themeColorString ==
+                    textColor_themeColorString) &&
+            (identical(other.titleTextStyle_textStyleString, titleTextStyle_textStyleString) ||
+                other.titleTextStyle_textStyleString ==
+                    titleTextStyle_textStyleString) &&
+            (identical(other.subtitleTextStyle_textStyleString, subtitleTextStyle_textStyleString) ||
+                other.subtitleTextStyle_textStyleString ==
+                    subtitleTextStyle_textStyleString) &&
+            (identical(other.leadingAndTrailingTextStyle_textStyleString, leadingAndTrailingTextStyle_textStyleString) ||
+                other.leadingAndTrailingTextStyle_textStyleString ==
+                    leadingAndTrailingTextStyle_textStyleString) &&
             (identical(other.contentPadding_edgeInsets, contentPadding_edgeInsets) ||
                 other.contentPadding_edgeInsets == contentPadding_edgeInsets) &&
-            (identical(other.tileColor_color, tileColor_color) ||
-                other.tileColor_color == tileColor_color) &&
-            (identical(other.selectedTileColor_color, selectedTileColor_color) ||
-                other.selectedTileColor_color == selectedTileColor_color) &&
+            (identical(other.tileColor_themeColorString, tileColor_themeColorString) ||
+                other.tileColor_themeColorString ==
+                    tileColor_themeColorString) &&
+            (identical(other.selectedTileColor_themeColorString, selectedTileColor_themeColorString) ||
+                other.selectedTileColor_themeColorString ==
+                    selectedTileColor_themeColorString) &&
             (identical(other.horizontalTitleGap_double, horizontalTitleGap_double) ||
                 other.horizontalTitleGap_double == horizontalTitleGap_double) &&
             (identical(other.minVerticalPadding_double, minVerticalPadding_double) ||
@@ -437,8 +450,7 @@ class _$ListTileModelImpl extends _ListTileModel {
                 other.minLeadingWidth_double == minLeadingWidth_double) &&
             (identical(other.enableFeedback_bool, enableFeedback_bool) ||
                 other.enableFeedback_bool == enableFeedback_bool) &&
-            (identical(other.titleAlignment_enum_listTileTitleAlignment,
-                    titleAlignment_enum_listTileTitleAlignment) ||
+            (identical(other.titleAlignment_enum_listTileTitleAlignment, titleAlignment_enum_listTileTitleAlignment) ||
                 other.titleAlignment_enum_listTileTitleAlignment ==
                     titleAlignment_enum_listTileTitleAlignment));
   }
@@ -449,15 +461,15 @@ class _$ListTileModelImpl extends _ListTileModel {
       runtimeType,
       dense_bool,
       shape_shapeBorder,
-      selectedColor_color,
-      iconColor_color,
-      textColor_color,
-      titleTextStyle_textStyle,
-      subtitleTextStyle_textStyle,
-      leadingAndTrailingTextStyle_textStyle,
+      selectedColor_themeColorString,
+      iconColor_themeColorString,
+      textColor_themeColorString,
+      titleTextStyle_textStyleString,
+      subtitleTextStyle_textStyleString,
+      leadingAndTrailingTextStyle_textStyleString,
       contentPadding_edgeInsets,
-      tileColor_color,
-      selectedTileColor_color,
+      tileColor_themeColorString,
+      selectedTileColor_themeColorString,
       horizontalTitleGap_double,
       minVerticalPadding_double,
       minLeadingWidth_double,
@@ -482,15 +494,15 @@ abstract class _ListTileModel extends ListTileModel {
   const factory _ListTileModel(
       {final bool? dense_bool,
       final ShapeBorderModel? shape_shapeBorder,
-      final String? selectedColor_color,
-      final String? iconColor_color,
-      final String? textColor_color,
-      final String? titleTextStyle_textStyle,
-      final String? subtitleTextStyle_textStyle,
-      final String? leadingAndTrailingTextStyle_textStyle,
+      final String? selectedColor_themeColorString,
+      final String? iconColor_themeColorString,
+      final String? textColor_themeColorString,
+      final String? titleTextStyle_textStyleString,
+      final String? subtitleTextStyle_textStyleString,
+      final String? leadingAndTrailingTextStyle_textStyleString,
       final EdgeInsetsModel? contentPadding_edgeInsets,
-      final String? tileColor_color,
-      final String? selectedTileColor_color,
+      final String? tileColor_themeColorString,
+      final String? selectedTileColor_themeColorString,
       final double? horizontalTitleGap_double,
       final double? minVerticalPadding_double,
       final double? minLeadingWidth_double,
@@ -507,23 +519,23 @@ abstract class _ListTileModel extends ListTileModel {
   @override // @OutlinedBorderConverter()
   ShapeBorderModel? get shape_shapeBorder;
   @override
-  String? get selectedColor_color;
+  String? get selectedColor_themeColorString;
   @override
-  String? get iconColor_color;
+  String? get iconColor_themeColorString;
   @override
-  String? get textColor_color;
+  String? get textColor_themeColorString;
   @override
-  String? get titleTextStyle_textStyle;
+  String? get titleTextStyle_textStyleString;
   @override
-  String? get subtitleTextStyle_textStyle;
+  String? get subtitleTextStyle_textStyleString;
   @override
-  String? get leadingAndTrailingTextStyle_textStyle;
+  String? get leadingAndTrailingTextStyle_textStyleString;
   @override
   EdgeInsetsModel? get contentPadding_edgeInsets;
   @override
-  String? get tileColor_color;
+  String? get tileColor_themeColorString;
   @override
-  String? get selectedTileColor_color;
+  String? get selectedTileColor_themeColorString;
   @override
   double? get horizontalTitleGap_double;
   @override

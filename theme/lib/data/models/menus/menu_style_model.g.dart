@@ -8,9 +8,12 @@ part of 'menu_style_model.dart';
 
 _$MenuModelImpl _$$MenuModelImplFromJson(Map<String, dynamic> json) =>
     _$MenuModelImpl(
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      shadowColor_color: json['shadowColor_color'] as String?,
-      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
       padding_edgeInsets: json['padding_edgeInsets'] == null
           ? const EdgeInsetsModel()
@@ -43,9 +46,11 @@ _$MenuModelImpl _$$MenuModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$MenuModelImplToJson(_$MenuModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor_color': instance.backgroundColor_color,
-      'shadowColor_color': instance.shadowColor_color,
-      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
       'elevation_double': instance.elevation_double,
       'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'minimumSize_size': instance.minimumSize_size?.toJson(),

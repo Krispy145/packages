@@ -22,7 +22,8 @@ GradientModel _$GradientModelFromJson(Map<String, dynamic> json) {
 mixin _$GradientModel {
   GradientType? get type_enum_gradientType =>
       throw _privateConstructorUsedError;
-  List<String>? get colors_list_color => throw _privateConstructorUsedError;
+  List<String>? get colors_list_themeColorString =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,8 @@ abstract class $GradientModelCopyWith<$Res> {
       _$GradientModelCopyWithImpl<$Res, GradientModel>;
   @useResult
   $Res call(
-      {GradientType? type_enum_gradientType, List<String>? colors_list_color});
+      {GradientType? type_enum_gradientType,
+      List<String>? colors_list_themeColorString});
 }
 
 /// @nodoc
@@ -54,16 +56,16 @@ class _$GradientModelCopyWithImpl<$Res, $Val extends GradientModel>
   @override
   $Res call({
     Object? type_enum_gradientType = freezed,
-    Object? colors_list_color = freezed,
+    Object? colors_list_themeColorString = freezed,
   }) {
     return _then(_value.copyWith(
       type_enum_gradientType: freezed == type_enum_gradientType
           ? _value.type_enum_gradientType
           : type_enum_gradientType // ignore: cast_nullable_to_non_nullable
               as GradientType?,
-      colors_list_color: freezed == colors_list_color
-          ? _value.colors_list_color
-          : colors_list_color // ignore: cast_nullable_to_non_nullable
+      colors_list_themeColorString: freezed == colors_list_themeColorString
+          ? _value.colors_list_themeColorString
+          : colors_list_themeColorString // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ) as $Val);
   }
@@ -78,7 +80,8 @@ abstract class _$$GradientModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {GradientType? type_enum_gradientType, List<String>? colors_list_color});
+      {GradientType? type_enum_gradientType,
+      List<String>? colors_list_themeColorString});
 }
 
 /// @nodoc
@@ -93,16 +96,16 @@ class __$$GradientModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type_enum_gradientType = freezed,
-    Object? colors_list_color = freezed,
+    Object? colors_list_themeColorString = freezed,
   }) {
     return _then(_$GradientModelImpl(
       type_enum_gradientType: freezed == type_enum_gradientType
           ? _value.type_enum_gradientType
           : type_enum_gradientType // ignore: cast_nullable_to_non_nullable
               as GradientType?,
-      colors_list_color: freezed == colors_list_color
-          ? _value._colors_list_color
-          : colors_list_color // ignore: cast_nullable_to_non_nullable
+      colors_list_themeColorString: freezed == colors_list_themeColorString
+          ? _value._colors_list_themeColorString
+          : colors_list_themeColorString // ignore: cast_nullable_to_non_nullable
               as List<String>?,
     ));
   }
@@ -112,8 +115,9 @@ class __$$GradientModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GradientModelImpl extends _GradientModel {
   const _$GradientModelImpl(
-      {this.type_enum_gradientType, final List<String>? colors_list_color})
-      : _colors_list_color = colors_list_color,
+      {this.type_enum_gradientType,
+      final List<String>? colors_list_themeColorString})
+      : _colors_list_themeColorString = colors_list_themeColorString,
         super._();
 
   factory _$GradientModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -121,20 +125,20 @@ class _$GradientModelImpl extends _GradientModel {
 
   @override
   final GradientType? type_enum_gradientType;
-  final List<String>? _colors_list_color;
+  final List<String>? _colors_list_themeColorString;
   @override
-  List<String>? get colors_list_color {
-    final value = _colors_list_color;
+  List<String>? get colors_list_themeColorString {
+    final value = _colors_list_themeColorString;
     if (value == null) return null;
-    if (_colors_list_color is EqualUnmodifiableListView)
-      return _colors_list_color;
+    if (_colors_list_themeColorString is EqualUnmodifiableListView)
+      return _colors_list_themeColorString;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'GradientModel(type_enum_gradientType: $type_enum_gradientType, colors_list_color: $colors_list_color)';
+    return 'GradientModel(type_enum_gradientType: $type_enum_gradientType, colors_list_themeColorString: $colors_list_themeColorString)';
   }
 
   @override
@@ -144,14 +148,15 @@ class _$GradientModelImpl extends _GradientModel {
             other is _$GradientModelImpl &&
             (identical(other.type_enum_gradientType, type_enum_gradientType) ||
                 other.type_enum_gradientType == type_enum_gradientType) &&
-            const DeepCollectionEquality()
-                .equals(other._colors_list_color, _colors_list_color));
+            const DeepCollectionEquality().equals(
+                other._colors_list_themeColorString,
+                _colors_list_themeColorString));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, type_enum_gradientType,
-      const DeepCollectionEquality().hash(_colors_list_color));
+      const DeepCollectionEquality().hash(_colors_list_themeColorString));
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +175,7 @@ class _$GradientModelImpl extends _GradientModel {
 abstract class _GradientModel extends GradientModel {
   const factory _GradientModel(
       {final GradientType? type_enum_gradientType,
-      final List<String>? colors_list_color}) = _$GradientModelImpl;
+      final List<String>? colors_list_themeColorString}) = _$GradientModelImpl;
   const _GradientModel._() : super._();
 
   factory _GradientModel.fromJson(Map<String, dynamic> json) =
@@ -179,7 +184,7 @@ abstract class _GradientModel extends GradientModel {
   @override
   GradientType? get type_enum_gradientType;
   @override
-  List<String>? get colors_list_color;
+  List<String>? get colors_list_themeColorString;
   @override
   @JsonKey(ignore: true)
   _$$GradientModelImplCopyWith<_$GradientModelImpl> get copyWith =>

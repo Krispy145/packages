@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TextStyleModel _$TextStyleModelFromJson(Map<String, dynamic> json) {
-  return _TextStyleModel.fromJson(json);
+  return _textStyleStringModel.fromJson(json);
 }
 
 /// @nodoc
@@ -99,11 +99,11 @@ class _$TextStyleModelCopyWithImpl<$Res, $Val extends TextStyleModel>
 }
 
 /// @nodoc
-abstract class _$$TextStyleModelImplCopyWith<$Res>
+abstract class _$$textStyleStringModelImplCopyWith<$Res>
     implements $TextStyleModelCopyWith<$Res> {
-  factory _$$TextStyleModelImplCopyWith(_$TextStyleModelImpl value,
-          $Res Function(_$TextStyleModelImpl) then) =
-      __$$TextStyleModelImplCopyWithImpl<$Res>;
+  factory _$$textStyleStringModelImplCopyWith(_$textStyleStringModelImpl value,
+          $Res Function(_$textStyleStringModelImpl) then) =
+      __$$textStyleStringModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -116,11 +116,11 @@ abstract class _$$TextStyleModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TextStyleModelImplCopyWithImpl<$Res>
-    extends _$TextStyleModelCopyWithImpl<$Res, _$TextStyleModelImpl>
-    implements _$$TextStyleModelImplCopyWith<$Res> {
-  __$$TextStyleModelImplCopyWithImpl(
-      _$TextStyleModelImpl _value, $Res Function(_$TextStyleModelImpl) _then)
+class __$$textStyleStringModelImplCopyWithImpl<$Res>
+    extends _$TextStyleModelCopyWithImpl<$Res, _$textStyleStringModelImpl>
+    implements _$$textStyleStringModelImplCopyWith<$Res> {
+  __$$textStyleStringModelImplCopyWithImpl(_$textStyleStringModelImpl _value,
+      $Res Function(_$textStyleStringModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -133,7 +133,7 @@ class __$$TextStyleModelImplCopyWithImpl<$Res>
     Object? lineHeight_double = freezed,
     Object? letterSpacing_double = freezed,
   }) {
-    return _then(_$TextStyleModelImpl(
+    return _then(_$textStyleStringModelImpl(
       fontFamilyName_string: freezed == fontFamilyName_string
           ? _value.fontFamilyName_string
           : fontFamilyName_string // ignore: cast_nullable_to_non_nullable
@@ -164,22 +164,23 @@ class __$$TextStyleModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$TextStyleModelImpl extends _TextStyleModel {
-  const _$TextStyleModelImpl(
+class _$textStyleStringModelImpl extends _textStyleStringModel {
+  const _$textStyleStringModelImpl(
       {this.fontFamilyName_string,
-      this.fontFamilyStyle_enum_fontStyle,
+      this.fontFamilyStyle_enum_fontStyle = FontStyle.normal,
       this.fontWeight_double,
       this.fontSize_double,
       this.lineHeight_double,
       this.letterSpacing_double})
       : super._();
 
-  factory _$TextStyleModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TextStyleModelImplFromJson(json);
+  factory _$textStyleStringModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$textStyleStringModelImplFromJson(json);
 
   @override
   final String? fontFamilyName_string;
   @override
+  @JsonKey()
   final FontStyle? fontFamilyStyle_enum_fontStyle;
   @override
   final double? fontWeight_double;
@@ -199,7 +200,7 @@ class _$TextStyleModelImpl extends _TextStyleModel {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TextStyleModelImpl &&
+            other is _$textStyleStringModelImpl &&
             (identical(other.fontFamilyName_string, fontFamilyName_string) ||
                 other.fontFamilyName_string == fontFamilyName_string) &&
             (identical(other.fontFamilyStyle_enum_fontStyle,
@@ -230,30 +231,31 @@ class _$TextStyleModelImpl extends _TextStyleModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TextStyleModelImplCopyWith<_$TextStyleModelImpl> get copyWith =>
-      __$$TextStyleModelImplCopyWithImpl<_$TextStyleModelImpl>(
-          this, _$identity);
+  _$$textStyleStringModelImplCopyWith<_$textStyleStringModelImpl>
+      get copyWith =>
+          __$$textStyleStringModelImplCopyWithImpl<_$textStyleStringModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TextStyleModelImplToJson(
+    return _$$textStyleStringModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _TextStyleModel extends TextStyleModel {
-  const factory _TextStyleModel(
+abstract class _textStyleStringModel extends TextStyleModel {
+  const factory _textStyleStringModel(
       {final String? fontFamilyName_string,
       final FontStyle? fontFamilyStyle_enum_fontStyle,
       final double? fontWeight_double,
       final double? fontSize_double,
       final double? lineHeight_double,
-      final double? letterSpacing_double}) = _$TextStyleModelImpl;
-  const _TextStyleModel._() : super._();
+      final double? letterSpacing_double}) = _$textStyleStringModelImpl;
+  const _textStyleStringModel._() : super._();
 
-  factory _TextStyleModel.fromJson(Map<String, dynamic> json) =
-      _$TextStyleModelImpl.fromJson;
+  factory _textStyleStringModel.fromJson(Map<String, dynamic> json) =
+      _$textStyleStringModelImpl.fromJson;
 
   @override
   String? get fontFamilyName_string;
@@ -269,6 +271,6 @@ abstract class _TextStyleModel extends TextStyleModel {
   double? get letterSpacing_double;
   @override
   @JsonKey(ignore: true)
-  _$$TextStyleModelImplCopyWith<_$TextStyleModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$textStyleStringModelImplCopyWith<_$textStyleStringModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -20,17 +20,22 @@ SearchViewModel _$SearchViewModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchViewModel {
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
   BoxConstraintsModel? get constraints_boxConstraints =>
       throw _privateConstructorUsedError;
   BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
   OutlinedBorderModel? get shape_outlinedBorder =>
       throw _privateConstructorUsedError;
-  String? get headerTextStyle_textStyle => throw _privateConstructorUsedError;
-  String? get headerHintStyle_textStyle => throw _privateConstructorUsedError;
-  String? get dividerColor_color => throw _privateConstructorUsedError;
+  String? get headerTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get headerHintStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get dividerColor_themeColorString =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,15 +50,15 @@ abstract class $SearchViewModelCopyWith<$Res> {
       _$SearchViewModelCopyWithImpl<$Res, SearchViewModel>;
   @useResult
   $Res call(
-      {String? backgroundColor_color,
+      {String? backgroundColor_themeColorString,
       double? elevation_double,
-      String? surfaceTintColor_color,
+      String? surfaceTintColor_themeColorString,
       BoxConstraintsModel? constraints_boxConstraints,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      String? headerTextStyle_textStyle,
-      String? headerHintStyle_textStyle,
-      String? dividerColor_color});
+      String? headerTextStyle_textStyleString,
+      String? headerHintStyle_textStyleString,
+      String? dividerColor_themeColorString});
 
   $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
   $BorderSideModelCopyWith<$Res>? get side_borderSide;
@@ -73,28 +78,30 @@ class _$SearchViewModelCopyWithImpl<$Res, $Val extends SearchViewModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? constraints_boxConstraints = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
-    Object? headerTextStyle_textStyle = freezed,
-    Object? headerHintStyle_textStyle = freezed,
-    Object? dividerColor_color = freezed,
+    Object? headerTextStyle_textStyleString = freezed,
+    Object? headerHintStyle_textStyleString = freezed,
+    Object? dividerColor_themeColorString = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       constraints_boxConstraints: freezed == constraints_boxConstraints
           ? _value.constraints_boxConstraints
@@ -108,17 +115,19 @@ class _$SearchViewModelCopyWithImpl<$Res, $Val extends SearchViewModel>
           ? _value.shape_outlinedBorder
           : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
               as OutlinedBorderModel?,
-      headerTextStyle_textStyle: freezed == headerTextStyle_textStyle
-          ? _value.headerTextStyle_textStyle
-          : headerTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      headerTextStyle_textStyleString: freezed ==
+              headerTextStyle_textStyleString
+          ? _value.headerTextStyle_textStyleString
+          : headerTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      headerHintStyle_textStyle: freezed == headerHintStyle_textStyle
-          ? _value.headerHintStyle_textStyle
-          : headerHintStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      headerHintStyle_textStyleString: freezed ==
+              headerHintStyle_textStyleString
+          ? _value.headerHintStyle_textStyleString
+          : headerHintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      dividerColor_color: freezed == dividerColor_color
-          ? _value.dividerColor_color
-          : dividerColor_color // ignore: cast_nullable_to_non_nullable
+      dividerColor_themeColorString: freezed == dividerColor_themeColorString
+          ? _value.dividerColor_themeColorString
+          : dividerColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -171,15 +180,15 @@ abstract class _$$SearchViewModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor_color,
+      {String? backgroundColor_themeColorString,
       double? elevation_double,
-      String? surfaceTintColor_color,
+      String? surfaceTintColor_themeColorString,
       BoxConstraintsModel? constraints_boxConstraints,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      String? headerTextStyle_textStyle,
-      String? headerHintStyle_textStyle,
-      String? dividerColor_color});
+      String? headerTextStyle_textStyleString,
+      String? headerHintStyle_textStyleString,
+      String? dividerColor_themeColorString});
 
   @override
   $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
@@ -200,28 +209,30 @@ class __$$SearchViewModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
     Object? elevation_double = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? constraints_boxConstraints = freezed,
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
-    Object? headerTextStyle_textStyle = freezed,
-    Object? headerHintStyle_textStyle = freezed,
-    Object? dividerColor_color = freezed,
+    Object? headerTextStyle_textStyleString = freezed,
+    Object? headerHintStyle_textStyleString = freezed,
+    Object? dividerColor_themeColorString = freezed,
   }) {
     return _then(_$SearchViewModelImpl(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
           : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       constraints_boxConstraints: freezed == constraints_boxConstraints
           ? _value.constraints_boxConstraints
@@ -235,17 +246,19 @@ class __$$SearchViewModelImplCopyWithImpl<$Res>
           ? _value.shape_outlinedBorder
           : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
               as OutlinedBorderModel?,
-      headerTextStyle_textStyle: freezed == headerTextStyle_textStyle
-          ? _value.headerTextStyle_textStyle
-          : headerTextStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      headerTextStyle_textStyleString: freezed ==
+              headerTextStyle_textStyleString
+          ? _value.headerTextStyle_textStyleString
+          : headerTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      headerHintStyle_textStyle: freezed == headerHintStyle_textStyle
-          ? _value.headerHintStyle_textStyle
-          : headerHintStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      headerHintStyle_textStyleString: freezed ==
+              headerHintStyle_textStyleString
+          ? _value.headerHintStyle_textStyleString
+          : headerHintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      dividerColor_color: freezed == dividerColor_color
-          ? _value.dividerColor_color
-          : dividerColor_color // ignore: cast_nullable_to_non_nullable
+      dividerColor_themeColorString: freezed == dividerColor_themeColorString
+          ? _value.dividerColor_themeColorString
+          : dividerColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -255,26 +268,26 @@ class __$$SearchViewModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SearchViewModelImpl extends _SearchViewModel {
   const _$SearchViewModelImpl(
-      {this.backgroundColor_color,
+      {this.backgroundColor_themeColorString,
       this.elevation_double,
-      this.surfaceTintColor_color,
+      this.surfaceTintColor_themeColorString,
       this.constraints_boxConstraints = const BoxConstraintsModel(),
       this.side_borderSide,
       this.shape_outlinedBorder = const OutlinedBorderModel(),
-      this.headerTextStyle_textStyle,
-      this.headerHintStyle_textStyle,
-      this.dividerColor_color})
+      this.headerTextStyle_textStyleString,
+      this.headerHintStyle_textStyleString,
+      this.dividerColor_themeColorString})
       : super._();
 
   factory _$SearchViewModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchViewModelImplFromJson(json);
 
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
   final double? elevation_double;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
   @JsonKey()
   final BoxConstraintsModel? constraints_boxConstraints;
@@ -284,15 +297,15 @@ class _$SearchViewModelImpl extends _SearchViewModel {
   @JsonKey()
   final OutlinedBorderModel? shape_outlinedBorder;
   @override
-  final String? headerTextStyle_textStyle;
+  final String? headerTextStyle_textStyleString;
   @override
-  final String? headerHintStyle_textStyle;
+  final String? headerHintStyle_textStyleString;
   @override
-  final String? dividerColor_color;
+  final String? dividerColor_themeColorString;
 
   @override
   String toString() {
-    return 'SearchViewModel(backgroundColor_color: $backgroundColor_color, elevation_double: $elevation_double, surfaceTintColor_color: $surfaceTintColor_color, constraints_boxConstraints: $constraints_boxConstraints, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, headerTextStyle_textStyle: $headerTextStyle_textStyle, headerHintStyle_textStyle: $headerHintStyle_textStyle, dividerColor_color: $dividerColor_color)';
+    return 'SearchViewModel(backgroundColor_themeColorString: $backgroundColor_themeColorString, elevation_double: $elevation_double, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, constraints_boxConstraints: $constraints_boxConstraints, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, headerTextStyle_textStyleString: $headerTextStyle_textStyleString, headerHintStyle_textStyleString: $headerHintStyle_textStyleString, dividerColor_themeColorString: $dividerColor_themeColorString)';
   }
 
   @override
@@ -300,43 +313,49 @@ class _$SearchViewModelImpl extends _SearchViewModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchViewModelImpl &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
+            (identical(other.backgroundColor_themeColorString,
+                    backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
-            (identical(other.constraints_boxConstraints,
-                    constraints_boxConstraints) ||
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.constraints_boxConstraints, constraints_boxConstraints) ||
                 other.constraints_boxConstraints ==
                     constraints_boxConstraints) &&
             (identical(other.side_borderSide, side_borderSide) ||
                 other.side_borderSide == side_borderSide) &&
             (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
                 other.shape_outlinedBorder == shape_outlinedBorder) &&
-            (identical(other.headerTextStyle_textStyle,
-                    headerTextStyle_textStyle) ||
-                other.headerTextStyle_textStyle == headerTextStyle_textStyle) &&
-            (identical(other.headerHintStyle_textStyle,
-                    headerHintStyle_textStyle) ||
-                other.headerHintStyle_textStyle == headerHintStyle_textStyle) &&
-            (identical(other.dividerColor_color, dividerColor_color) ||
-                other.dividerColor_color == dividerColor_color));
+            (identical(other.headerTextStyle_textStyleString,
+                    headerTextStyle_textStyleString) ||
+                other.headerTextStyle_textStyleString ==
+                    headerTextStyle_textStyleString) &&
+            (identical(other.headerHintStyle_textStyleString,
+                    headerHintStyle_textStyleString) ||
+                other.headerHintStyle_textStyleString ==
+                    headerHintStyle_textStyleString) &&
+            (identical(other.dividerColor_themeColorString, dividerColor_themeColorString) ||
+                other.dividerColor_themeColorString ==
+                    dividerColor_themeColorString));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor_color,
+      backgroundColor_themeColorString,
       elevation_double,
-      surfaceTintColor_color,
+      surfaceTintColor_themeColorString,
       constraints_boxConstraints,
       side_borderSide,
       shape_outlinedBorder,
-      headerTextStyle_textStyle,
-      headerHintStyle_textStyle,
-      dividerColor_color);
+      headerTextStyle_textStyleString,
+      headerHintStyle_textStyleString,
+      dividerColor_themeColorString);
 
   @JsonKey(ignore: true)
   @override
@@ -355,26 +374,26 @@ class _$SearchViewModelImpl extends _SearchViewModel {
 
 abstract class _SearchViewModel extends SearchViewModel {
   const factory _SearchViewModel(
-      {final String? backgroundColor_color,
+      {final String? backgroundColor_themeColorString,
       final double? elevation_double,
-      final String? surfaceTintColor_color,
+      final String? surfaceTintColor_themeColorString,
       final BoxConstraintsModel? constraints_boxConstraints,
       final BorderSideModel? side_borderSide,
       final OutlinedBorderModel? shape_outlinedBorder,
-      final String? headerTextStyle_textStyle,
-      final String? headerHintStyle_textStyle,
-      final String? dividerColor_color}) = _$SearchViewModelImpl;
+      final String? headerTextStyle_textStyleString,
+      final String? headerHintStyle_textStyleString,
+      final String? dividerColor_themeColorString}) = _$SearchViewModelImpl;
   const _SearchViewModel._() : super._();
 
   factory _SearchViewModel.fromJson(Map<String, dynamic> json) =
       _$SearchViewModelImpl.fromJson;
 
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
   double? get elevation_double;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
   BoxConstraintsModel? get constraints_boxConstraints;
   @override
@@ -382,11 +401,11 @@ abstract class _SearchViewModel extends SearchViewModel {
   @override
   OutlinedBorderModel? get shape_outlinedBorder;
   @override
-  String? get headerTextStyle_textStyle;
+  String? get headerTextStyle_textStyleString;
   @override
-  String? get headerHintStyle_textStyle;
+  String? get headerHintStyle_textStyleString;
   @override
-  String? get dividerColor_color;
+  String? get dividerColor_themeColorString;
   @override
   @JsonKey(ignore: true)
   _$$SearchViewModelImplCopyWith<_$SearchViewModelImpl> get copyWith =>

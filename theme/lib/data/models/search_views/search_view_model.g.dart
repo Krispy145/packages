@@ -9,9 +9,11 @@ part of 'search_view_model.dart';
 _$SearchViewModelImpl _$$SearchViewModelImplFromJson(
         Map<String, dynamic> json) =>
     _$SearchViewModelImpl(
-      backgroundColor_color: json['backgroundColor_color'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
-      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
       constraints_boxConstraints: json['constraints_boxConstraints'] == null
           ? const BoxConstraintsModel()
           : BoxConstraintsModel.fromJson(
@@ -24,22 +26,29 @@ _$SearchViewModelImpl _$$SearchViewModelImplFromJson(
           ? const OutlinedBorderModel()
           : OutlinedBorderModel.fromJson(
               json['shape_outlinedBorder'] as Map<String, dynamic>),
-      headerTextStyle_textStyle: json['headerTextStyle_textStyle'] as String?,
-      headerHintStyle_textStyle: json['headerHintStyle_textStyle'] as String?,
-      dividerColor_color: json['dividerColor_color'] as String?,
+      headerTextStyle_textStyleString:
+          json['headerTextStyle_textStyleString'] as String?,
+      headerHintStyle_textStyleString:
+          json['headerHintStyle_textStyleString'] as String?,
+      dividerColor_themeColorString:
+          json['dividerColor_themeColorString'] as String?,
     );
 
 Map<String, dynamic> _$$SearchViewModelImplToJson(
         _$SearchViewModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor_color': instance.backgroundColor_color,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
       'elevation_double': instance.elevation_double,
-      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
       'constraints_boxConstraints':
           instance.constraints_boxConstraints?.toJson(),
       'side_borderSide': instance.side_borderSide?.toJson(),
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
-      'headerTextStyle_textStyle': instance.headerTextStyle_textStyle,
-      'headerHintStyle_textStyle': instance.headerHintStyle_textStyle,
-      'dividerColor_color': instance.dividerColor_color,
+      'headerTextStyle_textStyleString':
+          instance.headerTextStyle_textStyleString,
+      'headerHintStyle_textStyleString':
+          instance.headerHintStyle_textStyleString,
+      'dividerColor_themeColorString': instance.dividerColor_themeColorString,
     };

@@ -21,7 +21,7 @@ class TooltipModel with _$TooltipModel {
     bool? excludeFromSemantics_bool,
     BoxDecorationModel? decoration_boxDecoration,
     // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
-    TextStyleString? textStyle_textStyle,
+    TextStyleString? textStyle_textStyleString,
     TextAlign? textAlign_enum_textAlign,
     //TODO: implement these converters
     Duration? waitDuration_duration,
@@ -62,7 +62,7 @@ class TooltipModel with _$TooltipModel {
       preferBelow: preferBelow_bool,
       excludeFromSemantics: excludeFromSemantics_bool,
       decoration: decoration_boxDecoration?.asBoxDecoration(styleTypeName: styleTypeName),
-      textStyle: textStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       enableFeedback: enableFeedback_bool,
     );
   }

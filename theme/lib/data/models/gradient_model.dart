@@ -13,7 +13,7 @@ enum GradientType { linear, radial, sweep }
 class GradientModel with _$GradientModel {
   const factory GradientModel({
     final GradientType? type_enum_gradientType,
-    final List<ThemeColorString>? colors_list_color,
+    final List<ThemeColorString>? colors_list_themeColorString,
   }) = _GradientModel;
 
   const GradientModel._();
@@ -21,7 +21,7 @@ class GradientModel with _$GradientModel {
   factory GradientModel.fromJson(Map<String, dynamic> json) => _$GradientModelFromJson(json);
 
   Gradient asGradient({String? styleTypeName}) {
-    final colorsList = (colors_list_color ?? []).map((e) => e.toColor()).whereType<Color>().toList();
+    final colorsList = (colors_list_themeColorString ?? []).map((e) => e.toColor()).whereType<Color>().toList();
     switch (type_enum_gradientType) {
       case GradientType.linear:
         return LinearGradient(

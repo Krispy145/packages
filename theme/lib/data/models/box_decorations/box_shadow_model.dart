@@ -11,11 +11,11 @@ part 'box_shadow_model.g.dart';
 @freezed
 class BoxShadowModel with _$BoxShadowModel {
   const factory BoxShadowModel({
-    // final ThemeColorString? color_color,
+    // final ThemeColorString? color_themeColorString,
     // final double? width_double,
     // final BorderStyle? style_enum_borderStyle,
     // final double? strokeAlign_double,
-    ThemeColorString? color_color,
+    ThemeColorString? color_themeColorString,
     @Default(OffsetModel()) OffsetModel? offset_offset,
     double? blurRadius_double,
     double? spreadRadius_double,
@@ -28,7 +28,7 @@ class BoxShadowModel with _$BoxShadowModel {
 
   BoxShadow asBoxShadow({String? styleTypeName}) {
     return BoxShadow(
-      color: color_color?.toColor() ?? const Color(0xFF000000),
+      color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
       offset: offset_offset?.asOffset(styleTypeName: styleTypeName) ?? const Offset(0, 0),
       blurRadius: blurRadius_double ?? 0.0,
       spreadRadius: spreadRadius_double ?? 0.0,

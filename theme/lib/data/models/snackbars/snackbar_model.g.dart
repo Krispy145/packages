@@ -8,11 +8,14 @@ part of 'snackbar_model.dart';
 
 _$SnackbarModelImpl _$$SnackbarModelImplFromJson(Map<String, dynamic> json) =>
     _$SnackbarModelImpl(
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      actionTextColor_color: json['actionTextColor_color'] as String?,
-      disabledActionTextColor_color:
-          json['disabledActionTextColor_color'] as String?,
-      contentTextStyle_textStyle: json['contentTextStyle_textStyle'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      actionTextColor_themeColorString:
+          json['actionTextColor_themeColorString'] as String?,
+      disabledActionTextColor_themeColorString:
+          json['disabledActionTextColor_themeColorString'] as String?,
+      contentTextStyle_textStyleString:
+          json['contentTextStyle_textStyleString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
       shape_outlinedBorder: json['shape_outlinedBorder'] == null
           ? const OutlinedBorderModel()
@@ -28,21 +31,26 @@ _$SnackbarModelImpl _$$SnackbarModelImplFromJson(Map<String, dynamic> json) =>
           : EdgeInsetsModel.fromJson(
               json['insetPadding_edgeInsets'] as Map<String, dynamic>),
       showCloseIcon_bool: json['showCloseIcon_bool'] as bool?,
-      closeIconColor_color: json['closeIconColor_color'] as String?,
+      closeIconColor_themeColorString:
+          json['closeIconColor_themeColorString'] as String?,
       actionOverflowThreshold_double:
           (json['actionOverflowThreshold_double'] as num?)?.toDouble(),
-      actionBackgroundColor_color:
-          json['actionBackgroundColor_color'] as String?,
-      disabledActionBackgroundColor_color:
-          json['disabledActionBackgroundColor_color'] as String?,
+      actionBackgroundColor_themeColorString:
+          json['actionBackgroundColor_themeColorString'] as String?,
+      disabledActionBackgroundColor_themeColorString:
+          json['disabledActionBackgroundColor_themeColorString'] as String?,
     );
 
 Map<String, dynamic> _$$SnackbarModelImplToJson(_$SnackbarModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor_color': instance.backgroundColor_color,
-      'actionTextColor_color': instance.actionTextColor_color,
-      'disabledActionTextColor_color': instance.disabledActionTextColor_color,
-      'contentTextStyle_textStyle': instance.contentTextStyle_textStyle,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'actionTextColor_themeColorString':
+          instance.actionTextColor_themeColorString,
+      'disabledActionTextColor_themeColorString':
+          instance.disabledActionTextColor_themeColorString,
+      'contentTextStyle_textStyleString':
+          instance.contentTextStyle_textStyleString,
       'elevation_double': instance.elevation_double,
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
       'behavior_enum_snackBarBehavior':
@@ -50,11 +58,13 @@ Map<String, dynamic> _$$SnackbarModelImplToJson(_$SnackbarModelImpl instance) =>
       'width_double': instance.width_double,
       'insetPadding_edgeInsets': instance.insetPadding_edgeInsets?.toJson(),
       'showCloseIcon_bool': instance.showCloseIcon_bool,
-      'closeIconColor_color': instance.closeIconColor_color,
+      'closeIconColor_themeColorString':
+          instance.closeIconColor_themeColorString,
       'actionOverflowThreshold_double': instance.actionOverflowThreshold_double,
-      'actionBackgroundColor_color': instance.actionBackgroundColor_color,
-      'disabledActionBackgroundColor_color':
-          instance.disabledActionBackgroundColor_color,
+      'actionBackgroundColor_themeColorString':
+          instance.actionBackgroundColor_themeColorString,
+      'disabledActionBackgroundColor_themeColorString':
+          instance.disabledActionBackgroundColor_themeColorString,
     };
 
 const _$SnackBarBehaviorEnumMap = {

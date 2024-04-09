@@ -14,7 +14,7 @@ part 'box_decoration_model.g.dart';
 @freezed
 class BoxDecorationModel with _$BoxDecorationModel {
   const factory BoxDecorationModel({
-    ThemeColorString? color_color,
+    ThemeColorString? color_themeColorString,
     // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
     BoxBorderModel? border_boxBorder,
     // @BorderRadiusConverter() BorderRadius? borderRadius,
@@ -73,7 +73,7 @@ class BoxDecorationModel with _$BoxDecorationModel {
 
   BoxDecoration asBoxDecoration({String? styleTypeName}) {
     return BoxDecoration(
-      color: color_color?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
       border: border_boxBorder?.asBoxBorder(styleTypeName: styleTypeName),
       borderRadius: borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName),
       boxShadow: boxShadows_list_boxShadow?.map((e) => e.asBoxShadow(styleTypeName: styleTypeName)).toList() ?? [],

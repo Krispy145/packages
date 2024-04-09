@@ -20,11 +20,12 @@ BadgeModel _$BadgeModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BadgeModel {
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  String? get textColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get textColor_themeColorString => throw _privateConstructorUsedError;
   double? get smallSize_double => throw _privateConstructorUsedError;
   double? get largeSize_double => throw _privateConstructorUsedError;
-  String? get textStyle_textStyle => throw _privateConstructorUsedError;
+  String? get textStyle_textStyleString => throw _privateConstructorUsedError;
   EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
   AlignmentOptions? get alignment_enum_alignmentOptions =>
       throw _privateConstructorUsedError;
@@ -43,11 +44,11 @@ abstract class $BadgeModelCopyWith<$Res> {
       _$BadgeModelCopyWithImpl<$Res, BadgeModel>;
   @useResult
   $Res call(
-      {String? backgroundColor_color,
-      String? textColor_color,
+      {String? backgroundColor_themeColorString,
+      String? textColor_themeColorString,
       double? smallSize_double,
       double? largeSize_double,
-      String? textStyle_textStyle,
+      String? textStyle_textStyleString,
       EdgeInsetsModel? padding_edgeInsets,
       AlignmentOptions? alignment_enum_alignmentOptions,
       OffsetModel? offset_offset});
@@ -69,23 +70,24 @@ class _$BadgeModelCopyWithImpl<$Res, $Val extends BadgeModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
-    Object? textColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? textColor_themeColorString = freezed,
     Object? smallSize_double = freezed,
     Object? largeSize_double = freezed,
-    Object? textStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
     Object? padding_edgeInsets = freezed,
     Object? alignment_enum_alignmentOptions = freezed,
     Object? offset_offset = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textColor_color: freezed == textColor_color
-          ? _value.textColor_color
-          : textColor_color // ignore: cast_nullable_to_non_nullable
+      textColor_themeColorString: freezed == textColor_themeColorString
+          ? _value.textColor_themeColorString
+          : textColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       smallSize_double: freezed == smallSize_double
           ? _value.smallSize_double
@@ -95,9 +97,9 @@ class _$BadgeModelCopyWithImpl<$Res, $Val extends BadgeModel>
           ? _value.largeSize_double
           : largeSize_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
@@ -149,11 +151,11 @@ abstract class _$$BadgeModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor_color,
-      String? textColor_color,
+      {String? backgroundColor_themeColorString,
+      String? textColor_themeColorString,
       double? smallSize_double,
       double? largeSize_double,
-      String? textStyle_textStyle,
+      String? textStyle_textStyleString,
       EdgeInsetsModel? padding_edgeInsets,
       AlignmentOptions? alignment_enum_alignmentOptions,
       OffsetModel? offset_offset});
@@ -175,23 +177,24 @@ class __$$BadgeModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
-    Object? textColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? textColor_themeColorString = freezed,
     Object? smallSize_double = freezed,
     Object? largeSize_double = freezed,
-    Object? textStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
     Object? padding_edgeInsets = freezed,
     Object? alignment_enum_alignmentOptions = freezed,
     Object? offset_offset = freezed,
   }) {
     return _then(_$BadgeModelImpl(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textColor_color: freezed == textColor_color
-          ? _value.textColor_color
-          : textColor_color // ignore: cast_nullable_to_non_nullable
+      textColor_themeColorString: freezed == textColor_themeColorString
+          ? _value.textColor_themeColorString
+          : textColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       smallSize_double: freezed == smallSize_double
           ? _value.smallSize_double
@@ -201,9 +204,9 @@ class __$$BadgeModelImplCopyWithImpl<$Res>
           ? _value.largeSize_double
           : largeSize_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       padding_edgeInsets: freezed == padding_edgeInsets
           ? _value.padding_edgeInsets
@@ -226,11 +229,11 @@ class __$$BadgeModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BadgeModelImpl extends _BadgeModel {
   const _$BadgeModelImpl(
-      {this.backgroundColor_color,
-      this.textColor_color,
+      {this.backgroundColor_themeColorString,
+      this.textColor_themeColorString,
       this.smallSize_double,
       this.largeSize_double,
-      this.textStyle_textStyle,
+      this.textStyle_textStyleString,
       this.padding_edgeInsets = const EdgeInsetsModel(),
       this.alignment_enum_alignmentOptions = AlignmentOptions.center,
       this.offset_offset = const OffsetModel()})
@@ -240,15 +243,15 @@ class _$BadgeModelImpl extends _BadgeModel {
       _$$BadgeModelImplFromJson(json);
 
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? textColor_color;
+  final String? textColor_themeColorString;
   @override
   final double? smallSize_double;
   @override
   final double? largeSize_double;
   @override
-  final String? textStyle_textStyle;
+  final String? textStyle_textStyleString;
   @override
   @JsonKey()
   final EdgeInsetsModel? padding_edgeInsets;
@@ -261,7 +264,7 @@ class _$BadgeModelImpl extends _BadgeModel {
 
   @override
   String toString() {
-    return 'BadgeModel(backgroundColor_color: $backgroundColor_color, textColor_color: $textColor_color, smallSize_double: $smallSize_double, largeSize_double: $largeSize_double, textStyle_textStyle: $textStyle_textStyle, padding_edgeInsets: $padding_edgeInsets, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions, offset_offset: $offset_offset)';
+    return 'BadgeModel(backgroundColor_themeColorString: $backgroundColor_themeColorString, textColor_themeColorString: $textColor_themeColorString, smallSize_double: $smallSize_double, largeSize_double: $largeSize_double, textStyle_textStyleString: $textStyle_textStyleString, padding_edgeInsets: $padding_edgeInsets, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions, offset_offset: $offset_offset)';
   }
 
   @override
@@ -269,16 +272,21 @@ class _$BadgeModelImpl extends _BadgeModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BadgeModelImpl &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
-            (identical(other.textColor_color, textColor_color) ||
-                other.textColor_color == textColor_color) &&
+            (identical(other.backgroundColor_themeColorString,
+                    backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.textColor_themeColorString,
+                    textColor_themeColorString) ||
+                other.textColor_themeColorString ==
+                    textColor_themeColorString) &&
             (identical(other.smallSize_double, smallSize_double) ||
                 other.smallSize_double == smallSize_double) &&
             (identical(other.largeSize_double, largeSize_double) ||
                 other.largeSize_double == largeSize_double) &&
-            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
-                other.textStyle_textStyle == textStyle_textStyle) &&
+            (identical(other.textStyle_textStyleString,
+                    textStyle_textStyleString) ||
+                other.textStyle_textStyleString == textStyle_textStyleString) &&
             (identical(other.padding_edgeInsets, padding_edgeInsets) ||
                 other.padding_edgeInsets == padding_edgeInsets) &&
             (identical(other.alignment_enum_alignmentOptions,
@@ -293,11 +301,11 @@ class _$BadgeModelImpl extends _BadgeModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor_color,
-      textColor_color,
+      backgroundColor_themeColorString,
+      textColor_themeColorString,
       smallSize_double,
       largeSize_double,
-      textStyle_textStyle,
+      textStyle_textStyleString,
       padding_edgeInsets,
       alignment_enum_alignmentOptions,
       offset_offset);
@@ -318,11 +326,11 @@ class _$BadgeModelImpl extends _BadgeModel {
 
 abstract class _BadgeModel extends BadgeModel {
   const factory _BadgeModel(
-      {final String? backgroundColor_color,
-      final String? textColor_color,
+      {final String? backgroundColor_themeColorString,
+      final String? textColor_themeColorString,
       final double? smallSize_double,
       final double? largeSize_double,
-      final String? textStyle_textStyle,
+      final String? textStyle_textStyleString,
       final EdgeInsetsModel? padding_edgeInsets,
       final AlignmentOptions? alignment_enum_alignmentOptions,
       final OffsetModel? offset_offset}) = _$BadgeModelImpl;
@@ -332,15 +340,15 @@ abstract class _BadgeModel extends BadgeModel {
       _$BadgeModelImpl.fromJson;
 
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get textColor_color;
+  String? get textColor_themeColorString;
   @override
   double? get smallSize_double;
   @override
   double? get largeSize_double;
   @override
-  String? get textStyle_textStyle;
+  String? get textStyle_textStyleString;
   @override
   EdgeInsetsModel? get padding_edgeInsets;
   @override

@@ -20,21 +20,28 @@ ToggleButtonModel _$ToggleButtonModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ToggleButtonModel {
-  String? get textStyle_textStyle =>
+  String? get textStyle_textStyleString =>
       throw _privateConstructorUsedError; // @BoxConstraintsConverter()
   BoxConstraintsModel? get constraints_boxConstraints =>
       throw _privateConstructorUsedError;
-  String? get color_color => throw _privateConstructorUsedError;
-  String? get selectedColor_color => throw _privateConstructorUsedError;
-  String? get disabledColor_color => throw _privateConstructorUsedError;
-  String? get fillColor_color => throw _privateConstructorUsedError;
-  String? get focusColor_color => throw _privateConstructorUsedError;
-  String? get highlightColor_color => throw _privateConstructorUsedError;
-  String? get hoverColor_color => throw _privateConstructorUsedError;
-  String? get splashColor_color => throw _privateConstructorUsedError;
-  String? get borderColor_color => throw _privateConstructorUsedError;
-  String? get selectedBorderColor_color => throw _privateConstructorUsedError;
-  String? get disabledBorderColor_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
+  String? get selectedColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get fillColor_themeColorString => throw _privateConstructorUsedError;
+  String? get focusColor_themeColorString => throw _privateConstructorUsedError;
+  String? get highlightColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get hoverColor_themeColorString => throw _privateConstructorUsedError;
+  String? get splashColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get borderColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get selectedBorderColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledBorderColor_themeColorString =>
+      throw _privateConstructorUsedError;
   BorderRadiusModel? get borderRadius_borderRadius =>
       throw _privateConstructorUsedError;
   double? get borderWidth_double => throw _privateConstructorUsedError;
@@ -52,19 +59,19 @@ abstract class $ToggleButtonModelCopyWith<$Res> {
       _$ToggleButtonModelCopyWithImpl<$Res, ToggleButtonModel>;
   @useResult
   $Res call(
-      {String? textStyle_textStyle,
+      {String? textStyle_textStyleString,
       BoxConstraintsModel? constraints_boxConstraints,
-      String? color_color,
-      String? selectedColor_color,
-      String? disabledColor_color,
-      String? fillColor_color,
-      String? focusColor_color,
-      String? highlightColor_color,
-      String? hoverColor_color,
-      String? splashColor_color,
-      String? borderColor_color,
-      String? selectedBorderColor_color,
-      String? disabledBorderColor_color,
+      String? color_themeColorString,
+      String? selectedColor_themeColorString,
+      String? disabledColor_themeColorString,
+      String? fillColor_themeColorString,
+      String? focusColor_themeColorString,
+      String? highlightColor_themeColorString,
+      String? hoverColor_themeColorString,
+      String? splashColor_themeColorString,
+      String? borderColor_themeColorString,
+      String? selectedBorderColor_themeColorString,
+      String? disabledBorderColor_themeColorString,
       BorderRadiusModel? borderRadius_borderRadius,
       double? borderWidth_double});
 
@@ -85,74 +92,77 @@ class _$ToggleButtonModelCopyWithImpl<$Res, $Val extends ToggleButtonModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
     Object? constraints_boxConstraints = freezed,
-    Object? color_color = freezed,
-    Object? selectedColor_color = freezed,
-    Object? disabledColor_color = freezed,
-    Object? fillColor_color = freezed,
-    Object? focusColor_color = freezed,
-    Object? highlightColor_color = freezed,
-    Object? hoverColor_color = freezed,
-    Object? splashColor_color = freezed,
-    Object? borderColor_color = freezed,
-    Object? selectedBorderColor_color = freezed,
-    Object? disabledBorderColor_color = freezed,
+    Object? color_themeColorString = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? disabledColor_themeColorString = freezed,
+    Object? fillColor_themeColorString = freezed,
+    Object? focusColor_themeColorString = freezed,
+    Object? highlightColor_themeColorString = freezed,
+    Object? hoverColor_themeColorString = freezed,
+    Object? splashColor_themeColorString = freezed,
+    Object? borderColor_themeColorString = freezed,
+    Object? selectedBorderColor_themeColorString = freezed,
+    Object? disabledBorderColor_themeColorString = freezed,
     Object? borderRadius_borderRadius = freezed,
     Object? borderWidth_double = freezed,
   }) {
     return _then(_value.copyWith(
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       constraints_boxConstraints: freezed == constraints_boxConstraints
           ? _value.constraints_boxConstraints
           : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
               as BoxConstraintsModel?,
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedColor_color: freezed == selectedColor_color
-          ? _value.selectedColor_color
-          : selectedColor_color // ignore: cast_nullable_to_non_nullable
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledColor_color: freezed == disabledColor_color
-          ? _value.disabledColor_color
-          : disabledColor_color // ignore: cast_nullable_to_non_nullable
+      disabledColor_themeColorString: freezed == disabledColor_themeColorString
+          ? _value.disabledColor_themeColorString
+          : disabledColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      fillColor_color: freezed == fillColor_color
-          ? _value.fillColor_color
-          : fillColor_color // ignore: cast_nullable_to_non_nullable
+      fillColor_themeColorString: freezed == fillColor_themeColorString
+          ? _value.fillColor_themeColorString
+          : fillColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      focusColor_color: freezed == focusColor_color
-          ? _value.focusColor_color
-          : focusColor_color // ignore: cast_nullable_to_non_nullable
+      focusColor_themeColorString: freezed == focusColor_themeColorString
+          ? _value.focusColor_themeColorString
+          : focusColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      highlightColor_color: freezed == highlightColor_color
-          ? _value.highlightColor_color
-          : highlightColor_color // ignore: cast_nullable_to_non_nullable
+      highlightColor_themeColorString: freezed ==
+              highlightColor_themeColorString
+          ? _value.highlightColor_themeColorString
+          : highlightColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor_color: freezed == hoverColor_color
-          ? _value.hoverColor_color
-          : hoverColor_color // ignore: cast_nullable_to_non_nullable
+      hoverColor_themeColorString: freezed == hoverColor_themeColorString
+          ? _value.hoverColor_themeColorString
+          : hoverColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashColor_color: freezed == splashColor_color
-          ? _value.splashColor_color
-          : splashColor_color // ignore: cast_nullable_to_non_nullable
+      splashColor_themeColorString: freezed == splashColor_themeColorString
+          ? _value.splashColor_themeColorString
+          : splashColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      borderColor_color: freezed == borderColor_color
-          ? _value.borderColor_color
-          : borderColor_color // ignore: cast_nullable_to_non_nullable
+      borderColor_themeColorString: freezed == borderColor_themeColorString
+          ? _value.borderColor_themeColorString
+          : borderColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedBorderColor_color: freezed == selectedBorderColor_color
-          ? _value.selectedBorderColor_color
-          : selectedBorderColor_color // ignore: cast_nullable_to_non_nullable
+      selectedBorderColor_themeColorString: freezed ==
+              selectedBorderColor_themeColorString
+          ? _value.selectedBorderColor_themeColorString
+          : selectedBorderColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledBorderColor_color: freezed == disabledBorderColor_color
-          ? _value.disabledBorderColor_color
-          : disabledBorderColor_color // ignore: cast_nullable_to_non_nullable
+      disabledBorderColor_themeColorString: freezed ==
+              disabledBorderColor_themeColorString
+          ? _value.disabledBorderColor_themeColorString
+          : disabledBorderColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       borderRadius_borderRadius: freezed == borderRadius_borderRadius
           ? _value.borderRadius_borderRadius
@@ -201,19 +211,19 @@ abstract class _$$ToggleButtonModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? textStyle_textStyle,
+      {String? textStyle_textStyleString,
       BoxConstraintsModel? constraints_boxConstraints,
-      String? color_color,
-      String? selectedColor_color,
-      String? disabledColor_color,
-      String? fillColor_color,
-      String? focusColor_color,
-      String? highlightColor_color,
-      String? hoverColor_color,
-      String? splashColor_color,
-      String? borderColor_color,
-      String? selectedBorderColor_color,
-      String? disabledBorderColor_color,
+      String? color_themeColorString,
+      String? selectedColor_themeColorString,
+      String? disabledColor_themeColorString,
+      String? fillColor_themeColorString,
+      String? focusColor_themeColorString,
+      String? highlightColor_themeColorString,
+      String? hoverColor_themeColorString,
+      String? splashColor_themeColorString,
+      String? borderColor_themeColorString,
+      String? selectedBorderColor_themeColorString,
+      String? disabledBorderColor_themeColorString,
       BorderRadiusModel? borderRadius_borderRadius,
       double? borderWidth_double});
 
@@ -234,74 +244,77 @@ class __$$ToggleButtonModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? textStyle_textStyle = freezed,
+    Object? textStyle_textStyleString = freezed,
     Object? constraints_boxConstraints = freezed,
-    Object? color_color = freezed,
-    Object? selectedColor_color = freezed,
-    Object? disabledColor_color = freezed,
-    Object? fillColor_color = freezed,
-    Object? focusColor_color = freezed,
-    Object? highlightColor_color = freezed,
-    Object? hoverColor_color = freezed,
-    Object? splashColor_color = freezed,
-    Object? borderColor_color = freezed,
-    Object? selectedBorderColor_color = freezed,
-    Object? disabledBorderColor_color = freezed,
+    Object? color_themeColorString = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? disabledColor_themeColorString = freezed,
+    Object? fillColor_themeColorString = freezed,
+    Object? focusColor_themeColorString = freezed,
+    Object? highlightColor_themeColorString = freezed,
+    Object? hoverColor_themeColorString = freezed,
+    Object? splashColor_themeColorString = freezed,
+    Object? borderColor_themeColorString = freezed,
+    Object? selectedBorderColor_themeColorString = freezed,
+    Object? disabledBorderColor_themeColorString = freezed,
     Object? borderRadius_borderRadius = freezed,
     Object? borderWidth_double = freezed,
   }) {
     return _then(_$ToggleButtonModelImpl(
-      textStyle_textStyle: freezed == textStyle_textStyle
-          ? _value.textStyle_textStyle
-          : textStyle_textStyle // ignore: cast_nullable_to_non_nullable
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
       constraints_boxConstraints: freezed == constraints_boxConstraints
           ? _value.constraints_boxConstraints
           : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
               as BoxConstraintsModel?,
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedColor_color: freezed == selectedColor_color
-          ? _value.selectedColor_color
-          : selectedColor_color // ignore: cast_nullable_to_non_nullable
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledColor_color: freezed == disabledColor_color
-          ? _value.disabledColor_color
-          : disabledColor_color // ignore: cast_nullable_to_non_nullable
+      disabledColor_themeColorString: freezed == disabledColor_themeColorString
+          ? _value.disabledColor_themeColorString
+          : disabledColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      fillColor_color: freezed == fillColor_color
-          ? _value.fillColor_color
-          : fillColor_color // ignore: cast_nullable_to_non_nullable
+      fillColor_themeColorString: freezed == fillColor_themeColorString
+          ? _value.fillColor_themeColorString
+          : fillColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      focusColor_color: freezed == focusColor_color
-          ? _value.focusColor_color
-          : focusColor_color // ignore: cast_nullable_to_non_nullable
+      focusColor_themeColorString: freezed == focusColor_themeColorString
+          ? _value.focusColor_themeColorString
+          : focusColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      highlightColor_color: freezed == highlightColor_color
-          ? _value.highlightColor_color
-          : highlightColor_color // ignore: cast_nullable_to_non_nullable
+      highlightColor_themeColorString: freezed ==
+              highlightColor_themeColorString
+          ? _value.highlightColor_themeColorString
+          : highlightColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hoverColor_color: freezed == hoverColor_color
-          ? _value.hoverColor_color
-          : hoverColor_color // ignore: cast_nullable_to_non_nullable
+      hoverColor_themeColorString: freezed == hoverColor_themeColorString
+          ? _value.hoverColor_themeColorString
+          : hoverColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashColor_color: freezed == splashColor_color
-          ? _value.splashColor_color
-          : splashColor_color // ignore: cast_nullable_to_non_nullable
+      splashColor_themeColorString: freezed == splashColor_themeColorString
+          ? _value.splashColor_themeColorString
+          : splashColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      borderColor_color: freezed == borderColor_color
-          ? _value.borderColor_color
-          : borderColor_color // ignore: cast_nullable_to_non_nullable
+      borderColor_themeColorString: freezed == borderColor_themeColorString
+          ? _value.borderColor_themeColorString
+          : borderColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedBorderColor_color: freezed == selectedBorderColor_color
-          ? _value.selectedBorderColor_color
-          : selectedBorderColor_color // ignore: cast_nullable_to_non_nullable
+      selectedBorderColor_themeColorString: freezed ==
+              selectedBorderColor_themeColorString
+          ? _value.selectedBorderColor_themeColorString
+          : selectedBorderColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledBorderColor_color: freezed == disabledBorderColor_color
-          ? _value.disabledBorderColor_color
-          : disabledBorderColor_color // ignore: cast_nullable_to_non_nullable
+      disabledBorderColor_themeColorString: freezed ==
+              disabledBorderColor_themeColorString
+          ? _value.disabledBorderColor_themeColorString
+          : disabledBorderColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       borderRadius_borderRadius: freezed == borderRadius_borderRadius
           ? _value.borderRadius_borderRadius
@@ -319,19 +332,19 @@ class __$$ToggleButtonModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ToggleButtonModelImpl extends _ToggleButtonModel {
   const _$ToggleButtonModelImpl(
-      {this.textStyle_textStyle,
+      {this.textStyle_textStyleString,
       this.constraints_boxConstraints = const BoxConstraintsModel(),
-      this.color_color,
-      this.selectedColor_color,
-      this.disabledColor_color,
-      this.fillColor_color,
-      this.focusColor_color,
-      this.highlightColor_color,
-      this.hoverColor_color,
-      this.splashColor_color,
-      this.borderColor_color,
-      this.selectedBorderColor_color,
-      this.disabledBorderColor_color,
+      this.color_themeColorString,
+      this.selectedColor_themeColorString,
+      this.disabledColor_themeColorString,
+      this.fillColor_themeColorString,
+      this.focusColor_themeColorString,
+      this.highlightColor_themeColorString,
+      this.hoverColor_themeColorString,
+      this.splashColor_themeColorString,
+      this.borderColor_themeColorString,
+      this.selectedBorderColor_themeColorString,
+      this.disabledBorderColor_themeColorString,
       this.borderRadius_borderRadius = const BorderRadiusModel(),
       this.borderWidth_double})
       : super._();
@@ -340,33 +353,33 @@ class _$ToggleButtonModelImpl extends _ToggleButtonModel {
       _$$ToggleButtonModelImplFromJson(json);
 
   @override
-  final String? textStyle_textStyle;
+  final String? textStyle_textStyleString;
 // @BoxConstraintsConverter()
   @override
   @JsonKey()
   final BoxConstraintsModel? constraints_boxConstraints;
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
-  final String? selectedColor_color;
+  final String? selectedColor_themeColorString;
   @override
-  final String? disabledColor_color;
+  final String? disabledColor_themeColorString;
   @override
-  final String? fillColor_color;
+  final String? fillColor_themeColorString;
   @override
-  final String? focusColor_color;
+  final String? focusColor_themeColorString;
   @override
-  final String? highlightColor_color;
+  final String? highlightColor_themeColorString;
   @override
-  final String? hoverColor_color;
+  final String? hoverColor_themeColorString;
   @override
-  final String? splashColor_color;
+  final String? splashColor_themeColorString;
   @override
-  final String? borderColor_color;
+  final String? borderColor_themeColorString;
   @override
-  final String? selectedBorderColor_color;
+  final String? selectedBorderColor_themeColorString;
   @override
-  final String? disabledBorderColor_color;
+  final String? disabledBorderColor_themeColorString;
   @override
   @JsonKey()
   final BorderRadiusModel? borderRadius_borderRadius;
@@ -375,7 +388,7 @@ class _$ToggleButtonModelImpl extends _ToggleButtonModel {
 
   @override
   String toString() {
-    return 'ToggleButtonModel(textStyle_textStyle: $textStyle_textStyle, constraints_boxConstraints: $constraints_boxConstraints, color_color: $color_color, selectedColor_color: $selectedColor_color, disabledColor_color: $disabledColor_color, fillColor_color: $fillColor_color, focusColor_color: $focusColor_color, highlightColor_color: $highlightColor_color, hoverColor_color: $hoverColor_color, splashColor_color: $splashColor_color, borderColor_color: $borderColor_color, selectedBorderColor_color: $selectedBorderColor_color, disabledBorderColor_color: $disabledBorderColor_color, borderRadius_borderRadius: $borderRadius_borderRadius, borderWidth_double: $borderWidth_double)';
+    return 'ToggleButtonModel(textStyle_textStyleString: $textStyle_textStyleString, constraints_boxConstraints: $constraints_boxConstraints, color_themeColorString: $color_themeColorString, selectedColor_themeColorString: $selectedColor_themeColorString, disabledColor_themeColorString: $disabledColor_themeColorString, fillColor_themeColorString: $fillColor_themeColorString, focusColor_themeColorString: $focusColor_themeColorString, highlightColor_themeColorString: $highlightColor_themeColorString, hoverColor_themeColorString: $hoverColor_themeColorString, splashColor_themeColorString: $splashColor_themeColorString, borderColor_themeColorString: $borderColor_themeColorString, selectedBorderColor_themeColorString: $selectedBorderColor_themeColorString, disabledBorderColor_themeColorString: $disabledBorderColor_themeColorString, borderRadius_borderRadius: $borderRadius_borderRadius, borderWidth_double: $borderWidth_double)';
   }
 
   @override
@@ -383,60 +396,64 @@ class _$ToggleButtonModelImpl extends _ToggleButtonModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ToggleButtonModelImpl &&
-            (identical(other.textStyle_textStyle, textStyle_textStyle) ||
-                other.textStyle_textStyle == textStyle_textStyle) &&
-            (identical(other.constraints_boxConstraints,
-                    constraints_boxConstraints) ||
+            (identical(other.textStyle_textStyleString, textStyle_textStyleString) ||
+                other.textStyle_textStyleString == textStyle_textStyleString) &&
+            (identical(other.constraints_boxConstraints, constraints_boxConstraints) ||
                 other.constraints_boxConstraints ==
                     constraints_boxConstraints) &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
-            (identical(other.selectedColor_color, selectedColor_color) ||
-                other.selectedColor_color == selectedColor_color) &&
-            (identical(other.disabledColor_color, disabledColor_color) ||
-                other.disabledColor_color == disabledColor_color) &&
-            (identical(other.fillColor_color, fillColor_color) ||
-                other.fillColor_color == fillColor_color) &&
-            (identical(other.focusColor_color, focusColor_color) ||
-                other.focusColor_color == focusColor_color) &&
-            (identical(other.highlightColor_color, highlightColor_color) ||
-                other.highlightColor_color == highlightColor_color) &&
-            (identical(other.hoverColor_color, hoverColor_color) ||
-                other.hoverColor_color == hoverColor_color) &&
-            (identical(other.splashColor_color, splashColor_color) ||
-                other.splashColor_color == splashColor_color) &&
-            (identical(other.borderColor_color, borderColor_color) ||
-                other.borderColor_color == borderColor_color) &&
-            (identical(other.selectedBorderColor_color,
-                    selectedBorderColor_color) ||
-                other.selectedBorderColor_color == selectedBorderColor_color) &&
-            (identical(other.disabledBorderColor_color,
-                    disabledBorderColor_color) ||
-                other.disabledBorderColor_color == disabledBorderColor_color) &&
-            (identical(other.borderRadius_borderRadius,
-                    borderRadius_borderRadius) ||
-                other.borderRadius_borderRadius == borderRadius_borderRadius) &&
-            (identical(other.borderWidth_double, borderWidth_double) ||
-                other.borderWidth_double == borderWidth_double));
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
+            (identical(other.selectedColor_themeColorString, selectedColor_themeColorString) ||
+                other.selectedColor_themeColorString ==
+                    selectedColor_themeColorString) &&
+            (identical(other.disabledColor_themeColorString, disabledColor_themeColorString) ||
+                other.disabledColor_themeColorString ==
+                    disabledColor_themeColorString) &&
+            (identical(other.fillColor_themeColorString, fillColor_themeColorString) ||
+                other.fillColor_themeColorString ==
+                    fillColor_themeColorString) &&
+            (identical(other.focusColor_themeColorString, focusColor_themeColorString) ||
+                other.focusColor_themeColorString ==
+                    focusColor_themeColorString) &&
+            (identical(other.highlightColor_themeColorString, highlightColor_themeColorString) ||
+                other.highlightColor_themeColorString ==
+                    highlightColor_themeColorString) &&
+            (identical(other.hoverColor_themeColorString, hoverColor_themeColorString) ||
+                other.hoverColor_themeColorString ==
+                    hoverColor_themeColorString) &&
+            (identical(other.splashColor_themeColorString, splashColor_themeColorString) ||
+                other.splashColor_themeColorString ==
+                    splashColor_themeColorString) &&
+            (identical(other.borderColor_themeColorString, borderColor_themeColorString) ||
+                other.borderColor_themeColorString ==
+                    borderColor_themeColorString) &&
+            (identical(other.selectedBorderColor_themeColorString, selectedBorderColor_themeColorString) ||
+                other.selectedBorderColor_themeColorString ==
+                    selectedBorderColor_themeColorString) &&
+            (identical(other.disabledBorderColor_themeColorString, disabledBorderColor_themeColorString) ||
+                other.disabledBorderColor_themeColorString ==
+                    disabledBorderColor_themeColorString) &&
+            (identical(other.borderRadius_borderRadius, borderRadius_borderRadius) || other.borderRadius_borderRadius == borderRadius_borderRadius) &&
+            (identical(other.borderWidth_double, borderWidth_double) || other.borderWidth_double == borderWidth_double));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      textStyle_textStyle,
+      textStyle_textStyleString,
       constraints_boxConstraints,
-      color_color,
-      selectedColor_color,
-      disabledColor_color,
-      fillColor_color,
-      focusColor_color,
-      highlightColor_color,
-      hoverColor_color,
-      splashColor_color,
-      borderColor_color,
-      selectedBorderColor_color,
-      disabledBorderColor_color,
+      color_themeColorString,
+      selectedColor_themeColorString,
+      disabledColor_themeColorString,
+      fillColor_themeColorString,
+      focusColor_themeColorString,
+      highlightColor_themeColorString,
+      hoverColor_themeColorString,
+      splashColor_themeColorString,
+      borderColor_themeColorString,
+      selectedBorderColor_themeColorString,
+      disabledBorderColor_themeColorString,
       borderRadius_borderRadius,
       borderWidth_double);
 
@@ -457,19 +474,19 @@ class _$ToggleButtonModelImpl extends _ToggleButtonModel {
 
 abstract class _ToggleButtonModel extends ToggleButtonModel {
   const factory _ToggleButtonModel(
-      {final String? textStyle_textStyle,
+      {final String? textStyle_textStyleString,
       final BoxConstraintsModel? constraints_boxConstraints,
-      final String? color_color,
-      final String? selectedColor_color,
-      final String? disabledColor_color,
-      final String? fillColor_color,
-      final String? focusColor_color,
-      final String? highlightColor_color,
-      final String? hoverColor_color,
-      final String? splashColor_color,
-      final String? borderColor_color,
-      final String? selectedBorderColor_color,
-      final String? disabledBorderColor_color,
+      final String? color_themeColorString,
+      final String? selectedColor_themeColorString,
+      final String? disabledColor_themeColorString,
+      final String? fillColor_themeColorString,
+      final String? focusColor_themeColorString,
+      final String? highlightColor_themeColorString,
+      final String? hoverColor_themeColorString,
+      final String? splashColor_themeColorString,
+      final String? borderColor_themeColorString,
+      final String? selectedBorderColor_themeColorString,
+      final String? disabledBorderColor_themeColorString,
       final BorderRadiusModel? borderRadius_borderRadius,
       final double? borderWidth_double}) = _$ToggleButtonModelImpl;
   const _ToggleButtonModel._() : super._();
@@ -478,31 +495,31 @@ abstract class _ToggleButtonModel extends ToggleButtonModel {
       _$ToggleButtonModelImpl.fromJson;
 
   @override
-  String? get textStyle_textStyle;
+  String? get textStyle_textStyleString;
   @override // @BoxConstraintsConverter()
   BoxConstraintsModel? get constraints_boxConstraints;
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override
-  String? get selectedColor_color;
+  String? get selectedColor_themeColorString;
   @override
-  String? get disabledColor_color;
+  String? get disabledColor_themeColorString;
   @override
-  String? get fillColor_color;
+  String? get fillColor_themeColorString;
   @override
-  String? get focusColor_color;
+  String? get focusColor_themeColorString;
   @override
-  String? get highlightColor_color;
+  String? get highlightColor_themeColorString;
   @override
-  String? get hoverColor_color;
+  String? get hoverColor_themeColorString;
   @override
-  String? get splashColor_color;
+  String? get splashColor_themeColorString;
   @override
-  String? get borderColor_color;
+  String? get borderColor_themeColorString;
   @override
-  String? get selectedBorderColor_color;
+  String? get selectedBorderColor_themeColorString;
   @override
-  String? get disabledBorderColor_color;
+  String? get disabledBorderColor_themeColorString;
   @override
   BorderRadiusModel? get borderRadius_borderRadius;
   @override

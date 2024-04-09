@@ -7,10 +7,10 @@ import 'package:theme/presentation/theme_changer/components/editing_fields/base/
 part 'store.g.dart';
 
 // ignore: library_private_types_in_public_api
-class ColorFormFieldStore = _ColorFormFieldStore with _$ColorFormFieldStore;
+class ColorFormFieldStore = _themeColorStringFormFieldStore with _$ColorFormFieldStore;
 
-abstract class _ColorFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
-  _ColorFormFieldStore({
+abstract class _themeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
+  _themeColorStringFormFieldStore({
     required super.value,
     required super.onValueChanged,
     required super.title,

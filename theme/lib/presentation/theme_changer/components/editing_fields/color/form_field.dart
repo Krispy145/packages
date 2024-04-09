@@ -29,28 +29,28 @@ class ColorFormField extends StatelessWidget {
                 label: store.title,
               ),
               Sizes.m.spacer(),
-              _ColorSlider(
+              _themeColorStringSlider(
                 label: 'Red',
                 value: store.color.red.toDouble(),
                 onChanged: (red) => store.updateColor(red: red),
                 fixedColor: Colors.red,
                 max: 255,
               ),
-              _ColorSlider(
+              _themeColorStringSlider(
                 label: 'Green',
                 value: store.color.green.toDouble(),
                 onChanged: (green) => store.updateColor(green: green),
                 fixedColor: Colors.green,
                 max: 255,
               ),
-              _ColorSlider(
+              _themeColorStringSlider(
                 label: 'Blue',
                 value: store.color.blue.toDouble(),
                 onChanged: (blue) => store.updateColor(blue: blue),
                 fixedColor: Colors.blue,
                 max: 255,
               ),
-              _ColorSlider(
+              _themeColorStringSlider(
                 label: 'Opacity',
                 value: store.color.opacity,
                 onChanged: (opacity) => store.updateColor(opacity: opacity),
@@ -67,14 +67,14 @@ class ColorFormField extends StatelessWidget {
   }
 }
 
-class _ColorSlider extends StatelessWidget {
+class _themeColorStringSlider extends StatelessWidget {
   final String label;
   final double value;
   final ValueChanged<double> onChanged;
   final Color fixedColor;
   final double max;
 
-  const _ColorSlider({super.key, required this.label, required this.value, required this.onChanged, required this.fixedColor, required this.max});
+  const _themeColorStringSlider({super.key, required this.label, required this.value, required this.onChanged, required this.fixedColor, required this.max});
 
   @override
   Widget build(BuildContext context) {

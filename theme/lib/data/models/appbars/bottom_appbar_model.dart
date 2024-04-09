@@ -9,11 +9,11 @@ part 'bottom_appbar_model.g.dart';
 @freezed
 class BottomAppbarModel with _$BottomAppbarModel {
   const factory BottomAppbarModel({
-    ThemeColorString? color_color,
+    ThemeColorString? color_themeColorString,
     double? elevation_double,
     double? height_double,
-    ThemeColorString? surfaceTintColor_color,
-    ThemeColorString? shadowColor_color,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    ThemeColorString? shadowColor_themeColorString,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
   }) = _BottomAppbarModel;
 
@@ -39,11 +39,11 @@ class BottomAppbarModel with _$BottomAppbarModel {
 
   BottomAppBarTheme asBottomAppBarTheme({String? styleTypeName}) {
     return BottomAppBarTheme(
-      color: color_color?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       height: height_double,
-      surfaceTintColor: surfaceTintColor_color?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_color?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }

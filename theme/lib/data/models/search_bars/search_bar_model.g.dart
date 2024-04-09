@@ -9,10 +9,14 @@ part of 'search_bar_model.dart';
 _$SearchBarModelImpl _$$SearchBarModelImplFromJson(Map<String, dynamic> json) =>
     _$SearchBarModelImpl(
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      shadowColor_color: json['shadowColor_color'] as String?,
-      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
-      overlayColor_color: json['overlayColor_color'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
       side_borderSide: json['side_borderSide'] == null
           ? null
           : BorderSideModel.fromJson(
@@ -25,8 +29,8 @@ _$SearchBarModelImpl _$$SearchBarModelImplFromJson(Map<String, dynamic> json) =>
           ? const EdgeInsetsModel()
           : EdgeInsetsModel.fromJson(
               json['padding_edgeInsets'] as Map<String, dynamic>),
-      textStyle_textStyle: json['textStyle_textStyle'] as String?,
-      hintStyle_textStyle: json['hintStyle_textStyle'] as String?,
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
+      hintStyle_textStyleString: json['hintStyle_textStyleString'] as String?,
       constraints_boxConstraints: json['constraints_boxConstraints'] == null
           ? const BoxConstraintsModel()
           : BoxConstraintsModel.fromJson(
@@ -41,15 +45,17 @@ Map<String, dynamic> _$$SearchBarModelImplToJson(
         _$SearchBarModelImpl instance) =>
     <String, dynamic>{
       'elevation_double': instance.elevation_double,
-      'backgroundColor_color': instance.backgroundColor_color,
-      'shadowColor_color': instance.shadowColor_color,
-      'surfaceTintColor_color': instance.surfaceTintColor_color,
-      'overlayColor_color': instance.overlayColor_color,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
       'side_borderSide': instance.side_borderSide?.toJson(),
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
       'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
-      'textStyle_textStyle': instance.textStyle_textStyle,
-      'hintStyle_textStyle': instance.hintStyle_textStyle,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
+      'hintStyle_textStyleString': instance.hintStyle_textStyleString,
       'constraints_boxConstraints':
           instance.constraints_boxConstraints?.toJson(),
       'textCapitalization_enum_textCapitalization': _$TextCapitalizationEnumMap[

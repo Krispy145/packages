@@ -8,11 +8,15 @@ part of 'drawer_model.dart';
 
 _$DrawerModelImpl _$$DrawerModelImplFromJson(Map<String, dynamic> json) =>
     _$DrawerModelImpl(
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      scrimColor_color: json['scrimColor_color'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      scrimColor_themeColorString:
+          json['scrimColor_themeColorString'] as String?,
       elevation_double: (json['elevation_double'] as num?)?.toDouble(),
-      shadowColor_color: json['shadowColor_color'] as String?,
-      surfaceTintColor_color: json['surfaceTintColor_color'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
       shape_outlinedBorder: json['shape_outlinedBorder'] == null
           ? const OutlinedBorderModel()
           : OutlinedBorderModel.fromJson(
@@ -26,11 +30,13 @@ _$DrawerModelImpl _$$DrawerModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$DrawerModelImplToJson(_$DrawerModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor_color': instance.backgroundColor_color,
-      'scrimColor_color': instance.scrimColor_color,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'scrimColor_themeColorString': instance.scrimColor_themeColorString,
       'elevation_double': instance.elevation_double,
-      'shadowColor_color': instance.shadowColor_color,
-      'surfaceTintColor_color': instance.surfaceTintColor_color,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
       'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
       'endShape_outlinedBorder': instance.endShape_outlinedBorder?.toJson(),
       'width_double': instance.width_double,

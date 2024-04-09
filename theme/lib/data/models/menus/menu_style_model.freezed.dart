@@ -20,9 +20,12 @@ MenuStyleModel _$MenuStyleModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MenuStyleModel {
-  String? get backgroundColor_color => throw _privateConstructorUsedError;
-  String? get shadowColor_color => throw _privateConstructorUsedError;
-  String? get surfaceTintColor_color => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
   double? get elevation_double => throw _privateConstructorUsedError;
   EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
   SizeModel? get minimumSize_size => throw _privateConstructorUsedError;
@@ -47,9 +50,9 @@ abstract class $MenuStyleModelCopyWith<$Res> {
       _$MenuStyleModelCopyWithImpl<$Res, MenuStyleModel>;
   @useResult
   $Res call(
-      {String? backgroundColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? backgroundColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
@@ -80,9 +83,9 @@ class _$MenuStyleModelCopyWithImpl<$Res, $Val extends MenuStyleModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? padding_edgeInsets = freezed,
     Object? minimumSize_size = freezed,
@@ -93,17 +96,19 @@ class _$MenuStyleModelCopyWithImpl<$Res, $Val extends MenuStyleModel>
     Object? alignment_enum_alignmentOptions = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -224,9 +229,9 @@ abstract class _$$MenuModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor_color,
-      String? shadowColor_color,
-      String? surfaceTintColor_color,
+      {String? backgroundColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? padding_edgeInsets,
       SizeModel? minimumSize_size,
@@ -261,9 +266,9 @@ class __$$MenuModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor_color = freezed,
-    Object? shadowColor_color = freezed,
-    Object? surfaceTintColor_color = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
     Object? elevation_double = freezed,
     Object? padding_edgeInsets = freezed,
     Object? minimumSize_size = freezed,
@@ -274,17 +279,19 @@ class __$$MenuModelImplCopyWithImpl<$Res>
     Object? alignment_enum_alignmentOptions = freezed,
   }) {
     return _then(_$MenuModelImpl(
-      backgroundColor_color: freezed == backgroundColor_color
-          ? _value.backgroundColor_color
-          : backgroundColor_color // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor_color: freezed == shadowColor_color
-          ? _value.shadowColor_color
-          : shadowColor_color // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor_color: freezed == surfaceTintColor_color
-          ? _value.surfaceTintColor_color
-          : surfaceTintColor_color // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       elevation_double: freezed == elevation_double
           ? _value.elevation_double
@@ -327,9 +334,9 @@ class __$$MenuModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MenuModelImpl extends _MenuModel {
   const _$MenuModelImpl(
-      {this.backgroundColor_color,
-      this.shadowColor_color,
-      this.surfaceTintColor_color,
+      {this.backgroundColor_themeColorString,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
       this.elevation_double,
       this.padding_edgeInsets = const EdgeInsetsModel(),
       this.minimumSize_size = const SizeModel(),
@@ -344,11 +351,11 @@ class _$MenuModelImpl extends _MenuModel {
       _$$MenuModelImplFromJson(json);
 
   @override
-  final String? backgroundColor_color;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? shadowColor_color;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor_color;
+  final String? surfaceTintColor_themeColorString;
   @override
   final double? elevation_double;
   @override
@@ -376,7 +383,7 @@ class _$MenuModelImpl extends _MenuModel {
 
   @override
   String toString() {
-    return 'MenuStyleModel(backgroundColor_color: $backgroundColor_color, shadowColor_color: $shadowColor_color, surfaceTintColor_color: $surfaceTintColor_color, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions)';
+    return 'MenuStyleModel(backgroundColor_themeColorString: $backgroundColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions)';
   }
 
   @override
@@ -384,12 +391,18 @@ class _$MenuModelImpl extends _MenuModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MenuModelImpl &&
-            (identical(other.backgroundColor_color, backgroundColor_color) ||
-                other.backgroundColor_color == backgroundColor_color) &&
-            (identical(other.shadowColor_color, shadowColor_color) ||
-                other.shadowColor_color == shadowColor_color) &&
-            (identical(other.surfaceTintColor_color, surfaceTintColor_color) ||
-                other.surfaceTintColor_color == surfaceTintColor_color) &&
+            (identical(other.backgroundColor_themeColorString,
+                    backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.shadowColor_themeColorString,
+                    shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
             (identical(other.elevation_double, elevation_double) ||
                 other.elevation_double == elevation_double) &&
             (identical(other.padding_edgeInsets, padding_edgeInsets) ||
@@ -414,9 +427,9 @@ class _$MenuModelImpl extends _MenuModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor_color,
-      shadowColor_color,
-      surfaceTintColor_color,
+      backgroundColor_themeColorString,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
       elevation_double,
       padding_edgeInsets,
       minimumSize_size,
@@ -442,9 +455,9 @@ class _$MenuModelImpl extends _MenuModel {
 
 abstract class _MenuModel extends MenuStyleModel {
   const factory _MenuModel(
-          {final String? backgroundColor_color,
-          final String? shadowColor_color,
-          final String? surfaceTintColor_color,
+          {final String? backgroundColor_themeColorString,
+          final String? shadowColor_themeColorString,
+          final String? surfaceTintColor_themeColorString,
           final double? elevation_double,
           final EdgeInsetsModel? padding_edgeInsets,
           final SizeModel? minimumSize_size,
@@ -460,11 +473,11 @@ abstract class _MenuModel extends MenuStyleModel {
       _$MenuModelImpl.fromJson;
 
   @override
-  String? get backgroundColor_color;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get shadowColor_color;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor_color;
+  String? get surfaceTintColor_themeColorString;
   @override
   double? get elevation_double;
   @override

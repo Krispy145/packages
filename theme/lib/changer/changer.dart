@@ -101,7 +101,7 @@ class ThemeChanger {
   static void changeLightThemeStyle({
     required ColorModel colorModel,
   }) {
-    final newThemeModel = _baseThemeModel.copyWith(colors: _colorStyles(colorModel, false));
+    final newThemeModel = _baseThemeModel.copyWith(colors: _themeColorStringStyles(colorModel, false));
     _themeStore.changeBaseThemeModel(newThemeModel);
     AppLogger.print("Light theme changed: $colorModel", [PackageFeatures.theme]);
   }
@@ -110,7 +110,7 @@ class ThemeChanger {
   static void changeDarkThemeStyle({
     required ColorModel colorModel,
   }) {
-    final newThemeModel = _baseThemeModel.copyWith(colors: _colorStyles(colorModel, true));
+    final newThemeModel = _baseThemeModel.copyWith(colors: _themeColorStringStyles(colorModel, true));
     _themeStore.changeBaseThemeModel(newThemeModel);
     AppLogger.print("Dark theme changed: $colorModel", [PackageFeatures.theme]);
   }
@@ -126,7 +126,7 @@ class ThemeChanger {
     required TextType textType,
     required TextStyleSizes textStyle,
   }) {
-    final textStyles = _textStyles(textType, textStyle);
+    final textStyles = _textStyleStrings(textType, textStyle);
     final newThemeModel = _baseThemeModel.copyWith(textStyles: textStyles);
     _themeStore.changeBaseThemeModel(newThemeModel);
     AppLogger.print("Text style changed: $textStyle", [PackageFeatures.theme]);
@@ -498,13 +498,13 @@ class ThemeChanger {
     html.Url.revokeObjectUrl(anchor.href!);
   }
 
-  static Map<String, ColorSchemes> _colorStyles(ColorModel colorModel, bool isDark) {
+  static Map<String, ColorSchemes> _themeColorStringStyles(ColorModel colorModel, bool isDark) {
     final colorStyles = _baseThemeModel.colors;
-    colorStyles[styleType] = _colorSchemes(colorModel, isDark);
+    colorStyles[styleType] = _themeColorStringSchemes(colorModel, isDark);
     return colorStyles;
   }
 
-  static ColorSchemes _colorSchemes(ColorModel colorModel, bool isDark) {
+  static ColorSchemes _themeColorStringSchemes(ColorModel colorModel, bool isDark) {
     var colorSchemes = _baseThemeModel.colors[styleType]!; // ?? ColorSchemes.defaultSchemes();
     switch (isDark) {
       case true:
@@ -517,7 +517,7 @@ class ThemeChanger {
     return colorSchemes;
   }
 
-  static Map<String, TextTypes>? _textStyles(TextType textType, TextStyleSizes textStyle) {
+  static Map<String, TextTypes>? _textStyleStrings(TextType textType, TextStyleSizes textStyle) {
     final textStyles = _baseThemeModel.textStyles ?? {};
     textStyles[styleType] = _textTypes(textType, textStyle);
     return textStyles;

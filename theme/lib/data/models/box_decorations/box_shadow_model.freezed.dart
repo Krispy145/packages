@@ -20,11 +20,11 @@ BoxShadowModel _$BoxShadowModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BoxShadowModel {
-// final ThemeColorString? color_color,
+// final ThemeColorString? color_themeColorString,
 // final double? width_double,
 // final BorderStyle? style_enum_borderStyle,
 // final double? strokeAlign_double,
-  String? get color_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
   OffsetModel? get offset_offset => throw _privateConstructorUsedError;
   double? get blurRadius_double => throw _privateConstructorUsedError;
   double? get spreadRadius_double => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $BoxShadowModelCopyWith<$Res> {
       _$BoxShadowModelCopyWithImpl<$Res, BoxShadowModel>;
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       OffsetModel? offset_offset,
       double? blurRadius_double,
       double? spreadRadius_double});
@@ -63,15 +63,15 @@ class _$BoxShadowModelCopyWithImpl<$Res, $Val extends BoxShadowModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? offset_offset = freezed,
     Object? blurRadius_double = freezed,
     Object? spreadRadius_double = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       offset_offset: freezed == offset_offset
           ? _value.offset_offset
@@ -110,7 +110,7 @@ abstract class _$$BoxShadowModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       OffsetModel? offset_offset,
       double? blurRadius_double,
       double? spreadRadius_double});
@@ -130,15 +130,15 @@ class __$$BoxShadowModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? offset_offset = freezed,
     Object? blurRadius_double = freezed,
     Object? spreadRadius_double = freezed,
   }) {
     return _then(_$BoxShadowModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       offset_offset: freezed == offset_offset
           ? _value.offset_offset
@@ -160,7 +160,7 @@ class __$$BoxShadowModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BoxShadowModelImpl extends _BoxShadowModel {
   const _$BoxShadowModelImpl(
-      {this.color_color,
+      {this.color_themeColorString,
       this.offset_offset = const OffsetModel(),
       this.blurRadius_double,
       this.spreadRadius_double})
@@ -169,12 +169,12 @@ class _$BoxShadowModelImpl extends _BoxShadowModel {
   factory _$BoxShadowModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BoxShadowModelImplFromJson(json);
 
-// final ThemeColorString? color_color,
+// final ThemeColorString? color_themeColorString,
 // final double? width_double,
 // final BorderStyle? style_enum_borderStyle,
 // final double? strokeAlign_double,
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
   @JsonKey()
   final OffsetModel? offset_offset;
@@ -185,7 +185,7 @@ class _$BoxShadowModelImpl extends _BoxShadowModel {
 
   @override
   String toString() {
-    return 'BoxShadowModel(color_color: $color_color, offset_offset: $offset_offset, blurRadius_double: $blurRadius_double, spreadRadius_double: $spreadRadius_double)';
+    return 'BoxShadowModel(color_themeColorString: $color_themeColorString, offset_offset: $offset_offset, blurRadius_double: $blurRadius_double, spreadRadius_double: $spreadRadius_double)';
   }
 
   @override
@@ -193,8 +193,8 @@ class _$BoxShadowModelImpl extends _BoxShadowModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BoxShadowModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.offset_offset, offset_offset) ||
                 other.offset_offset == offset_offset) &&
             (identical(other.blurRadius_double, blurRadius_double) ||
@@ -205,8 +205,8 @@ class _$BoxShadowModelImpl extends _BoxShadowModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, color_color, offset_offset,
-      blurRadius_double, spreadRadius_double);
+  int get hashCode => Object.hash(runtimeType, color_themeColorString,
+      offset_offset, blurRadius_double, spreadRadius_double);
 
   @JsonKey(ignore: true)
   @override
@@ -225,7 +225,7 @@ class _$BoxShadowModelImpl extends _BoxShadowModel {
 
 abstract class _BoxShadowModel extends BoxShadowModel {
   const factory _BoxShadowModel(
-      {final String? color_color,
+      {final String? color_themeColorString,
       final OffsetModel? offset_offset,
       final double? blurRadius_double,
       final double? spreadRadius_double}) = _$BoxShadowModelImpl;
@@ -234,11 +234,11 @@ abstract class _BoxShadowModel extends BoxShadowModel {
   factory _BoxShadowModel.fromJson(Map<String, dynamic> json) =
       _$BoxShadowModelImpl.fromJson;
 
-  @override // final ThemeColorString? color_color,
+  @override // final ThemeColorString? color_themeColorString,
 // final double? width_double,
 // final BorderStyle? style_enum_borderStyle,
 // final double? strokeAlign_double,
-  String? get color_color;
+  String? get color_themeColorString;
   @override
   OffsetModel? get offset_offset;
   @override

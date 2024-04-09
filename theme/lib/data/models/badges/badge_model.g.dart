@@ -8,11 +8,12 @@ part of 'badge_model.dart';
 
 _$BadgeModelImpl _$$BadgeModelImplFromJson(Map<String, dynamic> json) =>
     _$BadgeModelImpl(
-      backgroundColor_color: json['backgroundColor_color'] as String?,
-      textColor_color: json['textColor_color'] as String?,
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      textColor_themeColorString: json['textColor_themeColorString'] as String?,
       smallSize_double: (json['smallSize_double'] as num?)?.toDouble(),
       largeSize_double: (json['largeSize_double'] as num?)?.toDouble(),
-      textStyle_textStyle: json['textStyle_textStyle'] as String?,
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
       padding_edgeInsets: json['padding_edgeInsets'] == null
           ? const EdgeInsetsModel()
           : EdgeInsetsModel.fromJson(
@@ -28,11 +29,12 @@ _$BadgeModelImpl _$$BadgeModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$BadgeModelImplToJson(_$BadgeModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor_color': instance.backgroundColor_color,
-      'textColor_color': instance.textColor_color,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'textColor_themeColorString': instance.textColor_themeColorString,
       'smallSize_double': instance.smallSize_double,
       'largeSize_double': instance.largeSize_double,
-      'textStyle_textStyle': instance.textStyle_textStyle,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
       'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
       'alignment_enum_alignmentOptions':
           _$AlignmentOptionsEnumMap[instance.alignment_enum_alignmentOptions],

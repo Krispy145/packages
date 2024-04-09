@@ -8,7 +8,7 @@ part of 'dropdown_model.dart';
 
 _$DropdownModelImpl _$$DropdownModelImplFromJson(Map<String, dynamic> json) =>
     _$DropdownModelImpl(
-      textStyle_textStyle: json['textStyle_textStyle'] as String?,
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
       inputDecoration_inputDecoration:
           json['inputDecoration_inputDecoration'] == null
               ? null
@@ -23,7 +23,7 @@ _$DropdownModelImpl _$$DropdownModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$DropdownModelImplToJson(_$DropdownModelImpl instance) =>
     <String, dynamic>{
-      'textStyle_textStyle': instance.textStyle_textStyle,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
       'inputDecoration_inputDecoration':
           instance.inputDecoration_inputDecoration?.toJson(),
       'menuStyle_menu': instance.menuStyle_menu?.toJson(),

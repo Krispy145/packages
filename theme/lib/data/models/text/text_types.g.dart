@@ -6,8 +6,9 @@ part of 'text_types.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TextStylesImpl _$$TextStylesImplFromJson(Map<String, dynamic> json) =>
-    _$TextStylesImpl(
+_$textStyleStringsImpl _$$textStyleStringsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$textStyleStringsImpl(
       display: json['display'] == null
           ? null
           : TextStyleSizes.fromJson(json['display'] as Map<String, dynamic>),
@@ -25,7 +26,8 @@ _$TextStylesImpl _$$TextStylesImplFromJson(Map<String, dynamic> json) =>
           : TextStyleSizes.fromJson(json['label'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$TextStylesImplToJson(_$TextStylesImpl instance) =>
+Map<String, dynamic> _$$textStyleStringsImplToJson(
+        _$textStyleStringsImpl instance) =>
     <String, dynamic>{
       'display': instance.display?.toJson(),
       'headline': instance.headline?.toJson(),

@@ -13,16 +13,16 @@ class TabBarModel with _$TabBarModel {
   const factory TabBarModel({
     // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? indicator,
     BoxDecorationModel? indicator_boxDecoration, // TODO: Set up DecorationModel that can also be other types of decoration
-    ThemeColorString? indicatorColor_color,
-    ThemeColorString? dividerColor_color,
+    ThemeColorString? indicatorColor_themeColorString,
+    ThemeColorString? dividerColor_themeColorString,
     TabBarIndicatorSize? indicatorSize_enum_tabBarIndicatorSize,
     double? dividerHeight_double,
-    ThemeColorString? labelColor_color,
+    ThemeColorString? labelColor_themeColorString,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? labelPadding_edgeInsets,
-    TextStyleString? labelStyle_textStyle,
-    ThemeColorString? unselectedLabelColor_color,
-    TextStyleString? unselectedLabelStyle_textStyle,
-    ThemeColorString? overlayColor_color,
+    TextStyleString? labelStyle_textStyleString,
+    ThemeColorString? unselectedLabelColor_themeColorString,
+    TextStyleString? unselectedLabelStyle_textStyleString,
+    ThemeColorString? overlayColor_themeColorString,
     // @TabAlignmentConverter()
     TabAlignment? tabAlignment_enum_tabAlignment,
   }) = _TabBarModel;
@@ -58,13 +58,13 @@ class TabBarModel with _$TabBarModel {
     return TabBarTheme(
       indicator: indicator_boxDecoration?.asBoxDecoration(styleTypeName: styleTypeName),
       indicatorSize: TabBarIndicatorSize.tab,
-      indicatorColor: indicatorColor_color?.toColor(styleType: styleTypeName),
-      labelColor: labelColor_color?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      labelColor: labelColor_themeColorString?.toColor(styleType: styleTypeName),
       labelPadding: labelPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-      labelStyle: labelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      unselectedLabelColor: unselectedLabelColor_color?.toColor(styleType: styleTypeName),
-      unselectedLabelStyle: unselectedLabelStyle_textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      overlayColor: MaterialStateProperty.all(overlayColor_color?.toColor(styleType: styleTypeName)),
+      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      unselectedLabelColor: unselectedLabelColor_themeColorString?.toColor(styleType: styleTypeName),
+      unselectedLabelStyle: unselectedLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
       tabAlignment: tabAlignment_enum_tabAlignment,
     );
   }

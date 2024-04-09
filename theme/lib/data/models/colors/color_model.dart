@@ -58,7 +58,7 @@ class ColorModel with _$ColorModel {
     @ColorConverter() Color? surfaceTint,
     @ColorConverter() Color? outlineVariant,
     @ColorConverter() Color? scrim,
-  }) = _ColorModel;
+  }) = _themeColorStringModel;
   const ColorModel._();
   static const Color defaultError = Colors.red;
   static const Color defaultOnError = Colors.white;

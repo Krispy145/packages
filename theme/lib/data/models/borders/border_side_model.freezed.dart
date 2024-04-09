@@ -20,7 +20,7 @@ BorderSideModel _$BorderSideModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BorderSideModel {
-  String? get color_color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
   double? get width_double => throw _privateConstructorUsedError;
   BorderStyle? get style_enum_borderStyle => throw _privateConstructorUsedError;
   double? get strokeAlign_double => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $BorderSideModelCopyWith<$Res> {
       _$BorderSideModelCopyWithImpl<$Res, BorderSideModel>;
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       double? width_double,
       BorderStyle? style_enum_borderStyle,
       double? strokeAlign_double});
@@ -57,15 +57,15 @@ class _$BorderSideModelCopyWithImpl<$Res, $Val extends BorderSideModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? width_double = freezed,
     Object? style_enum_borderStyle = freezed,
     Object? strokeAlign_double = freezed,
   }) {
     return _then(_value.copyWith(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       width_double: freezed == width_double
           ? _value.width_double
@@ -92,7 +92,7 @@ abstract class _$$BorderSideModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color_color,
+      {String? color_themeColorString,
       double? width_double,
       BorderStyle? style_enum_borderStyle,
       double? strokeAlign_double});
@@ -109,15 +109,15 @@ class __$$BorderSideModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color_color = freezed,
+    Object? color_themeColorString = freezed,
     Object? width_double = freezed,
     Object? style_enum_borderStyle = freezed,
     Object? strokeAlign_double = freezed,
   }) {
     return _then(_$BorderSideModelImpl(
-      color_color: freezed == color_color
-          ? _value.color_color
-          : color_color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       width_double: freezed == width_double
           ? _value.width_double
@@ -139,7 +139,7 @@ class __$$BorderSideModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BorderSideModelImpl extends _BorderSideModel {
   const _$BorderSideModelImpl(
-      {this.color_color,
+      {this.color_themeColorString,
       this.width_double,
       this.style_enum_borderStyle,
       this.strokeAlign_double})
@@ -149,7 +149,7 @@ class _$BorderSideModelImpl extends _BorderSideModel {
       _$$BorderSideModelImplFromJson(json);
 
   @override
-  final String? color_color;
+  final String? color_themeColorString;
   @override
   final double? width_double;
   @override
@@ -159,7 +159,7 @@ class _$BorderSideModelImpl extends _BorderSideModel {
 
   @override
   String toString() {
-    return 'BorderSideModel(color_color: $color_color, width_double: $width_double, style_enum_borderStyle: $style_enum_borderStyle, strokeAlign_double: $strokeAlign_double)';
+    return 'BorderSideModel(color_themeColorString: $color_themeColorString, width_double: $width_double, style_enum_borderStyle: $style_enum_borderStyle, strokeAlign_double: $strokeAlign_double)';
   }
 
   @override
@@ -167,8 +167,8 @@ class _$BorderSideModelImpl extends _BorderSideModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BorderSideModelImpl &&
-            (identical(other.color_color, color_color) ||
-                other.color_color == color_color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.width_double, width_double) ||
                 other.width_double == width_double) &&
             (identical(other.style_enum_borderStyle, style_enum_borderStyle) ||
@@ -179,8 +179,8 @@ class _$BorderSideModelImpl extends _BorderSideModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, color_color, width_double,
-      style_enum_borderStyle, strokeAlign_double);
+  int get hashCode => Object.hash(runtimeType, color_themeColorString,
+      width_double, style_enum_borderStyle, strokeAlign_double);
 
   @JsonKey(ignore: true)
   @override
@@ -199,7 +199,7 @@ class _$BorderSideModelImpl extends _BorderSideModel {
 
 abstract class _BorderSideModel extends BorderSideModel {
   const factory _BorderSideModel(
-      {final String? color_color,
+      {final String? color_themeColorString,
       final double? width_double,
       final BorderStyle? style_enum_borderStyle,
       final double? strokeAlign_double}) = _$BorderSideModelImpl;
@@ -209,7 +209,7 @@ abstract class _BorderSideModel extends BorderSideModel {
       _$BorderSideModelImpl.fromJson;
 
   @override
-  String? get color_color;
+  String? get color_themeColorString;
   @override
   double? get width_double;
   @override
