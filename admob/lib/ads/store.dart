@@ -19,10 +19,10 @@ enum AdMobType {
 }
 
 /// A store for AdMob ads.
-class AdMobStore = AdMobStoreBase with _$AdMobStore;
+class AdMobStore = _AdMobStore with _$AdMobStore;
 
-/// [AdMobStoreBase] is a MobX Store that is used to manage the state of the [AdMobStore].
-abstract class AdMobStoreBase with Store {
+/// [_AdMobStore] is a MobX Store that is used to manage the state of the [AdMobStore].
+abstract class _AdMobStore with Store {
   /// The banner ad unit id.
   final String? bannerAdUnitId;
 
@@ -32,8 +32,8 @@ abstract class AdMobStoreBase with Store {
   /// The rewarded ad unit id.
   final String? rewardAdUnitId;
 
-  /// The constructor for the [AdMobStoreBase].
-  AdMobStoreBase({
+  /// The constructor for the [_AdMobStore].
+  _AdMobStore({
     required this.bannerAdUnitId,
     required this.interstitialAdUnitId,
     required this.rewardAdUnitId,
@@ -67,8 +67,7 @@ abstract class AdMobStoreBase with Store {
 
   /// interstitialAdId getter.
   @computed
-  String get getInterstitialAdUnitId =>
-      interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
+  String get getInterstitialAdUnitId => interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
 
   /// rewardAdId getter.
   @computed
@@ -187,26 +186,30 @@ abstract class AdMobStoreBase with Store {
   void _setBannerAdLoaded(bool loaded) {
     isBannerAdLoaded = loaded;
     AppLogger.print(
-        "isBannerAdLoaded: $isBannerAdLoaded", [PackageFeatures.adMob],
-        type: isBannerAdLoaded ? LoggerType.confirmation : LoggerType.error);
+      "isBannerAdLoaded: $isBannerAdLoaded",
+      [PackageFeatures.adMob],
+      type: isBannerAdLoaded ? LoggerType.confirmation : LoggerType.error,
+    );
   }
 
   @action
   void _setInterstitialAdLoaded(bool loaded) {
     isInterstitialAdLoaded = loaded;
-    AppLogger.print("isInterstitialAdLoaded: $isInterstitialAdLoaded",
-        [PackageFeatures.adMob],
-        type: isInterstitialAdLoaded
-            ? LoggerType.confirmation
-            : LoggerType.error);
+    AppLogger.print(
+      "isInterstitialAdLoaded: $isInterstitialAdLoaded",
+      [PackageFeatures.adMob],
+      type: isInterstitialAdLoaded ? LoggerType.confirmation : LoggerType.error,
+    );
   }
 
   @action
   void _setRewardVideoAdLoaded(bool loaded) {
     isRewardAdLoaded = loaded;
     AppLogger.print(
-        "isRewardVideoAdLoaded: $isRewardAdLoaded", [PackageFeatures.adMob],
-        type: isRewardAdLoaded ? LoggerType.confirmation : LoggerType.error);
+      "isRewardVideoAdLoaded: $isRewardAdLoaded",
+      [PackageFeatures.adMob],
+      type: isRewardAdLoaded ? LoggerType.confirmation : LoggerType.error,
+    );
   }
 
   @action
@@ -224,9 +227,10 @@ abstract class AdMobStoreBase with Store {
     }
     if (!loaded && errorMessage != null) {
       AppLogger.print(
-          "Error loading $type: ${errorMessage.code} -> ${errorMessage.message}",
-          [PackageFeatures.adMob],
-          type: LoggerType.error);
+        "Error loading $type: ${errorMessage.code} -> ${errorMessage.message}",
+        [PackageFeatures.adMob],
+        type: LoggerType.error,
+      );
     }
   }
 }
