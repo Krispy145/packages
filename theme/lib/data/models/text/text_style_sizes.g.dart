@@ -6,9 +6,8 @@ part of 'text_style_sizes.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$textStyleStringSizesImpl _$$textStyleStringSizesImplFromJson(
-        Map<String, dynamic> json) =>
-    _$textStyleStringSizesImpl(
+_$TextStyleSizesImpl _$$TextStyleSizesImplFromJson(Map<String, dynamic> json) =>
+    _$TextStyleSizesImpl(
       large: json['large'] == null
           ? null
           : TextStyleModel.fromJson(json['large'] as Map<String, dynamic>),
@@ -20,8 +19,8 @@ _$textStyleStringSizesImpl _$$textStyleStringSizesImplFromJson(
           : TextStyleModel.fromJson(json['small'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$textStyleStringSizesImplToJson(
-        _$textStyleStringSizesImpl instance) =>
+Map<String, dynamic> _$$TextStyleSizesImplToJson(
+        _$TextStyleSizesImpl instance) =>
     <String, dynamic>{
       'large': instance.large?.toJson(),
       'medium': instance.medium?.toJson(),

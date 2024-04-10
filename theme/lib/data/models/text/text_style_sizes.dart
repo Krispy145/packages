@@ -20,7 +20,7 @@ abstract class TextStyleSizes with _$TextStyleSizes {
     TextStyleModel? large,
     TextStyleModel? medium,
     TextStyleModel? small,
-  }) = _textStyleStringSizes;
+  }) = _TextStyleSizes;
   const TextStyleSizes._();
 
   /// [defaultStyleSizes] returns a [TextStyleSizes] with default values.

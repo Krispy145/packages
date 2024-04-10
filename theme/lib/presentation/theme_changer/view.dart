@@ -22,6 +22,8 @@ import 'package:theme/presentation/theme_changer/components/editing_fields/durat
 import 'package:theme/presentation/theme_changer/components/editing_fields/duration/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/edge_insets/store.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/font/form_field.dart';
+import 'package:theme/presentation/theme_changer/components/editing_fields/font/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/input_border/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/input_border/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/outlined_border/form_field.dart';
@@ -129,6 +131,14 @@ class ThemeComponentEditor extends MapEditor {
           title: formattedKey,
         );
         return ThemeColorStringFormField(store: store);
+      case "_font":
+        final store = FontFormFieldStore(
+          value: value as String?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
+          title: formattedKey,
+        );
+        return FontFormField(store: store);
+
       case "_textStyleString":
         final store = TextStyleStringFormFieldStore(
           value: value as TextStyleString?,

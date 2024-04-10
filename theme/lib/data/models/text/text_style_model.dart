@@ -12,13 +12,13 @@ part 'text_style_model.g.dart';
 class TextStyleModel with _$TextStyleModel {
   /// [TextStyleModel] constructor
   const factory TextStyleModel({
-    final String? fontFamilyName_string,
+    final String? fontFamilyName_font,
     @Default(FontStyle.normal) final FontStyle? fontFamilyStyle_enum_fontStyle,
     final double? fontWeight_double,
     final double? fontSize_double,
     final double? lineHeight_double,
     final double? letterSpacing_double,
-  }) = _textStyleStringModel;
+  }) = _TextStyleModel;
   const TextStyleModel._();
 
   /// [TextStyleModel.fromJson] is a factory method that allows you to create a [TextStyleModel] from a JSON file.
@@ -27,7 +27,7 @@ class TextStyleModel with _$TextStyleModel {
   /// [asTextStyle] converts the [TextStyleModel] to a [TextStyle].
   TextStyle get asTextStyle {
     return TextStyle(
-      fontFamily: fontFamilyName_string,
+      fontFamily: fontFamilyName_font,
       fontWeight: FontWeight.values.firstWhereOrNull((element) => element.value == fontWeight_double?.toInt()),
       fontStyle: fontFamilyStyle_enum_fontStyle,
       fontSize: fontSize_double,

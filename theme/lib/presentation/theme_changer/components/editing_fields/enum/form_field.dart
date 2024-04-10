@@ -18,6 +18,7 @@ class EnumFormField extends BaseFormField<EnumFormFieldStore> {
             if (store.value != null)
               DropdownButton(
                 value: store.value,
+                alignment: Alignment.bottomCenter,
                 onChanged: (newValue) => store.value = newValue,
                 items: store.options.map((enumValue) => DropdownMenuItem<Enum>(value: enumValue, child: Text(enumValue.name))).toList(),
               ),

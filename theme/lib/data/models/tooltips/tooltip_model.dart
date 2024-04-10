@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
 import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
 import 'package:theme/extensions/text_style_string.dart';
 
 part 'tooltip_model.freezed.dart';
