@@ -1,23 +1,16 @@
-// import '/data/models/fonts_model.dart';
-// import '/data/repositories/_repositories.dart';
-// import '/data/repositories/fonts.repository.dart';
+import 'package:fonts/data/models/font_descriptor_and_url.dart';
+import 'package:fonts/data/sources/fonts/_source.dart';
 
-// /// [FontsRepository] is an abstract class that defines the basic CRUD operations for the [FontsModel] entity.
-// class FontsRepository {
-//   final FontsDataRepository _fontsDataRepository =
-//       DataRepositories.instance.fonts;
+import '/data/repositories/_repositories.dart';
+import '/data/repositories/fonts.repository.dart';
 
-//   /// [FontsRepository] constructor.
-//   FontsRepository();
+class FontsRepository {
+  final FontsDataRepository _fontsDataRepository = DataRepositories.instance.fonts;
 
-//   /// [getAllFontsModelsFromApi] fetches all [FontsModel]s from the data source.
-//   Future<List<FontsModel?>> getAllFontsModelsFromApi() {
-//     return _fontsDataRepository.getAllFontsModels(source: DataSourceTypes.api);
-//   }
+  /// [FontsRepository] constructor.
+  FontsRepository();
 
-//   /// [addAllFontsModelsFromApi] adds all [FontsModel]s to the data source.
-//   Future<void> addAllFontsModelsFromApi(List<FontsModel> fontsModels) {
-//     return _fontsDataRepository.addAllFontsModels(
-//         source: DataSourceTypes.api, fontsModels: fontsModels);
-//   }
-// }
+  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl, bool allowAPIFetching) async {
+    return _fontsDataRepository.loadFont(fontVariantAndUrl, allowAPIFetching);
+  }
+}

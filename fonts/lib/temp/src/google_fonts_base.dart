@@ -1,371 +1,381 @@
-// Copyright 2019 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+// // GENERATED CODE - DO NOT EDIT
 
-import 'package:flutter/material.dart';
-// TODO(andrewkolos): The flutter framework wishes to add a new class named
-// `AssetManifest` to its API (see https://github.com/flutter/flutter/pull/119277).
-// However, doing so would break integration tests that utilize google_fonts due
-// to name collision with the `AssetManifest` class that this package already
-// defines (see https://github.com/flutter/flutter/pull/119273).
-// Once the AssetManifest API is added to flutter, update this package to use it
-// instead of the AssetManifest class this package defines and remove this `hide`
-// and the ignore annotation.
-// ignore: undefined_hidden_name
-import 'package:flutter/services.dart' hide AssetManifest;
-import 'package:fonts/data/sources/font_file_io/_source.dart';
-import 'package:fonts/temp/dynamic_fonts.dart';
-import 'package:http/http.dart' as http;
+// // Copyright 2019 The Flutter team. All rights reserved.
+// // Use of this source code is governed by a BSD-style license that can be
+// // found in the LICENSE file.
 
-import '../../data/models/font_descriptor_and_url.dart';
-import '../../data/models/font_family_and_variant.dart';
-import '../../data/models/font_variant_descriptor.dart';
-import '../../data/sources/font_file_io/file_io_default.source.dart' if (dart.library.io) '../../data/sources/font_file_io/file_io_desktop_and_mobile.source.dart' as font_file_io;
-import '../../utilities/asset_manifest.dart';
+// import 'dart:ui' as ui;
 
-final FontFileIOBaseDataSource fileIODataSource = font_file_io.source;
+// // import 'package:dynamic_fonts/src/google_fonts_base.dart';
+// // import 'package:dynamic_fonts/src/google_fonts_descriptor.dart';
+// // import 'package:dynamic_fonts/src/google_fonts_variant.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart' hide AssetManifest;
+// import 'package:fonts/data/models/font_variant_descriptor.dart';
 
-/// Set of fonts that are loading or loaded.
-///
-/// Used to determine whether to load a font or not.
-final Set<String> _loadedFonts = {};
+// import '../../data/models/font_descriptor_and_url.dart';
+// import '../../data/models/font_family_and_variant.dart';
+// // import '../../data/sources/font_file_io/file_io_default.source.dart' if (dart.library.io) '../../data/sources/font_file_io/file_io_desktop_and_mobile.source.dart' as font_file_io;
+// import '../../utilities/asset_manifest.dart';
 
-@visibleForTesting
-void clearCache() => _loadedFonts.clear();
+// /// A collection of properties used to specify custom behavior of the
+// /// DynamicFonts library.
+// class _Config {
+//   /// Whether or not the DynamicFonts library can make network requests to
+//   /// retrieve font files.
+//   var allowRuntimeFetching = true;
+// }
 
-/// Set of [Future]s corresponding to fonts that are loading.
-///
-/// When a font is loading, a future is added to this set. When it is loaded in
-/// the [FontLoader], that future is removed from this set.
-final Set<Future<void>> pendingFontFutures = {};
+// // class DynamicFonts {
+// //   /// Configuration for the [DynamicFonts] library.
+// //   ///
+// //   /// Use this to define custom behavior of the DynamicFonts library in your app.
+// //   /// For example, if you do not want the DynamicFonts library to make any http
+// //   /// requests for fonts, add the following snippet to your app's `main` method.
+// //   ///
+// //   /// ```dart
+// //   /// DynamicFonts.config.allowRuntimeFetching = false;
+// //   /// ```
+// //   static final config = _Config();
 
-@visibleForTesting
-http.Client httpClient = http.Client();
+// //   static Future<List<void>> pendingFonts([List<dynamic>? _]) => Future.wait(pendingFontFutures);
 
-@visibleForTesting
-AssetManifest assetManifest = AssetManifest();
+// //   static final Map<String, TextStyleBuilder> _styleMap = {};
 
-/// Creates a [TextStyle] that either uses the [fontFamily] for the requested
-/// GoogleFont, or falls back to the pre-bundled [fontFamily].
-///
-/// This function has a side effect of loading the font into the [FontLoader],
-/// either by network or from the device file system.
-TextStyle doTextStyleBuilder({
-  required String fontFamily,
-  TextStyle? textStyle,
-  Color? color,
-  Color? backgroundColor,
-  double? fontSize,
-  FontWeight? fontWeight,
-  FontStyle? fontStyle,
-  double? letterSpacing,
-  double? wordSpacing,
-  TextBaseline? textBaseline,
-  double? height,
-  Locale? locale,
-  Paint? foreground,
-  Paint? background,
-  List<Shadow>? shadows,
-  List<FontFeature>? fontFeatures,
-  TextDecoration? decoration,
-  Color? decorationColor,
-  TextDecorationStyle? decorationStyle,
-  double? decorationThickness,
-  required Map<DOFontVariantDescriptor, String> fonts,
-  bool? eager,
-}) {
-  textStyle ??= const TextStyle();
-  textStyle = textStyle.copyWith(
-    color: color,
-    backgroundColor: backgroundColor,
-    fontSize: fontSize,
-    fontWeight: fontWeight,
-    fontStyle: fontStyle,
-    letterSpacing: letterSpacing,
-    wordSpacing: wordSpacing,
-    textBaseline: textBaseline,
-    height: height,
-    locale: locale,
-    foreground: foreground,
-    background: background,
-    shadows: shadows,
-    fontFeatures: fontFeatures,
-    decoration: decoration,
-    decorationColor: decorationColor,
-    decorationStyle: decorationStyle,
-    decorationThickness: decorationThickness,
-  );
+// //   /// Get a map of all available fonts.
+// //   ///
+// //   /// Returns a map where the key is the name of the font family and the value
+// //   /// is the corresponding [DynamicFonts] method.
+// //   static Map<String, TextStyleBuilder> asMap() => Map.unmodifiable(_styleMap);
 
-  if (eager == true) {
-    eagerlyLoadFamily(fontFamily: fontFamily, fonts: fonts);
-    return textStyle.copyWith(fontFamily: fontFamily);
-  }
+// //   static final Map<String, TextThemeBuilder> _themeMap = {};
 
-  final variant = DOFontVariantDescriptor(
-    fontWeight: textStyle.fontWeight ?? FontWeight.w400,
-    fontStyle: textStyle.fontStyle ?? FontStyle.normal,
-  );
-  final matchedVariant = _closestMatch(variant, fonts.keys);
-  final familyWithVariant = DOFontFamilyAndVariant(
-    familyName: fontFamily,
-    fontVariantDescriptor: matchedVariant,
-  );
+// //   /// Get a map of all available fonts and their associated text themes.
+// //   ///
+// //   /// Returns a map where the key is the name of the font family and the value
+// //   /// is the corresponding [DynamicFonts] `TextTheme` method.
+//   static Map<String, TextThemeBuilder> _asMapOfTextThemes() => Map.unmodifiable(_themeMap);
 
-  final descriptor = DOFontVariantAndUrl(
-    familyWithVariant: familyWithVariant,
-    url: fonts[matchedVariant]!,
-  );
+// //   static void register(String familyName, Map<DOFontVariantDescriptor, String> variantMap, {bool eager = false}) {
+// //     final style = styleBuilder(familyName, variantMap, eager);
+// //     _styleMap[familyName] = style;
+// //     _themeMap[familyName] = themeBuilder(style);
+// //   }
 
-  final loadingFuture = loadFontIfNecessary(descriptor);
-  pendingFontFutures.add(loadingFuture);
-  loadingFuture.then((_) => pendingFontFutures.remove(loadingFuture));
+// //   /// Retrieve a font by family name.
+// //   ///
+// //   /// Applies the given font family to the given [textStyle] and returns the
+// //   /// resulting [TextStyle].
+// //   ///
+// //   /// Note: [fontFamily] is case-sensitive.
+// //   ///
+// //   /// Parameter [fontFamily] must not be `null`. Throws if no font by name
+// //   /// [fontFamily] exists.
+// //   static TextStyle getFont(
+// //     String fontFamily, {
+// //     TextStyle? textStyle,
+// //     Color? color,
+// //     Color? backgroundColor,
+// //     double? fontSize,
+// //     FontWeight? fontWeight,
+// //     FontStyle? fontStyle,
+// //     double? letterSpacing,
+// //     double? wordSpacing,
+// //     TextBaseline? textBaseline,
+// //     double? height,
+// //     Locale? locale,
+// //     Paint? foreground,
+// //     Paint? background,
+// //     List<ui.Shadow>? shadows,
+// //     List<ui.FontFeature>? fontFeatures,
+// //     TextDecoration? decoration,
+// //     Color? decorationColor,
+// //     TextDecorationStyle? decorationStyle,
+// //     double? decorationThickness,
+// //   }) {
+// //     final fonts = DynamicFonts.asMap();
+// //     if (!fonts.containsKey(fontFamily)) {
+// //       throw Exception("No font family by name '$fontFamily' was found.");
+// //     }
+// //     return fonts[fontFamily]!(
+// //       textStyle: textStyle,
+// //       color: color,
+// //       backgroundColor: backgroundColor,
+// //       fontSize: fontSize,
+// //       fontWeight: fontWeight,
+// //       fontStyle: fontStyle,
+// //       letterSpacing: letterSpacing,
+// //       wordSpacing: wordSpacing,
+// //       textBaseline: textBaseline,
+// //       height: height,
+// //       locale: locale,
+// //       foreground: foreground,
+// //       background: background,
+// //       shadows: shadows,
+// //       fontFeatures: fontFeatures,
+// //       decoration: decoration,
+// //       decorationColor: decorationColor,
+// //       decorationStyle: decorationStyle,
+// //       decorationThickness: decorationThickness,
+// //     );
+// //   }
 
-  return textStyle.copyWith(
-    fontFamily: familyWithVariant.toString(),
-    fontFamilyFallback: [fontFamily],
-  );
-}
+// //   /// Retrieve a text theme by its font family name.
+// //   ///
+// //   /// Applies the given font family to the given [textTheme] and returns the
+// //   /// resulting [textTheme].
+// //   ///
+// //   /// Note: [fontFamily] is case-sensitive.
+// //   ///
+// //   /// Parameter [fontFamily] must not be `null`. Throws if no font by name
+// //   /// [fontFamily] exists.
+// //   static TextTheme getTextTheme(String fontFamily, [TextTheme? textTheme]) {
+// //     final fonts = _asMapOfTextThemes();
+// //     if (!fonts.containsKey(fontFamily)) {
+// //       throw Exception("No font family by name '$fontFamily' was found.");
+// //     }
+// //     return fonts[fontFamily]!(textTheme);
+// //   }
 
-void eagerlyLoadFamily({
-  required String fontFamily,
-  required Map<DOFontVariantDescriptor, String> fonts,
-}) {
-  final loader = FontLoader(fontFamily);
-  final futures = <Future>[];
-  for (var variant in fonts.keys) {
-    final familyWithVariant = DOFontFamilyAndVariant(
-      familyName: fontFamily,
-      fontVariantDescriptor: variant,
-    );
-    final descriptor = DOFontVariantAndUrl(
-      familyWithVariant: familyWithVariant,
-      url: fonts[variant]!,
-    );
-    final loadingFuture = loadFontIfNecessary(descriptor, loader);
-    pendingFontFutures.add(loadingFuture);
-    futures.add(loadingFuture);
-    loadingFuture.then((_) => pendingFontFutures.remove(loadingFuture));
-  }
-  Future.wait<void>(futures).then((_) => loader.load());
-}
+// //   static TextThemeBuilder themeBuilder(TextStyleBuilder styleBuilder) => ([textTheme]) {
+// //         textTheme ??= ThemeData.light().textTheme;
+// //         return TextTheme(
+// //           displayLarge: styleBuilder(textStyle: textTheme.displayLarge),
+// //           displayMedium: styleBuilder(textStyle: textTheme.displayMedium),
+// //           displaySmall: styleBuilder(textStyle: textTheme.displaySmall),
+// //           headlineMedium: styleBuilder(textStyle: textTheme.headlineMedium),
+// //           headlineSmall: styleBuilder(textStyle: textTheme.headlineSmall),
+// //           titleLarge: styleBuilder(textStyle: textTheme.titleLarge),
+// //           titleMedium: styleBuilder(textStyle: textTheme.titleMedium),
+// //           titleSmall: styleBuilder(textStyle: textTheme.titleSmall),
+// //           bodyLarge: styleBuilder(textStyle: textTheme.bodyLarge),
+// //           bodyMedium: styleBuilder(textStyle: textTheme.bodyMedium),
+// //           bodySmall: styleBuilder(textStyle: textTheme.bodySmall),
+// //           labelLarge: styleBuilder(textStyle: textTheme.labelLarge),
+// //           labelSmall: styleBuilder(textStyle: textTheme.labelSmall),
+// //         );
+// //       };
 
-/// Loads a font into the [FontLoader] with [fontFamilyName] for the
-/// matching [expectedFileHash].
-///
-/// If a font with the [fontName] has already been loaded into memory, then
-/// this method does nothing as there is no need to load it a second time.
-///
-/// Otherwise, this method will first check to see if the font is available
-/// as an asset, then on the device file system. If it isn't, it is fetched via
-/// the [fontUrl] and stored on device. In all cases, the returned future
-/// completes once the font is loaded into the [FontLoader].
-Future<void> loadFontIfNecessary(DOFontVariantAndUrl fontVariantAndUrl, [FontLoader? fontLoader]) async {
-  final familyWithVariantString = fontVariantAndUrl.familyWithVariant.toString();
-  final fontName = fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix();
-  // final fileHash = descriptor.file.expectedFileHash;
-  // If this font has already already loaded or is loading, then there is no
-  // need to attempt to load it again, unless the attempted load results in an
-  // error.
-  if (_loadedFonts.contains(familyWithVariantString)) {
-    return;
-  } else {
-    _loadedFonts.add(familyWithVariantString);
-  }
+// //   static TextStyleBuilder styleBuilder(
+// //     String fontFamily,
+// //     Map<DOFontVariantDescriptor, String> variantMap,
+// //     bool eager,
+// //   ) =>
+// //       ({
+// //         textStyle,
+// //         color,
+// //         backgroundColor,
+// //         fontSize,
+// //         fontWeight,
+// //         fontStyle,
+// //         letterSpacing,
+// //         wordSpacing,
+// //         textBaseline,
+// //         height,
+// //         locale,
+// //         foreground,
+// //         background,
+// //         shadows,
+// //         fontFeatures,
+// //         decoration,
+// //         decorationColor,
+// //         decorationStyle,
+// //         decorationThickness,
+// //       }) {
+// //         assert(variantMap.isNotEmpty, 'variantMap must not be empty.');
+// //         return doTextStyleBuilder(
+// //           textStyle: textStyle,
+// //           fontFamily: fontFamily,
+// //           color: color,
+// //           backgroundColor: backgroundColor,
+// //           fontSize: fontSize,
+// //           fontWeight: fontWeight,
+// //           fontStyle: fontStyle,
+// //           letterSpacing: letterSpacing,
+// //           wordSpacing: wordSpacing,
+// //           textBaseline: textBaseline,
+// //           height: height,
+// //           locale: locale,
+// //           foreground: foreground,
+// //           background: background,
+// //           shadows: shadows,
+// //           fontFeatures: fontFeatures,
+// //           decoration: decoration,
+// //           decorationColor: decorationColor,
+// //           decorationStyle: decorationStyle,
+// //           decorationThickness: decorationThickness,
+// //           fonts: variantMap,
+// //           eager: eager,
+// //         );
+// //       };
+// // }
 
-  try {
-    Future<ByteData?>? byteData;
+// /// Describes a font file as it is _expected_ to be received from the server.
+// ///
+// /// If a file is retrieved and its hash does not match [expectedFileHash], or it
+// /// is not of [expectedLength] bytes length, the font will not be loaded, and
+// /// the file will not be stored on the device.
+// ///
+// /// Clients will need to subclass this to provide the correct URL. If the URL
+// /// depends on the font variant, consider a pattern like this:
+// ///
+// /// ```
+// /// class MyFontFile extends DynamicFontsFile {
+// ///   FiraGoFile(this.variant, String expectedFileHash, int expectedLength)
+// ///       : super(expectedFileHash, expectedLength);
+// ///
+// ///   final DynamicFontsVariant variant;
+// ///
+// ///   @override
+// ///   String get url =>
+// ///       'https://example.com/MyFont-${variant.toApiFilenamePart()}.ttf';
+// /// }
+// /// ```
 
-    // Check if this font can be loaded by the pre-bundled assets.
-    final assetManifestJson = await assetManifest.json();
-    final assetPath = _findFamilyWithVariantAssetPath(
-      fontVariantAndUrl.familyWithVariant,
-      assetManifestJson,
-    );
-    if (assetPath != null) {
-      byteData = rootBundle.load(assetPath);
-    }
-    if (await byteData != null) {
-      return loadFontByteData(familyWithVariantString, byteData, fontLoader);
-    }
+// // TODO(andrewkolos): The flutter framework wishes to add a new class named
+// // `AssetManifest` to its API (see https://github.com/flutter/flutter/pull/119277).
+// // However, doing so would break integration tests that utilize google_fonts due
+// // to name collision with the `AssetManifest` class that this package already
+// // defines (see https://github.com/flutter/flutter/pull/119273).
+// // Once the AssetManifest API is added to flutter, update this package to use it
+// // instead of the AssetManifest class this package defines and remove this `hide`
+// // and the ignore annotation.
+// // ignore: undefined_hidden_name
 
-    // Check if this font can be loaded from the device file system.
-    byteData = fileIODataSource.loadFontFromDeviceFileSystem(
-      name: familyWithVariantString,
-      // fileHash: fileHash,
-    );
+// // final FontFileIOBaseDataSource fileIODataSource = font_file_io.source;
 
-    if (await byteData != null) {
-      return loadFontByteData(familyWithVariantString, byteData, fontLoader);
-    }
+// // @visibleForTesting
+// // AssetManifest assetManifest = AssetManifest();
 
-    // Attempt to load this font via http, unless disallowed.
-    if (DynamicFonts.config.allowRuntimeFetching) {
-      byteData = _httpFetchFontAndSaveToDevice(
-        familyWithVariantString,
-        fontVariantAndUrl.url,
-      );
-      if (await byteData != null) {
-        return loadFontByteData(familyWithVariantString, byteData, fontLoader);
-      }
-    } else {
-      throw Exception(
-        'GoogleFonts.config.allowRuntimeFetching is false but font $fontName was not '
-        'found in the application assets. Ensure $fontName.ttf exists in a '
-        "folder that is included in your pubspec's assets.",
-      );
-    }
-  } catch (e) {
-    _loadedFonts.remove(familyWithVariantString);
-    print('Error: dynamic_fonts was unable to load font $fontName because the '
-        'following exception occurred:\n$e');
-    if (fileIODataSource.isTest) {
-      // print('\nThere is likely something wrong with your test. Please see '
-      //     'https://github.com/material-foundation/flutter-packages/blob/main/packages/google_fonts/example/test '
-      //     'for examples of how to test with google_fonts.');
-    } else if (fileIODataSource.isMacOS || fileIODataSource.isAndroid) {
-      print(
-        '\nSee https://docs.flutter.dev/development/data-and-backend/networking#platform-notes.',
-      );
-    }
-    // print('If troubleshooting doesn\'t solve the problem, please file an issue '
-    //     'at https://github.com/material-foundation/flutter-packages/issues/new/choose.\n');
-    rethrow;
-  }
-}
+// /// Creates a [TextStyle] that either uses the [fontFamily] for the requested
+// /// GoogleFont, or falls back to the pre-bundled [fontFamily].
+// ///
+// /// This function has a side effect of loading the font into the [FontLoader],
+// /// either by network or from the device file system.
+// TextStyle doTextStyleBuilder({
+//   required String fontFamily,
+//   TextStyle? textStyle,
+//   Color? color,
+//   Color? backgroundColor,
+//   double? fontSize,
+//   FontWeight? fontWeight,
+//   FontStyle? fontStyle,
+//   double? letterSpacing,
+//   double? wordSpacing,
+//   TextBaseline? textBaseline,
+//   double? height,
+//   Locale? locale,
+//   Paint? foreground,
+//   Paint? background,
+//   List<Shadow>? shadows,
+//   List<FontFeature>? fontFeatures,
+//   TextDecoration? decoration,
+//   Color? decorationColor,
+//   TextDecorationStyle? decorationStyle,
+//   double? decorationThickness,
+//   required Map<DOFontVariantDescriptor, String> fonts,
+//   bool? eager,
+// }) {
+//   textStyle ??= const TextStyle();
+//   textStyle = textStyle.copyWith(
+//     color: color,
+//     backgroundColor: backgroundColor,
+//     fontSize: fontSize,
+//     fontWeight: fontWeight,
+//     fontStyle: fontStyle,
+//     letterSpacing: letterSpacing,
+//     wordSpacing: wordSpacing,
+//     textBaseline: textBaseline,
+//     height: height,
+//     locale: locale,
+//     foreground: foreground,
+//     background: background,
+//     shadows: shadows,
+//     fontFeatures: fontFeatures,
+//     decoration: decoration,
+//     decorationColor: decorationColor,
+//     decorationStyle: decorationStyle,
+//     decorationThickness: decorationThickness,
+//   );
 
-/// Loads a font with [FontLoader], given its name and byte-representation.
-@visibleForTesting
-Future<void> loadFontByteData(
-  String familyWithVariantString,
-  Future<ByteData?>? byteData, [
-  FontLoader? fontLoader,
-]) async {
-  if (byteData == null) return;
-  final fontData = await byteData;
-  if (fontData == null) return;
+//   if (eager == true) {
+//     eagerlyLoadFamily(fontFamily: fontFamily, fonts: fonts);
+//     return textStyle.copyWith(fontFamily: fontFamily);
+//   }
 
-  final loadNow = fontLoader == null;
-  fontLoader ??= FontLoader(familyWithVariantString);
-  fontLoader.addFont(Future.value(fontData));
-  if (loadNow) await fontLoader.load();
-}
+//   final variant = DOFontVariantDescriptor(
+//     fontWeight: textStyle.fontWeight ?? FontWeight.w400,
+//     fontStyle: textStyle.fontStyle ?? FontStyle.normal,
+//   );
+//   final matchedVariant = _closestMatch(variant, fonts.keys);
+//   final familyWithVariant = DOFontFamilyAndVariant(
+//     familyName: fontFamily,
+//     fontVariantDescriptor: matchedVariant,
+//   );
 
-//
-// GENERAL
-//
+//   final descriptor = DOFontVariantAndUrl(
+//     familyWithVariant: familyWithVariant,
+//     url: fonts[matchedVariant]!,
+//   );
 
-bool _isFileSecure(String url, Uint8List bytes) {
-  // final actualFileLength = bytes.length;
-  // final actualFileHash = sha256.convert(bytes).toString();
-  return true;
-  // return file.expectedLength == actualFileLength && file.expectedFileHash == actualFileHash;
-}
+//   final loadingFuture = loadFontIfNecessary(descriptor);
+//   pendingFontFutures.add(loadingFuture);
+//   loadingFuture.then((_) => pendingFontFutures.remove(loadingFuture));
 
-void _unawaited(Future<void> future) {}
+//   return textStyle.copyWith(
+//     fontFamily: familyWithVariant.toString(),
+//     fontFamilyFallback: [fontFamily],
+//   );
+// }
 
-// This logic is taken from the following section of the minikin library, which
-// is ultimately how flutter handles matching fonts.
-// * https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L128
-int _computeMatch(DOFontVariantDescriptor a, DOFontVariantDescriptor b) {
-  if (a == b) {
-    return 0;
-  }
-  int score = (a.fontWeight.index - b.fontWeight.index).abs();
-  if (a.fontStyle != b.fontStyle) {
-    score += 2;
-  }
-  return score;
-}
+// //
+// // GENERAL
+// //
 
-/// Returns [DOFontVariantDescriptor] from [variantsToCompare] that most closely
-/// matches [sourceVariant] according to the [_computeMatch] scoring function.
-///
-/// This logic is derived from the following section of the minikin library,
-/// which is ultimately how flutter handles matching fonts.
-/// https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L149
-DOFontVariantDescriptor _closestMatch(
-  DOFontVariantDescriptor sourceVariant,
-  Iterable<DOFontVariantDescriptor> variantsToCompare,
-) {
-  int? bestScore;
-  late DOFontVariantDescriptor bestMatch;
-  for (final variantToCompare in variantsToCompare) {
-    final score = _computeMatch(sourceVariant, variantToCompare);
-    if (bestScore == null || score < bestScore) {
-      bestScore = score;
-      bestMatch = variantToCompare;
-    }
-  }
-  return bestMatch;
-}
+// // // This logic is taken from the following section of the minikin library, which
+// // // is ultimately how flutter handles matching fonts.
+// // // * https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L128
+// // int _computeMatch(DOFontVariantDescriptor a, DOFontVariantDescriptor b) {
+// //   if (a == b) {
+// //     return 0;
+// //   }
+// //   int score = (a.fontWeight.index - b.fontWeight.index).abs();
+// //   if (a.fontStyle != b.fontStyle) {
+// //     score += 2;
+// //   }
+// //   return score;
+// // }
 
-//
-// API Data Source
-//
+// // /// Returns [DOFontVariantDescriptor] from [variantsToCompare] that most closely
+// // /// matches [sourceVariant] according to the [_computeMatch] scoring function.
+// // ///
+// // /// This logic is derived from the following section of the minikin library,
+// // /// which is ultimately how flutter handles matching fonts.
+// // /// https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L149
+// // DOFontVariantDescriptor _closestMatch(
+// //   DOFontVariantDescriptor sourceVariant,
+// //   Iterable<DOFontVariantDescriptor> variantsToCompare,
+// // ) {
+// //   int? bestScore;
+// //   late DOFontVariantDescriptor bestMatch;
+// //   for (final variantToCompare in variantsToCompare) {
+// //     final score = _computeMatch(sourceVariant, variantToCompare);
+// //     if (bestScore == null || score < bestScore) {
+// //       bestScore = score;
+// //       bestMatch = variantToCompare;
+// //     }
+// //   }
+// //   return bestMatch;
+// // }
 
-/// Fetches a font with [fontName] from the [fontUrl] and saves it locally if
-/// it is the first time it is being loaded.
-///
-/// This function can return `null` if the font fails to load from the URL.
-Future<ByteData> _httpFetchFontAndSaveToDevice(
-  String fontName,
-  String url,
-) async {
-  final uri = Uri.tryParse(url);
-  if (uri == null) {
-    throw Exception('Invalid fontUrl: $url');
-  }
+// //
+// // API Data Source
+// //
 
-  http.Response response;
-  try {
-    response = await httpClient.get(uri);
-  } catch (e) {
-    throw Exception('Failed to load font with url $url: $e');
-  }
-  if (response.statusCode == 200) {
-    if (!_isFileSecure(url, response.bodyBytes)) {
-      throw Exception(
-        'File from $url did not match expected length and checksum.',
-      );
-    }
 
-    _unawaited(fileIODataSource.saveFontToDeviceFileSystem(
-      name: fontName,
-      // fileHash: file.expectedFileHash,
-      bytes: response.bodyBytes,
-    ));
+// //
+// // Asset Data Source
+// //
 
-    return ByteData.view(response.bodyBytes.buffer);
-  } else {
-    // If that call was not successful, throw an error.
-    throw Exception('Failed to load font with url: $url');
-  }
-}
 
-//
-// Asset Data Source
-//
 
-/// Looks for a matching [familyWithVariant] font, provided the asset manifest.
-/// Returns the path of the font asset if found, otherwise an empty string.
-String? _findFamilyWithVariantAssetPath(
-  DOFontFamilyAndVariant familyWithVariant,
-  Map<String, List<String>>? manifestJson,
-) {
-  if (manifestJson == null) return null;
-
-  final apiFilenamePrefix = familyWithVariant.toApiFilenamePrefix();
-
-  for (final assetList in manifestJson.values) {
-    for (final String asset in assetList) {
-      for (final matchingSuffix in ['.ttf', '.otf'].where(asset.endsWith)) {
-        final assetWithoutExtension = asset.substring(0, asset.length - matchingSuffix.length);
-        if (assetWithoutExtension.endsWith(apiFilenamePrefix)) {
-          return asset;
-        }
-      }
-    }
-  }
-
-  return null;
-}

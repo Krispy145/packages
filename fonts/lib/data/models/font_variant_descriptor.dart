@@ -11,6 +11,42 @@ class DOFontVariantDescriptor {
     required this.fontStyle,
   });
 
+  /// Returns [DOFontVariantDescriptor] from [variantsToCompare] that most closely
+  /// matches this [DOFontVariantDescriptor] according to the [findClosestMatch] scoring function.
+  ///
+  /// This logic is derived from the following section of the minikin library,
+  /// which is ultimately how flutter handles matching fonts.
+  /// https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L149
+  DOFontVariantDescriptor findClosestMatch(
+    // DOFontVariantDescriptor sourceVariant,
+    Iterable<DOFontVariantDescriptor> variantsToCompare,
+  ) {
+    int? bestScore;
+    late DOFontVariantDescriptor bestMatch;
+    for (final variantToCompare in variantsToCompare) {
+      final score = _computeMatch(this, variantToCompare);
+      if (bestScore == null || score < bestScore) {
+        bestScore = score;
+        bestMatch = variantToCompare;
+      }
+    }
+    return bestMatch;
+  }
+
+  // This logic is taken from the following section of the minikin library, which
+// is ultimately how flutter handles matching fonts.
+// * https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L128
+  int _computeMatch(DOFontVariantDescriptor a, DOFontVariantDescriptor b) {
+    if (a == b) {
+      return 0;
+    }
+    int score = (a.fontWeight.index - b.fontWeight.index).abs();
+    if (a.fontStyle != b.fontStyle) {
+      score += 2;
+    }
+    return score;
+  }
+
   /// Creates a [DOFontVariantDescriptor] from a Google Fonts API specific
   /// filename part.
   ///

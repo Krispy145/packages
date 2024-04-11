@@ -2,7 +2,7 @@ import 'dart:typed_data' show ByteData;
 
 import 'package:fonts/data/sources/font_file_io/_source.dart';
 
-final source = FallbackFontFileIODataSource();
+final FontFileIOBaseDataSource source = FallbackFontFileIODataSource();
 
 class FallbackFontFileIODataSource extends FontFileIOBaseDataSource {
   @override

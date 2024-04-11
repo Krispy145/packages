@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:fonts/data/sources/font_file_io/_source.dart';
 import 'package:path_provider/path_provider.dart';
 
-final source = FontFileIODataSource();
+final FontFileIOBaseDataSource source = FontFileIODataSource();
 
 class FontFileIODataSource extends FontFileIOBaseDataSource {
   @override

@@ -1,31 +1,21 @@
-// import 'fonts.repository.dart';
+import 'package:fonts/data/repositories/font_file_io.repository.dart';
 
-// ///END OF IMPORTS
+import 'fonts.repository.dart';
 
-// /// [DataSourceTypes] is an enum that defines the different data sources.
-// enum DataSourceTypes {
-//   /// [api] is the remote data source.
-//   api,
+///END OF IMPORTS
 
-//   /// [local] is the local data source.
-//   local,
+/// [DataRepositories] is a class that defines the different data repositories.
+class DataRepositories {
+  DataRepositories._();
 
-//   /// [firestore] is the firestore data source.
-//   firestore,
+  /// [instance] is the singleton instance of [DataRepositories].
+  static final DataRepositories instance = DataRepositories._();
 
-//   /// [secure] is the secure data source.
-//   secure;
-// }
+  /// [fonts] is the [FontsDataRepository] instance.
+  final FontsDataRepository fonts = FontsDataRepository();
 
-// /// [DataRepositories] is a class that defines the different data repositories.
-// class DataRepositories {
-//   DataRepositories._();
+  /// [fonts] is the [FontsDataRepository] instance.
+  final FontFileIODataRepository fontsFileIO = FontFileIODataRepository();
 
-//   /// [instance] is the singleton instance of [DataRepositories].
-//   static final DataRepositories instance = DataRepositories._();
-
-//   /// [fonts] is the [FontsDataRepository] instance.
-//   final FontsDataRepository fonts = FontsDataRepository();
-
-//   ///END OF REPOSITORIES
-// }
+  ///END OF REPOSITORIES
+}
