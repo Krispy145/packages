@@ -93,51 +93,12 @@ enum PackageFeatures {
   /// [converters] is the feature reference for converters.
   converters,
 
+  /// [fonts] is the feature reference for fonts.
+  fonts,
+
   /// [deeplinks] is the feature reference for deeplinks.
   deeplinks;
 }
-
-// /// [PackageFeatures.$&] class responsible for storing base feature references.
-// class LoggerFeatures {
-//   /// [navigation] is the feature reference for navigation.
-//   static final LoggerFeature navigation = LoggerFeature("NAVIGATION", false);
-
-//   /// [connection] is the feature reference for connection.
-//   static final LoggerFeature connection = LoggerFeature("CONNECTION", false);
-
-//   /// [dependencyInjection] is the feature reference for dependency injection.
-//   static final LoggerFeature dependencyInjection = LoggerFeature("INJECTION", false);
-
-//   /// [theme] is the feature reference for theme.
-//   static final LoggerFeature theme = LoggerFeature("THEME", false);
-
-//   /// [adMob] is the feature reference for adMob.
-//   static final LoggerFeature adMob = LoggerFeature("AD_MOB", false);
-
-//   /// [notifications] is the feature reference for notifications.
-//   static final LoggerFeature notifications = LoggerFeature("NOTIFICATIONS", false);
-
-//   /// [localDataSource] is the feature reference for notifications.
-//   static final LoggerFeature localDataSource = LoggerFeature("LOCAL_DATASOURCE", true);
-
-//   /// [secureDataSource] is the feature reference for secureDataSource.
-//   static final LoggerFeature secureDataSource = LoggerFeature("SECURE_DATASOURCE", false);
-
-//   /// [apiDataSource] is the feature reference for apiDataSource.
-//   static final LoggerFeature apiDataSource = LoggerFeature("API_DATASOURCE", false);
-
-//   /// [firestoreDataSource] is the feature reference for firestoreDataSource.
-//   static final LoggerFeature firestoreDataSource = LoggerFeature("FIRESTORE_DATASOURCE", true);
-
-//   /// [authentication] is the feature reference for authentication.
-//   static final LoggerFeature authentication = LoggerFeature("AUTHENTICATION", true);
-
-//   /// [converters] is the feature reference for converters.
-//   static final LoggerFeature converters = LoggerFeature("CONVERTERS", false);
-
-//   /// [deeplinks] is the feature reference for deeplinks.
-//   static final LoggerFeature deeplinks = LoggerFeature("DEEPLINKS", true);
-// }
 
 /// [AppLogger] class responsible for logging, utilizing the features.
 class AppLoggerInjector {
