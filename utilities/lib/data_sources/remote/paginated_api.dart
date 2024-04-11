@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:utilities/data_sources/paginated_source.dart';
 import 'package:utilities/data_sources/remote/api.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/utils/loggers.dart';
 
 /// [PaginatedApiDataSource] is a wrapper class for [Dio] which implements [PaginationDataSource]
 /// It is used to fetch paginated data from the API
@@ -19,12 +20,10 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
   final String sourceSuffix;
 
   /// [responseTypeFromMap] is the function that will be used to convert the paginated value from [Map<String, dynamic>] to [PaginatedResponseModel<T>]
-  final PaginatedResponseModel<T?> Function(Map<String, dynamic>)
-      responseTypeFromMap;
+  final PaginatedResponseModel<T?> Function(Map<String, dynamic>) responseTypeFromMap;
 
   /// [responseToTypeMap] is the function that will be used to convert the paginated value from [PaginatedResponseModel<T>] to [Map<String, dynamic>]
-  final Map<String, dynamic> Function(PaginatedResponseModel<T>)
-      responseToTypeMap;
+  final Map<String, dynamic> Function(PaginatedResponseModel<T>) responseToTypeMap;
 
   /// [requestTypeFromMap] is the function that will be used to convert the request value from [Map<String, dynamic>] to [PaginatedRequestModel]
   final PaginatedRequestModel Function(Map<String, dynamic>) requestTypeFromMap;
@@ -50,7 +49,7 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
           // Log the request
           AppLogger.print(
             "REQUEST: ${options.method} -> ${options.uri}",
-            [PackageFeatures.apiDataSource],
+            [UtilitiesPackageLoggers.apiDataSource],
           );
           return handler.next(options);
         },
@@ -58,7 +57,7 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
           // Log the response
           AppLogger.print(
             "RESPONSE: ${response.statusCode} -> ${response.statusMessage}",
-            [PackageFeatures.apiDataSource],
+            [UtilitiesPackageLoggers.apiDataSource],
           );
           return handler.next(response);
         },
@@ -66,7 +65,7 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
           // Log errors
           AppLogger.print(
             "ERROR: ${e.response?.statusCode} -> ${e.response?.statusMessage}",
-            [PackageFeatures.apiDataSource],
+            [UtilitiesPackageLoggers.apiDataSource],
             type: LoggerType.error,
           );
           return handler.next(e);
@@ -78,20 +77,16 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
   String get _baseUrl => '$baseUrl/$sourceSuffix';
 
   @override
-  PaginatedRequestModel requestFromMap(Map<String, dynamic> data) =>
-      requestTypeFromMap(data);
+  PaginatedRequestModel requestFromMap(Map<String, dynamic> data) => requestTypeFromMap(data);
 
   @override
-  Map<String, dynamic> requestToMap(PaginatedRequestModel data) =>
-      requestToTypeMap(data);
+  Map<String, dynamic> requestToMap(PaginatedRequestModel data) => requestToTypeMap(data);
 
   @override
-  PaginatedResponseModel<T?> responseFromMap(Map<String, dynamic> data) =>
-      responseTypeFromMap(data);
+  PaginatedResponseModel<T?> responseFromMap(Map<String, dynamic> data) => responseTypeFromMap(data);
 
   @override
-  Map<String, dynamic> responseToMap(PaginatedResponseModel<T> data) =>
-      responseToTypeMap(data);
+  Map<String, dynamic> responseToMap(PaginatedResponseModel<T> data) => responseToTypeMap(data);
 
   @override
   Future<PaginatedResponseModel<T?>?> getPage(
@@ -109,19 +104,23 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
     if (lastPaginatedValue != null) {
       queries.addAll(requestToTypeMap(lastPaginatedValue));
     }
-    final response = await _dio.get<Map<String, dynamic>>(_url,
-        queryParameters: queries, cancelToken: _getCancelToken(cancelKey));
-    final convertedResponse =
-        response.data != null ? responseTypeFromMap(response.data!) : null;
+    final response = await _dio.get<Map<String, dynamic>>(
+      _url,
+      queryParameters: queries,
+      cancelToken: _getCancelToken(cancelKey),
+    );
+    final convertedResponse = response.data != null ? responseTypeFromMap(response.data!) : null;
     return convertedResponse;
   }
 
   @override
   Future<PaginatedResponseModel<T?>?> searchPage(
-      Map<String, dynamic> queries, PaginatedRequestModel? lastPaginatedValue,
-      {String? pathExtensions, bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+    Map<String, dynamic> queries,
+    PaginatedRequestModel? lastPaginatedValue, {
+    String? pathExtensions,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/searchPage";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -129,8 +128,11 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
     if (lastPaginatedValue != null) {
       queries.addAll(requestToTypeMap(lastPaginatedValue));
     }
-    final response = await _dio.get<Map<String, dynamic>>(_url,
-        queryParameters: queries, cancelToken: _getCancelToken(cancelKey));
+    final response = await _dio.get<Map<String, dynamic>>(
+      _url,
+      queryParameters: queries,
+      cancelToken: _getCancelToken(cancelKey),
+    );
     return response.data != null ? responseTypeFromMap(response.data!) : null;
   }
 

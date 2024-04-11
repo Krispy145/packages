@@ -12,8 +12,8 @@
 //   LinearGradient? example() {
 //     final json = const LinearGradientConverter().toJson(const LinearGradient(colors: [Colors.red, Colors.blue]));
 //     final linearGradient = const LinearGradientConverter().fromJson(json);
-//     AppLogger.print("LINEAR-GRADIENT fromJson -> $linearGradient", [PackageFeatures.converters]);
-//     AppLogger.print("LINEAR-GRADIENT toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("LINEAR-GRADIENT fromJson -> $linearGradient", [ThemePackageLoggers.converters]);
+//     AppLogger.print("LINEAR-GRADIENT toJson -> $json", [ThemePackageLoggers.converters]);
 //     return linearGradient;
 //   }
 

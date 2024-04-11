@@ -1,4 +1,4 @@
-import 'package:admob/ads/store.dart';
+import 'package:admob/store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -99,8 +99,7 @@ class _BannerAdWidgetState extends State<BannerAdWidget> {
   @override
   Widget build(BuildContext context) {
     return ConditionalWidget(
-      condition:
-          widget.store.bannerAd != null && widget.store.isPlatformCompliant,
+      condition: widget.store.bannerAd != null && widget.store.isPlatformCompliant,
       child: Observer(
         builder: (context) {
           return SizedBox(

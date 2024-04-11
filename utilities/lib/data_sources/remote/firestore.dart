@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/utils/loggers.dart';
 
 /// [FirestoreDataSource] is a wrapper class for [FirebaseFirestore]
 class FirestoreDataSource<T> implements DataSource<T> {
@@ -57,7 +58,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
       final querySnapshot = await _firestore!.collection(collectionName).get();
       return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
     } catch (e) {
-      AppLogger.print("Error: $e", [PackageFeatures.firestoreDataSource]);
+      AppLogger.print("Error: $e", [UtilitiesPackageLoggers.firestoreDataSource]);
       return [];
     }
   }
@@ -144,10 +145,10 @@ class FirestoreDataSource<T> implements DataSource<T> {
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
-        [PackageFeatures.firestoreDataSource],
+        [UtilitiesPackageLoggers.firestoreDataSource],
       );
     } else {
-      AppLogger.print(logMessage, [PackageFeatures.firestoreDataSource]);
+      AppLogger.print(logMessage, [UtilitiesPackageLoggers.firestoreDataSource]);
     }
   }
 
@@ -160,10 +161,10 @@ class FirestoreDataSource<T> implements DataSource<T> {
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
-        [PackageFeatures.firestoreDataSource],
+        [UtilitiesPackageLoggers.firestoreDataSource],
       );
     } else {
-      AppLogger.print(logMessage, [PackageFeatures.firestoreDataSource]);
+      AppLogger.print(logMessage, [UtilitiesPackageLoggers.firestoreDataSource]);
     }
   }
 
@@ -175,7 +176,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
     final logMessage = "Firebase $method Error: $statusMessage - $error";
     AppLogger.print(
       logMessage,
-      [PackageFeatures.firestoreDataSource],
+      [UtilitiesPackageLoggers.firestoreDataSource],
       type: LoggerType.error,
     );
   }

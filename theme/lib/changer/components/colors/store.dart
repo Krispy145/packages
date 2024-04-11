@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/app/app_theme.dart';
 import 'package:theme/data/models/colors/color_model.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
@@ -20,7 +21,7 @@ abstract class _ColorSchemesStore with Store {
   @action
   void setSelectedColor(MapEntry<String, dynamic> value) {
     selectedColor = value;
-    AppLogger.print('selectedColor: $selectedColor', [PackageFeatures.theme]);
+    AppLogger.print('selectedColor: $selectedColor', [ThemePackageLoggers.theme]);
   }
 
   /// [setColorModel] is a method that sets the current model.

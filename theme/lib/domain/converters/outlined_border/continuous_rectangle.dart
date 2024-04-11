@@ -11,8 +11,8 @@
 //   ContinuousRectangleBorder? example() {
 //     final json = const ContinuousRectangleBorderConverter().toJson(const ContinuousRectangleBorder(side: BorderSide.none, borderRadius: BorderRadius.zero));
 //     final border = const ContinuousRectangleBorderConverter().fromJson(json);
-//     AppLogger.print("CONTINUOUS-RECTANGLE-BORDER fromJson -> $border", [PackageFeatures.converters]);
-//     AppLogger.print("CONTINUOUS-RECTANGLE-BORDER toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("CONTINUOUS-RECTANGLE-BORDER fromJson -> $border", [ThemePackageLoggers.converters]);
+//     AppLogger.print("CONTINUOUS-RECTANGLE-BORDER toJson -> $json", [ThemePackageLoggers.converters]);
 //     return border;
 //   }
 

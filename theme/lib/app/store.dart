@@ -7,6 +7,7 @@ import 'package:theme/data/repositories/theme.repository.dart';
 import 'package:theme/domain/repositories/base.repository.dart';
 import 'package:theme/domain/repositories/digital_oasis.repository.dart';
 import 'package:theme/domain/repositories/theme.repository.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
 
@@ -246,7 +247,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   Future<void> reloadThemeModel() async {
     await repository?.fetchTheme(id: id ?? primaryThemeId);
     await repository?.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Reloaded: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Reloaded: $baseThemeModel", [ThemePackageLoggers.theme]);
   }
 
   /// [lightTheme] is the light theme that will be used to store the theme data.
@@ -262,7 +263,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    AppLogger.print("Building App Theme: $styleType", [PackageFeatures.theme]);
+    AppLogger.print("Building App Theme: $styleType", [ThemePackageLoggers.theme]);
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
     return ThemeData(
@@ -321,7 +322,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   /// [setThemeMode] is the method that will be used to set the theme mode.
   @action
   void setThemeMode(ThemeMode newThemeMode) {
-    AppLogger.print("ThemeMode Changed: $newThemeMode", [PackageFeatures.theme]);
+    AppLogger.print("ThemeMode Changed: $newThemeMode", [ThemePackageLoggers.theme]);
     currentThemeMode = newThemeMode;
   }
 
@@ -333,7 +334,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Local: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Local: $baseThemeModel", [ThemePackageLoggers.theme]);
     setLoaded();
   }
 
@@ -345,7 +346,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Assets: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Assets: $baseThemeModel", [ThemePackageLoggers.theme]);
     setLoaded();
   }
 
@@ -358,7 +359,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [ThemePackageLoggers.theme]);
     setLoaded();
   }
 
@@ -367,7 +368,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     repository = DigitalOasisRepository();
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [ThemePackageLoggers.theme]);
     setLoaded();
   }
 
@@ -379,7 +380,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Api: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Api: $baseThemeModel", [ThemePackageLoggers.theme]);
     setLoaded();
   }
 

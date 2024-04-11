@@ -22,7 +22,7 @@
 //     } catch (e) {
 //       AppLogger.print(
 //         "API RESULT: Failed request: $e",
-//         [PackageFeatures.theme],
+//         [ThemePackageLoggers.theme],
 //         type: LoggerType.error,
 //       );
 //       return null;

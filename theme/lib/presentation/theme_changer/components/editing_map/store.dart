@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
@@ -19,10 +20,11 @@ abstract class _MapEditorStore with Store {
   /// The list of keys is used to navigate the nested maps.
   @action
   void updateValue(List<String> keys, dynamic value) {
-    AppLogger.print("updateValue: $keys, $value", [PackageFeatures.theme]);
-    AppLogger.print("before: $mapData", [PackageFeatures.theme]);
+    AppLogger
+      ..print("updateValue: $keys, $value", [ThemePackageLoggers.theme])
+      ..print("before: $mapData", [ThemePackageLoggers.theme]);
     _setNestedValue(mapData, keys, value);
-    AppLogger.print("after: $mapData", [PackageFeatures.theme]);
+    AppLogger.print("after: $mapData", [ThemePackageLoggers.theme]);
     onMapChanged?.call(mapData);
   }
 

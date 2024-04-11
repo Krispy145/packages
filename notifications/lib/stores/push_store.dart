@@ -8,6 +8,7 @@ import 'package:notifications/models/local_android_notification_details.dart';
 import 'package:notifications/models/notification.dart';
 import 'package:notifications/models/permissions.dart';
 import 'package:notifications/stores/base_store.dart';
+import 'package:notifications/utils/loggers.dart';
 import 'package:universal_io/io.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/helpers/tuples.dart';
@@ -81,29 +82,29 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
       apnsToken = await getAPNSToken();
       AppLogger.print(
         'APNS Token: $apnsToken',
-        [PackageFeatures.notifications],
+        [NotificationsPackageLoggers.notifications],
       );
     }
     fcmToken = await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
-    AppLogger.print('FCM Token: $fcmToken', [PackageFeatures.notifications]);
+    AppLogger.print('FCM Token: $fcmToken', [NotificationsPackageLoggers.notifications]);
     authorizationStatus = settings.authorizationStatus;
 
     if (settings.authorizationStatus == AuthorizationStatus.authorized && fcmToken != null) {
       AppLogger.print(
         'User granted permission',
-        [PackageFeatures.notifications],
+        [NotificationsPackageLoggers.notifications],
       );
       return Pair(fcmToken, authorizationStatus);
     } else if (authorizationStatus == AuthorizationStatus.authorized && fcmToken == null) {
       AppLogger.print(
         'User granted permission but token is null',
-        [PackageFeatures.notifications],
+        [NotificationsPackageLoggers.notifications],
       );
       return Pair(null, authorizationStatus);
     } else {
       AppLogger.print(
         'User declined or has not accepted permission',
-        [PackageFeatures.notifications],
+        [NotificationsPackageLoggers.notifications],
       );
       return Pair(null, authorizationStatus);
     }
@@ -134,7 +135,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
         fcmToken = token;
         AppLogger.print(
           "FCM Token Changed: $token",
-          [PackageFeatures.notifications],
+          [NotificationsPackageLoggers.notifications],
         );
       }
     });
@@ -190,12 +191,12 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     }
     AppLogger.print(
       "Active notifications: $activeNotifications",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
     await updateAll(notificationMap);
     AppLogger.print(
       "Local notifications: $notifications",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
   }
 
@@ -282,7 +283,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<String?> getToken({String? webVapidKey}) async {
     return _pushNotifications.getToken(vapidKey: webVapidKey).then((token) {
-      AppLogger.print("FCM Token: $token", [PackageFeatures.notifications]);
+      AppLogger.print("FCM Token: $token", [NotificationsPackageLoggers.notifications]);
       return token;
     });
   }
@@ -291,7 +292,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<void> deleteToken() async {
     return _pushNotifications.deleteToken().then((_) {
-      AppLogger.print("FCM Token Deleted", [PackageFeatures.notifications]);
+      AppLogger.print("FCM Token Deleted", [NotificationsPackageLoggers.notifications]);
     });
   }
 
@@ -299,7 +300,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<String?> getAPNSToken() async {
     final _token = await _pushNotifications.getAPNSToken();
-    AppLogger.print("APNS Token: $_token", [PackageFeatures.notifications]);
+    AppLogger.print("APNS Token: $_token", [NotificationsPackageLoggers.notifications]);
     return _token;
   }
 
@@ -318,7 +319,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     if (notification.destination != null) {
       AppLogger.print(
         "Notification Destination: ${notification.destination}",
-        [PackageFeatures.notifications],
+        [NotificationsPackageLoggers.notifications],
       );
     }
     await update(notification.id, notification);
@@ -340,7 +341,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     //?: Sentry or backend database call for performance monitoring
     AppLogger.print(
       "Handling a background message: ${message.messageId}",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
   }
 
@@ -352,7 +353,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     final notification = NotificationModel.fromStringMap(data);
     AppLogger.print(
       "Notification: $notification",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
     return notification;
   }

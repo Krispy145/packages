@@ -9,6 +9,7 @@ import 'package:notifications/models/local_android_notification_details.dart';
 import 'package:notifications/models/notification.dart';
 import 'package:notifications/models/permissions.dart';
 import 'package:notifications/stores/base_store.dart';
+import 'package:notifications/utils/loggers.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 import 'package:universal_io/io.dart';
@@ -108,7 +109,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   Future<void> initialize() async {
     AppLogger.print(
       "Initializing local notifications",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
     await _configureLocalTimeZone();
     final initializationSettings = InitializationSettings(
@@ -208,12 +209,12 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
 
     AppLogger.print(
       "Active notifications: $activeNotifications",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
     await updateAll(notificationMap);
     AppLogger.print(
       "Local notifications: $notifications",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
   }
 
@@ -311,7 +312,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   ) {
     AppLogger.print(
       "Notification response: ${notificationResponse.payload}",
-      [PackageFeatures.notifications],
+      [NotificationsPackageLoggers.notifications],
     );
     return notificationResponse.payload != null
         ? NotificationModel.fromJson(

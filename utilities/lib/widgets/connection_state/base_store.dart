@@ -1,6 +1,7 @@
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:mobx/mobx.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/utils/loggers.dart';
 
 part 'base_store.g.dart';
 
@@ -61,7 +62,7 @@ abstract class _ConnectionStateStore with Store {
   void setOffline() {
     AppLogger.print(
       "ConnectionState Changed: Offline",
-      [PackageFeatures.connection],
+      [UtilitiesPackageLoggers.connection],
     );
     currentState = ConnectionStoreState.offline;
   }
@@ -71,7 +72,7 @@ abstract class _ConnectionStateStore with Store {
   void setOnline() {
     AppLogger.print(
       "ConnectionState Changed: Online",
-      [PackageFeatures.connection],
+      [UtilitiesPackageLoggers.connection],
     );
     currentState = ConnectionStoreState.online;
   }
@@ -81,7 +82,7 @@ abstract class _ConnectionStateStore with Store {
   void setSyncing() {
     AppLogger.print(
       "ConnectionState Changed: Syncing",
-      [PackageFeatures.connection],
+      [UtilitiesPackageLoggers.connection],
     );
     currentState = ConnectionStoreState.syncing;
   }
@@ -91,7 +92,7 @@ abstract class _ConnectionStateStore with Store {
   void setPaused() {
     AppLogger.print(
       "ConnectionState Changed: Paused",
-      [PackageFeatures.connection],
+      [UtilitiesPackageLoggers.connection],
     );
     currentState = ConnectionStoreState.paused;
   }
@@ -101,7 +102,7 @@ abstract class _ConnectionStateStore with Store {
   void setCancelled() {
     AppLogger.print(
       "ConnectionState Changed: Canceled",
-      [PackageFeatures.connection],
+      [UtilitiesPackageLoggers.connection],
     );
     currentState = ConnectionStoreState.canceled;
   }
@@ -115,20 +116,20 @@ abstract class _ConnectionStateStore with Store {
     if (isOnline || isSyncing) {
       AppLogger.print(
         "Handler ConnectionState: Online",
-        [PackageFeatures.connection],
+        [UtilitiesPackageLoggers.connection],
       );
       return source;
     } else if (isOffline && offlineBackup != null) {
       AppLogger.print(
         "Handler ConnectionState: Offline - Trying Offline Backup",
-        [PackageFeatures.connection],
+        [UtilitiesPackageLoggers.connection],
         type: LoggerType.warning,
       );
       return offlineBackup;
     } else {
       AppLogger.print(
         "Handler ConnectionState: Offline",
-        [PackageFeatures.connection],
+        [UtilitiesPackageLoggers.connection],
         type: LoggerType.error,
       );
       return source;

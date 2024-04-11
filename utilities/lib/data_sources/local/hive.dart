@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/utils/loggers.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
 import 'package:uuid/uuid.dart';
 
@@ -35,8 +36,7 @@ class MapTypeAdaptor extends TypeAdapter<Map<String, dynamic>> {
 }
 
 /// [LocalDataSource] is a wrapper class for [Hive]
-abstract class LocalDataSource<T> extends LoadStateStore
-    implements DataSource<T> {
+abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T> {
   /// [boxName] is the name of the [Box]
   final String boxName;
 
@@ -47,9 +47,11 @@ abstract class LocalDataSource<T> extends LoadStateStore
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
   /// [LocalDataSource] constructor
-  LocalDataSource(this.boxName,
-      {required this.convertDataTypeFromMap,
-      required this.convertDataTypeToMap}) {
+  LocalDataSource(
+    this.boxName, {
+    required this.convertDataTypeFromMap,
+    required this.convertDataTypeToMap,
+  }) {
     _init();
   }
 
@@ -59,25 +61,36 @@ abstract class LocalDataSource<T> extends LoadStateStore
     try {
       setLoading();
       AppLogger.print(
-          "Initializing Box: $boxName", [PackageFeatures.localDataSource]);
+        "Initializing Box: $boxName",
+        [UtilitiesPackageLoggers.localDataSource],
+      );
       await Hive.initFlutter();
       if (compactionStrategy != null) {
         Hive.registerAdapter<Map<String, dynamic>>(MapTypeAdaptor());
-        await Hive.openBox<Map<String, dynamic>>(boxName,
-            compactionStrategy: compactionStrategy);
+        await Hive.openBox<Map<String, dynamic>>(
+          boxName,
+          compactionStrategy: compactionStrategy,
+        );
         AppLogger
-          ..print("Compaction Strategy Registered",
-              [PackageFeatures.localDataSource])
-          ..print("Box Opened: $boxName", [PackageFeatures.localDataSource]);
+          ..print(
+            "Compaction Strategy Registered",
+            [UtilitiesPackageLoggers.localDataSource],
+          )
+          ..print("Box Opened: $boxName", [UtilitiesPackageLoggers.localDataSource]);
       } else {
         await Hive.openBox<Map<String, dynamic>>(boxName);
         AppLogger.print(
-            "Box Opened: $boxName", [PackageFeatures.localDataSource]);
+          "Box Opened: $boxName",
+          [UtilitiesPackageLoggers.localDataSource],
+        );
       }
       setLoaded();
     } catch (e) {
-      AppLogger.print("Error: $e", [PackageFeatures.localDataSource],
-          type: LoggerType.error);
+      AppLogger.print(
+        "Error: $e",
+        [UtilitiesPackageLoggers.localDataSource],
+        type: LoggerType.error,
+      );
       setError();
     }
   }
@@ -89,8 +102,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
       );
 
   /// [boxListenable] returns a [ValueListenable] for the [TypeBox]
-  ValueListenable<TypeBox<T>> get boxListenable =>
-      _TypeBoxListenable<T>(_box, null);
+  ValueListenable<TypeBox<T>> get boxListenable => _TypeBoxListenable<T>(_box, null);
 
   /// [generateUniqueId] method generates a unique id
   String generateUniqueId() {
@@ -109,7 +121,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
   Future<T?> get(String key) async {
     await Hive.openBox<Map<String, dynamic>>(boxName);
     final value = _box.get(key);
-    AppLogger.print("Read: $key => $_box", [PackageFeatures.localDataSource]);
+    AppLogger.print("Read: $key => $_box", [UtilitiesPackageLoggers.localDataSource]);
     if (value == null) return Future.value();
     return Future.value(value);
   }
@@ -120,7 +132,9 @@ abstract class LocalDataSource<T> extends LoadStateStore
     await Hive.openBox<Map<String, dynamic>>(boxName);
     final result = _box.values.toList();
     AppLogger.print(
-        "Read All Results => $result", [PackageFeatures.localDataSource]);
+      "Read All Results => $result",
+      [UtilitiesPackageLoggers.localDataSource],
+    );
     return Future.value(result);
   }
 
@@ -130,7 +144,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
     await Hive.openBox<Map<String, dynamic>>(boxName);
 
     await _box.delete(key);
-    AppLogger.print("Deleted: $key", [PackageFeatures.localDataSource]);
+    AppLogger.print("Deleted: $key", [UtilitiesPackageLoggers.localDataSource]);
   }
 
   /// [deleteAll] method deletes all the key-value pairs
@@ -139,7 +153,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
     await Hive.openBox<Map<String, dynamic>>(boxName);
 
     await _box.clear();
-    AppLogger.print("Deleted All", [PackageFeatures.localDataSource]);
+    AppLogger.print("Deleted All", [UtilitiesPackageLoggers.localDataSource]);
   }
 
   /// [add] method adds the value of the given key
@@ -149,7 +163,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
     await Hive.openBox<Map<String, dynamic>>(boxName);
     final id = generateUniqueId();
     await _box.put(id, value);
-    AppLogger.print("Added $value", [PackageFeatures.localDataSource]);
+    AppLogger.print("Added $value", [UtilitiesPackageLoggers.localDataSource]);
   }
 
   /// [addAll] method adds all the key-value pairs
@@ -162,7 +176,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
       entries[id] = value;
     }
     await _box.putAll(entries);
-    AppLogger.print("Added All", [PackageFeatures.localDataSource]);
+    AppLogger.print("Added All", [UtilitiesPackageLoggers.localDataSource]);
   }
 
   /// [update] method updates the value of the given key
@@ -171,7 +185,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
     await Hive.openBox<Map<String, dynamic>>(boxName);
 
     await _box.put(key, value);
-    AppLogger.print("Updated: $key", [PackageFeatures.localDataSource]);
+    AppLogger.print("Updated: $key", [UtilitiesPackageLoggers.localDataSource]);
   }
 
   /// [updateAll] method updates all the key-value pairs
@@ -184,7 +198,7 @@ abstract class LocalDataSource<T> extends LoadStateStore
       updateMap[entry.key] = entry.value;
     }
     await _box.putAll(updateMap);
-    AppLogger.print("Updated All: $entries", [PackageFeatures.localDataSource]);
+    AppLogger.print("Updated All: $entries", [UtilitiesPackageLoggers.localDataSource]);
   }
 
   /// [close] method closes the [TypeBox]
@@ -192,10 +206,14 @@ abstract class LocalDataSource<T> extends LoadStateStore
     if (_box.isOpen) {
       await _box.close();
       AppLogger.print(
-          "_TypeBox Closed: ${_box.name}", [PackageFeatures.localDataSource]);
+        "_TypeBox Closed: ${_box.name}",
+        [UtilitiesPackageLoggers.localDataSource],
+      );
     } else {
-      AppLogger.print("_TypeBox Already Closed: ${_box.name}",
-          [PackageFeatures.localDataSource]);
+      AppLogger.print(
+        "_TypeBox Already Closed: ${_box.name}",
+        [UtilitiesPackageLoggers.localDataSource],
+      );
     }
   }
 }
@@ -279,7 +297,7 @@ class TypeBox<T> extends Box<T> {
   @override
   T? get(dynamic key, {T? defaultValue}) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [PackageFeatures.localDataSource]);
+      AppLogger.print("Key is not a String", [UtilitiesPackageLoggers.localDataSource]);
       return null;
     }
     if (defaultValue == null) {
@@ -287,8 +305,7 @@ class TypeBox<T> extends Box<T> {
       if (value == null) return null;
       return convertDataTypeFromMap(value);
     }
-    final value =
-        _box.get(key, defaultValue: convertDataTypeToMap(defaultValue));
+    final value = _box.get(key, defaultValue: convertDataTypeToMap(defaultValue));
     if (value == null) return null;
     return convertDataTypeFromMap(value);
   }
@@ -334,7 +351,7 @@ class TypeBox<T> extends Box<T> {
   @override
   Future<void> put(dynamic key, T value) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [PackageFeatures.localDataSource]);
+      AppLogger.print("Key is not a String", [UtilitiesPackageLoggers.localDataSource]);
       return Future.value();
     }
     return _box.put(key, convertDataTypeToMap(value));
@@ -345,7 +362,9 @@ class TypeBox<T> extends Box<T> {
     final entryMap = entries.map((key, value) {
       if (key is! String) {
         AppLogger.print(
-            "Key is not a String", [PackageFeatures.localDataSource]);
+          "Key is not a String",
+          [UtilitiesPackageLoggers.localDataSource],
+        );
         return MapEntry(key, convertDataTypeToMap(value));
       }
       return MapEntry(key, convertDataTypeToMap(value));
@@ -360,7 +379,9 @@ class TypeBox<T> extends Box<T> {
       entries.map((key, value) {
         if (key is! String) {
           AppLogger.print(
-              "Key is not a String", [PackageFeatures.localDataSource]);
+            "Key is not a String",
+            [UtilitiesPackageLoggers.localDataSource],
+          );
           return MapEntry(key, convertDataTypeToMap(value));
         }
         return MapEntry(key, convertDataTypeToMap(value));
@@ -377,7 +398,8 @@ class TypeBox<T> extends Box<T> {
   @override
   Map<dynamic, T> toMap() {
     return _box.toMap().map(
-        (key, value) => MapEntry(key as String, convertDataTypeFromMap(value)));
+          (key, value) => MapEntry(key as String, convertDataTypeFromMap(value)),
+        );
   }
 
   @override
@@ -385,9 +407,7 @@ class TypeBox<T> extends Box<T> {
 
   @override
   Iterable<T> valuesBetween({dynamic startKey, dynamic endKey}) {
-    return _box
-        .valuesBetween(startKey: startKey, endKey: endKey)
-        .map(convertDataTypeFromMap);
+    return _box.valuesBetween(startKey: startKey, endKey: endKey).map(convertDataTypeFromMap);
   }
 
   @override

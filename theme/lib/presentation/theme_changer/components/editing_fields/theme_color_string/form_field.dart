@@ -4,6 +4,7 @@ import 'package:theme/app/app_theme.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 import 'package:theme/presentation/theme_changer/components/color_circle.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_string/store.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/sizes/spacers.dart';
 
@@ -35,7 +36,7 @@ class ThemeColorStringFormField extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         store.value = colorName;
-                        AppLogger.print("Calling onChanged with ${store.value}", [PackageFeatures.theme]);
+                        AppLogger.print("Calling onChanged with ${store.value}", [ThemePackageLoggers.theme]);
                       },
                       child: SizedBox(
                         height: 60,

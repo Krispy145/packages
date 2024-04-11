@@ -48,6 +48,7 @@ import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
 import 'package:theme/presentation/theme_changer/components/editing_map/store.dart';
 import 'package:theme/presentation/theme_changer/view.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:utilities/logger/logger.dart';
 
@@ -70,13 +71,13 @@ class ThemeChanger {
   /// [changeBaseThemeModel] is a function that is used to change the theme of the app.
   static void changeBaseThemeModel({required BaseThemeModel model}) {
     _themeStore.changeBaseThemeModel(model);
-    AppLogger.print("Base Theme changed: $model", [PackageFeatures.theme]);
+    AppLogger.print("Base Theme changed: $model", [ThemePackageLoggers.changer]);
   }
 
   /// [changeComponentThemesModel] is a function that is used to change the theme of the app.
   static void changeComponentThemesModel({required ComponentThemesModel model}) {
     _themeStore.changeComponentThemesModel(model);
-    AppLogger.print("Component Theme changed: $model", [PackageFeatures.theme]);
+    AppLogger.print("Component Theme changed: $model", [ThemePackageLoggers.changer]);
   }
 
   static void changeCurrentThemeStyle({
@@ -84,10 +85,10 @@ class ThemeChanger {
   }) {
     if (_themeStore.isDark) {
       changeDarkThemeStyle(colorModel: colorModel);
-      AppLogger.print("Dark theme changed: $colorModel", [PackageFeatures.theme]);
+      AppLogger.print("Dark theme changed: $colorModel", [ThemePackageLoggers.changer]);
     } else {
       changeLightThemeStyle(colorModel: colorModel);
-      AppLogger.print("Light theme changed: $colorModel", [PackageFeatures.theme]);
+      AppLogger.print("Light theme changed: $colorModel", [ThemePackageLoggers.changer]);
     }
   }
 
@@ -103,7 +104,7 @@ class ThemeChanger {
   }) {
     final newThemeModel = _baseThemeModel.copyWith(colors: _themeColorStringStyles(colorModel, false));
     _themeStore.changeBaseThemeModel(newThemeModel);
-    AppLogger.print("Light theme changed: $colorModel", [PackageFeatures.theme]);
+    AppLogger.print("Light theme changed: $colorModel", [ThemePackageLoggers.changer]);
   }
 
   /// [changeDarkThemeStyle] is a function that is used to change the dark theme of the app.
@@ -112,7 +113,7 @@ class ThemeChanger {
   }) {
     final newThemeModel = _baseThemeModel.copyWith(colors: _themeColorStringStyles(colorModel, true));
     _themeStore.changeBaseThemeModel(newThemeModel);
-    AppLogger.print("Dark theme changed: $colorModel", [PackageFeatures.theme]);
+    AppLogger.print("Dark theme changed: $colorModel", [ThemePackageLoggers.changer]);
   }
 
   static Future<void> currentTextStylesThemeChanger({
@@ -129,7 +130,7 @@ class ThemeChanger {
     final textStyles = _textStyleStrings(textType, textStyle);
     final newThemeModel = _baseThemeModel.copyWith(textStyles: textStyles);
     _themeStore.changeBaseThemeModel(newThemeModel);
-    AppLogger.print("Text style changed: $textStyle", [PackageFeatures.theme]);
+    AppLogger.print("Text style changed: $textStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [componentThemeChanger] is a function that is used to change the components of the theme of the app.
@@ -190,7 +191,7 @@ class ThemeChanger {
     } else if (T.toString() == "FloatingActionButtonModel" || T.toString() == "FloatingActionButtonModel?") {
       changeFloatingActionButtonStyle(buttonStyle: buttonStyle as FloatingActionButtonModel);
     }
-    AppLogger.print("Button style changed: $buttonStyle", [PackageFeatures.theme]);
+    AppLogger.print("Button style changed: $buttonStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeToggleButtonStyle] is a function that is used to change the toggle button style of the app.
@@ -199,7 +200,7 @@ class ThemeChanger {
     var newComponentThemesModel = _componentThemesModel?.copyWith(toggleButtons: toggleButtonStyle);
     newComponentThemesModel ??= ComponentThemesModel(id: primaryThemeId, toggleButtons: toggleButtonStyle);
     _themeStore.changeComponentThemesModel(newComponentThemesModel);
-    AppLogger.print("Toggle button style changed: $buttonStyle", [PackageFeatures.theme]);
+    AppLogger.print("Toggle button style changed: $buttonStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeFloatingActionButtonStyle] is a function that is used to change the floating action button style of the app.
@@ -208,7 +209,7 @@ class ThemeChanger {
     var newComponentThemesModel = _componentThemesModel?.copyWith(floatingActionButtons: floatingActionButtonStyle);
     newComponentThemesModel ??= ComponentThemesModel(id: primaryThemeId, floatingActionButtons: floatingActionButtonStyle);
     _themeStore.changeComponentThemesModel(newComponentThemesModel);
-    AppLogger.print("Floating action button style changed: $buttonStyle", [PackageFeatures.theme]);
+    AppLogger.print("Floating action button style changed: $buttonStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeCheckboxStyle] is a function that is used to change the checkbox style of the app.
@@ -217,7 +218,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(checkboxes: checkboxStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, checkboxes: checkboxStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Checkbox style changed: $checkboxStyle", [PackageFeatures.theme]);
+    AppLogger.print("Checkbox style changed: $checkboxStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeRadioStyle] is a function that is used to change the radio style of the app.
@@ -226,7 +227,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(radios: radioStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, radios: radioStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Radio style changed: $radioStyle", [PackageFeatures.theme]);
+    AppLogger.print("Radio style changed: $radioStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeInputDecorationStyle] is a function that is used to change the input decoration style of the app.
@@ -235,7 +236,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(inputDecorations: inputDecorationStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, inputDecorations: inputDecorationStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Input decoration style changed: $inputDecorationStyle", [PackageFeatures.theme]);
+    AppLogger.print("Input decoration style changed: $inputDecorationStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeBoxDecorationStyle] is a function that is used to change the box decoration style of the app.
@@ -244,7 +245,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(boxDecorations: boxDecorationStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, boxDecorations: boxDecorationStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Box decoration style changed: $boxDecorationStyle", [PackageFeatures.theme]);
+    AppLogger.print("Box decoration style changed: $boxDecorationStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeCardStyle] is a function that is used to change the card style of the app.
@@ -253,7 +254,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(cards: cardStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, cards: cardStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Card style changed: $cardStyle", [PackageFeatures.theme]);
+    AppLogger.print("Card style changed: $cardStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeSnackbarStyle] is a function that is used to change the snackbar style of the app.
@@ -262,7 +263,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(snackbars: snackbarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, snackbars: snackbarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Snackbar style changed: $snackbarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Snackbar style changed: $snackbarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeBadgeStyle] is a function that is used to change the badge style of the app.
@@ -271,7 +272,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(badges: badgeStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, badges: badgeStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Badge style changed: $badgeStyle", [PackageFeatures.theme]);
+    AppLogger.print("Badge style changed: $badgeStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeAppbarStyle] is a function that is used to change the appbar style of the app.
@@ -281,7 +282,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(appbars: appbarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, appbars: appbarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Appbar style changed: $newThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("Appbar style changed: $newThemeModel", [ThemePackageLoggers.changer]);
   }
 
   /// [changeBottomAppbarStyle] is a function that is used to change the bottom appbar style of the app.
@@ -290,7 +291,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(bottomAppbars: bottomAppbarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, bottomAppbars: bottomAppbarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Bottom appbar style changed: $bottomAppbarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Bottom appbar style changed: $bottomAppbarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeDropdownStyle] is a function that is used to change the dropdown style of the app.
@@ -299,7 +300,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(dropdowns: dropdownStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, dropdowns: dropdownStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Dropdown style changed: $dropdownStyle", [PackageFeatures.theme]);
+    AppLogger.print("Dropdown style changed: $dropdownStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeChipStyle] is a function that is used to change the chip style of the app.
@@ -308,7 +309,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(chips: chipStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, chips: chipStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Chip style changed: $chipStyle", [PackageFeatures.theme]);
+    AppLogger.print("Chip style changed: $chipStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeDialogStyle] is a function that is used to change the dialog style of the app.
@@ -317,7 +318,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(dialogs: dialogStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, dialogs: dialogStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Dialog style changed: $dialogStyle", [PackageFeatures.theme]);
+    AppLogger.print("Dialog style changed: $dialogStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changePopupMenuStyle] is a function that is used to change the popup menu style of the app.
@@ -326,7 +327,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(popupMenus: popupMenuStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, popupMenus: popupMenuStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Popup menu style changed: $popupMenuStyle", [PackageFeatures.theme]);
+    AppLogger.print("Popup menu style changed: $popupMenuStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeSliderStyle] is a function that is used to change the slider style of the app.
@@ -335,7 +336,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(sliders: sliderStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, sliders: sliderStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Slider style changed: $sliderStyle", [PackageFeatures.theme]);
+    AppLogger.print("Slider style changed: $sliderStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeScrollbarStyle] is a function that is used to change the scrollbar style of the app.
@@ -344,7 +345,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(scrollbars: scrollbarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, scrollbars: scrollbarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Scrollbar style changed: $scrollbarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Scrollbar style changed: $scrollbarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeTooltipStyle] is a function that is used to change the tooltip style of the app.
@@ -353,7 +354,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(tooltips: tooltipStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, tooltips: tooltipStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Tooltip style changed: $tooltipStyle", [PackageFeatures.theme]);
+    AppLogger.print("Tooltip style changed: $tooltipStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeNavigationRailStyle] is a function that is used to change the navigation rail style of the app.
@@ -362,7 +363,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(navigationRails: navigationRailStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, navigationRails: navigationRailStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Navigation rail style changed: $navigationRailStyle", [PackageFeatures.theme]);
+    AppLogger.print("Navigation rail style changed: $navigationRailStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeMenuStyle] is a function that is used to change the menu style of the app.
@@ -371,7 +372,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(switches: switchStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, switches: switchStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Switch style changed: $switchStyle", [PackageFeatures.theme]);
+    AppLogger.print("Switch style changed: $switchStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeMenuStyle] is a function that is used to change the menu style of the app.
@@ -380,7 +381,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(drawers: drawerStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, drawers: drawerStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Drawer style changed: $drawerStyle", [PackageFeatures.theme]);
+    AppLogger.print("Drawer style changed: $drawerStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeMenuStyle] is a function that is used to change the menu style of the app.
@@ -389,7 +390,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(listTiles: listTileStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, listTiles: listTileStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("List tile style changed: $listTileStyle", [PackageFeatures.theme]);
+    AppLogger.print("List tile style changed: $listTileStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeMenuStyle] is a function that is used to change the menu style of the app.
@@ -398,7 +399,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(menus: menuStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, menus: menuStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Menu style changed: $menuStyle", [PackageFeatures.theme]);
+    AppLogger.print("Menu style changed: $menuStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeMenuBarStyle] is a function that is used to change the menu bar style of the app.
@@ -407,7 +408,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(menuBars: menuBarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, menuBars: menuBarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Menu bar style changed: $menuBarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Menu bar style changed: $menuBarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeNavigationBarStyle] is a function that is used to change the navigation bar style of the app.
@@ -416,7 +417,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(navigationBars: navigationBarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, navigationBars: navigationBarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Navigation bar style changed: $navigationBarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Navigation bar style changed: $navigationBarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeNavigationDrawerStyle] is a function that is used to change the navigation drawer style of the app.
@@ -425,7 +426,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(navigationDrawers: navigationDrawerStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, navigationDrawers: navigationDrawerStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Navigation drawer style changed: $navigationDrawerStyle", [PackageFeatures.theme]);
+    AppLogger.print("Navigation drawer style changed: $navigationDrawerStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changePopupMenuStyle] is a function that is used to change the popup menu style of the app.
@@ -434,7 +435,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(progressIndicators: progressIndicatorStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, progressIndicators: progressIndicatorStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Progress indicator style changed: $progressIndicatorStyle", [PackageFeatures.theme]);
+    AppLogger.print("Progress indicator style changed: $progressIndicatorStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeSearchBarStyle] is a function that is used to change the search bar style of the app.
@@ -443,7 +444,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(searchBars: searchBarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, searchBars: searchBarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Search bar style changed: $searchBarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Search bar style changed: $searchBarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeSearchViewStyle] is a function that is used to change the search view style of the app.
@@ -452,7 +453,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(searchViews: searchViewStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, searchViews: searchViewStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Search view style changed: $searchViewStyle", [PackageFeatures.theme]);
+    AppLogger.print("Search view style changed: $searchViewStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [changeTabBarStyle] is a function that is used to change the tab bar style of the app.
@@ -461,7 +462,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(tabBars: tabBarStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, tabBars: tabBarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Tab bar style changed: $tabBarStyle", [PackageFeatures.theme]);
+    AppLogger.print("Tab bar style changed: $tabBarStyle", [ThemePackageLoggers.changer]);
   }
 
   /// [saveJsonToFile] is a function that is used to save the json to a file.
@@ -548,7 +549,7 @@ class ThemeChanger {
   static void _changeButtonStyleModel({required ButtonStyleModelType buttonType, required ButtonStyleModel buttonStyle}) {
     ComponentThemesModel? newComponentThemesModel;
     if (_componentThemesModel == null) {
-      AppLogger.print("Component themes model is null in _changeButtonStyleModel", [PackageFeatures.theme], type: LoggerType.warning);
+      AppLogger.print("Component themes model is null in _changeButtonStyleModel", [ThemePackageLoggers.changer], type: LoggerType.warning);
       return;
     }
     switch (buttonType) {

@@ -1,4 +1,5 @@
-import 'package:admob/ads/helper.dart';
+import 'package:admob/utils/helper.dart';
+import 'package:admob/utils/loggers.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobx/mobx.dart';
 import 'package:universal_io/io.dart';
@@ -187,7 +188,7 @@ abstract class _AdMobStore with Store {
     isBannerAdLoaded = loaded;
     AppLogger.print(
       "isBannerAdLoaded: $isBannerAdLoaded",
-      [PackageFeatures.adMob],
+      [AdMobPackageLoggers.adMob],
       type: isBannerAdLoaded ? LoggerType.confirmation : LoggerType.error,
     );
   }
@@ -197,7 +198,7 @@ abstract class _AdMobStore with Store {
     isInterstitialAdLoaded = loaded;
     AppLogger.print(
       "isInterstitialAdLoaded: $isInterstitialAdLoaded",
-      [PackageFeatures.adMob],
+      [AdMobPackageLoggers.adMob],
       type: isInterstitialAdLoaded ? LoggerType.confirmation : LoggerType.error,
     );
   }
@@ -207,7 +208,7 @@ abstract class _AdMobStore with Store {
     isRewardAdLoaded = loaded;
     AppLogger.print(
       "isRewardVideoAdLoaded: $isRewardAdLoaded",
-      [PackageFeatures.adMob],
+      [AdMobPackageLoggers.adMob],
       type: isRewardAdLoaded ? LoggerType.confirmation : LoggerType.error,
     );
   }
@@ -228,7 +229,7 @@ abstract class _AdMobStore with Store {
     if (!loaded && errorMessage != null) {
       AppLogger.print(
         "Error loading $type: ${errorMessage.code} -> ${errorMessage.message}",
-        [PackageFeatures.adMob],
+        [AdMobPackageLoggers.adMob],
         type: LoggerType.error,
       );
     }

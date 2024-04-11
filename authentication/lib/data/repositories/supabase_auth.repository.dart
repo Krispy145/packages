@@ -1,7 +1,9 @@
 import 'package:authentication/data/models/auth_params.dart';
 import 'package:authentication/data/repositories/helpers/auth_repository.helper.dart';
+import 'package:authentication/data/source/api_user.source.dart';
 import 'package:authentication/data/source/supabase_user.source.dart';
 import 'package:authentication/helpers/exception.dart';
+import 'package:authentication/utils/loggers.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:utilities/logger/logger.dart';
@@ -73,8 +75,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     required this.logToDatabase,
     UserDataSource? dataSource,
   }) : dataSource = dataSource ?? SupabaseUserDataSource() {
-    currentUserModelSubject =
-        BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
     _initStreams();
   }
 
@@ -92,17 +93,19 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } on AuthException catch (e) {
       AppLogger.print(
-          'reauthenticate attempt -> ${params.authType}: ${e.toString()}',
-          [PackageFeatures.authentication],
-          type: LoggerType.error);
-      throw AuthenticationException(e.message.toString());
+        'reauthenticate attempt -> ${params.authType}: $e',
+        [AuthenticationPackageLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.message);
     }
   }
 
   @override
   Future<UserModel?> signInAnonymously(AuthParams params) {
     throw const AuthenticationException(
-        'Anonymous authentication is not set up yet for supabase');
+      'Anonymous authentication is not set up yet for supabase',
+    );
   }
 
   @override
@@ -115,15 +118,16 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         nonce: appleParams.nonce,
       );
 
-      final userModel =
-          _authResponseToUserModel(appleParams, result.user != null);
+      final userModel = _authResponseToUserModel(appleParams, result.user != null);
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } on AuthException catch (e) {
-      AppLogger.print('signIn attempt -> ${params.authType}: ${e.toString()}',
-          [PackageFeatures.authentication],
-          type: LoggerType.error);
-      throw AuthenticationException(e.message.toString());
+      AppLogger.print(
+        'signIn attempt -> ${params.authType}: $e',
+        [AuthenticationPackageLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.message);
     }
   }
 
@@ -131,17 +135,19 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
   Future<UserModel?> signInWithEmail(AuthParams params) async {
     try {
       final result = await _supabaseAuth.signInWithPassword(
-        email: params.email!,
+        email: params.email,
         password: params.password!,
       );
       final userModel = _authResponseToUserModel(params, result.user != null);
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } on AuthException catch (e) {
-      AppLogger.print('signIn attempt -> ${params.authType}: ${e.toString()}',
-          [PackageFeatures.authentication],
-          type: LoggerType.error);
-      throw AuthenticationException(e.message.toString());
+      AppLogger.print(
+        'signIn attempt -> ${params.authType}: $e',
+        [AuthenticationPackageLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.message);
     }
   }
 
@@ -172,8 +178,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       provider: googleParams.authType.toOAuthProvider(),
       idToken: googleParams.idToken!,
     );
-    final userModel =
-        _authResponseToUserModel(googleParams, result.user != null);
+    final userModel = _authResponseToUserModel(googleParams, result.user != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
     return userModel;
   }
@@ -181,26 +186,33 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInWithMicrosoft(AuthParams params) {
     throw const AuthenticationException(
-        'Microsoft authentication is not set up yet for supabase');
+      'Microsoft authentication is not set up yet for supabase',
+    );
   }
 
   @override
   Future<UserModel?> signInWithPasswordlessEmail(
-      String email, String emailLink) {
+    String email,
+    String emailLink,
+  ) {
     throw const AuthenticationException(
-        'Passwordless authentication is not set up yet for supabase');
+      'Passwordless authentication is not set up yet for supabase',
+    );
   }
 
   @override
   Future<UserModel?> signInWithPhoneNumber(
-      String phoneNumber, String confirmationCode) async {
+    String phoneNumber,
+    String confirmationCode,
+  ) async {
     final result = await _supabaseAuth.signInWithPassword(
       phone: phoneNumber,
       password: confirmationCode,
     );
     final userModel = _authResponseToUserModel(
-        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
-        result.user != null);
+      AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
+      result.user != null,
+    );
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
     return userModel;
   }
@@ -217,9 +229,12 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
 
   @override
   Future<void> signOut() async {
-    if (logToDatabase)
-      await dataSource.update(_currentUserModel!.id,
-          _currentUserModel!.copyWith(status: AuthStatus.unauthenticated));
+    if (logToDatabase) {
+      await dataSource.update(
+        _currentUserModel!.id,
+        _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+      );
+    }
     await _supabaseAuth.signOut();
   }
 
@@ -228,7 +243,8 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     final result = await _supabaseAuth.signUp(password: password, email: email);
     if (result.session != null && result.user != null) {
       return await signInWithEmail(
-          AuthParams.email(email: email, password: password));
+        AuthParams.email(email: email, password: password),
+      );
     }
     return null;
   }
@@ -239,30 +255,34 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         _currentUserModel = _supabaseUserToUserModel();
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
-            'Supabase user initialSession: ${_currentUserModel?.authType ?? AuthType.empty}',
-            [PackageFeatures.authentication]);
+          'Supabase user initialSession: ${_currentUserModel?.authType ?? AuthType.empty}',
+          [AuthenticationPackageLoggers.authentication],
+        );
       }
       if (event.event == AuthChangeEvent.signedIn) {
         _currentUserModel = _supabaseUserToUserModel();
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
-            'Supabase user signedIn: ${_currentUserModel?.authType ?? AuthType.empty}',
-            [PackageFeatures.authentication]);
+          'Supabase user signedIn: ${_currentUserModel?.authType ?? AuthType.empty}',
+          [AuthenticationPackageLoggers.authentication],
+        );
       }
       if (event.event == AuthChangeEvent.signedOut) {
         currentUserModelSubject.add(
-            _currentUserModel?.copyWith(status: AuthStatus.unauthenticated));
+          _currentUserModel?.copyWith(status: AuthStatus.unauthenticated),
+        );
         AppLogger.print(
-            'Supabase user signedOut: ${_currentUserModel?.authType ?? AuthType.empty}',
-            [PackageFeatures.authentication]);
+          'Supabase user signedOut: ${_currentUserModel?.authType ?? AuthType.empty}',
+          [AuthenticationPackageLoggers.authentication],
+        );
       }
       if (event.event == AuthChangeEvent.tokenRefreshed) {
-        _currentUserModel =
-            await reauthenticate(_currentUserModel!.toAuthParams());
+        _currentUserModel = await reauthenticate(_currentUserModel!.toAuthParams());
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
-            'Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}',
-            [PackageFeatures.authentication]);
+          'Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}',
+          [AuthenticationPackageLoggers.authentication],
+        );
       }
     });
   }
@@ -278,10 +298,8 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       accessToken: _session!.accessToken,
       status: AuthStatus.authenticated,
       authType: _currentUserModel?.authType ?? AuthType.empty,
-      createdAt:
-          DateTime.tryParse(_user!.createdAt.toString()) ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      createdAt: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
   }
 
@@ -296,8 +314,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
       createdAt: params.createdAt ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return _currentUserModel!;
   }

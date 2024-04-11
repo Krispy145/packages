@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 /// [ColorConverter] is a converter that allows you to convert a [Color] to and from JSON.
@@ -13,8 +14,9 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
   Color? example() {
     final json = const ColorConverter().toJson(Colors.green);
     final color = const ColorConverter().fromJson(json);
-    AppLogger.print("COLOR fromJson -> $color", [PackageFeatures.converters]);
-    AppLogger.print("COLOR toJson -> $json", [PackageFeatures.converters]);
+    AppLogger
+      ..print("COLOR fromJson -> $color", [ThemePackageLoggers.converters])
+      ..print("COLOR toJson -> $json", [ThemePackageLoggers.converters]);
     return color;
   }
 

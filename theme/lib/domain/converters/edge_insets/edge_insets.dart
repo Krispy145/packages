@@ -18,8 +18,8 @@
 //   EdgeInsets? example(EdgeInsetsType type) {
 //     final json = _typeToEdgeInsets(type);
 //     final edgeInsets = const EdgeInsetsConverter().fromJson(json);
-//     AppLogger.print("EDGE-INSETS fromJson -> $edgeInsets", [PackageFeatures.converters]);
-//     AppLogger.print("EDGE-INSETS toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("EDGE-INSETS fromJson -> $edgeInsets", [ThemePackageLoggers.converters]);
+//     AppLogger.print("EDGE-INSETS toJson -> $json", [ThemePackageLoggers.converters]);
 //     return edgeInsets;
 //   }
 

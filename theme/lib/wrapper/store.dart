@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:theme/app/app_theme.dart';
 import 'package:theme/data/models/colors/color_model.dart';
 import 'package:theme/data/models/theme/theme.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
 
@@ -63,7 +64,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
   /// [setThemeMode] is the method that will be used to set the theme mode.
   @action
   void setThemeMode(ThemeMode newThemeMode) {
-    AppLogger.print("ThemeMode Changed: $newThemeMode", [PackageFeatures.theme]);
+    AppLogger.print("ThemeMode Changed: $newThemeMode", [ThemePackageLoggers.theme]);
     currentThemeMode = newThemeMode;
   }
 
@@ -85,7 +86,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    AppLogger.print("Building Theme: $styleType", [PackageFeatures.theme]);
+    AppLogger.print("Building Theme: $styleType", [ThemePackageLoggers.theme]);
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
     return ThemeData(

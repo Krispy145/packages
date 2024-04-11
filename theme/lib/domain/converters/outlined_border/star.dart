@@ -10,8 +10,8 @@
 //   StarBorder? example() {
 //     final json = const StarBorderConverter().toJson(const StarBorder(side: BorderSide.none));
 //     final border = const StarBorderConverter().fromJson(json);
-//     AppLogger.print("STAR-BORDER fromJson -> $border", [PackageFeatures.converters]);
-//     AppLogger.print("STAR-BORDER toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("STAR-BORDER fromJson -> $border", [ThemePackageLoggers.converters]);
+//     AppLogger.print("STAR-BORDER toJson -> $json", [ThemePackageLoggers.converters]);
 //     return border;
 //   }
 

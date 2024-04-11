@@ -1,4 +1,5 @@
-import 'package:admob/ads/store.dart';
+import 'package:admob/store.dart';
+import 'package:admob/utils/loggers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -20,8 +21,7 @@ class ShowAdButton extends StatefulWidget {
   final bool isRewardAd;
 
   /// function to call when the user has earned a reward.
-  final void Function(AdWithoutView rewardedAd, RewardItem reward)?
-      onUserEarnedReward;
+  final void Function(AdWithoutView rewardedAd, RewardItem reward)? onUserEarnedReward;
 
   /// Named constructor for an interstitial ad.
   const ShowAdButton.interstitial({
@@ -68,9 +68,7 @@ class _ShowAdButtonState extends State<ShowAdButton> {
   @override
   void dispose() {
     super.dispose();
-    widget.isRewardAd
-        ? widget.store.rewardedAd?.dispose()
-        : widget.store.interstitialAd?.dispose();
+    widget.isRewardAd ? widget.store.rewardedAd?.dispose() : widget.store.interstitialAd?.dispose();
   }
 
   @override
@@ -90,7 +88,9 @@ class _ShowAdButtonState extends State<ShowAdButton> {
           child: InkWell(
             onTap: () {
               AppLogger.print(
-                  "Interstitial child pressed", [PackageFeatures.adMob]);
+                "Interstitial child pressed",
+                [AdMobPackageLoggers.adMob],
+              );
               widget.store.interstitialAd!.show();
             },
             child: widget.child,
@@ -101,9 +101,10 @@ class _ShowAdButtonState extends State<ShowAdButton> {
           child: InkWell(
             onTap: () {
               AppLogger.print(
-                  "Rewarded child pressed", [PackageFeatures.adMob]);
-              widget.store.rewardedAd
-                  ?.show(onUserEarnedReward: widget.onUserEarnedReward!);
+                "Rewarded child pressed",
+                [AdMobPackageLoggers.adMob],
+              );
+              widget.store.rewardedAd?.show(onUserEarnedReward: widget.onUserEarnedReward!);
             },
             child: widget.child,
           ),

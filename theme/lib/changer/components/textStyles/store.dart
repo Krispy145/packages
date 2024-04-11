@@ -1,6 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:theme/app/app_theme.dart';
 import 'package:theme/data/models/text/text_types.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
@@ -24,7 +25,7 @@ abstract class _TextTypesStore with Store {
     if (selectedTextType != null) {
       // final result = {...defaultTextType, ...selectedTextType!};
       final result = selectedTextType!;
-      AppLogger.print('mergedMap: $result', [PackageFeatures.theme]);
+      AppLogger.print('mergedMap: $result', [ThemePackageLoggers.theme]);
       return result;
     }
     return {}; // defaultTextType;
@@ -34,7 +35,7 @@ abstract class _TextTypesStore with Store {
   @action
   void setSelectedTextType(Map<String, dynamic> value) {
     selectedTextType = value;
-    AppLogger.print('selectedTextType: $selectedTextType', [PackageFeatures.theme]);
+    AppLogger.print('selectedTextType: $selectedTextType', [ThemePackageLoggers.theme]);
   }
 
   /// [setTextStyleModel] is a method that sets the current model.
@@ -44,7 +45,7 @@ abstract class _TextTypesStore with Store {
       selectedTextType![type][size][key] = value;
       return TextTypes.fromJson(selectedTextType!);
     } catch (e, stackTrace) {
-      AppLogger.print('selectedTextType: $selectedTextType\nStackTrace: $stackTrace', [PackageFeatures.theme], type: LoggerType.error);
+      AppLogger.print('selectedTextType: $selectedTextType\nStackTrace: $stackTrace', [ThemePackageLoggers.theme], type: LoggerType.error);
     }
     return null;
   }

@@ -56,8 +56,8 @@
 //       ),
 //     );
 //     final inputDecoration = const InputDecorationConverter().fromJson(json);
-//     AppLogger.print("INPUT-DECORATION fromJson -> $inputDecoration", [PackageFeatures.converters]);
-//     AppLogger.print("INPUT-DECORATION toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("INPUT-DECORATION fromJson -> $inputDecoration", [ThemePackageLoggers.converters]);
+//     AppLogger.print("INPUT-DECORATION toJson -> $json", [ThemePackageLoggers.converters]);
 //     return inputDecoration;
 //   }
 

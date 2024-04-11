@@ -9,8 +9,8 @@
 //   Size? example() {
 //     final json = const SizeConverter().toJson(const Size(10, 20));
 //     final size = const SizeConverter().fromJson(json);
-//     AppLogger.print("SIZE fromJson -> $size", [PackageFeatures.converters]);
-//     AppLogger.print("SIZE toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("SIZE fromJson -> $size", [ThemePackageLoggers.converters]);
+//     AppLogger.print("SIZE toJson -> $json", [ThemePackageLoggers.converters]);
 //     return size;
 //   }
 

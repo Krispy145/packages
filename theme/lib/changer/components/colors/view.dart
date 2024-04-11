@@ -8,6 +8,7 @@ import 'package:theme/domain/converters/colors/color.dart';
 import 'package:theme/presentation/theme_changer/components/color_circle.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/color/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/color/store.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/sizes/edge_insets.dart';
 import 'package:utilities/sizes/spacers.dart';
@@ -34,7 +35,7 @@ class ColorsView extends StatelessWidget {
               value: selectedColor,
               title: selectedColor.key,
               onValueChanged: (color) {
-                AppLogger.print('on value changed: ${color.value}', [PackageFeatures.theme]);
+                AppLogger.print('on value changed: ${color.value}', [ThemePackageLoggers.theme]);
                 store.selectedColor = color;
                 ThemeChanger.changeCurrentThemeStyle(colorModel: store.setColorModel());
               },
