@@ -1,6 +1,7 @@
-import 'package:utilities/data_sources/source.dart';
+import 'package:flutter/foundation.dart';
+import 'package:fonts/data/models/font_variant_descriptor.dart';
 
-import '../../models/fonts_model.dart';
-
-/// [FontsDataSource] is an abstract class that defines the basic CRUD operations for the [FontsModel] entity.
-abstract class FontsDataSource extends DataSource<FontsModel> {}
+/// [FontsDataSource] is an abstract class that defines the basic CRUD operations for the [ByteData] entity.
+abstract class FontsDataSource {
+  ByteData getFontByteData(String fontFamilyName, DOFontVariantDescriptor fontVariant);
+}

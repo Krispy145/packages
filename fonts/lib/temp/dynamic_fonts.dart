@@ -10,9 +10,8 @@ import 'dart:ui' as ui;
 // import 'package:dynamic_fonts/src/google_fonts_descriptor.dart';
 // import 'package:dynamic_fonts/src/google_fonts_variant.dart';
 import 'package:flutter/material.dart';
+import 'package:fonts/data/models/font_variant_descriptor.dart';
 import 'package:fonts/temp/src/google_fonts_base.dart';
-import 'package:fonts/temp/src/google_fonts_descriptor.dart';
-import 'package:fonts/temp/src/google_fonts_variant.dart';
 
 /// A collection of properties used to specify custom behavior of the
 /// DynamicFonts library.
@@ -76,7 +75,7 @@ class DynamicFonts {
   /// is the corresponding [DynamicFonts] `TextTheme` method.
   static Map<String, TextThemeBuilder> _asMapOfTextThemes() => Map.unmodifiable(_themeMap);
 
-  static void register(String familyName, Map<DynamicFontsVariant, DynamicFontsFile> variantMap, {bool eager = false}) {
+  static void register(String familyName, Map<DOFontVariantDescriptor, String> variantMap, {bool eager = false}) {
     final style = styleBuilder(familyName, variantMap, eager);
     _styleMap[familyName] = style;
     _themeMap[familyName] = themeBuilder(style);
@@ -178,7 +177,7 @@ class DynamicFonts {
 
   static TextStyleBuilder styleBuilder(
     String fontFamily,
-    Map<DynamicFontsVariant, DynamicFontsFile> variantMap,
+    Map<DOFontVariantDescriptor, String> variantMap,
     bool eager,
   ) =>
       ({
@@ -203,7 +202,7 @@ class DynamicFonts {
         decorationThickness,
       }) {
         assert(variantMap.isNotEmpty, 'variantMap must not be empty.');
-        return googleFontsTextStyle(
+        return doTextStyleBuilder(
           textStyle: textStyle,
           fontFamily: fontFamily,
           color: color,
@@ -230,14 +229,6 @@ class DynamicFonts {
       };
 }
 
-/// Represents a font variant in Flutter-specific types.
-class DynamicFontsVariant extends GoogleFontsVariant {
-  const DynamicFontsVariant({
-    required FontWeight fontWeight,
-    required FontStyle fontStyle,
-  }) : super(fontWeight: fontWeight, fontStyle: fontStyle);
-}
-
 /// Describes a font file as it is _expected_ to be received from the server.
 ///
 /// If a file is retrieved and its hash does not match [expectedFileHash], or it
@@ -259,9 +250,4 @@ class DynamicFontsVariant extends GoogleFontsVariant {
 ///       'https://example.com/MyFont-${variant.toApiFilenamePart()}.ttf';
 /// }
 /// ```
-abstract class DynamicFontsFile extends GoogleFontsFile {
-  DynamicFontsFile(String expectedFileHash, int expectedLength) : super(expectedFileHash, expectedLength);
 
-  @override
-  String get url;
-}

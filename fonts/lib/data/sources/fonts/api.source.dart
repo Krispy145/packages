@@ -1,20 +1,14 @@
-import 'package:utilities/data_sources/remote/api.dart';
+import 'dart:typed_data';
+
+import 'package:fonts/data/models/font_variant_descriptor.dart';
 import 'package:utilities/logger/logger.dart';
 
-import '../../models/fonts_model.dart';
 import '_source.dart';
 
 /// [ApiFontsDataSource] is a class that implements [FontsDataSource] interface.
-class ApiFontsDataSource extends ApiDataSource<FontsModel> implements FontsDataSource {
+class ApiFontsDataSource implements FontsDataSource {
   /// [ApiFontsDataSource] constructor.
-  ApiFontsDataSource()
-      : super(
-          '',
-          // Managers.flavor.apiPrefix,
-          sourceSuffix: "fonts",
-          convertDataTypeFromMap: FontsModel.fromJson,
-          convertDataTypeToMap: (data) => data.toJson(),
-        );
+  ApiFontsDataSource();
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
@@ -29,5 +23,11 @@ class ApiFontsDataSource extends ApiDataSource<FontsModel> implements FontsDataS
       );
       return null;
     }
+  }
+
+  @override
+  ByteData getFontByteData(String fontFamilyName, DOFontVariantDescriptor fontVariant) {
+    // TODO: implement getFontByteData
+    throw UnimplementedError();
   }
 }
