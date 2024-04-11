@@ -31,8 +31,8 @@ class DataRepositories {
   /// [instance] is the singleton instance of [DataRepositories].
   static final DataRepositories instance = DataRepositories._();
 
-  /// [digitalOasis] is the [DigitalOasisDataRepository] instance.
-  final DigitalOasisDataRepository digitalOasis = DigitalOasisDataRepository();
+  /// [DO] is the [DODataRepository] instance.
+  final DODataRepository DO = DODataRepository();
 
   /// [theme] is the [ThemeDataRepository] instance.
   ThemeDataRepository theme({

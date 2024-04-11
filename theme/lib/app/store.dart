@@ -30,8 +30,9 @@ enum ThemeStateType {
   /// [supabase] is the type that will be used to fetch the data from supabase.
   supabase,
 
-  /// [digitalOasis] is the type that will be used to fetch the data from supabase.
-  digitalOasis,
+  /// [DO] is the type that will be used to fetch the data from supabase.
+  // ignore: constant_identifier_names
+  DO,
 
   /// [localAssets] is the type that will be used to try fetch the data from local storage and catch the error,
   /// then fetch the data from assets.
@@ -128,14 +129,14 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     _loadSupabaseTheme(url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId);
   }
 
-  _ThemeStateStore.digitalOasis({
+  _ThemeStateStore.DO({
     this.id,
   })  : baseThemeUrlPath = "baseThemes",
         componentThemesUrlPath = "componentsThemes",
-        type = ThemeStateType.digitalOasis,
+        type = ThemeStateType.DO,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
-    _loadDigitalOasisTheme(id: id ?? primaryThemeId);
+    _loadDOTheme(id: id ?? primaryThemeId);
   }
 
   /// [_ThemeStateStore.localAssets] is the constructor that will be used to try fetch the data from local storage and catch the error,
@@ -363,9 +364,9 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     setLoaded();
   }
 
-  Future<void> _loadDigitalOasisTheme({String? id}) async {
+  Future<void> _loadDOTheme({String? id}) async {
     setLoading();
-    repository = DigitalOasisRepository();
+    repository = DORepository();
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
     AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [ThemeLoggers.theme]);

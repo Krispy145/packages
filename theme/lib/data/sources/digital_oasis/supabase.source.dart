@@ -5,10 +5,10 @@ import '_source.dart';
 
 // TODO: Move supabase client to envied file
 
-/// [SupabaseDigitalOasisDataSource] is a class that implements [DigitalOasisDataSource] interface.
-class SupabaseDigitalOasisDataSource<T> extends SupabaseDataSource<T> implements DigitalOasisDataSource<T> {
-  /// [SupabaseDigitalOasisDataSource] constructor.
-  SupabaseDigitalOasisDataSource(
+/// [SupabaseDODataSource] is a class that implements [DODataSource] interface.
+class SupabaseDODataSource<T> extends SupabaseDataSource<T> implements DODataSource<T> {
+  /// [SupabaseDODataSource] constructor.
+  SupabaseDODataSource(
     super.tableName, {
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
