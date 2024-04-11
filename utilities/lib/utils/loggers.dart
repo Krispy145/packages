@@ -4,9 +4,6 @@ enum UtilitiesLoggers {
   /// [connection] is the feature reference for connection.
   connection,
 
-  /// [dependencyInjection] is the feature reference for dependency injection.
-  dependencyInjection,
-
   /// [localDataSource] is the feature reference for localDataSource.
   localDataSource,
 
