@@ -14,12 +14,12 @@
 //     final alignment = const NavigationRailLabelConverter().fromJson(response['alignment'] as String?);
 //     AppLogger.print(
 //       "ALIGNMENT fromJson -> $alignment",
-//       [ThemePackageLoggers.converters],
+//       [ThemeLoggers.converters],
 //     );
 //     final convertedJson = const NavigationRailLabelConverter().toJson(NavigationRailLabelType.selected);
 //     AppLogger.print(
 //       "ALIGNMENT toJson -> $convertedJson",
-//       [ThemePackageLoggers.converters],
+//       [ThemeLoggers.converters],
 //     );
 //     return alignment;
 //   }

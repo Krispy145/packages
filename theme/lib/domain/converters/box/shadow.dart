@@ -16,8 +16,8 @@
 //       offset: Offset(1.0, 1.0),
 //     ));
 //     final boxShadow = const BoxShadowConverter().fromJson(json);
-//     AppLogger.print("BOX-SHADOW fromJson -> $boxShadow", [ThemePackageLoggers.converters]);
-//     AppLogger.print("BOX-SHADOW toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BOX-SHADOW fromJson -> $boxShadow", [ThemeLoggers.converters]);
+//     AppLogger.print("BOX-SHADOW toJson -> $json", [ThemeLoggers.converters]);
 //     return boxShadow;
 //   }
 

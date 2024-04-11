@@ -76,7 +76,7 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
     } catch (e) {
       AppLogger.print(
         'signIn attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());

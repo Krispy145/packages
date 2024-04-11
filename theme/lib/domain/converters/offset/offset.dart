@@ -9,8 +9,8 @@
 //   Offset example() {
 //     final json = const OffsetConverter().toJson(const Offset(10, 10));
 //     final offset = const OffsetConverter().fromJson(json);
-//     AppLogger.print("OFFSET fromJson -> $offset", [ThemePackageLoggers.converters]);
-//     AppLogger.print("OFFSET toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("OFFSET fromJson -> $offset", [ThemeLoggers.converters]);
+//     AppLogger.print("OFFSET toJson -> $json", [ThemeLoggers.converters]);
 //     return offset;
 //   }
 

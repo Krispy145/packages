@@ -23,13 +23,13 @@
 //       final themes = _dataStore.values.toList();
 //       AppLogger.print(
 //         "IN MEMORY RESULT: Fetched all Theme models successfully",
-//         [ThemePackageLoggers.theme],
+//         [ThemeLoggers.theme],
 //       );
 //       return Future.value(themes);
 //     } catch (e) {
 //       AppLogger.print(
 //         "IN MEMORY RESULT: Error fetching all Theme models: $e",
-//         [ThemePackageLoggers.theme],
+//         [ThemeLoggers.theme],
 //         type: LoggerType.error,
 //       );
 //       return [];

@@ -16,8 +16,8 @@
 //       dark: Colors.blue,
 //     ));
 //     final color = const ColorFromBaseThemeConverter().fromJson(json);
-//     AppLogger.print("BASE-THEME-COLOR fromJson -> $color", [ThemePackageLoggers.converters]);
-//     AppLogger.print("BASE-THEME-COLOR toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BASE-THEME-COLOR fromJson -> $color", [ThemeLoggers.converters]);
+//     AppLogger.print("BASE-THEME-COLOR toJson -> $json", [ThemeLoggers.converters]);
 //     return color;
 //   }
 

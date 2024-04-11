@@ -44,7 +44,7 @@ class MapEditor extends StatelessWidget {
           final value = entry.value;
           final updatedKeys = List<String>.from(keys)..add(key);
           final valueEditor = buildValueEditor(context, value, updatedKeys, (keys, updatedValue) {
-            AppLogger.print("Calling on changed in MapEditorStore with $keys and $updatedValue", [ThemePackageLoggers.theme]);
+            AppLogger.print("Calling on changed in MapEditorStore with $keys and $updatedValue", [ThemeLoggers.theme]);
             mapEditorStore.updateValue(keys, updatedValue);
           });
           if (valueEditor != null) {

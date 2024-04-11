@@ -39,7 +39,7 @@ abstract class DeepLinksStoreBase with Store {
         FlutterBranchSdk.setIdentity(userId!);
         AppLogger.print(
           'setIdentity: $userId',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.confirmation,
         );
       }
@@ -49,19 +49,19 @@ abstract class DeepLinksStoreBase with Store {
             FlutterBranchSdk.validateSDKIntegration();
             AppLogger.print(
               'validateSDKIntegration',
-              [DeeplinksPackageLoggers.deeplinks],
+              [DeeplinksLoggers.deeplinks],
             );
           }
           AppLogger.print(
             'listenDynamicLinks - DeepLink Data: $data',
-            [DeeplinksPackageLoggers.deeplinks],
+            [DeeplinksLoggers.deeplinks],
           );
           controllerData.sink.add(data.toString());
           if (data.containsKey('+clicked_branch_link') && data['+clicked_branch_link'] == true) {
             onDeepLinkReceived?.call(DeepLinkModel.fromJson(data as Map<String, dynamic>));
             AppLogger.print(
               'DeepLink Data: $data',
-              [DeeplinksPackageLoggers.deeplinks],
+              [DeeplinksLoggers.deeplinks],
             );
           }
         },
@@ -69,7 +69,7 @@ abstract class DeepLinksStoreBase with Store {
           final platformException = error as PlatformException;
           AppLogger.print(
             'InitSession error: ${platformException.code} - ${platformException.message}',
-            [DeeplinksPackageLoggers.deeplinks],
+            [DeeplinksLoggers.deeplinks],
             type: LoggerType.error,
           );
           controllerInitSession.add(
@@ -109,7 +109,7 @@ abstract class DeepLinksStoreBase with Store {
   void startNewDeepLink({required String url}) {
     AppLogger.print(
       'startNewDeepLink - DeepLink URL: $url',
-      [DeeplinksPackageLoggers.deeplinks],
+      [DeeplinksLoggers.deeplinks],
     );
     FlutterBranchSdk.handleDeepLink(url);
   }
@@ -133,7 +133,7 @@ abstract class DeepLinksStoreBase with Store {
     LinkPropertiesModel? linkProperties,
   }) async {
     try {
-      AppLogger.print('Creating deep link...', [DeeplinksPackageLoggers.deeplinks]);
+      AppLogger.print('Creating deep link...', [DeeplinksLoggers.deeplinks]);
       final branchLinkProperties = linkProperties?.branchLinkProperties ?? BranchLinkProperties();
       final response = await FlutterBranchSdk.getShortUrl(
         buo: deepLink.branchUniversalObject,
@@ -142,14 +142,14 @@ abstract class DeepLinksStoreBase with Store {
       if (response.success) {
         AppLogger.print(
           'Link generated: ${response.result}',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.confirmation,
         );
         return response.result.toString();
       } else {
         AppLogger.print(
           'Error : ${response.errorCode} - ${response.errorMessage}',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.error,
         );
         return response.errorMessage;
@@ -157,7 +157,7 @@ abstract class DeepLinksStoreBase with Store {
     } catch (e) {
       AppLogger.print(
         'Error : $e',
-        [DeeplinksPackageLoggers.deeplinks],
+        [DeeplinksLoggers.deeplinks],
         type: LoggerType.error,
       );
       return e.toString();
@@ -185,14 +185,14 @@ abstract class DeepLinksStoreBase with Store {
     if (response.success) {
       AppLogger.print(
         'Share link generated: ${response.result}',
-        [DeeplinksPackageLoggers.deeplinks],
+        [DeeplinksLoggers.deeplinks],
         type: LoggerType.confirmation,
       );
       return response.result;
     } else {
       AppLogger.print(
         'Error : ${response.errorCode} - ${response.errorMessage}',
-        [DeeplinksPackageLoggers.deeplinks],
+        [DeeplinksLoggers.deeplinks],
         type: LoggerType.error,
       );
     }
@@ -216,14 +216,14 @@ abstract class DeepLinksStoreBase with Store {
       if (response.success) {
         AppLogger.print(
           'QR code generated: ${response.result}',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.confirmation,
         );
         return response.result;
       } else {
         AppLogger.print(
           'Error : ${response.errorCode} - ${response.errorMessage}',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.error,
         );
       }
@@ -236,14 +236,14 @@ abstract class DeepLinksStoreBase with Store {
       if (response.success) {
         AppLogger.print(
           'QR code generated: ${response.result}',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.confirmation,
         );
         return response.result;
       } else {
         AppLogger.print(
           'Error : ${response.errorCode} - ${response.errorMessage}',
-          [DeeplinksPackageLoggers.deeplinks],
+          [DeeplinksLoggers.deeplinks],
           type: LoggerType.error,
         );
       }

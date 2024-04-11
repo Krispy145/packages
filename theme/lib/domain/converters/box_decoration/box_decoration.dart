@@ -31,8 +31,8 @@
 //       ),
 //     });
 //     final border = const BoxDecorationConverter().fromJson(json);
-//     AppLogger.print("BOX-DECORATION fromJson -> $border", [ThemePackageLoggers.converters]);
-//     AppLogger.print("BOX-DECORATION toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BOX-DECORATION fromJson -> $border", [ThemeLoggers.converters]);
+//     AppLogger.print("BOX-DECORATION toJson -> $json", [ThemeLoggers.converters]);
 //     return border?.values.first;
 //   }
 

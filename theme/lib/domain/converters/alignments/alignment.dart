@@ -26,12 +26,12 @@
 //     final alignment = const AlignmentConverter().fromJson(response['alignment']);
 //     AppLogger.print(
 //       "ALIGNMENT fromJson -> $alignment",
-//       [ThemePackageLoggers.converters],
+//       [ThemeLoggers.converters],
 //     );
 //     final convertedJson = const AlignmentConverter().toJson(Alignment.center);
 //     AppLogger.print(
 //       "ALIGNMENT toJson -> $convertedJson",
-//       [ThemePackageLoggers.converters],
+//       [ThemeLoggers.converters],
 //     );
 //     return alignment;
 //   }

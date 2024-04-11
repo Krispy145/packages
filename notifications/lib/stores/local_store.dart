@@ -109,7 +109,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   Future<void> initialize() async {
     AppLogger.print(
       "Initializing local notifications",
-      [NotificationsPackageLoggers.notifications],
+      [NotificationsLoggers.notifications],
     );
     await _configureLocalTimeZone();
     final initializationSettings = InitializationSettings(
@@ -209,12 +209,12 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
 
     AppLogger.print(
       "Active notifications: $activeNotifications",
-      [NotificationsPackageLoggers.notifications],
+      [NotificationsLoggers.notifications],
     );
     await updateAll(notificationMap);
     AppLogger.print(
       "Local notifications: $notifications",
-      [NotificationsPackageLoggers.notifications],
+      [NotificationsLoggers.notifications],
     );
   }
 
@@ -312,7 +312,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   ) {
     AppLogger.print(
       "Notification response: ${notificationResponse.payload}",
-      [NotificationsPackageLoggers.notifications],
+      [NotificationsLoggers.notifications],
     );
     return notificationResponse.payload != null
         ? NotificationModel.fromJson(

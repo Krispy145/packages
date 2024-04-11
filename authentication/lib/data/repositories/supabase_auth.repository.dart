@@ -94,7 +94,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     } on AuthException catch (e) {
       AppLogger.print(
         'reauthenticate attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.message);
@@ -124,7 +124,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     } on AuthException catch (e) {
       AppLogger.print(
         'signIn attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.message);
@@ -144,7 +144,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     } on AuthException catch (e) {
       AppLogger.print(
         'signIn attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.message);
@@ -256,7 +256,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
           'Supabase user initialSession: ${_currentUserModel?.authType ?? AuthType.empty}',
-          [AuthenticationPackageLoggers.authentication],
+          [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.signedIn) {
@@ -264,7 +264,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
           'Supabase user signedIn: ${_currentUserModel?.authType ?? AuthType.empty}',
-          [AuthenticationPackageLoggers.authentication],
+          [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.signedOut) {
@@ -273,7 +273,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         );
         AppLogger.print(
           'Supabase user signedOut: ${_currentUserModel?.authType ?? AuthType.empty}',
-          [AuthenticationPackageLoggers.authentication],
+          [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.tokenRefreshed) {
@@ -281,7 +281,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
           'Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}',
-          [AuthenticationPackageLoggers.authentication],
+          [AuthenticationLoggers.authentication],
         );
       }
     });

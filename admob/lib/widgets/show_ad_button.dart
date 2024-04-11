@@ -89,7 +89,7 @@ class _ShowAdButtonState extends State<ShowAdButton> {
             onTap: () {
               AppLogger.print(
                 "Interstitial child pressed",
-                [AdMobPackageLoggers.adMob],
+                [AdMobLoggers.adMob],
               );
               widget.store.interstitialAd!.show();
             },
@@ -102,7 +102,7 @@ class _ShowAdButtonState extends State<ShowAdButton> {
             onTap: () {
               AppLogger.print(
                 "Rewarded child pressed",
-                [AdMobPackageLoggers.adMob],
+                [AdMobLoggers.adMob],
               );
               widget.store.rewardedAd?.show(onUserEarnedReward: widget.onUserEarnedReward!);
             },

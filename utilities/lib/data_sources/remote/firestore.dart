@@ -58,7 +58,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
       final querySnapshot = await _firestore!.collection(collectionName).get();
       return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
     } catch (e) {
-      AppLogger.print("Error: $e", [UtilitiesPackageLoggers.firestoreDataSource]);
+      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
       return [];
     }
   }
@@ -145,10 +145,10 @@ class FirestoreDataSource<T> implements DataSource<T> {
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
-        [UtilitiesPackageLoggers.firestoreDataSource],
+        [UtilitiesLoggers.firestoreDataSource],
       );
     } else {
-      AppLogger.print(logMessage, [UtilitiesPackageLoggers.firestoreDataSource]);
+      AppLogger.print(logMessage, [UtilitiesLoggers.firestoreDataSource]);
     }
   }
 
@@ -161,10 +161,10 @@ class FirestoreDataSource<T> implements DataSource<T> {
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
-        [UtilitiesPackageLoggers.firestoreDataSource],
+        [UtilitiesLoggers.firestoreDataSource],
       );
     } else {
-      AppLogger.print(logMessage, [UtilitiesPackageLoggers.firestoreDataSource]);
+      AppLogger.print(logMessage, [UtilitiesLoggers.firestoreDataSource]);
     }
   }
 
@@ -176,7 +176,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
     final logMessage = "Firebase $method Error: $statusMessage - $error";
     AppLogger.print(
       logMessage,
-      [UtilitiesPackageLoggers.firestoreDataSource],
+      [UtilitiesLoggers.firestoreDataSource],
       type: LoggerType.error,
     );
   }

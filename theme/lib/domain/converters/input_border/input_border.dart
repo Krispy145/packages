@@ -11,8 +11,8 @@
 //   InputBorder? example() {
 //     final json = const InputBorderConverter().toJson(const OutlineInputBorderConverter().example());
 //     final border = const InputBorderConverter().fromJson(json);
-//     AppLogger.print("INPUT-BORDER fromJson -> $border", [ThemePackageLoggers.converters]);
-//     AppLogger.print("INPUT-BORDER toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("INPUT-BORDER fromJson -> $border", [ThemeLoggers.converters]);
+//     AppLogger.print("INPUT-BORDER toJson -> $json", [ThemeLoggers.converters]);
 //     return border;
 //   }
 

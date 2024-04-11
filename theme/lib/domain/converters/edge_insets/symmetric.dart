@@ -12,9 +12,9 @@
 //         .toJson(const EdgeInsets.symmetric(vertical: 10, horizontal: 20));
 //     final edgeInsets = const EdgeInsetsSymmetricConverter().fromJson(json);
 //     AppLogger.print(
-//         "EDGE-INSETS fromJson -> $edgeInsets", [ThemePackageLoggers.converters]);
+//         "EDGE-INSETS fromJson -> $edgeInsets", [ThemeLoggers.converters]);
 //     AppLogger.print(
-//         "EDGE-INSETS toJson -> $json", [ThemePackageLoggers.converters]);
+//         "EDGE-INSETS toJson -> $json", [ThemeLoggers.converters]);
 //     return edgeInsets;
 //   }
 

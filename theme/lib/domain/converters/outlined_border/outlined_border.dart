@@ -11,8 +11,8 @@
 //   OutlinedBorder? example() {
 //     final json = const OutlinedBorderConverter().toJson(const StadiumBorder());
 //     final border = const OutlinedBorderConverter().fromJson(json);
-//     AppLogger.print("OUTLINED-BORDER fromJson -> $border", [ThemePackageLoggers.converters]);
-//     AppLogger.print("OUTLINED-BORDER toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("OUTLINED-BORDER fromJson -> $border", [ThemeLoggers.converters]);
+//     AppLogger.print("OUTLINED-BORDER toJson -> $json", [ThemeLoggers.converters]);
 //     return border;
 //   }
 

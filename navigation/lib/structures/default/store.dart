@@ -43,7 +43,7 @@ abstract class DefaultShellStructureStoreBase with Store {
     _isAppBarVisible = value;
     AppLogger.print(
       "showAppBar set to => $_isAppBarVisible",
-      [NavigationPackageLoggers.navigation],
+      [NavigationLoggers.navigation],
     );
   }
 
@@ -58,7 +58,7 @@ abstract class DefaultShellStructureStoreBase with Store {
         scaffold.closeDrawer();
         AppLogger.print(
           "showDrawer set to => ${scaffold.isDrawerOpen}",
-          [NavigationPackageLoggers.navigation],
+          [NavigationLoggers.navigation],
         );
       }
     }
@@ -76,7 +76,7 @@ abstract class DefaultShellStructureStoreBase with Store {
       }
       AppLogger.print(
         "showEndDrawer set to => ${scaffold.isEndDrawerOpen}",
-        [NavigationPackageLoggers.navigation],
+        [NavigationLoggers.navigation],
       );
     }
   }
@@ -87,7 +87,7 @@ abstract class DefaultShellStructureStoreBase with Store {
     _isFloatingActionButtonVisible = value;
     AppLogger.print(
       "showFloatingActionButton set to => $_isFloatingActionButtonVisible",
-      [NavigationPackageLoggers.navigation],
+      [NavigationLoggers.navigation],
     );
   }
 
@@ -97,7 +97,7 @@ abstract class DefaultShellStructureStoreBase with Store {
     _isBottomNavigationBarVisible = value;
     AppLogger.print(
       "showBottomNavigationBar set to => $_isBottomNavigationBarVisible",
-      [NavigationPackageLoggers.navigation],
+      [NavigationLoggers.navigation],
     );
   }
 
@@ -107,7 +107,7 @@ abstract class DefaultShellStructureStoreBase with Store {
     _isPersistentFooterButtonsVisible = value;
     AppLogger.print(
       "showPersistentFooterButtons set to => $_isPersistentFooterButtonsVisible",
-      [NavigationPackageLoggers.navigation],
+      [NavigationLoggers.navigation],
     );
   }
 }

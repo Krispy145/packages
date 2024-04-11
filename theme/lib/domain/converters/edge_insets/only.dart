@@ -12,9 +12,9 @@
 //         const EdgeInsetsOnlyConverter().toJson(const EdgeInsets.only(top: 10));
 //     final edgeInsets = const EdgeInsetsOnlyConverter().fromJson(json);
 //     AppLogger.print(
-//         "EDGE-INSETS fromJson -> $edgeInsets", [ThemePackageLoggers.converters]);
+//         "EDGE-INSETS fromJson -> $edgeInsets", [ThemeLoggers.converters]);
 //     AppLogger.print(
-//         "EDGE-INSETS toJson -> $json", [ThemePackageLoggers.converters]);
+//         "EDGE-INSETS toJson -> $json", [ThemeLoggers.converters]);
 //     return edgeInsets;
 //   }
 

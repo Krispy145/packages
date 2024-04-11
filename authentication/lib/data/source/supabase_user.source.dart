@@ -24,7 +24,7 @@ class SupabaseUserDataSource extends SupabaseDataSource<UserModel> implements Us
     } catch (e) {
       AppLogger.print(
         "Firestore RESULT: Failed request: $e",
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());

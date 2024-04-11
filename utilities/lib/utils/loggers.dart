@@ -1,6 +1,6 @@
-/// [UtilitiesPackageLoggers] class responsible for storing utilities logging references.
+/// [UtilitiesLoggers] class responsible for storing utilities logging references.
 /// Used to determine which features are enabled for logging.
-enum UtilitiesPackageLoggers {
+enum UtilitiesLoggers {
   /// [connection] is the feature reference for connection.
   connection,
 

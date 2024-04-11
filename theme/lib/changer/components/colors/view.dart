@@ -35,7 +35,7 @@ class ColorsView extends StatelessWidget {
               value: selectedColor,
               title: selectedColor.key,
               onValueChanged: (color) {
-                AppLogger.print('on value changed: ${color.value}', [ThemePackageLoggers.theme]);
+                AppLogger.print('on value changed: ${color.value}', [ThemeLoggers.theme]);
                 store.selectedColor = color;
                 ThemeChanger.changeCurrentThemeStyle(colorModel: store.setColorModel());
               },

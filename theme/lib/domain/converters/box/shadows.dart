@@ -25,8 +25,8 @@
 //       ],
 //     );
 //     final boxShadow = const BoxShadowsConverter().fromJson(json);
-//     AppLogger.print("BOX-SHADOWS fromJson -> $boxShadow", [ThemePackageLoggers.converters]);
-//     AppLogger.print("BOX-SHADOWS toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BOX-SHADOWS fromJson -> $boxShadow", [ThemeLoggers.converters]);
+//     AppLogger.print("BOX-SHADOWS toJson -> $json", [ThemeLoggers.converters]);
 //     return boxShadow;
 //   }
 

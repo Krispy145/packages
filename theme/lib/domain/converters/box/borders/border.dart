@@ -23,8 +23,8 @@
 //       type: const BoxBorderAllConverter().example(),
 //     });
 //     final border = const BoxBorderConverter().fromJson(json);
-//     AppLogger.print("BOX-BORDER fromJson -> $border", [ThemePackageLoggers.converters]);
-//     AppLogger.print("BOX-BORDER toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BOX-BORDER fromJson -> $border", [ThemeLoggers.converters]);
+//     AppLogger.print("BOX-BORDER toJson -> $json", [ThemeLoggers.converters]);
 //     return border?.values.first;
 //   }
 

@@ -62,7 +62,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
       setLoading();
       AppLogger.print(
         "Initializing Box: $boxName",
-        [UtilitiesPackageLoggers.localDataSource],
+        [UtilitiesLoggers.localDataSource],
       );
       await Hive.initFlutter();
       if (compactionStrategy != null) {
@@ -74,21 +74,21 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
         AppLogger
           ..print(
             "Compaction Strategy Registered",
-            [UtilitiesPackageLoggers.localDataSource],
+            [UtilitiesLoggers.localDataSource],
           )
-          ..print("Box Opened: $boxName", [UtilitiesPackageLoggers.localDataSource]);
+          ..print("Box Opened: $boxName", [UtilitiesLoggers.localDataSource]);
       } else {
         await Hive.openBox<Map<String, dynamic>>(boxName);
         AppLogger.print(
           "Box Opened: $boxName",
-          [UtilitiesPackageLoggers.localDataSource],
+          [UtilitiesLoggers.localDataSource],
         );
       }
       setLoaded();
     } catch (e) {
       AppLogger.print(
         "Error: $e",
-        [UtilitiesPackageLoggers.localDataSource],
+        [UtilitiesLoggers.localDataSource],
         type: LoggerType.error,
       );
       setError();
@@ -121,7 +121,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
   Future<T?> get(String key) async {
     await Hive.openBox<Map<String, dynamic>>(boxName);
     final value = _box.get(key);
-    AppLogger.print("Read: $key => $_box", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Read: $key => $_box", [UtilitiesLoggers.localDataSource]);
     if (value == null) return Future.value();
     return Future.value(value);
   }
@@ -133,7 +133,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
     final result = _box.values.toList();
     AppLogger.print(
       "Read All Results => $result",
-      [UtilitiesPackageLoggers.localDataSource],
+      [UtilitiesLoggers.localDataSource],
     );
     return Future.value(result);
   }
@@ -144,7 +144,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
     await Hive.openBox<Map<String, dynamic>>(boxName);
 
     await _box.delete(key);
-    AppLogger.print("Deleted: $key", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Deleted: $key", [UtilitiesLoggers.localDataSource]);
   }
 
   /// [deleteAll] method deletes all the key-value pairs
@@ -153,7 +153,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
     await Hive.openBox<Map<String, dynamic>>(boxName);
 
     await _box.clear();
-    AppLogger.print("Deleted All", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Deleted All", [UtilitiesLoggers.localDataSource]);
   }
 
   /// [add] method adds the value of the given key
@@ -163,7 +163,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
     await Hive.openBox<Map<String, dynamic>>(boxName);
     final id = generateUniqueId();
     await _box.put(id, value);
-    AppLogger.print("Added $value", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Added $value", [UtilitiesLoggers.localDataSource]);
   }
 
   /// [addAll] method adds all the key-value pairs
@@ -176,7 +176,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
       entries[id] = value;
     }
     await _box.putAll(entries);
-    AppLogger.print("Added All", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Added All", [UtilitiesLoggers.localDataSource]);
   }
 
   /// [update] method updates the value of the given key
@@ -185,7 +185,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
     await Hive.openBox<Map<String, dynamic>>(boxName);
 
     await _box.put(key, value);
-    AppLogger.print("Updated: $key", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Updated: $key", [UtilitiesLoggers.localDataSource]);
   }
 
   /// [updateAll] method updates all the key-value pairs
@@ -198,7 +198,7 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
       updateMap[entry.key] = entry.value;
     }
     await _box.putAll(updateMap);
-    AppLogger.print("Updated All: $entries", [UtilitiesPackageLoggers.localDataSource]);
+    AppLogger.print("Updated All: $entries", [UtilitiesLoggers.localDataSource]);
   }
 
   /// [close] method closes the [TypeBox]
@@ -207,12 +207,12 @@ abstract class LocalDataSource<T> extends LoadStateStore implements DataSource<T
       await _box.close();
       AppLogger.print(
         "_TypeBox Closed: ${_box.name}",
-        [UtilitiesPackageLoggers.localDataSource],
+        [UtilitiesLoggers.localDataSource],
       );
     } else {
       AppLogger.print(
         "_TypeBox Already Closed: ${_box.name}",
-        [UtilitiesPackageLoggers.localDataSource],
+        [UtilitiesLoggers.localDataSource],
       );
     }
   }
@@ -297,7 +297,7 @@ class TypeBox<T> extends Box<T> {
   @override
   T? get(dynamic key, {T? defaultValue}) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [UtilitiesPackageLoggers.localDataSource]);
+      AppLogger.print("Key is not a String", [UtilitiesLoggers.localDataSource]);
       return null;
     }
     if (defaultValue == null) {
@@ -351,7 +351,7 @@ class TypeBox<T> extends Box<T> {
   @override
   Future<void> put(dynamic key, T value) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [UtilitiesPackageLoggers.localDataSource]);
+      AppLogger.print("Key is not a String", [UtilitiesLoggers.localDataSource]);
       return Future.value();
     }
     return _box.put(key, convertDataTypeToMap(value));
@@ -363,7 +363,7 @@ class TypeBox<T> extends Box<T> {
       if (key is! String) {
         AppLogger.print(
           "Key is not a String",
-          [UtilitiesPackageLoggers.localDataSource],
+          [UtilitiesLoggers.localDataSource],
         );
         return MapEntry(key, convertDataTypeToMap(value));
       }
@@ -380,7 +380,7 @@ class TypeBox<T> extends Box<T> {
         if (key is! String) {
           AppLogger.print(
             "Key is not a String",
-            [UtilitiesPackageLoggers.localDataSource],
+            [UtilitiesLoggers.localDataSource],
           );
           return MapEntry(key, convertDataTypeToMap(value));
         }

@@ -23,7 +23,7 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppLogger.print(notification.toString(), [NotificationsPackageLoggers.notifications]);
+    AppLogger.print(notification.toString(), [NotificationsLoggers.notifications]);
     return Dismissible(
       key: Key("${notification.id}${notification.title}"),
       direction: DismissDirection.endToStart,

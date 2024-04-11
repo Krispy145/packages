@@ -28,7 +28,7 @@ abstract class MapShellStructureStoreBase with Store {
     isMapOverlayVisible = !isMapOverlayVisible;
     AppLogger.print(
       "showMapOverlay set to => $isMapOverlayVisible",
-      [NavigationPackageLoggers.navigation],
+      [NavigationLoggers.navigation],
     );
   }
 }

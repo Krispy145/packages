@@ -42,8 +42,8 @@
 //     final json = const BlendModeConverter().toJson(_typeToBlendMode(type));
 //     final blendMode = const BlendModeConverter().fromJson(json);
 //     AppLogger.print(
-//         "BLEND-MODE fromJson -> $blendMode", [ThemePackageLoggers.converters]);
-//     AppLogger.print("BLEND-MODE toJson -> $json", [ThemePackageLoggers.converters]);
+//         "BLEND-MODE fromJson -> $blendMode", [ThemeLoggers.converters]);
+//     AppLogger.print("BLEND-MODE toJson -> $json", [ThemeLoggers.converters]);
 //     return blendMode;
 //   }
 

@@ -188,7 +188,7 @@ abstract class _AdMobStore with Store {
     isBannerAdLoaded = loaded;
     AppLogger.print(
       "isBannerAdLoaded: $isBannerAdLoaded",
-      [AdMobPackageLoggers.adMob],
+      [AdMobLoggers.adMob],
       type: isBannerAdLoaded ? LoggerType.confirmation : LoggerType.error,
     );
   }
@@ -198,7 +198,7 @@ abstract class _AdMobStore with Store {
     isInterstitialAdLoaded = loaded;
     AppLogger.print(
       "isInterstitialAdLoaded: $isInterstitialAdLoaded",
-      [AdMobPackageLoggers.adMob],
+      [AdMobLoggers.adMob],
       type: isInterstitialAdLoaded ? LoggerType.confirmation : LoggerType.error,
     );
   }
@@ -208,7 +208,7 @@ abstract class _AdMobStore with Store {
     isRewardAdLoaded = loaded;
     AppLogger.print(
       "isRewardVideoAdLoaded: $isRewardAdLoaded",
-      [AdMobPackageLoggers.adMob],
+      [AdMobLoggers.adMob],
       type: isRewardAdLoaded ? LoggerType.confirmation : LoggerType.error,
     );
   }
@@ -229,7 +229,7 @@ abstract class _AdMobStore with Store {
     if (!loaded && errorMessage != null) {
       AppLogger.print(
         "Error loading $type: ${errorMessage.code} -> ${errorMessage.message}",
-        [AdMobPackageLoggers.adMob],
+        [AdMobLoggers.adMob],
         type: LoggerType.error,
       );
     }

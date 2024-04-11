@@ -117,7 +117,7 @@ class AuthenticationRepository {
   Future<UserModel?> signIn({required AuthParams params}) async {
     AppLogger.print(
       'signIn attempt -> ${params.authType}',
-      [AuthenticationPackageLoggers.authentication],
+      [AuthenticationLoggers.authentication],
     );
     UserModel? changedUserModel;
     try {
@@ -145,7 +145,7 @@ class AuthenticationRepository {
         case AuthType.empty:
           AppLogger.print(
             'AuthType.empty not implemented for signIn',
-            [AuthenticationPackageLoggers.authentication],
+            [AuthenticationLoggers.authentication],
             type: LoggerType.error,
           );
       }
@@ -155,7 +155,7 @@ class AuthenticationRepository {
     } catch (e) {
       AppLogger.print(
         'signIn attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());
@@ -164,7 +164,7 @@ class AuthenticationRepository {
 
   /// [signOut] signs out the user.
   Future<void> signOut() async {
-    AppLogger.print('signOut attempt', [AuthenticationPackageLoggers.authentication]);
+    AppLogger.print('signOut attempt', [AuthenticationLoggers.authentication]);
     return await _authenticationDataRepository.signOut();
   }
 
@@ -172,7 +172,7 @@ class AuthenticationRepository {
   Future<UserModel?> signUpWithEmail({required AuthParams params}) async {
     AppLogger.print(
       'signUp attempt -> ${params.authType}',
-      [AuthenticationPackageLoggers.authentication],
+      [AuthenticationLoggers.authentication],
     );
     return await _authenticationDataRepository.signUpWithEmail(
       params.email!,
@@ -182,13 +182,13 @@ class AuthenticationRepository {
 
   /// [params] refreshes the user's token.
   Future<UserModel?> reauthenticate({required AuthParams params}) async {
-    AppLogger.print('refreshToken attempt', [AuthenticationPackageLoggers.authentication]);
+    AppLogger.print('refreshToken attempt', [AuthenticationLoggers.authentication]);
     return await _authenticationDataRepository.reauthenticate(params);
   }
 
   /// [deleteAccount] deletes the user's account.
   Future<void> deleteAccount({required String userId}) async {
-    AppLogger.print('deleteAccount attempt', [AuthenticationPackageLoggers.authentication]);
+    AppLogger.print('deleteAccount attempt', [AuthenticationLoggers.authentication]);
     return await _authenticationDataRepository.deleteAccount(userId);
   }
 
@@ -201,16 +201,16 @@ class AuthenticationRepository {
   //   // authStatusStream.listen((event) {
   //   //   if (event != _authStatusSubject.value) {
   //   //     _authStatusSubject.add(event);
-  //   //     AppLogger.print('authStatusStream -> $event', [AuthenticationPackageLoggers.authentication]);
+  //   //     AppLogger.print('authStatusStream -> $event', [AuthenticationLoggers.authentication]);
   //   //   }
   //   // });
   //   _currentUserModelStream.listen((event) {
   //     if (event != null && event != currentUserModelSubject.value) {
   //       currentUserModelSubject.add(event);
-  //       AppLogger.print('currentUserModelStreamChanged -> $event', [AuthenticationPackageLoggers.authentication]);
+  //       AppLogger.print('currentUserModelStreamChanged -> $event', [AuthenticationLoggers.authentication]);
   //     }
   //     // else {
-  //     //   AppLogger.print('currentUserModelStreamRemained -> $event', [AuthenticationPackageLoggers.authentication]);
+  //     //   AppLogger.print('currentUserModelStreamRemained -> $event', [AuthenticationLoggers.authentication]);
   //     // }
   //   });
   // }
@@ -229,7 +229,7 @@ class AuthenticationRepository {
       } catch (e) {
         AppLogger.print(
           'initializeFacebookForWeb attempt -> $e',
-          [AuthenticationPackageLoggers.authentication],
+          [AuthenticationLoggers.authentication],
           type: LoggerType.error,
         );
       }

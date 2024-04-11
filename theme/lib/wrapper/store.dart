@@ -64,7 +64,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
   /// [setThemeMode] is the method that will be used to set the theme mode.
   @action
   void setThemeMode(ThemeMode newThemeMode) {
-    AppLogger.print("ThemeMode Changed: $newThemeMode", [ThemePackageLoggers.theme]);
+    AppLogger.print("ThemeMode Changed: $newThemeMode", [ThemeLoggers.theme]);
     currentThemeMode = newThemeMode;
   }
 
@@ -86,7 +86,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    AppLogger.print("Building Theme: $styleType", [ThemePackageLoggers.theme]);
+    AppLogger.print("Building Theme: $styleType", [ThemeLoggers.theme]);
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
     return ThemeData(

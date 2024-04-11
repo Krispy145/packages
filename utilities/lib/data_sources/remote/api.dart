@@ -37,7 +37,7 @@ class ApiDataSource<T> implements DataSource<T> {
           // Log the request
           AppLogger.print(
             "REQUEST: ${options.method} -> ${options.uri}",
-            [UtilitiesPackageLoggers.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(options);
         },
@@ -45,7 +45,7 @@ class ApiDataSource<T> implements DataSource<T> {
           // Log the response
           AppLogger.print(
             "RESPONSE: ${response.statusCode} -> ${response.statusMessage}",
-            [UtilitiesPackageLoggers.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(response);
         },
@@ -53,7 +53,7 @@ class ApiDataSource<T> implements DataSource<T> {
           // Log errors
           AppLogger.print(
             "ERROR: ${e.response?.statusCode} -> ${e.response?.statusMessage}",
-            [UtilitiesPackageLoggers.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
             type: LoggerType.error,
           );
           return handler.next(e);

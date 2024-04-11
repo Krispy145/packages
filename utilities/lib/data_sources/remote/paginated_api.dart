@@ -49,7 +49,7 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
           // Log the request
           AppLogger.print(
             "REQUEST: ${options.method} -> ${options.uri}",
-            [UtilitiesPackageLoggers.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(options);
         },
@@ -57,7 +57,7 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
           // Log the response
           AppLogger.print(
             "RESPONSE: ${response.statusCode} -> ${response.statusMessage}",
-            [UtilitiesPackageLoggers.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(response);
         },
@@ -65,7 +65,7 @@ class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
           // Log errors
           AppLogger.print(
             "ERROR: ${e.response?.statusCode} -> ${e.response?.statusMessage}",
-            [UtilitiesPackageLoggers.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
             type: LoggerType.error,
           );
           return handler.next(e);

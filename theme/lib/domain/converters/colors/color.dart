@@ -15,8 +15,8 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
     final json = const ColorConverter().toJson(Colors.green);
     final color = const ColorConverter().fromJson(json);
     AppLogger
-      ..print("COLOR fromJson -> $color", [ThemePackageLoggers.converters])
-      ..print("COLOR toJson -> $json", [ThemePackageLoggers.converters]);
+      ..print("COLOR fromJson -> $color", [ThemeLoggers.converters])
+      ..print("COLOR toJson -> $json", [ThemeLoggers.converters]);
     return color;
   }
 

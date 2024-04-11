@@ -10,9 +10,9 @@
 //   BorderRadius? example() {
 //     final json = const RadiusConverter().toJson(const Radius.circular(10));
 //     final radius = const BorderRadiusOnlyConverter().fromJson(json);
-//     AppLogger.print("BORDER-RADIUS fromJson -> $radius", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BORDER-RADIUS fromJson -> $radius", [ThemeLoggers.converters]);
 //     final convertedJson = const BorderRadiusOnlyConverter().toJson(BorderRadius.circular(10));
-//     AppLogger.print("BORDER-RADIUS toJson -> $convertedJson", [ThemePackageLoggers.converters]);
+//     AppLogger.print("BORDER-RADIUS toJson -> $convertedJson", [ThemeLoggers.converters]);
 //     return radius;
 //   }
 

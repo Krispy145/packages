@@ -141,7 +141,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     } catch (e) {
       AppLogger.print(
         'signIn attempt -> $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());
@@ -166,7 +166,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     } catch (e) {
       AppLogger.print(
         'signIn attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());
@@ -215,7 +215,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     } catch (e) {
       AppLogger.print(
         'signIn attempt -> ${params.authType}: $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());
@@ -318,14 +318,14 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     } on FirebaseAuthException catch (e) {
       AppLogger.print(
         'signUp attempt -> $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.message.toString());
     } catch (e) {
       AppLogger.print(
         'signUp attempt -> $e',
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());

@@ -23,13 +23,13 @@
 //       final digitalOasis = _dataStore.values.toList();
 //       AppLogger.print(
 //         "IN MEMORY RESULT: Fetched all DigitalOasis models successfully",
-//         [ThemePackageLoggers.theme],
+//         [ThemeLoggers.theme],
 //       );
 //       return Future.value(digitalOasis);
 //     } catch (e) {
 //       AppLogger.print(
 //         "IN MEMORY RESULT: Error fetching all DigitalOasis models: $e",
-//         [ThemePackageLoggers.theme],
+//         [ThemeLoggers.theme],
 //         type: LoggerType.error,
 //       );
 //       return [];

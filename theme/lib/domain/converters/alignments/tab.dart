@@ -15,12 +15,12 @@ class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
     final alignment = const TabAlignmentConverter().fromJson(response['alignment']);
     AppLogger.print(
       "LIST-TILE-ALIGNMENT fromJson -> $alignment",
-      [ThemePackageLoggers.converters],
+      [ThemeLoggers.converters],
     );
     final convertedJson = const TabAlignmentConverter().toJson(TabAlignment.center);
     AppLogger.print(
       "LIST-TILE-ALIGNMENT toJson -> $convertedJson",
-      [ThemePackageLoggers.converters],
+      [ThemeLoggers.converters],
     );
     return alignment;
   }

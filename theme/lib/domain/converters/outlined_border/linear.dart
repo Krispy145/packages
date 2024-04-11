@@ -10,8 +10,8 @@
 //   LinearBorder? example() {
 //     final json = const LinearBorderConverter().toJson(const LinearBorder(side: BorderSide.none));
 //     final border = const LinearBorderConverter().fromJson(json);
-//     AppLogger.print("LINEAR-BORDER fromJson -> $border", [ThemePackageLoggers.converters]);
-//     AppLogger.print("LINEAR-BORDER toJson -> $json", [ThemePackageLoggers.converters]);
+//     AppLogger.print("LINEAR-BORDER fromJson -> $border", [ThemeLoggers.converters]);
+//     AppLogger.print("LINEAR-BORDER toJson -> $json", [ThemeLoggers.converters]);
 //     return border;
 //   }
 

@@ -78,7 +78,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
     } catch (e) {
       AppLogger.print(
         "API RESULT: Failed request: $e",
-        [AuthenticationPackageLoggers.authentication],
+        [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.toString());
