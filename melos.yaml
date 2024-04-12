@@ -1,5 +1,6 @@
 name: packages
 
+# MELOS_PACKAGE_LIST
 packages:
   - admob
   - authentication
@@ -9,6 +10,7 @@ packages:
   - theme
   - utilities
   - widgets
+# MELOS_PACKAGE_LIST_END
 
 scripts:
   analyze:
