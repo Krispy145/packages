@@ -10,6 +10,7 @@ packages:
   - theme
   - utilities
   - widgets
+  - fonts
 # MELOS_PACKAGE_LIST_END
 
 scripts:
