@@ -1,9 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/alignments/alignment.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/badges/badge_model.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'dialog_model.freezed.dart';
 part 'dialog_model.g.dart';
@@ -11,16 +14,17 @@ part 'dialog_model.g.dart';
 @freezed
 class DialogModel with _$DialogModel {
   const factory DialogModel({
-    String? backgroundColor,
-    double? elevation,
-    String? shadowColor,
-    String? surfaceTintColor,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    @AlignmentConverter() Alignment? alignment,
-    String? iconColor,
-    String? titleTextStyle,
-    String? contentTextStyle,
-    @EdgeInsetsConverter() EdgeInsets? actionsPadding,
+    ThemeColorString? backgroundColor_themeColorString,
+    double? elevation_double,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    // @OutlinedBorderConverter()
+    ShapeBorderModel? shape_shapeBorder,
+    AlignmentOptions? alignment_enum_alignmentOptions,
+    ThemeColorString? iconColor_themeColorString,
+    TextStyleString? titleTextStyle_textStyleString,
+    TextStyleString? contentTextStyle_textStyleString,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? actionsPadding_edgeInsets,
   }) = _DialogModel;
 
   const DialogModel._();
@@ -56,15 +60,15 @@ class DialogModel with _$DialogModel {
 
   DialogTheme asDialogTheme({String? styleTypeName}) {
     return DialogTheme(
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      elevation: elevation,
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      shape: shape,
-      alignment: alignment,
-      iconColor: iconColor?.toColor(styleType: styleTypeName),
-      titleTextStyle: titleTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentTextStyle: contentTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      actionsPadding: actionsPadding,
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      elevation: elevation_double,
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
+      alignment: alignment_enum_alignmentOptions?.alignment,
+      iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
+      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      actionsPadding: actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }
 }

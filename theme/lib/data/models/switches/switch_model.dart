@@ -1,6 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'switch_model.freezed.dart';
 part 'switch_model.g.dart';
@@ -8,12 +10,12 @@ part 'switch_model.g.dart';
 @freezed
 class SwitchModel with _$SwitchModel {
   const factory SwitchModel({
-    String? thumbColor,
-    String? trackColor,
-    String? trackOutlineColor,
-    double? trackOutlineWidth,
-    String? overlayColor,
-    double? splashRadius,
+    ThemeColorString? thumbColor_themeColorString,
+    ThemeColorString? trackColor_themeColorString,
+    ThemeColorString? trackOutlineColor_themeColorString,
+    double? trackOutlineWidth_double,
+    ThemeColorString? overlayColor_themeColorString,
+    double? splashRadius_double,
   }) = _SwitchModel;
 
   const SwitchModel._();
@@ -33,12 +35,12 @@ class SwitchModel with _$SwitchModel {
 
   SwitchThemeData asSwitchThemeData({String? styleTypeName}) {
     return SwitchThemeData(
-      thumbColor: MaterialStateProperty.all(thumbColor?.toColor(styleType: styleTypeName)),
-      trackColor: MaterialStateProperty.all(trackColor?.toColor(styleType: styleTypeName)),
-      trackOutlineColor: MaterialStateProperty.all(trackOutlineColor?.toColor(styleType: styleTypeName)),
-      trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth),
-      overlayColor: MaterialStateProperty.all(overlayColor?.toColor(styleType: styleTypeName)),
-      splashRadius: splashRadius,
+      thumbColor: MaterialStateProperty.all(thumbColor_themeColorString?.toColor(styleType: styleTypeName)),
+      trackColor: MaterialStateProperty.all(trackColor_themeColorString?.toColor(styleType: styleTypeName)),
+      trackOutlineColor: MaterialStateProperty.all(trackOutlineColor_themeColorString?.toColor(styleType: styleTypeName)),
+      trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth_double),
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
+      splashRadius: splashRadius_double,
     );
   }
 }

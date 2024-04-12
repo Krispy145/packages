@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'progress_indicator_model.freezed.dart';
 part 'progress_indicator_model.g.dart';
@@ -8,11 +8,11 @@ part 'progress_indicator_model.g.dart';
 @freezed
 class ProgressIndicatorModel with _$ProgressIndicatorModel {
   const factory ProgressIndicatorModel({
-    String? color,
-    String? linearTrackColor,
-    double? linearMinHeight,
-    String? circularTrackColor,
-    String? refreshBackgroundColor,
+    ThemeColorString? color_themeColorString,
+    ThemeColorString? linearTrackColor_themeColorString,
+    double? linearMinHeight_double,
+    ThemeColorString? circularTrackColor_themeColorString,
+    ThemeColorString? refreshBackgroundColor_themeColorString,
   }) = _ProgressIndicatorModel;
 
   const ProgressIndicatorModel._();
@@ -31,11 +31,11 @@ class ProgressIndicatorModel with _$ProgressIndicatorModel {
 
   ProgressIndicatorThemeData asProgressIndicatorThemeData({String? styleTypeName}) {
     return ProgressIndicatorThemeData(
-      color: color?.toColor(styleType: styleTypeName),
-      linearTrackColor: linearTrackColor?.toColor(styleType: styleTypeName),
-      linearMinHeight: linearMinHeight,
-      circularTrackColor: circularTrackColor?.toColor(styleType: styleTypeName),
-      refreshBackgroundColor: refreshBackgroundColor?.toColor(styleType: styleTypeName),
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
+      linearTrackColor: linearTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      linearMinHeight: linearMinHeight_double,
+      circularTrackColor: circularTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      refreshBackgroundColor: refreshBackgroundColor_themeColorString?.toColor(styleType: styleTypeName),
     );
   }
 }

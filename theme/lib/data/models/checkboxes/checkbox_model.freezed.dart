@@ -20,14 +20,14 @@ CheckboxModel _$CheckboxModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CheckboxModel {
-  String? get fillColor => throw _privateConstructorUsedError;
-  String? get checkColor => throw _privateConstructorUsedError;
-  String? get overlayColor => throw _privateConstructorUsedError;
-  double? get splashRadius => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  @BorderSideConverter()
-  BorderSide? get side => throw _privateConstructorUsedError;
+  String? get fillColor_themeColorString => throw _privateConstructorUsedError;
+  String? get checkColor_themeColorString => throw _privateConstructorUsedError;
+  String? get overlayColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get splashRadius_double => throw _privateConstructorUsedError;
+  OutlinedBorderModel? get shape_outlinedBorder =>
+      throw _privateConstructorUsedError;
+  BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,12 +42,15 @@ abstract class $CheckboxModelCopyWith<$Res> {
       _$CheckboxModelCopyWithImpl<$Res, CheckboxModel>;
   @useResult
   $Res call(
-      {String? fillColor,
-      String? checkColor,
-      String? overlayColor,
-      double? splashRadius,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      @BorderSideConverter() BorderSide? side});
+      {String? fillColor_themeColorString,
+      String? checkColor_themeColorString,
+      String? overlayColor_themeColorString,
+      double? splashRadius_double,
+      OutlinedBorderModel? shape_outlinedBorder,
+      BorderSideModel? side_borderSide});
+
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  $BorderSideModelCopyWith<$Res>? get side_borderSide;
 }
 
 /// @nodoc
@@ -63,39 +66,64 @@ class _$CheckboxModelCopyWithImpl<$Res, $Val extends CheckboxModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fillColor = freezed,
-    Object? checkColor = freezed,
-    Object? overlayColor = freezed,
-    Object? splashRadius = freezed,
-    Object? shape = freezed,
-    Object? side = freezed,
+    Object? fillColor_themeColorString = freezed,
+    Object? checkColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? splashRadius_double = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? side_borderSide = freezed,
   }) {
     return _then(_value.copyWith(
-      fillColor: freezed == fillColor
-          ? _value.fillColor
-          : fillColor // ignore: cast_nullable_to_non_nullable
+      fillColor_themeColorString: freezed == fillColor_themeColorString
+          ? _value.fillColor_themeColorString
+          : fillColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      checkColor: freezed == checkColor
-          ? _value.checkColor
-          : checkColor // ignore: cast_nullable_to_non_nullable
+      checkColor_themeColorString: freezed == checkColor_themeColorString
+          ? _value.checkColor_themeColorString
+          : checkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashRadius: freezed == splashRadius
-          ? _value.splashRadius
-          : splashRadius // ignore: cast_nullable_to_non_nullable
+      splashRadius_double: freezed == splashRadius_double
+          ? _value.splashRadius_double
+          : splashRadius_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      side: freezed == side
-          ? _value.side
-          : side // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      side_borderSide: freezed == side_borderSide
+          ? _value.side_borderSide
+          : side_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder {
+    if (_value.shape_outlinedBorder == null) {
+      return null;
+    }
+
+    return $OutlinedBorderModelCopyWith<$Res>(_value.shape_outlinedBorder!,
+        (value) {
+      return _then(_value.copyWith(shape_outlinedBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderSideModelCopyWith<$Res>? get side_borderSide {
+    if (_value.side_borderSide == null) {
+      return null;
+    }
+
+    return $BorderSideModelCopyWith<$Res>(_value.side_borderSide!, (value) {
+      return _then(_value.copyWith(side_borderSide: value) as $Val);
+    });
   }
 }
 
@@ -108,12 +136,17 @@ abstract class _$$CheckboxModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? fillColor,
-      String? checkColor,
-      String? overlayColor,
-      double? splashRadius,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      @BorderSideConverter() BorderSide? side});
+      {String? fillColor_themeColorString,
+      String? checkColor_themeColorString,
+      String? overlayColor_themeColorString,
+      double? splashRadius_double,
+      OutlinedBorderModel? shape_outlinedBorder,
+      BorderSideModel? side_borderSide});
+
+  @override
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  @override
+  $BorderSideModelCopyWith<$Res>? get side_borderSide;
 }
 
 /// @nodoc
@@ -127,38 +160,38 @@ class __$$CheckboxModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fillColor = freezed,
-    Object? checkColor = freezed,
-    Object? overlayColor = freezed,
-    Object? splashRadius = freezed,
-    Object? shape = freezed,
-    Object? side = freezed,
+    Object? fillColor_themeColorString = freezed,
+    Object? checkColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? splashRadius_double = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? side_borderSide = freezed,
   }) {
     return _then(_$CheckboxModelImpl(
-      fillColor: freezed == fillColor
-          ? _value.fillColor
-          : fillColor // ignore: cast_nullable_to_non_nullable
+      fillColor_themeColorString: freezed == fillColor_themeColorString
+          ? _value.fillColor_themeColorString
+          : fillColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      checkColor: freezed == checkColor
-          ? _value.checkColor
-          : checkColor // ignore: cast_nullable_to_non_nullable
+      checkColor_themeColorString: freezed == checkColor_themeColorString
+          ? _value.checkColor_themeColorString
+          : checkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashRadius: freezed == splashRadius
-          ? _value.splashRadius
-          : splashRadius // ignore: cast_nullable_to_non_nullable
+      splashRadius_double: freezed == splashRadius_double
+          ? _value.splashRadius_double
+          : splashRadius_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      side: freezed == side
-          ? _value.side
-          : side // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      side_borderSide: freezed == side_borderSide
+          ? _value.side_borderSide
+          : side_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
     ));
   }
 }
@@ -167,35 +200,35 @@ class __$$CheckboxModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CheckboxModelImpl extends _CheckboxModel {
   const _$CheckboxModelImpl(
-      {this.fillColor,
-      this.checkColor,
-      this.overlayColor,
-      this.splashRadius,
-      @OutlinedBorderConverter() this.shape,
-      @BorderSideConverter() this.side})
+      {this.fillColor_themeColorString,
+      this.checkColor_themeColorString,
+      this.overlayColor_themeColorString,
+      this.splashRadius_double,
+      this.shape_outlinedBorder = const OutlinedBorderModel(),
+      this.side_borderSide = const BorderSideModel()})
       : super._();
 
   factory _$CheckboxModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CheckboxModelImplFromJson(json);
 
   @override
-  final String? fillColor;
+  final String? fillColor_themeColorString;
   @override
-  final String? checkColor;
+  final String? checkColor_themeColorString;
   @override
-  final String? overlayColor;
+  final String? overlayColor_themeColorString;
   @override
-  final double? splashRadius;
+  final double? splashRadius_double;
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  @JsonKey()
+  final OutlinedBorderModel? shape_outlinedBorder;
   @override
-  @BorderSideConverter()
-  final BorderSide? side;
+  @JsonKey()
+  final BorderSideModel? side_borderSide;
 
   @override
   String toString() {
-    return 'CheckboxModel(fillColor: $fillColor, checkColor: $checkColor, overlayColor: $overlayColor, splashRadius: $splashRadius, shape: $shape, side: $side)';
+    return 'CheckboxModel(fillColor_themeColorString: $fillColor_themeColorString, checkColor_themeColorString: $checkColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, splashRadius_double: $splashRadius_double, shape_outlinedBorder: $shape_outlinedBorder, side_borderSide: $side_borderSide)';
   }
 
   @override
@@ -203,22 +236,36 @@ class _$CheckboxModelImpl extends _CheckboxModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CheckboxModelImpl &&
-            (identical(other.fillColor, fillColor) ||
-                other.fillColor == fillColor) &&
-            (identical(other.checkColor, checkColor) ||
-                other.checkColor == checkColor) &&
-            (identical(other.overlayColor, overlayColor) ||
-                other.overlayColor == overlayColor) &&
-            (identical(other.splashRadius, splashRadius) ||
-                other.splashRadius == splashRadius) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.side, side) || other.side == side));
+            (identical(other.fillColor_themeColorString,
+                    fillColor_themeColorString) ||
+                other.fillColor_themeColorString ==
+                    fillColor_themeColorString) &&
+            (identical(other.checkColor_themeColorString,
+                    checkColor_themeColorString) ||
+                other.checkColor_themeColorString ==
+                    checkColor_themeColorString) &&
+            (identical(other.overlayColor_themeColorString,
+                    overlayColor_themeColorString) ||
+                other.overlayColor_themeColorString ==
+                    overlayColor_themeColorString) &&
+            (identical(other.splashRadius_double, splashRadius_double) ||
+                other.splashRadius_double == splashRadius_double) &&
+            (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
+                other.shape_outlinedBorder == shape_outlinedBorder) &&
+            (identical(other.side_borderSide, side_borderSide) ||
+                other.side_borderSide == side_borderSide));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, fillColor, checkColor,
-      overlayColor, splashRadius, shape, side);
+  int get hashCode => Object.hash(
+      runtimeType,
+      fillColor_themeColorString,
+      checkColor_themeColorString,
+      overlayColor_themeColorString,
+      splashRadius_double,
+      shape_outlinedBorder,
+      side_borderSide);
 
   @JsonKey(ignore: true)
   @override
@@ -236,31 +283,29 @@ class _$CheckboxModelImpl extends _CheckboxModel {
 
 abstract class _CheckboxModel extends CheckboxModel {
   const factory _CheckboxModel(
-      {final String? fillColor,
-      final String? checkColor,
-      final String? overlayColor,
-      final double? splashRadius,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      @BorderSideConverter() final BorderSide? side}) = _$CheckboxModelImpl;
+      {final String? fillColor_themeColorString,
+      final String? checkColor_themeColorString,
+      final String? overlayColor_themeColorString,
+      final double? splashRadius_double,
+      final OutlinedBorderModel? shape_outlinedBorder,
+      final BorderSideModel? side_borderSide}) = _$CheckboxModelImpl;
   const _CheckboxModel._() : super._();
 
   factory _CheckboxModel.fromJson(Map<String, dynamic> json) =
       _$CheckboxModelImpl.fromJson;
 
   @override
-  String? get fillColor;
+  String? get fillColor_themeColorString;
   @override
-  String? get checkColor;
+  String? get checkColor_themeColorString;
   @override
-  String? get overlayColor;
+  String? get overlayColor_themeColorString;
   @override
-  double? get splashRadius;
+  double? get splashRadius_double;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  OutlinedBorderModel? get shape_outlinedBorder;
   @override
-  @BorderSideConverter()
-  BorderSide? get side;
+  BorderSideModel? get side_borderSide;
   @override
   @JsonKey(ignore: true)
   _$$CheckboxModelImplCopyWith<_$CheckboxModelImpl> get copyWith =>

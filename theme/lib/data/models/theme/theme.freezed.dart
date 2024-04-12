@@ -129,8 +129,8 @@ mixin _$ComponentThemesModel {
       throw _privateConstructorUsedError;
   set listTiles(Map<String, ListTileModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, MenuModel>? get menus => throw _privateConstructorUsedError;
-  set menus(Map<String, MenuModel>? value) =>
+  Map<String, MenuStyleModel>? get menus => throw _privateConstructorUsedError;
+  set menus(Map<String, MenuStyleModel>? value) =>
       throw _privateConstructorUsedError;
   Map<String, MenuBarModel>? get menuBars => throw _privateConstructorUsedError;
   set menuBars(Map<String, MenuBarModel>? value) =>
@@ -203,7 +203,7 @@ abstract class $ComponentThemesModelCopyWith<$Res> {
       Map<String, SwitchModel>? switches,
       Map<String, DrawerModel>? drawers,
       Map<String, ListTileModel>? listTiles,
-      Map<String, MenuModel>? menus,
+      Map<String, MenuStyleModel>? menus,
       Map<String, MenuBarModel>? menuBars,
       Map<String, NavigationBarModel>? navigationBars,
       Map<String, NavigationDrawerModel>? navigationDrawers,
@@ -395,7 +395,7 @@ class _$ComponentThemesModelCopyWithImpl<$Res,
       menus: freezed == menus
           ? _value.menus
           : menus // ignore: cast_nullable_to_non_nullable
-              as Map<String, MenuModel>?,
+              as Map<String, MenuStyleModel>?,
       menuBars: freezed == menuBars
           ? _value.menuBars
           : menuBars // ignore: cast_nullable_to_non_nullable
@@ -468,7 +468,7 @@ abstract class _$$ComponentThemesModelImplCopyWith<$Res>
       Map<String, SwitchModel>? switches,
       Map<String, DrawerModel>? drawers,
       Map<String, ListTileModel>? listTiles,
-      Map<String, MenuModel>? menus,
+      Map<String, MenuStyleModel>? menus,
       Map<String, MenuBarModel>? menuBars,
       Map<String, NavigationBarModel>? navigationBars,
       Map<String, NavigationDrawerModel>? navigationDrawers,
@@ -657,7 +657,7 @@ class __$$ComponentThemesModelImplCopyWithImpl<$Res>
       menus: freezed == menus
           ? _value.menus
           : menus // ignore: cast_nullable_to_non_nullable
-              as Map<String, MenuModel>?,
+              as Map<String, MenuStyleModel>?,
       menuBars: freezed == menuBars
           ? _value.menuBars
           : menuBars // ignore: cast_nullable_to_non_nullable
@@ -801,7 +801,7 @@ class _$ComponentThemesModelImpl extends _ComponentThemesModel {
   @override
   Map<String, ListTileModel>? listTiles;
   @override
-  Map<String, MenuModel>? menus;
+  Map<String, MenuStyleModel>? menus;
   @override
   Map<String, MenuBarModel>? menuBars;
   @override
@@ -871,7 +871,7 @@ abstract class _ComponentThemesModel extends ComponentThemesModel {
       Map<String, SwitchModel>? switches,
       Map<String, DrawerModel>? drawers,
       Map<String, ListTileModel>? listTiles,
-      Map<String, MenuModel>? menus,
+      Map<String, MenuStyleModel>? menus,
       Map<String, MenuBarModel>? menuBars,
       Map<String, NavigationBarModel>? navigationBars,
       Map<String, NavigationDrawerModel>? navigationDrawers,
@@ -977,8 +977,8 @@ abstract class _ComponentThemesModel extends ComponentThemesModel {
   Map<String, ListTileModel>? get listTiles;
   set listTiles(Map<String, ListTileModel>? value);
   @override
-  Map<String, MenuModel>? get menus;
-  set menus(Map<String, MenuModel>? value);
+  Map<String, MenuStyleModel>? get menus;
+  set menus(Map<String, MenuStyleModel>? value);
   @override
   Map<String, MenuBarModel>? get menuBars;
   set menuBars(Map<String, MenuBarModel>? value);

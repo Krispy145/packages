@@ -26,7 +26,7 @@ abstract class TextTypes with _$TextTypes {
     TextStyleSizes? title,
     TextStyleSizes? body,
     TextStyleSizes? label,
-  }) = _TextStyles;
+  }) = _textStyleStrings;
   const TextTypes._();
 
   /// [toTextTheme] converts the [TextTypes] to a [TextTheme].
@@ -50,7 +50,7 @@ abstract class TextTypes with _$TextTypes {
     );
   }
 
-  // /// [defaultTextTypes] returns a [TextTypes] with default values.
+  /// [defaultTextTypes] returns a [TextTypes] with default values.
   // static TextTypes defaultTextTypes() {
   //   return TextTypes(
   //     display: TextStyleSizes.defaultStyleSizes(),

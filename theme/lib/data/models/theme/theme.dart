@@ -17,7 +17,7 @@ import 'package:theme/data/models/dropdowns/dropdown_model.dart';
 import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
 import 'package:theme/data/models/list_tiles/list_tile_model.dart';
 import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
-import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/menus/menu_style_model.dart';
 import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
 import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
 import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
@@ -75,7 +75,7 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
     Map<String, SwitchModel>? switches,
     Map<String, DrawerModel>? drawers,
     Map<String, ListTileModel>? listTiles,
-    Map<String, MenuModel>? menus,
+    Map<String, MenuStyleModel>? menus,
     Map<String, MenuBarModel>? menuBars,
     Map<String, NavigationBarModel>? navigationBars,
     Map<String, NavigationDrawerModel>? navigationDrawers,

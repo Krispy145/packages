@@ -20,20 +20,18 @@ BoxDecorationModel _$BoxDecorationModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BoxDecorationModel {
-  String? get color => throw _privateConstructorUsedError;
-  @BoxBorderConverter()
-  Map<BoxBorderType, BoxBorder?>? get border =>
+  String? get color_themeColorString =>
+      throw _privateConstructorUsedError; // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
+  BoxBorderModel? get border_boxBorder =>
+      throw _privateConstructorUsedError; // @BorderRadiusConverter() BorderRadius? borderRadius,
+  BorderRadiusModel? get borderRadius_borderRadius =>
+      throw _privateConstructorUsedError; // @BoxShadowsConverter()
+  List<BoxShadowModel>? get boxShadows_list_boxShadow =>
+      throw _privateConstructorUsedError; // @GradientConverter()
+  GradientModel? get gradient_gradient => throw _privateConstructorUsedError;
+  BlendMode? get backgroundBlendMode_enum_blendMode =>
       throw _privateConstructorUsedError;
-  @BorderRadiusConverter()
-  BorderRadius? get borderRadius => throw _privateConstructorUsedError;
-  @BoxShadowsConverter()
-  List<BoxShadow>? get boxShadows => throw _privateConstructorUsedError;
-  @GradientConverter()
-  Gradient? get gradient => throw _privateConstructorUsedError;
-  @BlendModeConverter()
-  BlendMode? get backgroundBlendMode => throw _privateConstructorUsedError;
-  @BoxShapeConverter()
-  BoxShape? get shape => throw _privateConstructorUsedError;
+  BoxShape? get shape_enum_boxShape => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,13 +46,17 @@ abstract class $BoxDecorationModelCopyWith<$Res> {
       _$BoxDecorationModelCopyWithImpl<$Res, BoxDecorationModel>;
   @useResult
   $Res call(
-      {String? color,
-      @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
-      @BorderRadiusConverter() BorderRadius? borderRadius,
-      @BoxShadowsConverter() List<BoxShadow>? boxShadows,
-      @GradientConverter() Gradient? gradient,
-      @BlendModeConverter() BlendMode? backgroundBlendMode,
-      @BoxShapeConverter() BoxShape? shape});
+      {String? color_themeColorString,
+      BoxBorderModel? border_boxBorder,
+      BorderRadiusModel? borderRadius_borderRadius,
+      List<BoxShadowModel>? boxShadows_list_boxShadow,
+      GradientModel? gradient_gradient,
+      BlendMode? backgroundBlendMode_enum_blendMode,
+      BoxShape? shape_enum_boxShape});
+
+  $BoxBorderModelCopyWith<$Res>? get border_boxBorder;
+  $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius;
+  $GradientModelCopyWith<$Res>? get gradient_gradient;
 }
 
 /// @nodoc
@@ -70,44 +72,82 @@ class _$BoxDecorationModelCopyWithImpl<$Res, $Val extends BoxDecorationModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? border = freezed,
-    Object? borderRadius = freezed,
-    Object? boxShadows = freezed,
-    Object? gradient = freezed,
-    Object? backgroundBlendMode = freezed,
-    Object? shape = freezed,
+    Object? color_themeColorString = freezed,
+    Object? border_boxBorder = freezed,
+    Object? borderRadius_borderRadius = freezed,
+    Object? boxShadows_list_boxShadow = freezed,
+    Object? gradient_gradient = freezed,
+    Object? backgroundBlendMode_enum_blendMode = freezed,
+    Object? shape_enum_boxShape = freezed,
   }) {
     return _then(_value.copyWith(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      border: freezed == border
-          ? _value.border
-          : border // ignore: cast_nullable_to_non_nullable
-              as Map<BoxBorderType, BoxBorder?>?,
-      borderRadius: freezed == borderRadius
-          ? _value.borderRadius
-          : borderRadius // ignore: cast_nullable_to_non_nullable
-              as BorderRadius?,
-      boxShadows: freezed == boxShadows
-          ? _value.boxShadows
-          : boxShadows // ignore: cast_nullable_to_non_nullable
-              as List<BoxShadow>?,
-      gradient: freezed == gradient
-          ? _value.gradient
-          : gradient // ignore: cast_nullable_to_non_nullable
-              as Gradient?,
-      backgroundBlendMode: freezed == backgroundBlendMode
-          ? _value.backgroundBlendMode
-          : backgroundBlendMode // ignore: cast_nullable_to_non_nullable
+      border_boxBorder: freezed == border_boxBorder
+          ? _value.border_boxBorder
+          : border_boxBorder // ignore: cast_nullable_to_non_nullable
+              as BoxBorderModel?,
+      borderRadius_borderRadius: freezed == borderRadius_borderRadius
+          ? _value.borderRadius_borderRadius
+          : borderRadius_borderRadius // ignore: cast_nullable_to_non_nullable
+              as BorderRadiusModel?,
+      boxShadows_list_boxShadow: freezed == boxShadows_list_boxShadow
+          ? _value.boxShadows_list_boxShadow
+          : boxShadows_list_boxShadow // ignore: cast_nullable_to_non_nullable
+              as List<BoxShadowModel>?,
+      gradient_gradient: freezed == gradient_gradient
+          ? _value.gradient_gradient
+          : gradient_gradient // ignore: cast_nullable_to_non_nullable
+              as GradientModel?,
+      backgroundBlendMode_enum_blendMode: freezed ==
+              backgroundBlendMode_enum_blendMode
+          ? _value.backgroundBlendMode_enum_blendMode
+          : backgroundBlendMode_enum_blendMode // ignore: cast_nullable_to_non_nullable
               as BlendMode?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
+      shape_enum_boxShape: freezed == shape_enum_boxShape
+          ? _value.shape_enum_boxShape
+          : shape_enum_boxShape // ignore: cast_nullable_to_non_nullable
               as BoxShape?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxBorderModelCopyWith<$Res>? get border_boxBorder {
+    if (_value.border_boxBorder == null) {
+      return null;
+    }
+
+    return $BoxBorderModelCopyWith<$Res>(_value.border_boxBorder!, (value) {
+      return _then(_value.copyWith(border_boxBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius {
+    if (_value.borderRadius_borderRadius == null) {
+      return null;
+    }
+
+    return $BorderRadiusModelCopyWith<$Res>(_value.borderRadius_borderRadius!,
+        (value) {
+      return _then(_value.copyWith(borderRadius_borderRadius: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GradientModelCopyWith<$Res>? get gradient_gradient {
+    if (_value.gradient_gradient == null) {
+      return null;
+    }
+
+    return $GradientModelCopyWith<$Res>(_value.gradient_gradient!, (value) {
+      return _then(_value.copyWith(gradient_gradient: value) as $Val);
+    });
   }
 }
 
@@ -120,13 +160,20 @@ abstract class _$$BoxDecorationModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color,
-      @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
-      @BorderRadiusConverter() BorderRadius? borderRadius,
-      @BoxShadowsConverter() List<BoxShadow>? boxShadows,
-      @GradientConverter() Gradient? gradient,
-      @BlendModeConverter() BlendMode? backgroundBlendMode,
-      @BoxShapeConverter() BoxShape? shape});
+      {String? color_themeColorString,
+      BoxBorderModel? border_boxBorder,
+      BorderRadiusModel? borderRadius_borderRadius,
+      List<BoxShadowModel>? boxShadows_list_boxShadow,
+      GradientModel? gradient_gradient,
+      BlendMode? backgroundBlendMode_enum_blendMode,
+      BoxShape? shape_enum_boxShape});
+
+  @override
+  $BoxBorderModelCopyWith<$Res>? get border_boxBorder;
+  @override
+  $BorderRadiusModelCopyWith<$Res>? get borderRadius_borderRadius;
+  @override
+  $GradientModelCopyWith<$Res>? get gradient_gradient;
 }
 
 /// @nodoc
@@ -140,42 +187,43 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? border = freezed,
-    Object? borderRadius = freezed,
-    Object? boxShadows = freezed,
-    Object? gradient = freezed,
-    Object? backgroundBlendMode = freezed,
-    Object? shape = freezed,
+    Object? color_themeColorString = freezed,
+    Object? border_boxBorder = freezed,
+    Object? borderRadius_borderRadius = freezed,
+    Object? boxShadows_list_boxShadow = freezed,
+    Object? gradient_gradient = freezed,
+    Object? backgroundBlendMode_enum_blendMode = freezed,
+    Object? shape_enum_boxShape = freezed,
   }) {
     return _then(_$BoxDecorationModelImpl(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      border: freezed == border
-          ? _value._border
-          : border // ignore: cast_nullable_to_non_nullable
-              as Map<BoxBorderType, BoxBorder?>?,
-      borderRadius: freezed == borderRadius
-          ? _value.borderRadius
-          : borderRadius // ignore: cast_nullable_to_non_nullable
-              as BorderRadius?,
-      boxShadows: freezed == boxShadows
-          ? _value._boxShadows
-          : boxShadows // ignore: cast_nullable_to_non_nullable
-              as List<BoxShadow>?,
-      gradient: freezed == gradient
-          ? _value.gradient
-          : gradient // ignore: cast_nullable_to_non_nullable
-              as Gradient?,
-      backgroundBlendMode: freezed == backgroundBlendMode
-          ? _value.backgroundBlendMode
-          : backgroundBlendMode // ignore: cast_nullable_to_non_nullable
+      border_boxBorder: freezed == border_boxBorder
+          ? _value.border_boxBorder
+          : border_boxBorder // ignore: cast_nullable_to_non_nullable
+              as BoxBorderModel?,
+      borderRadius_borderRadius: freezed == borderRadius_borderRadius
+          ? _value.borderRadius_borderRadius
+          : borderRadius_borderRadius // ignore: cast_nullable_to_non_nullable
+              as BorderRadiusModel?,
+      boxShadows_list_boxShadow: freezed == boxShadows_list_boxShadow
+          ? _value._boxShadows_list_boxShadow
+          : boxShadows_list_boxShadow // ignore: cast_nullable_to_non_nullable
+              as List<BoxShadowModel>?,
+      gradient_gradient: freezed == gradient_gradient
+          ? _value.gradient_gradient
+          : gradient_gradient // ignore: cast_nullable_to_non_nullable
+              as GradientModel?,
+      backgroundBlendMode_enum_blendMode: freezed ==
+              backgroundBlendMode_enum_blendMode
+          ? _value.backgroundBlendMode_enum_blendMode
+          : backgroundBlendMode_enum_blendMode // ignore: cast_nullable_to_non_nullable
               as BlendMode?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
+      shape_enum_boxShape: freezed == shape_enum_boxShape
+          ? _value.shape_enum_boxShape
+          : shape_enum_boxShape // ignore: cast_nullable_to_non_nullable
               as BoxShape?,
     ));
   }
@@ -185,61 +233,54 @@ class __$$BoxDecorationModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BoxDecorationModelImpl extends _BoxDecorationModel {
   const _$BoxDecorationModelImpl(
-      {this.color,
-      @BoxBorderConverter() final Map<BoxBorderType, BoxBorder?>? border,
-      @BorderRadiusConverter() this.borderRadius,
-      @BoxShadowsConverter() final List<BoxShadow>? boxShadows,
-      @GradientConverter() this.gradient,
-      @BlendModeConverter() this.backgroundBlendMode,
-      @BoxShapeConverter() this.shape = BoxShape.rectangle})
-      : _border = border,
-        _boxShadows = boxShadows,
+      {this.color_themeColorString,
+      this.border_boxBorder,
+      this.borderRadius_borderRadius,
+      final List<BoxShadowModel>? boxShadows_list_boxShadow = const [],
+      this.gradient_gradient = const GradientModel(),
+      this.backgroundBlendMode_enum_blendMode,
+      this.shape_enum_boxShape = BoxShape.rectangle})
+      : _boxShadows_list_boxShadow = boxShadows_list_boxShadow,
         super._();
 
   factory _$BoxDecorationModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BoxDecorationModelImplFromJson(json);
 
   @override
-  final String? color;
-  final Map<BoxBorderType, BoxBorder?>? _border;
+  final String? color_themeColorString;
+// @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
   @override
-  @BoxBorderConverter()
-  Map<BoxBorderType, BoxBorder?>? get border {
-    final value = _border;
+  final BoxBorderModel? border_boxBorder;
+// @BorderRadiusConverter() BorderRadius? borderRadius,
+  @override
+  final BorderRadiusModel? borderRadius_borderRadius;
+// @BoxShadowsConverter()
+  final List<BoxShadowModel>? _boxShadows_list_boxShadow;
+// @BoxShadowsConverter()
+  @override
+  @JsonKey()
+  List<BoxShadowModel>? get boxShadows_list_boxShadow {
+    final value = _boxShadows_list_boxShadow;
     if (value == null) return null;
-    if (_border is EqualUnmodifiableMapView) return _border;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
-  @override
-  @BorderRadiusConverter()
-  final BorderRadius? borderRadius;
-  final List<BoxShadow>? _boxShadows;
-  @override
-  @BoxShadowsConverter()
-  List<BoxShadow>? get boxShadows {
-    final value = _boxShadows;
-    if (value == null) return null;
-    if (_boxShadows is EqualUnmodifiableListView) return _boxShadows;
+    if (_boxShadows_list_boxShadow is EqualUnmodifiableListView)
+      return _boxShadows_list_boxShadow;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
-  @override
-  @GradientConverter()
-  final Gradient? gradient;
-  @override
-  @BlendModeConverter()
-  final BlendMode? backgroundBlendMode;
+// @GradientConverter()
   @override
   @JsonKey()
-  @BoxShapeConverter()
-  final BoxShape? shape;
+  final GradientModel? gradient_gradient;
+  @override
+  final BlendMode? backgroundBlendMode_enum_blendMode;
+  @override
+  @JsonKey()
+  final BoxShape? shape_enum_boxShape;
 
   @override
   String toString() {
-    return 'BoxDecorationModel(color: $color, border: $border, borderRadius: $borderRadius, boxShadows: $boxShadows, gradient: $gradient, backgroundBlendMode: $backgroundBlendMode, shape: $shape)';
+    return 'BoxDecorationModel(color_themeColorString: $color_themeColorString, border_boxBorder: $border_boxBorder, borderRadius_borderRadius: $borderRadius_borderRadius, boxShadows_list_boxShadow: $boxShadows_list_boxShadow, gradient_gradient: $gradient_gradient, backgroundBlendMode_enum_blendMode: $backgroundBlendMode_enum_blendMode, shape_enum_boxShape: $shape_enum_boxShape)';
   }
 
   @override
@@ -247,30 +288,36 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BoxDecorationModelImpl &&
-            (identical(other.color, color) || other.color == color) &&
-            const DeepCollectionEquality().equals(other._border, _border) &&
-            (identical(other.borderRadius, borderRadius) ||
-                other.borderRadius == borderRadius) &&
-            const DeepCollectionEquality()
-                .equals(other._boxShadows, _boxShadows) &&
-            (identical(other.gradient, gradient) ||
-                other.gradient == gradient) &&
-            (identical(other.backgroundBlendMode, backgroundBlendMode) ||
-                other.backgroundBlendMode == backgroundBlendMode) &&
-            (identical(other.shape, shape) || other.shape == shape));
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
+            (identical(other.border_boxBorder, border_boxBorder) ||
+                other.border_boxBorder == border_boxBorder) &&
+            (identical(other.borderRadius_borderRadius,
+                    borderRadius_borderRadius) ||
+                other.borderRadius_borderRadius == borderRadius_borderRadius) &&
+            const DeepCollectionEquality().equals(
+                other._boxShadows_list_boxShadow, _boxShadows_list_boxShadow) &&
+            (identical(other.gradient_gradient, gradient_gradient) ||
+                other.gradient_gradient == gradient_gradient) &&
+            (identical(other.backgroundBlendMode_enum_blendMode,
+                    backgroundBlendMode_enum_blendMode) ||
+                other.backgroundBlendMode_enum_blendMode ==
+                    backgroundBlendMode_enum_blendMode) &&
+            (identical(other.shape_enum_boxShape, shape_enum_boxShape) ||
+                other.shape_enum_boxShape == shape_enum_boxShape));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      color,
-      const DeepCollectionEquality().hash(_border),
-      borderRadius,
-      const DeepCollectionEquality().hash(_boxShadows),
-      gradient,
-      backgroundBlendMode,
-      shape);
+      color_themeColorString,
+      border_boxBorder,
+      borderRadius_borderRadius,
+      const DeepCollectionEquality().hash(_boxShadows_list_boxShadow),
+      gradient_gradient,
+      backgroundBlendMode_enum_blendMode,
+      shape_enum_boxShape);
 
   @JsonKey(ignore: true)
   @override
@@ -289,38 +336,32 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
 
 abstract class _BoxDecorationModel extends BoxDecorationModel {
   const factory _BoxDecorationModel(
-      {final String? color,
-      @BoxBorderConverter() final Map<BoxBorderType, BoxBorder?>? border,
-      @BorderRadiusConverter() final BorderRadius? borderRadius,
-      @BoxShadowsConverter() final List<BoxShadow>? boxShadows,
-      @GradientConverter() final Gradient? gradient,
-      @BlendModeConverter() final BlendMode? backgroundBlendMode,
-      @BoxShapeConverter() final BoxShape? shape}) = _$BoxDecorationModelImpl;
+      {final String? color_themeColorString,
+      final BoxBorderModel? border_boxBorder,
+      final BorderRadiusModel? borderRadius_borderRadius,
+      final List<BoxShadowModel>? boxShadows_list_boxShadow,
+      final GradientModel? gradient_gradient,
+      final BlendMode? backgroundBlendMode_enum_blendMode,
+      final BoxShape? shape_enum_boxShape}) = _$BoxDecorationModelImpl;
   const _BoxDecorationModel._() : super._();
 
   factory _BoxDecorationModel.fromJson(Map<String, dynamic> json) =
       _$BoxDecorationModelImpl.fromJson;
 
   @override
-  String? get color;
+  String? get color_themeColorString;
+  @override // @BoxBorderConverter() Map<BoxBorderType, BoxBorder?>? border,
+  BoxBorderModel? get border_boxBorder;
+  @override // @BorderRadiusConverter() BorderRadius? borderRadius,
+  BorderRadiusModel? get borderRadius_borderRadius;
+  @override // @BoxShadowsConverter()
+  List<BoxShadowModel>? get boxShadows_list_boxShadow;
+  @override // @GradientConverter()
+  GradientModel? get gradient_gradient;
   @override
-  @BoxBorderConverter()
-  Map<BoxBorderType, BoxBorder?>? get border;
+  BlendMode? get backgroundBlendMode_enum_blendMode;
   @override
-  @BorderRadiusConverter()
-  BorderRadius? get borderRadius;
-  @override
-  @BoxShadowsConverter()
-  List<BoxShadow>? get boxShadows;
-  @override
-  @GradientConverter()
-  Gradient? get gradient;
-  @override
-  @BlendModeConverter()
-  BlendMode? get backgroundBlendMode;
-  @override
-  @BoxShapeConverter()
-  BoxShape? get shape;
+  BoxShape? get shape_enum_boxShape;
   @override
   @JsonKey(ignore: true)
   _$$BoxDecorationModelImplCopyWith<_$BoxDecorationModelImpl> get copyWith =>

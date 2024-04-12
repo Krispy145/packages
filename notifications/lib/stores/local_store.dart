@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -18,14 +19,12 @@ part 'local_store.g.dart';
 //TODO: Look into NotificationDetails and AndroidNotificationChannels for when creating notification channels and using them within this store
 
 /// [LocalNotificationsStore] is the base class for all local notifications stores.
-class LocalNotificationsStore = LocalNotificationsBaseStore
-    with _$LocalNotificationsStore;
+class LocalNotificationsStore = _LocalNotificationsStore with _$LocalNotificationsStore;
 
-/// [LocalNotificationsBaseStore] is the base class for all notifications stores.
-abstract class LocalNotificationsBaseStore extends NotificationsStore
-    with Store {
-  /// [LocalNotificationsBaseStore] constructor.
-  LocalNotificationsBaseStore({super.onNotificationReceived});
+/// [_LocalNotificationsStore] is the base class for all notifications stores.
+abstract class _LocalNotificationsStore extends NotificationsStore with Store {
+  /// [_LocalNotificationsStore] constructor.
+  _LocalNotificationsStore({super.onNotificationReceived});
 
   /// [androidLocalNotificationsChannel] is the Android local notifications channel.
   final androidLocalNotificationsChannel = const AndroidNotificationChannel(
@@ -35,8 +34,7 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
   );
 
   /// [androidLocalNotificationDetails] is the Android local notifications details.
-  LocalAndroidNotificationDetails get androidLocalNotificationDetails =>
-      LocalAndroidNotificationDetails(
+  LocalAndroidNotificationDetails get androidLocalNotificationDetails => LocalAndroidNotificationDetails(
         androidLocalNotificationsChannel.id,
         androidLocalNotificationsChannel.name,
       ).copyWith(
@@ -63,8 +61,7 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
   /// Corresponds to the UNNotificationCategory type which is used to configure notification categories and accompanying options.
   /// https://developer.apple.com/documentation/usernotifications/unnotificationcategory
   @observable
-  ObservableList<DarwinNotificationCategory> darwinNotificationCategories =
-      ObservableList();
+  ObservableList<DarwinNotificationCategory> darwinNotificationCategories = ObservableList();
 
   /// [setDarwinNotificationCategories] sets the list of darwin notification categories for iOS and macOS.
   @action
@@ -79,11 +76,8 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
   @override
   Future<bool> requestPermissions(NotificationPermissions? permissions) async {
     if (Platform.isIOS) {
-      final iosImplementation =
-          localNotifications.resolvePlatformSpecificImplementation<
-              IOSFlutterLocalNotificationsPlugin>();
-      final grantedNotificationPermission =
-          await iosImplementation?.requestPermissions(
+      final iosImplementation = localNotifications.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
+      final grantedNotificationPermission = await iosImplementation?.requestPermissions(
         alert: permissions?.alert ?? true,
         badge: permissions?.badge ?? true,
         provisional: permissions?.provisional ?? false,
@@ -91,11 +85,8 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
       );
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isMacOS) {
-      final macOSImplementation =
-          localNotifications.resolvePlatformSpecificImplementation<
-              MacOSFlutterLocalNotificationsPlugin>();
-      final grantedNotificationPermission =
-          await macOSImplementation?.requestPermissions(
+      final macOSImplementation = localNotifications.resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>();
+      final grantedNotificationPermission = await macOSImplementation?.requestPermissions(
         alert: permissions?.alert ?? true,
         badge: permissions?.badge ?? true,
         provisional: permissions?.provisional ?? false,
@@ -103,11 +94,8 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
       );
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isAndroid) {
-      final androidImplementation =
-          localNotifications.resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>();
-      final grantedNotificationPermission =
-          await androidImplementation?.requestNotificationsPermission();
+      final androidImplementation = localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+      final grantedNotificationPermission = await androidImplementation?.requestNotificationsPermission();
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isLinux || kIsWeb) {
       _notificationsEnabled = true;
@@ -119,7 +107,9 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
   @action
   Future<void> initialize() async {
     AppLogger.print(
-        "Initializing local notifications", [PackageFeatures.notifications]);
+      "Initializing local notifications",
+      [PackageFeatures.notifications],
+    );
     await _configureLocalTimeZone();
     final initializationSettings = InitializationSettings(
       android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -175,8 +165,7 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
     required NotificationDetails details,
     required tz.TZDateTime time,
     ScheduledInterval interval = ScheduledInterval.exact,
-    AndroidScheduleMode androidScheduleMode =
-        AndroidScheduleMode.exactAllowWhileIdle,
+    AndroidScheduleMode androidScheduleMode = AndroidScheduleMode.exactAllowWhileIdle,
   }) async {
     await localNotifications.zonedSchedule(
       notification.localId,
@@ -187,28 +176,22 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
       payload: json.encode(notification.toJson()),
       androidScheduleMode: androidScheduleMode,
       matchDateTimeComponents: interval.toDateTimeComponents,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
+      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
   /// [createAndroidNotificationChannel] creates an Android notification channel.
   @action
   Future<void> createAndroidNotificationChannel(
-      AndroidNotificationChannel channel) async {
-    await localNotifications
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(channel);
+    AndroidNotificationChannel channel,
+  ) async {
+    await localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
   }
 
   /// [deleteAndroidNotificationChannel] deletes an Android notification channel.
   @action
   Future<void> deleteAndroidNotificationChannel(String channelId) async {
-    await localNotifications
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.deleteNotificationChannel(channelId);
+    await localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.deleteNotificationChannel(channelId);
   }
 
   /// [updateActiveNotificationsList] updates the active notifications to the [notifications].
@@ -223,19 +206,22 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
       );
     }
 
-    AppLogger.print("Active notifications: $activeNotifications",
-        [PackageFeatures.notifications]);
+    AppLogger.print(
+      "Active notifications: $activeNotifications",
+      [PackageFeatures.notifications],
+    );
     await updateAll(notificationMap);
     AppLogger.print(
-        "Local notifications: $notifications", [PackageFeatures.notifications]);
+      "Local notifications: $notifications",
+      [PackageFeatures.notifications],
+    );
   }
 
   /// [delete] cancels a notification by [id].
   @action
   @override
   Future<void> delete(String id) async {
-    final notification = notifications.value.values
-        .firstWhereOrNull((element) => element?.id == id);
+    final notification = notifications.value.values.firstWhereOrNull((element) => element?.id == id);
     if (notification == null) return;
     await localNotifications.cancel(notification.localId);
     await super.delete(id);
@@ -253,7 +239,8 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
   Future<ObservableList<NotificationModel?>> _getActiveNotifications() async {
     if (Platform.isLinux) return ObservableList();
     return _convertActiveNotificationsToModel(
-        await localNotifications.getActiveNotifications());
+      await localNotifications.getActiveNotifications(),
+    );
   }
 
   @action
@@ -272,7 +259,8 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
       onDidReceiveLocalNotification: (id, title, body, payload) {
         final notification = payload != null
             ? NotificationModel.fromJson(
-                json.decode(payload) as Map<String, dynamic>)
+                json.decode(payload) as Map<String, dynamic>,
+              )
             : null;
         _onDidReceiveLocalNotification(notification);
       },
@@ -290,52 +278,59 @@ abstract class LocalNotificationsBaseStore extends NotificationsStore
 
   @action
   Future<void> _handleInitialNotification() async {
-    final notificationAppLaunchDetails =
-        await localNotifications.getNotificationAppLaunchDetails();
-    final notificationResponse =
-        notificationAppLaunchDetails?.notificationResponse;
-    if ((notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) &&
-        notificationResponse != null) {
-      await _onDidReceiveNotificationResponse(notificationResponse,
-          updateBadge: false);
+    final notificationAppLaunchDetails = await localNotifications.getNotificationAppLaunchDetails();
+    final notificationResponse = notificationAppLaunchDetails?.notificationResponse;
+    if ((notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) && notificationResponse != null) {
+      await _onDidReceiveNotificationResponse(
+        notificationResponse,
+        updateBadge: false,
+      );
     }
   }
 
   @action
   Future<void> _onDidReceiveNotificationResponse(
-      NotificationResponse notificationResponse,
-      {bool updateBadge = true}) async {
+    NotificationResponse notificationResponse, {
+    bool updateBadge = true,
+  }) async {
     await updateActiveNotificationsList();
     if (updateBadge) {
       //TODO: Look into updating the badge count for iOS and macOS
     } else {}
-    final notification =
-        _convertNotificationResponseToModel(notificationResponse);
+    final notification = _convertNotificationResponseToModel(notificationResponse);
     if (notification == null) return;
     await update(
-        notification.id, notification.copyWith(isLocalNotification: true));
+      notification.id,
+      notification.copyWith(isLocalNotification: true),
+    );
   }
 
   @action
   NotificationModel? _convertNotificationResponseToModel(
-      NotificationResponse notificationResponse) {
-    AppLogger.print("Notification response: ${notificationResponse.payload}",
-        [PackageFeatures.notifications]);
+    NotificationResponse notificationResponse,
+  ) {
+    AppLogger.print(
+      "Notification response: ${notificationResponse.payload}",
+      [PackageFeatures.notifications],
+    );
     return notificationResponse.payload != null
         ? NotificationModel.fromJson(
-            json.decode(notificationResponse.payload!) as Map<String, dynamic>)
+            json.decode(notificationResponse.payload!) as Map<String, dynamic>,
+          )
         : null;
   }
 
   @action
   ObservableList<NotificationModel?> _convertActiveNotificationsToModel(
-          List<ActiveNotification> activeNotifications) =>
+    List<ActiveNotification> activeNotifications,
+  ) =>
       ObservableList.of(
         activeNotifications.map(
           (notification) {
             return notification.payload != null
                 ? NotificationModel.fromJson(
-                    json.decode(notification.payload!) as Map<String, dynamic>)
+                    json.decode(notification.payload!) as Map<String, dynamic>,
+                  )
                 : null;
           },
         ).toList(),

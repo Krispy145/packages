@@ -8,24 +8,24 @@ part of 'base_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$AuthStateStore on AuthStateBaseStore, Store {
+mixin _$AuthStateStore on _AuthStateStore, Store {
   Computed<bool>? _$isAuthenticatedComputed;
 
   @override
   bool get isAuthenticated =>
       (_$isAuthenticatedComputed ??= Computed<bool>(() => super.isAuthenticated,
-              name: 'AuthStateBaseStore.isAuthenticated'))
+              name: '_AuthStateStore.isAuthenticated'))
           .value;
   Computed<bool>? _$isUnauthenticatedComputed;
 
   @override
   bool get isUnauthenticated => (_$isUnauthenticatedComputed ??= Computed<bool>(
           () => super.isUnauthenticated,
-          name: 'AuthStateBaseStore.isUnauthenticated'))
+          name: '_AuthStateStore.isUnauthenticated'))
       .value;
 
   late final _$currentStateAtom =
-      Atom(name: 'AuthStateBaseStore.currentState', context: context);
+      Atom(name: '_AuthStateStore.currentState', context: context);
 
   @override
   AuthState get currentState {
@@ -40,28 +40,28 @@ mixin _$AuthStateStore on AuthStateBaseStore, Store {
     });
   }
 
-  late final _$AuthStateBaseStoreActionController =
-      ActionController(name: 'AuthStateBaseStore', context: context);
+  late final _$_AuthStateStoreActionController =
+      ActionController(name: '_AuthStateStore', context: context);
 
   @override
   void setAuthenticated() {
-    final _$actionInfo = _$AuthStateBaseStoreActionController.startAction(
-        name: 'AuthStateBaseStore.setAuthenticated');
+    final _$actionInfo = _$_AuthStateStoreActionController.startAction(
+        name: '_AuthStateStore.setAuthenticated');
     try {
       return super.setAuthenticated();
     } finally {
-      _$AuthStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_AuthStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setUnauthenticated() {
-    final _$actionInfo = _$AuthStateBaseStoreActionController.startAction(
-        name: 'AuthStateBaseStore.setUnauthenticated');
+    final _$actionInfo = _$_AuthStateStoreActionController.startAction(
+        name: '_AuthStateStore.setUnauthenticated');
     try {
       return super.setUnauthenticated();
     } finally {
-      _$AuthStateBaseStoreActionController.endAction(_$actionInfo);
+      _$_AuthStateStoreActionController.endAction(_$actionInfo);
     }
   }
 

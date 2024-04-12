@@ -23,7 +23,7 @@ abstract class TextStyleSizes with _$TextStyleSizes {
   }) = _TextStyleSizes;
   const TextStyleSizes._();
 
-  // /// [defaultStyleSizes] returns a [TextStyleSizes] with default values.
+  /// [defaultStyleSizes] returns a [TextStyleSizes] with default values.
   // static TextStyleSizes defaultStyleSizes() {
   //   return TextStyleSizes(
   //     large: TextStyleModel.defaultStyles(),

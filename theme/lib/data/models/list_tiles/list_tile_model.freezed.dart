@@ -20,25 +20,30 @@ ListTileModel _$ListTileModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ListTileModel {
-  bool? get dense => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  String? get selectedColor => throw _privateConstructorUsedError;
-  String? get iconColor => throw _privateConstructorUsedError;
-  String? get textColor => throw _privateConstructorUsedError;
-  String? get titleTextStyle => throw _privateConstructorUsedError;
-  String? get subtitleTextStyle => throw _privateConstructorUsedError;
-  String? get leadingAndTrailingTextStyle => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding => throw _privateConstructorUsedError;
-  String? get tileColor => throw _privateConstructorUsedError;
-  String? get selectedTileColor => throw _privateConstructorUsedError;
-  double? get horizontalTitleGap => throw _privateConstructorUsedError;
-  double? get minVerticalPadding => throw _privateConstructorUsedError;
-  double? get minLeadingWidth => throw _privateConstructorUsedError;
-  bool? get enableFeedback => throw _privateConstructorUsedError;
-  @ListTileTitleAlignmentConverter()
-  ListTileTitleAlignment? get titleAlignment =>
+  bool? get dense_bool =>
+      throw _privateConstructorUsedError; // @OutlinedBorderConverter()
+  ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
+  String? get selectedColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get iconColor_themeColorString => throw _privateConstructorUsedError;
+  String? get textColor_themeColorString => throw _privateConstructorUsedError;
+  String? get titleTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get subtitleTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get leadingAndTrailingTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  EdgeInsetsModel? get contentPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
+  String? get tileColor_themeColorString => throw _privateConstructorUsedError;
+  String? get selectedTileColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get horizontalTitleGap_double => throw _privateConstructorUsedError;
+  double? get minVerticalPadding_double => throw _privateConstructorUsedError;
+  double? get minLeadingWidth_double => throw _privateConstructorUsedError;
+  bool? get enableFeedback_bool =>
+      throw _privateConstructorUsedError; // @ListTileTitleAlignmentConverter()
+  ListTileTitleAlignment? get titleAlignment_enum_listTileTitleAlignment =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,23 +59,25 @@ abstract class $ListTileModelCopyWith<$Res> {
       _$ListTileModelCopyWithImpl<$Res, ListTileModel>;
   @useResult
   $Res call(
-      {bool? dense,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      String? selectedColor,
-      String? iconColor,
-      String? textColor,
-      String? titleTextStyle,
-      String? subtitleTextStyle,
-      String? leadingAndTrailingTextStyle,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding,
-      String? tileColor,
-      String? selectedTileColor,
-      double? horizontalTitleGap,
-      double? minVerticalPadding,
-      double? minLeadingWidth,
-      bool? enableFeedback,
-      @ListTileTitleAlignmentConverter()
-      ListTileTitleAlignment? titleAlignment});
+      {bool? dense_bool,
+      ShapeBorderModel? shape_shapeBorder,
+      String? selectedColor_themeColorString,
+      String? iconColor_themeColorString,
+      String? textColor_themeColorString,
+      String? titleTextStyle_textStyleString,
+      String? subtitleTextStyle_textStyleString,
+      String? leadingAndTrailingTextStyle_textStyleString,
+      EdgeInsetsModel? contentPadding_edgeInsets,
+      String? tileColor_themeColorString,
+      String? selectedTileColor_themeColorString,
+      double? horizontalTitleGap_double,
+      double? minVerticalPadding_double,
+      double? minLeadingWidth_double,
+      bool? enableFeedback_bool,
+      ListTileTitleAlignment? titleAlignment_enum_listTileTitleAlignment});
+
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -86,89 +93,118 @@ class _$ListTileModelCopyWithImpl<$Res, $Val extends ListTileModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dense = freezed,
-    Object? shape = freezed,
-    Object? selectedColor = freezed,
-    Object? iconColor = freezed,
-    Object? textColor = freezed,
-    Object? titleTextStyle = freezed,
-    Object? subtitleTextStyle = freezed,
-    Object? leadingAndTrailingTextStyle = freezed,
-    Object? contentPadding = freezed,
-    Object? tileColor = freezed,
-    Object? selectedTileColor = freezed,
-    Object? horizontalTitleGap = freezed,
-    Object? minVerticalPadding = freezed,
-    Object? minLeadingWidth = freezed,
-    Object? enableFeedback = freezed,
-    Object? titleAlignment = freezed,
+    Object? dense_bool = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? textColor_themeColorString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
+    Object? subtitleTextStyle_textStyleString = freezed,
+    Object? leadingAndTrailingTextStyle_textStyleString = freezed,
+    Object? contentPadding_edgeInsets = freezed,
+    Object? tileColor_themeColorString = freezed,
+    Object? selectedTileColor_themeColorString = freezed,
+    Object? horizontalTitleGap_double = freezed,
+    Object? minVerticalPadding_double = freezed,
+    Object? minLeadingWidth_double = freezed,
+    Object? enableFeedback_bool = freezed,
+    Object? titleAlignment_enum_listTileTitleAlignment = freezed,
   }) {
     return _then(_value.copyWith(
-      dense: freezed == dense
-          ? _value.dense
-          : dense // ignore: cast_nullable_to_non_nullable
+      dense_bool: freezed == dense_bool
+          ? _value.dense_bool
+          : dense_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      selectedColor: freezed == selectedColor
-          ? _value.selectedColor
-          : selectedColor // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textColor: freezed == textColor
-          ? _value.textColor
-          : textColor // ignore: cast_nullable_to_non_nullable
+      textColor_themeColorString: freezed == textColor_themeColorString
+          ? _value.textColor_themeColorString
+          : textColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle: freezed == titleTextStyle
-          ? _value.titleTextStyle
-          : titleTextStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      subtitleTextStyle: freezed == subtitleTextStyle
-          ? _value.subtitleTextStyle
-          : subtitleTextStyle // ignore: cast_nullable_to_non_nullable
+      subtitleTextStyle_textStyleString: freezed ==
+              subtitleTextStyle_textStyleString
+          ? _value.subtitleTextStyle_textStyleString
+          : subtitleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      leadingAndTrailingTextStyle: freezed == leadingAndTrailingTextStyle
-          ? _value.leadingAndTrailingTextStyle
-          : leadingAndTrailingTextStyle // ignore: cast_nullable_to_non_nullable
+      leadingAndTrailingTextStyle_textStyleString: freezed ==
+              leadingAndTrailingTextStyle_textStyleString
+          ? _value.leadingAndTrailingTextStyle_textStyleString
+          : leadingAndTrailingTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      contentPadding: freezed == contentPadding
-          ? _value.contentPadding
-          : contentPadding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      tileColor: freezed == tileColor
-          ? _value.tileColor
-          : tileColor // ignore: cast_nullable_to_non_nullable
+      contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
+          ? _value.contentPadding_edgeInsets
+          : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      tileColor_themeColorString: freezed == tileColor_themeColorString
+          ? _value.tileColor_themeColorString
+          : tileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedTileColor: freezed == selectedTileColor
-          ? _value.selectedTileColor
-          : selectedTileColor // ignore: cast_nullable_to_non_nullable
+      selectedTileColor_themeColorString: freezed ==
+              selectedTileColor_themeColorString
+          ? _value.selectedTileColor_themeColorString
+          : selectedTileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      horizontalTitleGap: freezed == horizontalTitleGap
-          ? _value.horizontalTitleGap
-          : horizontalTitleGap // ignore: cast_nullable_to_non_nullable
+      horizontalTitleGap_double: freezed == horizontalTitleGap_double
+          ? _value.horizontalTitleGap_double
+          : horizontalTitleGap_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      minVerticalPadding: freezed == minVerticalPadding
-          ? _value.minVerticalPadding
-          : minVerticalPadding // ignore: cast_nullable_to_non_nullable
+      minVerticalPadding_double: freezed == minVerticalPadding_double
+          ? _value.minVerticalPadding_double
+          : minVerticalPadding_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      minLeadingWidth: freezed == minLeadingWidth
-          ? _value.minLeadingWidth
-          : minLeadingWidth // ignore: cast_nullable_to_non_nullable
+      minLeadingWidth_double: freezed == minLeadingWidth_double
+          ? _value.minLeadingWidth_double
+          : minLeadingWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      titleAlignment: freezed == titleAlignment
-          ? _value.titleAlignment
-          : titleAlignment // ignore: cast_nullable_to_non_nullable
+      titleAlignment_enum_listTileTitleAlignment: freezed ==
+              titleAlignment_enum_listTileTitleAlignment
+          ? _value.titleAlignment_enum_listTileTitleAlignment
+          : titleAlignment_enum_listTileTitleAlignment // ignore: cast_nullable_to_non_nullable
               as ListTileTitleAlignment?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder {
+    if (_value.shape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.shape_shapeBorder!, (value) {
+      return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets {
+    if (_value.contentPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.contentPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(contentPadding_edgeInsets: value) as $Val);
+    });
   }
 }
 
@@ -181,23 +217,27 @@ abstract class _$$ListTileModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool? dense,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      String? selectedColor,
-      String? iconColor,
-      String? textColor,
-      String? titleTextStyle,
-      String? subtitleTextStyle,
-      String? leadingAndTrailingTextStyle,
-      @EdgeInsetsConverter() EdgeInsets? contentPadding,
-      String? tileColor,
-      String? selectedTileColor,
-      double? horizontalTitleGap,
-      double? minVerticalPadding,
-      double? minLeadingWidth,
-      bool? enableFeedback,
-      @ListTileTitleAlignmentConverter()
-      ListTileTitleAlignment? titleAlignment});
+      {bool? dense_bool,
+      ShapeBorderModel? shape_shapeBorder,
+      String? selectedColor_themeColorString,
+      String? iconColor_themeColorString,
+      String? textColor_themeColorString,
+      String? titleTextStyle_textStyleString,
+      String? subtitleTextStyle_textStyleString,
+      String? leadingAndTrailingTextStyle_textStyleString,
+      EdgeInsetsModel? contentPadding_edgeInsets,
+      String? tileColor_themeColorString,
+      String? selectedTileColor_themeColorString,
+      double? horizontalTitleGap_double,
+      double? minVerticalPadding_double,
+      double? minLeadingWidth_double,
+      bool? enableFeedback_bool,
+      ListTileTitleAlignment? titleAlignment_enum_listTileTitleAlignment});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get contentPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -211,87 +251,91 @@ class __$$ListTileModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? dense = freezed,
-    Object? shape = freezed,
-    Object? selectedColor = freezed,
-    Object? iconColor = freezed,
-    Object? textColor = freezed,
-    Object? titleTextStyle = freezed,
-    Object? subtitleTextStyle = freezed,
-    Object? leadingAndTrailingTextStyle = freezed,
-    Object? contentPadding = freezed,
-    Object? tileColor = freezed,
-    Object? selectedTileColor = freezed,
-    Object? horizontalTitleGap = freezed,
-    Object? minVerticalPadding = freezed,
-    Object? minLeadingWidth = freezed,
-    Object? enableFeedback = freezed,
-    Object? titleAlignment = freezed,
+    Object? dense_bool = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? textColor_themeColorString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
+    Object? subtitleTextStyle_textStyleString = freezed,
+    Object? leadingAndTrailingTextStyle_textStyleString = freezed,
+    Object? contentPadding_edgeInsets = freezed,
+    Object? tileColor_themeColorString = freezed,
+    Object? selectedTileColor_themeColorString = freezed,
+    Object? horizontalTitleGap_double = freezed,
+    Object? minVerticalPadding_double = freezed,
+    Object? minLeadingWidth_double = freezed,
+    Object? enableFeedback_bool = freezed,
+    Object? titleAlignment_enum_listTileTitleAlignment = freezed,
   }) {
     return _then(_$ListTileModelImpl(
-      dense: freezed == dense
-          ? _value.dense
-          : dense // ignore: cast_nullable_to_non_nullable
+      dense_bool: freezed == dense_bool
+          ? _value.dense_bool
+          : dense_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      selectedColor: freezed == selectedColor
-          ? _value.selectedColor
-          : selectedColor // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      textColor: freezed == textColor
-          ? _value.textColor
-          : textColor // ignore: cast_nullable_to_non_nullable
+      textColor_themeColorString: freezed == textColor_themeColorString
+          ? _value.textColor_themeColorString
+          : textColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle: freezed == titleTextStyle
-          ? _value.titleTextStyle
-          : titleTextStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      subtitleTextStyle: freezed == subtitleTextStyle
-          ? _value.subtitleTextStyle
-          : subtitleTextStyle // ignore: cast_nullable_to_non_nullable
+      subtitleTextStyle_textStyleString: freezed ==
+              subtitleTextStyle_textStyleString
+          ? _value.subtitleTextStyle_textStyleString
+          : subtitleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      leadingAndTrailingTextStyle: freezed == leadingAndTrailingTextStyle
-          ? _value.leadingAndTrailingTextStyle
-          : leadingAndTrailingTextStyle // ignore: cast_nullable_to_non_nullable
+      leadingAndTrailingTextStyle_textStyleString: freezed ==
+              leadingAndTrailingTextStyle_textStyleString
+          ? _value.leadingAndTrailingTextStyle_textStyleString
+          : leadingAndTrailingTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      contentPadding: freezed == contentPadding
-          ? _value.contentPadding
-          : contentPadding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      tileColor: freezed == tileColor
-          ? _value.tileColor
-          : tileColor // ignore: cast_nullable_to_non_nullable
+      contentPadding_edgeInsets: freezed == contentPadding_edgeInsets
+          ? _value.contentPadding_edgeInsets
+          : contentPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      tileColor_themeColorString: freezed == tileColor_themeColorString
+          ? _value.tileColor_themeColorString
+          : tileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedTileColor: freezed == selectedTileColor
-          ? _value.selectedTileColor
-          : selectedTileColor // ignore: cast_nullable_to_non_nullable
+      selectedTileColor_themeColorString: freezed ==
+              selectedTileColor_themeColorString
+          ? _value.selectedTileColor_themeColorString
+          : selectedTileColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      horizontalTitleGap: freezed == horizontalTitleGap
-          ? _value.horizontalTitleGap
-          : horizontalTitleGap // ignore: cast_nullable_to_non_nullable
+      horizontalTitleGap_double: freezed == horizontalTitleGap_double
+          ? _value.horizontalTitleGap_double
+          : horizontalTitleGap_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      minVerticalPadding: freezed == minVerticalPadding
-          ? _value.minVerticalPadding
-          : minVerticalPadding // ignore: cast_nullable_to_non_nullable
+      minVerticalPadding_double: freezed == minVerticalPadding_double
+          ? _value.minVerticalPadding_double
+          : minVerticalPadding_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      minLeadingWidth: freezed == minLeadingWidth
-          ? _value.minLeadingWidth
-          : minLeadingWidth // ignore: cast_nullable_to_non_nullable
+      minLeadingWidth_double: freezed == minLeadingWidth_double
+          ? _value.minLeadingWidth_double
+          : minLeadingWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      enableFeedback: freezed == enableFeedback
-          ? _value.enableFeedback
-          : enableFeedback // ignore: cast_nullable_to_non_nullable
+      enableFeedback_bool: freezed == enableFeedback_bool
+          ? _value.enableFeedback_bool
+          : enableFeedback_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      titleAlignment: freezed == titleAlignment
-          ? _value.titleAlignment
-          : titleAlignment // ignore: cast_nullable_to_non_nullable
+      titleAlignment_enum_listTileTitleAlignment: freezed ==
+              titleAlignment_enum_listTileTitleAlignment
+          ? _value.titleAlignment_enum_listTileTitleAlignment
+          : titleAlignment_enum_listTileTitleAlignment // ignore: cast_nullable_to_non_nullable
               as ListTileTitleAlignment?,
     ));
   }
@@ -301,66 +345,66 @@ class __$$ListTileModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ListTileModelImpl extends _ListTileModel {
   const _$ListTileModelImpl(
-      {this.dense,
-      @OutlinedBorderConverter() this.shape,
-      this.selectedColor,
-      this.iconColor,
-      this.textColor,
-      this.titleTextStyle,
-      this.subtitleTextStyle,
-      this.leadingAndTrailingTextStyle,
-      @EdgeInsetsConverter() this.contentPadding,
-      this.tileColor,
-      this.selectedTileColor,
-      this.horizontalTitleGap,
-      this.minVerticalPadding,
-      this.minLeadingWidth,
-      this.enableFeedback,
-      @ListTileTitleAlignmentConverter() this.titleAlignment})
+      {this.dense_bool,
+      this.shape_shapeBorder,
+      this.selectedColor_themeColorString,
+      this.iconColor_themeColorString,
+      this.textColor_themeColorString,
+      this.titleTextStyle_textStyleString,
+      this.subtitleTextStyle_textStyleString,
+      this.leadingAndTrailingTextStyle_textStyleString,
+      this.contentPadding_edgeInsets = const EdgeInsetsModel(),
+      this.tileColor_themeColorString,
+      this.selectedTileColor_themeColorString,
+      this.horizontalTitleGap_double,
+      this.minVerticalPadding_double,
+      this.minLeadingWidth_double,
+      this.enableFeedback_bool,
+      this.titleAlignment_enum_listTileTitleAlignment})
       : super._();
 
   factory _$ListTileModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ListTileModelImplFromJson(json);
 
   @override
-  final bool? dense;
+  final bool? dense_bool;
+// @OutlinedBorderConverter()
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  final ShapeBorderModel? shape_shapeBorder;
   @override
-  final String? selectedColor;
+  final String? selectedColor_themeColorString;
   @override
-  final String? iconColor;
+  final String? iconColor_themeColorString;
   @override
-  final String? textColor;
+  final String? textColor_themeColorString;
   @override
-  final String? titleTextStyle;
+  final String? titleTextStyle_textStyleString;
   @override
-  final String? subtitleTextStyle;
+  final String? subtitleTextStyle_textStyleString;
   @override
-  final String? leadingAndTrailingTextStyle;
+  final String? leadingAndTrailingTextStyle_textStyleString;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? contentPadding;
+  @JsonKey()
+  final EdgeInsetsModel? contentPadding_edgeInsets;
   @override
-  final String? tileColor;
+  final String? tileColor_themeColorString;
   @override
-  final String? selectedTileColor;
+  final String? selectedTileColor_themeColorString;
   @override
-  final double? horizontalTitleGap;
+  final double? horizontalTitleGap_double;
   @override
-  final double? minVerticalPadding;
+  final double? minVerticalPadding_double;
   @override
-  final double? minLeadingWidth;
+  final double? minLeadingWidth_double;
   @override
-  final bool? enableFeedback;
+  final bool? enableFeedback_bool;
+// @ListTileTitleAlignmentConverter()
   @override
-  @ListTileTitleAlignmentConverter()
-  final ListTileTitleAlignment? titleAlignment;
+  final ListTileTitleAlignment? titleAlignment_enum_listTileTitleAlignment;
 
   @override
   String toString() {
-    return 'ListTileModel(dense: $dense, shape: $shape, selectedColor: $selectedColor, iconColor: $iconColor, textColor: $textColor, titleTextStyle: $titleTextStyle, subtitleTextStyle: $subtitleTextStyle, leadingAndTrailingTextStyle: $leadingAndTrailingTextStyle, contentPadding: $contentPadding, tileColor: $tileColor, selectedTileColor: $selectedTileColor, horizontalTitleGap: $horizontalTitleGap, minVerticalPadding: $minVerticalPadding, minLeadingWidth: $minLeadingWidth, enableFeedback: $enableFeedback, titleAlignment: $titleAlignment)';
+    return 'ListTileModel(dense_bool: $dense_bool, shape_shapeBorder: $shape_shapeBorder, selectedColor_themeColorString: $selectedColor_themeColorString, iconColor_themeColorString: $iconColor_themeColorString, textColor_themeColorString: $textColor_themeColorString, titleTextStyle_textStyleString: $titleTextStyle_textStyleString, subtitleTextStyle_textStyleString: $subtitleTextStyle_textStyleString, leadingAndTrailingTextStyle_textStyleString: $leadingAndTrailingTextStyle_textStyleString, contentPadding_edgeInsets: $contentPadding_edgeInsets, tileColor_themeColorString: $tileColor_themeColorString, selectedTileColor_themeColorString: $selectedTileColor_themeColorString, horizontalTitleGap_double: $horizontalTitleGap_double, minVerticalPadding_double: $minVerticalPadding_double, minLeadingWidth_double: $minLeadingWidth_double, enableFeedback_bool: $enableFeedback_bool, titleAlignment_enum_listTileTitleAlignment: $titleAlignment_enum_listTileTitleAlignment)';
   }
 
   @override
@@ -368,60 +412,69 @@ class _$ListTileModelImpl extends _ListTileModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ListTileModelImpl &&
-            (identical(other.dense, dense) || other.dense == dense) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.selectedColor, selectedColor) ||
-                other.selectedColor == selectedColor) &&
-            (identical(other.iconColor, iconColor) ||
-                other.iconColor == iconColor) &&
-            (identical(other.textColor, textColor) ||
-                other.textColor == textColor) &&
-            (identical(other.titleTextStyle, titleTextStyle) ||
-                other.titleTextStyle == titleTextStyle) &&
-            (identical(other.subtitleTextStyle, subtitleTextStyle) ||
-                other.subtitleTextStyle == subtitleTextStyle) &&
-            (identical(other.leadingAndTrailingTextStyle,
-                    leadingAndTrailingTextStyle) ||
-                other.leadingAndTrailingTextStyle ==
-                    leadingAndTrailingTextStyle) &&
-            (identical(other.contentPadding, contentPadding) ||
-                other.contentPadding == contentPadding) &&
-            (identical(other.tileColor, tileColor) ||
-                other.tileColor == tileColor) &&
-            (identical(other.selectedTileColor, selectedTileColor) ||
-                other.selectedTileColor == selectedTileColor) &&
-            (identical(other.horizontalTitleGap, horizontalTitleGap) ||
-                other.horizontalTitleGap == horizontalTitleGap) &&
-            (identical(other.minVerticalPadding, minVerticalPadding) ||
-                other.minVerticalPadding == minVerticalPadding) &&
-            (identical(other.minLeadingWidth, minLeadingWidth) ||
-                other.minLeadingWidth == minLeadingWidth) &&
-            (identical(other.enableFeedback, enableFeedback) ||
-                other.enableFeedback == enableFeedback) &&
-            (identical(other.titleAlignment, titleAlignment) ||
-                other.titleAlignment == titleAlignment));
+            (identical(other.dense_bool, dense_bool) ||
+                other.dense_bool == dense_bool) &&
+            (identical(other.shape_shapeBorder, shape_shapeBorder) ||
+                other.shape_shapeBorder == shape_shapeBorder) &&
+            (identical(other.selectedColor_themeColorString, selectedColor_themeColorString) ||
+                other.selectedColor_themeColorString ==
+                    selectedColor_themeColorString) &&
+            (identical(other.iconColor_themeColorString, iconColor_themeColorString) ||
+                other.iconColor_themeColorString ==
+                    iconColor_themeColorString) &&
+            (identical(other.textColor_themeColorString, textColor_themeColorString) ||
+                other.textColor_themeColorString ==
+                    textColor_themeColorString) &&
+            (identical(other.titleTextStyle_textStyleString, titleTextStyle_textStyleString) ||
+                other.titleTextStyle_textStyleString ==
+                    titleTextStyle_textStyleString) &&
+            (identical(other.subtitleTextStyle_textStyleString, subtitleTextStyle_textStyleString) ||
+                other.subtitleTextStyle_textStyleString ==
+                    subtitleTextStyle_textStyleString) &&
+            (identical(other.leadingAndTrailingTextStyle_textStyleString, leadingAndTrailingTextStyle_textStyleString) ||
+                other.leadingAndTrailingTextStyle_textStyleString ==
+                    leadingAndTrailingTextStyle_textStyleString) &&
+            (identical(other.contentPadding_edgeInsets, contentPadding_edgeInsets) ||
+                other.contentPadding_edgeInsets == contentPadding_edgeInsets) &&
+            (identical(other.tileColor_themeColorString, tileColor_themeColorString) ||
+                other.tileColor_themeColorString ==
+                    tileColor_themeColorString) &&
+            (identical(other.selectedTileColor_themeColorString, selectedTileColor_themeColorString) ||
+                other.selectedTileColor_themeColorString ==
+                    selectedTileColor_themeColorString) &&
+            (identical(other.horizontalTitleGap_double, horizontalTitleGap_double) ||
+                other.horizontalTitleGap_double == horizontalTitleGap_double) &&
+            (identical(other.minVerticalPadding_double, minVerticalPadding_double) ||
+                other.minVerticalPadding_double == minVerticalPadding_double) &&
+            (identical(other.minLeadingWidth_double, minLeadingWidth_double) ||
+                other.minLeadingWidth_double == minLeadingWidth_double) &&
+            (identical(other.enableFeedback_bool, enableFeedback_bool) ||
+                other.enableFeedback_bool == enableFeedback_bool) &&
+            (identical(other.titleAlignment_enum_listTileTitleAlignment, titleAlignment_enum_listTileTitleAlignment) ||
+                other.titleAlignment_enum_listTileTitleAlignment ==
+                    titleAlignment_enum_listTileTitleAlignment));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      dense,
-      shape,
-      selectedColor,
-      iconColor,
-      textColor,
-      titleTextStyle,
-      subtitleTextStyle,
-      leadingAndTrailingTextStyle,
-      contentPadding,
-      tileColor,
-      selectedTileColor,
-      horizontalTitleGap,
-      minVerticalPadding,
-      minLeadingWidth,
-      enableFeedback,
-      titleAlignment);
+      dense_bool,
+      shape_shapeBorder,
+      selectedColor_themeColorString,
+      iconColor_themeColorString,
+      textColor_themeColorString,
+      titleTextStyle_textStyleString,
+      subtitleTextStyle_textStyleString,
+      leadingAndTrailingTextStyle_textStyleString,
+      contentPadding_edgeInsets,
+      tileColor_themeColorString,
+      selectedTileColor_themeColorString,
+      horizontalTitleGap_double,
+      minVerticalPadding_double,
+      minLeadingWidth_double,
+      enableFeedback_bool,
+      titleAlignment_enum_listTileTitleAlignment);
 
   @JsonKey(ignore: true)
   @override
@@ -439,63 +492,60 @@ class _$ListTileModelImpl extends _ListTileModel {
 
 abstract class _ListTileModel extends ListTileModel {
   const factory _ListTileModel(
-      {final bool? dense,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      final String? selectedColor,
-      final String? iconColor,
-      final String? textColor,
-      final String? titleTextStyle,
-      final String? subtitleTextStyle,
-      final String? leadingAndTrailingTextStyle,
-      @EdgeInsetsConverter() final EdgeInsets? contentPadding,
-      final String? tileColor,
-      final String? selectedTileColor,
-      final double? horizontalTitleGap,
-      final double? minVerticalPadding,
-      final double? minLeadingWidth,
-      final bool? enableFeedback,
-      @ListTileTitleAlignmentConverter()
-      final ListTileTitleAlignment? titleAlignment}) = _$ListTileModelImpl;
+      {final bool? dense_bool,
+      final ShapeBorderModel? shape_shapeBorder,
+      final String? selectedColor_themeColorString,
+      final String? iconColor_themeColorString,
+      final String? textColor_themeColorString,
+      final String? titleTextStyle_textStyleString,
+      final String? subtitleTextStyle_textStyleString,
+      final String? leadingAndTrailingTextStyle_textStyleString,
+      final EdgeInsetsModel? contentPadding_edgeInsets,
+      final String? tileColor_themeColorString,
+      final String? selectedTileColor_themeColorString,
+      final double? horizontalTitleGap_double,
+      final double? minVerticalPadding_double,
+      final double? minLeadingWidth_double,
+      final bool? enableFeedback_bool,
+      final ListTileTitleAlignment?
+          titleAlignment_enum_listTileTitleAlignment}) = _$ListTileModelImpl;
   const _ListTileModel._() : super._();
 
   factory _ListTileModel.fromJson(Map<String, dynamic> json) =
       _$ListTileModelImpl.fromJson;
 
   @override
-  bool? get dense;
+  bool? get dense_bool;
+  @override // @OutlinedBorderConverter()
+  ShapeBorderModel? get shape_shapeBorder;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  String? get selectedColor_themeColorString;
   @override
-  String? get selectedColor;
+  String? get iconColor_themeColorString;
   @override
-  String? get iconColor;
+  String? get textColor_themeColorString;
   @override
-  String? get textColor;
+  String? get titleTextStyle_textStyleString;
   @override
-  String? get titleTextStyle;
+  String? get subtitleTextStyle_textStyleString;
   @override
-  String? get subtitleTextStyle;
+  String? get leadingAndTrailingTextStyle_textStyleString;
   @override
-  String? get leadingAndTrailingTextStyle;
+  EdgeInsetsModel? get contentPadding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get contentPadding;
+  String? get tileColor_themeColorString;
   @override
-  String? get tileColor;
+  String? get selectedTileColor_themeColorString;
   @override
-  String? get selectedTileColor;
+  double? get horizontalTitleGap_double;
   @override
-  double? get horizontalTitleGap;
+  double? get minVerticalPadding_double;
   @override
-  double? get minVerticalPadding;
+  double? get minLeadingWidth_double;
   @override
-  double? get minLeadingWidth;
-  @override
-  bool? get enableFeedback;
-  @override
-  @ListTileTitleAlignmentConverter()
-  ListTileTitleAlignment? get titleAlignment;
+  bool? get enableFeedback_bool;
+  @override // @ListTileTitleAlignmentConverter()
+  ListTileTitleAlignment? get titleAlignment_enum_listTileTitleAlignment;
   @override
   @JsonKey(ignore: true)
   _$$ListTileModelImplCopyWith<_$ListTileModelImpl> get copyWith =>

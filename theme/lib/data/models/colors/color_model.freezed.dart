@@ -396,11 +396,12 @@ class _$ColorModelCopyWithImpl<$Res, $Val extends ColorModel>
 }
 
 /// @nodoc
-abstract class _$$ColorModelImplCopyWith<$Res>
+abstract class _$$themeColorStringModelImplCopyWith<$Res>
     implements $ColorModelCopyWith<$Res> {
-  factory _$$ColorModelImplCopyWith(
-          _$ColorModelImpl value, $Res Function(_$ColorModelImpl) then) =
-      __$$ColorModelImplCopyWithImpl<$Res>;
+  factory _$$themeColorStringModelImplCopyWith(
+          _$themeColorStringModelImpl value,
+          $Res Function(_$themeColorStringModelImpl) then) =
+      __$$themeColorStringModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -450,11 +451,11 @@ abstract class _$$ColorModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ColorModelImplCopyWithImpl<$Res>
-    extends _$ColorModelCopyWithImpl<$Res, _$ColorModelImpl>
-    implements _$$ColorModelImplCopyWith<$Res> {
-  __$$ColorModelImplCopyWithImpl(
-      _$ColorModelImpl _value, $Res Function(_$ColorModelImpl) _then)
+class __$$themeColorStringModelImplCopyWithImpl<$Res>
+    extends _$ColorModelCopyWithImpl<$Res, _$themeColorStringModelImpl>
+    implements _$$themeColorStringModelImplCopyWith<$Res> {
+  __$$themeColorStringModelImplCopyWithImpl(_$themeColorStringModelImpl _value,
+      $Res Function(_$themeColorStringModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -504,7 +505,7 @@ class __$$ColorModelImplCopyWithImpl<$Res>
     Object? outlineVariant = freezed,
     Object? scrim = freezed,
   }) {
-    return _then(_$ColorModelImpl(
+    return _then(_$themeColorStringModelImpl(
       primary: freezed == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
@@ -683,8 +684,8 @@ class __$$ColorModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ColorModelImpl extends _ColorModel {
-  const _$ColorModelImpl(
+class _$themeColorStringModelImpl extends _themeColorStringModel {
+  const _$themeColorStringModelImpl(
       {@ColorConverter() this.primary,
       @ColorConverter() this.onPrimary,
       @ColorConverter() this.primaryContainer,
@@ -885,7 +886,7 @@ class _$ColorModelImpl extends _ColorModel {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ColorModelImpl &&
+            other is _$themeColorStringModelImpl &&
             (identical(other.primary, primary) || other.primary == primary) &&
             (identical(other.onPrimary, onPrimary) ||
                 other.onPrimary == onPrimary) &&
@@ -1018,12 +1019,13 @@ class _$ColorModelImpl extends _ColorModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ColorModelImplCopyWith<_$ColorModelImpl> get copyWith =>
-      __$$ColorModelImplCopyWithImpl<_$ColorModelImpl>(this, _$identity);
+  _$$themeColorStringModelImplCopyWith<_$themeColorStringModelImpl>
+      get copyWith => __$$themeColorStringModelImplCopyWithImpl<
+          _$themeColorStringModelImpl>(this, _$identity);
 }
 
-abstract class _ColorModel extends ColorModel {
-  const factory _ColorModel(
+abstract class _themeColorStringModel extends ColorModel {
+  const factory _themeColorStringModel(
       {@ColorConverter() final Color? primary,
       @ColorConverter() final Color? onPrimary,
       @ColorConverter() final Color? primaryContainer,
@@ -1066,8 +1068,8 @@ abstract class _ColorModel extends ColorModel {
       @ColorConverter() final Color? shadow,
       @ColorConverter() final Color? surfaceTint,
       @ColorConverter() final Color? outlineVariant,
-      @ColorConverter() final Color? scrim}) = _$ColorModelImpl;
-  const _ColorModel._() : super._();
+      @ColorConverter() final Color? scrim}) = _$themeColorStringModelImpl;
+  const _themeColorStringModel._() : super._();
 
   @override // required Brightness brightness,
   @ColorConverter()
@@ -1200,6 +1202,6 @@ abstract class _ColorModel extends ColorModel {
   Color? get scrim;
   @override
   @JsonKey(ignore: true)
-  _$$ColorModelImplCopyWith<_$ColorModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$themeColorStringModelImplCopyWith<_$themeColorStringModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

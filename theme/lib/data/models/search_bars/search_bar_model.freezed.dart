@@ -20,22 +20,24 @@ SearchBarModel _$SearchBarModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SearchBarModel {
-  double? get elevation => throw _privateConstructorUsedError;
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  String? get overlayColor => throw _privateConstructorUsedError;
-  @BorderSideConverter()
-  BorderSide? get side => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding => throw _privateConstructorUsedError;
-  String? get textStyle => throw _privateConstructorUsedError;
-  String? get hintStyle => throw _privateConstructorUsedError;
-  @BoxConstraintsConverter()
-  BoxConstraints? get constraints => throw _privateConstructorUsedError;
-  TextCapitalization? get textCapitalization =>
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get overlayColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
+  OutlinedBorderModel? get shape_outlinedBorder =>
+      throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
+  String? get textStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get hintStyle_textStyleString => throw _privateConstructorUsedError;
+  BoxConstraintsModel? get constraints_boxConstraints =>
+      throw _privateConstructorUsedError;
+  TextCapitalization? get textCapitalization_enum_textCapitalization =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -51,18 +53,23 @@ abstract class $SearchBarModelCopyWith<$Res> {
       _$SearchBarModelCopyWithImpl<$Res, SearchBarModel>;
   @useResult
   $Res call(
-      {double? elevation,
-      String? backgroundColor,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? overlayColor,
-      @BorderSideConverter() BorderSide? side,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      @EdgeInsetsConverter() EdgeInsets? padding,
-      String? textStyle,
-      String? hintStyle,
-      @BoxConstraintsConverter() BoxConstraints? constraints,
-      TextCapitalization? textCapitalization});
+      {double? elevation_double,
+      String? backgroundColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? overlayColor_themeColorString,
+      BorderSideModel? side_borderSide,
+      OutlinedBorderModel? shape_outlinedBorder,
+      EdgeInsetsModel? padding_edgeInsets,
+      String? textStyle_textStyleString,
+      String? hintStyle_textStyleString,
+      BoxConstraintsModel? constraints_boxConstraints,
+      TextCapitalization? textCapitalization_enum_textCapitalization});
+
+  $BorderSideModelCopyWith<$Res>? get side_borderSide;
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
 }
 
 /// @nodoc
@@ -78,69 +85,122 @@ class _$SearchBarModelCopyWithImpl<$Res, $Val extends SearchBarModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elevation = freezed,
-    Object? backgroundColor = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? overlayColor = freezed,
-    Object? side = freezed,
-    Object? shape = freezed,
-    Object? padding = freezed,
-    Object? textStyle = freezed,
-    Object? hintStyle = freezed,
-    Object? constraints = freezed,
-    Object? textCapitalization = freezed,
+    Object? elevation_double = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? side_borderSide = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? padding_edgeInsets = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? hintStyle_textStyleString = freezed,
+    Object? constraints_boxConstraints = freezed,
+    Object? textCapitalization_enum_textCapitalization = freezed,
   }) {
     return _then(_value.copyWith(
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      side: freezed == side
-          ? _value.side
-          : side // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      side_borderSide: freezed == side_borderSide
+          ? _value.side_borderSide
+          : side_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      padding_edgeInsets: freezed == padding_edgeInsets
+          ? _value.padding_edgeInsets
+          : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hintStyle: freezed == hintStyle
-          ? _value.hintStyle
-          : hintStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyleString: freezed == hintStyle_textStyleString
+          ? _value.hintStyle_textStyleString
+          : hintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      constraints: freezed == constraints
-          ? _value.constraints
-          : constraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      textCapitalization: freezed == textCapitalization
-          ? _value.textCapitalization
-          : textCapitalization // ignore: cast_nullable_to_non_nullable
+      constraints_boxConstraints: freezed == constraints_boxConstraints
+          ? _value.constraints_boxConstraints
+          : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      textCapitalization_enum_textCapitalization: freezed ==
+              textCapitalization_enum_textCapitalization
+          ? _value.textCapitalization_enum_textCapitalization
+          : textCapitalization_enum_textCapitalization // ignore: cast_nullable_to_non_nullable
               as TextCapitalization?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderSideModelCopyWith<$Res>? get side_borderSide {
+    if (_value.side_borderSide == null) {
+      return null;
+    }
+
+    return $BorderSideModelCopyWith<$Res>(_value.side_borderSide!, (value) {
+      return _then(_value.copyWith(side_borderSide: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder {
+    if (_value.shape_outlinedBorder == null) {
+      return null;
+    }
+
+    return $OutlinedBorderModelCopyWith<$Res>(_value.shape_outlinedBorder!,
+        (value) {
+      return _then(_value.copyWith(shape_outlinedBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints {
+    if (_value.constraints_boxConstraints == null) {
+      return null;
+    }
+
+    return $BoxConstraintsModelCopyWith<$Res>(
+        _value.constraints_boxConstraints!, (value) {
+      return _then(_value.copyWith(constraints_boxConstraints: value) as $Val);
+    });
   }
 }
 
@@ -153,18 +213,27 @@ abstract class _$$SearchBarModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double? elevation,
-      String? backgroundColor,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? overlayColor,
-      @BorderSideConverter() BorderSide? side,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      @EdgeInsetsConverter() EdgeInsets? padding,
-      String? textStyle,
-      String? hintStyle,
-      @BoxConstraintsConverter() BoxConstraints? constraints,
-      TextCapitalization? textCapitalization});
+      {double? elevation_double,
+      String? backgroundColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? overlayColor_themeColorString,
+      BorderSideModel? side_borderSide,
+      OutlinedBorderModel? shape_outlinedBorder,
+      EdgeInsetsModel? padding_edgeInsets,
+      String? textStyle_textStyleString,
+      String? hintStyle_textStyleString,
+      BoxConstraintsModel? constraints_boxConstraints,
+      TextCapitalization? textCapitalization_enum_textCapitalization});
+
+  @override
+  $BorderSideModelCopyWith<$Res>? get side_borderSide;
+  @override
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  @override
+  $BoxConstraintsModelCopyWith<$Res>? get constraints_boxConstraints;
 }
 
 /// @nodoc
@@ -178,67 +247,70 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elevation = freezed,
-    Object? backgroundColor = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? overlayColor = freezed,
-    Object? side = freezed,
-    Object? shape = freezed,
-    Object? padding = freezed,
-    Object? textStyle = freezed,
-    Object? hintStyle = freezed,
-    Object? constraints = freezed,
-    Object? textCapitalization = freezed,
+    Object? elevation_double = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? side_borderSide = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? padding_edgeInsets = freezed,
+    Object? textStyle_textStyleString = freezed,
+    Object? hintStyle_textStyleString = freezed,
+    Object? constraints_boxConstraints = freezed,
+    Object? textCapitalization_enum_textCapitalization = freezed,
   }) {
     return _then(_$SearchBarModelImpl(
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      side: freezed == side
-          ? _value.side
-          : side // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      textStyle: freezed == textStyle
-          ? _value.textStyle
-          : textStyle // ignore: cast_nullable_to_non_nullable
+      side_borderSide: freezed == side_borderSide
+          ? _value.side_borderSide
+          : side_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      padding_edgeInsets: freezed == padding_edgeInsets
+          ? _value.padding_edgeInsets
+          : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      textStyle_textStyleString: freezed == textStyle_textStyleString
+          ? _value.textStyle_textStyleString
+          : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      hintStyle: freezed == hintStyle
-          ? _value.hintStyle
-          : hintStyle // ignore: cast_nullable_to_non_nullable
+      hintStyle_textStyleString: freezed == hintStyle_textStyleString
+          ? _value.hintStyle_textStyleString
+          : hintStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      constraints: freezed == constraints
-          ? _value.constraints
-          : constraints // ignore: cast_nullable_to_non_nullable
-              as BoxConstraints?,
-      textCapitalization: freezed == textCapitalization
-          ? _value.textCapitalization
-          : textCapitalization // ignore: cast_nullable_to_non_nullable
+      constraints_boxConstraints: freezed == constraints_boxConstraints
+          ? _value.constraints_boxConstraints
+          : constraints_boxConstraints // ignore: cast_nullable_to_non_nullable
+              as BoxConstraintsModel?,
+      textCapitalization_enum_textCapitalization: freezed ==
+              textCapitalization_enum_textCapitalization
+          ? _value.textCapitalization_enum_textCapitalization
+          : textCapitalization_enum_textCapitalization // ignore: cast_nullable_to_non_nullable
               as TextCapitalization?,
     ));
   }
@@ -248,56 +320,56 @@ class __$$SearchBarModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SearchBarModelImpl extends _SearchBarModel {
   const _$SearchBarModelImpl(
-      {this.elevation,
-      this.backgroundColor,
-      this.shadowColor,
-      this.surfaceTintColor,
-      this.overlayColor,
-      @BorderSideConverter() this.side,
-      @OutlinedBorderConverter() this.shape,
-      @EdgeInsetsConverter() this.padding,
-      this.textStyle,
-      this.hintStyle,
-      @BoxConstraintsConverter() this.constraints,
-      this.textCapitalization = TextCapitalization.none})
+      {this.elevation_double,
+      this.backgroundColor_themeColorString,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.overlayColor_themeColorString,
+      this.side_borderSide,
+      this.shape_outlinedBorder = const OutlinedBorderModel(),
+      this.padding_edgeInsets = const EdgeInsetsModel(),
+      this.textStyle_textStyleString,
+      this.hintStyle_textStyleString,
+      this.constraints_boxConstraints = const BoxConstraintsModel(),
+      this.textCapitalization_enum_textCapitalization =
+          TextCapitalization.none})
       : super._();
 
   factory _$SearchBarModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SearchBarModelImplFromJson(json);
 
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? shadowColor;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? overlayColor;
+  final String? overlayColor_themeColorString;
   @override
-  @BorderSideConverter()
-  final BorderSide? side;
-  @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
-  @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding;
-  @override
-  final String? textStyle;
-  @override
-  final String? hintStyle;
-  @override
-  @BoxConstraintsConverter()
-  final BoxConstraints? constraints;
+  final BorderSideModel? side_borderSide;
   @override
   @JsonKey()
-  final TextCapitalization? textCapitalization;
+  final OutlinedBorderModel? shape_outlinedBorder;
+  @override
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
+  @override
+  final String? textStyle_textStyleString;
+  @override
+  final String? hintStyle_textStyleString;
+  @override
+  @JsonKey()
+  final BoxConstraintsModel? constraints_boxConstraints;
+  @override
+  @JsonKey()
+  final TextCapitalization? textCapitalization_enum_textCapitalization;
 
   @override
   String toString() {
-    return 'SearchBarModel(elevation: $elevation, backgroundColor: $backgroundColor, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, overlayColor: $overlayColor, side: $side, shape: $shape, padding: $padding, textStyle: $textStyle, hintStyle: $hintStyle, constraints: $constraints, textCapitalization: $textCapitalization)';
+    return 'SearchBarModel(elevation_double: $elevation_double, backgroundColor_themeColorString: $backgroundColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, padding_edgeInsets: $padding_edgeInsets, textStyle_textStyleString: $textStyle_textStyleString, hintStyle_textStyleString: $hintStyle_textStyleString, constraints_boxConstraints: $constraints_boxConstraints, textCapitalization_enum_textCapitalization: $textCapitalization_enum_textCapitalization)';
   }
 
   @override
@@ -305,45 +377,56 @@ class _$SearchBarModelImpl extends _SearchBarModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SearchBarModelImpl &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.overlayColor, overlayColor) ||
-                other.overlayColor == overlayColor) &&
-            (identical(other.side, side) || other.side == side) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.padding, padding) || other.padding == padding) &&
-            (identical(other.textStyle, textStyle) ||
-                other.textStyle == textStyle) &&
-            (identical(other.hintStyle, hintStyle) ||
-                other.hintStyle == hintStyle) &&
-            (identical(other.constraints, constraints) ||
-                other.constraints == constraints) &&
-            (identical(other.textCapitalization, textCapitalization) ||
-                other.textCapitalization == textCapitalization));
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.overlayColor_themeColorString, overlayColor_themeColorString) ||
+                other.overlayColor_themeColorString ==
+                    overlayColor_themeColorString) &&
+            (identical(other.side_borderSide, side_borderSide) ||
+                other.side_borderSide == side_borderSide) &&
+            (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
+                other.shape_outlinedBorder == shape_outlinedBorder) &&
+            (identical(other.padding_edgeInsets, padding_edgeInsets) ||
+                other.padding_edgeInsets == padding_edgeInsets) &&
+            (identical(other.textStyle_textStyleString, textStyle_textStyleString) ||
+                other.textStyle_textStyleString == textStyle_textStyleString) &&
+            (identical(other.hintStyle_textStyleString, hintStyle_textStyleString) ||
+                other.hintStyle_textStyleString == hintStyle_textStyleString) &&
+            (identical(other.constraints_boxConstraints, constraints_boxConstraints) ||
+                other.constraints_boxConstraints ==
+                    constraints_boxConstraints) &&
+            (identical(other.textCapitalization_enum_textCapitalization,
+                    textCapitalization_enum_textCapitalization) ||
+                other.textCapitalization_enum_textCapitalization ==
+                    textCapitalization_enum_textCapitalization));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      elevation,
-      backgroundColor,
-      shadowColor,
-      surfaceTintColor,
-      overlayColor,
-      side,
-      shape,
-      padding,
-      textStyle,
-      hintStyle,
-      constraints,
-      textCapitalization);
+      elevation_double,
+      backgroundColor_themeColorString,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
+      overlayColor_themeColorString,
+      side_borderSide,
+      shape_outlinedBorder,
+      padding_edgeInsets,
+      textStyle_textStyleString,
+      hintStyle_textStyleString,
+      constraints_boxConstraints,
+      textCapitalization_enum_textCapitalization);
 
   @JsonKey(ignore: true)
   @override
@@ -362,51 +445,48 @@ class _$SearchBarModelImpl extends _SearchBarModel {
 
 abstract class _SearchBarModel extends SearchBarModel {
   const factory _SearchBarModel(
-      {final double? elevation,
-      final String? backgroundColor,
-      final String? shadowColor,
-      final String? surfaceTintColor,
-      final String? overlayColor,
-      @BorderSideConverter() final BorderSide? side,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      @EdgeInsetsConverter() final EdgeInsets? padding,
-      final String? textStyle,
-      final String? hintStyle,
-      @BoxConstraintsConverter() final BoxConstraints? constraints,
-      final TextCapitalization? textCapitalization}) = _$SearchBarModelImpl;
+      {final double? elevation_double,
+      final String? backgroundColor_themeColorString,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
+      final String? overlayColor_themeColorString,
+      final BorderSideModel? side_borderSide,
+      final OutlinedBorderModel? shape_outlinedBorder,
+      final EdgeInsetsModel? padding_edgeInsets,
+      final String? textStyle_textStyleString,
+      final String? hintStyle_textStyleString,
+      final BoxConstraintsModel? constraints_boxConstraints,
+      final TextCapitalization?
+          textCapitalization_enum_textCapitalization}) = _$SearchBarModelImpl;
   const _SearchBarModel._() : super._();
 
   factory _SearchBarModel.fromJson(Map<String, dynamic> json) =
       _$SearchBarModelImpl.fromJson;
 
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get shadowColor;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get overlayColor;
+  String? get overlayColor_themeColorString;
   @override
-  @BorderSideConverter()
-  BorderSide? get side;
+  BorderSideModel? get side_borderSide;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  OutlinedBorderModel? get shape_outlinedBorder;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
-  String? get textStyle;
+  String? get textStyle_textStyleString;
   @override
-  String? get hintStyle;
+  String? get hintStyle_textStyleString;
   @override
-  @BoxConstraintsConverter()
-  BoxConstraints? get constraints;
+  BoxConstraintsModel? get constraints_boxConstraints;
   @override
-  TextCapitalization? get textCapitalization;
+  TextCapitalization? get textCapitalization_enum_textCapitalization;
   @override
   @JsonKey(ignore: true)
   _$$SearchBarModelImplCopyWith<_$SearchBarModelImpl> get copyWith =>

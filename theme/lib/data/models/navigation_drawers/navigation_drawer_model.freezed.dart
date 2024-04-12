@@ -21,17 +21,21 @@ NavigationDrawerModel _$NavigationDrawerModelFromJson(
 
 /// @nodoc
 mixin _$NavigationDrawerModel {
-  double? get tileHeight => throw _privateConstructorUsedError;
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  String? get indicatorColor => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get indicatorShape => throw _privateConstructorUsedError;
-  @SizeConverter()
-  Size? get indicatorSize => throw _privateConstructorUsedError;
-  String? get labelTextStyle => throw _privateConstructorUsedError;
+  double? get tileHeight_double => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get indicatorColor_themeColorString =>
+      throw _privateConstructorUsedError; // @OutlinedBorderConverter()
+  ShapeBorderModel? get indicatorShape_shapeBorder =>
+      throw _privateConstructorUsedError;
+  SizeModel? get indicatorSize_size => throw _privateConstructorUsedError;
+  String? get labelTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,15 +50,18 @@ abstract class $NavigationDrawerModelCopyWith<$Res> {
       _$NavigationDrawerModelCopyWithImpl<$Res, NavigationDrawerModel>;
   @useResult
   $Res call(
-      {double? tileHeight,
-      String? backgroundColor,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? indicatorColor,
-      @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-      @SizeConverter() Size? indicatorSize,
-      String? labelTextStyle});
+      {double? tileHeight_double,
+      String? backgroundColor_themeColorString,
+      double? elevation_double,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? indicatorColor_themeColorString,
+      ShapeBorderModel? indicatorShape_shapeBorder,
+      SizeModel? indicatorSize_size,
+      String? labelTextStyle_textStyleString});
+
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
+  $SizeModelCopyWith<$Res>? get indicatorSize_size;
 }
 
 /// @nodoc
@@ -71,54 +78,82 @@ class _$NavigationDrawerModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tileHeight = freezed,
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? indicatorColor = freezed,
-    Object? indicatorShape = freezed,
-    Object? indicatorSize = freezed,
-    Object? labelTextStyle = freezed,
+    Object? tileHeight_double = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? indicatorColor_themeColorString = freezed,
+    Object? indicatorShape_shapeBorder = freezed,
+    Object? indicatorSize_size = freezed,
+    Object? labelTextStyle_textStyleString = freezed,
   }) {
     return _then(_value.copyWith(
-      tileHeight: freezed == tileHeight
-          ? _value.tileHeight
-          : tileHeight // ignore: cast_nullable_to_non_nullable
+      tileHeight_double: freezed == tileHeight_double
+          ? _value.tileHeight_double
+          : tileHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicatorColor_themeColorString: freezed ==
+              indicatorColor_themeColorString
+          ? _value.indicatorColor_themeColorString
+          : indicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorShape: freezed == indicatorShape
-          ? _value.indicatorShape
-          : indicatorShape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      indicatorSize: freezed == indicatorSize
-          ? _value.indicatorSize
-          : indicatorSize // ignore: cast_nullable_to_non_nullable
-              as Size?,
-      labelTextStyle: freezed == labelTextStyle
-          ? _value.labelTextStyle
-          : labelTextStyle // ignore: cast_nullable_to_non_nullable
+      indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
+          ? _value.indicatorShape_shapeBorder
+          : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      indicatorSize_size: freezed == indicatorSize_size
+          ? _value.indicatorSize_size
+          : indicatorSize_size // ignore: cast_nullable_to_non_nullable
+              as SizeModel?,
+      labelTextStyle_textStyleString: freezed == labelTextStyle_textStyleString
+          ? _value.labelTextStyle_textStyleString
+          : labelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder {
+    if (_value.indicatorShape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.indicatorShape_shapeBorder!,
+        (value) {
+      return _then(_value.copyWith(indicatorShape_shapeBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SizeModelCopyWith<$Res>? get indicatorSize_size {
+    if (_value.indicatorSize_size == null) {
+      return null;
+    }
+
+    return $SizeModelCopyWith<$Res>(_value.indicatorSize_size!, (value) {
+      return _then(_value.copyWith(indicatorSize_size: value) as $Val);
+    });
   }
 }
 
@@ -132,15 +167,20 @@ abstract class _$$NavigationDrawerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double? tileHeight,
-      String? backgroundColor,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? indicatorColor,
-      @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-      @SizeConverter() Size? indicatorSize,
-      String? labelTextStyle});
+      {double? tileHeight_double,
+      String? backgroundColor_themeColorString,
+      double? elevation_double,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? indicatorColor_themeColorString,
+      ShapeBorderModel? indicatorShape_shapeBorder,
+      SizeModel? indicatorSize_size,
+      String? labelTextStyle_textStyleString});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get indicatorShape_shapeBorder;
+  @override
+  $SizeModelCopyWith<$Res>? get indicatorSize_size;
 }
 
 /// @nodoc
@@ -155,52 +195,55 @@ class __$$NavigationDrawerModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tileHeight = freezed,
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? indicatorColor = freezed,
-    Object? indicatorShape = freezed,
-    Object? indicatorSize = freezed,
-    Object? labelTextStyle = freezed,
+    Object? tileHeight_double = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? indicatorColor_themeColorString = freezed,
+    Object? indicatorShape_shapeBorder = freezed,
+    Object? indicatorSize_size = freezed,
+    Object? labelTextStyle_textStyleString = freezed,
   }) {
     return _then(_$NavigationDrawerModelImpl(
-      tileHeight: freezed == tileHeight
-          ? _value.tileHeight
-          : tileHeight // ignore: cast_nullable_to_non_nullable
+      tileHeight_double: freezed == tileHeight_double
+          ? _value.tileHeight_double
+          : tileHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorColor: freezed == indicatorColor
-          ? _value.indicatorColor
-          : indicatorColor // ignore: cast_nullable_to_non_nullable
+      indicatorColor_themeColorString: freezed ==
+              indicatorColor_themeColorString
+          ? _value.indicatorColor_themeColorString
+          : indicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      indicatorShape: freezed == indicatorShape
-          ? _value.indicatorShape
-          : indicatorShape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      indicatorSize: freezed == indicatorSize
-          ? _value.indicatorSize
-          : indicatorSize // ignore: cast_nullable_to_non_nullable
-              as Size?,
-      labelTextStyle: freezed == labelTextStyle
-          ? _value.labelTextStyle
-          : labelTextStyle // ignore: cast_nullable_to_non_nullable
+      indicatorShape_shapeBorder: freezed == indicatorShape_shapeBorder
+          ? _value.indicatorShape_shapeBorder
+          : indicatorShape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      indicatorSize_size: freezed == indicatorSize_size
+          ? _value.indicatorSize_size
+          : indicatorSize_size // ignore: cast_nullable_to_non_nullable
+              as SizeModel?,
+      labelTextStyle_textStyleString: freezed == labelTextStyle_textStyleString
+          ? _value.labelTextStyle_textStyleString
+          : labelTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -210,44 +253,45 @@ class __$$NavigationDrawerModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NavigationDrawerModelImpl extends _NavigationDrawerModel {
   const _$NavigationDrawerModelImpl(
-      {this.tileHeight,
-      this.backgroundColor,
-      this.elevation,
-      this.shadowColor,
-      this.surfaceTintColor,
-      this.indicatorColor,
-      @OutlinedBorderConverter() this.indicatorShape,
-      @SizeConverter() this.indicatorSize,
-      this.labelTextStyle})
+      {this.tileHeight_double,
+      this.backgroundColor_themeColorString,
+      this.elevation_double,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.indicatorColor_themeColorString,
+      this.indicatorShape_shapeBorder = const ShapeBorderModel(),
+      this.indicatorSize_size = const SizeModel(),
+      this.labelTextStyle_textStyleString})
       : super._();
 
   factory _$NavigationDrawerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NavigationDrawerModelImplFromJson(json);
 
   @override
-  final double? tileHeight;
+  final double? tileHeight_double;
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_themeColorString;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final String? shadowColor;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? indicatorColor;
+  final String? indicatorColor_themeColorString;
+// @OutlinedBorderConverter()
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? indicatorShape;
+  @JsonKey()
+  final ShapeBorderModel? indicatorShape_shapeBorder;
   @override
-  @SizeConverter()
-  final Size? indicatorSize;
+  @JsonKey()
+  final SizeModel? indicatorSize_size;
   @override
-  final String? labelTextStyle;
+  final String? labelTextStyle_textStyleString;
 
   @override
   String toString() {
-    return 'NavigationDrawerModel(tileHeight: $tileHeight, backgroundColor: $backgroundColor, elevation: $elevation, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, indicatorColor: $indicatorColor, indicatorShape: $indicatorShape, indicatorSize: $indicatorSize, labelTextStyle: $labelTextStyle)';
+    return 'NavigationDrawerModel(tileHeight_double: $tileHeight_double, backgroundColor_themeColorString: $backgroundColor_themeColorString, elevation_double: $elevation_double, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, indicatorColor_themeColorString: $indicatorColor_themeColorString, indicatorShape_shapeBorder: $indicatorShape_shapeBorder, indicatorSize_size: $indicatorSize_size, labelTextStyle_textStyleString: $labelTextStyle_textStyleString)';
   }
 
   @override
@@ -255,39 +299,48 @@ class _$NavigationDrawerModelImpl extends _NavigationDrawerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NavigationDrawerModelImpl &&
-            (identical(other.tileHeight, tileHeight) ||
-                other.tileHeight == tileHeight) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.indicatorColor, indicatorColor) ||
-                other.indicatorColor == indicatorColor) &&
-            (identical(other.indicatorShape, indicatorShape) ||
-                other.indicatorShape == indicatorShape) &&
-            (identical(other.indicatorSize, indicatorSize) ||
-                other.indicatorSize == indicatorSize) &&
-            (identical(other.labelTextStyle, labelTextStyle) ||
-                other.labelTextStyle == labelTextStyle));
+            (identical(other.tileHeight_double, tileHeight_double) ||
+                other.tileHeight_double == tileHeight_double) &&
+            (identical(other.backgroundColor_themeColorString,
+                    backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.indicatorColor_themeColorString,
+                    indicatorColor_themeColorString) ||
+                other.indicatorColor_themeColorString ==
+                    indicatorColor_themeColorString) &&
+            (identical(other.indicatorShape_shapeBorder, indicatorShape_shapeBorder) ||
+                other.indicatorShape_shapeBorder ==
+                    indicatorShape_shapeBorder) &&
+            (identical(other.indicatorSize_size, indicatorSize_size) ||
+                other.indicatorSize_size == indicatorSize_size) &&
+            (identical(other.labelTextStyle_textStyleString,
+                    labelTextStyle_textStyleString) ||
+                other.labelTextStyle_textStyleString == labelTextStyle_textStyleString));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      tileHeight,
-      backgroundColor,
-      elevation,
-      shadowColor,
-      surfaceTintColor,
-      indicatorColor,
-      indicatorShape,
-      indicatorSize,
-      labelTextStyle);
+      tileHeight_double,
+      backgroundColor_themeColorString,
+      elevation_double,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
+      indicatorColor_themeColorString,
+      indicatorShape_shapeBorder,
+      indicatorSize_size,
+      labelTextStyle_textStyleString);
 
   @JsonKey(ignore: true)
   @override
@@ -306,40 +359,39 @@ class _$NavigationDrawerModelImpl extends _NavigationDrawerModel {
 
 abstract class _NavigationDrawerModel extends NavigationDrawerModel {
   const factory _NavigationDrawerModel(
-      {final double? tileHeight,
-      final String? backgroundColor,
-      final double? elevation,
-      final String? shadowColor,
-      final String? surfaceTintColor,
-      final String? indicatorColor,
-      @OutlinedBorderConverter() final OutlinedBorder? indicatorShape,
-      @SizeConverter() final Size? indicatorSize,
-      final String? labelTextStyle}) = _$NavigationDrawerModelImpl;
+          {final double? tileHeight_double,
+          final String? backgroundColor_themeColorString,
+          final double? elevation_double,
+          final String? shadowColor_themeColorString,
+          final String? surfaceTintColor_themeColorString,
+          final String? indicatorColor_themeColorString,
+          final ShapeBorderModel? indicatorShape_shapeBorder,
+          final SizeModel? indicatorSize_size,
+          final String? labelTextStyle_textStyleString}) =
+      _$NavigationDrawerModelImpl;
   const _NavigationDrawerModel._() : super._();
 
   factory _NavigationDrawerModel.fromJson(Map<String, dynamic> json) =
       _$NavigationDrawerModelImpl.fromJson;
 
   @override
-  double? get tileHeight;
+  double? get tileHeight_double;
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_themeColorString;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  String? get shadowColor;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get indicatorColor;
+  String? get indicatorColor_themeColorString;
+  @override // @OutlinedBorderConverter()
+  ShapeBorderModel? get indicatorShape_shapeBorder;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get indicatorShape;
+  SizeModel? get indicatorSize_size;
   @override
-  @SizeConverter()
-  Size? get indicatorSize;
-  @override
-  String? get labelTextStyle;
+  String? get labelTextStyle_textStyleString;
   @override
   @JsonKey(ignore: true)
   _$$NavigationDrawerModelImplCopyWith<_$NavigationDrawerModelImpl>

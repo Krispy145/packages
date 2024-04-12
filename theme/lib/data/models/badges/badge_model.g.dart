@@ -8,34 +8,47 @@ part of 'badge_model.dart';
 
 _$BadgeModelImpl _$$BadgeModelImplFromJson(Map<String, dynamic> json) =>
     _$BadgeModelImpl(
-      backgroundColor: json['backgroundColor'] as String?,
-      textColor: json['textColor'] as String?,
-      smallSize: (json['smallSize'] as num?)?.toDouble(),
-      largeSize: (json['largeSize'] as num?)?.toDouble(),
-      textStyle: json['textStyle'] as String?,
-      padding: const EdgeInsetsConverter()
-          .fromJson(json['padding'] as Map<String, dynamic>?),
-      alignment:
-          const AlignmentConverter().fromJson(json['alignment'] as String?),
-      offset: const OffsetConverter()
-          .fromJson(json['offset'] as Map<String, dynamic>?),
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      textColor_themeColorString: json['textColor_themeColorString'] as String?,
+      smallSize_double: (json['smallSize_double'] as num?)?.toDouble(),
+      largeSize_double: (json['largeSize_double'] as num?)?.toDouble(),
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
+      alignment_enum_alignmentOptions: $enumDecodeNullable(
+              _$AlignmentOptionsEnumMap,
+              json['alignment_enum_alignmentOptions']) ??
+          AlignmentOptions.center,
+      offset_offset: json['offset_offset'] == null
+          ? const OffsetModel()
+          : OffsetModel.fromJson(json['offset_offset'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$BadgeModelImplToJson(_$BadgeModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor': instance.backgroundColor,
-      'textColor': instance.textColor,
-      'smallSize': instance.smallSize,
-      'largeSize': instance.largeSize,
-      'textStyle': instance.textStyle,
-      'padding': const EdgeInsetsConverter().toJson(instance.padding),
-      'alignment': const AlignmentConverter().toJson(instance.alignment),
-      'offset': _$JsonConverterToJson<Map<String, dynamic>?, Offset>(
-          instance.offset, const OffsetConverter().toJson),
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'textColor_themeColorString': instance.textColor_themeColorString,
+      'smallSize_double': instance.smallSize_double,
+      'largeSize_double': instance.largeSize_double,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
+      'alignment_enum_alignmentOptions':
+          _$AlignmentOptionsEnumMap[instance.alignment_enum_alignmentOptions],
+      'offset_offset': instance.offset_offset?.toJson(),
     };
 
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);
+const _$AlignmentOptionsEnumMap = {
+  AlignmentOptions.topLeft: 'topLeft',
+  AlignmentOptions.topCenter: 'topCenter',
+  AlignmentOptions.topRight: 'topRight',
+  AlignmentOptions.centerLeft: 'centerLeft',
+  AlignmentOptions.center: 'center',
+  AlignmentOptions.centerRight: 'centerRight',
+  AlignmentOptions.bottomLeft: 'bottomLeft',
+  AlignmentOptions.bottomCenter: 'bottomCenter',
+  AlignmentOptions.bottomRight: 'bottomRight',
+};

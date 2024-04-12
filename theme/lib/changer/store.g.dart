@@ -8,19 +8,17 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ComponentThemeChangerStore<T>
-    on ComponentThemeChangerBaseStore<T>, Store {
+mixin _$ComponentThemeChangerStore<T> on _ComponentThemeChangerStore<T>, Store {
   Computed<Map<String, dynamic>>? _$mergedMapComputed;
 
   @override
   Map<String, dynamic> get mergedMap => (_$mergedMapComputed ??=
           Computed<Map<String, dynamic>>(() => super.mergedMap,
-              name: 'ComponentThemeChangerBaseStore.mergedMap'))
+              name: '_ComponentThemeChangerStore.mergedMap'))
       .value;
 
   late final _$componentThemeMapAtom = Atom(
-      name: 'ComponentThemeChangerBaseStore.componentThemeMap',
-      context: context);
+      name: '_ComponentThemeChangerStore.componentThemeMap', context: context);
 
   @override
   ObservableMap<String, dynamic> get componentThemeMap {
@@ -41,7 +39,7 @@ mixin _$ComponentThemeChangerStore<T>
   }
 
   late final _$currentMapEntryAtom = Atom(
-      name: 'ComponentThemeChangerBaseStore.currentMapEntry', context: context);
+      name: '_ComponentThemeChangerStore.currentMapEntry', context: context);
 
   @override
   MapEntry<String, dynamic> get currentMapEntry {
@@ -61,29 +59,28 @@ mixin _$ComponentThemeChangerStore<T>
     });
   }
 
-  late final _$ComponentThemeChangerBaseStoreActionController =
-      ActionController(
-          name: 'ComponentThemeChangerBaseStore', context: context);
+  late final _$_ComponentThemeChangerStoreActionController =
+      ActionController(name: '_ComponentThemeChangerStore', context: context);
 
   @override
   void setMapEntry(MapEntry<String, dynamic> value) {
-    final _$actionInfo = _$ComponentThemeChangerBaseStoreActionController
-        .startAction(name: 'ComponentThemeChangerBaseStore.setMapEntry');
+    final _$actionInfo = _$_ComponentThemeChangerStoreActionController
+        .startAction(name: '_ComponentThemeChangerStore.setMapEntry');
     try {
       return super.setMapEntry(value);
     } finally {
-      _$ComponentThemeChangerBaseStoreActionController.endAction(_$actionInfo);
+      _$_ComponentThemeChangerStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   T setMapEntryInMap() {
-    final _$actionInfo = _$ComponentThemeChangerBaseStoreActionController
-        .startAction(name: 'ComponentThemeChangerBaseStore.setMapEntryInMap');
+    final _$actionInfo = _$_ComponentThemeChangerStoreActionController
+        .startAction(name: '_ComponentThemeChangerStore.setMapEntryInMap');
     try {
       return super.setMapEntryInMap();
     } finally {
-      _$ComponentThemeChangerBaseStoreActionController.endAction(_$actionInfo);
+      _$_ComponentThemeChangerStoreActionController.endAction(_$actionInfo);
     }
   }
 

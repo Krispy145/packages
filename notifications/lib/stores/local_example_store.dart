@@ -9,14 +9,12 @@ import 'package:timezone/timezone.dart' as tz;
 part 'local_example_store.g.dart';
 
 /// [LocalNotificationsExamplesStore] is the base class for all local notifications examples stores.
-class LocalNotificationsExamplesStore = LocalNotificationsExamplesBaseStore
-    with _$LocalNotificationsExamplesStore;
+class LocalNotificationsExamplesStore = _LocalNotificationsExamplesStore with _$LocalNotificationsExamplesStore;
 
-/// [LocalNotificationsExamplesBaseStore] is the base class for all local notifications examples stores.
-abstract class LocalNotificationsExamplesBaseStore
-    extends LocalNotificationsStore with Store {
-  /// [LocalNotificationsExamplesBaseStore] is the constructor for the [LocalNotificationsExamplesBaseStore] class.
-  LocalNotificationsExamplesBaseStore();
+/// [_LocalNotificationsExamplesStore] is the base class for all local notifications examples stores.
+abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore with Store {
+  /// [_LocalNotificationsExamplesStore] is the constructor for the [_LocalNotificationsExamplesStore] class.
+  _LocalNotificationsExamplesStore();
 
   /// [urlLaunchActionId] is the notification action id for launching a URL.
   final String urlLaunchActionId = 'id_1';
@@ -39,9 +37,9 @@ abstract class LocalNotificationsExamplesBaseStore
   /// [showNotificationWithActions] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails] with action buttons.
   @action
   Future<void> showNotificationWithActions(
-      NotificationModel notification) async {
-    final AndroidNotificationDetails androidNotificationDetails =
-        androidLocalNotificationDetails.copyWith(
+    NotificationModel notification,
+  ) async {
+    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
       actions: [
         const AndroidNotificationAction(
           'id_1',
@@ -99,7 +97,8 @@ abstract class LocalNotificationsExamplesBaseStore
   /// [showNotificationWithTextAction] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails] with text action.
   @action
   Future<void> showNotificationWithTextAction(
-      NotificationModel notification) async {
+    NotificationModel notification,
+  ) async {
     const textAction = AndroidNotificationAction(
       'text_action',
       'Enter text',
@@ -107,8 +106,7 @@ abstract class LocalNotificationsExamplesBaseStore
       allowGeneratedReplies: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails =
-        androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
       actions: [
         textAction,
       ],
@@ -148,7 +146,8 @@ abstract class LocalNotificationsExamplesBaseStore
   /// [showNotificationWithTextChoice] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails] with text choice.
   @action
   Future<void> showNotificationWithTextChoice(
-      NotificationModel notification) async {
+    NotificationModel notification,
+  ) async {
     const androidAction = AndroidNotificationAction(
       'text_action',
       'Action 2',
@@ -162,8 +161,7 @@ abstract class LocalNotificationsExamplesBaseStore
       contextual: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails =
-        androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
       actions: [androidAction],
     );
 
@@ -187,7 +185,8 @@ abstract class LocalNotificationsExamplesBaseStore
   /// [showNotificationCustomVibrationIconLed] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails] with custom vibration, icon and LED.
   @action
   Future<void> showNotificationCustomVibrationIconLed(
-      NotificationModel notification) async {
+    NotificationModel notification,
+  ) async {
     final vibrationPattern = Int64List(4);
     vibrationPattern[0] = 0;
     vibrationPattern[1] = 1000;
@@ -203,8 +202,7 @@ abstract class LocalNotificationsExamplesBaseStore
       ledOffMs: 500,
     );
 
-    final notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+    final notificationDetails = NotificationDetails(android: androidNotificationDetails);
     await show(notification: notification, details: notificationDetails);
   }
 
@@ -225,7 +223,8 @@ abstract class LocalNotificationsExamplesBaseStore
   /// [zonedScheduleAlarmClockNotification] schedules an alarm clock [NotificationModel] for 5 seconds from now, using flutter_local_notifications and default [NotificationDetails].
   @action
   Future<void> zonedScheduleAlarmClockNotification(
-      NotificationModel notification) async {
+    NotificationModel notification,
+  ) async {
     await zonedSchedule(
       notification: notification,
       details: NotificationDetails(
@@ -243,8 +242,7 @@ abstract class LocalNotificationsExamplesBaseStore
   Future<void> repeatNotification(NotificationModel notification) async {
     final androidNotificationDetails = androidLocalNotificationDetails;
 
-    final notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+    final notificationDetails = NotificationDetails(android: androidNotificationDetails);
     await periodicallyShow(
       notification: notification,
       details: notificationDetails,

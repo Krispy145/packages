@@ -15,7 +15,7 @@ import 'package:theme/data/models/dropdowns/dropdown_model.dart';
 import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
 import 'package:theme/data/models/list_tiles/list_tile_model.dart';
 import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
-import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/menus/menu_style_model.dart';
 import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
 import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
 import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
@@ -37,7 +37,7 @@ import 'package:theme/data/sources/digital_oasis/_source.dart';
 import '/data/repositories/_repositories.dart';
 import 'base.repository.dart';
 
-/// [DigitalOasisRepository] extends the [BaseThemeRepository] class used for fetching Themes data fro Digital Oasis database
+/// [DigitalOasisRepository] extends the [BaseThemeRepository] class used for fetching Themes data from Digital Oasis database
 /// Currently retrieving data from `Supabase`
 class DigitalOasisRepository extends BaseThemeRepository {
   /// [baseThemeDataSource] is the [DigitalOasisDataSource] that will be used to fetch the [BaseThemeModel] data.
@@ -121,8 +121,8 @@ class DigitalOasisRepository extends BaseThemeRepository {
   /// [listTilesDataSource] is the [DigitalOasisDataSource] that will be used to fetch the [ListTileModel] data.
   final DigitalOasisDataSource<ListTileModel?> listTilesDataSource = DataRepositories.instance.digitalOasis.listTilesDataSource;
 
-  /// [menuStylesDataSource] is the [DigitalOasisDataSource] that will be used to fetch the [MenuModel] data.
-  final DigitalOasisDataSource<MenuModel?> menuStylesDataSource = DataRepositories.instance.digitalOasis.menuStylesDataSource;
+  /// [menuStylesDataSource] is the [DigitalOasisDataSource] that will be used to fetch the [MenuStyleModel] data.
+  final DigitalOasisDataSource<MenuStyleModel?> menuStylesDataSource = DataRepositories.instance.digitalOasis.menuStylesDataSource;
 
   /// [menuBarsDataSource] is the [DigitalOasisDataSource] that will be used to fetch the [MenuBarModel] data.
   final DigitalOasisDataSource<MenuBarModel?> menuBarsDataSource = DataRepositories.instance.digitalOasis.menuBarsDataSource;

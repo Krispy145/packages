@@ -21,11 +21,14 @@ ProgressIndicatorModel _$ProgressIndicatorModelFromJson(
 
 /// @nodoc
 mixin _$ProgressIndicatorModel {
-  String? get color => throw _privateConstructorUsedError;
-  String? get linearTrackColor => throw _privateConstructorUsedError;
-  double? get linearMinHeight => throw _privateConstructorUsedError;
-  String? get circularTrackColor => throw _privateConstructorUsedError;
-  String? get refreshBackgroundColor => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
+  String? get linearTrackColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get linearMinHeight_double => throw _privateConstructorUsedError;
+  String? get circularTrackColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get refreshBackgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,11 +43,11 @@ abstract class $ProgressIndicatorModelCopyWith<$Res> {
       _$ProgressIndicatorModelCopyWithImpl<$Res, ProgressIndicatorModel>;
   @useResult
   $Res call(
-      {String? color,
-      String? linearTrackColor,
-      double? linearMinHeight,
-      String? circularTrackColor,
-      String? refreshBackgroundColor});
+      {String? color_themeColorString,
+      String? linearTrackColor_themeColorString,
+      double? linearMinHeight_double,
+      String? circularTrackColor_themeColorString,
+      String? refreshBackgroundColor_themeColorString});
 }
 
 /// @nodoc
@@ -61,32 +64,35 @@ class _$ProgressIndicatorModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? linearTrackColor = freezed,
-    Object? linearMinHeight = freezed,
-    Object? circularTrackColor = freezed,
-    Object? refreshBackgroundColor = freezed,
+    Object? color_themeColorString = freezed,
+    Object? linearTrackColor_themeColorString = freezed,
+    Object? linearMinHeight_double = freezed,
+    Object? circularTrackColor_themeColorString = freezed,
+    Object? refreshBackgroundColor_themeColorString = freezed,
   }) {
     return _then(_value.copyWith(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      linearTrackColor: freezed == linearTrackColor
-          ? _value.linearTrackColor
-          : linearTrackColor // ignore: cast_nullable_to_non_nullable
+      linearTrackColor_themeColorString: freezed ==
+              linearTrackColor_themeColorString
+          ? _value.linearTrackColor_themeColorString
+          : linearTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      linearMinHeight: freezed == linearMinHeight
-          ? _value.linearMinHeight
-          : linearMinHeight // ignore: cast_nullable_to_non_nullable
+      linearMinHeight_double: freezed == linearMinHeight_double
+          ? _value.linearMinHeight_double
+          : linearMinHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      circularTrackColor: freezed == circularTrackColor
-          ? _value.circularTrackColor
-          : circularTrackColor // ignore: cast_nullable_to_non_nullable
+      circularTrackColor_themeColorString: freezed ==
+              circularTrackColor_themeColorString
+          ? _value.circularTrackColor_themeColorString
+          : circularTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshBackgroundColor: freezed == refreshBackgroundColor
-          ? _value.refreshBackgroundColor
-          : refreshBackgroundColor // ignore: cast_nullable_to_non_nullable
+      refreshBackgroundColor_themeColorString: freezed ==
+              refreshBackgroundColor_themeColorString
+          ? _value.refreshBackgroundColor_themeColorString
+          : refreshBackgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -102,11 +108,11 @@ abstract class _$$ProgressIndicatorModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color,
-      String? linearTrackColor,
-      double? linearMinHeight,
-      String? circularTrackColor,
-      String? refreshBackgroundColor});
+      {String? color_themeColorString,
+      String? linearTrackColor_themeColorString,
+      double? linearMinHeight_double,
+      String? circularTrackColor_themeColorString,
+      String? refreshBackgroundColor_themeColorString});
 }
 
 /// @nodoc
@@ -122,32 +128,35 @@ class __$$ProgressIndicatorModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
-    Object? linearTrackColor = freezed,
-    Object? linearMinHeight = freezed,
-    Object? circularTrackColor = freezed,
-    Object? refreshBackgroundColor = freezed,
+    Object? color_themeColorString = freezed,
+    Object? linearTrackColor_themeColorString = freezed,
+    Object? linearMinHeight_double = freezed,
+    Object? circularTrackColor_themeColorString = freezed,
+    Object? refreshBackgroundColor_themeColorString = freezed,
   }) {
     return _then(_$ProgressIndicatorModelImpl(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      linearTrackColor: freezed == linearTrackColor
-          ? _value.linearTrackColor
-          : linearTrackColor // ignore: cast_nullable_to_non_nullable
+      linearTrackColor_themeColorString: freezed ==
+              linearTrackColor_themeColorString
+          ? _value.linearTrackColor_themeColorString
+          : linearTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      linearMinHeight: freezed == linearMinHeight
-          ? _value.linearMinHeight
-          : linearMinHeight // ignore: cast_nullable_to_non_nullable
+      linearMinHeight_double: freezed == linearMinHeight_double
+          ? _value.linearMinHeight_double
+          : linearMinHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      circularTrackColor: freezed == circularTrackColor
-          ? _value.circularTrackColor
-          : circularTrackColor // ignore: cast_nullable_to_non_nullable
+      circularTrackColor_themeColorString: freezed ==
+              circularTrackColor_themeColorString
+          ? _value.circularTrackColor_themeColorString
+          : circularTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      refreshBackgroundColor: freezed == refreshBackgroundColor
-          ? _value.refreshBackgroundColor
-          : refreshBackgroundColor // ignore: cast_nullable_to_non_nullable
+      refreshBackgroundColor_themeColorString: freezed ==
+              refreshBackgroundColor_themeColorString
+          ? _value.refreshBackgroundColor_themeColorString
+          : refreshBackgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -157,30 +166,30 @@ class __$$ProgressIndicatorModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProgressIndicatorModelImpl extends _ProgressIndicatorModel {
   const _$ProgressIndicatorModelImpl(
-      {this.color,
-      this.linearTrackColor,
-      this.linearMinHeight,
-      this.circularTrackColor,
-      this.refreshBackgroundColor})
+      {this.color_themeColorString,
+      this.linearTrackColor_themeColorString,
+      this.linearMinHeight_double,
+      this.circularTrackColor_themeColorString,
+      this.refreshBackgroundColor_themeColorString})
       : super._();
 
   factory _$ProgressIndicatorModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProgressIndicatorModelImplFromJson(json);
 
   @override
-  final String? color;
+  final String? color_themeColorString;
   @override
-  final String? linearTrackColor;
+  final String? linearTrackColor_themeColorString;
   @override
-  final double? linearMinHeight;
+  final double? linearMinHeight_double;
   @override
-  final String? circularTrackColor;
+  final String? circularTrackColor_themeColorString;
   @override
-  final String? refreshBackgroundColor;
+  final String? refreshBackgroundColor_themeColorString;
 
   @override
   String toString() {
-    return 'ProgressIndicatorModel(color: $color, linearTrackColor: $linearTrackColor, linearMinHeight: $linearMinHeight, circularTrackColor: $circularTrackColor, refreshBackgroundColor: $refreshBackgroundColor)';
+    return 'ProgressIndicatorModel(color_themeColorString: $color_themeColorString, linearTrackColor_themeColorString: $linearTrackColor_themeColorString, linearMinHeight_double: $linearMinHeight_double, circularTrackColor_themeColorString: $circularTrackColor_themeColorString, refreshBackgroundColor_themeColorString: $refreshBackgroundColor_themeColorString)';
   }
 
   @override
@@ -188,21 +197,33 @@ class _$ProgressIndicatorModelImpl extends _ProgressIndicatorModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProgressIndicatorModelImpl &&
-            (identical(other.color, color) || other.color == color) &&
-            (identical(other.linearTrackColor, linearTrackColor) ||
-                other.linearTrackColor == linearTrackColor) &&
-            (identical(other.linearMinHeight, linearMinHeight) ||
-                other.linearMinHeight == linearMinHeight) &&
-            (identical(other.circularTrackColor, circularTrackColor) ||
-                other.circularTrackColor == circularTrackColor) &&
-            (identical(other.refreshBackgroundColor, refreshBackgroundColor) ||
-                other.refreshBackgroundColor == refreshBackgroundColor));
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
+            (identical(other.linearTrackColor_themeColorString,
+                    linearTrackColor_themeColorString) ||
+                other.linearTrackColor_themeColorString ==
+                    linearTrackColor_themeColorString) &&
+            (identical(other.linearMinHeight_double, linearMinHeight_double) ||
+                other.linearMinHeight_double == linearMinHeight_double) &&
+            (identical(other.circularTrackColor_themeColorString,
+                    circularTrackColor_themeColorString) ||
+                other.circularTrackColor_themeColorString ==
+                    circularTrackColor_themeColorString) &&
+            (identical(other.refreshBackgroundColor_themeColorString,
+                    refreshBackgroundColor_themeColorString) ||
+                other.refreshBackgroundColor_themeColorString ==
+                    refreshBackgroundColor_themeColorString));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, color, linearTrackColor,
-      linearMinHeight, circularTrackColor, refreshBackgroundColor);
+  int get hashCode => Object.hash(
+      runtimeType,
+      color_themeColorString,
+      linearTrackColor_themeColorString,
+      linearMinHeight_double,
+      circularTrackColor_themeColorString,
+      refreshBackgroundColor_themeColorString);
 
   @JsonKey(ignore: true)
   @override
@@ -221,26 +242,27 @@ class _$ProgressIndicatorModelImpl extends _ProgressIndicatorModel {
 
 abstract class _ProgressIndicatorModel extends ProgressIndicatorModel {
   const factory _ProgressIndicatorModel(
-      {final String? color,
-      final String? linearTrackColor,
-      final double? linearMinHeight,
-      final String? circularTrackColor,
-      final String? refreshBackgroundColor}) = _$ProgressIndicatorModelImpl;
+          {final String? color_themeColorString,
+          final String? linearTrackColor_themeColorString,
+          final double? linearMinHeight_double,
+          final String? circularTrackColor_themeColorString,
+          final String? refreshBackgroundColor_themeColorString}) =
+      _$ProgressIndicatorModelImpl;
   const _ProgressIndicatorModel._() : super._();
 
   factory _ProgressIndicatorModel.fromJson(Map<String, dynamic> json) =
       _$ProgressIndicatorModelImpl.fromJson;
 
   @override
-  String? get color;
+  String? get color_themeColorString;
   @override
-  String? get linearTrackColor;
+  String? get linearTrackColor_themeColorString;
   @override
-  double? get linearMinHeight;
+  double? get linearMinHeight_double;
   @override
-  String? get circularTrackColor;
+  String? get circularTrackColor_themeColorString;
   @override
-  String? get refreshBackgroundColor;
+  String? get refreshBackgroundColor_themeColorString;
   @override
   @JsonKey(ignore: true)
   _$$ProgressIndicatorModelImplCopyWith<_$ProgressIndicatorModelImpl>

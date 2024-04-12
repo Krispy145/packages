@@ -8,9 +8,9 @@ part of 'push_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
+mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
   late final _$fcmTokenAtom =
-      Atom(name: 'PushNotificationsBaseStore.fcmToken', context: context);
+      Atom(name: '_PushNotificationsStore.fcmToken', context: context);
 
   @override
   String? get fcmToken {
@@ -26,7 +26,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$apnsTokenAtom =
-      Atom(name: 'PushNotificationsBaseStore.apnsToken', context: context);
+      Atom(name: '_PushNotificationsStore.apnsToken', context: context);
 
   @override
   String? get apnsToken {
@@ -42,7 +42,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$authorizationStatusAtom = Atom(
-      name: 'PushNotificationsBaseStore.authorizationStatus', context: context);
+      name: '_PushNotificationsStore.authorizationStatus', context: context);
 
   @override
   AuthorizationStatus get authorizationStatus {
@@ -58,7 +58,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$requestPermissionsAsyncAction = AsyncAction(
-      'PushNotificationsBaseStore.requestPermissions',
+      '_PushNotificationsStore.requestPermissions',
       context: context);
 
   @override
@@ -69,7 +69,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$initializeAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.initialize', context: context);
+      AsyncAction('_PushNotificationsStore.initialize', context: context);
 
   @override
   Future<void> initialize() {
@@ -77,7 +77,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$_updateActiveNotificationsListAsyncAction = AsyncAction(
-      'PushNotificationsBaseStore._updateActiveNotificationsList',
+      '_PushNotificationsStore._updateActiveNotificationsList',
       context: context);
 
   @override
@@ -87,7 +87,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$addAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.add', context: context);
+      AsyncAction('_PushNotificationsStore.add', context: context);
 
   @override
   Future<void> add(NotificationModel notification) {
@@ -95,7 +95,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$addAllAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.addAll', context: context);
+      AsyncAction('_PushNotificationsStore.addAll', context: context);
 
   @override
   Future<void> addAll(List<NotificationModel> notifications) {
@@ -103,7 +103,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$updateAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.update', context: context);
+      AsyncAction('_PushNotificationsStore.update', context: context);
 
   @override
   Future<void> update(String id, NotificationModel notification) {
@@ -111,7 +111,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$updateAllAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.updateAll', context: context);
+      AsyncAction('_PushNotificationsStore.updateAll', context: context);
 
   @override
   Future<void> updateAll(Map<String, NotificationModel> notificationMap) {
@@ -119,7 +119,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$deleteAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.delete', context: context);
+      AsyncAction('_PushNotificationsStore.delete', context: context);
 
   @override
   Future<void> delete(String id) {
@@ -127,16 +127,15 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$deleteAllAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.deleteAll', context: context);
+      AsyncAction('_PushNotificationsStore.deleteAll', context: context);
 
   @override
   Future<void> deleteAll() {
     return _$deleteAllAsyncAction.run(() => super.deleteAll());
   }
 
-  late final _$subscribeToTopicAsyncAction = AsyncAction(
-      'PushNotificationsBaseStore.subscribeToTopic',
-      context: context);
+  late final _$subscribeToTopicAsyncAction =
+      AsyncAction('_PushNotificationsStore.subscribeToTopic', context: context);
 
   @override
   Future<void> subscribeToTopic(String topic) {
@@ -145,7 +144,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$unSubscribeFromTopicAsyncAction = AsyncAction(
-      'PushNotificationsBaseStore.unSubscribeFromTopic',
+      '_PushNotificationsStore.unSubscribeFromTopic',
       context: context);
 
   @override
@@ -155,7 +154,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$getTokenAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.getToken', context: context);
+      AsyncAction('_PushNotificationsStore.getToken', context: context);
 
   @override
   Future<String?> getToken({String? webVapidKey}) {
@@ -164,7 +163,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$deleteTokenAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.deleteToken', context: context);
+      AsyncAction('_PushNotificationsStore.deleteToken', context: context);
 
   @override
   Future<void> deleteToken() {
@@ -172,7 +171,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$getAPNSTokenAsyncAction =
-      AsyncAction('PushNotificationsBaseStore.getAPNSToken', context: context);
+      AsyncAction('_PushNotificationsStore.getAPNSToken', context: context);
 
   @override
   Future<String?> getAPNSToken() {
@@ -180,7 +179,7 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
   }
 
   late final _$_receivePushNotificationAsyncAction = AsyncAction(
-      'PushNotificationsBaseStore._receivePushNotification',
+      '_PushNotificationsStore._receivePushNotification',
       context: context);
 
   @override
@@ -193,45 +192,44 @@ mixin _$PushNotificationsStore on PushNotificationsBaseStore, Store {
             shouldCallNotificationReceived: shouldCallNotificationReceived));
   }
 
-  late final _$PushNotificationsBaseStoreActionController =
-      ActionController(name: 'PushNotificationsBaseStore', context: context);
+  late final _$_PushNotificationsStoreActionController =
+      ActionController(name: '_PushNotificationsStore', context: context);
 
   @override
   void handleSilentNotifications(
       {required void Function() onSilentNotificationReceived}) {
-    final _$actionInfo =
-        _$PushNotificationsBaseStoreActionController.startAction(
-            name: 'PushNotificationsBaseStore.handleSilentNotifications');
+    final _$actionInfo = _$_PushNotificationsStoreActionController.startAction(
+        name: '_PushNotificationsStore.handleSilentNotifications');
     try {
       return super.handleSilentNotifications(
           onSilentNotificationReceived: onSilentNotificationReceived);
     } finally {
-      _$PushNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_PushNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   AndroidNotificationChannel _createAndroidForegroundPushNotificationChannel() {
-    final _$actionInfo = _$PushNotificationsBaseStoreActionController.startAction(
+    final _$actionInfo = _$_PushNotificationsStoreActionController.startAction(
         name:
-            'PushNotificationsBaseStore._createAndroidForegroundPushNotificationChannel');
+            '_PushNotificationsStore._createAndroidForegroundPushNotificationChannel');
     try {
       return super._createAndroidForegroundPushNotificationChannel();
     } finally {
-      _$PushNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_PushNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   NotificationModel? _convertRemoteNotificationToNotificationModel(
       Map<String, dynamic> data) {
-    final _$actionInfo = _$PushNotificationsBaseStoreActionController.startAction(
+    final _$actionInfo = _$_PushNotificationsStoreActionController.startAction(
         name:
-            'PushNotificationsBaseStore._convertRemoteNotificationToNotificationModel');
+            '_PushNotificationsStore._convertRemoteNotificationToNotificationModel');
     try {
       return super._convertRemoteNotificationToNotificationModel(data);
     } finally {
-      _$PushNotificationsBaseStoreActionController.endAction(_$actionInfo);
+      _$_PushNotificationsStoreActionController.endAction(_$actionInfo);
     }
   }
 

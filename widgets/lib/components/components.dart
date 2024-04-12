@@ -39,31 +39,22 @@ class FirstComponentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [
+    final children = <Widget>[
       const Actions(),
       colDivider,
       const Communication(),
       colDivider,
       const Containment(),
-      if (!showSecondList) ...[
-        colDivider,
-        Navigation(scaffoldKey: scaffoldKey),
-        colDivider,
-        const Selection(),
-        colDivider,
-        const TextInputs()
-      ],
+      if (!showSecondList) ...[colDivider, Navigation(scaffoldKey: scaffoldKey), colDivider, const Selection(), colDivider, const TextInputs()],
     ];
-    List<double?> heights = List.filled(children.length, null);
+    final heights = List<double?>.filled(children.length, null);
 
     // Fully traverse this list before moving on.
     return FocusTraversalGroup(
       child: CustomScrollView(
         slivers: [
           SliverPadding(
-            padding: showSecondList
-                ? const EdgeInsetsDirectional.only(end: smallSpacing)
-                : EdgeInsets.zero,
+            padding: showSecondList ? const EdgeInsetsDirectional.only(end: smallSpacing) : EdgeInsets.zero,
             sliver: SliverList(
               delegate: BuildSlivers(
                 heights: heights,
@@ -93,14 +84,14 @@ class SecondComponentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> children = [
+    final children = <Widget>[
       Navigation(scaffoldKey: scaffoldKey),
       colDivider,
       const Selection(),
       colDivider,
       const TextInputs(),
     ];
-    List<double?> heights = List.filled(children.length, null);
+    final heights = List<double?>.filled(children.length, null);
 
     // Fully traverse this list before moving on.
     return FocusTraversalGroup(
@@ -155,8 +146,7 @@ class _CacheHeight extends SingleChildRenderObjectWidget {
   }
 
   @override
-  void updateRenderObject(
-      BuildContext context, _RenderCacheHeight renderObject) {
+  void updateRenderObject(BuildContext context, _RenderCacheHeight renderObject) {
     renderObject
       ..heights = heights
       ..index = index;
@@ -209,8 +199,7 @@ class BuildSlivers extends SliverChildBuilderDelegate {
   final List<double?> heights;
 
   @override
-  double? estimateMaxScrollOffset(int firstIndex, int lastIndex,
-      double leadingScrollOffset, double trailingScrollOffset) {
+  double? estimateMaxScrollOffset(int firstIndex, int lastIndex, double leadingScrollOffset, double trailingScrollOffset) {
     return heights.reduce((sum, height) => (sum ?? 0) + (height ?? 0))!;
   }
 }
@@ -220,12 +209,15 @@ class Actions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ComponentGroupDecoration(label: 'Actions', children: <Widget>[
-      Buttons(),
-      FloatingActionButtons(),
-      IconToggleButtons(),
-      SegmentedButtons(),
-    ]);
+    return const ComponentGroupDecoration(
+      label: 'Actions',
+      children: <Widget>[
+        Buttons(),
+        FloatingActionButtons(),
+        IconToggleButtons(),
+        SegmentedButtons(),
+      ],
+    );
   }
 }
 
@@ -234,15 +226,18 @@ class Communication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ComponentGroupDecoration(label: 'Communication', children: [
-      NavigationBars(
-        selectedIndex: 1,
-        isExampleBar: true,
-        isBadgeExample: true,
-      ),
-      ProgressIndicators(),
-      SnackBarSection(),
-    ]);
+    return const ComponentGroupDecoration(
+      label: 'Communication',
+      children: [
+        NavigationBars(
+          selectedIndex: 1,
+          isExampleBar: true,
+          isBadgeExample: true,
+        ),
+        ProgressIndicators(),
+        SnackBarSection(),
+      ],
+    );
   }
 }
 
@@ -251,14 +246,17 @@ class Containment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ComponentGroupDecoration(label: 'Containment', children: [
-      BottomSheetSection(),
-      Cards(),
-      Dialogs(),
-      Dividers(),
-      // TODO: Add Lists, https://github.com/flutter/flutter/issues/114006
-      // TODO: Add Side sheets, https://github.com/flutter/flutter/issues/119328
-    ]);
+    return const ComponentGroupDecoration(
+      label: 'Containment',
+      children: [
+        BottomSheetSection(),
+        Cards(),
+        Dialogs(),
+        Dividers(),
+        // TODO: Add Lists, https://github.com/flutter/flutter/issues/114006
+        // TODO: Add Side sheets, https://github.com/flutter/flutter/issues/119328
+      ],
+    );
   }
 }
 
@@ -269,18 +267,21 @@ class Navigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ComponentGroupDecoration(label: 'Navigation', children: [
-      const BottomAppBars(),
-      const NavigationBars(
-        selectedIndex: 0,
-        isExampleBar: true,
-      ),
-      NavigationDrawers(scaffoldKey: scaffoldKey),
-      const NavigationRails(),
-      const Tabs(),
-      const SearchAnchors(),
-      const TopAppBars(),
-    ]);
+    return ComponentGroupDecoration(
+      label: 'Navigation',
+      children: [
+        const BottomAppBars(),
+        const NavigationBars(
+          selectedIndex: 0,
+          isExampleBar: true,
+        ),
+        NavigationDrawers(scaffoldKey: scaffoldKey),
+        const NavigationRails(),
+        const Tabs(),
+        const SearchAnchors(),
+        const TopAppBars(),
+      ],
+    );
   }
 }
 
@@ -289,16 +290,19 @@ class Selection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ComponentGroupDecoration(label: 'Selection', children: [
-      Checkboxes(),
-      Chips(),
-      DatePickers(),
-      Menus(),
-      Radios(),
-      Sliders(),
-      Switches(),
-      TimePickers(),
-    ]);
+    return const ComponentGroupDecoration(
+      label: 'Selection',
+      children: [
+        Checkboxes(),
+        Chips(),
+        DatePickers(),
+        Menus(),
+        Radios(),
+        Sliders(),
+        Switches(),
+        TimePickers(),
+      ],
+    );
   }
 }
 
@@ -326,7 +330,7 @@ const List<NavigationDestination> appBarDestinations = [
     icon: Icon(Icons.invert_colors_on_outlined),
     label: 'Elevation',
     selectedIcon: Icon(Icons.opacity),
-  )
+  ),
 ];
 
 const List<Widget> exampleBarDestinations = [
@@ -347,7 +351,7 @@ const List<Widget> exampleBarDestinations = [
     icon: Icon(Icons.account_box_outlined),
     label: 'Account',
     selectedIcon: Icon(Icons.account_box),
-  )
+  ),
 ];
 
 List<Widget> barWithBadgeDestinations = [
@@ -374,7 +378,7 @@ List<Widget> barWithBadgeDestinations = [
     icon: Badge.count(count: 3, child: const Icon(Icons.videocam_outlined)),
     label: 'Meet',
     selectedIcon: Badge.count(count: 3, child: const Icon(Icons.videocam)),
-  )
+  ),
 ];
 
 class IconToggleButtons extends StatefulWidget {
@@ -394,8 +398,7 @@ class _IconToggleButtonsState extends State<IconToggleButtons> {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Icon buttons',
-      tooltipMessage:
-          'Use IconButton, IconButton.filled, IconButton.filledTonal, and IconButton.outlined',
+      tooltipMessage: 'Use IconButton, IconButton.filled, IconButton.filledTonal, and IconButton.outlined',
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
@@ -508,7 +511,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> buttonList = <Widget>[
+    var buttonList = <Widget>[
       IconButton(onPressed: () {}, icon: const Icon(Icons.share_outlined)),
       IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
       IconButton(onPressed: () {}, icon: const Icon(Icons.delete_outline)),
@@ -516,27 +519,20 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
       IconButton(onPressed: () {}, icon: const Icon(Icons.settings_outlined)),
       IconButton(onPressed: () {}, icon: const Icon(Icons.favorite_border)),
     ];
-    List<Text> labelList = const <Text>[
-      Text('Share'),
-      Text('Add to'),
-      Text('Trash'),
-      Text('Archive'),
-      Text('Settings'),
-      Text('Favorite')
-    ];
+    const labelList = <Text>[Text('Share'), Text('Add to'), Text('Trash'), Text('Archive'), Text('Settings'), Text('Favorite')];
 
     buttonList = List.generate(
-        buttonList.length,
-        (index) => Padding(
-              padding: const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  buttonList[index],
-                  labelList[index],
-                ],
-              ),
-            ));
+      buttonList.length,
+      (index) => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 30, 20, 20),
+        child: Column(
+          children: [
+            buttonList[index],
+            labelList[index],
+          ],
+        ),
+      ),
+    );
 
     return ComponentDecoration(
       label: 'Bottom sheet',
@@ -559,7 +555,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                   return SizedBox(
                     height: 150,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -573,9 +569,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
           ),
           TextButton(
             child: Text(
-              isNonModalBottomSheetOpen
-                  ? 'Hide bottom sheet'
-                  : 'Show bottom sheet',
+              isNonModalBottomSheetOpen ? 'Hide bottom sheet' : 'Show bottom sheet',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             onPressed: () {
@@ -592,7 +586,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
               }
 
               _nonModalBottomSheetController = showBottomSheet(
-                elevation: 8.0,
+                elevation: 8,
                 context: context,
                 // TODO: Remove when this is in the framework https://github.com/flutter/flutter/issues/118619
                 constraints: const BoxConstraints(maxWidth: 640),
@@ -600,7 +594,7 @@ class _BottomSheetSectionState extends State<BottomSheetSection> {
                   return SizedBox(
                     height: 150,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: ListView(
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
@@ -633,11 +627,10 @@ class BottomAppBars extends StatelessWidget {
             child: Scaffold(
               floatingActionButton: FloatingActionButton(
                 onPressed: () {},
-                elevation: 0.0,
+                elevation: 0,
                 child: const Icon(Icons.add),
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.endContained,
+              floatingActionButtonLocation: FloatingActionButtonLocation.endContained,
               bottomNavigationBar: BottomAppBar(
                 child: Row(
                   children: <Widget>[
@@ -759,16 +752,14 @@ class NavigationDrawers extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Navigation drawer',
-      tooltipMessage:
-          'Use NavigationDrawer. For modal navigation drawers, see Scaffold.endDrawer',
+      tooltipMessage: 'Use NavigationDrawer. For modal navigation drawers, see Scaffold.endDrawer',
       child: Column(
         children: [
           const SizedBox(height: 520, child: NavigationDrawerSection()),
           colDivider,
           colDivider,
           TextButton(
-            child: const Text('Show modal navigation drawer',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+            child: const Text('Show modal navigation drawer', style: TextStyle(fontWeight: FontWeight.bold)),
             onPressed: () {
               scaffoldKey.currentState!.openEndDrawer();
             },
@@ -783,8 +774,7 @@ class NavigationDrawerSection extends StatefulWidget {
   const NavigationDrawerSection({super.key});
 
   @override
-  State<NavigationDrawerSection> createState() =>
-      _NavigationDrawerSectionState();
+  State<NavigationDrawerSection> createState() => _NavigationDrawerSectionState();
 }
 
 class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
@@ -845,16 +835,13 @@ class ExampleDestination {
 const List<ExampleDestination> destinations = <ExampleDestination>[
   ExampleDestination('Inbox', Icon(Icons.inbox_outlined), Icon(Icons.inbox)),
   ExampleDestination('Outbox', Icon(Icons.send_outlined), Icon(Icons.send)),
-  ExampleDestination(
-      'Favorites', Icon(Icons.favorite_outline), Icon(Icons.favorite)),
+  ExampleDestination('Favorites', Icon(Icons.favorite_outline), Icon(Icons.favorite)),
   ExampleDestination('Trash', Icon(Icons.delete_outline), Icon(Icons.delete)),
 ];
 
 const List<ExampleDestination> labelDestinations = <ExampleDestination>[
-  ExampleDestination(
-      'Family', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
-  ExampleDestination(
-      'School', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
+  ExampleDestination('Family', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
+  ExampleDestination('School', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
   ExampleDestination('Work', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
 ];
 
@@ -866,8 +853,7 @@ class NavigationRails extends StatelessWidget {
     return const ComponentDecoration(
       label: 'Navigation rail',
       tooltipMessage: 'Use NavigationRail',
-      child: IntrinsicWidth(
-          child: SizedBox(height: 420, child: NavigationRailSection())),
+      child: IntrinsicWidth(child: SizedBox(height: 420, child: NavigationRailSection())),
     );
   }
 }
@@ -891,9 +877,8 @@ class _NavigationRailSectionState extends State<NavigationRailSection> {
         });
       },
       elevation: 4,
-      leading: FloatingActionButton(
-          child: const Icon(Icons.create), onPressed: () {}),
-      groupAlignment: 0.0,
+      leading: FloatingActionButton(child: const Icon(Icons.create), onPressed: () {}),
+      groupAlignment: 0,
       selectedIndex: navRailIndex,
       labelType: NavigationRailLabelType.selected,
       destinations: <NavigationRailDestination>[
@@ -940,17 +925,17 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
                 Tab(
                   icon: Icon(Icons.videocam_outlined),
                   text: 'Video',
-                  iconMargin: EdgeInsets.only(bottom: 0.0),
+                  iconMargin: EdgeInsets.only(),
                 ),
                 Tab(
                   icon: Icon(Icons.photo_outlined),
                   text: 'Photos',
-                  iconMargin: EdgeInsets.only(bottom: 0.0),
+                  iconMargin: EdgeInsets.only(),
                 ),
                 Tab(
                   icon: Icon(Icons.audiotrack_sharp),
                   text: 'Audio',
-                  iconMargin: EdgeInsets.only(bottom: 0.0),
+                  iconMargin: EdgeInsets.only(),
                 ),
               ],
             ),
@@ -974,8 +959,7 @@ class TopAppBars extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Top app bars',
-      tooltipMessage:
-          'Use AppBar, SliverAppBar, SliverAppBar.medium, or  SliverAppBar.large',
+      tooltipMessage: 'Use AppBar, SliverAppBar, SliverAppBar.medium, or  SliverAppBar.large',
       child: Column(
         children: [
           AppBar(
@@ -1046,18 +1030,14 @@ class _MenusState extends State<Menus> {
 
   @override
   Widget build(BuildContext context) {
-    final List<DropdownMenuEntry<ColorLabel>> colorEntries =
-        <DropdownMenuEntry<ColorLabel>>[];
-    for (final ColorLabel color in ColorLabel.values) {
-      colorEntries.add(DropdownMenuEntry<ColorLabel>(
-          value: color, label: color.label, enabled: color.label != 'Grey'));
+    final colorEntries = <DropdownMenuEntry<ColorLabel>>[];
+    for (final color in ColorLabel.values) {
+      colorEntries.add(DropdownMenuEntry<ColorLabel>(value: color, label: color.label, enabled: color.label != 'Grey'));
     }
 
-    final List<DropdownMenuEntry<IconLabel>> iconEntries =
-        <DropdownMenuEntry<IconLabel>>[];
-    for (final IconLabel icon in IconLabel.values) {
-      iconEntries
-          .add(DropdownMenuEntry<IconLabel>(value: icon, label: icon.label));
+    final iconEntries = <DropdownMenuEntry<IconLabel>>[];
+    for (final icon in IconLabel.values) {
+      iconEntries.add(DropdownMenuEntry<IconLabel>(value: icon, label: icon.label));
     }
 
     return ComponentDecoration(
@@ -1108,7 +1088,7 @@ class _MenusState extends State<Menus> {
               Icon(
                 selectedIcon?.icon,
                 color: selectedColor?.color ?? Colors.grey.withOpacity(0.5),
-              )
+              ),
             ],
           ),
         ],
@@ -1151,39 +1131,40 @@ class Sliders extends StatefulWidget {
 }
 
 class _SlidersState extends State<Sliders> {
-  double sliderValue0 = 30.0;
-  double sliderValue1 = 20.0;
+  double sliderValue0 = 30;
+  double sliderValue1 = 20;
 
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-        label: 'Sliders',
-        tooltipMessage: 'Use Slider or RangeSlider',
-        child: Column(
-          children: <Widget>[
-            Slider(
-              max: 100,
-              value: sliderValue0,
-              onChanged: (value) {
-                setState(() {
-                  sliderValue0 = value;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-            Slider(
-              max: 100,
-              divisions: 5,
-              value: sliderValue1,
-              label: sliderValue1.round().toString(),
-              onChanged: (value) {
-                setState(() {
-                  sliderValue1 = value;
-                });
-              },
-            ),
-          ],
-        ));
+      label: 'Sliders',
+      tooltipMessage: 'Use Slider or RangeSlider',
+      child: Column(
+        children: <Widget>[
+          Slider(
+            max: 100,
+            value: sliderValue0,
+            onChanged: (value) {
+              setState(() {
+                sliderValue0 = value;
+              });
+            },
+          ),
+          const SizedBox(height: 20),
+          Slider(
+            max: 100,
+            divisions: 5,
+            value: sliderValue1,
+            label: sliderValue1.round().toString(),
+            onChanged: (value) {
+              setState(() {
+                sliderValue1 = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -1199,42 +1180,44 @@ class _SearchAnchorsState extends State<SearchAnchors> {
   List<ColorItem> searchHistory = <ColorItem>[];
 
   Iterable<Widget> getHistoryList(SearchController controller) {
-    return searchHistory.map((color) => ListTile(
-          leading: const Icon(Icons.history),
-          title: Text(color.label),
-          trailing: IconButton(
-              icon: const Icon(Icons.call_missed),
-              onPressed: () {
-                controller.text = color.label;
-                controller.selection =
-                    TextSelection.collapsed(offset: controller.text.length);
-              }),
-          onTap: () {
-            controller.closeView(color.label);
-            handleSelection(color);
+    return searchHistory.map(
+      (color) => ListTile(
+        leading: const Icon(Icons.history),
+        title: Text(color.label),
+        trailing: IconButton(
+          icon: const Icon(Icons.call_missed),
+          onPressed: () {
+            controller.text = color.label;
+            controller.selection = TextSelection.collapsed(offset: controller.text.length);
           },
-        ));
+        ),
+        onTap: () {
+          controller.closeView(color.label);
+          handleSelection(color);
+        },
+      ),
+    );
   }
 
   Iterable<Widget> getSuggestions(SearchController controller) {
-    final String input = controller.value.text;
-    return ColorItem.values
-        .where((color) => color.label.contains(input))
-        .map((filteredColor) => ListTile(
-              leading: CircleAvatar(backgroundColor: filteredColor.color),
-              title: Text(filteredColor.label),
-              trailing: IconButton(
-                  icon: const Icon(Icons.call_missed),
-                  onPressed: () {
-                    controller.text = filteredColor.label;
-                    controller.selection =
-                        TextSelection.collapsed(offset: controller.text.length);
-                  }),
-              onTap: () {
-                controller.closeView(filteredColor.label);
-                handleSelection(filteredColor);
+    final input = controller.value.text;
+    return ColorItem.values.where((color) => color.label.contains(input)).map(
+          (filteredColor) => ListTile(
+            leading: CircleAvatar(backgroundColor: filteredColor.color),
+            title: Text(filteredColor.label),
+            trailing: IconButton(
+              icon: const Icon(Icons.call_missed),
+              onPressed: () {
+                controller.text = filteredColor.label;
+                controller.selection = TextSelection.collapsed(offset: controller.text.length);
               },
-            ));
+            ),
+            onTap: () {
+              controller.closeView(filteredColor.label);
+              handleSelection(filteredColor);
+            },
+          ),
+        );
   }
 
   void handleSelection(ColorItem color) {
@@ -1263,19 +1246,15 @@ class _SearchAnchorsState extends State<SearchAnchors> {
                 }
                 return <Widget>[
                   const Center(
-                    child: Text('No search history.',
-                        style: TextStyle(color: Colors.grey)),
-                  )
+                    child: Text('No search history.', style: TextStyle(color: Colors.grey)),
+                  ),
                 ];
               }
               return getSuggestions(controller);
             },
           ),
           const SizedBox(height: 20),
-          if (selectedColor == null)
-            const Text('Select a color')
-          else
-            Text('Last selected color is $selectedColor')
+          if (selectedColor == null) const Text('Select a color') else Text('Last selected color is $selectedColor'),
         ],
       ),
     );
@@ -1283,8 +1262,7 @@ class _SearchAnchorsState extends State<SearchAnchors> {
 }
 
 class ComponentGroupDecoration extends StatelessWidget {
-  const ComponentGroupDecoration(
-      {super.key, required this.label, required this.children});
+  const ComponentGroupDecoration({super.key, required this.label, required this.children});
 
   final String label;
   final List<Widget> children;
@@ -1298,14 +1276,10 @@ class ComponentGroupDecoration extends StatelessWidget {
         elevation: 0,
         color: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20.0),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Center(
             child: Column(
-              children: [
-                Text(label, style: Theme.of(context).textTheme.titleLarge),
-                colDivider,
-                ...children
-              ],
+              children: [Text(label, style: Theme.of(context).textTheme.titleLarge), colDivider, ...children],
             ),
           ),
         ),

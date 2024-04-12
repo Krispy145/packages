@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:theme/data/models/colors/color_model.dart';
 import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/repositories/theme.repository.dart';
@@ -51,13 +52,13 @@ enum ThemeStateType {
 }
 
 /// [ThemeStateStore] is the store that will be used to manage the state of the theme.
-class ThemeStateStore = ThemeStateBaseStore with _$ThemeStateStore;
+class ThemeStateStore = _ThemeStateStore with _$ThemeStateStore;
 
-/// [ThemeStateBaseStore] is the base store that will be used to manage the state of the theme.
-abstract class ThemeStateBaseStore extends LoadStateStore with Store {
+/// [_ThemeStateStore] is the base store that will be used to manage the state of the theme.
+abstract class _ThemeStateStore extends LoadStateStore with Store {
   String? id;
 
-  /// [ThemeStateBaseStore.local] is the constructor that will be used to fetch the data from local storage.
+  /// [_ThemeStateStore.local] is the constructor that will be used to fetch the data from local storage.
   final ThemeStateType type;
 
   /// [baseThemeUrlPath] is the path that will be used to fetch the data from an api.
@@ -72,8 +73,8 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
   /// [componentThemesAssetPath] is the path that will be used to fetch the data from assets.
   final String? componentThemesAssetPath;
 
-  /// [ThemeStateBaseStore.local] is the constructor that will be used to fetch the data from local storage.
-  ThemeStateBaseStore.local({
+  /// [_ThemeStateStore.local] is the constructor that will be used to fetch the data from local storage.
+  _ThemeStateStore.local({
     this.id,
   })  : type = ThemeStateType.local,
         baseThemeUrlPath = null,
@@ -83,8 +84,8 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadLocalTheme(id: id);
   }
 
-  /// [ThemeStateBaseStore.assets] is the constructor that will be used to fetch the data from assets.
-  ThemeStateBaseStore.assets({
+  /// [_ThemeStateStore.assets] is the constructor that will be used to fetch the data from assets.
+  _ThemeStateStore.assets({
     required this.baseThemeAssetPath,
     this.componentThemesAssetPath,
     this.id,
@@ -94,8 +95,8 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadAssetsTheme(id: id);
   }
 
-  /// [ThemeStateBaseStore.api] is the constructor that will be used to fetch the data from an api.
-  ThemeStateBaseStore.api({
+  /// [_ThemeStateStore.api] is the constructor that will be used to fetch the data from an api.
+  _ThemeStateStore.api({
     required this.id,
     required this.baseThemeUrlPath,
     this.componentThemesUrlPath,
@@ -105,16 +106,16 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadApiTheme(id: id);
   }
 
-  /// [ThemeStateBaseStore.supabase] is the constructor that will be used to fetch the data from an api.
+  /// [_ThemeStateStore.supabase] is the constructor that will be used to fetch the data from an api.
   /// Serves the `Digital Oasis` Themes Tables as default.
   /// [baseUrl] is the url of the supabase server,
   /// [anonKey] is the anonymous key of the supabase server,
   /// [baseThemeTableName] is the name of the table that contains the base theme data, defaults to `"baseTheme"`.
   /// [componentThemesTableName] is the name of the table that contains the component themes data, defaults to `"componentsThemes"`.
 
-  ThemeStateBaseStore.supabase({
-    String? baeUrl,
-    String? anonKey,
+  _ThemeStateStore.supabase({
+    required String baseUrl,
+    required String anonKey,
     String? baseThemeTableName,
     String? componentThemesTableName,
     this.id,
@@ -123,10 +124,10 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
         type = ThemeStateType.supabase,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
-    _loadSupabaseTheme(id: id ?? primaryThemeId);
+    _loadSupabaseTheme(url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId);
   }
 
-  ThemeStateBaseStore.digitalOasis({
+  _ThemeStateStore.digitalOasis({
     this.id,
   })  : baseThemeUrlPath = "baseThemes",
         componentThemesUrlPath = "componentsThemes",
@@ -136,9 +137,9 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadDigitalOasisTheme(id: id ?? primaryThemeId);
   }
 
-  /// [ThemeStateBaseStore.localAssets] is the constructor that will be used to try fetch the data from local storage and catch the error,
+  /// [_ThemeStateStore.localAssets] is the constructor that will be used to try fetch the data from local storage and catch the error,
   /// then fetch the data from assets.
-  ThemeStateBaseStore.localAssets({
+  _ThemeStateStore.localAssets({
     required this.baseThemeAssetPath,
     this.componentThemesAssetPath,
     this.id,
@@ -148,9 +149,9 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadLocalAssetsTheme(id: id);
   }
 
-  /// [ThemeStateBaseStore.apiLocal] is the constructor that will be used to try fetch the data from api and catch the error,
+  /// [_ThemeStateStore.apiLocal] is the constructor that will be used to try fetch the data from api and catch the error,
   /// then fetch the data from local storage.
-  ThemeStateBaseStore.apiLocal({
+  _ThemeStateStore.apiLocal({
     required this.baseThemeUrlPath,
     this.componentThemesUrlPath,
     this.id,
@@ -160,9 +161,9 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadApiLocalTheme(id: id);
   }
 
-  /// [ThemeStateBaseStore.apiAssets] is the constructor that will be used to try fetch the data from api and catch the error,
+  /// [_ThemeStateStore.apiAssets] is the constructor that will be used to try fetch the data from api and catch the error,
   /// then fetch the data from an assets.
-  ThemeStateBaseStore.apiAssets({
+  _ThemeStateStore.apiAssets({
     required this.baseThemeUrlPath,
     required this.baseThemeAssetPath,
     this.componentThemesUrlPath,
@@ -172,10 +173,10 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     _loadApiAssetsTheme(id: id);
   }
 
-  /// [ThemeStateBaseStore.apiLocalAssets] is the constructor that will be used to try fetch the data from api and catch the error,
+  /// [_ThemeStateStore.apiLocalAssets] is the constructor that will be used to try fetch the data from api and catch the error,
   /// then fetch the data from local storage and catch the error,
   /// then fetch the data from assets.
-  ThemeStateBaseStore.apiLocalAssets({
+  _ThemeStateStore.apiLocalAssets({
     required this.baseThemeUrlPath,
     required this.baseThemeAssetPath,
     this.componentThemesUrlPath,
@@ -191,8 +192,7 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
   // /// [componentThemesDataSource] is an instance of [ComponentThemesDataSource], which takes in the appropriate source based on the [type].
   // late ComponentThemesDataSource componentThemesDataSource;
 
-  /// [repository] is an instance of [ThemeRepository], which takes in the appropriate [dataSource].
-  /// This can be in memory or an api.
+  /// [repository] is an instance of [ThemeRepository] which takes in the appropriate source based on the [type].
   BaseThemeRepository? repository;
 
   /// [baseThemeModel] is the model that will be used to store the theme data.
@@ -308,7 +308,10 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
     );
   }
 
-  void _setRepository({required ThemeConfiguration baseThemeConfiguration, required ThemeConfiguration componentThemesConfiguration}) {
+  void _setRepository({
+    required ThemeConfiguration baseThemeConfiguration,
+    required ThemeConfiguration componentThemesConfiguration,
+  }) {
     repository = ThemeRepository(
       baseThemeConfiguration: baseThemeConfiguration,
       componentThemesConfiguration: componentThemesConfiguration,
@@ -328,9 +331,7 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
       baseThemeConfiguration: const ThemeConfiguration.local(),
       componentThemesConfiguration: const ThemeConfiguration.local(),
     );
-    // baseDataSource = LocalBaseThemeDataSource();
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    // componentThemesDataSource = LocalComponentThemesDataSource();
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
     AppLogger.print("ThemeModel - Local: $baseThemeModel", [PackageFeatures.theme]);
     setLoaded();
@@ -342,33 +343,29 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
       baseThemeConfiguration: ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!),
       componentThemesConfiguration: ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!),
     );
-    // baseDataSource = AssetsBaseThemeDataSource(baseThemeAssetPath!);
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    // componentThemesDataSource = AssetsComponentThemesDataSource(componentThemesAssetPath);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
     AppLogger.print("ThemeModel - Assets: $baseThemeModel", [PackageFeatures.theme]);
     setLoaded();
   }
 
-  Future<void> _loadSupabaseTheme({String? id}) async {
-    throw UnimplementedError();
-    //TODO: Implement Supabase Theme Loading
-    //  setLoading();
-    // _setRepository();
-    // baseDataSource = AssetsBaseThemeDataSource(baseThemeAssetPath!);
-    // baseThemeModel = await baseDataSource.fetchTheme(id: id);
-    // componentThemesDataSource = AssetsComponentThemesDataSource(componentThemesAssetPath);
-    // componentThemesModel = await componentThemesDataSource.fetchTheme(id: id);
-    // AppLogger.print("ThemeModel - Assets: $baseThemeModel", [PackageFeatures.theme]);
-    // setLoaded();
+  Future<void> _loadSupabaseTheme({required String url, required String anonKey, String? id}) async {
+    final _client = SupabaseClient(url, anonKey);
+    setLoading();
+    _setRepository(
+      baseThemeConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
+      componentThemesConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
+    );
+    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
+    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [PackageFeatures.theme]);
+    setLoaded();
   }
 
   Future<void> _loadDigitalOasisTheme({String? id}) async {
     setLoading();
     repository = DigitalOasisRepository();
-    // baseDataSource = DigitalOasisBaseThemeSource();
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    // componentThemesDataSource = DigitalOasisComponentThemesDataSource();
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
     AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [PackageFeatures.theme]);
     setLoaded();
@@ -380,9 +377,7 @@ abstract class ThemeStateBaseStore extends LoadStateStore with Store {
       baseThemeConfiguration: ThemeConfiguration.api(urlPath: baseThemeUrlPath!),
       componentThemesConfiguration: ThemeConfiguration.api(urlPath: componentThemesUrlPath!),
     );
-    // baseDataSource = ApiBaseThemeDataSource(baseThemeUrlPath!);
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    // componentThemesDataSource = ApiComponentThemesDataSource(componentThemesUrlPath!);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
     AppLogger.print("ThemeModel - Api: $baseThemeModel", [PackageFeatures.theme]);
     setLoaded();

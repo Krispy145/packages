@@ -20,19 +20,23 @@ DialogModel _$DialogModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DialogModel {
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  @AlignmentConverter()
-  Alignment? get alignment => throw _privateConstructorUsedError;
-  String? get iconColor => throw _privateConstructorUsedError;
-  String? get titleTextStyle => throw _privateConstructorUsedError;
-  String? get contentTextStyle => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get actionsPadding => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError; // @OutlinedBorderConverter()
+  ShapeBorderModel? get shape_shapeBorder => throw _privateConstructorUsedError;
+  AlignmentOptions? get alignment_enum_alignmentOptions =>
+      throw _privateConstructorUsedError;
+  String? get iconColor_themeColorString => throw _privateConstructorUsedError;
+  String? get titleTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  String? get contentTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  EdgeInsetsModel? get actionsPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,16 +51,19 @@ abstract class $DialogModelCopyWith<$Res> {
       _$DialogModelCopyWithImpl<$Res, DialogModel>;
   @useResult
   $Res call(
-      {String? backgroundColor,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      @AlignmentConverter() Alignment? alignment,
-      String? iconColor,
-      String? titleTextStyle,
-      String? contentTextStyle,
-      @EdgeInsetsConverter() EdgeInsets? actionsPadding});
+      {String? backgroundColor_themeColorString,
+      double? elevation_double,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      ShapeBorderModel? shape_shapeBorder,
+      AlignmentOptions? alignment_enum_alignmentOptions,
+      String? iconColor_themeColorString,
+      String? titleTextStyle_textStyleString,
+      String? contentTextStyle_textStyleString,
+      EdgeInsetsModel? actionsPadding_edgeInsets});
+
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  $EdgeInsetsModelCopyWith<$Res>? get actionsPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -72,59 +79,88 @@ class _$DialogModelCopyWithImpl<$Res, $Val extends DialogModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? shape = freezed,
-    Object? alignment = freezed,
-    Object? iconColor = freezed,
-    Object? titleTextStyle = freezed,
-    Object? contentTextStyle = freezed,
-    Object? actionsPadding = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
+    Object? contentTextStyle_textStyleString = freezed,
+    Object? actionsPadding_edgeInsets = freezed,
   }) {
     return _then(_value.copyWith(
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      alignment: freezed == alignment
-          ? _value.alignment
-          : alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle: freezed == titleTextStyle
-          ? _value.titleTextStyle
-          : titleTextStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      contentTextStyle: freezed == contentTextStyle
-          ? _value.contentTextStyle
-          : contentTextStyle // ignore: cast_nullable_to_non_nullable
+      contentTextStyle_textStyleString: freezed ==
+              contentTextStyle_textStyleString
+          ? _value.contentTextStyle_textStyleString
+          : contentTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      actionsPadding: freezed == actionsPadding
-          ? _value.actionsPadding
-          : actionsPadding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+      actionsPadding_edgeInsets: freezed == actionsPadding_edgeInsets
+          ? _value.actionsPadding_edgeInsets
+          : actionsPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder {
+    if (_value.shape_shapeBorder == null) {
+      return null;
+    }
+
+    return $ShapeBorderModelCopyWith<$Res>(_value.shape_shapeBorder!, (value) {
+      return _then(_value.copyWith(shape_shapeBorder: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get actionsPadding_edgeInsets {
+    if (_value.actionsPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.actionsPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(actionsPadding_edgeInsets: value) as $Val);
+    });
   }
 }
 
@@ -137,16 +173,21 @@ abstract class _$$DialogModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? backgroundColor,
-      double? elevation,
-      String? shadowColor,
-      String? surfaceTintColor,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      @AlignmentConverter() Alignment? alignment,
-      String? iconColor,
-      String? titleTextStyle,
-      String? contentTextStyle,
-      @EdgeInsetsConverter() EdgeInsets? actionsPadding});
+      {String? backgroundColor_themeColorString,
+      double? elevation_double,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      ShapeBorderModel? shape_shapeBorder,
+      AlignmentOptions? alignment_enum_alignmentOptions,
+      String? iconColor_themeColorString,
+      String? titleTextStyle_textStyleString,
+      String? contentTextStyle_textStyleString,
+      EdgeInsetsModel? actionsPadding_edgeInsets});
+
+  @override
+  $ShapeBorderModelCopyWith<$Res>? get shape_shapeBorder;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get actionsPadding_edgeInsets;
 }
 
 /// @nodoc
@@ -160,58 +201,62 @@ class __$$DialogModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? backgroundColor = freezed,
-    Object? elevation = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? shape = freezed,
-    Object? alignment = freezed,
-    Object? iconColor = freezed,
-    Object? titleTextStyle = freezed,
-    Object? contentTextStyle = freezed,
-    Object? actionsPadding = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? elevation_double = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? shape_shapeBorder = freezed,
+    Object? alignment_enum_alignmentOptions = freezed,
+    Object? iconColor_themeColorString = freezed,
+    Object? titleTextStyle_textStyleString = freezed,
+    Object? contentTextStyle_textStyleString = freezed,
+    Object? actionsPadding_edgeInsets = freezed,
   }) {
     return _then(_$DialogModelImpl(
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      alignment: freezed == alignment
-          ? _value.alignment
-          : alignment // ignore: cast_nullable_to_non_nullable
-              as Alignment?,
-      iconColor: freezed == iconColor
-          ? _value.iconColor
-          : iconColor // ignore: cast_nullable_to_non_nullable
+      shape_shapeBorder: freezed == shape_shapeBorder
+          ? _value.shape_shapeBorder
+          : shape_shapeBorder // ignore: cast_nullable_to_non_nullable
+              as ShapeBorderModel?,
+      alignment_enum_alignmentOptions: freezed ==
+              alignment_enum_alignmentOptions
+          ? _value.alignment_enum_alignmentOptions
+          : alignment_enum_alignmentOptions // ignore: cast_nullable_to_non_nullable
+              as AlignmentOptions?,
+      iconColor_themeColorString: freezed == iconColor_themeColorString
+          ? _value.iconColor_themeColorString
+          : iconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      titleTextStyle: freezed == titleTextStyle
-          ? _value.titleTextStyle
-          : titleTextStyle // ignore: cast_nullable_to_non_nullable
+      titleTextStyle_textStyleString: freezed == titleTextStyle_textStyleString
+          ? _value.titleTextStyle_textStyleString
+          : titleTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      contentTextStyle: freezed == contentTextStyle
-          ? _value.contentTextStyle
-          : contentTextStyle // ignore: cast_nullable_to_non_nullable
+      contentTextStyle_textStyleString: freezed ==
+              contentTextStyle_textStyleString
+          ? _value.contentTextStyle_textStyleString
+          : contentTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      actionsPadding: freezed == actionsPadding
-          ? _value.actionsPadding
-          : actionsPadding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
+      actionsPadding_edgeInsets: freezed == actionsPadding_edgeInsets
+          ? _value.actionsPadding_edgeInsets
+          : actionsPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
     ));
   }
 }
@@ -220,48 +265,47 @@ class __$$DialogModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DialogModelImpl extends _DialogModel {
   const _$DialogModelImpl(
-      {this.backgroundColor,
-      this.elevation,
-      this.shadowColor,
-      this.surfaceTintColor,
-      @OutlinedBorderConverter() this.shape,
-      @AlignmentConverter() this.alignment,
-      this.iconColor,
-      this.titleTextStyle,
-      this.contentTextStyle,
-      @EdgeInsetsConverter() this.actionsPadding})
+      {this.backgroundColor_themeColorString,
+      this.elevation_double,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.shape_shapeBorder,
+      this.alignment_enum_alignmentOptions,
+      this.iconColor_themeColorString,
+      this.titleTextStyle_textStyleString,
+      this.contentTextStyle_textStyleString,
+      this.actionsPadding_edgeInsets = const EdgeInsetsModel()})
       : super._();
 
   factory _$DialogModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$DialogModelImplFromJson(json);
 
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_themeColorString;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final String? shadowColor;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_themeColorString;
+// @OutlinedBorderConverter()
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  final ShapeBorderModel? shape_shapeBorder;
   @override
-  @AlignmentConverter()
-  final Alignment? alignment;
+  final AlignmentOptions? alignment_enum_alignmentOptions;
   @override
-  final String? iconColor;
+  final String? iconColor_themeColorString;
   @override
-  final String? titleTextStyle;
+  final String? titleTextStyle_textStyleString;
   @override
-  final String? contentTextStyle;
+  final String? contentTextStyle_textStyleString;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? actionsPadding;
+  @JsonKey()
+  final EdgeInsetsModel? actionsPadding_edgeInsets;
 
   @override
   String toString() {
-    return 'DialogModel(backgroundColor: $backgroundColor, elevation: $elevation, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, shape: $shape, alignment: $alignment, iconColor: $iconColor, titleTextStyle: $titleTextStyle, contentTextStyle: $contentTextStyle, actionsPadding: $actionsPadding)';
+    return 'DialogModel(backgroundColor_themeColorString: $backgroundColor_themeColorString, elevation_double: $elevation_double, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, shape_shapeBorder: $shape_shapeBorder, alignment_enum_alignmentOptions: $alignment_enum_alignmentOptions, iconColor_themeColorString: $iconColor_themeColorString, titleTextStyle_textStyleString: $titleTextStyle_textStyleString, contentTextStyle_textStyleString: $contentTextStyle_textStyleString, actionsPadding_edgeInsets: $actionsPadding_edgeInsets)';
   }
 
   @override
@@ -269,41 +313,52 @@ class _$DialogModelImpl extends _DialogModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DialogModelImpl &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.alignment, alignment) ||
-                other.alignment == alignment) &&
-            (identical(other.iconColor, iconColor) ||
-                other.iconColor == iconColor) &&
-            (identical(other.titleTextStyle, titleTextStyle) ||
-                other.titleTextStyle == titleTextStyle) &&
-            (identical(other.contentTextStyle, contentTextStyle) ||
-                other.contentTextStyle == contentTextStyle) &&
-            (identical(other.actionsPadding, actionsPadding) ||
-                other.actionsPadding == actionsPadding));
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.elevation_double, elevation_double) ||
+                other.elevation_double == elevation_double) &&
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString,
+                    surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.shape_shapeBorder, shape_shapeBorder) ||
+                other.shape_shapeBorder == shape_shapeBorder) &&
+            (identical(other.alignment_enum_alignmentOptions, alignment_enum_alignmentOptions) ||
+                other.alignment_enum_alignmentOptions ==
+                    alignment_enum_alignmentOptions) &&
+            (identical(other.iconColor_themeColorString, iconColor_themeColorString) ||
+                other.iconColor_themeColorString ==
+                    iconColor_themeColorString) &&
+            (identical(other.titleTextStyle_textStyleString, titleTextStyle_textStyleString) ||
+                other.titleTextStyle_textStyleString ==
+                    titleTextStyle_textStyleString) &&
+            (identical(other.contentTextStyle_textStyleString,
+                    contentTextStyle_textStyleString) ||
+                other.contentTextStyle_textStyleString ==
+                    contentTextStyle_textStyleString) &&
+            (identical(
+                    other.actionsPadding_edgeInsets, actionsPadding_edgeInsets) ||
+                other.actionsPadding_edgeInsets == actionsPadding_edgeInsets));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      backgroundColor,
-      elevation,
-      shadowColor,
-      surfaceTintColor,
-      shape,
-      alignment,
-      iconColor,
-      titleTextStyle,
-      contentTextStyle,
-      actionsPadding);
+      backgroundColor_themeColorString,
+      elevation_double,
+      shadowColor_themeColorString,
+      surfaceTintColor_themeColorString,
+      shape_shapeBorder,
+      alignment_enum_alignmentOptions,
+      iconColor_themeColorString,
+      titleTextStyle_textStyleString,
+      contentTextStyle_textStyleString,
+      actionsPadding_edgeInsets);
 
   @JsonKey(ignore: true)
   @override
@@ -321,45 +376,41 @@ class _$DialogModelImpl extends _DialogModel {
 
 abstract class _DialogModel extends DialogModel {
   const factory _DialogModel(
-          {final String? backgroundColor,
-          final double? elevation,
-          final String? shadowColor,
-          final String? surfaceTintColor,
-          @OutlinedBorderConverter() final OutlinedBorder? shape,
-          @AlignmentConverter() final Alignment? alignment,
-          final String? iconColor,
-          final String? titleTextStyle,
-          final String? contentTextStyle,
-          @EdgeInsetsConverter() final EdgeInsets? actionsPadding}) =
-      _$DialogModelImpl;
+      {final String? backgroundColor_themeColorString,
+      final double? elevation_double,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
+      final ShapeBorderModel? shape_shapeBorder,
+      final AlignmentOptions? alignment_enum_alignmentOptions,
+      final String? iconColor_themeColorString,
+      final String? titleTextStyle_textStyleString,
+      final String? contentTextStyle_textStyleString,
+      final EdgeInsetsModel? actionsPadding_edgeInsets}) = _$DialogModelImpl;
   const _DialogModel._() : super._();
 
   factory _DialogModel.fromJson(Map<String, dynamic> json) =
       _$DialogModelImpl.fromJson;
 
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_themeColorString;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  String? get shadowColor;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_themeColorString;
+  @override // @OutlinedBorderConverter()
+  ShapeBorderModel? get shape_shapeBorder;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  AlignmentOptions? get alignment_enum_alignmentOptions;
   @override
-  @AlignmentConverter()
-  Alignment? get alignment;
+  String? get iconColor_themeColorString;
   @override
-  String? get iconColor;
+  String? get titleTextStyle_textStyleString;
   @override
-  String? get titleTextStyle;
+  String? get contentTextStyle_textStyleString;
   @override
-  String? get contentTextStyle;
-  @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get actionsPadding;
+  EdgeInsetsModel? get actionsPadding_edgeInsets;
   @override
   @JsonKey(ignore: true)
   _$$DialogModelImplCopyWith<_$DialogModelImpl> get copyWith =>

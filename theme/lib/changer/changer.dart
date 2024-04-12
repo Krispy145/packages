@@ -28,7 +28,7 @@ import 'package:theme/data/models/dropdowns/dropdown_model.dart';
 import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
 import 'package:theme/data/models/list_tiles/list_tile_model.dart';
 import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
-import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/menus/menu_style_model.dart';
 import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
 import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
 import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
@@ -50,6 +50,8 @@ import 'package:theme/presentation/theme_changer/components/editing_map/store.da
 import 'package:theme/presentation/theme_changer/view.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:utilities/logger/logger.dart';
+
+// TODO: Move to relevant place
 
 /// [ThemeChanger] is a class that is used to change the theme of the app.
 class ThemeChanger {
@@ -99,7 +101,7 @@ class ThemeChanger {
   static void changeLightThemeStyle({
     required ColorModel colorModel,
   }) {
-    final newThemeModel = _baseThemeModel.copyWith(colors: _colorStyles(colorModel, false));
+    final newThemeModel = _baseThemeModel.copyWith(colors: _themeColorStringStyles(colorModel, false));
     _themeStore.changeBaseThemeModel(newThemeModel);
     AppLogger.print("Light theme changed: $colorModel", [PackageFeatures.theme]);
   }
@@ -108,7 +110,7 @@ class ThemeChanger {
   static void changeDarkThemeStyle({
     required ColorModel colorModel,
   }) {
-    final newThemeModel = _baseThemeModel.copyWith(colors: _colorStyles(colorModel, true));
+    final newThemeModel = _baseThemeModel.copyWith(colors: _themeColorStringStyles(colorModel, true));
     _themeStore.changeBaseThemeModel(newThemeModel);
     AppLogger.print("Dark theme changed: $colorModel", [PackageFeatures.theme]);
   }
@@ -124,7 +126,7 @@ class ThemeChanger {
     required TextType textType,
     required TextStyleSizes textStyle,
   }) {
-    final textStyles = _textStyles(textType, textStyle);
+    final textStyles = _textStyleStrings(textType, textStyle);
     final newThemeModel = _baseThemeModel.copyWith(textStyles: textStyles);
     _themeStore.changeBaseThemeModel(newThemeModel);
     AppLogger.print("Text style changed: $textStyle", [PackageFeatures.theme]);
@@ -137,7 +139,7 @@ class ThemeChanger {
     required Map<String, dynamic> Function(T data) convertComponentThemeToMap,
     required T Function(Map<String, dynamic> data) convertComponentThemeFromMap,
     required void Function(T newTheme) onUpdateComponentTheme,
-    // required T defaultComponentTheme,
+    required T? defaultComponentTheme,
     T? currentComponentTheme,
     Widget Function(BuildContext)? headerBuilder,
   }) {
@@ -149,12 +151,14 @@ class ThemeChanger {
     //   onUpdateComponentTheme: onUpdateComponentTheme,
     // );
     // Set map from the current version, filling any missing values with the default version
-    final Map<String, dynamic> mergedMap;
+    final Map<String, dynamic> componentThemeAsMap;
     if (currentComponentTheme != null) {
-      mergedMap = convertComponentThemeToMap(currentComponentTheme);
+      componentThemeAsMap = convertComponentThemeToMap(currentComponentTheme);
     } else {
-      mergedMap = convertComponentThemeToMap(convertComponentThemeFromMap({}));
+      componentThemeAsMap = convertComponentThemeToMap(convertComponentThemeFromMap({}));
     }
+
+    final mergedMap = defaultComponentTheme != null ? {...convertComponentThemeToMap(defaultComponentTheme), ...componentThemeAsMap} : componentThemeAsMap;
 
     final mapEditorStore = MapEditorStore(
       onMapChanged: (newMap) {
@@ -389,7 +393,7 @@ class ThemeChanger {
   }
 
   /// [changeMenuStyle] is a function that is used to change the menu style of the app.
-  static void changeMenuStyle({required MenuModel menuStyle}) {
+  static void changeMenuStyle({required MenuStyleModel menuStyle}) {
     final menuStyles = _menuStyles(menuStyle);
     var newThemeModel = _componentThemesModel?.copyWith(menus: menuStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel.id, menus: menuStyles);
@@ -494,13 +498,13 @@ class ThemeChanger {
     html.Url.revokeObjectUrl(anchor.href!);
   }
 
-  static Map<String, ColorSchemes> _colorStyles(ColorModel colorModel, bool isDark) {
+  static Map<String, ColorSchemes> _themeColorStringStyles(ColorModel colorModel, bool isDark) {
     final colorStyles = _baseThemeModel.colors;
-    colorStyles[styleType] = _colorSchemes(colorModel, isDark);
+    colorStyles[styleType] = _themeColorStringSchemes(colorModel, isDark);
     return colorStyles;
   }
 
-  static ColorSchemes _colorSchemes(ColorModel colorModel, bool isDark) {
+  static ColorSchemes _themeColorStringSchemes(ColorModel colorModel, bool isDark) {
     var colorSchemes = _baseThemeModel.colors[styleType]!; // ?? ColorSchemes.defaultSchemes();
     switch (isDark) {
       case true:
@@ -513,7 +517,7 @@ class ThemeChanger {
     return colorSchemes;
   }
 
-  static Map<String, TextTypes>? _textStyles(TextType textType, TextStyleSizes textStyle) {
+  static Map<String, TextTypes>? _textStyleStrings(TextType textType, TextStyleSizes textStyle) {
     final textStyles = _baseThemeModel.textStyles ?? {};
     textStyles[styleType] = _textTypes(textType, textStyle);
     return textStyles;
@@ -759,7 +763,7 @@ class ThemeChanger {
     return listTileStyles;
   }
 
-  static Map<String, MenuModel>? _menuStyles(MenuModel menuStyle) {
+  static Map<String, MenuStyleModel>? _menuStyles(MenuStyleModel menuStyle) {
     final menuStyles = _componentThemesModel?.menus ?? {styleType: menuStyle};
     menuStyles[styleType] = menuStyle;
     return menuStyles;

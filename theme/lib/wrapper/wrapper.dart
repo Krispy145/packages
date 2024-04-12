@@ -14,12 +14,14 @@ class StyleTypeWrapper extends StatelessWidget {
     final store = StyleTypeThemeStore(styleTypeName: styleTypeName);
     return LoadStateBuilder(
       viewStore: store,
-      errorBuilder: (context) => Builder(builder: (context) {
-        WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-          context.showSnackbar(configuration: SnackbarConfiguration.error(title: "Error loading $styleTypeName Style"));
-        });
-        return child(context, store);
-      }),
+      errorBuilder: (context) => Builder(
+        builder: (context) {
+          WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+            context.showSnackbar(configuration: SnackbarConfiguration.error(title: "Error loading $styleTypeName Style"));
+          });
+          return child(context, store);
+        },
+      ),
       loadingBuilder: (context) => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(),

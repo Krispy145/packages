@@ -18,7 +18,7 @@ import 'package:theme/data/models/dropdowns/dropdown_model.dart';
 import 'package:theme/data/models/input_decorations/input_decoration_model.dart';
 import 'package:theme/data/models/list_tiles/list_tile_model.dart';
 import 'package:theme/data/models/menu_bars/menu_bar_model.dart';
-import 'package:theme/data/models/menus/menu_model.dart';
+import 'package:theme/data/models/menus/menu_style_model.dart';
 import 'package:theme/data/models/navigation_bars/navigation_bar_model.dart';
 import 'package:theme/data/models/navigation_drawers/navigation_drawer_model.dart';
 import 'package:theme/data/models/navigation_rails/navigation_rail_model.dart';
@@ -165,9 +165,10 @@ enum ChangerOptions {
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.filledButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.filled),
               headerBuilder: (context) => FilledButton(onPressed: () {}, child: const Text("Filled Button")),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.elevatedButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
@@ -176,26 +177,29 @@ enum ChangerOptions {
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.elevatedButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.elevated),
               headerBuilder: (context) => ElevatedButton(onPressed: () {}, child: const Text("Elevated Button")),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.segmentedButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
-            componentOption: this,
-            context: context,
-            // defaultComponentTheme: ButtonStyleModel(),
-            currentComponentTheme: AppTheme.segmentedButtonStyle(),
-            convertComponentThemeToMap: (data) => data.toJson(),
-            convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
-            onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.segmented),
-            headerBuilder: (context) => SegmentedButton(
-                  selected: const {1},
-                  segments: const [
-                    ButtonSegment(label: Text("Segment 1"), value: 1),
-                    ButtonSegment(label: Text("Segment 2"), value: 2),
-                  ],
-                ));
+              componentOption: this,
+              context: context,
+              // defaultComponentTheme: ButtonStyleModel(),
+              currentComponentTheme: AppTheme.segmentedButtonStyle(),
+              convertComponentThemeToMap: (data) => data.toJson(),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.segmented),
+              headerBuilder: (context) => SegmentedButton(
+                selected: const {1},
+                segments: const [
+                  ButtonSegment(label: Text("Segment 1"), value: 1),
+                  ButtonSegment(label: Text("Segment 2"), value: 2),
+                ],
+              ),
+              defaultComponentTheme: null,
+            );
       case ChangerOptions.outlinedButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
               componentOption: this,
@@ -203,9 +207,10 @@ enum ChangerOptions {
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.outlinedButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.outlined),
               headerBuilder: (context) => OutlinedButton(onPressed: () {}, child: const Text("Outlined Button")),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.textButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
@@ -214,9 +219,10 @@ enum ChangerOptions {
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.textButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.text),
               headerBuilder: (context) => TextButton(onPressed: () {}, child: const Text("Text Button")),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.iconButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
@@ -225,9 +231,10 @@ enum ChangerOptions {
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.iconButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.icon),
               headerBuilder: (context) => IconButton(icon: const Icon(Icons.star), onPressed: () {}),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.menuButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
@@ -236,9 +243,10 @@ enum ChangerOptions {
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.menuButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ButtonStyleModel.fromJson(data),
+              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.menu),
               headerBuilder: (context) => MenuItemButton(onPressed: () {}, child: const Text("Menu Item Button")),
+              defaultComponentTheme: ButtonStyleModel(),
             );
       case ChangerOptions.toggleButtons:
         return () => ThemeChanger.componentThemeChanger<ToggleButtonModel>(
@@ -247,7 +255,7 @@ enum ChangerOptions {
               // defaultComponentTheme: ToggleButtonModel.defaultToggleButtonStyle(),
               currentComponentTheme: AppTheme.toggleButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ToggleButtonModel.fromJson(data),
+              convertComponentThemeFromMap: ToggleButtonModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeToggleButtonStyle(buttonStyle: newTheme),
               headerBuilder: (context) => ToggleButtons(
                 isSelected: const [true, false],
@@ -256,6 +264,7 @@ enum ChangerOptions {
                   Text("Option 2"),
                 ],
               ),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.floatingActionButtons:
         return () => ThemeChanger.componentThemeChanger<FloatingActionButtonModel>(
@@ -264,9 +273,10 @@ enum ChangerOptions {
               // defaultComponentTheme: FloatingActionButtonModel.defaultFloatingActionButtonStyle(),
               currentComponentTheme: AppTheme.floatingActionButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => FloatingActionButtonModel.fromJson(data),
+              convertComponentThemeFromMap: FloatingActionButtonModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeFloatingActionButtonStyle(buttonStyle: newTheme),
               headerBuilder: (context) => FloatingActionButton(onPressed: () {}, child: const Icon(Icons.add)),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.checkboxes:
         return () => ThemeChanger.componentThemeChanger<CheckboxModel>(
@@ -275,9 +285,10 @@ enum ChangerOptions {
               // defaultComponentTheme: CheckboxModel.defaultCheckboxModel(),
               currentComponentTheme: AppTheme.checkboxStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => CheckboxModel.fromJson(data),
+              convertComponentThemeFromMap: CheckboxModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeCheckboxStyle(checkboxStyle: newTheme),
               headerBuilder: (context) => Checkbox(value: true, onChanged: (value) {}),
+              defaultComponentTheme: const CheckboxModel(),
             );
       case ChangerOptions.radios:
         return () => ThemeChanger.componentThemeChanger<RadioModel>(
@@ -286,9 +297,10 @@ enum ChangerOptions {
               // defaultComponentTheme: RadioModel.defaultRadioModel(),
               currentComponentTheme: AppTheme.radioStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => RadioModel.fromJson(data),
+              convertComponentThemeFromMap: RadioModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeRadioStyle(radioStyle: newTheme),
               headerBuilder: (context) => Radio(groupValue: true, value: true, onChanged: (value) {}),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.inputDecorations:
         return () => ThemeChanger.componentThemeChanger<InputDecorationModel>(
@@ -297,8 +309,9 @@ enum ChangerOptions {
               // defaultComponentTheme: InputDecorationModel.defaultInputDecorationModel(),
               currentComponentTheme: AppTheme.inputDecorationStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => InputDecorationModel.fromJson(data),
+              convertComponentThemeFromMap: InputDecorationModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeInputDecorationStyle(inputDecorationStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.boxDecorations:
         return () => ThemeChanger.componentThemeChanger<BoxDecorationModel>(
@@ -307,8 +320,9 @@ enum ChangerOptions {
               // defaultComponentTheme: BoxDecorationModel.defaultBoxDecorationModel(),
               currentComponentTheme: AppTheme.boxDecorationStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => BoxDecorationModel.fromJson(data),
+              convertComponentThemeFromMap: BoxDecorationModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeBoxDecorationStyle(boxDecorationStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.cards:
         return () => ThemeChanger.componentThemeChanger<CardModel>(
@@ -317,8 +331,9 @@ enum ChangerOptions {
               // defaultComponentTheme: CardModel.defaultCardModel(),
               currentComponentTheme: AppTheme.cardStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => CardModel.fromJson(data),
+              convertComponentThemeFromMap: CardModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeCardStyle(cardStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.snackbars:
         return () => ThemeChanger.componentThemeChanger<SnackbarModel>(
@@ -327,8 +342,9 @@ enum ChangerOptions {
               // defaultComponentTheme: SnackbarModel.defaultSnackbarModel(),
               currentComponentTheme: AppTheme.snackbarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => SnackbarModel.fromJson(data),
+              convertComponentThemeFromMap: SnackbarModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSnackbarStyle(snackbarStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.badges:
         return () => ThemeChanger.componentThemeChanger<BadgeModel>(
@@ -337,8 +353,9 @@ enum ChangerOptions {
               // defaultComponentTheme: BadgeModel.defaultBadgeModel(),
               currentComponentTheme: AppTheme.badgeStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => BadgeModel.fromJson(data),
+              convertComponentThemeFromMap: BadgeModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeBadgeStyle(badgeStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.appbars:
         return () => ThemeChanger.componentThemeChanger<AppbarModel>(
@@ -347,8 +364,9 @@ enum ChangerOptions {
               // defaultComponentTheme: AppbarModel.defaultAppbarModel(),
               currentComponentTheme: AppTheme.appbarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => AppbarModel.fromJson(data),
+              convertComponentThemeFromMap: AppbarModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeAppbarStyle(appbarStyle: newTheme),
+              defaultComponentTheme: null,
               headerBuilder: (context) => AppBar(title: const Text("Appbar Styles")),
             );
       case ChangerOptions.bottomAppbars:
@@ -358,8 +376,9 @@ enum ChangerOptions {
               // defaultComponentTheme: BottomAppbarModel.defaultBottomAppbarModel(),
               currentComponentTheme: AppTheme.bottomAppbarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => BottomAppbarModel.fromJson(data),
+              convertComponentThemeFromMap: BottomAppbarModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeBottomAppbarStyle(bottomAppbarStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.dropdowns:
         return () => ThemeChanger.componentThemeChanger<DropdownModel>(
@@ -368,8 +387,9 @@ enum ChangerOptions {
               // defaultComponentTheme: DropdownModel.defaultDropdownModel(),
               currentComponentTheme: AppTheme.dropdownStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => DropdownModel.fromJson(data),
+              convertComponentThemeFromMap: DropdownModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeDropdownStyle(dropdownStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.chips:
         return () => ThemeChanger.componentThemeChanger<ChipModel>(
@@ -378,8 +398,9 @@ enum ChangerOptions {
               // defaultComponentTheme: ChipModel.defaultChipModel(),
               currentComponentTheme: AppTheme.chipStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ChipModel.fromJson(data),
+              convertComponentThemeFromMap: ChipModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeChipStyle(chipStyle: newTheme),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.dialogs:
         return () => ThemeChanger.componentThemeChanger<DialogModel>(
@@ -388,7 +409,8 @@ enum ChangerOptions {
               // defaultComponentTheme: DialogModel.defaultDialogModel(),
               currentComponentTheme: AppTheme.dialogStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => DialogModel.fromJson(data),
+              convertComponentThemeFromMap: DialogModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeDialogStyle(dialogStyle: newTheme),
             );
       case ChangerOptions.popupMenus:
@@ -398,7 +420,8 @@ enum ChangerOptions {
               // defaultComponentTheme: PopupMenuModel.defaultPopupMenuModel(),
               currentComponentTheme: AppTheme.popupMenuStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => PopupMenuModel.fromJson(data),
+              convertComponentThemeFromMap: PopupMenuModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changePopupMenuStyle(popupMenuStyle: newTheme),
             );
       case ChangerOptions.sliders:
@@ -408,7 +431,8 @@ enum ChangerOptions {
               // defaultComponentTheme: SliderModel.defaultSliderModel(),
               currentComponentTheme: AppTheme.sliderStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => SliderModel.fromJson(data),
+              convertComponentThemeFromMap: SliderModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSliderStyle(sliderStyle: newTheme),
             );
       case ChangerOptions.scrollbars:
@@ -418,7 +442,8 @@ enum ChangerOptions {
               // defaultComponentTheme: ScrollbarModel.defaultScrollbarModel(),
               currentComponentTheme: AppTheme.scrollbarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ScrollbarModel.fromJson(data),
+              convertComponentThemeFromMap: ScrollbarModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeScrollbarStyle(scrollbarStyle: newTheme),
             );
       case ChangerOptions.tooltips:
@@ -428,7 +453,8 @@ enum ChangerOptions {
               // defaultComponentTheme: TooltipModel.defaultTooltipModel(),
               currentComponentTheme: AppTheme.tooltipStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => TooltipModel.fromJson(data),
+              convertComponentThemeFromMap: TooltipModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeTooltipStyle(tooltipStyle: newTheme),
             );
       case ChangerOptions.navigationRails:
@@ -438,7 +464,8 @@ enum ChangerOptions {
               // defaultComponentTheme: NavigationRailModel.defaultNavigationRailModel(),
               currentComponentTheme: AppTheme.navigationRailStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => NavigationRailModel.fromJson(data),
+              convertComponentThemeFromMap: NavigationRailModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationRailStyle(navigationRailStyle: newTheme),
             );
       case ChangerOptions.switches:
@@ -448,7 +475,8 @@ enum ChangerOptions {
               // defaultComponentTheme: SwitchModel.defaultSwitchModel(),
               currentComponentTheme: AppTheme.switchStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => SwitchModel.fromJson(data),
+              convertComponentThemeFromMap: SwitchModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSwitchStyle(switchStyle: newTheme),
             );
       case ChangerOptions.drawers:
@@ -458,7 +486,8 @@ enum ChangerOptions {
               // defaultComponentTheme: DrawerModel.defaultDrawerModel(),
               currentComponentTheme: AppTheme.drawerStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => DrawerModel.fromJson(data),
+              convertComponentThemeFromMap: DrawerModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeDrawerStyle(drawerStyle: newTheme),
             );
       case ChangerOptions.listTiles:
@@ -468,17 +497,19 @@ enum ChangerOptions {
               // defaultComponentTheme: ListTileModel.defaultListTileModel(),
               currentComponentTheme: AppTheme.listTileStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ListTileModel.fromJson(data),
+              convertComponentThemeFromMap: ListTileModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeListTileStyle(listTileStyle: newTheme),
             );
       case ChangerOptions.menuStyles:
-        return () => ThemeChanger.componentThemeChanger<MenuModel>(
+        return () => ThemeChanger.componentThemeChanger<MenuStyleModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: MenuModel.defaultMenuModel(),
               currentComponentTheme: AppTheme.menuStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => MenuModel.fromJson(data),
+              convertComponentThemeFromMap: MenuStyleModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeMenuStyle(menuStyle: newTheme),
             );
       case ChangerOptions.menuBars:
@@ -488,7 +519,8 @@ enum ChangerOptions {
               // defaultComponentTheme: MenuBarModel.defaultMenuBarModel(),
               currentComponentTheme: AppTheme.menuBarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => MenuBarModel.fromJson(data),
+              convertComponentThemeFromMap: MenuBarModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeMenuBarStyle(menuBarStyle: newTheme),
             );
       case ChangerOptions.navigationBars:
@@ -498,7 +530,8 @@ enum ChangerOptions {
               // defaultComponentTheme: NavigationBarModel.defaultNavigationBarModel(),
               currentComponentTheme: AppTheme.navigationBarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => NavigationBarModel.fromJson(data),
+              convertComponentThemeFromMap: NavigationBarModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationBarStyle(navigationBarStyle: newTheme),
             );
       case ChangerOptions.navigationDrawers:
@@ -508,7 +541,8 @@ enum ChangerOptions {
               // defaultComponentTheme: NavigationDrawerModel.defaultNavigationDrawerModel(),
               currentComponentTheme: AppTheme.navigationDrawerStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => NavigationDrawerModel.fromJson(data),
+              convertComponentThemeFromMap: NavigationDrawerModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationDrawerStyle(navigationDrawerStyle: newTheme),
             );
       case ChangerOptions.progressIndicators:
@@ -518,7 +552,8 @@ enum ChangerOptions {
               // defaultComponentTheme: ProgressIndicatorModel.defaultProgressIndicatorModel(),
               currentComponentTheme: AppTheme.progressIndicatorStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => ProgressIndicatorModel.fromJson(data),
+              convertComponentThemeFromMap: ProgressIndicatorModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeProgressIndicatorStyle(progressIndicatorStyle: newTheme),
             );
       case ChangerOptions.searchBars:
@@ -528,7 +563,8 @@ enum ChangerOptions {
               // defaultComponentTheme: SearchBarModel.defaultSearchBarModel(),
               currentComponentTheme: AppTheme.searchBarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => SearchBarModel.fromJson(data),
+              convertComponentThemeFromMap: SearchBarModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSearchBarStyle(searchBarStyle: newTheme),
             );
       case ChangerOptions.searchViews:
@@ -538,7 +574,8 @@ enum ChangerOptions {
               // defaultComponentTheme: SearchViewModel.defaultSearchViewModel(),
               currentComponentTheme: AppTheme.searchViewStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => SearchViewModel.fromJson(data),
+              convertComponentThemeFromMap: SearchViewModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSearchViewStyle(searchViewStyle: newTheme),
             );
       case ChangerOptions.tabBars:
@@ -548,7 +585,8 @@ enum ChangerOptions {
               // defaultComponentTheme: TabBarModel.defaultTabBarModel(),
               currentComponentTheme: AppTheme.tabBarStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: (Map<String, dynamic> data) => TabBarModel.fromJson(data),
+              convertComponentThemeFromMap: TabBarModel.fromJson,
+              defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeTabBarStyle(tabBarStyle: newTheme),
             );
     }

@@ -8,43 +8,58 @@ part of 'search_bar_model.dart';
 
 _$SearchBarModelImpl _$$SearchBarModelImplFromJson(Map<String, dynamic> json) =>
     _$SearchBarModelImpl(
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      backgroundColor: json['backgroundColor'] as String?,
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      overlayColor: json['overlayColor'] as String?,
-      side: const BorderSideConverter()
-          .fromJson(json['side'] as Map<String, dynamic>?),
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
-      padding: const EdgeInsetsConverter()
-          .fromJson(json['padding'] as Map<String, dynamic>?),
-      textStyle: json['textStyle'] as String?,
-      hintStyle: json['hintStyle'] as String?,
-      constraints: const BoxConstraintsConverter()
-          .fromJson(json['constraints'] as Map<String, dynamic>?),
-      textCapitalization: $enumDecodeNullable(
-              _$TextCapitalizationEnumMap, json['textCapitalization']) ??
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
+      side_borderSide: json['side_borderSide'] == null
+          ? null
+          : BorderSideModel.fromJson(
+              json['side_borderSide'] as Map<String, dynamic>),
+      shape_outlinedBorder: json['shape_outlinedBorder'] == null
+          ? const OutlinedBorderModel()
+          : OutlinedBorderModel.fromJson(
+              json['shape_outlinedBorder'] as Map<String, dynamic>),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
+      hintStyle_textStyleString: json['hintStyle_textStyleString'] as String?,
+      constraints_boxConstraints: json['constraints_boxConstraints'] == null
+          ? const BoxConstraintsModel()
+          : BoxConstraintsModel.fromJson(
+              json['constraints_boxConstraints'] as Map<String, dynamic>),
+      textCapitalization_enum_textCapitalization: $enumDecodeNullable(
+              _$TextCapitalizationEnumMap,
+              json['textCapitalization_enum_textCapitalization']) ??
           TextCapitalization.none,
     );
 
 Map<String, dynamic> _$$SearchBarModelImplToJson(
         _$SearchBarModelImpl instance) =>
     <String, dynamic>{
-      'elevation': instance.elevation,
-      'backgroundColor': instance.backgroundColor,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'overlayColor': instance.overlayColor,
-      'side': const BorderSideConverter().toJson(instance.side),
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
-      'padding': const EdgeInsetsConverter().toJson(instance.padding),
-      'textStyle': instance.textStyle,
-      'hintStyle': instance.hintStyle,
-      'constraints':
-          const BoxConstraintsConverter().toJson(instance.constraints),
-      'textCapitalization':
-          _$TextCapitalizationEnumMap[instance.textCapitalization],
+      'elevation_double': instance.elevation_double,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
+      'side_borderSide': instance.side_borderSide?.toJson(),
+      'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
+      'hintStyle_textStyleString': instance.hintStyle_textStyleString,
+      'constraints_boxConstraints':
+          instance.constraints_boxConstraints?.toJson(),
+      'textCapitalization_enum_textCapitalization': _$TextCapitalizationEnumMap[
+          instance.textCapitalization_enum_textCapitalization],
     };
 
 const _$TextCapitalizationEnumMap = {

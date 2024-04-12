@@ -21,28 +21,36 @@ ChipModel _$ChipModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ChipModel {
   String? get color => throw _privateConstructorUsedError;
-  String? get backgroundColor => throw _privateConstructorUsedError;
-  String? get deleteIconColor => throw _privateConstructorUsedError;
-  String? get disabledColor => throw _privateConstructorUsedError;
-  String? get selectedColor => throw _privateConstructorUsedError;
-  String? get secondarySelectedColor => throw _privateConstructorUsedError;
-  String? get shadowColor => throw _privateConstructorUsedError;
-  String? get surfaceTintColor => throw _privateConstructorUsedError;
-  String? get selectedShadowColor => throw _privateConstructorUsedError;
-  bool? get showCheckmark => throw _privateConstructorUsedError;
-  String? get checkmarkColor => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding => throw _privateConstructorUsedError;
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding => throw _privateConstructorUsedError;
-  @BorderSideConverter()
-  BorderSide? get side => throw _privateConstructorUsedError;
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape => throw _privateConstructorUsedError;
-  String? get labelStyle => throw _privateConstructorUsedError;
-  String? get secondaryLabelStyle => throw _privateConstructorUsedError;
-  double? get elevation => throw _privateConstructorUsedError;
-  double? get pressElevation => throw _privateConstructorUsedError;
+  String? get backgroundColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get deleteIconColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get selectedColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get secondarySelectedColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get shadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get surfaceTintColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get selectedShadowColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  bool? get showCheckmark_bool => throw _privateConstructorUsedError;
+  String? get checkmarkColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  EdgeInsetsModel? get labelPadding_edgeInsets =>
+      throw _privateConstructorUsedError;
+  EdgeInsetsModel? get padding_edgeInsets => throw _privateConstructorUsedError;
+  BorderSideModel? get side_borderSide => throw _privateConstructorUsedError;
+  OutlinedBorderModel? get shape_outlinedBorder =>
+      throw _privateConstructorUsedError;
+  String? get labelStyle_textStyleString => throw _privateConstructorUsedError;
+  String? get secondaryLabelStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  double? get elevation_double => throw _privateConstructorUsedError;
+  double? get pressElevation_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -57,24 +65,29 @@ abstract class $ChipModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? color,
-      String? backgroundColor,
-      String? deleteIconColor,
-      String? disabledColor,
-      String? selectedColor,
-      String? secondarySelectedColor,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? selectedShadowColor,
-      bool? showCheckmark,
-      String? checkmarkColor,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding,
-      @EdgeInsetsConverter() EdgeInsets? padding,
-      @BorderSideConverter() BorderSide? side,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      String? labelStyle,
-      String? secondaryLabelStyle,
-      double? elevation,
-      double? pressElevation});
+      String? backgroundColor_themeColorString,
+      String? deleteIconColor_themeColorString,
+      String? disabledColor_themeColorString,
+      String? selectedColor_themeColorString,
+      String? secondarySelectedColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? selectedShadowColor_themeColorString,
+      bool? showCheckmark_bool,
+      String? checkmarkColor_themeColorString,
+      EdgeInsetsModel? labelPadding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
+      BorderSideModel? side_borderSide,
+      OutlinedBorderModel? shape_outlinedBorder,
+      String? labelStyle_textStyleString,
+      String? secondaryLabelStyle_textStyleString,
+      double? elevation_double,
+      double? pressElevation_double});
+
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets;
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  $BorderSideModelCopyWith<$Res>? get side_borderSide;
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
 }
 
 /// @nodoc
@@ -91,103 +104,160 @@ class _$ChipModelCopyWithImpl<$Res, $Val extends ChipModel>
   @override
   $Res call({
     Object? color = freezed,
-    Object? backgroundColor = freezed,
-    Object? deleteIconColor = freezed,
-    Object? disabledColor = freezed,
-    Object? selectedColor = freezed,
-    Object? secondarySelectedColor = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? selectedShadowColor = freezed,
-    Object? showCheckmark = freezed,
-    Object? checkmarkColor = freezed,
-    Object? labelPadding = freezed,
-    Object? padding = freezed,
-    Object? side = freezed,
-    Object? shape = freezed,
-    Object? labelStyle = freezed,
-    Object? secondaryLabelStyle = freezed,
-    Object? elevation = freezed,
-    Object? pressElevation = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? deleteIconColor_themeColorString = freezed,
+    Object? disabledColor_themeColorString = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? secondarySelectedColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? selectedShadowColor_themeColorString = freezed,
+    Object? showCheckmark_bool = freezed,
+    Object? checkmarkColor_themeColorString = freezed,
+    Object? labelPadding_edgeInsets = freezed,
+    Object? padding_edgeInsets = freezed,
+    Object? side_borderSide = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? labelStyle_textStyleString = freezed,
+    Object? secondaryLabelStyle_textStyleString = freezed,
+    Object? elevation_double = freezed,
+    Object? pressElevation_double = freezed,
   }) {
     return _then(_value.copyWith(
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      deleteIconColor: freezed == deleteIconColor
-          ? _value.deleteIconColor
-          : deleteIconColor // ignore: cast_nullable_to_non_nullable
+      deleteIconColor_themeColorString: freezed ==
+              deleteIconColor_themeColorString
+          ? _value.deleteIconColor_themeColorString
+          : deleteIconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledColor: freezed == disabledColor
-          ? _value.disabledColor
-          : disabledColor // ignore: cast_nullable_to_non_nullable
+      disabledColor_themeColorString: freezed == disabledColor_themeColorString
+          ? _value.disabledColor_themeColorString
+          : disabledColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedColor: freezed == selectedColor
-          ? _value.selectedColor
-          : selectedColor // ignore: cast_nullable_to_non_nullable
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      secondarySelectedColor: freezed == secondarySelectedColor
-          ? _value.secondarySelectedColor
-          : secondarySelectedColor // ignore: cast_nullable_to_non_nullable
+      secondarySelectedColor_themeColorString: freezed ==
+              secondarySelectedColor_themeColorString
+          ? _value.secondarySelectedColor_themeColorString
+          : secondarySelectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedShadowColor: freezed == selectedShadowColor
-          ? _value.selectedShadowColor
-          : selectedShadowColor // ignore: cast_nullable_to_non_nullable
+      selectedShadowColor_themeColorString: freezed ==
+              selectedShadowColor_themeColorString
+          ? _value.selectedShadowColor_themeColorString
+          : selectedShadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      showCheckmark: freezed == showCheckmark
-          ? _value.showCheckmark
-          : showCheckmark // ignore: cast_nullable_to_non_nullable
+      showCheckmark_bool: freezed == showCheckmark_bool
+          ? _value.showCheckmark_bool
+          : showCheckmark_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      checkmarkColor: freezed == checkmarkColor
-          ? _value.checkmarkColor
-          : checkmarkColor // ignore: cast_nullable_to_non_nullable
+      checkmarkColor_themeColorString: freezed ==
+              checkmarkColor_themeColorString
+          ? _value.checkmarkColor_themeColorString
+          : checkmarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelPadding: freezed == labelPadding
-          ? _value.labelPadding
-          : labelPadding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      side: freezed == side
-          ? _value.side
-          : side // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      labelStyle: freezed == labelStyle
-          ? _value.labelStyle
-          : labelStyle // ignore: cast_nullable_to_non_nullable
+      labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
+          ? _value.labelPadding_edgeInsets
+          : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      padding_edgeInsets: freezed == padding_edgeInsets
+          ? _value.padding_edgeInsets
+          : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      side_borderSide: freezed == side_borderSide
+          ? _value.side_borderSide
+          : side_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      labelStyle_textStyleString: freezed == labelStyle_textStyleString
+          ? _value.labelStyle_textStyleString
+          : labelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      secondaryLabelStyle: freezed == secondaryLabelStyle
-          ? _value.secondaryLabelStyle
-          : secondaryLabelStyle // ignore: cast_nullable_to_non_nullable
+      secondaryLabelStyle_textStyleString: freezed ==
+              secondaryLabelStyle_textStyleString
+          ? _value.secondaryLabelStyle_textStyleString
+          : secondaryLabelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      pressElevation: freezed == pressElevation
-          ? _value.pressElevation
-          : pressElevation // ignore: cast_nullable_to_non_nullable
+      pressElevation_double: freezed == pressElevation_double
+          ? _value.pressElevation_double
+          : pressElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets {
+    if (_value.labelPadding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.labelPadding_edgeInsets!,
+        (value) {
+      return _then(_value.copyWith(labelPadding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets {
+    if (_value.padding_edgeInsets == null) {
+      return null;
+    }
+
+    return $EdgeInsetsModelCopyWith<$Res>(_value.padding_edgeInsets!, (value) {
+      return _then(_value.copyWith(padding_edgeInsets: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BorderSideModelCopyWith<$Res>? get side_borderSide {
+    if (_value.side_borderSide == null) {
+      return null;
+    }
+
+    return $BorderSideModelCopyWith<$Res>(_value.side_borderSide!, (value) {
+      return _then(_value.copyWith(side_borderSide: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder {
+    if (_value.shape_outlinedBorder == null) {
+      return null;
+    }
+
+    return $OutlinedBorderModelCopyWith<$Res>(_value.shape_outlinedBorder!,
+        (value) {
+      return _then(_value.copyWith(shape_outlinedBorder: value) as $Val);
+    });
   }
 }
 
@@ -201,24 +271,33 @@ abstract class _$$ChipModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? color,
-      String? backgroundColor,
-      String? deleteIconColor,
-      String? disabledColor,
-      String? selectedColor,
-      String? secondarySelectedColor,
-      String? shadowColor,
-      String? surfaceTintColor,
-      String? selectedShadowColor,
-      bool? showCheckmark,
-      String? checkmarkColor,
-      @EdgeInsetsConverter() EdgeInsets? labelPadding,
-      @EdgeInsetsConverter() EdgeInsets? padding,
-      @BorderSideConverter() BorderSide? side,
-      @OutlinedBorderConverter() OutlinedBorder? shape,
-      String? labelStyle,
-      String? secondaryLabelStyle,
-      double? elevation,
-      double? pressElevation});
+      String? backgroundColor_themeColorString,
+      String? deleteIconColor_themeColorString,
+      String? disabledColor_themeColorString,
+      String? selectedColor_themeColorString,
+      String? secondarySelectedColor_themeColorString,
+      String? shadowColor_themeColorString,
+      String? surfaceTintColor_themeColorString,
+      String? selectedShadowColor_themeColorString,
+      bool? showCheckmark_bool,
+      String? checkmarkColor_themeColorString,
+      EdgeInsetsModel? labelPadding_edgeInsets,
+      EdgeInsetsModel? padding_edgeInsets,
+      BorderSideModel? side_borderSide,
+      OutlinedBorderModel? shape_outlinedBorder,
+      String? labelStyle_textStyleString,
+      String? secondaryLabelStyle_textStyleString,
+      double? elevation_double,
+      double? pressElevation_double});
+
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get labelPadding_edgeInsets;
+  @override
+  $EdgeInsetsModelCopyWith<$Res>? get padding_edgeInsets;
+  @override
+  $BorderSideModelCopyWith<$Res>? get side_borderSide;
+  @override
+  $OutlinedBorderModelCopyWith<$Res>? get shape_outlinedBorder;
 }
 
 /// @nodoc
@@ -233,101 +312,108 @@ class __$$ChipModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? color = freezed,
-    Object? backgroundColor = freezed,
-    Object? deleteIconColor = freezed,
-    Object? disabledColor = freezed,
-    Object? selectedColor = freezed,
-    Object? secondarySelectedColor = freezed,
-    Object? shadowColor = freezed,
-    Object? surfaceTintColor = freezed,
-    Object? selectedShadowColor = freezed,
-    Object? showCheckmark = freezed,
-    Object? checkmarkColor = freezed,
-    Object? labelPadding = freezed,
-    Object? padding = freezed,
-    Object? side = freezed,
-    Object? shape = freezed,
-    Object? labelStyle = freezed,
-    Object? secondaryLabelStyle = freezed,
-    Object? elevation = freezed,
-    Object? pressElevation = freezed,
+    Object? backgroundColor_themeColorString = freezed,
+    Object? deleteIconColor_themeColorString = freezed,
+    Object? disabledColor_themeColorString = freezed,
+    Object? selectedColor_themeColorString = freezed,
+    Object? secondarySelectedColor_themeColorString = freezed,
+    Object? shadowColor_themeColorString = freezed,
+    Object? surfaceTintColor_themeColorString = freezed,
+    Object? selectedShadowColor_themeColorString = freezed,
+    Object? showCheckmark_bool = freezed,
+    Object? checkmarkColor_themeColorString = freezed,
+    Object? labelPadding_edgeInsets = freezed,
+    Object? padding_edgeInsets = freezed,
+    Object? side_borderSide = freezed,
+    Object? shape_outlinedBorder = freezed,
+    Object? labelStyle_textStyleString = freezed,
+    Object? secondaryLabelStyle_textStyleString = freezed,
+    Object? elevation_double = freezed,
+    Object? pressElevation_double = freezed,
   }) {
     return _then(_$ChipModelImpl(
       color: freezed == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as String?,
-      backgroundColor: freezed == backgroundColor
-          ? _value.backgroundColor
-          : backgroundColor // ignore: cast_nullable_to_non_nullable
+      backgroundColor_themeColorString: freezed ==
+              backgroundColor_themeColorString
+          ? _value.backgroundColor_themeColorString
+          : backgroundColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      deleteIconColor: freezed == deleteIconColor
-          ? _value.deleteIconColor
-          : deleteIconColor // ignore: cast_nullable_to_non_nullable
+      deleteIconColor_themeColorString: freezed ==
+              deleteIconColor_themeColorString
+          ? _value.deleteIconColor_themeColorString
+          : deleteIconColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledColor: freezed == disabledColor
-          ? _value.disabledColor
-          : disabledColor // ignore: cast_nullable_to_non_nullable
+      disabledColor_themeColorString: freezed == disabledColor_themeColorString
+          ? _value.disabledColor_themeColorString
+          : disabledColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedColor: freezed == selectedColor
-          ? _value.selectedColor
-          : selectedColor // ignore: cast_nullable_to_non_nullable
+      selectedColor_themeColorString: freezed == selectedColor_themeColorString
+          ? _value.selectedColor_themeColorString
+          : selectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      secondarySelectedColor: freezed == secondarySelectedColor
-          ? _value.secondarySelectedColor
-          : secondarySelectedColor // ignore: cast_nullable_to_non_nullable
+      secondarySelectedColor_themeColorString: freezed ==
+              secondarySelectedColor_themeColorString
+          ? _value.secondarySelectedColor_themeColorString
+          : secondarySelectedColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      shadowColor: freezed == shadowColor
-          ? _value.shadowColor
-          : shadowColor // ignore: cast_nullable_to_non_nullable
+      shadowColor_themeColorString: freezed == shadowColor_themeColorString
+          ? _value.shadowColor_themeColorString
+          : shadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      surfaceTintColor: freezed == surfaceTintColor
-          ? _value.surfaceTintColor
-          : surfaceTintColor // ignore: cast_nullable_to_non_nullable
+      surfaceTintColor_themeColorString: freezed ==
+              surfaceTintColor_themeColorString
+          ? _value.surfaceTintColor_themeColorString
+          : surfaceTintColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      selectedShadowColor: freezed == selectedShadowColor
-          ? _value.selectedShadowColor
-          : selectedShadowColor // ignore: cast_nullable_to_non_nullable
+      selectedShadowColor_themeColorString: freezed ==
+              selectedShadowColor_themeColorString
+          ? _value.selectedShadowColor_themeColorString
+          : selectedShadowColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      showCheckmark: freezed == showCheckmark
-          ? _value.showCheckmark
-          : showCheckmark // ignore: cast_nullable_to_non_nullable
+      showCheckmark_bool: freezed == showCheckmark_bool
+          ? _value.showCheckmark_bool
+          : showCheckmark_bool // ignore: cast_nullable_to_non_nullable
               as bool?,
-      checkmarkColor: freezed == checkmarkColor
-          ? _value.checkmarkColor
-          : checkmarkColor // ignore: cast_nullable_to_non_nullable
+      checkmarkColor_themeColorString: freezed ==
+              checkmarkColor_themeColorString
+          ? _value.checkmarkColor_themeColorString
+          : checkmarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      labelPadding: freezed == labelPadding
-          ? _value.labelPadding
-          : labelPadding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      padding: freezed == padding
-          ? _value.padding
-          : padding // ignore: cast_nullable_to_non_nullable
-              as EdgeInsets?,
-      side: freezed == side
-          ? _value.side
-          : side // ignore: cast_nullable_to_non_nullable
-              as BorderSide?,
-      shape: freezed == shape
-          ? _value.shape
-          : shape // ignore: cast_nullable_to_non_nullable
-              as OutlinedBorder?,
-      labelStyle: freezed == labelStyle
-          ? _value.labelStyle
-          : labelStyle // ignore: cast_nullable_to_non_nullable
+      labelPadding_edgeInsets: freezed == labelPadding_edgeInsets
+          ? _value.labelPadding_edgeInsets
+          : labelPadding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      padding_edgeInsets: freezed == padding_edgeInsets
+          ? _value.padding_edgeInsets
+          : padding_edgeInsets // ignore: cast_nullable_to_non_nullable
+              as EdgeInsetsModel?,
+      side_borderSide: freezed == side_borderSide
+          ? _value.side_borderSide
+          : side_borderSide // ignore: cast_nullable_to_non_nullable
+              as BorderSideModel?,
+      shape_outlinedBorder: freezed == shape_outlinedBorder
+          ? _value.shape_outlinedBorder
+          : shape_outlinedBorder // ignore: cast_nullable_to_non_nullable
+              as OutlinedBorderModel?,
+      labelStyle_textStyleString: freezed == labelStyle_textStyleString
+          ? _value.labelStyle_textStyleString
+          : labelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      secondaryLabelStyle: freezed == secondaryLabelStyle
-          ? _value.secondaryLabelStyle
-          : secondaryLabelStyle // ignore: cast_nullable_to_non_nullable
+      secondaryLabelStyle_textStyleString: freezed ==
+              secondaryLabelStyle_textStyleString
+          ? _value.secondaryLabelStyle_textStyleString
+          : secondaryLabelStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      elevation: freezed == elevation
-          ? _value.elevation
-          : elevation // ignore: cast_nullable_to_non_nullable
+      elevation_double: freezed == elevation_double
+          ? _value.elevation_double
+          : elevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      pressElevation: freezed == pressElevation
-          ? _value.pressElevation
-          : pressElevation // ignore: cast_nullable_to_non_nullable
+      pressElevation_double: freezed == pressElevation_double
+          ? _value.pressElevation_double
+          : pressElevation_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -338,24 +424,24 @@ class __$$ChipModelImplCopyWithImpl<$Res>
 class _$ChipModelImpl extends _ChipModel {
   const _$ChipModelImpl(
       {this.color,
-      this.backgroundColor,
-      this.deleteIconColor,
-      this.disabledColor,
-      this.selectedColor,
-      this.secondarySelectedColor,
-      this.shadowColor,
-      this.surfaceTintColor,
-      this.selectedShadowColor,
-      this.showCheckmark,
-      this.checkmarkColor,
-      @EdgeInsetsConverter() this.labelPadding,
-      @EdgeInsetsConverter() this.padding,
-      @BorderSideConverter() this.side,
-      @OutlinedBorderConverter() this.shape,
-      this.labelStyle,
-      this.secondaryLabelStyle,
-      this.elevation,
-      this.pressElevation})
+      this.backgroundColor_themeColorString,
+      this.deleteIconColor_themeColorString,
+      this.disabledColor_themeColorString,
+      this.selectedColor_themeColorString,
+      this.secondarySelectedColor_themeColorString,
+      this.shadowColor_themeColorString,
+      this.surfaceTintColor_themeColorString,
+      this.selectedShadowColor_themeColorString,
+      this.showCheckmark_bool,
+      this.checkmarkColor_themeColorString,
+      this.labelPadding_edgeInsets = const EdgeInsetsModel(),
+      this.padding_edgeInsets = const EdgeInsetsModel(),
+      this.side_borderSide,
+      this.shape_outlinedBorder = const OutlinedBorderModel(),
+      this.labelStyle_textStyleString,
+      this.secondaryLabelStyle_textStyleString,
+      this.elevation_double,
+      this.pressElevation_double})
       : super._();
 
   factory _$ChipModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -364,49 +450,48 @@ class _$ChipModelImpl extends _ChipModel {
   @override
   final String? color;
   @override
-  final String? backgroundColor;
+  final String? backgroundColor_themeColorString;
   @override
-  final String? deleteIconColor;
+  final String? deleteIconColor_themeColorString;
   @override
-  final String? disabledColor;
+  final String? disabledColor_themeColorString;
   @override
-  final String? selectedColor;
+  final String? selectedColor_themeColorString;
   @override
-  final String? secondarySelectedColor;
+  final String? secondarySelectedColor_themeColorString;
   @override
-  final String? shadowColor;
+  final String? shadowColor_themeColorString;
   @override
-  final String? surfaceTintColor;
+  final String? surfaceTintColor_themeColorString;
   @override
-  final String? selectedShadowColor;
+  final String? selectedShadowColor_themeColorString;
   @override
-  final bool? showCheckmark;
+  final bool? showCheckmark_bool;
   @override
-  final String? checkmarkColor;
+  final String? checkmarkColor_themeColorString;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? labelPadding;
+  @JsonKey()
+  final EdgeInsetsModel? labelPadding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  final EdgeInsets? padding;
+  @JsonKey()
+  final EdgeInsetsModel? padding_edgeInsets;
   @override
-  @BorderSideConverter()
-  final BorderSide? side;
+  final BorderSideModel? side_borderSide;
   @override
-  @OutlinedBorderConverter()
-  final OutlinedBorder? shape;
+  @JsonKey()
+  final OutlinedBorderModel? shape_outlinedBorder;
   @override
-  final String? labelStyle;
+  final String? labelStyle_textStyleString;
   @override
-  final String? secondaryLabelStyle;
+  final String? secondaryLabelStyle_textStyleString;
   @override
-  final double? elevation;
+  final double? elevation_double;
   @override
-  final double? pressElevation;
+  final double? pressElevation_double;
 
   @override
   String toString() {
-    return 'ChipModel(color: $color, backgroundColor: $backgroundColor, deleteIconColor: $deleteIconColor, disabledColor: $disabledColor, selectedColor: $selectedColor, secondarySelectedColor: $secondarySelectedColor, shadowColor: $shadowColor, surfaceTintColor: $surfaceTintColor, selectedShadowColor: $selectedShadowColor, showCheckmark: $showCheckmark, checkmarkColor: $checkmarkColor, labelPadding: $labelPadding, padding: $padding, side: $side, shape: $shape, labelStyle: $labelStyle, secondaryLabelStyle: $secondaryLabelStyle, elevation: $elevation, pressElevation: $pressElevation)';
+    return 'ChipModel(color: $color, backgroundColor_themeColorString: $backgroundColor_themeColorString, deleteIconColor_themeColorString: $deleteIconColor_themeColorString, disabledColor_themeColorString: $disabledColor_themeColorString, selectedColor_themeColorString: $selectedColor_themeColorString, secondarySelectedColor_themeColorString: $secondarySelectedColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, selectedShadowColor_themeColorString: $selectedShadowColor_themeColorString, showCheckmark_bool: $showCheckmark_bool, checkmarkColor_themeColorString: $checkmarkColor_themeColorString, labelPadding_edgeInsets: $labelPadding_edgeInsets, padding_edgeInsets: $padding_edgeInsets, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, labelStyle_textStyleString: $labelStyle_textStyleString, secondaryLabelStyle_textStyleString: $secondaryLabelStyle_textStyleString, elevation_double: $elevation_double, pressElevation_double: $pressElevation_double)';
   }
 
   @override
@@ -415,39 +500,48 @@ class _$ChipModelImpl extends _ChipModel {
         (other.runtimeType == runtimeType &&
             other is _$ChipModelImpl &&
             (identical(other.color, color) || other.color == color) &&
-            (identical(other.backgroundColor, backgroundColor) ||
-                other.backgroundColor == backgroundColor) &&
-            (identical(other.deleteIconColor, deleteIconColor) ||
-                other.deleteIconColor == deleteIconColor) &&
-            (identical(other.disabledColor, disabledColor) ||
-                other.disabledColor == disabledColor) &&
-            (identical(other.selectedColor, selectedColor) ||
-                other.selectedColor == selectedColor) &&
-            (identical(other.secondarySelectedColor, secondarySelectedColor) ||
-                other.secondarySelectedColor == secondarySelectedColor) &&
-            (identical(other.shadowColor, shadowColor) ||
-                other.shadowColor == shadowColor) &&
-            (identical(other.surfaceTintColor, surfaceTintColor) ||
-                other.surfaceTintColor == surfaceTintColor) &&
-            (identical(other.selectedShadowColor, selectedShadowColor) ||
-                other.selectedShadowColor == selectedShadowColor) &&
-            (identical(other.showCheckmark, showCheckmark) ||
-                other.showCheckmark == showCheckmark) &&
-            (identical(other.checkmarkColor, checkmarkColor) ||
-                other.checkmarkColor == checkmarkColor) &&
-            (identical(other.labelPadding, labelPadding) ||
-                other.labelPadding == labelPadding) &&
-            (identical(other.padding, padding) || other.padding == padding) &&
-            (identical(other.side, side) || other.side == side) &&
-            (identical(other.shape, shape) || other.shape == shape) &&
-            (identical(other.labelStyle, labelStyle) ||
-                other.labelStyle == labelStyle) &&
-            (identical(other.secondaryLabelStyle, secondaryLabelStyle) ||
-                other.secondaryLabelStyle == secondaryLabelStyle) &&
-            (identical(other.elevation, elevation) ||
-                other.elevation == elevation) &&
-            (identical(other.pressElevation, pressElevation) ||
-                other.pressElevation == pressElevation));
+            (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
+                other.backgroundColor_themeColorString ==
+                    backgroundColor_themeColorString) &&
+            (identical(other.deleteIconColor_themeColorString, deleteIconColor_themeColorString) ||
+                other.deleteIconColor_themeColorString ==
+                    deleteIconColor_themeColorString) &&
+            (identical(other.disabledColor_themeColorString, disabledColor_themeColorString) ||
+                other.disabledColor_themeColorString ==
+                    disabledColor_themeColorString) &&
+            (identical(other.selectedColor_themeColorString, selectedColor_themeColorString) ||
+                other.selectedColor_themeColorString ==
+                    selectedColor_themeColorString) &&
+            (identical(other.secondarySelectedColor_themeColorString, secondarySelectedColor_themeColorString) ||
+                other.secondarySelectedColor_themeColorString ==
+                    secondarySelectedColor_themeColorString) &&
+            (identical(other.shadowColor_themeColorString, shadowColor_themeColorString) ||
+                other.shadowColor_themeColorString ==
+                    shadowColor_themeColorString) &&
+            (identical(other.surfaceTintColor_themeColorString, surfaceTintColor_themeColorString) ||
+                other.surfaceTintColor_themeColorString ==
+                    surfaceTintColor_themeColorString) &&
+            (identical(other.selectedShadowColor_themeColorString, selectedShadowColor_themeColorString) ||
+                other.selectedShadowColor_themeColorString ==
+                    selectedShadowColor_themeColorString) &&
+            (identical(other.showCheckmark_bool, showCheckmark_bool) ||
+                other.showCheckmark_bool == showCheckmark_bool) &&
+            (identical(other.checkmarkColor_themeColorString, checkmarkColor_themeColorString) ||
+                other.checkmarkColor_themeColorString ==
+                    checkmarkColor_themeColorString) &&
+            (identical(other.labelPadding_edgeInsets, labelPadding_edgeInsets) ||
+                other.labelPadding_edgeInsets == labelPadding_edgeInsets) &&
+            (identical(other.padding_edgeInsets, padding_edgeInsets) ||
+                other.padding_edgeInsets == padding_edgeInsets) &&
+            (identical(other.side_borderSide, side_borderSide) ||
+                other.side_borderSide == side_borderSide) &&
+            (identical(other.shape_outlinedBorder, shape_outlinedBorder) ||
+                other.shape_outlinedBorder == shape_outlinedBorder) &&
+            (identical(other.labelStyle_textStyleString, labelStyle_textStyleString) ||
+                other.labelStyle_textStyleString == labelStyle_textStyleString) &&
+            (identical(other.secondaryLabelStyle_textStyleString, secondaryLabelStyle_textStyleString) || other.secondaryLabelStyle_textStyleString == secondaryLabelStyle_textStyleString) &&
+            (identical(other.elevation_double, elevation_double) || other.elevation_double == elevation_double) &&
+            (identical(other.pressElevation_double, pressElevation_double) || other.pressElevation_double == pressElevation_double));
   }
 
   @JsonKey(ignore: true)
@@ -455,24 +549,24 @@ class _$ChipModelImpl extends _ChipModel {
   int get hashCode => Object.hashAll([
         runtimeType,
         color,
-        backgroundColor,
-        deleteIconColor,
-        disabledColor,
-        selectedColor,
-        secondarySelectedColor,
-        shadowColor,
-        surfaceTintColor,
-        selectedShadowColor,
-        showCheckmark,
-        checkmarkColor,
-        labelPadding,
-        padding,
-        side,
-        shape,
-        labelStyle,
-        secondaryLabelStyle,
-        elevation,
-        pressElevation
+        backgroundColor_themeColorString,
+        deleteIconColor_themeColorString,
+        disabledColor_themeColorString,
+        selectedColor_themeColorString,
+        secondarySelectedColor_themeColorString,
+        shadowColor_themeColorString,
+        surfaceTintColor_themeColorString,
+        selectedShadowColor_themeColorString,
+        showCheckmark_bool,
+        checkmarkColor_themeColorString,
+        labelPadding_edgeInsets,
+        padding_edgeInsets,
+        side_borderSide,
+        shape_outlinedBorder,
+        labelStyle_textStyleString,
+        secondaryLabelStyle_textStyleString,
+        elevation_double,
+        pressElevation_double
       ]);
 
   @JsonKey(ignore: true)
@@ -492,24 +586,24 @@ class _$ChipModelImpl extends _ChipModel {
 abstract class _ChipModel extends ChipModel {
   const factory _ChipModel(
       {final String? color,
-      final String? backgroundColor,
-      final String? deleteIconColor,
-      final String? disabledColor,
-      final String? selectedColor,
-      final String? secondarySelectedColor,
-      final String? shadowColor,
-      final String? surfaceTintColor,
-      final String? selectedShadowColor,
-      final bool? showCheckmark,
-      final String? checkmarkColor,
-      @EdgeInsetsConverter() final EdgeInsets? labelPadding,
-      @EdgeInsetsConverter() final EdgeInsets? padding,
-      @BorderSideConverter() final BorderSide? side,
-      @OutlinedBorderConverter() final OutlinedBorder? shape,
-      final String? labelStyle,
-      final String? secondaryLabelStyle,
-      final double? elevation,
-      final double? pressElevation}) = _$ChipModelImpl;
+      final String? backgroundColor_themeColorString,
+      final String? deleteIconColor_themeColorString,
+      final String? disabledColor_themeColorString,
+      final String? selectedColor_themeColorString,
+      final String? secondarySelectedColor_themeColorString,
+      final String? shadowColor_themeColorString,
+      final String? surfaceTintColor_themeColorString,
+      final String? selectedShadowColor_themeColorString,
+      final bool? showCheckmark_bool,
+      final String? checkmarkColor_themeColorString,
+      final EdgeInsetsModel? labelPadding_edgeInsets,
+      final EdgeInsetsModel? padding_edgeInsets,
+      final BorderSideModel? side_borderSide,
+      final OutlinedBorderModel? shape_outlinedBorder,
+      final String? labelStyle_textStyleString,
+      final String? secondaryLabelStyle_textStyleString,
+      final double? elevation_double,
+      final double? pressElevation_double}) = _$ChipModelImpl;
   const _ChipModel._() : super._();
 
   factory _ChipModel.fromJson(Map<String, dynamic> json) =
@@ -518,45 +612,41 @@ abstract class _ChipModel extends ChipModel {
   @override
   String? get color;
   @override
-  String? get backgroundColor;
+  String? get backgroundColor_themeColorString;
   @override
-  String? get deleteIconColor;
+  String? get deleteIconColor_themeColorString;
   @override
-  String? get disabledColor;
+  String? get disabledColor_themeColorString;
   @override
-  String? get selectedColor;
+  String? get selectedColor_themeColorString;
   @override
-  String? get secondarySelectedColor;
+  String? get secondarySelectedColor_themeColorString;
   @override
-  String? get shadowColor;
+  String? get shadowColor_themeColorString;
   @override
-  String? get surfaceTintColor;
+  String? get surfaceTintColor_themeColorString;
   @override
-  String? get selectedShadowColor;
+  String? get selectedShadowColor_themeColorString;
   @override
-  bool? get showCheckmark;
+  bool? get showCheckmark_bool;
   @override
-  String? get checkmarkColor;
+  String? get checkmarkColor_themeColorString;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get labelPadding;
+  EdgeInsetsModel? get labelPadding_edgeInsets;
   @override
-  @EdgeInsetsConverter()
-  EdgeInsets? get padding;
+  EdgeInsetsModel? get padding_edgeInsets;
   @override
-  @BorderSideConverter()
-  BorderSide? get side;
+  BorderSideModel? get side_borderSide;
   @override
-  @OutlinedBorderConverter()
-  OutlinedBorder? get shape;
+  OutlinedBorderModel? get shape_outlinedBorder;
   @override
-  String? get labelStyle;
+  String? get labelStyle_textStyleString;
   @override
-  String? get secondaryLabelStyle;
+  String? get secondaryLabelStyle_textStyleString;
   @override
-  double? get elevation;
+  double? get elevation_double;
   @override
-  double? get pressElevation;
+  double? get pressElevation_double;
   @override
   @JsonKey(ignore: true)
   _$$ChipModelImplCopyWith<_$ChipModelImpl> get copyWith =>

@@ -1,6 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'slider_model.freezed.dart';
 part 'slider_model.g.dart';
@@ -8,22 +11,22 @@ part 'slider_model.g.dart';
 @freezed
 class SliderModel with _$SliderModel {
   const factory SliderModel({
-    double? trackHeight,
-    String? activeTrackColor,
-    String? inactiveTrackColor,
-    String? secondaryActiveTrackColor,
-    String? disabledActiveTrackColor,
-    String? disabledInactiveTrackColor,
-    String? disabledSecondaryActiveTrackColor,
-    String? activeTickMarkColor,
-    String? inactiveTickMarkColor,
-    String? disabledActiveTickMarkColor,
-    String? disabledInactiveTickMarkColor,
-    String? thumbColor,
-    String? overlappingShapeStrokeColor,
-    String? disabledThumbColor,
-    String? overlayColor,
-    String? valueIndicatorColor,
+    double? trackHeight_double,
+    ThemeColorString? activeTrackColor_themeColorString,
+    ThemeColorString? inactiveTrackColor_themeColorString,
+    ThemeColorString? secondaryActiveTrackColor_themeColorString,
+    ThemeColorString? disabledActiveTrackColor_themeColorString,
+    ThemeColorString? disabledInactiveTrackColor_themeColorString,
+    ThemeColorString? disabledSecondaryActiveTrackColor_themeColorString,
+    ThemeColorString? activeTickMarkColor_themeColorString,
+    ThemeColorString? inactiveTickMarkColor_themeColorString,
+    ThemeColorString? disabledActiveTickMarkColor_themeColorString,
+    ThemeColorString? disabledInactiveTickMarkColor_themeColorString,
+    ThemeColorString? thumbColor_themeColorString,
+    ThemeColorString? overlappingShapeStrokeColor_themeColorString,
+    ThemeColorString? disabledThumbColor_themeColorString,
+    ThemeColorString? overlayColor_themeColorString,
+    ThemeColorString? valueIndicatorColor_themeColorString,
     //TODO: implement Converter for these
     // SliderComponentShape? overlayShape,
     // SliderTickMarkShape? tickMarkShape,
@@ -34,10 +37,10 @@ class SliderModel with _$SliderModel {
     // RangeSliderThumbShape? rangeThumbShape,
     // RangeSliderTrackShape? rangeTrackShape,
     // RangeSliderValueIndicatorShape? rangeValueIndicatorShape,
-    // ShowValueIndicator? showValueIndicator,
-    // SliderInteraction? allowedInteraction,
-    String? valueIndicatorTextStyle,
-    double? minThumbSeparation,
+    ShowValueIndicator? showValueIndicator_enum_showValueIndicator,
+    SliderInteraction? allowedInteraction_enum_sliderInteraction,
+    TextStyleString? valueIndicatorTextStyle_textStyleString,
+    double? minThumbSeparation_double,
   }) = _SliderModel;
 
   const SliderModel._();
@@ -69,24 +72,24 @@ class SliderModel with _$SliderModel {
 
   SliderThemeData asSliderThemeData({String? styleTypeName}) {
     return SliderThemeData(
-      trackHeight: trackHeight,
-      activeTrackColor: activeTrackColor?.toColor(styleType: styleTypeName),
-      inactiveTrackColor: inactiveTrackColor?.toColor(styleType: styleTypeName),
-      secondaryActiveTrackColor: secondaryActiveTrackColor?.toColor(styleType: styleTypeName),
-      disabledActiveTrackColor: disabledActiveTrackColor?.toColor(styleType: styleTypeName),
-      disabledInactiveTrackColor: disabledInactiveTrackColor?.toColor(styleType: styleTypeName),
-      disabledSecondaryActiveTrackColor: disabledSecondaryActiveTrackColor?.toColor(styleType: styleTypeName),
-      activeTickMarkColor: activeTickMarkColor?.toColor(styleType: styleTypeName),
-      inactiveTickMarkColor: inactiveTickMarkColor?.toColor(styleType: styleTypeName),
-      disabledActiveTickMarkColor: disabledActiveTickMarkColor?.toColor(styleType: styleTypeName),
-      disabledInactiveTickMarkColor: disabledInactiveTickMarkColor?.toColor(styleType: styleTypeName),
-      thumbColor: thumbColor?.toColor(styleType: styleTypeName),
-      overlappingShapeStrokeColor: overlappingShapeStrokeColor?.toColor(styleType: styleTypeName),
-      disabledThumbColor: disabledThumbColor?.toColor(styleType: styleTypeName),
-      overlayColor: overlayColor?.toColor(styleType: styleTypeName),
-      valueIndicatorColor: valueIndicatorColor?.toColor(styleType: styleTypeName),
-      valueIndicatorTextStyle: valueIndicatorTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      minThumbSeparation: minThumbSeparation,
+      trackHeight: trackHeight_double,
+      activeTrackColor: activeTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      inactiveTrackColor: inactiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      secondaryActiveTrackColor: secondaryActiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledActiveTrackColor: disabledActiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledInactiveTrackColor: disabledInactiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledSecondaryActiveTrackColor: disabledSecondaryActiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      activeTickMarkColor: activeTickMarkColor_themeColorString?.toColor(styleType: styleTypeName),
+      inactiveTickMarkColor: inactiveTickMarkColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledActiveTickMarkColor: disabledActiveTickMarkColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledInactiveTickMarkColor: disabledInactiveTickMarkColor_themeColorString?.toColor(styleType: styleTypeName),
+      thumbColor: thumbColor_themeColorString?.toColor(styleType: styleTypeName),
+      overlappingShapeStrokeColor: overlappingShapeStrokeColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledThumbColor: disabledThumbColor_themeColorString?.toColor(styleType: styleTypeName),
+      overlayColor: overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+      valueIndicatorColor: valueIndicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      valueIndicatorTextStyle: valueIndicatorTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      minThumbSeparation: minThumbSeparation_double,
     );
   }
 }

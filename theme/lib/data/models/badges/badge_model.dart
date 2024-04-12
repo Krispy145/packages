@@ -1,24 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/alignments/alignment.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/offset/offset.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
+import 'package:theme/data/models/offset_model.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'badge_model.freezed.dart';
 part 'badge_model.g.dart';
 
+enum AlignmentOptions {
+  topLeft,
+  topCenter,
+  topRight,
+  centerLeft,
+  center,
+  centerRight,
+  bottomLeft,
+  bottomCenter,
+  bottomRight;
+
+  Alignment get alignment {
+    switch (this) {
+      case AlignmentOptions.topLeft:
+        return Alignment.topLeft;
+      case AlignmentOptions.topCenter:
+        return Alignment.topCenter;
+      case AlignmentOptions.topRight:
+        return Alignment.topRight;
+      case AlignmentOptions.centerLeft:
+        return Alignment.centerLeft;
+      case AlignmentOptions.center:
+        return Alignment.center;
+      case AlignmentOptions.centerRight:
+        return Alignment.centerRight;
+      case AlignmentOptions.bottomLeft:
+        return Alignment.bottomLeft;
+      case AlignmentOptions.bottomCenter:
+        return Alignment.bottomCenter;
+      case AlignmentOptions.bottomRight:
+        return Alignment.bottomRight;
+    }
+  }
+}
+
 @freezed
 class BadgeModel with _$BadgeModel {
   const factory BadgeModel({
-    String? backgroundColor,
-    String? textColor,
-    double? smallSize,
-    double? largeSize,
-    String? textStyle,
-    @EdgeInsetsConverter() EdgeInsets? padding,
-    @AlignmentConverter() Alignment? alignment,
-    @OffsetConverter() Offset? offset,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? textColor_themeColorString,
+    double? smallSize_double,
+    double? largeSize_double,
+    TextStyleString? textStyle_textStyleString,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
+    @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
+    @Default(OffsetModel()) OffsetModel? offset_offset,
   }) = _BadgeModel;
 
   const BadgeModel._();
@@ -45,14 +80,14 @@ class BadgeModel with _$BadgeModel {
 
   BadgeThemeData asBadgeThemeData({String? styleTypeName}) {
     return BadgeThemeData(
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      textColor: textColor?.toColor(styleType: styleTypeName),
-      smallSize: smallSize,
-      largeSize: largeSize,
-      textStyle: textStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      padding: padding,
-      alignment: alignment,
-      offset: offset,
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      textColor: textColor_themeColorString?.toColor(styleType: styleTypeName),
+      smallSize: smallSize_double,
+      largeSize: largeSize_double,
+      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      alignment: alignment_enum_alignmentOptions?.alignment,
+      offset: offset_offset?.asOffset(styleTypeName: styleTypeName),
     );
   }
 }

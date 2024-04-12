@@ -27,7 +27,7 @@ class ColorSchemes with _$ColorSchemes {
   const factory ColorSchemes({
     required ColorModel light,
     required ColorModel dark,
-  }) = _ColorSchemes;
+  }) = _themeColorStringSchemes;
   const ColorSchemes._();
 
   /// [fromXml] is a factory method that allows you to create a [ColorSchemes] from an XML file.

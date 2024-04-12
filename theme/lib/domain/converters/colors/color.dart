@@ -22,12 +22,12 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
   Color? fromJson(dynamic colorValue) {
     if (colorValue is String) {
       if (colorValue.startsWith("#")) {
-        return _getColorFromHex(colorValue);
+        return getColorFromHex(colorValue);
       }
       colorValue = json.decode(colorValue);
       if (colorValue is List) {
-        final List<double> colorList = [];
-        for (var element in colorValue) {
+        final colorList = <double>[];
+        for (final element in colorValue) {
           if (element is int) {
             colorList.add(element.toDouble());
           } else if (element is double) {
@@ -37,10 +37,9 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
         return _getColorFromRGB(colorList);
       }
     }
-    if (colorValue is List &&
-        (colorValue.length == 3 || colorValue.length == 4)) {
-      final List<double> colorList = [];
-      for (var element in colorValue) {
+    if (colorValue is List && (colorValue.length == 3 || colorValue.length == 4)) {
+      final colorList = <double>[];
+      for (final element in colorValue) {
         if (element is int) {
           colorList.add(element.toDouble());
         } else if (element is double) {
@@ -85,7 +84,7 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
     return null;
   }
 
-  Color? _getColorFromHex(String hexColor) {
+  static Color? getColorFromHex(String hexColor) {
     // Remove any leading '#' character
     if (hexColor.isNotEmpty && hexColor[0] == '#') {
       hexColor = hexColor.substring(1);
@@ -102,5 +101,20 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
     } else {
       return null;
     }
+  }
+
+  static Color getColorFromRGB(List<double> colorValue) {
+    // Check if the list has 3 elements (R, G, B) or 4 elements (R, G, B, A)
+    final alpha = (colorValue.length == 4)
+        ? (colorValue[3] * 255)
+        : colorValue.length == 4
+            ? colorValue[3]
+            : 255;
+    return Color.fromRGBO(
+      colorValue[0].toInt(),
+      colorValue[1].toInt(),
+      colorValue[2].toInt(),
+      alpha / 255,
+    );
   }
 }

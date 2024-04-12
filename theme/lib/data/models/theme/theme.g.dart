@@ -121,7 +121,8 @@ _$ComponentThemesModelImpl _$$ComponentThemesModelImplFromJson(
             MapEntry(k, ListTileModel.fromJson(e as Map<String, dynamic>)),
       ),
       menus: (json['menus'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, MenuModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) =>
+            MapEntry(k, MenuStyleModel.fromJson(e as Map<String, dynamic>)),
       ),
       menuBars: (json['menuBars'] as Map<String, dynamic>?)?.map(
         (k, e) => MapEntry(k, MenuBarModel.fromJson(e as Map<String, dynamic>)),

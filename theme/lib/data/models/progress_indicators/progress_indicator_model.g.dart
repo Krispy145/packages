@@ -9,19 +9,26 @@ part of 'progress_indicator_model.dart';
 _$ProgressIndicatorModelImpl _$$ProgressIndicatorModelImplFromJson(
         Map<String, dynamic> json) =>
     _$ProgressIndicatorModelImpl(
-      color: json['color'] as String?,
-      linearTrackColor: json['linearTrackColor'] as String?,
-      linearMinHeight: (json['linearMinHeight'] as num?)?.toDouble(),
-      circularTrackColor: json['circularTrackColor'] as String?,
-      refreshBackgroundColor: json['refreshBackgroundColor'] as String?,
+      color_themeColorString: json['color_themeColorString'] as String?,
+      linearTrackColor_themeColorString:
+          json['linearTrackColor_themeColorString'] as String?,
+      linearMinHeight_double:
+          (json['linearMinHeight_double'] as num?)?.toDouble(),
+      circularTrackColor_themeColorString:
+          json['circularTrackColor_themeColorString'] as String?,
+      refreshBackgroundColor_themeColorString:
+          json['refreshBackgroundColor_themeColorString'] as String?,
     );
 
 Map<String, dynamic> _$$ProgressIndicatorModelImplToJson(
         _$ProgressIndicatorModelImpl instance) =>
     <String, dynamic>{
-      'color': instance.color,
-      'linearTrackColor': instance.linearTrackColor,
-      'linearMinHeight': instance.linearMinHeight,
-      'circularTrackColor': instance.circularTrackColor,
-      'refreshBackgroundColor': instance.refreshBackgroundColor,
+      'color_themeColorString': instance.color_themeColorString,
+      'linearTrackColor_themeColorString':
+          instance.linearTrackColor_themeColorString,
+      'linearMinHeight_double': instance.linearMinHeight_double,
+      'circularTrackColor_themeColorString':
+          instance.circularTrackColor_themeColorString,
+      'refreshBackgroundColor_themeColorString':
+          instance.refreshBackgroundColor_themeColorString,
     };

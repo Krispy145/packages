@@ -58,7 +58,7 @@ class ColorModel with _$ColorModel {
     @ColorConverter() Color? surfaceTint,
     @ColorConverter() Color? outlineVariant,
     @ColorConverter() Color? scrim,
-  }) = _ColorModel;
+  }) = _themeColorStringModel;
   const ColorModel._();
   static const Color defaultError = Colors.red;
   static const Color defaultOnError = Colors.white;
@@ -170,39 +170,39 @@ class ColorModel with _$ColorModel {
     return xmlBuilder.buildDocument();
   }
 
-  static ColorModel defaultModel({required Brightness brightness}) {
-    final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
-    return ColorModel(
-      primary: seedColorScheme.primary,
-      primaryContainer: seedColorScheme.primaryContainer,
-      secondary: seedColorScheme.secondary,
-      secondaryContainer: seedColorScheme.secondaryContainer,
-      background: seedColorScheme.background,
-      surface: seedColorScheme.surface,
-      error: seedColorScheme.error,
-      onPrimary: seedColorScheme.onPrimary,
-      onSecondary: seedColorScheme.onSecondary,
-      onBackground: seedColorScheme.onBackground,
-      onSurface: seedColorScheme.onSurface,
-      onError: seedColorScheme.onError,
-      onErrorContainer: seedColorScheme.onErrorContainer,
-      onInverseSurface: seedColorScheme.onInverseSurface,
-      onPrimaryContainer: seedColorScheme.onPrimaryContainer,
-      onSecondaryContainer: seedColorScheme.onSecondaryContainer,
-      onSurfaceVariant: seedColorScheme.onSurfaceVariant,
-      onTertiary: seedColorScheme.onTertiary,
-      onTertiaryContainer: seedColorScheme.onTertiaryContainer,
-      outline: seedColorScheme.outline,
-      outlineVariant: seedColorScheme.outlineVariant,
-      scrim: seedColorScheme.scrim,
-      shadow: seedColorScheme.shadow,
-      surfaceTint: seedColorScheme.surfaceTint,
-      tertiary: seedColorScheme.tertiary,
-      tertiaryContainer: seedColorScheme.tertiaryContainer,
-      inversePrimary: seedColorScheme.inversePrimary,
-      inverseSurface: seedColorScheme.inverseSurface,
-    );
-  }
+  // static ColorModel defaultModel({required Brightness brightness}) {
+  //   final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
+  //   return ColorModel(
+  //     primary: seedColorScheme.primary,
+  //     primaryContainer: seedColorScheme.primaryContainer,
+  //     secondary: seedColorScheme.secondary,
+  //     secondaryContainer: seedColorScheme.secondaryContainer,
+  //     background: seedColorScheme.background,
+  //     surface: seedColorScheme.surface,
+  //     error: seedColorScheme.error,
+  //     onPrimary: seedColorScheme.onPrimary,
+  //     onSecondary: seedColorScheme.onSecondary,
+  //     onBackground: seedColorScheme.onBackground,
+  //     onSurface: seedColorScheme.onSurface,
+  //     onError: seedColorScheme.onError,
+  //     onErrorContainer: seedColorScheme.onErrorContainer,
+  //     onInverseSurface: seedColorScheme.onInverseSurface,
+  //     onPrimaryContainer: seedColorScheme.onPrimaryContainer,
+  //     onSecondaryContainer: seedColorScheme.onSecondaryContainer,
+  //     onSurfaceVariant: seedColorScheme.onSurfaceVariant,
+  //     onTertiary: seedColorScheme.onTertiary,
+  //     onTertiaryContainer: seedColorScheme.onTertiaryContainer,
+  //     outline: seedColorScheme.outline,
+  //     outlineVariant: seedColorScheme.outlineVariant,
+  //     scrim: seedColorScheme.scrim,
+  //     shadow: seedColorScheme.shadow,
+  //     surfaceTint: seedColorScheme.surfaceTint,
+  //     tertiary: seedColorScheme.tertiary,
+  //     tertiaryContainer: seedColorScheme.tertiaryContainer,
+  //     inversePrimary: seedColorScheme.inversePrimary,
+  //     inverseSurface: seedColorScheme.inverseSurface,
+  //   );
+  // }
 
   /// [ColorModel.fromJson] is a factory method that allows you to create a [ColorModel] from JSON.
   // factory ColorModel.fromJson(Map<String, dynamic> json) => _$ColorModelFromJson(json);

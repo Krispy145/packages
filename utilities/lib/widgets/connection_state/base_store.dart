@@ -23,13 +23,12 @@ enum ConnectionStoreState {
 }
 
 /// [ConnectionStateStore] is the store that will be used to manage the state of the connection.
-class ConnectionStateStore = ConnectionStateBaseStore
-    with _$ConnectionStateStore;
+class ConnectionStateStore = _ConnectionStateStore with _$ConnectionStateStore;
 
-/// [ConnectionStateBaseStore] is the base store that will be used to manage the state of the connection.
-abstract class ConnectionStateBaseStore with Store {
-  /// [ConnectionStateBaseStore] constructor
-  ConnectionStateBaseStore() {
+/// [_ConnectionStateStore] is the base store that will be used to manage the state of the connection.
+abstract class _ConnectionStateStore with Store {
+  /// [_ConnectionStateStore] constructor
+  _ConnectionStateStore() {
     _listenOnConnectionStatus();
   }
 
@@ -61,7 +60,9 @@ abstract class ConnectionStateBaseStore with Store {
   @action
   void setOffline() {
     AppLogger.print(
-        "ConnectionState Changed: Offline", [PackageFeatures.connection]);
+      "ConnectionState Changed: Offline",
+      [PackageFeatures.connection],
+    );
     currentState = ConnectionStoreState.offline;
   }
 

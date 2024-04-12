@@ -8,26 +8,36 @@ part of 'drawer_model.dart';
 
 _$DrawerModelImpl _$$DrawerModelImplFromJson(Map<String, dynamic> json) =>
     _$DrawerModelImpl(
-      backgroundColor: json['backgroundColor'] as String?,
-      scrimColor: json['scrimColor'] as String?,
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
-      endShape: const OutlinedBorderConverter()
-          .fromJson(json['endShape'] as Map<String, dynamic>?),
-      width: (json['width'] as num?)?.toDouble(),
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      scrimColor_themeColorString:
+          json['scrimColor_themeColorString'] as String?,
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      shape_outlinedBorder: json['shape_outlinedBorder'] == null
+          ? const OutlinedBorderModel()
+          : OutlinedBorderModel.fromJson(
+              json['shape_outlinedBorder'] as Map<String, dynamic>),
+      endShape_outlinedBorder: json['endShape_outlinedBorder'] == null
+          ? const OutlinedBorderModel()
+          : OutlinedBorderModel.fromJson(
+              json['endShape_outlinedBorder'] as Map<String, dynamic>),
+      width_double: (json['width_double'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$DrawerModelImplToJson(_$DrawerModelImpl instance) =>
     <String, dynamic>{
-      'backgroundColor': instance.backgroundColor,
-      'scrimColor': instance.scrimColor,
-      'elevation': instance.elevation,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
-      'endShape': const OutlinedBorderConverter().toJson(instance.endShape),
-      'width': instance.width,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'scrimColor_themeColorString': instance.scrimColor_themeColorString,
+      'elevation_double': instance.elevation_double,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'shape_outlinedBorder': instance.shape_outlinedBorder?.toJson(),
+      'endShape_outlinedBorder': instance.endShape_outlinedBorder?.toJson(),
+      'width_double': instance.width_double,
     };

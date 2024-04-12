@@ -8,22 +8,29 @@ part of 'card_model.dart';
 
 _$CardModelImpl _$$CardModelImplFromJson(Map<String, dynamic> json) =>
     _$CardModelImpl(
-      color: json['color'] as String?,
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      margin: const EdgeInsetsConverter()
-          .fromJson(json['margin'] as Map<String, dynamic>?),
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
+      color_themeColorString: json['color_themeColorString'] as String?,
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      margin_edgeInsets: json['margin_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['margin_edgeInsets'] as Map<String, dynamic>),
+      shape_shapeBorder: json['shape_shapeBorder'] == null
+          ? null
+          : ShapeBorderModel.fromJson(
+              json['shape_shapeBorder'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$CardModelImplToJson(_$CardModelImpl instance) =>
     <String, dynamic>{
-      'color': instance.color,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'elevation': instance.elevation,
-      'margin': const EdgeInsetsConverter().toJson(instance.margin),
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
+      'color_themeColorString': instance.color_themeColorString,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'elevation_double': instance.elevation_double,
+      'margin_edgeInsets': instance.margin_edgeInsets?.toJson(),
+      'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
     };

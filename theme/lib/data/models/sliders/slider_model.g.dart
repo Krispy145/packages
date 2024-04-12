@@ -8,49 +8,99 @@ part of 'slider_model.dart';
 
 _$SliderModelImpl _$$SliderModelImplFromJson(Map<String, dynamic> json) =>
     _$SliderModelImpl(
-      trackHeight: (json['trackHeight'] as num?)?.toDouble(),
-      activeTrackColor: json['activeTrackColor'] as String?,
-      inactiveTrackColor: json['inactiveTrackColor'] as String?,
-      secondaryActiveTrackColor: json['secondaryActiveTrackColor'] as String?,
-      disabledActiveTrackColor: json['disabledActiveTrackColor'] as String?,
-      disabledInactiveTrackColor: json['disabledInactiveTrackColor'] as String?,
-      disabledSecondaryActiveTrackColor:
-          json['disabledSecondaryActiveTrackColor'] as String?,
-      activeTickMarkColor: json['activeTickMarkColor'] as String?,
-      inactiveTickMarkColor: json['inactiveTickMarkColor'] as String?,
-      disabledActiveTickMarkColor:
-          json['disabledActiveTickMarkColor'] as String?,
-      disabledInactiveTickMarkColor:
-          json['disabledInactiveTickMarkColor'] as String?,
-      thumbColor: json['thumbColor'] as String?,
-      overlappingShapeStrokeColor:
-          json['overlappingShapeStrokeColor'] as String?,
-      disabledThumbColor: json['disabledThumbColor'] as String?,
-      overlayColor: json['overlayColor'] as String?,
-      valueIndicatorColor: json['valueIndicatorColor'] as String?,
-      valueIndicatorTextStyle: json['valueIndicatorTextStyle'] as String?,
-      minThumbSeparation: (json['minThumbSeparation'] as num?)?.toDouble(),
+      trackHeight_double: (json['trackHeight_double'] as num?)?.toDouble(),
+      activeTrackColor_themeColorString:
+          json['activeTrackColor_themeColorString'] as String?,
+      inactiveTrackColor_themeColorString:
+          json['inactiveTrackColor_themeColorString'] as String?,
+      secondaryActiveTrackColor_themeColorString:
+          json['secondaryActiveTrackColor_themeColorString'] as String?,
+      disabledActiveTrackColor_themeColorString:
+          json['disabledActiveTrackColor_themeColorString'] as String?,
+      disabledInactiveTrackColor_themeColorString:
+          json['disabledInactiveTrackColor_themeColorString'] as String?,
+      disabledSecondaryActiveTrackColor_themeColorString:
+          json['disabledSecondaryActiveTrackColor_themeColorString'] as String?,
+      activeTickMarkColor_themeColorString:
+          json['activeTickMarkColor_themeColorString'] as String?,
+      inactiveTickMarkColor_themeColorString:
+          json['inactiveTickMarkColor_themeColorString'] as String?,
+      disabledActiveTickMarkColor_themeColorString:
+          json['disabledActiveTickMarkColor_themeColorString'] as String?,
+      disabledInactiveTickMarkColor_themeColorString:
+          json['disabledInactiveTickMarkColor_themeColorString'] as String?,
+      thumbColor_themeColorString:
+          json['thumbColor_themeColorString'] as String?,
+      overlappingShapeStrokeColor_themeColorString:
+          json['overlappingShapeStrokeColor_themeColorString'] as String?,
+      disabledThumbColor_themeColorString:
+          json['disabledThumbColor_themeColorString'] as String?,
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
+      valueIndicatorColor_themeColorString:
+          json['valueIndicatorColor_themeColorString'] as String?,
+      showValueIndicator_enum_showValueIndicator: $enumDecodeNullable(
+          _$ShowValueIndicatorEnumMap,
+          json['showValueIndicator_enum_showValueIndicator']),
+      allowedInteraction_enum_sliderInteraction: $enumDecodeNullable(
+          _$SliderInteractionEnumMap,
+          json['allowedInteraction_enum_sliderInteraction']),
+      valueIndicatorTextStyle_textStyleString:
+          json['valueIndicatorTextStyle_textStyleString'] as String?,
+      minThumbSeparation_double:
+          (json['minThumbSeparation_double'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$SliderModelImplToJson(_$SliderModelImpl instance) =>
     <String, dynamic>{
-      'trackHeight': instance.trackHeight,
-      'activeTrackColor': instance.activeTrackColor,
-      'inactiveTrackColor': instance.inactiveTrackColor,
-      'secondaryActiveTrackColor': instance.secondaryActiveTrackColor,
-      'disabledActiveTrackColor': instance.disabledActiveTrackColor,
-      'disabledInactiveTrackColor': instance.disabledInactiveTrackColor,
-      'disabledSecondaryActiveTrackColor':
-          instance.disabledSecondaryActiveTrackColor,
-      'activeTickMarkColor': instance.activeTickMarkColor,
-      'inactiveTickMarkColor': instance.inactiveTickMarkColor,
-      'disabledActiveTickMarkColor': instance.disabledActiveTickMarkColor,
-      'disabledInactiveTickMarkColor': instance.disabledInactiveTickMarkColor,
-      'thumbColor': instance.thumbColor,
-      'overlappingShapeStrokeColor': instance.overlappingShapeStrokeColor,
-      'disabledThumbColor': instance.disabledThumbColor,
-      'overlayColor': instance.overlayColor,
-      'valueIndicatorColor': instance.valueIndicatorColor,
-      'valueIndicatorTextStyle': instance.valueIndicatorTextStyle,
-      'minThumbSeparation': instance.minThumbSeparation,
+      'trackHeight_double': instance.trackHeight_double,
+      'activeTrackColor_themeColorString':
+          instance.activeTrackColor_themeColorString,
+      'inactiveTrackColor_themeColorString':
+          instance.inactiveTrackColor_themeColorString,
+      'secondaryActiveTrackColor_themeColorString':
+          instance.secondaryActiveTrackColor_themeColorString,
+      'disabledActiveTrackColor_themeColorString':
+          instance.disabledActiveTrackColor_themeColorString,
+      'disabledInactiveTrackColor_themeColorString':
+          instance.disabledInactiveTrackColor_themeColorString,
+      'disabledSecondaryActiveTrackColor_themeColorString':
+          instance.disabledSecondaryActiveTrackColor_themeColorString,
+      'activeTickMarkColor_themeColorString':
+          instance.activeTickMarkColor_themeColorString,
+      'inactiveTickMarkColor_themeColorString':
+          instance.inactiveTickMarkColor_themeColorString,
+      'disabledActiveTickMarkColor_themeColorString':
+          instance.disabledActiveTickMarkColor_themeColorString,
+      'disabledInactiveTickMarkColor_themeColorString':
+          instance.disabledInactiveTickMarkColor_themeColorString,
+      'thumbColor_themeColorString': instance.thumbColor_themeColorString,
+      'overlappingShapeStrokeColor_themeColorString':
+          instance.overlappingShapeStrokeColor_themeColorString,
+      'disabledThumbColor_themeColorString':
+          instance.disabledThumbColor_themeColorString,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
+      'valueIndicatorColor_themeColorString':
+          instance.valueIndicatorColor_themeColorString,
+      'showValueIndicator_enum_showValueIndicator': _$ShowValueIndicatorEnumMap[
+          instance.showValueIndicator_enum_showValueIndicator],
+      'allowedInteraction_enum_sliderInteraction': _$SliderInteractionEnumMap[
+          instance.allowedInteraction_enum_sliderInteraction],
+      'valueIndicatorTextStyle_textStyleString':
+          instance.valueIndicatorTextStyle_textStyleString,
+      'minThumbSeparation_double': instance.minThumbSeparation_double,
     };
+
+const _$ShowValueIndicatorEnumMap = {
+  ShowValueIndicator.onlyForDiscrete: 'onlyForDiscrete',
+  ShowValueIndicator.onlyForContinuous: 'onlyForContinuous',
+  ShowValueIndicator.always: 'always',
+  ShowValueIndicator.never: 'never',
+};
+
+const _$SliderInteractionEnumMap = {
+  SliderInteraction.tapAndSlide: 'tapAndSlide',
+  SliderInteraction.tapOnly: 'tapOnly',
+  SliderInteraction.slideOnly: 'slideOnly',
+  SliderInteraction.slideThumb: 'slideThumb',
+};

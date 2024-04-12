@@ -1,24 +1,28 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/navigation/destination_label.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'navigation_bar_model.freezed.dart';
 part 'navigation_bar_model.g.dart';
 
 @freezed
 class NavigationBarModel with _$NavigationBarModel {
-  const factory NavigationBarModel({
-    double? height,
-    String? backgroundColor,
-    double? elevation,
-    String? shadowColor,
-    String? surfaceTintColor,
-    String? indicatorColor,
-    @OutlinedBorderConverter() OutlinedBorder? indicatorShape,
-    String? labelTextStyle,
-    @NavigationDestinationLabelConverter() NavigationDestinationLabelBehavior? labelBehavior,
+  factory NavigationBarModel({
+    double? height_double,
+    ThemeColorString? backgroundColor_themeColorString,
+    double? elevation_double,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    ThemeColorString? indicatorColor_themeColorString,
+    // @OutlinedBorderConverter()
+    ShapeBorderModel? indicatorShape_shapeBorder,
+    TextStyleString? labelTextStyle_textStyleString,
+    // @NavigationDestinationLabelConverter()
+    NavigationDestinationLabelBehavior? labelBehavior_enum_navigationDestinationLabelBehavior,
   }) = _NavigationBarModel;
 
   const NavigationBarModel._();
@@ -41,15 +45,15 @@ class NavigationBarModel with _$NavigationBarModel {
 
   NavigationBarThemeData asNavigationBarThemeData({String? styleTypeName}) {
     return NavigationBarThemeData(
-      height: height,
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      elevation: elevation,
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      indicatorColor: indicatorColor?.toColor(styleType: styleTypeName),
-      indicatorShape: indicatorShape,
-      labelTextStyle: MaterialStateProperty.all(labelTextStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      labelBehavior: labelBehavior,
+      height: height_double,
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      elevation: elevation_double,
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
+      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
+      labelBehavior: labelBehavior_enum_navigationDestinationLabelBehavior,
     );
   }
 }

@@ -6,19 +6,19 @@ import 'package:mobx/mobx.dart';
 import 'package:notifications/models/notification.dart';
 import 'package:notifications/models/permissions.dart';
 import 'package:utilities/data_sources/local/hive.dart';
+
 part 'base_store.g.dart';
 
 /// [NotificationsStore] is a store that houses logic for managing notifications.
-class NotificationsStore = NotificationsBaseStore with _$NotificationsStore;
+class NotificationsStore = _NotificationsStore with _$NotificationsStore;
 
-/// [NotificationsBaseStore] is the base class for [NotificationsStore].
-abstract class NotificationsBaseStore extends LocalDataSource<NotificationModel>
-    with Store {
+/// [_NotificationsStore] is the base class for [NotificationsStore].
+abstract class _NotificationsStore extends LocalDataSource<NotificationModel> with Store {
   /// [onNotificationReceived] is a callback for when a notification is received.
   final void Function(NotificationModel notification)? onNotificationReceived;
 
-  /// [NotificationsBaseStore] constructor.
-  NotificationsBaseStore({this.onNotificationReceived})
+  /// [_NotificationsStore] constructor.
+  _NotificationsStore({this.onNotificationReceived})
       : super(
           'notifications',
           convertDataTypeFromMap: NotificationModel.fromStringMap,
@@ -26,13 +26,11 @@ abstract class NotificationsBaseStore extends LocalDataSource<NotificationModel>
         );
 
   /// [localNotifications] is the local notifications plugin.
-  final FlutterLocalNotificationsPlugin localNotifications =
-      FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin localNotifications = FlutterLocalNotificationsPlugin();
 
   /// [notifications] is a list of notifications from the local data source.
   @computed
-  ValueListenable<TypeBox<NotificationModel?>> get notifications =>
-      super.boxListenable;
+  ValueListenable<TypeBox<NotificationModel?>> get notifications => super.boxListenable;
 
   /// [requestPermissions] requests permission for notifications.
   @action

@@ -11,15 +11,15 @@ part 'store.g.dart';
 // TODO: Convert theme widget to extend extra DO colors (so no need to go through AppTheme to get them)
 
 /// [StyleTypeThemeStore] is the store that will be used to manage the state of the theme.
-class StyleTypeThemeStore = StyleTypeBaseStore with _$StyleTypeThemeStore;
+class StyleTypeThemeStore = _StyleTypeStore with _$StyleTypeThemeStore;
 
-/// [StyleTypeBaseStore] is the base store that will be used to manage the state of the theme.
-abstract class StyleTypeBaseStore extends LoadStateStore with Store {
+/// [_StyleTypeStore] is the base store that will be used to manage the state of the theme.
+abstract class _StyleTypeStore extends LoadStateStore with Store {
   /// [styleTypeNames] is the list of style type names that will be used to set the theme data.
   final String styleTypeName;
 
-  /// [StyleTypeBaseStore] is the constructor that will be used to set the theme data.
-  StyleTypeBaseStore({required this.styleTypeName}) {
+  /// [_StyleTypeStore] is the constructor that will be used to set the theme data.
+  _StyleTypeStore({required this.styleTypeName}) {
     setStyleType(styleTypeName);
   }
 

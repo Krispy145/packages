@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'radio_model.freezed.dart';
 part 'radio_model.g.dart';
@@ -8,9 +8,9 @@ part 'radio_model.g.dart';
 @freezed
 class RadioModel with _$RadioModel {
   const factory RadioModel({
-    String? fillColor,
-    String? overlayColor,
-    double? splashRadius,
+    ThemeColorString? fillColor_themeColorString,
+    ThemeColorString? overlayColor_themeColorString,
+    double? splashRadius_double,
   }) = _RadioModel;
 
   const RadioModel._();
@@ -27,9 +27,9 @@ class RadioModel with _$RadioModel {
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
-      fillColor: MaterialStateProperty.all(fillColor?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor?.toColor(styleType: styleTypeName)),
-      splashRadius: splashRadius,
+      fillColor: MaterialStateProperty.all(fillColor_themeColorString?.toColor(styleType: styleTypeName)),
+      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
+      splashRadius: splashRadius_double,
     );
   }
 }

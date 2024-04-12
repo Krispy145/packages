@@ -1,3 +1,6 @@
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -9,12 +12,12 @@ part 'text_style_model.g.dart';
 class TextStyleModel with _$TextStyleModel {
   /// [TextStyleModel] constructor
   const factory TextStyleModel({
-    final String? fontFamilyName,
-    final String? fontFamilyStyle,
-    final double? fontWeight,
-    final double? fontSize,
-    final double? lineHeight,
-    final double? letterSpacing,
+    final String? fontFamilyName_font,
+    @Default(FontStyle.normal) final FontStyle? fontFamilyStyle_enum_fontStyle,
+    final double? fontWeight_double,
+    final double? fontSize_double,
+    final double? lineHeight_double,
+    final double? letterSpacing_double,
   }) = _TextStyleModel;
   const TextStyleModel._();
 
@@ -24,23 +27,24 @@ class TextStyleModel with _$TextStyleModel {
   /// [asTextStyle] converts the [TextStyleModel] to a [TextStyle].
   TextStyle get asTextStyle {
     return TextStyle(
-        fontFamily: fontFamilyName,
-        fontWeight: FontWeight.values.firstWhere((element) => element.value == fontWeight?.toInt()),
-        fontStyle: fontFamilyStyle == 'italic' ? FontStyle.italic : FontStyle.normal,
-        fontSize: fontSize,
-        height: lineHeight,
-        letterSpacing: letterSpacing);
+      fontFamily: fontFamilyName_font,
+      fontWeight: FontWeight.values.firstWhereOrNull((element) => element.value == fontWeight_double?.toInt()),
+      fontStyle: fontFamilyStyle_enum_fontStyle,
+      fontSize: fontSize_double,
+      height: lineHeight_double,
+      letterSpacing: letterSpacing_double,
+    );
   }
 
-  // /// [defaultStyles] returns a [TextStyleModel] with default values.
+  /// [defaultStyles] returns a [TextStyleModel] with default values.
   // static TextStyleModel defaultStyles() {
   //   return const TextStyleModel(
-  //     fontFamilyName: 'Roboto',
-  //     fontFamilyStyle: 'italic',
-  //     fontWeight: 400.0,
-  //     fontSize: 14,
-  //     lineHeight: 1.5,
-  //     letterSpacing: 0.15,
+  //     fontFamilyName_string: 'Roboto',
+  //     fontFamilyStyle_enum_fontStyle: FontStyle.italic,
+  //     fontWeight_double: 400,
+  //     fontSize_double: 14,
+  //     lineHeight_double: 1.5,
+  //     letterSpacing_double: 0.15,
   //   );
   // }
 }

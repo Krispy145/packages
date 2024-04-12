@@ -12,7 +12,7 @@
 //     required ColorSchemes primary,
 //     ColorSchemes? secondary,
 //     ColorSchemes? tertiary,
-//   }) = _ColorStyles;
+//   }) = _themeColorStringStyles;
 
 //   factory ColorStyles.fromJson(Map<String, dynamic> json) => _$ColorStylesFromJson(json);
 

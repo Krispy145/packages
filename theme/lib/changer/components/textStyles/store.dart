@@ -5,11 +5,11 @@ import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
 
-/// [TextTypesStore] is a class that uses [TextTypesBaseStore] to manage state of the colorSchemes feature.
-class TextTypesStore = TextTypesBaseStore with _$TextTypesStore;
+/// [TextTypesStore] is a class that uses [_TextTypesStore] to manage state of the colorSchemes feature.
+class TextTypesStore = _TextTypesStore with _$TextTypesStore;
 
-/// [TextTypesBaseStore] is a class that manages the state of the colorSchemes feature.
-abstract class TextTypesBaseStore with Store {
+/// [_TextTypesStore] is a class that manages the state of the colorSchemes feature.
+abstract class _TextTypesStore with Store {
   /// [selectedTextType] is a property that stores the selected color from the current scheme.
   @observable
   // ignore: prefer_const_constructors
@@ -18,7 +18,7 @@ abstract class TextTypesBaseStore with Store {
   // @observable
   // Map<String, dynamic> defaultTextType = TextTypes.defaultTextTypes().toJson();
 
-  /// [getMergedMap] is a combination of the current and default component themes, with the current values taking priority
+  /// [mergedMap] is a combination of the current and default component themes, with the current values taking priority
   @computed
   Map<String, dynamic> get mergedMap {
     if (selectedTextType != null) {

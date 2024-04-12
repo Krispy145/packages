@@ -8,20 +8,26 @@ part of 'switch_model.dart';
 
 _$SwitchModelImpl _$$SwitchModelImplFromJson(Map<String, dynamic> json) =>
     _$SwitchModelImpl(
-      thumbColor: json['thumbColor'] as String?,
-      trackColor: json['trackColor'] as String?,
-      trackOutlineColor: json['trackOutlineColor'] as String?,
-      trackOutlineWidth: (json['trackOutlineWidth'] as num?)?.toDouble(),
-      overlayColor: json['overlayColor'] as String?,
-      splashRadius: (json['splashRadius'] as num?)?.toDouble(),
+      thumbColor_themeColorString:
+          json['thumbColor_themeColorString'] as String?,
+      trackColor_themeColorString:
+          json['trackColor_themeColorString'] as String?,
+      trackOutlineColor_themeColorString:
+          json['trackOutlineColor_themeColorString'] as String?,
+      trackOutlineWidth_double:
+          (json['trackOutlineWidth_double'] as num?)?.toDouble(),
+      overlayColor_themeColorString:
+          json['overlayColor_themeColorString'] as String?,
+      splashRadius_double: (json['splashRadius_double'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$SwitchModelImplToJson(_$SwitchModelImpl instance) =>
     <String, dynamic>{
-      'thumbColor': instance.thumbColor,
-      'trackColor': instance.trackColor,
-      'trackOutlineColor': instance.trackOutlineColor,
-      'trackOutlineWidth': instance.trackOutlineWidth,
-      'overlayColor': instance.overlayColor,
-      'splashRadius': instance.splashRadius,
+      'thumbColor_themeColorString': instance.thumbColor_themeColorString,
+      'trackColor_themeColorString': instance.trackColor_themeColorString,
+      'trackOutlineColor_themeColorString':
+          instance.trackOutlineColor_themeColorString,
+      'trackOutlineWidth_double': instance.trackOutlineWidth_double,
+      'overlayColor_themeColorString': instance.overlayColor_themeColorString,
+      'splashRadius_double': instance.splashRadius_double,
     };

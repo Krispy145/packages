@@ -8,29 +8,68 @@ part of 'tooltip_model.dart';
 
 _$TooltipModelImpl _$$TooltipModelImplFromJson(Map<String, dynamic> json) =>
     _$TooltipModelImpl(
-      height: (json['height'] as num?)?.toDouble(),
-      padding: const EdgeInsetsConverter()
-          .fromJson(json['padding'] as Map<String, dynamic>?),
-      margin: const EdgeInsetsConverter()
-          .fromJson(json['margin'] as Map<String, dynamic>?),
-      verticalOffset: (json['verticalOffset'] as num?)?.toDouble(),
-      preferBelow: json['preferBelow'] as bool?,
-      excludeFromSemantics: json['excludeFromSemantics'] as bool?,
-      decoration: const BoxDecorationConverter()
-          .fromJson(json['decoration'] as Map<String, dynamic>?),
-      textStyle: json['textStyle'] as String?,
-      enableFeedback: json['enableFeedback'] as bool?,
+      height_double: (json['height_double'] as num?)?.toDouble(),
+      padding_edgeInsets: json['padding_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['padding_edgeInsets'] as Map<String, dynamic>),
+      margin_edgeInsets: json['margin_edgeInsets'] == null
+          ? const EdgeInsetsModel()
+          : EdgeInsetsModel.fromJson(
+              json['margin_edgeInsets'] as Map<String, dynamic>),
+      verticalOffset_double:
+          (json['verticalOffset_double'] as num?)?.toDouble(),
+      preferBelow_bool: json['preferBelow_bool'] as bool?,
+      excludeFromSemantics_bool: json['excludeFromSemantics_bool'] as bool?,
+      decoration_boxDecoration: json['decoration_boxDecoration'] == null
+          ? null
+          : BoxDecorationModel.fromJson(
+              json['decoration_boxDecoration'] as Map<String, dynamic>),
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
+      textAlign_enum_textAlign: $enumDecodeNullable(
+          _$TextAlignEnumMap, json['textAlign_enum_textAlign']),
+      waitDuration_duration: json['waitDuration_duration'] == null
+          ? null
+          : Duration(microseconds: json['waitDuration_duration'] as int),
+      showDuration_duration: json['showDuration_duration'] == null
+          ? null
+          : Duration(microseconds: json['showDuration_duration'] as int),
+      triggerMode_enum_tooltipTriggerMode: $enumDecodeNullable(
+          _$TooltipTriggerModeEnumMap,
+          json['triggerMode_enum_tooltipTriggerMode']),
+      enableFeedback_bool: json['enableFeedback_bool'] as bool?,
     );
 
 Map<String, dynamic> _$$TooltipModelImplToJson(_$TooltipModelImpl instance) =>
     <String, dynamic>{
-      'height': instance.height,
-      'padding': const EdgeInsetsConverter().toJson(instance.padding),
-      'margin': const EdgeInsetsConverter().toJson(instance.margin),
-      'verticalOffset': instance.verticalOffset,
-      'preferBelow': instance.preferBelow,
-      'excludeFromSemantics': instance.excludeFromSemantics,
-      'decoration': const BoxDecorationConverter().toJson(instance.decoration),
-      'textStyle': instance.textStyle,
-      'enableFeedback': instance.enableFeedback,
+      'height_double': instance.height_double,
+      'padding_edgeInsets': instance.padding_edgeInsets?.toJson(),
+      'margin_edgeInsets': instance.margin_edgeInsets?.toJson(),
+      'verticalOffset_double': instance.verticalOffset_double,
+      'preferBelow_bool': instance.preferBelow_bool,
+      'excludeFromSemantics_bool': instance.excludeFromSemantics_bool,
+      'decoration_boxDecoration': instance.decoration_boxDecoration?.toJson(),
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
+      'textAlign_enum_textAlign':
+          _$TextAlignEnumMap[instance.textAlign_enum_textAlign],
+      'waitDuration_duration': instance.waitDuration_duration?.inMicroseconds,
+      'showDuration_duration': instance.showDuration_duration?.inMicroseconds,
+      'triggerMode_enum_tooltipTriggerMode': _$TooltipTriggerModeEnumMap[
+          instance.triggerMode_enum_tooltipTriggerMode],
+      'enableFeedback_bool': instance.enableFeedback_bool,
     };
+
+const _$TextAlignEnumMap = {
+  TextAlign.left: 'left',
+  TextAlign.right: 'right',
+  TextAlign.center: 'center',
+  TextAlign.justify: 'justify',
+  TextAlign.start: 'start',
+  TextAlign.end: 'end',
+};
+
+const _$TooltipTriggerModeEnumMap = {
+  TooltipTriggerMode.manual: 'manual',
+  TooltipTriggerMode.longPress: 'longPress',
+  TooltipTriggerMode.tap: 'tap',
+};

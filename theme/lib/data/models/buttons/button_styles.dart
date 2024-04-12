@@ -1,11 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
-import 'package:theme/data/models/buttons/floating_action_button_model.dart';
-import 'package:theme/data/models/buttons/toggle_button_model.dart';
-
-part 'button_styles.freezed.dart';
-part 'button_styles.g.dart';
-
 enum ButtonStyleModelType {
   elevated,
   outlined,

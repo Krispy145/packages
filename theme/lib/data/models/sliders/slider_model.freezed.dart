@@ -20,24 +20,35 @@ SliderModel _$SliderModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SliderModel {
-  double? get trackHeight => throw _privateConstructorUsedError;
-  String? get activeTrackColor => throw _privateConstructorUsedError;
-  String? get inactiveTrackColor => throw _privateConstructorUsedError;
-  String? get secondaryActiveTrackColor => throw _privateConstructorUsedError;
-  String? get disabledActiveTrackColor => throw _privateConstructorUsedError;
-  String? get disabledInactiveTrackColor => throw _privateConstructorUsedError;
-  String? get disabledSecondaryActiveTrackColor =>
+  double? get trackHeight_double => throw _privateConstructorUsedError;
+  String? get activeTrackColor_themeColorString =>
       throw _privateConstructorUsedError;
-  String? get activeTickMarkColor => throw _privateConstructorUsedError;
-  String? get inactiveTickMarkColor => throw _privateConstructorUsedError;
-  String? get disabledActiveTickMarkColor => throw _privateConstructorUsedError;
-  String? get disabledInactiveTickMarkColor =>
+  String? get inactiveTrackColor_themeColorString =>
       throw _privateConstructorUsedError;
-  String? get thumbColor => throw _privateConstructorUsedError;
-  String? get overlappingShapeStrokeColor => throw _privateConstructorUsedError;
-  String? get disabledThumbColor => throw _privateConstructorUsedError;
-  String? get overlayColor => throw _privateConstructorUsedError;
-  String? get valueIndicatorColor =>
+  String? get secondaryActiveTrackColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledActiveTrackColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledInactiveTrackColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledSecondaryActiveTrackColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get activeTickMarkColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get inactiveTickMarkColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledActiveTickMarkColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledInactiveTickMarkColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get thumbColor_themeColorString => throw _privateConstructorUsedError;
+  String? get overlappingShapeStrokeColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get disabledThumbColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get overlayColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  String? get valueIndicatorColor_themeColorString =>
       throw _privateConstructorUsedError; //TODO: implement Converter for these
 // SliderComponentShape? overlayShape,
 // SliderTickMarkShape? tickMarkShape,
@@ -48,10 +59,13 @@ mixin _$SliderModel {
 // RangeSliderThumbShape? rangeThumbShape,
 // RangeSliderTrackShape? rangeTrackShape,
 // RangeSliderValueIndicatorShape? rangeValueIndicatorShape,
-// ShowValueIndicator? showValueIndicator,
-// SliderInteraction? allowedInteraction,
-  String? get valueIndicatorTextStyle => throw _privateConstructorUsedError;
-  double? get minThumbSeparation => throw _privateConstructorUsedError;
+  ShowValueIndicator? get showValueIndicator_enum_showValueIndicator =>
+      throw _privateConstructorUsedError;
+  SliderInteraction? get allowedInteraction_enum_sliderInteraction =>
+      throw _privateConstructorUsedError;
+  String? get valueIndicatorTextStyle_textStyleString =>
+      throw _privateConstructorUsedError;
+  double? get minThumbSeparation_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,24 +80,26 @@ abstract class $SliderModelCopyWith<$Res> {
       _$SliderModelCopyWithImpl<$Res, SliderModel>;
   @useResult
   $Res call(
-      {double? trackHeight,
-      String? activeTrackColor,
-      String? inactiveTrackColor,
-      String? secondaryActiveTrackColor,
-      String? disabledActiveTrackColor,
-      String? disabledInactiveTrackColor,
-      String? disabledSecondaryActiveTrackColor,
-      String? activeTickMarkColor,
-      String? inactiveTickMarkColor,
-      String? disabledActiveTickMarkColor,
-      String? disabledInactiveTickMarkColor,
-      String? thumbColor,
-      String? overlappingShapeStrokeColor,
-      String? disabledThumbColor,
-      String? overlayColor,
-      String? valueIndicatorColor,
-      String? valueIndicatorTextStyle,
-      double? minThumbSeparation});
+      {double? trackHeight_double,
+      String? activeTrackColor_themeColorString,
+      String? inactiveTrackColor_themeColorString,
+      String? secondaryActiveTrackColor_themeColorString,
+      String? disabledActiveTrackColor_themeColorString,
+      String? disabledInactiveTrackColor_themeColorString,
+      String? disabledSecondaryActiveTrackColor_themeColorString,
+      String? activeTickMarkColor_themeColorString,
+      String? inactiveTickMarkColor_themeColorString,
+      String? disabledActiveTickMarkColor_themeColorString,
+      String? disabledInactiveTickMarkColor_themeColorString,
+      String? thumbColor_themeColorString,
+      String? overlappingShapeStrokeColor_themeColorString,
+      String? disabledThumbColor_themeColorString,
+      String? overlayColor_themeColorString,
+      String? valueIndicatorColor_themeColorString,
+      ShowValueIndicator? showValueIndicator_enum_showValueIndicator,
+      SliderInteraction? allowedInteraction_enum_sliderInteraction,
+      String? valueIndicatorTextStyle_textStyleString,
+      double? minThumbSeparation_double});
 }
 
 /// @nodoc
@@ -99,98 +115,123 @@ class _$SliderModelCopyWithImpl<$Res, $Val extends SliderModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? trackHeight = freezed,
-    Object? activeTrackColor = freezed,
-    Object? inactiveTrackColor = freezed,
-    Object? secondaryActiveTrackColor = freezed,
-    Object? disabledActiveTrackColor = freezed,
-    Object? disabledInactiveTrackColor = freezed,
-    Object? disabledSecondaryActiveTrackColor = freezed,
-    Object? activeTickMarkColor = freezed,
-    Object? inactiveTickMarkColor = freezed,
-    Object? disabledActiveTickMarkColor = freezed,
-    Object? disabledInactiveTickMarkColor = freezed,
-    Object? thumbColor = freezed,
-    Object? overlappingShapeStrokeColor = freezed,
-    Object? disabledThumbColor = freezed,
-    Object? overlayColor = freezed,
-    Object? valueIndicatorColor = freezed,
-    Object? valueIndicatorTextStyle = freezed,
-    Object? minThumbSeparation = freezed,
+    Object? trackHeight_double = freezed,
+    Object? activeTrackColor_themeColorString = freezed,
+    Object? inactiveTrackColor_themeColorString = freezed,
+    Object? secondaryActiveTrackColor_themeColorString = freezed,
+    Object? disabledActiveTrackColor_themeColorString = freezed,
+    Object? disabledInactiveTrackColor_themeColorString = freezed,
+    Object? disabledSecondaryActiveTrackColor_themeColorString = freezed,
+    Object? activeTickMarkColor_themeColorString = freezed,
+    Object? inactiveTickMarkColor_themeColorString = freezed,
+    Object? disabledActiveTickMarkColor_themeColorString = freezed,
+    Object? disabledInactiveTickMarkColor_themeColorString = freezed,
+    Object? thumbColor_themeColorString = freezed,
+    Object? overlappingShapeStrokeColor_themeColorString = freezed,
+    Object? disabledThumbColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? valueIndicatorColor_themeColorString = freezed,
+    Object? showValueIndicator_enum_showValueIndicator = freezed,
+    Object? allowedInteraction_enum_sliderInteraction = freezed,
+    Object? valueIndicatorTextStyle_textStyleString = freezed,
+    Object? minThumbSeparation_double = freezed,
   }) {
     return _then(_value.copyWith(
-      trackHeight: freezed == trackHeight
-          ? _value.trackHeight
-          : trackHeight // ignore: cast_nullable_to_non_nullable
+      trackHeight_double: freezed == trackHeight_double
+          ? _value.trackHeight_double
+          : trackHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      activeTrackColor: freezed == activeTrackColor
-          ? _value.activeTrackColor
-          : activeTrackColor // ignore: cast_nullable_to_non_nullable
+      activeTrackColor_themeColorString: freezed ==
+              activeTrackColor_themeColorString
+          ? _value.activeTrackColor_themeColorString
+          : activeTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      inactiveTrackColor: freezed == inactiveTrackColor
-          ? _value.inactiveTrackColor
-          : inactiveTrackColor // ignore: cast_nullable_to_non_nullable
+      inactiveTrackColor_themeColorString: freezed ==
+              inactiveTrackColor_themeColorString
+          ? _value.inactiveTrackColor_themeColorString
+          : inactiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      secondaryActiveTrackColor: freezed == secondaryActiveTrackColor
-          ? _value.secondaryActiveTrackColor
-          : secondaryActiveTrackColor // ignore: cast_nullable_to_non_nullable
+      secondaryActiveTrackColor_themeColorString: freezed ==
+              secondaryActiveTrackColor_themeColorString
+          ? _value.secondaryActiveTrackColor_themeColorString
+          : secondaryActiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActiveTrackColor: freezed == disabledActiveTrackColor
-          ? _value.disabledActiveTrackColor
-          : disabledActiveTrackColor // ignore: cast_nullable_to_non_nullable
+      disabledActiveTrackColor_themeColorString: freezed ==
+              disabledActiveTrackColor_themeColorString
+          ? _value.disabledActiveTrackColor_themeColorString
+          : disabledActiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledInactiveTrackColor: freezed == disabledInactiveTrackColor
-          ? _value.disabledInactiveTrackColor
-          : disabledInactiveTrackColor // ignore: cast_nullable_to_non_nullable
+      disabledInactiveTrackColor_themeColorString: freezed ==
+              disabledInactiveTrackColor_themeColorString
+          ? _value.disabledInactiveTrackColor_themeColorString
+          : disabledInactiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledSecondaryActiveTrackColor: freezed ==
-              disabledSecondaryActiveTrackColor
-          ? _value.disabledSecondaryActiveTrackColor
-          : disabledSecondaryActiveTrackColor // ignore: cast_nullable_to_non_nullable
+      disabledSecondaryActiveTrackColor_themeColorString: freezed ==
+              disabledSecondaryActiveTrackColor_themeColorString
+          ? _value.disabledSecondaryActiveTrackColor_themeColorString
+          : disabledSecondaryActiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      activeTickMarkColor: freezed == activeTickMarkColor
-          ? _value.activeTickMarkColor
-          : activeTickMarkColor // ignore: cast_nullable_to_non_nullable
+      activeTickMarkColor_themeColorString: freezed ==
+              activeTickMarkColor_themeColorString
+          ? _value.activeTickMarkColor_themeColorString
+          : activeTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      inactiveTickMarkColor: freezed == inactiveTickMarkColor
-          ? _value.inactiveTickMarkColor
-          : inactiveTickMarkColor // ignore: cast_nullable_to_non_nullable
+      inactiveTickMarkColor_themeColorString: freezed ==
+              inactiveTickMarkColor_themeColorString
+          ? _value.inactiveTickMarkColor_themeColorString
+          : inactiveTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActiveTickMarkColor: freezed == disabledActiveTickMarkColor
-          ? _value.disabledActiveTickMarkColor
-          : disabledActiveTickMarkColor // ignore: cast_nullable_to_non_nullable
+      disabledActiveTickMarkColor_themeColorString: freezed ==
+              disabledActiveTickMarkColor_themeColorString
+          ? _value.disabledActiveTickMarkColor_themeColorString
+          : disabledActiveTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledInactiveTickMarkColor: freezed == disabledInactiveTickMarkColor
-          ? _value.disabledInactiveTickMarkColor
-          : disabledInactiveTickMarkColor // ignore: cast_nullable_to_non_nullable
+      disabledInactiveTickMarkColor_themeColorString: freezed ==
+              disabledInactiveTickMarkColor_themeColorString
+          ? _value.disabledInactiveTickMarkColor_themeColorString
+          : disabledInactiveTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumbColor: freezed == thumbColor
-          ? _value.thumbColor
-          : thumbColor // ignore: cast_nullable_to_non_nullable
+      thumbColor_themeColorString: freezed == thumbColor_themeColorString
+          ? _value.thumbColor_themeColorString
+          : thumbColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlappingShapeStrokeColor: freezed == overlappingShapeStrokeColor
-          ? _value.overlappingShapeStrokeColor
-          : overlappingShapeStrokeColor // ignore: cast_nullable_to_non_nullable
+      overlappingShapeStrokeColor_themeColorString: freezed ==
+              overlappingShapeStrokeColor_themeColorString
+          ? _value.overlappingShapeStrokeColor_themeColorString
+          : overlappingShapeStrokeColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledThumbColor: freezed == disabledThumbColor
-          ? _value.disabledThumbColor
-          : disabledThumbColor // ignore: cast_nullable_to_non_nullable
+      disabledThumbColor_themeColorString: freezed ==
+              disabledThumbColor_themeColorString
+          ? _value.disabledThumbColor_themeColorString
+          : disabledThumbColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      valueIndicatorColor: freezed == valueIndicatorColor
-          ? _value.valueIndicatorColor
-          : valueIndicatorColor // ignore: cast_nullable_to_non_nullable
+      valueIndicatorColor_themeColorString: freezed ==
+              valueIndicatorColor_themeColorString
+          ? _value.valueIndicatorColor_themeColorString
+          : valueIndicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      valueIndicatorTextStyle: freezed == valueIndicatorTextStyle
-          ? _value.valueIndicatorTextStyle
-          : valueIndicatorTextStyle // ignore: cast_nullable_to_non_nullable
+      showValueIndicator_enum_showValueIndicator: freezed ==
+              showValueIndicator_enum_showValueIndicator
+          ? _value.showValueIndicator_enum_showValueIndicator
+          : showValueIndicator_enum_showValueIndicator // ignore: cast_nullable_to_non_nullable
+              as ShowValueIndicator?,
+      allowedInteraction_enum_sliderInteraction: freezed ==
+              allowedInteraction_enum_sliderInteraction
+          ? _value.allowedInteraction_enum_sliderInteraction
+          : allowedInteraction_enum_sliderInteraction // ignore: cast_nullable_to_non_nullable
+              as SliderInteraction?,
+      valueIndicatorTextStyle_textStyleString: freezed ==
+              valueIndicatorTextStyle_textStyleString
+          ? _value.valueIndicatorTextStyle_textStyleString
+          : valueIndicatorTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      minThumbSeparation: freezed == minThumbSeparation
-          ? _value.minThumbSeparation
-          : minThumbSeparation // ignore: cast_nullable_to_non_nullable
+      minThumbSeparation_double: freezed == minThumbSeparation_double
+          ? _value.minThumbSeparation_double
+          : minThumbSeparation_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
   }
@@ -205,24 +246,26 @@ abstract class _$$SliderModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {double? trackHeight,
-      String? activeTrackColor,
-      String? inactiveTrackColor,
-      String? secondaryActiveTrackColor,
-      String? disabledActiveTrackColor,
-      String? disabledInactiveTrackColor,
-      String? disabledSecondaryActiveTrackColor,
-      String? activeTickMarkColor,
-      String? inactiveTickMarkColor,
-      String? disabledActiveTickMarkColor,
-      String? disabledInactiveTickMarkColor,
-      String? thumbColor,
-      String? overlappingShapeStrokeColor,
-      String? disabledThumbColor,
-      String? overlayColor,
-      String? valueIndicatorColor,
-      String? valueIndicatorTextStyle,
-      double? minThumbSeparation});
+      {double? trackHeight_double,
+      String? activeTrackColor_themeColorString,
+      String? inactiveTrackColor_themeColorString,
+      String? secondaryActiveTrackColor_themeColorString,
+      String? disabledActiveTrackColor_themeColorString,
+      String? disabledInactiveTrackColor_themeColorString,
+      String? disabledSecondaryActiveTrackColor_themeColorString,
+      String? activeTickMarkColor_themeColorString,
+      String? inactiveTickMarkColor_themeColorString,
+      String? disabledActiveTickMarkColor_themeColorString,
+      String? disabledInactiveTickMarkColor_themeColorString,
+      String? thumbColor_themeColorString,
+      String? overlappingShapeStrokeColor_themeColorString,
+      String? disabledThumbColor_themeColorString,
+      String? overlayColor_themeColorString,
+      String? valueIndicatorColor_themeColorString,
+      ShowValueIndicator? showValueIndicator_enum_showValueIndicator,
+      SliderInteraction? allowedInteraction_enum_sliderInteraction,
+      String? valueIndicatorTextStyle_textStyleString,
+      double? minThumbSeparation_double});
 }
 
 /// @nodoc
@@ -236,98 +279,123 @@ class __$$SliderModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? trackHeight = freezed,
-    Object? activeTrackColor = freezed,
-    Object? inactiveTrackColor = freezed,
-    Object? secondaryActiveTrackColor = freezed,
-    Object? disabledActiveTrackColor = freezed,
-    Object? disabledInactiveTrackColor = freezed,
-    Object? disabledSecondaryActiveTrackColor = freezed,
-    Object? activeTickMarkColor = freezed,
-    Object? inactiveTickMarkColor = freezed,
-    Object? disabledActiveTickMarkColor = freezed,
-    Object? disabledInactiveTickMarkColor = freezed,
-    Object? thumbColor = freezed,
-    Object? overlappingShapeStrokeColor = freezed,
-    Object? disabledThumbColor = freezed,
-    Object? overlayColor = freezed,
-    Object? valueIndicatorColor = freezed,
-    Object? valueIndicatorTextStyle = freezed,
-    Object? minThumbSeparation = freezed,
+    Object? trackHeight_double = freezed,
+    Object? activeTrackColor_themeColorString = freezed,
+    Object? inactiveTrackColor_themeColorString = freezed,
+    Object? secondaryActiveTrackColor_themeColorString = freezed,
+    Object? disabledActiveTrackColor_themeColorString = freezed,
+    Object? disabledInactiveTrackColor_themeColorString = freezed,
+    Object? disabledSecondaryActiveTrackColor_themeColorString = freezed,
+    Object? activeTickMarkColor_themeColorString = freezed,
+    Object? inactiveTickMarkColor_themeColorString = freezed,
+    Object? disabledActiveTickMarkColor_themeColorString = freezed,
+    Object? disabledInactiveTickMarkColor_themeColorString = freezed,
+    Object? thumbColor_themeColorString = freezed,
+    Object? overlappingShapeStrokeColor_themeColorString = freezed,
+    Object? disabledThumbColor_themeColorString = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? valueIndicatorColor_themeColorString = freezed,
+    Object? showValueIndicator_enum_showValueIndicator = freezed,
+    Object? allowedInteraction_enum_sliderInteraction = freezed,
+    Object? valueIndicatorTextStyle_textStyleString = freezed,
+    Object? minThumbSeparation_double = freezed,
   }) {
     return _then(_$SliderModelImpl(
-      trackHeight: freezed == trackHeight
-          ? _value.trackHeight
-          : trackHeight // ignore: cast_nullable_to_non_nullable
+      trackHeight_double: freezed == trackHeight_double
+          ? _value.trackHeight_double
+          : trackHeight_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      activeTrackColor: freezed == activeTrackColor
-          ? _value.activeTrackColor
-          : activeTrackColor // ignore: cast_nullable_to_non_nullable
+      activeTrackColor_themeColorString: freezed ==
+              activeTrackColor_themeColorString
+          ? _value.activeTrackColor_themeColorString
+          : activeTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      inactiveTrackColor: freezed == inactiveTrackColor
-          ? _value.inactiveTrackColor
-          : inactiveTrackColor // ignore: cast_nullable_to_non_nullable
+      inactiveTrackColor_themeColorString: freezed ==
+              inactiveTrackColor_themeColorString
+          ? _value.inactiveTrackColor_themeColorString
+          : inactiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      secondaryActiveTrackColor: freezed == secondaryActiveTrackColor
-          ? _value.secondaryActiveTrackColor
-          : secondaryActiveTrackColor // ignore: cast_nullable_to_non_nullable
+      secondaryActiveTrackColor_themeColorString: freezed ==
+              secondaryActiveTrackColor_themeColorString
+          ? _value.secondaryActiveTrackColor_themeColorString
+          : secondaryActiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActiveTrackColor: freezed == disabledActiveTrackColor
-          ? _value.disabledActiveTrackColor
-          : disabledActiveTrackColor // ignore: cast_nullable_to_non_nullable
+      disabledActiveTrackColor_themeColorString: freezed ==
+              disabledActiveTrackColor_themeColorString
+          ? _value.disabledActiveTrackColor_themeColorString
+          : disabledActiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledInactiveTrackColor: freezed == disabledInactiveTrackColor
-          ? _value.disabledInactiveTrackColor
-          : disabledInactiveTrackColor // ignore: cast_nullable_to_non_nullable
+      disabledInactiveTrackColor_themeColorString: freezed ==
+              disabledInactiveTrackColor_themeColorString
+          ? _value.disabledInactiveTrackColor_themeColorString
+          : disabledInactiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledSecondaryActiveTrackColor: freezed ==
-              disabledSecondaryActiveTrackColor
-          ? _value.disabledSecondaryActiveTrackColor
-          : disabledSecondaryActiveTrackColor // ignore: cast_nullable_to_non_nullable
+      disabledSecondaryActiveTrackColor_themeColorString: freezed ==
+              disabledSecondaryActiveTrackColor_themeColorString
+          ? _value.disabledSecondaryActiveTrackColor_themeColorString
+          : disabledSecondaryActiveTrackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      activeTickMarkColor: freezed == activeTickMarkColor
-          ? _value.activeTickMarkColor
-          : activeTickMarkColor // ignore: cast_nullable_to_non_nullable
+      activeTickMarkColor_themeColorString: freezed ==
+              activeTickMarkColor_themeColorString
+          ? _value.activeTickMarkColor_themeColorString
+          : activeTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      inactiveTickMarkColor: freezed == inactiveTickMarkColor
-          ? _value.inactiveTickMarkColor
-          : inactiveTickMarkColor // ignore: cast_nullable_to_non_nullable
+      inactiveTickMarkColor_themeColorString: freezed ==
+              inactiveTickMarkColor_themeColorString
+          ? _value.inactiveTickMarkColor_themeColorString
+          : inactiveTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledActiveTickMarkColor: freezed == disabledActiveTickMarkColor
-          ? _value.disabledActiveTickMarkColor
-          : disabledActiveTickMarkColor // ignore: cast_nullable_to_non_nullable
+      disabledActiveTickMarkColor_themeColorString: freezed ==
+              disabledActiveTickMarkColor_themeColorString
+          ? _value.disabledActiveTickMarkColor_themeColorString
+          : disabledActiveTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledInactiveTickMarkColor: freezed == disabledInactiveTickMarkColor
-          ? _value.disabledInactiveTickMarkColor
-          : disabledInactiveTickMarkColor // ignore: cast_nullable_to_non_nullable
+      disabledInactiveTickMarkColor_themeColorString: freezed ==
+              disabledInactiveTickMarkColor_themeColorString
+          ? _value.disabledInactiveTickMarkColor_themeColorString
+          : disabledInactiveTickMarkColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      thumbColor: freezed == thumbColor
-          ? _value.thumbColor
-          : thumbColor // ignore: cast_nullable_to_non_nullable
+      thumbColor_themeColorString: freezed == thumbColor_themeColorString
+          ? _value.thumbColor_themeColorString
+          : thumbColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlappingShapeStrokeColor: freezed == overlappingShapeStrokeColor
-          ? _value.overlappingShapeStrokeColor
-          : overlappingShapeStrokeColor // ignore: cast_nullable_to_non_nullable
+      overlappingShapeStrokeColor_themeColorString: freezed ==
+              overlappingShapeStrokeColor_themeColorString
+          ? _value.overlappingShapeStrokeColor_themeColorString
+          : overlappingShapeStrokeColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      disabledThumbColor: freezed == disabledThumbColor
-          ? _value.disabledThumbColor
-          : disabledThumbColor // ignore: cast_nullable_to_non_nullable
+      disabledThumbColor_themeColorString: freezed ==
+              disabledThumbColor_themeColorString
+          ? _value.disabledThumbColor_themeColorString
+          : disabledThumbColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      valueIndicatorColor: freezed == valueIndicatorColor
-          ? _value.valueIndicatorColor
-          : valueIndicatorColor // ignore: cast_nullable_to_non_nullable
+      valueIndicatorColor_themeColorString: freezed ==
+              valueIndicatorColor_themeColorString
+          ? _value.valueIndicatorColor_themeColorString
+          : valueIndicatorColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      valueIndicatorTextStyle: freezed == valueIndicatorTextStyle
-          ? _value.valueIndicatorTextStyle
-          : valueIndicatorTextStyle // ignore: cast_nullable_to_non_nullable
+      showValueIndicator_enum_showValueIndicator: freezed ==
+              showValueIndicator_enum_showValueIndicator
+          ? _value.showValueIndicator_enum_showValueIndicator
+          : showValueIndicator_enum_showValueIndicator // ignore: cast_nullable_to_non_nullable
+              as ShowValueIndicator?,
+      allowedInteraction_enum_sliderInteraction: freezed ==
+              allowedInteraction_enum_sliderInteraction
+          ? _value.allowedInteraction_enum_sliderInteraction
+          : allowedInteraction_enum_sliderInteraction // ignore: cast_nullable_to_non_nullable
+              as SliderInteraction?,
+      valueIndicatorTextStyle_textStyleString: freezed ==
+              valueIndicatorTextStyle_textStyleString
+          ? _value.valueIndicatorTextStyle_textStyleString
+          : valueIndicatorTextStyle_textStyleString // ignore: cast_nullable_to_non_nullable
               as String?,
-      minThumbSeparation: freezed == minThumbSeparation
-          ? _value.minThumbSeparation
-          : minThumbSeparation // ignore: cast_nullable_to_non_nullable
+      minThumbSeparation_double: freezed == minThumbSeparation_double
+          ? _value.minThumbSeparation_double
+          : minThumbSeparation_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -337,61 +405,63 @@ class __$$SliderModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SliderModelImpl extends _SliderModel {
   const _$SliderModelImpl(
-      {this.trackHeight,
-      this.activeTrackColor,
-      this.inactiveTrackColor,
-      this.secondaryActiveTrackColor,
-      this.disabledActiveTrackColor,
-      this.disabledInactiveTrackColor,
-      this.disabledSecondaryActiveTrackColor,
-      this.activeTickMarkColor,
-      this.inactiveTickMarkColor,
-      this.disabledActiveTickMarkColor,
-      this.disabledInactiveTickMarkColor,
-      this.thumbColor,
-      this.overlappingShapeStrokeColor,
-      this.disabledThumbColor,
-      this.overlayColor,
-      this.valueIndicatorColor,
-      this.valueIndicatorTextStyle,
-      this.minThumbSeparation})
+      {this.trackHeight_double,
+      this.activeTrackColor_themeColorString,
+      this.inactiveTrackColor_themeColorString,
+      this.secondaryActiveTrackColor_themeColorString,
+      this.disabledActiveTrackColor_themeColorString,
+      this.disabledInactiveTrackColor_themeColorString,
+      this.disabledSecondaryActiveTrackColor_themeColorString,
+      this.activeTickMarkColor_themeColorString,
+      this.inactiveTickMarkColor_themeColorString,
+      this.disabledActiveTickMarkColor_themeColorString,
+      this.disabledInactiveTickMarkColor_themeColorString,
+      this.thumbColor_themeColorString,
+      this.overlappingShapeStrokeColor_themeColorString,
+      this.disabledThumbColor_themeColorString,
+      this.overlayColor_themeColorString,
+      this.valueIndicatorColor_themeColorString,
+      this.showValueIndicator_enum_showValueIndicator,
+      this.allowedInteraction_enum_sliderInteraction,
+      this.valueIndicatorTextStyle_textStyleString,
+      this.minThumbSeparation_double})
       : super._();
 
   factory _$SliderModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SliderModelImplFromJson(json);
 
   @override
-  final double? trackHeight;
+  final double? trackHeight_double;
   @override
-  final String? activeTrackColor;
+  final String? activeTrackColor_themeColorString;
   @override
-  final String? inactiveTrackColor;
+  final String? inactiveTrackColor_themeColorString;
   @override
-  final String? secondaryActiveTrackColor;
+  final String? secondaryActiveTrackColor_themeColorString;
   @override
-  final String? disabledActiveTrackColor;
+  final String? disabledActiveTrackColor_themeColorString;
   @override
-  final String? disabledInactiveTrackColor;
+  final String? disabledInactiveTrackColor_themeColorString;
   @override
-  final String? disabledSecondaryActiveTrackColor;
+  final String? disabledSecondaryActiveTrackColor_themeColorString;
   @override
-  final String? activeTickMarkColor;
+  final String? activeTickMarkColor_themeColorString;
   @override
-  final String? inactiveTickMarkColor;
+  final String? inactiveTickMarkColor_themeColorString;
   @override
-  final String? disabledActiveTickMarkColor;
+  final String? disabledActiveTickMarkColor_themeColorString;
   @override
-  final String? disabledInactiveTickMarkColor;
+  final String? disabledInactiveTickMarkColor_themeColorString;
   @override
-  final String? thumbColor;
+  final String? thumbColor_themeColorString;
   @override
-  final String? overlappingShapeStrokeColor;
+  final String? overlappingShapeStrokeColor_themeColorString;
   @override
-  final String? disabledThumbColor;
+  final String? disabledThumbColor_themeColorString;
   @override
-  final String? overlayColor;
+  final String? overlayColor_themeColorString;
   @override
-  final String? valueIndicatorColor;
+  final String? valueIndicatorColor_themeColorString;
 //TODO: implement Converter for these
 // SliderComponentShape? overlayShape,
 // SliderTickMarkShape? tickMarkShape,
@@ -402,16 +472,18 @@ class _$SliderModelImpl extends _SliderModel {
 // RangeSliderThumbShape? rangeThumbShape,
 // RangeSliderTrackShape? rangeTrackShape,
 // RangeSliderValueIndicatorShape? rangeValueIndicatorShape,
-// ShowValueIndicator? showValueIndicator,
-// SliderInteraction? allowedInteraction,
   @override
-  final String? valueIndicatorTextStyle;
+  final ShowValueIndicator? showValueIndicator_enum_showValueIndicator;
   @override
-  final double? minThumbSeparation;
+  final SliderInteraction? allowedInteraction_enum_sliderInteraction;
+  @override
+  final String? valueIndicatorTextStyle_textStyleString;
+  @override
+  final double? minThumbSeparation_double;
 
   @override
   String toString() {
-    return 'SliderModel(trackHeight: $trackHeight, activeTrackColor: $activeTrackColor, inactiveTrackColor: $inactiveTrackColor, secondaryActiveTrackColor: $secondaryActiveTrackColor, disabledActiveTrackColor: $disabledActiveTrackColor, disabledInactiveTrackColor: $disabledInactiveTrackColor, disabledSecondaryActiveTrackColor: $disabledSecondaryActiveTrackColor, activeTickMarkColor: $activeTickMarkColor, inactiveTickMarkColor: $inactiveTickMarkColor, disabledActiveTickMarkColor: $disabledActiveTickMarkColor, disabledInactiveTickMarkColor: $disabledInactiveTickMarkColor, thumbColor: $thumbColor, overlappingShapeStrokeColor: $overlappingShapeStrokeColor, disabledThumbColor: $disabledThumbColor, overlayColor: $overlayColor, valueIndicatorColor: $valueIndicatorColor, valueIndicatorTextStyle: $valueIndicatorTextStyle, minThumbSeparation: $minThumbSeparation)';
+    return 'SliderModel(trackHeight_double: $trackHeight_double, activeTrackColor_themeColorString: $activeTrackColor_themeColorString, inactiveTrackColor_themeColorString: $inactiveTrackColor_themeColorString, secondaryActiveTrackColor_themeColorString: $secondaryActiveTrackColor_themeColorString, disabledActiveTrackColor_themeColorString: $disabledActiveTrackColor_themeColorString, disabledInactiveTrackColor_themeColorString: $disabledInactiveTrackColor_themeColorString, disabledSecondaryActiveTrackColor_themeColorString: $disabledSecondaryActiveTrackColor_themeColorString, activeTickMarkColor_themeColorString: $activeTickMarkColor_themeColorString, inactiveTickMarkColor_themeColorString: $inactiveTickMarkColor_themeColorString, disabledActiveTickMarkColor_themeColorString: $disabledActiveTickMarkColor_themeColorString, disabledInactiveTickMarkColor_themeColorString: $disabledInactiveTickMarkColor_themeColorString, thumbColor_themeColorString: $thumbColor_themeColorString, overlappingShapeStrokeColor_themeColorString: $overlappingShapeStrokeColor_themeColorString, disabledThumbColor_themeColorString: $disabledThumbColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, valueIndicatorColor_themeColorString: $valueIndicatorColor_themeColorString, showValueIndicator_enum_showValueIndicator: $showValueIndicator_enum_showValueIndicator, allowedInteraction_enum_sliderInteraction: $allowedInteraction_enum_sliderInteraction, valueIndicatorTextStyle_textStyleString: $valueIndicatorTextStyle_textStyleString, minThumbSeparation_double: $minThumbSeparation_double)';
   }
 
   @override
@@ -419,70 +491,76 @@ class _$SliderModelImpl extends _SliderModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SliderModelImpl &&
-            (identical(other.trackHeight, trackHeight) ||
-                other.trackHeight == trackHeight) &&
-            (identical(other.activeTrackColor, activeTrackColor) ||
-                other.activeTrackColor == activeTrackColor) &&
-            (identical(other.inactiveTrackColor, inactiveTrackColor) ||
-                other.inactiveTrackColor == inactiveTrackColor) &&
-            (identical(other.secondaryActiveTrackColor, secondaryActiveTrackColor) ||
-                other.secondaryActiveTrackColor == secondaryActiveTrackColor) &&
-            (identical(other.disabledActiveTrackColor, disabledActiveTrackColor) ||
-                other.disabledActiveTrackColor == disabledActiveTrackColor) &&
-            (identical(other.disabledInactiveTrackColor, disabledInactiveTrackColor) ||
-                other.disabledInactiveTrackColor ==
-                    disabledInactiveTrackColor) &&
-            (identical(other.disabledSecondaryActiveTrackColor, disabledSecondaryActiveTrackColor) ||
-                other.disabledSecondaryActiveTrackColor ==
-                    disabledSecondaryActiveTrackColor) &&
-            (identical(other.activeTickMarkColor, activeTickMarkColor) ||
-                other.activeTickMarkColor == activeTickMarkColor) &&
-            (identical(other.inactiveTickMarkColor, inactiveTickMarkColor) ||
-                other.inactiveTickMarkColor == inactiveTickMarkColor) &&
-            (identical(other.disabledActiveTickMarkColor, disabledActiveTickMarkColor) ||
-                other.disabledActiveTickMarkColor ==
-                    disabledActiveTickMarkColor) &&
-            (identical(other.disabledInactiveTickMarkColor, disabledInactiveTickMarkColor) ||
-                other.disabledInactiveTickMarkColor ==
-                    disabledInactiveTickMarkColor) &&
-            (identical(other.thumbColor, thumbColor) ||
-                other.thumbColor == thumbColor) &&
-            (identical(other.overlappingShapeStrokeColor, overlappingShapeStrokeColor) ||
-                other.overlappingShapeStrokeColor ==
-                    overlappingShapeStrokeColor) &&
-            (identical(other.disabledThumbColor, disabledThumbColor) ||
-                other.disabledThumbColor == disabledThumbColor) &&
-            (identical(other.overlayColor, overlayColor) ||
-                other.overlayColor == overlayColor) &&
-            (identical(other.valueIndicatorColor, valueIndicatorColor) ||
-                other.valueIndicatorColor == valueIndicatorColor) &&
-            (identical(other.valueIndicatorTextStyle, valueIndicatorTextStyle) ||
-                other.valueIndicatorTextStyle == valueIndicatorTextStyle) &&
-            (identical(other.minThumbSeparation, minThumbSeparation) || other.minThumbSeparation == minThumbSeparation));
+            (identical(other.trackHeight_double, trackHeight_double) ||
+                other.trackHeight_double == trackHeight_double) &&
+            (identical(other.activeTrackColor_themeColorString, activeTrackColor_themeColorString) ||
+                other.activeTrackColor_themeColorString ==
+                    activeTrackColor_themeColorString) &&
+            (identical(other.inactiveTrackColor_themeColorString, inactiveTrackColor_themeColorString) ||
+                other.inactiveTrackColor_themeColorString ==
+                    inactiveTrackColor_themeColorString) &&
+            (identical(other.secondaryActiveTrackColor_themeColorString, secondaryActiveTrackColor_themeColorString) ||
+                other.secondaryActiveTrackColor_themeColorString ==
+                    secondaryActiveTrackColor_themeColorString) &&
+            (identical(other.disabledActiveTrackColor_themeColorString, disabledActiveTrackColor_themeColorString) ||
+                other.disabledActiveTrackColor_themeColorString ==
+                    disabledActiveTrackColor_themeColorString) &&
+            (identical(other.disabledInactiveTrackColor_themeColorString, disabledInactiveTrackColor_themeColorString) ||
+                other.disabledInactiveTrackColor_themeColorString ==
+                    disabledInactiveTrackColor_themeColorString) &&
+            (identical(other.disabledSecondaryActiveTrackColor_themeColorString, disabledSecondaryActiveTrackColor_themeColorString) ||
+                other.disabledSecondaryActiveTrackColor_themeColorString ==
+                    disabledSecondaryActiveTrackColor_themeColorString) &&
+            (identical(other.activeTickMarkColor_themeColorString, activeTickMarkColor_themeColorString) ||
+                other.activeTickMarkColor_themeColorString ==
+                    activeTickMarkColor_themeColorString) &&
+            (identical(other.inactiveTickMarkColor_themeColorString, inactiveTickMarkColor_themeColorString) ||
+                other.inactiveTickMarkColor_themeColorString ==
+                    inactiveTickMarkColor_themeColorString) &&
+            (identical(other.disabledActiveTickMarkColor_themeColorString, disabledActiveTickMarkColor_themeColorString) ||
+                other.disabledActiveTickMarkColor_themeColorString ==
+                    disabledActiveTickMarkColor_themeColorString) &&
+            (identical(other.disabledInactiveTickMarkColor_themeColorString, disabledInactiveTickMarkColor_themeColorString) ||
+                other.disabledInactiveTickMarkColor_themeColorString ==
+                    disabledInactiveTickMarkColor_themeColorString) &&
+            (identical(other.thumbColor_themeColorString, thumbColor_themeColorString) ||
+                other.thumbColor_themeColorString ==
+                    thumbColor_themeColorString) &&
+            (identical(other.overlappingShapeStrokeColor_themeColorString, overlappingShapeStrokeColor_themeColorString) || other.overlappingShapeStrokeColor_themeColorString == overlappingShapeStrokeColor_themeColorString) &&
+            (identical(other.disabledThumbColor_themeColorString, disabledThumbColor_themeColorString) || other.disabledThumbColor_themeColorString == disabledThumbColor_themeColorString) &&
+            (identical(other.overlayColor_themeColorString, overlayColor_themeColorString) || other.overlayColor_themeColorString == overlayColor_themeColorString) &&
+            (identical(other.valueIndicatorColor_themeColorString, valueIndicatorColor_themeColorString) || other.valueIndicatorColor_themeColorString == valueIndicatorColor_themeColorString) &&
+            (identical(other.showValueIndicator_enum_showValueIndicator, showValueIndicator_enum_showValueIndicator) || other.showValueIndicator_enum_showValueIndicator == showValueIndicator_enum_showValueIndicator) &&
+            (identical(other.allowedInteraction_enum_sliderInteraction, allowedInteraction_enum_sliderInteraction) || other.allowedInteraction_enum_sliderInteraction == allowedInteraction_enum_sliderInteraction) &&
+            (identical(other.valueIndicatorTextStyle_textStyleString, valueIndicatorTextStyle_textStyleString) || other.valueIndicatorTextStyle_textStyleString == valueIndicatorTextStyle_textStyleString) &&
+            (identical(other.minThumbSeparation_double, minThumbSeparation_double) || other.minThumbSeparation_double == minThumbSeparation_double));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      trackHeight,
-      activeTrackColor,
-      inactiveTrackColor,
-      secondaryActiveTrackColor,
-      disabledActiveTrackColor,
-      disabledInactiveTrackColor,
-      disabledSecondaryActiveTrackColor,
-      activeTickMarkColor,
-      inactiveTickMarkColor,
-      disabledActiveTickMarkColor,
-      disabledInactiveTickMarkColor,
-      thumbColor,
-      overlappingShapeStrokeColor,
-      disabledThumbColor,
-      overlayColor,
-      valueIndicatorColor,
-      valueIndicatorTextStyle,
-      minThumbSeparation);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        trackHeight_double,
+        activeTrackColor_themeColorString,
+        inactiveTrackColor_themeColorString,
+        secondaryActiveTrackColor_themeColorString,
+        disabledActiveTrackColor_themeColorString,
+        disabledInactiveTrackColor_themeColorString,
+        disabledSecondaryActiveTrackColor_themeColorString,
+        activeTickMarkColor_themeColorString,
+        inactiveTickMarkColor_themeColorString,
+        disabledActiveTickMarkColor_themeColorString,
+        disabledInactiveTickMarkColor_themeColorString,
+        thumbColor_themeColorString,
+        overlappingShapeStrokeColor_themeColorString,
+        disabledThumbColor_themeColorString,
+        overlayColor_themeColorString,
+        valueIndicatorColor_themeColorString,
+        showValueIndicator_enum_showValueIndicator,
+        allowedInteraction_enum_sliderInteraction,
+        valueIndicatorTextStyle_textStyleString,
+        minThumbSeparation_double
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -500,61 +578,63 @@ class _$SliderModelImpl extends _SliderModel {
 
 abstract class _SliderModel extends SliderModel {
   const factory _SliderModel(
-      {final double? trackHeight,
-      final String? activeTrackColor,
-      final String? inactiveTrackColor,
-      final String? secondaryActiveTrackColor,
-      final String? disabledActiveTrackColor,
-      final String? disabledInactiveTrackColor,
-      final String? disabledSecondaryActiveTrackColor,
-      final String? activeTickMarkColor,
-      final String? inactiveTickMarkColor,
-      final String? disabledActiveTickMarkColor,
-      final String? disabledInactiveTickMarkColor,
-      final String? thumbColor,
-      final String? overlappingShapeStrokeColor,
-      final String? disabledThumbColor,
-      final String? overlayColor,
-      final String? valueIndicatorColor,
-      final String? valueIndicatorTextStyle,
-      final double? minThumbSeparation}) = _$SliderModelImpl;
+      {final double? trackHeight_double,
+      final String? activeTrackColor_themeColorString,
+      final String? inactiveTrackColor_themeColorString,
+      final String? secondaryActiveTrackColor_themeColorString,
+      final String? disabledActiveTrackColor_themeColorString,
+      final String? disabledInactiveTrackColor_themeColorString,
+      final String? disabledSecondaryActiveTrackColor_themeColorString,
+      final String? activeTickMarkColor_themeColorString,
+      final String? inactiveTickMarkColor_themeColorString,
+      final String? disabledActiveTickMarkColor_themeColorString,
+      final String? disabledInactiveTickMarkColor_themeColorString,
+      final String? thumbColor_themeColorString,
+      final String? overlappingShapeStrokeColor_themeColorString,
+      final String? disabledThumbColor_themeColorString,
+      final String? overlayColor_themeColorString,
+      final String? valueIndicatorColor_themeColorString,
+      final ShowValueIndicator? showValueIndicator_enum_showValueIndicator,
+      final SliderInteraction? allowedInteraction_enum_sliderInteraction,
+      final String? valueIndicatorTextStyle_textStyleString,
+      final double? minThumbSeparation_double}) = _$SliderModelImpl;
   const _SliderModel._() : super._();
 
   factory _SliderModel.fromJson(Map<String, dynamic> json) =
       _$SliderModelImpl.fromJson;
 
   @override
-  double? get trackHeight;
+  double? get trackHeight_double;
   @override
-  String? get activeTrackColor;
+  String? get activeTrackColor_themeColorString;
   @override
-  String? get inactiveTrackColor;
+  String? get inactiveTrackColor_themeColorString;
   @override
-  String? get secondaryActiveTrackColor;
+  String? get secondaryActiveTrackColor_themeColorString;
   @override
-  String? get disabledActiveTrackColor;
+  String? get disabledActiveTrackColor_themeColorString;
   @override
-  String? get disabledInactiveTrackColor;
+  String? get disabledInactiveTrackColor_themeColorString;
   @override
-  String? get disabledSecondaryActiveTrackColor;
+  String? get disabledSecondaryActiveTrackColor_themeColorString;
   @override
-  String? get activeTickMarkColor;
+  String? get activeTickMarkColor_themeColorString;
   @override
-  String? get inactiveTickMarkColor;
+  String? get inactiveTickMarkColor_themeColorString;
   @override
-  String? get disabledActiveTickMarkColor;
+  String? get disabledActiveTickMarkColor_themeColorString;
   @override
-  String? get disabledInactiveTickMarkColor;
+  String? get disabledInactiveTickMarkColor_themeColorString;
   @override
-  String? get thumbColor;
+  String? get thumbColor_themeColorString;
   @override
-  String? get overlappingShapeStrokeColor;
+  String? get overlappingShapeStrokeColor_themeColorString;
   @override
-  String? get disabledThumbColor;
+  String? get disabledThumbColor_themeColorString;
   @override
-  String? get overlayColor;
+  String? get overlayColor_themeColorString;
   @override
-  String? get valueIndicatorColor;
+  String? get valueIndicatorColor_themeColorString;
   @override //TODO: implement Converter for these
 // SliderComponentShape? overlayShape,
 // SliderTickMarkShape? tickMarkShape,
@@ -565,11 +645,13 @@ abstract class _SliderModel extends SliderModel {
 // RangeSliderThumbShape? rangeThumbShape,
 // RangeSliderTrackShape? rangeTrackShape,
 // RangeSliderValueIndicatorShape? rangeValueIndicatorShape,
-// ShowValueIndicator? showValueIndicator,
-// SliderInteraction? allowedInteraction,
-  String? get valueIndicatorTextStyle;
+  ShowValueIndicator? get showValueIndicator_enum_showValueIndicator;
   @override
-  double? get minThumbSeparation;
+  SliderInteraction? get allowedInteraction_enum_sliderInteraction;
+  @override
+  String? get valueIndicatorTextStyle_textStyleString;
+  @override
+  double? get minThumbSeparation_double;
   @override
   @JsonKey(ignore: true)
   _$$SliderModelImplCopyWith<_$SliderModelImpl> get copyWith =>

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/borders/shape_border_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'card_model.freezed.dart';
 part 'card_model.g.dart';
@@ -10,12 +10,13 @@ part 'card_model.g.dart';
 @freezed
 class CardModel with _$CardModel {
   const factory CardModel({
-    String? color,
-    String? shadowColor,
-    String? surfaceTintColor,
-    double? elevation,
-    @EdgeInsetsConverter() EdgeInsets? margin,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
+    ThemeColorString? color_themeColorString,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    double? elevation_double,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? margin_edgeInsets,
+    // @OutlinedBorderConverter()
+    ShapeBorderModel? shape_shapeBorder,
   }) = _CardModel;
 
   const CardModel._();
@@ -47,12 +48,12 @@ class CardModel with _$CardModel {
 
   CardTheme asCardTheme({String? styleTypeName}) {
     return CardTheme(
-      color: color?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      elevation: elevation,
-      margin: margin,
-      shape: shape,
+      color: color_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      elevation: elevation_double,
+      margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
     );
   }
 }

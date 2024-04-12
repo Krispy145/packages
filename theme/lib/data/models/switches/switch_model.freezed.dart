@@ -20,12 +20,14 @@ SwitchModel _$SwitchModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SwitchModel {
-  String? get thumbColor => throw _privateConstructorUsedError;
-  String? get trackColor => throw _privateConstructorUsedError;
-  String? get trackOutlineColor => throw _privateConstructorUsedError;
-  double? get trackOutlineWidth => throw _privateConstructorUsedError;
-  String? get overlayColor => throw _privateConstructorUsedError;
-  double? get splashRadius => throw _privateConstructorUsedError;
+  String? get thumbColor_themeColorString => throw _privateConstructorUsedError;
+  String? get trackColor_themeColorString => throw _privateConstructorUsedError;
+  String? get trackOutlineColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get trackOutlineWidth_double => throw _privateConstructorUsedError;
+  String? get overlayColor_themeColorString =>
+      throw _privateConstructorUsedError;
+  double? get splashRadius_double => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,12 +42,12 @@ abstract class $SwitchModelCopyWith<$Res> {
       _$SwitchModelCopyWithImpl<$Res, SwitchModel>;
   @useResult
   $Res call(
-      {String? thumbColor,
-      String? trackColor,
-      String? trackOutlineColor,
-      double? trackOutlineWidth,
-      String? overlayColor,
-      double? splashRadius});
+      {String? thumbColor_themeColorString,
+      String? trackColor_themeColorString,
+      String? trackOutlineColor_themeColorString,
+      double? trackOutlineWidth_double,
+      String? overlayColor_themeColorString,
+      double? splashRadius_double});
 }
 
 /// @nodoc
@@ -61,37 +63,38 @@ class _$SwitchModelCopyWithImpl<$Res, $Val extends SwitchModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? thumbColor = freezed,
-    Object? trackColor = freezed,
-    Object? trackOutlineColor = freezed,
-    Object? trackOutlineWidth = freezed,
-    Object? overlayColor = freezed,
-    Object? splashRadius = freezed,
+    Object? thumbColor_themeColorString = freezed,
+    Object? trackColor_themeColorString = freezed,
+    Object? trackOutlineColor_themeColorString = freezed,
+    Object? trackOutlineWidth_double = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? splashRadius_double = freezed,
   }) {
     return _then(_value.copyWith(
-      thumbColor: freezed == thumbColor
-          ? _value.thumbColor
-          : thumbColor // ignore: cast_nullable_to_non_nullable
+      thumbColor_themeColorString: freezed == thumbColor_themeColorString
+          ? _value.thumbColor_themeColorString
+          : thumbColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackColor: freezed == trackColor
-          ? _value.trackColor
-          : trackColor // ignore: cast_nullable_to_non_nullable
+      trackColor_themeColorString: freezed == trackColor_themeColorString
+          ? _value.trackColor_themeColorString
+          : trackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackOutlineColor: freezed == trackOutlineColor
-          ? _value.trackOutlineColor
-          : trackOutlineColor // ignore: cast_nullable_to_non_nullable
+      trackOutlineColor_themeColorString: freezed ==
+              trackOutlineColor_themeColorString
+          ? _value.trackOutlineColor_themeColorString
+          : trackOutlineColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackOutlineWidth: freezed == trackOutlineWidth
-          ? _value.trackOutlineWidth
-          : trackOutlineWidth // ignore: cast_nullable_to_non_nullable
+      trackOutlineWidth_double: freezed == trackOutlineWidth_double
+          ? _value.trackOutlineWidth_double
+          : trackOutlineWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashRadius: freezed == splashRadius
-          ? _value.splashRadius
-          : splashRadius // ignore: cast_nullable_to_non_nullable
+      splashRadius_double: freezed == splashRadius_double
+          ? _value.splashRadius_double
+          : splashRadius_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
   }
@@ -106,12 +109,12 @@ abstract class _$$SwitchModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? thumbColor,
-      String? trackColor,
-      String? trackOutlineColor,
-      double? trackOutlineWidth,
-      String? overlayColor,
-      double? splashRadius});
+      {String? thumbColor_themeColorString,
+      String? trackColor_themeColorString,
+      String? trackOutlineColor_themeColorString,
+      double? trackOutlineWidth_double,
+      String? overlayColor_themeColorString,
+      double? splashRadius_double});
 }
 
 /// @nodoc
@@ -125,37 +128,38 @@ class __$$SwitchModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? thumbColor = freezed,
-    Object? trackColor = freezed,
-    Object? trackOutlineColor = freezed,
-    Object? trackOutlineWidth = freezed,
-    Object? overlayColor = freezed,
-    Object? splashRadius = freezed,
+    Object? thumbColor_themeColorString = freezed,
+    Object? trackColor_themeColorString = freezed,
+    Object? trackOutlineColor_themeColorString = freezed,
+    Object? trackOutlineWidth_double = freezed,
+    Object? overlayColor_themeColorString = freezed,
+    Object? splashRadius_double = freezed,
   }) {
     return _then(_$SwitchModelImpl(
-      thumbColor: freezed == thumbColor
-          ? _value.thumbColor
-          : thumbColor // ignore: cast_nullable_to_non_nullable
+      thumbColor_themeColorString: freezed == thumbColor_themeColorString
+          ? _value.thumbColor_themeColorString
+          : thumbColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackColor: freezed == trackColor
-          ? _value.trackColor
-          : trackColor // ignore: cast_nullable_to_non_nullable
+      trackColor_themeColorString: freezed == trackColor_themeColorString
+          ? _value.trackColor_themeColorString
+          : trackColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackOutlineColor: freezed == trackOutlineColor
-          ? _value.trackOutlineColor
-          : trackOutlineColor // ignore: cast_nullable_to_non_nullable
+      trackOutlineColor_themeColorString: freezed ==
+              trackOutlineColor_themeColorString
+          ? _value.trackOutlineColor_themeColorString
+          : trackOutlineColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      trackOutlineWidth: freezed == trackOutlineWidth
-          ? _value.trackOutlineWidth
-          : trackOutlineWidth // ignore: cast_nullable_to_non_nullable
+      trackOutlineWidth_double: freezed == trackOutlineWidth_double
+          ? _value.trackOutlineWidth_double
+          : trackOutlineWidth_double // ignore: cast_nullable_to_non_nullable
               as double?,
-      overlayColor: freezed == overlayColor
-          ? _value.overlayColor
-          : overlayColor // ignore: cast_nullable_to_non_nullable
+      overlayColor_themeColorString: freezed == overlayColor_themeColorString
+          ? _value.overlayColor_themeColorString
+          : overlayColor_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
-      splashRadius: freezed == splashRadius
-          ? _value.splashRadius
-          : splashRadius // ignore: cast_nullable_to_non_nullable
+      splashRadius_double: freezed == splashRadius_double
+          ? _value.splashRadius_double
+          : splashRadius_double // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -165,33 +169,33 @@ class __$$SwitchModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SwitchModelImpl extends _SwitchModel {
   const _$SwitchModelImpl(
-      {this.thumbColor,
-      this.trackColor,
-      this.trackOutlineColor,
-      this.trackOutlineWidth,
-      this.overlayColor,
-      this.splashRadius})
+      {this.thumbColor_themeColorString,
+      this.trackColor_themeColorString,
+      this.trackOutlineColor_themeColorString,
+      this.trackOutlineWidth_double,
+      this.overlayColor_themeColorString,
+      this.splashRadius_double})
       : super._();
 
   factory _$SwitchModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$SwitchModelImplFromJson(json);
 
   @override
-  final String? thumbColor;
+  final String? thumbColor_themeColorString;
   @override
-  final String? trackColor;
+  final String? trackColor_themeColorString;
   @override
-  final String? trackOutlineColor;
+  final String? trackOutlineColor_themeColorString;
   @override
-  final double? trackOutlineWidth;
+  final double? trackOutlineWidth_double;
   @override
-  final String? overlayColor;
+  final String? overlayColor_themeColorString;
   @override
-  final double? splashRadius;
+  final double? splashRadius_double;
 
   @override
   String toString() {
-    return 'SwitchModel(thumbColor: $thumbColor, trackColor: $trackColor, trackOutlineColor: $trackOutlineColor, trackOutlineWidth: $trackOutlineWidth, overlayColor: $overlayColor, splashRadius: $splashRadius)';
+    return 'SwitchModel(thumbColor_themeColorString: $thumbColor_themeColorString, trackColor_themeColorString: $trackColor_themeColorString, trackOutlineColor_themeColorString: $trackOutlineColor_themeColorString, trackOutlineWidth_double: $trackOutlineWidth_double, overlayColor_themeColorString: $overlayColor_themeColorString, splashRadius_double: $splashRadius_double)';
   }
 
   @override
@@ -199,24 +203,39 @@ class _$SwitchModelImpl extends _SwitchModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwitchModelImpl &&
-            (identical(other.thumbColor, thumbColor) ||
-                other.thumbColor == thumbColor) &&
-            (identical(other.trackColor, trackColor) ||
-                other.trackColor == trackColor) &&
-            (identical(other.trackOutlineColor, trackOutlineColor) ||
-                other.trackOutlineColor == trackOutlineColor) &&
-            (identical(other.trackOutlineWidth, trackOutlineWidth) ||
-                other.trackOutlineWidth == trackOutlineWidth) &&
-            (identical(other.overlayColor, overlayColor) ||
-                other.overlayColor == overlayColor) &&
-            (identical(other.splashRadius, splashRadius) ||
-                other.splashRadius == splashRadius));
+            (identical(other.thumbColor_themeColorString,
+                    thumbColor_themeColorString) ||
+                other.thumbColor_themeColorString ==
+                    thumbColor_themeColorString) &&
+            (identical(other.trackColor_themeColorString,
+                    trackColor_themeColorString) ||
+                other.trackColor_themeColorString ==
+                    trackColor_themeColorString) &&
+            (identical(other.trackOutlineColor_themeColorString,
+                    trackOutlineColor_themeColorString) ||
+                other.trackOutlineColor_themeColorString ==
+                    trackOutlineColor_themeColorString) &&
+            (identical(
+                    other.trackOutlineWidth_double, trackOutlineWidth_double) ||
+                other.trackOutlineWidth_double == trackOutlineWidth_double) &&
+            (identical(other.overlayColor_themeColorString,
+                    overlayColor_themeColorString) ||
+                other.overlayColor_themeColorString ==
+                    overlayColor_themeColorString) &&
+            (identical(other.splashRadius_double, splashRadius_double) ||
+                other.splashRadius_double == splashRadius_double));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, thumbColor, trackColor,
-      trackOutlineColor, trackOutlineWidth, overlayColor, splashRadius);
+  int get hashCode => Object.hash(
+      runtimeType,
+      thumbColor_themeColorString,
+      trackColor_themeColorString,
+      trackOutlineColor_themeColorString,
+      trackOutlineWidth_double,
+      overlayColor_themeColorString,
+      splashRadius_double);
 
   @JsonKey(ignore: true)
   @override
@@ -234,29 +253,29 @@ class _$SwitchModelImpl extends _SwitchModel {
 
 abstract class _SwitchModel extends SwitchModel {
   const factory _SwitchModel(
-      {final String? thumbColor,
-      final String? trackColor,
-      final String? trackOutlineColor,
-      final double? trackOutlineWidth,
-      final String? overlayColor,
-      final double? splashRadius}) = _$SwitchModelImpl;
+      {final String? thumbColor_themeColorString,
+      final String? trackColor_themeColorString,
+      final String? trackOutlineColor_themeColorString,
+      final double? trackOutlineWidth_double,
+      final String? overlayColor_themeColorString,
+      final double? splashRadius_double}) = _$SwitchModelImpl;
   const _SwitchModel._() : super._();
 
   factory _SwitchModel.fromJson(Map<String, dynamic> json) =
       _$SwitchModelImpl.fromJson;
 
   @override
-  String? get thumbColor;
+  String? get thumbColor_themeColorString;
   @override
-  String? get trackColor;
+  String? get trackColor_themeColorString;
   @override
-  String? get trackOutlineColor;
+  String? get trackOutlineColor_themeColorString;
   @override
-  double? get trackOutlineWidth;
+  double? get trackOutlineWidth_double;
   @override
-  String? get overlayColor;
+  String? get overlayColor_themeColorString;
   @override
-  double? get splashRadius;
+  double? get splashRadius_double;
   @override
   @JsonKey(ignore: true)
   _$$SwitchModelImplCopyWith<_$SwitchModelImpl> get copyWith =>

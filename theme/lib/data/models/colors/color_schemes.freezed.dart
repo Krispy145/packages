@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ColorSchemes _$ColorSchemesFromJson(Map<String, dynamic> json) {
-  return _ColorSchemes.fromJson(json);
+  return _themeColorStringSchemes.fromJson(json);
 }
 
 /// @nodoc
@@ -87,11 +87,12 @@ class _$ColorSchemesCopyWithImpl<$Res, $Val extends ColorSchemes>
 }
 
 /// @nodoc
-abstract class _$$ColorSchemesImplCopyWith<$Res>
+abstract class _$$themeColorStringSchemesImplCopyWith<$Res>
     implements $ColorSchemesCopyWith<$Res> {
-  factory _$$ColorSchemesImplCopyWith(
-          _$ColorSchemesImpl value, $Res Function(_$ColorSchemesImpl) then) =
-      __$$ColorSchemesImplCopyWithImpl<$Res>;
+  factory _$$themeColorStringSchemesImplCopyWith(
+          _$themeColorStringSchemesImpl value,
+          $Res Function(_$themeColorStringSchemesImpl) then) =
+      __$$themeColorStringSchemesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ColorModel light, ColorModel dark});
@@ -103,11 +104,12 @@ abstract class _$$ColorSchemesImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ColorSchemesImplCopyWithImpl<$Res>
-    extends _$ColorSchemesCopyWithImpl<$Res, _$ColorSchemesImpl>
-    implements _$$ColorSchemesImplCopyWith<$Res> {
-  __$$ColorSchemesImplCopyWithImpl(
-      _$ColorSchemesImpl _value, $Res Function(_$ColorSchemesImpl) _then)
+class __$$themeColorStringSchemesImplCopyWithImpl<$Res>
+    extends _$ColorSchemesCopyWithImpl<$Res, _$themeColorStringSchemesImpl>
+    implements _$$themeColorStringSchemesImplCopyWith<$Res> {
+  __$$themeColorStringSchemesImplCopyWithImpl(
+      _$themeColorStringSchemesImpl _value,
+      $Res Function(_$themeColorStringSchemesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +118,7 @@ class __$$ColorSchemesImplCopyWithImpl<$Res>
     Object? light = null,
     Object? dark = null,
   }) {
-    return _then(_$ColorSchemesImpl(
+    return _then(_$themeColorStringSchemesImpl(
       light: null == light
           ? _value.light
           : light // ignore: cast_nullable_to_non_nullable
@@ -131,12 +133,12 @@ class __$$ColorSchemesImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ColorSchemesImpl extends _ColorSchemes {
-  const _$ColorSchemesImpl({required this.light, required this.dark})
+class _$themeColorStringSchemesImpl extends _themeColorStringSchemes {
+  const _$themeColorStringSchemesImpl({required this.light, required this.dark})
       : super._();
 
-  factory _$ColorSchemesImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ColorSchemesImplFromJson(json);
+  factory _$themeColorStringSchemesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$themeColorStringSchemesImplFromJson(json);
 
   @override
   final ColorModel light;
@@ -152,7 +154,7 @@ class _$ColorSchemesImpl extends _ColorSchemes {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ColorSchemesImpl &&
+            other is _$themeColorStringSchemesImpl &&
             (identical(other.light, light) || other.light == light) &&
             (identical(other.dark, dark) || other.dark == dark));
   }
@@ -164,25 +166,26 @@ class _$ColorSchemesImpl extends _ColorSchemes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ColorSchemesImplCopyWith<_$ColorSchemesImpl> get copyWith =>
-      __$$ColorSchemesImplCopyWithImpl<_$ColorSchemesImpl>(this, _$identity);
+  _$$themeColorStringSchemesImplCopyWith<_$themeColorStringSchemesImpl>
+      get copyWith => __$$themeColorStringSchemesImplCopyWithImpl<
+          _$themeColorStringSchemesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ColorSchemesImplToJson(
+    return _$$themeColorStringSchemesImplToJson(
       this,
     );
   }
 }
 
-abstract class _ColorSchemes extends ColorSchemes {
-  const factory _ColorSchemes(
+abstract class _themeColorStringSchemes extends ColorSchemes {
+  const factory _themeColorStringSchemes(
       {required final ColorModel light,
-      required final ColorModel dark}) = _$ColorSchemesImpl;
-  const _ColorSchemes._() : super._();
+      required final ColorModel dark}) = _$themeColorStringSchemesImpl;
+  const _themeColorStringSchemes._() : super._();
 
-  factory _ColorSchemes.fromJson(Map<String, dynamic> json) =
-      _$ColorSchemesImpl.fromJson;
+  factory _themeColorStringSchemes.fromJson(Map<String, dynamic> json) =
+      _$themeColorStringSchemesImpl.fromJson;
 
   @override
   ColorModel get light;
@@ -190,6 +193,6 @@ abstract class _ColorSchemes extends ColorSchemes {
   ColorModel get dark;
   @override
   @JsonKey(ignore: true)
-  _$$ColorSchemesImplCopyWith<_$ColorSchemesImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$themeColorStringSchemesImplCopyWith<_$themeColorStringSchemesImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

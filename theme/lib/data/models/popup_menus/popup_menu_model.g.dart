@@ -8,36 +8,42 @@ part of 'popup_menu_model.dart';
 
 _$PopupMenuModelImpl _$$PopupMenuModelImplFromJson(Map<String, dynamic> json) =>
     _$PopupMenuModelImpl(
-      color: json['color'] as String?,
-      shape: const OutlinedBorderConverter()
-          .fromJson(json['shape'] as Map<String, dynamic>?),
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      textStyle: json['textStyle'] as String?,
-      labelTextStyle: json['labelTextStyle'] as String?,
-      enableFeedback: json['enableFeedback'] as bool?,
+      color_themeColorString: json['color_themeColorString'] as String?,
+      shape_shapeBorder: json['shape_shapeBorder'] == null
+          ? null
+          : ShapeBorderModel.fromJson(
+              json['shape_shapeBorder'] as Map<String, dynamic>),
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
+      labelTextStyle_textStyleString:
+          json['labelTextStyle_textStyleString'] as String?,
+      enableFeedback_bool: json['enableFeedback_bool'] as bool?,
       position:
           $enumDecodeNullable(_$PopupMenuPositionEnumMap, json['position']) ??
               PopupMenuPosition.under,
-      iconColor: json['iconColor'] as String?,
-      iconSize: (json['iconSize'] as num?)?.toDouble(),
+      iconColor_themeColorString: json['iconColor_themeColorString'] as String?,
+      iconSize_double: (json['iconSize_double'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$PopupMenuModelImplToJson(
         _$PopupMenuModelImpl instance) =>
     <String, dynamic>{
-      'color': instance.color,
-      'shape': const OutlinedBorderConverter().toJson(instance.shape),
-      'elevation': instance.elevation,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'textStyle': instance.textStyle,
-      'labelTextStyle': instance.labelTextStyle,
-      'enableFeedback': instance.enableFeedback,
+      'color_themeColorString': instance.color_themeColorString,
+      'shape_shapeBorder': instance.shape_shapeBorder?.toJson(),
+      'elevation_double': instance.elevation_double,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'textStyle_textStyleString': instance.textStyle_textStyleString,
+      'labelTextStyle_textStyleString': instance.labelTextStyle_textStyleString,
+      'enableFeedback_bool': instance.enableFeedback_bool,
       'position': _$PopupMenuPositionEnumMap[instance.position]!,
-      'iconColor': instance.iconColor,
-      'iconSize': instance.iconSize,
+      'iconColor_themeColorString': instance.iconColor_themeColorString,
+      'iconSize_double': instance.iconSize_double,
     };
 
 const _$PopupMenuPositionEnumMap = {

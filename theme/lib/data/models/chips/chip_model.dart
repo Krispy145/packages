@@ -1,9 +1,12 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/domain/converters/border_side/border_side.dart';
-import 'package:theme/domain/converters/edge_insets/edge_insets.dart';
-import 'package:theme/domain/converters/outlined_border/outlined_border.dart';
-import 'package:theme/extensions/string.dart';
+import 'package:theme/data/models/borders/border_side_model.dart';
+import 'package:theme/data/models/borders/outlined_border_model.dart';
+import 'package:theme/data/models/edge_insets_model.dart';
+import 'package:theme/extensions/text_style_string.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'chip_model.freezed.dart';
 part 'chip_model.g.dart';
@@ -11,25 +14,25 @@ part 'chip_model.g.dart';
 @freezed
 class ChipModel with _$ChipModel {
   const factory ChipModel({
-    String? color,
-    String? backgroundColor,
-    String? deleteIconColor,
-    String? disabledColor,
-    String? selectedColor,
-    String? secondarySelectedColor,
-    String? shadowColor,
-    String? surfaceTintColor,
-    String? selectedShadowColor,
-    bool? showCheckmark,
-    String? checkmarkColor,
-    @EdgeInsetsConverter() EdgeInsets? labelPadding,
-    @EdgeInsetsConverter() EdgeInsets? padding,
-    @BorderSideConverter() BorderSide? side,
-    @OutlinedBorderConverter() OutlinedBorder? shape,
-    String? labelStyle,
-    String? secondaryLabelStyle,
-    double? elevation,
-    double? pressElevation,
+    ThemeColorString? color,
+    ThemeColorString? backgroundColor_themeColorString,
+    ThemeColorString? deleteIconColor_themeColorString,
+    ThemeColorString? disabledColor_themeColorString,
+    ThemeColorString? selectedColor_themeColorString,
+    ThemeColorString? secondarySelectedColor_themeColorString,
+    ThemeColorString? shadowColor_themeColorString,
+    ThemeColorString? surfaceTintColor_themeColorString,
+    ThemeColorString? selectedShadowColor_themeColorString,
+    bool? showCheckmark_bool,
+    ThemeColorString? checkmarkColor_themeColorString,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? labelPadding_edgeInsets,
+    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
+    BorderSideModel? side_borderSide,
+    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
+    TextStyleString? labelStyle_textStyleString,
+    TextStyleString? secondaryLabelStyle_textStyleString,
+    double? elevation_double,
+    double? pressElevation_double,
   }) = _ChipModel;
 
   const ChipModel._();
@@ -82,24 +85,24 @@ class ChipModel with _$ChipModel {
 
   ChipThemeData asChipThemeData({String? styleTypeName}) {
     return ChipThemeData(
-      backgroundColor: backgroundColor?.toColor(styleType: styleTypeName),
-      deleteIconColor: deleteIconColor?.toColor(styleType: styleTypeName),
-      disabledColor: disabledColor?.toColor(styleType: styleTypeName),
-      selectedColor: selectedColor?.toColor(styleType: styleTypeName),
-      secondarySelectedColor: secondarySelectedColor?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor?.toColor(styleType: styleTypeName),
-      selectedShadowColor: selectedShadowColor?.toColor(styleType: styleTypeName),
-      showCheckmark: showCheckmark,
-      checkmarkColor: checkmarkColor?.toColor(styleType: styleTypeName),
-      labelPadding: labelPadding,
-      padding: padding,
-      side: side,
-      shape: shape,
-      labelStyle: labelStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      secondaryLabelStyle: secondaryLabelStyle?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      elevation: elevation,
-      pressElevation: pressElevation,
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      deleteIconColor: deleteIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledColor: disabledColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedColor: selectedColor_themeColorString?.toColor(styleType: styleTypeName),
+      secondarySelectedColor: secondarySelectedColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedShadowColor: selectedShadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      showCheckmark: showCheckmark_bool,
+      checkmarkColor: checkmarkColor_themeColorString?.toColor(styleType: styleTypeName),
+      labelPadding: labelPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
+      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      secondaryLabelStyle: secondaryLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      elevation: elevation_double,
+      pressElevation: pressElevation_double,
     );
   }
 }

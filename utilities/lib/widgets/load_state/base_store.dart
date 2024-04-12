@@ -24,10 +24,10 @@ enum LoadState {
 }
 
 /// [LoadStateStore] is the store that will be used to manage the state of the loading.
-class LoadStateStore = LoadStateBaseStore with _$LoadStateStore;
+class LoadStateStore = _LoadStateStore with _$LoadStateStore;
 
-/// [LoadStateBaseStore] is the base store that will be used to manage the state of the loading.
-abstract class LoadStateBaseStore with Store {
+/// [_LoadStateStore] is the base store that will be used to manage the state of the loading.
+abstract class _LoadStateStore with Store {
   /// [currentState] is the state that will be used to manage the state of the loading.
   @observable
   LoadState currentState = LoadState.initial;

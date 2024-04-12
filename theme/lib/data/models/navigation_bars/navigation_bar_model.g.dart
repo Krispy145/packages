@@ -9,31 +9,49 @@ part of 'navigation_bar_model.dart';
 _$NavigationBarModelImpl _$$NavigationBarModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NavigationBarModelImpl(
-      height: (json['height'] as num?)?.toDouble(),
-      backgroundColor: json['backgroundColor'] as String?,
-      elevation: (json['elevation'] as num?)?.toDouble(),
-      shadowColor: json['shadowColor'] as String?,
-      surfaceTintColor: json['surfaceTintColor'] as String?,
-      indicatorColor: json['indicatorColor'] as String?,
-      indicatorShape: const OutlinedBorderConverter()
-          .fromJson(json['indicatorShape'] as Map<String, dynamic>?),
-      labelTextStyle: json['labelTextStyle'] as String?,
-      labelBehavior: const NavigationDestinationLabelConverter()
-          .fromJson(json['labelBehavior'] as String?),
+      height_double: (json['height_double'] as num?)?.toDouble(),
+      backgroundColor_themeColorString:
+          json['backgroundColor_themeColorString'] as String?,
+      elevation_double: (json['elevation_double'] as num?)?.toDouble(),
+      shadowColor_themeColorString:
+          json['shadowColor_themeColorString'] as String?,
+      surfaceTintColor_themeColorString:
+          json['surfaceTintColor_themeColorString'] as String?,
+      indicatorColor_themeColorString:
+          json['indicatorColor_themeColorString'] as String?,
+      indicatorShape_shapeBorder: json['indicatorShape_shapeBorder'] == null
+          ? null
+          : ShapeBorderModel.fromJson(
+              json['indicatorShape_shapeBorder'] as Map<String, dynamic>),
+      labelTextStyle_textStyleString:
+          json['labelTextStyle_textStyleString'] as String?,
+      labelBehavior_enum_navigationDestinationLabelBehavior:
+          $enumDecodeNullable(_$NavigationDestinationLabelBehaviorEnumMap,
+              json['labelBehavior_enum_navigationDestinationLabelBehavior']),
     );
 
 Map<String, dynamic> _$$NavigationBarModelImplToJson(
         _$NavigationBarModelImpl instance) =>
     <String, dynamic>{
-      'height': instance.height,
-      'backgroundColor': instance.backgroundColor,
-      'elevation': instance.elevation,
-      'shadowColor': instance.shadowColor,
-      'surfaceTintColor': instance.surfaceTintColor,
-      'indicatorColor': instance.indicatorColor,
-      'indicatorShape':
-          const OutlinedBorderConverter().toJson(instance.indicatorShape),
-      'labelTextStyle': instance.labelTextStyle,
-      'labelBehavior': const NavigationDestinationLabelConverter()
-          .toJson(instance.labelBehavior),
+      'height_double': instance.height_double,
+      'backgroundColor_themeColorString':
+          instance.backgroundColor_themeColorString,
+      'elevation_double': instance.elevation_double,
+      'shadowColor_themeColorString': instance.shadowColor_themeColorString,
+      'surfaceTintColor_themeColorString':
+          instance.surfaceTintColor_themeColorString,
+      'indicatorColor_themeColorString':
+          instance.indicatorColor_themeColorString,
+      'indicatorShape_shapeBorder':
+          instance.indicatorShape_shapeBorder?.toJson(),
+      'labelTextStyle_textStyleString': instance.labelTextStyle_textStyleString,
+      'labelBehavior_enum_navigationDestinationLabelBehavior':
+          _$NavigationDestinationLabelBehaviorEnumMap[
+              instance.labelBehavior_enum_navigationDestinationLabelBehavior],
     };
+
+const _$NavigationDestinationLabelBehaviorEnumMap = {
+  NavigationDestinationLabelBehavior.alwaysShow: 'alwaysShow',
+  NavigationDestinationLabelBehavior.alwaysHide: 'alwaysHide',
+  NavigationDestinationLabelBehavior.onlyShowSelected: 'onlyShowSelected',
+};

@@ -9,9 +9,9 @@ part of 'local_example_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LocalNotificationsExamplesStore
-    on LocalNotificationsExamplesBaseStore, Store {
+    on _LocalNotificationsExamplesStore, Store {
   late final _$showNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotification',
+      '_LocalNotificationsExamplesStore.showNotification',
       context: context);
 
   @override
@@ -21,7 +21,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showNotificationWithActionsAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotificationWithActions',
+      '_LocalNotificationsExamplesStore.showNotificationWithActions',
       context: context);
 
   @override
@@ -31,7 +31,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showNotificationWithTextActionAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotificationWithTextAction',
+      '_LocalNotificationsExamplesStore.showNotificationWithTextAction',
       context: context);
 
   @override
@@ -41,7 +41,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showNotificationWithTextChoiceAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotificationWithTextChoice',
+      '_LocalNotificationsExamplesStore.showNotificationWithTextChoice',
       context: context);
 
   @override
@@ -51,7 +51,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showNotificationCustomVibrationIconLedAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotificationCustomVibrationIconLed',
+      '_LocalNotificationsExamplesStore.showNotificationCustomVibrationIconLed',
       context: context);
 
   @override
@@ -62,7 +62,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$zonedScheduleNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.zonedScheduleNotification',
+      '_LocalNotificationsExamplesStore.zonedScheduleNotification',
       context: context);
 
   @override
@@ -72,7 +72,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$zonedScheduleAlarmClockNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.zonedScheduleAlarmClockNotification',
+      '_LocalNotificationsExamplesStore.zonedScheduleAlarmClockNotification',
       context: context);
 
   @override
@@ -83,7 +83,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$repeatNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.repeatNotification',
+      '_LocalNotificationsExamplesStore.repeatNotification',
       context: context);
 
   @override
@@ -93,7 +93,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showNotificationWithNoSoundAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotificationWithNoSound',
+      '_LocalNotificationsExamplesStore.showNotificationWithNoSound',
       context: context);
 
   @override
@@ -103,7 +103,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showSoundUriNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showSoundUriNotification',
+      '_LocalNotificationsExamplesStore.showSoundUriNotification',
       context: context);
 
   @override
@@ -113,7 +113,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showTimeoutNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showTimeoutNotification',
+      '_LocalNotificationsExamplesStore.showTimeoutNotification',
       context: context);
 
   @override
@@ -123,7 +123,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showInsistentNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showInsistentNotification',
+      '_LocalNotificationsExamplesStore.showInsistentNotification',
       context: context);
 
   @override
@@ -133,7 +133,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showBigPictureNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showBigPictureNotification',
+      '_LocalNotificationsExamplesStore.showBigPictureNotification',
       context: context);
 
   @override
@@ -143,7 +143,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showBigPictureNotificationBase64AsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showBigPictureNotificationBase64',
+      '_LocalNotificationsExamplesStore.showBigPictureNotificationBase64',
       context: context);
 
   @override
@@ -153,7 +153,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showBigPictureNotificationURLAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showBigPictureNotificationURL',
+      '_LocalNotificationsExamplesStore.showBigPictureNotificationURL',
       context: context);
 
   @override
@@ -163,7 +163,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showBigPictureNotificationHiddenLargeIconAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showBigPictureNotificationHiddenLargeIcon',
+      '_LocalNotificationsExamplesStore.showBigPictureNotificationHiddenLargeIcon',
       context: context);
 
   @override
@@ -173,7 +173,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showNotificationMediaStyleAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showNotificationMediaStyle',
+      '_LocalNotificationsExamplesStore.showNotificationMediaStyle',
       context: context);
 
   @override
@@ -183,7 +183,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showBigTextNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showBigTextNotification',
+      '_LocalNotificationsExamplesStore.showBigTextNotification',
       context: context);
 
   @override
@@ -193,7 +193,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showInboxNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showInboxNotification',
+      '_LocalNotificationsExamplesStore.showInboxNotification',
       context: context);
 
   @override
@@ -203,7 +203,7 @@ mixin _$LocalNotificationsExamplesStore
   }
 
   late final _$showMessagingNotificationAsyncAction = AsyncAction(
-      'LocalNotificationsExamplesBaseStore.showMessagingNotification',
+      '_LocalNotificationsExamplesStore.showMessagingNotification',
       context: context);
 
   @override

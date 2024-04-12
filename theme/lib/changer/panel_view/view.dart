@@ -22,11 +22,10 @@ enum ExpandingPanelViewType {
 /// [ExpandingPanelViewBuilder] is a class that builds the panel view.
 class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget panelView;
+  final Widget Function(BuildContext context) panelViewBuilder;
 
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel)
-      viewBuilder;
+  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel) viewBuilder;
 
   /// [type] is the [ExpandingPanelViewType] of the panel view.
   final ExpandingPanelViewType type;
@@ -37,7 +36,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [ExpandingPanelViewBuilder.left] constructor.
   ExpandingPanelViewBuilder.left({
     super.key,
-    required this.panelView,
+    required this.panelViewBuilder,
     required this.viewBuilder,
     this.widthPercentage = 0.2,
   }) : type = ExpandingPanelViewType.left;
@@ -45,7 +44,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [ExpandingPanelViewBuilder.right] constructor.
   ExpandingPanelViewBuilder.right({
     super.key,
-    required this.panelView,
+    required this.panelViewBuilder,
     required this.viewBuilder,
     this.widthPercentage = 0.2,
   }) : type = ExpandingPanelViewType.right;
@@ -53,7 +52,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [ExpandingPanelViewBuilder.top] constructor.
   ExpandingPanelViewBuilder.top({
     super.key,
-    required this.panelView,
+    required this.panelViewBuilder,
     required this.viewBuilder,
     this.widthPercentage = 0.2,
   }) : type = ExpandingPanelViewType.top;
@@ -61,7 +60,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [ExpandingPanelViewBuilder.bottom] constructor.
   ExpandingPanelViewBuilder.bottom({
     super.key,
-    required this.panelView,
+    required this.panelViewBuilder,
     required this.viewBuilder,
     this.widthPercentage = 0.2,
   }) : type = ExpandingPanelViewType.bottom;
@@ -69,20 +68,17 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [store] is the [ExpandingPanelViewStore] for the panel view.
   final ExpandingPanelViewStore store = ExpandingPanelViewStore();
 
-  Color? get _onSecondaryContainer =>
-      AppTheme.currentColorModel?.onSecondaryContainer;
+  Color? get _onSecondaryContainer => AppTheme.currentColorModel?.onSecondaryContainer;
 
   double _buildPanelViewWidth(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.left ||
-        type == ExpandingPanelViewType.right) {
+    if (type == ExpandingPanelViewType.left || type == ExpandingPanelViewType.right) {
       return context.screenWidth * percentage;
     }
     return context.screenWidth;
   }
 
   double _buildPanelViewHeight(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.top ||
-        type == ExpandingPanelViewType.bottom) {
+    if (type == ExpandingPanelViewType.top || type == ExpandingPanelViewType.bottom) {
       return context.screenHeight * percentage;
     }
     return context.screenHeight;
@@ -189,8 +185,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       firstCurve: Curves.easeInOut,
       secondCurve: Curves.easeInOut,
-      crossFadeState:
-          store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      crossFadeState: store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: Container(
         decoration: BoxDecoration(
           color: _onSecondaryContainer,
@@ -199,7 +194,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
         height: _buildPanelViewHeight(context, widthPercentage),
         child: GestureDetector(
           onDoubleTap: store.toggle,
-          child: panelView,
+          child: panelViewBuilder(context),
         ),
       ),
       secondChild: SizedBox(
