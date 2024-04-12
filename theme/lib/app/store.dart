@@ -7,6 +7,7 @@ import 'package:theme/data/repositories/theme.repository.dart';
 import 'package:theme/domain/repositories/base.repository.dart';
 import 'package:theme/domain/repositories/digital_oasis.repository.dart';
 import 'package:theme/domain/repositories/theme.repository.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
 
@@ -29,8 +30,9 @@ enum ThemeStateType {
   /// [supabase] is the type that will be used to fetch the data from supabase.
   supabase,
 
-  /// [digitalOasis] is the type that will be used to fetch the data from supabase.
-  digitalOasis,
+  /// [DO] is the type that will be used to fetch the data from supabase.
+  // ignore: constant_identifier_names
+  DO,
 
   /// [localAssets] is the type that will be used to try fetch the data from local storage and catch the error,
   /// then fetch the data from assets.
@@ -127,14 +129,14 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     _loadSupabaseTheme(url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId);
   }
 
-  _ThemeStateStore.digitalOasis({
+  _ThemeStateStore.DO({
     this.id,
   })  : baseThemeUrlPath = "baseThemes",
         componentThemesUrlPath = "componentsThemes",
-        type = ThemeStateType.digitalOasis,
+        type = ThemeStateType.DO,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
-    _loadDigitalOasisTheme(id: id ?? primaryThemeId);
+    _loadDOTheme(id: id ?? primaryThemeId);
   }
 
   /// [_ThemeStateStore.localAssets] is the constructor that will be used to try fetch the data from local storage and catch the error,
@@ -246,7 +248,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   Future<void> reloadThemeModel() async {
     await repository?.fetchTheme(id: id ?? primaryThemeId);
     await repository?.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Reloaded: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Reloaded: $baseThemeModel", [ThemeLoggers.theme]);
   }
 
   /// [lightTheme] is the light theme that will be used to store the theme data.
@@ -262,7 +264,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    AppLogger.print("Building App Theme: $styleType", [PackageFeatures.theme]);
+    AppLogger.print("Building App Theme: $styleType", [ThemeLoggers.theme]);
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
     return ThemeData(
@@ -321,7 +323,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   /// [setThemeMode] is the method that will be used to set the theme mode.
   @action
   void setThemeMode(ThemeMode newThemeMode) {
-    AppLogger.print("ThemeMode Changed: $newThemeMode", [PackageFeatures.theme]);
+    AppLogger.print("ThemeMode Changed: $newThemeMode", [ThemeLoggers.theme]);
     currentThemeMode = newThemeMode;
   }
 
@@ -333,7 +335,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Local: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Local: $baseThemeModel", [ThemeLoggers.theme]);
     setLoaded();
   }
 
@@ -345,7 +347,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Assets: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Assets: $baseThemeModel", [ThemeLoggers.theme]);
     setLoaded();
   }
 
@@ -358,16 +360,16 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [ThemeLoggers.theme]);
     setLoaded();
   }
 
-  Future<void> _loadDigitalOasisTheme({String? id}) async {
+  Future<void> _loadDOTheme({String? id}) async {
     setLoading();
-    repository = DigitalOasisRepository();
+    repository = DORepository();
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [ThemeLoggers.theme]);
     setLoaded();
   }
 
@@ -379,7 +381,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Api: $baseThemeModel", [PackageFeatures.theme]);
+    AppLogger.print("ThemeModel - Api: $baseThemeModel", [ThemeLoggers.theme]);
     setLoaded();
   }
 

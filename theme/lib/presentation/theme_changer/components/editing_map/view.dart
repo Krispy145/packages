@@ -5,6 +5,7 @@ import 'package:theme/presentation/theme_changer/components/editing_fields/bool/
 import 'package:theme/presentation/theme_changer/components/editing_fields/int/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/int/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_map/store.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 class MapEditor extends StatelessWidget {
@@ -43,7 +44,7 @@ class MapEditor extends StatelessWidget {
           final value = entry.value;
           final updatedKeys = List<String>.from(keys)..add(key);
           final valueEditor = buildValueEditor(context, value, updatedKeys, (keys, updatedValue) {
-            AppLogger.print("Calling on changed in MapEditorStore with $keys and $updatedValue", [PackageFeatures.theme]);
+            AppLogger.print("Calling on changed in MapEditorStore with $keys and $updatedValue", [ThemeLoggers.theme]);
             mapEditorStore.updateValue(keys, updatedValue);
           });
           if (valueEditor != null) {

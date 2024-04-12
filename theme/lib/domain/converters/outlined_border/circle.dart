@@ -10,8 +10,8 @@
 //   CircleBorder? example() {
 //     final json = const CircleBorderConverter().toJson(CircleBorder(side: BorderSide.none, eccentricity: 10));
 //     final circleBorder = const CircleBorderConverter().fromJson(json);
-//     AppLogger.print("CIRCLE-BORDER fromJson -> $circleBorder", [PackageFeatures.converters]);
-//     AppLogger.print("CIRCLE-BORDER toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("CIRCLE-BORDER fromJson -> $circleBorder", [ThemeLoggers.converters]);
+//     AppLogger.print("CIRCLE-BORDER toJson -> $json", [ThemeLoggers.converters]);
 //     return circleBorder;
 //   }
 

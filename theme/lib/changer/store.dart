@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
@@ -46,7 +47,7 @@ abstract class _ComponentThemeChangerStore<T> with Store {
   @action
   void setMapEntry(MapEntry<String, dynamic> value) {
     currentMapEntry = value;
-    AppLogger.print('currentAppbarMapEntry: $currentMapEntry', [PackageFeatures.theme]);
+    AppLogger.print('currentAppbarMapEntry: $currentMapEntry', [ThemeLoggers.theme]);
   }
 
   /// [setMapEntryInMap] is a method that sets the current map entry in the map.
@@ -56,7 +57,7 @@ abstract class _ComponentThemeChangerStore<T> with Store {
       componentThemeMap[currentMapEntry.key] = currentMapEntry.value;
       return convertComponentThemeFromMap(componentThemeMap);
     } catch (e, stackTrace) {
-      AppLogger.print('setAppbarModel: $e, $stackTrace', [PackageFeatures.theme], type: LoggerType.error);
+      AppLogger.print('setAppbarModel: $e, $stackTrace', [ThemeLoggers.theme], type: LoggerType.error);
       return convertComponentThemeFromMap(componentThemeMap);
     }
   }

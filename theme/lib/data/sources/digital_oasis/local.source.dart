@@ -4,32 +4,32 @@
 // import '../../models/digital_oasis_model.dart';
 // import '_source.dart';
 
-// /// [LocalDigitalOasisDataSource] is a class that implements [DigitalOasisDataSource] interface.
-// class LocalDigitalOasisDataSource extends LocalDataSource<DigitalOasisModel> implements DigitalOasisDataSource {
+// /// [LocalDODataSource] is a class that implements [DODataSource] interface.
+// class LocalDODataSource extends LocalDataSource<DOModel> implements DODataSource {
 //   // Simulated in-memory data store
-//   final Map<String, DigitalOasisModel> _dataStore = {};
+//   final Map<String, DOModel> _dataStore = {};
 
-//   /// [LocalDigitalOasisDataSource] constructor.
-//   LocalDigitalOasisDataSource()
+//   /// [LocalDODataSource] constructor.
+//   LocalDODataSource()
 //       : super(
 //           'digital_oasis',
-//           convertDataTypeFromMap: DigitalOasisModel.fromJson,
+//           convertDataTypeFromMap: DOModel.fromJson,
 //           convertDataTypeToMap: (data) => data.toJson(),
 //         );
 
 //   @override
-//   Future<List<DigitalOasisModel?>> search(Map<String, dynamic> queries) async {
+//   Future<List<DOModel?>> search(Map<String, dynamic> queries) async {
 //     try {
-//       final digitalOasis = _dataStore.values.toList();
+//       final DO = _dataStore.values.toList();
 //       AppLogger.print(
-//         "IN MEMORY RESULT: Fetched all DigitalOasis models successfully",
-//         [PackageFeatures.theme],
+//         "IN MEMORY RESULT: Fetched all DO models successfully",
+//         [ThemeLoggers.theme],
 //       );
-//       return Future.value(digitalOasis);
+//       return Future.value(DO);
 //     } catch (e) {
 //       AppLogger.print(
-//         "IN MEMORY RESULT: Error fetching all DigitalOasis models: $e",
-//         [PackageFeatures.theme],
+//         "IN MEMORY RESULT: Error fetching all DO models: $e",
+//         [ThemeLoggers.theme],
 //         type: LoggerType.error,
 //       );
 //       return [];

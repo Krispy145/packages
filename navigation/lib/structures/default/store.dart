@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:navigation/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 part 'store.g.dart';
 
 ///MobX store for [DefaultShellStructureStore]
-class DefaultShellStructureStore = DefaultShellStructureStoreBase
-    with _$DefaultShellStructureStore;
+class DefaultShellStructureStore = DefaultShellStructureStoreBase with _$DefaultShellStructureStore;
 
 abstract class DefaultShellStructureStoreBase with Store {
   @observable
@@ -35,15 +35,16 @@ abstract class DefaultShellStructureStoreBase with Store {
 
   /// toggle persistent footer buttons visibility
   @computed
-  bool get isPersistentFooterButtonsVisible =>
-      _isPersistentFooterButtonsVisible;
+  bool get isPersistentFooterButtonsVisible => _isPersistentFooterButtonsVisible;
 
   /// Shows or hides the appBar based on the provided [value].
   @action
   void showAppBar(bool value) {
     _isAppBarVisible = value;
     AppLogger.print(
-        "showAppBar set to => $_isAppBarVisible", [PackageFeatures.navigation]);
+      "showAppBar set to => $_isAppBarVisible",
+      [NavigationLoggers.navigation],
+    );
   }
 
   /// Opens the left-side drawer menu.
@@ -55,8 +56,10 @@ abstract class DefaultShellStructureStoreBase with Store {
         scaffold.openDrawer();
       } else {
         scaffold.closeDrawer();
-        AppLogger.print("showDrawer set to => ${scaffold.isDrawerOpen}",
-            [PackageFeatures.navigation]);
+        AppLogger.print(
+          "showDrawer set to => ${scaffold.isDrawerOpen}",
+          [NavigationLoggers.navigation],
+        );
       }
     }
   }
@@ -71,8 +74,10 @@ abstract class DefaultShellStructureStoreBase with Store {
       } else {
         scaffold.closeEndDrawer();
       }
-      AppLogger.print("showEndDrawer set to => ${scaffold.isEndDrawerOpen}",
-          [PackageFeatures.navigation]);
+      AppLogger.print(
+        "showEndDrawer set to => ${scaffold.isEndDrawerOpen}",
+        [NavigationLoggers.navigation],
+      );
     }
   }
 
@@ -81,8 +86,9 @@ abstract class DefaultShellStructureStoreBase with Store {
   void showFloatingActionButton(bool value) {
     _isFloatingActionButtonVisible = value;
     AppLogger.print(
-        "showFloatingActionButton set to => $_isFloatingActionButtonVisible",
-        [PackageFeatures.navigation]);
+      "showFloatingActionButton set to => $_isFloatingActionButtonVisible",
+      [NavigationLoggers.navigation],
+    );
   }
 
   /// Shows or hides the bottom navigation bar based on the provided [value].
@@ -90,8 +96,9 @@ abstract class DefaultShellStructureStoreBase with Store {
   void showBottomNavigationBar(bool value) {
     _isBottomNavigationBarVisible = value;
     AppLogger.print(
-        "showBottomNavigationBar set to => $_isBottomNavigationBarVisible",
-        [PackageFeatures.navigation]);
+      "showBottomNavigationBar set to => $_isBottomNavigationBarVisible",
+      [NavigationLoggers.navigation],
+    );
   }
 
   /// Shows or hides the bottom navigation bar based on the provided [value].
@@ -99,7 +106,8 @@ abstract class DefaultShellStructureStoreBase with Store {
   void showPersistentFooterButtons(bool value) {
     _isPersistentFooterButtonsVisible = value;
     AppLogger.print(
-        "showPersistentFooterButtons set to => $_isPersistentFooterButtonsVisible",
-        [PackageFeatures.navigation]);
+      "showPersistentFooterButtons set to => $_isPersistentFooterButtonsVisible",
+      [NavigationLoggers.navigation],
+    );
   }
 }

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
@@ -14,12 +15,12 @@ class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
     final alignment = const TabAlignmentConverter().fromJson(response['alignment']);
     AppLogger.print(
       "LIST-TILE-ALIGNMENT fromJson -> $alignment",
-      [PackageFeatures.converters],
+      [ThemeLoggers.converters],
     );
     final convertedJson = const TabAlignmentConverter().toJson(TabAlignment.center);
     AppLogger.print(
       "LIST-TILE-ALIGNMENT toJson -> $convertedJson",
-      [PackageFeatures.converters],
+      [ThemeLoggers.converters],
     );
     return alignment;
   }

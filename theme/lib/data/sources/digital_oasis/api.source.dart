@@ -4,13 +4,13 @@
 // import '../../models/digital_oasis_model.dart';
 // import '_source.dart';
 
-// /// [ApiDigitalOasisDataSource] is a class that implements [DigitalOasisDataSource] interface.
-// class ApiDigitalOasisDataSource extends ApiDataSource<DigitalOasisModel> implements DigitalOasisDataSource {
-//   /// [ApiDigitalOasisDataSource] constructor.
-//   ApiDigitalOasisDataSource(super.baseUrl)
+// /// [ApiDODataSource] is a class that implements [DODataSource] interface.
+// class ApiDODataSource extends ApiDataSource<DOModel> implements DODataSource {
+//   /// [ApiDODataSource] constructor.
+//   ApiDODataSource(super.baseUrl)
 //       : super(
 //           sourceSuffix: "digital_oasis",
-//           convertDataTypeFromMap: DigitalOasisModel.fromJson,
+//           convertDataTypeFromMap: DOModel.fromJson,
 //           convertDataTypeToMap: (data) => data.toJson(),
 //         );
 
@@ -22,7 +22,7 @@
 //     } catch (e) {
 //       AppLogger.print(
 //         "API RESULT: Failed request: $e",
-//         [PackageFeatures.theme],
+//         [ThemeLoggers.theme],
 //         type: LoggerType.error,
 //       );
 //       return null;

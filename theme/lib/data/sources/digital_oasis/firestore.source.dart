@@ -3,10 +3,10 @@
 
 // import '_source.dart';
 
-// /// [FirestoreDigitalOasisDataSource] is a class that implements [DigitalOasisDataSource] interface.
-// class FirestoreDigitalOasisDataSource<T> extends FirestoreDataSource<T> implements DigitalOasisDataSource<T> {
-//   /// [FirestoreDigitalOasisDataSource] constructor.
-//   FirestoreDigitalOasisDataSource(
+// /// [FirestoreDODataSource] is a class that implements [DODataSource] interface.
+// class FirestoreDODataSource<T> extends FirestoreDataSource<T> implements DODataSource<T> {
+//   /// [FirestoreDODataSource] constructor.
+//   FirestoreDODataSource(
 //     super.collectionName, {
 //     required super.convertDataTypeFromMap,
 //     required super.convertDataTypeToMap,

@@ -33,6 +33,7 @@ import 'package:theme/presentation/theme_changer/components/editing_fields/text_
 import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_string/form_field.dart';
 import 'package:theme/presentation/theme_changer/components/editing_fields/theme_color_string/store.dart';
 import 'package:theme/presentation/theme_changer/components/editing_map/view.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 class ThemeComponentEditor extends MapEditor {
@@ -63,7 +64,7 @@ class ThemeComponentEditor extends MapEditor {
   ) {
     final currentKey = keys.last;
     if (!currentKey.contains('_')) {
-      AppLogger.print("$currentKey doesn't have _ format", [PackageFeatures.theme], type: LoggerType.error);
+      AppLogger.print("$currentKey doesn't have _ format", [ThemeLoggers.theme], type: LoggerType.error);
       return null;
     }
     final formattedKey = currentKey.substring(0, currentKey.indexOf('_'));
@@ -73,7 +74,7 @@ class ThemeComponentEditor extends MapEditor {
       final enumName = currentKey.substring(currentKey.indexOf('_enum') + 6);
       final enumProperties = enumComponentProperties.firstWhereOrNull((element) => element.name == enumName);
       if (enumProperties == null) {
-        AppLogger.print("$enumName not found (enum)", [PackageFeatures.theme], type: LoggerType.error);
+        AppLogger.print("$enumName not found (enum)", [ThemeLoggers.theme], type: LoggerType.error);
         return null;
       }
       final enumInitialValue = enumProperties.values.firstWhereOrNull((element) => element.name == value as String?);

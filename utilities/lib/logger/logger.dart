@@ -39,67 +39,6 @@ enum LoggerType {
   reset;
 }
 
-// /// [LoggerFeature] class responsible for storing feature references.
-// class LoggerFeature {
-//   /// [enabled] is the boolean value to enable or disable the feature.
-//   final bool enabled;
-
-//   /// [name] is the name of the feature.
-//   final String name;
-
-//   /// [LoggerFeature] is the constructor for the class.
-//   LoggerFeature(this, this.enabled);
-// }
-
-/// [PackageFeatures] class responsible for storing base feature references.
-/// Used to determine which features are enabled for logging.
-enum PackageFeatures {
-  /// [navigation] is the feature reference for navigation.
-  navigation,
-
-  /// [connection] is the feature reference for connection.
-  connection,
-
-  /// [dependencyInjection] is the feature reference for dependency injection.
-  dependencyInjection,
-
-  /// [theme] is the feature reference for theme.
-  theme,
-
-  /// [adMob] is the feature reference for adMob.
-  adMob,
-
-  /// [notifications] is the feature reference for notifications.
-  notifications,
-
-  /// [localDataSource] is the feature reference for localDataSource.
-  localDataSource,
-
-  /// [secureDataSource] is the feature reference for secureDataSource.
-  secureDataSource,
-
-  /// [apiDataSource] is the feature reference for apiDataSource.
-  apiDataSource,
-
-  /// [firestoreDataSource] is the feature reference for firestoreDataSource.
-  firestoreDataSource,
-
-  /// [supabaseDataSource] is the feature reference for supabaseDataSource.
-  supabaseDataSource,
-
-  /// [authentication] is the feature reference for authentication.
-  authentication,
-
-  /// [converters] is the feature reference for converters.
-  converters,
-
-  /// [fonts] is the feature reference for fonts.
-  fonts,
-
-  /// [deeplinks] is the feature reference for deeplinks.
-  deeplinks;
-}
-
 /// [AppLogger] class responsible for logging, utilizing the features.
 class AppLoggerInjector {
   final Map<Enum, bool> logFeatures;

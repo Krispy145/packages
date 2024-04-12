@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/utils/loggers.dart';
 
 /// [SupabaseDataSource] is a wrapper class for [SupabaseClient]
 class SupabaseDataSource<T> implements DataSource<T> {
@@ -52,7 +53,7 @@ class SupabaseDataSource<T> implements DataSource<T> {
       final results = await _supabase!.from(tableName).select();
       return results.map(convertDataTypeFromMap).toList();
     } catch (e) {
-      AppLogger.print("Error: $e", [PackageFeatures.supabaseDataSource]);
+      AppLogger.print("Error: $e", [UtilitiesLoggers.supabaseDataSource]);
       return [];
     }
   }
@@ -94,10 +95,10 @@ class SupabaseDataSource<T> implements DataSource<T> {
   @override
   Future<void> add(T data) async {
     await _handleRequest("ADD", () async {
-      AppLogger.print("Data: $data", [PackageFeatures.supabaseDataSource]);
+      AppLogger.print("Data: $data", [UtilitiesLoggers.supabaseDataSource]);
       final response = _supabase!.from(tableName).insert(convertDataTypeToMap(data));
       response.then(
-        (value) => AppLogger.print("Response: $value", [PackageFeatures.supabaseDataSource]),
+        (value) => AppLogger.print("Response: $value", [UtilitiesLoggers.supabaseDataSource]),
       );
       return null;
     });
@@ -126,10 +127,10 @@ class SupabaseDataSource<T> implements DataSource<T> {
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
-        [PackageFeatures.supabaseDataSource],
+        [UtilitiesLoggers.supabaseDataSource],
       );
     } else {
-      AppLogger.print(logMessage, [PackageFeatures.supabaseDataSource]);
+      AppLogger.print(logMessage, [UtilitiesLoggers.supabaseDataSource]);
     }
   }
 
@@ -142,10 +143,10 @@ class SupabaseDataSource<T> implements DataSource<T> {
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
-        [PackageFeatures.supabaseDataSource],
+        [UtilitiesLoggers.supabaseDataSource],
       );
     } else {
-      AppLogger.print(logMessage, [PackageFeatures.supabaseDataSource]);
+      AppLogger.print(logMessage, [UtilitiesLoggers.supabaseDataSource]);
     }
   }
 
@@ -157,7 +158,7 @@ class SupabaseDataSource<T> implements DataSource<T> {
     final logMessage = "Supabase $method Error: $statusMessage - $error";
     AppLogger.print(
       logMessage,
-      [PackageFeatures.supabaseDataSource],
+      [UtilitiesLoggers.supabaseDataSource],
       type: LoggerType.error,
     );
   }

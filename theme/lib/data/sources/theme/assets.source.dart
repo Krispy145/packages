@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
 import '_source.dart';
@@ -47,7 +48,7 @@ class AssetsThemeDataSource<T> implements ThemeDataSource<T> {
       final data = convertDataTypeFromMap(json.decode(jsonString) as Map<String, dynamic>);
       return data;
     } catch (e) {
-      AppLogger.print("Error in parsing json for Assets $T: $e", [PackageFeatures.theme], type: LoggerType.error);
+      AppLogger.print("Error in parsing json for Assets $T: $e", [ThemeLoggers.theme], type: LoggerType.error);
     }
     return null;
   }

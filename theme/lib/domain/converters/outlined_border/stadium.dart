@@ -10,8 +10,8 @@
 //   StadiumBorder? example() {
 //     final json = const StadiumBorderConverter().toJson(const StadiumBorder(side: BorderSide.none));
 //     final border = const StadiumBorderConverter().fromJson(json);
-//     AppLogger.print("STADIUM-BORDER fromJson -> $border", [PackageFeatures.converters]);
-//     AppLogger.print("STADIUM-BORDER toJson -> $json", [PackageFeatures.converters]);
+//     AppLogger.print("STADIUM-BORDER fromJson -> $border", [ThemeLoggers.converters]);
+//     AppLogger.print("STADIUM-BORDER toJson -> $json", [ThemeLoggers.converters]);
 //     return border;
 //   }
 

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/utils/loggers.dart';
 
 /// [ApiDataSource] is a wrapper class for [Dio] which implements [DataSource]
 class ApiDataSource<T> implements DataSource<T> {
@@ -36,7 +37,7 @@ class ApiDataSource<T> implements DataSource<T> {
           // Log the request
           AppLogger.print(
             "REQUEST: ${options.method} -> ${options.uri}",
-            [PackageFeatures.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(options);
         },
@@ -44,7 +45,7 @@ class ApiDataSource<T> implements DataSource<T> {
           // Log the response
           AppLogger.print(
             "RESPONSE: ${response.statusCode} -> ${response.statusMessage}",
-            [PackageFeatures.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(response);
         },
@@ -52,7 +53,7 @@ class ApiDataSource<T> implements DataSource<T> {
           // Log errors
           AppLogger.print(
             "ERROR: ${e.response?.statusCode} -> ${e.response?.statusMessage}",
-            [PackageFeatures.apiDataSource],
+            [UtilitiesLoggers.apiDataSource],
             type: LoggerType.error,
           );
           return handler.next(e);
@@ -80,106 +81,119 @@ class ApiDataSource<T> implements DataSource<T> {
       _cancel(cancelKey);
     }
     final response = await _dio.post<Map<String, dynamic>>(
-        '$_baseUrl/$requestExtension',
-        data: requestType,
-        cancelToken: _getCancelToken(cancelKey));
-    return response.data != null
-        ? convertDataTypeFromMap(response.data!)
-        : null;
+      '$_baseUrl/$requestExtension',
+      data: requestType,
+      cancelToken: _getCancelToken(cancelKey),
+    );
+    return response.data != null ? convertDataTypeFromMap(response.data!) : null;
   }
 
   @override
-  Future<T?> get(String id,
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<T?> get(
+    String id, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/$id/get";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    final response = await _dio.get<Map<String, dynamic>>('$_url/$id',
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
-    final convertedResponse =
-        response.data != null ? convertDataTypeFromMap(response.data!) : null;
+    final response = await _dio.get<Map<String, dynamic>>(
+      '$_url/$id',
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
+    final convertedResponse = response.data != null ? convertDataTypeFromMap(response.data!) : null;
     return convertedResponse;
   }
 
   @override
-  Future<List<T?>> getAll(
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<List<T?>> getAll({
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/getAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    final response = await _dio.get<List<Map<String, dynamic>>>(_url,
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
+    final response = await _dio.get<List<Map<String, dynamic>>>(
+      _url,
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
     return response.data!.map(convertDataTypeFromMap).toList();
   }
 
   @override
-  Future<void> delete(String id,
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<void> delete(
+    String id, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/$id/delete";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    await _dio.delete<Map<String, dynamic>>('$_url/$id',
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
+    await _dio.delete<Map<String, dynamic>>(
+      '$_url/$id',
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
   }
 
   @override
-  Future<void> deleteAll(
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<void> deleteAll({
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/deleteAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    await _dio.delete<Map<String, dynamic>>(_url,
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
+    await _dio.delete<Map<String, dynamic>>(
+      _url,
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
   }
 
   @override
-  Future<void> update(String id, T data,
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<void> update(
+    String id,
+    T data, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/$id/update";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    await _dio.put<Map<String, dynamic>>('$_url/$id',
-        queryParameters: queryParameters,
-        data: convertDataTypeToMap(data),
-        cancelToken: _getCancelToken(cancelKey));
+    await _dio.put<Map<String, dynamic>>(
+      '$_url/$id',
+      queryParameters: queryParameters,
+      data: convertDataTypeToMap(data),
+      cancelToken: _getCancelToken(cancelKey),
+    );
   }
 
   @override
-  Future<void> updateAll(Map<String, T> data,
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<void> updateAll(
+    Map<String, T> data, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/updateAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -190,36 +204,42 @@ class ApiDataSource<T> implements DataSource<T> {
       updateMap[entry.key] = convertDataTypeToMap(entry.value);
     }
 
-    await _dio.put<Map<String, Map<String, dynamic>>>(_url,
-        data: updateMap,
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
+    await _dio.put<Map<String, Map<String, dynamic>>>(
+      _url,
+      data: updateMap,
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
   }
 
   @override
-  Future<void> add(T data,
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<void> add(
+    T data, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/add";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    await _dio.post<Map<String, dynamic>>(_url,
-        data: convertDataTypeToMap(data),
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
+    await _dio.post<Map<String, dynamic>>(
+      _url,
+      data: convertDataTypeToMap(data),
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
   }
 
   @override
-  Future<void> addAll(List<T> data,
-      {String? pathExtensions,
-      Map<String, dynamic>? queryParameters,
-      bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<void> addAll(
+    List<T> data, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/addAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -230,23 +250,30 @@ class ApiDataSource<T> implements DataSource<T> {
       addMap[entry.key.toString()] = convertDataTypeToMap(entry.value);
     }
 
-    await _dio.post<List<Map<String, dynamic>>>(_url,
-        data: addMap,
-        queryParameters: queryParameters,
-        cancelToken: _getCancelToken(cancelKey));
+    await _dio.post<List<Map<String, dynamic>>>(
+      _url,
+      data: addMap,
+      queryParameters: queryParameters,
+      cancelToken: _getCancelToken(cancelKey),
+    );
   }
 
   @override
-  Future<List<T?>> search(Map<String, dynamic> queries,
-      {String? pathExtensions, bool cancelPreviousRequest = false}) async {
-    final _url =
-        pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+  Future<List<T?>> search(
+    Map<String, dynamic> queries, {
+    String? pathExtensions,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    final response = await _dio.get<List<Map<String, dynamic>>>(_url,
-        queryParameters: queries, cancelToken: _getCancelToken(cancelKey));
+    final response = await _dio.get<List<Map<String, dynamic>>>(
+      _url,
+      queryParameters: queries,
+      cancelToken: _getCancelToken(cancelKey),
+    );
     return response.data!.map(convertDataTypeFromMap).toList();
   }
 

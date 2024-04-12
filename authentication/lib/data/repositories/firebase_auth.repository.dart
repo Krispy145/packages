@@ -1,7 +1,9 @@
 import 'package:authentication/data/models/auth_params.dart';
 import 'package:authentication/data/repositories/helpers/auth_repository.helper.dart';
+import 'package:authentication/data/source/api_user.source.dart';
 import 'package:authentication/data/source/supabase_user.source.dart';
 import 'package:authentication/helpers/exception.dart';
+import 'package:authentication/utils/loggers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
@@ -69,8 +71,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.microsoft:
-        final credential =
-            MicrosoftAuthProvider.credential(params.accessToken!);
+        final credential = MicrosoftAuthProvider.credential(params.accessToken!);
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.x:
@@ -80,7 +81,9 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
 
       case AuthType.email:
         final credential = EmailAuthProvider.credential(
-            email: params.email!, password: params.password!);
+          email: params.email!,
+          password: params.password!,
+        );
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.phone:
@@ -129,14 +132,18 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   Future<UserModel?> signInWithEmail(AuthParams params) async {
     try {
       final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-          email: params.email!, password: params.password!);
+        email: params.email!,
+        password: params.password!,
+      );
       final userModel = _userCredentialToUserModel(userCredential, params);
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } catch (e) {
       AppLogger.print(
-          'signIn attempt -> ${e.toString()}', [PackageFeatures.authentication],
-          type: LoggerType.error);
+        'signIn attempt -> $e',
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
       throw AuthenticationException(e.toString());
     }
   }
@@ -144,15 +151,12 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInWithFacebook(AuthParams params) async {
     try {
-      final facebookParams =
-          await AuthRepositoryHelper.signInWithFacebook(params);
+      final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
       // Create a credential from the access token
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(facebookParams.accessToken!);
+      final facebookAuthCredential = FacebookAuthProvider.credential(facebookParams.accessToken!);
 
       // Once signed in, return the UserCredential
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+      final userCredential = await _firebaseAuth.signInWithCredential(facebookAuthCredential);
       final userModel = _userCredentialToUserModel(
         userCredential,
         facebookParams,
@@ -160,9 +164,11 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } catch (e) {
-      AppLogger.print('signIn attempt -> ${params.authType}: ${e.toString()}',
-          [PackageFeatures.authentication],
-          type: LoggerType.error);
+      AppLogger.print(
+        'signIn attempt -> ${params.authType}: $e',
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
       throw AuthenticationException(e.toString());
     }
   }
@@ -174,8 +180,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(githubAuthProvider);
     } else {
-      userCredential =
-          await _firebaseAuth.signInWithProvider(githubAuthProvider);
+      userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -208,9 +213,11 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } catch (e) {
-      AppLogger.print('signIn attempt -> ${params.authType}: ${e.toString()}',
-          [PackageFeatures.authentication],
-          type: LoggerType.error);
+      AppLogger.print(
+        'signIn attempt -> ${params.authType}: $e',
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
       throw AuthenticationException(e.toString());
     }
   }
@@ -222,8 +229,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(microsoftProvider);
     } else {
-      userCredential =
-          await _firebaseAuth.signInWithProvider(microsoftProvider);
+      userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -233,15 +239,21 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   //TODO: add sendEmailLink function
   @override
   Future<UserModel?> signInWithPasswordlessEmail(
-      String email, String emailLink) async {
+    String email,
+    String emailLink,
+  ) async {
     final isEmailVerified = _firebaseAuth.isSignInWithEmailLink(emailLink);
     if (!isEmailVerified) {
       return null;
     }
     final userCredential = await _firebaseAuth.signInWithEmailLink(
-        email: email, emailLink: emailLink);
-    final userModel = _userCredentialToUserModel(userCredential,
-        AuthParams.passwordless(email: email, password: emailLink));
+      email: email,
+      emailLink: emailLink,
+    );
+    final userModel = _userCredentialToUserModel(
+      userCredential,
+      AuthParams.passwordless(email: email, password: emailLink),
+    );
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
     return userModel;
   }
@@ -249,14 +261,17 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   //TODO: add verifyPhoneNumber function
   @override
   Future<UserModel?> signInWithPhoneNumber(
-      String phoneNumber, String confirmationCode) async {
-    final confirmationResult =
-        await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
+    String phoneNumber,
+    String confirmationCode,
+  ) async {
+    final confirmationResult = await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
 
     final userCredential = await confirmationResult.confirm(confirmationCode);
 
-    final userModel = _userCredentialToUserModel(userCredential,
-        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode));
+    final userModel = _userCredentialToUserModel(
+      userCredential,
+      AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
+    );
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
     return userModel;
   }
@@ -277,9 +292,12 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
 
   @override
   Future<void> signOut() async {
-    if (logToDatabase)
-      await dataSource.update(_currentUserModel!.id,
-          _currentUserModel!.copyWith(status: AuthStatus.unauthenticated));
+    if (logToDatabase) {
+      await dataSource.update(
+        _currentUserModel!.id,
+        _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+      );
+    }
     return await _firebaseAuth.signOut();
   }
 
@@ -287,28 +305,35 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   Future<UserModel?> signUpWithEmail(String email, String password) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       await userCredential.user!.sendEmailVerification();
       final userModel = _userCredentialToUserModel(
-          userCredential, AuthParams.email(email: email, password: password));
+        userCredential,
+        AuthParams.email(email: email, password: password),
+      );
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return null;
     } on FirebaseAuthException catch (e) {
       AppLogger.print(
-          'signUp attempt -> ${e.toString()}', [PackageFeatures.authentication],
-          type: LoggerType.error);
+        'signUp attempt -> $e',
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
       throw AuthenticationException(e.message.toString());
     } catch (e) {
       AppLogger.print(
-          'signUp attempt -> ${e.toString()}', [PackageFeatures.authentication],
-          type: LoggerType.error);
+        'signUp attempt -> $e',
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
       throw AuthenticationException(e.toString());
     }
   }
 
   Future<void> _initStreams() async {
-    currentUserModelSubject =
-        BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
     if (_user != null && _currentUserModel == null) {
       final databaseUser = await dataSource.get(_user!.uid);
       if (databaseUser != null) {
@@ -326,15 +351,16 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
       }
       if (event == null && _currentUserModel != null) {
-        _currentUserModel =
-            _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
+        _currentUserModel = _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
         currentUserModelSubject.add(_currentUserModel);
       }
     });
   }
 
   UserModel _userCredentialToUserModel(
-      UserCredential userCredential, AuthParams params) {
+    UserCredential userCredential,
+    AuthParams params,
+  ) {
     _currentUserModel = UserModel(
       id: userCredential.user!.uid,
       email: userCredential.user?.email,
