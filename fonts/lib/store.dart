@@ -42,7 +42,7 @@ class FontsStore = FontsBaseStore with _$FontsStore;
 
 /// [FontsBaseStore] is a class that manages the state of the fonts feature.
 abstract class FontsBaseStore extends LoadStateStore with Store {
-  void initialize({List<DOFonts> fonts = DOFonts.values, bool allowRuntimeFetching = false}) {
+  void initialize({List<DOFonts> fonts = DOFonts.values, bool allowRuntimeFetching = true}) {
     this.allowRuntimeFetching = allowRuntimeFetching;
     for (final font in fonts) {
       register(font.family.familyName, font.family.variants);

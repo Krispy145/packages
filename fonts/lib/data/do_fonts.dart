@@ -7,7 +7,8 @@ typedef FontFileUrl = String;
 
 enum DOFonts {
   lato,
-  whisper;
+  whisper,
+  proximaNovaAlt;
 
   String get name => family.familyName;
 
@@ -36,6 +37,28 @@ enum DOFonts {
           familyName: "Whisper",
           variants: {
             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w400): "https://fonts.gstatic.com/s/whisper/v5/q5uHsoqtKftx74K9qi5IBj5eiYQ.woff2",
+          },
+        );
+      case DOFonts.proximaNovaAlt:
+        return DOFontFamily(
+          familyName: "ProximaNovaAlt",
+          variants: {
+            // Normal
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w100): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w200): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w400): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w600): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w800): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w900): "",
+            // Italic
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w100): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w200): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w400): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w600): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w700): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w800): "",
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w900): "",
           },
         );
     }
