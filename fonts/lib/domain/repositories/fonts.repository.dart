@@ -10,7 +10,32 @@ class FontsRepository {
   /// [FontsRepository] constructor.
   FontsRepository();
 
-  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl, bool allowAPIFetching) async {
-    return _fontsDataRepository.loadFont(fontVariantAndUrl, allowAPIFetching);
+  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl, bool allowApiFetching) async {
+    LoadingFontData? loadingFont;
+
+    loadingFont = _fontsDataRepository.loadFontData(fontVariantAndUrl, FontDataSources.asset);
+
+    if (await loadingFont != null) {
+      return loadingFont;
+    }
+
+    // Check if this font can be loaded from the device file system.
+    loadingFont = _fontsDataRepository.loadFontData(fontVariantAndUrl, FontDataSources.fileStorage);
+
+    if (await loadingFont != null) return loadingFont;
+
+    // Attempt to load this font via http, unless disallowed.
+    if (allowApiFetching) {
+      loadingFont = _fontsDataRepository.loadFontData(fontVariantAndUrl, FontDataSources.api);
+      if (await loadingFont != null) return loadingFont;
+    } else {
+      throw Exception(
+        'GoogleFonts.config.allowRuntimeFetching is false but font ${fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix()} was not '
+        'found in the application assets. Ensure ${fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix()}.ttf exists in a '
+        "folder that is included in your pubspec's assets.",
+      );
+    }
+
+    return null;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fonts/store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:theme/app/store.dart';
 import 'package:theme/data/models/appbars/appbar_model.dart';
@@ -44,6 +45,7 @@ class AppTheme {
   static ThemeStateStore get _themeStore => GetIt.instance.get<ThemeStateStore>();
   static BaseThemeModel get baseThemeModel => _themeStore.baseThemeModel;
   static ComponentThemesModel? get componentThemesModel => _themeStore.componentThemesModel;
+  static FontsStore get fontsStore => _themeStore.fontsStore;
 
   /// [isDark] is the boolean that will be used to check if the theme is dark.
   static bool get isDark => _themeStore.isDark;
