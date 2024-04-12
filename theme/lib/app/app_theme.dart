@@ -67,11 +67,8 @@ class AppTheme {
   /// [textTheme] is a getter that returns the [TextTheme] instance.
   static TextTheme get textTheme => currentTheme.textTheme;
 
-  /// [currentColorModel] is a getter that returns the [ColorSchemeModel] instance.
+  /// [currentColorModel] is a getter that returns the [ColorModel] instance.
   static ColorModel? get currentColorModel => _themeStore.currentColorModel;
-
-  /// [buttonStyles] is a getter that returns the [ButtonStyles] instance.
-  // static ButtonStyles? get buttonStyles => componentThemesModel?.buttonStyles;
 
   static ButtonStyleModel? filledButtonStyle({String? styleTypeName}) => componentThemesModel?.filledButtons?[styleTypeName ?? styleType];
   static ButtonStyleModel? elevatedButtonStyle({String? styleTypeName}) => componentThemesModel?.elevatedButtons?[styleTypeName ?? styleType];
@@ -83,87 +80,87 @@ class AppTheme {
   static FloatingActionButtonModel? floatingActionButtonStyle({String? styleTypeName}) => componentThemesModel?.floatingActionButtons?[styleTypeName ?? styleType];
   static ToggleButtonModel? toggleButtonStyle({String? styleTypeName}) => componentThemesModel?.toggleButtons?[styleTypeName ?? styleType];
 
-  /// [inputDecorationStyles] is a getter that returns the [InputDecorationStyles] instance.
+  /// [inputDecorationStyles] is a getter that returns the [InputDecorationModel] instance.
   static InputDecorationModel? inputDecorationStyles({String? styleTypeName}) => componentThemesModel?.inputDecorations?[styleTypeName ?? styleType];
 
-  /// [boxDecorationStyles] is a getter that returns the [BoxDecorations] instance.
+  /// [boxDecorationStyle] is a getter that returns the [BoxDecorationModel] instance.
   static BoxDecorationModel? boxDecorationStyle({String? styleTypeName}) => componentThemesModel?.boxDecorations?[styleTypeName ?? styleType];
 
-  /// [cardStyles] is a getter that returns the [CardStyles] instance.
+  /// [cardStyles] is a getter that returns the [CardModel] instance.
   static CardModel? cardStyles({String? styleTypeName}) => componentThemesModel?.cards?[styleTypeName ?? styleType];
 
-  /// [snackbarStyles] is a getter that returns the [SnackbarStyles] instance.
+  /// [snackbarStyles] is a getter that returns the [SnackbarModel] instance.
   static SnackbarModel? snackbarStyles({String? styleTypeName}) => componentThemesModel?.snackbars?[styleTypeName ?? styleType];
 
-  /// [badgeStyles] is a getter that returns the [BadgeStyles] instance.
+  /// [badgeStyles] is a getter that returns the [BadgeModel] instance.
   static BadgeModel? badgeStyles({String? styleTypeName}) => componentThemesModel?.badges?[styleTypeName ?? styleType];
 
-  /// [appbarStyles] is a getter that returns the [AppbarStyles] instance.
+  /// [appbarStyles] is a getter that returns the [AppbarModel] instance.
   static AppbarModel? appbarStyles({String? styleTypeName}) => componentThemesModel?.appbars?[styleTypeName ?? styleType];
 
-  /// [bottomAppbarStyles] is a getter that returns the [BottomAppbarStyles] instance.
+  /// [bottomAppbarStyles] is a getter that returns the [BottomAppbarModel] instance.
   static BottomAppbarModel? bottomAppbarStyles({String? styleTypeName}) => componentThemesModel?.bottomAppbars?[styleTypeName ?? styleType];
 
-  /// [dropdownStyles] is a getter that returns the [DropdownStyles] instance.
+  /// [dropdownStyles] is a getter that returns the [DropdownModel] instance.
   static DropdownModel? dropdownStyles({String? styleTypeName}) => componentThemesModel?.dropdowns?[styleTypeName ?? styleType];
 
-  /// [chipStyles] is a getter that returns the [ChipStyles] instance.
+  /// [chipStyles] is a getter that returns the [ChipModel] instance.
   static ChipModel? chipStyles({String? styleTypeName}) => componentThemesModel?.chips?[styleTypeName ?? styleType];
 
-  /// [dialogStyles] is a getter that returns the [DialogStyles] instance.
+  /// [dialogStyles] is a getter that returns the [DialogModel] instance.
   static DialogModel? dialogStyles({String? styleTypeName}) => componentThemesModel?.dialogs?[styleTypeName ?? styleType];
 
-  /// [popupMenuStyles] is a getter that returns the [PopupMenuStyles] instance.
+  /// [popupMenuStyles] is a getter that returns the [PopupMenuModel] instance.
   static PopupMenuModel? popupMenuStyles({String? styleTypeName}) => componentThemesModel?.popupMenus?[styleTypeName ?? styleType];
 
-  /// [sliderStyles] is a getter that returns the [SliderStyles] instance.
+  /// [sliderStyles] is a getter that returns the [SliderModel] instance.
   static SliderModel? sliderStyles({String? styleTypeName}) => componentThemesModel?.sliders?[styleTypeName ?? styleType];
 
-  /// [scrollbarStyles] is a getter that returns the [ScrollbarStyles] instance.
+  /// [scrollbarStyles] is a getter that returns the [ScrollbarModel] instance.
   static ScrollbarModel? scrollbarStyles({String? styleTypeName}) => componentThemesModel?.scrollbars?[styleTypeName ?? styleType];
 
-  /// [tooltipStyles] is a getter that returns the [TooltipStyles] instance.
+  /// [tooltipStyles] is a getter that returns the [TooltipModel] instance.
   static TooltipModel? tooltipStyles({String? styleTypeName}) => componentThemesModel?.tooltips?[styleTypeName ?? styleType];
 
-  /// [navigationRailStyles] is a getter that returns the [NavigationRailStyles] instance.
+  /// [navigationRailStyles] is a getter that returns the [NavigationRailModel] instance.
   static NavigationRailModel? navigationRailStyles({String? styleTypeName}) => componentThemesModel?.navigationRails?[styleTypeName ?? styleType];
 
-  /// [checkboxStyles] is a getter that returns the [CheckboxStyles] instance.
+  /// [checkboxStyles] is a getter that returns the [CheckboxModel] instance.
   static CheckboxModel? checkboxStyles({String? styleTypeName}) => componentThemesModel?.checkboxes?[styleTypeName ?? styleType];
 
-  /// [radioStyles] is a getter that returns the [RadioStyles] instance.
+  /// [radioStyles] is a getter that returns the [RadioModel] instance.
   static RadioModel? radioStyles({String? styleTypeName}) => componentThemesModel?.radios?[styleTypeName ?? styleType];
 
-  /// [switchStyles] is a getter that returns the [SwitchStyles] instance.
+  /// [switchStyles] is a getter that returns the [SwitchModel] instance.
   static SwitchModel? switchStyles({String? styleTypeName}) => componentThemesModel?.switches?[styleTypeName ?? styleType];
 
-  /// [drawerStyles] is a getter that returns the [DrawerStyles] instance.
+  /// [drawerStyles] is a getter that returns the [DrawerModel] instance.
   static DrawerModel? drawerStyles({String? styleTypeName}) => componentThemesModel?.drawers?[styleTypeName ?? styleType];
 
-  /// [listTileStyles] is a getter that returns the [ListTileStyles] instance.
+  /// [listTileStyles] is a getter that returns the [ListTileModel] instance.
   static ListTileModel? listTileStyles({String? styleTypeName}) => componentThemesModel?.listTiles?[styleTypeName ?? styleType];
 
-  /// [menuStyles] is a getter that returns the [MenuStyles] instance.
+  /// [menuStyles] is a getter that returns the [MenuStyleModel] instance.
   static MenuStyleModel? menuStyles({String? styleTypeName}) => componentThemesModel?.menus?[styleTypeName ?? styleType];
 
-  /// [menuBarStyles] is a getter that returns the [MenuBarStyles] instance.
+  /// [menuBarStyles] is a getter that returns the [MenuBarModel] instance.
   static MenuBarModel? menuBarStyles({String? styleTypeName}) => componentThemesModel?.menuBars?[styleTypeName ?? styleType];
 
-  /// [navigationBarStyles] is a getter that returns the [NavigationBarStyles] instance.
+  /// [navigationBarStyles] is a getter that returns the [NavigationBarModel] instance.
   static NavigationBarModel? navigationBarStyles({String? styleTypeName}) => componentThemesModel?.navigationBars?[styleTypeName ?? styleType];
 
-  /// [navigationDrawerStyles] is a getter that returns the [NavigationDrawerStyles] instance.
+  /// [navigationDrawerStyles] is a getter that returns the [NavigationDrawerModel] instance.
   static NavigationDrawerModel? navigationDrawerStyles({String? styleTypeName}) => componentThemesModel?.navigationDrawers?[styleTypeName ?? styleType];
 
-  /// [progressIndicatorStyles] is a getter that returns the [ProgressIndicatorStyles] instance.
+  /// [progressIndicatorStyles] is a getter that returns the [ProgressIndicatorModel] instance.
   static ProgressIndicatorModel? progressIndicatorStyles({String? styleTypeName}) => componentThemesModel?.progressIndicators?[styleTypeName ?? styleType];
 
-  /// [searchBarStyles] is a getter that returns the [SearchBarStyles] instance.
+  /// [searchBarStyles] is a getter that returns the [SearchBarModel] instance.
   static SearchBarModel? searchBarStyles({String? styleTypeName}) => componentThemesModel?.searchBars?[styleTypeName ?? styleType];
 
-  /// [searchViewStyles] is a getter that returns the [SearchViewStyles] instance.
+  /// [searchViewStyles] is a getter that returns the [SearchViewModel] instance.
   static SearchViewModel? searchViewStyles({String? styleTypeName}) => componentThemesModel?.searchViews?[styleTypeName ?? styleType];
 
-  /// [tabBarStyles] is a getter that returns the [TabBarStyles] instance.
+  /// [tabBarStyles] is a getter that returns the [TabBarModel] instance.
   static TabBarModel? tabBarStyles({String? styleTypeName}) => componentThemesModel?.tabBars?[styleTypeName ?? styleType];
 }
