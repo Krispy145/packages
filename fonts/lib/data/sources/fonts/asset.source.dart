@@ -20,10 +20,8 @@ class AssetFontsDataSource implements FontsDataSource {
 
   @override
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
-    final assetPath = _findFamilyWithVariantAssetPath(
-      fontVariantAndUrl.familyWithVariant,
-      await assetManifest.json(),
-    );
+    final assetManifestJson = await assetManifest.json();
+    final assetPath = _findFamilyWithVariantAssetPath(fontVariantAndUrl.familyWithVariant, assetManifestJson);
     if (assetPath == null) return null;
     return rootBundle.load(assetPath);
   }
@@ -39,8 +37,8 @@ class AssetFontsDataSource implements FontsDataSource {
     final apiFilenamePrefix = familyWithVariant.toApiFilenamePrefix();
 
     for (final assetList in manifestJson.values) {
-      for (final String asset in assetList) {
-        for (final matchingSuffix in ['.ttf', '.otf'].where(asset.endsWith)) {
+      for (final asset in assetList) {
+        for (final matchingSuffix in ['.ttf', '.otf', '.woff2'].where(asset.endsWith)) {
           final assetWithoutExtension = asset.substring(0, asset.length - matchingSuffix.length);
           if (assetWithoutExtension.endsWith(apiFilenamePrefix)) {
             return asset;
