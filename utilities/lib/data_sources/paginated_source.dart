@@ -43,9 +43,13 @@ abstract class PaginationDataSource<T> {
 
   /// Returns the paginated value of the given id
   Future<PaginatedResponseModel<T?>?> getPage(
-      String? pathExtension, PaginatedRequestModel? lastValue);
+    String? pathExtension,
+    PaginatedRequestModel? lastValue,
+  );
 
   /// Returns the paginated value of the given queries
   Future<PaginatedResponseModel<T?>?> searchPage(
-      Map<String, String> queries, PaginatedRequestModel? lastValue);
+    Map<String, String> queries,
+    PaginatedRequestModel? lastValue,
+  );
 }
