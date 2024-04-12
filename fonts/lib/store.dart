@@ -42,7 +42,7 @@ class FontsStore = FontsBaseStore with _$FontsStore;
 
 /// [FontsBaseStore] is a class that manages the state of the fonts feature.
 abstract class FontsBaseStore extends LoadStateStore with Store {
-  initialize({List<DOFonts> fonts = DOFonts.values, bool allowRuntimeFetching = true}) {
+  void initialize({List<DOFonts> fonts = DOFonts.values, bool allowRuntimeFetching = true}) {
     this.allowRuntimeFetching = allowRuntimeFetching;
     for (final font in fonts) {
       register(font.family.familyName, font.family.variants);
@@ -73,7 +73,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
   ///
   /// Returns a map where the key is the name of the font family and the value
   /// is the corresponding method to build the font.
-  final Map<String, TextStyleBuilder> _styleMap = {};
+  final Map<String, TextStyleBuilder> _fontsMap = {};
 
   /// Get a map of all available fonts and their associated text themes.
   ///
@@ -134,8 +134,8 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
     required Map<DOFontVariantDescriptor, String> fonts,
   }) {
     final loader = FontLoader(fontFamily);
-    final futures = <Future>[];
-    for (var variant in fonts.keys) {
+    final futures = <Future<void>>[];
+    for (final variant in fonts.keys) {
       final familyWithVariant = DOFontFamilyAndVariant(
         familyName: fontFamily,
         fontVariantDescriptor: variant,
@@ -154,11 +154,9 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
 
   Future<List<void>> pendingFonts([List<dynamic>? _]) => Future.wait(pendingFontFutures);
 
-  // Map<String, TextThemeBuilder> _asMapOfTextThemes() => Map.unmodifiable(_themeMap);
-
   void register(String familyName, Map<DOFontVariantDescriptor, String> variantMap, {bool eager = false}) {
     final style = styleBuilder(familyName, variantMap, eager);
-    _styleMap[familyName] = style;
+    _fontsMap[familyName] = style;
     _themeMap[familyName] = themeBuilder(style);
   }
 
@@ -193,11 +191,10 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
     TextDecorationStyle? decorationStyle,
     double? decorationThickness,
   }) {
-    final fonts = Map.unmodifiable(_styleMap);
-    if (!fonts.containsKey(fontFamily)) {
+    if (!_fontsMap.containsKey(fontFamily)) {
       throw Exception("No font family by name '$fontFamily' was found.");
     }
-    return fonts[fontFamily]!(
+    return _fontsMap[fontFamily]!(
       textStyle: textStyle,
       color: color,
       backgroundColor: backgroundColor,
@@ -230,7 +227,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
   /// Parameter [fontFamily] must not be `null`. Throws if no font by name
   /// [fontFamily] exists.
   TextTheme getTextTheme(String fontFamily, [TextTheme? textTheme]) {
-    final fonts = Map.unmodifiable(_themeMap);
+    final fonts = Map<String, TextThemeBuilder>.unmodifiable(_themeMap);
     if (!fonts.containsKey(fontFamily)) {
       throw Exception("No font family by name '$fontFamily' was found.");
     }
