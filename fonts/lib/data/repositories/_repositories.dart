@@ -1,5 +1,3 @@
-import 'package:fonts/data/repositories/font_file_io.repository.dart';
-
 import 'fonts.repository.dart';
 
 ///END OF IMPORTS
@@ -13,9 +11,6 @@ class DataRepositories {
 
   /// [fonts] is the [FontsDataRepository] instance.
   final FontsDataRepository fonts = FontsDataRepository();
-
-  /// [fonts] is the [FontsDataRepository] instance.
-  final FontFileIODataRepository fontsFileIO = FontFileIODataRepository();
 
   ///END OF REPOSITORIES
 }

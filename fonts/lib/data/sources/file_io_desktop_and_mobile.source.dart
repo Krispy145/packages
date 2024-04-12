@@ -1,21 +1,18 @@
-import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:fonts/data/sources/font_file_io/_source.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:universal_io/io.dart';
 
-final FontFileIOBaseDataSource source = FontFileIODataSource();
+// TODO: Create local data source for file storage based on this
 
-class FontFileIODataSource extends FontFileIOBaseDataSource {
-  @override
+class FontFileIODataSource {
   bool get isMacOS => Platform.isMacOS;
-  @override
+
   bool get isAndroid => Platform.isAndroid;
-  @override
+
   bool get isTest => Platform.environment.containsKey('FLUTTER_TEST');
 
-  @override
-  Future<void> saveFontToDeviceFileSystem({
+  static Future<void> saveFontToDeviceFileSystem({
     required String name,
     required List<int> bytes,
   }) async {
@@ -23,15 +20,14 @@ class FontFileIODataSource extends FontFileIOBaseDataSource {
     await file.writeAsBytes(bytes);
   }
 
-  @override
-  Future<ByteData?> loadFontFromDeviceFileSystem({
+  static Future<ByteData?> loadFontFromDeviceFileSystem({
     required String name,
   }) async {
     try {
       final file = await _localFile(name);
       final fileExists = file.existsSync();
       if (fileExists) {
-        List<int> contents = await file.readAsBytes();
+        final List<int> contents = await file.readAsBytes();
         if (contents.isNotEmpty) {
           return ByteData.view(Uint8List.fromList(contents).buffer);
         }

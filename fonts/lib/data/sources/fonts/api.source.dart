@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:fonts/data/models/font_descriptor_and_url.dart';
-import 'package:fonts/data/repositories/font_file_io.repository.dart';
+import 'package:fonts/data/sources/file_io_desktop_and_mobile.source.dart';
 import 'package:http/http.dart' as http;
 
 import '_source.dart';
@@ -10,8 +10,6 @@ import '_source.dart';
 class ApiFontsDataSource implements FontsDataSource {
   /// [ApiFontsDataSource] constructor.
   ApiFontsDataSource();
-
-  final fileIORepository = FontFileIODataRepository();
 
   @override
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
@@ -38,7 +36,7 @@ class ApiFontsDataSource implements FontsDataSource {
         );
       }
 
-      _unawaited(fileIORepository.saveFontToDeviceFileSystem(name: name, bytes: response.bodyBytes));
+      _unawaited(FontFileIODataSource.saveFontToDeviceFileSystem(name: name, bytes: response.bodyBytes));
 
       return ByteData.view(response.bodyBytes.buffer);
     } else {
