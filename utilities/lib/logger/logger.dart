@@ -39,18 +39,6 @@ enum LoggerType {
   reset;
 }
 
-// /// [LoggerFeature] class responsible for storing feature references.
-// class LoggerFeature {
-//   /// [enabled] is the boolean value to enable or disable the feature.
-//   final bool enabled;
-
-//   /// [name] is the name of the feature.
-//   final String name;
-
-//   /// [LoggerFeature] is the constructor for the class.
-//   LoggerFeature(this, this.enabled);
-// }
-
 /// [AppLogger] class responsible for logging, utilizing the features.
 class AppLoggerInjector {
   final Map<Enum, bool> logFeatures;
