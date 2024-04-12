@@ -13,25 +13,10 @@ class ApiFontsDataSource implements FontsDataSource {
 
   final fileIORepository = FontFileIODataRepository();
 
-  // /// [_handleError] is an optional helper method that handles errors when calling the API.
-  // // ignore: unused_element
-  // Future<T?> _handleError<T>(Future<T?> Function() apiCall) async {
-  //   try {
-  //     return await apiCall();
-  //   } catch (e) {
-  //     AppLogger.print(
-  //       "API RESULT: Failed request: $e",
-  //       [PackageFeatures.fonts],
-  //       type: LoggerType.error,
-  //     );
-  //     return null;
-  //   }
-  // }
-
   @override
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
-    final String url = fontVariantAndUrl.url;
-    final String name = fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix();
+    final url = fontVariantAndUrl.url;
+    final name = fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix();
     final uri = Uri.tryParse(url);
     if (uri == null) {
       throw Exception('Invalid fontUrl: $url');
@@ -39,7 +24,7 @@ class ApiFontsDataSource implements FontsDataSource {
 
     http.Response response;
 
-    http.Client httpClient = http.Client();
+    final httpClient = http.Client();
 
     try {
       response = await httpClient.get(uri);

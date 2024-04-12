@@ -2,7 +2,9 @@
 
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:fonts/store.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:get_it/get_it.dart';
 
 part 'text_style_model.freezed.dart';
 part 'text_style_model.g.dart';
@@ -26,6 +28,17 @@ class TextStyleModel with _$TextStyleModel {
 
   /// [asTextStyle] converts the [TextStyleModel] to a [TextStyle].
   TextStyle get asTextStyle {
+    if (fontFamilyName_font != null) {
+      final fontStore = GetIt.instance.get<FontsStore>();
+      return fontStore.getFont(
+        fontFamilyName_font!,
+        fontWeight: FontWeight.values.firstWhereOrNull((element) => element.value == fontWeight_double?.toInt()),
+        fontStyle: fontFamilyStyle_enum_fontStyle,
+        fontSize: fontSize_double,
+        height: lineHeight_double,
+        letterSpacing: letterSpacing_double,
+      );
+    }
     return TextStyle(
       fontFamily: fontFamilyName_font,
       fontWeight: FontWeight.values.firstWhereOrNull((element) => element.value == fontWeight_double?.toInt()),
