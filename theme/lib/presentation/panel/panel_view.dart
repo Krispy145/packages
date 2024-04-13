@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/app/app_theme.dart';
+import 'package:theme/app/app.dart';
 import 'package:theme/presentation/panel/store.dart';
 import 'package:utilities/helpers/extensions/build_context.dart';
 

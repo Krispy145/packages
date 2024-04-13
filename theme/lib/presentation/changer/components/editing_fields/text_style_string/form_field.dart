@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/app/app_theme.dart';
+import 'package:theme/app/app.dart';
 import 'package:theme/data/models/text/text_style_sizes.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/presentation/changer/components/editing_fields/text_style_string/store.dart';

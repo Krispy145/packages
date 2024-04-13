@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
-import 'package:theme/app/app_theme.dart';
+import 'package:theme/app/app.dart';
 import 'package:theme/domain/converters/colors/color.dart';
 
 typedef ThemeColorString = String;

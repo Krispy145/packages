@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:theme/app/app_theme.dart';
+import 'package:theme/app/app.dart';
 import 'package:theme/data/models/text/text_types.dart';
 import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';

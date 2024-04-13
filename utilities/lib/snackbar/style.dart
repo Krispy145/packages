@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theme/app/app_theme.dart';
+import 'package:theme/app/app.dart';
 
 /// [SnackbarStyle] is the enum that will be used to define the style of the snackbar.
 enum SnackbarStyle {
@@ -26,9 +26,7 @@ enum SnackbarStyle {
 
   /// [backgroundColor] is the color that will be used for the background of the snackbar.
   Color backgroundColor() {
-    final colorScheme = AppTheme.isDark
-        ? AppTheme.colorStyles().dark
-        : AppTheme.colorStyles().light;
+    final colorScheme = AppTheme.isDark ? AppTheme.colorStyles().dark : AppTheme.colorStyles().light;
     switch (this) {
       case SnackbarStyle.information:
         return colorScheme.information;

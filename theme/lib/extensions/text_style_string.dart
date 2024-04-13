@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
-import 'package:theme/app/app_theme.dart';
+import 'package:theme/app/app.dart';
 import 'package:theme/data/models/text/text_style_model.dart';
 import 'package:theme/data/models/text/text_style_sizes.dart';
 import 'package:theme/data/models/text/text_types.dart';
