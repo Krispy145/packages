@@ -10,25 +10,21 @@ enum FontDataSources {
   fileStorage,
 }
 
-/// [FontsDataRepository] is a class that defines the basic CRUD operations for the [FontsModel] entity.
+/// [FontsDataRepository] is a class that defines the basic CRUD operations for the [LoadingFontData] entity.
 class FontsDataRepository {
-  final _assetDataSource = AssetFontsDataSource();
-  final _apiDataSource = ApiFontsDataSource();
-  final _fileStorageDataSource = FileStorageFontsDataSource();
+  LoadingFontData? loadFontData(DOFontVariantAndUrl fontVariantAndUrl, FontDataSources type) {
+    return _dataSourceByType(type).loadFont(fontVariantAndUrl);
+  }
 
   FontsDataSource _dataSourceByType(FontDataSources type) {
     switch (type) {
       case FontDataSources.api:
-        return _apiDataSource;
+        return ApiFontsDataSource();
       case FontDataSources.asset:
-        return _assetDataSource;
+        return AssetFontsDataSource();
       case FontDataSources.fileStorage:
-        return _fileStorageDataSource;
+        return FileStorageFontsDataSource();
     }
-  }
-
-  LoadingFontData? loadFontData(DOFontVariantAndUrl fontVariantAndUrl, FontDataSources type) {
-    return _dataSourceByType(type).loadFont(fontVariantAndUrl);
   }
 }
 

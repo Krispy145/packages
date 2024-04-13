@@ -5,7 +5,7 @@ import 'package:universal_io/io.dart';
 
 // TODO: Create local data source for file storage based on this
 
-class FontFileIODataSource {
+class FontFileIOManager {
   bool get isMacOS => Platform.isMacOS;
 
   bool get isAndroid => Platform.isAndroid;

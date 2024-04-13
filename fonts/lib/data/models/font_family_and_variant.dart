@@ -18,8 +18,8 @@ class DOFontFamilyAndVariant {
     return '$familyName-${fontVariantDescriptor.toApiFilenamePart()}';
   }
 
-  /// Returns a font family name that is modified with additional [fontWeight]
-  /// and [fontStyle] descriptions.
+  /// Returns a font family name that is modified with additional `fontWeight`
+  /// and `fontStyle` descriptions.
   ///
   /// This string is used as a key to the loaded or stored fonts that come
   /// from the Google Fonts API.
