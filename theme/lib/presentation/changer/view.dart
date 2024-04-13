@@ -49,10 +49,9 @@ class ThemeComponentEditor extends MapEditor {
 
   @override
   Widget buildHeader(BuildContext context) {
-    if (headerBuilder != null) {
-      return headerBuilder!(context);
-    }
-    return Text(title, style: Theme.of(context).textTheme.titleLarge);
+    return Center(
+      child: headerBuilder != null ? headerBuilder!(context) : Text(title, style: Theme.of(context).textTheme.titleLarge),
+    );
   }
 
   @override

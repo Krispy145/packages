@@ -175,15 +175,12 @@ class ThemeChanger {
       },
       initialData: mergedMap,
     );
-    return showDialog(
+    return showModalBottomSheet(
       context: context,
-      builder: (context) => Padding(
-        padding: const EdgeInsets.all(64),
-        child: ThemeComponentEditor(
-          title: componentOption.name,
-          mapEditorStore: mapEditorStore,
-          headerBuilder: headerBuilder,
-        ),
+      builder: (context) => ThemeComponentEditor(
+        title: componentOption.name,
+        mapEditorStore: mapEditorStore,
+        headerBuilder: headerBuilder,
       ),
     );
   }

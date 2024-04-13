@@ -21,7 +21,7 @@ class ThemeChangerView extends StatelessWidget {
           final option = ChangerOptions.values[index];
           return GestureDetector(
             onTap: () {
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
               option.navigateTo(context).call();
             },
             child: DecoratedBox(
