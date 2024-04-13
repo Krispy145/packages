@@ -16,12 +16,13 @@ class ThemeChangerView extends StatelessWidget {
           maxCrossAxisExtent: context.screenWidth * 0.25,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
+          childAspectRatio: 2,
         ),
         itemBuilder: (context, index) {
           final option = ChangerOptions.values[index];
           return GestureDetector(
             onTap: () {
-              Navigator.of(context).pop();
+              // Navigator.of(context).pop();
               option.navigateTo(context).call();
             },
             child: DecoratedBox(
@@ -31,6 +32,7 @@ class ThemeChangerView extends StatelessWidget {
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Center(
                     child: option.icon,

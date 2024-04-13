@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/presentation/changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/changer/components/editing_fields/bool/store.dart';
@@ -7,6 +8,7 @@ import 'package:theme/presentation/changer/components/editing_fields/int/store.d
 import 'package:theme/presentation/changer/components/editing_map/store.dart';
 import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
+import 'package:utilities/sizes/spacers.dart';
 
 class MapEditor extends StatelessWidget {
   final MapEditorStore mapEditorStore;
@@ -15,17 +17,31 @@ class MapEditor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Observer(
-        builder: (_) => SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    return Observer(
+      builder: (_) => Stack(
+        children: [
+          Column(
             children: [
+              Sizes.l.spacer(),
               buildHeader(context),
-              _buildMapEditor(context, mapEditorStore.mapData, []),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: _buildMapEditor(context, mapEditorStore.mapData, []),
+                ),
+              ),
             ],
           ),
-        ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -49,7 +65,7 @@ class MapEditor extends StatelessWidget {
           });
           if (valueEditor != null) {
             return ExpansionTile(
-              title: Text(key),
+              title: Text(key.split('_').first),
               expandedAlignment: Alignment.topLeft,
               children: [Padding(padding: const EdgeInsets.only(left: 16), child: valueEditor)],
             );
