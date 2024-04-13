@@ -33,7 +33,7 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                     controller: store.textController,
                     keyboardType: TextInputType.number,
                     // enabled: widget.enabled,
-                    onChanged: (value) => store.onValueChanged(double.tryParse(value)),
+                    // onChanged: (value) => store.onValueChanged(double.tryParse(value)),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
@@ -44,6 +44,11 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                 IconButton.filled(
                   icon: const Icon(Icons.add, color: Colors.white),
                   onPressed: store.subtract,
+                ),
+                Sizes.s.spacer(vertical: false),
+                InkWell(
+                  onTap: () => store.onValueChanged(double.tryParse(store.textController.text) ?? 0),
+                  child: const Text('Apply'),
                 ),
               ],
             ),

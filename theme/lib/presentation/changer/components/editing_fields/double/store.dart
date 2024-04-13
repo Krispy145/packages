@@ -7,7 +7,13 @@ part 'store.g.dart';
 class DoubleFormFieldStore = _DoubleFormFieldStore with _$DoubleFormFieldStore;
 
 abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with Store {
-  _DoubleFormFieldStore({required super.value, required super.onValueChanged, this.increment = 1, this.showButtons = true, required super.title}) {
+  _DoubleFormFieldStore({
+    required super.value,
+    required super.onValueChanged,
+    this.increment = 1,
+    this.showButtons = true,
+    required super.title,
+  }) {
     // On Value Changed
     reaction<double?>((reaction) => value, (newValue) {
       textController.setTextIfNotEqual(newValue.toString());

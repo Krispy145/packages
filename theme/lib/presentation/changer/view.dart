@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:theme/app/app.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
@@ -9,11 +8,8 @@ import 'package:theme/data/models/borders/outlined_border_model.dart';
 import 'package:theme/data/models/borders/shape_border_model.dart';
 import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/data/models/general/duration_model.dart';
-import 'package:theme/data/models/text/text_style_sizes.dart';
-import 'package:theme/data/models/text/text_types.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
-import 'package:theme/presentation/changer/changer.dart';
 import 'package:theme/presentation/changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/changer/components/editing_fields/bool/store.dart';
 import 'package:theme/presentation/changer/components/editing_fields/border_radius/form_field.dart';
@@ -139,18 +135,7 @@ class ThemeComponentEditor extends MapEditor {
       case "_font":
         final store = FontFormFieldStore(
           value: value as String?,
-          onValueChanged: (newValue) {
-            //TODO: Where should we house this?
-            //TODO: (maybe we make a different view for changing base textStyles rather then setting this in the componentEditorMap)
-            final textType = TextType.values.firstWhereOrNull((element) => element.name == keys[0]);
-            final size = keys[1];
-            final key = keys[2];
-            final selectedTextType = AppTheme.textStyleTypes()?.toJson();
-            selectedTextType![textType!.name][size][key] = newValue;
-            final newTextStyle = TextStyleSizes.fromJson(selectedTextType[textType.name] as Map<String, dynamic>);
-            AppLogger.print('newTextStyle: $newTextStyle', [ThemeLoggers.textStyles]);
-            ThemeChanger.changeTextTypeStyle(textType: textType, textStyle: newTextStyle);
-          },
+          onValueChanged: (newValue) => onChanged(keys, newValue),
           title: formattedKey,
         );
         return FontFormField(store: store);

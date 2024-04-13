@@ -118,7 +118,16 @@ class ThemeChanger {
   static Future<void> currentTextStylesThemeChanger({
     required BuildContext context,
   }) {
-    return showModalBottomSheet(context: context, builder: (context) => TextStyleView());
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) => TextStyleView(
+        onTextTypeChanged: (newTextType) => changeBaseThemeModel(
+          model: _baseThemeModel.copyWith(
+            textStyles: {styleType: newTextType},
+          ),
+        ),
+      ),
+    );
   }
 
   /// [changeTextTypeStyle] is a function that is used to change the text style of the app.
