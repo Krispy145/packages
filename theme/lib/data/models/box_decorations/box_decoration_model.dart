@@ -31,46 +31,6 @@ class BoxDecorationModel with _$BoxDecorationModel {
 
   factory BoxDecorationModel.fromJson(Map<String, dynamic> json) => _$BoxDecorationModelFromJson(json);
 
-  // static BoxDecorationModel defaultBoxDecorationModel() {
-  //   return BoxDecorationModel(
-  //     color: "background",
-  //     border: {
-  //       BoxBorderType.directional: const Border(
-  //         top: BorderSide(
-  //           color: Colors.transparent,
-  //           width: 0.0,
-  //         ),
-  //         right: BorderSide(
-  //           color: Colors.transparent,
-  //           width: 0.0,
-  //         ),
-  //         bottom: BorderSide(
-  //           color: Colors.transparent,
-  //           width: 0.0,
-  //         ),
-  //         left: BorderSide(
-  //           color: Colors.transparent,
-  //           width: 0.0,
-  //         ),
-  //       ),
-  //     },
-  //     borderRadius: const BorderRadius.only(
-  //       topLeft: Radius.circular(0.0),
-  //       topRight: Radius.circular(0.0),
-  //       bottomLeft: Radius.circular(0.0),
-  //       bottomRight: Radius.circular(0.0),
-  //     ),
-  //     shape: BoxShape.rectangle,
-  //     boxShadows: [
-  //       BoxShadow(
-  //         color: "outline".toColor() ?? Colors.transparent,
-  //         blurRadius: 4,
-  //         offset: const Offset(0, 2),
-  //       ),
-  //     ],
-  //   );
-  // }
-
   BoxDecoration asBoxDecoration({String? styleTypeName}) {
     return BoxDecoration(
       color: color_themeColorString?.toColor(styleType: styleTypeName),

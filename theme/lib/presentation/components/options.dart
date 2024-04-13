@@ -5,8 +5,7 @@ import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
-import 'package:theme/data/models/buttons/button_styles.dart';
+import 'package:theme/data/models/buttons/button_model.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
@@ -159,38 +158,38 @@ enum ChangerOptions {
       case ChangerOptions.textStyles:
         return () => ThemeChanger.currentTextStylesThemeChanger(context: context);
       case ChangerOptions.filledButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.filledButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.filled),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.filled),
               headerBuilder: (context) => FilledButton(onPressed: () {}, child: const Text("Filled Button")),
               defaultComponentTheme: null,
             );
       case ChangerOptions.elevatedButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.elevatedButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.elevated),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.elevated),
               headerBuilder: (context) => ElevatedButton(onPressed: () {}, child: const Text("Elevated Button")),
               defaultComponentTheme: null,
             );
       case ChangerOptions.segmentedButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.segmentedButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.segmented),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.segmented),
               headerBuilder: (context) => SegmentedButton(
                 selected: const {1},
                 segments: const [
@@ -201,52 +200,52 @@ enum ChangerOptions {
               defaultComponentTheme: null,
             );
       case ChangerOptions.outlinedButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.outlinedButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.outlined),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.outlined),
               headerBuilder: (context) => OutlinedButton(onPressed: () {}, child: const Text("Outlined Button")),
               defaultComponentTheme: null,
             );
       case ChangerOptions.textButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.textButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.text),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.text),
               headerBuilder: (context) => TextButton(onPressed: () {}, child: const Text("Text Button")),
               defaultComponentTheme: null,
             );
       case ChangerOptions.iconButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.iconButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.icon),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.icon),
               headerBuilder: (context) => IconButton(icon: const Icon(Icons.star), onPressed: () {}),
               defaultComponentTheme: null,
             );
       case ChangerOptions.menuButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonStyleModel>(
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
               context: context,
               // defaultComponentTheme: ButtonStyleModel(),
               currentComponentTheme: AppTheme.menuButtonStyle(),
               convertComponentThemeToMap: (data) => data.toJson(),
-              convertComponentThemeFromMap: ButtonStyleModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonStyleModelType.menu),
+              convertComponentThemeFromMap: ButtonModel.fromJson,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(buttonStyle: newTheme, buttonType: ButtonModelType.menu),
               headerBuilder: (context) => MenuItemButton(onPressed: () {}, child: const Text("Menu Item Button")),
-              defaultComponentTheme: ButtonStyleModel(),
+              defaultComponentTheme: ButtonModel(),
             );
       case ChangerOptions.toggleButtons:
         return () => ThemeChanger.componentThemeChanger<ToggleButtonModel>(

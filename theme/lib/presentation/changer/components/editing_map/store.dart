@@ -21,10 +21,10 @@ abstract class _MapEditorStore with Store {
   @action
   void updateValue(List<String> keys, dynamic value) {
     AppLogger
-      ..print("updateValue: $keys, $value", [ThemeLoggers.theme])
-      ..print("before: $mapData", [ThemeLoggers.theme]);
+      ..print("updateValue: $keys, $value", [ThemeLoggers.changer])
+      ..print("before: $mapData", [ThemeLoggers.changer]);
     _setNestedValue(mapData, keys, value);
-    AppLogger.print("after: $mapData", [ThemeLoggers.theme]);
+    AppLogger.print("after: $mapData", [ThemeLoggers.changer]);
     onMapChanged?.call(mapData);
   }
 

@@ -36,7 +36,7 @@ class ThemeColorStringFormField extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         store.value = colorName;
-                        AppLogger.print("Calling onChanged with ${store.value}", [ThemeLoggers.theme]);
+                        AppLogger.print("Calling onChanged with ${store.value}", [ThemeLoggers.colors]);
                       },
                       child: SizedBox(
                         height: 60,

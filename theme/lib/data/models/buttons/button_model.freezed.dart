@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'button_style_model.dart';
+part of 'button_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ButtonStyleModel _$ButtonStyleModelFromJson(Map<String, dynamic> json) {
-  return _ButtonStyleModel.fromJson(json);
+ButtonModel _$ButtonModelFromJson(Map<String, dynamic> json) {
+  return _ButtonModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$ButtonStyleModel {
+mixin _$ButtonModel {
   String? get textStyle_textStyleString => throw _privateConstructorUsedError;
   set textStyle_textStyleString(String? value) =>
       throw _privateConstructorUsedError;
@@ -71,15 +71,15 @@ mixin _$ButtonStyleModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ButtonStyleModelCopyWith<ButtonStyleModel> get copyWith =>
+  $ButtonModelCopyWith<ButtonModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ButtonStyleModelCopyWith<$Res> {
-  factory $ButtonStyleModelCopyWith(
-          ButtonStyleModel value, $Res Function(ButtonStyleModel) then) =
-      _$ButtonStyleModelCopyWithImpl<$Res, ButtonStyleModel>;
+abstract class $ButtonModelCopyWith<$Res> {
+  factory $ButtonModelCopyWith(
+          ButtonModel value, $Res Function(ButtonModel) then) =
+      _$ButtonModelCopyWithImpl<$Res, ButtonModel>;
   @useResult
   $Res call(
       {String? textStyle_textStyleString,
@@ -107,9 +107,9 @@ abstract class $ButtonStyleModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ButtonStyleModelCopyWithImpl<$Res, $Val extends ButtonStyleModel>
-    implements $ButtonStyleModelCopyWith<$Res> {
-  _$ButtonStyleModelCopyWithImpl(this._value, this._then);
+class _$ButtonModelCopyWithImpl<$Res, $Val extends ButtonModel>
+    implements $ButtonModelCopyWith<$Res> {
+  _$ButtonModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -277,11 +277,11 @@ class _$ButtonStyleModelCopyWithImpl<$Res, $Val extends ButtonStyleModel>
 }
 
 /// @nodoc
-abstract class _$$ButtonStyleModelImplCopyWith<$Res>
-    implements $ButtonStyleModelCopyWith<$Res> {
-  factory _$$ButtonStyleModelImplCopyWith(_$ButtonStyleModelImpl value,
-          $Res Function(_$ButtonStyleModelImpl) then) =
-      __$$ButtonStyleModelImplCopyWithImpl<$Res>;
+abstract class _$$ButtonModelImplCopyWith<$Res>
+    implements $ButtonModelCopyWith<$Res> {
+  factory _$$ButtonModelImplCopyWith(
+          _$ButtonModelImpl value, $Res Function(_$ButtonModelImpl) then) =
+      __$$ButtonModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -316,11 +316,11 @@ abstract class _$$ButtonStyleModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ButtonStyleModelImplCopyWithImpl<$Res>
-    extends _$ButtonStyleModelCopyWithImpl<$Res, _$ButtonStyleModelImpl>
-    implements _$$ButtonStyleModelImplCopyWith<$Res> {
-  __$$ButtonStyleModelImplCopyWithImpl(_$ButtonStyleModelImpl _value,
-      $Res Function(_$ButtonStyleModelImpl) _then)
+class __$$ButtonModelImplCopyWithImpl<$Res>
+    extends _$ButtonModelCopyWithImpl<$Res, _$ButtonModelImpl>
+    implements _$$ButtonModelImplCopyWith<$Res> {
+  __$$ButtonModelImplCopyWithImpl(
+      _$ButtonModelImpl _value, $Res Function(_$ButtonModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -342,7 +342,7 @@ class __$$ButtonStyleModelImplCopyWithImpl<$Res>
     Object? side_borderSide = freezed,
     Object? shape_outlinedBorder = freezed,
   }) {
-    return _then(_$ButtonStyleModelImpl(
+    return _then(_$ButtonModelImpl(
       textStyle_textStyleString: freezed == textStyle_textStyleString
           ? _value.textStyle_textStyleString
           : textStyle_textStyleString // ignore: cast_nullable_to_non_nullable
@@ -412,8 +412,8 @@ class __$$ButtonStyleModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ButtonStyleModelImpl extends _ButtonStyleModel {
-  _$ButtonStyleModelImpl(
+class _$ButtonModelImpl extends _ButtonModel {
+  _$ButtonModelImpl(
       {this.textStyle_textStyleString,
       this.backgroundColor_themeColorString,
       this.foregroundColor_themeColorString,
@@ -431,8 +431,8 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
       this.shape_outlinedBorder = const OutlinedBorderModel()})
       : super._();
 
-  factory _$ButtonStyleModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ButtonStyleModelImplFromJson(json);
+  factory _$ButtonModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ButtonModelImplFromJson(json);
 
   @override
   String? textStyle_textStyleString;
@@ -475,26 +475,25 @@ class _$ButtonStyleModelImpl extends _ButtonStyleModel {
 
   @override
   String toString() {
-    return 'ButtonStyleModel(textStyle_textStyleString: $textStyle_textStyleString, backgroundColor_themeColorString: $backgroundColor_themeColorString, foregroundColor_themeColorString: $foregroundColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, iconColor_themeColorString: $iconColor_themeColorString, iconSize_double: $iconSize_double, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder)';
+    return 'ButtonModel(textStyle_textStyleString: $textStyle_textStyleString, backgroundColor_themeColorString: $backgroundColor_themeColorString, foregroundColor_themeColorString: $foregroundColor_themeColorString, overlayColor_themeColorString: $overlayColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, elevation_double: $elevation_double, padding_edgeInsets: $padding_edgeInsets, minimumSize_size: $minimumSize_size, fixedSize_size: $fixedSize_size, maximumSize_size: $maximumSize_size, iconColor_themeColorString: $iconColor_themeColorString, iconSize_double: $iconSize_double, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ButtonStyleModelImplCopyWith<_$ButtonStyleModelImpl> get copyWith =>
-      __$$ButtonStyleModelImplCopyWithImpl<_$ButtonStyleModelImpl>(
-          this, _$identity);
+  _$$ButtonModelImplCopyWith<_$ButtonModelImpl> get copyWith =>
+      __$$ButtonModelImplCopyWithImpl<_$ButtonModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ButtonStyleModelImplToJson(
+    return _$$ButtonModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _ButtonStyleModel extends ButtonStyleModel {
-  factory _ButtonStyleModel(
+abstract class _ButtonModel extends ButtonModel {
+  factory _ButtonModel(
       {String? textStyle_textStyleString,
       String? backgroundColor_themeColorString,
       String? foregroundColor_themeColorString,
@@ -509,11 +508,11 @@ abstract class _ButtonStyleModel extends ButtonStyleModel {
       String? iconColor_themeColorString,
       double? iconSize_double,
       BorderSideModel? side_borderSide,
-      OutlinedBorderModel? shape_outlinedBorder}) = _$ButtonStyleModelImpl;
-  _ButtonStyleModel._() : super._();
+      OutlinedBorderModel? shape_outlinedBorder}) = _$ButtonModelImpl;
+  _ButtonModel._() : super._();
 
-  factory _ButtonStyleModel.fromJson(Map<String, dynamic> json) =
-      _$ButtonStyleModelImpl.fromJson;
+  factory _ButtonModel.fromJson(Map<String, dynamic> json) =
+      _$ButtonModelImpl.fromJson;
 
   @override
   String? get textStyle_textStyleString;
@@ -562,6 +561,6 @@ abstract class _ButtonStyleModel extends ButtonStyleModel {
   set shape_outlinedBorder(OutlinedBorderModel? value);
   @override
   @JsonKey(ignore: true)
-  _$$ButtonStyleModelImplCopyWith<_$ButtonStyleModelImpl> get copyWith =>
+  _$$ButtonModelImplCopyWith<_$ButtonModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

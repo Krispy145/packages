@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'button_style_model.dart';
+part of 'button_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ButtonStyleModelImpl _$$ButtonStyleModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ButtonStyleModelImpl(
+_$ButtonModelImpl _$$ButtonModelImplFromJson(Map<String, dynamic> json) =>
+    _$ButtonModelImpl(
       textStyle_textStyleString: json['textStyle_textStyleString'] as String?,
       backgroundColor_themeColorString:
           json['backgroundColor_themeColorString'] as String?,
@@ -48,8 +47,7 @@ _$ButtonStyleModelImpl _$$ButtonStyleModelImplFromJson(
               json['shape_outlinedBorder'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ButtonStyleModelImplToJson(
-        _$ButtonStyleModelImpl instance) =>
+Map<String, dynamic> _$$ButtonModelImplToJson(_$ButtonModelImpl instance) =>
     <String, dynamic>{
       'textStyle_textStyleString': instance.textStyle_textStyleString,
       'backgroundColor_themeColorString':

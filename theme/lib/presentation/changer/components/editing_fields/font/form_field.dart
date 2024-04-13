@@ -4,6 +4,8 @@ import 'package:fonts/data/do_fonts.dart';
 import 'package:theme/app/app.dart';
 import 'package:theme/presentation/changer/components/editing_fields/base/form_field.dart';
 import 'package:theme/presentation/changer/components/editing_fields/font/store.dart';
+import 'package:theme/utils/loggers.dart';
+import 'package:utilities/logger/logger.dart';
 
 class FontFormField extends BaseFormField<FontFormFieldStore> {
   const FontFormField({
@@ -38,7 +40,10 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
                 ),
               )
               .toList(),
-          onSelected: store.onValueChanged,
+          onSelected: (newValue) {
+            AppLogger.print('on value changed: $newValue', [ThemeLoggers.textStyles]);
+            store.onValueChanged(newValue);
+          },
         );
       },
     );

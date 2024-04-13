@@ -4,7 +4,7 @@ import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
+import 'package:theme/data/models/buttons/button_model.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
@@ -46,15 +46,15 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
   factory ComponentThemesModel({
     required final String id,
     String? name,
-    Map<String, ButtonStyleModel>? elevatedButtons,
-    Map<String, ButtonStyleModel>? filledButtons,
-    Map<String, ButtonStyleModel>? outlinedButtons,
-    Map<String, ButtonStyleModel>? textButtons,
+    Map<String, ButtonModel>? elevatedButtons,
+    Map<String, ButtonModel>? filledButtons,
+    Map<String, ButtonModel>? outlinedButtons,
+    Map<String, ButtonModel>? textButtons,
     Map<String, ToggleButtonModel>? toggleButtons,
-    Map<String, ButtonStyleModel>? iconButtons,
+    Map<String, ButtonModel>? iconButtons,
     Map<String, FloatingActionButtonModel>? floatingActionButtons,
-    Map<String, ButtonStyleModel>? menuButtons,
-    Map<String, ButtonStyleModel>? segmentedButtons,
+    Map<String, ButtonModel>? menuButtons,
+    Map<String, ButtonModel>? segmentedButtons,
     Map<String, InputDecorationModel>? inputDecorations,
     Map<String, BoxDecorationModel>? boxDecorations,
     Map<String, CardModel>? cards,

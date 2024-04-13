@@ -23,41 +23,41 @@ mixin _$ComponentThemesModel {
   String get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   set name(String? value) => throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get elevatedButtons =>
+  Map<String, ButtonModel>? get elevatedButtons =>
       throw _privateConstructorUsedError;
-  set elevatedButtons(Map<String, ButtonStyleModel>? value) =>
+  set elevatedButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get filledButtons =>
+  Map<String, ButtonModel>? get filledButtons =>
       throw _privateConstructorUsedError;
-  set filledButtons(Map<String, ButtonStyleModel>? value) =>
+  set filledButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get outlinedButtons =>
+  Map<String, ButtonModel>? get outlinedButtons =>
       throw _privateConstructorUsedError;
-  set outlinedButtons(Map<String, ButtonStyleModel>? value) =>
+  set outlinedButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get textButtons =>
+  Map<String, ButtonModel>? get textButtons =>
       throw _privateConstructorUsedError;
-  set textButtons(Map<String, ButtonStyleModel>? value) =>
+  set textButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
   Map<String, ToggleButtonModel>? get toggleButtons =>
       throw _privateConstructorUsedError;
   set toggleButtons(Map<String, ToggleButtonModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get iconButtons =>
+  Map<String, ButtonModel>? get iconButtons =>
       throw _privateConstructorUsedError;
-  set iconButtons(Map<String, ButtonStyleModel>? value) =>
+  set iconButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
   Map<String, FloatingActionButtonModel>? get floatingActionButtons =>
       throw _privateConstructorUsedError;
   set floatingActionButtons(Map<String, FloatingActionButtonModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get menuButtons =>
+  Map<String, ButtonModel>? get menuButtons =>
       throw _privateConstructorUsedError;
-  set menuButtons(Map<String, ButtonStyleModel>? value) =>
+  set menuButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
-  Map<String, ButtonStyleModel>? get segmentedButtons =>
+  Map<String, ButtonModel>? get segmentedButtons =>
       throw _privateConstructorUsedError;
-  set segmentedButtons(Map<String, ButtonStyleModel>? value) =>
+  set segmentedButtons(Map<String, ButtonModel>? value) =>
       throw _privateConstructorUsedError;
   Map<String, InputDecorationModel>? get inputDecorations =>
       throw _privateConstructorUsedError;
@@ -174,15 +174,15 @@ abstract class $ComponentThemesModelCopyWith<$Res> {
   $Res call(
       {String id,
       String? name,
-      Map<String, ButtonStyleModel>? elevatedButtons,
-      Map<String, ButtonStyleModel>? filledButtons,
-      Map<String, ButtonStyleModel>? outlinedButtons,
-      Map<String, ButtonStyleModel>? textButtons,
+      Map<String, ButtonModel>? elevatedButtons,
+      Map<String, ButtonModel>? filledButtons,
+      Map<String, ButtonModel>? outlinedButtons,
+      Map<String, ButtonModel>? textButtons,
       Map<String, ToggleButtonModel>? toggleButtons,
-      Map<String, ButtonStyleModel>? iconButtons,
+      Map<String, ButtonModel>? iconButtons,
       Map<String, FloatingActionButtonModel>? floatingActionButtons,
-      Map<String, ButtonStyleModel>? menuButtons,
-      Map<String, ButtonStyleModel>? segmentedButtons,
+      Map<String, ButtonModel>? menuButtons,
+      Map<String, ButtonModel>? segmentedButtons,
       Map<String, InputDecorationModel>? inputDecorations,
       Map<String, BoxDecorationModel>? boxDecorations,
       Map<String, CardModel>? cards,
@@ -279,19 +279,19 @@ class _$ComponentThemesModelCopyWithImpl<$Res,
       elevatedButtons: freezed == elevatedButtons
           ? _value.elevatedButtons
           : elevatedButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       filledButtons: freezed == filledButtons
           ? _value.filledButtons
           : filledButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       outlinedButtons: freezed == outlinedButtons
           ? _value.outlinedButtons
           : outlinedButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       textButtons: freezed == textButtons
           ? _value.textButtons
           : textButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       toggleButtons: freezed == toggleButtons
           ? _value.toggleButtons
           : toggleButtons // ignore: cast_nullable_to_non_nullable
@@ -299,7 +299,7 @@ class _$ComponentThemesModelCopyWithImpl<$Res,
       iconButtons: freezed == iconButtons
           ? _value.iconButtons
           : iconButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       floatingActionButtons: freezed == floatingActionButtons
           ? _value.floatingActionButtons
           : floatingActionButtons // ignore: cast_nullable_to_non_nullable
@@ -307,11 +307,11 @@ class _$ComponentThemesModelCopyWithImpl<$Res,
       menuButtons: freezed == menuButtons
           ? _value.menuButtons
           : menuButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       segmentedButtons: freezed == segmentedButtons
           ? _value.segmentedButtons
           : segmentedButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       inputDecorations: freezed == inputDecorations
           ? _value.inputDecorations
           : inputDecorations // ignore: cast_nullable_to_non_nullable
@@ -439,15 +439,15 @@ abstract class _$$ComponentThemesModelImplCopyWith<$Res>
   $Res call(
       {String id,
       String? name,
-      Map<String, ButtonStyleModel>? elevatedButtons,
-      Map<String, ButtonStyleModel>? filledButtons,
-      Map<String, ButtonStyleModel>? outlinedButtons,
-      Map<String, ButtonStyleModel>? textButtons,
+      Map<String, ButtonModel>? elevatedButtons,
+      Map<String, ButtonModel>? filledButtons,
+      Map<String, ButtonModel>? outlinedButtons,
+      Map<String, ButtonModel>? textButtons,
       Map<String, ToggleButtonModel>? toggleButtons,
-      Map<String, ButtonStyleModel>? iconButtons,
+      Map<String, ButtonModel>? iconButtons,
       Map<String, FloatingActionButtonModel>? floatingActionButtons,
-      Map<String, ButtonStyleModel>? menuButtons,
-      Map<String, ButtonStyleModel>? segmentedButtons,
+      Map<String, ButtonModel>? menuButtons,
+      Map<String, ButtonModel>? segmentedButtons,
       Map<String, InputDecorationModel>? inputDecorations,
       Map<String, BoxDecorationModel>? boxDecorations,
       Map<String, CardModel>? cards,
@@ -541,19 +541,19 @@ class __$$ComponentThemesModelImplCopyWithImpl<$Res>
       elevatedButtons: freezed == elevatedButtons
           ? _value.elevatedButtons
           : elevatedButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       filledButtons: freezed == filledButtons
           ? _value.filledButtons
           : filledButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       outlinedButtons: freezed == outlinedButtons
           ? _value.outlinedButtons
           : outlinedButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       textButtons: freezed == textButtons
           ? _value.textButtons
           : textButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       toggleButtons: freezed == toggleButtons
           ? _value.toggleButtons
           : toggleButtons // ignore: cast_nullable_to_non_nullable
@@ -561,7 +561,7 @@ class __$$ComponentThemesModelImplCopyWithImpl<$Res>
       iconButtons: freezed == iconButtons
           ? _value.iconButtons
           : iconButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       floatingActionButtons: freezed == floatingActionButtons
           ? _value.floatingActionButtons
           : floatingActionButtons // ignore: cast_nullable_to_non_nullable
@@ -569,11 +569,11 @@ class __$$ComponentThemesModelImplCopyWithImpl<$Res>
       menuButtons: freezed == menuButtons
           ? _value.menuButtons
           : menuButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       segmentedButtons: freezed == segmentedButtons
           ? _value.segmentedButtons
           : segmentedButtons // ignore: cast_nullable_to_non_nullable
-              as Map<String, ButtonStyleModel>?,
+              as Map<String, ButtonModel>?,
       inputDecorations: freezed == inputDecorations
           ? _value.inputDecorations
           : inputDecorations // ignore: cast_nullable_to_non_nullable
@@ -743,23 +743,23 @@ class _$ComponentThemesModelImpl extends _ComponentThemesModel {
   @override
   String? name;
   @override
-  Map<String, ButtonStyleModel>? elevatedButtons;
+  Map<String, ButtonModel>? elevatedButtons;
   @override
-  Map<String, ButtonStyleModel>? filledButtons;
+  Map<String, ButtonModel>? filledButtons;
   @override
-  Map<String, ButtonStyleModel>? outlinedButtons;
+  Map<String, ButtonModel>? outlinedButtons;
   @override
-  Map<String, ButtonStyleModel>? textButtons;
+  Map<String, ButtonModel>? textButtons;
   @override
   Map<String, ToggleButtonModel>? toggleButtons;
   @override
-  Map<String, ButtonStyleModel>? iconButtons;
+  Map<String, ButtonModel>? iconButtons;
   @override
   Map<String, FloatingActionButtonModel>? floatingActionButtons;
   @override
-  Map<String, ButtonStyleModel>? menuButtons;
+  Map<String, ButtonModel>? menuButtons;
   @override
-  Map<String, ButtonStyleModel>? segmentedButtons;
+  Map<String, ButtonModel>? segmentedButtons;
   @override
   Map<String, InputDecorationModel>? inputDecorations;
   @override
@@ -842,15 +842,15 @@ abstract class _ComponentThemesModel extends ComponentThemesModel {
   factory _ComponentThemesModel(
       {required final String id,
       String? name,
-      Map<String, ButtonStyleModel>? elevatedButtons,
-      Map<String, ButtonStyleModel>? filledButtons,
-      Map<String, ButtonStyleModel>? outlinedButtons,
-      Map<String, ButtonStyleModel>? textButtons,
+      Map<String, ButtonModel>? elevatedButtons,
+      Map<String, ButtonModel>? filledButtons,
+      Map<String, ButtonModel>? outlinedButtons,
+      Map<String, ButtonModel>? textButtons,
       Map<String, ToggleButtonModel>? toggleButtons,
-      Map<String, ButtonStyleModel>? iconButtons,
+      Map<String, ButtonModel>? iconButtons,
       Map<String, FloatingActionButtonModel>? floatingActionButtons,
-      Map<String, ButtonStyleModel>? menuButtons,
-      Map<String, ButtonStyleModel>? segmentedButtons,
+      Map<String, ButtonModel>? menuButtons,
+      Map<String, ButtonModel>? segmentedButtons,
       Map<String, InputDecorationModel>? inputDecorations,
       Map<String, BoxDecorationModel>? boxDecorations,
       Map<String, CardModel>? cards,
@@ -890,32 +890,32 @@ abstract class _ComponentThemesModel extends ComponentThemesModel {
   String? get name;
   set name(String? value);
   @override
-  Map<String, ButtonStyleModel>? get elevatedButtons;
-  set elevatedButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get elevatedButtons;
+  set elevatedButtons(Map<String, ButtonModel>? value);
   @override
-  Map<String, ButtonStyleModel>? get filledButtons;
-  set filledButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get filledButtons;
+  set filledButtons(Map<String, ButtonModel>? value);
   @override
-  Map<String, ButtonStyleModel>? get outlinedButtons;
-  set outlinedButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get outlinedButtons;
+  set outlinedButtons(Map<String, ButtonModel>? value);
   @override
-  Map<String, ButtonStyleModel>? get textButtons;
-  set textButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get textButtons;
+  set textButtons(Map<String, ButtonModel>? value);
   @override
   Map<String, ToggleButtonModel>? get toggleButtons;
   set toggleButtons(Map<String, ToggleButtonModel>? value);
   @override
-  Map<String, ButtonStyleModel>? get iconButtons;
-  set iconButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get iconButtons;
+  set iconButtons(Map<String, ButtonModel>? value);
   @override
   Map<String, FloatingActionButtonModel>? get floatingActionButtons;
   set floatingActionButtons(Map<String, FloatingActionButtonModel>? value);
   @override
-  Map<String, ButtonStyleModel>? get menuButtons;
-  set menuButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get menuButtons;
+  set menuButtons(Map<String, ButtonModel>? value);
   @override
-  Map<String, ButtonStyleModel>? get segmentedButtons;
-  set segmentedButtons(Map<String, ButtonStyleModel>? value);
+  Map<String, ButtonModel>? get segmentedButtons;
+  set segmentedButtons(Map<String, ButtonModel>? value);
   @override
   Map<String, InputDecorationModel>? get inputDecorations;
   set inputDecorations(Map<String, InputDecorationModel>? value);

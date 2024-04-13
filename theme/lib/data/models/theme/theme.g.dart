@@ -12,28 +12,23 @@ _$ComponentThemesModelImpl _$$ComponentThemesModelImplFromJson(
       id: json['id'] as String,
       name: json['name'] as String?,
       elevatedButtons: (json['elevatedButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       filledButtons: (json['filledButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       outlinedButtons: (json['outlinedButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       textButtons: (json['textButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       toggleButtons: (json['toggleButtons'] as Map<String, dynamic>?)?.map(
         (k, e) =>
             MapEntry(k, ToggleButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       iconButtons: (json['iconButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       floatingActionButtons:
           (json['floatingActionButtons'] as Map<String, dynamic>?)?.map(
@@ -41,13 +36,11 @@ _$ComponentThemesModelImpl _$$ComponentThemesModelImplFromJson(
             k, FloatingActionButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       menuButtons: (json['menuButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       segmentedButtons:
           (json['segmentedButtons'] as Map<String, dynamic>?)?.map(
-        (k, e) =>
-            MapEntry(k, ButtonStyleModel.fromJson(e as Map<String, dynamic>)),
+        (k, e) => MapEntry(k, ButtonModel.fromJson(e as Map<String, dynamic>)),
       ),
       inputDecorations:
           (json['inputDecorations'] as Map<String, dynamic>?)?.map(

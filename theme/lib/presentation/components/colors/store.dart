@@ -21,7 +21,7 @@ abstract class _ColorSchemesStore with Store {
   @action
   void setSelectedColor(MapEntry<String, dynamic> value) {
     selectedColor = value;
-    AppLogger.print('selectedColor: $selectedColor', [ThemeLoggers.theme]);
+    AppLogger.print('selectedColor: $selectedColor', [ThemeLoggers.colors]);
   }
 
   /// [setColorModel] is a method that sets the current model.

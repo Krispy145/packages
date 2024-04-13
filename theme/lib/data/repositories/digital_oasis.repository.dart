@@ -2,7 +2,7 @@ import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
+import 'package:theme/data/models/buttons/button_model.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
@@ -69,10 +69,10 @@ class DODataRepository {
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ButtonStyleModel?> get buttonsDataSource => _dataSourceByType<ButtonStyleModel>(
+  DODataSource<ButtonModel?> get buttonsDataSource => _dataSourceByType<ButtonModel>(
         'buttons',
         DataSourceTypes.supabase,
-        convertDataTypeFromMap: ButtonStyleModel.fromJson,
+        convertDataTypeFromMap: ButtonModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 

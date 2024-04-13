@@ -6,7 +6,7 @@ import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
+import 'package:theme/data/models/buttons/button_model.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
@@ -70,13 +70,13 @@ class AppTheme {
   /// [currentColorModel] is a getter that returns the [ColorModel] instance.
   static ColorModel? get currentColorModel => _themeStore.currentColorModel;
 
-  static ButtonStyleModel? filledButtonStyle({String? styleTypeName}) => componentThemesModel?.filledButtons?[styleTypeName ?? styleType];
-  static ButtonStyleModel? elevatedButtonStyle({String? styleTypeName}) => componentThemesModel?.elevatedButtons?[styleTypeName ?? styleType];
-  static ButtonStyleModel? outlinedButtonStyle({String? styleTypeName}) => componentThemesModel?.outlinedButtons?[styleTypeName ?? styleType];
-  static ButtonStyleModel? menuButtonStyle({String? styleTypeName}) => componentThemesModel?.menuButtons?[styleTypeName ?? styleType];
-  static ButtonStyleModel? segmentedButtonStyle({String? styleTypeName}) => componentThemesModel?.segmentedButtons?[styleTypeName ?? styleType];
-  static ButtonStyleModel? textButtonStyle({String? styleTypeName}) => componentThemesModel?.textButtons?[styleTypeName ?? styleType];
-  static ButtonStyleModel? iconButtonStyle({String? styleTypeName}) => componentThemesModel?.iconButtons?[styleTypeName ?? styleType];
+  static ButtonModel? filledButtonStyle({String? styleTypeName}) => componentThemesModel?.filledButtons?[styleTypeName ?? styleType];
+  static ButtonModel? elevatedButtonStyle({String? styleTypeName}) => componentThemesModel?.elevatedButtons?[styleTypeName ?? styleType];
+  static ButtonModel? outlinedButtonStyle({String? styleTypeName}) => componentThemesModel?.outlinedButtons?[styleTypeName ?? styleType];
+  static ButtonModel? menuButtonStyle({String? styleTypeName}) => componentThemesModel?.menuButtons?[styleTypeName ?? styleType];
+  static ButtonModel? segmentedButtonStyle({String? styleTypeName}) => componentThemesModel?.segmentedButtons?[styleTypeName ?? styleType];
+  static ButtonModel? textButtonStyle({String? styleTypeName}) => componentThemesModel?.textButtons?[styleTypeName ?? styleType];
+  static ButtonModel? iconButtonStyle({String? styleTypeName}) => componentThemesModel?.iconButtons?[styleTypeName ?? styleType];
   static FloatingActionButtonModel? floatingActionButtonStyle({String? styleTypeName}) => componentThemesModel?.floatingActionButtons?[styleTypeName ?? styleType];
   static ToggleButtonModel? toggleButtonStyle({String? styleTypeName}) => componentThemesModel?.toggleButtons?[styleTypeName ?? styleType];
 

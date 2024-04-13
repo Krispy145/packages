@@ -2,7 +2,7 @@ import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
+import 'package:theme/data/models/buttons/button_model.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
@@ -52,8 +52,8 @@ class DORepository extends BaseThemeRepository {
   /// [textStylesDataSource] is the [DODataSource] that will be used to fetch the [TextStyleModel] data.
   final DODataSource<TextStyleModel> textStylesDataSource = DataRepositories.instance.DO.textStylesDataSource;
 
-  /// [buttonsDataSource] is the [DODataSource] that will be used to fetch the [ButtonStyleModel] data.
-  final DODataSource<ButtonStyleModel?> buttonsDataSource = DataRepositories.instance.DO.buttonsDataSource;
+  /// [buttonsDataSource] is the [DODataSource] that will be used to fetch the [ButtonModel] data.
+  final DODataSource<ButtonModel?> buttonsDataSource = DataRepositories.instance.DO.buttonsDataSource;
 
   /// [floatingActionButtonsDataSource] is the [DODataSource] that will be used to fetch the [FloatingActionButtonModel] data.
   final DODataSource<FloatingActionButtonModel?> floatingActionButtonsDataSource = DataRepositories.instance.DO.floatingActionButtonsDataSource;

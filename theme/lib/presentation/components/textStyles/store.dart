@@ -25,7 +25,7 @@ abstract class _TextTypesStore with Store {
     if (selectedTextType != null) {
       // final result = {...defaultTextType, ...selectedTextType!};
       final result = selectedTextType!;
-      AppLogger.print('mergedMap: $result', [ThemeLoggers.theme]);
+      AppLogger.print('mergedMap: $result', [ThemeLoggers.textStyles]);
       return result;
     }
     return {}; // defaultTextType;
@@ -35,7 +35,7 @@ abstract class _TextTypesStore with Store {
   @action
   void setSelectedTextType(Map<String, dynamic> value) {
     selectedTextType = value;
-    AppLogger.print('selectedTextType: $selectedTextType', [ThemeLoggers.theme]);
+    AppLogger.print('selectedTextType: $selectedTextType', [ThemeLoggers.textStyles]);
   }
 
   /// [setTextStyleModel] is a method that sets the current model.
@@ -45,7 +45,7 @@ abstract class _TextTypesStore with Store {
       selectedTextType![type][size][key] = value;
       return TextTypes.fromJson(selectedTextType!);
     } catch (e, stackTrace) {
-      AppLogger.print('selectedTextType: $selectedTextType\nStackTrace: $stackTrace', [ThemeLoggers.theme], type: LoggerType.error);
+      AppLogger.print('selectedTextType: $selectedTextType\nStackTrace: $stackTrace', [ThemeLoggers.textStyles], type: LoggerType.error);
     }
     return null;
   }

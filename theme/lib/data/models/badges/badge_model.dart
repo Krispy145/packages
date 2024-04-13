@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/data/models/edge_insets_model.dart';
@@ -59,24 +60,6 @@ class BadgeModel with _$BadgeModel {
   const BadgeModel._();
 
   factory BadgeModel.fromJson(Map<String, dynamic> json) => _$BadgeModelFromJson(json);
-
-  // static BadgeModel defaultBadgeModel() {
-  //   return const BadgeModel(
-  //     backgroundColor: "primary",
-  //     textColor: "primaryContainer",
-  //     smallSize: 16.0,
-  //     largeSize: 24.0,
-  //     textStyle: "label-small",
-  //     padding: EdgeInsets.only(
-  //       left: 2.0,
-  //       top: 2.0,
-  //       right: 2.0,
-  //       bottom: 2.0,
-  //     ),
-  //     alignment: Alignment.topRight,
-  //     offset: Offset(0.2, 0.2),
-  //   );
-  // }
 
   BadgeThemeData asBadgeThemeData({String? styleTypeName}) {
     return BadgeThemeData(

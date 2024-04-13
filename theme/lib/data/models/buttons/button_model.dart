@@ -9,12 +9,24 @@ import 'package:theme/data/models/general/size_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 
-part 'button_style_model.freezed.dart';
-part 'button_style_model.g.dart';
+part 'button_model.freezed.dart';
+part 'button_model.g.dart';
+
+enum ButtonModelType {
+  elevated,
+  outlined,
+  text,
+  toggle,
+  icon,
+  filled,
+  floating,
+  menu,
+  segmented,
+}
 
 @unfreezed
-class ButtonStyleModel with _$ButtonStyleModel {
-  factory ButtonStyleModel({
+class ButtonModel with _$ButtonModel {
+  factory ButtonModel({
     TextStyleString? textStyle_textStyleString,
     ThemeColorString? backgroundColor_themeColorString,
     ThemeColorString? foregroundColor_themeColorString,
@@ -32,8 +44,8 @@ class ButtonStyleModel with _$ButtonStyleModel {
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
     // @OutlinedBorderConverter()
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-  }) = _ButtonStyleModel;
-  ButtonStyleModel._();
+  }) = _ButtonModel;
+  ButtonModel._();
 
   ElevatedButtonThemeData toElevatedButtonThemeData() {
     return ElevatedButtonThemeData(style: asButtonStyle());
@@ -63,34 +75,6 @@ class ButtonStyleModel with _$ButtonStyleModel {
     return MenuButtonThemeData(style: asButtonStyle());
   }
 
-  // // TODO: Add option for different styles of defaults
-  // factory ButtonStyleModel.defaultButtonStyle() {
-  //   return ButtonStyleModel(
-  //       // textStyle: "label-small",
-  //       // backgroundColor: "primary",
-  //       // foregroundColor: "primaryContainer",
-  //       // overlayColor: "primaryContainer",
-  //       // shadowColor: "primaryContainer",
-  //       // elevation: 0.8,
-  //       // padding: const EdgeInsets.only(top: 8.0, bottom: 8.0, left: 8.0, right: 8.0),
-  //       // // minimumSize: Size(64.0, 36.0),
-  //       // // fixedSize: Size(64.0, 36.0),
-  //       // // maximumSize: Size(160.0, 80.0),
-  //       // side: const BorderSide(
-  //       //   color: Colors.transparent,
-  //       //   width: 0.0,
-  //       // ),
-  //       // shape: const RoundedRectangleBorder(
-  //       //   borderRadius: BorderRadius.only(
-  //       //     topRight: Radius.circular(0.0),
-  //       //     bottomLeft: Radius.circular(0.0),
-  //       //     topLeft: Radius.circular(0.0),
-  //       //     bottomRight: Radius.circular(0.0),
-  //       //   ),
-  //       // ),
-  //       );
-  // }
-
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     return ButtonStyle(
       textStyle: MaterialStateProperty.all(textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
@@ -108,5 +92,5 @@ class ButtonStyleModel with _$ButtonStyleModel {
     );
   }
 
-  factory ButtonStyleModel.fromJson(Map<String, dynamic> json) => _$ButtonStyleModelFromJson(json);
+  factory ButtonModel.fromJson(Map<String, dynamic> json) => _$ButtonModelFromJson(json);
 }

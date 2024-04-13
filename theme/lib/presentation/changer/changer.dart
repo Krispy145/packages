@@ -13,8 +13,7 @@ import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/buttons/button_style_model.dart';
-import 'package:theme/data/models/buttons/button_styles.dart';
+import 'package:theme/data/models/buttons/button_model.dart';
 import 'package:theme/data/models/buttons/floating_action_button_model.dart';
 import 'package:theme/data/models/buttons/toggle_button_model.dart';
 import 'package:theme/data/models/cards/card_model.dart';
@@ -181,11 +180,11 @@ class ThemeChanger {
   }
 
   /// [changeButtonStyle] is a function that is used to change the button style of the app
-  /// T can equal [ButtonStyleModel], [ToggleButtonModel], [FloatingActionButtonModel].
-  static void changeButtonStyle<T>({required ButtonStyleModelType buttonType, required T buttonStyle}) {
+  /// T can equal [ButtonModel], [ToggleButtonModel], [FloatingActionButtonModel].
+  static void changeButtonStyle<T>({required ButtonModelType buttonType, required T buttonStyle}) {
     // TODO: Tidy this
     if (T.toString() == "ButtonStyleModel" || T.toString() == "ButtonStyleModel?") {
-      _changeButtonStyleModel(buttonType: buttonType, buttonStyle: buttonStyle as ButtonStyleModel);
+      _changeButtonStyleModel(buttonType: buttonType, buttonStyle: buttonStyle as ButtonModel);
     } else if (T.toString() == "ToggleButtonModel" || T.toString() == "ToggleButtonModel?") {
       changeToggleButtonStyle(buttonStyle: buttonStyle as ToggleButtonModel);
     } else if (T.toString() == "FloatingActionButtonModel" || T.toString() == "FloatingActionButtonModel?") {
@@ -546,14 +545,14 @@ class ThemeChanger {
     return textTypes;
   }
 
-  static void _changeButtonStyleModel({required ButtonStyleModelType buttonType, required ButtonStyleModel buttonStyle}) {
+  static void _changeButtonStyleModel({required ButtonModelType buttonType, required ButtonModel buttonStyle}) {
     ComponentThemesModel? newComponentThemesModel;
     if (_componentThemesModel == null) {
       AppLogger.print("Component themes model is null in _changeButtonStyleModel", [ThemeLoggers.changer], type: LoggerType.warning);
       return;
     }
     switch (buttonType) {
-      case ButtonStyleModelType.elevated:
+      case ButtonModelType.elevated:
         // if (_componentThemesModel?.elevatedButtons != null) {
         //   _componentThemesModel!.elevatedButtons![styleType] = buttonStyle;
         // } else {
@@ -564,27 +563,27 @@ class ThemeChanger {
         newComponentThemesModel = _componentThemesModel!.copyWith(elevatedButtons: elevatedButtonStyle);
         _themeStore.changeComponentThemesModel(newComponentThemesModel);
         return;
-      case ButtonStyleModelType.outlined:
+      case ButtonModelType.outlined:
         final outlinedButtonStyle = _outlinedButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(outlinedButtons: outlinedButtonStyle);
         break;
-      case ButtonStyleModelType.text:
+      case ButtonModelType.text:
         final textButtonStyle = _textButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(textButtons: textButtonStyle);
         break;
-      case ButtonStyleModelType.icon:
+      case ButtonModelType.icon:
         final iconButtonStyle = _iconButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(iconButtons: iconButtonStyle); // Todo: Fix typo
         break;
-      case ButtonStyleModelType.filled:
+      case ButtonModelType.filled:
         final filledButtonStyle = _filledButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(filledButtons: filledButtonStyle);
         break;
-      case ButtonStyleModelType.menu:
+      case ButtonModelType.menu:
         final menuButtonStyle = _menuButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(menuButtons: menuButtonStyle);
         break;
-      case ButtonStyleModelType.segmented:
+      case ButtonModelType.segmented:
         final segmentedButtonStyle = _segmentedButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(segmentedButtons: segmentedButtonStyle);
         break;
@@ -596,31 +595,31 @@ class ThemeChanger {
     }
   }
 
-  static Map<String, ButtonStyleModel> _elevatedButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _elevatedButtons(ButtonModel buttonStyle) {
     final elevatedButtonStyle = _componentThemesModel?.elevatedButtons ?? {styleType: buttonStyle};
     elevatedButtonStyle[styleType] = buttonStyle;
     return elevatedButtonStyle;
   }
 
-  static Map<String, ButtonStyleModel> _filledButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _filledButtons(ButtonModel buttonStyle) {
     final filledButtonStyle = _componentThemesModel?.filledButtons ?? {styleType: buttonStyle};
     filledButtonStyle[styleType] = buttonStyle;
     return filledButtonStyle;
   }
 
-  static Map<String, ButtonStyleModel> _outlinedButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _outlinedButtons(ButtonModel buttonStyle) {
     final outlinedButtonStyle = _componentThemesModel?.outlinedButtons ?? {styleType: buttonStyle};
     outlinedButtonStyle[styleType] = buttonStyle;
     return outlinedButtonStyle;
   }
 
-  static Map<String, ButtonStyleModel> _menuButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _menuButtons(ButtonModel buttonStyle) {
     final menuButtonStyle = _componentThemesModel?.menuButtons ?? {styleType: buttonStyle};
     menuButtonStyle[styleType] = buttonStyle;
     return menuButtonStyle;
   }
 
-  static Map<String, ButtonStyleModel> _textButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _textButtons(ButtonModel buttonStyle) {
     final textButtonStyle = _componentThemesModel?.textButtons ?? {styleType: buttonStyle};
     textButtonStyle[styleType] = buttonStyle;
     return textButtonStyle;
@@ -632,7 +631,7 @@ class ThemeChanger {
     return toggleButtonStyle;
   }
 
-  static Map<String, ButtonStyleModel> _iconButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _iconButtons(ButtonModel buttonStyle) {
     final iconButtonStyle = _componentThemesModel?.iconButtons ?? {styleType: buttonStyle};
     iconButtonStyle[styleType] = buttonStyle;
     return iconButtonStyle;
@@ -644,7 +643,7 @@ class ThemeChanger {
     return floatingActionButtonStyle;
   }
 
-  static Map<String, ButtonStyleModel> _segmentedButtons(ButtonStyleModel buttonStyle) {
+  static Map<String, ButtonModel> _segmentedButtons(ButtonModel buttonStyle) {
     final segmentedButtonStyle = _componentThemesModel?.segmentedButtons ?? {styleType: buttonStyle};
     segmentedButtonStyle[styleType] = buttonStyle;
     return segmentedButtonStyle;
