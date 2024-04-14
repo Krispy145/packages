@@ -1,4 +1,5 @@
 import 'map.repository.dart';
+
 ///END OF IMPORTS
 
 /// [DataSourceTypes] is an enum that defines the different data sources.
@@ -23,10 +24,8 @@ class DataRepositories {
   /// [instance] is the singleton instance of [DataRepositories].
   static final DataRepositories instance = DataRepositories._();
 
-/// [map] is the [MapDataRepository] instance.
-  final MapDataRepository map = MapDataRepository();
+  /// [map] is the [MarkerDataRepository] instance.
+  final MarkerDataRepository map = MarkerDataRepository();
 
   ///END OF REPOSITORIES
-  
 }
-      

@@ -1,5 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
+import 'package:map/constants/map_constants.dart';
+import 'package:map/constants/marker_constants.dart';
+import 'package:map/data/models/marker_model.dart';
+import 'package:map/presentation/markers/base_marker.dart';
+import 'package:map/presentation/markers/helpers/cluster_data.dart';
+import 'package:map/presentation/markers/number_marker.dart';
+import 'package:map/presentation/markers/ringed_marker.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:utilities/widgets/load_state/state_widget.dart';
 
 import 'store.dart';
@@ -11,28 +21,48 @@ class MapView extends StatelessWidget {
   MapView({super.key});
 
   /// [store] is an instance of [MapStore], used in the [LoadStateBuilder].
-  final MapStore store = MapStore()..loadMapModels();
+  final MapStore store = MapStore();
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
-        viewStore: store,
-        emptyBuilder: (context) => const Center(
-          child: Text("Empty map view."),
+    return FlutterMap(
+      options: store.mapOptions,
+      mapController: store.animatedMapController.mapController,
+      children: [
+        RichAttributionWidget(
+          showFlutterMapAttribution: false,
+          attributions: [
+            TextSourceAttribution("© Mapbox", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/about/maps/'))),
+            TextSourceAttribution("© OpenStreetMap", prependCopyright: false, onTap: () => launchUrl(Uri.parse('http://www.openstreetmap.org/copyright'))),
+            TextSourceAttribution("Improve this map", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/map-feedback/'))),
+          ],
         ),
-        loadedBuilder: (context) => ListView.builder(
-          itemCount: store.maps.length,
-          itemBuilder: (context, index) {
-            final mapModel = store.maps[index];
-            return ListTile(
-              title: Text('ID: ${mapModel?.id}'),
-              subtitle: Text('Name: ${mapModel?.name}'),
-            );
+        TileLayer(
+          urlTemplate: store.mapTilesUrl, // context.project.text.mapTilesUrl?.firstOrNull?.value ?? flutterManager.mapBoxUrl,
+          userAgentPackageName: store.mapTilesUserPackageName,
+          maxNativeZoom: MapConstants.maxZoomLevel.toInt(),
+          maxZoom: MapConstants.maxZoomLevel,
+          minNativeZoom: MapConstants.minZoomLevel.toInt(),
+          minZoom: MapConstants.minZoomLevel,
+        ),
+        SuperclusterLayer.mutable(
+          controller: store.superclusterController,
+          indexBuilder: IndexBuilders.rootIsolate,
+          clusterWidgetSize: const Size.square(MarkerConstants.selectedSize),
+          calculateAggregatedClusterData: true,
+          loadingOverlayBuilder: (context) => const SizedBox.shrink(),
+          clusterDataExtractor: (marker) => MarkerClusterData(marker as BaseMarker),
+          builder: (context, position, markerCount, extraClusterData) {
+            final clusterData = extraClusterData as MarkerClusterData;
+            final marker = clusterData.topMarker;
+            if (markerCount == 1) {
+              return store.buildSingleMarker(marker).child;
+            } else {
+              return store.buildClusterMarker(clusterData, markerCount).child;
+            }
           },
-        ),
-        errorBuilder: (context) => const Center(
-          child: Text("Error loading map view."),
-        ),
-      );
+        )
+      ],
+    );
   }
 }

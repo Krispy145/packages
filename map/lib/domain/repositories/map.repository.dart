@@ -1,21 +1,21 @@
-import '/data/models/map_model.dart';
+import '../../data/models/marker_model.dart';
 import '/data/repositories/_repositories.dart';
 import '/data/repositories/map.repository.dart';
 
-/// [MapRepository] is an abstract class that defines the basic CRUD operations for the [MapModel] entity.
-class MapRepository {
-  final MapDataRepository _mapDataRepository = DataRepositories.instance.map;
+/// [MarkerRepository] is an abstract class that defines the basic CRUD operations for the [MarkerModel] entity.
+class MarkerRepository {
+  final MarkerDataRepository _mapDataRepository = DataRepositories.instance.map;
 
-  /// [MapRepository] constructor.
-  MapRepository();
+  /// [MarkerRepository] constructor.
+  MarkerRepository();
 
-  /// [getAllMapModelsFromApi] fetches all [MapModel]s from the data source.
-  Future<List<MapModel?>> getAllMapModelsFromApi() {
-    return _mapDataRepository.getAllMapModels(source: DataSourceTypes.api);
+  /// [getAllMarkerModelsFromApi] fetches all [MarkerModel]s from the data source.
+  Future<List<MarkerModel?>> getAllMarkerModelsFromApi() {
+    return _mapDataRepository.getAllMarkerModels(source: DataSourceTypes.api);
   }
 
-  /// [addAllMapModelsFromApi] adds all [MapModel]s to the data source.
-  Future<void> addAllMapModelsFromApi(List<MapModel> mapModels) {
-    return _mapDataRepository.addAllMapModels(source: DataSourceTypes.api, mapModels: mapModels);
+  /// [addAllMarkerModelsFromApi] adds all [MarkerModel]s to the data source.
+  Future<void> addAllMarkerModelsFromApi(List<MarkerModel> MarkerModels) {
+    return _mapDataRepository.addAllMarkerModels(source: DataSourceTypes.api, MarkerModels: MarkerModels);
   }
 }

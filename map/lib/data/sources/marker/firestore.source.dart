@@ -2,16 +2,16 @@ import 'package:map/utils/loggers.dart';
 import 'package:utilities/data_sources/remote/firestore.dart';
 import 'package:utilities/logger/logger.dart';
 
-import '../../models/map_model.dart';
+import '../../models/marker_model.dart';
 import '_source.dart';
 
-/// [FirestoreMapDataSource] is a class that implements [MapDataSource] interface.
-class FirestoreMapDataSource extends FirestoreDataSource<MapModel> implements MapDataSource {
-  /// [FirestoreMapDataSource] constructor.
-  FirestoreMapDataSource()
+/// [FirestoreMarkerDataSource] is a class that implements [MarkerDataSource] interface.
+class FirestoreMarkerDataSource extends FirestoreDataSource<MarkerModel> implements MarkerDataSource {
+  /// [FirestoreMarkerDataSource] constructor.
+  FirestoreMarkerDataSource()
       : super(
-          'map',
-          convertDataTypeFromMap: MapModel.fromJson,
+          'markers',
+          convertDataTypeFromMap: MarkerModel.fromJson,
           convertDataTypeToMap: (data) => data.toJson(),
         );
 

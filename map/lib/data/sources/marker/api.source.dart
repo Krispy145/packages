@@ -1,18 +1,18 @@
-import 'package:map/data/models/map_model.dart';
+import 'package:map/data/models/marker_model.dart';
 import 'package:map/utils/loggers.dart';
 import 'package:utilities/data_sources/remote/api.dart';
 import 'package:utilities/logger/logger.dart';
 
 import '_source.dart';
 
-/// [ApiMapDataSource] is a class that implements [MapDataSource] interface.
-class ApiMapDataSource extends ApiDataSource<MapModel> implements MapDataSource {
-  /// [ApiMapDataSource] constructor.
-  ApiMapDataSource()
+/// [ApiMarkerDataSource] is a class that implements [MarkerDataSource] interface.
+class ApiMarkerDataSource extends ApiDataSource<MarkerModel> implements MarkerDataSource {
+  /// [ApiMarkerDataSource] constructor.
+  ApiMarkerDataSource()
       : super(
-          '', // Managers.flavor.apiPrefix,
-          sourceSuffix: "map",
-          convertDataTypeFromMap: MapModel.fromJson,
+          '',
+          sourceSuffix: "markers",
+          convertDataTypeFromMap: MarkerModel.fromJson,
           convertDataTypeToMap: (data) => data.toJson(),
         );
 
@@ -24,7 +24,7 @@ class ApiMapDataSource extends ApiDataSource<MapModel> implements MapDataSource 
     } catch (e) {
       AppLogger.print(
         "API RESULT: Failed request: $e",
-        [MapLoggers.map],
+        [MapLoggers.markers],
         type: LoggerType.error,
       );
       return null;
