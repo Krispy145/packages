@@ -4,11 +4,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/constants/marker_constants.dart';
-import 'package:map/data/models/marker_model.dart';
 import 'package:map/presentation/markers/base_marker.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
-import 'package:map/presentation/markers/number_marker.dart';
-import 'package:map/presentation/markers/ringed_marker.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:utilities/widgets/load_state/state_widget.dart';
 
@@ -38,7 +35,7 @@ class MapView extends StatelessWidget {
           ],
         ),
         TileLayer(
-          urlTemplate: store.mapTilesUrl, // context.project.text.mapTilesUrl?.firstOrNull?.value ?? flutterManager.mapBoxUrl,
+          urlTemplate: store.mapTilesUrl,
           userAgentPackageName: store.mapTilesUserPackageName,
           maxNativeZoom: MapConstants.maxZoomLevel.toInt(),
           maxZoom: MapConstants.maxZoomLevel,
