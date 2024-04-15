@@ -11,7 +11,8 @@ packages:
   - utilities
   - widgets
   - fonts
-# MELOS_PACKAGE_LIST_END
+  - map
+ # MELOS_PACKAGE_LIST_END
 
 scripts:
   analyze:
