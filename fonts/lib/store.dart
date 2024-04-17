@@ -131,7 +131,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
 
   void eagerlyLoadFamily({
     required String fontFamily,
-    required Map<DOFontVariantDescriptor, String> fonts,
+    required Map<DOFontVariantDescriptor, String?> fonts,
   }) {
     final loader = FontLoader(fontFamily);
     final futures = <Future<void>>[];
@@ -154,7 +154,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
 
   Future<List<void>> pendingFonts([List<dynamic>? _]) => Future.wait(pendingFontFutures);
 
-  void register(String familyName, Map<DOFontVariantDescriptor, String> variantMap, {bool eager = false}) {
+  void register(String familyName, Map<DOFontVariantDescriptor, String?> variantMap, {bool eager = false}) {
     final style = styleBuilder(familyName, variantMap, eager);
     _fontsMap[familyName] = style;
     _themeMap[familyName] = themeBuilder(style);
@@ -236,7 +236,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
 
   TextStyleBuilder styleBuilder(
     String fontFamily,
-    Map<DOFontVariantDescriptor, String> variantMap,
+    Map<DOFontVariantDescriptor, String?> variantMap,
     bool eager,
   ) =>
       ({
@@ -302,7 +302,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
 
         final descriptor = DOFontVariantAndUrl(
           familyWithVariant: familyWithVariant,
-          url: fonts[matchedVariant]!,
+          url: fonts[matchedVariant],
         );
 
         final loadingFuture = loadFontIfNecessary(descriptor);

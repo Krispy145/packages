@@ -170,46 +170,46 @@ class ColorModel with _$ColorModel {
     return xmlBuilder.buildDocument();
   }
 
-  // static ColorModel defaultModel({required Brightness brightness}) {
-  //   final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
-  //   return ColorModel(
-  //     primary: seedColorScheme.primary,
-  //     primaryContainer: seedColorScheme.primaryContainer,
-  //     secondary: seedColorScheme.secondary,
-  //     secondaryContainer: seedColorScheme.secondaryContainer,
-  //     background: seedColorScheme.background,
-  //     surface: seedColorScheme.surface,
-  //     error: seedColorScheme.error,
-  //     onPrimary: seedColorScheme.onPrimary,
-  //     onSecondary: seedColorScheme.onSecondary,
-  //     onBackground: seedColorScheme.onBackground,
-  //     onSurface: seedColorScheme.onSurface,
-  //     onError: seedColorScheme.onError,
-  //     onErrorContainer: seedColorScheme.onErrorContainer,
-  //     onInverseSurface: seedColorScheme.onInverseSurface,
-  //     onPrimaryContainer: seedColorScheme.onPrimaryContainer,
-  //     onSecondaryContainer: seedColorScheme.onSecondaryContainer,
-  //     onSurfaceVariant: seedColorScheme.onSurfaceVariant,
-  //     onTertiary: seedColorScheme.onTertiary,
-  //     onTertiaryContainer: seedColorScheme.onTertiaryContainer,
-  //     outline: seedColorScheme.outline,
-  //     outlineVariant: seedColorScheme.outlineVariant,
-  //     scrim: seedColorScheme.scrim,
-  //     shadow: seedColorScheme.shadow,
-  //     surfaceTint: seedColorScheme.surfaceTint,
-  //     tertiary: seedColorScheme.tertiary,
-  //     tertiaryContainer: seedColorScheme.tertiaryContainer,
-  //     inversePrimary: seedColorScheme.inversePrimary,
-  //     inverseSurface: seedColorScheme.inverseSurface,
-  //   );
-  // }
+  static ColorModel defaultModel({required Brightness brightness}) {
+    final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
+    return ColorModel(
+      primary: seedColorScheme.primary,
+      primaryContainer: seedColorScheme.primaryContainer,
+      secondary: seedColorScheme.secondary,
+      secondaryContainer: seedColorScheme.secondaryContainer,
+      background: seedColorScheme.background,
+      surface: seedColorScheme.surface,
+      error: seedColorScheme.error,
+      onPrimary: seedColorScheme.onPrimary,
+      onSecondary: seedColorScheme.onSecondary,
+      onBackground: seedColorScheme.onBackground,
+      onSurface: seedColorScheme.onSurface,
+      onError: seedColorScheme.onError,
+      onErrorContainer: seedColorScheme.onErrorContainer,
+      onInverseSurface: seedColorScheme.onInverseSurface,
+      onPrimaryContainer: seedColorScheme.onPrimaryContainer,
+      onSecondaryContainer: seedColorScheme.onSecondaryContainer,
+      onSurfaceVariant: seedColorScheme.onSurfaceVariant,
+      onTertiary: seedColorScheme.onTertiary,
+      onTertiaryContainer: seedColorScheme.onTertiaryContainer,
+      outline: seedColorScheme.outline,
+      outlineVariant: seedColorScheme.outlineVariant,
+      scrim: seedColorScheme.scrim,
+      shadow: seedColorScheme.shadow,
+      surfaceTint: seedColorScheme.surfaceTint,
+      tertiary: seedColorScheme.tertiary,
+      tertiaryContainer: seedColorScheme.tertiaryContainer,
+      inversePrimary: seedColorScheme.inversePrimary,
+      inverseSurface: seedColorScheme.inverseSurface,
+    );
+  }
 
   /// [ColorModel.fromJson] is a factory method that allows you to create a [ColorModel] from JSON.
   // factory ColorModel.fromJson(Map<String, dynamic> json) => _$ColorModelFromJson(json);
 
   factory ColorModel.fromJson(Map<String, dynamic> json) {
     final primary = const ColorConverter().fromJson(json['primary']);
-    final seedColor = ColorScheme.fromSeed(seedColor: primary!);
+    final seedColor = ColorScheme.fromSeed(seedColor: primary ?? Colors.green);
     return ColorModel(
       primary: primary,
       onPrimary: const ColorConverter().fromJson(json['onPrimary']) ?? seedColor.onPrimary,

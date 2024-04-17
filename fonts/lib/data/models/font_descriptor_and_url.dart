@@ -11,9 +11,9 @@ import 'font_family_and_variant.dart';
 class DOFontVariantAndUrl {
   const DOFontVariantAndUrl({
     required this.familyWithVariant,
-    required this.url,
+    this.url,
   });
 
   final DOFontFamilyAndVariant familyWithVariant;
-  final String url;
+  final String? url;
 }

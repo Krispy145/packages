@@ -47,19 +47,15 @@ mixin _$ThemeStateStore on _ThemeStateStore, Store {
       Atom(name: '_ThemeStateStore.baseThemeModel', context: context);
 
   @override
-  BaseThemeModel get baseThemeModel {
+  BaseThemeModel? get baseThemeModel {
     _$baseThemeModelAtom.reportRead();
     return super.baseThemeModel;
   }
 
-  bool _baseThemeModelIsInitialized = false;
-
   @override
-  set baseThemeModel(BaseThemeModel value) {
-    _$baseThemeModelAtom.reportWrite(
-        value, _baseThemeModelIsInitialized ? super.baseThemeModel : null, () {
+  set baseThemeModel(BaseThemeModel? value) {
+    _$baseThemeModelAtom.reportWrite(value, super.baseThemeModel, () {
       super.baseThemeModel = value;
-      _baseThemeModelIsInitialized = true;
     });
   }
 
