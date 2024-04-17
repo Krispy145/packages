@@ -318,7 +318,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
 
   void _setRepository({
     required ThemeConfiguration baseThemeConfiguration,
-    required ThemeConfiguration componentThemesConfiguration,
+    ThemeConfiguration? componentThemesConfiguration,
   }) {
     repository = ThemeRepository(
       baseThemeConfiguration: baseThemeConfiguration,
@@ -347,9 +347,10 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
 
   Future<void> _loadAssetsTheme({String? id}) async {
     setLoading();
+    final componentThemesConfiguration = componentThemesAssetPath != null ? ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!) : null;
     _setRepository(
       baseThemeConfiguration: ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!),
-      componentThemesConfiguration: ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!),
+      componentThemesConfiguration: componentThemesConfiguration,
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);

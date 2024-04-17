@@ -37,25 +37,30 @@ class ThemeConfiguration {
 /// [ThemeDataRepository] is a class that defines the basic CRUD operations for the [ThemeModel] entity.
 class ThemeDataRepository {
   final ThemeConfiguration baseThemeConfiguration;
-  final ThemeConfiguration componentThemesConfiguration;
+  final ThemeConfiguration? componentThemesConfiguration;
 
   /// [ThemeDataRepository] constructor.
-  ThemeDataRepository({required this.baseThemeConfiguration, required this.componentThemesConfiguration});
+  ThemeDataRepository({required this.baseThemeConfiguration, this.componentThemesConfiguration});
 
   /// [dataSource] is the [ThemeDataSource] that will be used to fetch the data.
   ThemeDataSource<BaseThemeModel> get dataSource => _dataSourceByType<BaseThemeModel>(
         'baseThemes',
         baseThemeConfiguration,
-        convertDataTypeFromMap: (map) => BaseThemeModel.fromJson(map),
+        convertDataTypeFromMap: BaseThemeModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  ThemeDataSource<ComponentThemesModel?> get componentThemesDataSource => _dataSourceByType<ComponentThemesModel>(
+  ThemeDataSource<ComponentThemesModel?>? get componentThemesDataSource {
+    if (componentThemesConfiguration != null) {
+      return _dataSourceByType<ComponentThemesModel>(
         'componentsThemes',
-        componentThemesConfiguration,
-        convertDataTypeFromMap: (map) => ComponentThemesModel.fromJson(map),
+        componentThemesConfiguration!,
+        convertDataTypeFromMap: ComponentThemesModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
+    }
+    return null;
+  }
 
   /// [_dataSourceByType] returns the appropriate [ThemeDataSource] based on the [DataSourceTypes] enum.
   /// Defaults to [AssetsThemeDataSource] if no type is provided.
@@ -84,7 +89,7 @@ class ThemeDataRepository {
       case DataSourceTypes.supabase:
         return SupabaseThemeDataSource<T>(
           tableName,
-          client: type.supabaseClient!,
+          client: type.supabaseClient,
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
         );
