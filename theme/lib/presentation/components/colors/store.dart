@@ -29,9 +29,6 @@ abstract class _ColorSchemesStore with Store {
   ColorModel setColorModel() {
     try {
       final colorSchemes = AppTheme.colorStyles();
-      if (colorSchemes == null) {
-        return ColorModel.defaultModel(brightness: AppTheme.isLight ? Brightness.light : Brightness.dark);
-      }
       Map<String, dynamic> jsonModel;
       if (AppTheme.isDark) {
         jsonModel = colorSchemes.dark.toJson();
