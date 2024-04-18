@@ -7,6 +7,9 @@ enum UtilitiesLoggers {
   /// [localDataSource] is the feature reference for localDataSource.
   localDataSource,
 
+  /// [assetsDataSource] is the feature reference for assetsDataSource.
+  assetsDataSource,
+
   /// [secureDataSource] is the feature reference for secureDataSource.
   secureDataSource,
 

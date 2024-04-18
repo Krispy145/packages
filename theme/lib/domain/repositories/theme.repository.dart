@@ -1,5 +1,7 @@
 import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/repositories/theme.repository.dart';
+import 'package:theme/utils/loggers.dart';
+import 'package:utilities/logger/logger.dart';
 
 import '/data/repositories/_repositories.dart';
 import 'base.repository.dart';
