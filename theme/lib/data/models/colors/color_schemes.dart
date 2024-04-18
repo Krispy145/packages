@@ -66,12 +66,12 @@ class ColorSchemes with _$ColorSchemes {
     return xmlBuilder.buildDocument();
   }
 
-  // static ColorSchemes defaultSchemes() {
-  //   return ColorSchemes(
-  //     light: ColorModel.defaultModel(brightness: Brightness.light),
-  //     dark: ColorModel.defaultModel(brightness: Brightness.dark),
-  //   );
-  // }
+  static ColorSchemes defaultSchemes() {
+    return ColorSchemes(
+      light: ColorModel.defaultModel(brightness: Brightness.light),
+      dark: ColorModel.defaultModel(brightness: Brightness.dark),
+    );
+  }
 
   /// [ColorSchemes.fromJson] is a factory method that allows you to create a [ColorSchemes] from JSON.
   factory ColorSchemes.fromJson(Map<String, dynamic> json) => _$ColorSchemesFromJson(json);

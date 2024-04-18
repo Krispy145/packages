@@ -43,7 +43,7 @@ import 'package:theme/data/models/tooltips/tooltip_model.dart';
 class AppTheme {
   /// [_themeStore] is a getter that returns the [ThemeStateStore] instance.
   static ThemeStateStore get _themeStore => GetIt.instance.get<ThemeStateStore>();
-  static BaseThemeModel get baseThemeModel => _themeStore.baseThemeModel;
+  static BaseThemeModel? get baseThemeModel => _themeStore.baseThemeModel;
   static ComponentThemesModel? get componentThemesModel => _themeStore.componentThemesModel;
   static FontsStore get fontsStore => _themeStore.fontsStore;
 
@@ -59,10 +59,10 @@ class AppTheme {
   static String get styleType => _themeStore.styleType;
 
   /// [colorStyles] is a getter that returns the [ColorSchemes] instance.
-  static ColorSchemes colorStyles({String? styleTypeName}) => baseThemeModel.colors[styleTypeName ?? styleType]!;
+  static ColorSchemes colorStyles({String? styleTypeName}) => baseThemeModel?.colors[styleTypeName ?? styleType] ?? const ColorSchemes(dark: ColorModel(), light: ColorModel());
 
   /// [textStyleTypes] is a getter that returns the [TextTypes] instance.
-  static TextTypes? textStyleTypes({String? styleTypeName}) => baseThemeModel.textStyles?[styleTypeName ?? styleType];
+  static TextTypes? textStyleTypes({String? styleTypeName}) => baseThemeModel?.textStyles?[styleTypeName ?? styleType];
 
   /// [textTheme] is a getter that returns the [TextTheme] instance.
   static TextTheme get textTheme => currentTheme.textTheme;

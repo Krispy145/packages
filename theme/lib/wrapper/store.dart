@@ -26,7 +26,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
 
   /// [baseThemeModel] is the model that will be used to store the theme data.
   @computed
-  BaseThemeModel get baseThemeModel => AppTheme.baseThemeModel;
+  BaseThemeModel? get baseThemeModel => AppTheme.baseThemeModel;
 
   /// [componentThemesModel] is the model that will be used to store the theme data.
   @computed
@@ -47,7 +47,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
   bool get isLight => currentThemeMode == ThemeMode.light;
 
   @computed
-  ColorModel? get currentColorModel => isDark ? baseThemeModel.colors[styleType]?.dark : baseThemeModel.colors[styleType]?.light;
+  ColorModel? get currentColorModel => isDark ? baseThemeModel?.colors[styleType]?.dark : baseThemeModel?.colors[styleType]?.light;
 
   @action
   void setStyleType(String newStyleType) {
@@ -91,7 +91,7 @@ abstract class _StyleTypeStore extends LoadStateStore with Store {
     final colorScheme = currentColorModel?.scheme;
     return ThemeData(
       colorScheme: colorScheme,
-      textTheme: (baseThemeModel.textStyles?[styleType] ?? baseThemeModel.textStyles?[styleType])?.theme,
+      textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
       elevatedButtonTheme: buttonStyles?.elevatedButtonTheme,
       iconButtonTheme: buttonStyles?.iconButtonTheme,
       iconTheme: IconThemeData(color: colorScheme?.primary),

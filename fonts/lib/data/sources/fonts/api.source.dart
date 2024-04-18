@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:fonts/data/models/font_descriptor_and_url.dart';
 import 'package:fonts/utilities/file_io_manager.dart';
 import 'package:http/http.dart' as http;
+import 'package:utilities/logger/logger.dart';
 
 import '_source.dart';
 
@@ -14,6 +15,10 @@ class ApiFontsDataSource implements FontsDataSource {
   @override
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
     final url = fontVariantAndUrl.url;
+    if (url == null) {
+      AppLogger.print('Font url is null', []);
+      return null;
+    }
     final name = fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix();
     final uri = Uri.tryParse(url);
     if (uri == null) {

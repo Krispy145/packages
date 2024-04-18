@@ -8,11 +8,11 @@ import 'base.repository.dart';
 
 /// [ThemeRepository] is an abstract class that defines the basic CRUD operations for the [ThemeModel] entity.
 class ThemeRepository extends BaseThemeRepository {
-  final ThemeConfiguration baseThemeConfiguration;
+  final ThemeConfiguration? baseThemeConfiguration;
   final ThemeConfiguration? componentThemesConfiguration;
 
   /// [ThemeRepository] constructor.
-  ThemeRepository({required this.baseThemeConfiguration, required this.componentThemesConfiguration});
+  ThemeRepository({this.baseThemeConfiguration, this.componentThemesConfiguration});
 
   ThemeDataRepository get _themeDataRepository => DataRepositories.instance.theme(
         baseThemeConfiguration: baseThemeConfiguration,
@@ -21,27 +21,27 @@ class ThemeRepository extends BaseThemeRepository {
 
   /// [fetchTheme] is the method that will be used to fetch the [BaseThemeModel] data.
   @override
-  Future<BaseThemeModel> fetchTheme({required String id}) async {
-    AppLogger.print("Fetching theme with id: $id", [ThemeLoggers.theme]);
-    final result = await _themeDataRepository.dataSource.get(id);
-    return result!;
+  Future<BaseThemeModel?>? fetchTheme({required String id}) {
+    return _themeDataRepository.dataSource?.get(id);
   }
 
   /// [fetchComponentsTheme] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
-  Future<ComponentThemesModel?> fetchComponentsTheme({required String id}) {
-    return _themeDataRepository.componentThemesDataSource?.get(id) ?? Future.value();
+  Future<ComponentThemesModel?>? fetchComponentsTheme({required String id}) async {
+    final theme = await _themeDataRepository.componentThemesDataSource?.get(id);
+    return theme ?? ComponentThemesModel(id: id);
   }
 
   /// [fetchThemes] is the method that will be used to fetch the [BaseThemeModel] data.
   @override
-  Future<List<BaseThemeModel?>> fetchThemes() {
-    return _themeDataRepository.dataSource.getAll();
+  Future<List<BaseThemeModel?>> fetchThemes() async {
+    final baseThemes = await _themeDataRepository.dataSource?.getAll();
+    return baseThemes ?? [];
   }
 
   /// [fetchComponentThemes] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
-  Future<List<ComponentThemesModel?>> fetchComponentThemes() {
-    return _themeDataRepository.componentThemesDataSource?.getAll() ?? Future.value([]);
+  Future<List<ComponentThemesModel?>> fetchComponentThemes() async {
+    return (await _themeDataRepository.componentThemesDataSource?.getAll()) ?? [];
   }
 }

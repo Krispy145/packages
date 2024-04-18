@@ -12,10 +12,10 @@ extension ThemeColorExtension on ThemeColorString {
     if (startsWith("#")) {
       return ColorConverter.getColorFromHex(this);
     }
-    final lightColorModel = AppTheme.colorStyles(styleTypeName: styleType).light.toJson();
-    final darkColorModel = AppTheme.colorStyles(styleTypeName: styleType).dark.toJson();
+    final lightColorModel = AppTheme.colorStyles(styleTypeName: styleType)?.light.toJson();
+    final darkColorModel = AppTheme.colorStyles(styleTypeName: styleType)?.dark.toJson();
     final currentColorModel = AppTheme.isDark ? darkColorModel : lightColorModel;
-    final currentColorAndKey = currentColorModel.entries.firstWhereOrNull((element) => element.key == this);
+    final currentColorAndKey = currentColorModel?.entries.firstWhereOrNull((element) => element.key == this);
     if (currentColorAndKey != null) {
       return const ColorConverter().fromJson(currentColorAndKey.value);
     }

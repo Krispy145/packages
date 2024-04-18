@@ -94,7 +94,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
 
   /// [_ThemeStateStore.assets] is the constructor that will be used to fetch the data from assets.
   _ThemeStateStore.assets({
-    required this.baseThemeAssetPath,
+    this.baseThemeAssetPath,
     this.componentThemesAssetPath,
     this.id,
   })  : type = ThemeStateType.assets,
@@ -149,7 +149,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   /// then fetch the data from assets.
   _ThemeStateStore.localAssets({
     required this.baseThemeAssetPath,
-    this.componentThemesAssetPath,
+    required this.componentThemesAssetPath,
     this.id,
   })  : type = ThemeStateType.localAssets,
         baseThemeUrlPath = null,
@@ -205,7 +205,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
 
   /// [baseThemeModel] is the model that will be used to store the theme data.
   @observable
-  late BaseThemeModel baseThemeModel;
+  BaseThemeModel? baseThemeModel;
 
   /// [componentThemesModel] is the model that will be used to store the theme data.
   @observable
@@ -228,7 +228,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
 
   @computed
   ColorModel? get currentColorModel =>
-      isDark ? (baseThemeModel.colors[styleType] ?? baseThemeModel.colors[styleType])?.dark : (baseThemeModel.colors[styleType] ?? baseThemeModel.colors[styleType])?.light;
+      isDark ? (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.dark : (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.light;
 
   @action
   void changeBaseThemeModel(BaseThemeModel model) {
@@ -270,12 +270,12 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    AppLogger.print("Building App Theme: $styleType", [ThemeLoggers.theme]);
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
+    AppLogger.print("Building App Theme: $styleType -> ${isDark ? "Dark" : "Light"}", [ThemeLoggers.theme]);
     return ThemeData(
       colorScheme: colorScheme,
-      textTheme: (baseThemeModel.textStyles?[styleType] ?? baseThemeModel.textStyles?[styleType])?.theme,
+      textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
       elevatedButtonTheme: buttonStyles?.elevatedButtonTheme,
       iconButtonTheme: buttonStyles?.iconButtonTheme,
       iconTheme: IconThemeData(color: colorScheme?.primary),
@@ -317,7 +317,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   }
 
   void _setRepository({
-    required ThemeConfiguration baseThemeConfiguration,
+    ThemeConfiguration? baseThemeConfiguration,
     ThemeConfiguration? componentThemesConfiguration,
   }) {
     repository = ThemeRepository(
@@ -347,10 +347,34 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
 
   Future<void> _loadAssetsTheme({String? id}) async {
     setLoading();
-    final componentThemesConfiguration = componentThemesAssetPath != null ? ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!) : null;
+    ThemeConfiguration? baseThemeConfig;
+    ThemeConfiguration? componentsThemeConfig;
+    try {
+      if (baseThemeAssetPath != null) {
+        baseThemeConfig = ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!);
+      } else {
+        AppLogger.print("Base Theme asset path is null", [ThemeLoggers.theme], type: LoggerType.error);
+        baseThemeConfig = null;
+      }
+    } catch (e) {
+      AppLogger.print("Base Theme could not be loaded", [ThemeLoggers.theme], type: LoggerType.error);
+      baseThemeConfig = null;
+    }
+    try {
+      if (componentThemesAssetPath != null) {
+        componentsThemeConfig = ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!);
+      } else {
+        AppLogger.print("componentsThemeConfig Theme asset path is null", [ThemeLoggers.theme], type: LoggerType.error);
+        componentsThemeConfig = null;
+      }
+    } catch (e) {
+      AppLogger.print("componentsThemeConfig Theme could not be loaded", [ThemeLoggers.theme], type: LoggerType.error);
+      componentsThemeConfig = null;
+    }
+
     _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!),
-      componentThemesConfiguration: componentThemesConfiguration,
+      baseThemeConfiguration: baseThemeConfig,
+      componentThemesConfiguration: componentsThemeConfig,
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);

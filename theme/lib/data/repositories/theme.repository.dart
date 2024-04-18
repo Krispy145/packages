@@ -36,31 +36,30 @@ class ThemeConfiguration {
 
 /// [ThemeDataRepository] is a class that defines the basic CRUD operations for the [ThemeModel] entity.
 class ThemeDataRepository {
-  final ThemeConfiguration baseThemeConfiguration;
+  final ThemeConfiguration? baseThemeConfiguration;
   final ThemeConfiguration? componentThemesConfiguration;
 
   /// [ThemeDataRepository] constructor.
-  ThemeDataRepository({required this.baseThemeConfiguration, this.componentThemesConfiguration});
+  ThemeDataRepository({this.baseThemeConfiguration, this.componentThemesConfiguration});
 
   /// [dataSource] is the [ThemeDataSource] that will be used to fetch the data.
-  ThemeDataSource<BaseThemeModel> get dataSource => _dataSourceByType<BaseThemeModel>(
-        'baseThemes',
-        baseThemeConfiguration,
-        convertDataTypeFromMap: BaseThemeModel.fromJson,
-        convertDataTypeToMap: (model) => model.toJson(),
-      );
+  ThemeDataSource<BaseThemeModel>? get dataSource => baseThemeConfiguration != null
+      ? _dataSourceByType<BaseThemeModel>(
+          'baseThemes',
+          baseThemeConfiguration!,
+          convertDataTypeFromMap: BaseThemeModel.fromJson,
+          convertDataTypeToMap: (model) => model.toJson(),
+        )
+      : null;
 
-  ThemeDataSource<ComponentThemesModel?>? get componentThemesDataSource {
-    if (componentThemesConfiguration != null) {
-      return _dataSourceByType<ComponentThemesModel>(
-        'componentsThemes',
-        componentThemesConfiguration!,
-        convertDataTypeFromMap: ComponentThemesModel.fromJson,
-        convertDataTypeToMap: (model) => model.toJson(),
-      );
-    }
-    return null;
-  }
+  ThemeDataSource<ComponentThemesModel>? get componentThemesDataSource => componentThemesConfiguration != null
+      ? _dataSourceByType<ComponentThemesModel>(
+          'componentsThemes',
+          componentThemesConfiguration!,
+          convertDataTypeFromMap: ComponentThemesModel.fromJson,
+          convertDataTypeToMap: (model) => model.toJson(),
+        )
+      : null;
 
   /// [_dataSourceByType] returns the appropriate [ThemeDataSource] based on the [DataSourceTypes] enum.
   /// Defaults to [AssetsThemeDataSource] if no type is provided.

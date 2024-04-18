@@ -8,7 +8,9 @@ typedef FontFileUrl = String;
 enum DOFonts {
   lato,
   whisper,
-  proximaNovaAlt;
+  proximaNovaAlt,
+  phonk,
+  figtree;
 
   String get name => family.familyName;
 
@@ -39,6 +41,13 @@ enum DOFonts {
             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w400): "https://fonts.gstatic.com/s/whisper/v5/q5uHsoqtKftx74K9qi5IBj5eiYQ.woff2",
           },
         );
+      case DOFonts.phonk:
+        return DOFontFamily(
+          familyName: "Phonk",
+          variants: {
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w400): "",
+          },
+        );
       case DOFonts.proximaNovaAlt:
         return DOFontFamily(
           familyName: "ProximaNovaAlt",
@@ -59,6 +68,28 @@ enum DOFonts {
             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w700): "https://drive.google.com/uc?export=download&id=169Xii7bqL3R4VOCuSKKAWBwz4t6XWU7g",
             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w800): "https://drive.google.com/uc?export=download&id=1EFG-HxOlBwFVhk1DTsRgawLON3FuQp5O",
             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w900): "https://drive.google.com/uc?export=download&id=1FnPEz2cFe1XD72qSbiM8v7-G6gh7NojP",
+          },
+        );
+      case DOFonts.figtree:
+        return DOFontFamily(
+          familyName: "Figtree",
+          variants: {
+            // Normal
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w200): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w400): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w500): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w600): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w800): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w900): null,
+            // Italic
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w200): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w400): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w500): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w600): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w700): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w800): null,
+            const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w900): null,
           },
         );
     }

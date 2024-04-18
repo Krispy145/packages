@@ -36,7 +36,7 @@ class DataRepositories {
 
   /// [theme] is the [ThemeDataRepository] instance.
   ThemeDataRepository theme({
-    required ThemeConfiguration baseThemeConfiguration,
+    ThemeConfiguration? baseThemeConfiguration,
     ThemeConfiguration? componentThemesConfiguration,
   }) =>
       ThemeDataRepository(
