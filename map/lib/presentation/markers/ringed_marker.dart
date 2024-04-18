@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:map/constants/marker_constants.dart';
 import 'package:map/data/models/marker_model.dart';
 import 'package:map/presentation/markers/base_marker.dart';
 import 'package:map/presentation/markers/helpers/ringed_marker_wrapper.dart';

@@ -4,12 +4,12 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:map/presentation/map/components/_component.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
 import 'package:map/presentation/markers/number_marker.dart';
 import 'package:map/presentation/markers/ringed_marker.dart';
 import 'package:map/utils/loggers.dart';
 import 'package:mobx/mobx.dart';
+import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
 
@@ -23,6 +23,8 @@ class MapStore = MapBaseStore with _$MapStore;
 
 /// [MapBaseStore] is a class that manages the state of the map feature.
 abstract class MapBaseStore extends LoadStateStore with Store {
+  MapBaseStore({required this.mapTilesUrl});
+
   /// [repository] is an instance of [MarkerRepository].
   final MarkerRepository repository = MarkerRepository();
 
@@ -32,7 +34,7 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   /// INITIALISATION
   ///
 
-  final FlutterMapTickerProvider vsync = FlutterMapTickerProvider();
+  final DOTickerProvider vsync = DOTickerProvider();
 
   /// Initialise the [AnimatedMapController] for the Flutter Map
   late final AnimatedMapController animatedMapController = AnimatedMapController(vsync: vsync, curve: Curves.decelerate, duration: Durations.medium1);
@@ -49,8 +51,7 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   ///
 
   final String mapTilesUserPackageName = "ae.digitaloasis";
-  final String mapTilesUrl =
-      "https://api.mapbox.com/styles/v1/yellowbuild/clpuxijnf01dv01pah1rrdols/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoieWVsbG93YnVpbGQiLCJhIjoiY2xsdzNwdTF0MjE5azNkcDg2d3poaGo3MSJ9.R8Axb36MYKDK_u9c2gT-tw&optimize=true";
+  final String mapTilesUrl;
   final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///

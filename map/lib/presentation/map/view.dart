@@ -15,51 +15,67 @@ import 'store.dart';
 @RoutePage()
 class MapView extends StatelessWidget {
   /// [MapView] constructor.
-  MapView({super.key});
+  const MapView({super.key, required this.store});
 
   /// [store] is an instance of [MapStore], used in the [LoadStateBuilder].
-  final MapStore store = MapStore();
+  final MapStore store;
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
       options: store.mapOptions,
       mapController: store.animatedMapController.mapController,
-      children: [
-        RichAttributionWidget(
-          showFlutterMapAttribution: false,
-          attributions: [
-            TextSourceAttribution("© Mapbox", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/about/maps/'))),
-            TextSourceAttribution("© OpenStreetMap", prependCopyright: false, onTap: () => launchUrl(Uri.parse('http://www.openstreetmap.org/copyright'))),
-            TextSourceAttribution("Improve this map", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/map-feedback/'))),
-          ],
-        ),
-        TileLayer(
-          urlTemplate: store.mapTilesUrl,
-          userAgentPackageName: store.mapTilesUserPackageName,
-          maxNativeZoom: MapConstants.maxZoomLevel.toInt(),
-          maxZoom: MapConstants.maxZoomLevel,
-          minNativeZoom: MapConstants.minZoomLevel.toInt(),
-          minZoom: MapConstants.minZoomLevel,
-        ),
-        SuperclusterLayer.mutable(
-          controller: store.superclusterController,
-          indexBuilder: IndexBuilders.rootIsolate,
-          clusterWidgetSize: const Size.square(MarkerConstants.selectedSize),
-          calculateAggregatedClusterData: true,
-          loadingOverlayBuilder: (context) => const SizedBox.shrink(),
-          clusterDataExtractor: (marker) => MarkerClusterData(marker as BaseMarker),
-          builder: (context, position, markerCount, extraClusterData) {
-            final clusterData = extraClusterData as MarkerClusterData;
-            final marker = clusterData.topMarker;
-            if (markerCount == 1) {
-              return store.buildSingleMarker(marker).child;
-            } else {
-              return store.buildClusterMarker(clusterData, markerCount).child;
-            }
-          },
-        )
+      children: buildChildren(),
+    );
+  }
+
+  List<Widget> buildChildren() {
+    return [
+      buildAttribution(),
+      buildTileLayer(),
+      buildSuperclusterLayer(),
+    ];
+  }
+
+  RichAttributionWidget buildAttribution() {
+    return RichAttributionWidget(
+      showFlutterMapAttribution: false,
+      attributions: [
+        TextSourceAttribution("© Mapbox", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/about/maps/'))),
+        TextSourceAttribution("© OpenStreetMap", prependCopyright: false, onTap: () => launchUrl(Uri.parse('http://www.openstreetmap.org/copyright'))),
+        TextSourceAttribution("Improve this map", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/map-feedback/'))),
       ],
+    );
+  }
+
+  TileLayer buildTileLayer() {
+    return TileLayer(
+      urlTemplate: store.mapTilesUrl,
+      userAgentPackageName: store.mapTilesUserPackageName,
+      maxNativeZoom: MapConstants.maxZoomLevel.toInt(),
+      maxZoom: MapConstants.maxZoomLevel,
+      minNativeZoom: MapConstants.minZoomLevel.toInt(),
+      minZoom: MapConstants.minZoomLevel,
+    );
+  }
+
+  SuperclusterLayer buildSuperclusterLayer() {
+    return SuperclusterLayer.mutable(
+      controller: store.superclusterController,
+      indexBuilder: IndexBuilders.rootIsolate,
+      clusterWidgetSize: const Size.square(MarkerConstants.selectedSize),
+      calculateAggregatedClusterData: true,
+      loadingOverlayBuilder: (context) => const SizedBox.shrink(),
+      clusterDataExtractor: (marker) => MarkerClusterData(marker as BaseMarker),
+      builder: (context, position, markerCount, extraClusterData) {
+        final clusterData = extraClusterData as MarkerClusterData;
+        final marker = clusterData.topMarker;
+        if (markerCount == 1) {
+          return store.buildSingleMarker(marker).child;
+        } else {
+          return store.buildClusterMarker(clusterData, markerCount).child;
+        }
+      },
     );
   }
 }
