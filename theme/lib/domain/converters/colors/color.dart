@@ -86,10 +86,44 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
     return null;
   }
 
+  // static Color? getColorFromHex(String hexColor) {
+  //   // Remove any leading '#' character
+  //   if (hexColor.isNotEmpty && hexColor[0] == '#') {
+  //     hexColor = hexColor.substring(1);
+  //   }
+
+  //   // Parse the hex color code
+  //   final parsedColor = int.tryParse(hexColor, radix: 16) ?? 0xFF000000;
+
+  //   // Ensure the alpha channel is included (8 characters) or set to 255 (opaque)
+  //   if (hexColor.length == 6) {
+  //     return Color(0xFF000000 | parsedColor);
+  //   } else if (hexColor.length == 8) {
+  //     return Color(parsedColor);
+  //   } else {
+  //     return null;
+  //   }
+  // }
+
+  /// [getColorFromHex] is a helper function that converts a hex color to a [Color].
+  /// If alpha is provided, it should be at the end
+  /// Can interpret rgb, rgbaa, rrggbb, rrggbbaa
   static Color? getColorFromHex(String hexColor) {
     // Remove any leading '#' character
     if (hexColor.isNotEmpty && hexColor[0] == '#') {
       hexColor = hexColor.substring(1);
+    }
+
+    // Has opacity (which needs to be moved to front)
+    if (hexColor.length == 5 || hexColor.length == 8) {
+      final dividingPoint = hexColor.length - 2;
+      hexColor = hexColor.substring(dividingPoint) + hexColor.substring(0, dividingPoint);
+    }
+
+    if (hexColor.length == 3 || hexColor.length == 5) {
+      final alphaPart = hexColor.length == 5 ? hexColor.substring(0, 2) : "";
+      final colorPart = hexColor.substring(hexColor.length == 5 ? 2 : 0);
+      hexColor = alphaPart + colorPart[0] + colorPart[0] + colorPart[1] + colorPart[1] + colorPart[2] + colorPart[2];
     }
 
     // Parse the hex color code

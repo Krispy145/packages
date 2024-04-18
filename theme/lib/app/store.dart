@@ -270,9 +270,9 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    AppLogger.print("Building App Theme: $styleType", [ThemeLoggers.theme]);
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
+    AppLogger.print("Building App Theme: $styleType -> ${isDark ? "Dark" : "Light"}", [ThemeLoggers.theme]);
     return ThemeData(
       colorScheme: colorScheme,
       textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
