@@ -12,8 +12,9 @@ import 'package:utilities/sizes/spacers.dart';
 
 class MapEditor extends StatelessWidget {
   final MapEditorStore mapEditorStore;
+  final Widget? header;
 
-  const MapEditor({super.key, required this.mapEditorStore});
+  const MapEditor({super.key, required this.mapEditorStore, this.header});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class MapEditor extends StatelessWidget {
           Column(
             children: [
               Sizes.l.spacer(),
-              buildHeader(context),
+              header ?? buildHeader(context),
               Expanded(
                 child: SingleChildScrollView(
                   child: _buildMapEditor(context, mapEditorStore.mapData, []),
@@ -72,8 +73,34 @@ class MapEditor extends StatelessWidget {
           } else if (value is Map<dynamic, dynamic>) {
             return buildExpansionTile(context, key, value, updatedKeys);
           } else if (value is List<dynamic>) {
-            return const Text(
-              'Need to handle list!',
+            final listValues = value.map((e) => e).toList();
+            return ExpansionTile(
+              title: Text(key.split('_').first),
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Column(
+                    children: listValues.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final listUpdatedKeys = List<String>.from(updatedKeys)..add(index.toString());
+                      final listValue = entry.value;
+                      final listValueEditor = buildValueEditor(context, listValue, listUpdatedKeys, (keys, updatedValue) {
+                        AppLogger.print("Calling on changed in MapEditorStore with $keys and $updatedValue", [ThemeLoggers.changer]);
+                        mapEditorStore.updateValue(keys, updatedValue);
+                      });
+                      if (listValueEditor != null) {
+                        return ExpansionTile(
+                          title: Text('Index: $index'),
+                          children: [Padding(padding: const EdgeInsets.only(left: 16), child: listValueEditor)],
+                        );
+                      } else if (listValue is Map<dynamic, dynamic>) {
+                        return buildExpansionTile(context, 'Index: $index', listValue, listUpdatedKeys);
+                      }
+                      return Text('Unsupported Type: $key');
+                    }).toList(),
+                  ),
+                ),
+              ],
             );
           }
           return Text('Unsupported Type: $key');
