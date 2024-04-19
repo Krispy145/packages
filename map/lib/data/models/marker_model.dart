@@ -29,3 +29,25 @@ class LatLngConverter implements JsonConverter<LatLng, Map<String, dynamic>> {
   @override
   Map<String, dynamic> toJson(LatLng data) => data.toJson();
 }
+
+class LatLngDataTypeConverter implements JsonConverter<Map<String, dynamic>, Map<String, dynamic>> {
+  const LatLngDataTypeConverter();
+
+  @override
+  Map<String, dynamic> fromJson(Map<String, dynamic> json) {
+    final latLng = LatLng(json["lat"] as double, json["lng"] as double);
+    return {
+      "lat_double": latLng.latitude,
+      "lng_double": latLng.longitude,
+    };
+  }
+
+  @override
+  Map<String, dynamic> toJson(Map<String, dynamic> data) {
+    final latLng = LatLng(data["lat_double"] as double, data["lng_double"] as double);
+    return {
+      "lat": latLng.latitude,
+      "lng": latLng.longitude,
+    };
+  }
+}

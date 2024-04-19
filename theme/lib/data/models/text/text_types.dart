@@ -29,7 +29,7 @@ abstract class TextTypes with _$TextTypes {
   }) = _textStyleStrings;
   const TextTypes._();
 
-  /// [toTextTheme] converts the [TextTypes] to a [TextTheme].
+  /// [theme] converts the [TextTypes] to a [TextTheme].
   TextTheme get theme {
     return TextTheme(
       displayLarge: display?.large?.asTextStyle,

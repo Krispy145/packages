@@ -6,7 +6,7 @@ import 'package:utilities/utils/loggers.dart';
 
 /// [FirestoreDataSource] is a wrapper class for [FirebaseFirestore]
 class FirestoreDataSource<T> implements DataSource<T> {
-  FirebaseFirestore? _firestore;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// [collectionName] is the name of the collection
   final String collectionName;
@@ -28,12 +28,6 @@ class FirestoreDataSource<T> implements DataSource<T> {
     this.app,
   });
 
-  /// [initializeApp] is a method that initializes the [FirebaseApp]
-  /// Must be overridden in the child class
-  Future<void> initializeApp() async {
-    throw UnimplementedError();
-  }
-
   @override
   T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
 
@@ -43,7 +37,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<T?> get(String id) async {
     return _handleRequest("GET", () async {
-      final documentSnapshot = await _firestore!.collection(collectionName).doc(id).get();
+      final documentSnapshot = await _firestore.collection(collectionName).doc(id).get();
       if (documentSnapshot.exists) {
         return convertDataTypeFromMap(documentSnapshot.data()!);
       } else {
@@ -55,7 +49,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<List<T?>> getAll() async {
     try {
-      final querySnapshot = await _firestore!.collection(collectionName).get();
+      final querySnapshot = await _firestore.collection(collectionName).get();
       return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
@@ -66,7 +60,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<void> delete(String id) async {
     await _handleRequest("DELETE", () async {
-      await _firestore!.collection(collectionName).doc(id).delete();
+      await _firestore.collection(collectionName).doc(id).delete();
       return null;
     });
   }
@@ -74,7 +68,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<void> deleteAll() async {
     await _handleRequest("DELETE_ALL", () async {
-      final querySnapshot = await _firestore!.collection(collectionName).get();
+      final querySnapshot = await _firestore.collection(collectionName).get();
       final result = <String, dynamic>{};
       for (final doc in querySnapshot.docs) {
         await doc.reference.delete();
@@ -87,7 +81,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<void> update(String id, T data) async {
     await _handleRequest("UPDATE", () async {
-      await _firestore!.collection(collectionName).doc(id).set(convertDataTypeToMap(data));
+      await _firestore.collection(collectionName).doc(id).set(convertDataTypeToMap(data));
       return null;
     });
   }
@@ -96,9 +90,9 @@ class FirestoreDataSource<T> implements DataSource<T> {
   Future<void> updateAll(Map<String, T> data) async {
     await _handleRequest("UPDATE_ALL", () async {
       final result = <String, dynamic>{};
-      final batch = _firestore!.batch();
+      final batch = _firestore.batch();
       data.forEach((id, item) {
-        final reference = _firestore!.collection(collectionName).doc(id);
+        final reference = _firestore.collection(collectionName).doc(id);
         batch.set(reference, convertDataTypeToMap(item));
         result[id] = true;
       });
@@ -110,7 +104,12 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<void> add(T data) async {
     await _handleRequest("ADD", () async {
-      await _firestore!.collection(collectionName).add(convertDataTypeToMap(data));
+      final json = convertDataTypeToMap(data);
+      final docRef = await _firestore.collection(collectionName).add(json);
+      if (json.containsKey("id")) {
+        json["id"] = docRef.id;
+        await update(docRef.id, convertDataTypeFromMap(json));
+      }
       return null;
     });
   }
@@ -118,10 +117,10 @@ class FirestoreDataSource<T> implements DataSource<T> {
   @override
   Future<void> addAll(List<T> data) async {
     await _handleRequest("ADD_ALL", () async {
-      final batch = _firestore!.batch();
+      final batch = _firestore.batch();
       for (final item in data) {
         batch.set(
-          _firestore!.collection(collectionName).doc(),
+          _firestore.collection(collectionName).doc(),
           convertDataTypeToMap(item),
         );
       }
@@ -132,7 +131,7 @@ class FirestoreDataSource<T> implements DataSource<T> {
 
   @override
   Future<List<T?>> search(Map<String, dynamic> queries) async {
-    final query = _firestore!.collection(collectionName);
+    final query = _firestore.collection(collectionName);
     for (final entry in queries.entries) {
       query.where(entry.key, isEqualTo: entry.value);
     }
