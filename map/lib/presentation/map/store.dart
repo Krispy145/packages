@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:map/constants/map_constants.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
 import 'package:map/presentation/markers/number_marker.dart';
 import 'package:map/presentation/markers/ringed_marker.dart';
@@ -12,9 +13,7 @@ import 'package:mobx/mobx.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
-
 import '../../data/models/marker_model.dart';
-import '/domain/repositories/map.repository.dart';
 
 part 'store.g.dart';
 
@@ -24,22 +23,27 @@ class MapStore = MapBaseStore with _$MapStore;
 /// [MapBaseStore] is a class that manages the state of the map feature.
 abstract class MapBaseStore extends LoadStateStore with Store {
   MapBaseStore({required this.mapTilesUrl}) {
-    reaction((p0) => markers, (p0) => _refreshMapWithMarkers());
+    // reaction(
+    //   (p0) => _markers,
+    //   (p0) => _refreshMapWithMarkers(),
+    //   equals: (p0, p1) => false,
+    //   name: "Markers changed reaction",
+    // );
   }
 
   void _refreshMapWithMarkers() {
     // TODO: Improve logic for efficiency
-    superclusterController.replaceAll(markers.map(buildSingleMarker).toList());
+    superclusterController.replaceAll(_markers.map(buildSingleMarker).toList());
     AppLogger.print("Reaction: Added markers to supercluster", [MapLoggers.markers]);
   }
 
-  /// [repository] is an instance of [MarkerRepository].
-  final MarkerRepository repository = MarkerRepository();
+  // /// [repository] is an instance of [MarkerRepository].
+  // final MarkerRepository repository = MarkerRepository();
 
   final superclusterController = SuperclusterMutableController();
 
   @observable
-  ObservableSet<MarkerModel> markers = ObservableSet();
+  ObservableSet<MarkerModel> _markers = ObservableSet(name: "Markers Set");
 
   //
   /// INITIALISATION
@@ -72,9 +76,14 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   ///
 
   @action
-  void addMarkers(List<MarkerModel> newMarkerModels) {
-    print("Calling add markers");
-    markers.addAll(newMarkerModels);
+  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
+    AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
+    if (clearFirst) {
+      _markers.retainWhere((element) => newMarkerModels.contains(element));
+    }
+    _markers.addAll(newMarkerModels);
+    _refreshMapWithMarkers();
+    AppLogger.print("Markers after: ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()}", [MapLoggers.markers]);
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
@@ -94,9 +103,9 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   Future<void> initialiseMarkers() async {
     AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
-    if (markers.isNotEmpty) {
-      AppLogger.print("Initialising spot markers on map: ${markers.length}", [MapLoggers.markers]);
-      final markerToCenterOn = markers.first;
+    if (_markers.isNotEmpty) {
+      AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
+      final markerToCenterOn = _markers.first;
       await centerMarker(markerToCenterOn.id, markerToCenterOn.position);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
@@ -139,10 +148,7 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   @action
   Future<void> centerMarker(String markerId, LatLng coordinates) async {
     AppLogger.print("Centering map on marker: $markerId, ${coordinates.toString()}", [MapLoggers.map]);
-    await animatedMapController.animateTo(
-      dest: coordinates,
-      zoom: 14,
-    );
+    await animatedMapController.animateTo(dest: coordinates, zoom: 14);
   }
 
   ///
@@ -153,7 +159,7 @@ abstract class MapBaseStore extends LoadStateStore with Store {
     AppLogger.print("onMapReady: Zooming to London", [MapLoggers.map]);
     await animatedMapController.animatedFitCamera(
       cameraFit: CameraFit.bounds(
-        bounds: LatLngBounds(const LatLng(51.547536, -0.259400), const LatLng(51.468703, -0.012324)),
+        bounds: MapConstants.londonBounds,
         padding: const EdgeInsets.all(0),
       ),
     );
