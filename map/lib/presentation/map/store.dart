@@ -22,20 +22,7 @@ class MapStore = MapBaseStore with _$MapStore;
 
 /// [MapBaseStore] is a class that manages the state of the map feature.
 abstract class MapBaseStore extends LoadStateStore with Store {
-  MapBaseStore({required this.mapTilesUrl}) {
-    // reaction(
-    //   (p0) => _markers,
-    //   (p0) => _refreshMapWithMarkers(),
-    //   equals: (p0, p1) => false,
-    //   name: "Markers changed reaction",
-    // );
-  }
-
-  void _refreshMapWithMarkers() {
-    // TODO: Improve logic for efficiency
-    superclusterController.replaceAll(_markers.map(buildSingleMarker).toList());
-    AppLogger.print("Reaction: Added markers to supercluster", [MapLoggers.markers]);
-  }
+  MapBaseStore({required this.mapTilesUrl});
 
   final superclusterController = SuperclusterMutableController();
 
@@ -69,30 +56,6 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///
-  /// MARKERS
-  ///
-
-  @action
-  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
-    AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
-    if (clearFirst) {
-      _markers.retainWhere((element) => newMarkerModels.contains(element));
-    }
-    _markers.addAll(newMarkerModels);
-    _refreshMapWithMarkers();
-    AppLogger.print("Markers after: ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()}", [MapLoggers.markers]);
-  }
-
-  Marker buildSingleMarker(MarkerModel markerModel) {
-    return LogoRingedMarker(markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
-  }
-
-  Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
-    final topMarker = clusterData.topMarker;
-    return NumberRingedMarker(topMarkerModel: topMarker, markerCount: count, isSelected: (markerModel) => isMarkerSelected(markerModel.id));
-  }
-
-  //
   /// INITIALISATION
   ///
 
@@ -102,19 +65,50 @@ abstract class MapBaseStore extends LoadStateStore with Store {
     // Get markers
     if (_markers.isNotEmpty) {
       AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
-      final markerToCenterOn = _markers.first;
-      await centerMarker(markerToCenterOn.id, markerToCenterOn.position);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
-    _refreshMapWithMarkers();
+    superclusterController.addAll(_markers.map(buildSingleMarker).toList());
   }
+
+  ///
+  /// MARKERS
+  ///
 
   @action
   void addMarker(MarkerModel markerModel) {
-    final marker = buildSingleMarker(markerModel);
-    superclusterController.add(marker);
+    _markers.add(markerModel);
+    superclusterController.add(buildSingleMarker(markerModel));
     AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
+  }
+
+  @action
+  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
+    AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
+
+    final newMarkerSet = newMarkerModels.toSet();
+
+    if (clearFirst) {
+      // Find markers to remove (present in _markers but not in newMarkerSet)
+      final toRemove = _markers.difference(newMarkerSet).toList();
+      superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
+      _markers.retainWhere((element) => newMarkerModels.contains(element));
+    }
+    // Find markers to add (present in newMarkerSet but not in _markers)
+    final toAdd = newMarkerSet.difference(_markers).toList();
+    superclusterController.addAll(toAdd.map(buildSingleMarker).toList());
+
+    _markers.addAll(newMarkerModels);
+    AppLogger.print("Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})", [MapLoggers.markers]);
+  }
+
+  Marker buildSingleMarker(MarkerModel markerModel) {
+    return LogoRingedMarker(markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
+  }
+
+  Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
+    final topMarker = clusterData.topMarker;
+    return NumberRingedMarker(topMarkerModel: topMarker, markerCount: count, isSelected: (markerModel) => isMarkerSelected(markerModel.id));
   }
 
   ///
