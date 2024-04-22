@@ -16,7 +16,7 @@ enum DataSourceTypes {
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
 /// see: LocalDataSource and RemoteDataSource
-abstract class DataSource<T> extends Mappable<T> {
+abstract class DataSource<T> with Mappable<T> {
   /// [get] method returns the value of the given id
   Future<T?> get(String id);
 
@@ -46,7 +46,7 @@ abstract class DataSource<T> extends Mappable<T> {
 }
 
 // TODO: Move to right place
-abstract class Mappable<T> {
+abstract mixin class Mappable<T> {
   /// [convertFromMap] method converts the given value to a map
   T convertFromMap(Map<String, dynamic> data);
 

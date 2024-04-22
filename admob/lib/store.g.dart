@@ -8,31 +8,31 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$AdMobStore on AdMobStoreBase, Store {
+mixin _$AdMobStore on _AdMobStore, Store {
   Computed<String>? _$getBannerAdUnitIdComputed;
 
   @override
   String get getBannerAdUnitId => (_$getBannerAdUnitIdComputed ??=
           Computed<String>(() => super.getBannerAdUnitId,
-              name: 'AdMobStoreBase.getBannerAdUnitId'))
+              name: '_AdMobStore.getBannerAdUnitId'))
       .value;
   Computed<String>? _$getInterstitialAdUnitIdComputed;
 
   @override
   String get getInterstitialAdUnitId => (_$getInterstitialAdUnitIdComputed ??=
           Computed<String>(() => super.getInterstitialAdUnitId,
-              name: 'AdMobStoreBase.getInterstitialAdUnitId'))
+              name: '_AdMobStore.getInterstitialAdUnitId'))
       .value;
   Computed<String>? _$getRewardAdUnitIdComputed;
 
   @override
   String get getRewardAdUnitId => (_$getRewardAdUnitIdComputed ??=
           Computed<String>(() => super.getRewardAdUnitId,
-              name: 'AdMobStoreBase.getRewardAdUnitId'))
+              name: '_AdMobStore.getRewardAdUnitId'))
       .value;
 
   late final _$bannerAdAtom =
-      Atom(name: 'AdMobStoreBase.bannerAd', context: context);
+      Atom(name: '_AdMobStore.bannerAd', context: context);
 
   @override
   BannerAd? get bannerAd {
@@ -48,7 +48,7 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$interstitialAdAtom =
-      Atom(name: 'AdMobStoreBase.interstitialAd', context: context);
+      Atom(name: '_AdMobStore.interstitialAd', context: context);
 
   @override
   InterstitialAd? get interstitialAd {
@@ -64,7 +64,7 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$rewardedAdAtom =
-      Atom(name: 'AdMobStoreBase.rewardedAd', context: context);
+      Atom(name: '_AdMobStore.rewardedAd', context: context);
 
   @override
   RewardedAd? get rewardedAd {
@@ -80,7 +80,7 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$isPlatformCompliantAtom =
-      Atom(name: 'AdMobStoreBase.isPlatformCompliant', context: context);
+      Atom(name: '_AdMobStore.isPlatformCompliant', context: context);
 
   @override
   bool get isPlatformCompliant {
@@ -96,7 +96,7 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$isBannerAdLoadedAtom =
-      Atom(name: 'AdMobStoreBase.isBannerAdLoaded', context: context);
+      Atom(name: '_AdMobStore.isBannerAdLoaded', context: context);
 
   @override
   bool get isBannerAdLoaded {
@@ -112,7 +112,7 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$isInterstitialAdLoadedAtom =
-      Atom(name: 'AdMobStoreBase.isInterstitialAdLoaded', context: context);
+      Atom(name: '_AdMobStore.isInterstitialAdLoaded', context: context);
 
   @override
   bool get isInterstitialAdLoaded {
@@ -129,7 +129,7 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$isRewardAdLoadedAtom =
-      Atom(name: 'AdMobStoreBase.isRewardAdLoaded', context: context);
+      Atom(name: '_AdMobStore.isRewardAdLoaded', context: context);
 
   @override
   bool get isRewardAdLoaded {
@@ -145,90 +145,90 @@ mixin _$AdMobStore on AdMobStoreBase, Store {
   }
 
   late final _$loadBannerAsyncAction =
-      AsyncAction('AdMobStoreBase.loadBanner', context: context);
+      AsyncAction('_AdMobStore.loadBanner', context: context);
 
   @override
   Future<void> loadBanner(AdSize size) {
     return _$loadBannerAsyncAction.run(() => super.loadBanner(size));
   }
 
-  late final _$AdMobStoreBaseActionController =
-      ActionController(name: 'AdMobStoreBase', context: context);
+  late final _$_AdMobStoreActionController =
+      ActionController(name: '_AdMobStore', context: context);
 
   @override
   BannerAd _buildBannerAd(AdSize size) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase._buildBannerAd');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore._buildBannerAd');
     try {
       return super._buildBannerAd(size);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void loadInterstitialAd(void Function(AdWithoutView) onAdDismissed) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase.loadInterstitialAd');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore.loadInterstitialAd');
     try {
       return super.loadInterstitialAd(onAdDismissed);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void loadRewardedAd(void Function(AdWithoutView) onAdDismissed) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase.loadRewardedAd');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore.loadRewardedAd');
     try {
       return super.loadRewardedAd(onAdDismissed);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void _setBannerAdLoaded(bool loaded) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase._setBannerAdLoaded');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore._setBannerAdLoaded');
     try {
       return super._setBannerAdLoaded(loaded);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void _setInterstitialAdLoaded(bool loaded) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase._setInterstitialAdLoaded');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore._setInterstitialAdLoaded');
     try {
       return super._setInterstitialAdLoaded(loaded);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void _setRewardVideoAdLoaded(bool loaded) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase._setRewardVideoAdLoaded');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore._setRewardVideoAdLoaded');
     try {
       return super._setRewardVideoAdLoaded(loaded);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void _setLoaded(AdMobType type, bool loaded, {LoadAdError? errorMessage}) {
-    final _$actionInfo = _$AdMobStoreBaseActionController.startAction(
-        name: 'AdMobStoreBase._setLoaded');
+    final _$actionInfo = _$_AdMobStoreActionController.startAction(
+        name: '_AdMobStore._setLoaded');
     try {
       return super._setLoaded(type, loaded, errorMessage: errorMessage);
     } finally {
-      _$AdMobStoreBaseActionController.endAction(_$actionInfo);
+      _$_AdMobStoreActionController.endAction(_$actionInfo);
     }
   }
 

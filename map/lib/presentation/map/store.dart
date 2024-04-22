@@ -18,12 +18,12 @@ import '/domain/repositories/map.repository.dart';
 
 part 'store.g.dart';
 
-/// [MapStore] is a class that uses [MapBaseStore] to manage state of the map feature.
-class MapStore = MapBaseStore with _$MapStore;
+/// [MapStore] is a class that uses [_MapStore] to manage state of the map feature.
+class MapStore = _MapStore with _$MapStore;
 
-/// [MapBaseStore] is a class that manages the state of the map feature.
-abstract class MapBaseStore extends LoadStateStore with Store {
-  MapBaseStore({required this.mapTilesUrl}) {
+/// [_MapStore] is a class that manages the state of the map feature.
+abstract class _MapStore extends LoadStateStore with Store {
+  _MapStore({required this.mapTilesUrl}) {
     reaction((p0) => markers, (p0) => _refreshMapWithMarkers());
   }
 

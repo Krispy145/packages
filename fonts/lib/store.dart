@@ -37,11 +37,11 @@ typedef TextStyleBuilder = TextStyle Function({
 
 typedef TextThemeBuilder = TextTheme Function([TextTheme?]);
 
-/// [FontsStore] is a class that uses [FontsBaseStore] to manage state of the fonts feature.
-class FontsStore = FontsBaseStore with _$FontsStore;
+/// [FontsStore] is a class that uses [_FontsStore] to manage state of the fonts feature.
+class FontsStore = _FontsStore with _$FontsStore;
 
-/// [FontsBaseStore] is a class that manages the state of the fonts feature.
-abstract class FontsBaseStore extends LoadStateStore with Store {
+/// [_FontsStore] is a class that manages the state of the fonts feature.
+abstract class _FontsStore extends LoadStateStore with Store {
   void initialize({List<DOFonts> fonts = DOFonts.values, bool allowRuntimeFetching = true}) {
     this.allowRuntimeFetching = allowRuntimeFetching;
     for (final font in fonts) {
@@ -142,7 +142,7 @@ abstract class FontsBaseStore extends LoadStateStore with Store {
       );
       final descriptor = DOFontVariantAndUrl(
         familyWithVariant: familyWithVariant,
-        url: fonts[variant]!,
+        url: fonts[variant],
       );
       final loadingFuture = loadFontIfNecessary(descriptor, loader);
       pendingFontFutures.add(loadingFuture);

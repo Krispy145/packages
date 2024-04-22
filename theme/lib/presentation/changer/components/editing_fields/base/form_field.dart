@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/presentation/changer/components/editing_fields/base/store.dart';
+import '../base/store.dart';
 
 // ignore: strict_raw_type
 abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidget {

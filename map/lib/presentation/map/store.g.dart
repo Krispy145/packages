@@ -8,9 +8,8 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$MapStore on MapBaseStore, Store {
-  late final _$markersAtom =
-      Atom(name: 'MapBaseStore.markers', context: context);
+mixin _$MapStore on _MapStore, Store {
+  late final _$markersAtom = Atom(name: '_MapStore.markers', context: context);
 
   @override
   ObservableSet<MarkerModel> get markers {
@@ -26,7 +25,7 @@ mixin _$MapStore on MapBaseStore, Store {
   }
 
   late final _$selectedMarkerIdsAtom =
-      Atom(name: 'MapBaseStore.selectedMarkerIds', context: context);
+      Atom(name: '_MapStore.selectedMarkerIds', context: context);
 
   @override
   ObservableList<MarkerModel> get selectedMarkerIds {
@@ -42,7 +41,7 @@ mixin _$MapStore on MapBaseStore, Store {
   }
 
   late final _$selectedMarkerIdAtom =
-      Atom(name: 'MapBaseStore.selectedMarkerId', context: context);
+      Atom(name: '_MapStore.selectedMarkerId', context: context);
 
   @override
   String? get selectedMarkerId {
@@ -58,7 +57,7 @@ mixin _$MapStore on MapBaseStore, Store {
   }
 
   late final _$selectMarkerAsyncAction =
-      AsyncAction('MapBaseStore.selectMarker', context: context);
+      AsyncAction('_MapStore.selectMarker', context: context);
 
   @override
   Future<void> selectMarker(String markerId, LatLng coordinates) {
@@ -67,7 +66,7 @@ mixin _$MapStore on MapBaseStore, Store {
   }
 
   late final _$centerMarkerAsyncAction =
-      AsyncAction('MapBaseStore.centerMarker', context: context);
+      AsyncAction('_MapStore.centerMarker', context: context);
 
   @override
   Future<void> centerMarker(String markerId, LatLng coordinates) {
@@ -75,39 +74,39 @@ mixin _$MapStore on MapBaseStore, Store {
         .run(() => super.centerMarker(markerId, coordinates));
   }
 
-  late final _$MapBaseStoreActionController =
-      ActionController(name: 'MapBaseStore', context: context);
+  late final _$_MapStoreActionController =
+      ActionController(name: '_MapStore', context: context);
 
   @override
   void addMarkers(List<MarkerModel> newMarkerModels) {
-    final _$actionInfo = _$MapBaseStoreActionController.startAction(
-        name: 'MapBaseStore.addMarkers');
+    final _$actionInfo =
+        _$_MapStoreActionController.startAction(name: '_MapStore.addMarkers');
     try {
       return super.addMarkers(newMarkerModels);
     } finally {
-      _$MapBaseStoreActionController.endAction(_$actionInfo);
+      _$_MapStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void addMarker(MarkerModel markerModel) {
-    final _$actionInfo = _$MapBaseStoreActionController.startAction(
-        name: 'MapBaseStore.addMarker');
+    final _$actionInfo =
+        _$_MapStoreActionController.startAction(name: '_MapStore.addMarker');
     try {
       return super.addMarker(markerModel);
     } finally {
-      _$MapBaseStoreActionController.endAction(_$actionInfo);
+      _$_MapStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void unselectMarker() {
-    final _$actionInfo = _$MapBaseStoreActionController.startAction(
-        name: 'MapBaseStore.unselectMarker');
+    final _$actionInfo = _$_MapStoreActionController.startAction(
+        name: '_MapStore.unselectMarker');
     try {
       return super.unselectMarker();
     } finally {
-      _$MapBaseStoreActionController.endAction(_$actionInfo);
+      _$_MapStoreActionController.endAction(_$actionInfo);
     }
   }
 
