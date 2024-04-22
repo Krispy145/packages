@@ -9,18 +9,19 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MapStore on _MapStore, Store {
-  late final _$markersAtom = Atom(name: '_MapStore.markers', context: context);
+  late final _$_markersAtom =
+      Atom(name: '_MapStore._markers', context: context);
 
   @override
-  ObservableSet<MarkerModel> get markers {
-    _$markersAtom.reportRead();
-    return super.markers;
+  ObservableSet<MarkerModel> get _markers {
+    _$_markersAtom.reportRead();
+    return super._markers;
   }
 
   @override
-  set markers(ObservableSet<MarkerModel> value) {
-    _$markersAtom.reportWrite(value, super.markers, () {
-      super.markers = value;
+  set _markers(ObservableSet<MarkerModel> value) {
+    _$_markersAtom.reportWrite(value, super._markers, () {
+      super._markers = value;
     });
   }
 
@@ -78,22 +79,22 @@ mixin _$MapStore on _MapStore, Store {
       ActionController(name: '_MapStore', context: context);
 
   @override
-  void addMarkers(List<MarkerModel> newMarkerModels) {
+  void addMarker(MarkerModel markerModel) {
     final _$actionInfo =
-        _$_MapStoreActionController.startAction(name: '_MapStore.addMarkers');
+        _$_MapStoreActionController.startAction(name: '_MapStore.addMarker');
     try {
-      return super.addMarkers(newMarkerModels);
+      return super.addMarker(markerModel);
     } finally {
       _$_MapStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void addMarker(MarkerModel markerModel) {
+  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
     final _$actionInfo =
-        _$_MapStoreActionController.startAction(name: '_MapStore.addMarker');
+        _$_MapStoreActionController.startAction(name: '_MapStore.addMarkers');
     try {
-      return super.addMarker(markerModel);
+      return super.addMarkers(newMarkerModels, clearFirst: clearFirst);
     } finally {
       _$_MapStoreActionController.endAction(_$actionInfo);
     }
@@ -113,7 +114,6 @@ mixin _$MapStore on _MapStore, Store {
   @override
   String toString() {
     return '''
-markers: ${markers},
 selectedMarkerIds: ${selectedMarkerIds},
 selectedMarkerId: ${selectedMarkerId}
     ''';

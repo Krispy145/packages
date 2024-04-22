@@ -13,7 +13,7 @@ mixin _$ColorFormFieldStore on _themeColorStringFormFieldStore, Store {
       Atom(name: '_themeColorStringFormFieldStore.color', context: context);
 
   @override
-  Color get color {
+  InvalidType get color {
     _$colorAtom.reportRead();
     return super.color;
   }
@@ -21,7 +21,7 @@ mixin _$ColorFormFieldStore on _themeColorStringFormFieldStore, Store {
   bool _colorIsInitialized = false;
 
   @override
-  set color(Color value) {
+  set color(InvalidType value) {
     _$colorAtom.reportWrite(value, _colorIsInitialized ? super.color : null,
         () {
       super.color = value;

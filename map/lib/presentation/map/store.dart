@@ -4,6 +4,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:map/constants/map_constants.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
 import 'package:map/presentation/markers/number_marker.dart';
 import 'package:map/presentation/markers/ringed_marker.dart';
@@ -12,9 +13,7 @@ import 'package:mobx/mobx.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
-
 import '../../data/models/marker_model.dart';
-import '/domain/repositories/map.repository.dart';
 
 part 'store.g.dart';
 
@@ -23,23 +22,13 @@ class MapStore = _MapStore with _$MapStore;
 
 /// [_MapStore] is a class that manages the state of the map feature.
 abstract class _MapStore extends LoadStateStore with Store {
-  _MapStore({required this.mapTilesUrl}) {
-    reaction((p0) => markers, (p0) => _refreshMapWithMarkers());
-  }
-
-  void _refreshMapWithMarkers() {
-    // TODO: Improve logic for efficiency
-    superclusterController.replaceAll(markers.map(buildSingleMarker).toList());
-    AppLogger.print("Reaction: Added markers to supercluster", [MapLoggers.markers]);
-  }
-
-  /// [repository] is an instance of [MarkerRepository].
-  final MarkerRepository repository = MarkerRepository();
+  _MapStore({required this.mapTilesUrl});
 
   final superclusterController = SuperclusterMutableController();
 
   @observable
-  ObservableSet<MarkerModel> markers = ObservableSet();
+  // ignore: prefer_final_fields
+  ObservableSet<MarkerModel> _markers = ObservableSet(name: "Markers Set");
 
   //
   /// INITIALISATION
@@ -68,13 +57,50 @@ abstract class _MapStore extends LoadStateStore with Store {
   final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///
+  /// INITIALISATION
+  ///
+
+  /// Initialise the Markers from the spot search endpoint
+  Future<void> initialiseMarkers() async {
+    AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
+    // Get markers
+    if (_markers.isNotEmpty) {
+      AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
+    } else {
+      AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
+    }
+    superclusterController.addAll(_markers.map(buildSingleMarker).toList());
+  }
+
+  ///
   /// MARKERS
   ///
 
   @action
-  void addMarkers(List<MarkerModel> newMarkerModels) {
-    print("Calling add markers");
-    markers.addAll(newMarkerModels);
+  void addMarker(MarkerModel markerModel) {
+    _markers.add(markerModel);
+    superclusterController.add(buildSingleMarker(markerModel));
+    AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
+  }
+
+  @action
+  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
+    AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
+
+    final newMarkerSet = newMarkerModels.toSet();
+
+    if (clearFirst) {
+      // Find markers to remove (present in _markers but not in newMarkerSet)
+      final toRemove = _markers.difference(newMarkerSet).toList();
+      superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
+      _markers.retainWhere((element) => newMarkerModels.contains(element));
+    }
+    // Find markers to add (present in newMarkerSet but not in _markers)
+    final toAdd = newMarkerSet.difference(_markers).toList();
+    superclusterController.addAll(toAdd.map(buildSingleMarker).toList());
+
+    _markers.addAll(newMarkerModels);
+    AppLogger.print("Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})", [MapLoggers.markers]);
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
@@ -84,31 +110,6 @@ abstract class _MapStore extends LoadStateStore with Store {
   Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
     final topMarker = clusterData.topMarker;
     return NumberRingedMarker(topMarkerModel: topMarker, markerCount: count, isSelected: (markerModel) => isMarkerSelected(markerModel.id));
-  }
-
-  //
-  /// INITIALISATION
-  ///
-
-  /// Initialise the Markers from the spot search endpoint
-  Future<void> initialiseMarkers() async {
-    AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
-    // Get markers
-    if (markers.isNotEmpty) {
-      AppLogger.print("Initialising spot markers on map: ${markers.length}", [MapLoggers.markers]);
-      final markerToCenterOn = markers.first;
-      await centerMarker(markerToCenterOn.id, markerToCenterOn.position);
-    } else {
-      AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
-    }
-    _refreshMapWithMarkers();
-  }
-
-  @action
-  void addMarker(MarkerModel markerModel) {
-    final marker = buildSingleMarker(markerModel);
-    superclusterController.add(marker);
-    AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
   }
 
   ///
@@ -139,10 +140,7 @@ abstract class _MapStore extends LoadStateStore with Store {
   @action
   Future<void> centerMarker(String markerId, LatLng coordinates) async {
     AppLogger.print("Centering map on marker: $markerId, ${coordinates.toString()}", [MapLoggers.map]);
-    await animatedMapController.animateTo(
-      dest: coordinates,
-      zoom: 14,
-    );
+    await animatedMapController.animateTo(dest: coordinates, zoom: 14);
   }
 
   ///
@@ -153,7 +151,7 @@ abstract class _MapStore extends LoadStateStore with Store {
     AppLogger.print("onMapReady: Zooming to London", [MapLoggers.map]);
     await animatedMapController.animatedFitCamera(
       cameraFit: CameraFit.bounds(
-        bounds: LatLngBounds(const LatLng(51.547536, -0.259400), const LatLng(51.468703, -0.012324)),
+        bounds: MapConstants.londonBounds,
         padding: const EdgeInsets.all(0),
       ),
     );
