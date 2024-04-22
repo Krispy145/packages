@@ -9,6 +9,22 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MapStore on MapBaseStore, Store {
+  late final _$markersAtom =
+      Atom(name: 'MapBaseStore.markers', context: context);
+
+  @override
+  ObservableSet<MarkerModel> get markers {
+    _$markersAtom.reportRead();
+    return super.markers;
+  }
+
+  @override
+  set markers(ObservableSet<MarkerModel> value) {
+    _$markersAtom.reportWrite(value, super.markers, () {
+      super.markers = value;
+    });
+  }
+
   late final _$selectedMarkerIdsAtom =
       Atom(name: 'MapBaseStore.selectedMarkerIds', context: context);
 
@@ -98,6 +114,7 @@ mixin _$MapStore on MapBaseStore, Store {
   @override
   String toString() {
     return '''
+markers: ${markers},
 selectedMarkerIds: ${selectedMarkerIds},
 selectedMarkerId: ${selectedMarkerId}
     ''';

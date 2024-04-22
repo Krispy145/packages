@@ -23,12 +23,23 @@ class MapStore = MapBaseStore with _$MapStore;
 
 /// [MapBaseStore] is a class that manages the state of the map feature.
 abstract class MapBaseStore extends LoadStateStore with Store {
-  MapBaseStore({required this.mapTilesUrl});
+  MapBaseStore({required this.mapTilesUrl}) {
+    reaction((p0) => markers, (p0) => _refreshMapWithMarkers());
+  }
+
+  void _refreshMapWithMarkers() {
+    // TODO: Improve logic for efficiency
+    superclusterController.replaceAll(markers.map(buildSingleMarker).toList());
+    AppLogger.print("Reaction: Added markers to supercluster", [MapLoggers.markers]);
+  }
 
   /// [repository] is an instance of [MarkerRepository].
   final MarkerRepository repository = MarkerRepository();
 
   final superclusterController = SuperclusterMutableController();
+
+  @observable
+  ObservableSet<MarkerModel> markers = ObservableSet();
 
   //
   /// INITIALISATION
@@ -39,8 +50,10 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   /// Initialise the [AnimatedMapController] for the Flutter Map
   late final AnimatedMapController animatedMapController = AnimatedMapController(vsync: vsync, curve: Curves.decelerate, duration: Durations.medium1);
 
-  late final MapOptions mapOptions = MapOptions(
+  late MapOptions mapOptions = MapOptions(
+    onMapReady: onMapReady,
     onTap: onMapTapped,
+    interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
   );
 
   @observable
@@ -60,8 +73,8 @@ abstract class MapBaseStore extends LoadStateStore with Store {
 
   @action
   void addMarkers(List<MarkerModel> newMarkerModels) {
-    final markers = newMarkerModels.map(buildSingleMarker).toList();
-    superclusterController.addAll(markers);
+    print("Calling add markers");
+    markers.addAll(newMarkerModels);
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
@@ -80,16 +93,15 @@ abstract class MapBaseStore extends LoadStateStore with Store {
   /// Initialise the Markers from the spot search endpoint
   Future<void> initialiseMarkers() async {
     AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
-    final List<MarkerModel> markerModels = [];
-    if (markerModels.isNotEmpty) {
-      final markers = markerModels.map(buildSingleMarker).toList();
-      superclusterController.replaceAll(markers);
-      AppLogger.print("Initialising spot markers on map: ${markerModels.length}", [MapLoggers.markers]);
-      final markerToCenterOn = markerModels.first;
+    // Get markers
+    if (markers.isNotEmpty) {
+      AppLogger.print("Initialising spot markers on map: ${markers.length}", [MapLoggers.markers]);
+      final markerToCenterOn = markers.first;
       await centerMarker(markerToCenterOn.id, markerToCenterOn.position);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
+    _refreshMapWithMarkers();
   }
 
   @action

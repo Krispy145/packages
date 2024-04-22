@@ -1,8 +1,7 @@
-import 'dart:collection';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/constants/marker_constants.dart';
@@ -24,11 +23,13 @@ class MapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlutterMap(
-      options: store.mapOptions,
-      mapController: store.animatedMapController.mapController,
-      children: buildChildren(),
-    );
+    return Observer(builder: (context) {
+      return FlutterMap(
+        options: store.mapOptions,
+        mapController: store.animatedMapController.mapController,
+        children: buildChildren(),
+      );
+    });
   }
 
   List<Widget> buildChildren() {
@@ -73,8 +74,10 @@ class MapView extends StatelessWidget {
         final clusterData = extraClusterData as MarkerClusterData;
         final marker = clusterData.topMarker;
         if (markerCount == 1) {
+          print("Building single marker");
           return store.buildSingleMarker(marker).child;
         } else {
+          print("Building cluster marker");
           return store.buildClusterMarker(clusterData, markerCount).child;
         }
       },
