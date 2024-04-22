@@ -37,9 +37,6 @@ abstract class MapBaseStore extends LoadStateStore with Store {
     AppLogger.print("Reaction: Added markers to supercluster", [MapLoggers.markers]);
   }
 
-  // /// [repository] is an instance of [MarkerRepository].
-  // final MarkerRepository repository = MarkerRepository();
-
   final superclusterController = SuperclusterMutableController();
 
   @observable
