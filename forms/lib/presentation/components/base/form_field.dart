@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:utilities/widgets/load_state/state_widget.dart';
 import 'store.dart';
 
 // ignore: strict_raw_type
@@ -10,8 +10,19 @@ abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidg
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
+    return LoadStateBuilder(
+      viewStore: store,
+      emptyBuilder: (context) {
+        return const Center(
+          child: Text("Empty form field."),
+        );
+      },
+      errorBuilder: (context) {
+        return const Center(
+          child: Text("Error loading form field."),
+        );
+      },
+      loadedBuilder: (context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [

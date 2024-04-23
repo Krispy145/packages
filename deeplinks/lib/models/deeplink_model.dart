@@ -25,8 +25,7 @@ class DeepLinkModel with _$DeepLinkModel {
   const DeepLinkModel._();
 
   /// Create a deep link from a BranchUniversalObject.
-  factory DeepLinkModel.fromJson(Map<String, dynamic> json) =>
-      _$DeepLinkModelFromJson(json);
+  factory DeepLinkModel.fromJson(Map<String, dynamic> json) => _$DeepLinkModelFromJson(json);
 
   /// BranchUniversalObject from the deep link model.
   BranchUniversalObject get branchUniversalObject => BranchUniversalObject(
@@ -43,41 +42,29 @@ class DeepLinkModel with _$DeepLinkModel {
       );
 
   /// A model for the deep link, extracted from the BranchUniversalObject.
-  DeepLinkModel fromBranchUniversalObject(
-      BranchUniversalObject branchUniversalObject) {
+  DeepLinkModel fromBranchUniversalObject(BranchUniversalObject branchUniversalObject) {
     return DeepLinkModel(
       canonicalIdentifier: branchUniversalObject.canonicalIdentifier,
       title: branchUniversalObject.title,
       contentDescription: branchUniversalObject.contentDescription,
       imageUrl: branchUniversalObject.imageUrl,
       canonicalUrl: branchUniversalObject.canonicalUrl,
-      metadata: _removeDestinationFromBranchContentMetaData(
-              branchUniversalObject.contentMetadata)
-          ?.toMap(),
-      destination: _extractDestinationFromBranchContentMetaData(
-          branchUniversalObject.contentMetadata),
+      metadata: _removeDestinationFromBranchContentMetaData(branchUniversalObject.contentMetadata)?.toMap(),
+      destination: _extractDestinationFromBranchContentMetaData(branchUniversalObject.contentMetadata),
       keywords: branchUniversalObject.keywords,
       publicIndex: branchUniversalObject.publiclyIndex,
       localIndex: branchUniversalObject.locallyIndex,
-      expirationDate: branchUniversalObject.expirationDateInMilliSec != 0
-          ? DateTime.fromMillisecondsSinceEpoch(
-              branchUniversalObject.expirationDateInMilliSec)
-          : null,
+      expirationDate: branchUniversalObject.expirationDateInMilliSec != 0 ? DateTime.fromMillisecondsSinceEpoch(branchUniversalObject.expirationDateInMilliSec) : null,
     );
   }
 
-  AppDestination? _extractDestinationFromBranchContentMetaData(
-      BranchContentMetaData? contentMetadata) {
+  AppDestination? _extractDestinationFromBranchContentMetaData(BranchContentMetaData? contentMetadata) {
     final destination =
-        branchUniversalObject.contentMetadata?.toMap()['destination'] != null
-            ? AppDestination.fromJson(branchUniversalObject.contentMetadata
-                ?.toMap()['destination'] as Map<String, dynamic>)
-            : null;
+        branchUniversalObject.contentMetadata?.toMap()['destination'] != null ? AppDestination.fromJson(branchUniversalObject.contentMetadata?.toMap()['destination'] as Map<String, dynamic>) : null;
     return destination;
   }
 
-  BranchContentMetaData? _removeDestinationFromBranchContentMetaData(
-      BranchContentMetaData? contentMetadata) {
+  BranchContentMetaData? _removeDestinationFromBranchContentMetaData(BranchContentMetaData? contentMetadata) {
     if (contentMetadata == null) return null;
     final metadata = contentMetadata.toMap()..remove('destination');
     final newContentMetadata = BranchContentMetaData();
@@ -85,8 +72,7 @@ class DeepLinkModel with _$DeepLinkModel {
     return newContentMetadata;
   }
 
-  BranchContentMetaData? _mapToBranchContentMetaData(
-      Map<String, dynamic>? metadata) {
+  BranchContentMetaData? _mapToBranchContentMetaData(Map<String, dynamic>? metadata) {
     if (metadata == null) return null;
     final contentMetadata = BranchContentMetaData();
     metadata.forEach(contentMetadata.addCustomMetadata);

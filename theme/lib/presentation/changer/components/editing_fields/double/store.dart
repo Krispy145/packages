@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/presentation/changer/components/editing_fields/base/store.dart';
+import 'package:utilities/helpers/extensions/text_editing_controller.dart';
 
 part 'store.g.dart';
 
@@ -40,15 +41,6 @@ abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with St
       value = value! - increment;
     } else {
       value = 0;
-    }
-  }
-}
-
-// TODO: Move to utilities
-extension TextEditingControllerExtension on TextEditingController {
-  void setTextIfNotEqual(String text) {
-    if (text != this.text) {
-      this.text = text;
     }
   }
 }

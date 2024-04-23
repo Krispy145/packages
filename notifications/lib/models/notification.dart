@@ -33,18 +33,10 @@ class NotificationModel with _$NotificationModel {
       body: map['body'] as String?,
       imageUrl: map['imageUrl'] as String?,
       topic: map['topic'] as String?,
-      scheduledTime: map['scheduledTime'] != null
-          ? DateTime.parse(map['scheduledTime'] as String)
-          : null,
-      isLocalNotification: map['isLocalNotification'] != null
-          ? bool.parse(map['isLocalNotification'] as String)
-          : false,
-      isRead:
-          map['isRead'] != null ? bool.parse(map['isRead'] as String) : false,
-      destination: map['destination'] != null
-          ? AppDestination.fromStringMap(
-              map['destination'] as Map<String, dynamic>)
-          : null,
+      scheduledTime: map['scheduledTime'] != null ? DateTime.parse(map['scheduledTime'] as String) : null,
+      isLocalNotification: map['isLocalNotification'] != null ? bool.parse(map['isLocalNotification'] as String) : false,
+      isRead: map['isRead'] != null ? bool.parse(map['isRead'] as String) : false,
+      destination: map['destination'] != null ? AppDestination.fromStringMap(map['destination'] as Map<String, dynamic>) : null,
     );
   }
 
@@ -94,6 +86,5 @@ class NotificationModel with _$NotificationModel {
   }
 
   /// [NotificationModel] constructor from JSON.
-  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
-      _$NotificationModelFromJson(json);
+  factory NotificationModel.fromJson(Map<String, dynamic> json) => _$NotificationModelFromJson(json);
 }

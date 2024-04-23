@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'store.dart';
+import 'package:forms/presentation/components/base/form_field.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-class IntFormField extends StatelessWidget {
-  const IntFormField({super.key, required this.store});
+import 'store.dart';
 
-  final IntFormFieldStore store;
+class IntFormField extends BaseFormField<IntFormFieldStore> {
+  const IntFormField({
+    super.key,
+    required super.store,
+  });
 
   int get intFormFieldWidth => 180;
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

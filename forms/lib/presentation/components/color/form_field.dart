@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/presentation/changer/components/color_circle.dart';
-import 'store.dart';
+import 'package:forms/presentation/components/base/form_field.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-/// [ColorFormField] to change color scheme colors for the theme.
-class ColorFormField extends StatelessWidget {
-  /// [ColorFormFieldStore] instance.
-  final ColorFormFieldStore store;
+import 'color_circle.dart';
+import 'store.dart';
 
+/// [ColorFormField] to change color scheme colors for the theme.
+class ColorFormField extends BaseFormField<ColorFormFieldStore> {
   /// [ColorFormField] constructor.
   const ColorFormField({
     super.key,
-    required this.store,
+    required super.store,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Observer(

@@ -44,6 +44,5 @@ class UserModel with _$UserModel {
       );
 
   /// [UserModel] factory constructor.
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 }

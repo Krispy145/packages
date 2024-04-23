@@ -1,9 +1,10 @@
 import 'dart:math';
 
 import 'package:latlong2/latlong.dart';
+import 'package:map/data/models/lat_lng.mapper.dart';
 
 class LatLngGenerator {
-  static LatLng randomInLondon() {
+  static LatLngMapper randomInLondon() {
     // Define London's latitude and longitude bounds
     const double minLatitude = 51.28;
     const double maxLatitude = 51.69;
@@ -15,6 +16,6 @@ class LatLngGenerator {
     final latitude = minLatitude + random.nextDouble() * (maxLatitude - minLatitude);
     final longitude = minLongitude + random.nextDouble() * (maxLongitude - minLongitude);
 
-    return LatLng(latitude, longitude);
+    return LatLngMapper().encode(LatLng(latitude, longitude));
   }
 }

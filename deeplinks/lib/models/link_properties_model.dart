@@ -36,6 +36,5 @@ class LinkPropertiesModel with _$LinkPropertiesModel {
         campaign: campaign ?? '',
       );
 
-  factory LinkPropertiesModel.fromJson(Map<String, dynamic> json) =>
-      _$LinkPropertiesModelFromJson(json);
+  factory LinkPropertiesModel.fromJson(Map<String, dynamic> json) => _$LinkPropertiesModelFromJson(json);
 }

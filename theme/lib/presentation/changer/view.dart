@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:forms/presentation/components/text/form_field.dart';
+import 'package:forms/presentation/components/text/store.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
@@ -112,10 +114,13 @@ class ThemeComponentEditor extends MapEditor {
         );
         return BoolFormField(store: store);
       case "_string":
-        return TextFormField(
-          initialValue: value as String?,
-          onChanged: (newValue) => onChanged(keys, newValue),
-          // title: formattedKey,
+        final store = TextFormFieldStore(
+          value: value as String?,
+          onValueChanged: (newValue) => onChanged(keys, newValue),
+          title: keys.last,
+        );
+        return DOTextFormField(
+          store: store,
         );
       case "_edgeInsets":
         final store = EdgeInsetsFormFieldStore(
