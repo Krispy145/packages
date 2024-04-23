@@ -24,8 +24,8 @@ class MarkerModelMapper extends ClassMapperBase<MarkerModel> {
   static const Field<MarkerModel, String> _f$id = Field('id', _$id);
   static double _$score(MarkerModel v) => v.score;
   static const Field<MarkerModel, double> _f$score = Field('score', _$score);
-  static LatLngMapper _$position(MarkerModel v) => v.position;
-  static const Field<MarkerModel, LatLngMapper> _f$position =
+  static LatLng _$position(MarkerModel v) => v.position;
+  static const Field<MarkerModel, LatLng> _f$position =
       Field('position', _$position);
 
   @override
@@ -93,7 +93,7 @@ extension MarkerModelValueCopy<$R, $Out>
 
 abstract class MarkerModelCopyWith<$R, $In extends MarkerModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? id, double? score, LatLngMapper? position});
+  $R call({String? id, double? score, LatLng? position});
   MarkerModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -106,7 +106,7 @@ class _MarkerModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MarkerModel> $mapper =
       MarkerModelMapper.ensureInitialized();
   @override
-  $R call({String? id, double? score, LatLngMapper? position}) =>
+  $R call({String? id, double? score, LatLng? position}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (score != null) #score: score,

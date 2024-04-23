@@ -19,6 +19,7 @@
 // }
 
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:latlong2/latlong.dart';
 
 import 'lat_lng.mapper.dart';
 
@@ -28,7 +29,7 @@ part 'marker_model.mapper.dart';
 class MarkerModel with MarkerModelMappable {
   final String id;
   final double score;
-  final LatLngMapper position;
+  final LatLng position;
 
   MarkerModel({
     required this.id,

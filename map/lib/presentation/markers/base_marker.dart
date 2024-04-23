@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:map/constants/marker_constants.dart';
 import 'package:map/data/models/lat_lng.mapper.dart';
 import 'package:map/data/models/marker_model.dart';
@@ -7,7 +8,7 @@ import 'package:map/data/models/marker_model.dart';
 abstract class BaseMarker<T extends MarkerModel> extends Marker {
   final T markerModel;
   final bool Function(T markerModel) isSelected;
-  final Function(String id, LatLngMapper position)? onMarkerTapped;
+  final Function(String id, LatLng position)? onMarkerTapped;
   BaseMarker({
     required this.markerModel,
     required Widget child,
@@ -16,7 +17,7 @@ abstract class BaseMarker<T extends MarkerModel> extends Marker {
   }) : super(
           width: isSelected(markerModel) ? MarkerConstants.selectedSize : MarkerConstants.unselectedSize,
           height: isSelected(markerModel) ? MarkerConstants.selectedSize : MarkerConstants.unselectedSize,
-          point: LatLngMapper().decode(markerModel.position.decode),
+          point: markerModel.position,
           child: child,
         );
 

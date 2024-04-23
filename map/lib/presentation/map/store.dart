@@ -159,10 +159,10 @@ abstract class _MapStore extends LoadStateStore with Store {
     await initialiseMarkers();
   }
 
-  Future<void> onMarkerTapped(String markerId, LatLngMapper coordinates) async {
+  Future<void> onMarkerTapped(String markerId, LatLng coordinates) async {
     AppLogger.print("onMarkerTapped: LatLng: $markerId", [MapLoggers.map]);
     if (markerId != selectedMarkerId) {
-      selectMarker(markerId, LatLngMapper().decode(coordinates.decode));
+      selectMarker(markerId, coordinates);
       // Could go to marker details here...
     }
   }
