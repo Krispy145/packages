@@ -9,19 +9,34 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MapStore on _MapStore, Store {
-  late final _$_markersAtom =
-      Atom(name: '_MapStore._markers', context: context);
+  late final _$isMapReadyAtom =
+      Atom(name: '_MapStore.isMapReady', context: context);
 
   @override
-  ObservableSet<MarkerModel> get _markers {
-    _$_markersAtom.reportRead();
-    return super._markers;
+  bool get isMapReady {
+    _$isMapReadyAtom.reportRead();
+    return super.isMapReady;
   }
 
   @override
-  set _markers(ObservableSet<MarkerModel> value) {
-    _$_markersAtom.reportWrite(value, super._markers, () {
-      super._markers = value;
+  set isMapReady(bool value) {
+    _$isMapReadyAtom.reportWrite(value, super.isMapReady, () {
+      super.isMapReady = value;
+    });
+  }
+
+  late final _$markersAtom = Atom(name: '_MapStore.markers', context: context);
+
+  @override
+  ObservableSet<MarkerModel> get markers {
+    _$markersAtom.reportRead();
+    return super.markers;
+  }
+
+  @override
+  set markers(ObservableSet<MarkerModel> value) {
+    _$markersAtom.reportWrite(value, super.markers, () {
+      super.markers = value;
     });
   }
 
@@ -114,6 +129,8 @@ mixin _$MapStore on _MapStore, Store {
   @override
   String toString() {
     return '''
+isMapReady: ${isMapReady},
+markers: ${markers},
 selectedMarkerIds: ${selectedMarkerIds},
 selectedMarkerId: ${selectedMarkerId}
     ''';

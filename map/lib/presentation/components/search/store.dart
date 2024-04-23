@@ -1,13 +1,13 @@
+import 'package:forms/presentation/components/base/store.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/map_constants.dart';
-import 'package:map/data/models/lat_lng.mapper.dart';
 import 'package:map/data/models/marker_model.dart';
 import 'package:map/presentation/map/store.dart';
 import 'package:map/utils/loggers.dart';
-import 'package:mobx/mobx.dart';
 import 'package:mapbox_search/mapbox_search.dart';
-import 'package:forms/presentation/components/base/store.dart';
+import 'package:mobx/mobx.dart';
 import 'package:utilities/logger/logger.dart';
+
 part 'store.g.dart';
 
 class SearchMapFormFieldStore = _SearchMapFormFieldStore with _$SearchMapFormFieldStore;
@@ -37,12 +37,17 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<LatLng?> with
 
   @action
   Future<void> setCoordinates(Suggestion suggestion) async {
-    onValueChanged(value);
     final searchPlaceResponse = await search.getPlace(suggestion.mapboxId);
     if (searchPlaceResponse.success != null) {
       final coordinates = searchPlaceResponse.success!.features.first.geometry.coordinates;
-      value = LatLngMapper().encode(LatLng(coordinates.lat, coordinates.long));
-      mapStore.animatedMapController.mapController.move(LatLng(coordinates.lat, coordinates.long), 15);
+      mapStore.addMarkers([
+        MarkerModel(
+          id: "1",
+          position: LatLng(coordinates.lat, coordinates.long),
+          score: 1,
+        )
+      ]);
+      mapStore.animatedMapController.animateTo(dest: LatLng(coordinates.lat, coordinates.long), zoom: 10);
     }
   }
 
@@ -50,13 +55,29 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<LatLng?> with
     setLoading();
     try {
       search = SearchBoxAPI(apiKey: MapConstants.mapboxAPIKey);
-      mapStore = MapStore(mapTilesUrl: mapTilesUrl);
+      mapStore = MapStore(
+          mapTilesUrl: mapTilesUrl,
+          onMapViewReady: () {
+            mapStore.addMarkers([
+              MarkerModel(
+                id: "1",
+                position: mapStore.animatedMapController.mapController.camera.center,
+                score: 1,
+              )
+            ]);
+          },
+          onDragEnd: () {
+            AppLogger.print("MapBoxSearch.init onDragEnd", [MapLoggers.markers]);
+            mapStore.addMarkers([
+              MarkerModel(
+                id: "1",
+                position: mapStore.animatedMapController.mapController.camera.center,
+                score: 1,
+              )
+            ]);
+          });
       suggestions = await search.getSuggestions("London").then((value) => value.success?.suggestions);
-      mapStore.addMarker(MarkerModel(
-        id: "1",
-        position: LatLngMapper().encode(mapStore.animatedMapController.mapController.camera.center),
-        score: 1,
-      ));
+      AppLogger.print("MapBoxSearch.init success: ${mapStore.markers}", [MapLoggers.markers]);
     } catch (e) {
       AppLogger.print("MapBoxSearch.init error: $e", [MapLoggers.markers]);
     }
