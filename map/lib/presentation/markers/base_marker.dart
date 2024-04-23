@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/marker_constants.dart';
-import 'package:map/data/models/lat_lng.mapper.dart';
 import 'package:map/data/models/marker_model.dart';
 
 abstract class BaseMarker<T extends MarkerModel> extends Marker {

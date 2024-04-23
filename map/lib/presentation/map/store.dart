@@ -5,7 +5,6 @@ import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/map_constants.dart';
-import 'package:map/data/models/lat_lng.mapper.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
 import 'package:map/presentation/markers/number_marker.dart';
 import 'package:map/presentation/markers/ringed_marker.dart';

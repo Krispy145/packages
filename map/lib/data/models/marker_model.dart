@@ -21,8 +21,6 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:latlong2/latlong.dart';
 
-import 'lat_lng.mapper.dart';
-
 part 'marker_model.mapper.dart';
 
 @MappableClass()
