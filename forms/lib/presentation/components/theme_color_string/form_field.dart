@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:forms/presentation/components/base/form_field.dart';
 import 'package:theme/app/app.dart';
 import 'package:theme/extensions/theme_color_string.dart';
 import 'package:theme/presentation/changer/components/color_circle.dart';
-import 'store.dart';
 import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-class ThemeColorStringFormField extends StatelessWidget {
-  const ThemeColorStringFormField({super.key, required this.store});
+import 'store.dart';
 
-  final ThemeColorStringFormFieldStore store;
+class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
+  const ThemeColorStringFormField({
+    super.key,
+    required super.store,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

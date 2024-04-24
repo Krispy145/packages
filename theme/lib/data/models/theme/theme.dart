@@ -86,7 +86,6 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
   }) = _ComponentThemesModel;
   ComponentThemesModel._();
 
-// TODO: Make nice ;)
   T? getComponentThemeFromStyleType<T>(String styleType) {
     if (T.toString() == "ThemeData") {
       return ThemeData(
@@ -100,54 +99,53 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
         toggleButtonsTheme: toggleButtons?[styleType]?.asToggleButtonThemeData(),
         floatingActionButtonTheme: floatingActionButtons?[styleType]?.asFloatingActionButtonThemeData(),
       ) as T;
-      // return buttons?.toThemeData(styleType) as T;
-    } else if (T.toString() == "InputDecorationTheme?") {
+    } else if (T == InputDecorationTheme) {
       return inputDecorations?[styleType]?.asInputDecorationTheme(styleTypeName: styleType) as T;
-    } else if (T.toString() == "BoxDecoration?") {
+    } else if (T == BoxDecoration) {
       return boxDecorations?[styleType]?.asBoxDecoration(styleTypeName: styleType) as T;
-    } else if (T.toString() == "CardTheme?") {
+    } else if (T == CardTheme) {
       return cards?[styleType]?.asCardTheme(styleTypeName: styleType) as T;
-    } else if (T.toString() == "SnackBarThemeData?") {
+    } else if (T == SnackBarThemeData) {
       return snackbars?[styleType]?.asSnackBarThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "BadgeThemeData?") {
+    } else if (T == BadgeThemeData) {
       return badges?[styleType]?.asBadgeThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "AppBarTheme?") {
+    } else if (T == AppBarTheme) {
       return appbars?[styleType]?.asAppBarTheme(styleTypeName: styleType) as T;
-    } else if (T.toString() == "BottomAppBarTheme?") {
+    } else if (T == BottomAppBarTheme) {
       return bottomAppbars?[styleType]?.asBottomAppBarTheme(styleTypeName: styleType) as T;
-    } else if (T.toString() == "DropdownMenuThemeData?") {
+    } else if (T == DropdownMenuThemeData) {
       return dropdowns?[styleType]?.asDropdownMenuThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "ChipThemeData?") {
+    } else if (T == ChipThemeData) {
       return chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "DialogTheme?") {
+    } else if (T == DialogTheme) {
       return dialogs?[styleType]?.asDialogTheme(styleTypeName: styleType) as T;
-    } else if (T.toString() == "PopupMenuThemeData?") {
+    } else if (T == PopupMenuThemeData) {
       return popupMenus?[styleType]?.asPopupMenuThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "SliderThemeData?") {
+    } else if (T == SliderThemeData) {
       return sliders?[styleType]?.asSliderThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "ScrollbarThemeData?") {
+    } else if (T == ScrollbarThemeData) {
       return scrollbars?[styleType]?.asScrollbarThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "TooltipThemeData?") {
+    } else if (T == TooltipThemeData) {
       return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "TooltipThemeData?") {
+    } else if (T == TooltipThemeData) {
       return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "NavigationRailThemeData?") {
+    } else if (T == NavigationRailThemeData) {
       return navigationRails?[styleType]?.asNavigationRailThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "CheckboxThemeData?") {
+    } else if (T == CheckboxThemeData) {
       return checkboxes?[styleType]?.asCheckboxThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "RadioThemeData?") {
+    } else if (T == RadioThemeData) {
       return radios?[styleType]?.asRadioThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "SwitchThemeData?") {
+    } else if (T == SwitchThemeData) {
       return switches?[styleType]?.asSwitchThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "DrawerThemeData?") {
+    } else if (T == DrawerThemeData) {
       return drawers?[styleType]?.asDrawerThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "ListTileThemeData?") {
+    } else if (T == ListTileThemeData) {
       return listTiles?[styleType]?.asListTileThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "MenuStyle?") {
+    } else if (T == MenuStyle) {
       return menus?[styleType]?.asMenuStyle(styleTypeName: styleType) as T;
-    } else if (T.toString() == "MenuBarThemeData?") {
+    } else if (T == MenuBarThemeData) {
       return menuBars?[styleType]?.asMenuBarThemeData(styleTypeName: styleType) as T;
-    } else if (T.toString() == "NavigationBarThemeData?") {
+    } else if (T == NavigationBarThemeData) {
       return navigationBars?[styleType]?.asNavigationBarThemeData(styleTypeName: styleType) as T;
     } else {
       return null;

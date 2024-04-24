@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
@@ -13,6 +12,7 @@ import 'package:mobx/mobx.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
+
 import '../../data/models/marker_model.dart';
 
 part 'store.g.dart';
@@ -22,26 +22,34 @@ class MapStore = _MapStore with _$MapStore;
 
 /// [_MapStore] is a class that manages the state of the map feature.
 abstract class _MapStore extends LoadStateStore with Store {
-  _MapStore({required this.mapTilesUrl});
+  final DOTickerProvider vsync = DOTickerProvider();
+  final void Function()? onMapViewReady;
+  final void Function()? onDragEnd;
+  _MapStore({required this.mapTilesUrl, this.onMapViewReady, this.onDragEnd}) {
+    setLoading();
+    animatedMapController = AnimatedMapController(
+      vsync: vsync,
+      curve: Curves.decelerate,
+      duration: Durations.medium1,
+    );
+    setLoaded();
+  }
 
   final superclusterController = SuperclusterMutableController();
 
   @observable
-  // ignore: prefer_final_fields
-  ObservableSet<MarkerModel> _markers = ObservableSet(name: "Markers Set");
+  bool isMapReady = false;
 
-  //
-  /// INITIALISATION
-  ///
-
-  final DOTickerProvider vsync = DOTickerProvider();
+  @observable
+  ObservableSet<MarkerModel> markers = ObservableSet(name: "Markers Set");
 
   /// Initialise the [AnimatedMapController] for the Flutter Map
-  late final AnimatedMapController animatedMapController = AnimatedMapController(vsync: vsync, curve: Curves.decelerate, duration: Durations.medium1);
+  late final AnimatedMapController animatedMapController;
 
   late MapOptions mapOptions = MapOptions(
     onMapReady: onMapReady,
     onTap: onMapTapped,
+    onMapEvent: onMapEvent,
     interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
   );
 
@@ -64,12 +72,12 @@ abstract class _MapStore extends LoadStateStore with Store {
   Future<void> initialiseMarkers() async {
     AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
-    if (_markers.isNotEmpty) {
-      AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
+    if (markers.isNotEmpty) {
+      AppLogger.print("Initialising spot markers on map: ${markers.length}", [MapLoggers.markers]);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
-    superclusterController.addAll(_markers.map(buildSingleMarker).toList());
+    superclusterController.addAll(markers.map(buildSingleMarker).toList());
   }
 
   ///
@@ -78,7 +86,7 @@ abstract class _MapStore extends LoadStateStore with Store {
 
   @action
   void addMarker(MarkerModel markerModel) {
-    _markers.add(markerModel);
+    markers.add(markerModel);
     superclusterController.add(buildSingleMarker(markerModel));
     AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
   }
@@ -91,16 +99,16 @@ abstract class _MapStore extends LoadStateStore with Store {
 
     if (clearFirst) {
       // Find markers to remove (present in _markers but not in newMarkerSet)
-      final toRemove = _markers.difference(newMarkerSet).toList();
+      final toRemove = markers.difference(newMarkerSet).toList();
       superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
-      _markers.retainWhere((element) => newMarkerModels.contains(element));
+      markers.retainWhere((element) => newMarkerModels.contains(element));
     }
     // Find markers to add (present in newMarkerSet but not in _markers)
-    final toAdd = newMarkerSet.difference(_markers).toList();
+    final toAdd = newMarkerSet.difference(markers).toList();
     superclusterController.addAll(toAdd.map(buildSingleMarker).toList());
 
-    _markers.addAll(newMarkerModels);
-    AppLogger.print("Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})", [MapLoggers.markers]);
+    markers.addAll(newMarkerModels);
+    AppLogger.print("Markers after: count: ${markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${markers.length})", [MapLoggers.markers]);
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
@@ -148,6 +156,7 @@ abstract class _MapStore extends LoadStateStore with Store {
   ///
 
   Future<void> onMapReady() async {
+    setLoading();
     AppLogger.print("onMapReady: Zooming to London", [MapLoggers.map]);
     await animatedMapController.animatedFitCamera(
       cameraFit: CameraFit.bounds(
@@ -156,6 +165,9 @@ abstract class _MapStore extends LoadStateStore with Store {
       ),
     );
     await initialiseMarkers();
+    onMapViewReady?.call();
+    isMapReady = true;
+    setLoaded();
   }
 
   Future<void> onMarkerTapped(String markerId, LatLng coordinates) async {
@@ -183,6 +195,8 @@ abstract class _MapStore extends LoadStateStore with Store {
         break;
       case MapEventSource.onDrag:
         break;
+      case MapEventSource.dragEnd:
+        onDragEnd?.call();
       default:
     }
   }

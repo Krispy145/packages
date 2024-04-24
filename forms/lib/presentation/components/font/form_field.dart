@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:fonts/data/do_fonts.dart';
 import 'package:theme/app/app.dart';
-import '../base/form_field.dart';
-import 'store.dart';
 import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
+
+import '../base/form_field.dart';
+import 'store.dart';
 
 class FontFormField extends BaseFormField<FontFormFieldStore> {
   const FontFormField({

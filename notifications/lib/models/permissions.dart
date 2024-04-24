@@ -19,6 +19,5 @@ class NotificationPermissions with _$NotificationPermissions {
   }) = _NotificationPermissions;
 
   /// [NotificationPermissions] constructor from JSON.
-  factory NotificationPermissions.fromJson(Map<String, dynamic> json) =>
-      _$NotificationPermissionsFromJson(json);
+  factory NotificationPermissions.fromJson(Map<String, dynamic> json) => _$NotificationPermissionsFromJson(json);
 }

@@ -1,6 +1,4 @@
-import 'package:forms/presentation/components/base/store.dart';
 import 'package:mobx/mobx.dart';
-import 'package:utilities/data_sources/source.dart';
 
 part 'store.g.dart';
 
@@ -9,27 +7,11 @@ part 'store.g.dart';
 /// required an `emptyOrEditModel` that is used to create a new model or edit an existing one.
 class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
 
-abstract class _FormsModelStore<T> with Store, Mappable<T> {
-  /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
-  final T Function(Map<String, dynamic>) convertDataTypeFromMap;
-
-  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
-  final Map<String, dynamic> Function(T) convertDataTypeToMap;
-  final Map<String, BaseFormFieldStore<T>> fields;
-
+abstract class _FormsModelStore<T> with Store {
   _FormsModelStore({
     T? initialModel,
-    required this.convertDataTypeFromMap,
-    required this.convertDataTypeToMap,
-    required this.fields,
-    required this.onModelChanged,
+    this.onModelChanged,
   }) : currentModel = initialModel;
-
-  @override
-  T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
-
-  @override
-  Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
 
   /// Callback that is called whenever the map is changed.
   final void Function(T)? onModelChanged;
@@ -38,9 +20,8 @@ abstract class _FormsModelStore<T> with Store, Mappable<T> {
   late T? currentModel;
 
   @action
-  void updateModel(T updatedModel) {
-    currentModel = updatedModel;
-    onModelChanged?.call(updatedModel);
+  void saveModel() {
+    onModelChanged?.call(currentModel as T);
   }
 
   /// Inserts a new key-value pair into the map.

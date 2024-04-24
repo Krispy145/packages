@@ -10,7 +10,7 @@ import 'package:utilities/sizes/spacers.dart';
 import 'package:utilities/snackbar/configuration.dart';
 
 class AdditionalDataField {
-  /// Label of the `TextFormField` for this metadata
+  /// Label of the `DOTextFormField` for this metadata
   final String label;
 
   /// Key to be used when sending the metadata to Supabase
@@ -19,7 +19,7 @@ class AdditionalDataField {
   /// Validator function for the metadata field
   final String? Function(String?)? validator;
 
-  /// Icon to show as the prefix icon in TextFormField
+  /// Icon to show as the prefix icon in DOTextFormField
   final Icon? prefixIcon;
 
   AdditionalDataField({
@@ -74,13 +74,11 @@ class EmailAuthWidget extends StatefulWidget {
 
 class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController =
-      TextEditingController(text: 'davidkisbeygreen145@gmail.com');
+  final _emailController = TextEditingController(text: 'davidkisbeygreen145@gmail.com');
   final _passwordController = TextEditingController(
     text: 'krispy123',
   );
-  late final Map<AdditionalDataField, TextEditingController>
-      _additionalDataControllers;
+  late final Map<AdditionalDataField, TextEditingController> _additionalDataControllers;
 
   bool _isLoading = false;
   bool _showPassword = false;
@@ -114,10 +112,21 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   void _toggleSignIn() {
     setState(() {
       _forgotPassword = false;
-      action =
-          action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+      action = action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
     });
   }
+
+  //TODO: Complete change from TextFormField to DOTextFormField
+  // void Widget _buildTextField(BuildContext context){
+  //   final store = TextFormFieldStore(
+  //       value: value,
+  //       onValueChanged: (newValue) => onChanged(keys, newValue),
+  //       title: keys.last,
+  //     );
+  //     return DOTextFormField(
+  //       store: store,
+  //     );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -131,9 +140,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
             validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !EmailValidator.validate(_emailController.text)) {
+              if (value == null || value.isEmpty || !EmailValidator.validate(_emailController.text)) {
                 return 'Please enter a valid email address';
               }
               return null;
@@ -154,38 +161,37 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                 return null;
               },
               decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.lock),
-                  label: const Text('Enter your password'),
-                  suffixIcon: GestureDetector(
-                    onTap: () => setState(() {
-                      _showPassword = !_showPassword;
-                    }),
-                    child: Icon(_showPassword
-                        ? Icons.visibility
-                        : Icons.visibility_off),
-                  )),
+                prefixIcon: const Icon(Icons.lock),
+                label: const Text('Enter your password'),
+                suffixIcon: GestureDetector(
+                  onTap: () => setState(() {
+                    _showPassword = !_showPassword;
+                  }),
+                  child: Icon(_showPassword ? Icons.visibility : Icons.visibility_off),
+                ),
+              ),
               obscureText: !_showPassword,
               controller: _passwordController,
             ),
             Sizes.s.spacer(),
-            if (widget.additionalDataFields != null &&
-                action == AuthAction.signUp)
+            if (widget.additionalDataFields != null && action == AuthAction.signUp)
               ...widget.additionalDataFields!
-                  .map((additionalDataField) => [
-                        TextFormField(
-                          controller:
-                              _additionalDataControllers[additionalDataField],
-                          decoration: InputDecoration(
-                            label: Text(additionalDataField.label),
-                            prefixIcon: additionalDataField.prefixIcon,
-                          ),
-                          validator: additionalDataField.validator,
+                  .map(
+                    (additionalDataField) => [
+                      TextFormField(
+                        controller: _additionalDataControllers[additionalDataField],
+                        decoration: InputDecoration(
+                          label: Text(additionalDataField.label),
+                          prefixIcon: additionalDataField.prefixIcon,
                         ),
-                        Sizes.s.spacer(),
-                      ])
+                        validator: additionalDataField.validator,
+                      ),
+                      Sizes.s.spacer(),
+                    ],
+                  )
                   .expand((element) => element),
             ElevatedButton(
-              child: (_isLoading)
+              child: _isLoading
                   ? SizedBox(
                       height: 16,
                       width: 16,
@@ -210,17 +216,13 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                   }
                 } on AuthenticationException catch (error) {
                   if (widget.onError == null && context.mounted) {
-                    context.showSnackbar(
-                        configuration:
-                            SnackbarConfiguration.error(title: error.message));
+                    context.showSnackbar(configuration: SnackbarConfiguration.error(title: error.message));
                   } else {
                     widget.onError?.call(error);
                   }
                 } catch (error) {
                   if (widget.onError == null && context.mounted) {
-                    context.showSnackbar(
-                        configuration: SnackbarConfiguration.error(
-                            title: 'Unexpected error has occurred: $error'));
+                    context.showSnackbar(configuration: SnackbarConfiguration.error(title: 'Unexpected error has occurred: $error'));
                   } else {
                     widget.onError?.call(error);
                   }
@@ -245,10 +247,8 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
             ],
             TextButton(
               key: const ValueKey('toggleSignInButton'),
-              onPressed: () => _toggleSignIn(),
-              child: Text(action == AuthAction.signIn
-                  ? 'Don\'t have an account? Sign up'
-                  : 'Already have an account? Sign in'),
+              onPressed: _toggleSignIn,
+              child: Text(action == AuthAction.signIn ? "Don't have an account? Sign up" : 'Already have an account? Sign in'),
             ),
           ],
           if (action == AuthAction.signIn && _forgotPassword) ...[
@@ -263,15 +263,12 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                     _isLoading = true;
                   });
 
-                  throw const AuthenticationException(
-                      'Forgot password is not implemented yet');
+                  throw const AuthenticationException('Forgot password is not implemented yet');
                   // final email = _emailController.text.trim();
                   // await supabase.auth.resetPasswordForEmail(email);
                   // widget.onPasswordResetEmailSent?.call();
                 } on AuthenticationException catch (error) {
-                  context.showSnackbar(
-                      configuration:
-                          SnackbarConfiguration.error(title: error.message));
+                  context.showSnackbar(configuration: SnackbarConfiguration.error(title: error.message));
                 } catch (error) {
                   widget.onError?.call(error);
                 }
@@ -297,10 +294,11 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   Future<void> _signUp(BuildContext context) async {
     await widget.repository
         .signUpWithEmail(
-            params: AuthParams.email(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    ))
+      params: AuthParams.email(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      ),
+    )
         .then((response) {
       if (response != null) {
         widget.onSignUpComplete.call(response);

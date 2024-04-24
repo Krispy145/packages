@@ -33,11 +33,11 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
       ActionController(name: '_FormsModelStore', context: context);
 
   @override
-  void updateModel(T updatedModel) {
+  void saveModel() {
     final _$actionInfo = _$_FormsModelStoreActionController.startAction(
-        name: '_FormsModelStore.updateModel');
+        name: '_FormsModelStore.saveModel');
     try {
-      return super.updateModel(updatedModel);
+      return super.saveModel();
     } finally {
       _$_FormsModelStoreActionController.endAction(_$actionInfo);
     }

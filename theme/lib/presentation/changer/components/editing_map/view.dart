@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:forms/presentation/components/text/form_field.dart';
+import 'package:forms/presentation/components/text/store.dart';
 import 'package:theme/presentation/changer/components/editing_fields/bool/form_field.dart';
 import 'package:theme/presentation/changer/components/editing_fields/bool/store.dart';
 import 'package:theme/presentation/changer/components/editing_fields/int/form_field.dart';
@@ -124,9 +126,13 @@ class MapEditor extends StatelessWidget {
   /// Convert the changed value back to the format from the map when calling the onChanged function
   Widget? buildValueEditor(BuildContext context, dynamic value, List<String> keys, void Function(List<String> keys, dynamic value) onChanged) {
     if (value is String) {
-      return TextFormField(
-        initialValue: value,
-        onChanged: (newValue) => onChanged(keys, newValue),
+      final store = TextFormFieldStore(
+        value: value,
+        onValueChanged: (newValue) => onChanged(keys, newValue),
+        title: keys.last,
+      );
+      return DOTextFormField(
+        store: store,
       );
     } else if (value is int) {
       final store = IntFormFieldStore(

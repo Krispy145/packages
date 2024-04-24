@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:forms/presentation/components/base/form_field.dart';
 import 'package:theme/data/models/borders/outlined_border_model.dart';
 import '../border_radius/form_field.dart';
 import '../border_side/form_field.dart';
@@ -7,13 +8,14 @@ import 'store.dart';
 import 'package:utilities/helpers/extensions/string.dart';
 import 'package:utilities/sizes/spacers.dart';
 
-class OutlinedBorderFormField extends StatelessWidget {
-  const OutlinedBorderFormField({super.key, required this.store});
-
-  final OutlinedBorderFormFieldStore store;
+class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore> {
+  const OutlinedBorderFormField({
+    super.key,
+    required super.store,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget buildField(BuildContext context) {
     return Observer(
       builder: (context) {
         return Column(

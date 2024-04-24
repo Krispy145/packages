@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:utilities/helpers/extensions/text_editing_controller.dart';
 import '../base/store.dart';
-import '../double/store.dart';
 
 part 'store.g.dart';
 

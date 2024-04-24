@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:forms/presentation/components/text/form_field.dart';
+import 'package:forms/presentation/components/text/store.dart';
 import 'package:utilities/sizes/spacers.dart';
 
 import '../components/bool/form_field.dart';
@@ -9,10 +11,10 @@ import '../components/int/store.dart';
 import 'store.dart';
 
 class FormsMapView extends StatelessWidget {
-  final FormsMapStore mapEditorStore;
+  final FormsMapStore store;
   final Widget? header;
 
-  const FormsMapView({super.key, required this.mapEditorStore, this.header});
+  const FormsMapView({super.key, required this.store, this.header});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class FormsMapView extends StatelessWidget {
               header ?? buildHeader(context),
               Expanded(
                 child: SingleChildScrollView(
-                  child: _buildFormsMap(context, mapEditorStore.mapData, []),
+                  child: _buildFormsMap(context, store.mapData, []),
                 ),
               ),
             ],
@@ -46,7 +48,7 @@ class FormsMapView extends StatelessWidget {
   }
 
   Widget buildHeader(BuildContext context) {
-    return Text(mapEditorStore.mapData.toString());
+    return Text(store.mapData.toString());
   }
 
   Widget _buildFormsMap(BuildContext context, Map<dynamic, dynamic> map, List<String> keys) {
@@ -58,7 +60,7 @@ class FormsMapView extends StatelessWidget {
           final key = entry.key as String;
           final value = entry.value;
           final updatedKeys = List<String>.from(keys)..add(key);
-          final valueEditor = buildValueEditor(context, value, updatedKeys, mapEditorStore.updateValue);
+          final valueEditor = buildValueEditor(context, value, updatedKeys, store.updateValue);
           if (valueEditor != null) {
             return ExpansionTile(
               title: Text(key.split('_').first),
@@ -79,7 +81,7 @@ class FormsMapView extends StatelessWidget {
                       final index = entry.key;
                       final listUpdatedKeys = List<String>.from(updatedKeys)..add(index.toString());
                       final listValue = entry.value;
-                      final listValueEditor = buildValueEditor(context, listValue, listUpdatedKeys, mapEditorStore.updateValue);
+                      final listValueEditor = buildValueEditor(context, listValue, listUpdatedKeys, store.updateValue);
                       if (listValueEditor != null) {
                         return ExpansionTile(
                           title: Text('Index: $index'),
@@ -116,9 +118,13 @@ class FormsMapView extends StatelessWidget {
   /// Convert the changed value back to the format from the map when calling the onChanged function
   Widget? buildValueEditor(BuildContext context, dynamic value, List<String> keys, void Function(List<String> keys, dynamic value) onChanged) {
     if (value is String) {
-      return TextFormField(
-        initialValue: value,
-        onChanged: (newValue) => onChanged(keys, newValue),
+      final store = TextFormFieldStore(
+        value: value,
+        onValueChanged: (newValue) => onChanged(keys, newValue),
+        title: keys.last,
+      );
+      return DOTextFormField(
+        store: store,
       );
     } else if (value is int) {
       final store = IntFormFieldStore(
