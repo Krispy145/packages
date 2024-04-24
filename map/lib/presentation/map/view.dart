@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/constants/marker_constants.dart';
 import 'package:map/presentation/markers/base_marker.dart';

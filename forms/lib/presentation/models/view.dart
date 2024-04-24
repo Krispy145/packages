@@ -11,11 +11,13 @@ class FormsModelView<T> extends StatelessWidget {
   final FormsModelStore<T> store;
   final Widget? header;
   final Map<String, BaseFormField> modelFields;
+  final EdgeInsets? scrollViewPadding;
   const FormsModelView({
     super.key,
     required this.store,
     required this.modelFields,
     this.header,
+    this.scrollViewPadding,
   });
 
   bool get isUpdating => store.currentModel != null;
@@ -32,6 +34,7 @@ class FormsModelView<T> extends StatelessWidget {
               child: Observer(
                 builder: (context) {
                   return ListView.builder(
+                    padding: scrollViewPadding,
                     itemBuilder: (context, index) {
                       final key = modelFields.keys.elementAt(index);
                       final widget = modelFields[key];
