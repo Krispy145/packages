@@ -67,14 +67,13 @@ class SocialButtons extends StatelessWidget {
       (index) {
         final socialType = types[index];
 
-        Color? foregroundColor = coloredBackground ? Colors.white : null;
-        Color? backgroundColor =
-            coloredBackground ? socialType.backgroundColor : null;
-        Color? overlayColor = coloredBackground ? Colors.white10 : null;
+        final foregroundColor = coloredBackground ? Colors.white : null;
+        final backgroundColor = coloredBackground ? socialType.backgroundColor : null;
+        final overlayColor = coloredBackground ? Colors.white10 : null;
 
-        Color? iconColor = coloredBackground ? Colors.white : null;
+        final iconColor = coloredBackground ? Colors.white : null;
 
-        Widget iconWidget = SizedBox(
+        final Widget iconWidget = SizedBox(
           height: 48,
           width: 48,
           child: Icon(
@@ -89,16 +88,18 @@ class SocialButtons extends StatelessWidget {
           } on AuthenticationException catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(
-                  configuration:
-                      SnackbarConfiguration.error(title: error.message));
+                configuration: SnackbarConfiguration.error(title: error.message),
+              );
             } else {
               onError?.call(error);
             }
           } catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(
-                  configuration: SnackbarConfiguration.error(
-                      title: 'Unexpected error has occurred: $error'));
+                configuration: SnackbarConfiguration.error(
+                  title: 'Unexpected error has occurred: $error',
+                ),
+              );
             } else {
               onError?.call(error);
             }

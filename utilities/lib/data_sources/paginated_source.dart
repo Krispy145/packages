@@ -1,3 +1,5 @@
+import 'package:utilities/data_sources/source.dart';
+
 /// [PaginatedResponseModel] is a class that defines the methods that
 /// should be implemented by the paginated models.
 /// fromJson and toJson methods should be overridden in subclasses to provide
@@ -28,7 +30,7 @@ abstract class PaginatedRequestModel {}
 
 /// [PaginationDataSource] is an abstract class that defines the methods that
 /// should be implemented by the paginated data sources
-abstract class PaginationDataSource<T> {
+abstract class PaginationDataSource<T> with Mappable<T> {
   /// Converts the given value to a paginated response map
   Map<String, dynamic> responseToMap(PaginatedResponseModel<T> data);
 

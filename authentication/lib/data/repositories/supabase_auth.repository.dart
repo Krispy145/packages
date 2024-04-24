@@ -35,6 +35,7 @@ extension _OAuthProviderExtension on AuthType {
     }
   }
 
+  // ignore: unused_element
   AuthType toAuthType(OAuthProvider provider) {
     switch (provider) {
       case OAuthProvider.google:
@@ -242,7 +243,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
   Future<UserModel?> signUpWithEmail(String email, String password) async {
     final result = await _supabaseAuth.signUp(password: password, email: email);
     if (result.session != null && result.user != null) {
-      return await signInWithEmail(
+      return signInWithEmail(
         AuthParams.email(email: email, password: password),
       );
     }

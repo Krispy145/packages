@@ -13,45 +13,40 @@ class SocialButtonType {
     this.iconData = FontAwesomeIcons.apple,
     this.backgroundColor = Colors.black,
     required this.params,
-  }) : name = name ?? params.authType.name {
-    assert(params.authType == AuthType.apple);
-  }
+  })  : name = name ?? params.authType.name,
+        assert(params.authType == AuthType.apple, "AuthType must be apple");
 
   SocialButtonType.facebook({
     String? name,
     this.iconData = FontAwesomeIcons.facebook,
     this.backgroundColor = const Color(0xFF3b5998),
     required this.params,
-  }) : name = name ?? params.authType.name {
-    assert(params.authType == AuthType.facebook);
-  }
+  })  : name = name ?? params.authType.name,
+        assert(params.authType == AuthType.facebook, "AuthType must be facebook");
 
   SocialButtonType.github({
     String? name,
     this.iconData = FontAwesomeIcons.github,
     this.backgroundColor = Colors.black,
     required this.params,
-  }) : name = name ?? params.authType.name {
-    assert(params.authType == AuthType.github);
-  }
+  })  : name = name ?? params.authType.name,
+        assert(params.authType == AuthType.github, "AuthType must be github");
 
   SocialButtonType.google({
     String? name,
     this.iconData = FontAwesomeIcons.google,
     this.backgroundColor = Colors.blue,
     required this.params,
-  }) : name = name ?? params.authType.name {
-    assert(params.authType == AuthType.google);
-  }
+  })  : name = name ?? params.authType.name,
+        assert(params.authType == AuthType.google, "AuthType must be google");
 
   SocialButtonType.x({
     String? name,
     this.iconData = FontAwesomeIcons.twitter,
     this.backgroundColor = const Color(0xFF1DA1F2),
     required this.params,
-  }) : name = name ?? params.authType.name {
-    assert(params.authType == AuthType.x);
-  }
+  })  : name = name ?? params.authType.name,
+        assert(params.authType == AuthType.x, "AuthType must be x");
 
   String get displayName => name[0].toUpperCase() + name.substring(1);
 }

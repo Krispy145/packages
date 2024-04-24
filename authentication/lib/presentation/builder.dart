@@ -52,16 +52,17 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
   @override
   void initState() {
     super.initState();
-    _userModelSubscription =
-        widget.repository.currentUserModelStream.listen((data) {
+    _userModelSubscription = widget.repository.currentUserModelStream.listen((data) {
       if (data != null) {
         final authStatus = data.status;
         if (authStatus == AuthStatus.authenticated) {
           widget.onSuccess?.call(data);
           if (widget.showSuccessSnackBar) {
             context.showSnackbar(
-                configuration: SnackbarConfiguration.confirmation(
-                    title: 'Successfully signed in'));
+              configuration: SnackbarConfiguration.confirmation(
+                title: 'Successfully signed in',
+              ),
+            );
           }
         }
       }
@@ -77,48 +78,47 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
-    final maxWidth =
-        MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
-    final socialButtonVariant =
-        isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
+    final maxWidth = MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
+    final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
-        child: Center(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: maxWidth,
-        ),
-        child: Column(
-          children: [
-            if (widget.showEmailAuth)
-              EmailAuthWidget(
-                repository: widget.repository,
-                onSignInComplete: widget.onSuccess ?? (userModel) {},
-                onSignUpComplete: widget.onSuccess ?? (userModel) {},
-              ),
-            if (widget.showPhoneAuth != null) ...[
-              if (widget.showPhoneAuth!.showSignIn)
-                PhoneAuthWidget(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: maxWidth,
+          ),
+          child: Column(
+            children: [
+              if (widget.showEmailAuth)
+                EmailAuthWidget(
                   repository: widget.repository,
-                  authAction: AuthAction.signIn,
-                  onSuccess: widget.onSuccess ?? (userModel) {},
+                  onSignInComplete: widget.onSuccess ?? (userModel) {},
+                  onSignUpComplete: widget.onSuccess ?? (userModel) {},
                 ),
-              if (widget.showPhoneAuth!.showSignUp)
-                PhoneAuthWidget(
+              if (widget.showPhoneAuth != null) ...[
+                if (widget.showPhoneAuth!.showSignIn)
+                  PhoneAuthWidget(
+                    repository: widget.repository,
+                    authAction: AuthAction.signIn,
+                    onSuccess: widget.onSuccess ?? (userModel) {},
+                  ),
+                if (widget.showPhoneAuth!.showSignUp)
+                  PhoneAuthWidget(
+                    repository: widget.repository,
+                    authAction: AuthAction.signUp,
+                    onSuccess: widget.onSuccess ?? (userModel) {},
+                  ),
+              ],
+              if (widget.socialTypes != null)
+                SocialButtons(
                   repository: widget.repository,
-                  authAction: AuthAction.signUp,
+                  socialTypes: widget.socialTypes!,
                   onSuccess: widget.onSuccess ?? (userModel) {},
+                  socialButtonVariant: socialButtonVariant,
                 ),
             ],
-            if (widget.socialTypes != null)
-              SocialButtons(
-                repository: widget.repository,
-                socialTypes: widget.socialTypes!,
-                onSuccess: widget.onSuccess ?? (userModel) {},
-                socialButtonVariant: socialButtonVariant,
-              ),
-          ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

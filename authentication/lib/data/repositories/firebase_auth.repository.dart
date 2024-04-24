@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:authentication/data/models/auth_params.dart';
 import 'package:authentication/data/repositories/helpers/auth_repository.helper.dart';
 import 'package:authentication/data/source/api_user.source.dart';
@@ -44,7 +46,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (logToDatabase) {
       await dataSource.delete(userId);
     }
-    return await _user!.delete();
+    return _user!.delete();
   }
 
   @override
@@ -298,7 +300,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
       );
     }
-    return await _firebaseAuth.signOut();
+    return _firebaseAuth.signOut();
   }
 
   @override
@@ -340,7 +342,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         _currentUserModel = databaseUser.copyWith(
           lastLoginAt: DateTime.now(),
         );
-        dataSource.update(_currentUserModel!.id, _currentUserModel!);
+        unawaited(dataSource.update(_currentUserModel!.id, _currentUserModel!));
         currentUserModelSubject.add(_currentUserModel);
       }
     }

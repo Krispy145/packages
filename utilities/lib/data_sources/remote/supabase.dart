@@ -4,7 +4,7 @@ import 'package:utilities/logger/logger.dart';
 import 'package:utilities/utils/loggers.dart';
 
 /// [SupabaseDataSource] is a wrapper class for [SupabaseClient]
-class SupabaseDataSource<T> implements DataSource<T> {
+class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   SupabaseClient? _supabase;
 
   /// [tableName] is the name of the table

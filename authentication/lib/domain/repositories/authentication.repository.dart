@@ -45,11 +45,12 @@ class AuthenticationRepository {
   /// [required] for web.
   final String? facebookAppId;
 
-  /// [_currentUserModelStream] is the current user model stream.
+  /// [currentUserModelStream] is the current user model stream.
   BehaviorSubject<UserModel?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
 
   UserModel? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
 
+  // ignore: comment_references
   /// [authStatusStream] is the authentication status stream.
   // Stream<AuthStatus> get authStatusStream => _authStatusSubject.stream;
 
@@ -70,7 +71,7 @@ class AuthenticationRepository {
     // _initStreams();
   }
 
-  /// [AuthenticationRepository.firestore] constructor.
+  /// `AuthenticationRepository.firestore` constructor.
   /// [dataSource] defaults to [FirestoreAuthDataSource]
   AuthenticationRepository.firebase({
     this.logToDatabase = true,

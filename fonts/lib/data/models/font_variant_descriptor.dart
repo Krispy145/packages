@@ -40,7 +40,7 @@ class DOFontVariantDescriptor {
     if (a == b) {
       return 0;
     }
-    int score = (a.fontWeight.index - b.fontWeight.index).abs();
+    var score = (a.fontWeight.index - b.fontWeight.index).abs();
     if (a.fontStyle != b.fontStyle) {
       score += 2;
     }

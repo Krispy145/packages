@@ -8,7 +8,7 @@ import 'package:utilities/utils/loggers.dart';
 /// It is used to fetch paginated data from the API
 /// It extends [ApiDataSource] and implements [PaginationDataSource]
 /// It is used to fetch paginated data from the API
-class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
+abstract class PaginatedApiDataSource<T> implements PaginationDataSource<T> {
   final Dio _dio = Dio();
 
   final Map<String, CancelToken> _cancelTokens = {};

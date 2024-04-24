@@ -287,7 +287,7 @@ class DODataRepository {
       );
 
   /// [_dataSourceByType] returns the appropriate [DODataSource] based on the [DataSourceTypes] enum.
-  /// Defaults to [LocalDODataSource].
+  /// Defaults to [HiveDODataSource].
   /// This can be in local, an api, or firestore.
   DODataSource<T> _dataSourceByType<T>(
     String tableName,
@@ -299,7 +299,7 @@ class DODataRepository {
       // case DataSourceTypes.api:
       //   return ApiDODataSource();
       // case DataSourceTypes.local:
-      //   return LocalDODataSource();
+      //   return HiveDODataSource();
       // case DataSourceTypes.firestore:
       //   return FirestoreDODataSource(
       //     tableName,

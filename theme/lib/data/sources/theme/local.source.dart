@@ -4,13 +4,13 @@
 // import '../../models/theme_model.dart';
 // import '_source.dart';
 
-// /// [LocalThemeDataSource] is a class that implements [ThemeDataSource] interface.
-// class LocalThemeDataSource extends LocalDataSource<ThemeModel> implements ThemeDataSource {
+// /// [HiveThemeDataSource] is a class that implements [ThemeDataSource] interface.
+// class HiveThemeDataSource extends HiveDataSource<ThemeModel> implements ThemeDataSource {
 //   // Simulated in-memory data store
 //   final Map<String, ThemeModel> _dataStore = {};
 
-//   /// [LocalThemeDataSource] constructor.
-//   LocalThemeDataSource()
+//   /// [HiveThemeDataSource] constructor.
+//   HiveThemeDataSource()
 //       : super(
 //           'theme',
 //           convertDataTypeFromMap: ThemeModel.fromJson,

@@ -5,7 +5,8 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:mobx/mobx.dart';
 import 'package:notifications/models/notification.dart';
 import 'package:notifications/models/permissions.dart';
-import 'package:utilities/data_sources/local/hive.dart';
+import 'package:utilities/data_sources/local/hive/helpers/type_box.dart';
+import 'package:utilities/data_sources/local/hive/hive.dart';
 
 part 'base_store.g.dart';
 
@@ -13,7 +14,7 @@ part 'base_store.g.dart';
 class NotificationsStore = _NotificationsStore with _$NotificationsStore;
 
 /// [_NotificationsStore] is the base class for [NotificationsStore].
-abstract class _NotificationsStore extends LocalDataSource<NotificationModel> with Store {
+abstract class _NotificationsStore extends HiveDataSource<NotificationModel> with Store {
   /// [onNotificationReceived] is a callback for when a notification is received.
   final void Function(NotificationModel notification)? onNotificationReceived;
 

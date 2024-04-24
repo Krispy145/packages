@@ -8,8 +8,6 @@ part 'user_model.g.dart';
 /// [UserModel] is a class that represents the Auth model.
 @freezed
 class UserModel with _$UserModel {
-  const UserModel._();
-
   /// [UserModel] constructor.
   const factory UserModel({
     required String id,
@@ -27,6 +25,7 @@ class UserModel with _$UserModel {
     DateTime? lastLogoutAt,
     required DateTime updatedAt,
   }) = _UserModel;
+  const UserModel._();
 
   AuthParams toAuthParams() => AuthParams.fromUserModel(
         id: id,

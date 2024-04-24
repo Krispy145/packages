@@ -94,18 +94,19 @@ mixin _$MapStore on _MapStore, Store {
       ActionController(name: '_MapStore', context: context);
 
   @override
-  void addMarker(MarkerModel markerModel) {
+  void addMarker(MarkerModel markerModel, {dynamic clearFirst = false}) {
     final _$actionInfo =
         _$_MapStoreActionController.startAction(name: '_MapStore.addMarker');
     try {
-      return super.addMarker(markerModel);
+      return super.addMarker(markerModel, clearFirst: clearFirst);
     } finally {
       _$_MapStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
+  void addMarkers(List<MarkerModel> newMarkerModels,
+      {bool clearFirst = false}) {
     final _$actionInfo =
         _$_MapStoreActionController.startAction(name: '_MapStore.addMarkers');
     try {

@@ -85,14 +85,18 @@ abstract class _MapStore extends LoadStateStore with Store {
   ///
 
   @action
-  void addMarker(MarkerModel markerModel) {
+  void addMarker(MarkerModel markerModel, {clearFirst = false}) {
+    if (clearFirst) {
+      superclusterController.removeAll(markers.map(buildSingleMarker).toList());
+      markers.clear();
+    }
     markers.add(markerModel);
     superclusterController.add(buildSingleMarker(markerModel));
     AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
   }
 
   @action
-  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = true}) {
+  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = false}) {
     AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
 
     final newMarkerSet = newMarkerModels.toSet();
