@@ -14,6 +14,7 @@ abstract class _BaseFormFieldStore<T> extends LoadStateStore with Store {
 
   _BaseFormFieldStore({required this.title, required this.value, required this.onValueChanged}) {
     reaction((r) => value, onValueChanged);
+    setLoaded();
   }
 
   @observable

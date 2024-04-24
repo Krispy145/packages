@@ -1,4 +1,5 @@
 import 'package:forms/presentation/components/base/store.dart';
+import 'package:forms/presentation/components/double/store.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/data/models/marker_model.dart';
@@ -26,6 +27,28 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<LatLng?> with
   late final SearchBoxAPI search;
   late final MapStore mapStore;
 
+  late final DoubleFormFieldStore latitudeStore = DoubleFormFieldStore(
+    value: 0,
+    onValueChanged: (newLat) {
+      AppLogger.print("LongitudeStore.onValueChanged: $newLat", [MapLoggers.map]);
+      if (newLat == null) return;
+      value = LatLng(newLat, value?.longitude ?? mapStore.markers.first.position.longitude);
+      _setCenterMarker(coordinates: value);
+    },
+    title: "Latitude",
+  );
+
+  late final DoubleFormFieldStore longitudeStore = DoubleFormFieldStore(
+    value: 0,
+    onValueChanged: (newLng) {
+      AppLogger.print("LongitudeStore.onValueChanged: $newLng", [MapLoggers.map]);
+      if (newLng == null) return;
+      value = LatLng(value?.latitude ?? mapStore.markers.first.position.latitude, newLng);
+      _setCenterMarker(coordinates: value);
+    },
+    title: "Longitude",
+  );
+
   @observable
   List<Suggestion>? suggestions;
 
@@ -39,15 +62,10 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<LatLng?> with
   Future<void> setCoordinates(Suggestion suggestion) async {
     final searchPlaceResponse = await search.getPlace(suggestion.mapboxId);
     if (searchPlaceResponse.success != null) {
-      final coordinates = searchPlaceResponse.success!.features.first.geometry.coordinates;
-      mapStore.addMarkers([
-        MarkerModel(
-          id: "1",
-          position: LatLng(coordinates.lat, coordinates.long),
-          score: 1,
-        )
-      ]);
-      mapStore.animatedMapController.animateTo(dest: LatLng(coordinates.lat, coordinates.long), zoom: 10);
+      final coordinatesMap = searchPlaceResponse.success!.features.first.geometry.coordinates;
+      final coordinates = LatLng(coordinatesMap.lat, coordinatesMap.long);
+      _setCenterMarker(coordinates: coordinates);
+      mapStore.animatedMapController.animateTo(dest: coordinates, zoom: 10);
     }
   }
 
@@ -56,31 +74,31 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<LatLng?> with
     try {
       search = SearchBoxAPI(apiKey: MapConstants.mapboxAPIKey);
       mapStore = MapStore(
-          mapTilesUrl: mapTilesUrl,
-          onMapViewReady: () {
-            mapStore.addMarkers([
-              MarkerModel(
-                id: "1",
-                position: mapStore.animatedMapController.mapController.camera.center,
-                score: 1,
-              )
-            ]);
-          },
-          onDragEnd: () {
-            AppLogger.print("MapBoxSearch.init onDragEnd", [MapLoggers.markers]);
-            mapStore.addMarkers([
-              MarkerModel(
-                id: "1",
-                position: mapStore.animatedMapController.mapController.camera.center,
-                score: 1,
-              )
-            ]);
-          });
+        mapTilesUrl: mapTilesUrl,
+        onMapViewReady: _setCenterMarker,
+        onDragEnd: _setCenterMarker,
+      );
       suggestions = await search.getSuggestions("London").then((value) => value.success?.suggestions);
-      AppLogger.print("MapBoxSearch.init success: ${mapStore.markers}", [MapLoggers.markers]);
+      AppLogger.print("MapBoxSearch.init success: ${mapStore.markers}", [MapLoggers.map]);
     } catch (e) {
-      AppLogger.print("MapBoxSearch.init error: $e", [MapLoggers.markers]);
+      setError();
+      AppLogger.print("MapBoxSearch.init error: $e", [MapLoggers.map]);
     }
     setLoaded();
+  }
+
+  void _setCenterMarker({LatLng? coordinates}) {
+    AppLogger.print("Setting center marker", [MapLoggers.markers]);
+    final newCoordinates = coordinates ?? mapStore.animatedMapController.mapController.camera.center;
+    mapStore.addMarkers([
+      MarkerModel(
+        id: "1",
+        position: newCoordinates,
+        score: 1,
+      )
+    ]);
+    latitudeStore.value = newCoordinates.latitude;
+    longitudeStore.value = newCoordinates.longitude;
+    mapStore.animatedMapController.animateTo(dest: newCoordinates, zoom: 10);
   }
 }
