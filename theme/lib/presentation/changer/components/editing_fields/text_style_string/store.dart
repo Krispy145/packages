@@ -4,10 +4,10 @@ import 'package:theme/presentation/changer/components/editing_fields/base/store.
 
 part 'store.g.dart';
 
-class TextStyleStringFormFieldStore = _textStyleStringStringFormFieldStore with _$TextStyleStringFormFieldStore;
+class TextStyleStringFormFieldStore = _TextStyleStringStringFormFieldStore with _$TextStyleStringFormFieldStore;
 
-abstract class _textStyleStringStringFormFieldStore extends BaseFormFieldStore<TextStyleString?> with Store {
-  _textStyleStringStringFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
+abstract class _TextStyleStringStringFormFieldStore extends BaseFormFieldStore<TextStyleString?> with Store {
+  _TextStyleStringStringFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
     // On Value Changed
     // reaction<TextStyleString?>((reaction) => value, (newValue) {
     // });

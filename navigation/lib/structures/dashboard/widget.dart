@@ -97,8 +97,7 @@ class DashboardShellStructure extends StatefulWidget {
   }) : boardNavigationRailPosition = NavigationRailPosition.right;
 
   @override
-  State<DashboardShellStructure> createState() =>
-      _DashboardShellStructureState();
+  State<DashboardShellStructure> createState() => _DashboardShellStructureState();
 }
 
 class _DashboardShellStructureState extends State<DashboardShellStructure> {
@@ -108,21 +107,18 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
     return context.screenWidth * widget.navigationRailPercentage;
   }
 
-  double _getNavigationRailMinWidth(BuildContext context) {
-    return context.screenWidth * 0.1;
-  }
+  // double _getNavigationRailMinWidth(BuildContext context) {
+  //   return context.screenWidth * 0.1;
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Row(
         children: [
-          if (widget.boardNavigationRailPosition == NavigationRailPosition.left)
-            _buildNavigationRail(context),
+          if (widget.boardNavigationRailPosition == NavigationRailPosition.left) _buildNavigationRail(context),
           const Expanded(child: AutoRouter()),
-          if (widget.boardNavigationRailPosition ==
-              NavigationRailPosition.right)
-            _buildNavigationRail(context),
+          if (widget.boardNavigationRailPosition == NavigationRailPosition.right) _buildNavigationRail(context),
         ],
       ),
     );
@@ -137,8 +133,7 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
           useIndicator: false,
           leading: widget.leading,
           trailing: _buildTrailingStack(context),
-          extended: widget.labelType == NavigationRailLabelType.none &&
-              store.isNavigationRailExtended,
+          extended: widget.labelType == NavigationRailLabelType.none && store.isNavigationRailExtended,
           selectedIndex: store.selectedIndex,
           onDestinationSelected: (value) {
             widget.onDestinationSelected?.call(value);
@@ -166,14 +161,8 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
             IconButton(
               icon: Icon(
                 store.isNavigationRailExtended
-                    ? (widget.boardNavigationRailPosition ==
-                            NavigationRailPosition.left
-                        ? Icons.chevron_left
-                        : Icons.chevron_right)
-                    : (widget.boardNavigationRailPosition ==
-                            NavigationRailPosition.left
-                        ? Icons.chevron_right
-                        : Icons.chevron_left),
+                    ? (widget.boardNavigationRailPosition == NavigationRailPosition.left ? Icons.chevron_left : Icons.chevron_right)
+                    : (widget.boardNavigationRailPosition == NavigationRailPosition.left ? Icons.chevron_right : Icons.chevron_left),
               ),
               onPressed: store.toggleNavigationRail,
             ),

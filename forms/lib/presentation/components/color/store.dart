@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:theme/presentation/components/colors/view.dart';
 import 'package:theme/domain/converters/colors/color.dart';
+import 'package:theme/presentation/components/colors/view.dart';
+
 import '../base/store.dart';
 
 part 'store.g.dart';
 
 // ignore: library_private_types_in_public_api
-class ColorFormFieldStore = _themeColorStringFormFieldStore with _$ColorFormFieldStore;
+class ColorFormFieldStore = _ThemeColorStringFormFieldStore with _$ColorFormFieldStore;
 
-abstract class _themeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
-  _themeColorStringFormFieldStore({
+abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
+  _ThemeColorStringFormFieldStore({
     required super.value,
     required super.onValueChanged,
     required super.title,

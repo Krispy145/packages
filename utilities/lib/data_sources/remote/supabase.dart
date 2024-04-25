@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/logger/logger.dart';
@@ -96,9 +98,10 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> add(T data) async {
     await _handleRequest("ADD", () async {
       AppLogger.print("Data: $data", [UtilitiesLoggers.supabaseDataSource]);
-      final response = _supabase!.from(tableName).insert(convertDataTypeToMap(data));
-      response.then(
-        (value) => AppLogger.print("Response: $value", [UtilitiesLoggers.supabaseDataSource]),
+      unawaited(
+        _supabase!.from(tableName).insert(convertDataTypeToMap(data)).then(
+              (value) => AppLogger.print("Response: $value", [UtilitiesLoggers.supabaseDataSource]),
+            ),
       );
       return null;
     });

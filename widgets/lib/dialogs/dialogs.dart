@@ -15,7 +15,8 @@ class _DialogsState extends State<Dialogs> {
       builder: (context) => AlertDialog(
         title: const Text('What is a dialog?'),
         content: const Text(
-            'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.'),
+          'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
+        ),
         actions: <Widget>[
           TextButton(
             child: const Text('Dismiss'),
@@ -35,7 +36,7 @@ class _DialogsState extends State<Dialogs> {
       context: context,
       builder: (context) => Dialog.fullscreen(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20),
           child: Scaffold(
             appBar: AppBar(
               title: const Text('Full-screen dialog'),
@@ -61,8 +62,7 @@ class _DialogsState extends State<Dialogs> {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Dialog',
-      tooltipMessage:
-          'Use showDialog with Dialog.fullscreen, AlertDialog, or SimpleDialog',
+      tooltipMessage: 'Use showDialog with Dialog.fullscreen, AlertDialog, or SimpleDialog',
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
         children: [

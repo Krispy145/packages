@@ -119,7 +119,7 @@ class DOFontVariantDescriptor {
   /// weight: 700, style: normal -> 'Bold'
   /// weight: 700, style: italic -> 'BoldItalic'
   ///
-  /// See [GoogleFontsVariant.fromApiFilenamePart] for the inverse function.
+  /// See [`GoogleFontsVariant.fromApiFilenamePart`] for the inverse function.
   String toApiFilenamePart() {
     final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ?? _fontWeightToFilenameWeightParts[FontWeight.w400]!;
     final italicSuffix = fontStyle == FontStyle.italic ? 'Italic' : '';

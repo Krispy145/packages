@@ -20,7 +20,7 @@ class _DatePickersState extends State<DatePickers> {
       tooltipMessage: 'Use showDatePicker',
       child: TextButton(
         onPressed: () async {
-          DateTime? date = await showDatePicker(
+          final date = await showDatePicker(
             context: context,
             initialDate: selectedDate ?? DateTime.now(),
             firstDate: _firstDate,
@@ -29,10 +29,13 @@ class _DatePickersState extends State<DatePickers> {
           setState(() {
             selectedDate = date;
             if (selectedDate != null) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                    'Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}'),
-              ));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    'Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
+                  ),
+                ),
+              );
             }
           });
         },

@@ -26,6 +26,6 @@ abstract class BaseMarker<T extends MarkerModel> extends Marker {
   @override
   bool operator ==(covariant BaseMarker other) {
     if (identical(this, other)) return true;
-    return other.markerModel.id == markerModel.id;
+    return other.markerModel.id == markerModel.id && other.markerModel.position == markerModel.position;
   }
 }

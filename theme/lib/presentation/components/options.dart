@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme/app/app.dart';
-import 'package:theme/presentation/changer/changer.dart';
 import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
@@ -32,6 +31,7 @@ import 'package:theme/data/models/snackbars/snackbar_model.dart';
 import 'package:theme/data/models/switches/switch_model.dart';
 import 'package:theme/data/models/tab_bars/tab_bar_model.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
+import 'package:theme/presentation/changer/changer.dart';
 
 enum ChangerOptions {
   colors,

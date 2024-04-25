@@ -4,8 +4,9 @@ import 'package:forms/presentation/components/base/form_field.dart';
 import 'package:theme/app/app.dart';
 import 'package:theme/data/models/text/text_style_sizes.dart';
 import 'package:theme/extensions/text_style_string.dart';
-import 'store.dart';
 import 'package:utilities/sizes/spacers.dart';
+
+import 'store.dart';
 
 class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldStore> {
   const TextStyleStringFormField({

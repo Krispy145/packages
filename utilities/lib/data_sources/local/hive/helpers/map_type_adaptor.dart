@@ -17,9 +17,9 @@ class MapTypeAdaptor extends TypeAdapter<Map<String, dynamic>> {
   }
 
   @override
-  void write(BinaryWriter writer, Map<String, dynamic> map) {
-    writer.writeUint32(map.length);
-    for (final entry in map.entries) {
+  void write(BinaryWriter writer, Map<String, dynamic> obj) {
+    writer.writeUint32(obj.length);
+    for (final entry in obj.entries) {
       writer
         ..writeString(entry.key)
         ..write(entry.value);

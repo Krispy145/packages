@@ -19,8 +19,8 @@ extension BrightnessExtension on Brightness {
   }
 }
 
-/// [ColorSchemes] is a wrapper for [ColorSchemeModel] that allows you to use [Brightness] to
-/// calculate the [ColorSchemeModel] values.
+/// [ColorSchemes] is a wrapper for [`ColorSchemeModel`] that allows you to use [Brightness] to
+/// calculate the [`ColorSchemeModel`] values.
 @freezed
 class ColorSchemes with _$ColorSchemes {
   /// [ColorSchemes] constructor

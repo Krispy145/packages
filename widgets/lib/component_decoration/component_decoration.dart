@@ -30,19 +30,21 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(widget.label,
-                    style: Theme.of(context).textTheme.titleSmall),
+                Text(
+                  widget.label,
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
                 Tooltip(
                   message: widget.tooltipMessage,
                   child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 5.0),
-                      child: Icon(Icons.info_outline, size: 16)),
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: Icon(Icons.info_outline, size: 16),
+                  ),
                 ),
               ],
             ),
             ConstrainedBox(
-              constraints:
-                  const BoxConstraints.tightFor(width: widthConstraint),
+              constraints: const BoxConstraints.tightFor(width: widthConstraint),
               // Tapping within the a component card should request focus
               // for that component's children.
               child: Focus(
@@ -63,7 +65,9 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 5.0, vertical: 20.0),
+                        horizontal: 5,
+                        vertical: 20,
+                      ),
                       child: Center(
                         child: widget.child,
                       ),

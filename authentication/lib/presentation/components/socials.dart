@@ -82,7 +82,7 @@ class SocialButtons extends StatelessWidget {
           ),
         );
 
-        onAuthButtonPressed() async {
+        Future<void> onAuthButtonPressed() async {
           try {
             await repository.signIn(params: socialType.params);
           } on AuthenticationException catch (error) {

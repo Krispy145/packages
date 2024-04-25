@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+
 import '../base/form_field.dart';
-import 'store.dart';
 import '../double/form_field.dart';
 import '../enum/form_field.dart';
 import '../theme_color_string/form_field.dart';
+import 'store.dart';
 
 class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
   const BorderSideFormField({super.key, required super.store});

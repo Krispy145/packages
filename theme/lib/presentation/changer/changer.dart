@@ -5,10 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:theme/app/store.dart';
-import 'package:theme/presentation/panel/base_view.dart';
-import 'package:theme/presentation/components/colors/view.dart';
-import 'package:theme/presentation/components/options.dart';
-import 'package:theme/presentation/components/textStyles/view.dart';
 import 'package:theme/data/models/appbars/appbar_model.dart';
 import 'package:theme/data/models/appbars/bottom_appbar_model.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
@@ -47,6 +43,10 @@ import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
 import 'package:theme/presentation/changer/components/editing_map/store.dart';
 import 'package:theme/presentation/changer/view.dart';
+import 'package:theme/presentation/components/colors/view.dart';
+import 'package:theme/presentation/components/options.dart';
+import 'package:theme/presentation/components/textStyles/view.dart';
+import 'package:theme/presentation/panel/base_view.dart';
 import 'package:theme/utils/loggers.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:utilities/logger/logger.dart';
@@ -686,16 +686,19 @@ class ThemeChanger {
     }
     switch (buttonType) {
       case ButtonModelType.elevated:
-        // if (_componentThemesModel?.elevatedButtons != null) {
-        //   _componentThemesModel!.elevatedButtons![styleType] = buttonStyle;
-        // } else {
-        //   _componentThemesModel!.elevatedButtons = {styleType: buttonStyle};
-        // }
-        final elevatedButtonStyle = _componentThemesModel?.elevatedButtons ?? {styleType: buttonStyle};
-        elevatedButtonStyle[styleType] = buttonStyle;
+        final elevatedButtonStyle = _elevatedButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(elevatedButtons: elevatedButtonStyle);
-        _themeStore.changeComponentThemesModel(newComponentThemesModel);
-        return;
+        break;
+      // if (_componentThemesModel?.elevatedButtons != null) {
+      //   _componentThemesModel!.elevatedButtons![styleType] = buttonStyle;
+      // } else {
+      //   _componentThemesModel!.elevatedButtons = {styleType: buttonStyle};
+      // }
+      // final elevatedButtonStyle = _componentThemesModel?.elevatedButtons ?? {styleType: buttonStyle};
+      // elevatedButtonStyle[styleType] = buttonStyle;
+      // newComponentThemesModel = _componentThemesModel!.copyWith(elevatedButtons: elevatedButtonStyle);
+      // _themeStore.changeComponentThemesModel(newComponentThemesModel);
+      // return;
       case ButtonModelType.outlined:
         final outlinedButtonStyle = _outlinedButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(outlinedButtons: outlinedButtonStyle);

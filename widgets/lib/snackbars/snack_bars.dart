@@ -8,13 +8,12 @@ class SnackBarSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return ComponentDecoration(
       label: 'Snackbar',
-      tooltipMessage:
-          'Use ScaffoldMessenger.of(context).showSnackBar with SnackBar',
+      tooltipMessage: 'Use ScaffoldMessenger.of(context).showSnackBar with SnackBar',
       child: TextButton(
         onPressed: () {
           final snackBar = SnackBar(
             behavior: SnackBarBehavior.floating,
-            width: 400.0,
+            width: 400,
             content: const Text('This is a snackbar'),
             action: SnackBarAction(
               label: 'Close',

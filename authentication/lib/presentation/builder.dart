@@ -22,7 +22,7 @@ class ShowAuthAction {
 }
 
 //TODO: Make the auth store and extend loadstate to init getting the autentication status from the repository.
-/// [AuthenticationBuilder] is a class that uses [AuthenticationBaseBuilder] to manage state of the authentication feature.
+/// [AuthenticationBuilder] is a class that uses [_AuthenticationBuilderState] to manage state of the authentication feature.
 class AuthenticationBuilder extends StatefulWidget {
   final AuthenticationRepository repository;
   final bool showEmailAuth;

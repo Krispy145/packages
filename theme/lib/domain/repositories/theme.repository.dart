@@ -1,9 +1,10 @@
 import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/repositories/theme.repository.dart';
+
 import '/data/repositories/_repositories.dart';
 import 'base.repository.dart';
 
-/// [ThemeRepository] is an abstract class that defines the basic CRUD operations for the [ThemeModel] entity.
+/// [ThemeRepository] is an abstract class that defines the basic CRUD operations for the `ThemeModel` entity.
 class ThemeRepository extends BaseThemeRepository {
   final ThemeConfiguration? baseThemeConfiguration;
   final ThemeConfiguration? componentThemesConfiguration;

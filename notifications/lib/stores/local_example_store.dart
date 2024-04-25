@@ -274,7 +274,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
     //TODO: _showInsistentNotification function here
   }
 
-  /// [showDailyAtTimeNotification] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails] daily at a specific time.
+  /// [showBigPictureNotification] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails] daily at a specific time.
   @action
   Future<void> showBigPictureNotification() async {
     //TODO: _showBigPictureNotification function here

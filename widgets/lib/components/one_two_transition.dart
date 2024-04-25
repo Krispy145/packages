@@ -24,7 +24,7 @@ class _OneTwoTransitionState extends State<OneTwoTransition> {
         SizedBox(width: context.screenWidth / 2, child: widget.one),
         Expanded(
           child: widget.two,
-        )
+        ),
       ],
     );
   }
@@ -36,7 +36,7 @@ class OffsetAnimation extends CurvedAnimation {
           parent: parent,
           curve: const Interval(
             0.4,
-            1.0,
+            1,
             curve: Curves.easeInOutCubicEmphasized,
           ),
           reverseCurve: Interval(

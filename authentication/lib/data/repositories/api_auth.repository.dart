@@ -46,7 +46,7 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<void> deleteAccount(String userId) async {
     await _apiAuthDataSource.delete(userId);
-    if (logToDatabase) return await dataSource.delete(userId);
+    if (logToDatabase) return dataSource.delete(userId);
   }
 
   @override
