@@ -1,18 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:map/data/models/google/place_model.dart';
 import 'package:map/presentation/map/view.dart';
-import 'package:mapbox_search/mapbox_search.dart';
+import 'package:map/presentation/search_map/google_store.dart';
 import 'package:utilities/widgets/load_state/state_widget.dart';
-
-import 'store.dart';
 
 /// [SearchMapView] of the app.
 @RoutePage()
 class SearchMapView extends MapView {
   /// [store] is an instance of [MapStore], used in the [LoadStateBuilder].
   @override
-  final SearchMapStore store;
+  final GoogleSearchMapStore store;
   const SearchMapView({super.key, required this.store}) : super(store: store);
 
   @override
@@ -34,25 +33,33 @@ class SearchMapView extends MapView {
                 ),
               ],
             ),
-            child: DropdownSearch<Suggestion>(
-              itemAsString: (item) => item.name,
-              asyncItems: (filter) => store.searchMap(filter),
+            child: DropdownSearch<GooglePlace>(
+              itemAsString: (item) => item.name ?? "Name not found",
+              asyncItems: (query) => store.searchMap(query),
               compareFn: (i, s) => i == s,
               onChanged: (item) {
                 if (item != null) store.setCoordinates(item);
               },
-              popupProps: PopupPropsMultiSelection.menu(
+              popupProps: PopupPropsMultiSelection.modalBottomSheet(
                 isFilterOnline: true,
                 showSelectedItems: true,
                 showSearchBox: true,
                 itemBuilder: (context, item, isSelected) {
-                  return Text(item.name);
+                  return ListTile(
+                    leading: ImageIcon(
+                      NetworkImage(item.icon ?? ""),
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    title: Text(item.name ?? "Name not found"),
+                    subtitle: Text(item.formattedAddress ?? "Address not found", style: const TextStyle(color: Colors.grey)),
+                    trailing: isSelected ? const Icon(Icons.check) : null,
+                  );
                 },
               ),
             ),
-            // DropdownMenu<Suggestion>(
-            //   initialSelection: store.currentSuggestion,
-            //   // label: Text(store.currentSuggestion?.name??"Search Places"),
+            // DropdownMenu<GooglePlace>(
+            //   initialSelection: store.currentGooglePlace,
+            //   // label: Text(store.currentGooglePlace?.name??"Search Places"),
             //   searchCallback: (_, query) {
             //     store.searchMap(query);
             //     return 0;
@@ -61,7 +68,7 @@ class SearchMapView extends MapView {
             //     if (value != null) store.setCoordinates(value);
             //   },
             //   dropdownMenuEntries: store.suggestions
-            //           ?.map((suggestion) => DropdownMenuEntry<Suggestion>(
+            //           ?.map((suggestion) => DropdownMenuEntry<GooglePlace>(
             //                 label: suggestion.name,
             //                 value: suggestion,
             //               ))

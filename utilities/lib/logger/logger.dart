@@ -10,6 +10,7 @@ final AppLoggerInjector AppLogger = GetIt.instance<AppLoggerInjector>();
 final _logger = Logger(
   printer: PrettyPrinter(
     printEmojis: false,
+    lineLength: 400,
     levelColors: {
       Level.trace: const AnsiColor.fg(175), // Light Red
       Level.info: const AnsiColor.fg(4), // Blue

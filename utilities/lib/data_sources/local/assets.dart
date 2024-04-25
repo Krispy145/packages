@@ -101,7 +101,19 @@ class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<List<T?>> search(Map<String, dynamic> queries) async {
+  Future<T?> search(Map<String, dynamic> queries) async {
+    final results = <T?>[];
+    for (final query in queries.entries) {
+      if (query.value == rootBundleKey) {
+        final searchResult = await get(query.value as String);
+        results.add(searchResult);
+      }
+    }
+    return results.firstOrNull;
+  }
+
+  @override
+  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
     final results = <T?>[];
     for (final query in queries.entries) {
       if (query.value == rootBundleKey) {

@@ -3,7 +3,7 @@ import 'package:forms/presentation/components/base/store.dart';
 import 'package:forms/presentation/components/double/store.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/presentation/markers/location_marker.dart';
-import 'package:map/presentation/search_map/store.dart';
+import 'package:map/presentation/search_map/google_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'store.g.dart';
@@ -30,7 +30,7 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<LatLng?> with
     });
   }
 
-  late final SearchMapStore mapStore = SearchMapStore(
+  late final GoogleSearchMapStore mapStore = GoogleSearchMapStore(
       mapAPIKey: mapAPIKey,
       mapTilesUrl: mapTilesUrl,
       singleMarkerBuilder: (marker) => IconMarker(

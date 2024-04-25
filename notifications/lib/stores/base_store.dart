@@ -42,7 +42,7 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel> wit
   /// [search] searches for notifications with the given [queries].
   @override
   @action
-  Future<List<NotificationModel?>> search(Map<String, dynamic> queries) {
+  Future<List<NotificationModel?>> searchAll(Map<String, dynamic> queries) {
     final results = <NotificationModel>[];
     for (final element in notifications.value.values) {
       if (element != null) {
@@ -81,6 +81,14 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel> wit
       }
     }
     return Future.value(results);
+  }
+
+  // [search] searches for the notification with the given [queries].
+  @override
+  @action
+  Future<NotificationModel?> search(Map<String, dynamic> queries) async {
+    final results = await searchAll(queries);
+    return Future.value(results.isNotEmpty ? results.first : null);
   }
 
   /// [replaceAll] replaces all notifications with the given [notificationList].

@@ -76,7 +76,14 @@ abstract class SecureDataSource implements DataSource<String> {
   }
 
   @override
-  Future<List<String?>> search(Map<dynamic, dynamic> queries) {
+  Future<String?> search(Map<dynamic, dynamic> queries) {
+    // Implement search logic if applicable
+    AppLogger.print("SEARCH: $queries", [UtilitiesLoggers.secureDataSource]);
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<String?>> searchAll(Map<dynamic, dynamic> queries) {
     // Implement search logic if applicable
     AppLogger.print("SEARCH: $queries", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();

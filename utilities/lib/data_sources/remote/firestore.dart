@@ -130,7 +130,17 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<List<T?>> search(Map<String, dynamic> queries) async {
+  Future<T?> search(Map<String, dynamic> queries) async {
+    final query = _firestore.collection(collectionName);
+    for (final entry in queries.entries) {
+      query.where(entry.key, isEqualTo: entry.value);
+    }
+    final querySnapshot = await query.get();
+    return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+  }
+
+  @override
+  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
     final query = _firestore.collection(collectionName);
     for (final entry in queries.entries) {
       query.where(entry.key, isEqualTo: entry.value);
