@@ -11,6 +11,7 @@ import 'package:map/presentation/markers/location_marker.dart';
 import 'package:map/presentation/markers/number_marker.dart';
 import 'package:map/utils/loggers.dart';
 import 'package:mobx/mobx.dart';
+import 'package:theme/app/app.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
@@ -56,6 +57,7 @@ abstract class _MapStore extends LoadStateStore with Store {
     onTap: onMapTapped,
     onMapEvent: onMapEvent,
     onPositionChanged: onMapPositionChanged,
+    backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
     interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
   );
 
