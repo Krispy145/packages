@@ -7,10 +7,11 @@ import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
+import 'package:map/presentation/markers/location_marker.dart';
 import 'package:map/presentation/markers/number_marker.dart';
-import 'package:map/presentation/markers/ringed_marker.dart';
 import 'package:map/utils/loggers.dart';
 import 'package:mobx/mobx.dart';
+import 'package:theme/app/app.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/widgets/load_state/base_store.dart';
@@ -58,6 +59,7 @@ abstract class _MapStore extends LoadStateStore with Store {
     onTap: onMapTapped,
     onMapEvent: onMapEvent,
     onPositionChanged: onMapPositionChanged,
+    backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
     interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
   );
 
@@ -125,7 +127,7 @@ abstract class _MapStore extends LoadStateStore with Store {
 
   Marker buildSingleMarker(MarkerModel markerModel) {
     if (singleMarkerBuilder != null) return singleMarkerBuilder!(markerModel);
-    return LogoRingedMarker(markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
+    return IconMarker(icon: Icons.location_pin, iconSize: 56, markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
   }
 
   Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
