@@ -17,10 +17,12 @@ class GoogleSearchMapStore = _GoogleSearchMapStore with _$GoogleSearchMapStore;
 /// [_GoogleSearchMapStore] is a class that manages the state of the map feature.
 abstract class _GoogleSearchMapStore extends MapStore with Store {
   final String mapAPIKey;
+  final List<MarkerModel>? initialMarkers;
   _GoogleSearchMapStore({
     required this.mapAPIKey,
     required super.mapTilesUrl,
     super.singleMarkerBuilder,
+    this.initialMarkers,
   }) {
     _loadMap();
   }
@@ -47,36 +49,53 @@ abstract class _GoogleSearchMapStore extends MapStore with Store {
     currentGooglePlace = googlePlace;
 
     final coordinates = googlePlace.geometry?.location;
-    setCenterMarker(coordinates: coordinates);
+    if (coordinates == null) return;
+    final marker = MarkerModel(
+      position: coordinates,
+      id: googlePlace.placeId ?? '',
+      score: googlePlace.rating ?? 0,
+    );
+    setCenterMarker(marker: marker);
     animatedMapController.animateTo(dest: mapCenter, zoom: 15);
   }
 
   @override
-  @action
   Future<void> onMapReady() async {
-    super.onMapReady();
-    setCenterMarker();
+    setLoading();
+    if (initialMarkers != null) {
+      addMarkers(initialMarkers!);
+    }
+    if (markers.isNotEmpty) {
+      animatedMapController.animateTo(
+        dest: markers.firstOrNull?.position,
+        zoom: 15,
+      );
+    }
+    mapCenter = markers.firstOrNull?.position;
+    isMapReady = true;
+    setLoaded();
   }
 
   @override
   @action
   void onMapPositionChanged(MapPosition position, bool changed) {
-    setCenterMarker();
+    if (position.center == null || !isMapReady) return;
+    final newMarker = MarkerModel(
+      position: position.center!,
+      id: markers.firstOrNull?.id ?? '',
+      score: markers.firstOrNull?.score ?? 0,
+    );
+    setCenterMarker(marker: newMarker);
   }
 
   @action
-  void setCenterMarker({LatLng? coordinates}) {
-    AppLogger.print("Setting center marker", [MapLoggers.search]);
-    final newCoordinates = coordinates ?? animatedMapController.mapController.camera.center;
+  void setCenterMarker({MarkerModel? marker}) {
+    if (marker == null) return;
     addMarker(
-      MarkerModel(
-        id: "1",
-        position: newCoordinates,
-        score: 1,
-      ),
+      marker,
       clearFirst: true,
     );
-    mapCenter = newCoordinates;
+    mapCenter = marker.position;
   }
 
   @action

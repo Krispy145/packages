@@ -4,15 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:map/data/models/google/place_model.dart';
 import 'package:map/presentation/map/view.dart';
 import 'package:map/presentation/search_map/google_store.dart';
-import 'package:utilities/widgets/load_state/state_widget.dart';
 
 /// [SearchMapView] of the app.
 @RoutePage()
-class SearchMapView extends MapView {
-  /// [store] is an instance of [MapStore], used in the [LoadStateBuilder].
-  @override
-  final GoogleSearchMapStore store;
-  const SearchMapView({super.key, required this.store}) : super(store: store);
+class SearchMapView extends MapView<GoogleSearchMapStore> {
+  const SearchMapView({super.key, required super.store});
 
   @override
   List<Widget> buildAdditionalChildren(BuildContext context) {

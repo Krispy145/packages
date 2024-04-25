@@ -7,7 +7,7 @@ import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
-import 'package:map/presentation/markers/location_marker.dart';
+import 'package:map/presentation/markers/icon_marker.dart';
 import 'package:map/presentation/markers/number_marker.dart';
 import 'package:map/utils/loggers.dart';
 import 'package:mobx/mobx.dart';

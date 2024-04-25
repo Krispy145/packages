@@ -23,21 +23,4 @@ abstract class _FormsModelStore<T> with Store {
   void saveModel() {
     onModelChanged?.call(currentModel as T);
   }
-
-  /// Inserts a new key-value pair into the map.
-  /// The list of keys is used to navigate the nested maps.
-  // @action
-  // void updateValue(T updatedModel) {
-  //   // final mergedMap = {
-  //   //   if(currentModel!=null)...convertToMap(currentModel),
-  //   //   ...convertToMap(updatedModel),
-  //   // };
-  //   final mergedMap = currentModel == null
-  //       ? convertToMap(updatedModel)
-  //       : {
-  //           ...convertToMap(currentModel as T),
-  //           ...convertToMap(updatedModel),
-  //         };
-  //   onModelChanged?.call(convertDataTypeFromMap(mergedMap));
-  // }
 }

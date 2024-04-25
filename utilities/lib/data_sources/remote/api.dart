@@ -52,8 +52,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
         onError: (e, handler) {
           // Log errors
           AppLogger.print(
-            "ERROR: ${e.message}",
-            // "ERROR: ${e.response?.statusCode} -> ${e.response?.statusMessage}",
+            "ERROR: ${e.response?.statusCode} -> ${e.response?.statusMessage}",
             [UtilitiesLoggers.apiDataSource],
             type: LoggerType.error,
           );
@@ -275,10 +274,6 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
       queryParameters: queries,
       cancelToken: _getCancelToken(cancelKey),
     );
-    AppLogger.print(
-      "API RESULT: Search response: ${response.data}",
-      [UtilitiesLoggers.apiDataSource],
-    );
     return response.data != null ? convertDataTypeFromMap(response.data!) : null;
   }
 
@@ -293,11 +288,6 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    final mergedQueries = {...queries, ..._dio.options.queryParameters};
-    AppLogger.print(
-      "API RESULT: Searching $_url with queries: $mergedQueries",
-      [UtilitiesLoggers.apiDataSource],
-    );
     final response = await _dio.get<List<Map<String, dynamic>>>(
       _url,
       queryParameters: queries,

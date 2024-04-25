@@ -74,14 +74,6 @@ mixin _$GoogleSearchMapStore on _GoogleSearchMapStore, Store {
         .run(() => super.setCoordinates(googlePlace));
   }
 
-  late final _$onMapReadyAsyncAction =
-      AsyncAction('_GoogleSearchMapStore.onMapReady', context: context);
-
-  @override
-  Future<void> onMapReady() {
-    return _$onMapReadyAsyncAction.run(() => super.onMapReady());
-  }
-
   late final _$_loadMapAsyncAction =
       AsyncAction('_GoogleSearchMapStore._loadMap', context: context);
 
@@ -105,11 +97,11 @@ mixin _$GoogleSearchMapStore on _GoogleSearchMapStore, Store {
   }
 
   @override
-  void setCenterMarker({LatLng? coordinates}) {
+  void setCenterMarker({MarkerModel? marker}) {
     final _$actionInfo = _$_GoogleSearchMapStoreActionController.startAction(
         name: '_GoogleSearchMapStore.setCenterMarker');
     try {
-      return super.setCenterMarker(coordinates: coordinates);
+      return super.setCenterMarker(marker: marker);
     } finally {
       _$_GoogleSearchMapStoreActionController.endAction(_$actionInfo);
     }

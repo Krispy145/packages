@@ -45,10 +45,12 @@ class FormsModelView<T> extends StatelessWidget {
                 },
               ),
             ),
+            Sizes.l.spacer(),
             ElevatedButton(
               onPressed: () => _showConfirmationDialog(context),
               child: Text(isUpdating ? 'Update' : 'Create'),
             ),
+            Sizes.xxxl.spacer(),
           ],
         ),
         Align(
