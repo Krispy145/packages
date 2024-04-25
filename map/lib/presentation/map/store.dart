@@ -7,8 +7,8 @@ import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:map/constants/map_constants.dart';
 import 'package:map/presentation/markers/helpers/cluster_data.dart';
+import 'package:map/presentation/markers/location_marker.dart';
 import 'package:map/presentation/markers/number_marker.dart';
-import 'package:map/presentation/markers/ringed_marker.dart';
 import 'package:map/utils/loggers.dart';
 import 'package:mobx/mobx.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
@@ -26,6 +26,7 @@ class MapStore = _MapStore with _$MapStore;
 abstract class _MapStore extends LoadStateStore with Store {
   final DOTickerProvider vsync = DOTickerProvider();
   final Marker Function(MarkerModel marker)? singleMarkerBuilder;
+
   _MapStore({required this.mapTilesUrl, this.singleMarkerBuilder}) {
     setLoading();
     animatedMapController = AnimatedMapController(
@@ -122,7 +123,7 @@ abstract class _MapStore extends LoadStateStore with Store {
 
   Marker buildSingleMarker(MarkerModel markerModel) {
     if (singleMarkerBuilder != null) return singleMarkerBuilder!(markerModel);
-    return LogoRingedMarker(markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
+    return IconMarker(icon: Icons.location_pin, iconSize: 56, markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
   }
 
   Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
