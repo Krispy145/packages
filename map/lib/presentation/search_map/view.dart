@@ -16,7 +16,7 @@ class SearchMapView extends MapView {
   const SearchMapView({super.key, required this.store}) : super(store: store);
 
   @override
-  List<Widget> buildChildren() {
+  List<Widget> buildAdditionalChildren(BuildContext context) {
     return [
       SafeArea(
         minimum: const EdgeInsets.all(12),
@@ -71,7 +71,6 @@ class SearchMapView extends MapView {
           ),
         ),
       ),
-      ...super.buildChildren(),
     ];
   }
 }
