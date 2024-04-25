@@ -16,7 +16,7 @@ class StyleTypeThemeStore = _StyleTypeStore with _$StyleTypeThemeStore;
 
 /// [_StyleTypeStore] is the base store that will be used to manage the state of the theme.
 abstract class _StyleTypeStore extends LoadStateStore with Store {
-  /// [styleTypeNames] is the list of style type names that will be used to set the theme data.
+  /// [styleTypeName] is the list of style type names that will be used to set the theme data.
   final String styleTypeName;
 
   /// [_StyleTypeStore] is the constructor that will be used to set the theme data.

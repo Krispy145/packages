@@ -23,6 +23,7 @@ abstract class TextStyleSizes with _$TextStyleSizes {
   }) = _TextStyleSizes;
   const TextStyleSizes._();
 
+  // ignore: comment_references
   /// [defaultStyleSizes] returns a [TextStyleSizes] with default values.
   // static TextStyleSizes defaultStyleSizes() {
   //   return TextStyleSizes(

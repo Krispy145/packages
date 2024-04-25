@@ -41,6 +41,22 @@ mixin _$SearchMapStore on _SearchMapStore, Store {
     });
   }
 
+  late final _$currentFeatureAtom =
+      Atom(name: '_SearchMapStore.currentFeature', context: context);
+
+  @override
+  Feature? get currentFeature {
+    _$currentFeatureAtom.reportRead();
+    return super.currentFeature;
+  }
+
+  @override
+  set currentFeature(Feature? value) {
+    _$currentFeatureAtom.reportWrite(value, super.currentFeature, () {
+      super.currentFeature = value;
+    });
+  }
+
   late final _$mapCenterAtom =
       Atom(name: '_SearchMapStore.mapCenter', context: context);
 
@@ -120,6 +136,7 @@ mixin _$SearchMapStore on _SearchMapStore, Store {
     return '''
 suggestions: ${suggestions},
 currentSuggestion: ${currentSuggestion},
+currentFeature: ${currentFeature},
 mapCenter: ${mapCenter}
     ''';
   }

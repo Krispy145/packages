@@ -58,13 +58,11 @@ class SnackbarMessage {
     }
 
     Color getTitleColor() {
-      return configuration.titleColor ??
-          (configuration.color != null ? Colors.white : Colors.black);
+      return configuration.titleColor ?? (configuration.color != null ? Colors.white : Colors.black);
     }
 
     Color getSubtitleColor() {
-      return configuration.subtitleColor ??
-          (configuration.color != null ? Colors.grey[300]! : Colors.grey[800]!);
+      return configuration.subtitleColor ?? (configuration.color != null ? Colors.grey[300]! : Colors.grey[800]!);
     }
 
     Color progressBarColor() {
@@ -84,8 +82,7 @@ class SnackbarMessage {
     }
 
     double getWidth(BuildContext context) {
-      return context.screenWidth -
-          (2 * Sizes.l.points(context, vertical: false));
+      return context.screenWidth - (2 * Sizes.l.points(context, vertical: false));
     }
 
     return SnackBar(
@@ -99,8 +96,7 @@ class SnackbarMessage {
             Container(
               height: 48,
               decoration: BoxDecoration(
-                color: configuration.color ??
-                    configuration.style.backgroundColor(),
+                color: configuration.color ?? configuration.style.backgroundColor(),
                 borderRadius: BorderRadius.circular(32),
               ),
               constraints: BoxConstraints(
@@ -110,9 +106,7 @@ class SnackbarMessage {
                 children: [
                   Expanded(
                     child: Row(
-                      mainAxisSize: configuration.progress != null
-                          ? MainAxisSize.max
-                          : MainAxisSize.min,
+                      mainAxisSize: configuration.progress != null ? MainAxisSize.max : MainAxisSize.min,
                       children: [
                         ...buildLeadingIcon(),
                         Flexible(
@@ -123,7 +117,9 @@ class SnackbarMessage {
                               Text(
                                 configuration.title,
                                 style: TextStyle(
-                                    fontSize: 16, color: getTitleColor()),
+                                  fontSize: 16,
+                                  color: getTitleColor(),
+                                ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 textAlign: TextAlign.left,
@@ -135,7 +131,9 @@ class SnackbarMessage {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 14, color: getSubtitleColor()),
+                                    fontSize: 14,
+                                    color: getSubtitleColor(),
+                                  ),
                                 ),
                               ],
                             ],

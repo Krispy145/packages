@@ -33,9 +33,9 @@ enum ThemeStateType {
   /// [supabase] is the type that will be used to fetch the data from supabase.
   supabase,
 
-  /// [DO] is the type that will be used to fetch the data from supabase.
+  /// [digitalOasis] is the type that will be used to fetch the data from supabase.
   // ignore: constant_identifier_names
-  DO,
+  digitalOasis,
 
   /// [localAssets] is the type that will be used to try fetch the data from local storage and catch the error,
   /// then fetch the data from assets.
@@ -135,11 +135,11 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     _loadSupabaseTheme(url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId);
   }
 
-  _ThemeStateStore.DO({
+  _ThemeStateStore.digitalOasis({
     this.id,
   })  : baseThemeUrlPath = "baseThemes",
         componentThemesUrlPath = "componentsThemes",
-        type = ThemeStateType.DO,
+        type = ThemeStateType.digitalOasis,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
     _loadDOTheme(id: id ?? primaryThemeId);

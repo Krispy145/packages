@@ -925,17 +925,17 @@ class _TabsState extends State<Tabs> with TickerProviderStateMixin {
                 Tab(
                   icon: Icon(Icons.videocam_outlined),
                   text: 'Video',
-                  iconMargin: EdgeInsets.only(),
+                  iconMargin: EdgeInsets.zero,
                 ),
                 Tab(
                   icon: Icon(Icons.photo_outlined),
                   text: 'Photos',
-                  iconMargin: EdgeInsets.only(),
+                  iconMargin: EdgeInsets.zero,
                 ),
                 Tab(
                   icon: Icon(Icons.audiotrack_sharp),
                   text: 'Audio',
-                  iconMargin: EdgeInsets.only(),
+                  iconMargin: EdgeInsets.zero,
                 ),
               ],
             ),
@@ -1187,8 +1187,9 @@ class _SearchAnchorsState extends State<SearchAnchors> {
         trailing: IconButton(
           icon: const Icon(Icons.call_missed),
           onPressed: () {
-            controller.text = color.label;
-            controller.selection = TextSelection.collapsed(offset: controller.text.length);
+            controller
+              ..text = color.label
+              ..selection = TextSelection.collapsed(offset: controller.text.length);
           },
         ),
         onTap: () {
@@ -1208,8 +1209,9 @@ class _SearchAnchorsState extends State<SearchAnchors> {
             trailing: IconButton(
               icon: const Icon(Icons.call_missed),
               onPressed: () {
-                controller.text = filteredColor.label;
-                controller.selection = TextSelection.collapsed(offset: controller.text.length);
+                controller
+                  ..text = filteredColor.label
+                  ..selection = TextSelection.collapsed(offset: controller.text.length);
               },
             ),
             onTap: () {

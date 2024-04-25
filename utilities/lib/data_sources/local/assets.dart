@@ -1,13 +1,13 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:utilities/data_sources/source.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:utilities/utils/loggers.dart';
-import 'package:collection/collection.dart';
 
 /// [AssetsDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
-class AssetsDataSource<T> implements DataSource<T> {
+class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
   /// [rootBundleKey] is the path that will be used to fetch the data from assets.
   final String rootBundleKey;
 

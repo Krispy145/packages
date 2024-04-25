@@ -60,14 +60,16 @@ class _NavigationBarsState extends State<NavigationBars> {
 
     if (widget.isExampleBar && widget.isBadgeExample) {
       navigationBar = ComponentDecoration(
-          label: 'Badges',
-          tooltipMessage: 'Use Badge or Badge.count',
-          child: navigationBar);
+        label: 'Badges',
+        tooltipMessage: 'Use Badge or Badge.count',
+        child: navigationBar,
+      );
     } else if (widget.isExampleBar) {
       navigationBar = ComponentDecoration(
-          label: 'Navigation bar',
-          tooltipMessage: 'Use NavigationBar',
-          child: navigationBar);
+        label: 'Navigation bar',
+        tooltipMessage: 'Use NavigationBar',
+        child: navigationBar,
+      );
     }
 
     return navigationBar;

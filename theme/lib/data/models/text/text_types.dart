@@ -50,6 +50,7 @@ abstract class TextTypes with _$TextTypes {
     );
   }
 
+  // ignore: comment_references
   /// [defaultTextTypes] returns a [TextTypes] with default values.
   // static TextTypes defaultTextTypes() {
   //   return TextTypes(
@@ -61,6 +62,6 @@ abstract class TextTypes with _$TextTypes {
   //   );
   // }
 
-  /// [TextStyles.fromJson] is a factory method that allows you to create a [TextTypes] from a JSON file.
+  /// [TextTypes.fromJson] is a factory method that allows you to create a [TextTypes] from a JSON file.
   factory TextTypes.fromJson(Map<String, dynamic> json) => _$TextTypesFromJson(json);
 }

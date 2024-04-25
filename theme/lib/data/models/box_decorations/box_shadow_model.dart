@@ -29,7 +29,7 @@ class BoxShadowModel with _$BoxShadowModel {
   BoxShadow asBoxShadow({String? styleTypeName}) {
     return BoxShadow(
       color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
-      offset: offset_offset?.asOffset(styleTypeName: styleTypeName) ?? const Offset(0, 0),
+      offset: offset_offset?.asOffset(styleTypeName: styleTypeName) ?? Offset.zero,
       blurRadius: blurRadius_double ?? 0.0,
       spreadRadius: spreadRadius_double ?? 0.0,
     );

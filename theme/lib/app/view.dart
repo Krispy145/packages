@@ -30,8 +30,11 @@ class ThemedMaterialApp extends StatelessWidget {
       viewStore: themeStore,
       loadedBuilder: (context) => ResponsiveBreakpoints.builder(
         breakpoints: ScreenSize.defaultBreakpoints,
-        child: materialAppBuilder(themeStore.lightTheme, themeStore.darkTheme,
-            themeStore.currentThemeMode),
+        child: materialAppBuilder(
+          themeStore.lightTheme,
+          themeStore.darkTheme,
+          themeStore.currentThemeMode,
+        ),
       ),
       loadingBuilder: (context) => const MaterialApp(
         home: Scaffold(

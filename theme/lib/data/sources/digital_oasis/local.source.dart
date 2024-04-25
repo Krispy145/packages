@@ -4,13 +4,13 @@
 // import '../../models/digital_oasis_model.dart';
 // import '_source.dart';
 
-// /// [LocalDODataSource] is a class that implements [DODataSource] interface.
-// class LocalDODataSource extends LocalDataSource<DOModel> implements DODataSource {
+// /// [HiveDODataSource] is a class that implements [DODataSource] interface.
+// class HiveDODataSource extends HiveDataSource<DOModel> implements DODataSource {
 //   // Simulated in-memory data store
 //   final Map<String, DOModel> _dataStore = {};
 
-//   /// [LocalDODataSource] constructor.
-//   LocalDODataSource()
+//   /// [HiveDODataSource] constructor.
+//   HiveDODataSource()
 //       : super(
 //           'digital_oasis',
 //           convertDataTypeFromMap: DOModel.fromJson,

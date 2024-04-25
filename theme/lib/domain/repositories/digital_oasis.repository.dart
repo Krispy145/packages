@@ -41,109 +41,109 @@ import 'base.repository.dart';
 /// Currently retrieving data from `Supabase`
 class DORepository extends BaseThemeRepository {
   /// [baseThemeDataSource] is the [DODataSource] that will be used to fetch the [BaseThemeModel] data.
-  final DODataSource<BaseThemeModel> baseThemeDataSource = DataRepositories.instance.DO.baseThemesDataSource;
+  final DODataSource<BaseThemeModel> baseThemeDataSource = DataRepositories.instance.digitalOasis.baseThemesDataSource;
 
   /// [componentsThemesDataSource] is the [DODataSource] that will be used to fetch the [ComponentThemesModel] data.
-  final DODataSource<ComponentThemesModel?> componentsThemesDataSource = DataRepositories.instance.DO.componentsThemesDataSource;
+  final DODataSource<ComponentThemesModel?> componentsThemesDataSource = DataRepositories.instance.digitalOasis.componentsThemesDataSource;
 
   /// [colorsDataSource] is the [DODataSource] that will be used to fetch the [ColorModel] data.
-  final DODataSource<ColorModel> colorsDataSource = DataRepositories.instance.DO.colorsDataSource;
+  final DODataSource<ColorModel> colorsDataSource = DataRepositories.instance.digitalOasis.colorsDataSource;
 
   /// [textStylesDataSource] is the [DODataSource] that will be used to fetch the [TextStyleModel] data.
-  final DODataSource<TextStyleModel> textStylesDataSource = DataRepositories.instance.DO.textStylesDataSource;
+  final DODataSource<TextStyleModel> textStylesDataSource = DataRepositories.instance.digitalOasis.textStylesDataSource;
 
   /// [buttonsDataSource] is the [DODataSource] that will be used to fetch the [ButtonModel] data.
-  final DODataSource<ButtonModel?> buttonsDataSource = DataRepositories.instance.DO.buttonsDataSource;
+  final DODataSource<ButtonModel?> buttonsDataSource = DataRepositories.instance.digitalOasis.buttonsDataSource;
 
   /// [floatingActionButtonsDataSource] is the [DODataSource] that will be used to fetch the [FloatingActionButtonModel] data.
-  final DODataSource<FloatingActionButtonModel?> floatingActionButtonsDataSource = DataRepositories.instance.DO.floatingActionButtonsDataSource;
+  final DODataSource<FloatingActionButtonModel?> floatingActionButtonsDataSource = DataRepositories.instance.digitalOasis.floatingActionButtonsDataSource;
 
   /// [toggleButtonsDataSource] is the [DODataSource] that will be used to fetch the [ToggleButtonModel] data.
-  final DODataSource<ToggleButtonModel?> toggleButtonsDataSource = DataRepositories.instance.DO.toggleButtonsDataSource;
+  final DODataSource<ToggleButtonModel?> toggleButtonsDataSource = DataRepositories.instance.digitalOasis.toggleButtonsDataSource;
 
   /// [inputDecorationsDataSource] is the [DODataSource] that will be used to fetch the [InputDecorationModel] data.
-  final DODataSource<InputDecorationModel?> inputDecorationsDataSource = DataRepositories.instance.DO.inputDecorationsDataSource;
+  final DODataSource<InputDecorationModel?> inputDecorationsDataSource = DataRepositories.instance.digitalOasis.inputDecorationsDataSource;
 
   /// [boxDecorationsDataSource] is the [DODataSource] that will be used to fetch the [BoxDecorationModel] data.
-  final DODataSource<BoxDecorationModel?> boxDecorationsDataSource = DataRepositories.instance.DO.boxDecorationsDataSource;
+  final DODataSource<BoxDecorationModel?> boxDecorationsDataSource = DataRepositories.instance.digitalOasis.boxDecorationsDataSource;
 
   /// [cardsDataSource] is the [DODataSource] that will be used to fetch the [CardModel] data.
-  final DODataSource<CardModel?> cardsDataSource = DataRepositories.instance.DO.cardsDataSource;
+  final DODataSource<CardModel?> cardsDataSource = DataRepositories.instance.digitalOasis.cardsDataSource;
 
   /// [snackbarsDataSource] is the [DODataSource] that will be used to fetch the [SnackbarModel] data.
-  final DODataSource<SnackbarModel?> snackbarsDataSource = DataRepositories.instance.DO.snackbarsDataSource;
+  final DODataSource<SnackbarModel?> snackbarsDataSource = DataRepositories.instance.digitalOasis.snackbarsDataSource;
 
   /// [badgesDataSource] is the [DODataSource] that will be used to fetch the [BadgeModel] data.
-  final DODataSource<BadgeModel?> badgesDataSource = DataRepositories.instance.DO.badgesDataSource;
+  final DODataSource<BadgeModel?> badgesDataSource = DataRepositories.instance.digitalOasis.badgesDataSource;
 
   /// [appbarsDataSource] is the [DODataSource] that will be used to fetch the [AppbarModel] data.
-  final DODataSource<AppbarModel?> appbarsDataSource = DataRepositories.instance.DO.appbarsDataSource;
+  final DODataSource<AppbarModel?> appbarsDataSource = DataRepositories.instance.digitalOasis.appbarsDataSource;
 
   /// [bottomAppbarsDataSource] is the [DODataSource] that will be used to fetch the [BottomAppbarModel] data.
-  final DODataSource<BottomAppbarModel?> bottomAppbarsDataSource = DataRepositories.instance.DO.bottomAppbarsDataSource;
+  final DODataSource<BottomAppbarModel?> bottomAppbarsDataSource = DataRepositories.instance.digitalOasis.bottomAppbarsDataSource;
 
   /// [dropdownsDataSource] is the [DODataSource] that will be used to fetch the [DropdownModel] data.
-  final DODataSource<DropdownModel?> dropdownsDataSource = DataRepositories.instance.DO.dropdownsDataSource;
+  final DODataSource<DropdownModel?> dropdownsDataSource = DataRepositories.instance.digitalOasis.dropdownsDataSource;
 
   /// [chipsDataSource] is the [DODataSource] that will be used to fetch the [ChipModel] data.
-  final DODataSource<ChipModel?> chipsDataSource = DataRepositories.instance.DO.chipsDataSource;
+  final DODataSource<ChipModel?> chipsDataSource = DataRepositories.instance.digitalOasis.chipsDataSource;
 
   /// [dialogsDataSource] is the [DODataSource] that will be used to fetch the [DialogModel] data.
-  final DODataSource<DialogModel?> dialogsDataSource = DataRepositories.instance.DO.dialogsDataSource;
+  final DODataSource<DialogModel?> dialogsDataSource = DataRepositories.instance.digitalOasis.dialogsDataSource;
 
   /// [popupMenusDataSource] is the [DODataSource] that will be used to fetch the [PopupMenuModel] data.
-  final DODataSource<PopupMenuModel?> popupMenusDataSource = DataRepositories.instance.DO.popupMenusDataSource;
+  final DODataSource<PopupMenuModel?> popupMenusDataSource = DataRepositories.instance.digitalOasis.popupMenusDataSource;
 
   /// [slidersDataSource] is the [DODataSource] that will be used to fetch the [SliderModel] data.
-  final DODataSource<SliderModel?> slidersDataSource = DataRepositories.instance.DO.slidersDataSource;
+  final DODataSource<SliderModel?> slidersDataSource = DataRepositories.instance.digitalOasis.slidersDataSource;
 
   /// [scrollbarsDataSource] is the [DODataSource] that will be used to fetch the [ScrollbarModel] data.
-  final DODataSource<ScrollbarModel?> scrollbarsDataSource = DataRepositories.instance.DO.scrollbarsDataSource;
+  final DODataSource<ScrollbarModel?> scrollbarsDataSource = DataRepositories.instance.digitalOasis.scrollbarsDataSource;
 
   /// [tooltipsDataSource] is the [DODataSource] that will be used to fetch the [TooltipModel] data.
-  final DODataSource<TooltipModel?> tooltipsDataSource = DataRepositories.instance.DO.tooltipsDataSource;
+  final DODataSource<TooltipModel?> tooltipsDataSource = DataRepositories.instance.digitalOasis.tooltipsDataSource;
 
   /// [navigationRailsDataSource] is the [DODataSource] that will be used to fetch the [NavigationRailModel] data.
-  final DODataSource<NavigationRailModel?> navigationRailsDataSource = DataRepositories.instance.DO.navigationRailsDataSource;
+  final DODataSource<NavigationRailModel?> navigationRailsDataSource = DataRepositories.instance.digitalOasis.navigationRailsDataSource;
 
   /// [checkboxesDataSource] is the [DODataSource] that will be used to fetch the [CheckboxModel] data.
-  final DODataSource<CheckboxModel?> checkboxesDataSource = DataRepositories.instance.DO.checkboxesDataSource;
+  final DODataSource<CheckboxModel?> checkboxesDataSource = DataRepositories.instance.digitalOasis.checkboxesDataSource;
 
   /// [radiosDataSource] is the [DODataSource] that will be used to fetch the [RadioModel] data.
-  final DODataSource<RadioModel?> radiosDataSource = DataRepositories.instance.DO.radiosDataSource;
+  final DODataSource<RadioModel?> radiosDataSource = DataRepositories.instance.digitalOasis.radiosDataSource;
 
   /// [switchesDataSource] is the [DODataSource] that will be used to fetch the [SwitchModel] data.
-  final DODataSource<SwitchModel?> switchesDataSource = DataRepositories.instance.DO.switchesDataSource;
+  final DODataSource<SwitchModel?> switchesDataSource = DataRepositories.instance.digitalOasis.switchesDataSource;
 
   /// [drawersDataSource] is the [DODataSource] that will be used to fetch the [DrawerModel] data.
-  final DODataSource<DrawerModel?> drawersDataSource = DataRepositories.instance.DO.drawersDataSource;
+  final DODataSource<DrawerModel?> drawersDataSource = DataRepositories.instance.digitalOasis.drawersDataSource;
 
   /// [listTilesDataSource] is the [DODataSource] that will be used to fetch the [ListTileModel] data.
-  final DODataSource<ListTileModel?> listTilesDataSource = DataRepositories.instance.DO.listTilesDataSource;
+  final DODataSource<ListTileModel?> listTilesDataSource = DataRepositories.instance.digitalOasis.listTilesDataSource;
 
   /// [menuStylesDataSource] is the [DODataSource] that will be used to fetch the [MenuStyleModel] data.
-  final DODataSource<MenuStyleModel?> menuStylesDataSource = DataRepositories.instance.DO.menuStylesDataSource;
+  final DODataSource<MenuStyleModel?> menuStylesDataSource = DataRepositories.instance.digitalOasis.menuStylesDataSource;
 
   /// [menuBarsDataSource] is the [DODataSource] that will be used to fetch the [MenuBarModel] data.
-  final DODataSource<MenuBarModel?> menuBarsDataSource = DataRepositories.instance.DO.menuBarsDataSource;
+  final DODataSource<MenuBarModel?> menuBarsDataSource = DataRepositories.instance.digitalOasis.menuBarsDataSource;
 
   /// [navigationBarsDataSource] is the [DODataSource] that will be used to fetch the [NavigationBarModel] data.
-  final DODataSource<NavigationBarModel?> navigationBarsDataSource = DataRepositories.instance.DO.navigationBarsDataSource;
+  final DODataSource<NavigationBarModel?> navigationBarsDataSource = DataRepositories.instance.digitalOasis.navigationBarsDataSource;
 
   /// [navigationDrawersDataSource] is the [DODataSource] that will be used to fetch the [NavigationDrawerModel] data.
-  final DODataSource<NavigationDrawerModel?> navigationDrawersDataSource = DataRepositories.instance.DO.navigationDrawersDataSource;
+  final DODataSource<NavigationDrawerModel?> navigationDrawersDataSource = DataRepositories.instance.digitalOasis.navigationDrawersDataSource;
 
   /// [progressIndicatorsDataSource] is the [DODataSource] that will be used to fetch the [ProgressIndicatorModel] data.
-  final DODataSource<ProgressIndicatorModel?> progressIndicatorsDataSource = DataRepositories.instance.DO.progressIndicatorsDataSource;
+  final DODataSource<ProgressIndicatorModel?> progressIndicatorsDataSource = DataRepositories.instance.digitalOasis.progressIndicatorsDataSource;
 
   /// [searchBarsDataSource] is the [DODataSource] that will be used to fetch the [SearchBarModel] data.
-  final DODataSource<SearchBarModel?> searchBarsDataSource = DataRepositories.instance.DO.searchBarsDataSource;
+  final DODataSource<SearchBarModel?> searchBarsDataSource = DataRepositories.instance.digitalOasis.searchBarsDataSource;
 
   /// [searchViewsDataSource] is the [DODataSource] that will be used to fetch the [SearchViewModel] data.
-  final DODataSource<SearchViewModel?> searchViewsDataSource = DataRepositories.instance.DO.searchViewsDataSource;
+  final DODataSource<SearchViewModel?> searchViewsDataSource = DataRepositories.instance.digitalOasis.searchViewsDataSource;
 
   /// [tabBarStylesDataSource] is the [DODataSource] that will be used to fetch the [TabBarModel] data.
-  final DODataSource<TabBarModel?> tabBarStylesDataSource = DataRepositories.instance.DO.tabBarStylesDataSource;
+  final DODataSource<TabBarModel?> tabBarStylesDataSource = DataRepositories.instance.digitalOasis.tabBarStylesDataSource;
 
   /// [DORepository] constructor.
   DORepository();

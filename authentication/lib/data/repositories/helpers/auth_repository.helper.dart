@@ -8,13 +8,13 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AuthRepositoryHelper {
   static Future<AuthParams> signInWithFacebook(AuthParams params) async {
     // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
+    final loginResult = await FacebookAuth.instance.login();
     return params.copyWith(accessToken: loginResult.accessToken?.token);
   }
 
   static Future<AuthParams> signInWithGoogle(AuthParams params) async {
     // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
     final googleAuth = await googleUser?.authentication;
@@ -38,10 +38,7 @@ class AuthRepositoryHelper {
       accessToken: credentials.authorizationCode,
       nonce: nonce.toString(),
       email: credentials.email,
-      displayName:
-          credentials.givenName != null && credentials.familyName != null
-              ? '${credentials.givenName} ${credentials.familyName}'
-              : null,
+      displayName: credentials.givenName != null && credentials.familyName != null ? '${credentials.givenName} ${credentials.familyName}' : null,
     );
   }
 

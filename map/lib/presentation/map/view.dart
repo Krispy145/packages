@@ -14,30 +14,27 @@ import 'store.dart';
 
 /// [MapView] of the app.
 @RoutePage()
-class MapView extends StatelessWidget {
+class MapView<StoreType extends MapStore> extends StatelessWidget {
   /// [MapView] constructor.
   const MapView({super.key, required this.store});
 
   /// [store] is an instance of [MapStore], used in the [LoadStateBuilder].
-  final MapStore store;
+  final StoreType store;
 
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      return FlutterMap(
-        options: store.mapOptions,
-        mapController: store.animatedMapController.mapController,
-        children: buildChildren(),
-      );
+      return FlutterMap(options: store.mapOptions, mapController: store.animatedMapController.mapController, children: [
+        buildAttribution(),
+        buildTileLayer(),
+        buildSuperclusterLayer(),
+        ...buildAdditionalChildren(context),
+      ]);
     });
   }
 
-  List<Widget> buildChildren() {
-    return [
-      buildAttribution(),
-      buildTileLayer(),
-      buildSuperclusterLayer(),
-    ];
+  List<Widget> buildAdditionalChildren(BuildContext context) {
+    return [];
   }
 
   RichAttributionWidget buildAttribution() {
@@ -74,10 +71,8 @@ class MapView extends StatelessWidget {
         final clusterData = extraClusterData as MarkerClusterData;
         final marker = clusterData.topMarker;
         if (markerCount == 1) {
-          print("Building single marker");
           return store.buildSingleMarker(marker).child;
         } else {
-          print("Building cluster marker");
           return store.buildClusterMarker(clusterData, markerCount).child;
         }
       },

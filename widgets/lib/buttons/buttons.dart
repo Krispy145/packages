@@ -14,8 +14,7 @@ class _ButtonsState extends State<Buttons> {
   Widget build(BuildContext context) {
     return const ComponentDecoration(
       label: 'Common buttons',
-      tooltipMessage:
-          'Use ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, or TextButton',
+      tooltipMessage: 'Use ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, or TextButton',
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -39,7 +38,7 @@ class ButtonsWithoutIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -81,7 +80,7 @@ class ButtonsWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: IntrinsicWidth(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -114,7 +113,7 @@ class ButtonsWithIcon extends StatelessWidget {
               onPressed: () {},
               icon: const Icon(Icons.add),
               label: const Text('Icon'),
-            )
+            ),
           ],
         ),
       ),

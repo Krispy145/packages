@@ -14,7 +14,7 @@ abstract class AuthenticationDataSource {
   /// [signUp] signs up the user.
   Future<UserModel?> signUp({required AuthParams params});
 
-  /// [authModel] refreshes the user's token.
+  /// [reauthenticate] refreshes the user's token.
   Future<UserModel?> reauthenticate({required AuthParams params});
 
   /// [deleteAccount] deletes the user's account.

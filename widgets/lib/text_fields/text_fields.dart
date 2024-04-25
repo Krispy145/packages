@@ -20,7 +20,6 @@ class _TextFieldsState extends State<TextFields> {
       label: 'Text fields',
       tooltipMessage: 'Use TextField with different InputDecoration',
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Padding(
             padding: const EdgeInsets.all(smallSpacing),
@@ -96,50 +95,50 @@ class _TextFieldsState extends State<TextFields> {
             ),
           ),
           Padding(
-              padding: const EdgeInsets.all(smallSpacing),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: SizedBox(
-                        width: 200,
-                        child: TextField(
-                          controller: _controllerOutlined,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            suffixIcon:
-                                _ClearButton(controller: _controllerOutlined),
-                            labelText: 'Outlined',
-                            hintText: 'hint text',
-                            helperText: 'supporting text',
-                            errorText: 'error text',
-                            border: const OutlineInputBorder(),
-                            filled: true,
-                          ),
-                        ),
+            padding: const EdgeInsets.all(smallSpacing),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Flexible(
+                  child: SizedBox(
+                    width: 200,
+                    child: TextField(
+                      controller: _controllerOutlined,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: _ClearButton(controller: _controllerOutlined),
+                        labelText: 'Outlined',
+                        hintText: 'hint text',
+                        helperText: 'supporting text',
+                        errorText: 'error text',
+                        border: const OutlineInputBorder(),
+                        filled: true,
                       ),
                     ),
-                    const SizedBox(width: smallSpacing),
-                    Flexible(
-                      child: SizedBox(
-                        width: 200,
-                        child: TextField(
-                          controller: _controllerOutlined,
-                          enabled: false,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.search),
-                            suffixIcon:
-                                _ClearButton(controller: _controllerOutlined),
-                            labelText: 'Disabled',
-                            hintText: 'hint text',
-                            helperText: 'supporting text',
-                            border: const OutlineInputBorder(),
-                            filled: true,
-                          ),
-                        ),
+                  ),
+                ),
+                const SizedBox(width: smallSpacing),
+                Flexible(
+                  child: SizedBox(
+                    width: 200,
+                    child: TextField(
+                      controller: _controllerOutlined,
+                      enabled: false,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.search),
+                        suffixIcon: _ClearButton(controller: _controllerOutlined),
+                        labelText: 'Disabled',
+                        hintText: 'hint text',
+                        helperText: 'supporting text',
+                        border: const OutlineInputBorder(),
+                        filled: true,
                       ),
                     ),
-                  ])),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -154,6 +153,6 @@ class _ClearButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => IconButton(
         icon: const Icon(Icons.clear),
-        onPressed: () => controller.clear(),
+        onPressed: controller.clear,
       );
 }

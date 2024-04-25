@@ -14,12 +14,11 @@ class _ProgressIndicatorsState extends State<ProgressIndicators> {
 
   @override
   Widget build(BuildContext context) {
-    final double? progressValue = playProgressIndicator ? null : 0.7;
+    final progressValue = playProgressIndicator ? null : 0.7;
 
     return ComponentDecoration(
       label: 'Progress indicators',
-      tooltipMessage:
-          'Use CircularProgressIndicator or LinearProgressIndicator',
+      tooltipMessage: 'Use CircularProgressIndicator or LinearProgressIndicator',
       child: Column(
         children: <Widget>[
           Row(

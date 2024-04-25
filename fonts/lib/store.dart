@@ -81,15 +81,15 @@ abstract class _FontsStore extends LoadStateStore with Store {
   /// is the corresponding method to build the Text Theme.
   final Map<String, TextThemeBuilder> _themeMap = {};
 
-  /// Loads a font into the [FontLoader] with [fontFamilyName] for the
-  /// matching [expectedFileHash].
+  /// Loads a font into the [FontLoader] with [`fontFamilyName`] for the
+  /// matching [`expectedFileHash`].
   ///
-  /// If a font with the [fontName] has already been loaded into memory, then
+  /// If a font with the [`fontName`] has already been loaded into memory, then
   /// this method does nothing as there is no need to load it a second time.
   ///
   /// Otherwise, this method will first check to see if the font is available
   /// as an asset, then on the device file system. If it isn't, it is fetched via
-  /// the [fontUrl] and stored on device. In all cases, the returned future
+  /// the [`fontUrl`] and stored on device. In all cases, the returned future
   /// completes once the font is loaded into the [FontLoader].
 
   /// Loads a font with [FontLoader], given its name and byte-representation.

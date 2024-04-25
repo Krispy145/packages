@@ -5,7 +5,7 @@ import 'package:utilities/logger/logger.dart';
 import 'package:utilities/utils/loggers.dart';
 
 /// [FirestoreDataSource] is a wrapper class for [FirebaseFirestore]
-class FirestoreDataSource<T> implements DataSource<T> {
+class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// [collectionName] is the name of the collection

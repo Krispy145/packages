@@ -38,7 +38,7 @@ import '/data/repositories/_repositories.dart';
 import '/data/sources/digital_oasis/_source.dart';
 import '/data/sources/digital_oasis/supabase.source.dart';
 
-/// [DODataRepository] is a class that defines the basic CRUD operations for the [DOModel] entity.
+/// [DODataRepository] is a class that defines the basic CRUD operations for the model entity.
 class DODataRepository {
   /// [baseThemesDataSource] is the [ThemeDataSource] that will be used to fetch the data.
   DODataSource<BaseThemeModel> get baseThemesDataSource => _dataSourceByType<BaseThemeModel>(
@@ -287,7 +287,7 @@ class DODataRepository {
       );
 
   /// [_dataSourceByType] returns the appropriate [DODataSource] based on the [DataSourceTypes] enum.
-  /// Defaults to [LocalDODataSource].
+  /// Defaults to [SupabaseDODataSource].
   /// This can be in local, an api, or firestore.
   DODataSource<T> _dataSourceByType<T>(
     String tableName,
@@ -299,7 +299,7 @@ class DODataRepository {
       // case DataSourceTypes.api:
       //   return ApiDODataSource();
       // case DataSourceTypes.local:
-      //   return LocalDODataSource();
+      //   return HiveDODataSource();
       // case DataSourceTypes.firestore:
       //   return FirestoreDODataSource(
       //     tableName,

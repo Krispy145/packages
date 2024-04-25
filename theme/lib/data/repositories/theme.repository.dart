@@ -34,7 +34,7 @@ class ThemeConfiguration {
         supabaseClient = null;
 }
 
-/// [ThemeDataRepository] is a class that defines the basic CRUD operations for the [ThemeModel] entity.
+/// [ThemeDataRepository] is a class that defines the basic CRUD operations for the ThemeModel entity.
 class ThemeDataRepository {
   final ThemeConfiguration? baseThemeConfiguration;
   final ThemeConfiguration? componentThemesConfiguration;

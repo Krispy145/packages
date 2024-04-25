@@ -10,13 +10,16 @@ enum DataSourceTypes {
   firestore,
 
   /// [secure] is the secure data source.
-  secure;
+  secure,
+
+  /// [dummy] is the dummy data source.
+  dummy;
 }
 
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
-/// see: LocalDataSource and RemoteDataSource
-abstract class DataSource<T> with Mappable<T> {
+/// see: HiveDataSource and RemoteDataSource
+abstract class DataSource<T> {
   /// [get] method returns the value of the given id
   Future<T?> get(String id);
 

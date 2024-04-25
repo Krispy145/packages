@@ -45,11 +45,12 @@ class AuthenticationRepository {
   /// [required] for web.
   final String? facebookAppId;
 
-  /// [_currentUserModelStream] is the current user model stream.
+  /// [currentUserModelStream] is the current user model stream.
   BehaviorSubject<UserModel?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
 
   UserModel? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
 
+  // ignore: comment_references
   /// [authStatusStream] is the authentication status stream.
   // Stream<AuthStatus> get authStatusStream => _authStatusSubject.stream;
 
@@ -70,8 +71,7 @@ class AuthenticationRepository {
     // _initStreams();
   }
 
-  /// [AuthenticationRepository.firestore] constructor.
-  /// [dataSource] defaults to [FirestoreAuthDataSource]
+  /// [AuthenticationRepository.firebase] constructor.
   AuthenticationRepository.firebase({
     this.logToDatabase = true,
     this.dataSource,
@@ -165,7 +165,7 @@ class AuthenticationRepository {
   /// [signOut] signs out the user.
   Future<void> signOut() async {
     AppLogger.print('signOut attempt', [AuthenticationLoggers.authentication]);
-    return await _authenticationDataRepository.signOut();
+    return _authenticationDataRepository.signOut();
   }
 
   /// [signUpWithEmail] signs up the use with email and password.
@@ -174,7 +174,7 @@ class AuthenticationRepository {
       'signUp attempt -> ${params.authType}',
       [AuthenticationLoggers.authentication],
     );
-    return await _authenticationDataRepository.signUpWithEmail(
+    return _authenticationDataRepository.signUpWithEmail(
       params.email!,
       params.password!,
     );
@@ -183,13 +183,13 @@ class AuthenticationRepository {
   /// [params] refreshes the user's token.
   Future<UserModel?> reauthenticate({required AuthParams params}) async {
     AppLogger.print('refreshToken attempt', [AuthenticationLoggers.authentication]);
-    return await _authenticationDataRepository.reauthenticate(params);
+    return _authenticationDataRepository.reauthenticate(params);
   }
 
   /// [deleteAccount] deletes the user's account.
   Future<void> deleteAccount({required String userId}) async {
     AppLogger.print('deleteAccount attempt', [AuthenticationLoggers.authentication]);
-    return await _authenticationDataRepository.deleteAccount(userId);
+    return _authenticationDataRepository.deleteAccount(userId);
   }
 
   // void _initStreams() {

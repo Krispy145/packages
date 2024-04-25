@@ -1,3 +1,6 @@
+import 'package:flutter/foundation.dart';
+
+@immutable
 class AuthenticationException implements Exception {
   final String message;
 

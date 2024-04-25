@@ -18,7 +18,7 @@ class _TimePickersState extends State<TimePickers> {
       tooltipMessage: 'Use showTimePicker',
       child: TextButton(
         onPressed: () async {
-          final TimeOfDay? time = await showTimePicker(
+          final time = await showTimePicker(
             context: context,
             initialTime: selectedTime ?? TimeOfDay.now(),
             builder: (context, child) {
@@ -33,10 +33,11 @@ class _TimePickersState extends State<TimePickers> {
           setState(() {
             selectedTime = time;
             if (selectedTime != null) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text('Selected time: ${selectedTime!.format(context)}'),
-              ));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Selected time: ${selectedTime!.format(context)}'),
+                ),
+              );
             }
           });
         },

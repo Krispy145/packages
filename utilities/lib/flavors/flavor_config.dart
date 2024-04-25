@@ -30,14 +30,16 @@ class FlavorConfig {
   final Map<Enum, bool> loggerFeatures;
 
   /// [FlavorConfig] is the constructor for the class
-  FlavorConfig(this._environmentName,
-      {required this.apiPrefix, required this.loggerFeatures}) {
+  FlavorConfig(
+    this._environmentName, {
+    required this.apiPrefix,
+    required this.loggerFeatures,
+  }) {
     _setEnvironment(_environmentName);
   }
 
   /// [_setEnvironment] is a private method that sets the environment
   void _setEnvironment(String environmentName) {
-    environment =
-        Environment.values.firstWhere((e) => e.name == environmentName);
+    environment = Environment.values.firstWhere((e) => e.name == environmentName);
   }
 }

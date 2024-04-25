@@ -31,7 +31,7 @@ class Cards extends StatelessWidget {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: Text('Elevated'),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -57,7 +57,7 @@ class Cards extends StatelessWidget {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: Text('Filled'),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -88,7 +88,7 @@ class Cards extends StatelessWidget {
                     const Align(
                       alignment: Alignment.bottomLeft,
                       child: Text('Outlined'),
-                    )
+                    ),
                   ],
                 ),
               ),

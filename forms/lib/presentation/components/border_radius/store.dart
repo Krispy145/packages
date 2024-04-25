@@ -1,6 +1,9 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
+
 import '../base/store.dart';
 
 part 'store.g.dart';
@@ -10,7 +13,11 @@ part 'store.g.dart';
 class BorderRadiusFormFieldStore = _BorderRadiusFormFieldStore with _$BorderRadiusFormFieldStore;
 
 abstract class _BorderRadiusFormFieldStore extends BaseFormFieldStore<BorderRadiusModel> with Store {
-  _BorderRadiusFormFieldStore({super.value = const BorderRadiusModel(), required super.onValueChanged, required super.title}) {
+  _BorderRadiusFormFieldStore({
+    super.value = const BorderRadiusModel(),
+    required super.onValueChanged,
+    required super.title,
+  }) {
     type = value.type_enum_borderRadiusType ?? BorderRadiusType.circular;
     // On Type Changed
     // reaction<BorderRadiusType>(

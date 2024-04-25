@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:theme/data/models/edge_insets_model.dart';
+import 'package:utilities/helpers/extensions/string.dart';
+
 import '../base/form_field.dart';
 import '../double/form_field.dart';
 import 'store.dart';
-import 'package:utilities/helpers/extensions/string.dart';
 
 class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
   const EdgeInsetsFormField({super.key, required super.store});

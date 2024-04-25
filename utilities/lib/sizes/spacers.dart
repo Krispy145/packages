@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:utilities/sizes/screen_size.dart';
 
 //TODO: Figure out way to add functions for fromJson, fromAssetBundle and fromNetwork
@@ -57,17 +56,18 @@ enum Sizes {
   }
 
   /// [points] is a getter that returns the pixel size for the spacer based on the screen size
-  double points(BuildContext context,
-      {bool vertical = true, SizeTypes type = SizeTypes.fixed}) {
+  double points(
+    BuildContext context, {
+    bool vertical = true,
+    SizeTypes type = SizeTypes.fixed,
+  }) {
     final axis = vertical ? Axis.vertical : Axis.horizontal;
     switch (type) {
       case SizeTypes.fixed:
         return _getSize();
       case SizeTypes.scaling:
         final screenSizePoints = MediaQuery.sizeOf(context);
-        final screenDimension = axis == Axis.vertical
-            ? screenSizePoints.height
-            : screenSizePoints.width;
+        final screenDimension = axis == Axis.vertical ? screenSizePoints.height : screenSizePoints.width;
 
         final ordered = ScreenSizes.ordered;
 
@@ -76,8 +76,7 @@ enum Sizes {
         } else if (screenDimension <= ordered.first.dimension(axis)) {
           return _getSize(screenSize: ordered.first);
         } else {
-          final indexAfter = ordered
-              .indexWhere((size) => size.dimension(axis) > screenDimension);
+          final indexAfter = ordered.indexWhere((size) => size.dimension(axis) > screenDimension);
           final sizeAfter = ordered[indexAfter];
           final sizeBefore = ordered[indexAfter - 1];
           final dimensionAfter = sizeAfter.dimension(axis);
@@ -85,10 +84,8 @@ enum Sizes {
           final pointsAfter = _getSize(screenSize: sizeAfter);
           final pointsBefore = _getSize(screenSize: sizeBefore);
 
-          final percentage = (screenDimension - dimensionBefore) /
-              (dimensionAfter - dimensionBefore);
-          final points =
-              pointsBefore + (pointsAfter - pointsBefore) * percentage;
+          final percentage = (screenDimension - dimensionBefore) / (dimensionAfter - dimensionBefore);
+          final points = pointsBefore + (pointsAfter - pointsBefore) * percentage;
           return points;
         }
     }
@@ -100,7 +97,10 @@ enum Sizes {
     switch (this) {
       case Sizes.zero:
         sizes = _AppSizesForScreenSize(
-            small: 0.0001, medium: 0.0001, large: 0.0001);
+          small: 0.0001,
+          medium: 0.0001,
+          large: 0.0001,
+        );
         break;
       case Sizes.xxxxs:
         sizes = _AppSizesForScreenSize(small: 1, medium: 1, large: 1);
@@ -153,15 +153,16 @@ class _AppSpacer extends StatelessWidget {
   final Sizes size;
   final SizeTypes type;
   final Axis axis;
-  const _AppSpacer(
-      {required this.size, required this.axis, required this.type});
+  const _AppSpacer({
+    required this.size,
+    required this.axis,
+    required this.type,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: axis == Axis.horizontal
-          ? size.points(context, vertical: false, type: type)
-          : 0,
+      width: axis == Axis.horizontal ? size.points(context, vertical: false, type: type) : 0,
       height: axis == Axis.vertical ? size.points(context, type: type) : 0,
     );
   }
@@ -173,8 +174,11 @@ class _AppSizesForScreenSize {
   final double medium;
   final double large;
 
-  _AppSizesForScreenSize(
-      {required this.small, required this.medium, required this.large});
+  _AppSizesForScreenSize({
+    required this.small,
+    required this.medium,
+    required this.large,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{

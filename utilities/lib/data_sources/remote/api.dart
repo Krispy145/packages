@@ -4,7 +4,7 @@ import 'package:utilities/logger/logger.dart';
 import 'package:utilities/utils/loggers.dart';
 
 /// [ApiDataSource] is a wrapper class for [Dio] which implements [DataSource]
-class ApiDataSource<T> implements DataSource<T> {
+class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
   final Dio _dio = Dio();
 
   final Map<String, CancelToken> _cancelTokens = {};
