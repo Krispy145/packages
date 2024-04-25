@@ -24,6 +24,5 @@ class LatLngMapper extends SimpleMapper<LatLng> {
 //   @override
 //   Map<String, dynamic> toJson(LatLng data) {
 //     return {"lat": data.latitude, "lng": data.longitude};
-//   }
-// }
+//   } }
 }

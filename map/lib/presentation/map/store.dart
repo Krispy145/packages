@@ -24,7 +24,10 @@ class MapStore = _MapStore with _$MapStore;
 abstract class _MapStore extends LoadStateStore with Store {
   final DOTickerProvider vsync = DOTickerProvider();
   final Marker Function(MarkerModel marker)? singleMarkerBuilder;
-  _MapStore({required this.mapTilesUrl, this.singleMarkerBuilder}) {
+  _MapStore({
+    required this.mapTilesUrl,
+    this.singleMarkerBuilder,
+  }) {
     setLoading();
     animatedMapController = AnimatedMapController(
       vsync: vsync,
