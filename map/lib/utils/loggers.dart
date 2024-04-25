@@ -4,6 +4,9 @@ enum MapLoggers {
   /// [map] is the feature reference for map.
   map,
 
-  /// markers is the feature reference for markers.
+  /// [markers] is the feature reference for markers.
   markers,
+
+  /// [search] is the feature reference for search.
+  search,
 }

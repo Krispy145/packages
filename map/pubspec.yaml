@@ -29,6 +29,7 @@ dependencies:
   forms:
     path: ../forms
   mapbox_search: ^4.2.0
+  dropdown_search: ^5.0.6
 
 dev_dependencies:
   build_runner: ^2.4.9

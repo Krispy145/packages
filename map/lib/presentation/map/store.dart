@@ -25,9 +25,8 @@ class MapStore = _MapStore with _$MapStore;
 /// [_MapStore] is a class that manages the state of the map feature.
 abstract class _MapStore extends LoadStateStore with Store {
   final DOTickerProvider vsync = DOTickerProvider();
-  final void Function()? onMapViewReady;
-  final void Function()? onDragEnd;
-  _MapStore({required this.mapTilesUrl, this.onMapViewReady, this.onDragEnd}) {
+  final Marker Function(MarkerModel marker)? singleMarkerBuilder;
+  _MapStore({required this.mapTilesUrl, this.singleMarkerBuilder}) {
     setLoading();
     animatedMapController = AnimatedMapController(
       vsync: vsync,
@@ -43,7 +42,10 @@ abstract class _MapStore extends LoadStateStore with Store {
   bool isMapReady = false;
 
   @observable
-  ObservableSet<MarkerModel> markers = ObservableSet(name: "Markers Set");
+  ObservableSet<MarkerModel> _markers = ObservableSet(name: "Markers Set");
+
+  @computed
+  Set<MarkerModel> get markers => _markers.nonObservableInner;
 
   /// Initialise the [AnimatedMapController] for the Flutter Map
   late final AnimatedMapController animatedMapController;
@@ -52,6 +54,7 @@ abstract class _MapStore extends LoadStateStore with Store {
     onMapReady: onMapReady,
     onTap: onMapTapped,
     onMapEvent: onMapEvent,
+    onPositionChanged: onMapPositionChanged,
     interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
   );
 
@@ -74,12 +77,12 @@ abstract class _MapStore extends LoadStateStore with Store {
   Future<void> initialiseMarkers() async {
     AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
-    if (markers.isNotEmpty) {
-      AppLogger.print("Initialising spot markers on map: ${markers.length}", [MapLoggers.markers]);
+    if (_markers.isNotEmpty) {
+      AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
-    superclusterController.addAll(markers.map(buildSingleMarker).toList());
+    superclusterController.addAll(_markers.map(buildSingleMarker).toList());
   }
 
   ///
@@ -87,12 +90,12 @@ abstract class _MapStore extends LoadStateStore with Store {
   ///
 
   @action
-  void addMarker(MarkerModel markerModel, {clearFirst = false}) {
+  void addMarker(MarkerModel markerModel, {bool clearFirst = false}) {
     if (clearFirst) {
-      superclusterController.removeAll(markers.map(buildSingleMarker).toList());
-      markers.clear();
+      superclusterController.removeAll(_markers.map(buildSingleMarker).toList());
+      _markers.clear();
     }
-    markers.add(markerModel);
+    _markers.add(markerModel);
     superclusterController.add(buildSingleMarker(markerModel));
     AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
   }
@@ -105,19 +108,20 @@ abstract class _MapStore extends LoadStateStore with Store {
 
     if (clearFirst) {
       // Find markers to remove (present in _markers but not in newMarkerSet)
-      final toRemove = markers.difference(newMarkerSet).toList();
+      final toRemove = _markers.difference(newMarkerSet).toList();
       superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
-      markers.retainWhere((element) => newMarkerModels.contains(element));
+      _markers.retainWhere((element) => newMarkerModels.contains(element));
     }
     // Find markers to add (present in newMarkerSet but not in _markers)
-    final toAdd = newMarkerSet.difference(markers).toList();
+    final toAdd = newMarkerSet.difference(_markers).toList();
     superclusterController.addAll(toAdd.map(buildSingleMarker).toList());
 
-    markers.addAll(newMarkerModels);
-    AppLogger.print("Markers after: count: ${markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${markers.length})", [MapLoggers.markers]);
+    _markers.addAll(newMarkerModels);
+    AppLogger.print("Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})", [MapLoggers.markers]);
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
+    if (singleMarkerBuilder != null) return singleMarkerBuilder!(markerModel);
     return LogoRingedMarker(markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
   }
 
@@ -171,7 +175,6 @@ abstract class _MapStore extends LoadStateStore with Store {
       ),
     );
     await initialiseMarkers();
-    onMapViewReady?.call();
     isMapReady = true;
     setLoaded();
   }
@@ -202,7 +205,7 @@ abstract class _MapStore extends LoadStateStore with Store {
       case MapEventSource.onDrag:
         break;
       case MapEventSource.dragEnd:
-        onDragEnd?.call();
+        break;
       default:
     }
   }
