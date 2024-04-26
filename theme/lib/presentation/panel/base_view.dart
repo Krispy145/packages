@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:theme/presentation/components/options.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
 import 'package:utilities/helpers/extensions/string.dart';
 import 'package:utilities/sizes/spacers.dart';
 
@@ -12,8 +11,9 @@ class ThemeChangerView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: context.screenWidth * 0.25,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          // maxCrossAxisExtent: context.screenWidth * 0.25,
+          crossAxisCount: 2,
           crossAxisSpacing: 8,
           mainAxisSpacing: 8,
           childAspectRatio: 2,

@@ -26,7 +26,7 @@ class ColorsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpandingPanelViewBuilder.right(
-      widthPercentage: 0.25,
+      widthPercentage: 0.5,
       panelViewBuilder: (context) {
         return Observer(
           builder: (context) {

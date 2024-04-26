@@ -14,7 +14,7 @@ part 'chip_model.g.dart';
 @freezed
 class ChipModel with _$ChipModel {
   const factory ChipModel({
-    ThemeColorString? color,
+    ThemeColorString? color_themeColorString,
     ThemeColorString? backgroundColor_themeColorString,
     ThemeColorString? deleteIconColor_themeColorString,
     ThemeColorString? disabledColor_themeColorString,
@@ -85,6 +85,7 @@ class ChipModel with _$ChipModel {
 
   ChipThemeData asChipThemeData({String? styleTypeName}) {
     return ChipThemeData(
+      color: MaterialStateProperty.all(color_themeColorString?.toColor(styleType: styleTypeName)),
       backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       deleteIconColor: deleteIconColor_themeColorString?.toColor(styleType: styleTypeName),
       disabledColor: disabledColor_themeColorString?.toColor(styleType: styleTypeName),

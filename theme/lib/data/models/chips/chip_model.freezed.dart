@@ -20,7 +20,7 @@ ChipModel _$ChipModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ChipModel {
-  String? get color => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
   String? get backgroundColor_themeColorString =>
       throw _privateConstructorUsedError;
   String? get deleteIconColor_themeColorString =>
@@ -64,7 +64,7 @@ abstract class $ChipModelCopyWith<$Res> {
       _$ChipModelCopyWithImpl<$Res, ChipModel>;
   @useResult
   $Res call(
-      {String? color,
+      {String? color_themeColorString,
       String? backgroundColor_themeColorString,
       String? deleteIconColor_themeColorString,
       String? disabledColor_themeColorString,
@@ -103,7 +103,7 @@ class _$ChipModelCopyWithImpl<$Res, $Val extends ChipModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
+    Object? color_themeColorString = freezed,
     Object? backgroundColor_themeColorString = freezed,
     Object? deleteIconColor_themeColorString = freezed,
     Object? disabledColor_themeColorString = freezed,
@@ -124,9 +124,9 @@ class _$ChipModelCopyWithImpl<$Res, $Val extends ChipModel>
     Object? pressElevation_double = freezed,
   }) {
     return _then(_value.copyWith(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       backgroundColor_themeColorString: freezed ==
               backgroundColor_themeColorString
@@ -270,7 +270,7 @@ abstract class _$$ChipModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? color,
+      {String? color_themeColorString,
       String? backgroundColor_themeColorString,
       String? deleteIconColor_themeColorString,
       String? disabledColor_themeColorString,
@@ -311,7 +311,7 @@ class __$$ChipModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? color = freezed,
+    Object? color_themeColorString = freezed,
     Object? backgroundColor_themeColorString = freezed,
     Object? deleteIconColor_themeColorString = freezed,
     Object? disabledColor_themeColorString = freezed,
@@ -332,9 +332,9 @@ class __$$ChipModelImplCopyWithImpl<$Res>
     Object? pressElevation_double = freezed,
   }) {
     return _then(_$ChipModelImpl(
-      color: freezed == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       backgroundColor_themeColorString: freezed ==
               backgroundColor_themeColorString
@@ -423,7 +423,7 @@ class __$$ChipModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ChipModelImpl extends _ChipModel {
   const _$ChipModelImpl(
-      {this.color,
+      {this.color_themeColorString,
       this.backgroundColor_themeColorString,
       this.deleteIconColor_themeColorString,
       this.disabledColor_themeColorString,
@@ -448,7 +448,7 @@ class _$ChipModelImpl extends _ChipModel {
       _$$ChipModelImplFromJson(json);
 
   @override
-  final String? color;
+  final String? color_themeColorString;
   @override
   final String? backgroundColor_themeColorString;
   @override
@@ -491,7 +491,7 @@ class _$ChipModelImpl extends _ChipModel {
 
   @override
   String toString() {
-    return 'ChipModel(color: $color, backgroundColor_themeColorString: $backgroundColor_themeColorString, deleteIconColor_themeColorString: $deleteIconColor_themeColorString, disabledColor_themeColorString: $disabledColor_themeColorString, selectedColor_themeColorString: $selectedColor_themeColorString, secondarySelectedColor_themeColorString: $secondarySelectedColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, selectedShadowColor_themeColorString: $selectedShadowColor_themeColorString, showCheckmark_bool: $showCheckmark_bool, checkmarkColor_themeColorString: $checkmarkColor_themeColorString, labelPadding_edgeInsets: $labelPadding_edgeInsets, padding_edgeInsets: $padding_edgeInsets, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, labelStyle_textStyleString: $labelStyle_textStyleString, secondaryLabelStyle_textStyleString: $secondaryLabelStyle_textStyleString, elevation_double: $elevation_double, pressElevation_double: $pressElevation_double)';
+    return 'ChipModel(color_themeColorString: $color_themeColorString, backgroundColor_themeColorString: $backgroundColor_themeColorString, deleteIconColor_themeColorString: $deleteIconColor_themeColorString, disabledColor_themeColorString: $disabledColor_themeColorString, selectedColor_themeColorString: $selectedColor_themeColorString, secondarySelectedColor_themeColorString: $secondarySelectedColor_themeColorString, shadowColor_themeColorString: $shadowColor_themeColorString, surfaceTintColor_themeColorString: $surfaceTintColor_themeColorString, selectedShadowColor_themeColorString: $selectedShadowColor_themeColorString, showCheckmark_bool: $showCheckmark_bool, checkmarkColor_themeColorString: $checkmarkColor_themeColorString, labelPadding_edgeInsets: $labelPadding_edgeInsets, padding_edgeInsets: $padding_edgeInsets, side_borderSide: $side_borderSide, shape_outlinedBorder: $shape_outlinedBorder, labelStyle_textStyleString: $labelStyle_textStyleString, secondaryLabelStyle_textStyleString: $secondaryLabelStyle_textStyleString, elevation_double: $elevation_double, pressElevation_double: $pressElevation_double)';
   }
 
   @override
@@ -499,7 +499,8 @@ class _$ChipModelImpl extends _ChipModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChipModelImpl &&
-            (identical(other.color, color) || other.color == color) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.backgroundColor_themeColorString, backgroundColor_themeColorString) ||
                 other.backgroundColor_themeColorString ==
                     backgroundColor_themeColorString) &&
@@ -548,7 +549,7 @@ class _$ChipModelImpl extends _ChipModel {
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        color,
+        color_themeColorString,
         backgroundColor_themeColorString,
         deleteIconColor_themeColorString,
         disabledColor_themeColorString,
@@ -585,7 +586,7 @@ class _$ChipModelImpl extends _ChipModel {
 
 abstract class _ChipModel extends ChipModel {
   const factory _ChipModel(
-      {final String? color,
+      {final String? color_themeColorString,
       final String? backgroundColor_themeColorString,
       final String? deleteIconColor_themeColorString,
       final String? disabledColor_themeColorString,
@@ -610,7 +611,7 @@ abstract class _ChipModel extends ChipModel {
       _$ChipModelImpl.fromJson;
 
   @override
-  String? get color;
+  String? get color_themeColorString;
   @override
   String? get backgroundColor_themeColorString;
   @override

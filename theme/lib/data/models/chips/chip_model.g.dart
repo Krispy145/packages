@@ -8,7 +8,7 @@ part of 'chip_model.dart';
 
 _$ChipModelImpl _$$ChipModelImplFromJson(Map<String, dynamic> json) =>
     _$ChipModelImpl(
-      color: json['color'] as String?,
+      color_themeColorString: json['color_themeColorString'] as String?,
       backgroundColor_themeColorString:
           json['backgroundColor_themeColorString'] as String?,
       deleteIconColor_themeColorString:
@@ -54,7 +54,7 @@ _$ChipModelImpl _$$ChipModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ChipModelImplToJson(_$ChipModelImpl instance) =>
     <String, dynamic>{
-      'color': instance.color,
+      'color_themeColorString': instance.color_themeColorString,
       'backgroundColor_themeColorString':
           instance.backgroundColor_themeColorString,
       'deleteIconColor_themeColorString':
