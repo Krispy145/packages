@@ -64,7 +64,12 @@ abstract class DummyDataSource<T> implements DataSource<T> {
   }
 
   @override
-  Future<List<T?>> search(Map<String, dynamic> queries) async {
+  Future<T?> search(Map<String, dynamic> queries) async {
+    return fakeData.where((element) => matchesQuery(queries, element)).toList().firstOrNull;
+  }
+
+  @override
+  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
     return fakeData.where((element) => matchesQuery(queries, element)).toList();
   }
 }

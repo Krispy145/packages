@@ -7,15 +7,15 @@ import 'package:mapbox_search/mapbox_search.dart';
 import 'package:mobx/mobx.dart';
 import 'package:utilities/logger/logger.dart';
 
-part 'store.g.dart';
+part 'mapbox_store.g.dart';
 
-/// [SearchMapStore] is a class that uses [_SearchMapStore] to manage state of the map feature.
-class SearchMapStore = _SearchMapStore with _$SearchMapStore;
+/// [MapBoxSearchMapStore] is a class that uses [_MapBoxSearchMapStore] to manage state of the map feature.
+class MapBoxSearchMapStore = _MapBoxSearchMapStore with _$MapBoxSearchMapStore;
 
-/// [_SearchMapStore] is a class that manages the state of the map feature.
-abstract class _SearchMapStore extends MapStore with Store {
+/// [_MapBoxSearchMapStore] is a class that manages the state of the map feature.
+abstract class _MapBoxSearchMapStore extends MapStore with Store {
   final String mapAPIKey;
-  _SearchMapStore({
+  _MapBoxSearchMapStore({
     required this.mapAPIKey,
     required super.mapTilesUrl,
     super.singleMarkerBuilder,

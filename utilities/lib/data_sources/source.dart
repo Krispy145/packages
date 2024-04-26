@@ -45,7 +45,10 @@ abstract class DataSource<T> {
   Future<void> addAll(List<T> value);
 
   /// [search] method searches for the given queries
-  Future<List<T?>> search(Map<String, dynamic> queries);
+  Future<T?> search(Map<String, dynamic> queries);
+
+  /// [searchAll] method searches for all the key-value pairs
+  Future<List<T?>> searchAll(Map<String, dynamic> queries);
 }
 
 // TODO: Move to right place

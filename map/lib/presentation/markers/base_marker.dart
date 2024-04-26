@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:map/constants/marker_constants.dart';
 import 'package:map/data/models/marker_model.dart';
 
-abstract class BaseMarker<T extends MarkerModel> extends Marker {
+class BaseMarker<T extends MarkerModel> extends Marker {
   final T markerModel;
   final bool Function(T markerModel) isSelected;
   final Function(String id, LatLng position)? onMarkerTapped;

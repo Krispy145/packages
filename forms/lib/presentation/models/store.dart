@@ -1,43 +1,26 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:mobx/mobx.dart';
+import 'package:utilities/widgets/load_state/base_store.dart';
 
 part 'store.g.dart';
 
-/// [FormsModelStore] is a MobX store that is used to store data in a map and convert it to a model.
-/// It is used to store data that is used in forms.
-/// required an `emptyOrEditModel` that is used to create a new model or edit an existing one.
 class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
 
-abstract class _FormsModelStore<T> with Store {
-  _FormsModelStore({
-    T? initialModel,
-    this.onModelChanged,
-  }) : currentModel = initialModel;
+abstract class _FormsModelStore<T> extends LoadStateStore with Store {
+  final void Function(T) onValueChanged;
+  final void Function(T) onValueSaved;
 
-  /// Callback that is called whenever the map is changed.
-  final void Function(T)? onModelChanged;
-
-  @observable
-  late T? currentModel;
-
-  @action
-  void saveModel() {
-    onModelChanged?.call(currentModel as T);
+  _FormsModelStore({required this.value, required this.onValueChanged, required this.onValueSaved}) {
+    reaction((r) => value, onValueChanged);
+    setLoaded();
   }
 
-  /// Inserts a new key-value pair into the map.
-  /// The list of keys is used to navigate the nested maps.
-  // @action
-  // void updateValue(T updatedModel) {
-  //   // final mergedMap = {
-  //   //   if(currentModel!=null)...convertToMap(currentModel),
-  //   //   ...convertToMap(updatedModel),
-  //   // };
-  //   final mergedMap = currentModel == null
-  //       ? convertToMap(updatedModel)
-  //       : {
-  //           ...convertToMap(currentModel as T),
-  //           ...convertToMap(updatedModel),
-  //         };
-  //   onModelChanged?.call(convertDataTypeFromMap(mergedMap));
-  // }
+  @observable
+  late T value;
+
+  @action
+  void saveValue() {
+    onValueSaved(value);
+  }
 }

@@ -33,11 +33,11 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
       ActionController(name: '_NotificationsStore', context: context);
 
   @override
-  Future<List<NotificationModel?>> search(Map<String, dynamic> queries) {
+  Future<List<NotificationModel?>> searchAll(Map<String, dynamic> queries) {
     final _$actionInfo = _$_NotificationsStoreActionController.startAction(
-        name: '_NotificationsStore.search');
+        name: '_NotificationsStore.searchAll');
     try {
-      return super.search(queries);
+      return super.searchAll(queries);
     } finally {
       _$_NotificationsStoreActionController.endAction(_$actionInfo);
     }

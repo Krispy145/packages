@@ -118,7 +118,15 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<List<T?>> search(Map<String, dynamic> queries) async {
+  Future<T?> search(Map<String, dynamic> queries) async {
+    final columnNames = queries.keys.toList();
+    final values = queries.values.toList();
+    final results = await _supabase!.from(tableName).select(columnNames.join(',')).eq(columnNames.join(','), values.join(','));
+    return results.map(convertDataTypeFromMap).toList().firstOrNull;
+  }
+
+  @override
+  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
     final columnNames = queries.keys.toList();
     final values = queries.values.toList();
     final results = await _supabase!.from(tableName).select(columnNames.join(',')).eq(columnNames.join(','), values.join(','));

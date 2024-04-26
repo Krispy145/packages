@@ -36,7 +36,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
         onRequest: (options, handler) {
           // Log the request
           AppLogger.print(
-            "REQUEST: ${options.method} -> ${options.uri}",
+            "REQUEST: Headers: ${options.headers} ${options.method} -> ${options.uri}",
             [UtilitiesLoggers.apiDataSource],
           );
           return handler.next(options);
@@ -259,7 +259,26 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<List<T?>> search(
+  Future<T?> search(
+    Map<String, dynamic> queries, {
+    String? pathExtensions,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? '$_baseUrl/$pathExtensions' : _baseUrl;
+    final cancelKey = "$_url/search";
+    if (cancelPreviousRequest) {
+      _cancel(cancelKey);
+    }
+    final response = await _dio.get<Map<String, dynamic>>(
+      _url,
+      queryParameters: queries,
+      cancelToken: _getCancelToken(cancelKey),
+    );
+    return response.data != null ? convertDataTypeFromMap(response.data!) : null;
+  }
+
+  @override
+  Future<List<T?>> searchAll(
     Map<String, dynamic> queries, {
     String? pathExtensions,
     bool cancelPreviousRequest = false,

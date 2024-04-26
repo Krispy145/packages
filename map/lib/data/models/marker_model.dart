@@ -23,7 +23,7 @@ import 'package:latlong2/latlong.dart';
 
 part 'marker_model.mapper.dart';
 
-@MappableClass()
+@MappableClass(caseStyle: CaseStyle.snakeCase)
 class MarkerModel with MarkerModelMappable {
   final String id;
   final double score;

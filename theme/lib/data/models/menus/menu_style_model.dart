@@ -62,18 +62,29 @@ class MenuStyleModel with _$MenuStyleModel {
   // }
 
   MenuStyle asMenuStyle({String? styleTypeName}) {
+    final backgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
+    final shadowColor = shadowColor_themeColorString?.toColor(styleType: styleTypeName);
+    final surfaceTintColor = surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
+    final elevation = elevation_double;
+    final padding = padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
+    final minimumSize = minimumSize_size?.asSize(styleTypeName: styleTypeName);
+    final fixedSize = fixedSize_size?.asSize(styleTypeName: styleTypeName);
+    final maximumSize = maximumSize_size?.asSize(styleTypeName: styleTypeName);
+    final side = side_borderSide?.asBorderSide(styleTypeName: styleTypeName);
+    final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
+    final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-      backgroundColor: MaterialStateProperty.all(backgroundColor_themeColorString?.toColor(styleType: styleTypeName)),
-      shadowColor: MaterialStateProperty.all(shadowColor_themeColorString?.toColor(styleType: styleTypeName)),
-      surfaceTintColor: MaterialStateProperty.all(surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName)),
-      elevation: MaterialStateProperty.all(elevation_double),
-      padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero),
-      minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),
-      fixedSize: MaterialStateProperty.all(fixedSize_size?.asSize(styleTypeName: styleTypeName)),
-      maximumSize: MaterialStateProperty.all(maximumSize_size?.asSize(styleTypeName: styleTypeName)),
-      side: MaterialStateProperty.all(side_borderSide?.asBorderSide(styleTypeName: styleTypeName)),
-      shape: MaterialStateProperty.all(shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName)),
-      alignment: alignment_enum_alignmentOptions?.alignment,
+      backgroundColor: backgroundColor != null ? MaterialStateProperty.all(backgroundColor) : null,
+      shadowColor: shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
+      surfaceTintColor: surfaceTintColor != null ? MaterialStateProperty.all(surfaceTintColor) : null,
+      elevation: elevation != null ? MaterialStateProperty.all(elevation) : null,
+      padding: padding != null ? MaterialStateProperty.all(padding) : null,
+      minimumSize: minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
+      fixedSize: fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
+      maximumSize: maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
+      side: side != null ? MaterialStateProperty.all(side) : null,
+      shape: shape != null ? MaterialStateProperty.all(shape) : null,
+      alignment: alignment,
     );
   }
 

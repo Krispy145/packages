@@ -20,7 +20,7 @@ class FormsModelView<T> extends StatelessWidget {
     this.scrollViewPadding,
   });
 
-  bool get isUpdating => store.currentModel != null;
+  bool get isUpdating => store.value != null;
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,12 @@ class FormsModelView<T> extends StatelessWidget {
                 },
               ),
             ),
+            Sizes.l.spacer(),
             ElevatedButton(
               onPressed: () => _showConfirmationDialog(context),
               child: Text(isUpdating ? 'Update' : 'Create'),
             ),
+            Sizes.xxxl.spacer(),
           ],
         ),
         Align(
@@ -85,7 +87,7 @@ class FormsModelView<T> extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                store.saveModel();
+                store.saveValue();
                 Navigator.of(context).pop(true);
               },
               child: const Text('Submit'),

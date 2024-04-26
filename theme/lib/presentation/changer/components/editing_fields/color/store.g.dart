@@ -8,12 +8,12 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ColorFormFieldStore on _themeColorStringFormFieldStore, Store {
+mixin _$ColorFormFieldStore on _ThemeColorStringFormFieldStore, Store {
   late final _$colorAtom =
-      Atom(name: '_themeColorStringFormFieldStore.color', context: context);
+      Atom(name: '_ThemeColorStringFormFieldStore.color', context: context);
 
   @override
-  InvalidType get color {
+  Color get color {
     _$colorAtom.reportRead();
     return super.color;
   }
@@ -21,7 +21,7 @@ mixin _$ColorFormFieldStore on _themeColorStringFormFieldStore, Store {
   bool _colorIsInitialized = false;
 
   @override
-  set color(InvalidType value) {
+  set color(Color value) {
     _$colorAtom.reportWrite(value, _colorIsInitialized ? super.color : null,
         () {
       super.color = value;
@@ -29,31 +29,31 @@ mixin _$ColorFormFieldStore on _themeColorStringFormFieldStore, Store {
     });
   }
 
-  late final _$_themeColorStringFormFieldStoreActionController =
+  late final _$_ThemeColorStringFormFieldStoreActionController =
       ActionController(
-          name: '_themeColorStringFormFieldStore', context: context);
+          name: '_ThemeColorStringFormFieldStore', context: context);
 
   @override
   void onDone() {
-    final _$actionInfo = _$_themeColorStringFormFieldStoreActionController
-        .startAction(name: '_themeColorStringFormFieldStore.onDone');
+    final _$actionInfo = _$_ThemeColorStringFormFieldStoreActionController
+        .startAction(name: '_ThemeColorStringFormFieldStore.onDone');
     try {
       return super.onDone();
     } finally {
-      _$_themeColorStringFormFieldStoreActionController.endAction(_$actionInfo);
+      _$_ThemeColorStringFormFieldStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void updateColor(
       {double? red, double? green, double? blue, double? opacity}) {
-    final _$actionInfo = _$_themeColorStringFormFieldStoreActionController
-        .startAction(name: '_themeColorStringFormFieldStore.updateColor');
+    final _$actionInfo = _$_ThemeColorStringFormFieldStoreActionController
+        .startAction(name: '_ThemeColorStringFormFieldStore.updateColor');
     try {
       return super
           .updateColor(red: red, green: green, blue: blue, opacity: opacity);
     } finally {
-      _$_themeColorStringFormFieldStoreActionController.endAction(_$actionInfo);
+      _$_ThemeColorStringFormFieldStoreActionController.endAction(_$actionInfo);
     }
   }
 
