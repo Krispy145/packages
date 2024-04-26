@@ -103,7 +103,7 @@ class FormsModelView<T> extends StatelessWidget {
         return context.showSnackbar(configuration: SnackbarConfiguration.warning(title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of $T'));
       }
       context.showSnackbar(configuration: SnackbarConfiguration.confirmation(title: '${isUpdating ? 'Updated' : 'Created'} $T'));
-      Navigator.of(context).pop();
+      return Navigator.of(context).pop<bool>(result);
     });
   }
 }
