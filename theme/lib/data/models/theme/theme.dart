@@ -90,7 +90,7 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
   ComponentThemesModel._();
 
   T? getComponentThemeFromStyleType<T>(String styleType) {
-    print("T is $T");
+    print("Made it here");
     if (isSameType<T, ThemeData>()) {
       return ThemeData(
         elevatedButtonTheme: elevatedButtons?[styleType]?.toElevatedButtonThemeData(),

@@ -34,7 +34,7 @@ class TextStyleStringFormField extends StatelessWidget {
                           Text(
                             "$styleTitle-$title",
                             maxLines: 2,
-                            style: "$styleTitle-$title".toTextStyleModel()?.asTextStyle.copyWith(color: Colors.black),
+                            style: "$styleTitle-$title".toTextStyleModel()?.asTextStyle,
                           ),
                           Sizes.m.spacer(vertical: false),
                         ],

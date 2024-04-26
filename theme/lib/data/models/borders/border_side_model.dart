@@ -7,7 +7,7 @@ import 'package:theme/extensions/theme_color_string.dart';
 part 'border_side_model.freezed.dart';
 part 'border_side_model.g.dart';
 
-@freezed
+@unfreezed
 class BorderSideModel with _$BorderSideModel {
   const factory BorderSideModel({
     final ThemeColorString? color_themeColorString,

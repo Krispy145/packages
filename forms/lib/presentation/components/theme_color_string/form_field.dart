@@ -18,14 +18,27 @@ class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldS
 
   @override
   Widget buildField(BuildContext context) {
+    print("Build field");
     return Observer(
       builder: (context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ColorCircle(
-              color: store.value?.toColor() ?? Colors.transparent,
-              label: store.value ?? "None",
+            Row(
+              children: [
+                ColorCircle(
+                  color: store.value?.toColor() ?? Colors.transparent,
+                  label: store.value ?? "None",
+                ),
+                IconButton(
+                  color: Colors.black,
+                  onPressed: () {
+                    store.value = null;
+                    AppLogger.print("Clearing color", [ThemeLoggers.colors]);
+                  },
+                  icon: const Icon(Icons.delete),
+                ),
+              ],
             ),
             Sizes.m.spacer(),
             SizedBox(

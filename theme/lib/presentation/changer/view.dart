@@ -139,7 +139,9 @@ class ThemeComponentEditor extends MapEditor {
       case "_themeColorString":
         final store = ThemeColorStringFormFieldStore(
           value: value as ThemeColorString?,
-          onValueChanged: (newValue) => onChanged(keys, newValue),
+          onValueChanged: (newValue) {
+            onChanged(keys, newValue);
+          },
           title: formattedKey,
         );
         return ThemeColorStringFormField(store: store);

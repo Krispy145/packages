@@ -85,7 +85,7 @@ class ChipModel with _$ChipModel {
 
   ChipThemeData asChipThemeData({String? styleTypeName}) {
     return ChipThemeData(
-      color: MaterialStateProperty.all(color_themeColorString?.toColor(styleType: styleTypeName)),
+      color: color_themeColorString != null ? MaterialStateProperty.all(color_themeColorString?.toColor(styleType: styleTypeName)) : null,
       backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       deleteIconColor: deleteIconColor_themeColorString?.toColor(styleType: styleTypeName),
       disabledColor: disabledColor_themeColorString?.toColor(styleType: styleTypeName),

@@ -9,6 +9,7 @@ typedef ThemeColorString = String;
 
 extension ThemeColorExtension on ThemeColorString {
   Color? toColor({String? styleType}) {
+    if (this == "") return null;
     if (startsWith("#")) {
       return ColorConverter.getColorFromHex(this);
     }

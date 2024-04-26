@@ -20,9 +20,22 @@ class ThemeColorStringFormField extends StatelessWidget {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ColorCircle(
-              color: store.value?.toColor() ?? Colors.transparent,
-              label: store.value ?? "None",
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ColorCircle(
+                  color: store.value?.toColor() ?? Colors.transparent,
+                  label: store.value ?? "None",
+                ),
+                IconButton(
+                  color: Colors.black,
+                  onPressed: () {
+                    store.value = "";
+                    AppLogger.print("Clearing color", [ThemeLoggers.colors]);
+                  },
+                  icon: const Icon(Icons.delete),
+                ),
+              ],
             ),
             Sizes.m.spacer(),
             SizedBox(

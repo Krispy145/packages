@@ -94,7 +94,7 @@ class ThemeChanger {
   static Future<void> currentColorThemeChanger({
     required BuildContext context,
   }) {
-    return showModalBottomSheet(context: context, builder: (context) => ColorsView());
+    return showModalBottomSheet(barrierColor: Colors.transparent, context: context, builder: (context) => ColorsView());
   }
 
   /// [changeLightThemeStyle] is a function that is used to change the light theme of the app.
