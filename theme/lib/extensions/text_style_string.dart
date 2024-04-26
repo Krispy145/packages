@@ -20,7 +20,7 @@ extension TextStyleStringExtension on TextStyleString {
     }
     final currentTextStyleModel = AppTheme.textStyleTypes(styleTypeName: styleType);
     final keyList = split("-");
-    if (keyList.length != 2 || currentTextStyleModel == null) return null;
+    if (keyList.length < 2 || currentTextStyleModel == null) return null;
     final type = TextType.values.firstWhereOrNull((element) => element.name == keyList[0]);
     final size = TextSizes.values.firstWhereOrNull((element) => element.name == keyList[1]);
 

@@ -39,50 +39,6 @@ class ChipModel with _$ChipModel {
 
   factory ChipModel.fromJson(Map<String, dynamic> json) => _$ChipModelFromJson(json);
 
-  // static ChipModel defaultChipModel() {
-  //   return const ChipModel(
-  //     color: "surface",
-  //     backgroundColor: "surface",
-  //     deleteIconColor: "onSurface",
-  //     disabledColor: "onSurface",
-  //     selectedColor: "primary",
-  //     secondarySelectedColor: "primary",
-  //     shadowColor: "outline",
-  //     surfaceTintColor: "surface",
-  //     selectedShadowColor: "outline",
-  //     showCheckmark: true,
-  //     checkmarkColor: "onSurface",
-  //     labelPadding: EdgeInsets.only(
-  //       left: 8.0,
-  //       top: 8.0,
-  //       right: 8.0,
-  //       bottom: 8.0,
-  //     ),
-  //     padding: EdgeInsets.only(
-  //       left: 8.0,
-  //       top: 8.0,
-  //       right: 8.0,
-  //       bottom: 8.0,
-  //     ),
-  //     side: BorderSide(
-  //       color: Colors.transparent,
-  //       width: 0.0,
-  //     ),
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(0.0),
-  //         topRight: Radius.circular(0.0),
-  //         bottomLeft: Radius.circular(0.0),
-  //         bottomRight: Radius.circular(0.0),
-  //       ),
-  //     ),
-  //     labelStyle: "label-medium",
-  //     secondaryLabelStyle: "label-small",
-  //     elevation: 0.0,
-  //     pressElevation: 0.0,
-  //   );
-  // }
-
   ChipThemeData asChipThemeData({String? styleTypeName}) {
     return ChipThemeData(
       color: MaterialStateProperty.all(color_themeColorString?.toColor(styleType: styleTypeName)),
