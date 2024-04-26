@@ -62,7 +62,6 @@ class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldS
                             ColorCircle(color: colorName.toColor() ?? Colors.transparent),
                             Text(
                               colorName,
-                              style: const TextStyle(color: Colors.black),
                             ),
                           ],
                         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:theme/extensions/build_context.dart';
 import 'package:utilities/widgets/load_state/state_widget.dart';
+
 import 'store.dart';
 
 // ignore: strict_raw_type
@@ -24,11 +26,12 @@ abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidg
       },
       loadedBuilder: (context) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(store.title),
+              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              child: Text(store.title, style: context.textTheme.titleSmall),
             ),
             buildField(context),
           ],

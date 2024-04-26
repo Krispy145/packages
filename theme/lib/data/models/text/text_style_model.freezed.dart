@@ -21,6 +21,7 @@ TextStyleModel _$TextStyleModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TextStyleModel {
   String? get fontFamilyName_font => throw _privateConstructorUsedError;
+  String? get color_themeColorString => throw _privateConstructorUsedError;
   FontStyle? get fontFamilyStyle_enum_fontStyle =>
       throw _privateConstructorUsedError;
   double? get fontWeight_double => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $TextStyleModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String? fontFamilyName_font,
+      String? color_themeColorString,
       FontStyle? fontFamilyStyle_enum_fontStyle,
       double? fontWeight_double,
       double? fontSize_double,
@@ -63,6 +65,7 @@ class _$TextStyleModelCopyWithImpl<$Res, $Val extends TextStyleModel>
   @override
   $Res call({
     Object? fontFamilyName_font = freezed,
+    Object? color_themeColorString = freezed,
     Object? fontFamilyStyle_enum_fontStyle = freezed,
     Object? fontWeight_double = freezed,
     Object? fontSize_double = freezed,
@@ -73,6 +76,10 @@ class _$TextStyleModelCopyWithImpl<$Res, $Val extends TextStyleModel>
       fontFamilyName_font: freezed == fontFamilyName_font
           ? _value.fontFamilyName_font
           : fontFamilyName_font // ignore: cast_nullable_to_non_nullable
+              as String?,
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       fontFamilyStyle_enum_fontStyle: freezed == fontFamilyStyle_enum_fontStyle
           ? _value.fontFamilyStyle_enum_fontStyle
@@ -108,6 +115,7 @@ abstract class _$$TextStyleModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String? fontFamilyName_font,
+      String? color_themeColorString,
       FontStyle? fontFamilyStyle_enum_fontStyle,
       double? fontWeight_double,
       double? fontSize_double,
@@ -127,6 +135,7 @@ class __$$TextStyleModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? fontFamilyName_font = freezed,
+    Object? color_themeColorString = freezed,
     Object? fontFamilyStyle_enum_fontStyle = freezed,
     Object? fontWeight_double = freezed,
     Object? fontSize_double = freezed,
@@ -137,6 +146,10 @@ class __$$TextStyleModelImplCopyWithImpl<$Res>
       fontFamilyName_font: freezed == fontFamilyName_font
           ? _value.fontFamilyName_font
           : fontFamilyName_font // ignore: cast_nullable_to_non_nullable
+              as String?,
+      color_themeColorString: freezed == color_themeColorString
+          ? _value.color_themeColorString
+          : color_themeColorString // ignore: cast_nullable_to_non_nullable
               as String?,
       fontFamilyStyle_enum_fontStyle: freezed == fontFamilyStyle_enum_fontStyle
           ? _value.fontFamilyStyle_enum_fontStyle
@@ -167,6 +180,7 @@ class __$$TextStyleModelImplCopyWithImpl<$Res>
 class _$TextStyleModelImpl extends _TextStyleModel {
   const _$TextStyleModelImpl(
       {this.fontFamilyName_font,
+      this.color_themeColorString,
       this.fontFamilyStyle_enum_fontStyle = FontStyle.normal,
       this.fontWeight_double,
       this.fontSize_double,
@@ -179,6 +193,8 @@ class _$TextStyleModelImpl extends _TextStyleModel {
 
   @override
   final String? fontFamilyName_font;
+  @override
+  final String? color_themeColorString;
   @override
   @JsonKey()
   final FontStyle? fontFamilyStyle_enum_fontStyle;
@@ -193,7 +209,7 @@ class _$TextStyleModelImpl extends _TextStyleModel {
 
   @override
   String toString() {
-    return 'TextStyleModel(fontFamilyName_font: $fontFamilyName_font, fontFamilyStyle_enum_fontStyle: $fontFamilyStyle_enum_fontStyle, fontWeight_double: $fontWeight_double, fontSize_double: $fontSize_double, lineHeight_double: $lineHeight_double, letterSpacing_double: $letterSpacing_double)';
+    return 'TextStyleModel(fontFamilyName_font: $fontFamilyName_font, color_themeColorString: $color_themeColorString, fontFamilyStyle_enum_fontStyle: $fontFamilyStyle_enum_fontStyle, fontWeight_double: $fontWeight_double, fontSize_double: $fontSize_double, lineHeight_double: $lineHeight_double, letterSpacing_double: $letterSpacing_double)';
   }
 
   @override
@@ -203,6 +219,8 @@ class _$TextStyleModelImpl extends _TextStyleModel {
             other is _$TextStyleModelImpl &&
             (identical(other.fontFamilyName_font, fontFamilyName_font) ||
                 other.fontFamilyName_font == fontFamilyName_font) &&
+            (identical(other.color_themeColorString, color_themeColorString) ||
+                other.color_themeColorString == color_themeColorString) &&
             (identical(other.fontFamilyStyle_enum_fontStyle,
                     fontFamilyStyle_enum_fontStyle) ||
                 other.fontFamilyStyle_enum_fontStyle ==
@@ -222,6 +240,7 @@ class _$TextStyleModelImpl extends _TextStyleModel {
   int get hashCode => Object.hash(
       runtimeType,
       fontFamilyName_font,
+      color_themeColorString,
       fontFamilyStyle_enum_fontStyle,
       fontWeight_double,
       fontSize_double,
@@ -246,6 +265,7 @@ class _$TextStyleModelImpl extends _TextStyleModel {
 abstract class _TextStyleModel extends TextStyleModel {
   const factory _TextStyleModel(
       {final String? fontFamilyName_font,
+      final String? color_themeColorString,
       final FontStyle? fontFamilyStyle_enum_fontStyle,
       final double? fontWeight_double,
       final double? fontSize_double,
@@ -258,6 +278,8 @@ abstract class _TextStyleModel extends TextStyleModel {
 
   @override
   String? get fontFamilyName_font;
+  @override
+  String? get color_themeColorString;
   @override
   FontStyle? get fontFamilyStyle_enum_fontStyle;
   @override

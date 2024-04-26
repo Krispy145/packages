@@ -175,6 +175,7 @@ class ThemeComponentEditor extends FormsMapView {
           title: formattedKey,
         );
         return BorderRadiusFormField(store: store);
+
       case "_outlinedBorder":
         final store = OutlinedBorderFormFieldStore(
           value: value != null ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>) : const OutlinedBorderModel(),
@@ -196,7 +197,6 @@ class ThemeComponentEditor extends FormsMapView {
           title: formattedKey,
         );
         return DurationFormField(store: store);
-      case "_shapeBorder":
       default:
         return null;
     }

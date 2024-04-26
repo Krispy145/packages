@@ -20,58 +20,69 @@ extension TextStyleStringExtension on TextStyleString {
     }
     final currentTextStyleModel = AppTheme.textStyleTypes(styleTypeName: styleType);
     final keyList = split("-");
-    if (keyList.length != 2 || currentTextStyleModel == null) return null;
+    if (keyList.length < 2 || currentTextStyleModel == null) return null;
     final type = TextType.values.firstWhereOrNull((element) => element.name == keyList[0]);
     final size = TextSizes.values.firstWhereOrNull((element) => element.name == keyList[1]);
+    String? color;
+    if (keyList.length >= 3) {
+      color = keyList[2];
+    }
 
     if (type == null || size == null) return null;
+
+    TextStyleModel? model;
 
     switch (type) {
       case TextType.headline:
         switch (size) {
           case TextSizes.small:
-            return currentTextStyleModel.headline?.small;
+            model = currentTextStyleModel.headline?.small;
           case TextSizes.medium:
-            return currentTextStyleModel.headline?.medium;
+            model = currentTextStyleModel.headline?.medium;
           case TextSizes.large:
-            return currentTextStyleModel.headline?.large;
+            model = currentTextStyleModel.headline?.large;
         }
       case TextType.title:
         switch (size) {
           case TextSizes.small:
-            return currentTextStyleModel.title?.small;
+            model = currentTextStyleModel.title?.small;
           case TextSizes.medium:
-            return currentTextStyleModel.title?.medium;
+            model = currentTextStyleModel.title?.medium;
           case TextSizes.large:
-            return currentTextStyleModel.title?.large;
+            model = currentTextStyleModel.title?.large;
         }
       case TextType.display:
         switch (size) {
           case TextSizes.small:
-            return currentTextStyleModel.display?.small;
+            model = currentTextStyleModel.display?.small;
           case TextSizes.medium:
-            return currentTextStyleModel.display?.medium;
+            model = currentTextStyleModel.display?.medium;
           case TextSizes.large:
-            return currentTextStyleModel.display?.large;
+            model = currentTextStyleModel.display?.large;
         }
       case TextType.body:
         switch (size) {
           case TextSizes.small:
-            return currentTextStyleModel.body?.small;
+            model = currentTextStyleModel.body?.small;
           case TextSizes.medium:
-            return currentTextStyleModel.body?.medium;
+            model = currentTextStyleModel.body?.medium;
           case TextSizes.large:
-            return currentTextStyleModel.body?.large;
+            model = currentTextStyleModel.body?.large;
         }
       case TextType.label:
         switch (size) {
           case TextSizes.small:
-            return currentTextStyleModel.label?.small;
+            model = currentTextStyleModel.label?.small;
           case TextSizes.medium:
-            return currentTextStyleModel.label?.medium;
+            model = currentTextStyleModel.label?.medium;
           case TextSizes.large:
-            return currentTextStyleModel.label?.large;
+            model = currentTextStyleModel.label?.large;
         }
     }
+
+    if (color != null) {
+      model = model?.copyWith(color_themeColorString: color);
+    }
+    return model;
   }
 }

@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:theme/app/app.dart';
+import 'package:theme/extensions/theme_color_string.dart';
 
 part 'text_style_model.freezed.dart';
 part 'text_style_model.g.dart';
@@ -14,6 +15,7 @@ class TextStyleModel with _$TextStyleModel {
   /// [TextStyleModel] constructor
   const factory TextStyleModel({
     final String? fontFamilyName_font,
+    final ThemeColorString? color_themeColorString,
     @Default(FontStyle.normal) final FontStyle? fontFamilyStyle_enum_fontStyle,
     final double? fontWeight_double,
     final double? fontSize_double,
@@ -35,6 +37,7 @@ class TextStyleModel with _$TextStyleModel {
         fontSize: fontSize_double,
         height: lineHeight_double,
         letterSpacing: letterSpacing_double,
+        color: color_themeColorString?.toColor(),
       );
     }
     return TextStyle(
@@ -44,6 +47,7 @@ class TextStyleModel with _$TextStyleModel {
       fontSize: fontSize_double,
       height: lineHeight_double,
       letterSpacing: letterSpacing_double,
+      color: color_themeColorString?.toColor(),
     );
   }
 

@@ -1,3 +1,4 @@
+import 'package:forms/presentation/components/theme_color_string/store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/extensions/text_style_string.dart';
 
@@ -14,8 +15,19 @@ abstract class _TextStyleStringStringFormFieldStore extends BaseFormFieldStore<T
     // });
   }
 
+  @observable
+  String? color;
+
+  late final ThemeColorStringFormFieldStore colorStore = ThemeColorStringFormFieldStore(
+    title: "Color",
+    value: null,
+    onValueChanged: (newColor) {
+      color = newColor;
+    },
+  );
+
   @action
   void updateTextStyle(String firstPart, String secondPart) {
-    value = "$firstPart-$secondPart";
+    value = "$firstPart-$secondPart${color != null ? "-$color" : ""}";
   }
 }
