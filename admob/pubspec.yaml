@@ -18,9 +18,9 @@ dependencies:
     #   ref: v0.0.1
     path: ../utilities
 
-  universal_io: any
-  mobx: any
-  flutter_mobx: any
+  universal_io:
+  mobx:
+  flutter_mobx:
 dev_dependencies:
   flutter_test:
     sdk: flutter

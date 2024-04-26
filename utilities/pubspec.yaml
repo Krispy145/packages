@@ -37,8 +37,8 @@ dependencies:
     #     ref: v0.0.1
     path: ../../packages/theme
 
-  collection: any
-  firebase_core: any
+  collection:
+  firebase_core:
 dev_dependencies:
   flutter_test:
     sdk: flutter
