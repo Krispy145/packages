@@ -45,7 +45,8 @@ abstract class _GoogleSearchMapStore extends MapStore with Store {
   }
 
   @action
-  Future<void> setCoordinates(GooglePlace googlePlace) async {
+  void setCoordinates(GooglePlace? googlePlace) {
+    if (googlePlace == null) return;
     currentGooglePlace = googlePlace;
 
     final coordinates = googlePlace.geometry?.location;
@@ -103,7 +104,6 @@ abstract class _GoogleSearchMapStore extends MapStore with Store {
     setLoading();
     try {
       googlePlaces = await search.textSearchGooglePlaces(parameters: const GoogleTextSearchParameters(query: "Thrift stores Near me"));
-      currentGooglePlace = googlePlaces.firstOrNull;
       AppLogger.print("GooglePlacesSearch.init success: $markers", [MapLoggers.search]);
     } catch (e) {
       setError();

@@ -33,9 +33,7 @@ class SearchMapView extends MapView<GoogleSearchMapStore> {
               itemAsString: (item) => item.name ?? "Name not found",
               asyncItems: (query) => store.searchMap(query),
               compareFn: (i, s) => i == s,
-              onChanged: (item) {
-                if (item != null) store.setCoordinates(item);
-              },
+              onChanged: store.setCoordinates,
               popupProps: PopupPropsMultiSelection.modalBottomSheet(
                 isFilterOnline: true,
                 showSelectedItems: true,
@@ -53,24 +51,6 @@ class SearchMapView extends MapView<GoogleSearchMapStore> {
                 },
               ),
             ),
-            // DropdownMenu<GooglePlace>(
-            //   initialSelection: store.currentGooglePlace,
-            //   // label: Text(store.currentGooglePlace?.name??"Search Places"),
-            //   searchCallback: (_, query) {
-            //     store.searchMap(query);
-            //     return 0;
-            //   },
-            //   onSelected: (value) {
-            //     if (value != null) store.setCoordinates(value);
-            //   },
-            //   dropdownMenuEntries: store.suggestions
-            //           ?.map((suggestion) => DropdownMenuEntry<GooglePlace>(
-            //                 label: suggestion.name,
-            //                 value: suggestion,
-            //               ))
-            //           .toList() ??
-            //       [],
-            // ),
           ),
         ),
       ),

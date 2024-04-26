@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:forms/presentation/components/base/store.dart';
 import 'package:forms/presentation/components/double/store.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:map/data/models/google/place_model.dart';
 import 'package:map/data/models/marker_model.dart';
 import 'package:map/presentation/markers/icon_marker.dart';
 import 'package:map/presentation/search_map/google_store.dart';
@@ -16,20 +17,29 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<MarkerModel?>
   final String mapTilesUrl;
   final String mapAPIKey;
   final Marker Function(MarkerModel)? singleMarkerBuilder;
+
+  final void Function(MarkerModel?, GooglePlace?) onSearchSelected;
   _SearchMapFormFieldStore({
     required this.mapTilesUrl,
     required this.mapAPIKey,
     required super.value,
-    required super.onValueChanged,
+    required this.onSearchSelected,
     required super.title,
     this.singleMarkerBuilder,
-  }) {
+  }) : super(
+          onValueChanged: (marker) => onSearchSelected(marker, null),
+        ) {
     reaction((reaction) {
       return mapStore.mapCenter;
     }, (mapCenter) {
       if (mapCenter != null) {
         latitudeStore.textController.text = mapCenter.latitude.toString();
         longitudeStore.textController.text = mapCenter.longitude.toString();
+      }
+    });
+    reaction((reaction) => mapStore.currentGooglePlace, (googlePlace) {
+      if (googlePlace != null) {
+        onSearchSelected(value, googlePlace);
       }
     });
   }

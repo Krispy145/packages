@@ -6,6 +6,428 @@
 
 part of 'place_model.dart';
 
+class PlaceTypeMapper extends EnumMapper<PlaceType> {
+  PlaceTypeMapper._();
+
+  static PlaceTypeMapper? _instance;
+  static PlaceTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = PlaceTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static PlaceType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  PlaceType decode(dynamic value) {
+    switch (value) {
+      case 'accounting':
+        return PlaceType.accounting;
+      case 'airport':
+        return PlaceType.airport;
+      case 'amusement_park':
+        return PlaceType.amusementPark;
+      case 'aquarium':
+        return PlaceType.aquarium;
+      case 'art_gallery':
+        return PlaceType.artGallery;
+      case 'atm':
+        return PlaceType.atm;
+      case 'bakery':
+        return PlaceType.bakery;
+      case 'bank':
+        return PlaceType.bank;
+      case 'bar':
+        return PlaceType.bar;
+      case 'beauty_salon':
+        return PlaceType.beautySalon;
+      case 'bicycle_store':
+        return PlaceType.bicycleStore;
+      case 'book_store':
+        return PlaceType.bookStore;
+      case 'bowling_alley':
+        return PlaceType.bowlingAlley;
+      case 'bus_station':
+        return PlaceType.busStation;
+      case 'cafe':
+        return PlaceType.cafe;
+      case 'campground':
+        return PlaceType.campground;
+      case 'car_dealer':
+        return PlaceType.carDealer;
+      case 'car_rental':
+        return PlaceType.carRental;
+      case 'car_repair':
+        return PlaceType.carRepair;
+      case 'car_wash':
+        return PlaceType.carWash;
+      case 'casino':
+        return PlaceType.casino;
+      case 'cemetery':
+        return PlaceType.cemetery;
+      case 'church':
+        return PlaceType.church;
+      case 'city_hall':
+        return PlaceType.cityHall;
+      case 'clothing_store':
+        return PlaceType.clothingStore;
+      case 'convenience_store':
+        return PlaceType.convenienceStore;
+      case 'courthouse':
+        return PlaceType.courthouse;
+      case 'dentist':
+        return PlaceType.dentist;
+      case 'department_store':
+        return PlaceType.departmentStore;
+      case 'doctor':
+        return PlaceType.doctor;
+      case 'drugstore':
+        return PlaceType.drugstore;
+      case 'electrician':
+        return PlaceType.electrician;
+      case 'electronics_store':
+        return PlaceType.electronicsStore;
+      case 'embassy':
+        return PlaceType.embassy;
+      case 'fire_station':
+        return PlaceType.fireStation;
+      case 'florist':
+        return PlaceType.florist;
+      case 'funeral_home':
+        return PlaceType.funeralHome;
+      case 'furniture_store':
+        return PlaceType.furnitureStore;
+      case 'gas_station':
+        return PlaceType.gasStation;
+      case 'gym':
+        return PlaceType.gym;
+      case 'hair_care':
+        return PlaceType.hairCare;
+      case 'hardware_store':
+        return PlaceType.hardwareStore;
+      case 'hindu_temple':
+        return PlaceType.hinduTemple;
+      case 'home_goods_store':
+        return PlaceType.homeGoodsStore;
+      case 'hospital':
+        return PlaceType.hospital;
+      case 'insurance_agency':
+        return PlaceType.insuranceAgency;
+      case 'jewelry_store':
+        return PlaceType.jewelryStore;
+      case 'laundry':
+        return PlaceType.laundry;
+      case 'lawyer':
+        return PlaceType.lawyer;
+      case 'library':
+        return PlaceType.library;
+      case 'light_rail_station':
+        return PlaceType.lightRailStation;
+      case 'liquor_store':
+        return PlaceType.liquorStore;
+      case 'local_government_office':
+        return PlaceType.localGovernmentOffice;
+      case 'locksmith':
+        return PlaceType.locksmith;
+      case 'lodging':
+        return PlaceType.lodging;
+      case 'meal_delivery':
+        return PlaceType.mealDelivery;
+      case 'meal_takeaway':
+        return PlaceType.mealTakeaway;
+      case 'mosque':
+        return PlaceType.mosque;
+      case 'movie_rental':
+        return PlaceType.movieRental;
+      case 'movie_theater':
+        return PlaceType.movieTheater;
+      case 'moving_company':
+        return PlaceType.movingCompany;
+      case 'museum':
+        return PlaceType.museum;
+      case 'night_club':
+        return PlaceType.nightClub;
+      case 'painter':
+        return PlaceType.painter;
+      case 'park':
+        return PlaceType.park;
+      case 'parking':
+        return PlaceType.parking;
+      case 'pet_store':
+        return PlaceType.petStore;
+      case 'pharmacy':
+        return PlaceType.pharmacy;
+      case 'physiotherapist':
+        return PlaceType.physiotherapist;
+      case 'plumber':
+        return PlaceType.plumber;
+      case 'police':
+        return PlaceType.police;
+      case 'post_office':
+        return PlaceType.postOffice;
+      case 'primary_school':
+        return PlaceType.primarySchool;
+      case 'real_estate_agency':
+        return PlaceType.realEstateAgency;
+      case 'restaurant':
+        return PlaceType.restaurant;
+      case 'roofing_contractor':
+        return PlaceType.roofingContractor;
+      case 'rv_park':
+        return PlaceType.rvPark;
+      case 'school':
+        return PlaceType.school;
+      case 'secondary_school':
+        return PlaceType.secondarySchool;
+      case 'shoe_store':
+        return PlaceType.shoeStore;
+      case 'shopping_mall':
+        return PlaceType.shoppingMall;
+      case 'spa':
+        return PlaceType.spa;
+      case 'stadium':
+        return PlaceType.stadium;
+      case 'storage':
+        return PlaceType.storage;
+      case 'store':
+        return PlaceType.store;
+      case 'subway_station':
+        return PlaceType.subwayStation;
+      case 'supermarket':
+        return PlaceType.supermarket;
+      case 'synagogue':
+        return PlaceType.synagogue;
+      case 'taxi_stand':
+        return PlaceType.taxiStand;
+      case 'tourist_attraction':
+        return PlaceType.touristAttraction;
+      case 'train_station':
+        return PlaceType.trainStation;
+      case 'transit_station':
+        return PlaceType.transitStation;
+      case 'travel_agency':
+        return PlaceType.travelAgency;
+      case 'university':
+        return PlaceType.university;
+      case 'veterinary_care':
+        return PlaceType.veterinaryCare;
+      case 'zoo':
+        return PlaceType.zoo;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(PlaceType self) {
+    switch (self) {
+      case PlaceType.accounting:
+        return 'accounting';
+      case PlaceType.airport:
+        return 'airport';
+      case PlaceType.amusementPark:
+        return 'amusement_park';
+      case PlaceType.aquarium:
+        return 'aquarium';
+      case PlaceType.artGallery:
+        return 'art_gallery';
+      case PlaceType.atm:
+        return 'atm';
+      case PlaceType.bakery:
+        return 'bakery';
+      case PlaceType.bank:
+        return 'bank';
+      case PlaceType.bar:
+        return 'bar';
+      case PlaceType.beautySalon:
+        return 'beauty_salon';
+      case PlaceType.bicycleStore:
+        return 'bicycle_store';
+      case PlaceType.bookStore:
+        return 'book_store';
+      case PlaceType.bowlingAlley:
+        return 'bowling_alley';
+      case PlaceType.busStation:
+        return 'bus_station';
+      case PlaceType.cafe:
+        return 'cafe';
+      case PlaceType.campground:
+        return 'campground';
+      case PlaceType.carDealer:
+        return 'car_dealer';
+      case PlaceType.carRental:
+        return 'car_rental';
+      case PlaceType.carRepair:
+        return 'car_repair';
+      case PlaceType.carWash:
+        return 'car_wash';
+      case PlaceType.casino:
+        return 'casino';
+      case PlaceType.cemetery:
+        return 'cemetery';
+      case PlaceType.church:
+        return 'church';
+      case PlaceType.cityHall:
+        return 'city_hall';
+      case PlaceType.clothingStore:
+        return 'clothing_store';
+      case PlaceType.convenienceStore:
+        return 'convenience_store';
+      case PlaceType.courthouse:
+        return 'courthouse';
+      case PlaceType.dentist:
+        return 'dentist';
+      case PlaceType.departmentStore:
+        return 'department_store';
+      case PlaceType.doctor:
+        return 'doctor';
+      case PlaceType.drugstore:
+        return 'drugstore';
+      case PlaceType.electrician:
+        return 'electrician';
+      case PlaceType.electronicsStore:
+        return 'electronics_store';
+      case PlaceType.embassy:
+        return 'embassy';
+      case PlaceType.fireStation:
+        return 'fire_station';
+      case PlaceType.florist:
+        return 'florist';
+      case PlaceType.funeralHome:
+        return 'funeral_home';
+      case PlaceType.furnitureStore:
+        return 'furniture_store';
+      case PlaceType.gasStation:
+        return 'gas_station';
+      case PlaceType.gym:
+        return 'gym';
+      case PlaceType.hairCare:
+        return 'hair_care';
+      case PlaceType.hardwareStore:
+        return 'hardware_store';
+      case PlaceType.hinduTemple:
+        return 'hindu_temple';
+      case PlaceType.homeGoodsStore:
+        return 'home_goods_store';
+      case PlaceType.hospital:
+        return 'hospital';
+      case PlaceType.insuranceAgency:
+        return 'insurance_agency';
+      case PlaceType.jewelryStore:
+        return 'jewelry_store';
+      case PlaceType.laundry:
+        return 'laundry';
+      case PlaceType.lawyer:
+        return 'lawyer';
+      case PlaceType.library:
+        return 'library';
+      case PlaceType.lightRailStation:
+        return 'light_rail_station';
+      case PlaceType.liquorStore:
+        return 'liquor_store';
+      case PlaceType.localGovernmentOffice:
+        return 'local_government_office';
+      case PlaceType.locksmith:
+        return 'locksmith';
+      case PlaceType.lodging:
+        return 'lodging';
+      case PlaceType.mealDelivery:
+        return 'meal_delivery';
+      case PlaceType.mealTakeaway:
+        return 'meal_takeaway';
+      case PlaceType.mosque:
+        return 'mosque';
+      case PlaceType.movieRental:
+        return 'movie_rental';
+      case PlaceType.movieTheater:
+        return 'movie_theater';
+      case PlaceType.movingCompany:
+        return 'moving_company';
+      case PlaceType.museum:
+        return 'museum';
+      case PlaceType.nightClub:
+        return 'night_club';
+      case PlaceType.painter:
+        return 'painter';
+      case PlaceType.park:
+        return 'park';
+      case PlaceType.parking:
+        return 'parking';
+      case PlaceType.petStore:
+        return 'pet_store';
+      case PlaceType.pharmacy:
+        return 'pharmacy';
+      case PlaceType.physiotherapist:
+        return 'physiotherapist';
+      case PlaceType.plumber:
+        return 'plumber';
+      case PlaceType.police:
+        return 'police';
+      case PlaceType.postOffice:
+        return 'post_office';
+      case PlaceType.primarySchool:
+        return 'primary_school';
+      case PlaceType.realEstateAgency:
+        return 'real_estate_agency';
+      case PlaceType.restaurant:
+        return 'restaurant';
+      case PlaceType.roofingContractor:
+        return 'roofing_contractor';
+      case PlaceType.rvPark:
+        return 'rv_park';
+      case PlaceType.school:
+        return 'school';
+      case PlaceType.secondarySchool:
+        return 'secondary_school';
+      case PlaceType.shoeStore:
+        return 'shoe_store';
+      case PlaceType.shoppingMall:
+        return 'shopping_mall';
+      case PlaceType.spa:
+        return 'spa';
+      case PlaceType.stadium:
+        return 'stadium';
+      case PlaceType.storage:
+        return 'storage';
+      case PlaceType.store:
+        return 'store';
+      case PlaceType.subwayStation:
+        return 'subway_station';
+      case PlaceType.supermarket:
+        return 'supermarket';
+      case PlaceType.synagogue:
+        return 'synagogue';
+      case PlaceType.taxiStand:
+        return 'taxi_stand';
+      case PlaceType.touristAttraction:
+        return 'tourist_attraction';
+      case PlaceType.trainStation:
+        return 'train_station';
+      case PlaceType.transitStation:
+        return 'transit_station';
+      case PlaceType.travelAgency:
+        return 'travel_agency';
+      case PlaceType.university:
+        return 'university';
+      case PlaceType.veterinaryCare:
+        return 'veterinary_care';
+      case PlaceType.zoo:
+        return 'zoo';
+    }
+  }
+}
+
+extension PlaceTypeMapperExtension on PlaceType {
+  String toValue() {
+    PlaceTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<PlaceType>(this) as String;
+  }
+}
+
 class GooglePlaceMapper extends ClassMapperBase<GooglePlace> {
   GooglePlaceMapper._();
 
@@ -112,11 +534,11 @@ class GooglePlaceMapper extends ClassMapperBase<GooglePlace> {
   static const Field<GooglePlace, String> _f$formattedPhoneNumber = Field(
       'formattedPhoneNumber', _$formattedPhoneNumber,
       key: 'formatted_phone_number', opt: true);
-  static String? _$doubleernationalPhoneNumber(GooglePlace v) =>
-      v.doubleernationalPhoneNumber;
-  static const Field<GooglePlace, String> _f$doubleernationalPhoneNumber =
-      Field('doubleernationalPhoneNumber', _$doubleernationalPhoneNumber,
-          key: 'doubleernational_phone_number', opt: true);
+  static String? _$internationalPhoneNumber(GooglePlace v) =>
+      v.internationalPhoneNumber;
+  static const Field<GooglePlace, String> _f$internationalPhoneNumber = Field(
+      'internationalPhoneNumber', _$internationalPhoneNumber,
+      key: 'international_phone_number', opt: true);
   static List<PlaceAddressComponent>? _$addressComponents(GooglePlace v) =>
       v.addressComponents;
   static const Field<GooglePlace, List<PlaceAddressComponent>>
@@ -199,7 +621,7 @@ class GooglePlaceMapper extends ClassMapperBase<GooglePlace> {
     #dineIn: _f$dineIn,
     #editorialSummary: _f$editorialSummary,
     #formattedPhoneNumber: _f$formattedPhoneNumber,
-    #doubleernationalPhoneNumber: _f$doubleernationalPhoneNumber,
+    #internationalPhoneNumber: _f$internationalPhoneNumber,
     #addressComponents: _f$addressComponents,
     #geometry: _f$geometry,
     #icon: _f$icon,
@@ -218,6 +640,8 @@ class GooglePlaceMapper extends ClassMapperBase<GooglePlace> {
     #types: _f$types,
     #userRatingsTotal: _f$userRatingsTotal,
   };
+  @override
+  final bool ignoreNull = true;
 
   static GooglePlace _instantiate(DecodingData data) {
     return GooglePlace(
@@ -244,7 +668,7 @@ class GooglePlaceMapper extends ClassMapperBase<GooglePlace> {
         dineIn: data.dec(_f$dineIn),
         editorialSummary: data.dec(_f$editorialSummary),
         formattedPhoneNumber: data.dec(_f$formattedPhoneNumber),
-        doubleernationalPhoneNumber: data.dec(_f$doubleernationalPhoneNumber),
+        internationalPhoneNumber: data.dec(_f$internationalPhoneNumber),
         addressComponents: data.dec(_f$addressComponents),
         geometry: data.dec(_f$geometry),
         icon: data.dec(_f$icon),
@@ -360,7 +784,7 @@ abstract class GooglePlaceCopyWith<$R, $In extends GooglePlace, $Out>
       bool? dineIn,
       PlaceEditorialSummary? editorialSummary,
       String? formattedPhoneNumber,
-      String? doubleernationalPhoneNumber,
+      String? internationalPhoneNumber,
       List<PlaceAddressComponent>? addressComponents,
       PlaceGeometry? geometry,
       String? icon,
@@ -471,7 +895,7 @@ class _GooglePlaceCopyWithImpl<$R, $Out>
           Object? dineIn = $none,
           Object? editorialSummary = $none,
           Object? formattedPhoneNumber = $none,
-          Object? doubleernationalPhoneNumber = $none,
+          Object? internationalPhoneNumber = $none,
           Object? addressComponents = $none,
           Object? geometry = $none,
           Object? icon = $none,
@@ -518,8 +942,8 @@ class _GooglePlaceCopyWithImpl<$R, $Out>
         if (editorialSummary != $none) #editorialSummary: editorialSummary,
         if (formattedPhoneNumber != $none)
           #formattedPhoneNumber: formattedPhoneNumber,
-        if (doubleernationalPhoneNumber != $none)
-          #doubleernationalPhoneNumber: doubleernationalPhoneNumber,
+        if (internationalPhoneNumber != $none)
+          #internationalPhoneNumber: internationalPhoneNumber,
         if (addressComponents != $none) #addressComponents: addressComponents,
         if (geometry != $none) #geometry: geometry,
         if (icon != $none) #icon: icon,
@@ -571,8 +995,8 @@ class _GooglePlaceCopyWithImpl<$R, $Out>
           data.get(#editorialSummary, or: $value.editorialSummary),
       formattedPhoneNumber:
           data.get(#formattedPhoneNumber, or: $value.formattedPhoneNumber),
-      doubleernationalPhoneNumber: data.get(#doubleernationalPhoneNumber,
-          or: $value.doubleernationalPhoneNumber),
+      internationalPhoneNumber: data.get(#internationalPhoneNumber,
+          or: $value.internationalPhoneNumber),
       addressComponents:
           data.get(#addressComponents, or: $value.addressComponents),
       geometry: data.get(#geometry, or: $value.geometry),

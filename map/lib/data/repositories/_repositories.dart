@@ -1,5 +1,4 @@
 import 'google_places.repository.dart';
-import 'place_photo.repository.dart';
 
 ///END OF IMPORTS
 
@@ -33,9 +32,6 @@ class DataRepositories {
 
   /// [googlePlaces] is the [GooglePlacesDataRepository] instance.
   GooglePlacesDataRepository googlePlaces({required String googleApiKey}) => GooglePlacesDataRepository(googleApiKey: googleApiKey);
-
-  /// [placePhoto] is the [PlacePhotoDataRepository] instance.
-  PlacePhotoDataRepository placePhoto({required String googleApiKey}) => PlacePhotoDataRepository(googleApiKey: googleApiKey);
 
   ///END OF REPOSITORIES
 }

@@ -65,15 +65,6 @@ mixin _$GoogleSearchMapStore on _GoogleSearchMapStore, Store {
     return _$searchMapAsyncAction.run(() => super.searchMap(query));
   }
 
-  late final _$setCoordinatesAsyncAction =
-      AsyncAction('_GoogleSearchMapStore.setCoordinates', context: context);
-
-  @override
-  Future<void> setCoordinates(GooglePlace googlePlace) {
-    return _$setCoordinatesAsyncAction
-        .run(() => super.setCoordinates(googlePlace));
-  }
-
   late final _$_loadMapAsyncAction =
       AsyncAction('_GoogleSearchMapStore._loadMap', context: context);
 
@@ -84,6 +75,17 @@ mixin _$GoogleSearchMapStore on _GoogleSearchMapStore, Store {
 
   late final _$_GoogleSearchMapStoreActionController =
       ActionController(name: '_GoogleSearchMapStore', context: context);
+
+  @override
+  void setCoordinates(GooglePlace? googlePlace) {
+    final _$actionInfo = _$_GoogleSearchMapStoreActionController.startAction(
+        name: '_GoogleSearchMapStore.setCoordinates');
+    try {
+      return super.setCoordinates(googlePlace);
+    } finally {
+      _$_GoogleSearchMapStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void onMapPositionChanged(MapPosition position, bool changed) {
