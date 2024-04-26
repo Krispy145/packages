@@ -9,6 +9,26 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$DoubleFormFieldStore on _DoubleFormFieldStore, Store {
+  late final _$textControllerAtom =
+      Atom(name: '_DoubleFormFieldStore.textController', context: context);
+
+  @override
+  TextEditingController get textController {
+    _$textControllerAtom.reportRead();
+    return super.textController;
+  }
+
+  bool _textControllerIsInitialized = false;
+
+  @override
+  set textController(TextEditingController value) {
+    _$textControllerAtom.reportWrite(
+        value, _textControllerIsInitialized ? super.textController : null, () {
+      super.textController = value;
+      _textControllerIsInitialized = true;
+    });
+  }
+
   late final _$_DoubleFormFieldStoreActionController =
       ActionController(name: '_DoubleFormFieldStore', context: context);
 
@@ -37,7 +57,7 @@ mixin _$DoubleFormFieldStore on _DoubleFormFieldStore, Store {
   @override
   String toString() {
     return '''
-
+textController: ${textController}
     ''';
   }
 }

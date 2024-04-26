@@ -20,35 +20,21 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // if (widget.showButtons)
-                IconButton.filled(
-                  icon: const Icon(Icons.remove, color: Colors.white),
-                  onPressed: store.add,
-                ),
-                Sizes.s.spacer(vertical: false),
                 SizedBox(
                   width: 100,
                   child: TextField(
                     decoration: const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
-                    // enabled: widget.enabled,
-                    // onChanged: (value) => store.onValueChanged(double.tryParse(value)),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
                   ),
                 ),
                 Sizes.s.spacer(vertical: false),
-                // if (widget.showButtons)
-                IconButton.filled(
-                  icon: const Icon(Icons.add, color: Colors.white),
-                  onPressed: store.subtract,
-                ),
-                Sizes.s.spacer(vertical: false),
                 InkWell(
                   onTap: () => store.onValueChanged(double.tryParse(store.textController.text) ?? 0),
-                  child: const Text('Apply'),
+                  child: const Icon(Icons.check_circle_outline),
                 ),
               ],
             ),

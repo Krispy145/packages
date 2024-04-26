@@ -14,19 +14,24 @@ abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with St
     required super.value,
     required super.onValueChanged,
     this.increment = 1,
-    this.showButtons = true,
     required super.title,
   }) {
+    textController = TextEditingController(text: value.toString());
     // On Value Changed
     reaction<double?>((reaction) => value, (newValue) {
       textController.setTextIfNotEqual(newValue.toString());
     });
+
+    // On Value Changed
+    // reaction<double?>((reaction) => value, (newValue) {
+    //   textController.setTextIfNotEqual(newValue.toString());
+    // });
   }
 
   final double increment;
-  final bool showButtons;
 
-  late final TextEditingController textController = TextEditingController(text: value?.toString());
+  @observable
+  late TextEditingController textController;
 
   @action
   void add() {
