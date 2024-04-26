@@ -33,6 +33,9 @@ import 'package:theme/data/models/switches/switch_model.dart';
 import 'package:theme/data/models/tab_bars/tab_bar_model.dart';
 import 'package:theme/data/models/text/text_types.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
+import 'package:theme/utils/loggers.dart';
+import 'package:utilities/helpers/type_comparison.dart';
+import 'package:utilities/logger/logger.dart';
 
 part 'theme.freezed.dart';
 part 'theme.g.dart';
@@ -87,7 +90,8 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
   ComponentThemesModel._();
 
   T? getComponentThemeFromStyleType<T>(String styleType) {
-    if (T.toString() == "ThemeData") {
+    print("T is $T");
+    if (isSameType<T, ThemeData>()) {
       return ThemeData(
         elevatedButtonTheme: elevatedButtons?[styleType]?.toElevatedButtonThemeData(),
         outlinedButtonTheme: outlinedButtons?[styleType]?.toOutlinedButtonThemeData(),
@@ -99,178 +103,60 @@ abstract class ComponentThemesModel with _$ComponentThemesModel {
         toggleButtonsTheme: toggleButtons?[styleType]?.asToggleButtonThemeData(),
         floatingActionButtonTheme: floatingActionButtons?[styleType]?.asFloatingActionButtonThemeData(),
       ) as T;
-    } else if (T == InputDecorationTheme) {
+    } else if (isSameType<T, InputDecorationTheme>()) {
       return inputDecorations?[styleType]?.asInputDecorationTheme(styleTypeName: styleType) as T;
-    } else if (T == BoxDecoration) {
+    } else if (isSameType<T, BoxDecoration>()) {
       return boxDecorations?[styleType]?.asBoxDecoration(styleTypeName: styleType) as T;
-    } else if (T == CardTheme) {
+    } else if (isSameType<T, CardTheme>()) {
       return cards?[styleType]?.asCardTheme(styleTypeName: styleType) as T;
-    } else if (T == SnackBarThemeData) {
+    } else if (isSameType<T, SnackBarThemeData>()) {
       return snackbars?[styleType]?.asSnackBarThemeData(styleTypeName: styleType) as T;
-    } else if (T == BadgeThemeData) {
+    } else if (isSameType<T, BadgeThemeData>()) {
       return badges?[styleType]?.asBadgeThemeData(styleTypeName: styleType) as T;
-    } else if (T == AppBarTheme) {
+    } else if (isSameType<T, AppBarTheme>()) {
       return appbars?[styleType]?.asAppBarTheme(styleTypeName: styleType) as T;
-    } else if (T == BottomAppBarTheme) {
+    } else if (isSameType<T, BottomAppBarTheme>()) {
       return bottomAppbars?[styleType]?.asBottomAppBarTheme(styleTypeName: styleType) as T;
-    } else if (T == DropdownMenuThemeData) {
+    } else if (isSameType<T, DropdownMenuThemeData>()) {
       return dropdowns?[styleType]?.asDropdownMenuThemeData(styleTypeName: styleType) as T;
-    } else if (T == ChipThemeData) {
-      return chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
-    } else if (T == DialogTheme) {
+    } else if (isSameType<T, ChipThemeData>()) {
+      final chipTheme = chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
+      AppLogger.print("Getting chip theme: $chipTheme", [ThemeLoggers.chips]);
+      return chipTheme;
+    } else if (isSameType<T, DialogTheme>()) {
       return dialogs?[styleType]?.asDialogTheme(styleTypeName: styleType) as T;
-    } else if (T == PopupMenuThemeData) {
+    } else if (isSameType<T, PopupMenuThemeData>()) {
       return popupMenus?[styleType]?.asPopupMenuThemeData(styleTypeName: styleType) as T;
-    } else if (T == SliderThemeData) {
+    } else if (isSameType<T, SliderThemeData>()) {
       return sliders?[styleType]?.asSliderThemeData(styleTypeName: styleType) as T;
-    } else if (T == ScrollbarThemeData) {
+    } else if (isSameType<T, ScrollbarThemeData>()) {
       return scrollbars?[styleType]?.asScrollbarThemeData(styleTypeName: styleType) as T;
-    } else if (T == TooltipThemeData) {
+    } else if (isSameType<T, TooltipThemeData>()) {
       return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
-    } else if (T == TooltipThemeData) {
+    } else if (isSameType<T, TooltipThemeData>()) {
       return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
-    } else if (T == NavigationRailThemeData) {
+    } else if (isSameType<T, NavigationRailThemeData>()) {
       return navigationRails?[styleType]?.asNavigationRailThemeData(styleTypeName: styleType) as T;
-    } else if (T == CheckboxThemeData) {
+    } else if (isSameType<T, CheckboxThemeData>()) {
       return checkboxes?[styleType]?.asCheckboxThemeData(styleTypeName: styleType) as T;
-    } else if (T == RadioThemeData) {
+    } else if (isSameType<T, RadioThemeData>()) {
       return radios?[styleType]?.asRadioThemeData(styleTypeName: styleType) as T;
-    } else if (T == SwitchThemeData) {
+    } else if (isSameType<T, SwitchThemeData>()) {
       return switches?[styleType]?.asSwitchThemeData(styleTypeName: styleType) as T;
-    } else if (T == DrawerThemeData) {
+    } else if (isSameType<T, DrawerThemeData>()) {
       return drawers?[styleType]?.asDrawerThemeData(styleTypeName: styleType) as T;
-    } else if (T == ListTileThemeData) {
+    } else if (isSameType<T, ListTileThemeData>()) {
       return listTiles?[styleType]?.asListTileThemeData(styleTypeName: styleType) as T;
-    } else if (T == MenuStyle) {
+    } else if (isSameType<T, MenuStyle>()) {
       return menus?[styleType]?.asMenuStyle(styleTypeName: styleType) as T;
-    } else if (T == MenuBarThemeData) {
+    } else if (isSameType<T, MenuBarThemeData>()) {
       return menuBars?[styleType]?.asMenuBarThemeData(styleTypeName: styleType) as T;
-    } else if (T == NavigationBarThemeData) {
+    } else if (isSameType<T, NavigationBarThemeData>()) {
       return navigationBars?[styleType]?.asNavigationBarThemeData(styleTypeName: styleType) as T;
     } else {
       return null;
     }
   }
-
-  // static ComponentThemesModel defaultComponentThemesModel() {
-  //   return ComponentThemesModel(
-  //     id: primaryThemeId,
-  //     name: primaryStyle,
-  //     elevatedButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-  //     filledButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-  //     outlinedButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-  //     textButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-  //     toggleButtons: {
-  //       AppTheme.styleType: ToggleButtonModel.defaultToggleButtonStyle(),
-  //     },
-  //     iconButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-  //     floatingActionButtons: {
-  //       AppTheme.styleType: FloatingActionButtonModel.defaultFloatingActionButtonStyle(),
-  //     },
-  //     menuButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-  //     segmentedButtons: {
-  //       AppTheme.styleType: ButtonStyleModel(),
-  //     },
-
-  //     // buttonStyles: ButtonStyles.defaultButtonStyles(),
-  //     inputDecorations: {
-  //       AppTheme.styleType: InputDecorationModel.defaultInputDecorationModel(),
-  //     },
-  //     boxDecorations: {
-  //       AppTheme.styleType: BoxDecorationModel.defaultBoxDecorationModel(),
-  //     },
-  //     cards: {
-  //       AppTheme.styleType: CardModel.defaultCardModel(),
-  //     },
-  //     snackbars: {
-  //       AppTheme.styleType: SnackbarModel.defaultSnackbarModel(),
-  //     },
-  //     badges: {
-  //       AppTheme.styleType: BadgeModel.defaultBadgeModel(),
-  //     },
-  //     appbars: {
-  //       AppTheme.styleType: AppbarModel.defaultAppbarModel(),
-  //     },
-  //     bottomAppbars: {
-  //       AppTheme.styleType: BottomAppbarModel.defaultBottomAppbarModel(),
-  //     },
-  //     dropdowns: {
-  //       AppTheme.styleType: DropdownModel.defaultDropdownModel(),
-  //     },
-  //     chips: {
-  //       AppTheme.styleType: ChipModel.defaultChipModel(),
-  //     },
-  //     dialogs: {
-  //       AppTheme.styleType: DialogModel.defaultDialogModel(),
-  //     },
-  //     popupMenus: {
-  //       AppTheme.styleType: PopupMenuModel.defaultPopupMenuModel(),
-  //     },
-  //     sliders: {
-  //       AppTheme.styleType: SliderModel.defaultSliderModel(),
-  //     },
-  //     scrollbars: {
-  //       AppTheme.styleType: ScrollbarModel.defaultScrollbarModel(),
-  //     },
-  //     tooltips: {
-  //       AppTheme.styleType: TooltipModel.defaultTooltipModel(),
-  //     },
-  //     navigationRails: {
-  //       AppTheme.styleType: NavigationRailModel.defaultNavigationRailModel(),
-  //     },
-  //     checkboxes: {
-  //       AppTheme.styleType: CheckboxModel.defaultCheckboxModel(),
-  //     },
-  //     radios: {
-  //       AppTheme.styleType: RadioModel.defaultRadioModel(),
-  //     },
-  //     switches: {
-  //       AppTheme.styleType: SwitchModel.defaultSwitchModel(),
-  //     },
-  //     drawers: {
-  //       AppTheme.styleType: DrawerModel.defaultDrawerModel(),
-  //     },
-  //     listTiles: {
-  //       AppTheme.styleType: ListTileModel.defaultListTileModel(),
-  //     },
-  //     menus: {
-  //       AppTheme.styleType: MenuModel.defaultMenuModel(),
-  //     },
-  //     menuBars: {
-  //       AppTheme.styleType: MenuBarModel.defaultMenuBarModel(),
-  //     },
-  //     navigationBars: {
-  //       AppTheme.styleType: NavigationBarModel.defaultNavigationBarModel(),
-  //     },
-  //     navigationDrawers: {
-  //       AppTheme.styleType: NavigationDrawerModel.defaultNavigationDrawerModel(),
-  //     },
-  //     progressIndicators: {
-  //       AppTheme.styleType: ProgressIndicatorModel.defaultProgressIndicatorModel(),
-  //     },
-  //     searchBars: {
-  //       AppTheme.styleType: SearchBarModel.defaultSearchBarModel(),
-  //     },
-  //     searchViews: {
-  //       AppTheme.styleType: SearchViewModel.defaultSearchViewModel(),
-  //     },
-  //     tabBars: {
-  //       AppTheme.styleType: TabBarModel.defaultTabBarModel(),
-  //     },
-  //   );
-  // }
 
   /// [ComponentThemesModel.fromJson] is a factory method that allows you to create a [ComponentThemesModel] from a JSON file.
   factory ComponentThemesModel.fromJson(Map<String, dynamic> json) => _$ComponentThemesModelFromJson(json);

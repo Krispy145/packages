@@ -365,7 +365,7 @@ class ThemeChanger {
     var newThemeModel = _componentThemesModel?.copyWith(chips: chipStyles);
     newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, chips: chipStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
-    AppLogger.print("Chip style changed: $chipStyle", [ThemeLoggers.changer]);
+    AppLogger.print("Chip style changed (theme store): ${_themeStore.componentThemesModel?.chips}", [ThemeLoggers.changer]);
   }
 
   /// [changeDialogStyle] is a function that is used to change the dialog style of the app.

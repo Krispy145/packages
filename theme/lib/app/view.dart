@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:theme/app/store.dart';
 import 'package:utilities/sizes/screen_size.dart';
@@ -28,13 +29,17 @@ class ThemedMaterialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadStateBuilder(
       viewStore: themeStore,
-      loadedBuilder: (context) => ResponsiveBreakpoints.builder(
-        breakpoints: ScreenSize.defaultBreakpoints,
-        child: materialAppBuilder(
-          themeStore.lightTheme,
-          themeStore.darkTheme,
-          themeStore.currentThemeMode,
-        ),
+      loadedBuilder: (context) => Observer(
+        builder: (context) {
+          return ResponsiveBreakpoints.builder(
+            breakpoints: ScreenSize.defaultBreakpoints,
+            child: materialAppBuilder(
+              themeStore.lightTheme,
+              themeStore.darkTheme,
+              themeStore.currentThemeMode,
+            ),
+          );
+        },
       ),
       loadingBuilder: (context) => const MaterialApp(
         home: Scaffold(

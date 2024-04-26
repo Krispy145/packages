@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:forms/presentation/components/text/form_field.dart';
 import 'package:forms/presentation/components/text/store.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
@@ -52,7 +53,13 @@ class ThemeComponentEditor extends MapEditor {
   @override
   Widget buildHeader(BuildContext context) {
     return Center(
-      child: headerBuilder != null ? headerBuilder!(context) : Text(title, style: Theme.of(context).textTheme.titleLarge),
+      child: headerBuilder != null
+          ? Observer(
+              builder: (context) {
+                return headerBuilder!(context);
+              },
+            )
+          : Text(title, style: Theme.of(context).textTheme.titleLarge),
     );
   }
 

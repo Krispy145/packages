@@ -398,7 +398,9 @@ enum ChangerOptions {
               currentComponentTheme: AppTheme.chipStyles(),
               convertComponentThemeToMap: (data) => data.toJson(),
               convertComponentThemeFromMap: ChipModel.fromJson,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeChipStyle(chipStyle: newTheme),
+              onUpdateComponentTheme: (newTheme) {
+                ThemeChanger.changeChipStyle(chipStyle: newTheme);
+              },
               defaultComponentTheme: null,
               headerBuilder: (context) => Padding(
                 padding: const EdgeInsets.only(top: 20),
