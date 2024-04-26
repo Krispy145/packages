@@ -150,26 +150,57 @@ class DORepository extends BaseThemeRepository {
 
   /// [fetchTheme] is the method that will be used to fetch the [BaseThemeModel] data.
   @override
-  Future<BaseThemeModel> fetchTheme({required String id}) async {
-    final result = await baseThemeDataSource.get(id);
-    return result!;
+  Future<BaseThemeModel?>? fetchTheme({required String id}) {
+    return baseThemeDataSource.get(id);
+  }
+
+  @override
+  Future<void>? addTheme(BaseThemeModel theme) {
+    return baseThemeDataSource.add(theme);
+  }
+
+  @override
+  Future<void>? deleteTheme(String id) {
+    return baseThemeDataSource.delete(id);
+  }
+
+  @override
+  Future<void>? updateTheme(BaseThemeModel theme) {
+    return baseThemeDataSource.update(theme.id, theme);
+  }
+
+  @override
+  Future<void>? addComponentTheme(ComponentThemesModel theme) {
+    return componentsThemesDataSource.add(theme);
+  }
+
+  @override
+  Future<void>? deleteComponentTheme(String id) {
+    return componentsThemesDataSource.delete(id);
+  }
+
+  @override
+  Future<void>? updateComponentTheme(ComponentThemesModel theme) {
+    return componentsThemesDataSource.update(theme.id, theme);
   }
 
   /// [fetchComponentsTheme] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
-  Future<ComponentThemesModel?> fetchComponentsTheme({required String id}) {
-    return componentsThemesDataSource.get(id);
+  Future<ComponentThemesModel?>? fetchComponentsTheme({required String id}) async {
+    final theme = await componentsThemesDataSource.get(id);
+    return theme ?? ComponentThemesModel(id: id);
   }
 
   /// [fetchThemes] is the method that will be used to fetch the [BaseThemeModel] data.
   @override
-  Future<List<BaseThemeModel?>> fetchThemes() {
-    return baseThemeDataSource.getAll();
+  Future<List<BaseThemeModel?>> fetchThemes() async {
+    final baseThemes = await baseThemeDataSource.getAll();
+    return baseThemes;
   }
 
   /// [fetchComponentThemes] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
-  Future<List<ComponentThemesModel?>> fetchComponentThemes() {
+  Future<List<ComponentThemesModel?>> fetchComponentThemes() async {
     return componentsThemesDataSource.getAll();
   }
 }

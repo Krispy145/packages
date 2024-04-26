@@ -400,6 +400,20 @@ enum ChangerOptions {
               convertComponentThemeFromMap: ChipModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeChipStyle(chipStyle: newTheme),
               defaultComponentTheme: null,
+              headerBuilder: (context) => Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: SingleChildScrollView(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FilterChip(label: const Text("FILTER"), onSelected: (_) {}),
+                      const ChoiceChip(label: Text("TRUE"), selected: true),
+                      const ChoiceChip(label: Text("FALSE"), selected: false),
+                      const ActionChip(label: Text("ACTION")),
+                    ],
+                  ),
+                ),
+              ),
             );
       case ChangerOptions.dialogs:
         return () => ThemeChanger.componentThemeChanger<DialogModel>(

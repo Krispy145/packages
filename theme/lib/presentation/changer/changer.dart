@@ -167,14 +167,6 @@ class ThemeChanger {
     T? currentComponentTheme,
     Widget Function(BuildContext)? headerBuilder,
   }) {
-    // final store = ComponentThemeChangerStore<T>(
-    //   defaultComponentTheme: defaultComponentTheme,
-    //   currentComponentTheme: currentComponentTheme,
-    //   convertComponentThemeToMap: convertComponentThemeToMap,
-    //   convertComponentThemeFromMap: convertComponentThemeFromMap,
-    //   onUpdateComponentTheme: onUpdateComponentTheme,
-    // );
-    // Set map from the current version, filling any missing values with the default version
     final Map<String, dynamic> componentThemeAsMap;
     if (currentComponentTheme != null) {
       componentThemeAsMap = convertComponentThemeToMap(currentComponentTheme);
@@ -631,6 +623,15 @@ class ThemeChanger {
     html.Url.revokeObjectUrl(anchor.href!);
   }
 
+  static void updateThemeInRepository() {
+    try {
+      _themeStore.repository?.updateTheme(_baseThemeModel!);
+      _themeStore.repository?.updateComponentTheme(_componentThemesModel!);
+    } catch (e) {
+      AppLogger.print("Error updating theme in repository: $e", [ThemeLoggers.changer], type: LoggerType.error);
+    }
+  }
+
   static Map<String, ColorSchemes>? _themeColorStringStyles(ColorModel colorModel, bool isDark) {
     final colorStyles = _baseThemeModel?.colors;
     colorStyles?[styleType] = _themeColorStringSchemes(colorModel, isDark);
@@ -689,16 +690,6 @@ class ThemeChanger {
         final elevatedButtonStyle = _elevatedButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(elevatedButtons: elevatedButtonStyle);
         break;
-      // if (_componentThemesModel?.elevatedButtons != null) {
-      //   _componentThemesModel!.elevatedButtons![styleType] = buttonStyle;
-      // } else {
-      //   _componentThemesModel!.elevatedButtons = {styleType: buttonStyle};
-      // }
-      // final elevatedButtonStyle = _componentThemesModel?.elevatedButtons ?? {styleType: buttonStyle};
-      // elevatedButtonStyle[styleType] = buttonStyle;
-      // newComponentThemesModel = _componentThemesModel!.copyWith(elevatedButtons: elevatedButtonStyle);
-      // _themeStore.changeComponentThemesModel(newComponentThemesModel);
-      // return;
       case ButtonModelType.outlined:
         final outlinedButtonStyle = _outlinedButtons(buttonStyle);
         newComponentThemesModel = _componentThemesModel!.copyWith(outlinedButtons: outlinedButtonStyle);
@@ -709,7 +700,7 @@ class ThemeChanger {
         break;
       case ButtonModelType.icon:
         final iconButtonStyle = _iconButtons(buttonStyle);
-        newComponentThemesModel = _componentThemesModel!.copyWith(iconButtons: iconButtonStyle); // Todo: Fix typo
+        newComponentThemesModel = _componentThemesModel!.copyWith(iconButtons: iconButtonStyle);
         break;
       case ButtonModelType.filled:
         final filledButtonStyle = _filledButtons(buttonStyle);

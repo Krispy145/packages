@@ -33,6 +33,9 @@ enum ThemeStateType {
   /// [supabase] is the type that will be used to fetch the data from supabase.
   supabase,
 
+  /// [firestore] is the type that will be used to fetch the data from firestore.
+  firestore,
+
   /// [digitalOasis] is the type that will be used to fetch the data from supabase.
   // ignore: constant_identifier_names
   digitalOasis,
@@ -133,6 +136,18 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
     _loadSupabaseTheme(url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId);
+  }
+
+  _ThemeStateStore.firestore({
+    String? baseThemeTableName,
+    String? componentThemesTableName,
+    this.id,
+  })  : baseThemeUrlPath = baseThemeTableName ?? "baseThemes",
+        componentThemesUrlPath = componentThemesTableName ?? "componentsThemes",
+        type = ThemeStateType.firestore,
+        baseThemeAssetPath = null,
+        componentThemesAssetPath = null {
+    _loadFirestoreTheme(id: id ?? primaryThemeId);
   }
 
   _ThemeStateStore.digitalOasis({
@@ -388,6 +403,18 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     _setRepository(
       baseThemeConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
       componentThemesConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
+    );
+    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
+    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [ThemeLoggers.theme]);
+    setLoaded();
+  }
+
+  Future<void> _loadFirestoreTheme({String? id}) async {
+    setLoading();
+    _setRepository(
+      baseThemeConfiguration: ThemeConfiguration.firestore(collectionName: baseThemeUrlPath!),
+      componentThemesConfiguration: ThemeConfiguration.firestore(collectionName: componentThemesUrlPath!),
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);

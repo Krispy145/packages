@@ -23,6 +23,42 @@ class ThemeRepository extends BaseThemeRepository {
     return _themeDataRepository.dataSource?.get(id);
   }
 
+  @override
+  Future<void>? addTheme(BaseThemeModel theme) {
+    return _themeDataRepository.dataSource?.add(theme);
+  }
+
+  @override
+  Future<void>? deleteTheme(String id) {
+    return _themeDataRepository.dataSource?.delete(id);
+  }
+
+  @override
+  Future<void>? updateTheme(BaseThemeModel theme) {
+    return ThemeDataRepository(
+      baseThemeConfiguration: const ThemeConfiguration.firestore(collectionName: 'baseThemes'),
+    ).dataSource?.update(theme.id, theme);
+    // return _themeDataRepository.dataSource?.update(theme.id, theme);
+  }
+
+  @override
+  Future<void>? addComponentTheme(ComponentThemesModel theme) {
+    return _themeDataRepository.componentThemesDataSource?.add(theme);
+  }
+
+  @override
+  Future<void>? deleteComponentTheme(String id) {
+    return _themeDataRepository.componentThemesDataSource?.delete(id);
+  }
+
+  @override
+  Future<void>? updateComponentTheme(ComponentThemesModel theme) {
+    return ThemeDataRepository(
+      componentThemesConfiguration: const ThemeConfiguration.firestore(collectionName: 'componentsThemes'),
+    ).componentThemesDataSource?.update(theme.id, theme);
+    // return _themeDataRepository.componentThemesDataSource?.update(theme.id, theme);
+  }
+
   /// [fetchComponentsTheme] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
   Future<ComponentThemesModel?>? fetchComponentsTheme({required String id}) async {
