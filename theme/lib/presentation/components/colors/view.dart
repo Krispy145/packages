@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:forms/presentation/components/color/color_circle.dart';
+import 'package:forms/presentation/components/color/form_field.dart';
+import 'package:forms/presentation/components/color/store.dart';
 import 'package:theme/app/app.dart';
 import 'package:theme/domain/converters/colors/color.dart';
 import 'package:theme/presentation/changer/changer.dart';
-import 'package:theme/presentation/changer/components/color_circle.dart';
-import 'package:theme/presentation/changer/components/editing_fields/color/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/color/store.dart';
 import 'package:theme/presentation/components/colors/store.dart';
 import 'package:theme/presentation/panel/panel_view.dart';
 import 'package:theme/utils/loggers.dart';

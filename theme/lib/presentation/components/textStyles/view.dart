@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:forms/presentation/maps/store.dart';
 import 'package:theme/data/models/text/text_types.dart';
-import 'package:theme/presentation/changer/components/editing_map/store.dart';
 import 'package:theme/presentation/changer/view.dart';
 import 'package:theme/presentation/components/textStyles/store.dart';
 
@@ -12,7 +12,7 @@ class TextStyleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ThemeComponentEditor(
-      mapEditorStore: MapEditorStore(
+      store: FormsMapStore(
         initialData: store.mergedMap,
         onMapChanged: (data) => onTextTypeChanged?.call(TextTypes.fromJson(data)),
       ),
