@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:archive/archive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:forms/presentation/maps/store.dart';
 import 'package:get_it/get_it.dart';
 import 'package:theme/app/store.dart';
 import 'package:theme/data/models/appbars/appbar_model.dart';
@@ -41,7 +42,6 @@ import 'package:theme/data/models/text/text_style_sizes.dart';
 import 'package:theme/data/models/text/text_types.dart';
 import 'package:theme/data/models/theme/theme.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
-import 'package:theme/presentation/changer/components/editing_map/store.dart';
 import 'package:theme/presentation/changer/view.dart';
 import 'package:theme/presentation/components/colors/view.dart';
 import 'package:theme/presentation/components/options.dart';
@@ -176,7 +176,7 @@ class ThemeChanger {
 
     final mergedMap = defaultComponentTheme != null ? {...convertComponentThemeToMap(defaultComponentTheme), ...componentThemeAsMap} : componentThemeAsMap;
 
-    final mapEditorStore = MapEditorStore(
+    final formsMapStore = FormsMapStore(
       onMapChanged: (newMap) {
         onUpdateComponentTheme(convertComponentThemeFromMap(newMap));
       },
@@ -186,7 +186,7 @@ class ThemeChanger {
       context: context,
       builder: (context) => ThemeComponentEditor(
         title: componentOption.name,
-        mapEditorStore: mapEditorStore,
+        store: formsMapStore,
         headerBuilder: headerBuilder,
       ),
     );

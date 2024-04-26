@@ -1,7 +1,31 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:forms/presentation/components/bool/form_field.dart';
+// import 'package:forms/presentation/components/';
+import 'package:forms/presentation/components/bool/store.dart';
+import 'package:forms/presentation/components/border_radius/form_field.dart';
+import 'package:forms/presentation/components/border_radius/store.dart';
+import 'package:forms/presentation/components/border_side/form_field.dart';
+import 'package:forms/presentation/components/border_side/store.dart';
+import 'package:forms/presentation/components/double/form_field.dart';
+import 'package:forms/presentation/components/double/store.dart';
+import 'package:forms/presentation/components/duration/form_field.dart';
+import 'package:forms/presentation/components/duration/store.dart';
+import 'package:forms/presentation/components/edge_insets/form_field.dart';
+import 'package:forms/presentation/components/edge_insets/store.dart';
+import 'package:forms/presentation/components/font/form_field.dart';
+import 'package:forms/presentation/components/font/store.dart';
+import 'package:forms/presentation/components/input_border/form_field.dart';
+import 'package:forms/presentation/components/input_border/store.dart';
+import 'package:forms/presentation/components/outlined_border/form_field.dart';
+import 'package:forms/presentation/components/outlined_border/store.dart';
 import 'package:forms/presentation/components/text/form_field.dart';
 import 'package:forms/presentation/components/text/store.dart';
+import 'package:forms/presentation/components/text_style_string/form_field.dart';
+import 'package:forms/presentation/components/text_style_string/store.dart';
+import 'package:forms/presentation/components/theme_color_string/form_field.dart';
+import 'package:forms/presentation/components/theme_color_string/store.dart';
+import 'package:forms/presentation/maps/view.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
@@ -12,36 +36,13 @@ import 'package:theme/data/models/edge_insets_model.dart';
 import 'package:theme/data/models/general/duration_model.dart';
 import 'package:theme/extensions/text_style_string.dart';
 import 'package:theme/extensions/theme_color_string.dart';
-import 'package:theme/presentation/changer/components/editing_fields/bool/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/bool/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/border_radius/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/border_radius/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/border_side/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/border_side/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/double/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/double/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/duration/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/duration/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/edge_insets/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/edge_insets/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/font/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/font/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/input_border/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/input_border/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/outlined_border/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/outlined_border/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/text_style_string/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/text_style_string/store.dart';
-import 'package:theme/presentation/changer/components/editing_fields/theme_color_string/form_field.dart';
-import 'package:theme/presentation/changer/components/editing_fields/theme_color_string/store.dart';
-import 'package:theme/presentation/changer/components/editing_map/view.dart';
 import 'package:theme/utils/loggers.dart';
 import 'package:utilities/logger/logger.dart';
 
-class ThemeComponentEditor extends MapEditor {
+class ThemeComponentEditor extends FormsMapView {
   const ThemeComponentEditor({
     super.key,
-    required super.mapEditorStore,
+    required super.store,
     required this.title,
     this.headerBuilder,
   });
