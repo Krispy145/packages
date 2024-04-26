@@ -35,10 +35,7 @@ class ThemeRepository extends BaseThemeRepository {
 
   @override
   Future<void>? updateTheme(BaseThemeModel theme) {
-    return ThemeDataRepository(
-      baseThemeConfiguration: const ThemeConfiguration.firestore(collectionName: 'baseThemes'),
-    ).dataSource?.update(theme.id, theme);
-    // return _themeDataRepository.dataSource?.update(theme.id, theme);
+    return _themeDataRepository.dataSource?.update(theme.id, theme);
   }
 
   @override
@@ -53,10 +50,7 @@ class ThemeRepository extends BaseThemeRepository {
 
   @override
   Future<void>? updateComponentTheme(ComponentThemesModel theme) {
-    return ThemeDataRepository(
-      componentThemesConfiguration: const ThemeConfiguration.firestore(collectionName: 'componentsThemes'),
-    ).componentThemesDataSource?.update(theme.id, theme);
-    // return _themeDataRepository.componentThemesDataSource?.update(theme.id, theme);
+    return _themeDataRepository.componentThemesDataSource?.update(theme.id, theme);
   }
 
   /// [fetchComponentsTheme] is the method that will be used to fetch the [ComponentThemesModel] data.
