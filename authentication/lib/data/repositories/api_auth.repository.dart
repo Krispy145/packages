@@ -1,17 +1,17 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/data/repositories/helpers/auth_repository.helper.dart';
-import 'package:authentication/data/source/api_user.source.dart';
-import 'package:authentication/data/source/supabase_user.source.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:authentication/utils/loggers.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/data/repositories/helpers/auth_repository.helper.dart";
+import "package:authentication/data/source/api_user.source.dart";
+import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:authentication/utils/loggers.dart";
+import "package:rxdart/rxdart.dart";
+import "package:utilities/logger/logger.dart";
 
-import '../models/user_model.dart';
-import '../source/api_auth.source.dart';
-import '../source/firestore_user.source.dart';
-import '/data/source/_source.dart';
-import '_repository.dart';
+import "../models/user_model.dart";
+import "../source/api_auth.source.dart";
+import "../source/firestore_user.source.dart";
+import "/data/source/_source.dart";
+import "_repository.dart";
 
 /// [ApiAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
 class ApiAuthDataRepository implements AuthenticationDataRepository {
@@ -75,7 +75,7 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } catch (e) {
       AppLogger.print(
-        'signIn attempt -> ${params.authType}: $e',
+        "signIn attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -93,7 +93,8 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
 
   @override
   Future<UserModel?> signInWithFacebook(AuthParams params) async {
-    final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
+    final facebookParams =
+        await AuthRepositoryHelper.signInWithFacebook(params);
     final result = await _apiAuthDataSource.signIn(params: facebookParams);
     final userModel = _authResponseToUserModel(facebookParams, result != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -142,7 +143,8 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final params = AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
+    final params =
+        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
     final result = await _apiAuthDataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -182,7 +184,8 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
       id: _apiAuthDataSource.currentUserModel!.id,
       email: _apiAuthDataSource.currentUserModel!.email,
       phoneNumber: _apiAuthDataSource.currentUserModel!.phoneNumber,
-      displayName: params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
+      displayName:
+          params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
       refreshToken: _apiAuthDataSource.currentUserModel!.refreshToken,
       accessToken: _apiAuthDataSource.currentUserModel!.accessToken,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,

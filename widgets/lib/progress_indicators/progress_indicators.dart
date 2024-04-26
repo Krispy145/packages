@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class ProgressIndicators extends StatefulWidget {
   const ProgressIndicators({super.key});
@@ -17,8 +17,9 @@ class _ProgressIndicatorsState extends State<ProgressIndicators> {
     final progressValue = playProgressIndicator ? null : 0.7;
 
     return ComponentDecoration(
-      label: 'Progress indicators',
-      tooltipMessage: 'Use CircularProgressIndicator or LinearProgressIndicator',
+      label: "Progress indicators",
+      tooltipMessage:
+          "Use CircularProgressIndicator or LinearProgressIndicator",
       child: Column(
         children: <Widget>[
           Row(

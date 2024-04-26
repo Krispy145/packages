@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class Cards extends StatelessWidget {
   const Cards({super.key});
@@ -8,8 +8,8 @@ class Cards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Cards',
-      tooltipMessage: 'Use Card',
+      label: "Cards",
+      tooltipMessage: "Use Card",
       child: Wrap(
         alignment: WrapAlignment.spaceEvenly,
         children: [
@@ -30,7 +30,7 @@ class Cards extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Align(
                       alignment: Alignment.bottomLeft,
-                      child: Text('Elevated'),
+                      child: Text("Elevated"),
                     ),
                   ],
                 ),
@@ -56,7 +56,7 @@ class Cards extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Align(
                       alignment: Alignment.bottomLeft,
-                      child: Text('Filled'),
+                      child: Text("Filled"),
                     ),
                   ],
                 ),
@@ -87,7 +87,7 @@ class Cards extends StatelessWidget {
                     const SizedBox(height: 20),
                     const Align(
                       alignment: Alignment.bottomLeft,
-                      child: Text('Outlined'),
+                      child: Text("Outlined"),
                     ),
                   ],
                 ),

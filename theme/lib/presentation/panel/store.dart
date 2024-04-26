@@ -1,9 +1,10 @@
-import 'package:mobx/mobx.dart';
+import "package:mobx/mobx.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 /// [ExpandingPanelViewStore] is a class that uses [_ExpandingPanelStore] to manage state of the appbars feature.
-class ExpandingPanelViewStore = _ExpandingPanelStore with _$ExpandingPanelViewStore;
+class ExpandingPanelViewStore = _ExpandingPanelStore
+    with _$ExpandingPanelViewStore;
 
 /// [_ExpandingPanelStore] is a class that manages the state of the panel view builder.
 abstract class _ExpandingPanelStore with Store {

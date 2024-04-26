@@ -18,7 +18,6 @@ abstract class _MapBoxSearchMapStore extends MapStore with Store {
   _MapBoxSearchMapStore({
     required this.mapAPIKey,
     required super.mapTilesUrl,
-    super.singleMarkerBuilder,
   }) {
     _loadMap();
   }
@@ -38,7 +37,8 @@ abstract class _MapBoxSearchMapStore extends MapStore with Store {
 
   @action
   Future<List<Suggestion>> searchMap(String query) async {
-    ApiResponse<SuggestionResponse> searchPlace = await search.getSuggestions(query);
+    ApiResponse<SuggestionResponse> searchPlace =
+        await search.getSuggestions(query);
     suggestions = searchPlace.success?.suggestions;
     return suggestions ?? [];
   }
@@ -74,7 +74,8 @@ abstract class _MapBoxSearchMapStore extends MapStore with Store {
   @action
   void setCenterMarker({LatLng? coordinates}) {
     AppLogger.print("Setting center marker", [MapLoggers.search]);
-    final newCoordinates = coordinates ?? animatedMapController.mapController.camera.center;
+    final newCoordinates =
+        coordinates ?? animatedMapController.mapController.camera.center;
     addMarker(
       MarkerModel(
         id: "1",
@@ -91,9 +92,12 @@ abstract class _MapBoxSearchMapStore extends MapStore with Store {
     setLoading();
     try {
       search = SearchBoxAPI(apiKey: mapAPIKey);
-      suggestions = await search.getSuggestions("Dubai").then((value) => value.success?.suggestions);
+      suggestions = await search
+          .getSuggestions("Dubai")
+          .then((value) => value.success?.suggestions);
       currentSuggestion = suggestions?.first;
-      AppLogger.print("MapBoxSearch.init success: $markers", [MapLoggers.search]);
+      AppLogger.print(
+          "MapBoxSearch.init success: $markers", [MapLoggers.search]);
     } catch (e) {
       setError();
       AppLogger.print("MapBoxSearch.init error: $e", [MapLoggers.search]);

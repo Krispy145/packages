@@ -1,11 +1,11 @@
-import 'dart:typed_data';
+import "dart:typed_data";
 
-import 'package:fonts/data/models/font_descriptor_and_url.dart';
-import 'package:fonts/utilities/file_io_manager.dart';
-import 'package:http/http.dart' as http;
-import 'package:utilities/logger/logger.dart';
+import "package:fonts/data/models/font_descriptor_and_url.dart";
+import "package:fonts/utilities/file_io_manager.dart";
+import "package:http/http.dart" as http;
+import "package:utilities/logger/logger.dart";
 
-import '_source.dart';
+import "_source.dart";
 
 /// [ApiFontsDataSource] is a class that implements [FontsDataSource] interface.
 class ApiFontsDataSource implements FontsDataSource {
@@ -16,13 +16,13 @@ class ApiFontsDataSource implements FontsDataSource {
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
     final url = fontVariantAndUrl.url;
     if (url == null) {
-      AppLogger.print('Font url is null', []);
+      AppLogger.print("Font url is null", []);
       return null;
     }
     final name = fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix();
     final uri = Uri.tryParse(url);
     if (uri == null) {
-      throw Exception('Invalid fontUrl: $url');
+      throw Exception("Invalid fontUrl: $url");
     }
 
     http.Response response;
@@ -32,21 +32,22 @@ class ApiFontsDataSource implements FontsDataSource {
     try {
       response = await httpClient.get(uri);
     } catch (e) {
-      throw Exception('Failed to load font with url $url: $e');
+      throw Exception("Failed to load font with url $url: $e");
     }
     if (response.statusCode == 200) {
       if (!_isFileSecure(url, response.bodyBytes)) {
         throw Exception(
-          'File from $url did not match expected length and checksum.',
+          "File from $url did not match expected length and checksum.",
         );
       }
 
-      _unawaited(FontFileIOManager.saveFontToDeviceFileSystem(name: name, bytes: response.bodyBytes));
+      _unawaited(FontFileIOManager.saveFontToDeviceFileSystem(
+          name: name, bytes: response.bodyBytes,),);
 
       return ByteData.view(response.bodyBytes.buffer);
     } else {
       // If that call was not successful, throw an error.
-      throw Exception('Failed to load font with url: $url');
+      throw Exception("Failed to load font with url: $url");
     }
   }
 

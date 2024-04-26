@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/app/app.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:collection/collection.dart";
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/app/app.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'text_style_model.freezed.dart';
-part 'text_style_model.g.dart';
+part "text_style_model.freezed.dart";
+part "text_style_model.g.dart";
 
 /// [TextStyleModel] is a data class that holds the values for a [TextStyle].
 @freezed
@@ -25,14 +25,16 @@ class TextStyleModel with _$TextStyleModel {
   const TextStyleModel._();
 
   /// [TextStyleModel.fromJson] is a factory method that allows you to create a [TextStyleModel] from a JSON file.
-  factory TextStyleModel.fromJson(Map<String, dynamic> json) => _$TextStyleModelFromJson(json);
+  factory TextStyleModel.fromJson(Map<String, dynamic> json) =>
+      _$TextStyleModelFromJson(json);
 
   /// [asTextStyle] converts the [TextStyleModel] to a [TextStyle].
   TextStyle get asTextStyle {
     if (fontFamilyName_font != null) {
       return AppTheme.fontsStore.getFont(
         fontFamilyName_font!,
-        fontWeight: FontWeight.values.firstWhereOrNull((element) => element.value == fontWeight_double?.toInt()),
+        fontWeight: FontWeight.values.firstWhereOrNull(
+            (element) => element.value == fontWeight_double?.toInt(),),
         fontStyle: fontFamilyStyle_enum_fontStyle,
         fontSize: fontSize_double,
         height: lineHeight_double,
@@ -42,7 +44,8 @@ class TextStyleModel with _$TextStyleModel {
     }
     return TextStyle(
       fontFamily: fontFamilyName_font,
-      fontWeight: FontWeight.values.firstWhereOrNull((element) => element.value == fontWeight_double?.toInt()),
+      fontWeight: FontWeight.values.firstWhereOrNull(
+          (element) => element.value == fontWeight_double?.toInt(),),
       fontStyle: fontFamilyStyle_enum_fontStyle,
       fontSize: fontSize_double,
       height: lineHeight_double,

@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:navigation/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:flutter/material.dart";
+import "package:mobx/mobx.dart";
+import "package:navigation/utils/loggers.dart";
+import "package:utilities/logger/logger.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 ///MobX store for [DefaultShellStructureStore]
-class DefaultShellStructureStore = DefaultShellStructureStoreBase with _$DefaultShellStructureStore;
+class DefaultShellStructureStore = DefaultShellStructureStoreBase
+    with _$DefaultShellStructureStore;
 
 abstract class DefaultShellStructureStoreBase with Store {
   @observable
@@ -35,7 +36,8 @@ abstract class DefaultShellStructureStoreBase with Store {
 
   /// toggle persistent footer buttons visibility
   @computed
-  bool get isPersistentFooterButtonsVisible => _isPersistentFooterButtonsVisible;
+  bool get isPersistentFooterButtonsVisible =>
+      _isPersistentFooterButtonsVisible;
 
   /// Shows or hides the appBar based on the provided [value].
   @action

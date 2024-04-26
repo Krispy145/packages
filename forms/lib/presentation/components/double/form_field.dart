@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:forms/presentation/components/double/store.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:forms/presentation/components/double/store.dart";
+import "package:utilities/sizes/spacers.dart";
 
 class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
   const DoubleFormField({super.key, required super.store});
@@ -21,7 +21,8 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                 SizedBox(
                   width: 100,
                   child: TextField(
-                    decoration: const InputDecoration(border: UnderlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
                     inputFormatters: [
@@ -31,7 +32,8 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                 ),
                 Sizes.s.spacer(vertical: false),
                 InkWell(
-                  onTap: () => store.onValueChanged(double.tryParse(store.textController.text) ?? 0),
+                  onTap: () => store.onValueChanged(
+                      double.tryParse(store.textController.text) ?? 0,),
                   child: const Icon(Icons.check_circle_outline),
                 ),
               ],

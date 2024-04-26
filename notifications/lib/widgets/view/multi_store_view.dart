@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:notifications/models/notification.dart';
-import 'package:notifications/stores/local_store.dart';
-import 'package:notifications/stores/push_store.dart';
-import 'package:notifications/widgets/view/card.dart';
-import 'package:utilities/data_sources/local/hive/helpers/type_box.dart';
+import "package:flutter/material.dart";
+import "package:notifications/models/notification.dart";
+import "package:notifications/stores/local_store.dart";
+import "package:notifications/stores/push_store.dart";
+import "package:notifications/widgets/view/card.dart";
+import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
 
 /// [MultiStoreNotificationsView] a Widget view that displays a list of notifications.
 class MultiStoreNotificationsView extends StatelessWidget {
@@ -34,7 +34,9 @@ class MultiStoreNotificationsView extends StatelessWidget {
           }
           return NotificationCard(
             notification: notification,
-            store: notification.isLocalNotification ? localNotificationsStore : pushNotificationsStore,
+            store: notification.isLocalNotification
+                ? localNotificationsStore
+                : pushNotificationsStore,
           );
         },
       ),

@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/text/text_style_model.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/text/text_style_model.dart";
 
-part 'text_style_sizes.freezed.dart';
-part 'text_style_sizes.g.dart';
+part "text_style_sizes.freezed.dart";
+part "text_style_sizes.g.dart";
 
 enum TextSizes {
   large,
@@ -34,5 +34,6 @@ abstract class TextStyleSizes with _$TextStyleSizes {
   // }
 
   /// [TextStyleSizes.fromJson] is a factory method that allows you to create a [TextStyleSizes] from a JSON file.
-  factory TextStyleSizes.fromJson(Map<String, dynamic> json) => _$TextStyleSizesFromJson(json);
+  factory TextStyleSizes.fromJson(Map<String, dynamic> json) =>
+      _$TextStyleSizesFromJson(json);
 }

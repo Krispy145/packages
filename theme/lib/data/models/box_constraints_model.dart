@@ -1,10 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'box_constraints_model.freezed.dart';
-part 'box_constraints_model.g.dart';
+part "box_constraints_model.freezed.dart";
+part "box_constraints_model.g.dart";
 
 @freezed
 class BoxConstraintsModel with _$BoxConstraintsModel {
@@ -17,7 +17,8 @@ class BoxConstraintsModel with _$BoxConstraintsModel {
 
   const BoxConstraintsModel._();
 
-  factory BoxConstraintsModel.fromJson(Map<String, dynamic> json) => _$BoxConstraintsModelFromJson(json);
+  factory BoxConstraintsModel.fromJson(Map<String, dynamic> json) =>
+      _$BoxConstraintsModelFromJson(json);
 
   BoxConstraints asBoxConstraints({String? styleTypeName}) {
     return BoxConstraints(

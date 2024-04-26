@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:utilities/sizes/spacers.dart";
 
 /// [AppEdgeInsets] is a wrapper for [EdgeInsets] that allows you to use [Sizes] and [SizeTypes] to
 /// calculate the [EdgeInsets] values.

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:notifications/models/notification.dart';
-import 'package:notifications/stores/base_store.dart';
-import 'package:notifications/widgets/view/card.dart';
-import 'package:utilities/data_sources/local/hive/helpers/type_box.dart';
+import "package:flutter/material.dart";
+import "package:notifications/models/notification.dart";
+import "package:notifications/stores/base_store.dart";
+import "package:notifications/widgets/view/card.dart";
+import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
 
 /// [SingleStoreNotificationsView] a Widget view that displays a list of notifications.
 class SingleStoreNotificationsView extends StatelessWidget {

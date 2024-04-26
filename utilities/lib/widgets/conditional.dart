@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 /// [ConditionalWidget] is a widget that allows you to conditionally render a widget.
 class ConditionalWidget extends StatelessWidget {

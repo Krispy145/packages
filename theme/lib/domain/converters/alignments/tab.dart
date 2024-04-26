@@ -1,9 +1,9 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/utils/loggers.dart";
+import "package:utilities/logger/logger.dart";
 
 class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
   const TabAlignmentConverter();
@@ -12,12 +12,14 @@ class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
   TabAlignment? example(TabAlignment type) {
     final json = const TabAlignmentConverter().toJson(type);
     final response = jsonDecode(json!) as Map<String, String>;
-    final alignment = const TabAlignmentConverter().fromJson(response['alignment']);
+    final alignment =
+        const TabAlignmentConverter().fromJson(response["alignment"]);
     AppLogger.print(
       "LIST-TILE-ALIGNMENT fromJson -> $alignment",
       [ThemeLoggers.converters],
     );
-    final convertedJson = const TabAlignmentConverter().toJson(TabAlignment.center);
+    final convertedJson =
+        const TabAlignmentConverter().toJson(TabAlignment.center);
     AppLogger.print(
       "LIST-TILE-ALIGNMENT toJson -> $convertedJson",
       [ThemeLoggers.converters],
@@ -31,13 +33,13 @@ class TabAlignmentConverter implements JsonConverter<TabAlignment?, String?> {
       return null;
     }
     switch (type) {
-      case 'center':
+      case "center":
         return TabAlignment.center;
-      case 'fill':
+      case "fill":
         return TabAlignment.fill;
-      case 'start':
+      case "start":
         return TabAlignment.start;
-      case 'startOffset':
+      case "startOffset":
         return TabAlignment.startOffset;
       default:
         return TabAlignment.center;

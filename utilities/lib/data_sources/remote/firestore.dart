@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:utilities/data_sources/source.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:firebase_core/firebase_core.dart";
+import "package:utilities/data_sources/source.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 /// [FirestoreDataSource] is a wrapper class for [FirebaseFirestore]
 class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
@@ -37,7 +37,8 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<T?> get(String id) async {
     return _handleRequest("GET", () async {
-      final documentSnapshot = await _firestore.collection(collectionName).doc(id).get();
+      final documentSnapshot =
+          await _firestore.collection(collectionName).doc(id).get();
       if (documentSnapshot.exists) {
         return convertDataTypeFromMap(documentSnapshot.data()!);
       } else {
@@ -50,7 +51,9 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<List<T?>> getAll() async {
     try {
       final querySnapshot = await _firestore.collection(collectionName).get();
-      return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      return querySnapshot.docs
+          .map((doc) => convertDataTypeFromMap(doc.data()))
+          .toList();
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
       return [];
@@ -82,7 +85,10 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> update(String id, T data) async {
     await _handleRequest("UPDATE", () async {
       try {
-        await _firestore.collection(collectionName).doc(id).update(convertDataTypeToMap(data));
+        await _firestore
+            .collection(collectionName)
+            .doc(id)
+            .update(convertDataTypeToMap(data));
       } catch (e) {
         await add(data);
       }
@@ -140,7 +146,10 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
       query.where(entry.key, isEqualTo: entry.value);
     }
     final querySnapshot = await query.get();
-    return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+    return querySnapshot.docs
+        .map((doc) => convertDataTypeFromMap(doc.data()))
+        .toList()
+        .firstOrNull;
   }
 
   @override
@@ -150,7 +159,9 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
       query.where(entry.key, isEqualTo: entry.value);
     }
     final querySnapshot = await query.get();
-    return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+    return querySnapshot.docs
+        .map((doc) => convertDataTypeFromMap(doc.data()))
+        .toList();
   }
 
   Future<void> _logRequest(String method, String path, T? data) async {

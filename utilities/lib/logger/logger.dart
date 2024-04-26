@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
-import 'package:get_it/get_it.dart';
-import 'package:logger/logger.dart';
+import "package:flutter/foundation.dart";
+import "package:get_it/get_it.dart";
+import "package:logger/logger.dart";
 
 /// [AppLogger] is the instance of the [AppLoggerInjector] class.
 // ignore: non_constant_identifier_names

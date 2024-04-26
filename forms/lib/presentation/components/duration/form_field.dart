@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:forms/presentation/components/int/form_field.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:forms/presentation/components/int/form_field.dart";
 
-import 'store.dart';
+import "store.dart";
 
 class DurationFormField extends BaseFormField<DurationFormFieldStore> {
   const DurationFormField({super.key, required super.store});

@@ -1,25 +1,26 @@
 // ignore_for_file: unused_element
 
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:mobx/mobx.dart';
-import 'package:notifications/models/local_android_notification_details.dart';
-import 'package:notifications/models/notification.dart';
-import 'package:notifications/models/permissions.dart';
-import 'package:notifications/stores/base_store.dart';
-import 'package:notifications/utils/loggers.dart';
-import 'package:universal_io/io.dart';
-import 'package:utilities/data_sources/source.dart';
-import 'package:utilities/helpers/tuples.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:firebase_messaging/firebase_messaging.dart";
+import "package:flutter/foundation.dart";
+import "package:flutter_local_notifications/flutter_local_notifications.dart";
+import "package:mobx/mobx.dart";
+import "package:notifications/models/local_android_notification_details.dart";
+import "package:notifications/models/notification.dart";
+import "package:notifications/models/permissions.dart";
+import "package:notifications/stores/base_store.dart";
+import "package:notifications/utils/loggers.dart";
+import "package:universal_io/io.dart";
+import "package:utilities/data_sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:utilities/logger/logger.dart";
 
-part 'push_store.g.dart';
+part "push_store.g.dart";
 
 /// [PushNotificationsStore] is the base class for all push notifications stores.
-class PushNotificationsStore = _PushNotificationsStore with _$PushNotificationsStore;
+class PushNotificationsStore = _PushNotificationsStore
+    with _$PushNotificationsStore;
 
 /// [_PushNotificationsStore] is the base class for all notifications stores.
 abstract class _PushNotificationsStore extends NotificationsStore with Store {
@@ -45,8 +46,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
 
   /// [androidPushNotificationsChannel] is the Android push notifications channel.
   final androidPushNotificationsChannel = const AndroidNotificationChannel(
-    'push_notification_channel_id',
-    'Push Notifications Channel',
+    "push_notification_channel_id",
+    "Push Notifications Channel",
     importance: Importance.max,
   );
 
@@ -83,29 +84,33 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     if (Platform.isIOS || Platform.isMacOS) {
       apnsToken = await getAPNSToken();
       AppLogger.print(
-        'APNS Token: $apnsToken',
+        "APNS Token: $apnsToken",
         [NotificationsLoggers.notifications],
       );
     }
-    fcmToken = await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
-    AppLogger.print('FCM Token: $fcmToken', [NotificationsLoggers.notifications]);
+    fcmToken =
+        await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
+    AppLogger.print(
+        "FCM Token: $fcmToken", [NotificationsLoggers.notifications],);
     authorizationStatus = settings.authorizationStatus;
 
-    if (settings.authorizationStatus == AuthorizationStatus.authorized && fcmToken != null) {
+    if (settings.authorizationStatus == AuthorizationStatus.authorized &&
+        fcmToken != null) {
       AppLogger.print(
-        'User granted permission',
+        "User granted permission",
         [NotificationsLoggers.notifications],
       );
       return Pair(fcmToken, authorizationStatus);
-    } else if (authorizationStatus == AuthorizationStatus.authorized && fcmToken == null) {
+    } else if (authorizationStatus == AuthorizationStatus.authorized &&
+        fcmToken == null) {
       AppLogger.print(
-        'User granted permission but token is null',
+        "User granted permission but token is null",
         [NotificationsLoggers.notifications],
       );
       return Pair(null, authorizationStatus);
     } else {
       AppLogger.print(
-        'User declined or has not accepted permission',
+        "User declined or has not accepted permission",
         [NotificationsLoggers.notifications],
       );
       return Pair(null, authorizationStatus);
@@ -149,7 +154,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
 
     // Also handle any interaction when the app is in the foreground via a Stream listener
     FirebaseMessaging.onMessage.listen((message) {
-      final notification = _convertRemoteNotificationToNotificationModel(message.data);
+      final notification =
+          _convertRemoteNotificationToNotificationModel(message.data);
       final android = message.notification?.android;
 
       // for Android, we create a local notification to show to users using the created channel.
@@ -163,9 +169,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
               _channel.id,
               _channel.name,
             ).copyWith(
-              channelDescription: 'Push Notifications Channel',
-              ticker: 'ticker',
-              icon: android.smallIcon ?? '@mipmap/ic_launcher',
+              channelDescription: "Push Notifications Channel",
+              ticker: "ticker",
+              icon: android.smallIcon ?? "@mipmap/ic_launcher",
             ),
           ),
           payload: jsonEncode(notification.toJson()),
@@ -183,7 +189,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [_updateActiveNotificationsList] updates the active notifications to the [notifications].
   @action
   Future<void> _updateActiveNotificationsList() async {
-    final activeNotifications = await remoteDataSource?.getAll() ?? await getAll();
+    final activeNotifications =
+        await remoteDataSource?.getAll() ?? await getAll();
     final notificationMap = <String, NotificationModel>{};
     for (final notificationResponse in activeNotifications) {
       if (notificationResponse != null) {
@@ -285,7 +292,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<String?> getToken({String? webVapidKey}) async {
     return _pushNotifications.getToken(vapidKey: webVapidKey).then((token) {
-      AppLogger.print("FCM Token: $token", [NotificationsLoggers.notifications]);
+      AppLogger.print(
+          "FCM Token: $token", [NotificationsLoggers.notifications],);
       return token;
     });
   }
@@ -294,7 +302,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<void> deleteToken() async {
     return _pushNotifications.deleteToken().then((_) {
-      AppLogger.print("FCM Token Deleted", [NotificationsLoggers.notifications]);
+      AppLogger.print(
+          "FCM Token Deleted", [NotificationsLoggers.notifications],);
     });
   }
 
@@ -302,7 +311,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<String?> getAPNSToken() async {
     final _token = await _pushNotifications.getAPNSToken();
-    AppLogger.print("APNS Token: $_token", [NotificationsLoggers.notifications]);
+    AppLogger.print(
+        "APNS Token: $_token", [NotificationsLoggers.notifications],);
     return _token;
   }
 
@@ -330,11 +340,14 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   AndroidNotificationChannel _createAndroidForegroundPushNotificationChannel() {
     // Create an Android Notification Channel using local notifications.
-    localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(androidPushNotificationsChannel);
+    localNotifications
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(androidPushNotificationsChannel);
     return androidPushNotificationsChannel;
   }
 
-  @pragma('vm:entry-point')
+  @pragma("vm:entry-point")
   Future<void> _firebaseMessagingBackgroundHandler(
     RemoteMessage message,
     void Function() onSilentNotificationReceived,
@@ -351,7 +364,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   NotificationModel? _convertRemoteNotificationToNotificationModel(
     Map<String, dynamic> data,
   ) {
-    if (data['id'] == null) return null;
+    if (data["id"] == null) return null;
     final notification = NotificationModel.fromStringMap(data);
     AppLogger.print(
       "Notification: $notification",

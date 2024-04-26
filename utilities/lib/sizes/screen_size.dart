@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import "package:flutter/material.dart";
+import "package:responsive_framework/responsive_framework.dart";
 
 /// [ScreenSize] is a class that uses [ScreenSizes] to calculate the screen size of the device.
 class ScreenSize {
@@ -20,7 +20,7 @@ class ScreenSize {
     Breakpoint(start: 0, end: 600, name: MOBILE),
     Breakpoint(start: 601, end: 800, name: TABLET),
     Breakpoint(start: 801, end: 1920, name: DESKTOP),
-    Breakpoint(start: 1921, end: double.infinity, name: '4K'),
+    Breakpoint(start: 1921, end: double.infinity, name: "4K"),
   ];
 }
 

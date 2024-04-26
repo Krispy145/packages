@@ -1,9 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'duration_model.freezed.dart';
-part 'duration_model.g.dart';
+part "duration_model.freezed.dart";
+part "duration_model.g.dart";
 
 @freezed
 class DurationModel with _$DurationModel {
@@ -18,7 +18,8 @@ class DurationModel with _$DurationModel {
 
   const DurationModel._();
 
-  factory DurationModel.fromJson(Map<String, dynamic> json) => _$DurationModelFromJson(json);
+  factory DurationModel.fromJson(Map<String, dynamic> json) =>
+      _$DurationModelFromJson(json);
 
   Duration? asDuration({String? styleTypeName}) {
     return Duration(

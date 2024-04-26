@@ -1,8 +1,8 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
+import "package:hive_flutter/hive_flutter.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 /// [TypeBox] is a wrapper class for [Box]
 class TypeBox<T> extends Box<T> {
@@ -83,7 +83,8 @@ class TypeBox<T> extends Box<T> {
   @override
   T? get(dynamic key, {T? defaultValue}) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [UtilitiesLoggers.localDataSource]);
+      AppLogger.print(
+          "Key is not a String", [UtilitiesLoggers.localDataSource],);
       return null;
     }
     if (defaultValue == null) {
@@ -91,7 +92,8 @@ class TypeBox<T> extends Box<T> {
       if (value == null) return null;
       return convertDataTypeFromMap(value);
     }
-    final value = _box.get(key, defaultValue: convertDataTypeToMap(defaultValue));
+    final value =
+        _box.get(key, defaultValue: convertDataTypeToMap(defaultValue));
     if (value == null) return null;
     return convertDataTypeFromMap(value);
   }
@@ -137,7 +139,8 @@ class TypeBox<T> extends Box<T> {
   @override
   Future<void> put(dynamic key, T value) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [UtilitiesLoggers.localDataSource]);
+      AppLogger.print(
+          "Key is not a String", [UtilitiesLoggers.localDataSource],);
       return Future.value();
     }
     return _box.put(key, convertDataTypeToMap(value));
@@ -184,7 +187,8 @@ class TypeBox<T> extends Box<T> {
   @override
   Map<dynamic, T> toMap() {
     return _box.toMap().map(
-          (key, value) => MapEntry(key as String, convertDataTypeFromMap(value)),
+          (key, value) =>
+              MapEntry(key as String, convertDataTypeFromMap(value)),
         );
   }
 
@@ -193,7 +197,9 @@ class TypeBox<T> extends Box<T> {
 
   @override
   Iterable<T> valuesBetween({dynamic startKey, dynamic endKey}) {
-    return _box.valuesBetween(startKey: startKey, endKey: endKey).map(convertDataTypeFromMap);
+    return _box
+        .valuesBetween(startKey: startKey, endKey: endKey)
+        .map(convertDataTypeFromMap);
   }
 
   @override

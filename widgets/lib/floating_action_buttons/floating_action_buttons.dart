@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class FloatingActionButtons extends StatelessWidget {
   const FloatingActionButtons({super.key});
@@ -8,9 +8,9 @@ class FloatingActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Floating action buttons',
+      label: "Floating action buttons",
       tooltipMessage:
-          'Use FloatingActionButton or FloatingActionButton.extended',
+          "Use FloatingActionButton or FloatingActionButton.extended",
       child: Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         runSpacing: smallSpacing,
@@ -18,23 +18,23 @@ class FloatingActionButtons extends StatelessWidget {
         children: [
           FloatingActionButton.small(
             onPressed: () {},
-            tooltip: 'Small',
+            tooltip: "Small",
             child: const Icon(Icons.add),
           ),
           FloatingActionButton.extended(
             onPressed: () {},
-            tooltip: 'Extended',
+            tooltip: "Extended",
             icon: const Icon(Icons.add),
-            label: const Text('Create'),
+            label: const Text("Create"),
           ),
           FloatingActionButton(
             onPressed: () {},
-            tooltip: 'Standard',
+            tooltip: "Standard",
             child: const Icon(Icons.add),
           ),
           FloatingActionButton.large(
             onPressed: () {},
-            tooltip: 'Large',
+            tooltip: "Large",
             child: const Icon(Icons.add),
           ),
         ],

@@ -1,20 +1,20 @@
 // ignore_for_file: unused_element
 
-import 'package:flutter/material.dart';
-import 'package:fonts/store.dart';
-import 'package:mobx/mobx.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:theme/data/models/colors/color_model.dart';
-import 'package:theme/data/models/theme/theme.dart';
-import 'package:theme/data/repositories/theme.repository.dart';
-import 'package:theme/domain/repositories/base.repository.dart';
-import 'package:theme/domain/repositories/digital_oasis.repository.dart';
-import 'package:theme/domain/repositories/theme.repository.dart';
-import 'package:theme/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/widgets/load_state/base_store.dart';
+import "package:flutter/material.dart";
+import "package:fonts/store.dart";
+import "package:mobx/mobx.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
+import "package:theme/data/models/colors/color_model.dart";
+import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/repositories/theme.repository.dart";
+import "package:theme/domain/repositories/base.repository.dart";
+import "package:theme/domain/repositories/digital_oasis.repository.dart";
+import "package:theme/domain/repositories/theme.repository.dart";
+import "package:theme/utils/loggers.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/widgets/load_state/base_store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 const String primaryStyle = "primary";
 const String primaryThemeId = "ee27317d-e505-478a-9cb3-54586968f123";
@@ -135,7 +135,8 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
         type = ThemeStateType.supabase,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
-    _loadSupabaseTheme(url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId);
+    _loadSupabaseTheme(
+        url: baseUrl, anonKey: anonKey, id: id ?? primaryThemeId,);
   }
 
   _ThemeStateStore.firestore({
@@ -242,8 +243,11 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   bool get isLight => currentThemeMode == ThemeMode.light;
 
   @computed
-  ColorModel? get currentColorModel =>
-      isDark ? (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.dark : (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.light;
+  ColorModel? get currentColorModel => isDark
+      ? (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])
+          ?.dark
+      : (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])
+          ?.light;
 
   @action
   void changeBaseThemeModel(BaseThemeModel model) {
@@ -269,7 +273,8 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   Future<void> reloadThemeModel() async {
     await repository?.fetchTheme(id: id ?? primaryThemeId);
     await repository?.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Reloaded: $baseThemeModel", [ThemeLoggers.theme]);
+    AppLogger.print(
+        "ThemeModel - Reloaded: $baseThemeModel", [ThemeLoggers.theme],);
   }
 
   /// [lightTheme] is the light theme that will be used to store the theme data.
@@ -285,14 +290,20 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
   }
 
   ThemeData _buildTheme() {
-    final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
+    final buttonStyles = componentThemesModel
+        ?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme;
-    AppLogger.print("Building App Theme: $styleType -> ${isDark ? "Dark" : "Light"}", [ThemeLoggers.theme]);
-    final chipTheme = componentThemesModel?.getComponentThemeFromStyleType<ChipThemeData?>(styleType);
+    AppLogger.print(
+        "Building App Theme: $styleType -> ${isDark ? "Dark" : "Light"}",
+        [ThemeLoggers.theme],);
+    final chipTheme = componentThemesModel
+        ?.getComponentThemeFromStyleType<ChipThemeData?>(styleType);
     AppLogger.print("ChipTheme in _build: $chipTheme", [ThemeLoggers.chips]);
     return ThemeData(
       colorScheme: colorScheme,
-      textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
+      textTheme: (baseThemeModel?.textStyles?[styleType] ??
+              baseThemeModel?.textStyles?[styleType])
+          ?.theme,
       elevatedButtonTheme: buttonStyles?.elevatedButtonTheme,
       iconButtonTheme: buttonStyles?.iconButtonTheme,
       iconTheme: IconThemeData(color: colorScheme?.primary),
@@ -303,33 +314,61 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
       menuButtonTheme: buttonStyles?.menuButtonTheme,
       floatingActionButtonTheme: buttonStyles?.floatingActionButtonTheme,
       segmentedButtonTheme: buttonStyles?.segmentedButtonTheme,
-      dropdownMenuTheme: componentThemesModel?.getComponentThemeFromStyleType<DropdownMenuThemeData?>(styleType),
-      inputDecorationTheme: componentThemesModel?.getComponentThemeFromStyleType<InputDecorationTheme?>(styleType),
-      cardTheme: componentThemesModel?.getComponentThemeFromStyleType<CardTheme?>(styleType),
-      snackBarTheme: componentThemesModel?.getComponentThemeFromStyleType<SnackBarThemeData?>(styleType),
-      badgeTheme: componentThemesModel?.getComponentThemeFromStyleType<BadgeThemeData?>(styleType),
-      appBarTheme: componentThemesModel?.getComponentThemeFromStyleType<AppBarTheme?>(styleType),
-      bottomAppBarTheme: componentThemesModel?.getComponentThemeFromStyleType<BottomAppBarTheme?>(styleType),
+      dropdownMenuTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<DropdownMenuThemeData?>(styleType),
+      inputDecorationTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<InputDecorationTheme?>(styleType),
+      cardTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<CardTheme?>(styleType),
+      snackBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SnackBarThemeData?>(styleType),
+      badgeTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<BadgeThemeData?>(styleType),
+      appBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<AppBarTheme?>(styleType),
+      bottomAppBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<BottomAppBarTheme?>(styleType),
       chipTheme: chipTheme,
-      dialogTheme: componentThemesModel?.getComponentThemeFromStyleType<DialogTheme?>(styleType),
-      popupMenuTheme: componentThemesModel?.getComponentThemeFromStyleType<PopupMenuThemeData?>(styleType),
-      sliderTheme: componentThemesModel?.getComponentThemeFromStyleType<SliderThemeData?>(styleType),
-      scrollbarTheme: componentThemesModel?.getComponentThemeFromStyleType<ScrollbarThemeData?>(styleType),
-      tooltipTheme: componentThemesModel?.getComponentThemeFromStyleType<TooltipThemeData?>(styleType),
-      navigationRailTheme: componentThemesModel?.getComponentThemeFromStyleType<NavigationRailThemeData?>(styleType),
-      checkboxTheme: componentThemesModel?.getComponentThemeFromStyleType<CheckboxThemeData?>(styleType),
-      radioTheme: componentThemesModel?.getComponentThemeFromStyleType<RadioThemeData?>(styleType),
-      switchTheme: componentThemesModel?.getComponentThemeFromStyleType<SwitchThemeData?>(styleType),
-      drawerTheme: componentThemesModel?.getComponentThemeFromStyleType<DrawerThemeData?>(styleType),
-      listTileTheme: componentThemesModel?.getComponentThemeFromStyleType<ListTileThemeData?>(styleType),
-      menuBarTheme: componentThemesModel?.getComponentThemeFromStyleType<MenuBarThemeData?>(styleType),
-      menuTheme: componentThemesModel?.getComponentThemeFromStyleType<MenuThemeData?>(styleType),
-      navigationBarTheme: componentThemesModel?.getComponentThemeFromStyleType<NavigationBarThemeData?>(styleType),
-      navigationDrawerTheme: componentThemesModel?.getComponentThemeFromStyleType<NavigationDrawerThemeData?>(styleType),
-      progressIndicatorTheme: componentThemesModel?.getComponentThemeFromStyleType<ProgressIndicatorThemeData?>(styleType),
-      searchBarTheme: componentThemesModel?.getComponentThemeFromStyleType<SearchBarThemeData?>(styleType),
-      searchViewTheme: componentThemesModel?.getComponentThemeFromStyleType<SearchViewThemeData?>(styleType),
-      tabBarTheme: componentThemesModel?.getComponentThemeFromStyleType<TabBarTheme?>(styleType),
+      dialogTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<DialogTheme?>(styleType),
+      popupMenuTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<PopupMenuThemeData?>(styleType),
+      sliderTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SliderThemeData?>(styleType),
+      scrollbarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ScrollbarThemeData?>(styleType),
+      tooltipTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<TooltipThemeData?>(styleType),
+      navigationRailTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<NavigationRailThemeData?>(styleType),
+      checkboxTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<CheckboxThemeData?>(styleType),
+      radioTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<RadioThemeData?>(styleType),
+      switchTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SwitchThemeData?>(styleType),
+      drawerTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<DrawerThemeData?>(styleType),
+      listTileTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ListTileThemeData?>(styleType),
+      menuBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<MenuBarThemeData?>(styleType),
+      menuTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<MenuThemeData?>(styleType),
+      navigationBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<NavigationBarThemeData?>(styleType),
+      navigationDrawerTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<NavigationDrawerThemeData?>(
+              styleType,),
+      progressIndicatorTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ProgressIndicatorThemeData?>(
+              styleType,),
+      searchBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SearchBarThemeData?>(styleType),
+      searchViewTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SearchViewThemeData?>(styleType),
+      tabBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<TabBarTheme?>(styleType),
     );
   }
 
@@ -357,8 +396,10 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
       componentThemesConfiguration: const ThemeConfiguration.local(),
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Local: $baseThemeModel", [ThemeLoggers.theme]);
+    componentThemesModel =
+        await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print(
+        "ThemeModel - Local: $baseThemeModel", [ThemeLoggers.theme],);
     setLoaded();
   }
 
@@ -368,24 +409,32 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     ThemeConfiguration? componentsThemeConfig;
     try {
       if (baseThemeAssetPath != null) {
-        baseThemeConfig = ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!);
+        baseThemeConfig =
+            ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!);
       } else {
-        AppLogger.print("Base Theme asset path is null", [ThemeLoggers.theme], type: LoggerType.error);
+        AppLogger.print("Base Theme asset path is null", [ThemeLoggers.theme],
+            type: LoggerType.error,);
         baseThemeConfig = null;
       }
     } catch (e) {
-      AppLogger.print("Base Theme could not be loaded", [ThemeLoggers.theme], type: LoggerType.error);
+      AppLogger.print("Base Theme could not be loaded", [ThemeLoggers.theme],
+          type: LoggerType.error,);
       baseThemeConfig = null;
     }
     try {
       if (componentThemesAssetPath != null) {
-        componentsThemeConfig = ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!);
+        componentsThemeConfig =
+            ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!);
       } else {
-        AppLogger.print("componentsThemeConfig Theme asset path is null", [ThemeLoggers.theme], type: LoggerType.error);
+        AppLogger.print("componentsThemeConfig Theme asset path is null",
+            [ThemeLoggers.theme],
+            type: LoggerType.error,);
         componentsThemeConfig = null;
       }
     } catch (e) {
-      AppLogger.print("componentsThemeConfig Theme could not be loaded", [ThemeLoggers.theme], type: LoggerType.error);
+      AppLogger.print("componentsThemeConfig Theme could not be loaded",
+          [ThemeLoggers.theme],
+          type: LoggerType.error,);
       componentsThemeConfig = null;
     }
 
@@ -394,33 +443,44 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
       componentThemesConfiguration: componentsThemeConfig,
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Assets: $baseThemeModel", [ThemeLoggers.theme]);
+    componentThemesModel =
+        await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print(
+        "ThemeModel - Assets: $baseThemeModel", [ThemeLoggers.theme],);
     setLoaded();
   }
 
-  Future<void> _loadSupabaseTheme({required String url, required String anonKey, String? id}) async {
+  Future<void> _loadSupabaseTheme(
+      {required String url, required String anonKey, String? id,}) async {
     final _client = SupabaseClient(url, anonKey);
     setLoading();
     _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
-      componentThemesConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
+      baseThemeConfiguration:
+          ThemeConfiguration.supabase(supabaseClient: _client),
+      componentThemesConfiguration:
+          ThemeConfiguration.supabase(supabaseClient: _client),
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Supabase: $baseThemeModel", [ThemeLoggers.theme]);
+    componentThemesModel =
+        await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print(
+        "ThemeModel - Supabase: $baseThemeModel", [ThemeLoggers.theme],);
     setLoaded();
   }
 
   Future<void> _loadFirestoreTheme({String? id}) async {
     setLoading();
     _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.firestore(collectionName: baseThemeUrlPath!),
-      componentThemesConfiguration: ThemeConfiguration.firestore(collectionName: componentThemesUrlPath!),
+      baseThemeConfiguration:
+          ThemeConfiguration.firestore(collectionName: baseThemeUrlPath!),
+      componentThemesConfiguration:
+          ThemeConfiguration.firestore(collectionName: componentThemesUrlPath!),
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Firestore: $baseThemeModel", [ThemeLoggers.theme]);
+    componentThemesModel =
+        await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print(
+        "ThemeModel - Firestore: $baseThemeModel", [ThemeLoggers.theme],);
     setLoaded();
   }
 
@@ -428,19 +488,24 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     setLoading();
     repository = DORepository();
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Digital Oasis: $baseThemeModel", [ThemeLoggers.theme]);
+    componentThemesModel =
+        await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    AppLogger.print(
+        "ThemeModel - Digital Oasis: $baseThemeModel", [ThemeLoggers.theme],);
     setLoaded();
   }
 
   Future<void> _loadApiTheme({String? id}) async {
     setLoading();
     _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.api(urlPath: baseThemeUrlPath!),
-      componentThemesConfiguration: ThemeConfiguration.api(urlPath: componentThemesUrlPath!),
+      baseThemeConfiguration:
+          ThemeConfiguration.api(urlPath: baseThemeUrlPath!),
+      componentThemesConfiguration:
+          ThemeConfiguration.api(urlPath: componentThemesUrlPath!),
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    componentThemesModel =
+        await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
     AppLogger.print("ThemeModel - Api: $baseThemeModel", [ThemeLoggers.theme]);
     setLoaded();
   }

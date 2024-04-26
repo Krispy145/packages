@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-import '../base/form_field.dart';
-import 'store.dart';
+import "../base/form_field.dart";
+import "store.dart";
 
 class DOTextFormField extends BaseFormField<TextFormFieldStore> {
   const DOTextFormField({super.key, required super.store});
@@ -26,17 +26,20 @@ class DOTextFormField extends BaseFormField<TextFormFieldStore> {
           maxLines: store.textFormFieldController.maxLines,
           minLines: store.textFormFieldController.minLines,
           maxLength: store.textFormFieldController.maxLength,
-          maxLengthEnforcement: store.textFormFieldController.maxLengthEnforcement,
+          maxLengthEnforcement:
+              store.textFormFieldController.maxLengthEnforcement,
           inputFormatters: store.textFormFieldController.inputFormatters,
           scribbleEnabled: store.textFormFieldController.scribbleEnabled,
           scrollPadding: store.textFormFieldController.scrollPadding,
           scrollPhysics: store.textFormFieldController.scrollPhysics,
-          enableInteractiveSelection: store.textFormFieldController.enableInteractiveSelection,
+          enableInteractiveSelection:
+              store.textFormFieldController.enableInteractiveSelection,
           cursorColor: store.textFormFieldController.cursorColor,
           cursorWidth: store.textFormFieldController.cursorWidth,
           cursorHeight: store.textFormFieldController.cursorHeight,
           cursorRadius: store.textFormFieldController.cursorRadius,
-          cursorOpacityAnimates: store.textFormFieldController.cursorOpacityAnimates,
+          cursorOpacityAnimates:
+              store.textFormFieldController.cursorOpacityAnimates,
           scrollController: store.textFormFieldController.scrollController,
           selectionControls: store.textFormFieldController.selectionControls,
           buildCounter: store.textFormFieldController.buildCounter,
@@ -47,16 +50,20 @@ class DOTextFormField extends BaseFormField<TextFormFieldStore> {
           enableSuggestions: store.textFormFieldController.enableSuggestions,
           smartDashesType: store.textFormFieldController.smartDashesType,
           smartQuotesType: store.textFormFieldController.smartQuotesType,
-          enableIMEPersonalizedLearning: store.textFormFieldController.enableIMEPersonalizedLearning,
+          enableIMEPersonalizedLearning:
+              store.textFormFieldController.enableIMEPersonalizedLearning,
           textCapitalization: store.textFormFieldController.textCapitalization,
           style: store.textFormFieldController.style,
           strutStyle: store.textFormFieldController.strutStyle,
           textAlign: store.textFormFieldController.textAlign,
           textAlignVertical: store.textFormFieldController.textAlignVertical,
           textDirection: store.textFormFieldController.textDirection,
-          selectionHeightStyle: store.textFormFieldController.selectionHeightStyle,
-          selectionWidthStyle: store.textFormFieldController.selectionWidthStyle,
-          spellCheckConfiguration: store.textFormFieldController.spellCheckConfiguration,
+          selectionHeightStyle:
+              store.textFormFieldController.selectionHeightStyle,
+          selectionWidthStyle:
+              store.textFormFieldController.selectionWidthStyle,
+          spellCheckConfiguration:
+              store.textFormFieldController.spellCheckConfiguration,
           showCursor: store.textFormFieldController.showCursor,
           statesController: store.textFormFieldController.statesController,
         ),

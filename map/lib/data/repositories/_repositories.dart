@@ -31,7 +31,8 @@ class DataRepositories {
   static final DataRepositories instance = DataRepositories._();
 
   /// [googlePlaces] is the [GooglePlacesDataRepository] instance.
-  GooglePlacesDataRepository googlePlaces({required String googleApiKey}) => GooglePlacesDataRepository(googleApiKey: googleApiKey);
+  GooglePlacesDataRepository googlePlaces({required String googleApiKey}) =>
+      GooglePlacesDataRepository(googleApiKey: googleApiKey);
 
   ///END OF REPOSITORIES
 }

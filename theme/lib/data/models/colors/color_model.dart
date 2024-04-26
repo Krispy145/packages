@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/colors/color_schemes.dart';
-import 'package:theme/domain/converters/colors/color.dart';
-import 'package:utilities/helpers/extensions/string.dart';
-import 'package:xml/xml.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/colors/color_schemes.dart";
+import "package:theme/domain/converters/colors/color.dart";
+import "package:utilities/helpers/extensions/string.dart";
+import "package:xml/xml.dart";
 
-part 'color_model.freezed.dart';
+part "color_model.freezed.dart";
 // part 'color_model.g.dart';
 
 /// [ColorModel] is a data class that holds the values for a [Color].
@@ -97,7 +97,8 @@ class ColorModel with _$ColorModel {
       onErrorContainer: onErrorContainer ?? seedColor.onErrorContainer,
       onInverseSurface: onInverseSurface ?? seedColor.onInverseSurface,
       onPrimaryContainer: onPrimaryContainer ?? seedColor.onPrimaryContainer,
-      onSecondaryContainer: onSecondaryContainer ?? seedColor.onSecondaryContainer,
+      onSecondaryContainer:
+          onSecondaryContainer ?? seedColor.onSecondaryContainer,
       onSurfaceVariant: onSurfaceVariant ?? seedColor.onSurfaceVariant,
       onTertiary: onTertiary ?? seedColor.onTertiary,
       onTertiaryContainer: onTertiaryContainer ?? seedColor.onTertiaryContainer,
@@ -124,20 +125,21 @@ class ColorModel with _$ColorModel {
     final themeKey = brightness.toXml();
 
     final themeColors = <String, dynamic>{};
-    final elements = document.findAllElements('color');
+    final elements = document.findAllElements("color");
 
     for (final element in elements) {
-      final name = element.getAttribute('name');
+      final name = element.getAttribute("name");
 
       final hexColor = element.innerText;
 
-      final camelCaseName = name?.replaceFirst('${themeKey}_', '').snakeCaseToCamelCase();
+      final camelCaseName =
+          name?.replaceFirst("${themeKey}_", "").snakeCaseToCamelCase();
       if (camelCaseName != null && camelCaseName.isNotEmpty) {
         themeColors[camelCaseName] = hexColor;
       }
     }
 
-    themeColors['brightness'] = brightness;
+    themeColors["brightness"] = brightness;
     final model = ColorModel.fromJson(themeColors);
     return model;
   }
@@ -148,19 +150,20 @@ class ColorModel with _$ColorModel {
 
     final themeKey = Brightness.light.toXml();
 
-    final xmlBuilder = XmlBuilder()..processing('xml', 'version="1.0"');
+    final xmlBuilder = XmlBuilder()..processing("xml", 'version="1.0"');
     xmlBuilder.element(
-      'resources',
+      "resources",
       nest: () {
         themeColors.forEach((key, color) {
           final snakeCaseName = key.camelCaseToSnakeCase();
-          final name = '${themeKey}_$snakeCaseName';
-          final hexColor = const ColorConverter().toJson(color as Color?)?.toLowerCase();
+          final name = "${themeKey}_$snakeCaseName";
+          final hexColor =
+              const ColorConverter().toJson(color as Color?)?.toLowerCase();
           xmlBuilder.element(
-            'color',
+            "color",
             nest: hexColor,
             attributes: {
-              'name': name,
+              "name": name,
             },
           );
         });
@@ -171,7 +174,8 @@ class ColorModel with _$ColorModel {
   }
 
   static ColorModel defaultModel({required Brightness brightness}) {
-    final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
+    final seedColorScheme =
+        ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
     return ColorModel(
       primary: seedColorScheme.primary,
       primaryContainer: seedColorScheme.primaryContainer,
@@ -208,99 +212,160 @@ class ColorModel with _$ColorModel {
   // factory ColorModel.fromJson(Map<String, dynamic> json) => _$ColorModelFromJson(json);
 
   factory ColorModel.fromJson(Map<String, dynamic> json) {
-    final primary = const ColorConverter().fromJson(json['primary']);
+    final primary = const ColorConverter().fromJson(json["primary"]);
     final seedColor = ColorScheme.fromSeed(seedColor: primary ?? Colors.green);
     return ColorModel(
       primary: primary,
-      onPrimary: const ColorConverter().fromJson(json['onPrimary']) ?? seedColor.onPrimary,
-      primaryContainer: const ColorConverter().fromJson(json['primaryContainer']) ?? seedColor.primaryContainer,
-      onPrimaryContainer: const ColorConverter().fromJson(json['onPrimaryContainer']) ?? seedColor.onPrimaryContainer,
-      secondary: const ColorConverter().fromJson(json['secondary']) ?? seedColor.secondary,
-      onSecondary: const ColorConverter().fromJson(json['onSecondary']) ?? seedColor.onSecondary,
-      secondaryContainer: const ColorConverter().fromJson(json['secondaryContainer']) ?? seedColor.secondaryContainer,
-      onSecondaryContainer: const ColorConverter().fromJson(json['onSecondaryContainer']) ?? seedColor.onSecondaryContainer,
-      tertiary: const ColorConverter().fromJson(json['tertiary']) ?? seedColor.tertiary,
-      onTertiary: const ColorConverter().fromJson(json['onTertiary']) ?? seedColor.onTertiary,
-      tertiaryContainer: const ColorConverter().fromJson(json['tertiaryContainer']) ?? seedColor.tertiaryContainer,
-      onTertiaryContainer: const ColorConverter().fromJson(json['onTertiaryContainer']) ?? seedColor.onTertiaryContainer,
-      disabled: const ColorConverter().fromJson(json['disabled']) ?? defaultDisabled,
-      error: const ColorConverter().fromJson(json['error']) ?? seedColor.error,
-      onError: const ColorConverter().fromJson(json['onError']) ?? seedColor.onError,
-      errorContainer: const ColorConverter().fromJson(json['errorContainer']) ?? seedColor.errorContainer,
-      onErrorContainer: const ColorConverter().fromJson(json['onErrorContainer']) ?? seedColor.onErrorContainer,
-      confirmation: const ColorConverter().fromJson(json['confirmation']) ?? defaultConfirmation,
-      onConfirmation: const ColorConverter().fromJson(json['onConfirmation']) ?? defaultOnConfirmation,
-      confirmationContainer: const ColorConverter().fromJson(json['confirmationContainer']) ?? defaultConfirmationContainer,
-      onConfirmationContainer: const ColorConverter().fromJson(json['onConfirmationContainer']) ?? defaultOnConfirmationContainer,
-      information: const ColorConverter().fromJson(json['information']) ?? defaultInformation,
-      onInformation: const ColorConverter().fromJson(json['onInformation']) ?? defaultOnInformation,
-      informationContainer: const ColorConverter().fromJson(json['informationContainer']) ?? defaultInformationContainer,
-      onInformationContainer: const ColorConverter().fromJson(json['onInformationContainer']) ?? defaultOnInformationContainer,
-      warning: const ColorConverter().fromJson(json['warning']) ?? defaultWarning,
-      onWarning: const ColorConverter().fromJson(json['onWarning']) ?? defaultOnWarning,
-      warningContainer: const ColorConverter().fromJson(json['warningContainer']) ?? defaultWarningContainer,
-      onWarningContainer: const ColorConverter().fromJson(json['onWarningContainer']) ?? defaultOnWarningContainer,
-      outline: const ColorConverter().fromJson(json['outline']) ?? seedColor.outline,
-      background: const ColorConverter().fromJson(json['background']) ?? seedColor.background,
-      onBackground: const ColorConverter().fromJson(json['onBackground']) ?? seedColor.onBackground,
-      surface: const ColorConverter().fromJson(json['surface']) ?? seedColor.surface,
-      onSurface: const ColorConverter().fromJson(json['onSurface']) ?? seedColor.onSurface,
-      surfaceVariant: const ColorConverter().fromJson(json['surfaceVariant']) ?? seedColor.surfaceVariant,
-      onSurfaceVariant: const ColorConverter().fromJson(json['onSurfaceVariant']) ?? seedColor.onSurfaceVariant,
-      inverseSurface: const ColorConverter().fromJson(json['inverseSurface']) ?? seedColor.inverseSurface,
-      onInverseSurface: const ColorConverter().fromJson(json['onInverseSurface']) ?? seedColor.onInverseSurface,
-      inversePrimary: const ColorConverter().fromJson(json['inversePrimary']) ?? seedColor.inversePrimary,
-      shadow: const ColorConverter().fromJson(json['shadow']) ?? seedColor.shadow,
-      surfaceTint: const ColorConverter().fromJson(json['surfaceTint']) ?? seedColor.surfaceTint,
-      outlineVariant: const ColorConverter().fromJson(json['outlineVariant']) ?? seedColor.outlineVariant,
-      scrim: const ColorConverter().fromJson(json['scrim']) ?? seedColor.scrim,
+      onPrimary: const ColorConverter().fromJson(json["onPrimary"]) ??
+          seedColor.onPrimary,
+      primaryContainer:
+          const ColorConverter().fromJson(json["primaryContainer"]) ??
+              seedColor.primaryContainer,
+      onPrimaryContainer:
+          const ColorConverter().fromJson(json["onPrimaryContainer"]) ??
+              seedColor.onPrimaryContainer,
+      secondary: const ColorConverter().fromJson(json["secondary"]) ??
+          seedColor.secondary,
+      onSecondary: const ColorConverter().fromJson(json["onSecondary"]) ??
+          seedColor.onSecondary,
+      secondaryContainer:
+          const ColorConverter().fromJson(json["secondaryContainer"]) ??
+              seedColor.secondaryContainer,
+      onSecondaryContainer:
+          const ColorConverter().fromJson(json["onSecondaryContainer"]) ??
+              seedColor.onSecondaryContainer,
+      tertiary: const ColorConverter().fromJson(json["tertiary"]) ??
+          seedColor.tertiary,
+      onTertiary: const ColorConverter().fromJson(json["onTertiary"]) ??
+          seedColor.onTertiary,
+      tertiaryContainer:
+          const ColorConverter().fromJson(json["tertiaryContainer"]) ??
+              seedColor.tertiaryContainer,
+      onTertiaryContainer:
+          const ColorConverter().fromJson(json["onTertiaryContainer"]) ??
+              seedColor.onTertiaryContainer,
+      disabled:
+          const ColorConverter().fromJson(json["disabled"]) ?? defaultDisabled,
+      error: const ColorConverter().fromJson(json["error"]) ?? seedColor.error,
+      onError:
+          const ColorConverter().fromJson(json["onError"]) ?? seedColor.onError,
+      errorContainer: const ColorConverter().fromJson(json["errorContainer"]) ??
+          seedColor.errorContainer,
+      onErrorContainer:
+          const ColorConverter().fromJson(json["onErrorContainer"]) ??
+              seedColor.onErrorContainer,
+      confirmation: const ColorConverter().fromJson(json["confirmation"]) ??
+          defaultConfirmation,
+      onConfirmation: const ColorConverter().fromJson(json["onConfirmation"]) ??
+          defaultOnConfirmation,
+      confirmationContainer:
+          const ColorConverter().fromJson(json["confirmationContainer"]) ??
+              defaultConfirmationContainer,
+      onConfirmationContainer:
+          const ColorConverter().fromJson(json["onConfirmationContainer"]) ??
+              defaultOnConfirmationContainer,
+      information: const ColorConverter().fromJson(json["information"]) ??
+          defaultInformation,
+      onInformation: const ColorConverter().fromJson(json["onInformation"]) ??
+          defaultOnInformation,
+      informationContainer:
+          const ColorConverter().fromJson(json["informationContainer"]) ??
+              defaultInformationContainer,
+      onInformationContainer:
+          const ColorConverter().fromJson(json["onInformationContainer"]) ??
+              defaultOnInformationContainer,
+      warning:
+          const ColorConverter().fromJson(json["warning"]) ?? defaultWarning,
+      onWarning: const ColorConverter().fromJson(json["onWarning"]) ??
+          defaultOnWarning,
+      warningContainer:
+          const ColorConverter().fromJson(json["warningContainer"]) ??
+              defaultWarningContainer,
+      onWarningContainer:
+          const ColorConverter().fromJson(json["onWarningContainer"]) ??
+              defaultOnWarningContainer,
+      outline:
+          const ColorConverter().fromJson(json["outline"]) ?? seedColor.outline,
+      background: const ColorConverter().fromJson(json["background"]) ??
+          seedColor.background,
+      onBackground: const ColorConverter().fromJson(json["onBackground"]) ??
+          seedColor.onBackground,
+      surface:
+          const ColorConverter().fromJson(json["surface"]) ?? seedColor.surface,
+      onSurface: const ColorConverter().fromJson(json["onSurface"]) ??
+          seedColor.onSurface,
+      surfaceVariant: const ColorConverter().fromJson(json["surfaceVariant"]) ??
+          seedColor.surfaceVariant,
+      onSurfaceVariant:
+          const ColorConverter().fromJson(json["onSurfaceVariant"]) ??
+              seedColor.onSurfaceVariant,
+      inverseSurface: const ColorConverter().fromJson(json["inverseSurface"]) ??
+          seedColor.inverseSurface,
+      onInverseSurface:
+          const ColorConverter().fromJson(json["onInverseSurface"]) ??
+              seedColor.onInverseSurface,
+      inversePrimary: const ColorConverter().fromJson(json["inversePrimary"]) ??
+          seedColor.inversePrimary,
+      shadow:
+          const ColorConverter().fromJson(json["shadow"]) ?? seedColor.shadow,
+      surfaceTint: const ColorConverter().fromJson(json["surfaceTint"]) ??
+          seedColor.surfaceTint,
+      outlineVariant: const ColorConverter().fromJson(json["outlineVariant"]) ??
+          seedColor.outlineVariant,
+      scrim: const ColorConverter().fromJson(json["scrim"]) ?? seedColor.scrim,
     );
   }
 
   /// [toJson] is a method that converts the [ColorModel] to JSON.
   Map<String, dynamic> toJson() => {
-        'primary': const ColorConverter().toJson(primary),
-        'onPrimary': const ColorConverter().toJson(onPrimary),
-        'primaryContainer': const ColorConverter().toJson(primaryContainer),
-        'onPrimaryContainer': const ColorConverter().toJson(onPrimaryContainer),
-        'secondary': const ColorConverter().toJson(secondary),
-        'onSecondary': const ColorConverter().toJson(onSecondary),
-        'secondaryContainer': const ColorConverter().toJson(secondaryContainer),
-        'onSecondaryContainer': const ColorConverter().toJson(onSecondaryContainer),
-        'tertiary': const ColorConverter().toJson(tertiary),
-        'onTertiary': const ColorConverter().toJson(onTertiary),
-        'tertiaryContainer': const ColorConverter().toJson(tertiaryContainer),
-        'onTertiaryContainer': const ColorConverter().toJson(onTertiaryContainer),
-        'error': const ColorConverter().toJson(error),
-        'onError': const ColorConverter().toJson(onError),
-        'disabled': const ColorConverter().toJson(disabled),
-        'errorContainer': const ColorConverter().toJson(errorContainer),
-        'onErrorContainer': const ColorConverter().toJson(onErrorContainer),
-        'confirmation': const ColorConverter().toJson(confirmation),
-        'onConfirmation': const ColorConverter().toJson(onConfirmation),
-        'confirmationContainer': const ColorConverter().toJson(confirmationContainer),
-        'onConfirmationContainer': const ColorConverter().toJson(onConfirmationContainer),
-        'information': const ColorConverter().toJson(information),
-        'onInformation': const ColorConverter().toJson(onInformation),
-        'informationContainer': const ColorConverter().toJson(informationContainer),
-        'onInformationContainer': const ColorConverter().toJson(onInformationContainer),
-        'warning': const ColorConverter().toJson(warning),
-        'onWarning': const ColorConverter().toJson(onWarning),
-        'warningContainer': const ColorConverter().toJson(warningContainer),
-        'onWarningContainer': const ColorConverter().toJson(onWarningContainer),
-        'outline': const ColorConverter().toJson(outline),
-        'background': const ColorConverter().toJson(background),
-        'onBackground': const ColorConverter().toJson(onBackground),
-        'surface': const ColorConverter().toJson(surface),
-        'onSurface': const ColorConverter().toJson(onSurface),
-        'surfaceVariant': const ColorConverter().toJson(surfaceVariant),
-        'onSurfaceVariant': const ColorConverter().toJson(onSurfaceVariant),
-        'inverseSurface': const ColorConverter().toJson(inverseSurface),
-        'onInverseSurface': const ColorConverter().toJson(onInverseSurface),
-        'inversePrimary': const ColorConverter().toJson(inversePrimary),
-        'shadow': const ColorConverter().toJson(shadow),
-        'surfaceTint': const ColorConverter().toJson(surfaceTint),
-        'outlineVariant': const ColorConverter().toJson(outlineVariant),
-        'scrim': const ColorConverter().toJson(scrim),
+        "primary": const ColorConverter().toJson(primary),
+        "onPrimary": const ColorConverter().toJson(onPrimary),
+        "primaryContainer": const ColorConverter().toJson(primaryContainer),
+        "onPrimaryContainer": const ColorConverter().toJson(onPrimaryContainer),
+        "secondary": const ColorConverter().toJson(secondary),
+        "onSecondary": const ColorConverter().toJson(onSecondary),
+        "secondaryContainer": const ColorConverter().toJson(secondaryContainer),
+        "onSecondaryContainer":
+            const ColorConverter().toJson(onSecondaryContainer),
+        "tertiary": const ColorConverter().toJson(tertiary),
+        "onTertiary": const ColorConverter().toJson(onTertiary),
+        "tertiaryContainer": const ColorConverter().toJson(tertiaryContainer),
+        "onTertiaryContainer":
+            const ColorConverter().toJson(onTertiaryContainer),
+        "error": const ColorConverter().toJson(error),
+        "onError": const ColorConverter().toJson(onError),
+        "disabled": const ColorConverter().toJson(disabled),
+        "errorContainer": const ColorConverter().toJson(errorContainer),
+        "onErrorContainer": const ColorConverter().toJson(onErrorContainer),
+        "confirmation": const ColorConverter().toJson(confirmation),
+        "onConfirmation": const ColorConverter().toJson(onConfirmation),
+        "confirmationContainer":
+            const ColorConverter().toJson(confirmationContainer),
+        "onConfirmationContainer":
+            const ColorConverter().toJson(onConfirmationContainer),
+        "information": const ColorConverter().toJson(information),
+        "onInformation": const ColorConverter().toJson(onInformation),
+        "informationContainer":
+            const ColorConverter().toJson(informationContainer),
+        "onInformationContainer":
+            const ColorConverter().toJson(onInformationContainer),
+        "warning": const ColorConverter().toJson(warning),
+        "onWarning": const ColorConverter().toJson(onWarning),
+        "warningContainer": const ColorConverter().toJson(warningContainer),
+        "onWarningContainer": const ColorConverter().toJson(onWarningContainer),
+        "outline": const ColorConverter().toJson(outline),
+        "background": const ColorConverter().toJson(background),
+        "onBackground": const ColorConverter().toJson(onBackground),
+        "surface": const ColorConverter().toJson(surface),
+        "onSurface": const ColorConverter().toJson(onSurface),
+        "surfaceVariant": const ColorConverter().toJson(surfaceVariant),
+        "onSurfaceVariant": const ColorConverter().toJson(onSurfaceVariant),
+        "inverseSurface": const ColorConverter().toJson(inverseSurface),
+        "onInverseSurface": const ColorConverter().toJson(onInverseSurface),
+        "inversePrimary": const ColorConverter().toJson(inversePrimary),
+        "shadow": const ColorConverter().toJson(shadow),
+        "surfaceTint": const ColorConverter().toJson(surfaceTint),
+        "outlineVariant": const ColorConverter().toJson(outlineVariant),
+        "scrim": const ColorConverter().toJson(scrim),
       };
 }

@@ -1,15 +1,15 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/shape_border_model.dart";
+import "package:theme/data/models/box_constraints_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'floating_action_button_model.freezed.dart';
-part 'floating_action_button_model.g.dart';
+part "floating_action_button_model.freezed.dart";
+part "floating_action_button_model.g.dart";
 
 @freezed
 class FloatingActionButtonModel with _$FloatingActionButtonModel {
@@ -27,10 +27,14 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
     ShapeBorderModel? shape_shapeBorder, // TODO: Change to ShapeBorderModel
     bool? enableFeedback_bool,
     double? iconSize_double,
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? sizeConstraints_boxConstraints,
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? smallSizeConstraints_boxConstraints,
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? largeSizeConstraints_boxConstraints,
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? sizeConstraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? smallSizeConstraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? largeSizeConstraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? extendedSizeConstraints_boxConstraints,
     double? extendedIconLabelSpacing_double,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? extendedPadding_edgeInsets,
     TextStyleString? extendedTextStyle_textStyleString,
@@ -38,13 +42,19 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
 
   const FloatingActionButtonModel._();
 
-  FloatingActionButtonThemeData asFloatingActionButtonThemeData({String? styleTypeName}) {
+  FloatingActionButtonThemeData asFloatingActionButtonThemeData(
+      {String? styleTypeName,}) {
     return FloatingActionButtonThemeData(
-      foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      splashColor: splashColor_themeColorString?.toColor(styleType: styleTypeName),
+      foregroundColor:
+          foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      splashColor:
+          splashColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       focusElevation: focusElevation_double,
       hoverElevation: hoverElevation_double,
@@ -53,13 +63,20 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       enableFeedback: enableFeedback_bool,
       iconSize: iconSize_double,
-      sizeConstraints: sizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
-      smallSizeConstraints: smallSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
-      largeSizeConstraints: largeSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
-      extendedSizeConstraints: extendedSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      sizeConstraints: sizeConstraints_boxConstraints?.asBoxConstraints(
+          styleTypeName: styleTypeName,),
+      smallSizeConstraints: smallSizeConstraints_boxConstraints
+          ?.asBoxConstraints(styleTypeName: styleTypeName),
+      largeSizeConstraints: largeSizeConstraints_boxConstraints
+          ?.asBoxConstraints(styleTypeName: styleTypeName),
+      extendedSizeConstraints: extendedSizeConstraints_boxConstraints
+          ?.asBoxConstraints(styleTypeName: styleTypeName),
       extendedIconLabelSpacing: extendedIconLabelSpacing_double,
-      extendedPadding: extendedPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-      extendedTextStyle: extendedTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      extendedPadding: extendedPadding_edgeInsets?.asEdgeInsets(
+          styleTypeName: styleTypeName,),
+      extendedTextStyle: extendedTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
     );
   }
 
@@ -118,5 +135,6 @@ class FloatingActionButtonModel with _$FloatingActionButtonModel {
   //   );
   // }
 
-  factory FloatingActionButtonModel.fromJson(Map<String, dynamic> json) => _$FloatingActionButtonModelFromJson(json);
+  factory FloatingActionButtonModel.fromJson(Map<String, dynamic> json) =>
+      _$FloatingActionButtonModelFromJson(json);
 }

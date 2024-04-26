@@ -21,7 +21,9 @@ class GooglePlacesDataRepository {
   const GooglePlacesDataRepository({required this.googleApiKey});
 
   /// [textSearchGooglePlaces] returns a list of [GooglePlace]s based on the [GoogleTextSearchParameters].
-  Future<List<GooglePlace?>> textSearchGooglePlaces({required DataSourceTypes source, required GoogleTextSearchParameters parameters}) async {
+  Future<List<GooglePlace?>> textSearchGooglePlaces(
+      {required DataSourceTypes source,
+      required GoogleTextSearchParameters parameters}) async {
     final results = await _dataSourceByType(source).search(parameters.toMap());
     if (results == null) {
       AppLogger.print(

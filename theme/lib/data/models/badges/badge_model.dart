@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/data/models/offset_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/data/models/offset_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'badge_model.freezed.dart';
-part 'badge_model.g.dart';
+part "badge_model.freezed.dart";
+part "badge_model.g.dart";
 
 enum AlignmentOptions {
   topLeft,
@@ -53,21 +53,26 @@ class BadgeModel with _$BadgeModel {
     double? largeSize_double,
     TextStyleString? textStyle_textStyleString,
     @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
-    @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
+    @Default(AlignmentOptions.center)
+    AlignmentOptions? alignment_enum_alignmentOptions,
     @Default(OffsetModel()) OffsetModel? offset_offset,
   }) = _BadgeModel;
 
   const BadgeModel._();
 
-  factory BadgeModel.fromJson(Map<String, dynamic> json) => _$BadgeModelFromJson(json);
+  factory BadgeModel.fromJson(Map<String, dynamic> json) =>
+      _$BadgeModelFromJson(json);
 
   BadgeThemeData asBadgeThemeData({String? styleTypeName}) {
     return BadgeThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       textColor: textColor_themeColorString?.toColor(styleType: styleTypeName),
       smallSize: smallSize_double,
       largeSize: largeSize_double,
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       alignment: alignment_enum_alignmentOptions?.alignment,
       offset: offset_offset?.asOffset(styleTypeName: styleTypeName),

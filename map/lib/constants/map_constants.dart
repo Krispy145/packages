@@ -8,5 +8,6 @@ class MapConstants {
   static const googlePlaceTextSearchSuffix = "maps/api/place/textsearch/json";
   static const googlePlacePhotoSuffix = "maps/api/place/photo";
 
-  static LatLngBounds londonBounds = LatLngBounds(const LatLng(51.547536, -0.259400), const LatLng(51.468703, -0.012324));
+  static LatLngBounds londonBounds = LatLngBounds(
+      const LatLng(51.547536, -0.259400), const LatLng(51.468703, -0.012324));
 }

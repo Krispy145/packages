@@ -1,10 +1,10 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:collection/collection.dart';
-import 'package:theme/app/app.dart';
-import 'package:theme/data/models/text/text_style_model.dart';
-import 'package:theme/data/models/text/text_style_sizes.dart';
-import 'package:theme/data/models/text/text_types.dart';
+import "package:collection/collection.dart";
+import "package:theme/app/app.dart";
+import "package:theme/data/models/text/text_style_model.dart";
+import "package:theme/data/models/text/text_style_sizes.dart";
+import "package:theme/data/models/text/text_types.dart";
 
 typedef TextStyleString = String;
 
@@ -18,11 +18,14 @@ extension TextStyleStringExtension on TextStyleString {
         return null;
       }
     }
-    final currentTextStyleModel = AppTheme.textStyleTypes(styleTypeName: styleType);
+    final currentTextStyleModel =
+        AppTheme.textStyleTypes(styleTypeName: styleType);
     final keyList = split("-");
     if (keyList.length < 2 || currentTextStyleModel == null) return null;
-    final type = TextType.values.firstWhereOrNull((element) => element.name == keyList[0]);
-    final size = TextSizes.values.firstWhereOrNull((element) => element.name == keyList[1]);
+    final type = TextType.values
+        .firstWhereOrNull((element) => element.name == keyList[0]);
+    final size = TextSizes.values
+        .firstWhereOrNull((element) => element.name == keyList[1]);
     String? color;
     if (keyList.length >= 3) {
       color = keyList[2];

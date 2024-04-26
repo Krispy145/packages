@@ -1,19 +1,19 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/data/models/user_model.dart';
-import 'package:authentication/data/repositories/_repository.dart';
-import 'package:authentication/data/repositories/api_auth.repository.dart';
-import 'package:authentication/data/repositories/firebase_auth.repository.dart';
-import 'package:authentication/data/repositories/supabase_auth.repository.dart';
-import 'package:authentication/data/source/_source.dart';
-import 'package:authentication/data/source/api_user.source.dart';
-import 'package:authentication/data/source/firestore_user.source.dart';
-import 'package:authentication/data/source/supabase_user.source.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:authentication/utils/loggers.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/data/models/user_model.dart";
+import "package:authentication/data/repositories/_repository.dart";
+import "package:authentication/data/repositories/api_auth.repository.dart";
+import "package:authentication/data/repositories/firebase_auth.repository.dart";
+import "package:authentication/data/repositories/supabase_auth.repository.dart";
+import "package:authentication/data/source/_source.dart";
+import "package:authentication/data/source/api_user.source.dart";
+import "package:authentication/data/source/firestore_user.source.dart";
+import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:authentication/utils/loggers.dart";
+import "package:flutter/foundation.dart";
+import "package:flutter_facebook_auth/flutter_facebook_auth.dart";
+import "package:rxdart/rxdart.dart";
+import "package:utilities/logger/logger.dart";
 
 /// [AuthSourceTypes] is an enum that defines the different types of data sources.
 enum AuthSourceTypes {
@@ -46,9 +46,11 @@ class AuthenticationRepository {
   final String? facebookAppId;
 
   /// [currentUserModelStream] is the current user model stream.
-  BehaviorSubject<UserModel?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
+  BehaviorSubject<UserModel?> get currentUserModelStream =>
+      _authenticationDataRepository.currentUserModelSubject;
 
-  UserModel? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
+  UserModel? get currentUserModel =>
+      _authenticationDataRepository.currentUserModelSubject.value;
 
   // ignore: comment_references
   /// [authStatusStream] is the authentication status stream.
@@ -97,54 +99,65 @@ class AuthenticationRepository {
     // _initStreams();
   }
 
-  late final AuthenticationDataRepository _authenticationDataRepository = source == AuthSourceTypes.api
-      ? ApiAuthDataRepository(
-          baseUrl: baseUrl!,
-          logToDatabase: logToDatabase,
-          dataSource: dataSource,
-        )
-      : source == AuthSourceTypes.firebase
-          ? FirebaseAuthDataRepository(
+  late final AuthenticationDataRepository _authenticationDataRepository =
+      source == AuthSourceTypes.api
+          ? ApiAuthDataRepository(
+              baseUrl: baseUrl!,
               logToDatabase: logToDatabase,
               dataSource: dataSource,
             )
-          : SupabaseAuthDataRepository(
-              logToDatabase: logToDatabase,
-              dataSource: dataSource,
-            );
+          : source == AuthSourceTypes.firebase
+              ? FirebaseAuthDataRepository(
+                  logToDatabase: logToDatabase,
+                  dataSource: dataSource,
+                )
+              : SupabaseAuthDataRepository(
+                  logToDatabase: logToDatabase,
+                  dataSource: dataSource,
+                );
 
   /// [signIn] signs in the user.
   Future<UserModel?> signIn({required AuthParams params}) async {
     AppLogger.print(
-      'signIn attempt -> ${params.authType}',
+      "signIn attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
     );
     UserModel? changedUserModel;
     try {
       switch (params.authType) {
         case AuthType.email:
-          changedUserModel = await _authenticationDataRepository.signInWithEmail(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithEmail(params);
         case AuthType.google:
-          changedUserModel = await _authenticationDataRepository.signInWithGoogle(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithGoogle(params);
         case AuthType.facebook:
-          changedUserModel = await _authenticationDataRepository.signInWithFacebook(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithFacebook(params);
         case AuthType.apple:
-          changedUserModel = await _authenticationDataRepository.signInWithApple(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithApple(params);
         case AuthType.github:
-          changedUserModel = await _authenticationDataRepository.signInWithGitHub(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithGitHub(params);
         case AuthType.microsoft:
-          changedUserModel = await _authenticationDataRepository.signInWithMicrosoft(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithMicrosoft(params);
         case AuthType.anonymous:
-          changedUserModel = await _authenticationDataRepository.signInAnonymously(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInAnonymously(params);
         case AuthType.passwordless:
-          changedUserModel = await _authenticationDataRepository.signInWithPasswordlessEmail(params.email!, params.password!);
+          changedUserModel = await _authenticationDataRepository
+              .signInWithPasswordlessEmail(params.email!, params.password!);
         case AuthType.phone:
-          changedUserModel = await _authenticationDataRepository.signInWithPhoneNumber(params.phoneNumber!, params.password!);
+          changedUserModel = await _authenticationDataRepository
+              .signInWithPhoneNumber(params.phoneNumber!, params.password!);
         case AuthType.x:
-          changedUserModel = await _authenticationDataRepository.signInWithX(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithX(params);
         case AuthType.empty:
           AppLogger.print(
-            'AuthType.empty not implemented for signIn',
+            "AuthType.empty not implemented for signIn",
             [AuthenticationLoggers.authentication],
             type: LoggerType.error,
           );
@@ -154,7 +167,7 @@ class AuthenticationRepository {
       return changedUserModel;
     } catch (e) {
       AppLogger.print(
-        'signIn attempt -> ${params.authType}: $e',
+        "signIn attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -164,14 +177,14 @@ class AuthenticationRepository {
 
   /// [signOut] signs out the user.
   Future<void> signOut() async {
-    AppLogger.print('signOut attempt', [AuthenticationLoggers.authentication]);
+    AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
     return _authenticationDataRepository.signOut();
   }
 
   /// [signUpWithEmail] signs up the use with email and password.
   Future<UserModel?> signUpWithEmail({required AuthParams params}) async {
     AppLogger.print(
-      'signUp attempt -> ${params.authType}',
+      "signUp attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
     );
     return _authenticationDataRepository.signUpWithEmail(
@@ -182,13 +195,15 @@ class AuthenticationRepository {
 
   /// [params] refreshes the user's token.
   Future<UserModel?> reauthenticate({required AuthParams params}) async {
-    AppLogger.print('refreshToken attempt', [AuthenticationLoggers.authentication]);
+    AppLogger.print(
+        "refreshToken attempt", [AuthenticationLoggers.authentication],);
     return _authenticationDataRepository.reauthenticate(params);
   }
 
   /// [deleteAccount] deletes the user's account.
   Future<void> deleteAccount({required String userId}) async {
-    AppLogger.print('deleteAccount attempt', [AuthenticationLoggers.authentication]);
+    AppLogger.print(
+        "deleteAccount attempt", [AuthenticationLoggers.authentication],);
     return _authenticationDataRepository.deleteAccount(userId);
   }
 
@@ -228,7 +243,7 @@ class AuthenticationRepository {
         );
       } catch (e) {
         AppLogger.print(
-          'initializeFacebookForWeb attempt -> $e',
+          "initializeFacebookForWeb attempt -> $e",
           [AuthenticationLoggers.authentication],
           type: LoggerType.error,
         );

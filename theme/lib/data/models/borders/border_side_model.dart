@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'border_side_model.freezed.dart';
-part 'border_side_model.g.dart';
+part "border_side_model.freezed.dart";
+part "border_side_model.g.dart";
 
 @unfreezed
 class BorderSideModel with _$BorderSideModel {
@@ -18,7 +18,8 @@ class BorderSideModel with _$BorderSideModel {
 
   const BorderSideModel._();
 
-  factory BorderSideModel.fromJson(Map<String, dynamic> json) => _$BorderSideModelFromJson(json);
+  factory BorderSideModel.fromJson(Map<String, dynamic> json) =>
+      _$BorderSideModelFromJson(json);
 
   BorderSide asBorderSide({String? styleTypeName}) {
     return BorderSide(

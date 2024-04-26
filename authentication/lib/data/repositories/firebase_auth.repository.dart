@@ -1,20 +1,20 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/data/repositories/helpers/auth_repository.helper.dart';
-import 'package:authentication/data/source/api_user.source.dart';
-import 'package:authentication/data/source/supabase_user.source.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:authentication/utils/loggers.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/data/repositories/helpers/auth_repository.helper.dart";
+import "package:authentication/data/source/api_user.source.dart";
+import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:authentication/utils/loggers.dart";
+import "package:firebase_auth/firebase_auth.dart";
+import "package:flutter/foundation.dart";
+import "package:rxdart/rxdart.dart";
+import "package:utilities/logger/logger.dart";
 
-import '../models/user_model.dart';
-import '../source/firestore_user.source.dart';
-import '/data/source/_source.dart';
-import '_repository.dart';
+import "../models/user_model.dart";
+import "../source/firestore_user.source.dart";
+import "/data/source/_source.dart";
+import "_repository.dart";
 
 /// [FirebaseAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
 class FirebaseAuthDataRepository implements AuthenticationDataRepository {
@@ -73,7 +73,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.microsoft:
-        final credential = MicrosoftAuthProvider.credential(params.accessToken!);
+        final credential =
+            MicrosoftAuthProvider.credential(params.accessToken!);
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.x:
@@ -116,8 +117,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInWithApple(AuthParams params) async {
     final appleProvider = AppleAuthProvider()
-      ..addScope('email')
-      ..addScope('fullName');
+      ..addScope("email")
+      ..addScope("fullName");
     UserCredential userCredential;
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(appleProvider);
@@ -142,7 +143,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } catch (e) {
       AppLogger.print(
-        'signIn attempt -> $e',
+        "signIn attempt -> $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -153,12 +154,15 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInWithFacebook(AuthParams params) async {
     try {
-      final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
+      final facebookParams =
+          await AuthRepositoryHelper.signInWithFacebook(params);
       // Create a credential from the access token
-      final facebookAuthCredential = FacebookAuthProvider.credential(facebookParams.accessToken!);
+      final facebookAuthCredential =
+          FacebookAuthProvider.credential(facebookParams.accessToken!);
 
       // Once signed in, return the UserCredential
-      final userCredential = await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+      final userCredential =
+          await _firebaseAuth.signInWithCredential(facebookAuthCredential);
       final userModel = _userCredentialToUserModel(
         userCredential,
         facebookParams,
@@ -167,7 +171,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } catch (e) {
       AppLogger.print(
-        'signIn attempt -> ${params.authType}: $e',
+        "signIn attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -182,7 +186,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(githubAuthProvider);
     } else {
-      userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
+      userCredential =
+          await _firebaseAuth.signInWithProvider(githubAuthProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -216,7 +221,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } catch (e) {
       AppLogger.print(
-        'signIn attempt -> ${params.authType}: $e',
+        "signIn attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -231,7 +236,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(microsoftProvider);
     } else {
-      userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
+      userCredential =
+          await _firebaseAuth.signInWithProvider(microsoftProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -266,7 +272,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final confirmationResult = await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
+    final confirmationResult =
+        await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
 
     final userCredential = await confirmationResult.confirm(confirmationCode);
 
@@ -319,14 +326,14 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       return null;
     } on FirebaseAuthException catch (e) {
       AppLogger.print(
-        'signUp attempt -> $e',
+        "signUp attempt -> $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
       throw AuthenticationException(e.message.toString());
     } catch (e) {
       AppLogger.print(
-        'signUp attempt -> $e',
+        "signUp attempt -> $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -335,7 +342,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   Future<void> _initStreams() async {
-    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject =
+        BehaviorSubject<UserModel?>.seeded(_currentUserModel);
     if (_user != null && _currentUserModel == null) {
       final databaseUser = await dataSource.get(_user!.uid);
       if (databaseUser != null) {
@@ -353,7 +361,8 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
       }
       if (event == null && _currentUserModel != null) {
-        _currentUserModel = _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
+        _currentUserModel =
+            _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
         currentUserModelSubject.add(_currentUserModel);
       }
     });

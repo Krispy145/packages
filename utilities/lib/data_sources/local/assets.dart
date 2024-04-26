@@ -1,10 +1,10 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:collection/collection.dart';
-import 'package:flutter/services.dart';
-import 'package:utilities/data_sources/source.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
+import "package:collection/collection.dart";
+import "package:flutter/services.dart";
+import "package:utilities/data_sources/source.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 /// [AssetsDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
 class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
@@ -46,19 +46,25 @@ class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
       final jsonString = await rootBundle.loadString(path);
       final response = json.decode(jsonString);
       if (response is List) {
-        AppLogger.print("Asset response List length: ${response.length}", [UtilitiesLoggers.assetsDataSource]);
+        AppLogger.print("Asset response List length: ${response.length}",
+            [UtilitiesLoggers.assetsDataSource],);
         final data = response.map((e) => e as Map<String, dynamic>).toList();
         if (id != null) {
-          final result = data.firstWhereOrNull((element) => element['id'] == id);
+          final result =
+              data.firstWhereOrNull((element) => element["id"] == id);
           return [convertDataTypeFromMap(result ?? <String, dynamic>{})];
         }
         return data.map(convertDataTypeFromMap).toList();
       }
-      AppLogger.print("Asset response Map from path: $path", [UtilitiesLoggers.assetsDataSource]);
-      final data = convertDataTypeFromMap(json.decode(jsonString) as Map<String, dynamic>);
+      AppLogger.print("Asset response Map from path: $path",
+          [UtilitiesLoggers.assetsDataSource],);
+      final data = convertDataTypeFromMap(
+          json.decode(jsonString) as Map<String, dynamic>,);
       return [data];
     } catch (e) {
-      AppLogger.print("Error in parsing json for Assets $T: $e", [UtilitiesLoggers.assetsDataSource], type: LoggerType.error);
+      AppLogger.print("Error in parsing json for Assets $T: $e",
+          [UtilitiesLoggers.assetsDataSource],
+          type: LoggerType.error,);
     }
     return [];
   }

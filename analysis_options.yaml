@@ -32,7 +32,7 @@ linter:
     no_leading_underscores_for_local_identifiers: false
     one_member_abstracts: false
     diagnostic_describe_all_properties: false
-    prefer_double_quotes: false
+    prefer_double_quotes: true
     prefer_single_quotes: false
     always_specify_types: false
     unnecessary_final: false

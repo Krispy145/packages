@@ -1,8 +1,8 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:utilities/data_sources/source.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
-import 'package:uuid/uuid.dart';
+import "package:flutter_secure_storage/flutter_secure_storage.dart";
+import "package:utilities/data_sources/source.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
+import "package:uuid/uuid.dart";
 
 /// [SecureDataSource] is a wrapper class for [FlutterSecureStorage]
 abstract class SecureDataSource implements DataSource<String> {
@@ -92,14 +92,16 @@ abstract class SecureDataSource implements DataSource<String> {
   /// [read] method returns the value of the given key
   Future<String?> read(String key) async {
     final value = await _storage.read(key: key);
-    AppLogger.print("READ: $key => $value", [UtilitiesLoggers.secureDataSource]);
+    AppLogger.print(
+        "READ: $key => $value", [UtilitiesLoggers.secureDataSource],);
     return value;
   }
 
   /// [readAll] method returns all the key-value pairs
   Future<Map<String, String>> readAll() async {
     final allValues = await _storage.readAll();
-    AppLogger.print("READ All: $allValues", [UtilitiesLoggers.secureDataSource]);
+    AppLogger.print(
+        "READ All: $allValues", [UtilitiesLoggers.secureDataSource],);
     return allValues;
   }
 

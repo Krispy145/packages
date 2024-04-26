@@ -1,12 +1,13 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:utilities/data_sources/remote/supabase.dart';
+import "package:supabase_flutter/supabase_flutter.dart";
+import "package:utilities/data_sources/remote/supabase.dart";
 
-import '_source.dart';
+import "_source.dart";
 
 // TODO: Move supabase client to envied file
 
 /// [SupabaseDODataSource] is a class that implements [DODataSource] interface.
-class SupabaseDODataSource<T> extends SupabaseDataSource<T> implements DODataSource<T> {
+class SupabaseDODataSource<T> extends SupabaseDataSource<T>
+    implements DODataSource<T> {
   /// [SupabaseDODataSource] constructor.
   SupabaseDODataSource(
     super.tableName, {

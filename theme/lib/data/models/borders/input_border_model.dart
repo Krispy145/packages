@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_radius_model.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_radius_model.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
 
-part 'input_border_model.freezed.dart';
-part 'input_border_model.g.dart';
+part "input_border_model.freezed.dart";
+part "input_border_model.g.dart";
 
 enum InputBorderType {
   none,
@@ -25,11 +25,16 @@ class InputBorderModel with _$InputBorderModel {
 
   const InputBorderModel._();
 
-  factory InputBorderModel.fromJson(Map<String, dynamic> json) => _$InputBorderModelFromJson(json);
+  factory InputBorderModel.fromJson(Map<String, dynamic> json) =>
+      _$InputBorderModelFromJson(json);
 
   InputBorder? asInputBorder({String? styleTypeName}) {
-    final borderRadius = borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName) ?? BorderRadius.zero;
-    final borderSide = borderSide_borderSide?.asBorderSide(styleTypeName: styleTypeName) ?? BorderSide.none;
+    final borderRadius = borderRadius_borderRadius?.asBorderRadius(
+            styleTypeName: styleTypeName,) ??
+        BorderRadius.zero;
+    final borderSide =
+        borderSide_borderSide?.asBorderSide(styleTypeName: styleTypeName) ??
+            BorderSide.none;
     switch (type_enum_inputBorderType) {
       case InputBorderType.none:
         return InputBorder.none;

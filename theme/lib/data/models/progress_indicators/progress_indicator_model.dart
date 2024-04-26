@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'progress_indicator_model.freezed.dart';
-part 'progress_indicator_model.g.dart';
+part "progress_indicator_model.freezed.dart";
+part "progress_indicator_model.g.dart";
 
 @freezed
 class ProgressIndicatorModel with _$ProgressIndicatorModel {
@@ -19,7 +19,8 @@ class ProgressIndicatorModel with _$ProgressIndicatorModel {
 
   const ProgressIndicatorModel._();
 
-  factory ProgressIndicatorModel.fromJson(Map<String, dynamic> json) => _$ProgressIndicatorModelFromJson(json);
+  factory ProgressIndicatorModel.fromJson(Map<String, dynamic> json) =>
+      _$ProgressIndicatorModelFromJson(json);
 
   // static ProgressIndicatorModel defaultProgressIndicatorModel() {
   //   return const ProgressIndicatorModel(
@@ -31,13 +32,17 @@ class ProgressIndicatorModel with _$ProgressIndicatorModel {
   //   );
   // }
 
-  ProgressIndicatorThemeData asProgressIndicatorThemeData({String? styleTypeName}) {
+  ProgressIndicatorThemeData asProgressIndicatorThemeData(
+      {String? styleTypeName,}) {
     return ProgressIndicatorThemeData(
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      linearTrackColor: linearTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      linearTrackColor:
+          linearTrackColor_themeColorString?.toColor(styleType: styleTypeName),
       linearMinHeight: linearMinHeight_double,
-      circularTrackColor: circularTrackColor_themeColorString?.toColor(styleType: styleTypeName),
-      refreshBackgroundColor: refreshBackgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      circularTrackColor: circularTrackColor_themeColorString?.toColor(
+          styleType: styleTypeName,),
+      refreshBackgroundColor: refreshBackgroundColor_themeColorString?.toColor(
+          styleType: styleTypeName,),
     );
   }
 }

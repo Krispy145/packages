@@ -1,9 +1,9 @@
-import 'package:flutter/services.dart' hide AssetManifest;
-import 'package:fonts/data/models/font_descriptor_and_url.dart';
-import 'package:fonts/data/models/font_family_and_variant.dart';
-import 'package:fonts/utilities/asset_manifest.dart';
+import "package:flutter/services.dart" hide AssetManifest;
+import "package:fonts/data/models/font_descriptor_and_url.dart";
+import "package:fonts/data/models/font_family_and_variant.dart";
+import "package:fonts/utilities/asset_manifest.dart";
 
-import '_source.dart';
+import "_source.dart";
 
 /// [AssetFontsDataSource] is a class that implements [FontsDataSource] interface.
 class AssetFontsDataSource implements FontsDataSource {
@@ -12,7 +12,8 @@ class AssetFontsDataSource implements FontsDataSource {
   @override
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
     final assetManifestJson = await assetManifest.json();
-    final assetPath = _findFamilyWithVariantAssetPath(fontVariantAndUrl.familyWithVariant, assetManifestJson);
+    final assetPath = _findFamilyWithVariantAssetPath(
+        fontVariantAndUrl.familyWithVariant, assetManifestJson,);
     if (assetPath == null) return null;
     return rootBundle.load(assetPath);
   }
@@ -29,8 +30,10 @@ class AssetFontsDataSource implements FontsDataSource {
 
     for (final assetList in manifestJson.values) {
       for (final asset in assetList) {
-        for (final matchingSuffix in ['.ttf', '.otf', '.woff2'].where(asset.endsWith)) {
-          final assetWithoutExtension = asset.substring(0, asset.length - matchingSuffix.length);
+        for (final matchingSuffix
+            in [".ttf", ".otf", ".woff2"].where(asset.endsWith)) {
+          final assetWithoutExtension =
+              asset.substring(0, asset.length - matchingSuffix.length);
           if (assetWithoutExtension.endsWith(apiFilenamePrefix)) {
             return asset;
           }

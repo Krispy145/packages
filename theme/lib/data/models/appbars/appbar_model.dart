@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/shape_border_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'appbar_model.freezed.dart';
-part 'appbar_model.g.dart';
+part "appbar_model.freezed.dart";
+part "appbar_model.g.dart";
 
 @freezed
 class AppbarModel with _$AppbarModel {
@@ -29,7 +29,8 @@ class AppbarModel with _$AppbarModel {
 
   const AppbarModel._();
 
-  factory AppbarModel.fromJson(Map<String, dynamic> json) => _$AppbarModelFromJson(json);
+  factory AppbarModel.fromJson(Map<String, dynamic> json) =>
+      _$AppbarModelFromJson(json);
   // static AppbarModel defaultAppbarModel() {
   //   return const AppbarModel(
   //     backgroundColor: "primary",
@@ -50,18 +51,28 @@ class AppbarModel with _$AppbarModel {
   AppBarTheme asAppBarTheme({String? styleTypeName}) {
     return AppBarTheme(
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      foregroundColor:
+          foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       centerTitle: centerTitle_bool,
       titleSpacing: titleSpacing_double,
       toolbarHeight: toolbarHeight_double,
-      toolbarTextStyle: toolbarTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle.copyWith(
-            color: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      toolbarTextStyle: toolbarTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      titleTextStyle: titleTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle
+          .copyWith(
+            color: foregroundColor_themeColorString?.toColor(
+                styleType: styleTypeName,),
           ),
     );
   }

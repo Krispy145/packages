@@ -1,14 +1,19 @@
-import 'package:mobx/mobx.dart';
-import 'package:theme/data/models/general/duration_model.dart';
-import '../base/store.dart';
-import '../int/store.dart';
+import "package:mobx/mobx.dart";
+import "package:theme/data/models/general/duration_model.dart";
+import "../base/store.dart";
+import "../int/store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
-class DurationFormFieldStore = _DurationFormFieldStore with _$DurationFormFieldStore;
+class DurationFormFieldStore = _DurationFormFieldStore
+    with _$DurationFormFieldStore;
 
-abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel> with Store {
-  _DurationFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
+abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
+    with Store {
+  _DurationFormFieldStore(
+      {required super.value,
+      required super.onValueChanged,
+      required super.title,}) {
     // On Value Changed
     // reaction<DurationModel>((reaction) => value, (newValue) {
     // topController.text = newValue.top.toString();
@@ -24,7 +29,7 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     onValueChanged: (days) {
       if (days != null) value = value.copyWith(days_int: days);
     },
-    title: 'Days',
+    title: "Days",
   );
 
   late final hoursStore = IntFormFieldStore(
@@ -58,7 +63,9 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     value: value.milliseconds_int,
     showButtons: false,
     onValueChanged: (milliseconds) {
-      if (milliseconds != null) value = value.copyWith(milliseconds_int: milliseconds);
+      if (milliseconds != null) {
+        value = value.copyWith(milliseconds_int: milliseconds);
+      }
     },
     title: "Milliseconds",
   );
@@ -67,7 +74,9 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     value: value.microseconds_int,
     showButtons: false,
     onValueChanged: (microseconds) {
-      if (microseconds != null) value = value.copyWith(microseconds_int: microseconds);
+      if (microseconds != null) {
+        value = value.copyWith(microseconds_int: microseconds);
+      }
     },
     title: "Microseconds",
   );

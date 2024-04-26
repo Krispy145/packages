@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/components/components.dart';
-import 'package:widgets/text_fields/text_fields.dart';
+import "package:flutter/material.dart";
+import "package:widgets/components/components.dart";
+import "package:widgets/text_fields/text_fields.dart";
 
 class TextInputs extends StatelessWidget {
   const TextInputs({super.key});
@@ -8,7 +8,7 @@ class TextInputs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ComponentGroupDecoration(
-      label: 'Text inputs',
+      label: "Text inputs",
       children: [TextFields()],
     );
   }

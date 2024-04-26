@@ -20,6 +20,8 @@ dependencies:
     #     ref: v0.0.1
     path: ../../packages/utilities
 
+  auto_route: any
+  freezed_annotation: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

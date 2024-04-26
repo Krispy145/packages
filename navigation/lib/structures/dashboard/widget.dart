@@ -1,10 +1,10 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
-import 'package:utilities/layouts/intrinsic_height_scroller.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/layouts/intrinsic_height_scroller.dart";
 
-import 'store.dart';
+import "store.dart";
 
 /// [NavigationRailPosition] is an enum that is used to determine the position of the navigation rail.
 enum NavigationRailPosition {
@@ -97,7 +97,8 @@ class DashboardShellStructure extends StatefulWidget {
   }) : boardNavigationRailPosition = NavigationRailPosition.right;
 
   @override
-  State<DashboardShellStructure> createState() => _DashboardShellStructureState();
+  State<DashboardShellStructure> createState() =>
+      _DashboardShellStructureState();
 }
 
 class _DashboardShellStructureState extends State<DashboardShellStructure> {
@@ -116,9 +117,12 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
     return Material(
       child: Row(
         children: [
-          if (widget.boardNavigationRailPosition == NavigationRailPosition.left) _buildNavigationRail(context),
+          if (widget.boardNavigationRailPosition == NavigationRailPosition.left)
+            _buildNavigationRail(context),
           const Expanded(child: AutoRouter()),
-          if (widget.boardNavigationRailPosition == NavigationRailPosition.right) _buildNavigationRail(context),
+          if (widget.boardNavigationRailPosition ==
+              NavigationRailPosition.right)
+            _buildNavigationRail(context),
         ],
       ),
     );
@@ -133,7 +137,8 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
           useIndicator: false,
           leading: widget.leading,
           trailing: _buildTrailingStack(context),
-          extended: widget.labelType == NavigationRailLabelType.none && store.isNavigationRailExtended,
+          extended: widget.labelType == NavigationRailLabelType.none &&
+              store.isNavigationRailExtended,
           selectedIndex: store.selectedIndex,
           onDestinationSelected: (value) {
             widget.onDestinationSelected?.call(value);
@@ -161,8 +166,14 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
             IconButton(
               icon: Icon(
                 store.isNavigationRailExtended
-                    ? (widget.boardNavigationRailPosition == NavigationRailPosition.left ? Icons.chevron_left : Icons.chevron_right)
-                    : (widget.boardNavigationRailPosition == NavigationRailPosition.left ? Icons.chevron_right : Icons.chevron_left),
+                    ? (widget.boardNavigationRailPosition ==
+                            NavigationRailPosition.left
+                        ? Icons.chevron_left
+                        : Icons.chevron_right)
+                    : (widget.boardNavigationRailPosition ==
+                            NavigationRailPosition.left
+                        ? Icons.chevron_right
+                        : Icons.chevron_left),
               ),
               onPressed: store.toggleNavigationRail,
             ),

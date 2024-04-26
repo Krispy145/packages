@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
 
-import '../base/form_field.dart';
-import '../double/form_field.dart';
-import '../enum/form_field.dart';
-import '../theme_color_string/form_field.dart';
-import 'store.dart';
+import "../base/form_field.dart";
+import "../double/form_field.dart";
+import "../enum/form_field.dart";
+import "../theme_color_string/form_field.dart";
+import "store.dart";
 
 class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
   const BorderSideFormField({super.key, required super.store});
@@ -92,7 +92,11 @@ class NumberEditingTextField extends StatelessWidget {
   final bool enabled;
   final void Function(String) onChanged;
 
-  const NumberEditingTextField({super.key, required this.controller, required this.enabled, required this.onChanged});
+  const NumberEditingTextField(
+      {super.key,
+      required this.controller,
+      required this.enabled,
+      required this.onChanged,});
 
   @override
   Widget build(BuildContext context) {

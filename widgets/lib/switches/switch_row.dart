@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class SwitchRow extends StatefulWidget {
   const SwitchRow({super.key, required this.isEnabled});

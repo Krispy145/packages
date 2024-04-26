@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
 
 class Checkboxes extends StatefulWidget {
   const Checkboxes({super.key});
@@ -16,14 +16,14 @@ class _CheckboxesState extends State<Checkboxes> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Checkboxes',
-      tooltipMessage: 'Use CheckboxListTile or Checkbox',
+      label: "Checkboxes",
+      tooltipMessage: "Use CheckboxListTile or Checkbox",
       child: Column(
         children: <Widget>[
           CheckboxListTile(
             tristate: true,
             value: isChecked0,
-            title: const Text('Option 1'),
+            title: const Text("Option 1"),
             onChanged: (value) {
               setState(() {
                 isChecked0 = value;
@@ -33,7 +33,7 @@ class _CheckboxesState extends State<Checkboxes> {
           CheckboxListTile(
             tristate: true,
             value: isChecked1,
-            title: const Text('Option 2'),
+            title: const Text("Option 2"),
             onChanged: (value) {
               setState(() {
                 isChecked1 = value;
@@ -43,7 +43,7 @@ class _CheckboxesState extends State<Checkboxes> {
           CheckboxListTile(
             tristate: true,
             value: isChecked2,
-            title: const Text('Option 3'),
+            title: const Text("Option 3"),
             // TODO: showcase error state https://github.com/flutter/flutter/issues/118616
             onChanged: (value) {
               setState(() {
@@ -53,7 +53,7 @@ class _CheckboxesState extends State<Checkboxes> {
           ),
           const CheckboxListTile(
             tristate: true,
-            title: Text('Option 4'),
+            title: Text("Option 4"),
             value: true,
             onChanged: null,
           ),

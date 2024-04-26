@@ -1,18 +1,20 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/foundation.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:utilities/data_sources/local/hive/helpers/map_type_adaptor.dart';
-import 'package:utilities/data_sources/local/hive/helpers/type_box.dart';
-import 'package:utilities/data_sources/local/hive/helpers/type_box_listeneable.dart';
-import 'package:utilities/data_sources/source.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
-import 'package:utilities/widgets/load_state/base_store.dart';
-import 'package:uuid/uuid.dart';
+import "package:flutter/foundation.dart";
+import "package:hive_flutter/hive_flutter.dart";
+import "package:utilities/data_sources/local/hive/helpers/map_type_adaptor.dart";
+import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
+import "package:utilities/data_sources/local/hive/helpers/type_box_listeneable.dart";
+import "package:utilities/data_sources/source.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
+import "package:utilities/widgets/load_state/base_store.dart";
+import "package:uuid/uuid.dart";
 
 /// [HiveDataSource] is a wrapper class for [Hive]
-abstract class HiveDataSource<T> extends LoadStateStore with Mappable<T> implements DataSource<T> {
+abstract class HiveDataSource<T> extends LoadStateStore
+    with Mappable<T>
+    implements DataSource<T> {
   /// [boxName] is the name of the [Box]
   final String boxName;
 
@@ -78,7 +80,8 @@ abstract class HiveDataSource<T> extends LoadStateStore with Mappable<T> impleme
       );
 
   /// [boxListenable] returns a [ValueListenable] for the [TypeBox]
-  ValueListenable<TypeBox<T>> get boxListenable => TypeBoxListenable<T>(_box, null);
+  ValueListenable<TypeBox<T>> get boxListenable =>
+      TypeBoxListenable<T>(_box, null);
 
   /// [generateUniqueId] method generates a unique id
   String generateUniqueId() {
@@ -174,7 +177,8 @@ abstract class HiveDataSource<T> extends LoadStateStore with Mappable<T> impleme
       updateMap[entry.key] = entry.value;
     }
     await _box.putAll(updateMap);
-    AppLogger.print("Updated All: $entries", [UtilitiesLoggers.localDataSource]);
+    AppLogger.print(
+        "Updated All: $entries", [UtilitiesLoggers.localDataSource],);
   }
 
   /// [close] method closes the [TypeBox]

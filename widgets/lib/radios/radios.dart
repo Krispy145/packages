@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
 
 enum Options { option1, option2, option3 }
 
@@ -16,12 +16,12 @@ class _RadiosState extends State<Radios> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Radio buttons',
-      tooltipMessage: 'Use RadioListTile<T> or Radio<T>',
+      label: "Radio buttons",
+      tooltipMessage: "Use RadioListTile<T> or Radio<T>",
       child: Column(
         children: <Widget>[
           RadioListTile<Options>(
-            title: const Text('Option 1'),
+            title: const Text("Option 1"),
             value: Options.option1,
             groupValue: _selectedOption,
             onChanged: (value) {
@@ -31,7 +31,7 @@ class _RadiosState extends State<Radios> {
             },
           ),
           RadioListTile<Options>(
-            title: const Text('Option 2'),
+            title: const Text("Option 2"),
             value: Options.option2,
             groupValue: _selectedOption,
             onChanged: (value) {
@@ -41,7 +41,7 @@ class _RadiosState extends State<Radios> {
             },
           ),
           RadioListTile<Options>(
-            title: const Text('Option 3'),
+            title: const Text("Option 3"),
             value: Options.option3,
             groupValue: _selectedOption,
             onChanged: null,

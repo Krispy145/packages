@@ -1,16 +1,16 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/data/models/user_model.dart';
-import 'package:authentication/domain/repositories/authentication.repository.dart';
-import 'package:authentication/helpers/constants.dart';
-import 'package:authentication/presentation/components/email.dart';
-import 'package:authentication/presentation/components/phone.dart';
-import 'package:authentication/presentation/components/social_types.dart';
-import 'package:authentication/presentation/components/socials.dart';
-import 'package:flutter/material.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
-import 'package:utilities/snackbar/configuration.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/data/models/user_model.dart";
+import "package:authentication/domain/repositories/authentication.repository.dart";
+import "package:authentication/helpers/constants.dart";
+import "package:authentication/presentation/components/email.dart";
+import "package:authentication/presentation/components/phone.dart";
+import "package:authentication/presentation/components/social_types.dart";
+import "package:authentication/presentation/components/socials.dart";
+import "package:flutter/material.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/snackbar/configuration.dart";
 
 // import 'store.dart';
 
@@ -52,7 +52,8 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
   @override
   void initState() {
     super.initState();
-    _userModelSubscription = widget.repository.currentUserModelStream.listen((data) {
+    _userModelSubscription =
+        widget.repository.currentUserModelStream.listen((data) {
       if (data != null) {
         final authStatus = data.status;
         if (authStatus == AuthStatus.authenticated) {
@@ -60,7 +61,7 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
           if (widget.showSuccessSnackBar) {
             context.showSnackbar(
               configuration: SnackbarConfiguration.confirmation(
-                title: 'Successfully signed in',
+                title: "Successfully signed in",
               ),
             );
           }
@@ -78,8 +79,10 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
-    final maxWidth = MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
-    final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
+    final maxWidth =
+        MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
+    final socialButtonVariant =
+        isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
       child: Center(
         child: ConstrainedBox(

@@ -24,12 +24,15 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
-      return FlutterMap(options: store.mapOptions, mapController: store.animatedMapController.mapController, children: [
-        buildAttribution(),
-        buildTileLayer(),
-        buildSuperclusterLayer(),
-        ...buildAdditionalChildren(context),
-      ]);
+      return FlutterMap(
+          options: store.mapOptions,
+          mapController: store.animatedMapController.mapController,
+          children: [
+            buildAttribution(),
+            buildTileLayer(),
+            buildSuperclusterLayer(),
+            ...buildAdditionalChildren(context),
+          ]);
     });
   }
 
@@ -41,9 +44,18 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
     return RichAttributionWidget(
       showFlutterMapAttribution: false,
       attributions: [
-        TextSourceAttribution("© Mapbox", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/about/maps/'))),
-        TextSourceAttribution("© OpenStreetMap", prependCopyright: false, onTap: () => launchUrl(Uri.parse('http://www.openstreetmap.org/copyright'))),
-        TextSourceAttribution("Improve this map", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/map-feedback/'))),
+        TextSourceAttribution("© Mapbox",
+            prependCopyright: false,
+            onTap: () =>
+                launchUrl(Uri.parse('https://www.mapbox.com/about/maps/'))),
+        TextSourceAttribution("© OpenStreetMap",
+            prependCopyright: false,
+            onTap: () =>
+                launchUrl(Uri.parse('http://www.openstreetmap.org/copyright'))),
+        TextSourceAttribution("Improve this map",
+            prependCopyright: false,
+            onTap: () =>
+                launchUrl(Uri.parse('https://www.mapbox.com/map-feedback/'))),
       ],
     );
   }

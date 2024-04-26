@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/offset_model.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/offset_model.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'box_shadow_model.freezed.dart';
-part 'box_shadow_model.g.dart';
+part "box_shadow_model.freezed.dart";
+part "box_shadow_model.g.dart";
 
 @freezed
 class BoxShadowModel with _$BoxShadowModel {
@@ -24,12 +24,14 @@ class BoxShadowModel with _$BoxShadowModel {
 
   const BoxShadowModel._();
 
-  factory BoxShadowModel.fromJson(Map<String, dynamic> json) => _$BoxShadowModelFromJson(json);
+  factory BoxShadowModel.fromJson(Map<String, dynamic> json) =>
+      _$BoxShadowModelFromJson(json);
 
   BoxShadow asBoxShadow({String? styleTypeName}) {
     return BoxShadow(
       color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
-      offset: offset_offset?.asOffset(styleTypeName: styleTypeName) ?? Offset.zero,
+      offset:
+          offset_offset?.asOffset(styleTypeName: styleTypeName) ?? Offset.zero,
       blurRadius: blurRadius_double ?? 0.0,
       spreadRadius: spreadRadius_double ?? 0.0,
     );

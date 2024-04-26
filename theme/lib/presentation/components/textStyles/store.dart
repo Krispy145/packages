@@ -1,10 +1,10 @@
-import 'package:mobx/mobx.dart';
-import 'package:theme/app/app.dart';
-import 'package:theme/data/models/text/text_types.dart';
-import 'package:theme/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:mobx/mobx.dart";
+import "package:theme/app/app.dart";
+import "package:theme/data/models/text/text_types.dart";
+import "package:theme/utils/loggers.dart";
+import "package:utilities/logger/logger.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 /// [TextTypesStore] is a class that uses [_TextTypesStore] to manage state of the colorSchemes feature.
 class TextTypesStore = _TextTypesStore with _$TextTypesStore;
@@ -25,7 +25,7 @@ abstract class _TextTypesStore with Store {
     if (selectedTextType != null) {
       // final result = {...defaultTextType, ...selectedTextType!};
       final result = selectedTextType!;
-      AppLogger.print('mergedMap: $result', [ThemeLoggers.textStyles]);
+      AppLogger.print("mergedMap: $result", [ThemeLoggers.textStyles]);
       return result;
     }
     return {}; // defaultTextType;
@@ -35,17 +35,22 @@ abstract class _TextTypesStore with Store {
   @action
   void setSelectedTextType(Map<String, dynamic> value) {
     selectedTextType = value;
-    AppLogger.print('selectedTextType: $selectedTextType', [ThemeLoggers.textStyles]);
+    AppLogger.print(
+        "selectedTextType: $selectedTextType", [ThemeLoggers.textStyles],);
   }
 
   /// [setTextStyleModel] is a method that sets the current model.
   @action
-  TextTypes? setTextStyleModel(String type, String size, String key, dynamic value) {
+  TextTypes? setTextStyleModel(
+      String type, String size, String key, dynamic value,) {
     try {
       selectedTextType![type][size][key] = value;
       return TextTypes.fromJson(selectedTextType!);
     } catch (e, stackTrace) {
-      AppLogger.print('selectedTextType: $selectedTextType\nStackTrace: $stackTrace', [ThemeLoggers.textStyles], type: LoggerType.error);
+      AppLogger.print(
+          "selectedTextType: $selectedTextType\nStackTrace: $stackTrace",
+          [ThemeLoggers.textStyles],
+          type: LoggerType.error,);
     }
     return null;
   }

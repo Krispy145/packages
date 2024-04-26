@@ -1,11 +1,11 @@
-import 'package:admob/utils/helper.dart';
-import 'package:admob/utils/loggers.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:mobx/mobx.dart';
-import 'package:universal_io/io.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:admob/utils/helper.dart";
+import "package:admob/utils/loggers.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart";
+import "package:mobx/mobx.dart";
+import "package:universal_io/io.dart";
+import "package:utilities/logger/logger.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 /// enum for the different types of ads.
 enum AdMobType {
@@ -68,7 +68,8 @@ abstract class _AdMobStore with Store {
 
   /// interstitialAdId getter.
   @computed
-  String get getInterstitialAdUnitId => interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
+  String get getInterstitialAdUnitId =>
+      interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
 
   /// rewardAdId getter.
   @computed

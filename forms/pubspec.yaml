@@ -16,6 +16,9 @@ dependencies:
   theme:
     path: ../../packages/theme
 
+  flutter_mobx: any
+  mobx: any
+  fonts: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,6 +1,6 @@
-import 'package:collection/collection.dart';
-import 'package:flutter/services.dart';
-import 'package:utilities/data_sources/source.dart';
+import "package:collection/collection.dart";
+import "package:flutter/services.dart";
+import "package:utilities/data_sources/source.dart";
 
 /// [DummyDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
 abstract class DummyDataSource<T> implements DataSource<T> {
@@ -65,7 +65,10 @@ abstract class DummyDataSource<T> implements DataSource<T> {
 
   @override
   Future<T?> search(Map<String, dynamic> queries) async {
-    return fakeData.where((element) => matchesQuery(queries, element)).toList().firstOrNull;
+    return fakeData
+        .where((element) => matchesQuery(queries, element))
+        .toList()
+        .firstOrNull;
   }
 
   @override

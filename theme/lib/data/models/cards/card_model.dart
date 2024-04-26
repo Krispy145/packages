@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/shape_border_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'card_model.freezed.dart';
-part 'card_model.g.dart';
+part "card_model.freezed.dart";
+part "card_model.g.dart";
 
 @freezed
 class CardModel with _$CardModel {
@@ -23,7 +23,8 @@ class CardModel with _$CardModel {
 
   const CardModel._();
 
-  factory CardModel.fromJson(Map<String, dynamic> json) => _$CardModelFromJson(json);
+  factory CardModel.fromJson(Map<String, dynamic> json) =>
+      _$CardModelFromJson(json);
 
   // static CardModel defaultCardModel() {
   //   return const CardModel(
@@ -51,8 +52,10 @@ class CardModel with _$CardModel {
   CardTheme asCardTheme({String? styleTypeName}) {
     return CardTheme(
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),

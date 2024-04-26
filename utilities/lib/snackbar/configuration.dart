@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/snackbar/style.dart';
+import "package:flutter/material.dart";
+import "package:utilities/snackbar/style.dart";
 
 /// [SnackbarConfiguration] is the configuration that will be used to display a snackbar.
 class SnackbarConfiguration {

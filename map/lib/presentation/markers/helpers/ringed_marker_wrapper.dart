@@ -35,7 +35,9 @@ class RingedMarkerWrapper extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             child: Center(
-              child: Padding(padding: const EdgeInsets.all(8.0), child: childBuilder(context)),
+              child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: childBuilder(context)),
             ),
           ),
         ),

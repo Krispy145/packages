@@ -6,7 +6,8 @@ import 'google_bounds_model.dart';
 
 part 'place_geometry_model.mapper.dart';
 
-@MappableClass(caseStyle: CaseStyle.snakeCase, includeCustomMappers: [LatLngMapper()])
+@MappableClass(
+    caseStyle: CaseStyle.snakeCase, includeCustomMappers: [LatLngMapper()])
 class PlaceGeometry with PlaceGeometryMappable {
   final LatLng location;
   final GoogleBounds viewport;

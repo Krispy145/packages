@@ -1,5 +1,5 @@
-import 'package:badges/badges.dart';
-import 'package:flutter/material.dart';
+import "package:badges/badges.dart";
+import "package:flutter/material.dart";
 
 /// [NotificationBadgeStyle] is a class that houses the style for the notification badge.
 class NotificationBadgeStyle extends BadgeStyle {

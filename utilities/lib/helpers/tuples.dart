@@ -1,4 +1,4 @@
-import 'dart:convert';
+import "dart:convert";
 
 /// [Pair] is a data class that holds two values of different types.
 class Pair<A, B> {
@@ -12,7 +12,7 @@ class Pair<A, B> {
   const Pair(this.first, this.second);
 
   @override
-  String toString() => 'Pair - 1: $first, 2: $second';
+  String toString() => "Pair - 1: $first, 2: $second";
 
   /// [copyWith] is a method that returns a copy of the current instance of the class
   Pair<A, B> copyWith({
@@ -28,8 +28,8 @@ class Pair<A, B> {
   /// [toMap] is a method that returns a map representation of the current instance of the class
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'first': first,
-      'second': second,
+      "first": first,
+      "second": second,
     };
   }
 
@@ -52,7 +52,7 @@ class Triple<A, B, C> {
   const Triple(this.first, this.second, this.third);
 
   @override
-  String toString() => 'Triple - 1: $first, 2: $second, 3: $third';
+  String toString() => "Triple - 1: $first, 2: $second, 3: $third";
 
   /// [copyWith] is a method that returns a copy of the current instance of the class
   Triple<A, B, C> copyWith({
@@ -70,9 +70,9 @@ class Triple<A, B, C> {
   /// [toMap] is a method that returns a map representation of the current instance of the class
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'first': first,
-      'second': second,
-      'third': third,
+      "first": first,
+      "second": second,
+      "third": third,
     };
   }
 

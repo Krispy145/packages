@@ -15,7 +15,8 @@ enum GooglePlaceSearchStatus {
 }
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
-class GoogleTextSearchResponsesModel with GoogleTextSearchResponsesModelMappable {
+class GoogleTextSearchResponsesModel
+    with GoogleTextSearchResponsesModelMappable {
   final List<String> htmlAttributions;
   final String? nextPageToken;
   final List<GooglePlace> results;

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import '../base/form_field.dart';
-import 'store.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "../base/form_field.dart";
+import "store.dart";
 
 class BoolFormField extends BaseFormField<BoolFormFieldStore> {
   const BoolFormField({super.key, required super.store});

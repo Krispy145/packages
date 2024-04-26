@@ -2,10 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:convert' as convert;
+import "dart:convert" as convert;
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart' hide AssetManifest;
+import "package:flutter/foundation.dart";
+import "package:flutter/services.dart" hide AssetManifest;
 
 /// A class to obtain and memoize the app's asset manifest.
 ///
@@ -20,17 +20,18 @@ class AssetManifest {
   /// Enabled by default. Should only be disabled during tests.
   final bool enableCache;
 
-  Future<Map<String, List<String>>?>? json() => _jsonFuture ??= _loadAssetManifestJson();
+  Future<Map<String, List<String>>?>? json() =>
+      _jsonFuture ??= _loadAssetManifestJson();
 
   Future<Map<String, List<String>>?> _loadAssetManifestJson() async {
     try {
       final jsonString = await rootBundle.loadString(
-        'AssetManifest.json',
+        "AssetManifest.json",
         cache: enableCache,
       );
       return _manifestParser(jsonString);
     } catch (e) {
-      rootBundle.evict('AssetManifest.json');
+      rootBundle.evict("AssetManifest.json");
       rethrow;
     }
   }
@@ -41,7 +42,8 @@ class AssetManifest {
     }
     final parsedJson = convert.json.decode(jsonData) as Map<String, dynamic>;
     final parsedManifest = <String, List<String>>{
-      for (final entry in parsedJson.entries) entry.key: (entry.value as List<dynamic>).cast<String>(),
+      for (final entry in parsedJson.entries)
+        entry.key: (entry.value as List<dynamic>).cast<String>(),
     };
     return SynchronousFuture(parsedManifest);
   }

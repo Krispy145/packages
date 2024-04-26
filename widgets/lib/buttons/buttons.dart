@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class Buttons extends StatefulWidget {
   const Buttons({super.key});
@@ -13,8 +13,9 @@ class _ButtonsState extends State<Buttons> {
   @override
   Widget build(BuildContext context) {
     return const ComponentDecoration(
-      label: 'Common buttons',
-      tooltipMessage: 'Use ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, or TextButton',
+      label: "Common buttons",
+      tooltipMessage:
+          "Use ElevatedButton, FilledButton, FilledButton.tonal, OutlinedButton, or TextButton",
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -45,27 +46,27 @@ class ButtonsWithoutIcon extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: isDisabled ? null : () {},
-              child: const Text('Elevated'),
+              child: const Text("Elevated"),
             ),
             colDivider,
             FilledButton(
               onPressed: isDisabled ? null : () {},
-              child: const Text('Filled'),
+              child: const Text("Filled"),
             ),
             colDivider,
             FilledButton.tonal(
               onPressed: isDisabled ? null : () {},
-              child: const Text('Filled tonal'),
+              child: const Text("Filled tonal"),
             ),
             colDivider,
             OutlinedButton(
               onPressed: isDisabled ? null : () {},
-              child: const Text('Outlined'),
+              child: const Text("Outlined"),
             ),
             colDivider,
             TextButton(
               onPressed: isDisabled ? null : () {},
-              child: const Text('Text'),
+              child: const Text("Text"),
             ),
           ],
         ),
@@ -88,31 +89,31 @@ class ButtonsWithIcon extends StatelessWidget {
             ElevatedButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.add),
-              label: const Text('Icon'),
+              label: const Text("Icon"),
             ),
             colDivider,
             FilledButton.icon(
               onPressed: () {},
-              label: const Text('Icon'),
+              label: const Text("Icon"),
               icon: const Icon(Icons.add),
             ),
             colDivider,
             FilledButton.tonalIcon(
               onPressed: () {},
-              label: const Text('Icon'),
+              label: const Text("Icon"),
               icon: const Icon(Icons.add),
             ),
             colDivider,
             OutlinedButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.add),
-              label: const Text('Icon'),
+              label: const Text("Icon"),
             ),
             colDivider,
             TextButton.icon(
               onPressed: () {},
               icon: const Icon(Icons.add),
-              label: const Text('Icon'),
+              label: const Text("Icon"),
             ),
           ],
         ),

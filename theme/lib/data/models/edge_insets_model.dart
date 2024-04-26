@@ -1,10 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'edge_insets_model.freezed.dart';
-part 'edge_insets_model.g.dart';
+part "edge_insets_model.freezed.dart";
+part "edge_insets_model.g.dart";
 
 enum EdgeInsetsTypes { all, symmetric, only, zero }
 
@@ -20,7 +20,8 @@ class EdgeInsetsModel with _$EdgeInsetsModel {
 
   const EdgeInsetsModel._();
 
-  factory EdgeInsetsModel.fromJson(Map<String, dynamic> json) => _$EdgeInsetsModelFromJson(json);
+  factory EdgeInsetsModel.fromJson(Map<String, dynamic> json) =>
+      _$EdgeInsetsModelFromJson(json);
 
   EdgeInsets? asEdgeInsets({String? styleTypeName}) {
     return EdgeInsets.only(

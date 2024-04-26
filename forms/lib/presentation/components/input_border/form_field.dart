@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/data/models/borders/input_border_model.dart';
-import 'package:utilities/helpers/extensions/string.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:theme/data/models/borders/input_border_model.dart";
+import "package:utilities/helpers/extensions/string.dart";
+import "package:utilities/sizes/spacers.dart";
 
-import '../base/form_field.dart';
-import '../border_radius/form_field.dart';
-import '../border_side/form_field.dart';
-import '../double/form_field.dart';
-import 'store.dart';
+import "../base/form_field.dart";
+import "../border_radius/form_field.dart";
+import "../border_side/form_field.dart";
+import "../double/form_field.dart";
+import "store.dart";
 
 class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
   const InputBorderFormField({super.key, required super.store});
@@ -22,9 +22,13 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SegmentedButton<InputBorderType>(
-              segments: InputBorderType.values.map((type) => ButtonSegment<InputBorderType>(value: type, label: Text(type.name.toTitleCase()))).toList(),
+              segments: InputBorderType.values
+                  .map((type) => ButtonSegment<InputBorderType>(
+                      value: type, label: Text(type.name.toTitleCase()),),)
+                  .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) =>
+                  store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             TextField(
@@ -42,7 +46,9 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
               child: BorderRadiusFormField(store: store.borderRadiusStore),
             ),
             Sizes.m.spacer(),
-            Visibility(visible: store.showGapPaddingField, child: DoubleFormField(store: store.gapPaddingStore)),
+            Visibility(
+                visible: store.showGapPaddingField,
+                child: DoubleFormField(store: store.gapPaddingStore),),
           ],
         );
       },
@@ -105,7 +111,11 @@ class NumberEditingTextField extends StatelessWidget {
   final bool enabled;
   final void Function(String) onChanged;
 
-  const NumberEditingTextField({super.key, required this.controller, required this.enabled, required this.onChanged});
+  const NumberEditingTextField(
+      {super.key,
+      required this.controller,
+      required this.enabled,
+      required this.onChanged,});
 
   @override
   Widget build(BuildContext context) {

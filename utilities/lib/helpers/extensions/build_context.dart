@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'package:utilities/snackbar/configuration.dart';
-import 'package:utilities/snackbar/message.dart';
+import "package:flutter/material.dart";
+import "package:responsive_framework/responsive_framework.dart";
+import "package:utilities/snackbar/configuration.dart";
+import "package:utilities/snackbar/message.dart";
 
 /// Set of extension methods to easily display a snackbar
 extension ShowSnackbar on BuildContext {

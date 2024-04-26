@@ -1,17 +1,17 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/data/repositories/helpers/auth_repository.helper.dart';
-import 'package:authentication/data/source/api_user.source.dart';
-import 'package:authentication/data/source/supabase_user.source.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:authentication/utils/loggers.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/data/repositories/helpers/auth_repository.helper.dart";
+import "package:authentication/data/source/api_user.source.dart";
+import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:authentication/utils/loggers.dart";
+import "package:rxdart/rxdart.dart";
+import "package:supabase_flutter/supabase_flutter.dart";
+import "package:utilities/logger/logger.dart";
 
-import '../models/user_model.dart';
-import '../source/firestore_user.source.dart';
-import '/data/source/_source.dart';
-import '_repository.dart';
+import "../models/user_model.dart";
+import "../source/firestore_user.source.dart";
+import "/data/source/_source.dart";
+import "_repository.dart";
 
 /// [_OAuthProviderExtension] is an extension on [AuthType] enum.
 /// It is used to convert [AuthType] to [OAuthProvider] for supabase authentication.
@@ -29,9 +29,9 @@ extension _OAuthProviderExtension on AuthType {
       case AuthType.x:
         return OAuthProvider.twitter;
       case AuthType.microsoft:
-        throw const AuthenticationException('Microsoft is not set up yet');
+        throw const AuthenticationException("Microsoft is not set up yet");
       default:
-        throw AuthenticationException('$name is not set up yet}');
+        throw AuthenticationException("$name is not set up yet}");
     }
   }
 
@@ -49,7 +49,7 @@ extension _OAuthProviderExtension on AuthType {
       case OAuthProvider.twitter:
         return AuthType.x;
       default:
-        throw AuthenticationException('$name is not set up yet}');
+        throw AuthenticationException("$name is not set up yet}");
     }
   }
 }
@@ -76,7 +76,8 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     required this.logToDatabase,
     UserDataSource? dataSource,
   }) : dataSource = dataSource ?? SupabaseUserDataSource() {
-    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject =
+        BehaviorSubject<UserModel?>.seeded(_currentUserModel);
     _initStreams();
   }
 
@@ -94,7 +95,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } on AuthException catch (e) {
       AppLogger.print(
-        'reauthenticate attempt -> ${params.authType}: $e',
+        "reauthenticate attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -105,7 +106,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInAnonymously(AuthParams params) {
     throw const AuthenticationException(
-      'Anonymous authentication is not set up yet for supabase',
+      "Anonymous authentication is not set up yet for supabase",
     );
   }
 
@@ -119,12 +120,13 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         nonce: appleParams.nonce,
       );
 
-      final userModel = _authResponseToUserModel(appleParams, result.user != null);
+      final userModel =
+          _authResponseToUserModel(appleParams, result.user != null);
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } on AuthException catch (e) {
       AppLogger.print(
-        'signIn attempt -> ${params.authType}: $e',
+        "signIn attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -144,7 +146,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       return userModel;
     } on AuthException catch (e) {
       AppLogger.print(
-        'signIn attempt -> ${params.authType}: $e',
+        "signIn attempt -> ${params.authType}: $e",
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
@@ -179,7 +181,8 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       provider: googleParams.authType.toOAuthProvider(),
       idToken: googleParams.idToken!,
     );
-    final userModel = _authResponseToUserModel(googleParams, result.user != null);
+    final userModel =
+        _authResponseToUserModel(googleParams, result.user != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
     return userModel;
   }
@@ -187,7 +190,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInWithMicrosoft(AuthParams params) {
     throw const AuthenticationException(
-      'Microsoft authentication is not set up yet for supabase',
+      "Microsoft authentication is not set up yet for supabase",
     );
   }
 
@@ -197,7 +200,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     String emailLink,
   ) {
     throw const AuthenticationException(
-      'Passwordless authentication is not set up yet for supabase',
+      "Passwordless authentication is not set up yet for supabase",
     );
   }
 
@@ -256,7 +259,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         _currentUserModel = _supabaseUserToUserModel();
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
-          'Supabase user initialSession: ${_currentUserModel?.authType ?? AuthType.empty}',
+          "Supabase user initialSession: ${_currentUserModel?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
@@ -264,7 +267,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         _currentUserModel = _supabaseUserToUserModel();
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
-          'Supabase user signedIn: ${_currentUserModel?.authType ?? AuthType.empty}',
+          "Supabase user signedIn: ${_currentUserModel?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
@@ -273,15 +276,16 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
           _currentUserModel?.copyWith(status: AuthStatus.unauthenticated),
         );
         AppLogger.print(
-          'Supabase user signedOut: ${_currentUserModel?.authType ?? AuthType.empty}',
+          "Supabase user signedOut: ${_currentUserModel?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.tokenRefreshed) {
-        _currentUserModel = await reauthenticate(_currentUserModel!.toAuthParams());
+        _currentUserModel =
+            await reauthenticate(_currentUserModel!.toAuthParams());
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
-          'Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}',
+          "Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
@@ -300,7 +304,8 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       status: AuthStatus.authenticated,
       authType: _currentUserModel?.authType ?? AuthType.empty,
       createdAt: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt:
+          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
   }
 
@@ -315,7 +320,8 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
       createdAt: params.createdAt ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt:
+          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return _currentUserModel!;
   }

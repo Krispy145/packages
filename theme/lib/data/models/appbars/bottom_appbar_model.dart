@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'bottom_appbar_model.freezed.dart';
-part 'bottom_appbar_model.g.dart';
+part "bottom_appbar_model.freezed.dart";
+part "bottom_appbar_model.g.dart";
 
 @freezed
 class BottomAppbarModel with _$BottomAppbarModel {
@@ -21,7 +21,8 @@ class BottomAppbarModel with _$BottomAppbarModel {
 
   const BottomAppbarModel._();
 
-  factory BottomAppbarModel.fromJson(Map<String, dynamic> json) => _$BottomAppbarModelFromJson(json);
+  factory BottomAppbarModel.fromJson(Map<String, dynamic> json) =>
+      _$BottomAppbarModelFromJson(json);
 
   // static BottomAppbarModel defaultBottomAppbarModel() {
   //   return const BottomAppbarModel(
@@ -44,8 +45,10 @@ class BottomAppbarModel with _$BottomAppbarModel {
       color: color_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       height: height_double,
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }

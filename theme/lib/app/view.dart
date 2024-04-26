@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-import 'package:theme/app/store.dart';
-import 'package:utilities/sizes/screen_size.dart';
-import 'package:utilities/widgets/load_state/state_widget.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:responsive_framework/responsive_framework.dart";
+import "package:theme/app/store.dart";
+import "package:utilities/sizes/screen_size.dart";
+import "package:utilities/widgets/load_state/state_widget.dart";
 
 /// [ThemedMaterialApp] is a wrapper for [MaterialApp] that allows you to use [ThemeData] and
 class ThemedMaterialApp extends StatelessWidget {
@@ -51,7 +51,7 @@ class ThemedMaterialApp extends StatelessWidget {
       errorBuilder: (context) => const MaterialApp(
         home: Scaffold(
           body: Center(
-            child: Text('Error'),
+            child: Text("Error"),
           ),
         ),
       ),

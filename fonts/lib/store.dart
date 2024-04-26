@@ -1,17 +1,17 @@
-import 'dart:ui' as ui;
+import "dart:ui" as ui;
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fonts/data/do_fonts.dart';
-import 'package:fonts/data/models/font_descriptor_and_url.dart';
-import 'package:fonts/data/models/font_family_and_variant.dart';
-import 'package:fonts/data/models/font_variant_descriptor.dart';
-import 'package:mobx/mobx.dart';
-import 'package:utilities/widgets/load_state/base_store.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:fonts/data/do_fonts.dart";
+import "package:fonts/data/models/font_descriptor_and_url.dart";
+import "package:fonts/data/models/font_family_and_variant.dart";
+import "package:fonts/data/models/font_variant_descriptor.dart";
+import "package:mobx/mobx.dart";
+import "package:utilities/widgets/load_state/base_store.dart";
 
-import 'domain/repositories/fonts.repository.dart';
+import "domain/repositories/fonts.repository.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 typedef TextStyleBuilder = TextStyle Function({
   TextStyle? textStyle,
@@ -42,7 +42,9 @@ class FontsStore = _FontsStore with _$FontsStore;
 
 /// [_FontsStore] is a class that manages the state of the fonts feature.
 abstract class _FontsStore extends LoadStateStore with Store {
-  void initialize({List<DOFonts> fonts = DOFonts.values, bool allowRuntimeFetching = true}) {
+  void initialize(
+      {List<DOFonts> fonts = DOFonts.values,
+      bool allowRuntimeFetching = true,}) {
     this.allowRuntimeFetching = allowRuntimeFetching;
     for (final font in fonts) {
       register(font.family.familyName, font.family.variants);
@@ -109,8 +111,10 @@ abstract class _FontsStore extends LoadStateStore with Store {
     if (loadNow) await fontLoader.load();
   }
 
-  Future<void> loadFontIfNecessary(DOFontVariantAndUrl fontVariantAndUrl, [FontLoader? fontLoader]) async {
-    final familyWithVariantString = fontVariantAndUrl.familyWithVariant.toString();
+  Future<void> loadFontIfNecessary(DOFontVariantAndUrl fontVariantAndUrl,
+      [FontLoader? fontLoader,]) async {
+    final familyWithVariantString =
+        fontVariantAndUrl.familyWithVariant.toString();
     // If this font has already already loaded or is loading, then there is no
     // need to attempt to load it again, unless the attempted load results in an
     // error.
@@ -121,8 +125,10 @@ abstract class _FontsStore extends LoadStateStore with Store {
     }
 
     try {
-      final loadingFont = repository.loadFont(fontVariantAndUrl, allowRuntimeFetching);
-      return addFontLoaderFromByteData(familyWithVariantString, loadingFont, fontLoader);
+      final loadingFont =
+          repository.loadFont(fontVariantAndUrl, allowRuntimeFetching);
+      return addFontLoaderFromByteData(
+          familyWithVariantString, loadingFont, fontLoader,);
     } catch (e) {
       // TODO: Handle error better
       _loadedFonts.remove(familyWithVariantString);
@@ -152,9 +158,12 @@ abstract class _FontsStore extends LoadStateStore with Store {
     Future.wait<void>(futures).then((_) => loader.load());
   }
 
-  Future<List<void>> pendingFonts([List<dynamic>? _]) => Future.wait(pendingFontFutures);
+  Future<List<void>> pendingFonts([List<dynamic>? _]) =>
+      Future.wait(pendingFontFutures);
 
-  void register(String familyName, Map<DOFontVariantDescriptor, String?> variantMap, {bool eager = false}) {
+  void register(
+      String familyName, Map<DOFontVariantDescriptor, String?> variantMap,
+      {bool eager = false,}) {
     final style = styleBuilder(familyName, variantMap, eager);
     _fontsMap[familyName] = style;
     _themeMap[familyName] = themeBuilder(style);
@@ -260,7 +269,7 @@ abstract class _FontsStore extends LoadStateStore with Store {
         decorationStyle,
         decorationThickness,
       }) {
-        assert(variantMap.isNotEmpty, 'variantMap must not be empty.');
+        assert(variantMap.isNotEmpty, "variantMap must not be empty.");
         textStyle ??= const TextStyle();
         textStyle = textStyle.copyWith(
           color: color,
@@ -315,7 +324,8 @@ abstract class _FontsStore extends LoadStateStore with Store {
         );
       };
 
-  TextThemeBuilder themeBuilder(TextStyleBuilder styleBuilder) => ([textTheme]) {
+  TextThemeBuilder themeBuilder(TextStyleBuilder styleBuilder) =>
+      ([textTheme]) {
         textTheme ??= ThemeData.light().textTheme;
         return TextTheme(
           displayLarge: styleBuilder(textStyle: textTheme.displayLarge),

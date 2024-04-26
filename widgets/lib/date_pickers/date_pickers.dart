@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
 
 class DatePickers extends StatefulWidget {
   const DatePickers({super.key});
@@ -16,8 +16,8 @@ class _DatePickersState extends State<DatePickers> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Date picker',
-      tooltipMessage: 'Use showDatePicker',
+      label: "Date picker",
+      tooltipMessage: "Use showDatePicker",
       child: TextButton(
         onPressed: () async {
           final date = await showDatePicker(
@@ -32,7 +32,7 @@ class _DatePickersState extends State<DatePickers> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    'Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}',
+                    "Selected Date: ${selectedDate!.day}/${selectedDate!.month}/${selectedDate!.year}",
                   ),
                 ),
               );
@@ -40,7 +40,7 @@ class _DatePickersState extends State<DatePickers> {
           });
         },
         child: const Text(
-          'Show date picker',
+          "Show date picker",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

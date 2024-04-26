@@ -1,11 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:theme/extensions/build_context.dart';
-import 'package:utilities/widgets/load_state/state_widget.dart';
+import "package:flutter/material.dart";
+import "package:theme/extensions/build_context.dart";
+import "package:utilities/widgets/load_state/state_widget.dart";
 
-import 'store.dart';
+import "store.dart";
 
 // ignore: strict_raw_type
-abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidget {
+abstract class BaseFormField<T extends BaseFormFieldStore>
+    extends StatelessWidget {
   const BaseFormField({super.key, required this.store});
 
   final T store;

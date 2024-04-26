@@ -1,19 +1,24 @@
-import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
-import '../base/store.dart';
-import '../double/store.dart';
-import '../enum/store.dart';
-import '../theme_color_string/store.dart';
+import "package:flutter/material.dart";
+import "package:mobx/mobx.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
+import "../base/store.dart";
+import "../double/store.dart";
+import "../enum/store.dart";
+import "../theme_color_string/store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 // enum BorderSideTypes { all, symmetric, only, zero }
 
-class BorderSideFormFieldStore = _BorderSideFormFieldStore with _$BorderSideFormFieldStore;
+class BorderSideFormFieldStore = _BorderSideFormFieldStore
+    with _$BorderSideFormFieldStore;
 
-abstract class _BorderSideFormFieldStore extends BaseFormFieldStore<BorderSideModel> with Store {
-  _BorderSideFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
+abstract class _BorderSideFormFieldStore
+    extends BaseFormFieldStore<BorderSideModel> with Store {
+  _BorderSideFormFieldStore(
+      {required super.value,
+      required super.onValueChanged,
+      required super.title,}) {
     // On Type Changed
     // reaction<BorderSideType>(
     //   (reaction) => type,
@@ -29,15 +34,26 @@ abstract class _BorderSideFormFieldStore extends BaseFormFieldStore<BorderSideMo
   // late final bottomLeftController = TextEditingController(text: value.bottomLeft_double?.toString());
   // late final bottomRightController = TextEditingController(text: value.bottomRight_double?.toString());
 
-  late final widthStore = DoubleFormFieldStore(onValueChanged: (newWidth) => onValueChanged(value.copyWith(width_double: newWidth)), value: value.width_double, title: 'Width');
-  late final strokeAlignStore =
-      DoubleFormFieldStore(onValueChanged: (newStrokeAlign) => onValueChanged(value.copyWith(strokeAlign_double: newStrokeAlign)), value: value.strokeAlign_double, title: 'Stroke Align');
-  late final colorStore =
-      ThemeColorStringFormFieldStore(onValueChanged: (newColor) => onValueChanged(value.copyWith(color_themeColorString: newColor)), value: value.color_themeColorString, title: 'Color');
+  late final widthStore = DoubleFormFieldStore(
+      onValueChanged: (newWidth) =>
+          onValueChanged(value.copyWith(width_double: newWidth)),
+      value: value.width_double,
+      title: "Width",);
+  late final strokeAlignStore = DoubleFormFieldStore(
+      onValueChanged: (newStrokeAlign) =>
+          onValueChanged(value.copyWith(strokeAlign_double: newStrokeAlign)),
+      value: value.strokeAlign_double,
+      title: "Stroke Align",);
+  late final colorStore = ThemeColorStringFormFieldStore(
+      onValueChanged: (newColor) =>
+          onValueChanged(value.copyWith(color_themeColorString: newColor)),
+      value: value.color_themeColorString,
+      title: "Color",);
   late final styleStore = EnumFormFieldStore(
-    onValueChanged: (newStyle) => onValueChanged(value.copyWith(style_enum_borderStyle: newStyle as BorderStyle?)),
+    onValueChanged: (newStyle) => onValueChanged(
+        value.copyWith(style_enum_borderStyle: newStyle as BorderStyle?),),
     value: value.style_enum_borderStyle,
     options: BorderStyle.values,
-    title: 'Style',
+    title: "Style",
   );
 }

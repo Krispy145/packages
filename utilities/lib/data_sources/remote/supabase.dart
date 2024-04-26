@@ -1,9 +1,9 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:utilities/data_sources/source.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
+import "package:supabase_flutter/supabase_flutter.dart";
+import "package:utilities/data_sources/source.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 /// [SupabaseDataSource] is a wrapper class for [SupabaseClient]
 class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
@@ -40,7 +40,8 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<T?> get(String id) async {
     return _handleRequest("GET", () async {
-      final result = await _supabase!.from(tableName).select().eq('id', id).single();
+      final result =
+          await _supabase!.from(tableName).select().eq("id", id).single();
       if (result.isNotEmpty) {
         return convertDataTypeFromMap(result);
       } else {
@@ -63,7 +64,7 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<void> delete(String id) async {
     await _handleRequest("DELETE", () async {
-      await _supabase!.from(tableName).delete().eq('id', id);
+      await _supabase!.from(tableName).delete().eq("id", id);
       return null;
     });
   }
@@ -79,7 +80,10 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<void> update(String id, T data) async {
     await _handleRequest("UPDATE", () async {
-      await _supabase!.from(tableName).update(convertDataTypeToMap(data)).eq('id', id);
+      await _supabase!
+          .from(tableName)
+          .update(convertDataTypeToMap(data))
+          .eq("id", id);
       return null;
     });
   }
@@ -88,7 +92,10 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> updateAll(Map<String, T> data) async {
     await _handleRequest("UPDATE_ALL", () async {
       data.entries.map(
-        (e) async => await _supabase!.from(tableName).update(convertDataTypeToMap(e.value)).eq('id', e.key),
+        (e) async => await _supabase!
+            .from(tableName)
+            .update(convertDataTypeToMap(e.value))
+            .eq("id", e.key),
       );
       return null;
     });
@@ -100,7 +107,8 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
       AppLogger.print("Data: $data", [UtilitiesLoggers.supabaseDataSource]);
       unawaited(
         _supabase!.from(tableName).insert(convertDataTypeToMap(data)).then(
-              (value) => AppLogger.print("Response: $value", [UtilitiesLoggers.supabaseDataSource]),
+              (value) => AppLogger.print(
+                  "Response: $value", [UtilitiesLoggers.supabaseDataSource],),
             ),
       );
       return null;
@@ -111,7 +119,8 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> addAll(List<T> data) async {
     await _handleRequest("ADD_ALL", () async {
       data.map(
-        (e) async => await _supabase!.from(tableName).insert(convertDataTypeToMap(e)),
+        (e) async =>
+            await _supabase!.from(tableName).insert(convertDataTypeToMap(e)),
       );
       return null;
     });
@@ -121,7 +130,10 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<T?> search(Map<String, dynamic> queries) async {
     final columnNames = queries.keys.toList();
     final values = queries.values.toList();
-    final results = await _supabase!.from(tableName).select(columnNames.join(',')).eq(columnNames.join(','), values.join(','));
+    final results = await _supabase!
+        .from(tableName)
+        .select(columnNames.join(","))
+        .eq(columnNames.join(","), values.join(","));
     return results.map(convertDataTypeFromMap).toList().firstOrNull;
   }
 
@@ -129,7 +141,10 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
     final columnNames = queries.keys.toList();
     final values = queries.values.toList();
-    final results = await _supabase!.from(tableName).select(columnNames.join(',')).eq(columnNames.join(','), values.join(','));
+    final results = await _supabase!
+        .from(tableName)
+        .select(columnNames.join(","))
+        .eq(columnNames.join(","), values.join(","));
     return results.map(convertDataTypeFromMap).toList();
   }
 

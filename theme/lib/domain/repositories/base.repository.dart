@@ -1,4 +1,4 @@
-import 'package:theme/data/models/theme/theme.dart';
+import "package:theme/data/models/theme/theme.dart";
 
 abstract class BaseThemeRepository {
   /// [fetchTheme] is the method that will be used to fetch the data.

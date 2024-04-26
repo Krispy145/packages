@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:utilities/sizes/spacers.dart";
 
-import 'color_circle.dart';
-import 'store.dart';
+import "color_circle.dart";
+import "store.dart";
 
 /// [ColorFormField] to change color scheme colors for the theme.
 class ColorFormField extends BaseFormField<ColorFormFieldStore> {
@@ -29,34 +29,35 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
               ),
               Sizes.m.spacer(),
               _ThemeColorStringSlider(
-                label: 'Red',
+                label: "Red",
                 value: store.color.red.toDouble(),
                 onChanged: (red) => store.updateColor(red: red),
                 fixedColor: Colors.red,
                 max: 255,
               ),
               _ThemeColorStringSlider(
-                label: 'Green',
+                label: "Green",
                 value: store.color.green.toDouble(),
                 onChanged: (green) => store.updateColor(green: green),
                 fixedColor: Colors.green,
                 max: 255,
               ),
               _ThemeColorStringSlider(
-                label: 'Blue',
+                label: "Blue",
                 value: store.color.blue.toDouble(),
                 onChanged: (blue) => store.updateColor(blue: blue),
                 fixedColor: Colors.blue,
                 max: 255,
               ),
               _ThemeColorStringSlider(
-                label: 'Opacity',
+                label: "Opacity",
                 value: store.color.opacity,
                 onChanged: (opacity) => store.updateColor(opacity: opacity),
                 fixedColor: Colors.black.withOpacity(store.color.opacity),
                 max: 1,
               ),
-              ElevatedButton(onPressed: store.onDone, child: const Text('Apply')),
+              ElevatedButton(
+                  onPressed: store.onDone, child: const Text("Apply"),),
               Sizes.m.spacer(),
             ],
           );
@@ -97,7 +98,8 @@ class _ThemeColorStringSlider extends StatelessWidget {
               label: value.toString(),
               onChanged: onChanged,
             ),
-            Text(double.parse(value.toStringAsFixed(2)).toString()), // TODO: Change to better rounding
+            Text(double.parse(value.toStringAsFixed(2))
+                .toString(),), // TODO: Change to better rounding
           ],
         ),
       ],

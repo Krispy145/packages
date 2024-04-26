@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/colors/color_model.dart';
-import 'package:xml/xml.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/colors/color_model.dart";
+import "package:xml/xml.dart";
 
-part 'color_schemes.freezed.dart';
-part 'color_schemes.g.dart';
+part "color_schemes.freezed.dart";
+part "color_schemes.g.dart";
 
 /// [BrightnessExtension] is an extension on [Brightness] that allows you to convert the [Brightness]
 extension BrightnessExtension on Brightness {
@@ -12,9 +12,9 @@ extension BrightnessExtension on Brightness {
   String toXml() {
     switch (this) {
       case Brightness.light:
-        return 'md_theme_light';
+        return "md_theme_light";
       case Brightness.dark:
-        return 'md_theme_dark';
+        return "md_theme_dark";
     }
   }
 }
@@ -48,16 +48,16 @@ class ColorSchemes with _$ColorSchemes {
 
   /// [toXml] converts the [ColorSchemes] to an XML file.
   XmlDocument toXml() {
-    final xmlBuilder = XmlBuilder()..processing('xml', 'version="1.0"');
+    final xmlBuilder = XmlBuilder()..processing("xml", 'version="1.0"');
     xmlBuilder.element(
-      'resources',
+      "resources",
       nest: () {
         xmlBuilder.element(
-          'color-scheme',
+          "color-scheme",
           nest: () {
             xmlBuilder
-              ..element('light', nest: light.toXml())
-              ..element('dark', nest: dark.toXml());
+              ..element("light", nest: light.toXml())
+              ..element("dark", nest: dark.toXml());
           },
         );
       },
@@ -74,5 +74,6 @@ class ColorSchemes with _$ColorSchemes {
   }
 
   /// [ColorSchemes.fromJson] is a factory method that allows you to create a [ColorSchemes] from JSON.
-  factory ColorSchemes.fromJson(Map<String, dynamic> json) => _$ColorSchemesFromJson(json);
+  factory ColorSchemes.fromJson(Map<String, dynamic> json) =>
+      _$ColorSchemesFromJson(json);
 }

@@ -1,9 +1,9 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-import 'auth_params.dart';
+import "auth_params.dart";
 
-part 'user_model.freezed.dart';
-part 'user_model.g.dart';
+part "user_model.freezed.dart";
+part "user_model.g.dart";
 
 /// [UserModel] is a class that represents the Auth model.
 @freezed
@@ -43,5 +43,6 @@ class UserModel with _$UserModel {
       );
 
   /// [UserModel] factory constructor.
-  factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+  factory UserModel.fromJson(Map<String, dynamic> json) =>
+      _$UserModelFromJson(json);
 }
