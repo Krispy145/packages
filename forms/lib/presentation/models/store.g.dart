@@ -9,23 +9,23 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
-  late final _$currentModelAtom =
-      Atom(name: '_FormsModelStore.currentModel', context: context);
+  late final _$valueAtom =
+      Atom(name: '_FormsModelStore.value', context: context);
 
   @override
-  T? get currentModel {
-    _$currentModelAtom.reportRead();
-    return super.currentModel;
+  T get value {
+    _$valueAtom.reportRead();
+    return super.value;
   }
 
-  bool _currentModelIsInitialized = false;
+  bool _valueIsInitialized = false;
 
   @override
-  set currentModel(T? value) {
-    _$currentModelAtom.reportWrite(
-        value, _currentModelIsInitialized ? super.currentModel : null, () {
-      super.currentModel = value;
-      _currentModelIsInitialized = true;
+  set value(T value) {
+    _$valueAtom.reportWrite(value, _valueIsInitialized ? super.value : null,
+        () {
+      super.value = value;
+      _valueIsInitialized = true;
     });
   }
 
@@ -33,11 +33,11 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
       ActionController(name: '_FormsModelStore', context: context);
 
   @override
-  void saveModel() {
+  void saveValue() {
     final _$actionInfo = _$_FormsModelStoreActionController.startAction(
-        name: '_FormsModelStore.saveModel');
+        name: '_FormsModelStore.saveValue');
     try {
-      return super.saveModel();
+      return super.saveValue();
     } finally {
       _$_FormsModelStoreActionController.endAction(_$actionInfo);
     }
@@ -46,7 +46,7 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
   @override
   String toString() {
     return '''
-currentModel: ${currentModel}
+value: ${value}
     ''';
   }
 }
