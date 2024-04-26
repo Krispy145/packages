@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:theme/extensions/build_context.dart';
 import 'package:utilities/sizes/spacers.dart';
 
 class RingedMarkerWrapper extends StatelessWidget {
@@ -24,20 +25,18 @@ class RingedMarkerWrapper extends StatelessWidget {
             shape: BoxShape.circle,
             color: Colors.transparent,
             border: Border.all(
-              color: selected ? Colors.white : Colors.white.withOpacity(0.5),
-              width: 2,
+              color: Colors.white.withOpacity(0.5),
+              width: 4,
             ),
           ),
-          padding: EdgeInsets.all(Sizes.xxxs.points(context)),
+          padding: EdgeInsets.all(Sizes.xxs.points(context)),
           child: Container(
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: context.colorScheme.surface,
               shape: BoxShape.circle,
             ),
             child: Center(
-              child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: childBuilder(context)),
+              child: Padding(padding: const EdgeInsets.all(8.0), child: childBuilder(context)),
             ),
           ),
         ),

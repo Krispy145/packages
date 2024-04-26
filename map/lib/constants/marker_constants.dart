@@ -1,4 +1,4 @@
 class MarkerConstants {
-  static const double selectedSize = 56;
-  static const double unselectedSize = 42;
+  static const double selectedSize = 64;
+  static const double unselectedSize = 48;
 }
