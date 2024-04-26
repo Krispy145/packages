@@ -81,7 +81,11 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<void> update(String id, T data) async {
     await _handleRequest("UPDATE", () async {
-      await _firestore.collection(collectionName).doc(id).set(convertDataTypeToMap(data));
+      try {
+        await _firestore.collection(collectionName).doc(id).update(convertDataTypeToMap(data));
+      } catch (e) {
+        await add(data);
+      }
       return null;
     });
   }

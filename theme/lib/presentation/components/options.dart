@@ -32,6 +32,7 @@ import 'package:theme/data/models/switches/switch_model.dart';
 import 'package:theme/data/models/tab_bars/tab_bar_model.dart';
 import 'package:theme/data/models/tooltips/tooltip_model.dart';
 import 'package:theme/presentation/changer/changer.dart';
+import 'package:utilities/sizes/spacers.dart';
 
 enum ChangerOptions {
   colors,
@@ -286,7 +287,14 @@ enum ChangerOptions {
               convertComponentThemeToMap: (data) => data.toJson(),
               convertComponentThemeFromMap: CheckboxModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeCheckboxStyle(checkboxStyle: newTheme),
-              headerBuilder: (context) => Checkbox(value: true, onChanged: (value) {}),
+              headerBuilder: (context) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Checkbox(value: true, onChanged: (value) {}),
+                  Sizes.s.spacer(vertical: false),
+                  Checkbox(value: false, onChanged: (value) {}),
+                ],
+              ),
               defaultComponentTheme: const CheckboxModel(),
             );
       case ChangerOptions.radios:
@@ -298,7 +306,14 @@ enum ChangerOptions {
               convertComponentThemeToMap: (data) => data.toJson(),
               convertComponentThemeFromMap: RadioModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeRadioStyle(radioStyle: newTheme),
-              headerBuilder: (context) => Radio(groupValue: true, value: true, onChanged: (value) {}),
+              headerBuilder: (context) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Radio(groupValue: true, value: true, onChanged: (value) {}),
+                  Sizes.s.spacer(vertical: false),
+                  Radio(groupValue: true, value: false, onChanged: (value) {}),
+                ],
+              ),
               defaultComponentTheme: null,
             );
       case ChangerOptions.inputDecorations:
@@ -310,6 +325,15 @@ enum ChangerOptions {
               convertComponentThemeToMap: (data) => data.toJson(),
               convertComponentThemeFromMap: InputDecorationModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeInputDecorationStyle(inputDecorationStyle: newTheme),
+              headerBuilder: (context) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: const TextField(),
+                  ),
+                ],
+              ),
               defaultComponentTheme: null,
             );
       case ChangerOptions.boxDecorations:
@@ -321,6 +345,11 @@ enum ChangerOptions {
               convertComponentThemeToMap: (data) => data.toJson(),
               convertComponentThemeFromMap: BoxDecorationModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeBoxDecorationStyle(boxDecorationStyle: newTheme),
+              headerBuilder: (context) => Container(
+                width: 360,
+                height: 120,
+                decoration: AppTheme.componentThemesModel?.getComponentThemeFromStyleType<BoxDecorationModel>(AppTheme.styleType)?.asBoxDecoration(),
+              ),
               defaultComponentTheme: null,
             );
       case ChangerOptions.cards:
@@ -332,6 +361,12 @@ enum ChangerOptions {
               convertComponentThemeToMap: (data) => data.toJson(),
               convertComponentThemeFromMap: CardModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeCardStyle(cardStyle: newTheme),
+              headerBuilder: (context) => const Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Text("Card"),
+                ),
+              ),
               defaultComponentTheme: null,
             );
       case ChangerOptions.snackbars:
@@ -344,6 +379,18 @@ enum ChangerOptions {
               convertComponentThemeFromMap: SnackbarModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSnackbarStyle(snackbarStyle: newTheme),
               defaultComponentTheme: null,
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text("Snackbar"),
+                    action: SnackBarAction(
+                      label: "Testing Snackbar Theme",
+                      onPressed: () {},
+                    ),
+                  ),
+                ),
+                child: const Text("Test Snackbar"),
+              ),
             );
       case ChangerOptions.badges:
         return () => ThemeChanger.componentThemeChanger<BadgeModel>(
@@ -355,6 +402,9 @@ enum ChangerOptions {
               convertComponentThemeFromMap: BadgeModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeBadgeStyle(badgeStyle: newTheme),
               defaultComponentTheme: null,
+              headerBuilder: (context) => const Badge(
+                child: Text("Badge"),
+              ),
             );
       case ChangerOptions.appbars:
         return () => ThemeChanger.componentThemeChanger<AppbarModel>(
@@ -378,6 +428,17 @@ enum ChangerOptions {
               convertComponentThemeFromMap: BottomAppbarModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeBottomAppbarStyle(bottomAppbarStyle: newTheme),
               defaultComponentTheme: null,
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showModalBottomSheet<void>(
+                  context: context,
+                  builder: (context) => const Scaffold(
+                    bottomNavigationBar: BottomAppBar(
+                      child: Text("Bottom Appbar"),
+                    ),
+                  ),
+                ),
+                child: const Text("Show Bottom Appbar"),
+              ),
             );
       case ChangerOptions.dropdowns:
         return () => ThemeChanger.componentThemeChanger<DropdownModel>(
@@ -389,6 +450,13 @@ enum ChangerOptions {
               convertComponentThemeFromMap: DropdownModel.fromJson,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeDropdownStyle(dropdownStyle: newTheme),
               defaultComponentTheme: null,
+              headerBuilder: (context) => DropdownButton(
+                items: const [
+                  DropdownMenuItem(value: 1, child: Text("Item 1")),
+                  DropdownMenuItem(value: 2, child: Text("Item 2")),
+                ],
+                onChanged: (value) {},
+              ),
             );
       case ChangerOptions.chips:
         return () => ThemeChanger.componentThemeChanger<ChipModel>(
@@ -409,8 +477,11 @@ enum ChangerOptions {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       FilterChip(label: const Text("FILTER"), onSelected: (_) {}),
+                      Sizes.s.spacer(vertical: false),
                       const ChoiceChip(label: Text("TRUE"), selected: true),
+                      Sizes.s.spacer(vertical: false),
                       const ChoiceChip(label: Text("FALSE"), selected: false),
+                      Sizes.s.spacer(vertical: false),
                       const ActionChip(label: Text("ACTION")),
                     ],
                   ),
@@ -427,6 +498,22 @@ enum ChangerOptions {
               convertComponentThemeFromMap: DialogModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeDialogStyle(dialogStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showDialog<void>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("Dialog"),
+                    content: const Text("Dialog Content"),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text("Close"),
+                      ),
+                    ],
+                  ),
+                ),
+                child: const Text("Show Dialog"),
+              ),
             );
       case ChangerOptions.popupMenus:
         return () => ThemeChanger.componentThemeChanger<PopupMenuModel>(
@@ -438,6 +525,18 @@ enum ChangerOptions {
               convertComponentThemeFromMap: PopupMenuModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changePopupMenuStyle(popupMenuStyle: newTheme),
+              headerBuilder: (context) => PopupMenuButton(
+                itemBuilder: (context) => [
+                  const PopupMenuItem(
+                    value: 1,
+                    child: Text("Item 1"),
+                  ),
+                  const PopupMenuItem(
+                    value: 2,
+                    child: Text("Item 2"),
+                  ),
+                ],
+              ),
             );
       case ChangerOptions.sliders:
         return () => ThemeChanger.componentThemeChanger<SliderModel>(
@@ -449,6 +548,7 @@ enum ChangerOptions {
               convertComponentThemeFromMap: SliderModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSliderStyle(sliderStyle: newTheme),
+              headerBuilder: (context) => Slider(value: 0.5, onChanged: (value) {}), // TODO: Add a header builder
             );
       case ChangerOptions.scrollbars:
         return () => ThemeChanger.componentThemeChanger<ScrollbarModel>(
@@ -460,6 +560,19 @@ enum ChangerOptions {
               convertComponentThemeFromMap: ScrollbarModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeScrollbarStyle(scrollbarStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showModalBottomSheet<void>(
+                  backgroundColor: Theme.of(context).colorScheme.background,
+                  context: context,
+                  builder: (context) => Scrollbar(
+                    child: ListView.builder(
+                      itemCount: 100,
+                      itemBuilder: (context, index) => ListTile(title: Text("Item $index")),
+                    ),
+                  ),
+                ),
+                child: const Text("Show Scrollbar"),
+              ),
             );
       case ChangerOptions.tooltips:
         return () => ThemeChanger.componentThemeChanger<TooltipModel>(
@@ -471,6 +584,10 @@ enum ChangerOptions {
               convertComponentThemeFromMap: TooltipModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeTooltipStyle(tooltipStyle: newTheme),
+              headerBuilder: (context) => const Tooltip(
+                message: "Tooltip",
+                child: Icon(Icons.info),
+              ),
             );
       case ChangerOptions.navigationRails:
         return () => ThemeChanger.componentThemeChanger<NavigationRailModel>(
@@ -482,6 +599,26 @@ enum ChangerOptions {
               convertComponentThemeFromMap: NavigationRailModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationRailStyle(navigationRailStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showModalBottomSheet<void>(
+                  backgroundColor: Theme.of(context).colorScheme.background,
+                  context: context,
+                  builder: (context) => NavigationRail(
+                    selectedIndex: 0,
+                    destinations: const [
+                      NavigationRailDestination(
+                        icon: Icon(Icons.favorite_border),
+                        label: Text("First"),
+                      ),
+                      NavigationRailDestination(
+                        icon: Icon(Icons.bookmark_border),
+                        label: Text("Second"),
+                      ),
+                    ],
+                  ),
+                ),
+                child: const Text("Show Navigation Rail"),
+              ),
             );
       case ChangerOptions.switches:
         return () => ThemeChanger.componentThemeChanger<SwitchModel>(
@@ -493,6 +630,14 @@ enum ChangerOptions {
               convertComponentThemeFromMap: SwitchModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSwitchStyle(switchStyle: newTheme),
+              headerBuilder: (context) => Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Switch(value: true, onChanged: (value) {}),
+                  Sizes.s.spacer(vertical: false),
+                  Switch(value: false, onChanged: (value) {}),
+                ],
+              ),
             );
       case ChangerOptions.drawers:
         return () => ThemeChanger.componentThemeChanger<DrawerModel>(
@@ -504,6 +649,39 @@ enum ChangerOptions {
               convertComponentThemeFromMap: DrawerModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeDrawerStyle(drawerStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showModalBottomSheet<void>(
+                  context: context,
+                  builder: (context) {
+                    final key = GlobalKey<ScaffoldState>();
+                    return Scaffold(
+                      key: key,
+                      body: Center(
+                        child: ElevatedButton(
+                          onPressed: () => key.currentState?.openEndDrawer(),
+                          child: const Text("Open Drawer"),
+                        ),
+                      ),
+                      endDrawer: Drawer(
+                        child: ListView(
+                          children: const [
+                            ListTile(
+                              title: Text("Item 1"),
+                            ),
+                            ListTile(
+                              title: Text("Item 2"),
+                            ),
+                            ListTile(
+                              title: Text("Item 3"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+                child: const Text("Test Drawer"),
+              ),
             );
       case ChangerOptions.listTiles:
         return () => ThemeChanger.componentThemeChanger<ListTileModel>(
@@ -515,6 +693,12 @@ enum ChangerOptions {
               convertComponentThemeFromMap: ListTileModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeListTileStyle(listTileStyle: newTheme),
+              headerBuilder: (context) => const ListTile(
+                title: Text("List Tile"),
+                subtitle: Text("List Tile Subtitle"),
+                leading: Icon(Icons.list),
+                trailing: Icon(Icons.arrow_forward),
+              ),
             );
       case ChangerOptions.menuStyles:
         return () => ThemeChanger.componentThemeChanger<MenuStyleModel>(
@@ -526,6 +710,21 @@ enum ChangerOptions {
               convertComponentThemeFromMap: MenuStyleModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeMenuStyle(menuStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showMenu<String>(
+                  context: context,
+                  position: const RelativeRect.fromLTRB(0, 100, 0, 0),
+                  items: const [
+                    PopupMenuItem<String>(
+                      child: Text("Item 1"),
+                    ),
+                    PopupMenuItem<String>(
+                      child: Text("Item 2"),
+                    ),
+                  ],
+                ),
+                child: const Text("Show Menu"),
+              ),
             );
       case ChangerOptions.menuBars:
         return () => ThemeChanger.componentThemeChanger<MenuBarModel>(
@@ -537,6 +736,21 @@ enum ChangerOptions {
               convertComponentThemeFromMap: MenuBarModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeMenuBarStyle(menuBarStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showMenu<String>(
+                  context: context,
+                  position: const RelativeRect.fromLTRB(0, 100, 0, 0),
+                  items: const [
+                    PopupMenuItem<String>(
+                      child: Text("Item 1"),
+                    ),
+                    PopupMenuItem<String>(
+                      child: Text("Item 2"),
+                    ),
+                  ],
+                ),
+                child: const Text("Show Menu"),
+              ),
             );
       case ChangerOptions.navigationBars:
         return () => ThemeChanger.componentThemeChanger<NavigationBarModel>(
@@ -548,6 +762,25 @@ enum ChangerOptions {
               convertComponentThemeFromMap: NavigationBarModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationBarStyle(navigationBarStyle: newTheme),
+              headerBuilder: (context) => NavigationBar(
+                destinations: const [
+                  NavigationDestination(
+                    icon: Icon(Icons.home_outlined),
+                    selectedIcon: Icon(Icons.home),
+                    label: "Home",
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.favorite_border),
+                    selectedIcon: Icon(Icons.favorite),
+                    label: "Favorites",
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.settings_outlined),
+                    selectedIcon: Icon(Icons.settings),
+                    label: "Settings",
+                  ),
+                ],
+              ),
             );
       case ChangerOptions.navigationDrawers:
         return () => ThemeChanger.componentThemeChanger<NavigationDrawerModel>(
@@ -559,6 +792,40 @@ enum ChangerOptions {
               convertComponentThemeFromMap: NavigationDrawerModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationDrawerStyle(navigationDrawerStyle: newTheme),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () => showModalBottomSheet<void>(
+                  context: context,
+                  builder: (context) {
+                    final key = GlobalKey<ScaffoldState>();
+                    return Scaffold(
+                      key: key,
+                      body: Center(
+                        child: ElevatedButton(
+                          onPressed: () => key.currentState?.openEndDrawer(),
+                          child: const Text("Open Drawer"),
+                        ),
+                      ),
+                      endDrawer: const NavigationDrawer(
+                        children: [
+                          ListTile(
+                            title: Text("Item 1"),
+                            leading: Icon(Icons.star),
+                          ),
+                          ListTile(
+                            title: Text("Item 2"),
+                            leading: Icon(Icons.star),
+                          ),
+                          ListTile(
+                            title: Text("Item 3"),
+                            leading: Icon(Icons.star),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                child: const Text("Test Drawer"),
+              ),
             );
       case ChangerOptions.progressIndicators:
         return () => ThemeChanger.componentThemeChanger<ProgressIndicatorModel>(
@@ -570,6 +837,7 @@ enum ChangerOptions {
               convertComponentThemeFromMap: ProgressIndicatorModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeProgressIndicatorStyle(progressIndicatorStyle: newTheme),
+              headerBuilder: (context) => const CircularProgressIndicator(),
             );
       case ChangerOptions.searchBars:
         return () => ThemeChanger.componentThemeChanger<SearchBarModel>(
@@ -581,6 +849,7 @@ enum ChangerOptions {
               convertComponentThemeFromMap: SearchBarModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSearchBarStyle(searchBarStyle: newTheme),
+              headerBuilder: (context) => const SearchBar(),
             );
       case ChangerOptions.searchViews:
         return () => ThemeChanger.componentThemeChanger<SearchViewModel>(
@@ -592,6 +861,22 @@ enum ChangerOptions {
               convertComponentThemeFromMap: SearchViewModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeSearchViewStyle(searchViewStyle: newTheme),
+              headerBuilder: (context) => SearchAnchor.bar(
+                suggestionsBuilder: (context, controller) => [
+                  ListTile(
+                    title: const Text("Item 1"),
+                    onTap: () => controller.text = "Item 1",
+                  ),
+                  ListTile(
+                    title: const Text("Item 2"),
+                    onTap: () => controller.text = "Item 2",
+                  ),
+                  ListTile(
+                    title: const Text("Item 3"),
+                    onTap: () => controller.text = "Item 3",
+                  ),
+                ],
+              ),
             );
       case ChangerOptions.tabBars:
         return () => ThemeChanger.componentThemeChanger<TabBarModel>(
@@ -603,6 +888,16 @@ enum ChangerOptions {
               convertComponentThemeFromMap: TabBarModel.fromJson,
               defaultComponentTheme: null,
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeTabBarStyle(tabBarStyle: newTheme),
+              headerBuilder: (context) => const DefaultTabController(
+                length: 3,
+                child: TabBar(
+                  tabs: [
+                    Tab(icon: Icon(Icons.star)),
+                    Tab(icon: Icon(Icons.star)),
+                    Tab(icon: Icon(Icons.star)),
+                  ],
+                ),
+              ),
             );
     }
   }
