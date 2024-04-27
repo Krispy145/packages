@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:forms/presentation/components/text/form_field.dart';
 import 'package:forms/presentation/components/text/store.dart';
 import 'package:utilities/sizes/spacers.dart';
@@ -18,32 +17,30 @@ class FormsMapView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (_) => Stack(
-        children: [
-          Column(
-            children: [
-              Sizes.l.spacer(),
-              header ?? buildHeader(context),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: _buildFormsMap(context, store.mapData, []),
-                ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop(),
+    return Stack(
+      children: [
+        Column(
+          children: [
+            Sizes.l.spacer(),
+            header ?? buildHeader(context),
+            Expanded(
+              child: SingleChildScrollView(
+                child: _buildFormsMap(context, store.mapData, []),
               ),
             ),
+          ],
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

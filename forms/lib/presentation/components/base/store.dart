@@ -13,6 +13,7 @@ abstract class _BaseFormFieldStore<T> extends LoadStateStore with Store {
   final String title;
 
   _BaseFormFieldStore({required this.title, required this.value, required this.onValueChanged}) {
+    print("Rebuilding: $T Field Store");
     reaction((r) => value, onValueChanged);
     setLoaded();
   }

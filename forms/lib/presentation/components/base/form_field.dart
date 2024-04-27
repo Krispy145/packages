@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:utilities/widgets/load_state/state_widget.dart';
+
 import 'store.dart';
 
 // ignore: strict_raw_type

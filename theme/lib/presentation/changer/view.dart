@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:forms/presentation/components/bool/form_field.dart';
 // import 'package:forms/presentation/components/';
 import 'package:forms/presentation/components/bool/store.dart';
@@ -26,6 +27,7 @@ import 'package:forms/presentation/components/text_style_string/store.dart';
 import 'package:forms/presentation/components/theme_color_string/form_field.dart';
 import 'package:forms/presentation/components/theme_color_string/store.dart';
 import 'package:forms/presentation/maps/view.dart';
+import 'package:theme/app/app.dart';
 import 'package:theme/data/models/badges/badge_model.dart';
 import 'package:theme/data/models/borders/border_radius_model.dart';
 import 'package:theme/data/models/borders/border_side_model.dart';
@@ -53,7 +55,14 @@ class ThemeComponentEditor extends FormsMapView {
   @override
   Widget buildHeader(BuildContext context) {
     return Center(
-      child: headerBuilder != null ? headerBuilder!(context) : Text(title, style: Theme.of(context).textTheme.titleLarge),
+      child: Observer(
+        builder: (context) {
+          return Theme(
+            data: AppTheme.currentTheme,
+            child: headerBuilder != null ? headerBuilder!(context) : Text(title, style: Theme.of(context).textTheme.titleLarge),
+          );
+        },
+      ),
     );
   }
 
