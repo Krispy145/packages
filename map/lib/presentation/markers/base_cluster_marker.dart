@@ -12,12 +12,14 @@ abstract class BaseClusterMarker<T extends MarkerModel> extends BaseMarker {
   }) : super(markerModel: topMarkerModel);
 
   @override
-  int get hashCode => super.hashCode ^ markerModel.id.hashCode ^ markerCount.hashCode;
+  int get hashCode =>
+      super.hashCode ^ markerModel.id.hashCode ^ markerCount.hashCode;
 
   @override
   bool operator ==(covariant BaseMarker<MarkerModel> other) {
     if (other is BaseClusterMarker) {
-      return markerCount == other.markerCount && markerModel == other.markerModel;
+      return markerCount == other.markerCount &&
+          markerModel == other.markerModel;
     }
     return false;
   }

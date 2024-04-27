@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/box_decorations/box_decoration_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/box_decorations/box_decoration_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/extensions/text_style_string.dart";
 
-part 'tooltip_model.freezed.dart';
-part 'tooltip_model.g.dart';
+part "tooltip_model.freezed.dart";
+part "tooltip_model.g.dart";
 
 @freezed
 class TooltipModel with _$TooltipModel {
@@ -31,7 +31,8 @@ class TooltipModel with _$TooltipModel {
 
   const TooltipModel._();
 
-  factory TooltipModel.fromJson(Map<String, dynamic> json) => _$TooltipModelFromJson(json);
+  factory TooltipModel.fromJson(Map<String, dynamic> json) =>
+      _$TooltipModelFromJson(json);
 
   // static TooltipModel defaultTooltipModel() {
   //   return TooltipModel(
@@ -60,8 +61,11 @@ class TooltipModel with _$TooltipModel {
       verticalOffset: verticalOffset_double,
       preferBelow: preferBelow_bool,
       excludeFromSemantics: excludeFromSemantics_bool,
-      decoration: decoration_boxDecoration?.asBoxDecoration(styleTypeName: styleTypeName),
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      decoration: decoration_boxDecoration?.asBoxDecoration(
+          styleTypeName: styleTypeName,),
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       enableFeedback: enableFeedback_bool,
     );
   }

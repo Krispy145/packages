@@ -13,7 +13,8 @@ class NumberRingedMarker extends BaseClusterMarker {
           child: RingedMarkerWrapper(
             selected: false,
             onTapped: null,
-            childBuilder: (context) => Text(markerCount.toString(), style: Theme.of(context).textTheme.titleMedium),
+            childBuilder: (context) => Text(markerCount.toString(),
+                style: Theme.of(context).textTheme.titleMedium),
           ),
         );
 }

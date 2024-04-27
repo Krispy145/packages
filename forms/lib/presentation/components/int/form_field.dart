@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:utilities/sizes/spacers.dart";
 
-import 'store.dart';
+import "store.dart";
 
 class IntFormField extends BaseFormField<IntFormFieldStore> {
   const IntFormField({
@@ -33,11 +33,13 @@ class IntFormField extends BaseFormField<IntFormFieldStore> {
                 SizedBox(
                   width: 100,
                   child: TextField(
-                    decoration: const InputDecoration(border: UnderlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
                     // enabled: widget.enabled,
-                    onChanged: (value) => store.onValueChanged(int.tryParse(value)),
+                    onChanged: (value) =>
+                        store.onValueChanged(int.tryParse(value)),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],

@@ -1,4 +1,4 @@
-import 'dart:math';
+import "dart:math";
 
 extension Precision on double {
   double toPrecision(int fractionDigits) {

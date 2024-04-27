@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class Chips extends StatefulWidget {
   const Chips({super.key});
@@ -15,8 +15,9 @@ class _ChipsState extends State<Chips> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Chips',
-      tooltipMessage: 'Use ActionChip, FilterChip, or InputChip. \nActionChip can also be used for suggestion chip',
+      label: "Chips",
+      tooltipMessage:
+          "Use ActionChip, FilterChip, or InputChip. \nActionChip can also be used for suggestion chip",
       child: Column(
         children: <Widget>[
           Wrap(
@@ -24,24 +25,24 @@ class _ChipsState extends State<Chips> {
             runSpacing: smallSpacing,
             children: <Widget>[
               ActionChip(
-                label: const Text('Assist'),
+                label: const Text("Assist"),
                 avatar: const Icon(Icons.event),
                 onPressed: () {},
               ),
               FilterChip(
-                label: const Text('Filter'),
+                label: const Text("Filter"),
                 selected: isFiltered,
                 onSelected: (selected) {
                   setState(() => isFiltered = selected);
                 },
               ),
               InputChip(
-                label: const Text('Input'),
+                label: const Text("Input"),
                 onPressed: () {},
                 onDeleted: () {},
               ),
               ActionChip(
-                label: const Text('Suggestion'),
+                label: const Text("Suggestion"),
                 onPressed: () {},
               ),
             ],
@@ -52,21 +53,21 @@ class _ChipsState extends State<Chips> {
             runSpacing: smallSpacing,
             children: <Widget>[
               const ActionChip(
-                label: Text('Assist'),
+                label: Text("Assist"),
                 avatar: Icon(Icons.event),
               ),
               FilterChip(
-                label: const Text('Filter'),
+                label: const Text("Filter"),
                 selected: isFiltered,
                 onSelected: null,
               ),
               InputChip(
-                label: const Text('Input'),
+                label: const Text("Input"),
                 onDeleted: () {},
                 isEnabled: false,
               ),
               const ActionChip(
-                label: Text('Suggestion'),
+                label: Text("Suggestion"),
               ),
             ],
           ),

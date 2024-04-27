@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class SegmentedButtons extends StatelessWidget {
   const SegmentedButtons({super.key});
@@ -8,8 +8,8 @@ class SegmentedButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ComponentDecoration(
-      label: 'Segmented buttons',
-      tooltipMessage: 'Use SegmentedButton<T>',
+      label: "Segmented buttons",
+      tooltipMessage: "Use SegmentedButton<T>",
       child: Column(
         children: <Widget>[
           SingleChoice(),
@@ -39,22 +39,22 @@ class _SingleChoiceState extends State<SingleChoice> {
       segments: const <ButtonSegment<Calendar>>[
         ButtonSegment<Calendar>(
           value: Calendar.day,
-          label: Text('Day'),
+          label: Text("Day"),
           icon: Icon(Icons.calendar_view_day),
         ),
         ButtonSegment<Calendar>(
           value: Calendar.week,
-          label: Text('Week'),
+          label: Text("Week"),
           icon: Icon(Icons.calendar_view_week),
         ),
         ButtonSegment<Calendar>(
           value: Calendar.month,
-          label: Text('Month'),
+          label: Text("Month"),
           icon: Icon(Icons.calendar_view_month),
         ),
         ButtonSegment<Calendar>(
           value: Calendar.year,
-          label: Text('Year'),
+          label: Text("Year"),
           icon: Icon(Icons.calendar_today),
         ),
       ],
@@ -87,14 +87,14 @@ class _MultipleChoiceState extends State<MultipleChoice> {
   Widget build(BuildContext context) {
     return SegmentedButton<Sizes>(
       segments: const <ButtonSegment<Sizes>>[
-        ButtonSegment<Sizes>(value: Sizes.extraSmall, label: Text('XS')),
-        ButtonSegment<Sizes>(value: Sizes.small, label: Text('S')),
-        ButtonSegment<Sizes>(value: Sizes.medium, label: Text('M')),
+        ButtonSegment<Sizes>(value: Sizes.extraSmall, label: Text("XS")),
+        ButtonSegment<Sizes>(value: Sizes.small, label: Text("S")),
+        ButtonSegment<Sizes>(value: Sizes.medium, label: Text("M")),
         ButtonSegment<Sizes>(
           value: Sizes.large,
-          label: Text('L'),
+          label: Text("L"),
         ),
-        ButtonSegment<Sizes>(value: Sizes.extraLarge, label: Text('XL')),
+        ButtonSegment<Sizes>(value: Sizes.extraLarge, label: Text("XL")),
       ],
       selected: selection,
       onSelectionChanged: (newSelection) {

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import '../base/form_field.dart';
-import 'store.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "../base/form_field.dart";
+import "store.dart";
 
 class EnumFormField extends BaseFormField<EnumFormFieldStore> {
   const EnumFormField({super.key, required super.store});
@@ -20,7 +20,10 @@ class EnumFormField extends BaseFormField<EnumFormFieldStore> {
                 value: store.value,
                 alignment: Alignment.bottomCenter,
                 onChanged: (newValue) => store.value = newValue,
-                items: store.options.map((enumValue) => DropdownMenuItem<Enum>(value: enumValue, child: Text(enumValue.name))).toList(),
+                items: store.options
+                    .map((enumValue) => DropdownMenuItem<Enum>(
+                        value: enumValue, child: Text(enumValue.name),),)
+                    .toList(),
               ),
             if (store.value != null)
               FilledButton(

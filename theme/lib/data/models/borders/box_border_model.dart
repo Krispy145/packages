@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
 
-part 'box_border_model.freezed.dart';
-part 'box_border_model.g.dart';
+part "box_border_model.freezed.dart";
+part "box_border_model.g.dart";
 
 @freezed
 class BoxBorderModel with _$BoxBorderModel {
@@ -16,7 +16,8 @@ class BoxBorderModel with _$BoxBorderModel {
 
   const BoxBorderModel._();
 
-  factory BoxBorderModel.fromJson(Map<String, dynamic> json) => _$BoxBorderModelFromJson(json);
+  factory BoxBorderModel.fromJson(Map<String, dynamic> json) =>
+      _$BoxBorderModelFromJson(json);
 
   BoxBorder asBoxBorder({String? styleTypeName}) {
     return Border(

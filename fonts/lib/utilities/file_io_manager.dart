@@ -1,7 +1,7 @@
-import 'dart:typed_data';
+import "dart:typed_data";
 
-import 'package:path_provider/path_provider.dart';
-import 'package:universal_io/io.dart';
+import "package:path_provider/path_provider.dart";
+import "package:universal_io/io.dart";
 
 // TODO: Create local data source for file storage based on this
 
@@ -10,7 +10,7 @@ class FontFileIOManager {
 
   bool get isAndroid => Platform.isAndroid;
 
-  bool get isTest => Platform.environment.containsKey('FLUTTER_TEST');
+  bool get isTest => Platform.environment.containsKey("FLUTTER_TEST");
 
   static Future<void> saveFontToDeviceFileSystem({
     required String name,
@@ -49,6 +49,6 @@ class FontFileIOManager {
     // That's why we can be sure a previously saved Google Font is in the ttf
     // format instead of, for example, otf.
     // return File('$path/${name}_$fileHash.ttf');
-    return File('$path/$name.ttf');
+    return File("$path/$name.ttf");
   }
 }

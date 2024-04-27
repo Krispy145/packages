@@ -10,6 +10,22 @@ part of 'store.dart';
 
 mixin _$TextStyleStringFormFieldStore
     on _TextStyleStringStringFormFieldStore, Store {
+  late final _$colorAtom = Atom(
+      name: '_TextStyleStringStringFormFieldStore.color', context: context);
+
+  @override
+  String? get color {
+    _$colorAtom.reportRead();
+    return super.color;
+  }
+
+  @override
+  set color(String? value) {
+    _$colorAtom.reportWrite(value, super.color, () {
+      super.color = value;
+    });
+  }
+
   late final _$_TextStyleStringStringFormFieldStoreActionController =
       ActionController(
           name: '_TextStyleStringStringFormFieldStore', context: context);
@@ -30,7 +46,7 @@ mixin _$TextStyleStringFormFieldStore
   @override
   String toString() {
     return '''
-
+color: ${color}
     ''';
   }
 }

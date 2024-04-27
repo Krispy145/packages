@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'radio_model.freezed.dart';
-part 'radio_model.g.dart';
+part "radio_model.freezed.dart";
+part "radio_model.g.dart";
 
 @freezed
 class RadioModel with _$RadioModel {
@@ -17,7 +17,8 @@ class RadioModel with _$RadioModel {
 
   const RadioModel._();
 
-  factory RadioModel.fromJson(Map<String, dynamic> json) => _$RadioModelFromJson(json);
+  factory RadioModel.fromJson(Map<String, dynamic> json) =>
+      _$RadioModelFromJson(json);
 
   // static RadioModel defaultRadioModel() {
   //   return const RadioModel(
@@ -29,8 +30,10 @@ class RadioModel with _$RadioModel {
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
-      fillColor: MaterialStateProperty.all(fillColor_themeColorString?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
+      fillColor: MaterialStateProperty.all(
+          fillColor_themeColorString?.toColor(styleType: styleTypeName),),
+      overlayColor: MaterialStateProperty.all(
+          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
       splashRadius: splashRadius_double,
     );
   }

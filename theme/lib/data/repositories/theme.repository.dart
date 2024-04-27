@@ -1,19 +1,24 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:theme/data/models/theme/theme.dart';
-import 'package:theme/data/sources/theme/_source.dart';
-import 'package:theme/data/sources/theme/assets.source.dart';
-import 'package:theme/data/sources/theme/firestore.source.dart';
-import 'package:theme/data/sources/theme/supabase.source.dart';
+import "package:supabase_flutter/supabase_flutter.dart";
+import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/sources/theme/_source.dart";
+import "package:theme/data/sources/theme/assets.source.dart";
+import "package:theme/data/sources/theme/firestore.source.dart";
+import "package:theme/data/sources/theme/supabase.source.dart";
 
-import '/data/repositories/_repositories.dart';
+import "/data/repositories/_repositories.dart";
 
 class ThemeConfiguration {
   final DataSourceTypes dataSourceType;
   final String? path;
   final SupabaseClient? supabaseClient;
-  const ThemeConfiguration.supabase({this.dataSourceType = DataSourceTypes.supabase, required this.supabaseClient}) : path = null;
+  const ThemeConfiguration.supabase(
+      {this.dataSourceType = DataSourceTypes.supabase,
+      required this.supabaseClient,})
+      : path = null;
 
-  const ThemeConfiguration.assets({this.dataSourceType = DataSourceTypes.assets, required String rootBundleKey})
+  const ThemeConfiguration.assets(
+      {this.dataSourceType = DataSourceTypes.assets,
+      required String rootBundleKey,})
       : supabaseClient = null,
         path = rootBundleKey;
 
@@ -21,15 +26,19 @@ class ThemeConfiguration {
       : path = null,
         supabaseClient = null;
 
-  const ThemeConfiguration.api({required String urlPath, this.dataSourceType = DataSourceTypes.api})
+  const ThemeConfiguration.api(
+      {required String urlPath, this.dataSourceType = DataSourceTypes.api,})
       : path = urlPath,
         supabaseClient = null;
 
-  const ThemeConfiguration.firestore({required String collectionName, this.dataSourceType = DataSourceTypes.firestore})
+  const ThemeConfiguration.firestore(
+      {required String collectionName,
+      this.dataSourceType = DataSourceTypes.firestore,})
       : path = collectionName,
         supabaseClient = null;
 
-  const ThemeConfiguration.secure({this.dataSourceType = DataSourceTypes.secure})
+  const ThemeConfiguration.secure(
+      {this.dataSourceType = DataSourceTypes.secure,})
       : path = null,
         supabaseClient = null;
 }
@@ -40,26 +49,29 @@ class ThemeDataRepository {
   final ThemeConfiguration? componentThemesConfiguration;
 
   /// [ThemeDataRepository] constructor.
-  ThemeDataRepository({this.baseThemeConfiguration, this.componentThemesConfiguration});
+  ThemeDataRepository(
+      {this.baseThemeConfiguration, this.componentThemesConfiguration,});
 
   /// [dataSource] is the [ThemeDataSource] that will be used to fetch the data.
-  ThemeDataSource<BaseThemeModel>? get dataSource => baseThemeConfiguration != null
-      ? _dataSourceByType<BaseThemeModel>(
-          'baseThemes',
-          baseThemeConfiguration!,
-          convertDataTypeFromMap: BaseThemeModel.fromJson,
-          convertDataTypeToMap: (model) => model.toJson(),
-        )
-      : null;
+  ThemeDataSource<BaseThemeModel>? get dataSource =>
+      baseThemeConfiguration != null
+          ? _dataSourceByType<BaseThemeModel>(
+              "baseThemes",
+              baseThemeConfiguration!,
+              convertDataTypeFromMap: BaseThemeModel.fromJson,
+              convertDataTypeToMap: (model) => model.toJson(),
+            )
+          : null;
 
-  ThemeDataSource<ComponentThemesModel>? get componentThemesDataSource => componentThemesConfiguration != null
-      ? _dataSourceByType<ComponentThemesModel>(
-          'componentsThemes',
-          componentThemesConfiguration!,
-          convertDataTypeFromMap: ComponentThemesModel.fromJson,
-          convertDataTypeToMap: (model) => model.toJson(),
-        )
-      : null;
+  ThemeDataSource<ComponentThemesModel>? get componentThemesDataSource =>
+      componentThemesConfiguration != null
+          ? _dataSourceByType<ComponentThemesModel>(
+              "componentsThemes",
+              componentThemesConfiguration!,
+              convertDataTypeFromMap: ComponentThemesModel.fromJson,
+              convertDataTypeToMap: (model) => model.toJson(),
+            )
+          : null;
 
   /// [_dataSourceByType] returns the appropriate [ThemeDataSource] based on the [DataSourceTypes] enum.
   /// Defaults to [AssetsThemeDataSource] if no type is provided.

@@ -1,7 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'permissions.freezed.dart';
-part 'permissions.g.dart';
+part "permissions.freezed.dart";
+part "permissions.g.dart";
 
 /// [NotificationPermissions] is the permissions for NotificationsStore.
 @freezed
@@ -19,5 +19,6 @@ class NotificationPermissions with _$NotificationPermissions {
   }) = _NotificationPermissions;
 
   /// [NotificationPermissions] constructor from JSON.
-  factory NotificationPermissions.fromJson(Map<String, dynamic> json) => _$NotificationPermissionsFromJson(json);
+  factory NotificationPermissions.fromJson(Map<String, dynamic> json) =>
+      _$NotificationPermissionsFromJson(json);
 }

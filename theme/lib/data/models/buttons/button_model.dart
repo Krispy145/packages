@@ -1,16 +1,16 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
-import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/data/models/general/size_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
+import "package:theme/data/models/borders/outlined_border_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/data/models/general/size_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'button_model.freezed.dart';
-part 'button_model.g.dart';
+part "button_model.freezed.dart";
+part "button_model.g.dart";
 
 enum ButtonModelType {
   elevated,
@@ -77,20 +77,33 @@ class ButtonModel with _$ButtonModel {
 
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     return ButtonStyle(
-      textStyle: MaterialStateProperty.all(textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle),
-      backgroundColor: MaterialStateProperty.all(backgroundColor_themeColorString?.toColor(styleType: styleTypeName)),
-      foregroundColor: MaterialStateProperty.all(foregroundColor_themeColorString?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
-      shadowColor: MaterialStateProperty.all(shadowColor_themeColorString?.toColor(styleType: styleTypeName)),
+      textStyle: MaterialStateProperty.all(textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,),
+      backgroundColor: MaterialStateProperty.all(
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),),
+      foregroundColor: MaterialStateProperty.all(
+          foregroundColor_themeColorString?.toColor(styleType: styleTypeName),),
+      overlayColor: MaterialStateProperty.all(
+          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
+      shadowColor: MaterialStateProperty.all(
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),),
       elevation: MaterialStateProperty.all(elevation_double),
-      padding: MaterialStateProperty.all(padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName)),
-      minimumSize: MaterialStateProperty.all(minimumSize_size?.asSize(styleTypeName: styleTypeName)),
-      fixedSize: MaterialStateProperty.all(fixedSize_size?.asSize(styleTypeName: styleTypeName)),
-      maximumSize: MaterialStateProperty.all(maximumSize_size?.asSize(styleTypeName: styleTypeName)),
-      side: MaterialStateProperty.all(side_borderSide?.asBorderSide(styleTypeName: styleTypeName)),
-      shape: MaterialStateProperty.all(shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName)),
+      padding: MaterialStateProperty.all(
+          padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),),
+      minimumSize: MaterialStateProperty.all(
+          minimumSize_size?.asSize(styleTypeName: styleTypeName),),
+      fixedSize: MaterialStateProperty.all(
+          fixedSize_size?.asSize(styleTypeName: styleTypeName),),
+      maximumSize: MaterialStateProperty.all(
+          maximumSize_size?.asSize(styleTypeName: styleTypeName),),
+      side: MaterialStateProperty.all(
+          side_borderSide?.asBorderSide(styleTypeName: styleTypeName),),
+      shape: MaterialStateProperty.all(
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),),
     );
   }
 
-  factory ButtonModel.fromJson(Map<String, dynamic> json) => _$ButtonModelFromJson(json);
+  factory ButtonModel.fromJson(Map<String, dynamic> json) =>
+      _$ButtonModelFromJson(json);
 }

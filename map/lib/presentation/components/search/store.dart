@@ -25,6 +25,7 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<MarkerModel?>
     required super.value,
     required this.onSearchSelected,
     required super.title,
+    // ignore: unused_element
     this.singleMarkerBuilder,
   }) : super(
           onValueChanged: (marker) => onSearchSelected(marker, null),

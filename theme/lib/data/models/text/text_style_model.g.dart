@@ -9,6 +9,7 @@ part of 'text_style_model.dart';
 _$TextStyleModelImpl _$$TextStyleModelImplFromJson(Map<String, dynamic> json) =>
     _$TextStyleModelImpl(
       fontFamilyName_font: json['fontFamilyName_font'] as String?,
+      color_themeColorString: json['color_themeColorString'] as String?,
       fontFamilyStyle_enum_fontStyle: $enumDecodeNullable(
               _$FontStyleEnumMap, json['fontFamilyStyle_enum_fontStyle']) ??
           FontStyle.normal,
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$TextStyleModelImplToJson(
         _$TextStyleModelImpl instance) =>
     <String, dynamic>{
       'fontFamilyName_font': instance.fontFamilyName_font,
+      'color_themeColorString': instance.color_themeColorString,
       'fontFamilyStyle_enum_fontStyle':
           _$FontStyleEnumMap[instance.fontFamilyStyle_enum_fontStyle],
       'fontWeight_double': instance.fontWeight_double,

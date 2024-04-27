@@ -1,4 +1,4 @@
-import 'package:utilities/data_sources/source.dart';
+import "package:utilities/data_sources/source.dart";
 
 /// [PaginatedResponseModel] is a class that defines the methods that
 /// should be implemented by the paginated models.
@@ -12,7 +12,7 @@ class PaginatedResponseModel<T> {
   /// the specific implementation for deserializing JSON into
   /// the paginated model.
   static PaginatedResponseModel<T> fromJson<T>(Map<String, dynamic> json) {
-    throw UnimplementedError('Subclasses must override fromJson method.');
+    throw UnimplementedError("Subclasses must override fromJson method.");
   }
 
   /// Converts this [PaginatedResponseModel] to a JSON map.
@@ -21,7 +21,7 @@ class PaginatedResponseModel<T> {
   /// the specific implementation for serializing the paginated model
   /// into a JSON map.
   Map<String, dynamic> toJson() {
-    throw UnimplementedError('Subclasses must override toJson method.');
+    throw UnimplementedError("Subclasses must override toJson method.");
   }
 }
 

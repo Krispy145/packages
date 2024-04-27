@@ -45,7 +45,8 @@ class SearchMapView extends MapView<GoogleSearchMapStore> {
                       color: Theme.of(context).primaryColor,
                     ),
                     title: Text(item.name ?? "Name not found"),
-                    subtitle: Text(item.formattedAddress ?? "Address not found", style: const TextStyle(color: Colors.grey)),
+                    subtitle: Text(item.formattedAddress ?? "Address not found",
+                        style: const TextStyle(color: Colors.grey)),
                     trailing: isSelected ? const Icon(Icons.check) : null,
                   );
                 },

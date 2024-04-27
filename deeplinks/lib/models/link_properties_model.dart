@@ -1,8 +1,8 @@
-import 'package:flutter_branch_sdk/flutter_branch_sdk.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:flutter_branch_sdk/flutter_branch_sdk.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'link_properties_model.freezed.dart';
-part 'link_properties_model.g.dart';
+part "link_properties_model.freezed.dart";
+part "link_properties_model.g.dart";
 
 @unfreezed
 class LinkPropertiesModel with _$LinkPropertiesModel {
@@ -18,23 +18,24 @@ class LinkPropertiesModel with _$LinkPropertiesModel {
   const LinkPropertiesModel._();
 
   factory LinkPropertiesModel.empty() => LinkPropertiesModel(
-        feature: '',
-        alias: '',
-        stage: '',
+        feature: "",
+        alias: "",
+        stage: "",
         matchDuration: Duration.zero,
-        channel: '',
-        campaign: '',
+        channel: "",
+        campaign: "",
       );
 
   BranchLinkProperties get branchLinkProperties => BranchLinkProperties(
         tags: tags,
-        feature: feature ?? '',
-        alias: alias ?? '',
-        stage: stage ?? '',
+        feature: feature ?? "",
+        alias: alias ?? "",
+        stage: stage ?? "",
         matchDuration: matchDuration?.inMilliseconds ?? 0,
-        channel: channel ?? '',
-        campaign: campaign ?? '',
+        channel: channel ?? "",
+        campaign: campaign ?? "",
       );
 
-  factory LinkPropertiesModel.fromJson(Map<String, dynamic> json) => _$LinkPropertiesModelFromJson(json);
+  factory LinkPropertiesModel.fromJson(Map<String, dynamic> json) =>
+      _$LinkPropertiesModelFromJson(json);
 }

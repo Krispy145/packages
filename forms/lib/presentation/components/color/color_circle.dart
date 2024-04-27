@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:utilities/sizes/spacers.dart";
 
 /// [ColorCircle] for the ColorSchemesView.
 class ColorCircle extends StatelessWidget {

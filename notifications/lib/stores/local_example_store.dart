@@ -1,32 +1,34 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:mobx/mobx.dart';
-import 'package:notifications/models/notification.dart';
-import 'package:notifications/stores/local_store.dart';
-import 'package:timezone/timezone.dart' as tz;
+import "package:flutter/foundation.dart";
+import "package:flutter/material.dart";
+import "package:flutter_local_notifications/flutter_local_notifications.dart";
+import "package:mobx/mobx.dart";
+import "package:notifications/models/notification.dart";
+import "package:notifications/stores/local_store.dart";
+import "package:timezone/timezone.dart" as tz;
 
-part 'local_example_store.g.dart';
+part "local_example_store.g.dart";
 
 /// [LocalNotificationsExamplesStore] is the base class for all local notifications examples stores.
-class LocalNotificationsExamplesStore = _LocalNotificationsExamplesStore with _$LocalNotificationsExamplesStore;
+class LocalNotificationsExamplesStore = _LocalNotificationsExamplesStore
+    with _$LocalNotificationsExamplesStore;
 
 /// [_LocalNotificationsExamplesStore] is the base class for all local notifications examples stores.
-abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore with Store {
+abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
+    with Store {
   /// [_LocalNotificationsExamplesStore] is the constructor for the [_LocalNotificationsExamplesStore] class.
   _LocalNotificationsExamplesStore();
 
   /// [urlLaunchActionId] is the notification action id for launching a URL.
-  final String urlLaunchActionId = 'id_1';
+  final String urlLaunchActionId = "id_1";
 
   /// [navigationActionId] is the notification action id for navigating to a page.
-  final String navigationActionId = 'id_3';
+  final String navigationActionId = "id_3";
 
   /// [darwinNotificationCategoryText] is the iOS/MacOS text notification category.
-  final String darwinNotificationCategoryText = 'textCategory';
+  final String darwinNotificationCategoryText = "textCategory";
 
   /// [darwinNotificationCategoryPlain] is the iOS/MacOS plain notification category.
-  final String darwinNotificationCategoryPlain = 'plainCategory';
+  final String darwinNotificationCategoryPlain = "plainCategory";
 
   /// [showNotification] shows a [NotificationModel] using flutter_local_notifications and default [NotificationDetails].
   @action
@@ -39,24 +41,25 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
   Future<void> showNotificationWithActions(
     NotificationModel notification,
   ) async {
-    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails =
+        androidLocalNotificationDetails.copyWith(
       actions: [
         const AndroidNotificationAction(
-          'id_1',
-          'Action 1',
-          icon: DrawableResourceAndroidBitmap('food'),
+          "id_1",
+          "Action 1",
+          icon: DrawableResourceAndroidBitmap("food"),
           contextual: true,
         ),
         const AndroidNotificationAction(
-          'id_2',
-          'Action 2',
+          "id_2",
+          "Action 2",
           titleColor: Colors.blue,
-          icon: DrawableResourceAndroidBitmap('secondary_icon'),
+          icon: DrawableResourceAndroidBitmap("secondary_icon"),
         ),
         const AndroidNotificationAction(
-          'id_nav_1',
-          'Action 3',
-          icon: DrawableResourceAndroidBitmap('secondary_icon'),
+          "id_nav_1",
+          "Action 3",
+          icon: DrawableResourceAndroidBitmap("secondary_icon"),
           showsUserInterface: true,
           cancelNotification: false,
         ),
@@ -75,11 +78,11 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
       actions: <LinuxNotificationAction>[
         LinuxNotificationAction(
           key: urlLaunchActionId,
-          label: 'Action 1',
+          label: "Action 1",
         ),
         LinuxNotificationAction(
           key: navigationActionId,
-          label: 'Action 2',
+          label: "Action 2",
         ),
       ],
     );
@@ -100,13 +103,14 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
     NotificationModel notification,
   ) async {
     const textAction = AndroidNotificationAction(
-      'text_action',
-      'Enter text',
-      icon: DrawableResourceAndroidBitmap('text_icon'),
+      "text_action",
+      "Enter text",
+      icon: DrawableResourceAndroidBitmap("text_icon"),
       allowGeneratedReplies: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails =
+        androidLocalNotificationDetails.copyWith(
       actions: [
         textAction,
       ],
@@ -124,11 +128,11 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
       actions: <LinuxNotificationAction>[
         LinuxNotificationAction(
           key: urlLaunchActionId,
-          label: 'Action 1',
+          label: "Action 1",
         ),
         LinuxNotificationAction(
           key: navigationActionId,
-          label: 'Action 2',
+          label: "Action 2",
         ),
       ],
     );
@@ -149,19 +153,20 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
     NotificationModel notification,
   ) async {
     const androidAction = AndroidNotificationAction(
-      'text_action',
-      'Action 2',
-      icon: DrawableResourceAndroidBitmap('food'),
+      "text_action",
+      "Action 2",
+      icon: DrawableResourceAndroidBitmap("food"),
       inputs: <AndroidNotificationActionInput>[
         AndroidNotificationActionInput(
-          choices: <String>['ABC', 'DEF'],
+          choices: <String>["ABC", "DEF"],
           allowFreeFormInput: false,
         ),
       ],
       contextual: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails =
+        androidLocalNotificationDetails.copyWith(
       actions: [androidAction],
     );
 
@@ -193,7 +198,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
     vibrationPattern[2] = 5000;
     vibrationPattern[3] = 2000;
     final androidNotificationDetails = androidLocalNotificationDetails.copyWith(
-      icon: 'secondary_icon',
+      icon: "secondary_icon",
       vibrationPattern: vibrationPattern,
       enableLights: true,
       color: const Color.fromARGB(255, 255, 0, 0),
@@ -202,7 +207,8 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
       ledOffMs: 500,
     );
 
-    final notificationDetails = NotificationDetails(android: androidNotificationDetails);
+    final notificationDetails =
+        NotificationDetails(android: androidNotificationDetails);
     await show(notification: notification, details: notificationDetails);
   }
 
@@ -242,7 +248,8 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore 
   Future<void> repeatNotification(NotificationModel notification) async {
     final androidNotificationDetails = androidLocalNotificationDetails;
 
-    final notificationDetails = NotificationDetails(android: androidNotificationDetails);
+    final notificationDetails =
+        NotificationDetails(android: androidNotificationDetails);
     await periodicallyShow(
       notification: notification,
       details: notificationDetails,

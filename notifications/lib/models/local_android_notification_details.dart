@@ -1,7 +1,7 @@
-import 'dart:ui';
+import "dart:ui";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter_local_notifications/flutter_local_notifications.dart";
 
 /// [ScheduledInterval] is the interval for a zoned scheduled notification.
 enum ScheduledInterval {

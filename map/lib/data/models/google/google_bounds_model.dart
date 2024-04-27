@@ -4,7 +4,8 @@ import 'package:map/data/models/lat_lng.mapper.dart';
 
 part 'google_bounds_model.mapper.dart';
 
-@MappableClass(caseStyle: CaseStyle.snakeCase, includeCustomMappers: [LatLngMapper()])
+@MappableClass(
+    caseStyle: CaseStyle.snakeCase, includeCustomMappers: [LatLngMapper()])
 class GoogleBounds with GoogleBoundsMappable {
   final LatLng northeast;
   final LatLng southwest;

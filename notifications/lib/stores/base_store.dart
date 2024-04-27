@@ -1,14 +1,14 @@
-import 'dart:async';
+import "dart:async";
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:mobx/mobx.dart';
-import 'package:notifications/models/notification.dart';
-import 'package:notifications/models/permissions.dart';
-import 'package:utilities/data_sources/local/hive/helpers/type_box.dart';
-import 'package:utilities/data_sources/local/hive/hive.dart';
+import "package:flutter/foundation.dart";
+import "package:flutter_local_notifications/flutter_local_notifications.dart";
+import "package:mobx/mobx.dart";
+import "package:notifications/models/notification.dart";
+import "package:notifications/models/permissions.dart";
+import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
+import "package:utilities/data_sources/local/hive/hive.dart";
 
-part 'base_store.g.dart';
+part "base_store.g.dart";
 
 /// [NotificationsStore] is a store that houses logic for managing notifications.
 class NotificationsStore = _NotificationsStore with _$NotificationsStore;
@@ -19,9 +19,10 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel> wit
   final void Function(NotificationModel notification)? onNotificationReceived;
 
   /// [_NotificationsStore] constructor.
+  // ignore: unused_element
   _NotificationsStore({this.onNotificationReceived})
       : super(
-          'notifications',
+          "notifications",
           convertDataTypeFromMap: NotificationModel.fromStringMap,
           convertDataTypeToMap: (data) => data.toStringMap(),
         );
@@ -50,24 +51,24 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel> wit
         queries.forEach((key, value) {
           if (isMatch) {
             switch (key) {
-              case 'id':
+              case "id":
                 isMatch = element.id == value;
 
                 break;
-              case 'type':
+              case "type":
                 isMatch = element.type == value;
                 break;
-              case 'title':
+              case "title":
                 isMatch = element.title == value;
                 break;
-              case 'body':
+              case "body":
                 isMatch = element.body == value;
                 break;
-              case 'isLocalNotification':
-                isMatch = element.isLocalNotification == (value == 'true');
+              case "isLocalNotification":
+                isMatch = element.isLocalNotification == (value == "true");
                 break;
-              case 'isRead':
-                isMatch = element.isRead == (value == 'true');
+              case "isRead":
+                isMatch = element.isRead == (value == "true");
                 break;
               default:
                 isMatch = false;

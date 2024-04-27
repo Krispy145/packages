@@ -30,7 +30,8 @@ abstract class _SingleMarkerStore extends MapStore with Store {
     setLoading();
     addMarker(marker);
     animatedMapController.animatedFitCamera(
-      cameraFit: CameraFit.coordinates(coordinates: [marker.position], maxZoom: 15),
+      cameraFit:
+          CameraFit.coordinates(coordinates: [marker.position], maxZoom: 15),
     );
     isMapReady = true;
     setLoaded();

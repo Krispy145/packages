@@ -1,9 +1,9 @@
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/utils/loggers.dart";
+import "package:utilities/logger/logger.dart";
 
 /// [ColorConverter] is a converter that allows you to convert a [Color] to and from JSON.
 class ColorConverter implements JsonConverter<Color?, dynamic> {
@@ -39,7 +39,8 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
         return _getColorFromRGB(colorList);
       }
     }
-    if (colorValue is List && (colorValue.length == 3 || colorValue.length == 4)) {
+    if (colorValue is List &&
+        (colorValue.length == 3 || colorValue.length == 4)) {
       final colorList = <double>[];
       for (final element in colorValue) {
         if (element is int) {
@@ -110,20 +111,27 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
   /// Can interpret rgb, rgbaa, rrggbb, rrggbbaa
   static Color? getColorFromHex(String hexColor) {
     // Remove any leading '#' character
-    if (hexColor.isNotEmpty && hexColor[0] == '#') {
+    if (hexColor.isNotEmpty && hexColor[0] == "#") {
       hexColor = hexColor.substring(1);
     }
 
     // Has opacity (which needs to be moved to front)
     if (hexColor.length == 5 || hexColor.length == 8) {
       final dividingPoint = hexColor.length - 2;
-      hexColor = hexColor.substring(dividingPoint) + hexColor.substring(0, dividingPoint);
+      hexColor = hexColor.substring(dividingPoint) +
+          hexColor.substring(0, dividingPoint);
     }
 
     if (hexColor.length == 3 || hexColor.length == 5) {
       final alphaPart = hexColor.length == 5 ? hexColor.substring(0, 2) : "";
       final colorPart = hexColor.substring(hexColor.length == 5 ? 2 : 0);
-      hexColor = alphaPart + colorPart[0] + colorPart[0] + colorPart[1] + colorPart[1] + colorPart[2] + colorPart[2];
+      hexColor = alphaPart +
+          colorPart[0] +
+          colorPart[0] +
+          colorPart[1] +
+          colorPart[1] +
+          colorPart[2] +
+          colorPart[2];
     }
 
     // Parse the hex color code

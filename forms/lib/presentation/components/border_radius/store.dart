@@ -1,18 +1,20 @@
 // ignore_for_file: unused_element
 
-import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:theme/data/models/borders/border_radius_model.dart';
+import "package:flutter/material.dart";
+import "package:mobx/mobx.dart";
+import "package:theme/data/models/borders/border_radius_model.dart";
 
-import '../base/store.dart';
+import "../base/store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 // enum BorderRadiusTypes { all, symmetric, only, zero }
 
-class BorderRadiusFormFieldStore = _BorderRadiusFormFieldStore with _$BorderRadiusFormFieldStore;
+class BorderRadiusFormFieldStore = _BorderRadiusFormFieldStore
+    with _$BorderRadiusFormFieldStore;
 
-abstract class _BorderRadiusFormFieldStore extends BaseFormFieldStore<BorderRadiusModel> with Store {
+abstract class _BorderRadiusFormFieldStore
+    extends BaseFormFieldStore<BorderRadiusModel> with Store {
   _BorderRadiusFormFieldStore({
     super.value = const BorderRadiusModel(),
     required super.onValueChanged,
@@ -30,11 +32,16 @@ abstract class _BorderRadiusFormFieldStore extends BaseFormFieldStore<BorderRadi
   }
   late BorderRadiusType type;
 
-  late final allController = TextEditingController(text: value.all_double?.toString());
-  late final topLeftController = TextEditingController(text: value.topLeft_double?.toString());
-  late final topRightController = TextEditingController(text: value.topRight_double?.toString());
-  late final bottomLeftController = TextEditingController(text: value.bottomLeft_double?.toString());
-  late final bottomRightController = TextEditingController(text: value.bottomRight_double?.toString());
+  late final allController =
+      TextEditingController(text: value.all_double?.toString());
+  late final topLeftController =
+      TextEditingController(text: value.topLeft_double?.toString());
+  late final topRightController =
+      TextEditingController(text: value.topRight_double?.toString());
+  late final bottomLeftController =
+      TextEditingController(text: value.bottomLeft_double?.toString());
+  late final bottomRightController =
+      TextEditingController(text: value.bottomRight_double?.toString());
 
   void onTypeChanged(BorderRadiusType newType) {
     type = newType;
@@ -58,6 +65,7 @@ abstract class _BorderRadiusFormFieldStore extends BaseFormFieldStore<BorderRadi
   }
 
   void onBottomRightChanged(String bottomRightValue) {
-    value = value.copyWith(bottomRight_double: double.tryParse(bottomRightValue));
+    value =
+        value.copyWith(bottomRight_double: double.tryParse(bottomRightValue));
   }
 }

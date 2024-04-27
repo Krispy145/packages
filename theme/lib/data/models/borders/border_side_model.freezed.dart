@@ -162,26 +162,6 @@ class _$BorderSideModelImpl extends _BorderSideModel {
     return 'BorderSideModel(color_themeColorString: $color_themeColorString, width_double: $width_double, style_enum_borderStyle: $style_enum_borderStyle, strokeAlign_double: $strokeAlign_double)';
   }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BorderSideModelImpl &&
-            (identical(other.color_themeColorString, color_themeColorString) ||
-                other.color_themeColorString == color_themeColorString) &&
-            (identical(other.width_double, width_double) ||
-                other.width_double == width_double) &&
-            (identical(other.style_enum_borderStyle, style_enum_borderStyle) ||
-                other.style_enum_borderStyle == style_enum_borderStyle) &&
-            (identical(other.strokeAlign_double, strokeAlign_double) ||
-                other.strokeAlign_double == strokeAlign_double));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, color_themeColorString,
-      width_double, style_enum_borderStyle, strokeAlign_double);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')

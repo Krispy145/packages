@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/sizes/screen_size.dart';
+import "package:flutter/material.dart";
+import "package:utilities/sizes/screen_size.dart";
 
 //TODO: Figure out way to add functions for fromJson, fromAssetBundle and fromNetwork
 /// [SizeTypes] is an enum that allows you to specify the type of size you want to use.
@@ -67,7 +67,9 @@ enum Sizes {
         return _getSize();
       case SizeTypes.scaling:
         final screenSizePoints = MediaQuery.sizeOf(context);
-        final screenDimension = axis == Axis.vertical ? screenSizePoints.height : screenSizePoints.width;
+        final screenDimension = axis == Axis.vertical
+            ? screenSizePoints.height
+            : screenSizePoints.width;
 
         final ordered = ScreenSizes.ordered;
 
@@ -76,7 +78,8 @@ enum Sizes {
         } else if (screenDimension <= ordered.first.dimension(axis)) {
           return _getSize(screenSize: ordered.first);
         } else {
-          final indexAfter = ordered.indexWhere((size) => size.dimension(axis) > screenDimension);
+          final indexAfter = ordered
+              .indexWhere((size) => size.dimension(axis) > screenDimension);
           final sizeAfter = ordered[indexAfter];
           final sizeBefore = ordered[indexAfter - 1];
           final dimensionAfter = sizeAfter.dimension(axis);
@@ -84,8 +87,10 @@ enum Sizes {
           final pointsAfter = _getSize(screenSize: sizeAfter);
           final pointsBefore = _getSize(screenSize: sizeBefore);
 
-          final percentage = (screenDimension - dimensionBefore) / (dimensionAfter - dimensionBefore);
-          final points = pointsBefore + (pointsAfter - pointsBefore) * percentage;
+          final percentage = (screenDimension - dimensionBefore) /
+              (dimensionAfter - dimensionBefore);
+          final points =
+              pointsBefore + (pointsAfter - pointsBefore) * percentage;
           return points;
         }
     }
@@ -162,7 +167,9 @@ class _AppSpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: axis == Axis.horizontal ? size.points(context, vertical: false, type: type) : 0,
+      width: axis == Axis.horizontal
+          ? size.points(context, vertical: false, type: type)
+          : 0,
       height: axis == Axis.vertical ? size.points(context, type: type) : 0,
     );
   }
@@ -182,9 +189,9 @@ class _AppSizesForScreenSize {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'small': small,
-      'medium': medium,
-      'large': large,
+      "small": small,
+      "medium": medium,
+      "large": large,
     };
   }
 }

@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/widgets/load_state/state_widget.dart';
+import "package:flutter/material.dart";
+import "package:theme/extensions/build_context.dart";
+import "package:utilities/widgets/load_state/state_widget.dart";
 
-import 'store.dart';
+import "store.dart";
 
 // ignore: strict_raw_type
 abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidget {
-  const BaseFormField({super.key, required this.store});
+  const BaseFormField({super.key, required this.store, this.showTitle = true});
 
   final T store;
+  final bool showTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +27,14 @@ abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidg
       },
       loadedBuilder: (context) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(store.title),
-            ),
+            if (showTitle)
+              Padding(
+                padding: const EdgeInsets.only(top: 24, bottom: 8),
+                child: Text(store.title, style: context.textTheme.titleSmall),
+              ),
             buildField(context),
           ],
         );

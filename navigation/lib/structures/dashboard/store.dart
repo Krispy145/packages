@@ -1,6 +1,6 @@
-import 'package:mobx/mobx.dart';
+import "package:mobx/mobx.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 ///MobX store for [DashboardShellStructureStore]
 class DashboardShellStructureStore = DashboardShellStructureStoreBase

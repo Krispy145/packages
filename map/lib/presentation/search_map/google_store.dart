@@ -21,7 +21,9 @@ abstract class _GoogleSearchMapStore extends MapStore with Store {
   _GoogleSearchMapStore({
     required this.mapAPIKey,
     required super.mapTilesUrl,
+    // ignore: unused_element
     super.singleMarkerBuilder,
+    // ignore: unused_element
     this.initialMarkers,
   }) {
     _loadMap();

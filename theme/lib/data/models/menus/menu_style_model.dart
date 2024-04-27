@@ -1,16 +1,16 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/badges/badge_model.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
-import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/data/models/general/size_model.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/badges/badge_model.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
+import "package:theme/data/models/borders/outlined_border_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/data/models/general/size_model.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'menu_style_model.freezed.dart';
-part 'menu_style_model.g.dart';
+part "menu_style_model.freezed.dart";
+part "menu_style_model.g.dart";
 
 @freezed
 class MenuStyleModel with _$MenuStyleModel {
@@ -26,12 +26,14 @@ class MenuStyleModel with _$MenuStyleModel {
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     // @AlignmentConverter()
-    @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
+    @Default(AlignmentOptions.center)
+    AlignmentOptions? alignment_enum_alignmentOptions,
   }) = _MenuModel;
 
   const MenuStyleModel._();
 
-  factory MenuStyleModel.fromJson(Map<String, dynamic> json) => _$MenuStyleModelFromJson(json);
+  factory MenuStyleModel.fromJson(Map<String, dynamic> json) =>
+      _$MenuStyleModelFromJson(json);
 
   // static MenuModel defaultMenuModel() {
   //   return const MenuModel(
@@ -62,26 +64,40 @@ class MenuStyleModel with _$MenuStyleModel {
   // }
 
   MenuStyle asMenuStyle({String? styleTypeName}) {
-    final backgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
-    final shadowColor = shadowColor_themeColorString?.toColor(styleType: styleTypeName);
-    final surfaceTintColor = surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
+    final backgroundColor =
+        backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
+    final shadowColor =
+        shadowColor_themeColorString?.toColor(styleType: styleTypeName);
+    final surfaceTintColor =
+        surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
     final elevation = elevation_double;
-    final padding = padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
+    final padding =
+        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
     final minimumSize = minimumSize_size?.asSize(styleTypeName: styleTypeName);
     final fixedSize = fixedSize_size?.asSize(styleTypeName: styleTypeName);
     final maximumSize = maximumSize_size?.asSize(styleTypeName: styleTypeName);
     final side = side_borderSide?.asBorderSide(styleTypeName: styleTypeName);
-    final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
+    final shape =
+        shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
     final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-      backgroundColor: backgroundColor != null ? MaterialStateProperty.all(backgroundColor) : null,
-      shadowColor: shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
-      surfaceTintColor: surfaceTintColor != null ? MaterialStateProperty.all(surfaceTintColor) : null,
-      elevation: elevation != null ? MaterialStateProperty.all(elevation) : null,
+      backgroundColor: backgroundColor != null
+          ? MaterialStateProperty.all(backgroundColor)
+          : null,
+      shadowColor:
+          shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
+      surfaceTintColor: surfaceTintColor != null
+          ? MaterialStateProperty.all(surfaceTintColor)
+          : null,
+      elevation:
+          elevation != null ? MaterialStateProperty.all(elevation) : null,
       padding: padding != null ? MaterialStateProperty.all(padding) : null,
-      minimumSize: minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
-      fixedSize: fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
-      maximumSize: maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
+      minimumSize:
+          minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
+      fixedSize:
+          fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
+      maximumSize:
+          maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
       side: side != null ? MaterialStateProperty.all(side) : null,
       shape: shape != null ? MaterialStateProperty.all(shape) : null,
       alignment: alignment,

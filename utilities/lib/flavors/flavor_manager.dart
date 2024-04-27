@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:utilities/flavors/flavor_config.dart';
+import "package:flutter/cupertino.dart";
+import "package:utilities/flavors/flavor_config.dart";
 
 /// [FlavorManager] is the class that will be used to manage the flavor configuration.
 class FlavorManager extends ChangeNotifier {

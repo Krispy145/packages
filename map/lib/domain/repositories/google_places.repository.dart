@@ -11,13 +11,16 @@ class GooglePlacesRepository {
   /// [GooglePlacesRepository] constructor.
   GooglePlacesRepository({required this.apiKey});
 
-  late final GooglePlacesDataRepository _googlePlacesDataRepository = DataRepositories.instance.googlePlaces(googleApiKey: apiKey);
+  late final GooglePlacesDataRepository _googlePlacesDataRepository =
+      DataRepositories.instance.googlePlaces(googleApiKey: apiKey);
 
   //* GooglePlacesModel Data Source Type
   final _source = DataSourceTypes.api;
 
   /// [textSearchGooglePlaces] returns a list of [GooglePlace]s based on the [GoogleTextSearchParameters].
-  Future<List<GooglePlace?>> textSearchGooglePlaces({required GoogleTextSearchParameters parameters}) async {
-    return _googlePlacesDataRepository.textSearchGooglePlaces(source: _source, parameters: parameters);
+  Future<List<GooglePlace?>> textSearchGooglePlaces(
+      {required GoogleTextSearchParameters parameters}) async {
+    return _googlePlacesDataRepository.textSearchGooglePlaces(
+        source: _source, parameters: parameters);
   }
 }

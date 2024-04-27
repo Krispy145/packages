@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
-import 'package:fonts/data/models/font_descriptor_and_url.dart';
+import "package:flutter/foundation.dart";
+import "package:fonts/data/models/font_descriptor_and_url.dart";
 
 typedef LoadingFontData = Future<ByteData?>;
 

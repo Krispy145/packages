@@ -1,13 +1,13 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/data/models/user_model.dart';
-import 'package:authentication/domain/repositories/authentication.repository.dart';
-import 'package:authentication/helpers/constants.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:flutter/material.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
-import 'package:utilities/sizes/spacers.dart';
-import 'package:utilities/snackbar/configuration.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/data/models/user_model.dart";
+import "package:authentication/domain/repositories/authentication.repository.dart";
+import "package:authentication/helpers/constants.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:email_validator/email_validator.dart";
+import "package:flutter/material.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/sizes/spacers.dart";
+import "package:utilities/snackbar/configuration.dart";
 
 class AdditionalDataField {
   /// Label of the `DOTextFormField` for this metadata
@@ -74,11 +74,13 @@ class EmailAuthWidget extends StatefulWidget {
 
 class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController(text: 'davidkisbeygreen145@gmail.com');
+  final _emailController =
+      TextEditingController(text: "davidkisbeygreen145@gmail.com");
   final _passwordController = TextEditingController(
-    text: 'krispy123',
+    text: "krispy123",
   );
-  late final Map<AdditionalDataField, TextEditingController> _additionalDataControllers;
+  late final Map<AdditionalDataField, TextEditingController>
+      _additionalDataControllers;
 
   bool _isLoading = false;
   bool _showPassword = false;
@@ -112,7 +114,8 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   void _toggleSignIn() {
     setState(() {
       _forgotPassword = false;
-      action = action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+      action =
+          action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
     });
   }
 
@@ -140,14 +143,16 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
             validator: (value) {
-              if (value == null || value.isEmpty || !EmailValidator.validate(_emailController.text)) {
-                return 'Please enter a valid email address';
+              if (value == null ||
+                  value.isEmpty ||
+                  !EmailValidator.validate(_emailController.text)) {
+                return "Please enter a valid email address";
               }
               return null;
             },
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.email),
-              label: Text('Enter your email'),
+              label: Text("Enter your email"),
             ),
             controller: _emailController,
           ),
@@ -156,30 +161,33 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
             TextFormField(
               validator: (value) {
                 if (value == null || value.isEmpty || value.length < 6) {
-                  return 'Please enter a password that is at least 6 characters long';
+                  return "Please enter a password that is at least 6 characters long";
                 }
                 return null;
               },
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.lock),
-                label: const Text('Enter your password'),
+                label: const Text("Enter your password"),
                 suffixIcon: GestureDetector(
                   onTap: () => setState(() {
                     _showPassword = !_showPassword;
                   }),
-                  child: Icon(_showPassword ? Icons.visibility : Icons.visibility_off),
+                  child: Icon(
+                      _showPassword ? Icons.visibility : Icons.visibility_off,),
                 ),
               ),
               obscureText: !_showPassword,
               controller: _passwordController,
             ),
             Sizes.s.spacer(),
-            if (widget.additionalDataFields != null && action == AuthAction.signUp)
+            if (widget.additionalDataFields != null &&
+                action == AuthAction.signUp)
               ...widget.additionalDataFields!
                   .map(
                     (additionalDataField) => [
                       TextFormField(
-                        controller: _additionalDataControllers[additionalDataField],
+                        controller:
+                            _additionalDataControllers[additionalDataField],
                         decoration: InputDecoration(
                           label: Text(additionalDataField.label),
                           prefixIcon: additionalDataField.prefixIcon,
@@ -200,7 +208,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                         strokeWidth: 1.5,
                       ),
                     )
-                  : Text(action == AuthAction.signIn ? 'Sign In' : 'Sign Up'),
+                  : Text(action == AuthAction.signIn ? "Sign In" : "Sign Up"),
               onPressed: () async {
                 if (!_formKey.currentState!.validate()) {
                   return;
@@ -216,13 +224,17 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                   }
                 } on AuthenticationException catch (error) {
                   if (widget.onError == null && context.mounted) {
-                    context.showSnackbar(configuration: SnackbarConfiguration.error(title: error.message));
+                    context.showSnackbar(
+                        configuration:
+                            SnackbarConfiguration.error(title: error.message),);
                   } else {
                     widget.onError?.call(error);
                   }
                 } catch (error) {
                   if (widget.onError == null && context.mounted) {
-                    context.showSnackbar(configuration: SnackbarConfiguration.error(title: 'Unexpected error has occurred: $error'));
+                    context.showSnackbar(
+                        configuration: SnackbarConfiguration.error(
+                            title: "Unexpected error has occurred: $error",),);
                   } else {
                     widget.onError?.call(error);
                   }
@@ -242,13 +254,15 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                     _forgotPassword = true;
                   });
                 },
-                child: const Text('Forgot your password?'),
+                child: const Text("Forgot your password?"),
               ),
             ],
             TextButton(
-              key: const ValueKey('toggleSignInButton'),
+              key: const ValueKey("toggleSignInButton"),
               onPressed: _toggleSignIn,
-              child: Text(action == AuthAction.signIn ? "Don't have an account? Sign up" : 'Already have an account? Sign in'),
+              child: Text(action == AuthAction.signIn
+                  ? "Don't have an account? Sign up"
+                  : "Already have an account? Sign in",),
             ),
           ],
           if (action == AuthAction.signIn && _forgotPassword) ...[
@@ -263,17 +277,20 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                     _isLoading = true;
                   });
 
-                  throw const AuthenticationException('Forgot password is not implemented yet');
+                  throw const AuthenticationException(
+                      "Forgot password is not implemented yet",);
                   // final email = _emailController.text.trim();
                   // await supabase.auth.resetPasswordForEmail(email);
                   // widget.onPasswordResetEmailSent?.call();
                 } on AuthenticationException catch (error) {
-                  context.showSnackbar(configuration: SnackbarConfiguration.error(title: error.message));
+                  context.showSnackbar(
+                      configuration:
+                          SnackbarConfiguration.error(title: error.message),);
                 } catch (error) {
                   widget.onError?.call(error);
                 }
               },
-              child: const Text('Send password reset email'),
+              child: const Text("Send password reset email"),
             ),
             Sizes.s.spacer(),
             TextButton(
@@ -282,7 +299,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                   _forgotPassword = false;
                 });
               },
-              child: const Text('Back to sign in'),
+              child: const Text("Back to sign in"),
             ),
           ],
           Sizes.s.spacer(),

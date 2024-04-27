@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/text/text_style_model.dart';
-import 'package:theme/data/models/text/text_style_sizes.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/text/text_style_model.dart";
+import "package:theme/data/models/text/text_style_sizes.dart";
 
-part 'text_types.freezed.dart';
-part 'text_types.g.dart';
+part "text_types.freezed.dart";
+part "text_types.g.dart";
 
 /// [TextTypes] is a wrapper for [TextStyleModel] that allows you to use [TextStyleModel] to
 /// calculate the [TextStyle] values.
@@ -63,5 +63,6 @@ abstract class TextTypes with _$TextTypes {
   // }
 
   /// [TextTypes.fromJson] is a factory method that allows you to create a [TextTypes] from a JSON file.
-  factory TextTypes.fromJson(Map<String, dynamic> json) => _$TextTypesFromJson(json);
+  factory TextTypes.fromJson(Map<String, dynamic> json) =>
+      _$TextTypesFromJson(json);
 }

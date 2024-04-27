@@ -1,6 +1,6 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:flutter/material.dart";
+import "package:font_awesome_flutter/font_awesome_flutter.dart";
 
 class SocialButtonType {
   final IconData iconData;
@@ -22,7 +22,8 @@ class SocialButtonType {
     this.backgroundColor = const Color(0xFF3b5998),
     required this.params,
   })  : name = name ?? params.authType.name,
-        assert(params.authType == AuthType.facebook, "AuthType must be facebook");
+        assert(
+            params.authType == AuthType.facebook, "AuthType must be facebook",);
 
   SocialButtonType.github({
     String? name,

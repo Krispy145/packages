@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
 
 class TimePickers extends StatefulWidget {
   const TimePickers({super.key});
@@ -14,8 +14,8 @@ class _TimePickersState extends State<TimePickers> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Time picker',
-      tooltipMessage: 'Use showTimePicker',
+      label: "Time picker",
+      tooltipMessage: "Use showTimePicker",
       child: TextButton(
         onPressed: () async {
           final time = await showTimePicker(
@@ -35,14 +35,15 @@ class _TimePickersState extends State<TimePickers> {
             if (selectedTime != null) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Selected time: ${selectedTime!.format(context)}'),
+                  content:
+                      Text("Selected time: ${selectedTime!.format(context)}"),
                 ),
               );
             }
           });
         },
         child: const Text(
-          'Show time picker',
+          "Show time picker",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

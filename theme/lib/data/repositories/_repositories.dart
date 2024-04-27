@@ -1,5 +1,5 @@
-import 'digital_oasis.repository.dart';
-import 'theme.repository.dart';
+import "digital_oasis.repository.dart";
+import "theme.repository.dart";
 
 ///END OF IMPORTS
 

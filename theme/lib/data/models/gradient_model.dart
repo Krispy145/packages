@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'gradient_model.freezed.dart';
-part 'gradient_model.g.dart';
+part "gradient_model.freezed.dart";
+part "gradient_model.g.dart";
 
 enum GradientType { linear, radial, sweep }
 
@@ -18,10 +18,14 @@ class GradientModel with _$GradientModel {
 
   const GradientModel._();
 
-  factory GradientModel.fromJson(Map<String, dynamic> json) => _$GradientModelFromJson(json);
+  factory GradientModel.fromJson(Map<String, dynamic> json) =>
+      _$GradientModelFromJson(json);
 
   Gradient asGradient({String? styleTypeName}) {
-    final colorsList = (colors_list_themeColorString ?? []).map((e) => e.toColor()).whereType<Color>().toList();
+    final colorsList = (colors_list_themeColorString ?? [])
+        .map((e) => e.toColor())
+        .whereType<Color>()
+        .toList();
     switch (type_enum_gradientType) {
       case GradientType.linear:
         return LinearGradient(

@@ -1,13 +1,13 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
-import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
+import "package:theme/data/models/borders/outlined_border_model.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'checkbox_model.freezed.dart';
-part 'checkbox_model.g.dart';
+part "checkbox_model.freezed.dart";
+part "checkbox_model.g.dart";
 
 @freezed
 class CheckboxModel with _$CheckboxModel {
@@ -22,7 +22,8 @@ class CheckboxModel with _$CheckboxModel {
 
   const CheckboxModel._();
 
-  factory CheckboxModel.fromJson(Map<String, dynamic> json) => _$CheckboxModelFromJson(json);
+  factory CheckboxModel.fromJson(Map<String, dynamic> json) =>
+      _$CheckboxModelFromJson(json);
   // static CheckboxModel defaultCheckboxModel() {
   //   return const CheckboxModel(
   //     fillColor: "primary",
@@ -46,11 +47,15 @@ class CheckboxModel with _$CheckboxModel {
 
   CheckboxThemeData asCheckboxThemeData({String? styleTypeName}) {
     return CheckboxThemeData(
-      fillColor: MaterialStateProperty.all(fillColor_themeColorString?.toColor(styleType: styleTypeName)),
-      checkColor: MaterialStateProperty.all(checkColor_themeColorString?.toColor(styleType: styleTypeName)),
-      overlayColor: MaterialStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
+      fillColor: MaterialStateProperty.all(
+          fillColor_themeColorString?.toColor(styleType: styleTypeName),),
+      checkColor: MaterialStateProperty.all(
+          checkColor_themeColorString?.toColor(styleType: styleTypeName),),
+      overlayColor: MaterialStateProperty.all(
+          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
       splashRadius: splashRadius_double,
-      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      shape:
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
     );
   }

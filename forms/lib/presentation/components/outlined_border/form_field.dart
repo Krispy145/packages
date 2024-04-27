@@ -1,15 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:forms/presentation/components/border_radius/form_field.dart';
-import 'package:forms/presentation/components/border_side/form_field.dart';
-import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:utilities/helpers/extensions/string.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:forms/presentation/components/border_radius/form_field.dart";
+import "package:forms/presentation/components/border_side/form_field.dart";
+import "package:theme/data/models/borders/outlined_border_model.dart";
+import "package:utilities/helpers/extensions/string.dart";
+import "package:utilities/sizes/spacers.dart";
 
-import 'store.dart';
+import "store.dart";
 
-class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore> {
+class OutlinedBorderFormField
+    extends BaseFormField<OutlinedBorderFormFieldStore> {
   const OutlinedBorderFormField({
     super.key,
     required super.store,
@@ -23,14 +24,20 @@ class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore
           mainAxisSize: MainAxisSize.min,
           children: [
             SegmentedButton<OutlinedBorderType>(
-              segments: OutlinedBorderType.values.map((type) => ButtonSegment<OutlinedBorderType>(value: type, label: Text(type.name.toTitleCase()))).toList(),
+              segments: OutlinedBorderType.values
+                  .map((type) => ButtonSegment<OutlinedBorderType>(
+                      value: type, label: Text(type.name.toTitleCase()),),)
+                  .toList(),
               selected: {store.outlinedBorderType},
-              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) =>
+                  store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             FilledButton(
               onPressed: () {},
-              style: ButtonStyle(shape: MaterialStateProperty.all(store.value.asOutlinedBorder())),
+              style: ButtonStyle(
+                  shape: MaterialStateProperty.all(
+                      store.value.asOutlinedBorder(),),),
               child: const Text("Border Preview"),
             ),
             Sizes.m.spacer(),

@@ -1,15 +1,15 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/badges/badge_model.dart';
-import 'package:theme/data/models/borders/shape_border_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/badges/badge_model.dart";
+import "package:theme/data/models/borders/shape_border_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'dialog_model.freezed.dart';
-part 'dialog_model.g.dart';
+part "dialog_model.freezed.dart";
+part "dialog_model.g.dart";
 
 @freezed
 class DialogModel with _$DialogModel {
@@ -29,7 +29,8 @@ class DialogModel with _$DialogModel {
 
   const DialogModel._();
 
-  factory DialogModel.fromJson(Map<String, dynamic> json) => _$DialogModelFromJson(json);
+  factory DialogModel.fromJson(Map<String, dynamic> json) =>
+      _$DialogModelFromJson(json);
 
   // static DialogModel defaultDialogModel() {
   //   return const DialogModel(
@@ -60,15 +61,22 @@ class DialogModel with _$DialogModel {
 
   DialogTheme asDialogTheme({String? styleTypeName}) {
     return DialogTheme(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       alignment: alignment_enum_alignmentOptions?.alignment,
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
-      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      actionsPadding: actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      titleTextStyle: titleTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      contentTextStyle: contentTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      actionsPadding:
+          actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }
 }

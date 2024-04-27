@@ -1,14 +1,15 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:authentication/utils/loggers.dart';
-import 'package:utilities/data_sources/remote/api.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:authentication/utils/loggers.dart";
+import "package:utilities/data_sources/remote/api.dart";
+import "package:utilities/logger/logger.dart";
 
-import '../models/user_model.dart';
-import '_source.dart';
+import "../models/user_model.dart";
+import "_source.dart";
 
 /// [ApiAuthDataSource] is a class that implements [AuthenticationDataSource] interface.
-class ApiAuthDataSource extends ApiDataSource<UserModel> implements AuthenticationDataSource {
+class ApiAuthDataSource extends ApiDataSource<UserModel>
+    implements AuthenticationDataSource {
   final bool logToDatabase;
   UserModel? _currentUserModel;
   UserModel? get currentUserModel => _currentUserModel;
@@ -25,7 +26,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
   Future<UserModel?> signIn({required AuthParams params}) async {
     return _handleError(() async {
       return requestData(
-        requestExtension: 'sign_in',
+        requestExtension: "sign_in",
         requestType: params,
         cancelPreviousRequest: true,
       );
@@ -36,7 +37,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
   Future<UserModel?> signUp({required AuthParams params}) async {
     return _handleError(() async {
       return requestData(
-        requestExtension: 'sign_up',
+        requestExtension: "sign_up",
         requestType: params,
         cancelPreviousRequest: true,
       );
@@ -47,7 +48,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
   Future<UserModel?> reauthenticate({required AuthParams params}) async {
     return _handleError(() async {
       return requestData(
-        requestExtension: 'reauthenticate',
+        requestExtension: "reauthenticate",
         requestType: params,
         cancelPreviousRequest: true,
       );
@@ -58,7 +59,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
   Future<void> signOut({required AuthParams params}) async {
     return _handleError(() async {
       _currentUserModel = await requestData(
-        requestExtension: 'sign_out',
+        requestExtension: "sign_out",
         requestType: params,
         cancelPreviousRequest: true,
       );

@@ -1,8 +1,8 @@
-import 'dart:ui';
+import "dart:ui";
 
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import "package:flutter/gestures.dart";
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 
 class TextFormFieldController {
   final FocusNode? focusNode;
@@ -48,7 +48,10 @@ class TextFormFieldController {
   final EdgeInsets scrollPadding;
   final bool? enableInteractiveSelection;
   final TextSelectionControls? selectionControls;
-  final Widget? Function(BuildContext, {required int currentLength, required bool isFocused, required int? maxLength})? buildCounter;
+  final Widget? Function(BuildContext,
+      {required int currentLength,
+      required bool isFocused,
+      required int? maxLength,})? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
@@ -85,7 +88,7 @@ class TextFormFieldController {
     this.autofocus = false,
     this.readOnly = false,
     this.showCursor,
-    this.obscuringCharacter = '•',
+    this.obscuringCharacter = "•",
     this.obscureText = false,
     this.autocorrect = true,
     this.smartDashesType,

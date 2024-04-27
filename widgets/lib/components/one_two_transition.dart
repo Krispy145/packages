@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
+import "package:flutter/material.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 
 class OneTwoTransition extends StatefulWidget {
   final Widget one;

@@ -1,15 +1,15 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
-import 'package:theme/data/models/borders/outlined_border_model.dart';
-import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
+import "package:theme/data/models/borders/outlined_border_model.dart";
+import "package:theme/data/models/box_constraints_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'search_view_model.freezed.dart';
-part 'search_view_model.g.dart';
+part "search_view_model.freezed.dart";
+part "search_view_model.g.dart";
 
 @freezed
 class SearchViewModel with _$SearchViewModel {
@@ -17,7 +17,8 @@ class SearchViewModel with _$SearchViewModel {
     ThemeColorString? backgroundColor_themeColorString,
     double? elevation_double,
     ThemeColorString? surfaceTintColor_themeColorString,
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? constraints_boxConstraints,
     BorderSideModel? side_borderSide,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     TextStyleString? headerTextStyle_textStyleString,
@@ -27,7 +28,8 @@ class SearchViewModel with _$SearchViewModel {
 
   const SearchViewModel._();
 
-  factory SearchViewModel.fromJson(Map<String, dynamic> json) => _$SearchViewModelFromJson(json);
+  factory SearchViewModel.fromJson(Map<String, dynamic> json) =>
+      _$SearchViewModelFromJson(json);
 
   // static SearchViewModel defaultSearchViewModel() {
   //   return const SearchViewModel(
@@ -60,15 +62,24 @@ class SearchViewModel with _$SearchViewModel {
 
   SearchViewThemeData asSearchViewThemeData({String? styleTypeName}) {
     return SearchViewThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      constraints: constraints_boxConstraints?.asBoxConstraints(
+          styleTypeName: styleTypeName,),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
-      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
-      headerTextStyle: headerTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      headerHintStyle: headerHintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      dividerColor: dividerColor_themeColorString?.toColor(styleType: styleTypeName),
+      shape:
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      headerTextStyle: headerTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      headerHintStyle: headerHintStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      dividerColor:
+          dividerColor_themeColorString?.toColor(styleType: styleTypeName),
     );
   }
 }

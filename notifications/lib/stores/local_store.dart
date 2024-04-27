@@ -1,28 +1,29 @@
 // ignore_for_file: unused_element
 
-import 'dart:convert';
+import "dart:convert";
 
-import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_timezone/flutter_timezone.dart';
-import 'package:mobx/mobx.dart';
-import 'package:notifications/models/local_android_notification_details.dart';
-import 'package:notifications/models/notification.dart';
-import 'package:notifications/models/permissions.dart';
-import 'package:notifications/stores/base_store.dart';
-import 'package:notifications/utils/loggers.dart';
-import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
-import 'package:universal_io/io.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:collection/collection.dart";
+import "package:flutter/foundation.dart";
+import "package:flutter_local_notifications/flutter_local_notifications.dart";
+import "package:flutter_timezone/flutter_timezone.dart";
+import "package:mobx/mobx.dart";
+import "package:notifications/models/local_android_notification_details.dart";
+import "package:notifications/models/notification.dart";
+import "package:notifications/models/permissions.dart";
+import "package:notifications/stores/base_store.dart";
+import "package:notifications/utils/loggers.dart";
+import "package:timezone/data/latest_all.dart" as tz;
+import "package:timezone/timezone.dart" as tz;
+import "package:universal_io/io.dart";
+import "package:utilities/logger/logger.dart";
 
-part 'local_store.g.dart';
+part "local_store.g.dart";
 
 //TODO: Look into NotificationDetails and AndroidNotificationChannels for when creating notification channels and using them within this store
 
 /// [LocalNotificationsStore] is the base class for all local notifications stores.
-class LocalNotificationsStore = _LocalNotificationsStore with _$LocalNotificationsStore;
+class LocalNotificationsStore = _LocalNotificationsStore
+    with _$LocalNotificationsStore;
 
 /// [_LocalNotificationsStore] is the base class for all notifications stores.
 abstract class _LocalNotificationsStore extends NotificationsStore with Store {
@@ -31,18 +32,19 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
 
   /// [androidLocalNotificationsChannel] is the Android local notifications channel.
   final androidLocalNotificationsChannel = const AndroidNotificationChannel(
-    'local_notifications',
-    'Local Notifications Channel',
+    "local_notifications",
+    "Local Notifications Channel",
     importance: Importance.max,
   );
 
   /// [androidLocalNotificationDetails] is the Android local notifications details.
-  LocalAndroidNotificationDetails get androidLocalNotificationDetails => LocalAndroidNotificationDetails(
+  LocalAndroidNotificationDetails get androidLocalNotificationDetails =>
+      LocalAndroidNotificationDetails(
         androidLocalNotificationsChannel.id,
         androidLocalNotificationsChannel.name,
       ).copyWith(
-        channelDescription: 'Local Notifications Channel',
-        ticker: 'ticker',
+        channelDescription: "Local Notifications Channel",
+        ticker: "ticker",
       );
 
   /// [notificationDetails] is the notification details.
@@ -64,7 +66,8 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   /// Corresponds to the UNNotificationCategory type which is used to configure notification categories and accompanying options.
   /// https://developer.apple.com/documentation/usernotifications/unnotificationcategory
   @observable
-  ObservableList<DarwinNotificationCategory> darwinNotificationCategories = ObservableList();
+  ObservableList<DarwinNotificationCategory> darwinNotificationCategories =
+      ObservableList();
 
   /// [setDarwinNotificationCategories] sets the list of darwin notification categories for iOS and macOS.
   @action
@@ -79,8 +82,11 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   @override
   Future<bool> requestPermissions(NotificationPermissions? permissions) async {
     if (Platform.isIOS) {
-      final iosImplementation = localNotifications.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
-      final grantedNotificationPermission = await iosImplementation?.requestPermissions(
+      final iosImplementation =
+          localNotifications.resolvePlatformSpecificImplementation<
+              IOSFlutterLocalNotificationsPlugin>();
+      final grantedNotificationPermission =
+          await iosImplementation?.requestPermissions(
         alert: permissions?.alert ?? true,
         badge: permissions?.badge ?? true,
         provisional: permissions?.provisional ?? false,
@@ -88,8 +94,11 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
       );
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isMacOS) {
-      final macOSImplementation = localNotifications.resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>();
-      final grantedNotificationPermission = await macOSImplementation?.requestPermissions(
+      final macOSImplementation =
+          localNotifications.resolvePlatformSpecificImplementation<
+              MacOSFlutterLocalNotificationsPlugin>();
+      final grantedNotificationPermission =
+          await macOSImplementation?.requestPermissions(
         alert: permissions?.alert ?? true,
         badge: permissions?.badge ?? true,
         provisional: permissions?.provisional ?? false,
@@ -97,8 +106,11 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
       );
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isAndroid) {
-      final androidImplementation = localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
-      final grantedNotificationPermission = await androidImplementation?.requestNotificationsPermission();
+      final androidImplementation =
+          localNotifications.resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>();
+      final grantedNotificationPermission =
+          await androidImplementation?.requestNotificationsPermission();
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isLinux || kIsWeb) {
       _notificationsEnabled = true;
@@ -115,7 +127,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
     );
     await _configureLocalTimeZone();
     final initializationSettings = InitializationSettings(
-      android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
+      android: const AndroidInitializationSettings("@mipmap/ic_launcher"),
       iOS: await _initializeDarwin(),
       macOS: await _initializeDarwin(),
       linux: await _initializeLinux(),
@@ -168,7 +180,8 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
     required NotificationDetails details,
     required tz.TZDateTime time,
     ScheduledInterval interval = ScheduledInterval.exact,
-    AndroidScheduleMode androidScheduleMode = AndroidScheduleMode.exactAllowWhileIdle,
+    AndroidScheduleMode androidScheduleMode =
+        AndroidScheduleMode.exactAllowWhileIdle,
   }) async {
     await localNotifications.zonedSchedule(
       notification.localId,
@@ -179,7 +192,8 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
       payload: json.encode(notification.toJson()),
       androidScheduleMode: androidScheduleMode,
       matchDateTimeComponents: interval.toDateTimeComponents,
-      uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
     );
   }
 
@@ -188,13 +202,19 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   Future<void> createAndroidNotificationChannel(
     AndroidNotificationChannel channel,
   ) async {
-    await localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(channel);
+    await localNotifications
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
   }
 
   /// [deleteAndroidNotificationChannel] deletes an Android notification channel.
   @action
   Future<void> deleteAndroidNotificationChannel(String channelId) async {
-    await localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.deleteNotificationChannel(channelId);
+    await localNotifications
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.deleteNotificationChannel(channelId);
   }
 
   /// [updateActiveNotificationsList] updates the active notifications to the [notifications].
@@ -224,7 +244,8 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   @action
   @override
   Future<void> delete(String id) async {
-    final notification = notifications.value.values.firstWhereOrNull((element) => element?.id == id);
+    final notification = notifications.value.values
+        .firstWhereOrNull((element) => element?.id == id);
     if (notification == null) return;
     await localNotifications.cancel(notification.localId);
     await super.delete(id);
@@ -274,16 +295,19 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   @action
   Future<LinuxInitializationSettings> _initializeLinux() async {
     return LinuxInitializationSettings(
-      defaultActionName: 'Open notification',
-      defaultIcon: AssetsLinuxIcon('icons/app_icon.png'),
+      defaultActionName: "Open notification",
+      defaultIcon: AssetsLinuxIcon("icons/app_icon.png"),
     );
   }
 
   @action
   Future<void> _handleInitialNotification() async {
-    final notificationAppLaunchDetails = await localNotifications.getNotificationAppLaunchDetails();
-    final notificationResponse = notificationAppLaunchDetails?.notificationResponse;
-    if ((notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) && notificationResponse != null) {
+    final notificationAppLaunchDetails =
+        await localNotifications.getNotificationAppLaunchDetails();
+    final notificationResponse =
+        notificationAppLaunchDetails?.notificationResponse;
+    if ((notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) &&
+        notificationResponse != null) {
       await _onDidReceiveNotificationResponse(
         notificationResponse,
         updateBadge: false,
@@ -300,7 +324,8 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
     if (updateBadge) {
       //TODO: Look into updating the badge count for iOS and macOS
     } else {}
-    final notification = _convertNotificationResponseToModel(notificationResponse);
+    final notification =
+        _convertNotificationResponseToModel(notificationResponse);
     if (notification == null) return;
     await update(
       notification.id,

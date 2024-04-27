@@ -1,12 +1,16 @@
-import 'package:utilities/helpers/tuples.dart';
+import "package:utilities/helpers/tuples.dart";
 
 /// String Extensions
 extension StringExtension on String {
   /// Capitalize String
-  String _toCapitalized() => length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : '';
+  String _toCapitalized() =>
+      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : "";
 
   /// Title Capitalize String
-  String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str._toCapitalized()).join(' ');
+  String toTitleCase() => replaceAll(RegExp(" +"), " ")
+      .split(" ")
+      .map((str) => str._toCapitalized())
+      .join(" ");
 
   /// Checks if string is or isn't a number
   bool get isNumeric => double.tryParse(this) != null;
@@ -36,19 +40,19 @@ extension StringExtension on String {
   /// Returns the the string, using the snake_case format rather than camelCase
   String camelCaseToSnakeCase() {
     return replaceAllMapped(
-      RegExp('([A-Z])'),
-      (match) => '_${match.group(1)!.toLowerCase()}',
+      RegExp("([A-Z])"),
+      (match) => "_${match.group(1)!.toLowerCase()}",
     );
   }
 
   /// Returns the the string, using the Title Case format from camelCase
   String camelCaseToTitleCase() {
-    if (isEmpty) return '';
-    final words = split(RegExp('(?=[A-Z])|_'));
+    if (isEmpty) return "";
+    final words = split(RegExp("(?=[A-Z])|_"));
     return words.map((word) {
-      if (word.isEmpty) return '';
+      if (word.isEmpty) return "";
       return word[0].toUpperCase() + word.substring(1).toLowerCase();
-    }).join(' ');
+    }).join(" ");
   }
 
   /// Separates the words in a string with spaces
@@ -57,7 +61,7 @@ extension StringExtension on String {
     for (var i = 0; i < length; i++) {
       final char = this[i];
       if (char.toUpperCase() == char) {
-        result.write(' ');
+        result.write(" ");
       }
       result.write(char.toLowerCase());
     }
@@ -68,7 +72,8 @@ extension StringExtension on String {
   String replaceTextBetween(String start, String end, String replacement) {
     final startString = replaceAll("\n", r"\n");
     // ignore: prefer_interpolation_to_compose_strings
-    final result = startString.replaceAllMapped(RegExp('($start)(.*?)($end)'), (m) {
+    final result =
+        startString.replaceAllMapped(RegExp("($start)(.*?)($end)"), (m) {
       return '${m[1]}$replacement${m[3]}';
     });
     return result.replaceAll(r"\n", "\n");

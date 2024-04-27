@@ -59,8 +59,10 @@ abstract class _MapStore extends LoadStateStore with Store {
     onTap: onMapTapped,
     onMapEvent: onMapEvent,
     onPositionChanged: onMapPositionChanged,
-    backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
-    interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
+    backgroundColor:
+        AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
+    interactionOptions: const InteractionOptions(
+        flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
   );
 
   @observable
@@ -72,7 +74,8 @@ abstract class _MapStore extends LoadStateStore with Store {
 
   final String mapTilesUserPackageName = "ae.digitaloasis";
   final String mapTilesUrl;
-  final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+  final String openStreetMapUrl =
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///
   /// INITIALISATION
@@ -83,7 +86,8 @@ abstract class _MapStore extends LoadStateStore with Store {
     AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
     if (_markers.isNotEmpty) {
-      AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
+      AppLogger.print("Initialising spot markers on map: ${_markers.length}",
+          [MapLoggers.markers]);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
@@ -97,24 +101,29 @@ abstract class _MapStore extends LoadStateStore with Store {
   @action
   void addMarker(MarkerModel markerModel, {bool clearFirst = false}) {
     if (clearFirst) {
-      superclusterController.removeAll(_markers.map(buildSingleMarker).toList());
+      superclusterController
+          .removeAll(_markers.map(buildSingleMarker).toList());
       _markers.clear();
     }
     _markers.add(markerModel);
     superclusterController.add(buildSingleMarker(markerModel));
-    AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
+    AppLogger.print(
+        "Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
   }
 
   @action
-  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = false}) {
-    AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
+  void addMarkers(List<MarkerModel> newMarkerModels,
+      {bool clearFirst = false}) {
+    AppLogger.print(
+        "Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
 
     final newMarkerSet = newMarkerModels.toSet();
 
     if (clearFirst) {
       // Find markers to remove (present in _markers but not in newMarkerSet)
       final toRemove = _markers.difference(newMarkerSet).toList();
-      superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
+      superclusterController
+          .removeAll(toRemove.map(buildSingleMarker).toList());
       _markers.retainWhere((element) => newMarkerModels.contains(element));
     }
     // Find markers to add (present in newMarkerSet but not in _markers)
@@ -122,17 +131,27 @@ abstract class _MapStore extends LoadStateStore with Store {
     superclusterController.addAll(toAdd.map(buildSingleMarker).toList());
 
     _markers.addAll(newMarkerModels);
-    AppLogger.print("Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})", [MapLoggers.markers]);
+    AppLogger.print(
+        "Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})",
+        [MapLoggers.markers]);
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
     if (singleMarkerBuilder != null) return singleMarkerBuilder!(markerModel);
-    return IconMarker(icon: Icons.location_pin, iconSize: 56, markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
+    return IconMarker(
+        icon: Icons.location_pin,
+        iconSize: 56,
+        markerModel: markerModel,
+        isSelected: (markerModel) => isMarkerSelected(markerModel.id),
+        onMarkerTapped: onMarkerTapped);
   }
 
   Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
     final topMarker = clusterData.topMarker;
-    return NumberRingedMarker(topMarkerModel: topMarker, markerCount: count, isSelected: (markerModel) => isMarkerSelected(markerModel.id));
+    return NumberRingedMarker(
+        topMarkerModel: topMarker,
+        markerCount: count,
+        isSelected: (markerModel) => isMarkerSelected(markerModel.id));
   }
 
   ///
@@ -162,7 +181,9 @@ abstract class _MapStore extends LoadStateStore with Store {
 
   @action
   Future<void> centerMarker(String markerId, LatLng coordinates) async {
-    AppLogger.print("Centering map on marker: $markerId, ${coordinates.toString()}", [MapLoggers.map]);
+    AppLogger.print(
+        "Centering map on marker: $markerId, ${coordinates.toString()}",
+        [MapLoggers.map]);
     await animatedMapController.animateTo(dest: coordinates, zoom: 14);
   }
 
@@ -193,11 +214,13 @@ abstract class _MapStore extends LoadStateStore with Store {
   }
 
   void onMapLongPress(TapPosition tapPosition, LatLng point) {
-    AppLogger.print("onMapLongPress: LatLng: ${point.toString()}", [MapLoggers.map]);
+    AppLogger.print(
+        "onMapLongPress: LatLng: ${point.toString()}", [MapLoggers.map]);
   }
 
   void onMapTapped(TapPosition tapPosition, LatLng point) {
-    AppLogger.print("onMapTapped: LatLng: ${point.toString()}", [MapLoggers.map]);
+    AppLogger.print(
+        "onMapTapped: LatLng: ${point.toString()}", [MapLoggers.map]);
     unselectMarker();
   }
 

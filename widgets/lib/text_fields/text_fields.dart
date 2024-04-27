@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:flutter/services.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class TextFields extends StatefulWidget {
   const TextFields({super.key});
@@ -17,8 +17,8 @@ class _TextFieldsState extends State<TextFields> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Text fields',
-      tooltipMessage: 'Use TextField with different InputDecoration',
+      label: "Text fields",
+      tooltipMessage: "Use TextField with different InputDecoration",
       child: Column(
         children: [
           Padding(
@@ -28,9 +28,9 @@ class _TextFieldsState extends State<TextFields> {
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _ClearButton(controller: _controllerFilled),
-                labelText: 'Filled',
-                hintText: 'hint text',
-                helperText: 'supporting text',
+                labelText: "Filled",
+                hintText: "hint text",
+                helperText: "supporting text",
                 filled: true,
               ),
             ),
@@ -50,11 +50,11 @@ class _TextFieldsState extends State<TextFields> {
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
                         suffixIcon: _ClearButton(controller: _controllerFilled),
-                        labelText: 'Filled',
-                        hintText: 'hint text',
-                        helperText: 'supporting text',
+                        labelText: "Filled",
+                        hintText: "hint text",
+                        helperText: "supporting text",
                         filled: true,
-                        errorText: 'error text',
+                        errorText: "error text",
                       ),
                     ),
                   ),
@@ -69,9 +69,9 @@ class _TextFieldsState extends State<TextFields> {
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
                         suffixIcon: _ClearButton(controller: _controllerFilled),
-                        labelText: 'Disabled',
-                        hintText: 'hint text',
-                        helperText: 'supporting text',
+                        labelText: "Disabled",
+                        hintText: "hint text",
+                        helperText: "supporting text",
                         filled: true,
                       ),
                     ),
@@ -87,9 +87,9 @@ class _TextFieldsState extends State<TextFields> {
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _ClearButton(controller: _controllerOutlined),
-                labelText: 'Outlined',
-                hintText: 'hint text',
-                helperText: 'supporting text',
+                labelText: "Outlined",
+                hintText: "hint text",
+                helperText: "supporting text",
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -106,11 +106,12 @@ class _TextFieldsState extends State<TextFields> {
                       controller: _controllerOutlined,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
-                        suffixIcon: _ClearButton(controller: _controllerOutlined),
-                        labelText: 'Outlined',
-                        hintText: 'hint text',
-                        helperText: 'supporting text',
-                        errorText: 'error text',
+                        suffixIcon:
+                            _ClearButton(controller: _controllerOutlined),
+                        labelText: "Outlined",
+                        hintText: "hint text",
+                        helperText: "supporting text",
+                        errorText: "error text",
                         border: const OutlineInputBorder(),
                         filled: true,
                       ),
@@ -126,10 +127,11 @@ class _TextFieldsState extends State<TextFields> {
                       enabled: false,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.search),
-                        suffixIcon: _ClearButton(controller: _controllerOutlined),
-                        labelText: 'Disabled',
-                        hintText: 'hint text',
-                        helperText: 'supporting text',
+                        suffixIcon:
+                            _ClearButton(controller: _controllerOutlined),
+                        labelText: "Disabled",
+                        hintText: "hint text",
+                        helperText: "supporting text",
                         border: const OutlineInputBorder(),
                         filled: true,
                       ),

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:utilities/widgets/connection_state/base_store.dart';
+import "package:flutter/material.dart";
+import "package:utilities/widgets/connection_state/base_store.dart";
 
 /// [ConnectionStateBuilder] is a widget that will be used to build the UI based on the connection state.
 class ConnectionStateBuilder extends StatelessWidget {

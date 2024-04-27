@@ -1,4 +1,4 @@
-import 'fonts.repository.dart';
+import "fonts.repository.dart";
 
 ///END OF IMPORTS
 

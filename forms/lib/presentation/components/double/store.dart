@@ -1,12 +1,12 @@
 // ignore_for_file: unused_element
 
-import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:utilities/helpers/extensions/text_editing_controller.dart';
+import "package:flutter/material.dart";
+import "package:mobx/mobx.dart";
+import "package:utilities/helpers/extensions/text_editing_controller.dart";
 
-import '../base/store.dart';
+import "../base/store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 class DoubleFormFieldStore = _DoubleFormFieldStore with _$DoubleFormFieldStore;
 

@@ -1,9 +1,9 @@
 // Import necessary packages and libraries.
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:navigation/structures/map/store.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:navigation/structures/map/store.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 
 //TODO: Discuss building flutterMap in this structure with a mapController required field to handle the map functionality
 /// Enum to specify the position of the overlay on the map.

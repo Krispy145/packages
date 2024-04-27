@@ -1,10 +1,10 @@
-import 'package:admob/store.dart';
-import 'package:admob/utils/loggers.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/widgets/conditional.dart';
+import "package:admob/store.dart";
+import "package:admob/utils/loggers.dart";
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:google_mobile_ads/google_mobile_ads.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/widgets/conditional.dart";
 
 /// A Inkwell Widget that shows an ad when pressed.
 class ShowAdButton extends StatefulWidget {
@@ -21,7 +21,8 @@ class ShowAdButton extends StatefulWidget {
   final bool isRewardAd;
 
   /// function to call when the user has earned a reward.
-  final void Function(AdWithoutView rewardedAd, RewardItem reward)? onUserEarnedReward;
+  final void Function(AdWithoutView rewardedAd, RewardItem reward)?
+      onUserEarnedReward;
 
   /// Named constructor for an interstitial ad.
   const ShowAdButton.interstitial({
@@ -68,7 +69,9 @@ class _ShowAdButtonState extends State<ShowAdButton> {
   @override
   void dispose() {
     super.dispose();
-    widget.isRewardAd ? widget.store.rewardedAd?.dispose() : widget.store.interstitialAd?.dispose();
+    widget.isRewardAd
+        ? widget.store.rewardedAd?.dispose()
+        : widget.store.interstitialAd?.dispose();
   }
 
   @override
@@ -104,7 +107,8 @@ class _ShowAdButtonState extends State<ShowAdButton> {
                 "Rewarded child pressed",
                 [AdMobLoggers.adMob],
               );
-              widget.store.rewardedAd?.show(onUserEarnedReward: widget.onUserEarnedReward!);
+              widget.store.rewardedAd
+                  ?.show(onUserEarnedReward: widget.onUserEarnedReward!);
             },
             child: widget.child,
           ),

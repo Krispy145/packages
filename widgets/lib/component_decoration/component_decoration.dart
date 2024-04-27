@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/components/components.dart";
 
 class ComponentDecoration extends StatefulWidget {
   const ComponentDecoration({
     super.key,
     required this.label,
     required this.child,
-    this.tooltipMessage = '',
+    this.tooltipMessage = "",
   });
 
   final String label;
@@ -44,7 +44,8 @@ class _ComponentDecorationState extends State<ComponentDecoration> {
               ],
             ),
             ConstrainedBox(
-              constraints: const BoxConstraints.tightFor(width: widthConstraint),
+              constraints:
+                  const BoxConstraints.tightFor(width: widthConstraint),
               // Tapping within the a component card should request focus
               // for that component's children.
               child: Focus(

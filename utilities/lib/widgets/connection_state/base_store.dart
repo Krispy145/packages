@@ -1,9 +1,9 @@
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:mobx/mobx.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/utils/loggers.dart';
+import "package:internet_connection_checker_plus/internet_connection_checker_plus.dart";
+import "package:mobx/mobx.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
-part 'base_store.g.dart';
+part "base_store.g.dart";
 
 /// [ConnectionStoreState] is an enum that defines the different states of the connection.
 enum ConnectionStoreState {

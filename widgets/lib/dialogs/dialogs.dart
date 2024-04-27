@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
 
 class Dialogs extends StatefulWidget {
   const Dialogs({super.key});
@@ -13,17 +13,17 @@ class _DialogsState extends State<Dialogs> {
     showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('What is a dialog?'),
+        title: const Text("What is a dialog?"),
         content: const Text(
-          'A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.',
+          "A dialog is a type of modal window that appears in front of app content to provide critical information, or prompt for a decision to be made.",
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text('Dismiss'),
+            child: const Text("Dismiss"),
             onPressed: () => Navigator.of(context).pop(),
           ),
           FilledButton(
-            child: const Text('Okay'),
+            child: const Text("Okay"),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],
@@ -39,7 +39,7 @@ class _DialogsState extends State<Dialogs> {
           padding: const EdgeInsets.all(20),
           child: Scaffold(
             appBar: AppBar(
-              title: const Text('Full-screen dialog'),
+              title: const Text("Full-screen dialog"),
               centerTitle: false,
               leading: IconButton(
                 icon: const Icon(Icons.close),
@@ -47,7 +47,7 @@ class _DialogsState extends State<Dialogs> {
               ),
               actions: [
                 TextButton(
-                  child: const Text('Close'),
+                  child: const Text("Close"),
                   onPressed: () => Navigator.of(context).pop(),
                 ),
               ],
@@ -61,21 +61,22 @@ class _DialogsState extends State<Dialogs> {
   @override
   Widget build(BuildContext context) {
     return ComponentDecoration(
-      label: 'Dialog',
-      tooltipMessage: 'Use showDialog with Dialog.fullscreen, AlertDialog, or SimpleDialog',
+      label: "Dialog",
+      tooltipMessage:
+          "Use showDialog with Dialog.fullscreen, AlertDialog, or SimpleDialog",
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
         children: [
           TextButton(
             child: const Text(
-              'Show dialog',
+              "Show dialog",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             onPressed: () => openDialog(context),
           ),
           TextButton(
             child: const Text(
-              'Show full-screen dialog',
+              "Show full-screen dialog",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             onPressed: () => openFullscreenDialog(context),

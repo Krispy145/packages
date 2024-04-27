@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:forms/presentation/components/text/text_form_field_controller.dart';
-import 'package:mobx/mobx.dart';
-import 'package:utilities/helpers/extensions/text_editing_controller.dart';
+import "package:flutter/material.dart";
+import "package:forms/presentation/components/text/text_form_field_controller.dart";
+import "package:mobx/mobx.dart";
+import "package:utilities/helpers/extensions/text_editing_controller.dart";
 
-import '../base/store.dart';
+import "../base/store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 class TextFormFieldStore = _TextFormFieldStore with _$TextFormFieldStore;
 

@@ -1,4 +1,4 @@
-import 'dart:convert';
+import "dart:convert";
 
 enum AuthStatus {
   authenticated,
@@ -153,49 +153,56 @@ class AuthParams {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'email': email,
-      'password': password,
-      'phoneNumber': phoneNumber,
-      'displayName': displayName,
-      'photoUrl': photoUrl,
-      'accessToken': accessToken,
-      'idToken': idToken,
-      'nonce': nonce,
-      'refreshToken': refreshToken,
-      'authType': authType,
-      'authStatus': authStatus,
-      'createdAt': createdAt?.millisecondsSinceEpoch,
-      'updatedAt': updatedAt?.millisecondsSinceEpoch,
+      "id": id,
+      "email": email,
+      "password": password,
+      "phoneNumber": phoneNumber,
+      "displayName": displayName,
+      "photoUrl": photoUrl,
+      "accessToken": accessToken,
+      "idToken": idToken,
+      "nonce": nonce,
+      "refreshToken": refreshToken,
+      "authType": authType,
+      "authStatus": authStatus,
+      "createdAt": createdAt?.millisecondsSinceEpoch,
+      "updatedAt": updatedAt?.millisecondsSinceEpoch,
     };
   }
 
   factory AuthParams.fromMap(Map<String, dynamic> map) {
     return AuthParams._(
-      id: map['id'] as String?,
-      email: map['email'] as String?,
-      password: map['password'] as String?,
-      phoneNumber: map['phoneNumber'] as String?,
-      displayName: map['displayName'] as String?,
-      photoUrl: map['photoUrl'] as String?,
-      accessToken: map['accessToken'] as String?,
-      idToken: map['idToken'] as String?,
-      nonce: map['nonce'] as String?,
-      refreshToken: map['refreshToken'] as String?,
-      authType: AuthType.values.firstWhere((element) => element == map['authType']),
-      authStatus: AuthStatus.values.firstWhere((element) => element == map['authStatus']),
-      createdAt: map['createdAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int) : null,
-      updatedAt: map['updatedAt'] != null ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int) : null,
+      id: map["id"] as String?,
+      email: map["email"] as String?,
+      password: map["password"] as String?,
+      phoneNumber: map["phoneNumber"] as String?,
+      displayName: map["displayName"] as String?,
+      photoUrl: map["photoUrl"] as String?,
+      accessToken: map["accessToken"] as String?,
+      idToken: map["idToken"] as String?,
+      nonce: map["nonce"] as String?,
+      refreshToken: map["refreshToken"] as String?,
+      authType:
+          AuthType.values.firstWhere((element) => element == map["authType"]),
+      authStatus: AuthStatus.values
+          .firstWhere((element) => element == map["authStatus"]),
+      createdAt: map["createdAt"] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map["createdAt"] as int)
+          : null,
+      updatedAt: map["updatedAt"] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map["updatedAt"] as int)
+          : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory AuthParams.fromJson(String source) => AuthParams.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AuthParams.fromJson(String source) =>
+      AuthParams.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'AuthParams(id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return "AuthParams(id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)";
   }
 
   @override

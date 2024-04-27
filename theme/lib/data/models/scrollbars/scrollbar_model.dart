@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'scrollbar_model.freezed.dart';
-part 'scrollbar_model.g.dart';
+part "scrollbar_model.freezed.dart";
+part "scrollbar_model.g.dart";
 
 @freezed
 class ScrollbarModel with _$ScrollbarModel {
@@ -26,7 +26,8 @@ class ScrollbarModel with _$ScrollbarModel {
 
   const ScrollbarModel._();
 
-  factory ScrollbarModel.fromJson(Map<String, dynamic> json) => _$ScrollbarModelFromJson(json);
+  factory ScrollbarModel.fromJson(Map<String, dynamic> json) =>
+      _$ScrollbarModelFromJson(json);
 
   // static ScrollbarModel defaultScrollbarModel() {
   //   return const ScrollbarModel(
@@ -49,10 +50,15 @@ class ScrollbarModel with _$ScrollbarModel {
       thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
       thickness: MaterialStateProperty.all(thickness_double),
       trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
-      radius: radius_double != null ? Radius.circular(radius_double!) : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
-      thumbColor: MaterialStateProperty.all(thumbColor_themeColorString?.toColor(styleType: styleTypeName)),
-      trackColor: MaterialStateProperty.all(trackColor_themeColorString?.toColor(styleType: styleTypeName)),
-      trackBorderColor: MaterialStateProperty.all(trackBorderColor_themeColorString?.toColor(styleType: styleTypeName)),
+      radius: radius_double != null
+          ? Radius.circular(radius_double!)
+          : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
+      thumbColor: MaterialStateProperty.all(
+          thumbColor_themeColorString?.toColor(styleType: styleTypeName),),
+      trackColor: MaterialStateProperty.all(
+          trackColor_themeColorString?.toColor(styleType: styleTypeName),),
+      trackBorderColor: MaterialStateProperty.all(
+          trackBorderColor_themeColorString?.toColor(styleType: styleTypeName),),
       crossAxisMargin: crossAxisMargin_double,
       mainAxisMargin: mainAxisMargin_double,
       minThumbLength: minThumbLength_double,

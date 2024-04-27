@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/app/app.dart';
-import 'package:theme/presentation/panel/store.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:theme/app/app.dart";
+import "package:theme/presentation/panel/store.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 
 /// [ExpandingPanelViewType] is an enum that defines the type of the panel view.
 enum ExpandingPanelViewType {
@@ -25,7 +25,8 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   final Widget Function(BuildContext context) panelViewBuilder;
 
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel) viewBuilder;
+  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel)
+      viewBuilder;
 
   /// [type] is the [ExpandingPanelViewType] of the panel view.
   final ExpandingPanelViewType type;
@@ -68,17 +69,20 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [store] is the [ExpandingPanelViewStore] for the panel view.
   final ExpandingPanelViewStore store = ExpandingPanelViewStore();
 
-  Color? get _onSecondaryContainer => AppTheme.currentColorModel?.onSecondaryContainer;
+  Color? get _onSecondaryContainer =>
+      AppTheme.currentColorModel?.onSecondaryContainer;
 
   double _buildPanelViewWidth(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.left || type == ExpandingPanelViewType.right) {
+    if (type == ExpandingPanelViewType.left ||
+        type == ExpandingPanelViewType.right) {
       return context.screenWidth * percentage;
     }
     return context.screenWidth;
   }
 
   double _buildPanelViewHeight(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.top || type == ExpandingPanelViewType.bottom) {
+    if (type == ExpandingPanelViewType.top ||
+        type == ExpandingPanelViewType.bottom) {
       return context.screenHeight * percentage;
     }
     return context.screenHeight;
@@ -185,7 +189,8 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       firstCurve: Curves.easeInOut,
       secondCurve: Curves.easeInOut,
-      crossFadeState: store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      crossFadeState:
+          store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: Container(
         decoration: BoxDecoration(
           color: _onSecondaryContainer,

@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
-import 'package:utilities/sizes/spacers.dart';
-import 'package:utilities/snackbar/configuration.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/sizes/spacers.dart";
+import "package:utilities/snackbar/configuration.dart";
 
-import 'store.dart';
+import "store.dart";
 
 class FormsModelView<T> extends StatelessWidget {
   final FormsModelStore<T> store;
@@ -48,7 +48,7 @@ class FormsModelView<T> extends StatelessWidget {
             Sizes.l.spacer(),
             ElevatedButton(
               onPressed: () => _showConfirmationDialog(context),
-              child: Text(isUpdating ? 'Update' : 'Create'),
+              child: Text(isUpdating ? "Update" : "Create"),
             ),
             Sizes.xxxl.spacer(),
           ],
@@ -76,33 +76,40 @@ class FormsModelView<T> extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('Confirm'),
-          content: const Text('Are you sure you want to submit?'),
+          title: const Text("Confirm"),
+          content: const Text("Are you sure you want to submit?"),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(false);
               },
-              child: const Text('Cancel'),
+              child: const Text("Cancel"),
             ),
             TextButton(
               onPressed: () {
                 store.saveValue();
                 Navigator.of(context).pop(true);
               },
-              child: const Text('Submit'),
+              child: const Text("Submit"),
             ),
           ],
         );
       },
     ).then((result) {
       if (result == null) {
-        return context.showSnackbar(configuration: SnackbarConfiguration.error(title: 'Error ${isUpdating ? 'updating' : 'creating'} $T'));
+        return context.showSnackbar(
+            configuration: SnackbarConfiguration.error(
+                title: 'Error ${isUpdating ? 'updating' : 'creating'} $T',),);
       }
       if (result == false) {
-        return context.showSnackbar(configuration: SnackbarConfiguration.warning(title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of $T'));
+        return context.showSnackbar(
+            configuration: SnackbarConfiguration.warning(
+                title:
+                    'Cancelled ${isUpdating ? 'update' : 'creation'} of $T',),);
       }
-      context.showSnackbar(configuration: SnackbarConfiguration.confirmation(title: '${isUpdating ? 'Updated' : 'Created'} $T'));
+      context.showSnackbar(
+          configuration: SnackbarConfiguration.confirmation(
+              title: '${isUpdating ? 'Updated' : 'Created'} $T',),);
       return Navigator.of(context).pop<bool>(result);
     });
   }

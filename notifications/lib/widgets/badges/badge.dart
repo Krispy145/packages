@@ -1,6 +1,6 @@
-import 'package:badges/badges.dart' as badges;
-import 'package:flutter/material.dart';
-import 'package:notifications/widgets/badges/badge_style.dart';
+import "package:badges/badges.dart" as badges;
+import "package:flutter/material.dart";
+import "package:notifications/widgets/badges/badge_style.dart";
 
 /// [NotificationBadge] is a widget that allows you to add a notification badge to a widget.
 class NotificationBadge extends StatelessWidget {

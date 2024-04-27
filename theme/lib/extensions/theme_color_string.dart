@@ -1,21 +1,26 @@
-import 'dart:convert';
-import 'dart:ui';
+import "dart:convert";
+import "dart:ui";
 
-import 'package:collection/collection.dart';
-import 'package:theme/app/app.dart';
-import 'package:theme/domain/converters/colors/color.dart';
+import "package:collection/collection.dart";
+import "package:theme/app/app.dart";
+import "package:theme/domain/converters/colors/color.dart";
 
 typedef ThemeColorString = String;
 
 extension ThemeColorExtension on ThemeColorString {
   Color? toColor({String? styleType}) {
+    if (this == "") return null;
     if (startsWith("#")) {
       return ColorConverter.getColorFromHex(this);
     }
-    final lightColorModel = AppTheme.colorStyles(styleTypeName: styleType).light.toJson();
-    final darkColorModel = AppTheme.colorStyles(styleTypeName: styleType).dark.toJson();
-    final currentColorModel = AppTheme.isDark ? darkColorModel : lightColorModel;
-    final currentColorAndKey = currentColorModel.entries.firstWhereOrNull((element) => element.key == this);
+    final lightColorModel =
+        AppTheme.colorStyles(styleTypeName: styleType).light.toJson();
+    final darkColorModel =
+        AppTheme.colorStyles(styleTypeName: styleType).dark.toJson();
+    final currentColorModel =
+        AppTheme.isDark ? darkColorModel : lightColorModel;
+    final currentColorAndKey = currentColorModel.entries
+        .firstWhereOrNull((element) => element.key == this);
     if (currentColorAndKey != null) {
       return const ColorConverter().fromJson(currentColorAndKey.value);
     }

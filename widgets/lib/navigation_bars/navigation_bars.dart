@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
-import 'package:widgets/components/components.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
+import "package:widgets/components/components.dart";
 
 class NavigationBars extends StatefulWidget {
   const NavigationBars({
@@ -60,14 +60,14 @@ class _NavigationBarsState extends State<NavigationBars> {
 
     if (widget.isExampleBar && widget.isBadgeExample) {
       navigationBar = ComponentDecoration(
-        label: 'Badges',
-        tooltipMessage: 'Use Badge or Badge.count',
+        label: "Badges",
+        tooltipMessage: "Use Badge or Badge.count",
         child: navigationBar,
       );
     } else if (widget.isExampleBar) {
       navigationBar = ComponentDecoration(
-        label: 'Navigation bar',
-        tooltipMessage: 'Use NavigationBar',
+        label: "Navigation bar",
+        tooltipMessage: "Use NavigationBar",
         child: navigationBar,
       );
     }

@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:ui';
+import "dart:ui";
 
 /// Represents a Google Fonts API variant in Flutter-specific types.
 class DOFontVariantDescriptor {
@@ -76,33 +76,38 @@ class DOFontVariantDescriptor {
   ///
   /// See [DOFontVariantDescriptor.toString] for the inverse function.
   DOFontVariantDescriptor.fromString(String variantString)
-      : fontWeight = FontWeight.values[variantString == _regular || variantString == _italic ? 3 : (int.parse(variantString.replaceAll(_italic, '')) ~/ 100) - 1],
-        fontStyle = variantString.contains(_italic) ? FontStyle.italic : FontStyle.normal;
+      : fontWeight = FontWeight.values[variantString == _regular ||
+                variantString == _italic
+            ? 3
+            : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
+        fontStyle = variantString.contains(_italic)
+            ? FontStyle.italic
+            : FontStyle.normal;
 
   final FontWeight fontWeight;
   final FontStyle fontStyle;
 
   static FontWeight _extractFontWeightFromApiFilenamePart(String filenamePart) {
-    if (filenamePart.contains('Thin')) return FontWeight.w100;
+    if (filenamePart.contains("Thin")) return FontWeight.w100;
 
     // ExtraLight must be checked before Light because of the substring match.
-    if (filenamePart.contains('ExtraLight')) return FontWeight.w200;
-    if (filenamePart.contains('Light')) return FontWeight.w300;
+    if (filenamePart.contains("ExtraLight")) return FontWeight.w200;
+    if (filenamePart.contains("Light")) return FontWeight.w300;
 
-    if (filenamePart.contains('Medium')) return FontWeight.w500;
+    if (filenamePart.contains("Medium")) return FontWeight.w500;
 
     // SemiBold and ExtraBold must be checked before Bold because of the
     // substring match.
-    if (filenamePart.contains('SemiBold')) return FontWeight.w600;
-    if (filenamePart.contains('ExtraBold')) return FontWeight.w800;
-    if (filenamePart.contains('Bold')) return FontWeight.w700;
+    if (filenamePart.contains("SemiBold")) return FontWeight.w600;
+    if (filenamePart.contains("ExtraBold")) return FontWeight.w800;
+    if (filenamePart.contains("Bold")) return FontWeight.w700;
 
-    if (filenamePart.contains('Black')) return FontWeight.w900;
+    if (filenamePart.contains("Black")) return FontWeight.w900;
     return FontWeight.w400;
   }
 
   static FontStyle _extractFontStyleFromApiFilenamePart(String filenamePart) {
-    if (filenamePart.contains('Italic')) return FontStyle.italic;
+    if (filenamePart.contains("Italic")) return FontStyle.italic;
     return FontStyle.normal;
   }
 
@@ -121,10 +126,11 @@ class DOFontVariantDescriptor {
   ///
   /// See [`GoogleFontsVariant.fromApiFilenamePart`] for the inverse function.
   String toApiFilenamePart() {
-    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ?? _fontWeightToFilenameWeightParts[FontWeight.w400]!;
-    final italicSuffix = fontStyle == FontStyle.italic ? 'Italic' : '';
-    if (weightPrefix == 'Regular') {
-      return italicSuffix == '' ? weightPrefix : italicSuffix;
+    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ??
+        _fontWeightToFilenameWeightParts[FontWeight.w400]!;
+    final italicSuffix = fontStyle == FontStyle.italic ? "Italic" : "";
+    if (weightPrefix == "Regular") {
+      return italicSuffix == "" ? weightPrefix : italicSuffix;
     }
     return '$weightPrefix$italicSuffix';
   }
@@ -141,8 +147,12 @@ class DOFontVariantDescriptor {
   /// See [DOFontVariantDescriptor.toString] for the inverse function.
   @override
   String toString() {
-    final fontWeightString = fontWeight.index == 3 ? '' : (fontWeight.index + 1) * 100;
-    final fontStyleString = fontStyle.toString().replaceAll('FontStyle.', '').replaceFirst(_normal, fontWeight.index == 3 ? _regular : '');
+    final fontWeightString =
+        fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
+    final fontStyleString = fontStyle
+        .toString()
+        .replaceAll("FontStyle.", "")
+        .replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
     return '$fontWeightString$fontStyleString';
   }
 
@@ -157,30 +167,32 @@ class DOFontVariantDescriptor {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is DOFontVariantDescriptor && other.fontWeight == fontWeight && other.fontStyle == fontStyle;
+    return other is DOFontVariantDescriptor &&
+        other.fontWeight == fontWeight &&
+        other.fontStyle == fontStyle;
   }
 }
 
 /// What the Flutter API calls a font style of normal/regular.
-const _normal = 'normal';
+const _normal = "normal";
 
 /// What the Google Fonts API calls a font style of normal/regular.
-const _regular = 'regular';
+const _regular = "regular";
 
 /// Both the Flutter API and the Google API have the same name for a font style
 /// of italic.
-const _italic = 'italic';
+const _italic = "italic";
 
 /// Mapping from font weight types to the 'weight' part of the Google Fonts API
 /// specific filename.
 const _fontWeightToFilenameWeightParts = {
-  FontWeight.w100: 'Thin',
-  FontWeight.w200: 'ExtraLight',
-  FontWeight.w300: 'Light',
-  FontWeight.w400: 'Regular',
-  FontWeight.w500: 'Medium',
-  FontWeight.w600: 'SemiBold',
-  FontWeight.w700: 'Bold',
-  FontWeight.w800: 'ExtraBold',
-  FontWeight.w900: 'Black',
+  FontWeight.w100: "Thin",
+  FontWeight.w200: "ExtraLight",
+  FontWeight.w300: "Light",
+  FontWeight.w400: "Regular",
+  FontWeight.w500: "Medium",
+  FontWeight.w600: "SemiBold",
+  FontWeight.w700: "Bold",
+  FontWeight.w800: "ExtraBold",
+  FontWeight.w900: "Black",
 };

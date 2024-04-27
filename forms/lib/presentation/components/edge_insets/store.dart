@@ -1,14 +1,19 @@
-import 'package:mobx/mobx.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import '../base/store.dart';
-import '../double/store.dart';
+import "package:mobx/mobx.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "../base/store.dart";
+import "../double/store.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
-class EdgeInsetsFormFieldStore = _EdgeInsetsFormFieldStore with _$EdgeInsetsFormFieldStore;
+class EdgeInsetsFormFieldStore = _EdgeInsetsFormFieldStore
+    with _$EdgeInsetsFormFieldStore;
 
-abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsModel> with Store {
-  _EdgeInsetsFormFieldStore({required super.value, required super.onValueChanged, required super.title}) {
+abstract class _EdgeInsetsFormFieldStore
+    extends BaseFormFieldStore<EdgeInsetsModel> with Store {
+  _EdgeInsetsFormFieldStore(
+      {required super.value,
+      required super.onValueChanged,
+      required super.title,}) {
     // On Type Changed
     // reaction<EdgeInsetsTypes>(
     //   (reaction) => type,
@@ -34,20 +39,41 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     // });
   }
 
-  late final DoubleFormFieldStore topStore = DoubleFormFieldStore(value: value.top_double, onValueChanged: onTopFieldChanged, showButtons: false, title: 'Top');
-  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(value: value.left_double, onValueChanged: onLeftFieldChanged, showButtons: false, title: 'Left');
-  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(value: value.bottom_double, onValueChanged: onBottomFieldChanged, showButtons: false, title: 'Bottom');
-  late final DoubleFormFieldStore rightStore = DoubleFormFieldStore(value: value.right_double, onValueChanged: onRightFieldChanged, showButtons: false, title: 'Right');
+  late final DoubleFormFieldStore topStore = DoubleFormFieldStore(
+      value: value.top_double,
+      onValueChanged: onTopFieldChanged,
+      showButtons: false,
+      title: "Top",);
+  late final DoubleFormFieldStore leftStore = DoubleFormFieldStore(
+      value: value.left_double,
+      onValueChanged: onLeftFieldChanged,
+      showButtons: false,
+      title: "Left",);
+  late final DoubleFormFieldStore bottomStore = DoubleFormFieldStore(
+      value: value.bottom_double,
+      onValueChanged: onBottomFieldChanged,
+      showButtons: false,
+      title: "Bottom",);
+  late final DoubleFormFieldStore rightStore = DoubleFormFieldStore(
+      value: value.right_double,
+      onValueChanged: onRightFieldChanged,
+      showButtons: false,
+      title: "Right",);
 
   @observable
   EdgeInsetsTypes type = EdgeInsetsTypes.all;
 
   @computed
-  bool get topEnabled => [EdgeInsetsTypes.all, EdgeInsetsTypes.symmetric, EdgeInsetsTypes.only].contains(type);
+  bool get topEnabled => [
+        EdgeInsetsTypes.all,
+        EdgeInsetsTypes.symmetric,
+        EdgeInsetsTypes.only,
+      ].contains(type);
   @computed
   bool get bottomEnabled => type == EdgeInsetsTypes.only;
   @computed
-  bool get leftEnabled => [EdgeInsetsTypes.symmetric, EdgeInsetsTypes.only].contains(type);
+  bool get leftEnabled =>
+      [EdgeInsetsTypes.symmetric, EdgeInsetsTypes.only].contains(type);
   @computed
   bool get rightEnabled => type == EdgeInsetsTypes.only;
 
@@ -56,7 +82,11 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     final newTop = topValue ?? 0;
     switch (type) {
       case EdgeInsetsTypes.all:
-        value = value.copyWith(top_double: newTop, left_double: newTop, bottom_double: newTop, right_double: newTop);
+        value = value.copyWith(
+            top_double: newTop,
+            left_double: newTop,
+            bottom_double: newTop,
+            right_double: newTop,);
       // value = EdgeInsets.all(newTop);
       case EdgeInsetsTypes.symmetric:
         value = value.copyWith(top_double: newTop, bottom_double: newTop);

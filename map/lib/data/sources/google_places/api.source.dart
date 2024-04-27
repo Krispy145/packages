@@ -8,7 +8,9 @@ import 'package:utilities/logger/logger.dart';
 import '_source.dart';
 
 /// [ApiGooglePlacesDataSource] is a class that implements [GooglePlacesDataSource] interface.
-class ApiGooglePlacesDataSource extends ApiDataSource<GoogleTextSearchResponsesModel> implements GooglePlacesDataSource {
+class ApiGooglePlacesDataSource
+    extends ApiDataSource<GoogleTextSearchResponsesModel>
+    implements GooglePlacesDataSource {
   final String googleApiKey;
 
   /// [ApiGooglePlacesDataSource.textSearch] constructor.
@@ -23,12 +25,15 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleTextSearchResponsesM
           }, headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+            "Access-Control-Allow-Headers":
+                "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
             "Content-Type": "application/json",
             "Access-Control-Allow-Credentials": "true"
           }),
         ) {
-    AppLogger.print("API RESULT: Configuration set for Google Places API: $googleApiKey, ${MapConstants.googlePrefix}, ${MapConstants.googlePlaceTextSearchSuffix}", [MapLoggers.search]);
+    AppLogger.print(
+        "API RESULT: Configuration set for Google Places API: $googleApiKey, ${MapConstants.googlePrefix}, ${MapConstants.googlePlaceTextSearchSuffix}",
+        [MapLoggers.search]);
   }
 
   @override

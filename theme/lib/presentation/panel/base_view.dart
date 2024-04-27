@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:theme/presentation/components/options.dart';
-import 'package:utilities/helpers/extensions/string.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:theme/presentation/components/options.dart";
+import "package:utilities/helpers/extensions/string.dart";
+import "package:utilities/sizes/spacers.dart";
 
 class ThemeChangerView extends StatefulWidget {
   const ThemeChangerView({super.key});
@@ -17,7 +17,10 @@ class _ThemeChangerViewState extends State<ThemeChangerView> {
 
   void _onChanged(String value) {
     setState(() {
-      _options = ChangerOptions.values.where((element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
+      _options = ChangerOptions.values
+          .where((element) =>
+              element.name.toLowerCase().contains(value.toLowerCase()),)
+          .toList();
     });
   }
 
@@ -29,7 +32,7 @@ class _ThemeChangerViewState extends State<ThemeChangerView> {
         children: [
           TextField(
             decoration: const InputDecoration(
-              hintText: 'Search',
+              hintText: "Search",
               prefixIcon: Icon(Icons.search),
             ),
             controller: _controller,

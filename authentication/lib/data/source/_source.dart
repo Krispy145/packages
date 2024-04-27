@@ -1,7 +1,7 @@
-import 'package:authentication/data/models/auth_params.dart';
-import 'package:utilities/data_sources/source.dart';
+import "package:authentication/data/models/auth_params.dart";
+import "package:utilities/data_sources/source.dart";
 
-import '../models/user_model.dart';
+import "../models/user_model.dart";
 
 /// [AuthenticationDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
 abstract class AuthenticationDataSource {

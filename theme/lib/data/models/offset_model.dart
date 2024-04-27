@@ -1,10 +1,10 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
 
-part 'offset_model.freezed.dart';
-part 'offset_model.g.dart';
+part "offset_model.freezed.dart";
+part "offset_model.g.dart";
 
 @freezed
 class OffsetModel with _$OffsetModel {
@@ -16,7 +16,8 @@ class OffsetModel with _$OffsetModel {
 
   const OffsetModel._();
 
-  factory OffsetModel.fromJson(Map<String, dynamic> json) => _$OffsetModelFromJson(json);
+  factory OffsetModel.fromJson(Map<String, dynamic> json) =>
+      _$OffsetModelFromJson(json);
 
   Offset? asOffset({String? styleTypeName}) {
     return Offset(

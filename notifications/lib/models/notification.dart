@@ -1,8 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:navigation/models/destination.dart';
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:navigation/models/destination.dart";
 
-part 'notification.freezed.dart';
-part 'notification.g.dart';
+part "notification.freezed.dart";
+part "notification.g.dart";
 
 /// [NotificationModel] is the model for a notification.
 @freezed
@@ -26,48 +26,56 @@ class NotificationModel with _$NotificationModel {
   /// [NotificationModel] constructor from string map.
   factory NotificationModel.fromStringMap(Map<String, dynamic> map) {
     return NotificationModel(
-      id: map['id'] as String,
-      localId: int.parse(map['localId'] as String),
-      type: map['type'] as String?,
-      title: map['title'] as String?,
-      body: map['body'] as String?,
-      imageUrl: map['imageUrl'] as String?,
-      topic: map['topic'] as String?,
-      scheduledTime: map['scheduledTime'] != null ? DateTime.parse(map['scheduledTime'] as String) : null,
-      isLocalNotification: map['isLocalNotification'] != null ? bool.parse(map['isLocalNotification'] as String) : false,
-      isRead: map['isRead'] != null ? bool.parse(map['isRead'] as String) : false,
-      destination: map['destination'] != null ? AppDestination.fromStringMap(map['destination'] as Map<String, dynamic>) : null,
+      id: map["id"] as String,
+      localId: int.parse(map["localId"] as String),
+      type: map["type"] as String?,
+      title: map["title"] as String?,
+      body: map["body"] as String?,
+      imageUrl: map["imageUrl"] as String?,
+      topic: map["topic"] as String?,
+      scheduledTime: map["scheduledTime"] != null
+          ? DateTime.parse(map["scheduledTime"] as String)
+          : null,
+      isLocalNotification: map["isLocalNotification"] != null
+          ? bool.parse(map["isLocalNotification"] as String)
+          : false,
+      isRead:
+          map["isRead"] != null ? bool.parse(map["isRead"] as String) : false,
+      destination: map["destination"] != null
+          ? AppDestination.fromStringMap(
+              map["destination"] as Map<String, dynamic>,)
+          : null,
     );
   }
 
   /// [toStringMap] converts the [NotificationModel] to a string map.
   Map<String, String?> toStringMap() {
     final returnMap = <String, String>{};
-    returnMap['id'] = id;
-    returnMap['localId'] = localId.toString();
+    returnMap["id"] = id;
+    returnMap["localId"] = localId.toString();
     if (type != null) {
-      returnMap['type'] = type!;
+      returnMap["type"] = type!;
     }
     if (title != null) {
-      returnMap['title'] = title!;
+      returnMap["title"] = title!;
     }
     if (body != null) {
-      returnMap['body'] = body!;
+      returnMap["body"] = body!;
     }
     if (imageUrl != null) {
-      returnMap['imageUrl'] = imageUrl!;
+      returnMap["imageUrl"] = imageUrl!;
     }
     if (topic != null) {
-      returnMap['topic'] = topic!;
+      returnMap["topic"] = topic!;
     }
     if (scheduledTime != null) {
-      returnMap['scheduledTime'] = scheduledTime!.toIso8601String();
+      returnMap["scheduledTime"] = scheduledTime!.toIso8601String();
     }
 
-    returnMap['isLocalNotification'] = isLocalNotification.toString();
-    returnMap['isRead'] = isRead.toString();
+    returnMap["isLocalNotification"] = isLocalNotification.toString();
+    returnMap["isRead"] = isRead.toString();
     if (destination != null) {
-      returnMap['destination'] = destination!.toStringMap().toString();
+      returnMap["destination"] = destination!.toStringMap().toString();
     }
     return returnMap;
     // return {
@@ -86,5 +94,6 @@ class NotificationModel with _$NotificationModel {
   }
 
   /// [NotificationModel] constructor from JSON.
-  factory NotificationModel.fromJson(Map<String, dynamic> json) => _$NotificationModelFromJson(json);
+  factory NotificationModel.fromJson(Map<String, dynamic> json) =>
+      _$NotificationModelFromJson(json);
 }

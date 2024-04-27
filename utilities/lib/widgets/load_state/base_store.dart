@@ -1,6 +1,6 @@
-import 'package:mobx/mobx.dart';
+import "package:mobx/mobx.dart";
 
-part 'base_store.g.dart';
+part "base_store.g.dart";
 
 /// [LoadState] is an enum that defines the different states of loading.
 enum LoadState {

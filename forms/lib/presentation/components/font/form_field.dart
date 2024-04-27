@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:fonts/data/do_fonts.dart';
-import 'package:theme/app/app.dart';
-import 'package:theme/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:fonts/data/do_fonts.dart";
+import "package:theme/app/app.dart";
+import "package:theme/utils/loggers.dart";
+import "package:utilities/logger/logger.dart";
 
-import '../base/form_field.dart';
-import 'store.dart';
+import "../base/form_field.dart";
+import "store.dart";
 
 class FontFormField extends BaseFormField<FontFormFieldStore> {
   const FontFormField({
@@ -21,7 +21,8 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
         return DropdownMenu<String>(
           expandedInsets: const EdgeInsets.all(8),
           initialSelection: store.value,
-          textStyle: AppTheme.fontsStore.getFont(store.value ?? DOFonts.values.first.name),
+          textStyle: AppTheme.fontsStore
+              .getFont(store.value ?? DOFonts.values.first.name),
           menuStyle: Theme.of(context).menuTheme.style?.copyWith(
                     alignment: Alignment.bottomCenter,
                   ) ??
@@ -42,7 +43,8 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
               )
               .toList(),
           onSelected: (newValue) {
-            AppLogger.print('on value changed: $newValue', [ThemeLoggers.textStyles]);
+            AppLogger.print(
+                "on value changed: $newValue", [ThemeLoggers.textStyles],);
             store.onValueChanged(newValue);
           },
         );

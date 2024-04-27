@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:utilities/helpers/extensions/string.dart';
+import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:utilities/helpers/extensions/string.dart";
 
-import '../base/form_field.dart';
-import '../double/form_field.dart';
-import 'store.dart';
+import "../base/form_field.dart";
+import "../double/form_field.dart";
+import "store.dart";
 
 class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
   const EdgeInsetsFormField({super.key, required super.store});
@@ -29,7 +29,8 @@ class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
                   )
                   .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) => store.type = newSelection.first,
+              onSelectionChanged: (newSelection) =>
+                  store.type = newSelection.first,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -43,7 +44,11 @@ class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
                 DoubleFormField(store: store.leftStore),
                 Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Container(color: Theme.of(context).primaryColor, padding: store.value.asEdgeInsets(), child: Container(width: 40, height: 40, color: Colors.grey)),
+                  child: Container(
+                      color: Theme.of(context).primaryColor,
+                      padding: store.value.asEdgeInsets(),
+                      child:
+                          Container(width: 40, height: 40, color: Colors.grey),),
                 ),
                 DoubleFormField(store: store.rightStore),
               ],

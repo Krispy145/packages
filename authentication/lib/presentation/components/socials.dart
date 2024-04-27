@@ -1,11 +1,11 @@
-import 'package:authentication/data/models/user_model.dart';
-import 'package:authentication/domain/repositories/authentication.repository.dart';
-import 'package:authentication/helpers/exception.dart';
-import 'package:flutter/material.dart';
-import 'package:utilities/helpers/extensions/build_context.dart';
-import 'package:utilities/snackbar/configuration.dart';
+import "package:authentication/data/models/user_model.dart";
+import "package:authentication/domain/repositories/authentication.repository.dart";
+import "package:authentication/helpers/exception.dart";
+import "package:flutter/material.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/snackbar/configuration.dart";
 
-import 'social_types.dart';
+import "social_types.dart";
 
 enum SocialButtonVariant {
   /// Displays the social login buttons horizontally with icons.
@@ -59,7 +59,7 @@ class SocialButtons extends StatelessWidget {
     final coloredBackground = colored;
 
     if (types.isEmpty) {
-      return ErrorWidget(Exception('Social provider list cannot be empty'));
+      return ErrorWidget(Exception("Social provider list cannot be empty"));
     }
 
     final authButtons = List.generate(
@@ -68,7 +68,8 @@ class SocialButtons extends StatelessWidget {
         final socialType = types[index];
 
         final foregroundColor = coloredBackground ? Colors.white : null;
-        final backgroundColor = coloredBackground ? socialType.backgroundColor : null;
+        final backgroundColor =
+            coloredBackground ? socialType.backgroundColor : null;
         final overlayColor = coloredBackground ? Colors.white10 : null;
 
         final iconColor = coloredBackground ? Colors.white : null;
@@ -88,7 +89,8 @@ class SocialButtons extends StatelessWidget {
           } on AuthenticationException catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(
-                configuration: SnackbarConfiguration.error(title: error.message),
+                configuration:
+                    SnackbarConfiguration.error(title: error.message),
               );
             } else {
               onError?.call(error);
@@ -97,7 +99,7 @@ class SocialButtons extends StatelessWidget {
             if (onError == null && context.mounted) {
               context.showSnackbar(
                 configuration: SnackbarConfiguration.error(
-                  title: 'Unexpected error has occurred: $error',
+                  title: "Unexpected error has occurred: $error",
                 ),
               );
             } else {
@@ -130,7 +132,7 @@ class SocialButtons extends StatelessWidget {
                   icon: iconWidget,
                   style: authButtonStyle,
                   onPressed: onAuthButtonPressed,
-                  label: Text('Continue with ${socialType.displayName}'),
+                  label: Text("Continue with ${socialType.displayName}"),
                 ),
         );
       },

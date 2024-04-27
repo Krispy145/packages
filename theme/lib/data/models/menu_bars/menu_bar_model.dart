@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/menus/menu_style_model.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/menus/menu_style_model.dart";
 
-part 'menu_bar_model.freezed.dart';
-part 'menu_bar_model.g.dart';
+part "menu_bar_model.freezed.dart";
+part "menu_bar_model.g.dart";
 
 @freezed
 class MenuBarModel with _$MenuBarModel {
@@ -13,7 +13,8 @@ class MenuBarModel with _$MenuBarModel {
 
   const MenuBarModel._();
 
-  factory MenuBarModel.fromJson(Map<String, dynamic> json) => _$MenuBarModelFromJson(json);
+  factory MenuBarModel.fromJson(Map<String, dynamic> json) =>
+      _$MenuBarModelFromJson(json);
 
   // static MenuBarModel defaultMenuBarModel() {
   //   return MenuBarModel(

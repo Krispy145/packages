@@ -1,21 +1,22 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_radius_model.dart';
-import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_radius_model.dart";
+import "package:theme/data/models/box_constraints_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'toggle_button_model.freezed.dart';
-part 'toggle_button_model.g.dart';
+part "toggle_button_model.freezed.dart";
+part "toggle_button_model.g.dart";
 
 @freezed
 class ToggleButtonModel with _$ToggleButtonModel {
   const factory ToggleButtonModel({
     TextStyleString? textStyle_textStyleString,
     // @BoxConstraintsConverter()
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? constraints_boxConstraints,
     ThemeColorString? color_themeColorString,
     ThemeColorString? selectedColor_themeColorString,
     ThemeColorString? disabledColor_themeColorString,
@@ -34,20 +35,33 @@ class ToggleButtonModel with _$ToggleButtonModel {
 
   ToggleButtonsThemeData asToggleButtonThemeData({String? styleTypeName}) {
     return ToggleButtonsThemeData(
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      constraints: constraints_boxConstraints?.asBoxConstraints(
+          styleTypeName: styleTypeName,),
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      selectedColor: selectedColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledColor: disabledColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedColor:
+          selectedColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledColor:
+          disabledColor_themeColorString?.toColor(styleType: styleTypeName),
       fillColor: fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      highlightColor: highlightColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      splashColor: splashColor_themeColorString?.toColor(styleType: styleTypeName),
-      borderColor: borderColor_themeColorString?.toColor(styleType: styleTypeName),
-      selectedBorderColor: selectedBorderColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledBorderColor: disabledBorderColor_themeColorString?.toColor(styleType: styleTypeName),
-      borderRadius: borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      highlightColor:
+          highlightColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      splashColor:
+          splashColor_themeColorString?.toColor(styleType: styleTypeName),
+      borderColor:
+          borderColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedBorderColor: selectedBorderColor_themeColorString?.toColor(
+          styleType: styleTypeName,),
+      disabledBorderColor: disabledBorderColor_themeColorString?.toColor(
+          styleType: styleTypeName,),
+      borderRadius: borderRadius_borderRadius?.asBorderRadius(
+          styleTypeName: styleTypeName,),
       borderWidth: borderWidth_double,
     );
   }
@@ -82,5 +96,6 @@ class ToggleButtonModel with _$ToggleButtonModel {
   //   );
   // }
 
-  factory ToggleButtonModel.fromJson(Map<String, dynamic> json) => _$ToggleButtonModelFromJson(json);
+  factory ToggleButtonModel.fromJson(Map<String, dynamic> json) =>
+      _$ToggleButtonModelFromJson(json);
 }

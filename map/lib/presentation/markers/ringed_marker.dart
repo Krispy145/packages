@@ -6,7 +6,8 @@ import 'package:map/presentation/markers/helpers/ringed_marker_wrapper.dart';
 class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
   final String? logoUrl;
 
-  static const String fallbackUrl = "https://www.shutterstock.com/image-vector/red-circle-round-x-black-600nw-2145374435.jpg";
+  static const String fallbackUrl =
+      "https://www.shutterstock.com/image-vector/red-circle-round-x-black-600nw-2145374435.jpg";
 
   LogoRingedMarker({
     required super.markerModel,
@@ -16,8 +17,10 @@ class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
   }) : super(
           child: RingedMarkerWrapper(
             selected: isSelected(markerModel),
-            onTapped: () => onMarkerTapped?.call(markerModel.id, markerModel.position),
-            childBuilder: (context) => Image.network(logoUrl ?? fallbackUrl, fit: BoxFit.cover),
+            onTapped: () =>
+                onMarkerTapped?.call(markerModel.id, markerModel.position),
+            childBuilder: (context) =>
+                Image.network(logoUrl ?? fallbackUrl, fit: BoxFit.cover),
           ),
         );
 

@@ -1,16 +1,16 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:theme/data/models/borders/border_side_model.dart';
-import 'package:theme/data/models/borders/input_border_model.dart';
-import 'package:theme/data/models/box_constraints_model.dart';
-import 'package:theme/data/models/edge_insets_model.dart';
-import 'package:theme/extensions/text_style_string.dart';
-import 'package:theme/extensions/theme_color_string.dart';
+import "package:flutter/material.dart";
+import "package:freezed_annotation/freezed_annotation.dart";
+import "package:theme/data/models/borders/border_side_model.dart";
+import "package:theme/data/models/borders/input_border_model.dart";
+import "package:theme/data/models/box_constraints_model.dart";
+import "package:theme/data/models/edge_insets_model.dart";
+import "package:theme/extensions/text_style_string.dart";
+import "package:theme/extensions/theme_color_string.dart";
 
-part 'input_decoration_model.freezed.dart';
-part 'input_decoration_model.g.dart';
+part "input_decoration_model.freezed.dart";
+part "input_decoration_model.g.dart";
 
 @freezed
 class InputDecorationModel with _$InputDecorationModel {
@@ -34,23 +34,27 @@ class InputDecorationModel with _$InputDecorationModel {
     TextStyleString? counterStyle_textStyleString,
     @Default(false) bool filled_bool,
     ThemeColorString? fillColor_themeColorString,
-    @Default(BorderSideModel()) BorderSideModel? activeIndicatorBorder_borderSide,
+    @Default(BorderSideModel())
+    BorderSideModel? activeIndicatorBorder_borderSide,
     @Default(BorderSideModel()) BorderSideModel? outlineBorder_borderSide,
     ThemeColorString? focusColor_themeColorString,
     ThemeColorString? hoverColor_themeColorString,
     @Default(InputBorderModel()) InputBorderModel? errorBorder_inputBorder,
     @Default(InputBorderModel()) InputBorderModel? focusedBorder_inputBorder,
-    @Default(InputBorderModel()) InputBorderModel? focusedErrorBorder_inputBorder,
+    @Default(InputBorderModel())
+    InputBorderModel? focusedErrorBorder_inputBorder,
     @Default(InputBorderModel()) InputBorderModel? disabledBorder_inputBorder,
     @Default(InputBorderModel()) InputBorderModel? enabledBorder_inputBorder,
     @Default(InputBorderModel()) InputBorderModel? border_inputBorder,
     @Default(false) bool alignLabelWithHint_bool,
-    @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
+    @Default(BoxConstraintsModel())
+    BoxConstraintsModel? constraints_boxConstraints,
   }) = _InputDecorationModel;
 
   const InputDecorationModel._();
 
-  factory InputDecorationModel.fromJson(Map<String, dynamic> json) => _$InputDecorationModelFromJson(json);
+  factory InputDecorationModel.fromJson(Map<String, dynamic> json) =>
+      _$InputDecorationModelFromJson(json);
 
   // static InputDecorationModel defaultInputDecorationModel() {
   //   return InputDecorationModel(
@@ -131,69 +135,123 @@ class InputDecorationModel with _$InputDecorationModel {
 
   InputDecorationTheme asInputDecorationTheme({String? styleTypeName}) {
     return InputDecorationTheme(
-      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      floatingLabelStyle: floatingLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      helperStyle: helperStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      labelStyle: labelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      floatingLabelStyle: floatingLabelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      helperStyle: helperStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       helperMaxLines: helperMaxLines_int,
-      hintStyle: hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      hintStyle: hintStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       hintFadeDuration: hintFadeDuration_duration,
-      errorStyle: errorStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      errorStyle: errorStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       errorMaxLines: errorMaxLines_int,
       isDense: isDense_bool,
-      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      contentPadding:
+          contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       isCollapsed: isCollapsed_bool,
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
-      prefixStyle: prefixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      prefixIconColor: prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      suffixStyle: suffixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      suffixIconColor: suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      counterStyle: counterStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      prefixStyle: prefixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      prefixIconColor:
+          prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      suffixStyle: suffixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      suffixIconColor:
+          suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      counterStyle: counterStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       filled: filled_bool,
       fillColor: fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      errorBorder: errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      focusedBorder: focusedBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      focusedErrorBorder: focusedErrorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      disabledBorder: disabledBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      enabledBorder: enabledBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      errorBorder:
+          errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
+      focusedBorder: focusedBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
+      focusedErrorBorder: focusedErrorBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
+      disabledBorder: disabledBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
+      enabledBorder: enabledBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
       border: border_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
       alignLabelWithHint: alignLabelWithHint_bool,
-      constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      constraints: constraints_boxConstraints?.asBoxConstraints(
+          styleTypeName: styleTypeName,),
     );
   }
 
   InputDecoration asInputDecoration({String? styleTypeName}) {
     return InputDecoration(
-      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      floatingLabelStyle: floatingLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      helperStyle: helperStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      labelStyle: labelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      floatingLabelStyle: floatingLabelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      helperStyle: helperStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       helperMaxLines: helperMaxLines_int,
-      hintStyle: hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      hintStyle: hintStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       hintFadeDuration: hintFadeDuration_duration,
-      errorStyle: errorStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      errorStyle: errorStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       errorMaxLines: errorMaxLines_int,
       isDense: isDense_bool,
-      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      contentPadding:
+          contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       isCollapsed: isCollapsed_bool,
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
-      prefixStyle: prefixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      prefixIconColor: prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      suffixStyle: suffixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      suffixIconColor: suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      counterStyle: counterStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      prefixStyle: prefixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      prefixIconColor:
+          prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      suffixStyle: suffixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      suffixIconColor:
+          suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      counterStyle: counterStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       filled: filled_bool,
       fillColor: fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      errorBorder: errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      focusedBorder: focusedBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      focusedErrorBorder: focusedErrorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      disabledBorder: disabledBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
-      enabledBorder: enabledBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      errorBorder:
+          errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
+      focusedBorder: focusedBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
+      focusedErrorBorder: focusedErrorBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
+      disabledBorder: disabledBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
+      enabledBorder: enabledBorder_inputBorder?.asInputBorder(
+          styleTypeName: styleTypeName,),
       border: border_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
       alignLabelWithHint: alignLabelWithHint_bool,
-      constraints: constraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      constraints: constraints_boxConstraints?.asBoxConstraints(
+          styleTypeName: styleTypeName,),
     );
   }
 }

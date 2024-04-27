@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:widgets/component_decoration/component_decoration.dart';
+import "package:flutter/material.dart";
+import "package:widgets/component_decoration/component_decoration.dart";
 
 class Dividers extends StatelessWidget {
   const Dividers({super.key});
@@ -7,11 +7,11 @@ class Dividers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ComponentDecoration(
-      label: 'Dividers',
-      tooltipMessage: 'Use Divider or VerticalDivider',
+      label: "Dividers",
+      tooltipMessage: "Use Divider or VerticalDivider",
       child: Column(
         children: <Widget>[
-          Divider(key: Key('divider')),
+          Divider(key: Key("divider")),
         ],
       ),
     );
