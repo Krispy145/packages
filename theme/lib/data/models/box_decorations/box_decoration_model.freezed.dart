@@ -303,8 +303,8 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
                     backgroundBlendMode_enum_blendMode) ||
                 other.backgroundBlendMode_enum_blendMode ==
                     backgroundBlendMode_enum_blendMode) &&
-            const DeepCollectionEquality()
-                .equals(other.shape_enum_boxShape, shape_enum_boxShape));
+            (identical(other.shape_enum_boxShape, shape_enum_boxShape) ||
+                other.shape_enum_boxShape == shape_enum_boxShape));
   }
 
   @JsonKey(ignore: true)
@@ -317,7 +317,7 @@ class _$BoxDecorationModelImpl extends _BoxDecorationModel {
       const DeepCollectionEquality().hash(_boxShadows_list_boxShadow),
       gradient_gradient,
       backgroundBlendMode_enum_blendMode,
-      const DeepCollectionEquality().hash(shape_enum_boxShape));
+      shape_enum_boxShape);
 
   @JsonKey(ignore: true)
   @override

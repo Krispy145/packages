@@ -9,23 +9,18 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$FormsMapStore on _FormsMapStore, Store {
-  late final _$mapDataAtom =
-      Atom(name: '_FormsMapStore.mapData', context: context);
+  late final _$valueAtom = Atom(name: '_FormsMapStore.value', context: context);
 
   @override
-  ObservableMap<String, dynamic> get mapData {
-    _$mapDataAtom.reportRead();
-    return super.mapData;
+  ObservableMap<String, dynamic> get value {
+    _$valueAtom.reportRead();
+    return super.value;
   }
 
-  bool _mapDataIsInitialized = false;
-
   @override
-  set mapData(ObservableMap<String, dynamic> value) {
-    _$mapDataAtom
-        .reportWrite(value, _mapDataIsInitialized ? super.mapData : null, () {
-      super.mapData = value;
-      _mapDataIsInitialized = true;
+  set value(ObservableMap<String, dynamic> value) {
+    _$valueAtom.reportWrite(value, super.value, () {
+      super.value = value;
     });
   }
 
@@ -33,11 +28,22 @@ mixin _$FormsMapStore on _FormsMapStore, Store {
       ActionController(name: '_FormsMapStore', context: context);
 
   @override
-  void updateValue(List<String> keys, dynamic value) {
+  void updateValue(List<String> keys, dynamic fieldValue) {
     final _$actionInfo = _$_FormsMapStoreActionController.startAction(
         name: '_FormsMapStore.updateValue');
     try {
-      return super.updateValue(keys, value);
+      return super.updateValue(keys, fieldValue);
+    } finally {
+      _$_FormsMapStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void saveValue() {
+    final _$actionInfo = _$_FormsMapStoreActionController.startAction(
+        name: '_FormsMapStore.saveValue');
+    try {
+      return super.saveValue();
     } finally {
       _$_FormsMapStoreActionController.endAction(_$actionInfo);
     }
@@ -46,7 +52,7 @@ mixin _$FormsMapStore on _FormsMapStore, Store {
   @override
   String toString() {
     return '''
-mapData: ${mapData}
+value: ${value}
     ''';
   }
 }

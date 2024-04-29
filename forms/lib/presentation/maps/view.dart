@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
 import "package:forms/presentation/components/text/form_field.dart";
 import "package:forms/presentation/components/text/store.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
+import "package:utilities/snackbar/configuration.dart";
 
 import "../components/bool/form_field.dart";
 import "../components/bool/store.dart";
@@ -15,6 +17,8 @@ class FormsMapView extends StatelessWidget {
 
   const FormsMapView({super.key, required this.store, this.header});
 
+  bool get isUpdating => store.value.isNotEmpty;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -25,9 +29,17 @@ class FormsMapView extends StatelessWidget {
             header ?? buildHeader(context),
             Expanded(
               child: SingleChildScrollView(
-                child: _buildFormsMap(context, store.mapData, []),
+                child: _buildFormsMap(context, store.value, []),
               ),
             ),
+            if (store.onValueSaved != null) ...[
+              Sizes.l.spacer(),
+              ElevatedButton(
+                onPressed: () => _showConfirmationDialog(context),
+                child: Text(isUpdating ? "Update" : "Create"),
+              ),
+            ],
+            Sizes.xxxl.spacer(),
           ],
         ),
         Align(
@@ -45,7 +57,7 @@ class FormsMapView extends StatelessWidget {
   }
 
   Widget buildHeader(BuildContext context) {
-    return Text(store.mapData.toString());
+    return Text(store.value.toString());
   }
 
   Widget _buildFormsMap(
@@ -176,5 +188,53 @@ class FormsMapView extends StatelessWidget {
       return BoolFormField(store: store);
     }
     return null;
+  }
+
+  Future<void> _showConfirmationDialog(BuildContext context) async {
+    await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Confirm"),
+          content: const Text("Are you sure you want to submit?"),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(false);
+              },
+              child: const Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                store.saveValue();
+                Navigator.of(context).pop(true);
+              },
+              child: const Text("Submit"),
+            ),
+          ],
+        );
+      },
+    ).then((result) {
+      if (result == null) {
+        return context.showSnackbar(
+          configuration: SnackbarConfiguration.error(
+            title: 'Error ${isUpdating ? 'updating' : 'creating'} Map Type',
+          ),
+        );
+      }
+      if (result == false) {
+        return context.showSnackbar(
+          configuration: SnackbarConfiguration.warning(
+            title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of Map Type',
+          ),
+        );
+      }
+      context.showSnackbar(
+        configuration: SnackbarConfiguration.confirmation(
+          title: '${isUpdating ? 'Updated' : 'Created'} Map Type',
+        ),
+      );
+      return Navigator.of(context).pop<bool>(result);
+    });
   }
 }

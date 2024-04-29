@@ -85,9 +85,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
       data: requestType,
       cancelToken: _getCancelToken(cancelKey),
     );
-    return response.data != null
-        ? convertDataTypeFromMap(response.data!)
-        : null;
+    return response.data != null ? convertDataTypeFromMap(response.data!) : null;
   }
 
   @override
@@ -97,8 +95,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/$id/get";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -108,8 +105,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
       queryParameters: queryParameters,
       cancelToken: _getCancelToken(cancelKey),
     );
-    final convertedResponse =
-        response.data != null ? convertDataTypeFromMap(response.data!) : null;
+    final convertedResponse = response.data != null ? convertDataTypeFromMap(response.data!) : null;
     return convertedResponse;
   }
 
@@ -119,8 +115,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/getAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -140,8 +135,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/$id/delete";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -159,8 +153,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/deleteAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -180,8 +173,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/$id/update";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -201,8 +193,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/updateAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -228,8 +219,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/add";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -249,8 +239,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/addAll";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -275,8 +264,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     String? pathExtensions,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
@@ -286,9 +274,9 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
       queryParameters: queries,
       cancelToken: _getCancelToken(cancelKey),
     );
-    return response.data != null
-        ? convertDataTypeFromMap(response.data!)
-        : null;
+    AppLogger.print(response.data.toString(), [UtilitiesLoggers.apiDataSource]);
+
+    return response.data != null ? convertDataTypeFromMap(response.data!) : null;
   }
 
   @override
@@ -297,8 +285,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     String? pathExtensions,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url =
-        pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
