@@ -59,24 +59,26 @@ abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<MarkerModel?>
 
   late final DoubleFormFieldStore latitudeStore = DoubleFormFieldStore(
     value: mapStore.markers.firstOrNull?.position.latitude,
+    changeOnSaved: true,
     onValueChanged: (newLat) {
       if (newLat == null) return;
       final latLng = LatLng(newLat, value?.position.longitude ?? mapStore.markers.first.position.longitude);
       value = value?.copyWith(position: latLng) ?? MarkerModel(position: latLng, id: "0", score: 0);
       mapStore.setCenterMarker(marker: value);
-      mapStore.animatedMapController.animateTo(dest: latLng, zoom: 10);
+      mapStore.animatedMapController.mapController.move(latLng, 10);
     },
     title: "Latitude",
   );
 
   late final DoubleFormFieldStore longitudeStore = DoubleFormFieldStore(
     value: mapStore.markers.firstOrNull?.position.longitude,
+    changeOnSaved: true,
     onValueChanged: (newLng) {
       if (newLng == null) return;
       final latLng = LatLng(value?.position.latitude ?? mapStore.markers.first.position.latitude, newLng);
       value = value?.copyWith(position: latLng) ?? MarkerModel(position: latLng, id: "0", score: 0);
       mapStore.setCenterMarker(marker: value);
-      mapStore.animatedMapController.animateTo(dest: latLng, zoom: 10);
+      mapStore.animatedMapController.mapController.move(latLng, 10);
     },
     title: "Longitude",
   );

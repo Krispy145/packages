@@ -21,21 +21,25 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                 SizedBox(
                   width: 100,
                   child: TextField(
-                    decoration:
-                        const InputDecoration(border: UnderlineInputBorder()),
+                    decoration: const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      if (store.changeOnSaved) return;
+                      store.onValueChanged(double.tryParse(value) ?? 0);
+                    },
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
                   ),
                 ),
-                Sizes.s.spacer(vertical: false),
-                InkWell(
-                  onTap: () => store.onValueChanged(
-                      double.tryParse(store.textController.text) ?? 0,),
-                  child: const Icon(Icons.check_circle_outline),
-                ),
+                if (store.changeOnSaved) ...[
+                  Sizes.s.spacer(vertical: false),
+                  InkWell(
+                    onTap: () => store.onValueChanged(double.tryParse(store.textController.text) ?? 0),
+                    child: const Icon(Icons.check_circle_outline),
+                  ),
+                ],
               ],
             ),
           ],

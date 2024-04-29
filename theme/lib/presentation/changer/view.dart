@@ -27,6 +27,7 @@ import "package:forms/presentation/components/text_style_string/store.dart";
 import "package:forms/presentation/components/theme_color_string/form_field.dart";
 import "package:forms/presentation/components/theme_color_string/store.dart";
 import "package:forms/presentation/maps/view.dart";
+import "package:theme/app/app.dart";
 import "package:theme/data/models/badges/badge_model.dart";
 import "package:theme/data/models/borders/border_radius_model.dart";
 import "package:theme/data/models/borders/border_side_model.dart";
@@ -54,13 +55,14 @@ class ThemeComponentEditor extends FormsMapView {
   @override
   Widget buildHeader(BuildContext context) {
     return Center(
-      child: headerBuilder != null
-          ? Observer(
-              builder: (context) {
-                return headerBuilder!(context);
-              },
-            )
-          : Text(title, style: Theme.of(context).textTheme.titleLarge),
+      child: Observer(
+        builder: (context) {
+          return Theme(
+            data: AppTheme.currentTheme,
+            child: headerBuilder != null ? headerBuilder!(context) : Text(title, style: Theme.of(context).textTheme.titleLarge),
+          );
+        },
+      ),
     );
   }
 
@@ -74,8 +76,10 @@ class ThemeComponentEditor extends FormsMapView {
     final currentKey = keys.last;
     if (!currentKey.contains("_")) {
       AppLogger.print(
-          "$currentKey doesn't have _ format", [ThemeLoggers.changer],
-          type: LoggerType.error,);
+        "$currentKey doesn't have _ format",
+        [ThemeLoggers.changer],
+        type: LoggerType.error,
+      );
       return null;
     }
     final formattedKey = currentKey.substring(0, currentKey.indexOf("_"));
@@ -83,22 +87,25 @@ class ThemeComponentEditor extends FormsMapView {
 
     if (valueType.startsWith("_enum")) {
       final enumName = currentKey.substring(currentKey.indexOf("_enum") + 6);
-      final enumProperties = enumComponentProperties
-          .firstWhereOrNull((element) => element.name == enumName);
+      final enumProperties = enumComponentProperties.firstWhereOrNull((element) => element.name == enumName);
       if (enumProperties == null) {
-        AppLogger.print("$enumName not found (enum)", [ThemeLoggers.changer],
-            type: LoggerType.error,);
+        AppLogger.print(
+          "$enumName not found (enum)",
+          [ThemeLoggers.changer],
+          type: LoggerType.error,
+        );
         return null;
       }
-      final enumInitialValue = enumProperties.values
-          .firstWhereOrNull((element) => element.name == value as String?);
+      final enumInitialValue = enumProperties.values.firstWhereOrNull((element) => element.name == value as String?);
       return DropdownButton(
         value: enumInitialValue,
         onChanged: (newValue) => onChanged(keys, newValue?.name),
         items: enumProperties.values
             .map(
               (enumValue) => DropdownMenuItem<Enum>(
-                  value: enumValue, child: Text(enumValue.name),),
+                value: enumValue,
+                child: Text(enumValue.name),
+              ),
             )
             .toList(),
       );
@@ -138,9 +145,7 @@ class ThemeComponentEditor extends FormsMapView {
         );
       case "_edgeInsets":
         final store = EdgeInsetsFormFieldStore(
-          value: value != null
-              ? EdgeInsetsModel.fromJson(value as Map<String, dynamic>)
-              : const EdgeInsetsModel(),
+          value: value != null ? EdgeInsetsModel.fromJson(value as Map<String, dynamic>) : const EdgeInsetsModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           title: formattedKey,
         );
@@ -171,9 +176,7 @@ class ThemeComponentEditor extends FormsMapView {
         return TextStyleStringFormField(store: store);
       case "_borderSide":
         final store = BorderSideFormFieldStore(
-          value: value != null
-              ? BorderSideModel.fromJson(value as Map<String, dynamic>)
-              : const BorderSideModel(),
+          value: value != null ? BorderSideModel.fromJson(value as Map<String, dynamic>) : const BorderSideModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           title: formattedKey,
         );
@@ -181,35 +184,28 @@ class ThemeComponentEditor extends FormsMapView {
       case "_borderRadius":
         final store = BorderRadiusFormFieldStore(
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
-          value:
-              BorderRadiusModel.fromJson(value as Map<String, dynamic>? ?? {}),
+          value: BorderRadiusModel.fromJson(value as Map<String, dynamic>? ?? {}),
           title: formattedKey,
         );
         return BorderRadiusFormField(store: store);
 
       case "_outlinedBorder":
         final store = OutlinedBorderFormFieldStore(
-          value: value != null
-              ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>)
-              : const OutlinedBorderModel(),
+          value: value != null ? OutlinedBorderModel.fromJson(value as Map<String, dynamic>) : const OutlinedBorderModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           title: formattedKey,
         );
         return OutlinedBorderFormField(store: store);
       case "_inputBorder":
         final store = InputBorderFormFieldStore(
-          value: value != null
-              ? InputBorderModel.fromJson(value as Map<String, dynamic>)
-              : const InputBorderModel(),
+          value: value != null ? InputBorderModel.fromJson(value as Map<String, dynamic>) : const InputBorderModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           title: formattedKey,
         );
         return InputBorderFormField(store: store);
       case "_duration":
         final store = DurationFormFieldStore(
-          value: value != null
-              ? DurationModel.fromJson(value as Map<String, dynamic>)
-              : const DurationModel(),
+          value: value != null ? DurationModel.fromJson(value as Map<String, dynamic>) : const DurationModel(),
           onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
           title: formattedKey,
         );
@@ -235,37 +231,66 @@ final List<EnumComponentProperties> enumComponentProperties = [
   EnumComponentProperties(name: "boxShape", values: BoxShape.values),
   EnumComponentProperties(name: "textAlign", values: TextAlign.values),
   EnumComponentProperties(
-      name: "tabBarIndicatorSize", values: TabBarIndicatorSize.values,),
+    name: "tabBarIndicatorSize",
+    values: TabBarIndicatorSize.values,
+  ),
   EnumComponentProperties(name: "tabAlignment", values: TabAlignment.values),
   EnumComponentProperties(
-      name: "textCapitalization", values: TextCapitalization.values,),
+    name: "textCapitalization",
+    values: TextCapitalization.values,
+  ),
   EnumComponentProperties(
-      name: "listTileTitleAlignment", values: ListTileTitleAlignment.values,),
+    name: "listTileTitleAlignment",
+    values: ListTileTitleAlignment.values,
+  ),
   EnumComponentProperties(
-      name: "navigationRailLabelType", values: NavigationRailLabelType.values,),
+    name: "navigationRailLabelType",
+    values: NavigationRailLabelType.values,
+  ),
   EnumComponentProperties(
-      name: "tooltipTriggerMode", values: TooltipTriggerMode.values,),
+    name: "tooltipTriggerMode",
+    values: TooltipTriggerMode.values,
+  ),
   EnumComponentProperties(
-      name: "showValueIndicator", values: ShowValueIndicator.values,),
+    name: "showValueIndicator",
+    values: ShowValueIndicator.values,
+  ),
   EnumComponentProperties(
-      name: "sliderInteraction", values: SliderInteraction.values,),
+    name: "sliderInteraction",
+    values: SliderInteraction.values,
+  ),
   EnumComponentProperties(
-      name: "snackBarBehavior", values: SnackBarBehavior.values,),
+    name: "snackBarBehavior",
+    values: SnackBarBehavior.values,
+  ),
   EnumComponentProperties(
-      name: "borderRadiusType", values: BorderRadiusType.values,),
+    name: "borderRadiusType",
+    values: BorderRadiusType.values,
+  ),
   EnumComponentProperties(
-      name: "inputBorderType", values: InputBorderType.values,),
+    name: "inputBorderType",
+    values: InputBorderType.values,
+  ),
   EnumComponentProperties(
-      name: "outlinedBorderType", values: OutlinedBorderType.values,),
+    name: "outlinedBorderType",
+    values: OutlinedBorderType.values,
+  ),
   EnumComponentProperties(
-      name: "shapeBorderType", values: ShapeBorderType.values,),
+    name: "shapeBorderType",
+    values: ShapeBorderType.values,
+  ),
   EnumComponentProperties(name: "borderStyle", values: BorderStyle.values),
   EnumComponentProperties(
-      name: "materialTapTargetSize", values: MaterialTapTargetSize.values,),
+    name: "materialTapTargetSize",
+    values: MaterialTapTargetSize.values,
+  ),
   EnumComponentProperties(name: "materialType", values: MaterialType.values),
   EnumComponentProperties(
-      name: "navigationDestinationLabelConverter",
-      values: NavigationDestinationLabelBehavior.values,),
+    name: "navigationDestinationLabelConverter",
+    values: NavigationDestinationLabelBehavior.values,
+  ),
   EnumComponentProperties(
-      name: "alignmentOptions", values: AlignmentOptions.values,),
+    name: "alignmentOptions",
+    values: AlignmentOptions.values,
+  ),
 ];
