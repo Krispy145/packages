@@ -13,6 +13,9 @@ enum LoadState {
   /// [loaded] is the state that will be used when the user is loaded.
   loaded,
 
+  /// [noMoreToLoad] is the state that will be used when the user has no more to load.
+  noMoreToLoad,
+
   /// [empty] is the state that will be used when the user is empty.
   empty,
 
@@ -44,6 +47,10 @@ abstract class _LoadStateStore with Store {
   @computed
   bool get isLoaded => currentState == LoadState.loaded;
 
+  /// [isNoMoreToLoad] is a getter that will be used to check if the user has no more to load.
+  @computed
+  bool get isNoMoreToLoad => currentState == LoadState.noMoreToLoad;
+
   /// [isEmpty] is a getter that will be used to check if the user is empty.
   @computed
   bool get isEmpty => currentState == LoadState.empty;
@@ -59,36 +66,49 @@ abstract class _LoadStateStore with Store {
   /// [setInitial] is a method that will be used to set the state to initial.
   @action
   void setInitial() {
+    if (currentState == LoadState.initial) return;
     currentState = LoadState.initial;
   }
 
   /// [setLoading] is a method that will be used to set the state to loading.
   @action
   void setLoading() {
+    if (currentState == LoadState.loading) return;
     currentState = LoadState.loading;
   }
 
   /// [setLoaded] is a method that will be used to set the state to loaded.
   @action
   void setLoaded() {
+    if (currentState == LoadState.loaded) return;
     currentState = LoadState.loaded;
+  }
+
+  /// [setNoMoreToLoad] is a method that will be used to set the state to noMoreToLoad.
+  @action
+  void setNoMoreToLoad() {
+    if (currentState == LoadState.noMoreToLoad) return;
+    currentState = LoadState.noMoreToLoad;
   }
 
   /// [setEmpty] is a method that will be used to set the state to empty.
   @action
   void setEmpty() {
+    if (currentState == LoadState.empty) return;
     currentState = LoadState.empty;
   }
 
   /// [setError] is a method that will be used to set the state to error.
   @action
   void setError() {
+    if (currentState == LoadState.error) return;
     currentState = LoadState.error;
   }
 
   /// [setIdle] is a method that will be used to set the state to idle.
   @action
   void setIdle() {
+    if (currentState == LoadState.idle) return;
     currentState = LoadState.idle;
   }
 }

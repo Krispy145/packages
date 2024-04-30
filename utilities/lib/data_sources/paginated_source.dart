@@ -1,57 +1,9 @@
-import "package:utilities/data_sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 
-/// [PaginatedResponseModel] is a class that defines the methods that
-/// should be implemented by the paginated models.
-/// fromJson and toJson methods should be overridden in subclasses to provide
-/// the specific implementation for deserializing and serializing JSON into
-/// the paginated model.
-class PaginatedResponseModel<T> {
-  /// Creates a [PaginatedResponseModel] from a JSON map.
-  ///
-  /// This method should be overridden in subclasses to provide
-  /// the specific implementation for deserializing JSON into
-  /// the paginated model.
-  static PaginatedResponseModel<T> fromJson<T>(Map<String, dynamic> json) {
-    throw UnimplementedError("Subclasses must override fromJson method.");
-  }
+abstract class ResponseModel {}
 
-  /// Converts this [PaginatedResponseModel] to a JSON map.
-  ///
-  /// This method should be overridden in subclasses to provide
-  /// the specific implementation for serializing the paginated model
-  /// into a JSON map.
-  Map<String, dynamic> toJson() {
-    throw UnimplementedError("Subclasses must override toJson method.");
-  }
-}
+abstract mixin class Paginated<LastResp extends ResponseModel, T> {
+  Future<Pair<LastResp, List<T?>>> getPage({LastResp? lastResponse, int? size});
 
-/// [PaginatedRequestModel] is an abstract class that defines the methods that
-abstract class PaginatedRequestModel {}
-
-/// [PaginationDataSource] is an abstract class that defines the methods that
-/// should be implemented by the paginated data sources
-abstract class PaginationDataSource<T> with Mappable<T> {
-  /// Converts the given value to a paginated response map
-  Map<String, dynamic> responseToMap(PaginatedResponseModel<T> data);
-
-  /// Converts the given map to a paginated response value
-  PaginatedResponseModel<T?> responseFromMap(Map<String, dynamic> data);
-
-  /// Converts the given value to a paginated request map
-  Map<String, dynamic> requestToMap(PaginatedRequestModel data);
-
-  /// Converts the given map to a paginated request value
-  PaginatedRequestModel requestFromMap(Map<String, dynamic> data);
-
-  /// Returns the paginated value of the given id
-  Future<PaginatedResponseModel<T?>?> getPage(
-    String? pathExtension,
-    PaginatedRequestModel? lastValue,
-  );
-
-  /// Returns the paginated value of the given queries
-  Future<PaginatedResponseModel<T?>?> searchPage(
-    Map<String, String> queries,
-    PaginatedRequestModel? lastValue,
-  );
+  Future<Pair<LastResp, List<T?>>> searchPage({LastResp? lastResponse, int? size, Map<String, String>? queries});
 }

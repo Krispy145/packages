@@ -15,4 +15,7 @@ class PlaceOpeningHoursTime with PlaceOpeningHoursTimeMappable {
     this.date,
     this.truncated,
   });
+
+  static const fromMap = PlaceOpeningHoursTimeMapper.fromMap;
+  static const fromJson = PlaceOpeningHoursTimeMapper.fromJson;
 }

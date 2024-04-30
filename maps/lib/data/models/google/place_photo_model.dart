@@ -15,4 +15,7 @@ class PlacePhoto with PlacePhotoMappable {
     required this.htmlAttributions,
     required this.photoReference,
   });
+
+  static const fromMap = PlacePhotoMapper.fromMap;
+  static const fromJson = PlacePhotoMapper.fromJson;
 }

@@ -4,7 +4,7 @@
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
-part of 'text_search_responses_model.dart';
+part of 'responses_model.dart';
 
 class GoogleResponseStatusMapper extends EnumMapper<GoogleResponseStatus> {
   GoogleResponseStatusMapper._();

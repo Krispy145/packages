@@ -11,4 +11,7 @@ class PlaceEditorialSummary with PlaceEditorialSummaryMappable {
     this.language,
     this.overview,
   });
+
+  static const fromMap = PlaceEditorialSummaryMapper.fromMap;
+  static const fromJson = PlaceEditorialSummaryMapper.fromJson;
 }

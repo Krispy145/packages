@@ -197,4 +197,7 @@ class GooglePlace with GooglePlaceMappable {
     this.types,
     this.userRatingsTotal,
   });
+
+  static const fromMap = GooglePlaceMapper.fromMap;
+  static const fromJson = GooglePlaceMapper.fromJson;
 }

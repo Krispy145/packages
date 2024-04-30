@@ -30,4 +30,7 @@ class GoogleTextSearchParameters with GoogleTextSearchParametersMappable {
     this.keyword,
     this.pageToken,
   });
+
+  static const fromMap = GoogleTextSearchParametersMapper.fromMap;
+  static const fromJson = GoogleTextSearchParametersMapper.fromJson;
 }

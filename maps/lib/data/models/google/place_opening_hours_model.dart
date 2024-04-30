@@ -20,4 +20,7 @@ class PlaceOpeningHours with PlaceOpeningHoursMappable {
     this.type,
     this.weekdayText,
   });
+
+  static const fromMap = PlaceOpeningHoursMapper.fromMap;
+  static const fromJson = PlaceOpeningHoursMapper.fromJson;
 }

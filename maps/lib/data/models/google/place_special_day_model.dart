@@ -11,4 +11,7 @@ class PlaceSpecialDay with PlaceSpecialDayMappable {
     this.date,
     this.exceptionalHours,
   });
+
+  static const fromMap = PlaceSpecialDayMapper.fromMap;
+  static const fromJson = PlaceSpecialDayMapper.fromJson;
 }

@@ -34,6 +34,9 @@ class MarkerModel with MarkerModelMappable {
     required this.score,
     required this.position,
   });
+
+  static const fromMap = MarkerModelMapper.fromMap;
+  static const fromJson = MarkerModelMapper.fromJson;
 }
 
 // class LatLngConverter implements JsonConverter<LatLng, Map<String, dynamic>> {

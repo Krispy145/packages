@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/base_store.dart";
 
 /// [LoadStateBuilder] is a widget that will be used to build the UI based on the load state.
@@ -19,6 +21,9 @@ class LoadStateBuilder extends StatelessWidget {
   /// [loadingBuilder] is the builder that will be used to build the UI when the load state is loading.
   final WidgetBuilder? loadingBuilder;
 
+  /// [noMoreToLoadBuilder] is the builder that will be used to build the UI when the load state is no more to load.
+  final WidgetBuilder? noMoreToLoadBuilder;
+
   /// [emptyBuilder] is the builder that will be used to build the UI when the load state is empty.
   final WidgetBuilder? emptyBuilder;
 
@@ -34,6 +39,7 @@ class LoadStateBuilder extends StatelessWidget {
     this.initialBuilder = _defaultBuilder,
     this.emptyBuilder,
     this.loadingBuilder,
+    this.noMoreToLoadBuilder,
     this.idleBuilder,
   });
 
@@ -41,10 +47,15 @@ class LoadStateBuilder extends StatelessWidget {
     return const SizedBox.shrink();
   }
 
-  static Widget _defaultLoadingBuilder(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
+  Widget _defaultLoadingBuilder(BuildContext context) {
+    return const CircularProgressIndicator();
+  }
+
+  Widget _defaultNoMoreToLoadSnackBarBuilder(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.showSnackbar(configuration: SnackbarConfiguration.warning(title: "No more to load."));
+    });
+    return loadedBuilder(context);
   }
 
   @override
@@ -55,8 +66,7 @@ class LoadStateBuilder extends StatelessWidget {
           case LoadState.initial:
             return initialBuilder(context);
           case LoadState.loading:
-            return loadingBuilder?.call(context) ??
-                _defaultLoadingBuilder(context);
+            return loadingBuilder?.call(context) ?? _defaultLoadingBuilder(context);
           case LoadState.loaded:
             return loadedBuilder(context);
           case LoadState.empty:
@@ -65,6 +75,8 @@ class LoadStateBuilder extends StatelessWidget {
             return errorBuilder(context);
           case LoadState.idle:
             return idleBuilder?.call(context) ?? _defaultBuilder(context);
+          case LoadState.noMoreToLoad:
+            return noMoreToLoadBuilder?.call(context) ?? _defaultNoMoreToLoadSnackBarBuilder(context);
         }
       },
     );

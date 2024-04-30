@@ -27,4 +27,7 @@ class PlaceReview with PlaceReviewMappable {
     this.text,
     this.translated,
   });
+
+  static const fromMap = PlaceReviewMapper.fromMap;
+  static const fromJson = PlaceReviewMapper.fromJson;
 }

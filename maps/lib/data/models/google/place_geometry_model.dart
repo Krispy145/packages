@@ -15,4 +15,7 @@ class PlaceGeometry with PlaceGeometryMappable {
     required this.location,
     required this.viewport,
   });
+
+  static const fromMap = PlaceGeometryMapper.fromMap;
+  static const fromJson = PlaceGeometryMapper.fromJson;
 }

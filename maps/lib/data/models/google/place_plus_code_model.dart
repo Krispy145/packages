@@ -11,4 +11,7 @@ class PlacePlusCode with PlacePlusCodeMappable {
     required this.globalCode,
     this.compoundCode,
   });
+
+  static const fromMap = PlacePlusCodeMapper.fromMap;
+  static const fromJson = PlacePlusCodeMapper.fromJson;
 }

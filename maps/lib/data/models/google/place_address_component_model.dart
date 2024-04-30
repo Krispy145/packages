@@ -13,4 +13,7 @@ class PlaceAddressComponent with PlaceAddressComponentMappable {
     required this.shortName,
     required this.types,
   });
+
+  static const fromMap = PlaceAddressComponentMapper.fromMap;
+  static const fromJson = PlaceAddressComponentMapper.fromJson;
 }

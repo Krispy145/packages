@@ -51,10 +51,10 @@ abstract class _MapStore extends LoadStateStore with Store {
   @computed
   Set<MarkerModel> get markers => _markers.nonObservableInner;
 
-  /// Initialise the [AnimatedMapController] for the Flutter Map
+  /// Initialize the [AnimatedMapController] for the Flutter Map
   late final AnimatedMapController animatedMapController;
 
-  late MapOptions mapOptions = MapOptions(
+  late final MapOptions mapOptions = MapOptions(
     onMapReady: onMapReady,
     onTap: onMapTapped,
     onMapEvent: onMapEvent,
@@ -75,15 +75,15 @@ abstract class _MapStore extends LoadStateStore with Store {
   final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///
-  /// INITIALISATION
+  /// INITIALIZATION
   ///
 
-  /// Initialise the Markers from the spot search endpoint
-  Future<void> initialiseMarkers() async {
-    AppLogger.print("Initialise markers", [MapLoggers.markers, MapLoggers.map]);
+  /// Initialize the Markers from the spot search endpoint
+  Future<void> initializeMarkers() async {
+    AppLogger.print("Initialize markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
     if (_markers.isNotEmpty) {
-      AppLogger.print("Initialising spot markers on map: ${_markers.length}", [MapLoggers.markers]);
+      AppLogger.print("Initializing spot markers on map: ${_markers.length}", [MapLoggers.markers]);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
@@ -179,7 +179,7 @@ abstract class _MapStore extends LoadStateStore with Store {
         padding: const EdgeInsets.all(0),
       ),
     );
-    await initialiseMarkers();
+    await initializeMarkers();
     isMapReady = true;
     setLoaded();
   }

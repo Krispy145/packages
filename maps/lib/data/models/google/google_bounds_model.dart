@@ -13,4 +13,7 @@ class GoogleBounds with GoogleBoundsMappable {
     required this.northeast,
     required this.southwest,
   });
+
+  static const fromMap = GoogleBoundsMapper.fromMap;
+  static const fromJson = GoogleBoundsMapper.fromJson;
 }
