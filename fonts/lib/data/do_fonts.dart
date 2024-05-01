@@ -9,8 +9,8 @@ enum DOFonts {
   lato,
   whisper,
   proximaNovaAlt,
-  phonk,
-  figtree;
+  figtree,
+  unbounded;
 
   String get name => family.familyName;
 
@@ -22,36 +22,46 @@ enum DOFonts {
           variants: {
             // Normal
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w100,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHh30AXC-qNiXg7Q.woff2",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w100,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHh30AXC-qNiXg7Q.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w300,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh7USSwiPGQ3q5d0.woff2",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w300,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh7USSwiPGQ3q5d0.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w400,):
-                "https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjx4wXiWtFCc.woff2",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjx4wXiWtFCc.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w700,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w900,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh50XSwiPGQ3q5d0.woff2",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w900,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh50XSwiPGQ3q5d0.woff2",
             // Italic
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u-w4BMUTPHjxsIPx-oPCLC79U1.woff2",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w100,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u-w4BMUTPHjxsIPx-oPCLC79U1.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w300,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI9w2_Gwftx9897g.woff2",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w300,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI9w2_Gwftx9897g.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w400,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w400,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w700,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI5wq_Gwftx9897g.woff2",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w700,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI5wq_Gwftx9897g.woff2",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w900,):
-                "https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI3wi_Gwftx9897g.woff2",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w900,
+            ): "https://fonts.gstatic.com/s/lato/v24/S6u_w4BMUTPHjxsI3wi_Gwftx9897g.woff2",
           },
         );
       case DOFonts.whisper:
@@ -59,16 +69,9 @@ enum DOFonts {
           familyName: "Whisper",
           variants: {
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w400,):
-                "https://fonts.gstatic.com/s/whisper/v5/q5uHsoqtKftx74K9qi5IBj5eiYQ.woff2",
-          },
-        );
-      case DOFonts.phonk:
-        return DOFontFamily(
-          familyName: "Phonk",
-          variants: {
-            const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w400,): "",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+            ): "https://fonts.gstatic.com/s/whisper/v5/q5uHsoqtKftx74K9qi5IBj5eiYQ.woff2",
           },
         );
       case DOFonts.proximaNovaAlt:
@@ -77,48 +80,62 @@ enum DOFonts {
           variants: {
             // Normal
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w100,):
-                "https://drive.google.com/uc?export=download&id=1d5g7cX6Muf7ue5Dx8FzoRYb88HhirGrq",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w100,
+            ): "https://drive.google.com/uc?export=download&id=1d5g7cX6Muf7ue5Dx8FzoRYb88HhirGrq",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w200,):
-                "https://drive.google.com/uc?export=download&id=1GGkBzGw8WT6zjd_crg15SEr_lKhuKjV6",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w200,
+            ): "https://drive.google.com/uc?export=download&id=1GGkBzGw8WT6zjd_crg15SEr_lKhuKjV6",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w400,):
-                "https://drive.google.com/uc?export=download&id=1EFaMOlorQdC5pibKvMWB9LlexT3NxD7d",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+            ): "https://drive.google.com/uc?export=download&id=1EFaMOlorQdC5pibKvMWB9LlexT3NxD7d",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w600,):
-                "https://drive.google.com/uc?export=download&id=1RxAkRfxVPKpQwsGpTYibIy0iNELIt3Vj",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w600,
+            ): "https://drive.google.com/uc?export=download&id=1RxAkRfxVPKpQwsGpTYibIy0iNELIt3Vj",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w700,):
-                "https://drive.google.com/uc?export=download&id=1pnmjPTXJT4anYc3Mp5LHmeharPzsZcJU",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+            ): "https://drive.google.com/uc?export=download&id=1pnmjPTXJT4anYc3Mp5LHmeharPzsZcJU",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w800,):
-                "https://drive.google.com/uc?export=download&id=14E-Acc6uwEmEl4Tydpsab0cGhzjdgmKR",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w800,
+            ): "https://drive.google.com/uc?export=download&id=14E-Acc6uwEmEl4Tydpsab0cGhzjdgmKR",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.normal, fontWeight: FontWeight.w900,):
-                "https://drive.google.com/uc?export=download&id=1mkuozi1jqujG9XKtMShug44w4j-u4Ibv",
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w900,
+            ): "https://drive.google.com/uc?export=download&id=1mkuozi1jqujG9XKtMShug44w4j-u4Ibv",
             // Italic
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w100,):
-                "https://drive.google.com/uc?export=download&id=1MBj0kq5sbtNX9oEdVsTFxQsKJt5Womh5",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w100,
+            ): "https://drive.google.com/uc?export=download&id=1MBj0kq5sbtNX9oEdVsTFxQsKJt5Womh5",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w200,):
-                "https://drive.google.com/uc?export=download&id=1yRyamnV9CRnNR3_ukXiupsTf01UoOLry",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w200,
+            ): "https://drive.google.com/uc?export=download&id=1yRyamnV9CRnNR3_ukXiupsTf01UoOLry",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w400,):
-                "https://drive.google.com/uc?export=download&id=1yjqaXp8yMBVTfo_--Vf-Ash2tM5DrSRm",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w400,
+            ): "https://drive.google.com/uc?export=download&id=1yjqaXp8yMBVTfo_--Vf-Ash2tM5DrSRm",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w600,):
-                "https://drive.google.com/uc?export=download&id=1_b4uMk9Ohdt6DisqteGb55lyusM6zo16",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w600,
+            ): "https://drive.google.com/uc?export=download&id=1_b4uMk9Ohdt6DisqteGb55lyusM6zo16",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w700,):
-                "https://drive.google.com/uc?export=download&id=169Xii7bqL3R4VOCuSKKAWBwz4t6XWU7g",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w700,
+            ): "https://drive.google.com/uc?export=download&id=169Xii7bqL3R4VOCuSKKAWBwz4t6XWU7g",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w800,):
-                "https://drive.google.com/uc?export=download&id=1EFG-HxOlBwFVhk1DTsRgawLON3FuQp5O",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w800,
+            ): "https://drive.google.com/uc?export=download&id=1EFG-HxOlBwFVhk1DTsRgawLON3FuQp5O",
             const DOFontVariantDescriptor(
-                    fontStyle: FontStyle.italic, fontWeight: FontWeight.w900,):
-                "https://drive.google.com/uc?export=download&id=1FnPEz2cFe1XD72qSbiM8v7-G6gh7NojP",
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w900,
+            ): "https://drive.google.com/uc?export=download&id=1FnPEz2cFe1XD72qSbiM8v7-G6gh7NojP",
           },
         );
       case DOFonts.figtree:
@@ -127,52 +144,103 @@ enum DOFonts {
           variants: {
             // Normal
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w200,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w200,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w400,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w500,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w600,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w600,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w700,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w800,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w800,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.normal, fontWeight: FontWeight.w900,): null,
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w900,
+            ): null,
             // Italic
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w200,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w200,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w400,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w400,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w500,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w500,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w600,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w600,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w700,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w700,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w800,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w800,
+            ): null,
             const DOFontVariantDescriptor(
-                fontStyle: FontStyle.italic, fontWeight: FontWeight.w900,): null,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w900,
+            ): null,
+          },
+        );
+      case DOFonts.unbounded:
+        return DOFontFamily(
+          familyName: "Unbounded",
+          variants: {
+            // Normal
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w200,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w300,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w600,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w800,
+            ): null,
+            const DOFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w900,
+            ): null,
           },
         );
     }
   }
 }
-
-//  const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w100): "", //  "https://drive.google.com/uc?export=download&id=1d5g7cX6Muf7ue5Dx8FzoRYb88HhirGrq",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w200): "", //  "https://drive.google.com/uc?export=download&id=1GGkBzGw8WT6zjd_crg15SEr_lKhuKjV6",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w400): "", //  "https://drive.google.com/uc?export=download&id=1EFaMOlorQdC5pibKvMWB9LlexT3NxD7d",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w600): "", //  "https://drive.google.com/uc?export=download&id=1RxAkRfxVPKpQwsGpTYibIy0iNELIt3Vj",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w700): "", //  "https://drive.google.com/uc?export=download&id=1pnmjPTXJT4anYc3Mp5LHmeharPzsZcJU",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w800): "", //  "https://drive.google.com/uc?export=download&id=14E-Acc6uwEmEl4Tydpsab0cGhzjdgmKR",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.normal, fontWeight: FontWeight.w900): "", //  "https://drive.google.com/uc?export=download&id=1mkuozi1jqujG9XKtMShug44w4j-u4Ibv",
-//             // Italic
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w100): "", //  "https://drive.google.com/uc?export=download&id=1MBj0kq5sbtNX9oEdVsTFxQsKJt5Womh5",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w200): "", //  "https://drive.google.com/uc?export=download&id=1yRyamnV9CRnNR3_ukXiupsTf01UoOLry",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w400): "", //  "https://drive.google.com/uc?export=download&id=1yjqaXp8yMBVTfo_--Vf-Ash2tM5DrSRm",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w600): "", //  "https://drive.google.com/uc?export=download&id=1_b4uMk9Ohdt6DisqteGb55lyusM6zo16",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w700): "", //  "https://drive.google.com/uc?export=download&id=169Xii7bqL3R4VOCuSKKAWBwz4t6XWU7g",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w800): "", //  "https://drive.google.com/uc?export=download&id=1EFG-HxOlBwFVhk1DTsRgawLON3FuQp5O",
-//             const DOFontVariantDescriptor(fontStyle: FontStyle.italic, fontWeight: FontWeight.w900): "", //  "https://drive.google.com/uc?export=download&id=1FnPEz2cFe1XD72qSbiM8v7-G6gh7NojP",
