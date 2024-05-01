@@ -11,7 +11,7 @@ packages:
   - utilities
   - widgets
   - fonts
-  - map
+  - maps
   - forms
   # MELOS_PACKAGE_LIST_END
 
