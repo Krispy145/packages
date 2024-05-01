@@ -48,7 +48,7 @@ class LoadStateBuilder extends StatelessWidget {
   }
 
   Widget _defaultLoadingBuilder(BuildContext context) {
-    return const CircularProgressIndicator();
+    return const Center(child: CircularProgressIndicator());
   }
 
   Widget _defaultNoMoreToLoadSnackBarBuilder(BuildContext context) {
