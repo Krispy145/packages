@@ -1,85 +1,39 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:forms/presentation/components/base/store.dart';
-import 'package:forms/presentation/components/double/store.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:maps/data/models/google/place_model.dart';
-import 'package:maps/data/models/marker_model.dart';
-import 'package:maps/presentation/markers/icon_marker.dart';
-import 'package:maps/presentation/search_map/google_store.dart';
+import 'package:maps/data/models/google/text_search_query_parameters_model.dart';
+import 'package:maps/domain/repositories/google_places.repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'store.g.dart';
 
-class SearchMapFormFieldStore = _SearchMapFormFieldStore with _$SearchMapFormFieldStore;
+/// [GooglePlaceSearchFormFieldStore] is a class that uses [_GooglePlaceSearchFormFieldStore] to manage state of the map feature.
+class GooglePlaceSearchFormFieldStore = _GooglePlaceSearchFormFieldStore with _$GooglePlaceSearchFormFieldStore;
 
-abstract class _SearchMapFormFieldStore extends BaseFormFieldStore<MarkerModel?> with Store {
-  final String mapTilesUrl;
-  final String mapAPIKey;
-  final Marker Function(MarkerModel)? singleMarkerBuilder;
+/// [_GooglePlaceSearchFormFieldStore] is a class that manages the state of the map feature.
+abstract class _GooglePlaceSearchFormFieldStore extends BaseFormFieldStore<GooglePlace?> with Store {
+  final String googleAPIKey;
 
-  final void Function(MarkerModel?, GooglePlace?) onSearchSelected;
-  _SearchMapFormFieldStore({
-    required this.mapTilesUrl,
-    required this.mapAPIKey,
-    required super.value,
-    required this.onSearchSelected,
+  _GooglePlaceSearchFormFieldStore({
+    required this.googleAPIKey,
     required super.title,
-    // ignore: unused_element
-    this.singleMarkerBuilder,
-  }) : super(
-          onValueChanged: (marker) => onSearchSelected(marker, null),
-        ) {
-    reaction((reaction) {
-      return mapStore.mapCenter;
-    }, (mapCenter) {
-      if (mapCenter != null) {
-        latitudeStore.textController.text = mapCenter.latitude.toString();
-        longitudeStore.textController.text = mapCenter.longitude.toString();
-      }
-    });
-    reaction((reaction) => mapStore.currentGooglePlace, (googlePlace) {
-      if (googlePlace != null) {
-        onSearchSelected(value, googlePlace);
-      }
-    });
+    required super.value,
+    required super.onValueChanged,
+  }) {
+    setLoaded();
   }
 
-  late final GoogleSearchMapStore mapStore = GoogleSearchMapStore(
-      mapAPIKey: mapAPIKey,
-      mapTilesUrl: mapTilesUrl,
-      initialMarkers: value != null ? [value!] : null,
-      singleMarkerBuilder: singleMarkerBuilder ??
-          (marker) => IconMarker(
-              markerModel: marker,
-              isSelected: (_) {
-                return true;
-              },
-              icon: Icons.place_outlined));
+  late final GooglePlacesRepository search = GooglePlacesRepository(apiKey: googleAPIKey);
 
-  late final DoubleFormFieldStore latitudeStore = DoubleFormFieldStore(
-    value: mapStore.markers.firstOrNull?.position.latitude,
-    changeOnSaved: true,
-    onValueChanged: (newLat) {
-      if (newLat == null) return;
-      final latLng = LatLng(newLat, value?.position.longitude ?? mapStore.markers.first.position.longitude);
-      value = value?.copyWith(position: latLng) ?? MarkerModel(position: latLng, id: "0", score: 0);
-      mapStore.setCenterMarker(marker: value);
-      mapStore.animatedMapController.mapController.move(latLng, 10);
-    },
-    title: "Latitude",
-  );
+  @action
+  Future<List<GooglePlace>> searchQuery(String query) async {
+    List<GooglePlace?> searchPlace = await search.textSearchGooglePlaces(parameters: GoogleTextSearchParameters(query: query));
+    return searchPlace.whereType<GooglePlace>().toList();
+  }
 
-  late final DoubleFormFieldStore longitudeStore = DoubleFormFieldStore(
-    value: mapStore.markers.firstOrNull?.position.longitude,
-    changeOnSaved: true,
-    onValueChanged: (newLng) {
-      if (newLng == null) return;
-      final latLng = LatLng(value?.position.latitude ?? mapStore.markers.first.position.latitude, newLng);
-      value = value?.copyWith(position: latLng) ?? MarkerModel(position: latLng, id: "0", score: 0);
-      mapStore.setCenterMarker(marker: value);
-      mapStore.animatedMapController.mapController.move(latLng, 10);
-    },
-    title: "Longitude",
-  );
+  @action
+  Future<void> onSelectedPlace(GooglePlace? googlePlace) async {
+    if (googlePlace == null) return;
+    final googlePlaceFullDetails = await search.getGooglePlaceDetails(placeId: googlePlace.placeId ?? '');
+    onValueChanged(googlePlaceFullDetails);
+  }
 }

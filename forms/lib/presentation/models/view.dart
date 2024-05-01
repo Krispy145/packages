@@ -7,22 +7,22 @@ import "package:utilities/snackbar/configuration.dart";
 
 import "store.dart";
 
-class FormsModelView<T> extends StatelessWidget {
-  final FormsModelStore<T> store;
+class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
+  final S store;
   final Widget? header;
-  final bool update;
+  final bool isEditing;
   final Map<String, BaseFormField> modelFields;
   final EdgeInsets? scrollViewPadding;
   const FormsModelView({
     super.key,
     required this.store,
     required this.modelFields,
-    required this.update,
+    this.isEditing = false,
     this.header,
     this.scrollViewPadding,
   });
 
-  bool get isUpdating => update && store.value != null;
+  bool get isUpdating => isEditing && store.value != null;
 
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
@@ -26,20 +27,18 @@ class IntFormField extends BaseFormField<IntFormFieldStore> {
               children: [
                 // if (widget.showButtons)
                 IconButton.filled(
-                  icon: const Icon(Icons.remove, color: Colors.white),
+                  icon: Icon(Icons.remove, color: context.colorScheme.onPrimary),
                   onPressed: store.add,
                 ),
                 Sizes.s.spacer(vertical: false),
                 SizedBox(
                   width: 100,
                   child: TextField(
-                    decoration:
-                        const InputDecoration(border: UnderlineInputBorder()),
+                    decoration: const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
                     // enabled: widget.enabled,
-                    onChanged: (value) =>
-                        store.onValueChanged(int.tryParse(value)),
+                    onChanged: (value) => store.onValueChanged(int.tryParse(value)),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],
@@ -48,7 +47,7 @@ class IntFormField extends BaseFormField<IntFormFieldStore> {
                 Sizes.s.spacer(vertical: false),
                 // if (widget.showButtons)
                 IconButton.filled(
-                  icon: const Icon(Icons.add, color: Colors.white),
+                  icon: Icon(Icons.add, color: context.colorScheme.onPrimary),
                   onPressed: store.subtract,
                 ),
               ],

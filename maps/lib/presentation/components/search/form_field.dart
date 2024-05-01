@@ -1,44 +1,37 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:forms/presentation/components/double/form_field.dart';
-import 'package:maps/presentation/search_map/view.dart';
-import 'package:utilities/sizes/spacers.dart';
+import 'package:maps/data/models/google/place_model.dart';
 
 import 'store.dart';
 
-class SearchMapFormField extends BaseFormField<SearchMapFormFieldStore> {
-  const SearchMapFormField({super.key, required super.store});
+class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFieldStore> {
+  const GooglePlaceSearchFormField({super.key, required super.store});
 
   @override
   Widget buildField(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return Column(
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 320),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: SearchMapView(store: store.mapStore),
-              ),
+    return DropdownSearch<GooglePlace>(
+      itemAsString: (item) => item.name ?? "Name not found",
+      selectedItem: store.value,
+      asyncItems: (query) => store.searchQuery(query),
+      compareFn: (i, s) => i == s,
+      onChanged: store.onSelectedPlace,
+      popupProps: PopupPropsMultiSelection.menu(
+        isFilterOnline: true,
+        showSelectedItems: true,
+        showSearchBox: true,
+        itemBuilder: (context, item, isSelected) {
+          return ListTile(
+            leading: ImageIcon(
+              NetworkImage(item.icon ?? ""),
+              color: Theme.of(context).primaryColor,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Sizes.s.spacer(vertical: false),
-                  DoubleFormField(store: store.latitudeStore),
-                  Sizes.s.spacer(vertical: false),
-                  DoubleFormField(store: store.longitudeStore),
-                  Sizes.s.spacer(vertical: false),
-                ],
-              ),
-            )
-          ],
-        );
-      },
+            title: Text(item.name ?? "Name not found"),
+            subtitle: Text(item.formattedAddress ?? "Address not found", style: const TextStyle(color: Colors.grey)),
+            trailing: isSelected ? const Icon(Icons.check) : null,
+          );
+        },
+      ),
     );
   }
 }
