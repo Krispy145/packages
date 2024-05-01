@@ -46,7 +46,7 @@ class AppLoggerInjector {
   final bool overrideFeatures;
 
   /// [AppLoggerInjector] constructor
-  AppLoggerInjector(this.logFeatures, {this.overrideFeatures = false});
+  AppLoggerInjector(this.logFeatures, {this.overrideFeatures = true});
 
   /// [print] method responsible for printing log to the console.
   void print(
