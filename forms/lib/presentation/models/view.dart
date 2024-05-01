@@ -26,46 +26,50 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
+    return Observer(
+      builder: (context) {
+        return Stack(
           children: [
-            Sizes.l.spacer(),
-            header ?? _buildHeader(context),
-            Expanded(
-              child: Observer(
-                builder: (context) {
-                  return ListView.builder(
-                    padding: scrollViewPadding,
-                    itemBuilder: (context, index) {
-                      final key = modelFields.keys.elementAt(index);
-                      final widget = modelFields[key];
-                      return widget;
+            Column(
+              children: [
+                Sizes.l.spacer(),
+                header ?? _buildHeader(context),
+                Expanded(
+                  child: Observer(
+                    builder: (context) {
+                      return ListView.builder(
+                        padding: scrollViewPadding,
+                        itemBuilder: (context, index) {
+                          final key = modelFields.keys.elementAt(index);
+                          final widget = modelFields[key];
+                          return widget;
+                        },
+                        itemCount: modelFields.length,
+                      );
                     },
-                    itemCount: modelFields.length,
-                  );
-                },
+                  ),
+                ),
+                Sizes.l.spacer(),
+                ElevatedButton(
+                  onPressed: () => _showConfirmationDialog(context),
+                  child: Text(isUpdating ? "Update" : "Create"),
+                ),
+                Sizes.xxxl.spacer(),
+              ],
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
               ),
             ),
-            Sizes.l.spacer(),
-            ElevatedButton(
-              onPressed: () => _showConfirmationDialog(context),
-              child: Text(isUpdating ? "Update" : "Create"),
-            ),
-            Sizes.xxxl.spacer(),
           ],
-        ),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 
