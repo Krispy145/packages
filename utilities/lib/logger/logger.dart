@@ -43,9 +43,10 @@ enum LoggerType {
 /// [AppLogger] class responsible for logging, utilizing the features.
 class AppLoggerInjector {
   final Map<Enum, bool> logFeatures;
+  final bool overrideFeatures;
 
   /// [AppLoggerInjector] constructor
-  AppLoggerInjector(this.logFeatures);
+  AppLoggerInjector(this.logFeatures, {this.overrideFeatures = false});
 
   /// [print] method responsible for printing log to the console.
   void print(
@@ -53,34 +54,41 @@ class AppLoggerInjector {
     List<Enum> features, {
     LoggerType type = LoggerType.information,
   }) {
-    final activeFeatures = <Enum>[];
-    for (final feature in logFeatures.entries) {
-      if (features.contains(feature.key) && feature.value) {
-        activeFeatures.add(feature.key);
+    if (!overrideFeatures) {
+      final activeFeatures = <Enum>[];
+      for (final feature in logFeatures.entries) {
+        if (features.contains(feature.key) && feature.value) {
+          activeFeatures.add(feature.key);
+        }
       }
-    }
-    if (activeFeatures.isNotEmpty && kDebugMode) {
-      // Determine the log level based on LoggerType
-      Level level;
-      switch (type) {
-        case LoggerType.information:
-          level = Level.info;
-          break;
-        case LoggerType.error:
-          level = Level.error;
-          break;
-        case LoggerType.warning:
-          level = Level.warning;
-          break;
-        case LoggerType.confirmation:
-          level = Level.debug;
-          break;
-        default:
-          level = Level.info;
+      if (activeFeatures.isNotEmpty && kDebugMode) {
+        // Determine the log level based on LoggerType
+        Level level;
+        switch (type) {
+          case LoggerType.information:
+            level = Level.info;
+            break;
+          case LoggerType.error:
+            level = Level.error;
+            break;
+          case LoggerType.warning:
+            level = Level.warning;
+            break;
+          case LoggerType.confirmation:
+            level = Level.debug;
+            break;
+          default:
+            level = Level.info;
+        }
+        _logger.log(
+          level,
+          "Features (${activeFeatures.join(', ')}): $text",
+        );
       }
+    } else {
       _logger.log(
-        level,
-        "Features (${activeFeatures.join(', ')}): $text",
+        Level.warning,
+        "ALL OVERRIDE - ${features.join(", ")}: $text",
       );
     }
   }

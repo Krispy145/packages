@@ -10,8 +10,7 @@ import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class ThemeColorStringFormField
-    extends BaseFormField<ThemeColorStringFormFieldStore> {
+class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
   const ThemeColorStringFormField({
     super.key,
     required super.store,
@@ -19,7 +18,6 @@ class ThemeColorStringFormField
 
   @override
   Widget buildField(BuildContext context) {
-    print("Build field");
     return Observer(
       builder: (context) {
         return Column(
@@ -48,14 +46,15 @@ class ThemeColorStringFormField
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children:
-                      AppTheme.currentColorModel!.toJson().entries.map((entry) {
+                  children: AppTheme.currentColorModel!.toJson().entries.map((entry) {
                     final colorName = entry.key;
                     return InkWell(
                       onTap: () {
                         store.value = colorName;
-                        AppLogger.print("Calling onChanged with ${store.value}",
-                            [ThemeLoggers.colors],);
+                        AppLogger.print(
+                          "Calling onChanged with ${store.value}",
+                          [ThemeLoggers.colors],
+                        );
                       },
                       child: SizedBox(
                         height: 60,
@@ -63,8 +62,8 @@ class ThemeColorStringFormField
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             ColorCircle(
-                                color:
-                                    colorName.toColor() ?? Colors.transparent,),
+                              color: colorName.toColor() ?? Colors.transparent,
+                            ),
                             Text(
                               colorName,
                             ),

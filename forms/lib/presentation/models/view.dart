@@ -10,17 +10,19 @@ import "store.dart";
 class FormsModelView<T> extends StatelessWidget {
   final FormsModelStore<T> store;
   final Widget? header;
+  final bool update;
   final Map<String, BaseFormField> modelFields;
   final EdgeInsets? scrollViewPadding;
   const FormsModelView({
     super.key,
     required this.store,
     required this.modelFields,
+    required this.update,
     this.header,
     this.scrollViewPadding,
   });
 
-  bool get isUpdating => store.value != null;
+  bool get isUpdating => update && store.value != null;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,8 @@ class FormsModelView<T> extends StatelessWidget {
   }
 
   Widget _buildHeader(BuildContext context) {
-    return Text("$T Upsert");
+    final modelType = T.toString().replaceAll("?", "");
+    return Text("$modelType Upsert");
   }
 
   Future<void> _showConfirmationDialog(BuildContext context) async {
@@ -96,20 +99,26 @@ class FormsModelView<T> extends StatelessWidget {
         );
       },
     ).then((result) {
+      final modelType = T.toString().replaceAll("?", "");
       if (result == null) {
         return context.showSnackbar(
-            configuration: SnackbarConfiguration.error(
-                title: 'Error ${isUpdating ? 'updating' : 'creating'} $T',),);
+          configuration: SnackbarConfiguration.error(
+            title: 'Error ${isUpdating ? 'updating' : 'creating'} $modelType',
+          ),
+        );
       }
       if (result == false) {
         return context.showSnackbar(
-            configuration: SnackbarConfiguration.warning(
-                title:
-                    'Cancelled ${isUpdating ? 'update' : 'creation'} of $T',),);
+          configuration: SnackbarConfiguration.warning(
+            title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of $modelType',
+          ),
+        );
       }
       context.showSnackbar(
-          configuration: SnackbarConfiguration.confirmation(
-              title: '${isUpdating ? 'Updated' : 'Created'} $T',),);
+        configuration: SnackbarConfiguration.confirmation(
+          title: '${isUpdating ? 'Updated' : 'Created'} $modelType',
+        ),
+      );
       return Navigator.of(context).pop<bool>(result);
     });
   }

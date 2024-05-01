@@ -11,10 +11,11 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   final void Function(T) onValueChanged;
   final void Function(T) onValueSaved;
 
-  _FormsModelStore(
-      {required this.value,
-      required this.onValueChanged,
-      required this.onValueSaved,}) {
+  _FormsModelStore({
+    required this.value,
+    required this.onValueChanged,
+    required this.onValueSaved,
+  }) {
     reaction((r) => value, onValueChanged);
     setLoaded();
   }

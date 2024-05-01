@@ -107,8 +107,6 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
       final docRef = _firestore.collection(collectionName).doc();
       if (map.containsKey("id")) {
         map["id"] = docRef.id;
-        await update(docRef.id, convertDataTypeFromMap(map));
-        return null;
       }
       await docRef.set(map);
       return null;
