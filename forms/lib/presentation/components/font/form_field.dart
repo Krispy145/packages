@@ -16,13 +16,24 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
 
   @override
   Widget buildField(BuildContext context) {
+    TextStyle? textStyle;
+
+    try {
+      textStyle = AppTheme.fontsStore.getFont(store.value ?? DOFonts.values.first.name);
+    } catch (e) {
+      AppLogger.print(
+        "Get font failed: $e",
+        [ThemeLoggers.textStyles],
+        type: LoggerType.error,
+      );
+    }
+
     return Observer(
       builder: (context) {
         return DropdownMenu<String>(
           expandedInsets: const EdgeInsets.all(8),
           initialSelection: store.value,
-          textStyle: AppTheme.fontsStore
-              .getFont(store.value ?? DOFonts.values.first.name),
+          textStyle: textStyle,
           menuStyle: Theme.of(context).menuTheme.style?.copyWith(
                     alignment: Alignment.bottomCenter,
                   ) ??
@@ -44,7 +55,9 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
               .toList(),
           onSelected: (newValue) {
             AppLogger.print(
-                "on value changed: $newValue", [ThemeLoggers.textStyles],);
+              "on value changed: $newValue",
+              [ThemeLoggers.textStyles],
+            );
             store.onValueChanged(newValue);
           },
         );
