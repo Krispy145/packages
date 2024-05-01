@@ -11,8 +11,11 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
   final S store;
   final Widget? header;
   final bool isEditing;
+  final String updateButtonTitle;
+  final String createButtonTitle;
   final Map<String, BaseFormField> modelFields;
   final EdgeInsets? scrollViewPadding;
+  final void Function()? onBack;
   const FormsModelView({
     super.key,
     required this.store,
@@ -20,6 +23,9 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
     this.isEditing = false,
     this.header,
     this.scrollViewPadding,
+    this.updateButtonTitle = "Update",
+    this.createButtonTitle = "Create",
+    this.onBack,
   });
 
   bool get isUpdating => isEditing && store.value != null;
@@ -52,7 +58,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
                 Sizes.l.spacer(),
                 ElevatedButton(
                   onPressed: () => _showConfirmationDialog(context),
-                  child: Text(isUpdating ? "Update" : "Create"),
+                  child: Text(isUpdating ? updateButtonTitle : createButtonTitle),
                 ),
                 Sizes.xxxl.spacer(),
               ],
@@ -63,7 +69,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: IconButton(
                   icon: const Icon(Icons.arrow_back),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: onBack ?? () => Navigator.of(context).pop(),
                 ),
               ),
             ),
