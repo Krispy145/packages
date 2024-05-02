@@ -1,13 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:maps/constants/map_constants.dart';
 import 'package:maps/constants/marker_constants.dart';
 import 'package:maps/presentation/markers/base_marker.dart';
 import 'package:maps/presentation/markers/helpers/cluster_data.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:utilities/widgets/load_state/state_widget.dart';
+import 'package:utilities/widgets/load_state/builder.dart';
 
 import 'store.dart';
 
@@ -42,9 +43,27 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
     return RichAttributionWidget(
       showFlutterMapAttribution: false,
       attributions: [
-        TextSourceAttribution("© Mapbox", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/about/maps/'))),
-        TextSourceAttribution("© OpenStreetMap", prependCopyright: false, onTap: () => launchUrl(Uri.parse('http://www.openstreetmap.org/copyright'))),
-        TextSourceAttribution("Improve this map", prependCopyright: false, onTap: () => launchUrl(Uri.parse('https://www.mapbox.com/map-feedback/'))),
+        TextSourceAttribution(
+          "© Mapbox",
+          prependCopyright: false,
+          onTap: () => launchUrl(
+            Uri.parse('https://www.mapbox.com/about/maps/'),
+          ),
+        ),
+        TextSourceAttribution(
+          "© OpenStreetMap",
+          prependCopyright: false,
+          onTap: () => launchUrl(
+            Uri.parse('http://www.openstreetmap.org/copyright'),
+          ),
+        ),
+        TextSourceAttribution(
+          "Improve this map",
+          prependCopyright: false,
+          onTap: () => launchUrl(
+            Uri.parse('https://www.mapbox.com/map-feedback/'),
+          ),
+        ),
       ],
     );
   }
@@ -57,6 +76,7 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
       maxZoom: MapConstants.maxZoomLevel,
       minNativeZoom: MapConstants.minZoomLevel.toInt(),
       minZoom: MapConstants.minZoomLevel,
+      tileProvider: CancellableNetworkTileProvider(),
     );
   }
 

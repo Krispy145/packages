@@ -14,7 +14,7 @@ import 'package:mobx/mobx.dart';
 import 'package:theme/app/app.dart';
 import 'package:utilities/helpers/ticker_provider.dart';
 import 'package:utilities/logger/logger.dart';
-import 'package:utilities/widgets/load_state/base_store.dart';
+import 'package:utilities/widgets/load_state/store.dart';
 
 import '../../data/models/marker_model.dart';
 

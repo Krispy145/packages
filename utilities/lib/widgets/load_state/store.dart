@@ -1,6 +1,6 @@
 import "package:mobx/mobx.dart";
 
-part "base_store.g.dart";
+part "store.g.dart";
 
 /// [LoadState] is an enum that defines the different states of loading.
 enum LoadState {
@@ -63,6 +63,9 @@ abstract class _LoadStateStore with Store {
   @computed
   bool get isIdle => currentState == LoadState.idle;
 
+  @observable
+  bool hasShownNoMoreToLoadSnackBar = false;
+
   /// [setInitial] is a method that will be used to set the state to initial.
   @action
   void setInitial() {
@@ -89,6 +92,12 @@ abstract class _LoadStateStore with Store {
   void setNoMoreToLoad() {
     if (currentState == LoadState.noMoreToLoad) return;
     currentState = LoadState.noMoreToLoad;
+  }
+
+  @action
+  void setNoMoreToLoadSnackBar() {
+    if (hasShownNoMoreToLoadSnackBar) return;
+    hasShownNoMoreToLoadSnackBar = true;
   }
 
   /// [setEmpty] is a method that will be used to set the state to empty.

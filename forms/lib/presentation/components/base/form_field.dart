@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:theme/extensions/build_context.dart";
-import "package:utilities/widgets/load_state/state_widget.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 

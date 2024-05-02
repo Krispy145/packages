@@ -2,13 +2,16 @@ import "package:flutter/material.dart";
 import "package:theme/wrapper/store.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/snackbar/configuration.dart";
-import "package:utilities/widgets/load_state/state_widget.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
 class StyleTypeWrapper extends StatelessWidget {
   final String styleTypeName;
   final Widget Function(BuildContext context, StyleTypeThemeStore style) child;
-  const StyleTypeWrapper(
-      {super.key, required this.styleTypeName, required this.child,});
+  const StyleTypeWrapper({
+    super.key,
+    required this.styleTypeName,
+    required this.child,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +22,10 @@ class StyleTypeWrapper extends StatelessWidget {
         builder: (context) {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             context.showSnackbar(
-                configuration: SnackbarConfiguration.error(
-                    title: "Error loading $styleTypeName Style",),);
+              configuration: SnackbarConfiguration.error(
+                title: "Error loading $styleTypeName Style",
+              ),
+            );
           });
           return child(context, store);
         },
@@ -32,8 +37,9 @@ class StyleTypeWrapper extends StatelessWidget {
       ),
       loadedBuilder: (context) {
         return Theme(
-            data: store.currentTheme,
-            child: Builder(builder: (context) => child(context, store)),);
+          data: store.currentTheme,
+          child: Builder(builder: (context) => child(context, store)),
+        );
       },
     );
   }
