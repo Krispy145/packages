@@ -23,6 +23,8 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
     required this.convertDataTypeToMap,
   });
 
+  CollectionReference<Map<String, dynamic>> get collectionReference => _firestore.collection(collectionName);
+
   @override
   T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
 
@@ -32,7 +34,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<T?> get(String id) async {
     return _handleRequest("GET", () async {
-      final documentSnapshot = await _firestore.collection(collectionName).doc(id).get();
+      final documentSnapshot = await collectionReference.doc(id).get();
       if (documentSnapshot.exists) {
         return convertDataTypeFromMap(documentSnapshot.data()!);
       } else {
@@ -44,7 +46,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<List<T?>> getAll() async {
     try {
-      final querySnapshot = await _firestore.collection(collectionName).get();
+      final querySnapshot = await collectionReference.get();
       return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
@@ -55,7 +57,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<void> delete(String id) async {
     await _handleRequest("DELETE", () async {
-      await _firestore.collection(collectionName).doc(id).delete();
+      await collectionReference.doc(id).delete();
       return null;
     });
   }
@@ -63,7 +65,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<void> deleteAll() async {
     await _handleRequest("DELETE_ALL", () async {
-      final querySnapshot = await _firestore.collection(collectionName).get();
+      final querySnapshot = await collectionReference.get();
       final result = <String, dynamic>{};
       for (final doc in querySnapshot.docs) {
         await doc.reference.delete();
@@ -77,7 +79,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> update(String id, T data) async {
     await _handleRequest("UPDATE", () async {
       try {
-        await _firestore.collection(collectionName).doc(id).update(convertDataTypeToMap(data));
+        await collectionReference.doc(id).update(convertDataTypeToMap(data));
       } catch (e) {
         await add(data);
       }
@@ -91,7 +93,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
       final result = <String, dynamic>{};
       final batch = _firestore.batch();
       data.forEach((id, item) {
-        final reference = _firestore.collection(collectionName).doc(id);
+        final reference = collectionReference.doc(id);
         batch.set(reference, convertDataTypeToMap(item));
         result[id] = true;
       });
@@ -104,7 +106,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> add(T data) async {
     await _handleRequest("ADD", () async {
       final map = convertDataTypeToMap(data);
-      final docRef = _firestore.collection(collectionName).doc();
+      final docRef = collectionReference.doc();
       if (map.containsKey("id")) {
         map["id"] = docRef.id;
       }
@@ -119,7 +121,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
       final batch = _firestore.batch();
       for (final item in data) {
         final map = convertDataTypeToMap(item);
-        final docRef = _firestore.collection(collectionName).doc();
+        final docRef = collectionReference.doc();
         if (map.containsKey("id")) {
           map["id"] = docRef.id;
         }
@@ -135,7 +137,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
 
   @override
   Future<T?> search(Map<String, dynamic> queries) async {
-    final query = _firestore.collection(collectionName);
+    final query = collectionReference;
     for (final entry in queries.entries) {
       query.where(entry.key, isEqualTo: entry.value);
     }
@@ -145,7 +147,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
 
   @override
   Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
-    final query = _firestore.collection(collectionName);
+    final query = collectionReference;
     for (final entry in queries.entries) {
       query.where(entry.key, isEqualTo: entry.value);
     }
