@@ -3,14 +3,14 @@ import 'package:latlong2/latlong.dart';
 import 'package:maps/data/models/lat_lng.mapper.dart';
 import 'package:maps/helpers/geo_points/math.dart';
 
-import 'utils.dart' as utils;
+import '../../helpers/geo_points/utils.dart' as utils;
 
 part 'geo_reference.mapper.dart';
 
 // /// A model corresponds to Cloud Firestore as geoPoint field.
-// class GeoPointModel {
-//   /// Instantiates [GeoPointModel].
-//   const GeoPointModel(this.geoPoint);
+// class GeoReference {
+//   /// Instantiates [GeoReference].
+//   const GeoReference(this.geoPoint);
 
 //   /// [GeoPoint] of the location.
 //   final LatLng geoPoint;
@@ -21,13 +21,13 @@ part 'geo_reference.mapper.dart';
 //   /// Returns longitude of the location.
 //   double get longitude => geoPoint.longitude;
 
-//   /// Returns geoHash of [GeoPointModel].
+//   /// Returns geoHash of [GeoReference].
 // String get geoHash => encode(latitude: geoPoint.latitude, longitude: geoPoint.longitude);
 
-//   /// Returns all neighbors of [GeoPointModel].
+//   /// Returns all neighbors of [GeoReference].
 //   List<String> get neighbors => utils.neighborGeoHashesOf(geoHash: geoHash);
 
-//   /// Returns distance in kilometers between [GeoPointModel] and given
+//   /// Returns distance in kilometers between [GeoReference] and given
 //   /// [geoPoint].
 //   double distanceBetweenInKm({required final LatLng geoPoint}) => distanceInKm(geoPoint1: this.geoPoint, geoPoint2: geoPoint);
 
@@ -49,17 +49,20 @@ class GeoReference with GeoReferenceMappable {
   /// Returns longitude of the location.
   double get longitude => geoPoint.longitude;
 
-  /// Returns geoHash of [GeoPointModel].
+  /// Returns geoHash of [GeoReference].
   String get geoHash => encode(latitude: geoPoint.latitude, longitude: geoPoint.longitude);
 
-  /// Returns all neighbors of [GeoPointModel].
+  /// Returns all neighbors of [GeoReference].
   List<String> get neighbors => utils.neighborGeoHashesOf(geoHash: geoHash);
 
-  /// Returns distance in kilometers between [GeoPointModel] and given
+  /// Returns distance in kilometers between [GeoReference] and given
   /// [geoPoint].
   double distanceBetweenInKm({required final LatLng geoPoint}) => distanceInKm(geoPoint1: this.geoPoint, geoPoint2: geoPoint);
 
   /// Returns [geoPoint] and [geoHash] as Map<String, dynamic>. Can be used when
   /// adding or updating to Firestore document.
   Map<String, dynamic> get data => {'geo_point': const LatLngMapper().encode(geoPoint), 'geo_hash': geoHash};
+
+  @override
+  Map<String, dynamic> toMap() => data;
 }

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:maps/data/models/geo_reference.dart';
 import 'package:maps/data/models/lat_lng.mapper.dart';
-import 'package:maps/helpers/geo_points/geo_reference.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:utilities/data_sources/remote/firestore.dart';
 
@@ -24,13 +24,17 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   /// geoHash) of specified document.
   /// If you would like to update not only [LatLng].data but also other
   /// fields, use [set] method by setting merge true.
-  Future<void> updatePoint({
+  Future<void> updateWithPointHash({
     required final String id,
-    required final LatLng geoPoint,
-  }) async =>
-      collectionReference.doc(id).update(<String, dynamic>{
-        _fieldName: GeoReference(geoPoint: geoPoint).data,
-      });
+    final LatLng? geoPoint,
+    required final T data,
+  }) async {
+    final newData = convertDataTypeToMap(data);
+    if (geoPoint != null) {
+      newData[_fieldName] = GeoReference(geoPoint: geoPoint).toMap();
+    }
+    return collectionReference.doc(id).update(newData);
+  }
 
   /// Subscribes geo query results by given conditions.
   ///
