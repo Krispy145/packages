@@ -237,7 +237,13 @@ double distanceInKm({
   final latDelta = _toRadians(geoPoint2.latitude - geoPoint1.latitude);
   final lonDelta = _toRadians(geoPoint2.longitude - geoPoint1.longitude);
 
-  final a = (sin(latDelta / 2) * sin(latDelta / 2)) + (cos(_toRadians(geoPoint2.latitude)) * cos(_toRadians(geoPoint1.latitude)) * sin(lonDelta / 2) * sin(lonDelta / 2));
+  final a = (sin(latDelta / 2) * sin(latDelta / 2)) +
+      (cos(_toRadians(geoPoint2.latitude)) *
+          cos(_toRadians(geoPoint1.latitude)) *
+          sin(lonDelta / 2) *
+          sin(
+            lonDelta / 2,
+          ));
   final distance = radius * 2 * atan2(sqrt(a), sqrt(1 - a)) / 1000;
   return double.parse(distance.toStringAsFixed(3));
 }

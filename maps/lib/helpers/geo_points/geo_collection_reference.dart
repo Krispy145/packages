@@ -129,9 +129,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   ///
   /// * [center] Center point of detection.
   /// * [radiusInKm] Detection range in kilometers.
-  /// * [_geoHashField] Field name of the geoHash in the [field]
-  /// * [geoPointFrom] Function to get cloud_firestore [LatLng] instance from
-  /// the object (type T).
   /// * [queryBuilder] Specifies query if you would like to give additional
   /// conditions.
   /// * [strictMode] Whether to filter documents strictly within the bound of
@@ -156,9 +153,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   ///
   /// * [center] Center point of detection.
   /// * [radiusInKm] Detection range in kilometers.
-  /// * [_geoHashField] Field name of the geoHash in the [field]
-  /// * [geoPointFrom] Function to get cloud_firestore [LatLng] instance from
-  /// the object (type T).
   /// * [queryBuilder] Specifies query if you would like to give additional
   /// conditions.
   /// * [strictMode] Whether to filter documents strictly within the bound of
@@ -262,24 +256,7 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
     return query.orderBy('$_fieldName.$_geoHashField').startAt([geoHash]).endAt(['$geoHash{']);
   }
 
-  /// Merge given list of collection streams by `Rx.combineLatest`.
-  ///
-  /// Note:
-  ///
-  /// ```dart
-  /// final stream1 = Stream.value([1, 2, 3]);
-  /// final stream2 = Stream.value([11, 12, 13]);
-  /// final streams = [stream1, stream2];
-  ///
-  /// Rx.combineLatest<List<int>, List<int>>(
-  ///   streams,
-  ///   (values) => [
-  ///     for (final numbers in values) ...numbers,
-  ///   ],
-  /// ).listen(print);
-  ///
-  /// // [1, 2, 3, 11, 12, 13]
-  /// ```
+  /// Returns merged stream of collection streams.
   Stream<List<T>> _mergeCollectionStreams(
     final List<Stream<List<T>>> collectionStreams,
   ) =>
