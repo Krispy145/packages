@@ -15,7 +15,8 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
   final String createButtonTitle;
   final Map<String, BaseFormField> modelFields;
   final EdgeInsets? scrollViewPadding;
-  final void Function()? onBack;
+  final void Function(bool result)? onBack;
+  final IconData backIcon;
   const FormsModelView({
     super.key,
     required this.store,
@@ -26,56 +27,58 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
     this.updateButtonTitle = "Update",
     this.createButtonTitle = "Create",
     this.onBack,
+    this.backIcon = Icons.arrow_back,
   });
 
   bool get isUpdating => isEditing && store.value != null;
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return Stack(
+    return Stack(
+      children: [
+        Column(
           children: [
-            Column(
-              children: [
-                Sizes.l.spacer(),
-                header ?? _buildHeader(context),
-                Expanded(
-                  child: Observer(
-                    builder: (context) {
-                      return ListView.builder(
-                        padding: scrollViewPadding,
-                        itemBuilder: (context, index) {
-                          final key = modelFields.keys.elementAt(index);
-                          final widget = modelFields[key];
-                          return widget;
-                        },
-                        itemCount: modelFields.length,
-                      );
+            Sizes.l.spacer(),
+            header ?? _buildHeader(context),
+            Expanded(
+              child: Observer(
+                builder: (context) {
+                  return ListView.builder(
+                    padding: scrollViewPadding,
+                    itemBuilder: (context, index) {
+                      final key = modelFields.keys.elementAt(index);
+                      final widget = modelFields[key];
+                      return widget;
                     },
-                  ),
-                ),
-                Sizes.l.spacer(),
-                ElevatedButton(
-                  onPressed: () => _showConfirmationDialog(context),
-                  child: Text(isUpdating ? updateButtonTitle : createButtonTitle),
-                ),
-                Sizes.xxxl.spacer(),
-              ],
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: onBack ?? () => Navigator.of(context).pop(),
-                ),
+                    itemCount: modelFields.length,
+                  );
+                },
               ),
             ),
+            Sizes.m.spacer(),
+            ElevatedButton(
+              onPressed: () => _showConfirmationDialog(context),
+              child: Text(isUpdating ? updateButtonTitle : createButtonTitle),
+            ),
           ],
-        );
-      },
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: IconButton(
+              icon: Icon(backIcon),
+              onPressed: () {
+                if (onBack != null) {
+                  onBack?.call(false);
+                } else {
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -93,9 +96,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
           content: const Text("Are you sure you want to submit?"),
           actions: <Widget>[
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
+              onPressed: () => Navigator.of(context).pop(false),
               child: const Text("Cancel"),
             ),
             TextButton(
@@ -129,7 +130,11 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
           title: '${isUpdating ? 'Updated' : 'Created'} $modelType',
         ),
       );
-      return Navigator.of(context).pop<bool>(result);
+      if (onBack != null) {
+        onBack?.call(result);
+      } else {
+        Navigator.of(context).pop(result);
+      }
     });
   }
 }

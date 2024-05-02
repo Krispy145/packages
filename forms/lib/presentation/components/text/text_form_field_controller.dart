@@ -48,10 +48,12 @@ class TextFormFieldController {
   final EdgeInsets scrollPadding;
   final bool? enableInteractiveSelection;
   final TextSelectionControls? selectionControls;
-  final Widget? Function(BuildContext,
-      {required int currentLength,
-      required bool isFocused,
-      required int? maxLength,})? buildCounter;
+  final Widget? Function(
+    BuildContext, {
+    required int currentLength,
+    required bool isFocused,
+    required int? maxLength,
+  })? buildCounter;
   final ScrollPhysics? scrollPhysics;
   final Iterable<String>? autofillHints;
   final AutovalidateMode? autovalidateMode;
