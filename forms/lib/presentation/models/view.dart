@@ -40,6 +40,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
           children: [
             Sizes.l.spacer(),
             header ?? _buildHeader(context),
+            Sizes.m.spacer(),
             Expanded(
               child: Observer(
                 builder: (context) {

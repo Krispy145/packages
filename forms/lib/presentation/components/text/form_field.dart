@@ -10,6 +10,7 @@ class DOTextFormField extends BaseFormField<TextFormFieldStore> {
   const DOTextFormField({
     super.key,
     required super.store,
+    super.showTitle,
     this.leading,
     this.actions,
   });
