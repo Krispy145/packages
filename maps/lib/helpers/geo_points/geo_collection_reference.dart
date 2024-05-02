@@ -14,16 +14,17 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   /// Detection range buffer when not strict mode.
   static const _detectionRangeBuffer = 1.02;
   static const String _fieldName = 'geo_reference';
+  static const String _geoHashField = 'geo_hash';
 
   // Function to get GeoPoint instance from Cloud Firestore document data.
   LatLng _geoPointFrom(Map<String, dynamic> data) {
     return const LatLngMapper().decode((data[_fieldName] as Map<String, dynamic>)['geo_point']);
   }
 
-  /// Updates the [LatLng].data (i.e. [LatLng] geoPoint and [String]
-  /// geoHash) of specified document.
-  /// If you would like to update not only [LatLng].data but also other
-  /// fields, use [set] method by setting merge true.
+  /// Updates document with given data and point hash.
+  /// If [geoPoint] is given, it updates the document with the given [geoPoint].
+  /// If [geoPoint] is null, it updates the document without changing the
+  /// If the document does not exist, it creates a new document with the given data.
   Future<void> updateWithPointHash({
     required final String id,
     final LatLng? geoPoint,
@@ -48,9 +49,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   ///
   /// * [center] Center point of detection.
   /// * [radiusInKm] Detection range in kilometers.
-  /// * [field] Field name of cloud_firestore document.
-  /// * [_geoPointFrom] Function to get cloud_firestore [LatLng] instance from
-  /// the object (type T).
   /// * [queryBuilder] Specifies query if you would like to give additional
   /// conditions.
   /// * [strictMode] Whether to filter documents strictly within the bound of
@@ -59,7 +57,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   Stream<List<T?>> subscribeWithin({
     required final GeoReference center,
     required final double radiusInKm,
-    required final String field,
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
     final bool strictMode = false,
     final bool asBroadcastStream = false,
@@ -67,7 +64,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
       subscribeWithinWithDistance(
         center: center,
         radiusInKm: radiusInKm,
-        field: field,
         queryBuilder: queryBuilder,
         strictMode: strictMode,
       ).map(
@@ -79,8 +75,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   ///
   /// * [center] Center point of detection.
   /// * [radiusInKm] Detection range in kilometers.
-  /// * [field] Field name of cloud_firestore document.
-  /// * [_geoPointFrom] Function to get cloud_firestore [LatLng] instance from
   /// the object (type T).
   /// * [queryBuilder] Specifies query if you would like to give additional
   /// conditions.
@@ -90,7 +84,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   Stream<List<_GeoDocumentSnapshot<T>>> subscribeWithinWithDistance({
     required final GeoReference center,
     required final double radiusInKm,
-    required final String field,
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
     final bool strictMode = false,
     final bool asBroadcastStream = false,
@@ -98,7 +91,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
     final collectionStreams = _collectionStreams(
       center: center,
       radiusInKm: radiusInKm,
-      field: field,
       queryBuilder: queryBuilder,
     );
 
@@ -137,8 +129,7 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   ///
   /// * [center] Center point of detection.
   /// * [radiusInKm] Detection range in kilometers.
-  /// * [field] Field name of cloud_firestore document.
-  /// * [geoHashField] Field name of the geoHash in the [field]
+  /// * [_geoHashField] Field name of the geoHash in the [field]
   /// * [geoPointFrom] Function to get cloud_firestore [LatLng] instance from
   /// the object (type T).
   /// * [queryBuilder] Specifies query if you would like to give additional
@@ -148,14 +139,12 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   Future<List<T?>> fetchWithin({
     required final GeoReference center,
     required final double radiusInKm,
-    final String geoHashField = 'geo_hash',
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
     final bool strictMode = false,
   }) async {
     final geoDocumentSnapshots = await fetchWithinWithDistance(
       center: center,
       radiusInKm: radiusInKm,
-      geoHashField: geoHashField,
       queryBuilder: queryBuilder,
       strictMode: strictMode,
     );
@@ -167,8 +156,7 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   ///
   /// * [center] Center point of detection.
   /// * [radiusInKm] Detection range in kilometers.
-  /// * [field] Field name of cloud_firestore document.
-  /// * [geoHashField] Field name of the geoHash in the [field]
+  /// * [_geoHashField] Field name of the geoHash in the [field]
   /// * [geoPointFrom] Function to get cloud_firestore [LatLng] instance from
   /// the object (type T).
   /// * [queryBuilder] Specifies query if you would like to give additional
@@ -178,14 +166,12 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   Future<List<_GeoDocumentSnapshot<T>>> fetchWithinWithDistance({
     required final GeoReference center,
     required final double radiusInKm,
-    final String geoHashField = 'geo_hash',
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
     final bool strictMode = false,
   }) async {
     final collectionFutures = _collectionFutures(
       center: center,
       radiusInKm: radiusInKm,
-      geoHashField: geoHashField,
       queryBuilder: queryBuilder,
     );
 
@@ -219,14 +205,11 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   List<Stream<List<T>>> _collectionStreams({
     required final double radiusInKm,
     required final GeoReference center,
-    required final String field,
-    final String geoHashField = 'geo_hash',
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
   }) {
     return _geoHashes(radiusInKm: radiusInKm, center: center)
         .map(
           (final geoHash) => geoQuery(
-            geoHashField: geoHashField,
             geoHash: geoHash,
             queryBuilder: queryBuilder,
           ).snapshots().map((final querySnapshot) => querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList()),
@@ -239,13 +222,11 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   List<Future<List<T>>> _collectionFutures({
     required final double radiusInKm,
     required final GeoReference center,
-    required final String geoHashField,
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
   }) {
     return _geoHashes(radiusInKm: radiusInKm, center: center).map(
       (final geoHash) async {
         final querySnapshot = await geoQuery(
-          geoHashField: geoHashField,
           geoHash: geoHash,
           queryBuilder: queryBuilder,
         ).get();
@@ -271,7 +252,6 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
   /// is given.
   @visibleForTesting
   Query<Map<String, dynamic>> geoQuery({
-    final String geoHashField = 'geo_hash',
     required final String geoHash,
     final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
   }) {
@@ -279,7 +259,7 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
     if (queryBuilder != null) {
       query = queryBuilder(query)!;
     }
-    return query.orderBy('$_fieldName.$geoHashField').startAt([geoHash]).endAt(['$geoHash{']);
+    return query.orderBy('$_fieldName.$_geoHashField').startAt([geoHash]).endAt(['$geoHash{']);
   }
 
   /// Merge given list of collection streams by `Rx.combineLatest`.
