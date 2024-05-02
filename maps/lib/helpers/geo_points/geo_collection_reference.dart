@@ -33,7 +33,15 @@ extension GeoCollectionReference<T> on FirestoreDataSource<T> {
     if (geoPoint != null) {
       newData[_fieldName] = GeoReference(geoPoint: geoPoint).toMap();
     }
-    return collectionReference.doc(id).update(newData);
+    try {
+      await collectionReference.doc(id).update(newData);
+    } catch (e) {
+      final docRef = collectionReference.doc();
+      if (newData.containsKey("id")) {
+        newData["id"] = docRef.id;
+      }
+      await docRef.set(newData);
+    }
   }
 
   /// Subscribes geo query results by given conditions.
