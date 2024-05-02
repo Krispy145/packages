@@ -153,7 +153,9 @@ abstract class _MapStore extends LoadStateStore with Store {
 
   @action
   void unselectMarker() {
-    selectedMarkerId = null;
+    if (selectedMarkerId != null) {
+      selectedMarkerId = null;
+    }
   }
 
   ///
@@ -201,11 +203,16 @@ abstract class _MapStore extends LoadStateStore with Store {
     unselectMarker();
   }
 
-  void onMapPositionChanged(MapPosition position, bool changed) {}
+  void onMapPositionChanged(MapPosition position, bool changed) {
+    if (changed) {
+      unselectMarker();
+    }
+  }
 
   void onMapEvent(MapEvent event) {
     switch (event.source) {
       case MapEventSource.dragStart:
+        unselectMarker();
         break;
       case MapEventSource.onDrag:
         break;
