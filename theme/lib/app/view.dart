@@ -18,11 +18,14 @@ class ThemedMaterialApp extends StatelessWidget {
   /// [themeStore] is an instance of [ThemeStateStore].
   final ThemeStateStore themeStore;
 
+  final Color? initialBackgroundColor;
+
   /// [ThemedMaterialApp] constructor
   const ThemedMaterialApp({
     super.key,
     required this.materialAppBuilder,
     required this.themeStore,
+    this.initialBackgroundColor,
   });
 
   @override
@@ -41,16 +44,18 @@ class ThemedMaterialApp extends StatelessWidget {
           );
         },
       ),
-      loadingBuilder: (context) => const MaterialApp(
+      loadingBuilder: (context) => MaterialApp(
         home: Scaffold(
-          body: Center(
+          backgroundColor: initialBackgroundColor,
+          body: const Center(
             child: CircularProgressIndicator(),
           ),
         ),
       ),
-      errorBuilder: (context) => const MaterialApp(
+      errorBuilder: (context) => MaterialApp(
         home: Scaffold(
-          body: Center(
+          backgroundColor: initialBackgroundColor,
+          body: const Center(
             child: Text("Error"),
           ),
         ),
