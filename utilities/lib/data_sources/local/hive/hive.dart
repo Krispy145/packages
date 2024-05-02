@@ -8,13 +8,11 @@ import "package:utilities/data_sources/local/hive/helpers/type_box_listeneable.d
 import "package:utilities/data_sources/source.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
-import "package:utilities/widgets/load_state/base_store.dart";
+import "package:utilities/widgets/load_state/store.dart";
 import "package:uuid/uuid.dart";
 
 /// [HiveDataSource] is a wrapper class for [Hive]
-abstract class HiveDataSource<T> extends LoadStateStore
-    with Mappable<T>
-    implements DataSource<T> {
+abstract class HiveDataSource<T> extends LoadStateStore with Mappable<T> implements DataSource<T> {
   /// [boxName] is the name of the [Box]
   final String boxName;
 
@@ -80,8 +78,7 @@ abstract class HiveDataSource<T> extends LoadStateStore
       );
 
   /// [boxListenable] returns a [ValueListenable] for the [TypeBox]
-  ValueListenable<TypeBox<T>> get boxListenable =>
-      TypeBoxListenable<T>(_box, null);
+  ValueListenable<TypeBox<T>> get boxListenable => TypeBoxListenable<T>(_box, null);
 
   /// [generateUniqueId] method generates a unique id
   String generateUniqueId() {
@@ -178,7 +175,9 @@ abstract class HiveDataSource<T> extends LoadStateStore
     }
     await _box.putAll(updateMap);
     AppLogger.print(
-        "Updated All: $entries", [UtilitiesLoggers.localDataSource],);
+      "Updated All: $entries",
+      [UtilitiesLoggers.localDataSource],
+    );
   }
 
   /// [close] method closes the [TypeBox]

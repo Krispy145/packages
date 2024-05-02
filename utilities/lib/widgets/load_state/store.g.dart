@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'base_store.dart';
+part of 'store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -29,6 +29,13 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
   bool get isLoaded =>
       (_$isLoadedComputed ??= Computed<bool>(() => super.isLoaded,
               name: '_LoadStateStore.isLoaded'))
+          .value;
+  Computed<bool>? _$isNoMoreToLoadComputed;
+
+  @override
+  bool get isNoMoreToLoad =>
+      (_$isNoMoreToLoadComputed ??= Computed<bool>(() => super.isNoMoreToLoad,
+              name: '_LoadStateStore.isNoMoreToLoad'))
           .value;
   Computed<bool>? _$isEmptyComputed;
 
@@ -65,6 +72,23 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
     });
   }
 
+  late final _$hasShownNoMoreToLoadSnackBarAtom = Atom(
+      name: '_LoadStateStore.hasShownNoMoreToLoadSnackBar', context: context);
+
+  @override
+  bool get hasShownNoMoreToLoadSnackBar {
+    _$hasShownNoMoreToLoadSnackBarAtom.reportRead();
+    return super.hasShownNoMoreToLoadSnackBar;
+  }
+
+  @override
+  set hasShownNoMoreToLoadSnackBar(bool value) {
+    _$hasShownNoMoreToLoadSnackBarAtom
+        .reportWrite(value, super.hasShownNoMoreToLoadSnackBar, () {
+      super.hasShownNoMoreToLoadSnackBar = value;
+    });
+  }
+
   late final _$_LoadStateStoreActionController =
       ActionController(name: '_LoadStateStore', context: context);
 
@@ -96,6 +120,28 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
         name: '_LoadStateStore.setLoaded');
     try {
       return super.setLoaded();
+    } finally {
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setNoMoreToLoad() {
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setNoMoreToLoad');
+    try {
+      return super.setNoMoreToLoad();
+    } finally {
+      _$_LoadStateStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setNoMoreToLoadSnackBar() {
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setNoMoreToLoadSnackBar');
+    try {
+      return super.setNoMoreToLoadSnackBar();
     } finally {
       _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
@@ -138,9 +184,11 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
   String toString() {
     return '''
 currentState: ${currentState},
+hasShownNoMoreToLoadSnackBar: ${hasShownNoMoreToLoadSnackBar},
 isInitial: ${isInitial},
 isLoading: ${isLoading},
 isLoaded: ${isLoaded},
+isNoMoreToLoad: ${isNoMoreToLoad},
 isEmpty: ${isEmpty},
 isError: ${isError},
 isIdle: ${isIdle}

@@ -1,7 +1,7 @@
 import "package:forms/utils/loggers.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/logger/logger.dart";
-import "package:utilities/widgets/load_state/base_store.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 

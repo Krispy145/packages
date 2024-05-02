@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/snackbar/configuration.dart";
-import "package:utilities/widgets/load_state/base_store.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
 /// [LoadStateBuilder] is a widget that will be used to build the UI based on the load state.
 class LoadStateBuilder extends StatelessWidget {
@@ -53,7 +53,9 @@ class LoadStateBuilder extends StatelessWidget {
 
   Widget _defaultNoMoreToLoadSnackBarBuilder(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (viewStore.hasShownNoMoreToLoadSnackBar) return;
       context.showSnackbar(configuration: SnackbarConfiguration.warning(title: "No more to load."));
+      viewStore.setNoMoreToLoadSnackBar();
     });
     return loadedBuilder(context);
   }

@@ -1,6 +1,5 @@
 // ignore_for_file: unused_element
 
-import 'package:flutter_map/flutter_map.dart';
 import 'package:maps/presentation/map/store.dart';
 import 'package:mobx/mobx.dart';
 
@@ -29,8 +28,9 @@ abstract class _SingleMarkerStore extends MapStore with Store {
   Future<void> onMapReady() async {
     setLoading();
     addMarker(marker);
-    animatedMapController.animatedFitCamera(
-      cameraFit: CameraFit.coordinates(coordinates: [marker.position], maxZoom: 15),
+    selectMarker(
+      marker.id,
+      marker.position,
     );
     isMapReady = true;
     setLoaded();
