@@ -12,33 +12,31 @@ class EditLocationMapFormField extends BaseFormField<EditLocationMapFormFieldSto
 
   @override
   Widget buildField(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return Column(
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 320),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: EditLocationMapView(store: store.mapStore),
-              ),
+    return Column(
+      children: [
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 320),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: EditLocationMapView(store: store.mapStore),
+          ),
+        ),
+        Observer(builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Sizes.s.spacer(vertical: false),
+                DoubleFormField(store: store.latitudeStore),
+                Sizes.s.spacer(vertical: false),
+                DoubleFormField(store: store.longitudeStore),
+                Sizes.s.spacer(vertical: false),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Sizes.s.spacer(vertical: false),
-                  DoubleFormField(store: store.latitudeStore),
-                  Sizes.s.spacer(vertical: false),
-                  DoubleFormField(store: store.longitudeStore),
-                  Sizes.s.spacer(vertical: false),
-                ],
-              ),
-            )
-          ],
-        );
-      },
+          );
+        })
+      ],
     );
   }
 }
