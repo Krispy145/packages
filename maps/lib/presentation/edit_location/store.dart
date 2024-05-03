@@ -36,6 +36,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
   @override
   Future<void> onMapReady() async {
     setLoading();
+    await initializeMarkers();
     if (initialMarkers != null) {
       addMarkers(initialMarkers!);
     }
