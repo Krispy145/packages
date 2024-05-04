@@ -20,27 +20,26 @@ abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
     });
   }
   final ScrollController scrollController = ScrollController();
-  late final Future<List<T?>> Function({int? limit}) loadMoreFromRepository;
+  late final Future<List<T?>> Function({int? limit, bool refresh}) loadMoreFromRepository;
 
   /// [results] is an observable list of [T]s.
   ObservableList<T?> results = ObservableList<T?>();
 
   @action
   Future<void> refresh() async {
-    setLoading();
-    results.clear();
-    await loadMore(limit: limit);
+    await loadMore(limit: limit, refresh: true);
     return Future.delayed(Durations.long4, setLoaded);
   }
 
   /// [loadMore] loads all [T]s from the data source.
   @action
-  Future<void> loadMore({int? limit}) async {
-    if (currentState == LoadState.noMoreToLoad) return;
+  Future<void> loadMore({int? limit, bool refresh = false}) async {
+    if (currentState == LoadState.noMoreToLoad && !refresh) return;
     try {
       setLoading();
-      final loadedResults = await loadMoreFromRepository(limit: limit);
+      final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
       if (loadedResults.isNotEmpty) {
+        if (refresh) results.clear();
         results.addAll(loadedResults);
         return Future.delayed(Durations.long4, setLoaded);
       } else {

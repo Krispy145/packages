@@ -21,8 +21,9 @@ mixin _$PaginatedListStore<T> on _PaginatedListStore<T>, Store {
       AsyncAction('_PaginatedListStore.loadMore', context: context);
 
   @override
-  Future<void> loadMore({int? limit}) {
-    return _$loadMoreAsyncAction.run(() => super.loadMore(limit: limit));
+  Future<void> loadMore({int? limit, bool refresh = false}) {
+    return _$loadMoreAsyncAction
+        .run(() => super.loadMore(limit: limit, refresh: refresh));
   }
 
   @override
