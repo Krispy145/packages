@@ -13,7 +13,8 @@ packages:
   - fonts
   - maps
   - forms
-  # MELOS_PACKAGE_LIST_END
+  - socials
+ # MELOS_PACKAGE_LIST_END
 
 scripts:
   analyze:

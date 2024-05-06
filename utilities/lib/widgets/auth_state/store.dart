@@ -1,6 +1,7 @@
 import "package:mobx/mobx.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
-part "base_store.g.dart";
+part "store.g.dart";
 
 /// [AuthState] is an enum that defines the different states of authentication.
 enum AuthState {
@@ -15,28 +16,28 @@ enum AuthState {
 class AuthStateStore = _AuthStateStore with _$AuthStateStore;
 
 /// [_AuthStateStore] is the base store that will be used to manage the state of the authentication.
-abstract class _AuthStateStore with Store {
-  /// [currentState] is the state that will be used to manage the state of the authentication.
+abstract class _AuthStateStore extends LoadStateStore with Store {
+  /// [currentAuthState] is the state that will be used to manage the state of the authentication.
   @observable
-  AuthState currentState = AuthState.unauthenticated;
+  AuthState currentAuthState = AuthState.unauthenticated;
 
   /// [isAuthenticated] is a getter that will be used to check if the user is authenticated.
   @computed
-  bool get isAuthenticated => currentState == AuthState.authenticated;
+  bool get isAuthenticated => currentAuthState == AuthState.authenticated;
 
   /// [isUnauthenticated] is a getter that will be used to check if the user is unauthenticated.
   @computed
-  bool get isUnauthenticated => currentState == AuthState.unauthenticated;
+  bool get isUnauthenticated => currentAuthState == AuthState.unauthenticated;
 
   /// [setAuthenticated] is a method that will be used to set the state to authenticated.
   @action
   void setAuthenticated() {
-    currentState = AuthState.authenticated;
+    currentAuthState = AuthState.authenticated;
   }
 
   /// [setUnauthenticated] is a method that will be used to set the state to unauthenticated.
   @action
   void setUnauthenticated() {
-    currentState = AuthState.unauthenticated;
+    currentAuthState = AuthState.unauthenticated;
   }
 }

@@ -83,18 +83,13 @@ class TypeBox<T> extends Box<T> {
   @override
   T? get(dynamic key, {T? defaultValue}) {
     if (key is! String) {
-      AppLogger.print(
-          "Key is not a String", [UtilitiesLoggers.localDataSource],);
+      AppLogger.print("Key is not a String", [UtilitiesLoggers.localDataSource]);
       return null;
     }
-    if (defaultValue == null) {
-      final value = _box.get(key);
-      if (value == null) return null;
-      return convertDataTypeFromMap(value);
-    }
-    final value =
-        _box.get(key, defaultValue: convertDataTypeToMap(defaultValue));
-    if (value == null) return null;
+    final rawValue = _box.get(key);
+    if (rawValue == null) return null;
+
+    final value = Map<String, dynamic>.from(rawValue);
     return convertDataTypeFromMap(value);
   }
 
@@ -140,7 +135,9 @@ class TypeBox<T> extends Box<T> {
   Future<void> put(dynamic key, T value) {
     if (key is! String) {
       AppLogger.print(
-          "Key is not a String", [UtilitiesLoggers.localDataSource],);
+        "Key is not a String",
+        [UtilitiesLoggers.localDataSource],
+      );
       return Future.value();
     }
     return _box.put(key, convertDataTypeToMap(value));
@@ -187,19 +184,16 @@ class TypeBox<T> extends Box<T> {
   @override
   Map<dynamic, T> toMap() {
     return _box.toMap().map(
-          (key, value) =>
-              MapEntry(key as String, convertDataTypeFromMap(value)),
+          (key, value) => MapEntry(key as String, convertDataTypeFromMap(value ?? {})),
         );
   }
 
   @override
-  Iterable<T> get values => _box.values.map(convertDataTypeFromMap);
+  Iterable<T> get values => _box.values.map((value) => convertDataTypeFromMap(value ?? {}));
 
   @override
   Iterable<T> valuesBetween({dynamic startKey, dynamic endKey}) {
-    return _box
-        .valuesBetween(startKey: startKey, endKey: endKey)
-        .map(convertDataTypeFromMap);
+    return _box.valuesBetween(startKey: startKey, endKey: endKey).map((value) => convertDataTypeFromMap(value ?? {}));
   }
 
   @override

@@ -3,7 +3,7 @@ import "package:mobx/mobx.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
-part "base_store.g.dart";
+part "store.g.dart";
 
 /// [ConnectionStoreState] is an enum that defines the different states of the connection.
 enum ConnectionStoreState {

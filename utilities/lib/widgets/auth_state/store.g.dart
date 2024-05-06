@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'base_store.dart';
+part of 'store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -24,19 +24,19 @@ mixin _$AuthStateStore on _AuthStateStore, Store {
           name: '_AuthStateStore.isUnauthenticated'))
       .value;
 
-  late final _$currentStateAtom =
-      Atom(name: '_AuthStateStore.currentState', context: context);
+  late final _$currentAuthStateAtom =
+      Atom(name: '_AuthStateStore.currentAuthState', context: context);
 
   @override
-  AuthState get currentState {
-    _$currentStateAtom.reportRead();
-    return super.currentState;
+  AuthState get currentAuthState {
+    _$currentAuthStateAtom.reportRead();
+    return super.currentAuthState;
   }
 
   @override
-  set currentState(AuthState value) {
-    _$currentStateAtom.reportWrite(value, super.currentState, () {
-      super.currentState = value;
+  set currentAuthState(AuthState value) {
+    _$currentAuthStateAtom.reportWrite(value, super.currentAuthState, () {
+      super.currentAuthState = value;
     });
   }
 
@@ -68,7 +68,7 @@ mixin _$AuthStateStore on _AuthStateStore, Store {
   @override
   String toString() {
     return '''
-currentState: ${currentState},
+currentAuthState: ${currentAuthState},
 isAuthenticated: ${isAuthenticated},
 isUnauthenticated: ${isUnauthenticated}
     ''';

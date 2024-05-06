@@ -13,6 +13,7 @@ abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
 
   /// [_PaginatedListStore] constructor.
   _PaginatedListStore({this.limit = 10}) {
+    loadMore(limit: limit);
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         loadMore(limit: limit);
@@ -41,6 +42,7 @@ abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
       if (loadedResults.isNotEmpty) {
         if (refresh) results.clear();
         results.addAll(loadedResults);
+        results = ObservableList.of(results.toSet().toList());
         return Future.delayed(Durations.long4, setLoaded);
       } else {
         if (results.isEmpty) return setEmpty();
