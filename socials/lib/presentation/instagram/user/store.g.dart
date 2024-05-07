@@ -73,12 +73,12 @@ mixin _$InstagramUserStore on _InstagramUserStore, Store {
     return _$setLocalUserAsyncAction.run(() => super.setLocalUser(user));
   }
 
-  late final _$setAuthenticatedAsyncAction =
-      AsyncAction('_InstagramUserStore.setAuthenticated', context: context);
+  late final _$tryAuthenticateAsyncAction =
+      AsyncAction('_InstagramUserStore.tryAuthenticate', context: context);
 
   @override
-  Future<void> setAuthenticated() {
-    return _$setAuthenticatedAsyncAction.run(() => super.setAuthenticated());
+  Future<void> tryAuthenticate() {
+    return _$tryAuthenticateAsyncAction.run(() => super.tryAuthenticate());
   }
 
   late final _$getLocalUserAsyncAction =

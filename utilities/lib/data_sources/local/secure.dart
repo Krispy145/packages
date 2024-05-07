@@ -1,3 +1,5 @@
+import "dart:convert";
+
 import "package:flutter_secure_storage/flutter_secure_storage.dart";
 import "package:utilities/data_sources/source.dart";
 import "package:utilities/logger/logger.dart";
@@ -5,7 +7,25 @@ import "package:utilities/utils/loggers.dart";
 import "package:uuid/uuid.dart";
 
 /// [SecureDataSource] is a wrapper class for [FlutterSecureStorage]
-abstract class SecureDataSource implements DataSource<String> {
+class SecureDataSource<T> with Mappable<T> implements DataSource<T> {
+  /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
+  final T Function(Map<String, dynamic>) convertDataTypeFromMap;
+
+  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
+  final Map<String, dynamic> Function(T) convertDataTypeToMap;
+
+  /// [SecureDataSource] constructor
+  SecureDataSource({
+    required this.convertDataTypeFromMap,
+    required this.convertDataTypeToMap,
+  });
+
+  @override
+  T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
+
+  @override
+  Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
+
   final FlutterSecureStorage _storage = const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),
   );
@@ -17,17 +37,18 @@ abstract class SecureDataSource implements DataSource<String> {
   }
 
   @override
-  Future<String?> get(String key) async {
+  Future<T?> get(String key) async {
     final value = await read(key);
-    AppLogger.print("GET: $key => $value", [UtilitiesLoggers.secureDataSource]);
-    return value;
+    final convertedValue = value != null ? convertFromMap(json.decode(value) as Map<String, dynamic>) : null;
+    AppLogger.print("GET: $key => $convertedValue", [UtilitiesLoggers.secureDataSource]);
+    return convertedValue;
   }
 
   @override
-  Future<List<String>> getAll() async {
+  Future<List<T>> getAll() async {
     final allValues = await readAll();
     AppLogger.print("GET All: $allValues", [UtilitiesLoggers.secureDataSource]);
-    return allValues.values.toList();
+    return allValues.values.map((value) => convertFromMap(json.decode(value) as Map<String, dynamic>)).toList();
   }
 
   @override
@@ -43,8 +64,8 @@ abstract class SecureDataSource implements DataSource<String> {
   }
 
   @override
-  Future<void> update(String key, String value) async {
-    await write(key: key, value: value);
+  Future<void> update(String key, T value) async {
+    await write(key: key, value: json.encode(convertToMap(value)));
     AppLogger.print(
       "UPDATE: $key => $value",
       [UtilitiesLoggers.secureDataSource],
@@ -52,23 +73,23 @@ abstract class SecureDataSource implements DataSource<String> {
   }
 
   @override
-  Future<void> updateAll(Map<String, String> values) async {
+  Future<void> updateAll(Map<String, T> values) async {
     for (final entry in values.entries) {
-      await write(key: entry.key, value: entry.value);
+      await write(key: entry.key, value: json.encode(convertToMap(entry.value)));
     }
     AppLogger.print("UPDATE All: $values", [UtilitiesLoggers.secureDataSource]);
   }
 
   @override
-  Future<void> add(String value) async {
+  Future<void> add(T value) async {
     // Generate a unique key for the value and store it.
     final id = generateUniqueId();
-    await write(key: id, value: value);
+    await write(key: id, value: json.encode(convertToMap(value)));
     AppLogger.print("ADD: $id => $value", [UtilitiesLoggers.secureDataSource]);
   }
 
   @override
-  Future<void> addAll(List<String> values) async {
+  Future<void> addAll(List<T> values) async {
     for (final value in values) {
       await add(value);
     }
@@ -76,14 +97,14 @@ abstract class SecureDataSource implements DataSource<String> {
   }
 
   @override
-  Future<String?> search(Map<dynamic, dynamic> queries) {
+  Future<T?> search(Map<String, dynamic> queries) {
     // Implement search logic if applicable
     AppLogger.print("SEARCH: $queries", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();
   }
 
   @override
-  Future<List<String?>> searchAll(Map<dynamic, dynamic> queries) {
+  Future<List<T?>> searchAll(Map<String, dynamic> queries) {
     // Implement search logic if applicable
     AppLogger.print("SEARCH: $queries", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();
@@ -93,7 +114,9 @@ abstract class SecureDataSource implements DataSource<String> {
   Future<String?> read(String key) async {
     final value = await _storage.read(key: key);
     AppLogger.print(
-        "READ: $key => $value", [UtilitiesLoggers.secureDataSource],);
+      "READ: $key => $value",
+      [UtilitiesLoggers.secureDataSource],
+    );
     return value;
   }
 
@@ -101,7 +124,9 @@ abstract class SecureDataSource implements DataSource<String> {
   Future<Map<String, String>> readAll() async {
     final allValues = await _storage.readAll();
     AppLogger.print(
-        "READ All: $allValues", [UtilitiesLoggers.secureDataSource],);
+      "READ All: $allValues",
+      [UtilitiesLoggers.secureDataSource],
+    );
     return allValues;
   }
 

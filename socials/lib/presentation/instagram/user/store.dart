@@ -23,7 +23,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
   final String? appSecret;
   final String appRedirectUrl;
   final bool saveAuthenticatedUserLocally;
-  final void Function(InstagramUserModel? instagramUserModel)? onAuthenticated;
+  final InstagramUserModel? Function()? onAuthenticated;
 
   /// [_InstagramUserStore] constructor.
   _InstagramUserStore({
@@ -33,7 +33,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
     this.onAuthenticated,
     this.saveAuthenticatedUserLocally = true,
   }) {
-    getLocalUser();
+    tryAuthenticate();
   }
 
   final LocalInstagramDataSource _localDataSource = LocalInstagramDataSource();
@@ -58,12 +58,24 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
     await _localDataSource.update("user", user);
   }
 
-  @override
   @action
-  Future<void> setAuthenticated() async {
+  Future<void> tryAuthenticate() async {
+    user = onAuthenticated?.call() ?? user;
+    if (user == null) {
+      await getLocalUser();
+    }
     if (saveAuthenticatedUserLocally && user != null) await setLocalUser(user!);
-    onAuthenticated?.call(user);
-    super.setAuthenticated();
+    if (user != null) {
+      setAuthenticated();
+    } else {
+      setUnauthenticated();
+    }
+  }
+
+  @action
+  Future<void> refreshAuth() {
+    setUnauthenticated();
+    return tryAuthenticate();
   }
 
   @action
@@ -71,7 +83,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
     final _user = await _localDataSource.get("user");
     if (_user != null) {
       user = _user;
-      await setAuthenticated();
+      setAuthenticated();
     } else {
       setUnauthenticated();
     }
@@ -109,7 +121,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
               AppLogger.print("longLivedToken: $_longLivedToken", [SocialsLoggers.instagram]);
               localUser = localUser.copyWith(longLivedToken: _longLivedToken);
               user = localUser;
-              await setAuthenticated();
+              await tryAuthenticate();
             }
           }
         }
