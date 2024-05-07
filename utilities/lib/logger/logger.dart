@@ -55,6 +55,11 @@ class AppLoggerInjector {
     LoggerType type = LoggerType.information,
   }) {
     if (!overrideFeatures) {
+      if (type == LoggerType.error) {
+        return _logger.e(
+          "ERROR OVERRIDE - ${features.join(", ")}: $text",
+        );
+      }
       final activeFeatures = <Enum>[];
       for (final feature in logFeatures.entries) {
         if (features.contains(feature.key) && feature.value) {

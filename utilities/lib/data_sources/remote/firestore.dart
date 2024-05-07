@@ -79,7 +79,11 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   Future<void> update(String id, T data) async {
     await _handleRequest("UPDATE", () async {
       try {
-        await collectionReference.doc(id).update(convertDataTypeToMap(data));
+        if (id.isEmpty) {
+          await add(data);
+        } else {
+          await collectionReference.doc(id).set(convertDataTypeToMap(data), SetOptions(merge: true));
+        }
       } catch (e) {
         await add(data);
       }
@@ -110,7 +114,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
       if (map.containsKey("id")) {
         map["id"] = docRef.id;
       }
-      await docRef.set(map);
+      await docRef.set(map, SetOptions(merge: true));
       return null;
     });
   }

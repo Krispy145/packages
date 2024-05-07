@@ -13,12 +13,16 @@ abstract class AuthenticationDataRepository {
   Future<UserModel?> signInAnonymously(AuthParams params);
   Future<UserModel?> signInWithMicrosoft(AuthParams params);
   Future<UserModel?> signInWithPhoneNumber(
-      String phoneNumber, String confirmationCode,);
+    String phoneNumber,
+    String confirmationCode,
+  );
   Future<UserModel?> signInWithX(AuthParams params);
   Future<UserModel?> signInWithPasswordlessEmail(
-      String email, String emailLink,);
+    String email,
+    String emailLink,
+  );
   Future<UserModel?> signUpWithEmail(String email, String password);
   Future<UserModel?> reauthenticate(AuthParams params);
   Future<void> deleteAccount(String userId);
-  Future<void> signOut();
+  Future<bool> signOut();
 }

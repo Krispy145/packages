@@ -6,7 +6,7 @@ import "package:socials/data/constants/instagram.dart";
 import "package:socials/data/models/instagram/media_ids_response.dart";
 import "package:socials/data/models/instagram/media_model.dart";
 import "package:socials/data/models/instagram/user_model.dart";
-import "package:socials/data/sources/instagram/local.source.dart";
+import "package:socials/data/sources/instagram/secure.source.dart";
 import "package:socials/domain/repositories/instagram.repository.dart";
 import "package:socials/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
@@ -23,7 +23,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
   final String? appSecret;
   final String appRedirectUrl;
   final bool saveAuthenticatedUserLocally;
-  final InstagramUserModel? Function()? onAuthenticated;
+  final void Function(InstagramUserModel user)? onAuthenticated;
 
   /// [_InstagramUserStore] constructor.
   _InstagramUserStore({
@@ -36,7 +36,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
     tryAuthenticate();
   }
 
-  final LocalInstagramDataSource _localDataSource = LocalInstagramDataSource();
+  final SecureInstagramDataSource _secureDataSource = SecureInstagramDataSource();
 
   @observable
   InstagramUserModel? user;
@@ -55,15 +55,13 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
 
   @action
   Future<void> setLocalUser(InstagramUserModel user) async {
-    await _localDataSource.update("user", user);
+    await _secureDataSource.update("user", user);
+    onAuthenticated?.call(user);
   }
 
   @action
   Future<void> tryAuthenticate() async {
-    user = onAuthenticated?.call() ?? user;
-    if (user == null) {
-      await getLocalUser();
-    }
+    if (user == null) await getLocalUser();
     if (saveAuthenticatedUserLocally && user != null) await setLocalUser(user!);
     if (user != null) {
       setAuthenticated();
@@ -73,14 +71,14 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
   }
 
   @action
-  Future<void> refreshAuth() {
+  Future<void> refreshAuth() async {
+    await _secureDataSource.deleteAll();
     setUnauthenticated();
-    return tryAuthenticate();
   }
 
   @action
   Future<void> getLocalUser() async {
-    final _user = await _localDataSource.get("user");
+    final _user = await _secureDataSource.get("user");
     if (_user != null) {
       user = _user;
       setAuthenticated();
@@ -91,7 +89,7 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
 
   @action
   Future<void> clearLocalUser() async {
-    await _localDataSource.delete("user");
+    await _secureDataSource.delete("user");
   }
 
   @computed
@@ -120,6 +118,10 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
             if (_longLivedToken != null) {
               AppLogger.print("longLivedToken: $_longLivedToken", [SocialsLoggers.instagram]);
               localUser = localUser.copyWith(longLivedToken: _longLivedToken);
+              final _user = await repository.getMe(accessTokenModel: _longLivedToken);
+              if (_user != null) {
+                localUser = localUser.copyWith(id: _user.id, username: _user.username, accountType: _user.accountType, mediaCount: _user.mediaCount);
+              }
               user = localUser;
               await tryAuthenticate();
             }

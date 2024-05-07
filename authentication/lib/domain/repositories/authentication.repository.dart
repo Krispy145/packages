@@ -46,11 +46,11 @@ class AuthenticationRepository {
   final String? facebookAppId;
 
   /// [currentUserModelStream] is the current user model stream.
-  BehaviorSubject<UserModel?> get currentUserModelStream =>
-      _authenticationDataRepository.currentUserModelSubject;
+  BehaviorSubject<UserModel?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
 
-  UserModel? get currentUserModel =>
-      _authenticationDataRepository.currentUserModelSubject.value;
+  UserModel? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
+
+  bool isUserAuthenticated = false;
 
   // ignore: comment_references
   /// [authStatusStream] is the authentication status stream.
@@ -70,7 +70,7 @@ class AuthenticationRepository {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
     }
-    // _initStreams();
+    _initStreams();
   }
 
   /// [AuthenticationRepository.firebase] constructor.
@@ -83,7 +83,7 @@ class AuthenticationRepository {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
     }
-    // _initStreams();
+    _initStreams();
   }
 
   /// [AuthenticationRepository.supabase] constructor.
@@ -96,25 +96,24 @@ class AuthenticationRepository {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
     }
-    // _initStreams();
+    _initStreams();
   }
 
-  late final AuthenticationDataRepository _authenticationDataRepository =
-      source == AuthSourceTypes.api
-          ? ApiAuthDataRepository(
-              baseUrl: baseUrl!,
+  late final AuthenticationDataRepository _authenticationDataRepository = source == AuthSourceTypes.api
+      ? ApiAuthDataRepository(
+          baseUrl: baseUrl!,
+          logToDatabase: logToDatabase,
+          dataSource: dataSource,
+        )
+      : source == AuthSourceTypes.firebase
+          ? FirebaseAuthDataRepository(
               logToDatabase: logToDatabase,
               dataSource: dataSource,
             )
-          : source == AuthSourceTypes.firebase
-              ? FirebaseAuthDataRepository(
-                  logToDatabase: logToDatabase,
-                  dataSource: dataSource,
-                )
-              : SupabaseAuthDataRepository(
-                  logToDatabase: logToDatabase,
-                  dataSource: dataSource,
-                );
+          : SupabaseAuthDataRepository(
+              logToDatabase: logToDatabase,
+              dataSource: dataSource,
+            );
 
   /// [signIn] signs in the user.
   Future<UserModel?> signIn({required AuthParams params}) async {
@@ -126,35 +125,25 @@ class AuthenticationRepository {
     try {
       switch (params.authType) {
         case AuthType.email:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithEmail(params);
+          changedUserModel = await _authenticationDataRepository.signInWithEmail(params);
         case AuthType.google:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithGoogle(params);
+          changedUserModel = await _authenticationDataRepository.signInWithGoogle(params);
         case AuthType.facebook:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithFacebook(params);
+          changedUserModel = await _authenticationDataRepository.signInWithFacebook(params);
         case AuthType.apple:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithApple(params);
+          changedUserModel = await _authenticationDataRepository.signInWithApple(params);
         case AuthType.github:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithGitHub(params);
+          changedUserModel = await _authenticationDataRepository.signInWithGitHub(params);
         case AuthType.microsoft:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithMicrosoft(params);
+          changedUserModel = await _authenticationDataRepository.signInWithMicrosoft(params);
         case AuthType.anonymous:
-          changedUserModel =
-              await _authenticationDataRepository.signInAnonymously(params);
+          changedUserModel = await _authenticationDataRepository.signInAnonymously(params);
         case AuthType.passwordless:
-          changedUserModel = await _authenticationDataRepository
-              .signInWithPasswordlessEmail(params.email!, params.password!);
+          changedUserModel = await _authenticationDataRepository.signInWithPasswordlessEmail(params.email!, params.password!);
         case AuthType.phone:
-          changedUserModel = await _authenticationDataRepository
-              .signInWithPhoneNumber(params.phoneNumber!, params.password!);
+          changedUserModel = await _authenticationDataRepository.signInWithPhoneNumber(params.phoneNumber!, params.password!);
         case AuthType.x:
-          changedUserModel =
-              await _authenticationDataRepository.signInWithX(params);
+          changedUserModel = await _authenticationDataRepository.signInWithX(params);
         case AuthType.empty:
           AppLogger.print(
             "AuthType.empty not implemented for signIn",
@@ -176,7 +165,7 @@ class AuthenticationRepository {
   }
 
   /// [signOut] signs out the user.
-  Future<void> signOut() async {
+  Future<bool> signOut() async {
     AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
     return _authenticationDataRepository.signOut();
   }
@@ -196,39 +185,33 @@ class AuthenticationRepository {
   /// [params] refreshes the user's token.
   Future<UserModel?> reauthenticate({required AuthParams params}) async {
     AppLogger.print(
-        "refreshToken attempt", [AuthenticationLoggers.authentication],);
+      "refreshToken attempt",
+      [AuthenticationLoggers.authentication],
+    );
     return _authenticationDataRepository.reauthenticate(params);
   }
 
   /// [deleteAccount] deletes the user's account.
   Future<void> deleteAccount({required String userId}) async {
     AppLogger.print(
-        "deleteAccount attempt", [AuthenticationLoggers.authentication],);
+      "deleteAccount attempt",
+      [AuthenticationLoggers.authentication],
+    );
     return _authenticationDataRepository.deleteAccount(userId);
   }
 
-  // void _initStreams() {
-  //   currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(null);
-  //   currentUserModelSubject.add(_authenticationDataRepository.currentUserModel);
-
-  //   // _authStatusSubject = BehaviorSubject<AuthStatus>.seeded(_currentUserModel?.status ?? AuthStatus.unauthenticated);
-
-  //   // authStatusStream.listen((event) {
-  //   //   if (event != _authStatusSubject.value) {
-  //   //     _authStatusSubject.add(event);
-  //   //     AppLogger.print('authStatusStream -> $event', [AuthenticationLoggers.authentication]);
-  //   //   }
-  //   // });
-  //   _currentUserModelStream.listen((event) {
-  //     if (event != null && event != currentUserModelSubject.value) {
-  //       currentUserModelSubject.add(event);
-  //       AppLogger.print('currentUserModelStreamChanged -> $event', [AuthenticationLoggers.authentication]);
-  //     }
-  //     // else {
-  //     //   AppLogger.print('currentUserModelStreamRemained -> $event', [AuthenticationLoggers.authentication]);
-  //     // }
-  //   });
-  // }
+  void _initStreams() {
+    currentUserModelStream.listen((value) {
+      if (value?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
+        AppLogger.print("User is authenticated", [AuthenticationLoggers.authentication]);
+        isUserAuthenticated = true;
+      }
+      if (value?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
+        AppLogger.print("User is unauthenticated", [AuthenticationLoggers.authentication]);
+        isUserAuthenticated = false;
+      }
+    });
+  }
 
   Future<void> _initializeFacebookForWeb() async {
     // check if is running on Web

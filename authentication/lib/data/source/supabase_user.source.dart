@@ -7,14 +7,13 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [SupabaseUserDataSource] is a class that implements [UserDataSource] interface.
-class SupabaseUserDataSource extends SupabaseDataSource<UserModel>
-    implements UserDataSource {
+class SupabaseUserDataSource extends SupabaseDataSource<UserModel> implements UserDataSource {
   /// [SupabaseUserDataSource] constructor.
   SupabaseUserDataSource()
       : super(
           "users",
-          convertDataTypeFromMap: UserModel.fromJson,
-          convertDataTypeToMap: (data) => data.toJson(),
+          convertDataTypeFromMap: UserModel.fromMap,
+          convertDataTypeToMap: (data) => data.toMap(),
         );
 
   /// [_handleError] is an optional helper method that handles errors when calling the Supabase database.
