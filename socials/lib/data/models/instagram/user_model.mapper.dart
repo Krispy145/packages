@@ -53,6 +53,8 @@ class InstagramUserModelMapper extends ClassMapperBase<InstagramUserModel> {
     #shortLivedToken: _f$shortLivedToken,
     #longLivedToken: _f$longLivedToken,
   };
+  @override
+  final bool ignoreNull = true;
 
   static InstagramUserModel _instantiate(DecodingData data) {
     return InstagramUserModel(

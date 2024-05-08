@@ -8,8 +8,7 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [ApiAuthDataSource] is a class that implements [AuthenticationDataSource] interface.
-class ApiAuthDataSource extends ApiDataSource<UserModel>
-    implements AuthenticationDataSource {
+class ApiAuthDataSource extends ApiDataSource<UserModel> implements AuthenticationDataSource {
   final bool logToDatabase;
   UserModel? _currentUserModel;
   UserModel? get currentUserModel => _currentUserModel;
@@ -18,8 +17,8 @@ class ApiAuthDataSource extends ApiDataSource<UserModel>
   ApiAuthDataSource(super.baseUrl, {this.logToDatabase = true})
       : super(
           sourceSuffix: "authentication",
-          convertDataTypeFromMap: UserModel.fromJson,
-          convertDataTypeToMap: (data) => data.toJson(),
+          convertDataTypeFromMap: UserModel.fromMap,
+          convertDataTypeToMap: (data) => data.toMap(),
         );
 
   @override

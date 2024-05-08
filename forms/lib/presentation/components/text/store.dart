@@ -26,5 +26,5 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String?> with Stor
     setLoaded();
   }
   @observable
-  late TextEditingController textController;
+  late final TextEditingController textController;
 }

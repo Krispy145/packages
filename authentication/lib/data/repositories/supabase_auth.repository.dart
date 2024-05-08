@@ -76,8 +76,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
     required this.logToDatabase,
     UserDataSource? dataSource,
   }) : dataSource = dataSource ?? SupabaseUserDataSource() {
-    currentUserModelSubject =
-        BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
     _initStreams();
   }
 
@@ -120,8 +119,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         nonce: appleParams.nonce,
       );
 
-      final userModel =
-          _authResponseToUserModel(appleParams, result.user != null);
+      final userModel = _authResponseToUserModel(appleParams, result.user != null);
       if (logToDatabase) await dataSource.update(userModel.id, userModel);
       return userModel;
     } on AuthException catch (e) {
@@ -181,8 +179,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       provider: googleParams.authType.toOAuthProvider(),
       idToken: googleParams.idToken!,
     );
-    final userModel =
-        _authResponseToUserModel(googleParams, result.user != null);
+    final userModel = _authResponseToUserModel(googleParams, result.user != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
     return userModel;
   }
@@ -232,14 +229,24 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   @override
-  Future<void> signOut() async {
-    if (logToDatabase) {
-      await dataSource.update(
-        _currentUserModel!.id,
-        _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+  Future<bool> signOut() async {
+    try {
+      if (logToDatabase) {
+        await dataSource.update(
+          _currentUserModel!.id,
+          _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+        );
+      }
+      await _supabaseAuth.signOut();
+      return true;
+    } on AuthException catch (e) {
+      AppLogger.print(
+        "signOut attempt: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
       );
+      return false;
     }
-    await _supabaseAuth.signOut();
   }
 
   @override
@@ -281,8 +288,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
         );
       }
       if (event.event == AuthChangeEvent.tokenRefreshed) {
-        _currentUserModel =
-            await reauthenticate(_currentUserModel!.toAuthParams());
+        _currentUserModel = await reauthenticate(_currentUserModel!.toAuthParams());
         currentUserModelSubject.add(_currentUserModel);
         AppLogger.print(
           "Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}",
@@ -304,8 +310,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       status: AuthStatus.authenticated,
       authType: _currentUserModel?.authType ?? AuthType.empty,
       createdAt: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
   }
 
@@ -320,8 +325,7 @@ class SupabaseAuthDataRepository implements AuthenticationDataRepository {
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
       createdAt: params.createdAt ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return _currentUserModel!;
   }

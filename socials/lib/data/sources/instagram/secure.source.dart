@@ -3,14 +3,11 @@ import "package:socials/utils/loggers.dart";
 import "package:utilities/data_sources/local/secure.dart";
 import "package:utilities/logger/logger.dart";
 
-import "_source.dart";
-
-/// [LocalInstagramDataSource] is a class that implements [InstagramDataSource] interface.
-class LocalInstagramDataSource extends SecureDataSource<InstagramUserModel> {
-  /// [LocalInstagramDataSource] constructor.
-  LocalInstagramDataSource()
+/// [SecureInstagramDataSource] is a class used to manage the secure storage of [InstagramUserModel] data.
+class SecureInstagramDataSource extends SecureDataSource<InstagramUserModel> {
+  /// [SecureInstagramDataSource] constructor.
+  SecureInstagramDataSource()
       : super(
-          // "instagram",
           convertDataTypeFromMap: InstagramUserModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
         );

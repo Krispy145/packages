@@ -3,7 +3,7 @@ import "package:socials/data/models/instagram/access_token_model.dart";
 
 part "user_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.snakeCase, ignoreNull: true)
 class InstagramUserModel with InstagramUserModelMappable {
   final String? id;
   final String? username;

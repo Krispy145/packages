@@ -93,8 +93,7 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
 
   @override
   Future<UserModel?> signInWithFacebook(AuthParams params) async {
-    final facebookParams =
-        await AuthRepositoryHelper.signInWithFacebook(params);
+    final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
     final result = await _apiAuthDataSource.signIn(params: facebookParams);
     final userModel = _authResponseToUserModel(facebookParams, result != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -143,8 +142,7 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final params =
-        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
+    final params = AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
     final result = await _apiAuthDataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     if (logToDatabase) await dataSource.update(userModel.id, userModel);
@@ -160,14 +158,24 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
   }
 
   @override
-  Future<void> signOut() async {
-    if (logToDatabase) {
-      await dataSource.update(
-        _currentUserModel!.id,
-        _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+  Future<bool> signOut() async {
+    try {
+      if (logToDatabase) {
+        await dataSource.update(
+          _currentUserModel!.id,
+          _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+        );
+      }
+      await _apiAuthDataSource.signOut(params: _currentUserModel!.toAuthParams());
+      return true;
+    } catch (e) {
+      AppLogger.print(
+        "signOut attempt: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
       );
+      return false;
     }
-    await _apiAuthDataSource.signOut(params: _currentUserModel!.toAuthParams());
   }
 
   @override
@@ -184,8 +192,7 @@ class ApiAuthDataRepository implements AuthenticationDataRepository {
       id: _apiAuthDataSource.currentUserModel!.id,
       email: _apiAuthDataSource.currentUserModel!.email,
       phoneNumber: _apiAuthDataSource.currentUserModel!.phoneNumber,
-      displayName:
-          params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
+      displayName: params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
       refreshToken: _apiAuthDataSource.currentUserModel!.refreshToken,
       accessToken: _apiAuthDataSource.currentUserModel!.accessToken,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,

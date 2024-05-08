@@ -81,6 +81,14 @@ mixin _$InstagramUserStore on _InstagramUserStore, Store {
     return _$tryAuthenticateAsyncAction.run(() => super.tryAuthenticate());
   }
 
+  late final _$refreshAuthAsyncAction =
+      AsyncAction('_InstagramUserStore.refreshAuth', context: context);
+
+  @override
+  Future<void> refreshAuth() {
+    return _$refreshAuthAsyncAction.run(() => super.refreshAuth());
+  }
+
   late final _$getLocalUserAsyncAction =
       AsyncAction('_InstagramUserStore.getLocalUser', context: context);
 

@@ -22,4 +22,4 @@ abstract class AuthenticationDataSource {
 }
 
 /// [UserDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-abstract class UserDataSource extends DataSource<UserModel> {}
+abstract class UserDataSource<T extends UserModel> extends DataSource<T> {}

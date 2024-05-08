@@ -1,10 +1,16 @@
 import "dart:convert";
 
+import "package:dart_mappable/dart_mappable.dart";
+
+part "auth_params.mapper.dart";
+
+@MappableEnum()
 enum AuthStatus {
   authenticated,
   unauthenticated;
 }
 
+@MappableEnum()
 enum AuthType {
   empty,
   email,
@@ -182,23 +188,16 @@ class AuthParams {
       idToken: map["idToken"] as String?,
       nonce: map["nonce"] as String?,
       refreshToken: map["refreshToken"] as String?,
-      authType:
-          AuthType.values.firstWhere((element) => element == map["authType"]),
-      authStatus: AuthStatus.values
-          .firstWhere((element) => element == map["authStatus"]),
-      createdAt: map["createdAt"] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map["createdAt"] as int)
-          : null,
-      updatedAt: map["updatedAt"] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map["updatedAt"] as int)
-          : null,
+      authType: AuthType.values.firstWhere((element) => element == map["authType"]),
+      authStatus: AuthStatus.values.firstWhere((element) => element == map["authStatus"]),
+      createdAt: map["createdAt"] != null ? DateTime.fromMillisecondsSinceEpoch(map["createdAt"] as int) : null,
+      updatedAt: map["updatedAt"] != null ? DateTime.fromMillisecondsSinceEpoch(map["updatedAt"] as int) : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory AuthParams.fromJson(String source) =>
-      AuthParams.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AuthParams.fromJson(String source) => AuthParams.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {

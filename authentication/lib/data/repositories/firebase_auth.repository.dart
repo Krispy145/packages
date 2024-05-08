@@ -73,8 +73,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.microsoft:
-        final credential =
-            MicrosoftAuthProvider.credential(params.accessToken!);
+        final credential = MicrosoftAuthProvider.credential(params.accessToken!);
         userCredential = await _user!.reauthenticateWithCredential(credential);
         break;
       case AuthType.x:
@@ -110,7 +109,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   Future<UserModel?> signInAnonymously(AuthParams params) async {
     final userCredential = await _firebaseAuth.signInAnonymously();
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
@@ -127,7 +126,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     }
 
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
@@ -139,7 +138,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         password: params.password!,
       );
       final userModel = _userCredentialToUserModel(userCredential, params);
-      if (logToDatabase) await dataSource.update(userModel.id, userModel);
+      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return userModel;
     } catch (e) {
       AppLogger.print(
@@ -154,20 +153,17 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   @override
   Future<UserModel?> signInWithFacebook(AuthParams params) async {
     try {
-      final facebookParams =
-          await AuthRepositoryHelper.signInWithFacebook(params);
+      final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
       // Create a credential from the access token
-      final facebookAuthCredential =
-          FacebookAuthProvider.credential(facebookParams.accessToken!);
+      final facebookAuthCredential = FacebookAuthProvider.credential(facebookParams.accessToken!);
 
       // Once signed in, return the UserCredential
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+      final userCredential = await _firebaseAuth.signInWithCredential(facebookAuthCredential);
       final userModel = _userCredentialToUserModel(
         userCredential,
         facebookParams,
       );
-      if (logToDatabase) await dataSource.update(userModel.id, userModel);
+      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return userModel;
     } catch (e) {
       AppLogger.print(
@@ -186,11 +182,10 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(githubAuthProvider);
     } else {
-      userCredential =
-          await _firebaseAuth.signInWithProvider(githubAuthProvider);
+      userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
@@ -217,7 +212,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential,
         googleParams,
       );
-      if (logToDatabase) await dataSource.update(userModel.id, userModel);
+      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return userModel;
     } catch (e) {
       AppLogger.print(
@@ -236,11 +231,10 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     if (kIsWeb) {
       userCredential = await _firebaseAuth.signInWithPopup(microsoftProvider);
     } else {
-      userCredential =
-          await _firebaseAuth.signInWithProvider(microsoftProvider);
+      userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
@@ -262,7 +256,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential,
       AuthParams.passwordless(email: email, password: emailLink),
     );
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
@@ -272,8 +266,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final confirmationResult =
-        await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
+    final confirmationResult = await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
 
     final userCredential = await confirmationResult.confirm(confirmationCode);
 
@@ -281,7 +274,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential,
       AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
     );
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
@@ -295,19 +288,29 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential = await _firebaseAuth.signInWithProvider(xAuthProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel);
+    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   @override
-  Future<void> signOut() async {
-    if (logToDatabase) {
-      await dataSource.update(
-        _currentUserModel!.id,
-        _currentUserModel!.copyWith(status: AuthStatus.unauthenticated),
+  Future<bool> signOut() async {
+    try {
+      if (logToDatabase) {
+        await dataSource.update(
+          _currentUserModel!.id,
+          _currentUserModel!.copyWith(status: AuthStatus.unauthenticated, lastLogoutAt: DateTime.now()),
+        );
+      }
+      await _firebaseAuth.signOut();
+      return true;
+    } catch (e) {
+      AppLogger.print(
+        "signOut attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
       );
+      return false;
     }
-    return _firebaseAuth.signOut();
   }
 
   @override
@@ -322,7 +325,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential,
         AuthParams.email(email: email, password: password),
       );
-      if (logToDatabase) await dataSource.update(userModel.id, userModel);
+      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return null;
     } on FirebaseAuthException catch (e) {
       AppLogger.print(
@@ -342,8 +345,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   Future<void> _initStreams() async {
-    currentUserModelSubject =
-        BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
     if (_user != null && _currentUserModel == null) {
       final databaseUser = await dataSource.get(_user!.uid);
       if (databaseUser != null) {
@@ -361,8 +363,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
       }
       if (event == null && _currentUserModel != null) {
-        _currentUserModel =
-            _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
+        _currentUserModel = _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
         currentUserModelSubject.add(_currentUserModel);
       }
     });
