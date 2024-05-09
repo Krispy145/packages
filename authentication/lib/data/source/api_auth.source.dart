@@ -8,7 +8,7 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [ApiAuthDataSource] is a class that implements [AuthenticationDataSource] interface.
-class ApiAuthDataSource<T extends UserModel> extends ApiDataSource<T> implements AuthenticationDataSource {
+class ApiAuthDataSource<T extends UserModel, Q> extends ApiDataSource<T, Q> implements AuthenticationDataSource<T, Q> {
   T? _currentUserModel;
   T? get currentUserModel => _currentUserModel;
 
@@ -101,5 +101,11 @@ class ApiAuthDataSource<T extends UserModel> extends ApiDataSource<T> implements
       );
       throw AuthenticationException(e.toString());
     }
+  }
+
+  @override
+  Map<String, dynamic> buildQuery(Q query) {
+    // TODO: implement buildQuery
+    throw UnimplementedError();
   }
 }

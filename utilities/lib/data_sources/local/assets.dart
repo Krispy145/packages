@@ -7,7 +7,7 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [AssetsDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
-class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
+abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   /// [rootBundleKey] is the path that will be used to fetch the data from assets.
   final String rootBundleKey;
 
@@ -78,7 +78,6 @@ class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
   @override
   Future<List<T?>> getAll() async {
     final data = await _tryLoadJson(rootBundleKey);
-
     return data;
   }
 
@@ -112,27 +111,16 @@ class AssetsDataSource<T> with Mappable<T> implements DataSource<T> {
     throw UnimplementedError();
   }
 
+  bool matchesQuery(Q query, T item);
+
   @override
-  Future<T?> search(Map<String, dynamic> queries) async {
-    final results = <T?>[];
-    for (final query in queries.entries) {
-      if (query.value == rootBundleKey) {
-        final searchResult = await get(query.value as String);
-        results.add(searchResult);
-      }
-    }
-    return results.firstOrNull;
+  Future<T?> search(Q query) async {
+    return (await searchAll(query)).firstOrNull;
   }
 
   @override
-  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
-    final results = <T?>[];
-    for (final query in queries.entries) {
-      if (query.value == rootBundleKey) {
-        final searchResult = await get(query.value as String);
-        results.add(searchResult);
-      }
-    }
-    return results;
+  Future<List<T?>> searchAll(Q query) async {
+    final data = await _tryLoadJson(rootBundleKey);
+    return data.whereType<T>().where((element) => matchesQuery(query, element)).toList();
   }
 }

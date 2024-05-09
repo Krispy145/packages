@@ -4,8 +4,8 @@ import "package:authentication/data/source/api_user.source.dart";
 import "package:authentication/data/source/firestore_user.source.dart";
 import "package:authentication/data/source/supabase_user.source.dart";
 
-/// [DataSourceTypes] is an enum that defines the different data sources.
-enum DataSourceTypes {
+/// [UserDataSourceTypes] is an enum that defines the different data sources.
+enum UserDataSourceTypes {
   /// [api] is the remote data source.
   api,
 
@@ -19,7 +19,7 @@ enum DataSourceTypes {
 /// [UserDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
 class UserDataRepository<T extends UserModel> {
   final String? baseUrl;
-  final DataSourceTypes source;
+  final UserDataSourceTypes source;
 
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
@@ -68,23 +68,23 @@ class UserDataRepository<T extends UserModel> {
     return _dataSourceByType(source).delete(id);
   }
 
-  /// [_dataSourceByType] returns the appropriate [UserDataSource] based on the given [DataSourceTypes].
+  /// [_dataSourceByType] returns the appropriate [UserDataSource] based on the given [UserDataSourceTypes].
   /// Default is [FirestoreUserDataSource].
   /// This can be in local, an api, or firestore.
-  UserDataSource<T> _dataSourceByType(DataSourceTypes source) {
+  UserDataSource<T> _dataSourceByType(UserDataSourceTypes source) {
     switch (source) {
-      case DataSourceTypes.api:
+      case UserDataSourceTypes.api:
         return ApiUserDataSource(
           baseUrl!,
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
         );
-      case DataSourceTypes.firestore:
+      case UserDataSourceTypes.firestore:
         return FirestoreUserDataSource(
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
         );
-      case DataSourceTypes.supabase:
+      case UserDataSourceTypes.supabase:
         return SupabaseUserDataSource(
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,

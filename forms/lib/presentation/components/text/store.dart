@@ -10,7 +10,6 @@ part "store.g.dart";
 class TextFormFieldStore = _TextFormFieldStore with _$TextFormFieldStore;
 
 abstract class _TextFormFieldStore extends BaseFormFieldStore<String?> with Store {
-  final TextFormFieldController textFormFieldController;
   _TextFormFieldStore({
     required super.value,
     required super.onValueChanged,
@@ -26,5 +25,7 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String?> with Stor
     setLoaded();
   }
   @observable
-  late final TextEditingController textController;
+  late TextEditingController textController;
+
+  final TextFormFieldController textFormFieldController;
 }

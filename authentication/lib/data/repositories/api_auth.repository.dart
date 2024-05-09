@@ -23,7 +23,7 @@ class ApiAuthDataRepository<T extends UserModel> implements AuthenticationDataRe
   T? _currentUserModel;
   @override
   late final BehaviorSubject<T?> currentUserModelSubject;
-  ApiAuthDataSource<T> get _apiAuthDataSource => ApiAuthDataSource(
+  ApiAuthDataSource<T, Map<String, dynamic>> get _apiAuthDataSource => ApiAuthDataSource(
         baseUrl,
         convertDataTypeFromMap: convertDataTypeFromMap,
         convertDataTypeToMap: convertDataTypeToMap,

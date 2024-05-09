@@ -24,7 +24,7 @@ class PushNotificationsStore = _PushNotificationsStore with _$PushNotificationsS
 /// [_PushNotificationsStore] is the base class for all notifications stores.
 abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [remoteDataSource] is the remote data source for notifications.
-  final DataSource<NotificationModel>? remoteDataSource;
+  final DataSource<NotificationModel, Map<String, dynamic>>? remoteDataSource;
 
   /// [storeNotificationsLocally] is a flag to store notifications locally.
   final bool storeNotificationsLocally;

@@ -6,14 +6,12 @@ import "package:socials/data/models/instagram/media_model.dart";
 import "package:socials/data/models/instagram/user_model.dart";
 import "package:socials/domain/repositories/instagram.repository.dart";
 import "package:socials/utils/loggers.dart";
-import "package:utilities/data_sources/paginated_source.dart";
-import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
 import "_source.dart";
 
 /// [ApiInstagramDataSource] is a class that implements [InstagramDataSource] interface.
-class ApiInstagramDataSource extends Paginated<InstagramMediaIdsResponse, InstagramMediaIdModel> implements InstagramDataSource {
+class ApiInstagramDataSource implements InstagramDataSource {
   final String appRedirectUrl;
   final String appId;
   final String appSecret;
@@ -143,17 +141,17 @@ class ApiInstagramDataSource extends Paginated<InstagramMediaIdsResponse, Instag
     });
   }
 
-  @override
-  Future<Pair<InstagramMediaIdsResponse, List<InstagramMediaIdModel?>>> getPage({InstagramMediaIdsResponse? lastResponse, int? size}) {
-    // TODO: implement getPage
-    throw UnimplementedError();
-  }
+  // @override
+  // Future<Pair<InstagramMediaIdsResponse, List<InstagramMediaIdModel?>>> getPage({InstagramMediaIdsResponse? lastResponse, int? size}) {
+  //   // TODO: implement getPage
+  //   throw UnimplementedError();
+  // }
 
-  @override
-  Future<Pair<InstagramMediaIdsResponse, List<InstagramMediaIdModel?>>> searchPage({InstagramMediaIdsResponse? lastResponse, int? size, Map<String, String>? queries}) {
-    // TODO: implement searchPage
-    throw UnimplementedError();
-  }
+  // @override
+  // Future<Pair<InstagramMediaIdsResponse, List<InstagramMediaIdModel?>>> searchPage({InstagramMediaIdsResponse? lastResponse, int? size, required Map<String, String> query}) {
+  //   // TODO: implement searchPage
+  //   throw UnimplementedError();
+  // }
 
   @override
   Future<List<InstagramMediaIdsResponse?>> mediaAlbum({required String mediaId, required String accessToken, List<InstagramMediaDetailsField>? fields}) async {

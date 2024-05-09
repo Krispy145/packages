@@ -41,291 +41,257 @@ import "/data/sources/digital_oasis/supabase.source.dart";
 /// [DODataRepository] is a class that defines the basic CRUD operations for the model entity.
 class DODataRepository {
   /// [baseThemesDataSource] is the [ThemeDataSource] that will be used to fetch the data.
-  DODataSource<BaseThemeModel> get baseThemesDataSource =>
-      _dataSourceByType<BaseThemeModel>(
+  DODataSource<BaseThemeModel> get baseThemesDataSource => _dataSourceByType<BaseThemeModel>(
         "baseThemes",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: BaseThemeModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ColorModel> get colorsDataSource =>
-      _dataSourceByType<ColorModel>(
+  DODataSource<ColorModel> get colorsDataSource => _dataSourceByType<ColorModel>(
         "colors",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ColorModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<TextStyleModel> get textStylesDataSource =>
-      _dataSourceByType<TextStyleModel>(
+  DODataSource<TextStyleModel> get textStylesDataSource => _dataSourceByType<TextStyleModel>(
         "textStyles",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: TextStyleModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ComponentThemesModel?> get componentsThemesDataSource =>
-      _dataSourceByType<ComponentThemesModel>(
+  DODataSource<ComponentThemesModel?> get componentsThemesDataSource => _dataSourceByType<ComponentThemesModel>(
         "componentsThemes",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ComponentThemesModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ButtonModel?> get buttonsDataSource =>
-      _dataSourceByType<ButtonModel>(
+  DODataSource<ButtonModel?> get buttonsDataSource => _dataSourceByType<ButtonModel>(
         "buttons",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ButtonModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<FloatingActionButtonModel?>
-      get floatingActionButtonsDataSource =>
-          _dataSourceByType<FloatingActionButtonModel>(
-            "floatingActionButtons",
-            DataSourceTypes.supabase,
-            convertDataTypeFromMap: FloatingActionButtonModel.fromJson,
-            convertDataTypeToMap: (model) => model.toJson(),
-          );
+  DODataSource<FloatingActionButtonModel?> get floatingActionButtonsDataSource => _dataSourceByType<FloatingActionButtonModel>(
+        "floatingActionButtons",
+        ThemeDataSourceType.supabase,
+        convertDataTypeFromMap: FloatingActionButtonModel.fromJson,
+        convertDataTypeToMap: (model) => model.toJson(),
+      );
 
-  DODataSource<ToggleButtonModel?> get toggleButtonsDataSource =>
-      _dataSourceByType<ToggleButtonModel>(
+  DODataSource<ToggleButtonModel?> get toggleButtonsDataSource => _dataSourceByType<ToggleButtonModel>(
         "toggleButtons",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ToggleButtonModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<InputDecorationModel?> get inputDecorationsDataSource =>
-      _dataSourceByType<InputDecorationModel>(
+  DODataSource<InputDecorationModel?> get inputDecorationsDataSource => _dataSourceByType<InputDecorationModel>(
         "inputDecorations",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: InputDecorationModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<BoxDecorationModel?> get boxDecorationsDataSource =>
-      _dataSourceByType<BoxDecorationModel>(
+  DODataSource<BoxDecorationModel?> get boxDecorationsDataSource => _dataSourceByType<BoxDecorationModel>(
         "boxDecorations",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: BoxDecorationModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DODataSource<CardModel?> get cardsDataSource => _dataSourceByType<CardModel>(
         "cards",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: CardModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<SnackbarModel?> get snackbarsDataSource =>
-      _dataSourceByType<SnackbarModel>(
+  DODataSource<SnackbarModel?> get snackbarsDataSource => _dataSourceByType<SnackbarModel>(
         "snackbars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: SnackbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<BadgeModel?> get badgesDataSource =>
-      _dataSourceByType<BadgeModel>(
+  DODataSource<BadgeModel?> get badgesDataSource => _dataSourceByType<BadgeModel>(
         "badges",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: BadgeModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<AppbarModel?> get appbarsDataSource =>
-      _dataSourceByType<AppbarModel>(
+  DODataSource<AppbarModel?> get appbarsDataSource => _dataSourceByType<AppbarModel>(
         "appbars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: AppbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<BottomAppbarModel?> get bottomAppbarsDataSource =>
-      _dataSourceByType<BottomAppbarModel>(
+  DODataSource<BottomAppbarModel?> get bottomAppbarsDataSource => _dataSourceByType<BottomAppbarModel>(
         "bottomAppbars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: BottomAppbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<DropdownModel?> get dropdownsDataSource =>
-      _dataSourceByType<DropdownModel>(
+  DODataSource<DropdownModel?> get dropdownsDataSource => _dataSourceByType<DropdownModel>(
         "dropdowns",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: DropdownModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
   DODataSource<ChipModel?> get chipsDataSource => _dataSourceByType<ChipModel>(
         "chips",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ChipModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<DialogModel?> get dialogsDataSource =>
-      _dataSourceByType<DialogModel>(
+  DODataSource<DialogModel?> get dialogsDataSource => _dataSourceByType<DialogModel>(
         "dialogs",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: DialogModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<PopupMenuModel?> get popupMenusDataSource =>
-      _dataSourceByType<PopupMenuModel>(
+  DODataSource<PopupMenuModel?> get popupMenusDataSource => _dataSourceByType<PopupMenuModel>(
         "popupMenus",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: PopupMenuModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<SliderModel?> get slidersDataSource =>
-      _dataSourceByType<SliderModel>(
+  DODataSource<SliderModel?> get slidersDataSource => _dataSourceByType<SliderModel>(
         "sliders",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: SliderModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ScrollbarModel?> get scrollbarsDataSource =>
-      _dataSourceByType<ScrollbarModel>(
+  DODataSource<ScrollbarModel?> get scrollbarsDataSource => _dataSourceByType<ScrollbarModel>(
         "scrollbars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ScrollbarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<TooltipModel?> get tooltipsDataSource =>
-      _dataSourceByType<TooltipModel>(
+  DODataSource<TooltipModel?> get tooltipsDataSource => _dataSourceByType<TooltipModel>(
         "tooltips",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: TooltipModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<NavigationRailModel?> get navigationRailsDataSource =>
-      _dataSourceByType<NavigationRailModel>(
+  DODataSource<NavigationRailModel?> get navigationRailsDataSource => _dataSourceByType<NavigationRailModel>(
         "navigationRails",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: NavigationRailModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<CheckboxModel?> get checkboxesDataSource =>
-      _dataSourceByType<CheckboxModel>(
+  DODataSource<CheckboxModel?> get checkboxesDataSource => _dataSourceByType<CheckboxModel>(
         "checkboxes",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: CheckboxModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<RadioModel?> get radiosDataSource =>
-      _dataSourceByType<RadioModel>(
+  DODataSource<RadioModel?> get radiosDataSource => _dataSourceByType<RadioModel>(
         "radios",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: RadioModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<SwitchModel?> get switchesDataSource =>
-      _dataSourceByType<SwitchModel>(
+  DODataSource<SwitchModel?> get switchesDataSource => _dataSourceByType<SwitchModel>(
         "switches",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: SwitchModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<DrawerModel?> get drawersDataSource =>
-      _dataSourceByType<DrawerModel>(
+  DODataSource<DrawerModel?> get drawersDataSource => _dataSourceByType<DrawerModel>(
         "drawers",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: DrawerModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ListTileModel?> get listTilesDataSource =>
-      _dataSourceByType<ListTileModel>(
+  DODataSource<ListTileModel?> get listTilesDataSource => _dataSourceByType<ListTileModel>(
         "listTiles",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ListTileModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<MenuStyleModel?> get menuStylesDataSource =>
-      _dataSourceByType<MenuStyleModel>(
+  DODataSource<MenuStyleModel?> get menuStylesDataSource => _dataSourceByType<MenuStyleModel>(
         "menuStyles",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: MenuStyleModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<MenuBarModel?> get menuBarsDataSource =>
-      _dataSourceByType<MenuBarModel>(
+  DODataSource<MenuBarModel?> get menuBarsDataSource => _dataSourceByType<MenuBarModel>(
         "menuBars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: MenuBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<NavigationBarModel?> get navigationBarsDataSource =>
-      _dataSourceByType<NavigationBarModel>(
+  DODataSource<NavigationBarModel?> get navigationBarsDataSource => _dataSourceByType<NavigationBarModel>(
         "navigationBars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: NavigationBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<NavigationDrawerModel?> get navigationDrawersDataSource =>
-      _dataSourceByType<NavigationDrawerModel>(
+  DODataSource<NavigationDrawerModel?> get navigationDrawersDataSource => _dataSourceByType<NavigationDrawerModel>(
         "navigationDrawers",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: NavigationDrawerModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<ProgressIndicatorModel?> get progressIndicatorsDataSource =>
-      _dataSourceByType<ProgressIndicatorModel>(
+  DODataSource<ProgressIndicatorModel?> get progressIndicatorsDataSource => _dataSourceByType<ProgressIndicatorModel>(
         "progressIndicators",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: ProgressIndicatorModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<SearchBarModel?> get searchBarsDataSource =>
-      _dataSourceByType<SearchBarModel>(
+  DODataSource<SearchBarModel?> get searchBarsDataSource => _dataSourceByType<SearchBarModel>(
         "searchBars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: SearchBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<SearchViewModel?> get searchViewsDataSource =>
-      _dataSourceByType<SearchViewModel>(
+  DODataSource<SearchViewModel?> get searchViewsDataSource => _dataSourceByType<SearchViewModel>(
         "searchViews",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: SearchViewModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  DODataSource<TabBarModel?> get tabBarStylesDataSource =>
-      _dataSourceByType<TabBarModel>(
+  DODataSource<TabBarModel?> get tabBarStylesDataSource => _dataSourceByType<TabBarModel>(
         "tabBars",
-        DataSourceTypes.supabase,
+        ThemeDataSourceType.supabase,
         convertDataTypeFromMap: TabBarModel.fromJson,
         convertDataTypeToMap: (model) => model.toJson(),
       );
 
-  /// [_dataSourceByType] returns the appropriate [DODataSource] based on the [DataSourceTypes] enum.
+  /// [_dataSourceByType] returns the appropriate [DODataSource] based on the [ThemeDataSourceType] enum.
   /// Defaults to [SupabaseDODataSource].
   /// This can be in local, an api, or firestore.
   DODataSource<T> _dataSourceByType<T>(
     String tableName,
-    DataSourceTypes type, {
+    ThemeDataSourceType type, {
     required T Function(Map<String, dynamic>) convertDataTypeFromMap,
     required Map<String, dynamic> Function(T) convertDataTypeToMap,
   }) {
@@ -340,7 +306,7 @@ class DODataRepository {
       //     convertDataTypeFromMap: convertDataTypeFromMap,
       //     convertDataTypeToMap: convertDataTypeToMap,
       //   );
-      case DataSourceTypes.supabase:
+      case ThemeDataSourceType.supabase:
         return SupabaseDODataSource<T>(
           tableName,
           convertDataTypeFromMap: convertDataTypeFromMap,

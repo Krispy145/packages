@@ -18,7 +18,7 @@ class FirestoreResponseModel<T> extends ResponseModel with FirestoreResponseMode
   }
 }
 
-class PaginatedFirestoreDataSource<T> extends FirestoreDataSource<T> with Paginated<FirestoreResponseModel<T?>, T> {
+abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// [PaginatedFirestoreDataSource] constructor
@@ -72,39 +72,42 @@ class PaginatedFirestoreDataSource<T> extends FirestoreDataSource<T> with Pagina
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
-    Map<String, String>? queries,
-  }) {
-    final _collection = _firestore.collection(collectionName);
-    Query query = _collection;
-    if (queries != null && queries.isNotEmpty) {
-      query = query.where(
-        queries.keys.first,
-        isEqualTo: queries.values.first,
-      );
-    }
-    if (orderBy != null) {
-      query = query.orderBy(orderBy, descending: true);
-    }
+    required Q query,
+  }) async {
+    var firestoreQuery = buildQuery(query, collectionReference);
+    // final querySnapshot = await firestoreQuery.get();
+
+    // final _collection = _firestore.collection(collectionName);
+    // Query query = _collection;
+    // if (queries != null && queries.isNotEmpty) {
+    //   query = query.where(
+    //     queries.keys.first,
+    //     isEqualTo: queries.values.first,
+    //   );
+    // }
+    // if (orderBy != null) {
+    //   query = query.orderBy(orderBy, descending: true);
+    // }
 
     if (lastResponse != null) {
       if (lastResponse.lastDocumentSnapshot != null) {
-        query = query.startAfterDocument(
+        firestoreQuery = firestoreQuery.startAfterDocument(
           lastResponse.lastDocumentSnapshot!,
         );
       }
     }
 
     if (size != null) {
-      query = query.limit(size);
+      firestoreQuery = firestoreQuery.limit(size);
     }
-    return query.get().then(
+    return firestoreQuery.get().then(
       (response) {
         final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
           FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : null,
+            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
           ),
           List<T?>.from(
-            response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
+            response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
           ),
         );
         return _response;

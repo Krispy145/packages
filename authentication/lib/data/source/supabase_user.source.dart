@@ -1,5 +1,6 @@
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
+import "package:utilities/data/models/search_query_model.dart";
 import "package:utilities/data_sources/remote/supabase.dart";
 import "package:utilities/logger/logger.dart";
 
@@ -7,7 +8,7 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [SupabaseUserDataSource] is a class that implements [UserDataSource] interface.
-class SupabaseUserDataSource<T extends UserModel> extends SupabaseDataSource<T> implements UserDataSource<T> {
+class SupabaseUserDataSource<T extends UserModel> extends SupabaseDataSource<T, SearchQueryModel> implements UserDataSource<T> {
   /// [SupabaseUserDataSource] constructor.
   SupabaseUserDataSource({
     required super.convertDataTypeFromMap,

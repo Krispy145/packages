@@ -45,7 +45,7 @@ class AuthenticationRepository<T extends UserModel> {
   /// [userSource] is an instance of [UserDataSource] interface.
   /// It is used to call the different data sources' methods.
   /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
-  final DataSourceTypes userSource;
+  final UserDataSourceTypes userSource;
 
   /// [facebookAppId] is the facebook app id used for facebook authentication,
   /// [required] for web.
@@ -71,7 +71,7 @@ class AuthenticationRepository<T extends UserModel> {
     required this.baseUrl,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
-    this.userSource = DataSourceTypes.api,
+    this.userSource = UserDataSourceTypes.api,
     this.facebookAppId,
   }) : authSource = AuthSourceTypes.api {
     if (facebookAppId != null) {
@@ -84,7 +84,7 @@ class AuthenticationRepository<T extends UserModel> {
   AuthenticationRepository.firebase({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
-    this.userSource = DataSourceTypes.firestore,
+    this.userSource = UserDataSourceTypes.firestore,
     this.facebookAppId,
   })  : baseUrl = null,
         authSource = AuthSourceTypes.firebase {
@@ -98,7 +98,7 @@ class AuthenticationRepository<T extends UserModel> {
   AuthenticationRepository.supabase({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
-    this.userSource = DataSourceTypes.supabase,
+    this.userSource = UserDataSourceTypes.supabase,
     this.facebookAppId,
   })  : baseUrl = null,
         authSource = AuthSourceTypes.supabase {

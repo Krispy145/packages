@@ -18,7 +18,7 @@
 //         );
 
 //   @override
-//   Future<List<ThemeModel?>> search(Map<String, dynamic> queries) async {
+//   Future<List<ThemeModel?>> search(Q query) async {
 //     try {
 //       final themes = _dataStore.values.toList();
 //       AppLogger.print(

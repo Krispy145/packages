@@ -14,7 +14,7 @@ part "base_store.g.dart";
 class NotificationsStore = _NotificationsStore with _$NotificationsStore;
 
 /// [_NotificationsStore] is the base class for [NotificationsStore].
-abstract class _NotificationsStore extends HiveDataSource<NotificationModel> with Store {
+abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map<String, dynamic>> with Store {
   /// [onNotificationReceived] is a callback for when a notification is received.
   final void Function(NotificationModel notification)? onNotificationReceived;
 
@@ -40,15 +40,15 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel> wit
     throw UnimplementedError();
   }
 
-  /// [search] searches for notifications with the given [queries].
+  /// [search] searches for notifications with the given [query].
   @override
   @action
-  Future<List<NotificationModel?>> searchAll(Map<String, dynamic> queries) {
+  Future<List<NotificationModel?>> searchAll(Map<String, dynamic> query) async {
     final results = <NotificationModel>[];
     for (final element in notifications.value.values) {
       if (element != null) {
         var isMatch = true;
-        queries.forEach((key, value) {
+        query.forEach((key, value) {
           if (isMatch) {
             switch (key) {
               case "id":
@@ -84,11 +84,11 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel> wit
     return Future.value(results);
   }
 
-  // [search] searches for the notification with the given [queries].
+  // [search] searches for the notification with the given [query].
   @override
   @action
-  Future<NotificationModel?> search(Map<String, dynamic> queries) async {
-    final results = await searchAll(queries);
+  Future<NotificationModel?> search(Map<String, dynamic> query) async {
+    final results = await searchAll(query);
     return Future.value(results.isNotEmpty ? results.first : null);
   }
 

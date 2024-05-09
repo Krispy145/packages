@@ -18,7 +18,7 @@
 //         );
 
 //   @override
-//   Future<List<DOModel?>> search(Map<String, dynamic> queries) async {
+//   Future<List<DOModel?>> search(Q query) async {
 //     try {
 //       final DO = _dataStore.values.toList();
 //       AppLogger.print(

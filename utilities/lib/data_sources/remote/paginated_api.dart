@@ -111,7 +111,7 @@
 
 //   @override
 //   Future<PaginatedResponseModel<T?>?> searchPage(
-//     Map<String, dynamic> queries,
+//     Q query,
 //     Req? lastPaginatedValue, {
 //     String? pathExtensions,
 //     bool cancelPreviousRequest = false,

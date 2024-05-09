@@ -1,28 +1,28 @@
-/// [DataSourceTypes] is an enum that defines the different data sources.
-enum DataSourceTypes {
-  /// [api] is the remote data source.
-  api,
+// /// [DataSourceTypes] is an enum that defines the different data sources.
+// enum DataSourceTypes {
+//   /// [api] is the remote data source.
+//   api,
 
-  /// [local] is the local data source.
-  local,
+//   /// [local] is the local data source.
+//   local,
 
-  /// [firestore] is the firestore data source.
-  firestore,
+//   /// [firestore] is the firestore data source.
+//   firestore,
 
-  /// [supabase] is the supabase data source.
-  supabase,
+//   /// [supabase] is the supabase data source.
+//   supabase,
 
-  /// [secure] is the secure data source.
-  secure,
+//   /// [secure] is the secure data source.
+//   secure,
 
-  /// [dummy] is the dummy data source.
-  dummy;
-}
+//   /// [dummy] is the dummy data source.
+//   dummy;
+// }
 
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
 /// see: HiveDataSource and RemoteDataSource
-abstract class DataSource<T> {
+abstract class DataSource<T, Q> {
   /// [get] method returns the value of the given id
   Future<T?> get(String id);
 
@@ -48,13 +48,12 @@ abstract class DataSource<T> {
   Future<void> addAll(List<T> value);
 
   /// [search] method searches for the given queries
-  Future<T?> search(Map<String, dynamic> queries);
+  Future<T?> search(Q query);
 
   /// [searchAll] method searches for all the key-value pairs
-  Future<List<T?>> searchAll(Map<String, dynamic> queries);
+  Future<List<T?>> searchAll(Q query);
 }
 
-// TODO: Move to right place
 abstract mixin class Mappable<T> {
   /// [convertFromMap] method converts the given value to a map
   T convertFromMap(Map<String, dynamic> data);
