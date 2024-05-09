@@ -8,7 +8,7 @@ import 'package:utilities/logger/logger.dart';
 import '_source.dart';
 
 /// [ApiGooglePlacesDataSource] is a class that implements [GooglePlacesDataSource] interface.
-class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel> implements GooglePlacesDataSource {
+class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<String, dynamic>> implements GooglePlacesDataSource {
   final String googleApiKey;
 
   /// [ApiGooglePlacesDataSource.textSearch] constructor.
@@ -46,16 +46,16 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel> impl
 
   @override
   Future<GoogleResponsesModel?> search(
-    Q query, {
+    Map<String, dynamic> query, {
     String? pathExtensions = "textsearch/json",
     bool cancelPreviousRequest = false,
   }) async {
     AppLogger.print(
-      "API RESULT: Searching for places with queries: $queries",
+      "API RESULT: Searching for places with query: $query",
       [MapLoggers.search],
     );
     return super.search(
-      queries,
+      query,
       pathExtensions: pathExtensions,
       cancelPreviousRequest: cancelPreviousRequest,
     );
@@ -74,5 +74,10 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel> impl
       );
       return null;
     }
+  }
+
+  @override
+  Map<String, dynamic> buildQuery(Map<String, dynamic> query) {
+    return query;
   }
 }

@@ -22,7 +22,20 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
     return _$requestPermissionsAsyncAction.run(() => super.requestPermissions(permissions));
   }
 
+<<<<<<< HEAD
+  late final _$searchAsyncAction =
+      AsyncAction('_NotificationsStore.search', context: context);
+
+  @override
+  Future<NotificationModel?> search(Map<String, dynamic> queries) {
+    return _$searchAsyncAction.run(() => super.search(queries));
+  }
+
+  late final _$_NotificationsStoreActionController =
+      ActionController(name: '_NotificationsStore', context: context);
+=======
   late final _$_NotificationsStoreActionController = ActionController(name: '_NotificationsStore', context: context);
+>>>>>>> ea6f0693f4ea21fad685502f660673f55de6f4e5
 
   @override
   Future<List<NotificationModel?>> searchAll(Q query) {

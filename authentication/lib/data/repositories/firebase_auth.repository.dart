@@ -2,8 +2,7 @@ import "dart:async";
 
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/repositories/helpers/auth_repository.helper.dart";
-import "package:authentication/data/source/api_user.source.dart";
-import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/data/repositories/user.repository.dart";
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:firebase_auth/firebase_auth.dart";
@@ -12,45 +11,40 @@ import "package:rxdart/rxdart.dart";
 import "package:utilities/logger/logger.dart";
 
 import "../models/user_model.dart";
-import "../source/firestore_user.source.dart";
-import "/data/source/_source.dart";
 import "_repository.dart";
 
 /// [FirebaseAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class FirebaseAuthDataRepository implements AuthenticationDataRepository {
-  /// [dataSource] is an instance of [UserDataSource] interface.
-  /// It is used to call the different data sources' methods.
-  /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
-  final UserDataSource dataSource;
+class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationDataRepository<T> {
+  /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
+  final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
-  /// [logToDatabase] is a boolean that determines whether to log the data to the corresponding database or not.
-  final bool logToDatabase;
+  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
+  final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
   final _firebaseAuth = FirebaseAuth.instance;
   User? get _user => _firebaseAuth.currentUser;
-  UserModel? _currentUserModel;
+  T? _currentUserModel;
+  UserDataRepository<T>? userDataRepository;
 
   @override
-  late final BehaviorSubject<UserModel?> currentUserModelSubject;
+  late final BehaviorSubject<T?> currentUserModelSubject;
 
   /// [FirebaseAuthDataRepository] constructor.
   FirebaseAuthDataRepository({
-    required this.logToDatabase,
-    UserDataSource? dataSource,
-  }) : dataSource = dataSource ?? FirestoreUserDataSource() {
+    this.userDataRepository,
+    required this.convertDataTypeFromMap,
+    required this.convertDataTypeToMap,
+  }) {
     _initStreams();
   }
 
   @override
   Future<void> deleteAccount(String userId) async {
-    if (logToDatabase) {
-      await dataSource.delete(userId);
-    }
     return _user!.delete();
   }
 
   @override
-  Future<UserModel?> reauthenticate(AuthParams params) async {
+  Future<T?> reauthenticate(AuthParams params) async {
     UserCredential? userCredential;
     switch (params.authType) {
       case AuthType.google:
@@ -99,22 +93,18 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     }
     if (userCredential == null) return null;
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) {
-      await dataSource.update(userModel.id, userModel);
-    }
     return userModel;
   }
 
   @override
-  Future<UserModel?> signInAnonymously(AuthParams params) async {
+  Future<T?> signInAnonymously(AuthParams params) async {
     final userCredential = await _firebaseAuth.signInAnonymously();
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   @override
-  Future<UserModel?> signInWithApple(AuthParams params) async {
+  Future<T?> signInWithApple(AuthParams params) async {
     final appleProvider = AppleAuthProvider()
       ..addScope("email")
       ..addScope("fullName");
@@ -126,19 +116,17 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
     }
 
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   @override
-  Future<UserModel?> signInWithEmail(AuthParams params) async {
+  Future<T?> signInWithEmail(AuthParams params) async {
     try {
       final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: params.email!,
         password: params.password!,
       );
       final userModel = _userCredentialToUserModel(userCredential, params);
-      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return userModel;
     } catch (e) {
       AppLogger.print(
@@ -151,7 +139,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   @override
-  Future<UserModel?> signInWithFacebook(AuthParams params) async {
+  Future<T?> signInWithFacebook(AuthParams params) async {
     try {
       final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
       // Create a credential from the access token
@@ -163,7 +151,6 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential,
         facebookParams,
       );
-      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return userModel;
     } catch (e) {
       AppLogger.print(
@@ -176,7 +163,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   @override
-  Future<UserModel?> signInWithGitHub(AuthParams params) async {
+  Future<T?> signInWithGitHub(AuthParams params) async {
     final githubAuthProvider = GithubAuthProvider();
     UserCredential userCredential;
     if (kIsWeb) {
@@ -185,12 +172,11 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   @override
-  Future<UserModel?> signInWithGoogle(AuthParams params) async {
+  Future<T?> signInWithGoogle(AuthParams params) async {
     try {
       final googleParams = await AuthRepositoryHelper.signInWithGoogle(params);
       UserCredential userCredential;
@@ -212,7 +198,6 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential,
         googleParams,
       );
-      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
       return userModel;
     } catch (e) {
       AppLogger.print(
@@ -225,7 +210,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   @override
-  Future<UserModel?> signInWithMicrosoft(AuthParams params) async {
+  Future<T?> signInWithMicrosoft(AuthParams params) async {
     final microsoftProvider = MicrosoftAuthProvider();
     UserCredential userCredential;
     if (kIsWeb) {
@@ -234,13 +219,12 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   //TODO: add sendEmailLink function
   @override
-  Future<UserModel?> signInWithPasswordlessEmail(
+  Future<T?> signInWithPasswordlessEmail(
     String email,
     String emailLink,
   ) async {
@@ -256,13 +240,12 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential,
       AuthParams.passwordless(email: email, password: emailLink),
     );
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   //TODO: add verifyPhoneNumber function
   @override
-  Future<UserModel?> signInWithPhoneNumber(
+  Future<T?> signInWithPhoneNumber(
     String phoneNumber,
     String confirmationCode,
   ) async {
@@ -274,12 +257,11 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential,
       AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
     );
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   @override
-  Future<UserModel?> signInWithX(AuthParams params) async {
+  Future<T?> signInWithX(AuthParams params) async {
     final xAuthProvider = TwitterAuthProvider();
     UserCredential userCredential;
     if (kIsWeb) {
@@ -288,19 +270,12 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       userCredential = await _firebaseAuth.signInWithProvider(xAuthProvider);
     }
     final userModel = _userCredentialToUserModel(userCredential, params);
-    if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
     return userModel;
   }
 
   @override
   Future<bool> signOut() async {
     try {
-      if (logToDatabase) {
-        await dataSource.update(
-          _currentUserModel!.id,
-          _currentUserModel!.copyWith(status: AuthStatus.unauthenticated, lastLogoutAt: DateTime.now()),
-        );
-      }
       await _firebaseAuth.signOut();
       return true;
     } catch (e) {
@@ -314,7 +289,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   @override
-  Future<UserModel?> signUpWithEmail(String email, String password) async {
+  Future<T?> signUpWithEmail(String email, String password) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
@@ -325,8 +300,7 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         userCredential,
         AuthParams.email(email: email, password: password),
       );
-      if (logToDatabase) await dataSource.update(userModel.id, userModel.copyWith(lastLoginAt: DateTime.now()));
-      return null;
+      return userModel;
     } on FirebaseAuthException catch (e) {
       AppLogger.print(
         "signUp attempt -> $e",
@@ -345,14 +319,14 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
   }
 
   Future<void> _initStreams() async {
-    currentUserModelSubject = BehaviorSubject<UserModel?>.seeded(_currentUserModel);
+    currentUserModelSubject = BehaviorSubject<T?>.seeded(_currentUserModel);
     if (_user != null && _currentUserModel == null) {
-      final databaseUser = await dataSource.get(_user!.uid);
+      final databaseUser = await userDataRepository?.getUser(id: _user!.uid);
       if (databaseUser != null) {
-        _currentUserModel = databaseUser.copyWith(
-          lastLoginAt: DateTime.now(),
-        );
-        unawaited(dataSource.update(_currentUserModel!.id, _currentUserModel!));
+        final _currentResponse = convertDataTypeToMap(databaseUser);
+        _currentResponse["last_login_at"] = DateTime.now();
+        _currentUserModel = convertDataTypeFromMap(_currentResponse);
+        unawaited(userDataRepository?.updateUser(user: _currentUserModel!));
         currentUserModelSubject.add(_currentUserModel);
       }
     }
@@ -363,17 +337,20 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
         currentUserModelSubject.add(_currentUserModel);
       }
       if (event == null && _currentUserModel != null) {
-        _currentUserModel = _currentUserModel!.copyWith(status: AuthStatus.unauthenticated);
+        final _currentResponse = convertDataTypeToMap(_currentUserModel!);
+        _currentResponse["last_logout_at"] = DateTime.now();
+        _currentResponse["status"] = AuthStatus.unauthenticated;
+        _currentUserModel = convertDataTypeFromMap(_currentResponse);
         currentUserModelSubject.add(_currentUserModel);
       }
     });
   }
 
-  UserModel _userCredentialToUserModel(
+  T _userCredentialToUserModel(
     UserCredential userCredential,
     AuthParams params,
   ) {
-    _currentUserModel = UserModel(
+    final _baseUser = UserModel(
       id: userCredential.user!.uid,
       email: userCredential.user?.email,
       displayName: userCredential.user?.displayName,
@@ -387,6 +364,6 @@ class FirebaseAuthDataRepository implements AuthenticationDataRepository {
       createdAt: params.createdAt ?? DateTime.now(),
       updatedAt: params.updatedAt ?? DateTime.now(),
     );
-    return _currentUserModel!;
+    return convertDataTypeFromMap(_baseUser.toMap());
   }
 }

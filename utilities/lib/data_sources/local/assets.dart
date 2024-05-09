@@ -82,7 +82,7 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   }
 
   @override
-  Future<void> add(T value) async {
+  Future<T?> add(T value) async {
     throw UnimplementedError();
   }
 

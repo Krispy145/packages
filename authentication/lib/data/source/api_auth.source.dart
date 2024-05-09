@@ -8,21 +8,19 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [ApiAuthDataSource] is a class that implements [AuthenticationDataSource] interface.
-class ApiAuthDataSource extends ApiDataSource<UserModel> implements AuthenticationDataSource {
-  final bool logToDatabase;
-  UserModel? _currentUserModel;
-  UserModel? get currentUserModel => _currentUserModel;
+class ApiAuthDataSource<T extends UserModel, Q> extends ApiDataSource<T, Q> implements AuthenticationDataSource<T, Q> {
+  T? _currentUserModel;
+  T? get currentUserModel => _currentUserModel;
 
   /// [ApiAuthDataSource] constructor.
-  ApiAuthDataSource(super.baseUrl, {this.logToDatabase = true})
-      : super(
-          sourceSuffix: "authentication",
-          convertDataTypeFromMap: UserModel.fromMap,
-          convertDataTypeToMap: (data) => data.toMap(),
-        );
+  ApiAuthDataSource(
+    super.baseUrl, {
+    required super.convertDataTypeFromMap,
+    required super.convertDataTypeToMap,
+  }) : super(sourceSuffix: "authentication");
 
   @override
-  Future<UserModel?> signIn({required AuthParams params}) async {
+  Future<T?> signIn({required AuthParams params}) async {
     return _handleError(() async {
       return requestData(
         requestExtension: "sign_in",
@@ -33,7 +31,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
   }
 
   @override
-  Future<UserModel?> signUp({required AuthParams params}) async {
+  Future<T?> signUp({required AuthParams params}) async {
     return _handleError(() async {
       return requestData(
         requestExtension: "sign_up",
@@ -44,7 +42,7 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
   }
 
   @override
-  Future<UserModel?> reauthenticate({required AuthParams params}) async {
+  Future<T?> reauthenticate({required AuthParams params}) async {
     return _handleError(() async {
       return requestData(
         requestExtension: "reauthenticate",
@@ -56,23 +54,43 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
 
   @override
   Future<void> signOut({required AuthParams params}) async {
-    return _handleError(() async {
-      _currentUserModel = await requestData(
+    try {
+      await requestData(
         requestExtension: "sign_out",
         requestType: params,
         cancelPreviousRequest: true,
       );
-    });
+    } catch (e) {
+      AppLogger.print(
+        "API RESULT: Failed request: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.toString());
+    }
   }
 
   @override
   Future<void> deleteAccount({required String userId}) async {
-    return _handleError(() => delete(userId));
+    try {
+      await requestData(
+        requestExtension: "delete_account",
+        requestType: userId,
+        cancelPreviousRequest: true,
+      );
+    } catch (e) {
+      AppLogger.print(
+        "API RESULT: Failed request: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.toString());
+    }
   }
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<T?> _handleError<T>(Future<T?> Function() apiCall) async {
+  Future<T?> _handleError(Future<T?> Function() apiCall) async {
     try {
       return await apiCall();
     } catch (e) {
@@ -83,5 +101,11 @@ class ApiAuthDataSource extends ApiDataSource<UserModel> implements Authenticati
       );
       throw AuthenticationException(e.toString());
     }
+  }
+
+  @override
+  Map<String, dynamic> buildQuery(Q query) {
+    // TODO: implement buildQuery
+    throw UnimplementedError();
   }
 }

@@ -5,38 +5,33 @@ import "/data/repositories/_repositories.dart";
 //TODO: Move
 
 class ThemeConfiguration {
-  final DataSourceTypes dataSourceType;
+  final ThemeDataSourceType dataSourceType;
   final String? path;
   final SupabaseClient? supabaseClient;
   const ThemeConfiguration.supabase({
-    this.dataSourceType = DataSourceTypes.supabase,
+    this.dataSourceType = ThemeDataSourceType.supabase,
     required this.supabaseClient,
   }) : path = null;
 
   const ThemeConfiguration.assets({
-    this.dataSourceType = DataSourceTypes.assets,
+    this.dataSourceType = ThemeDataSourceType.assets,
     required String rootBundleKey,
   })  : supabaseClient = null,
         path = rootBundleKey;
 
-  const ThemeConfiguration.local({this.dataSourceType = DataSourceTypes.local})
+  const ThemeConfiguration.local({this.dataSourceType = ThemeDataSourceType.local})
       : path = null,
         supabaseClient = null;
 
   const ThemeConfiguration.api({
     required String urlPath,
-    this.dataSourceType = DataSourceTypes.api,
+    this.dataSourceType = ThemeDataSourceType.api,
   })  : path = urlPath,
         supabaseClient = null;
 
   const ThemeConfiguration.firestore({
     required String collectionName,
-    this.dataSourceType = DataSourceTypes.firestore,
+    this.dataSourceType = ThemeDataSourceType.firestore,
   })  : path = collectionName,
-        supabaseClient = null;
-
-  const ThemeConfiguration.secure({
-    this.dataSourceType = DataSourceTypes.secure,
-  })  : path = null,
         supabaseClient = null;
 }

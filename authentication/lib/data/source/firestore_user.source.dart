@@ -1,5 +1,7 @@
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:utilities/data/models/search_query_model.dart";
 import "package:utilities/data_sources/remote/firestore.dart";
 import "package:utilities/logger/logger.dart";
 
@@ -7,18 +9,16 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [FirestoreUserDataSource] is a class that implements [UserDataSource] interface.
-class FirestoreUserDataSource extends FirestoreDataSource<UserModel> implements UserDataSource {
+class FirestoreUserDataSource<T extends UserModel> extends FirestoreDataSource<T, SearchQueryModel> implements UserDataSource<T> {
   /// [FirestoreUserDataSource] constructor.
-  FirestoreUserDataSource()
-      : super(
-          "users",
-          convertDataTypeFromMap: UserModel.fromMap,
-          convertDataTypeToMap: (data) => data.toMap(),
-        );
+  FirestoreUserDataSource({
+    required super.convertDataTypeFromMap,
+    required super.convertDataTypeToMap,
+  }) : super("users");
 
   /// [_handleError] is an optional helper method that handles errors when calling the Firestore database.
   // ignore: unused_element
-  Future<T?> _handleError<T>(Future<T?> Function() firestoreCall) async {
+  Future<T?> _handleError(Future<T?> Function() firestoreCall) async {
     try {
       return await firestoreCall();
     } catch (e) {
@@ -29,5 +29,10 @@ class FirestoreUserDataSource extends FirestoreDataSource<UserModel> implements 
       );
       throw AuthenticationException(e.toString());
     }
+  }
+
+  @override
+  Query<Map<String, dynamic>> buildQuery(SearchQueryModel query, Query<Map<String, dynamic>> collectionReference) {
+    return collectionReference.where("display_name", isGreaterThanOrEqualTo: query.searchTerm);
   }
 }

@@ -1,10 +1,11 @@
 import "digital_oasis.repository.dart";
 import "theme.repository.dart";
+import "theme_configuration.dart";
 
 ///END OF IMPORTS
 
-/// [DataSourceTypes] is an enum that defines the different data sources.
-enum DataSourceTypes {
+/// [ThemeDataSourceType] is an enum that defines the different data sources.
+enum ThemeDataSourceType {
   /// [api] is the remote data source.
   api,
 
@@ -19,9 +20,6 @@ enum DataSourceTypes {
 
   /// [supabase] is the supabase data source.
   supabase,
-
-  /// [secure] is the secure data source.
-  secure;
 }
 
 /// [DataRepositories] is a class that defines the different data repositories.

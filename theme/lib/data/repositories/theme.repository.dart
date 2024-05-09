@@ -37,7 +37,7 @@ class ThemeDataRepository {
         )
       : null;
 
-  /// [_dataSourceByType] returns the appropriate [ThemeDataSource] based on the [DataSourceTypes] enum.
+  /// [_dataSourceByType] returns the appropriate [ThemeDataSource] based on the [ThemeDataSourceType] enum.
   /// Defaults to [AssetsThemeDataSource] if no type is provided.
   /// This can be in local, an api, or firestore.
   ThemeDataSource<T> _dataSourceByType<T>(
@@ -47,19 +47,19 @@ class ThemeDataRepository {
     required Map<String, dynamic> Function(T) convertDataTypeToMap,
   }) {
     switch (type.dataSourceType) {
-      case DataSourceTypes.firestore:
+      case ThemeDataSourceType.firestore:
         return FirestoreThemeDataSource<T>(
           type.path!,
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
         );
-      case DataSourceTypes.assets:
+      case ThemeDataSourceType.assets:
         return AssetsThemeDataSource(
           rootBundleKey: type.path!,
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
         );
-      case DataSourceTypes.supabase:
+      case ThemeDataSourceType.supabase:
         return SupabaseThemeDataSource<T>(
           tableName,
           client: type.supabaseClient,

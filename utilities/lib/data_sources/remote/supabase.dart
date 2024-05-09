@@ -95,19 +95,22 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
   }
 
   @override
-  Future<void> add(T data) async {
-    await _handleRequest("ADD", () async {
+  Future<T?> add(T data) async {
+    try {
+      _logRequest("ADD", tableName, data);
       AppLogger.print("Data: $data", [UtilitiesLoggers.supabaseDataSource]);
-      unawaited(
-        _supabase!.from(tableName).insert(convertDataTypeToMap(data)).then(
-              (value) => AppLogger.print(
-                "Response: $value",
-                [UtilitiesLoggers.supabaseDataSource],
-              ),
+      await _supabase!.from(tableName).insert(convertDataTypeToMap(data)).then(
+            (value) => AppLogger.print(
+              "Response: $value",
+              [UtilitiesLoggers.supabaseDataSource],
             ),
-      );
+          );
+      _logResponse("ADD", "Success", data);
+      return data;
+    } catch (e) {
+      _logError("ADD", "Error", e);
       return null;
-    });
+    }
   }
 
   @override
@@ -146,7 +149,7 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     // return results.map(convertDataTypeFromMap).toList();
   }
 
-  Future<void> _logRequest(String method, String path, T? data) async {
+  void _logRequest(String method, String path, T? data) {
     final logMessage = "Supabase $method: $path";
     if (data != null) {
       AppLogger.print(
@@ -158,11 +161,11 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     }
   }
 
-  Future<void> _logResponse(
+  void _logResponse(
     String method,
     String statusMessage,
     dynamic data,
-  ) async {
+  ) {
     final logMessage = "Supabase $method: $statusMessage";
     if (data != null) {
       AppLogger.print(
@@ -174,11 +177,11 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     }
   }
 
-  Future<void> _logError(
+  void _logError(
     String method,
     String statusMessage,
     dynamic error,
-  ) async {
+  ) {
     final logMessage = "Supabase $method Error: $statusMessage - $error";
     AppLogger.print(
       logMessage,
@@ -192,12 +195,12 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     Future<T?> Function() apiCall,
   ) async {
     try {
-      await _logRequest(method, tableName, null);
+      _logRequest(method, tableName, null);
       final response = await apiCall();
-      await _logResponse(method, "Success", response);
+      _logResponse(method, "Success", response);
       return response;
     } catch (error) {
-      await _logError(method, "Error", error);
+      _logError(method, "Error", error);
       return null;
     }
   }

@@ -182,7 +182,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
   /// [add] method adds the value of the given key
 
   @override
-  Future<void> add(T value) async {
+  Future<T?> add(T value) async {
     if (!isHiveInitialized) {
       await Hive.initFlutter();
       isHiveInitialized = true;
@@ -194,6 +194,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
     final id = generateUniqueId();
     await _box.put(id, value);
     AppLogger.print("Added $value", [UtilitiesLoggers.localDataSource]);
+    return value;
   }
 
   /// [addAll] method adds all the key-value pairs

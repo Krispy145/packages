@@ -19,13 +19,12 @@ import "package:utilities/logger/logger.dart";
 part "push_store.g.dart";
 
 /// [PushNotificationsStore] is the base class for all push notifications stores.
-class PushNotificationsStore = _PushNotificationsStore
-    with _$PushNotificationsStore;
+class PushNotificationsStore = _PushNotificationsStore with _$PushNotificationsStore;
 
 /// [_PushNotificationsStore] is the base class for all notifications stores.
 abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [remoteDataSource] is the remote data source for notifications.
-  final DataSource<NotificationModel>? remoteDataSource;
+  final DataSource<NotificationModel, Map<String, dynamic>>? remoteDataSource;
 
   /// [storeNotificationsLocally] is a flag to store notifications locally.
   final bool storeNotificationsLocally;
@@ -88,21 +87,20 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
         [NotificationsLoggers.notifications],
       );
     }
-    fcmToken =
-        await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
+    fcmToken = await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
     AppLogger.print(
-        "FCM Token: $fcmToken", [NotificationsLoggers.notifications],);
+      "FCM Token: $fcmToken",
+      [NotificationsLoggers.notifications],
+    );
     authorizationStatus = settings.authorizationStatus;
 
-    if (settings.authorizationStatus == AuthorizationStatus.authorized &&
-        fcmToken != null) {
+    if (settings.authorizationStatus == AuthorizationStatus.authorized && fcmToken != null) {
       AppLogger.print(
         "User granted permission",
         [NotificationsLoggers.notifications],
       );
       return Pair(fcmToken, authorizationStatus);
-    } else if (authorizationStatus == AuthorizationStatus.authorized &&
-        fcmToken == null) {
+    } else if (authorizationStatus == AuthorizationStatus.authorized && fcmToken == null) {
       AppLogger.print(
         "User granted permission but token is null",
         [NotificationsLoggers.notifications],
@@ -154,8 +152,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
 
     // Also handle any interaction when the app is in the foreground via a Stream listener
     FirebaseMessaging.onMessage.listen((message) {
-      final notification =
-          _convertRemoteNotificationToNotificationModel(message.data);
+      final notification = _convertRemoteNotificationToNotificationModel(message.data);
       final android = message.notification?.android;
 
       // for Android, we create a local notification to show to users using the created channel.
@@ -189,8 +186,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [_updateActiveNotificationsList] updates the active notifications to the [notifications].
   @action
   Future<void> _updateActiveNotificationsList() async {
-    final activeNotifications =
-        await remoteDataSource?.getAll() ?? await getAll();
+    final activeNotifications = await remoteDataSource?.getAll() ?? await getAll();
     final notificationMap = <String, NotificationModel>{};
     for (final notificationResponse in activeNotifications) {
       if (notificationResponse != null) {
@@ -212,9 +208,10 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [add] adds a notification with [notification].
   @action
   @override
-  Future<void> add(NotificationModel notification) async {
+  Future<NotificationModel?> add(NotificationModel notification) async {
     await remoteDataSource?.add(notification);
     if (storeNotificationsLocally) await super.add(notification);
+    return notification;
   }
 
   /// [addAll] adds all notifications with [notifications].
@@ -293,7 +290,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   Future<String?> getToken({String? webVapidKey}) async {
     return _pushNotifications.getToken(vapidKey: webVapidKey).then((token) {
       AppLogger.print(
-          "FCM Token: $token", [NotificationsLoggers.notifications],);
+        "FCM Token: $token",
+        [NotificationsLoggers.notifications],
+      );
       return token;
     });
   }
@@ -303,7 +302,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   Future<void> deleteToken() async {
     return _pushNotifications.deleteToken().then((_) {
       AppLogger.print(
-          "FCM Token Deleted", [NotificationsLoggers.notifications],);
+        "FCM Token Deleted",
+        [NotificationsLoggers.notifications],
+      );
     });
   }
 
@@ -312,7 +313,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   Future<String?> getAPNSToken() async {
     final _token = await _pushNotifications.getAPNSToken();
     AppLogger.print(
-        "APNS Token: $_token", [NotificationsLoggers.notifications],);
+      "APNS Token: $_token",
+      [NotificationsLoggers.notifications],
+    );
     return _token;
   }
 
@@ -340,10 +343,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   AndroidNotificationChannel _createAndroidForegroundPushNotificationChannel() {
     // Create an Android Notification Channel using local notifications.
-    localNotifications
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(androidPushNotificationsChannel);
+    localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(androidPushNotificationsChannel);
     return androidPushNotificationsChannel;
   }
 

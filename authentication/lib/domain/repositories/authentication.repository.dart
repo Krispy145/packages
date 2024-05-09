@@ -4,6 +4,7 @@ import "package:authentication/data/repositories/_repository.dart";
 import "package:authentication/data/repositories/api_auth.repository.dart";
 import "package:authentication/data/repositories/firebase_auth.repository.dart";
 import "package:authentication/data/repositories/supabase_auth.repository.dart";
+import "package:authentication/data/repositories/user.repository.dart";
 import "package:authentication/data/source/_source.dart";
 import "package:authentication/data/source/api_user.source.dart";
 import "package:authentication/data/source/firestore_user.source.dart";
@@ -29,26 +30,31 @@ enum AuthSourceTypes {
 
 /// [AuthenticationRepository] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
 /// It also defines the different types of data sources.
-/// the [logToDatabase] parameter is used to determine whether to log the data to the corresponding database or not.
-/// e.g. if [logToDatabase] is true, then the data will be added to the firestore database within "users" collection.
-class AuthenticationRepository {
+/// It is used to call the different data sources' methods.
+/// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
+class AuthenticationRepository<T extends UserModel> {
   final String? baseUrl;
-  final AuthSourceTypes source;
-  final bool logToDatabase;
+  final AuthSourceTypes authSource;
 
-  /// [dataSource] is an instance of [UserDataSource] interface.
+  /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
+  final T Function(Map<String, dynamic>) convertDataTypeFromMap;
+
+  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
+  final Map<String, dynamic> Function(T) convertDataTypeToMap;
+
+  /// [userSource] is an instance of [UserDataSource] interface.
   /// It is used to call the different data sources' methods.
   /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
-  final UserDataSource? dataSource;
+  final UserDataSourceTypes userSource;
 
   /// [facebookAppId] is the facebook app id used for facebook authentication,
   /// [required] for web.
   final String? facebookAppId;
 
   /// [currentUserModelStream] is the current user model stream.
-  BehaviorSubject<UserModel?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
+  BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
 
-  UserModel? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
+  T? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
 
   bool isUserAuthenticated = false;
 
@@ -56,17 +62,18 @@ class AuthenticationRepository {
   /// [authStatusStream] is the authentication status stream.
   // Stream<AuthStatus> get authStatusStream => _authStatusSubject.stream;
 
-  // AuthStatus get authStatus => _currentUserModel?.status ?? AuthStatus.unauthenticated;
-  // late final BehaviorSubject<UserModel?> currentUserModelSubject;
+  // AuthStatus get authStatus => _currentT?.status ?? AuthStatus.unauthenticated;
+  // late final BehaviorSubject<T?> currentUserModelSubject;
   // late final BehaviorSubject<AuthStatus> _authStatusSubject;
 
   /// [AuthenticationRepository.api] constructor.
   AuthenticationRepository.api({
     required this.baseUrl,
-    this.logToDatabase = true,
-    this.dataSource,
+    required this.convertDataTypeFromMap,
+    required this.convertDataTypeToMap,
+    this.userSource = UserDataSourceTypes.api,
     this.facebookAppId,
-  }) : source = AuthSourceTypes.api {
+  }) : authSource = AuthSourceTypes.api {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
     }
@@ -75,11 +82,12 @@ class AuthenticationRepository {
 
   /// [AuthenticationRepository.firebase] constructor.
   AuthenticationRepository.firebase({
-    this.logToDatabase = true,
-    this.dataSource,
+    required this.convertDataTypeFromMap,
+    required this.convertDataTypeToMap,
+    this.userSource = UserDataSourceTypes.firestore,
     this.facebookAppId,
   })  : baseUrl = null,
-        source = AuthSourceTypes.firebase {
+        authSource = AuthSourceTypes.firebase {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
     }
@@ -88,40 +96,48 @@ class AuthenticationRepository {
 
   /// [AuthenticationRepository.supabase] constructor.
   AuthenticationRepository.supabase({
-    this.logToDatabase = true,
-    this.dataSource,
+    required this.convertDataTypeFromMap,
+    required this.convertDataTypeToMap,
+    this.userSource = UserDataSourceTypes.supabase,
     this.facebookAppId,
   })  : baseUrl = null,
-        source = AuthSourceTypes.supabase {
+        authSource = AuthSourceTypes.supabase {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
     }
     _initStreams();
   }
+  late final userDataRepository = UserDataRepository<T>(
+    userSource,
+    baseUrl: baseUrl,
+    convertDataTypeFromMap: convertDataTypeFromMap,
+    convertDataTypeToMap: convertDataTypeToMap,
+  );
 
-  late final AuthenticationDataRepository _authenticationDataRepository = source == AuthSourceTypes.api
+  late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api
       ? ApiAuthDataRepository(
           baseUrl: baseUrl!,
-          logToDatabase: logToDatabase,
-          dataSource: dataSource,
+          convertDataTypeFromMap: convertDataTypeFromMap,
+          convertDataTypeToMap: convertDataTypeToMap,
         )
-      : source == AuthSourceTypes.firebase
+      : authSource == AuthSourceTypes.firebase
           ? FirebaseAuthDataRepository(
-              logToDatabase: logToDatabase,
-              dataSource: dataSource,
+              userDataRepository: userDataRepository,
+              convertDataTypeFromMap: convertDataTypeFromMap,
+              convertDataTypeToMap: convertDataTypeToMap,
             )
           : SupabaseAuthDataRepository(
-              logToDatabase: logToDatabase,
-              dataSource: dataSource,
+              convertDataTypeFromMap: convertDataTypeFromMap,
+              convertDataTypeToMap: convertDataTypeToMap,
             );
 
   /// [signIn] signs in the user.
-  Future<UserModel?> signIn({required AuthParams params}) async {
+  Future<T?> signIn({required AuthParams params}) async {
     AppLogger.print(
       "signIn attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
     );
-    UserModel? changedUserModel;
+    T? changedUserModel;
     try {
       switch (params.authType) {
         case AuthType.email:
@@ -151,7 +167,10 @@ class AuthenticationRepository {
             type: LoggerType.error,
           );
       }
-      // _authStatusSubject.add(__currentUserModel?.status ?? AuthStatus.unauthenticated);
+      final _currentResponse = convertDataTypeToMap(changedUserModel!);
+      _currentResponse["last_login_at"] = DateTime.now();
+      changedUserModel = convertDataTypeFromMap(_currentResponse);
+      await userDataRepository.updateUser(user: changedUserModel);
       currentUserModelStream.add(changedUserModel);
       return changedUserModel;
     } catch (e) {
@@ -167,15 +186,25 @@ class AuthenticationRepository {
   /// [signOut] signs out the user.
   Future<bool> signOut() async {
     AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
+    final _currentResponse = convertDataTypeToMap(currentUserModel!);
+    _currentResponse["last_logout_at"] = DateTime.now();
+    _currentResponse["status"] = AuthStatus.unauthenticated;
+    final changedUserModel = convertDataTypeFromMap(_currentResponse);
+    await userDataRepository.updateUser(user: changedUserModel);
     return _authenticationDataRepository.signOut();
   }
 
   /// [signUpWithEmail] signs up the use with email and password.
-  Future<UserModel?> signUpWithEmail({required AuthParams params}) async {
+  Future<T?> signUpWithEmail({required AuthParams params}) async {
     AppLogger.print(
       "signUp attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
     );
+    final _currentResponse = convertDataTypeToMap(currentUserModel!);
+    _currentResponse["last_login_at"] = DateTime.now();
+    _currentResponse["status"] = AuthStatus.authenticated;
+    final changedUserModel = convertDataTypeFromMap(_currentResponse);
+    await userDataRepository.updateUser(user: changedUserModel);
     return _authenticationDataRepository.signUpWithEmail(
       params.email!,
       params.password!,
@@ -183,11 +212,12 @@ class AuthenticationRepository {
   }
 
   /// [params] refreshes the user's token.
-  Future<UserModel?> reauthenticate({required AuthParams params}) async {
+  Future<T?> reauthenticate({required AuthParams params}) async {
     AppLogger.print(
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
+    await userDataRepository.updateUser(user: currentUserModel!);
     return _authenticationDataRepository.reauthenticate(params);
   }
 
@@ -197,6 +227,7 @@ class AuthenticationRepository {
       "deleteAccount attempt",
       [AuthenticationLoggers.authentication],
     );
+    await userDataRepository.deleteUser(id: userId);
     return _authenticationDataRepository.deleteAccount(userId);
   }
 
@@ -217,7 +248,7 @@ class AuthenticationRepository {
     // check if is running on Web
     if (kIsWeb) {
       try {
-        // initialiaze the facebook javascript SDK
+        // initialize the facebook javascript SDK
         await FacebookAuth.i.webAndDesktopInitialize(
           appId: facebookAppId!,
           cookie: true,

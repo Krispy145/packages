@@ -81,11 +81,12 @@ class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   }
 
   @override
-  Future<void> add(T value) async {
+  Future<T?> add(T value) async {
     // Generate a unique key for the value and store it.
     final id = generateUniqueId();
     await write(key: id, value: json.encode(convertToMap(value)));
     AppLogger.print("ADD: $id => $value", [UtilitiesLoggers.secureDataSource]);
+    return value;
   }
 
   @override

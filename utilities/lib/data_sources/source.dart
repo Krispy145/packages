@@ -1,20 +1,23 @@
-/// [DataSourceTypes] is an enum that defines the different data sources.
-enum DataSourceTypes {
-  /// [api] is the remote data source.
-  api,
+// /// [DataSourceTypes] is an enum that defines the different data sources.
+// enum DataSourceTypes {
+//   /// [api] is the remote data source.
+//   api,
 
-  /// [local] is the local data source.
-  local,
+//   /// [local] is the local data source.
+//   local,
 
-  /// [firestore] is the firestore data source.
-  firestore,
+//   /// [firestore] is the firestore data source.
+//   firestore,
 
-  /// [secure] is the secure data source.
-  secure,
+//   /// [supabase] is the supabase data source.
+//   supabase,
 
-  /// [dummy] is the dummy data source.
-  dummy;
-}
+//   /// [secure] is the secure data source.
+//   secure,
+
+//   /// [dummy] is the dummy data source.
+//   dummy;
+// }
 
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
@@ -39,7 +42,7 @@ abstract class DataSource<T, Q> {
   Future<void> updateAll(Map<String, T> values);
 
   /// [add] method adds the value of the given id
-  Future<void> add(T value);
+  Future<T?> add(T value);
 
   /// [addAll] method adds all the key-value pairs
   Future<void> addAll(List<T> value);

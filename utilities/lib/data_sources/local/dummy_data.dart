@@ -24,8 +24,9 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
   }
 
   @override
-  Future<void> add(T value) async {
+  Future<T?> add(T value) async {
     fakeData.add(value);
+    return value;
   }
 
   @override

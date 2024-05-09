@@ -13,7 +13,6 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   static UserModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = UserModelMapper._());
-      SocialsModelMapper.ensureInitialized();
       AuthTypeMapper.ensureInitialized();
       AuthStatusMapper.ensureInitialized();
     }
@@ -43,9 +42,6 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   static String? _$phoneNumber(UserModel v) => v.phoneNumber;
   static const Field<UserModel, String> _f$phoneNumber =
       Field('phoneNumber', _$phoneNumber, key: 'phone_number', opt: true);
-  static SocialsModel? _$socials(UserModel v) => v.socials;
-  static const Field<UserModel, SocialsModel> _f$socials =
-      Field('socials', _$socials, opt: true);
   static String? _$refreshToken(UserModel v) => v.refreshToken;
   static const Field<UserModel, String> _f$refreshToken =
       Field('refreshToken', _$refreshToken, key: 'refresh_token', opt: true);
@@ -77,7 +73,6 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
     #displayName: _f$displayName,
     #photoUrl: _f$photoUrl,
     #phoneNumber: _f$phoneNumber,
-    #socials: _f$socials,
     #refreshToken: _f$refreshToken,
     #authType: _f$authType,
     #status: _f$status,
@@ -98,7 +93,6 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
         displayName: data.dec(_f$displayName),
         photoUrl: data.dec(_f$photoUrl),
         phoneNumber: data.dec(_f$phoneNumber),
-        socials: data.dec(_f$socials),
         refreshToken: data.dec(_f$refreshToken),
         authType: data.dec(_f$authType),
         status: data.dec(_f$status),
@@ -158,7 +152,6 @@ extension UserModelValueCopy<$R, $Out> on ObjectCopyWith<$R, UserModel, $Out> {
 
 abstract class UserModelCopyWith<$R, $In extends UserModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  SocialsModelCopyWith<$R, SocialsModel, SocialsModel>? get socials;
   $R call(
       {String? id,
       String? accessToken,
@@ -167,7 +160,6 @@ abstract class UserModelCopyWith<$R, $In extends UserModel, $Out>
       String? displayName,
       String? photoUrl,
       String? phoneNumber,
-      SocialsModel? socials,
       String? refreshToken,
       AuthType? authType,
       AuthStatus? status,
@@ -187,9 +179,6 @@ class _UserModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<UserModel> $mapper =
       UserModelMapper.ensureInitialized();
   @override
-  SocialsModelCopyWith<$R, SocialsModel, SocialsModel>? get socials =>
-      $value.socials?.copyWith.$chain((v) => call(socials: v));
-  @override
   $R call(
           {String? id,
           Object? accessToken = $none,
@@ -198,7 +187,6 @@ class _UserModelCopyWithImpl<$R, $Out>
           Object? displayName = $none,
           Object? photoUrl = $none,
           Object? phoneNumber = $none,
-          Object? socials = $none,
           Object? refreshToken = $none,
           Object? authType = $none,
           Object? status = $none,
@@ -214,7 +202,6 @@ class _UserModelCopyWithImpl<$R, $Out>
         if (displayName != $none) #displayName: displayName,
         if (photoUrl != $none) #photoUrl: photoUrl,
         if (phoneNumber != $none) #phoneNumber: phoneNumber,
-        if (socials != $none) #socials: socials,
         if (refreshToken != $none) #refreshToken: refreshToken,
         if (authType != $none) #authType: authType,
         if (status != $none) #status: status,
@@ -232,7 +219,6 @@ class _UserModelCopyWithImpl<$R, $Out>
       displayName: data.get(#displayName, or: $value.displayName),
       photoUrl: data.get(#photoUrl, or: $value.photoUrl),
       phoneNumber: data.get(#phoneNumber, or: $value.phoneNumber),
-      socials: data.get(#socials, or: $value.socials),
       refreshToken: data.get(#refreshToken, or: $value.refreshToken),
       authType: data.get(#authType, or: $value.authType),
       status: data.get(#status, or: $value.status),

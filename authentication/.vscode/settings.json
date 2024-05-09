@@ -24,5 +24,6 @@
   },
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
-  "files.trimTrailingWhitespace": false
+  "files.trimTrailingWhitespace": false,
+  "cSpell.words": ["Passwordless"]
 }
