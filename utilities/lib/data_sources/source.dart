@@ -19,7 +19,7 @@ enum DataSourceTypes {
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
 /// see: HiveDataSource and RemoteDataSource
-abstract class DataSource<T> {
+abstract class DataSource<T, Q> {
   /// [get] method returns the value of the given id
   Future<T?> get(String id);
 
@@ -45,13 +45,12 @@ abstract class DataSource<T> {
   Future<void> addAll(List<T> value);
 
   /// [search] method searches for the given queries
-  Future<T?> search(Map<String, dynamic> queries);
+  Future<T?> search(Q query);
 
   /// [searchAll] method searches for all the key-value pairs
-  Future<List<T?>> searchAll(Map<String, dynamic> queries);
+  Future<List<T?>> searchAll(Q query);
 }
 
-// TODO: Move to right place
 abstract mixin class Mappable<T> {
   /// [convertFromMap] method converts the given value to a map
   T convertFromMap(Map<String, dynamic> data);

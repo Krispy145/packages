@@ -13,7 +13,7 @@ class SecureInstagramDataSource extends SecureDataSource<InstagramUserModel> {
         );
 
   @override
-  Future<InstagramUserModel?> search(Map<String, dynamic> queries) async {
+  Future<InstagramUserModel?> search(Q query) async {
     AppLogger.print(
       "IN MEMORY RESULT: Search not implemented for InstagramUserModel",
       [SocialsLoggers.instagram],
@@ -22,7 +22,7 @@ class SecureInstagramDataSource extends SecureDataSource<InstagramUserModel> {
   }
 
   @override
-  Future<List<InstagramUserModel?>> searchAll(Map<String, dynamic> queries) async {
+  Future<List<InstagramUserModel?>> searchAll(Q query) async {
     AppLogger.print(
       "IN MEMORY RESULT: Search all not implemented for InstagramUserModel",
       [SocialsLoggers.instagram],

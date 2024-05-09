@@ -4,7 +4,7 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [FirestoreDataSource] is a wrapper class for [FirebaseFirestore]
-class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
+abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   /// [collectionName] is the name of the collection
@@ -139,24 +139,31 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
     });
   }
 
+  Query<Map<String, dynamic>> buildQuery(Q query, Query<Map<String, dynamic>> collectionReference);
+
   @override
-  Future<T?> search(Map<String, dynamic> queries) async {
-    final query = collectionReference;
-    for (final entry in queries.entries) {
-      query.where(entry.key, isEqualTo: entry.value);
-    }
-    final querySnapshot = await query.get();
+  Future<T?> search(Q query) async {
+    final firestoreQuery = buildQuery(query, collectionReference);
+    final querySnapshot = await firestoreQuery.get();
+    // final query = collectionReference;
+    // for (final entry in queries.entries) {
+    //   query.where(entry.key, isEqualTo: entry.value);
+    // }
+    // final querySnapshot = await query.get();
     return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
   }
 
   @override
-  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
-    final query = collectionReference;
-    for (final entry in queries.entries) {
-      query.where(entry.key, isEqualTo: entry.value);
-    }
-    final querySnapshot = await query.get();
+  Future<List<T?>> searchAll(Q query) async {
+    final firestoreQuery = buildQuery(query, collectionReference);
+    final querySnapshot = await firestoreQuery.get();
     return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+    // final query = collectionReference;
+    // for (final entry in queries.entries) {
+    //   query.where(entry.key, isGreaterThanOrEqualTo: entry.value);
+    // }
+    // final querySnapshot = await query.get();
+    // return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
   }
 
   Future<void> _logRequest(String method, String path, T? data) async {

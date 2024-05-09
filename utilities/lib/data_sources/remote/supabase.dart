@@ -6,7 +6,7 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [SupabaseDataSource] is a wrapper class for [SupabaseClient]
-class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
+abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   SupabaseClient? _supabase;
 
   /// [tableName] is the name of the table
@@ -120,20 +120,30 @@ class SupabaseDataSource<T> with Mappable<T> implements DataSource<T> {
     });
   }
 
+  SupabaseQueryBuilder _buildQuery(Q query, SupabaseQueryBuilder table);
+
   @override
-  Future<T?> search(Map<String, dynamic> queries) async {
-    final columnNames = queries.keys.toList();
-    final values = queries.values.toList();
-    final results = await _supabase!.from(tableName).select(columnNames.join(",")).eq(columnNames.join(","), values.join(","));
+  Future<T?> search(Q query) async {
+    final table = await _supabase!.from(tableName) as SupabaseQueryBuilder;
+    final supabaseQuery = _buildQuery(query, table);
+    final results = await supabaseQuery.select().limit(1);
     return results.map(convertDataTypeFromMap).toList().firstOrNull;
+    // final results = await _supabase?.from(tableName);
+    // final columnNames = queries.keys.toList();
+    // final values = queries.values.toList();
+    // final results = await _supabase!.from(tableName).select(columnNames.join(",")).eq(columnNames.join(","), values.join(","));
   }
 
   @override
-  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
-    final columnNames = queries.keys.toList();
-    final values = queries.values.toList();
-    final results = await _supabase!.from(tableName).select(columnNames.join(",")).eq(columnNames.join(","), values.join(","));
+  Future<List<T?>> searchAll(Q query) async {
+    final table = await _supabase!.from(tableName) as SupabaseQueryBuilder;
+    final supabaseQuery = _buildQuery(query, table);
+    final results = await supabaseQuery.select().limit(12);
     return results.map(convertDataTypeFromMap).toList();
+    // final columnNames = queries.keys.toList();
+    // final values = queries.values.toList();
+    // final results = await _supabase!.from(tableName).select(columnNames.join(",")).eq(columnNames.join(","), values.join(","));
+    // return results.map(convertDataTypeFromMap).toList();
   }
 
   Future<void> _logRequest(String method, String path, T? data) async {

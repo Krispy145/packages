@@ -46,7 +46,7 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel> impl
 
   @override
   Future<GoogleResponsesModel?> search(
-    Map<String, dynamic> queries, {
+    Q query, {
     String? pathExtensions = "textsearch/json",
     bool cancelPreviousRequest = false,
   }) async {

@@ -7,7 +7,7 @@ import "package:utilities/utils/loggers.dart";
 import "package:uuid/uuid.dart";
 
 /// [SecureDataSource] is a wrapper class for [FlutterSecureStorage]
-class SecureDataSource<T> with Mappable<T> implements DataSource<T> {
+class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -97,16 +97,16 @@ class SecureDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<T?> search(Map<String, dynamic> queries) {
+  Future<T?> search(Q query) {
     // Implement search logic if applicable
-    AppLogger.print("SEARCH: $queries", [UtilitiesLoggers.secureDataSource]);
+    AppLogger.print("SEARCH: $query", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();
   }
 
   @override
-  Future<List<T?>> searchAll(Map<String, dynamic> queries) {
+  Future<List<T?>> searchAll(Q query) {
     // Implement search logic if applicable
-    AppLogger.print("SEARCH: $queries", [UtilitiesLoggers.secureDataSource]);
+    AppLogger.print("SEARCH: $query", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();
   }
 

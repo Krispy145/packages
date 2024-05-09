@@ -3,7 +3,7 @@ import "package:flutter/services.dart";
 import "package:utilities/data_sources/source.dart";
 
 /// [DummyDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
-abstract class DummyDataSource<T> implements DataSource<T> {
+abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
   /// [DummyDataSource] constructor.
   DummyDataSource();
 
@@ -11,9 +11,7 @@ abstract class DummyDataSource<T> implements DataSource<T> {
 
   bool matchesID(String id, T item);
 
-  bool matchesQuery(Map<String, dynamic> queries, T item) {
-    return true;
-  }
+  bool matchesQuery(Q query, T item);
 
   @override
   Future<T?> get(String id) async {
@@ -64,15 +62,12 @@ abstract class DummyDataSource<T> implements DataSource<T> {
   }
 
   @override
-  Future<T?> search(Map<String, dynamic> queries) async {
-    return fakeData
-        .where((element) => matchesQuery(queries, element))
-        .toList()
-        .firstOrNull;
+  Future<T?> search(Q query) async {
+    return fakeData.where((element) => matchesQuery(query, element)).toList().firstOrNull;
   }
 
   @override
-  Future<List<T?>> searchAll(Map<String, dynamic> queries) async {
-    return fakeData.where((element) => matchesQuery(queries, element)).toList();
+  Future<List<T?>> searchAll(Q query) async {
+    return fakeData.where((element) => matchesQuery(query, element)).toList();
   }
 }

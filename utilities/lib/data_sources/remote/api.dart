@@ -4,7 +4,7 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [ApiDataSource] is a wrapper class for [Dio] which implements [DataSource]
-class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
+abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   final Dio _dio = Dio();
 
   final Map<String, CancelToken> _cancelTokens = {};
@@ -258,9 +258,12 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     );
   }
 
+  // TODO: Take into account query parameters, body, path parameters
+  Map<String, dynamic> buildQuery(Q query);
+
   @override
   Future<T?> search(
-    Map<String, dynamic> queries, {
+    Q query, {
     String? pathExtensions,
     bool cancelPreviousRequest = false,
   }) async {
@@ -271,7 +274,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     }
     final response = await _dio.get<Map<String, dynamic>>(
       _url,
-      queryParameters: queries,
+      queryParameters: buildQuery(query),
       cancelToken: _getCancelToken(cancelKey),
     );
     AppLogger.print(response.data.toString(), [UtilitiesLoggers.apiDataSource]);
@@ -281,7 +284,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
 
   @override
   Future<List<T?>> searchAll(
-    Map<String, dynamic> queries, {
+    Q query, {
     String? pathExtensions,
     bool cancelPreviousRequest = false,
   }) async {
@@ -292,7 +295,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     }
     final response = await _dio.get<List<Map<String, dynamic>>>(
       _url,
-      queryParameters: queries,
+      queryParameters: buildQuery(query),
       cancelToken: _getCancelToken(cancelKey),
     );
     return response.data!.map(convertDataTypeFromMap).toList();
@@ -571,7 +574,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
 //   }
 
 //   Future<T?> search<T>(
-//     Map<String, dynamic> queries, {
+//     Q query, {
 //     String? pathExtensions,
 //     bool cancelPreviousRequest = false,
 //   }) async {
@@ -591,7 +594,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
 //   }
 
 //   Future<List<T?>> searchAll<T>(
-//     Map<String, dynamic> queries, {
+//     Q query, {
 //     String? pathExtensions,
 //     bool cancelPreviousRequest = false,
 //   }) async {

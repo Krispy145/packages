@@ -10,7 +10,7 @@ import 'math.dart';
 import 'utils.dart' as utils;
 
 /// Extension on [FirestoreDataSource] to handle geo queries.
-extension GeoCollectionReference<T> on FirestoreDataSource<T> {
+extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   /// Detection range buffer when not strict mode.
   static const _detectionRangeBuffer = 1.02;
   static const String _fieldName = 'geo_reference';
