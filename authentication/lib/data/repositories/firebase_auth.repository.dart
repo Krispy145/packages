@@ -321,12 +321,12 @@ class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationD
   Future<void> _initStreams() async {
     currentUserModelSubject = BehaviorSubject<T?>.seeded(_currentUserModel);
     if (_user != null && _currentUserModel == null) {
-      final databaseUser = await userDataRepository?.getUser(id: _user!.uid);
+      final databaseUser = await userDataRepository?.getUser(_user!.uid);
       if (databaseUser != null) {
         final _currentResponse = convertDataTypeToMap(databaseUser);
         _currentResponse["last_login_at"] = DateTime.now();
         _currentUserModel = convertDataTypeFromMap(_currentResponse);
-        await userDataRepository?.updateUser(user: _currentUserModel!);
+        await userDataRepository?.updateUser(_currentUserModel!);
         currentUserModelSubject.add(_currentUserModel);
       }
     }

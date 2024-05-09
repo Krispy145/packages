@@ -26,7 +26,7 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   }
 
   @observable
-  late T value;
+  T value;
 
   @action
   void saveValue() {

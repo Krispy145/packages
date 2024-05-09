@@ -170,7 +170,7 @@ class AuthenticationRepository<T extends UserModel> {
       final _currentResponse = convertDataTypeToMap(changedUserModel!);
       _currentResponse["last_login_at"] = DateTime.now();
       changedUserModel = convertDataTypeFromMap(_currentResponse);
-      await userDataRepository.updateUser(user: changedUserModel);
+      await userDataRepository.updateUser(changedUserModel);
       currentUserModelStream.add(changedUserModel);
       return changedUserModel;
     } catch (e) {
@@ -190,7 +190,7 @@ class AuthenticationRepository<T extends UserModel> {
     _currentResponse["last_logout_at"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
-    await userDataRepository.updateUser(user: changedUserModel);
+    await userDataRepository.updateUser(changedUserModel);
     return _authenticationDataRepository.signOut();
   }
 
@@ -204,7 +204,7 @@ class AuthenticationRepository<T extends UserModel> {
     _currentResponse["last_login_at"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.authenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
-    await userDataRepository.updateUser(user: changedUserModel);
+    await userDataRepository.updateUser(changedUserModel);
     return _authenticationDataRepository.signUpWithEmail(
       params.email!,
       params.password!,
@@ -217,7 +217,7 @@ class AuthenticationRepository<T extends UserModel> {
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.updateUser(user: currentUserModel!);
+    await userDataRepository.updateUser(currentUserModel!);
     return _authenticationDataRepository.reauthenticate(params);
   }
 

@@ -7,27 +7,23 @@ import "package:utilities/snackbar/configuration.dart";
 
 import "store.dart";
 
-class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
+abstract class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
   final S store;
   final Widget? header;
   final bool isEditing;
   final String updateButtonTitle;
   final String createButtonTitle;
-  final Map<String, BaseFormField> modelFields;
   final EdgeInsets? scrollViewPadding;
   final void Function(bool)? onBack;
-  final List<Widget?> stackedWidgets;
   const FormsModelView({
     super.key,
     required this.store,
-    required this.modelFields,
     this.isEditing = false,
     this.header,
     this.scrollViewPadding,
     this.updateButtonTitle = "Update",
     this.createButtonTitle = "Create",
     this.onBack,
-    this.stackedWidgets = const [],
   });
 
   bool get isUpdating => isEditing && store.value != null;
@@ -49,11 +45,11 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
                   return ListView.builder(
                     padding: scrollViewPadding,
                     itemBuilder: (context, index) {
-                      final key = modelFields.keys.elementAt(index);
-                      final widget = modelFields[key];
+                      final key = modelFields(context).keys.elementAt(index);
+                      final widget = modelFields(context)[key];
                       return widget;
                     },
-                    itemCount: modelFields.length,
+                    itemCount: modelFields(context).length,
                   );
                 },
               ),
@@ -65,15 +61,14 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
             ),
           ],
         ),
-        ...stackedWidgets.whereType<Widget>(),
+        if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
       ],
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
-    final modelType = T.toString().replaceAll("?", "");
-    return Text("$modelType Upsert");
-  }
+  Map<String, BaseFormField> modelFields(BuildContext context);
+
+  List<Widget>? stackedWidgets(BuildContext context);
 
   Future<void> _showConfirmationDialog(BuildContext context) async {
     await showDialog<bool>(

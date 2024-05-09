@@ -41,23 +41,17 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [getUser] returns a [T] based on the [id] and [source].
-  Future<T?> getUser({
-    required String id,
-  }) async {
+  Future<T?> getUser(String id) async {
     return _dataSourceByType(source).get(id);
   }
 
   /// [addUser] adds a [T] based on the [user] and [source].
-  Future<T?> addUser({
-    required T user,
-  }) async {
+  Future<T?> addUser(T user) async {
     return _dataSourceByType(source).add(user);
   }
 
   /// [updateUser] updates a [T] based on the [user] and [source].
-  Future<void> updateUser({
-    required T user,
-  }) async {
+  Future<void> updateUser(T user) async {
     return _dataSourceByType(source).update(user.id, user);
   }
 

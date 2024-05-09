@@ -18,19 +18,26 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
     return super.value;
   }
 
-  bool _valueIsInitialized = false;
-
   @override
   set value(T value) {
-    _$valueAtom.reportWrite(value, _valueIsInitialized ? super.value : null,
-        () {
+    _$valueAtom.reportWrite(value, super.value, () {
       super.value = value;
-      _valueIsInitialized = true;
     });
   }
 
   late final _$_FormsModelStoreActionController =
       ActionController(name: '_FormsModelStore', context: context);
+
+  @override
+  void onValueChanged(T newValue) {
+    final _$actionInfo = _$_FormsModelStoreActionController.startAction(
+        name: '_FormsModelStore.onValueChanged');
+    try {
+      return super.onValueChanged(newValue);
+    } finally {
+      _$_FormsModelStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void saveValue() {
