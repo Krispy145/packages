@@ -1,4 +1,3 @@
-import "package:authentication/data/models/socials_model.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 import "auth_params.dart";
@@ -15,7 +14,6 @@ class UserModel with UserModelMappable {
   final String? displayName;
   final String? photoUrl;
   final String? phoneNumber;
-  final SocialsModel? socials;
   final String? refreshToken;
   final AuthType? authType;
   final AuthStatus? status;
@@ -32,7 +30,6 @@ class UserModel with UserModelMappable {
     this.displayName,
     this.photoUrl,
     this.phoneNumber,
-    this.socials,
     this.refreshToken,
     this.authType,
     this.status,
@@ -45,7 +42,7 @@ class UserModel with UserModelMappable {
   static const fromMap = UserModelMapper.fromMap;
   static const fromJson = UserModelMapper.fromJson;
 
-  UserModel basic() {
+  UserModel reference() {
     return UserModel(
       id: id,
       displayName: displayName,

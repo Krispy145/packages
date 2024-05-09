@@ -213,7 +213,7 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<void> add(
+  Future<T?> add(
     T data, {
     String? pathExtensions,
     Map<String, dynamic>? queryParameters,
@@ -224,12 +224,13 @@ class ApiDataSource<T> with Mappable<T> implements DataSource<T> {
     if (cancelPreviousRequest) {
       _cancel(cancelKey);
     }
-    await _dio.post<Map<String, dynamic>>(
+    final _response = await _dio.post<Map<String, dynamic>>(
       _url,
       data: convertDataTypeToMap(data),
       queryParameters: queryParameters,
       cancelToken: _getCancelToken(cancelKey),
     );
+    return _response.data != null ? convertDataTypeFromMap(_response.data!) : null;
   }
 
   @override

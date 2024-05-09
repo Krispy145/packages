@@ -107,16 +107,21 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
   }
 
   @override
-  Future<void> add(T data) async {
-    await _handleRequest("ADD", () async {
+  Future<T?> add(T data) async {
+    try {
+      _logRequest("ADD", collectionName, data);
       final map = convertDataTypeToMap(data);
       final docRef = collectionReference.doc();
       if (map.containsKey("id")) {
         map["id"] = docRef.id;
       }
       await docRef.set(map, SetOptions(merge: true));
+      _logResponse("ADD", "Success", convertDataTypeFromMap(map));
+      return convertDataTypeFromMap(map);
+    } catch (e) {
+      _logError("ADD", "Error", e);
       return null;
-    });
+    }
   }
 
   @override
@@ -159,7 +164,7 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
     return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
   }
 
-  Future<void> _logRequest(String method, String path, T? data) async {
+  void _logRequest(String method, String path, T? data) {
     final logMessage = "Firebase $method: $path";
     if (data != null) {
       AppLogger.print(
@@ -171,11 +176,11 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
     }
   }
 
-  Future<void> _logResponse(
+  void _logResponse(
     String method,
     String statusMessage,
     dynamic data,
-  ) async {
+  ) {
     final logMessage = "Firebase $method: $statusMessage";
     if (data != null) {
       AppLogger.print(
@@ -187,11 +192,11 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
     }
   }
 
-  Future<void> _logError(
+  void _logError(
     String method,
     String statusMessage,
     dynamic error,
-  ) async {
+  ) {
     final logMessage = "Firebase $method Error: $statusMessage - $error";
     AppLogger.print(
       logMessage,
@@ -205,12 +210,12 @@ class FirestoreDataSource<T> with Mappable<T> implements DataSource<T> {
     Future<T?> Function() apiCall,
   ) async {
     try {
-      await _logRequest(method, collectionName, null);
+      _logRequest(method, collectionName, null);
       final response = await apiCall();
-      await _logResponse(method, "Success", response);
+      _logResponse(method, "Success", response);
       return response;
     } catch (error) {
-      await _logError(method, "Error", error);
+      _logError(method, "Error", error);
       return null;
     }
   }

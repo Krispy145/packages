@@ -26,8 +26,9 @@ abstract class DummyDataSource<T> implements DataSource<T> {
   }
 
   @override
-  Future<void> add(T value) async {
+  Future<T?> add(T value) async {
     fakeData.add(value);
+    return value;
   }
 
   @override
@@ -65,10 +66,7 @@ abstract class DummyDataSource<T> implements DataSource<T> {
 
   @override
   Future<T?> search(Map<String, dynamic> queries) async {
-    return fakeData
-        .where((element) => matchesQuery(queries, element))
-        .toList()
-        .firstOrNull;
+    return fakeData.where((element) => matchesQuery(queries, element)).toList().firstOrNull;
   }
 
   @override

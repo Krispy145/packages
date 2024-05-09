@@ -29,6 +29,14 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
         .run(() => super.requestPermissions(permissions));
   }
 
+  late final _$searchAsyncAction =
+      AsyncAction('_NotificationsStore.search', context: context);
+
+  @override
+  Future<NotificationModel?> search(Map<String, dynamic> queries) {
+    return _$searchAsyncAction.run(() => super.search(queries));
+  }
+
   late final _$_NotificationsStoreActionController =
       ActionController(name: '_NotificationsStore', context: context);
 

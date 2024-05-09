@@ -15,8 +15,8 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
   final String createButtonTitle;
   final Map<String, BaseFormField> modelFields;
   final EdgeInsets? scrollViewPadding;
-  final void Function(bool result)? onBack;
-  final IconData backIcon;
+  final void Function(bool)? onBack;
+  final List<Widget?> stackedWidgets;
   const FormsModelView({
     super.key,
     required this.store,
@@ -27,7 +27,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
     this.updateButtonTitle = "Update",
     this.createButtonTitle = "Create",
     this.onBack,
-    this.backIcon = Icons.arrow_back,
+    this.stackedWidgets = const [],
   });
 
   bool get isUpdating => isEditing && store.value != null;
@@ -39,8 +39,10 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
         Column(
           children: [
             Sizes.l.spacer(),
-            header ?? _buildHeader(context),
-            Sizes.m.spacer(),
+            if (header != null) ...[
+              header!,
+              Sizes.m.spacer(),
+            ],
             Expanded(
               child: Observer(
                 builder: (context) {
@@ -63,22 +65,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
             ),
           ],
         ),
-        Align(
-          alignment: Alignment.topLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: IconButton(
-              icon: Icon(backIcon),
-              onPressed: () {
-                if (onBack != null) {
-                  onBack?.call(false);
-                } else {
-                  Navigator.of(context).pop();
-                }
-              },
-            ),
-          ),
-        ),
+        ...stackedWidgets.whereType<Widget>(),
       ],
     );
   }
@@ -131,11 +118,7 @@ class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
           title: '${isUpdating ? 'Updated' : 'Created'} $modelType',
         ),
       );
-      if (onBack != null) {
-        onBack?.call(result);
-      } else {
-        Navigator.of(context).pop(result);
-      }
+      onBack?.call(result);
     });
   }
 }

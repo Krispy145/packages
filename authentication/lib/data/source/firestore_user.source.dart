@@ -7,18 +7,16 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [FirestoreUserDataSource] is a class that implements [UserDataSource] interface.
-class FirestoreUserDataSource extends FirestoreDataSource<UserModel> implements UserDataSource {
+class FirestoreUserDataSource<T extends UserModel> extends FirestoreDataSource<T> implements UserDataSource<T> {
   /// [FirestoreUserDataSource] constructor.
-  FirestoreUserDataSource()
-      : super(
-          "users",
-          convertDataTypeFromMap: UserModel.fromMap,
-          convertDataTypeToMap: (data) => data.toMap(),
-        );
+  FirestoreUserDataSource({
+    required super.convertDataTypeFromMap,
+    required super.convertDataTypeToMap,
+  }) : super("users");
 
   /// [_handleError] is an optional helper method that handles errors when calling the Firestore database.
   // ignore: unused_element
-  Future<T?> _handleError<T>(Future<T?> Function() firestoreCall) async {
+  Future<T?> _handleError(Future<T?> Function() firestoreCall) async {
     try {
       return await firestoreCall();
     } catch (e) {

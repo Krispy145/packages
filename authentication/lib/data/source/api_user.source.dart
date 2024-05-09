@@ -7,20 +7,17 @@ import "../models/user_model.dart";
 import "_source.dart";
 
 /// [ApiUserDataSource] is a class that implements [UserDataSource] interface.
-class ApiUserDataSource extends ApiDataSource<UserModel> implements UserDataSource {
-  final bool logToDatabase;
-
+class ApiUserDataSource<T extends UserModel> extends ApiDataSource<T> implements UserDataSource<T> {
   /// [ApiUserDataSource] constructor.
-  ApiUserDataSource(super.baseUrl, {this.logToDatabase = true})
-      : super(
-          sourceSuffix: "users",
-          convertDataTypeFromMap: UserModel.fromMap,
-          convertDataTypeToMap: (data) => data.toMap(),
-        );
+  ApiUserDataSource(
+    super.baseUrl, {
+    required super.convertDataTypeFromMap,
+    required super.convertDataTypeToMap,
+  }) : super(sourceSuffix: "users");
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<T?> _handleError<T>(Future<T?> Function() apiCall) async {
+  Future<T?> _handleError(Future<T?> Function() apiCall) async {
     try {
       return await apiCall();
     } catch (e) {

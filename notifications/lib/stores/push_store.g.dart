@@ -90,7 +90,7 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.add', context: context);
 
   @override
-  Future<void> add(NotificationModel notification) {
+  Future<NotificationModel?> add(NotificationModel notification) {
     return _$addAsyncAction.run(() => super.add(notification));
   }
 

@@ -9,6 +9,9 @@ enum DataSourceTypes {
   /// [firestore] is the firestore data source.
   firestore,
 
+  /// [supabase] is the supabase data source.
+  supabase,
+
   /// [secure] is the secure data source.
   secure,
 
@@ -39,7 +42,7 @@ abstract class DataSource<T> {
   Future<void> updateAll(Map<String, T> values);
 
   /// [add] method adds the value of the given id
-  Future<void> add(T value);
+  Future<T?> add(T value);
 
   /// [addAll] method adds all the key-value pairs
   Future<void> addAll(List<T> value);
