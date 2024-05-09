@@ -1,24 +1,3 @@
-// /// [DataSourceTypes] is an enum that defines the different data sources.
-// enum DataSourceTypes {
-//   /// [api] is the remote data source.
-//   api,
-
-//   /// [local] is the local data source.
-//   local,
-
-//   /// [firestore] is the firestore data source.
-//   firestore,
-
-//   /// [supabase] is the supabase data source.
-//   supabase,
-
-//   /// [secure] is the secure data source.
-//   secure,
-
-//   /// [dummy] is the dummy data source.
-//   dummy;
-// }
-
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
 /// see: HiveDataSource and RemoteDataSource
@@ -54,10 +33,15 @@ abstract class DataSource<T, Q> {
   Future<List<T?>> searchAll(Q query);
 }
 
-abstract mixin class Mappable<T> {
+mixin Mappable<T> {
   /// [convertFromMap] method converts the given value to a map
   T convertFromMap(Map<String, dynamic> data);
 
   /// [convertToMap] method converts the given map to a value
   Map<String, dynamic> convertToMap(T data);
+}
+
+mixin Searchable<Q> {
+  /// [buildQuery] method builds the query
+  Q buildQuery(Q query, Q collectionReference);
 }
