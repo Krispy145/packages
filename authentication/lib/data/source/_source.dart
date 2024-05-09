@@ -1,5 +1,5 @@
 import "package:authentication/data/models/auth_params.dart";
-import "package:utilities/data/models/search_query_model.dart";
+import "package:utilities/data/models/basic_search_query_model.dart";
 import "package:utilities/data_sources/source.dart";
 
 import "../models/user_model.dart";
@@ -23,4 +23,4 @@ abstract class AuthenticationDataSource<T extends UserModel, Q> extends DataSour
 }
 
 /// [UserDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-abstract class UserDataSource<T extends UserModel> extends DataSource<T, SearchQueryModel> {}
+abstract class UserDataSource<T extends UserModel> extends DataSource<T, BasicSearchQueryModel> {}

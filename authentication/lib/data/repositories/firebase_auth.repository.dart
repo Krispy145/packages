@@ -326,7 +326,7 @@ class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationD
         final _currentResponse = convertDataTypeToMap(databaseUser);
         _currentResponse["last_login_at"] = DateTime.now();
         _currentUserModel = convertDataTypeFromMap(_currentResponse);
-        unawaited(userDataRepository?.updateUser(user: _currentUserModel!));
+        await userDataRepository?.updateUser(user: _currentUserModel!);
         currentUserModelSubject.add(_currentUserModel);
       }
     }

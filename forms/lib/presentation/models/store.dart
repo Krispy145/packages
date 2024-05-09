@@ -8,16 +8,21 @@ part "store.g.dart";
 class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
 
 abstract class _FormsModelStore<T> extends LoadStateStore with Store {
-  final void Function(T) onValueChanged;
+  // final void Function(T) onValueChanged;
   final void Function(T) onValueSaved;
 
   _FormsModelStore({
     required this.value,
-    required this.onValueChanged,
+    // required this.onValueChanged,
     required this.onValueSaved,
   }) {
-    reaction((r) => value, onValueChanged);
+    // reaction((r) => value, onValueChanged);
     setLoaded();
+  }
+
+  @action
+  void onValueChanged(T newValue) {
+    value = newValue;
   }
 
   @observable
