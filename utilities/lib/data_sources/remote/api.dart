@@ -21,9 +21,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
   /// [sourceSuffix] is the suffix of the API
   final String sourceSuffix;
 
+  final String? proxy;
+
   /// [ApiDataSource] constructor
   ApiDataSource(
     this.baseUrl, {
+    this.proxy,
     required this.sourceSuffix,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
@@ -34,6 +37,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     _dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          if (proxy != null) {
+            final _queryParametersString = options.queryParameters.entries.map((e) => "${e.key}=${e.value}").join("&");
+            options
+              ..path = "$proxy${Uri.encodeComponent("${options.path}?$_queryParametersString")}"
+              ..queryParameters = {};
+          }
           // Log the request
           AppLogger.print(
             "REQUEST: Headers: ${options.headers} ${options.method} -> ${options.uri}",

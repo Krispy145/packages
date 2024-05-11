@@ -4,6 +4,7 @@ import 'package:latlong2/latlong.dart';
 class MapConstants {
   static const double maxZoomLevel = 16;
   static const double minZoomLevel = 2;
+  static const proxy = "https://corsproxy.io/?";
   static const googlePrefix = "https://maps.googleapis.com";
   static const googlePlaceSearchSuffix = "maps/api/place";
   static const googlePlacePhotoSuffix = "$googlePlaceSearchSuffix/photo";

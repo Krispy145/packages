@@ -5,7 +5,7 @@ import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 
-class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
+abstract class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
 
 abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   // final void Function(T) onValueChanged;
@@ -14,11 +14,14 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   _FormsModelStore({
     required this.value,
     // required this.onValueChanged,
+    required this.isAdding,
     required this.onValueSaved,
   }) {
     // reaction((r) => value, onValueChanged);
     setLoaded();
   }
+
+  final bool isAdding;
 
   @action
   void onValueChanged(T newValue) {

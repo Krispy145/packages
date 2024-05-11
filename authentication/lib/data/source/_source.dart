@@ -5,7 +5,7 @@ import "package:utilities/data_sources/source.dart";
 import "../models/user_model.dart";
 
 /// [AuthenticationDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-abstract class AuthenticationDataSource<T extends UserModel, Q> extends DataSource<T, Q> {
+mixin AuthenticationDataSource<T extends UserModel, Q> on DataSource<T, Q> {
   /// [signIn] signs in the user.
   Future<T?> signIn({required AuthParams params});
 
@@ -23,4 +23,4 @@ abstract class AuthenticationDataSource<T extends UserModel, Q> extends DataSour
 }
 
 /// [UserDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-abstract class UserDataSource<T extends UserModel> extends DataSource<T, BasicSearchQueryModel> {}
+mixin UserDataSource<T extends UserModel> on DataSource<T, BasicSearchQueryModel> {}

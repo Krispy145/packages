@@ -4,9 +4,6 @@ import "package:utilities/data_sources/source.dart";
 
 /// [DummyDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
 abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
-  /// [DummyDataSource] constructor.
-  DummyDataSource();
-
   List<T> get fakeData;
 
   bool matchesID(String id, T item);

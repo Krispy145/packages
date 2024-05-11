@@ -15,18 +15,22 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
   ApiGooglePlacesDataSource({required this.googleApiKey})
       : super(
           MapConstants.googlePrefix,
+          proxy: MapConstants.proxy,
           sourceSuffix: MapConstants.googlePlaceSearchSuffix,
           convertDataTypeFromMap: GoogleResponsesModelMapper.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
-          options: BaseOptions(queryParameters: {
-            "key": googleApiKey,
-          }, headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": "true"
-          }),
+          options: BaseOptions(
+            queryParameters: {
+              "key": googleApiKey,
+            },
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
+              "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Credentials": "true"
+            },
+          ),
         ) {
     AppLogger.print("API RESULT: Configuration set for Google Places API: $googleApiKey, ${MapConstants.googlePrefix}, ${MapConstants.googlePlaceSearchSuffix}", [MapLoggers.search]);
   }

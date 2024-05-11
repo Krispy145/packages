@@ -4,6 +4,6 @@ import "package:fonts/data/models/font_descriptor_and_url.dart";
 typedef LoadingFontData = Future<ByteData?>;
 
 /// [FontsDataSource] is an abstract class that defines the basic CRUD operations for the [ByteData] entity.
-abstract class FontsDataSource {
+mixin FontsDataSource {
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl);
 }

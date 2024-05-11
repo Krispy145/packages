@@ -30,19 +30,19 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Column(
+    return Observer(
+      builder: (context) {
+        return Stack(
           children: [
-            Sizes.l.spacer(),
-            if (header != null) ...[
-              header!,
-              Sizes.m.spacer(),
-            ],
-            Expanded(
-              child: Observer(
-                builder: (context) {
-                  return ListView.builder(
+            Column(
+              children: [
+                Sizes.l.spacer(),
+                if (header != null) ...[
+                  header!,
+                  Sizes.m.spacer(),
+                ],
+                Expanded(
+                  child: ListView.builder(
                     padding: scrollViewPadding,
                     itemBuilder: (context, index) {
                       final key = modelFields(context).keys.elementAt(index);
@@ -50,19 +50,19 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
                       return widget;
                     },
                     itemCount: modelFields(context).length,
-                  );
-                },
-              ),
+                  ),
+                ),
+                Sizes.m.spacer(),
+                ElevatedButton(
+                  onPressed: () => _showConfirmationDialog(context),
+                  child: Text(isUpdating ? updateButtonTitle : createButtonTitle),
+                ),
+              ],
             ),
-            Sizes.m.spacer(),
-            ElevatedButton(
-              onPressed: () => _showConfirmationDialog(context),
-              child: Text(isUpdating ? updateButtonTitle : createButtonTitle),
-            ),
+            if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
           ],
-        ),
-        if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
-      ],
+        );
+      },
     );
   }
 
