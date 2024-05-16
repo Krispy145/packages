@@ -342,18 +342,19 @@ class ReadMoreTextState extends State<ReadMoreText> {
           textWidthBasis: textWidthBasis,
           textHeightBehavior: textHeightBehavior,
           ellipsis: overflow == TextOverflow.ellipsis ? widget.delimiter : null,
-        );
-        textPainter.layout(maxWidth: maxWidth);
+        )..layout(maxWidth: maxWidth);
         final linkSize = textPainter.size;
 
         // Layout and measure delimiter
-        textPainter.text = delimiter;
-        textPainter.layout(maxWidth: maxWidth);
+        textPainter
+          ..text = delimiter
+          ..layout(maxWidth: maxWidth);
         final delimiterSize = textPainter.size;
 
         // Layout and measure text
-        textPainter.text = text;
-        textPainter.layout(minWidth: constraints.minWidth, maxWidth: maxWidth);
+        textPainter
+          ..text = text
+          ..layout(minWidth: constraints.minWidth, maxWidth: maxWidth);
         final textSize = textPainter.size;
 
         // Get the endIndex of data
