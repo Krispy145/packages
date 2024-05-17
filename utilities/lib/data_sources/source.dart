@@ -1,7 +1,7 @@
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
 /// see: HiveDataSource and RemoteDataSource
-mixin DataSource<T, Q> {
+abstract mixin class DataSource<T, Q> {
   /// [get] method returns the value of the given id
   Future<T?> get(String id);
 
