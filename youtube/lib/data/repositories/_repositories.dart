@@ -1,4 +1,5 @@
-import 'youtube.repository.dart';
+import 'playlist.repository.dart';
+import 'video.repository.dart';
 
 ///END OF IMPORTS
 
@@ -9,8 +10,11 @@ class DataRepositories {
   /// [instance] is the singleton instance of [DataRepositories].
   static final DataRepositories instance = DataRepositories._();
 
-  /// [youtube] is the [YoutubeDataRepository] instance.
-  final YoutubeDataRepository youtube = YoutubeDataRepository();
+  /// [playlist] is the [PlaylistDataRepository] instance.
+  final PlaylistDataRepository playlist = PlaylistDataRepository();
+
+  /// [video] is the [VideoDataRepository] instance.
+  final VideoDataRepository video = VideoDataRepository();
 
   ///END OF REPOSITORIES
 }

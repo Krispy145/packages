@@ -16,6 +16,7 @@ packages:
   - socials
  - youtube
  - contacts
+ - youtube
  # MELOS_PACKAGE_LIST_END
 
 scripts:
