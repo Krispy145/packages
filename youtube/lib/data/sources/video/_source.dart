@@ -1,11 +1,10 @@
 library data.sources.video;
 
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/local/dummy_data.dart";
-import 'package:utilities/data_sources/remote/api.dart';
+import 'package:utilities/data_sources/api/source.dart';
+import 'package:utilities/data_sources/dummy/source.dart';
 import 'package:utilities/data_sources/source.dart';
-
-import '../../models/video_model.dart';
+import 'package:youtube/data/models/video_model.dart';
 
 part 'api.source.dart';
 part 'dummy.source.dart';
