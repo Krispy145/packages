@@ -1,5 +1,5 @@
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/local/assets.dart";
+import "package:utilities/data_sources/assets/source.dart";
 
 import "_source.dart";
 

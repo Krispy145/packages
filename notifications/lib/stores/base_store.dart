@@ -5,8 +5,8 @@ import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:mobx/mobx.dart";
 import "package:notifications/models/notification.dart";
 import "package:notifications/models/permissions.dart";
-import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
-import "package:utilities/data_sources/local/hive/hive.dart";
+import "package:utilities/data_sources/hive/helpers/type_box.dart";
+import "package:utilities/data_sources/hive/source.dart";
 
 part "base_store.g.dart";
 
@@ -40,6 +40,42 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
     throw UnimplementedError();
   }
 
+  @override
+  bool matchesQuery(
+    Map<String, dynamic> query,
+    NotificationModel notification,
+  ) {
+    var isMatch = true;
+    query.forEach((key, value) {
+      if (isMatch) {
+        switch (key) {
+          case "id":
+            isMatch = notification.id == value;
+            break;
+          case "type":
+            isMatch = notification.type == value;
+            break;
+          case "title":
+            isMatch = notification.title == value;
+            break;
+          case "body":
+            isMatch = notification.body == value;
+            break;
+          case "isLocalNotification":
+            isMatch = notification.isLocalNotification == (value == "true");
+            break;
+          case "isRead":
+            isMatch = notification.isRead == (value == "true");
+            break;
+          default:
+            isMatch = false;
+            break;
+        }
+      }
+    });
+    return isMatch;
+  }
+
   /// [search] searches for notifications with the given [query].
   @override
   @action
@@ -47,35 +83,7 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
     final results = <NotificationModel>[];
     for (final element in notifications.value.values) {
       if (element != null) {
-        var isMatch = true;
-        query.forEach((key, value) {
-          if (isMatch) {
-            switch (key) {
-              case "id":
-                isMatch = element.id == value;
-
-                break;
-              case "type":
-                isMatch = element.type == value;
-                break;
-              case "title":
-                isMatch = element.title == value;
-                break;
-              case "body":
-                isMatch = element.body == value;
-                break;
-              case "isLocalNotification":
-                isMatch = element.isLocalNotification == (value == "true");
-                break;
-              case "isRead":
-                isMatch = element.isRead == (value == "true");
-                break;
-              default:
-                isMatch = false;
-                break;
-            }
-          }
-        });
+        final isMatch = matchesQuery(query, element);
         if (isMatch) {
           results.add(element);
         }

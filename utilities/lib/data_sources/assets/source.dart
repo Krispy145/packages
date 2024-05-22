@@ -36,12 +36,12 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
 
   @override
   Future<T?> get(String id) async {
-    final data = await _tryLoadJson(rootBundleKey, id: id);
+    final data = await tryLoadJson(rootBundleKey, id: id);
     if (data.isEmpty) return null;
     return data.first;
   }
 
-  Future<List<T?>> _tryLoadJson(String path, {String? id}) async {
+  Future<List<T?>> tryLoadJson(String path, {String? id}) async {
     try {
       final jsonString = await rootBundle.loadString(path);
       final response = json.decode(jsonString);
@@ -77,7 +77,7 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
 
   @override
   Future<List<T?>> getAll() async {
-    final data = await _tryLoadJson(rootBundleKey);
+    final data = await tryLoadJson(rootBundleKey);
     return data;
   }
 
@@ -120,7 +120,7 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
 
   @override
   Future<List<T?>> searchAll(Q query) async {
-    final data = await _tryLoadJson(rootBundleKey);
+    final data = await tryLoadJson(rootBundleKey);
     return data.whereType<T>().where((element) => matchesQuery(query, element)).toList();
   }
 }

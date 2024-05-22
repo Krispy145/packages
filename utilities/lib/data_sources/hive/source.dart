@@ -3,9 +3,9 @@ import "dart:async";
 import "package:flutter/foundation.dart";
 import "package:hive_flutter/hive_flutter.dart";
 import "package:mobx/mobx.dart";
-import "package:utilities/data_sources/local/hive/helpers/map_type_adaptor.dart";
-import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
-import "package:utilities/data_sources/local/hive/helpers/type_box_listeneable.dart";
+import "package:utilities/data_sources/hive/helpers/map_type_adaptor.dart";
+import "package:utilities/data_sources/hive/helpers/type_box.dart";
+import "package:utilities/data_sources/hive/helpers/type_box_listeneable.dart";
 import "package:utilities/data_sources/source.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
@@ -106,6 +106,8 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
 
   @override
   Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
+
+  bool matchesQuery(Q query, T item);
 
   /// [get] method returns the value of the given key
   @override

@@ -7,7 +7,7 @@ import "package:utilities/utils/loggers.dart";
 import "package:uuid/uuid.dart";
 
 /// [SecureDataSource] is a wrapper class for [FlutterSecureStorage]
-class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
+abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -25,6 +25,10 @@ class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
 
   @override
   Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
+
+  bool matchesID(String key, T item);
+
+  bool matchesQuery(Q query, T item);
 
   final FlutterSecureStorage _storage = const FlutterSecureStorage(
     aOptions: AndroidOptions(encryptedSharedPreferences: true),

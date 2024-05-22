@@ -1,38 +1,29 @@
-// import 'package:utilities/data_sources/local/hive.dart';
-// import 'package:utilities/logger/logger.dart';
+// import "package:utilities/data/models/basic_search_query_model.dart";
+// import "package:utilities/data_sources/local/hive/hive.dart";
 
-// import '../../models/digital_oasis_model.dart';
-// import '_source.dart';
+// import "_source.dart";
 
 // /// [HiveDODataSource] is a class that implements [DODataSource] interface.
-// class HiveDODataSource extends HiveDataSource<DOModel> implements DODataSource {
+// class HiveDODataSource<T> extends HiveDataSource<T, BasicSearchQueryModel> implements DODataSource<T> {
 //   // Simulated in-memory data store
-//   final Map<String, DOModel> _dataStore = {};
+//   final Map<String, T> _dataStore = {};
 
 //   /// [HiveDODataSource] constructor.
-//   HiveDODataSource()
-//       : super(
-//           'digital_oasis',
-//           convertDataTypeFromMap: DOModel.fromJson,
-//           convertDataTypeToMap: (data) => data.toJson(),
-//         );
-
+//   HiveDODataSource(
+//     super.tableName, {
+//     required super.convertDataTypeFromMap,
+//     required super.convertDataTypeToMap,
+//   });
+  
 //   @override
-//   Future<List<DOModel?>> search(Q query) async {
-//     try {
-//       final DO = _dataStore.values.toList();
-//       AppLogger.print(
-//         "IN MEMORY RESULT: Fetched all DO models successfully",
-//         [ThemeLoggers.theme],
-//       );
-//       return Future.value(DO);
-//     } catch (e) {
-//       AppLogger.print(
-//         "IN MEMORY RESULT: Error fetching all DO models: $e",
-//         [ThemeLoggers.theme],
-//         type: LoggerType.error,
-//       );
-//       return [];
-//     }
+//   Future<T?> search(BasicSearchQueryModel query) {
+//     // TODO: implement search
+//     throw UnimplementedError();
+//   }
+  
+//   @override
+//   Future<List<T?>> searchAll(BasicSearchQueryModel query) {
+//     // TODO: implement searchAll
+//     throw UnimplementedError();
 //   }
 // }

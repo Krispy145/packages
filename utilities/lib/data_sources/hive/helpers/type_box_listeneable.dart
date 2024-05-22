@@ -2,7 +2,7 @@ import "dart:async";
 
 import "package:flutter/foundation.dart";
 import "package:hive_flutter/hive_flutter.dart";
-import "package:utilities/data_sources/local/hive/helpers/type_box.dart";
+import "package:utilities/data_sources/hive/helpers/type_box.dart";
 
 class TypeBoxListenable<T> extends ValueListenable<TypeBox<T>> {
   final TypeBox<T> box;

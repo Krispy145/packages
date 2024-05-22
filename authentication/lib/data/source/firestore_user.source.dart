@@ -2,7 +2,7 @@ import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/remote/firestore.dart";
+import "package:utilities/data_sources/firestore/source.dart";
 import "package:utilities/logger/logger.dart";
 
 import "../models/user_model.dart";

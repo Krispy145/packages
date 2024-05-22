@@ -1,6 +1,6 @@
 import "package:supabase_flutter/supabase_flutter.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/remote/supabase.dart";
+import "package:utilities/data_sources/supabase/source.dart";
 
 import "_source.dart";
 
@@ -19,4 +19,10 @@ class SupabaseDODataSource<T> extends SupabaseDataSource<T, BasicSearchQueryMode
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3Z2plZHppc2p3Y3V0am13Y3prIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE4Njg2NzMsImV4cCI6MjAyNzQ0NDY3M30.QEBOJExUreDTIEXJlDTUJBu4MUPoqYxaeSiPQCJOJ3U",
           ),
         );
+
+  @override
+  SupabaseQueryBuilder buildQuery(BasicSearchQueryModel query, SupabaseQueryBuilder table) {
+    // TODO: implement buildQuery
+    throw UnimplementedError();
+  }
 }
