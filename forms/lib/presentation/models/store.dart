@@ -9,7 +9,7 @@ abstract class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T
 
 abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   // final void Function(T) onValueChanged;
-  final void Function(T) onValueSaved;
+  final void Function(T value, bool adding) onValueSaved;
 
   _FormsModelStore({
     required this.value,
@@ -33,6 +33,6 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
 
   @action
   void saveValue() {
-    onValueSaved(value);
+    onValueSaved(value, isAdding);
   }
 }
