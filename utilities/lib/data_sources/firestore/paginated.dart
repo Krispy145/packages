@@ -1,10 +1,10 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:dart_mappable/dart_mappable.dart";
-import "package:utilities/data_sources/paginated_source.dart";
-import "package:utilities/data_sources/remote/firestore.dart";
+import "package:utilities/data_sources/firestore/source.dart";
+import "package:utilities/data_sources/paginated.dart";
 import "package:utilities/helpers/tuples.dart";
 
-part "paginated_firestore.mapper.dart";
+part "paginated.mapper.dart";
 
 @MappableClass()
 class FirestoreResponseModel<T> extends ResponseModel with FirestoreResponseModelMappable<T> {
@@ -75,20 +75,6 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     required Q query,
   }) async {
     var firestoreQuery = buildQuery(query, collectionReference);
-    // final querySnapshot = await firestoreQuery.get();
-
-    // final _collection = _firestore.collection(collectionName);
-    // Query query = _collection;
-    // if (queries != null && queries.isNotEmpty) {
-    //   query = query.where(
-    //     queries.keys.first,
-    //     isEqualTo: queries.values.first,
-    //   );
-    // }
-    // if (orderBy != null) {
-    //   query = query.orderBy(orderBy, descending: true);
-    // }
-
     if (lastResponse != null) {
       if (lastResponse.lastDocumentSnapshot != null) {
         firestoreQuery = firestoreQuery.startAfterDocument(

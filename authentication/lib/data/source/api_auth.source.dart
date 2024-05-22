@@ -1,7 +1,7 @@
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
-import "package:utilities/data_sources/remote/api.dart";
+import "package:utilities/data_sources/api/source.dart";
 import "package:utilities/logger/logger.dart";
 
 import "../models/user_model.dart";

@@ -1,10 +1,9 @@
 import "package:dart_mappable/dart_mappable.dart";
-import "package:utilities/data_sources/local/dummy_data.dart";
+import "package:utilities/data_sources/dummy/source.dart";
+import "package:utilities/data_sources/paginated.dart";
 import "package:utilities/helpers/tuples.dart";
 
-import "../paginated_source.dart";
-
-part "paginated_dummy_data.mapper.dart";
+part "paginated.mapper.dart";
 
 @MappableClass()
 class DummyDataResponseModel<T> extends ResponseModel with DummyDataResponseModelMappable<T> {

@@ -1,6 +1,6 @@
 import "package:socials/data/models/instagram/user_model.dart";
 import "package:socials/utils/loggers.dart";
-import "package:utilities/data_sources/local/secure.dart";
+import "package:utilities/data_sources/secure/source.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [SecureInstagramDataSource] is a class used to manage the secure storage of [InstagramUserModel] data.
@@ -11,6 +11,18 @@ class SecureInstagramDataSource extends SecureDataSource<InstagramUserModel, Map
           convertDataTypeFromMap: InstagramUserModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
         );
+
+  @override
+  bool matchesID(String key, InstagramUserModel item) => item.id == key;
+
+  @override
+  bool matchesQuery(Map<String, dynamic> query, InstagramUserModel item) {
+    AppLogger.print(
+      "IN MEMORY RESULT: Matches query not implemented for InstagramUserModel",
+      [SocialsLoggers.instagram],
+    );
+    return false;
+  }
 
   @override
   Future<InstagramUserModel?> search(Map<String, dynamic> query) async {

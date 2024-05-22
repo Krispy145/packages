@@ -123,12 +123,12 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     });
   }
 
-  SupabaseQueryBuilder _buildQuery(Q query, SupabaseQueryBuilder table);
+  SupabaseQueryBuilder buildQuery(Q query, SupabaseQueryBuilder table);
 
   @override
   Future<T?> search(Q query) async {
     final table = await _supabase!.from(tableName) as SupabaseQueryBuilder;
-    final supabaseQuery = _buildQuery(query, table);
+    final supabaseQuery = buildQuery(query, table);
     final results = await supabaseQuery.select().limit(1);
     return results.map(convertDataTypeFromMap).toList().firstOrNull;
     // final results = await _supabase?.from(tableName);
@@ -140,7 +140,7 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
   @override
   Future<List<T?>> searchAll(Q query) async {
     final table = await _supabase!.from(tableName) as SupabaseQueryBuilder;
-    final supabaseQuery = _buildQuery(query, table);
+    final supabaseQuery = buildQuery(query, table);
     final results = await supabaseQuery.select().limit(12);
     return results.map(convertDataTypeFromMap).toList();
     // final columnNames = queries.keys.toList();

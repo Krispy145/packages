@@ -1,7 +1,8 @@
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
+import "package:supabase/src/supabase_query_builder.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/remote/supabase.dart";
+import "package:utilities/data_sources/supabase/source.dart";
 import "package:utilities/logger/logger.dart";
 
 import "../models/user_model.dart";
@@ -14,6 +15,12 @@ class SupabaseUserDataSource<T extends UserModel> extends SupabaseDataSource<T, 
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
   }) : super("users");
+
+  @override
+  SupabaseQueryBuilder buildQuery(BasicSearchQueryModel query, SupabaseQueryBuilder table) {
+    // TODO: implement buildQuery
+    throw UnimplementedError();
+  }
 
   /// [_handleError] is an optional helper method that handles errors when calling the Supabase database.
   // ignore: unused_element
