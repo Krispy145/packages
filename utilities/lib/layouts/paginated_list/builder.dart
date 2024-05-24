@@ -21,9 +21,10 @@ class PaginatedListBuilder<T> extends StatelessWidget {
   final bool canRefresh;
   final PaginatedResultsViewType viewType;
   final SliverGridDelegate? gridDelegate;
+  final bool slivers;
 
   /// [PaginatedListBuilder] constructor.
-  const PaginatedListBuilder.listView({
+  PaginatedListBuilder.listView({
     super.key,
     required this.store,
     this.header,
@@ -32,11 +33,13 @@ class PaginatedListBuilder<T> extends StatelessWidget {
     this.stackedWidgets,
     this.padding,
     this.canRefresh = true,
-  })  : viewType = PaginatedResultsViewType.listView,
+    this.slivers = false,
+  })  : assert(!((canRefresh == true || (stackedWidgets?.isNotEmpty ?? false)) && slivers), "Cannot have refresh or stacked widgets and use slivers"),
+        viewType = PaginatedResultsViewType.listView,
         gridDelegate = null;
 
   /// [PaginatedListBuilder] constructor.
-  const PaginatedListBuilder.gridView({
+  PaginatedListBuilder.gridView({
     super.key,
     required this.store,
     this.header,
@@ -46,10 +49,13 @@ class PaginatedListBuilder<T> extends StatelessWidget {
     this.stackedWidgets,
     this.padding,
     this.canRefresh = true,
-  }) : viewType = PaginatedResultsViewType.gridView;
+    this.slivers = false,
+  })  : assert(!((canRefresh == true || (stackedWidgets?.isNotEmpty ?? false)) && slivers), "Cannot have refresh or stacked widgets and use slivers"),
+        viewType = PaginatedResultsViewType.gridView;
 
   @override
   Widget build(BuildContext context) {
+    if (slivers) return _buildResults();
     return Stack(
       children: [
         Padding(
@@ -109,9 +115,18 @@ class PaginatedListBuilder<T> extends StatelessWidget {
 
   Widget _buildView() {
     if (viewType == PaginatedResultsViewType.listView) {
-      return _BuildListView(store: store, itemBuilder: itemBuilder);
+      return _BuildListView(
+        store: store,
+        itemBuilder: itemBuilder,
+        slivers: slivers,
+      );
     } else {
-      return _BuildGridView(store: store, itemBuilder: itemBuilder, gridDelegate: gridDelegate!);
+      return _BuildGridView(
+        store: store,
+        itemBuilder: itemBuilder,
+        gridDelegate: gridDelegate!,
+        slivers: slivers,
+      );
     }
   }
 }
@@ -123,22 +138,34 @@ class _BuildGridView<T> extends StatelessWidget {
     required this.store,
     required this.itemBuilder,
     required this.gridDelegate,
+    required this.slivers,
   });
 
   final PaginatedListStore<T> store;
   final Widget? Function(BuildContext p1, int p2) itemBuilder;
+  final bool slivers;
 
   @override
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        return GridView.builder(
-          gridDelegate: gridDelegate,
-          itemCount: store.results.length,
-          controller: store.scrollController,
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemBuilder: itemBuilder,
-        );
+        if (slivers) {
+          return SliverGrid(
+            gridDelegate: gridDelegate,
+            delegate: SliverChildBuilderDelegate(
+              itemBuilder,
+              childCount: store.results.length,
+            ),
+          );
+        } else {
+          return GridView.builder(
+            gridDelegate: gridDelegate,
+            itemCount: store.results.length,
+            controller: store.scrollController,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemBuilder: itemBuilder,
+          );
+        }
       },
     );
   }
@@ -149,21 +176,30 @@ class _BuildListView<T> extends StatelessWidget {
     super.key,
     required this.store,
     required this.itemBuilder,
+    required this.slivers,
   });
 
   final PaginatedListStore<T> store;
   final Widget? Function(BuildContext p1, int p2) itemBuilder;
+  final bool slivers;
 
   @override
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        return ListView.builder(
-          itemCount: store.results.length,
-          controller: store.scrollController,
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemBuilder: itemBuilder,
-        );
+        if (slivers) {
+          return SliverList.builder(
+            itemBuilder: itemBuilder,
+            itemCount: store.results.length,
+          );
+        } else {
+          return ListView.builder(
+            itemCount: store.results.length,
+            controller: store.scrollController,
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemBuilder: itemBuilder,
+          );
+        }
       },
     );
   }
