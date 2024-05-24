@@ -21,7 +21,12 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
   });
 
   @override
-  Future<Pair<HiveResponseModel<T?>, List<T?>>> getPage({HiveResponseModel<T?>? lastResponse, int? size}) async {
+  Future<Pair<HiveResponseModel<T?>, List<T?>>> getPage({
+    HiveResponseModel<T?>? lastResponse,
+    int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
+  }) async {
     final data = await getAll();
     final lastIndex = lastResponse?.lastIndex ?? -1;
     final nextIndex = lastIndex + 1;

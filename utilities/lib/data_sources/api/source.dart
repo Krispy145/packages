@@ -1,13 +1,14 @@
 import "package:dio/dio.dart";
 import "package:utilities/data_sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [ApiDataSource] is a wrapper class for [Dio] which implements [DataSource]
 abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
-  final Dio _dio = Dio();
+  final Dio dio = Dio();
 
-  final Map<String, CancelToken> _cancelTokens = {};
+  final Map<String, CancelToken> cancelTokens = {};
 
   /// [baseUrl] is the base url of the API
   final String baseUrl;
@@ -33,8 +34,8 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     BaseOptions? options,
   }) {
     // Add interceptors to _dio
-    _dio.options = options ?? BaseOptions();
-    _dio.interceptors.add(
+    dio.options = options ?? BaseOptions();
+    dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
           if (proxy != null) {
@@ -83,19 +84,23 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
   Future<T?> requestData<RequestType>({
     required String requestExtension,
     required RequestType requestType,
+    Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
     final cancelKey = "$_baseUrl/$requestExtension";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    final response = await _dio.post<Map<String, dynamic>>(
+    final response = await dio.post<Map<String, dynamic>>(
       "$_baseUrl/$requestExtension",
       data: requestType,
-      cancelToken: _getCancelToken(cancelKey),
+      queryParameters: queryParameters,
+      cancelToken: getCancelToken(cancelKey),
     );
     return response.data != null ? convertDataTypeFromMap(response.data!) : null;
   }
+
+  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) => Pair("$url/$id", null);
 
   @override
   Future<T?> get(
@@ -107,12 +112,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/$id/get";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    final response = await _dio.get<Map<String, dynamic>>(
-      "$_url/$id",
-      queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+    final response = await dio.get<Map<String, dynamic>>(
+      createUrlWithId(_url, id).first,
+      queryParameters: {...?queryParameters, ...?createUrlWithId(_url, id).second},
+      cancelToken: getCancelToken(cancelKey),
     );
     final convertedResponse = response.data != null ? convertDataTypeFromMap(response.data!) : null;
     return convertedResponse;
@@ -127,12 +132,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/getAll";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    final response = await _dio.get<List<Map<String, dynamic>>>(
+    final response = await dio.get<List<Map<String, dynamic>>>(
       _url,
       queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
     return response.data!.map(convertDataTypeFromMap).toList();
   }
@@ -147,12 +152,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/$id/delete";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    await _dio.delete<Map<String, dynamic>>(
-      "$_url/$id",
-      queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+    await dio.delete<Map<String, dynamic>>(
+      createUrlWithId(_url, id).first,
+      queryParameters: {...?queryParameters, ...?createUrlWithId(_url, id).second},
+      cancelToken: getCancelToken(cancelKey),
     );
   }
 
@@ -165,12 +170,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/deleteAll";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    await _dio.delete<Map<String, dynamic>>(
+    await dio.delete<Map<String, dynamic>>(
       _url,
       queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
   }
 
@@ -185,13 +190,13 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/$id/update";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    await _dio.put<Map<String, dynamic>>(
-      "$_url/$id",
-      queryParameters: queryParameters,
+    await dio.put<Map<String, dynamic>>(
+      createUrlWithId(_url, id).first,
+      queryParameters: {...?queryParameters, ...?createUrlWithId(_url, id).second},
       data: convertDataTypeToMap(data),
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
   }
 
@@ -205,7 +210,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/updateAll";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
     final updateMap = <String, Map<String, dynamic>>{};
 
@@ -213,11 +218,11 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
       updateMap[entry.key] = convertDataTypeToMap(entry.value);
     }
 
-    await _dio.put<Map<String, Map<String, dynamic>>>(
+    await dio.put<Map<String, Map<String, dynamic>>>(
       _url,
       data: updateMap,
       queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
   }
 
@@ -231,13 +236,13 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/add";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    final _response = await _dio.post<Map<String, dynamic>>(
+    final _response = await dio.post<Map<String, dynamic>>(
       _url,
       data: convertDataTypeToMap(data),
       queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
     return _response.data != null ? convertDataTypeFromMap(_response.data!) : null;
   }
@@ -252,7 +257,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/addAll";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
 
     final addMap = <String, Map<String, dynamic>>{};
@@ -260,11 +265,11 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
       addMap[entry.key.toString()] = convertDataTypeToMap(entry.value);
     }
 
-    await _dio.post<List<Map<String, dynamic>>>(
+    await dio.post<List<Map<String, dynamic>>>(
       _url,
       data: addMap,
       queryParameters: queryParameters,
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
   }
 
@@ -280,12 +285,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    final response = await _dio.get<Map<String, dynamic>>(
+    final response = await dio.get<Map<String, dynamic>>(
       _url,
       queryParameters: buildQuery(query),
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
     AppLogger.print(response.data.toString(), [UtilitiesLoggers.apiDataSource]);
 
@@ -301,25 +306,25 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
-      _cancel(cancelKey);
+      cancel(cancelKey);
     }
-    final response = await _dio.get<List<Map<String, dynamic>>>(
+    final response = await dio.get<List<Map<String, dynamic>>>(
       _url,
       queryParameters: buildQuery(query),
-      cancelToken: _getCancelToken(cancelKey),
+      cancelToken: getCancelToken(cancelKey),
     );
     return response.data!.map(convertDataTypeFromMap).toList();
   }
 
-  CancelToken _getCancelToken(String id) {
-    if (!_cancelTokens.containsKey(id)) {
-      _cancelTokens[id] = CancelToken();
+  CancelToken getCancelToken(String id) {
+    if (!cancelTokens.containsKey(id)) {
+      cancelTokens[id] = CancelToken();
     }
-    return _cancelTokens[id]!;
+    return cancelTokens[id]!;
   }
 
-  void _cancel(String id) {
-    _cancelTokens[id]?.cancel();
-    _cancelTokens.remove(id);
+  void cancel(String id) {
+    cancelTokens[id]?.cancel();
+    cancelTokens.remove(id);
   }
 }

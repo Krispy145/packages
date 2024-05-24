@@ -52,7 +52,7 @@ class UserDataRepository<T extends UserModel> {
 
   /// [updateUser] updates a [T] based on the [user] and [source].
   Future<void> updateUser(T user) async {
-    return _dataSourceByType(source).update(user.id, user);
+    await _dataSourceByType(source).update(user.id, user);
   }
 
   /// [deleteUser] deletes a [T] based on the [id] and [source].

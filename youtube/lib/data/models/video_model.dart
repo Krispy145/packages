@@ -17,6 +17,7 @@ part "video_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class VideoModel with VideoModelMappable {
+  final String? id;
   final String? kind;
   final String? etag;
   final VideoSnippetModel? snippet;
@@ -33,6 +34,7 @@ class VideoModel with VideoModelMappable {
   final Map<String, LocalizationsModel>? localizations;
 
   const VideoModel({
+    this.id,
     this.kind,
     this.etag,
     this.snippet,
@@ -52,28 +54,7 @@ class VideoModel with VideoModelMappable {
   static const fromMap = VideoModelMapper.fromMap;
   static const fromJson = VideoModelMapper.fromJson;
 
-  // static const empty = VideoModel(id: "");
-
-  // static const videoOne = VideoModel(
-  //   id: "videoOneId",
-  //   name: "Video One",
-  // );
-
-  // static const videoTwo = VideoModel(
-  //   id: "videoTwoId",
-  //   name: "Video Two",
-  // );
-
-  // static const videoThree = VideoModel(
-  //   id: "videoThreeId",
-  //   name: "Video Three",
-  // );
-
-  static final List<VideoModel> fakeData = [
-    // videoOne,
-    // videoTwo,
-    // videoThree,
-  ];
+  static final List<VideoModel> fakeData = [];
 
   Video toVideo() {
     return Video(

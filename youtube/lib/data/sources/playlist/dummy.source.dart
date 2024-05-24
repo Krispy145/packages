@@ -15,8 +15,23 @@ class DummyPlaylistDataSource extends DummyDataSource<PlaylistModel, BasicSearch
   }
 
   @override
-  Future<List<PlaylistModel?>> getAll({String? channelId}) {
-    // return super.getAll(channelId);
+  Future<Pair<ResponseModel, List<PlaylistModel?>>> searchPage({
+    ResponseModel? lastResponse,
+    int? size,
+    required BasicSearchQueryModel query,
+  }) {
+    // TODO: implement searchPage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Pair<ResponseModel, List<PlaylistModel?>>> getPage({
+    ResponseModel? lastResponse,
+    int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
+  }) {
+    // TODO: implement getPage
     throw UnimplementedError();
   }
 }

@@ -1,4 +1,6 @@
-import 'playlist.repository.dart';
+import 'package:youtube/data/repositories/playlist.repository.dart';
+import 'package:youtube/data/repositories/playlist_item.repository.dart';
+
 import 'video.repository.dart';
 
 ///END OF IMPORTS
@@ -12,6 +14,9 @@ class DataRepositories {
 
   /// [playlist] is the [PlaylistDataRepository] instance.
   final PlaylistDataRepository playlist = PlaylistDataRepository();
+
+  /// [playlistItem] is the [PlaylistItemDataRepository] instance.
+  final PlaylistItemDataRepository playlistItem = PlaylistItemDataRepository();
 
   /// [video] is the [VideoDataRepository] instance.
   final VideoDataRepository video = VideoDataRepository();

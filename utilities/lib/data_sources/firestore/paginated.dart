@@ -33,6 +33,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final _collection = _firestore.collection(collectionName);
     Query query = _collection;

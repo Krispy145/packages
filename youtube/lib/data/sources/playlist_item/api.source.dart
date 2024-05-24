@@ -1,17 +1,18 @@
 part of "_source.dart";
 
-/// [ApiPlaylistDataSource] is a class that implements [PlaylistDataSource] interface.
-class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<PlaylistModel>, PlaylistModel, BasicSearchQueryModel> implements PlaylistDataSource<PagedResponse<PlaylistModel>> {
+/// [ApiPlaylistItemDataSource] is a class that implements [PlaylistItemDataSource] interface.
+class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<PlaylistItemModel>, PlaylistItemModel, BasicSearchQueryModel>
+    implements PlaylistItemDataSource<PagedResponse<PlaylistItemModel>> {
   final String apiKey;
 
-  /// [ApiPlaylistDataSource] constructor.
-  ApiPlaylistDataSource(this.apiKey)
+  /// [ApiPlaylistItemDataSource] constructor.
+  ApiPlaylistItemDataSource(this.apiKey)
       : super(
           "https://www.googleapis.com/youtube/v3",
-          sourceSuffix: "playlists",
-          convertDataTypeFromMap: (map) => PlaylistModel.fromMap(map),
+          sourceSuffix: "playlistItems",
+          convertDataTypeFromMap: (map) => PlaylistItemModel.fromMap(map),
           convertDataTypeToMap: (data) => data.toMap(),
-          convertResponseTypeFromMap: (data) => PagedResponse.fromJson(data, PlaylistModel.fromMap),
+          convertResponseTypeFromMap: (data) => PagedResponse.fromJson(data, PlaylistItemModel.fromMap),
           getNexPageParametersFromResponse: (lastResponse, size, orderBy) {
             final parameters = <String, dynamic>{};
             if (lastResponse != null) {
@@ -50,13 +51,13 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<PlaylistModel?> _handleError(Future<PlaylistModel?> Function() apiCall) async {
+  Future<PlaylistItemModel?> _handleError(Future<PlaylistItemModel?> Function() apiCall) async {
     try {
       return await apiCall();
     } catch (e) {
       AppLogger.print(
         "API RESULT: Failed request: $e",
-        [YoutubeLoggers.playlist],
+        [YoutubeLoggers.video],
         type: LoggerType.error,
       );
       throw Exception(e.toString());
@@ -65,13 +66,13 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>> _handlePagedError(Future<Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>> Function() apiCall) async {
+  Future<Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>> _handlePagedError(Future<Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>> Function() apiCall) async {
     try {
       return await apiCall();
     } catch (e) {
       AppLogger.print(
         "API RESULT: Failed request: $e",
-        [YoutubeLoggers.playlist],
+        [YoutubeLoggers.video],
         type: LoggerType.error,
       );
       throw Exception(e.toString());
@@ -79,8 +80,8 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
   }
 
   @override
-  Future<Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>> getPage({
-    PagedResponse<PlaylistModel>? lastResponse,
+  Future<Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>> getPage({
+    PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     String? orderBy,
     Map<String, dynamic>? queryParameters,
@@ -99,8 +100,8 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
   }
 
   @override
-  Future<Pair<PagedResponse<PlaylistModel>, List<PlaylistModel?>>> searchPage({
-    PagedResponse<PlaylistModel>? lastResponse,
+  Future<Pair<PagedResponse<PlaylistItemModel>, List<PlaylistItemModel?>>> searchPage({
+    PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,
     String? orderBy,

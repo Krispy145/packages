@@ -6,16 +6,32 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
   List<VideoModel> get fakeData => VideoModel.fakeData;
 
   @override
-  bool matchesID(String id, VideoModel item) => item.hashCode == id;
+  bool matchesID(String id, VideoModel item) => item.id == id;
 
   @override
   bool matchesQuery(BasicSearchQueryModel query, VideoModel item) {
-    if (query.searchTerm.isEmpty) return true;
-    return item.snippet?.title?.contains(query.searchTerm) ?? false;
+    // TODO: implement matchesQuery
+    throw UnimplementedError();
   }
 
   @override
-  Future<List<VideoModel?>> getAllFromPlaylist(String playlistId) {
-    return Future.value([]);
+  Future<Pair<ResponseModel, List<VideoModel?>>> searchPage({
+    ResponseModel? lastResponse,
+    int? size,
+    required BasicSearchQueryModel query,
+  }) {
+    // TODO: implement searchPage
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Pair<ResponseModel, List<VideoModel?>>> getPage({
+    ResponseModel? lastResponse,
+    int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
+  }) {
+    // TODO: implement getPage
+    throw UnimplementedError();
   }
 }

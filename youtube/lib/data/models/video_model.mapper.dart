@@ -32,6 +32,8 @@ class VideoModelMapper extends ClassMapperBase<VideoModel> {
   @override
   final String id = 'VideoModel';
 
+  static String? _$id(VideoModel v) => v.id;
+  static const Field<VideoModel, String> _f$id = Field('id', _$id, opt: true);
   static String? _$kind(VideoModel v) => v.kind;
   static const Field<VideoModel, String> _f$kind =
       Field('kind', _$kind, opt: true);
@@ -87,6 +89,7 @@ class VideoModelMapper extends ClassMapperBase<VideoModel> {
 
   @override
   final MappableFields<VideoModel> fields = const {
+    #id: _f$id,
     #kind: _f$kind,
     #etag: _f$etag,
     #snippet: _f$snippet,
@@ -105,6 +108,7 @@ class VideoModelMapper extends ClassMapperBase<VideoModel> {
 
   static VideoModel _instantiate(DecodingData data) {
     return VideoModel(
+        id: data.dec(_f$id),
         kind: data.dec(_f$kind),
         etag: data.dec(_f$etag),
         snippet: data.dec(_f$snippet),
@@ -198,7 +202,8 @@ abstract class VideoModelCopyWith<$R, $In extends VideoModel, $Out>
       LocalizationsModelCopyWith<$R, LocalizationsModel,
           LocalizationsModel>>? get localizations;
   $R call(
-      {String? kind,
+      {String? id,
+      String? kind,
       String? etag,
       VideoSnippetModel? snippet,
       ContentDetailsModel? contentDetails,
@@ -280,7 +285,8 @@ class _VideoModelCopyWithImpl<$R, $Out>
           : null;
   @override
   $R call(
-          {Object? kind = $none,
+          {Object? id = $none,
+          Object? kind = $none,
           Object? etag = $none,
           Object? snippet = $none,
           Object? contentDetails = $none,
@@ -295,6 +301,7 @@ class _VideoModelCopyWithImpl<$R, $Out>
           Object? liveStreamingDetails = $none,
           Object? localizations = $none}) =>
       $apply(FieldCopyWithData({
+        if (id != $none) #id: id,
         if (kind != $none) #kind: kind,
         if (etag != $none) #etag: etag,
         if (snippet != $none) #snippet: snippet,
@@ -313,6 +320,7 @@ class _VideoModelCopyWithImpl<$R, $Out>
       }));
   @override
   VideoModel $make(CopyWithData data) => VideoModel(
+      id: data.get(#id, or: $value.id),
       kind: data.get(#kind, or: $value.kind),
       etag: data.get(#etag, or: $value.etag),
       snippet: data.get(#snippet, or: $value.snippet),

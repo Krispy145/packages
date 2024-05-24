@@ -17,6 +17,8 @@ abstract class PaginatedDummyDataSource<T, Q> extends DummyDataSource<T, Q> with
   Future<Pair<DummyDataResponseModel<T?>, List<T?>>> getPage({
     DummyDataResponseModel<T?>? lastResponse,
     int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
   }) {
     final lastIndex = lastResponse?.lastIndex ?? -1;
     final nextIndex = lastIndex + 1;

@@ -24,6 +24,8 @@ abstract class PaginatedAssetsDataSource<T, Q> extends AssetsDataSource<T, Q> wi
   Future<Pair<AssetsResponseModel<T?>, List<T?>>> getPage({
     AssetsResponseModel<T?>? lastResponse,
     int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final data = await tryLoadJson(rootBundleKey);
     final lastIndex = lastResponse?.lastIndex ?? -1;
