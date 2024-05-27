@@ -20,6 +20,39 @@ class PlaylistItemRepository {
 
   ResponseModel? _lastResponse;
 
+  // /// [getLatestVideoFromChannel] gets the latest video from the "Uploads" playlist of a channel.
+  // /// The uploads playlist ID is the same as the channel ID, but with "UC" replaced with "UU".
+  // Future<PlaylistItemModel?> getLatestVideoFromChannel(String channelId) async {
+  //   final pagedResponse = await _playlistItemDataRepository.getPagedPlaylistItemModels(
+  //     source: _source,
+  //     limit: 10,
+  //     queryParameters: {
+  //       "playlistId": channelId.replaceFirst("UC", "UU"),
+  //     },
+  //   );
+  //   final playlistItems = pagedResponse.second;
+  //   playlistItems.forEach((element) {
+  //     // debugPrint(element.toString());
+  //     debugPrint(
+  //       "VIDEO: " +
+  //           (element?.snippet?.publishedAt?.toString() ?? "") +
+  //           " - " +
+  //           (element?.contentDetails?.duration?.toString() ?? "") +
+  //           " - " +
+  //           (element?.contentDetails?.videoPublishedAt?.toString() ?? "") +
+  //           " - " +
+  //           (element?.snippet?.title ?? ""),
+  //     );
+  //   });
+  //   return playlistItems.isNotEmpty
+  //       ? playlistItems.firstWhere((element) {
+  //           final publishedDate = element?.snippet?.publishedAt;
+  //           if (publishedDate == null) return false;
+  //           return publishedDate.isBefore(DateTime.now());
+  //         })
+  //       : null;
+  // }
+
   /// [getPagedPlaylistItems] fetches a page of [PlaylistModel]s from the data source.
   Future<List<PlaylistItemModel?>> getPagedPlaylistItems({int? limit, bool refresh = false, String? playlistId}) async {
     final _response = await _playlistItemDataRepository.getPagedPlaylistItemModels(

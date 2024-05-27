@@ -59,6 +59,10 @@ class ContentDetailsModelMapper extends ClassMapperBase<ContentDetailsModel> {
       v.hasCustomThumbnail;
   static const Field<ContentDetailsModel, bool> _f$hasCustomThumbnail =
       Field('hasCustomThumbnail', _$hasCustomThumbnail, opt: true);
+  static DateTime? _$videoPublishedAt(ContentDetailsModel v) =>
+      v.videoPublishedAt;
+  static const Field<ContentDetailsModel, DateTime> _f$videoPublishedAt =
+      Field('videoPublishedAt', _$videoPublishedAt, opt: true);
 
   @override
   final MappableFields<ContentDetailsModel> fields = const {
@@ -73,6 +77,7 @@ class ContentDetailsModelMapper extends ClassMapperBase<ContentDetailsModel> {
     #contentRating: _f$contentRating,
     #projection: _f$projection,
     #hasCustomThumbnail: _f$hasCustomThumbnail,
+    #videoPublishedAt: _f$videoPublishedAt,
   };
 
   static ContentDetailsModel _instantiate(DecodingData data) {
@@ -87,7 +92,8 @@ class ContentDetailsModelMapper extends ClassMapperBase<ContentDetailsModel> {
         regionRestriction: data.dec(_f$regionRestriction),
         contentRating: data.dec(_f$contentRating),
         projection: data.dec(_f$projection),
-        hasCustomThumbnail: data.dec(_f$hasCustomThumbnail));
+        hasCustomThumbnail: data.dec(_f$hasCustomThumbnail),
+        videoPublishedAt: data.dec(_f$videoPublishedAt));
   }
 
   @override
@@ -160,7 +166,8 @@ abstract class ContentDetailsModelCopyWith<$R, $In extends ContentDetailsModel,
       RegionRestrictionModel? regionRestriction,
       ContentRatingModel? contentRating,
       String? projection,
-      bool? hasCustomThumbnail});
+      bool? hasCustomThumbnail,
+      DateTime? videoPublishedAt});
   ContentDetailsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -194,7 +201,8 @@ class _ContentDetailsModelCopyWithImpl<$R, $Out>
           Object? regionRestriction = $none,
           Object? contentRating = $none,
           Object? projection = $none,
-          Object? hasCustomThumbnail = $none}) =>
+          Object? hasCustomThumbnail = $none,
+          Object? videoPublishedAt = $none}) =>
       $apply(FieldCopyWithData({
         if (videoId != $none) #videoId: videoId,
         if (itemCount != $none) #itemCount: itemCount,
@@ -206,7 +214,9 @@ class _ContentDetailsModelCopyWithImpl<$R, $Out>
         if (regionRestriction != $none) #regionRestriction: regionRestriction,
         if (contentRating != $none) #contentRating: contentRating,
         if (projection != $none) #projection: projection,
-        if (hasCustomThumbnail != $none) #hasCustomThumbnail: hasCustomThumbnail
+        if (hasCustomThumbnail != $none)
+          #hasCustomThumbnail: hasCustomThumbnail,
+        if (videoPublishedAt != $none) #videoPublishedAt: videoPublishedAt
       }));
   @override
   ContentDetailsModel $make(CopyWithData data) => ContentDetailsModel(
@@ -222,7 +232,9 @@ class _ContentDetailsModelCopyWithImpl<$R, $Out>
       contentRating: data.get(#contentRating, or: $value.contentRating),
       projection: data.get(#projection, or: $value.projection),
       hasCustomThumbnail:
-          data.get(#hasCustomThumbnail, or: $value.hasCustomThumbnail));
+          data.get(#hasCustomThumbnail, or: $value.hasCustomThumbnail),
+      videoPublishedAt:
+          data.get(#videoPublishedAt, or: $value.videoPublishedAt));
 
   @override
   ContentDetailsModelCopyWith<$R2, ContentDetailsModel, $Out2>

@@ -17,6 +17,7 @@ class ContentDetailsModel with ContentDetailsModelMappable {
   final ContentRatingModel? contentRating;
   final String? projection;
   final bool? hasCustomThumbnail;
+  final DateTime? videoPublishedAt;
 
   ContentDetailsModel({
     this.videoId,
@@ -30,6 +31,7 @@ class ContentDetailsModel with ContentDetailsModelMappable {
     this.contentRating,
     this.projection,
     this.hasCustomThumbnail,
+    this.videoPublishedAt,
   });
 
   static const fromMap = ContentDetailsModelMapper.fromMap;
