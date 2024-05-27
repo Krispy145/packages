@@ -24,7 +24,7 @@ import "package:youtube/data/models/tag_suggestion_model.dart";
 
 part "suggestions_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class SuggestionsModel with SuggestionsModelMappable {
   final List<String>? processingErrors;
   final List<String>? processingWarnings;

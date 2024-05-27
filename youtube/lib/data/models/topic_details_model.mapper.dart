@@ -22,17 +22,15 @@ class TopicDetailsModelMapper extends ClassMapperBase<TopicDetailsModel> {
 
   static List<String>? _$topicIds(TopicDetailsModel v) => v.topicIds;
   static const Field<TopicDetailsModel, List<String>> _f$topicIds =
-      Field('topicIds', _$topicIds, key: 'topic_ids', opt: true);
+      Field('topicIds', _$topicIds, opt: true);
   static List<String>? _$relevantTopicIds(TopicDetailsModel v) =>
       v.relevantTopicIds;
   static const Field<TopicDetailsModel, List<String>> _f$relevantTopicIds =
-      Field('relevantTopicIds', _$relevantTopicIds,
-          key: 'relevant_topic_ids', opt: true);
+      Field('relevantTopicIds', _$relevantTopicIds, opt: true);
   static List<String>? _$topicCategories(TopicDetailsModel v) =>
       v.topicCategories;
   static const Field<TopicDetailsModel, List<String>> _f$topicCategories =
-      Field('topicCategories', _$topicCategories,
-          key: 'topic_categories', opt: true);
+      Field('topicCategories', _$topicCategories, opt: true);
 
   @override
   final MappableFields<TopicDetailsModel> fields = const {

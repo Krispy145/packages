@@ -45,9 +45,8 @@ class VideoModelMapper extends ClassMapperBase<VideoModel> {
       Field('snippet', _$snippet, opt: true);
   static ContentDetailsModel? _$contentDetails(VideoModel v) =>
       v.contentDetails;
-  static const Field<VideoModel, ContentDetailsModel> _f$contentDetails = Field(
-      'contentDetails', _$contentDetails,
-      key: 'content_details', opt: true);
+  static const Field<VideoModel, ContentDetailsModel> _f$contentDetails =
+      Field('contentDetails', _$contentDetails, opt: true);
   static VideoStatusModel? _$status(VideoModel v) => v.status;
   static const Field<VideoModel, VideoStatusModel> _f$status =
       Field('status', _$status, opt: true);
@@ -59,29 +58,26 @@ class VideoModelMapper extends ClassMapperBase<VideoModel> {
       Field('player', _$player, opt: true);
   static TopicDetailsModel? _$topicDetails(VideoModel v) => v.topicDetails;
   static const Field<VideoModel, TopicDetailsModel> _f$topicDetails =
-      Field('topicDetails', _$topicDetails, key: 'topic_details', opt: true);
+      Field('topicDetails', _$topicDetails, opt: true);
   static RecordingDetailsModel? _$recordingDetails(VideoModel v) =>
       v.recordingDetails;
   static const Field<VideoModel, RecordingDetailsModel> _f$recordingDetails =
-      Field('recordingDetails', _$recordingDetails,
-          key: 'recording_details', opt: true);
+      Field('recordingDetails', _$recordingDetails, opt: true);
   static FileDetailsModel? _$fileDetails(VideoModel v) => v.fileDetails;
   static const Field<VideoModel, FileDetailsModel> _f$fileDetails =
-      Field('fileDetails', _$fileDetails, key: 'file_details', opt: true);
+      Field('fileDetails', _$fileDetails, opt: true);
   static ProcessingDetailsModel? _$processingDetails(VideoModel v) =>
       v.processingDetails;
   static const Field<VideoModel, ProcessingDetailsModel> _f$processingDetails =
-      Field('processingDetails', _$processingDetails,
-          key: 'processing_details', opt: true);
+      Field('processingDetails', _$processingDetails, opt: true);
   static SuggestionsModel? _$suggestions(VideoModel v) => v.suggestions;
   static const Field<VideoModel, SuggestionsModel> _f$suggestions =
       Field('suggestions', _$suggestions, opt: true);
   static LiveStreamingDetailsModel? _$liveStreamingDetails(VideoModel v) =>
       v.liveStreamingDetails;
   static const Field<VideoModel, LiveStreamingDetailsModel>
-      _f$liveStreamingDetails = Field(
-          'liveStreamingDetails', _$liveStreamingDetails,
-          key: 'live_streaming_details', opt: true);
+      _f$liveStreamingDetails =
+      Field('liveStreamingDetails', _$liveStreamingDetails, opt: true);
   static Map<String, LocalizationsModel>? _$localizations(VideoModel v) =>
       v.localizations;
   static const Field<VideoModel, Map<String, LocalizationsModel>>

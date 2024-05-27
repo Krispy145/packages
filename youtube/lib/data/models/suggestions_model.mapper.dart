@@ -24,28 +24,23 @@ class SuggestionsModelMapper extends ClassMapperBase<SuggestionsModel> {
   static List<String>? _$processingErrors(SuggestionsModel v) =>
       v.processingErrors;
   static const Field<SuggestionsModel, List<String>> _f$processingErrors =
-      Field('processingErrors', _$processingErrors,
-          key: 'processing_errors', opt: true);
+      Field('processingErrors', _$processingErrors, opt: true);
   static List<String>? _$processingWarnings(SuggestionsModel v) =>
       v.processingWarnings;
   static const Field<SuggestionsModel, List<String>> _f$processingWarnings =
-      Field('processingWarnings', _$processingWarnings,
-          key: 'processing_warnings', opt: true);
+      Field('processingWarnings', _$processingWarnings, opt: true);
   static List<String>? _$processingHints(SuggestionsModel v) =>
       v.processingHints;
-  static const Field<SuggestionsModel, List<String>> _f$processingHints = Field(
-      'processingHints', _$processingHints,
-      key: 'processing_hints', opt: true);
+  static const Field<SuggestionsModel, List<String>> _f$processingHints =
+      Field('processingHints', _$processingHints, opt: true);
   static List<TagSuggestionModel>? _$tagSuggestions(SuggestionsModel v) =>
       v.tagSuggestions;
   static const Field<SuggestionsModel, List<TagSuggestionModel>>
-      _f$tagSuggestions = Field('tagSuggestions', _$tagSuggestions,
-          key: 'tag_suggestions', opt: true);
+      _f$tagSuggestions = Field('tagSuggestions', _$tagSuggestions, opt: true);
   static List<String>? _$editorSuggestions(SuggestionsModel v) =>
       v.editorSuggestions;
   static const Field<SuggestionsModel, List<String>> _f$editorSuggestions =
-      Field('editorSuggestions', _$editorSuggestions,
-          key: 'editor_suggestions', opt: true);
+      Field('editorSuggestions', _$editorSuggestions, opt: true);
 
   @override
   final MappableFields<SuggestionsModel> fields = const {

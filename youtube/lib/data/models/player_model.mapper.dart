@@ -22,13 +22,13 @@ class PlayerModelMapper extends ClassMapperBase<PlayerModel> {
 
   static String _$embedHtml(PlayerModel v) => v.embedHtml;
   static const Field<PlayerModel, String> _f$embedHtml =
-      Field('embedHtml', _$embedHtml, key: 'embed_html');
+      Field('embedHtml', _$embedHtml);
   static int? _$embedHeight(PlayerModel v) => v.embedHeight;
   static const Field<PlayerModel, int> _f$embedHeight =
-      Field('embedHeight', _$embedHeight, key: 'embed_height', opt: true);
+      Field('embedHeight', _$embedHeight, opt: true);
   static int? _$embedWidth(PlayerModel v) => v.embedWidth;
   static const Field<PlayerModel, int> _f$embedWidth =
-      Field('embedWidth', _$embedWidth, key: 'embed_width', opt: true);
+      Field('embedWidth', _$embedWidth, opt: true);
 
   @override
   final MappableFields<PlayerModel> fields = const {

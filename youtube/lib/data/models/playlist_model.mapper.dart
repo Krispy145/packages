@@ -42,8 +42,7 @@ class PlaylistModelMapper extends ClassMapperBase<PlaylistModel> {
   static ContentDetailsModel? _$contentDetails(PlaylistModel v) =>
       v.contentDetails;
   static const Field<PlaylistModel, ContentDetailsModel> _f$contentDetails =
-      Field('contentDetails', _$contentDetails,
-          key: 'content_details', opt: true);
+      Field('contentDetails', _$contentDetails, opt: true);
   static PlayerModel? _$player(PlaylistModel v) => v.player;
   static const Field<PlaylistModel, PlayerModel> _f$player =
       Field('player', _$player, opt: true);

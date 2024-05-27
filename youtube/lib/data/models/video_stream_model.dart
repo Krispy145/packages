@@ -21,7 +21,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "video_stream_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class VideoStreamModel with VideoStreamModelMappable {
   final int? widthPixels;
   final int? heightPixels;

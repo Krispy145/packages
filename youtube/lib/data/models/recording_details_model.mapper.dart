@@ -23,7 +23,7 @@ class RecordingDetailsModelMapper
 
   static DateTime? _$recordingDate(RecordingDetailsModel v) => v.recordingDate;
   static const Field<RecordingDetailsModel, DateTime> _f$recordingDate =
-      Field('recordingDate', _$recordingDate, key: 'recording_date', opt: true);
+      Field('recordingDate', _$recordingDate, opt: true);
 
   @override
   final MappableFields<RecordingDetailsModel> fields = const {

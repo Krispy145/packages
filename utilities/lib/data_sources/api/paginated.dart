@@ -1,6 +1,8 @@
 import "package:utilities/data_sources/api/source.dart";
 import "package:utilities/data_sources/paginated.dart";
 import "package:utilities/helpers/tuples.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends ApiDataSource<T, Q> with Paginated<Resp, T, Q> {
   /// [PaginatedApiDataSource] constructor
@@ -45,10 +47,11 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
         return Pair(lastResponse, []);
       }
       final items = getItemsFromResponse(convertedResponse);
-      print("Response: $_url, QueryParams: $parameters, Items: $items");
+      AppLogger.print("Response: $_url, QueryParams: $parameters, Items: $items", [UtilitiesLoggers.apiDataSource]);
+      print(response.requestOptions.queryParameters);
       return Pair(convertedResponse, items);
     } catch (e) {
-      print("Error caught: $_url, $e");
+      AppLogger.print("Error caught: $_url, $e", [UtilitiesLoggers.apiDataSource], type: LoggerType.error);
       return Pair(lastResponse, []);
     }
   }

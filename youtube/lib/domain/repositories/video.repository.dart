@@ -1,32 +1,3 @@
-// import '/data/models/video_model.dart';
-// import '/data/repositories/_repositories.dart';
-// import '/data/repositories/video.repository.dart';
-// import '/data/sources/video/_source.dart';
-
-// /// [VideoRepository] is a class that defines the basic CRUD operations for the [VideoModel] entity.
-// class VideoRepository {
-//   final VideoDataRepository _videoDataRepository = DataRepositories.instance.video;
-
-//   /// [VideoRepository] constructor.
-//   VideoRepository();
-
-//   //* VideoModel Data Source Type
-//   final _source = DummyVideoDataSource();
-
-//   /// [getAllVideoVideoModels] fetches all [VideoModel]s from the data source.
-//   Future<List<VideoModel?>> getAllVideoVideoModels(String videoId) {
-//     return _videoDataRepository.getAllVideoVideoModels(source: _source, videoId: videoId);
-//   }
-
-//   /// [getVideoModel] fetches a single [VideoModel] from the data source.
-//   Future<VideoModel?> getVideoModel(String id) {
-//     return _videoDataRepository.getVideoModel(
-//       source: _source,
-//       id: id,
-//     );
-//   }
-// }
-
 import 'package:utilities/data_sources/paginated.dart';
 import 'package:youtube/data/enums/video_rating.dart';
 import 'package:youtube/data/models/video_model.dart';
@@ -67,7 +38,9 @@ class VideoRepository {
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {"videoCategoryId": videoCategoryId},
+      queryParameters: {
+        "videoCategoryId": videoCategoryId,
+      },
     );
     _lastResponse = _response.first;
     return _response.second;
@@ -83,7 +56,9 @@ class VideoRepository {
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {"myRating": videoRating.name},
+      queryParameters: {
+        "myRating": videoRating.name,
+      },
     );
     _lastResponse = _response.first;
     return _response.second;

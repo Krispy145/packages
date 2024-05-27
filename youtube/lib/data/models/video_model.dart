@@ -15,7 +15,7 @@ import "package:youtube/data/models/video_status_model.dart";
 
 part "video_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class VideoModel with VideoModelMappable {
   final String? id;
   final String? kind;

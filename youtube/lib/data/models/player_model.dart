@@ -18,7 +18,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "player_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class PlayerModel with PlayerModelMappable {
   final String embedHtml;
   final int? embedHeight;

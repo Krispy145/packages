@@ -37,3 +37,9 @@ const like = 'sample';
 TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
+
+# NOTE: You will need to add this to Info.plist if using the Youtube Player Builder
+
+```
+<key>NSAppTransportSecurity</key> <dict> <key>NSAllowsArbitraryLoads</key><true/> </dict>
+```

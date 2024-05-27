@@ -19,7 +19,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "thumbnails_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class ThumbnailsModel with ThumbnailsModelMappable {
   final String url;
   final int width;

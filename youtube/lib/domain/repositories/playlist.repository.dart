@@ -25,7 +25,9 @@ class PlaylistRepository {
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {"channelId": channelId},
+      queryParameters: {
+        "channelId": channelId,
+      },
     );
     _lastResponse = _response.first;
     return _response.second;
@@ -40,7 +42,9 @@ class PlaylistRepository {
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {"mine": true},
+      queryParameters: {
+        "mine": true,
+      },
     );
     _lastResponse = _response.first;
     return _response.second;

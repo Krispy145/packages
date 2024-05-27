@@ -25,10 +25,10 @@ class VideoSnippetModelMapper extends ClassMapperBase<VideoSnippetModel> {
 
   static DateTime? _$publishedAt(VideoSnippetModel v) => v.publishedAt;
   static const Field<VideoSnippetModel, DateTime> _f$publishedAt =
-      Field('publishedAt', _$publishedAt, key: 'published_at', opt: true);
+      Field('publishedAt', _$publishedAt, opt: true);
   static String? _$channelId(VideoSnippetModel v) => v.channelId;
   static const Field<VideoSnippetModel, String> _f$channelId =
-      Field('channelId', _$channelId, key: 'channel_id', opt: true);
+      Field('channelId', _$channelId, opt: true);
   static String? _$title(VideoSnippetModel v) => v.title;
   static const Field<VideoSnippetModel, String> _f$title =
       Field('title', _$title, opt: true);
@@ -37,37 +37,34 @@ class VideoSnippetModelMapper extends ClassMapperBase<VideoSnippetModel> {
       Field('description', _$description, opt: true);
   static ResourceIdModel? _$resourceId(VideoSnippetModel v) => v.resourceId;
   static const Field<VideoSnippetModel, ResourceIdModel> _f$resourceId =
-      Field('resourceId', _$resourceId, key: 'resource_id', opt: true);
+      Field('resourceId', _$resourceId, opt: true);
   static Map<String, ThumbnailsModel>? _$thumbnails(VideoSnippetModel v) =>
       v.thumbnails;
   static const Field<VideoSnippetModel, Map<String, ThumbnailsModel>>
       _f$thumbnails = Field('thumbnails', _$thumbnails, opt: true);
   static String? _$channelTitle(VideoSnippetModel v) => v.channelTitle;
   static const Field<VideoSnippetModel, String> _f$channelTitle =
-      Field('channelTitle', _$channelTitle, key: 'channel_title', opt: true);
+      Field('channelTitle', _$channelTitle, opt: true);
   static List<String>? _$tags(VideoSnippetModel v) => v.tags;
   static const Field<VideoSnippetModel, List<String>> _f$tags =
       Field('tags', _$tags, opt: true);
   static String? _$categoryId(VideoSnippetModel v) => v.categoryId;
   static const Field<VideoSnippetModel, String> _f$categoryId =
-      Field('categoryId', _$categoryId, key: 'category_id', opt: true);
+      Field('categoryId', _$categoryId, opt: true);
   static String? _$liveBroadcastContent(VideoSnippetModel v) =>
       v.liveBroadcastContent;
-  static const Field<VideoSnippetModel, String> _f$liveBroadcastContent = Field(
-      'liveBroadcastContent', _$liveBroadcastContent,
-      key: 'live_broadcast_content', opt: true);
+  static const Field<VideoSnippetModel, String> _f$liveBroadcastContent =
+      Field('liveBroadcastContent', _$liveBroadcastContent, opt: true);
   static String? _$defaultLanguage(VideoSnippetModel v) => v.defaultLanguage;
-  static const Field<VideoSnippetModel, String> _f$defaultLanguage = Field(
-      'defaultLanguage', _$defaultLanguage,
-      key: 'default_language', opt: true);
+  static const Field<VideoSnippetModel, String> _f$defaultLanguage =
+      Field('defaultLanguage', _$defaultLanguage, opt: true);
   static LocalizedModel? _$localized(VideoSnippetModel v) => v.localized;
   static const Field<VideoSnippetModel, LocalizedModel> _f$localized =
       Field('localized', _$localized, opt: true);
   static String? _$defaultAudioLanguage(VideoSnippetModel v) =>
       v.defaultAudioLanguage;
-  static const Field<VideoSnippetModel, String> _f$defaultAudioLanguage = Field(
-      'defaultAudioLanguage', _$defaultAudioLanguage,
-      key: 'default_audio_language', opt: true);
+  static const Field<VideoSnippetModel, String> _f$defaultAudioLanguage =
+      Field('defaultAudioLanguage', _$defaultAudioLanguage, opt: true);
 
   @override
   final MappableFields<VideoSnippetModel> fields = const {

@@ -22,9 +22,12 @@ class ContentDetailsModelMapper extends ClassMapperBase<ContentDetailsModel> {
   @override
   final String id = 'ContentDetailsModel';
 
+  static String? _$videoId(ContentDetailsModel v) => v.videoId;
+  static const Field<ContentDetailsModel, String> _f$videoId =
+      Field('videoId', _$videoId, opt: true);
   static int? _$itemCount(ContentDetailsModel v) => v.itemCount;
   static const Field<ContentDetailsModel, int> _f$itemCount =
-      Field('itemCount', _$itemCount, key: 'item_count', opt: true);
+      Field('itemCount', _$itemCount, opt: true);
   static String? _$duration(ContentDetailsModel v) => v.duration;
   static const Field<ContentDetailsModel, String> _f$duration =
       Field('duration', _$duration, opt: true);
@@ -38,29 +41,28 @@ class ContentDetailsModelMapper extends ClassMapperBase<ContentDetailsModel> {
   static const Field<ContentDetailsModel, String> _f$caption =
       Field('caption', _$caption, opt: true);
   static bool? _$licensedContent(ContentDetailsModel v) => v.licensedContent;
-  static const Field<ContentDetailsModel, bool> _f$licensedContent = Field(
-      'licensedContent', _$licensedContent,
-      key: 'licensed_content', opt: true);
+  static const Field<ContentDetailsModel, bool> _f$licensedContent =
+      Field('licensedContent', _$licensedContent, opt: true);
   static RegionRestrictionModel? _$regionRestriction(ContentDetailsModel v) =>
       v.regionRestriction;
   static const Field<ContentDetailsModel, RegionRestrictionModel>
-      _f$regionRestriction = Field('regionRestriction', _$regionRestriction,
-          key: 'region_restriction', opt: true);
+      _f$regionRestriction =
+      Field('regionRestriction', _$regionRestriction, opt: true);
   static ContentRatingModel? _$contentRating(ContentDetailsModel v) =>
       v.contentRating;
   static const Field<ContentDetailsModel, ContentRatingModel> _f$contentRating =
-      Field('contentRating', _$contentRating, key: 'content_rating', opt: true);
+      Field('contentRating', _$contentRating, opt: true);
   static String? _$projection(ContentDetailsModel v) => v.projection;
   static const Field<ContentDetailsModel, String> _f$projection =
       Field('projection', _$projection, opt: true);
   static bool? _$hasCustomThumbnail(ContentDetailsModel v) =>
       v.hasCustomThumbnail;
-  static const Field<ContentDetailsModel, bool> _f$hasCustomThumbnail = Field(
-      'hasCustomThumbnail', _$hasCustomThumbnail,
-      key: 'has_custom_thumbnail', opt: true);
+  static const Field<ContentDetailsModel, bool> _f$hasCustomThumbnail =
+      Field('hasCustomThumbnail', _$hasCustomThumbnail, opt: true);
 
   @override
   final MappableFields<ContentDetailsModel> fields = const {
+    #videoId: _f$videoId,
     #itemCount: _f$itemCount,
     #duration: _f$duration,
     #dimension: _f$dimension,
@@ -75,6 +77,7 @@ class ContentDetailsModelMapper extends ClassMapperBase<ContentDetailsModel> {
 
   static ContentDetailsModel _instantiate(DecodingData data) {
     return ContentDetailsModel(
+        videoId: data.dec(_f$videoId),
         itemCount: data.dec(_f$itemCount),
         duration: data.dec(_f$duration),
         dimension: data.dec(_f$dimension),
@@ -147,7 +150,8 @@ abstract class ContentDetailsModelCopyWith<$R, $In extends ContentDetailsModel,
   ContentRatingModelCopyWith<$R, ContentRatingModel, ContentRatingModel>?
       get contentRating;
   $R call(
-      {int? itemCount,
+      {String? videoId,
+      int? itemCount,
       String? duration,
       String? dimension,
       String? definition,
@@ -180,7 +184,8 @@ class _ContentDetailsModelCopyWithImpl<$R, $Out>
           $value.contentRating?.copyWith.$chain((v) => call(contentRating: v));
   @override
   $R call(
-          {Object? itemCount = $none,
+          {Object? videoId = $none,
+          Object? itemCount = $none,
           Object? duration = $none,
           Object? dimension = $none,
           Object? definition = $none,
@@ -191,6 +196,7 @@ class _ContentDetailsModelCopyWithImpl<$R, $Out>
           Object? projection = $none,
           Object? hasCustomThumbnail = $none}) =>
       $apply(FieldCopyWithData({
+        if (videoId != $none) #videoId: videoId,
         if (itemCount != $none) #itemCount: itemCount,
         if (duration != $none) #duration: duration,
         if (dimension != $none) #dimension: dimension,
@@ -204,6 +210,7 @@ class _ContentDetailsModelCopyWithImpl<$R, $Out>
       }));
   @override
   ContentDetailsModel $make(CopyWithData data) => ContentDetailsModel(
+      videoId: data.get(#videoId, or: $value.videoId),
       itemCount: data.get(#itemCount, or: $value.itemCount),
       duration: data.get(#duration, or: $value.duration),
       dimension: data.get(#dimension, or: $value.dimension),

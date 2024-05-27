@@ -2,7 +2,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "live_streaming_details_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class LiveStreamingDetailsModel with LiveStreamingDetailsModelMappable {
   final DateTime? actualStartTime;
   final DateTime? actualEndTime;

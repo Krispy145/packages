@@ -3,7 +3,7 @@ import "package:youtube/data/models/processing_progress_model.dart";
 
 part "processing_details_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class ProcessingDetailsModel with ProcessingDetailsModelMappable {
   final String? processingStatus;
   final ProcessingProgressModel? processingProgress;

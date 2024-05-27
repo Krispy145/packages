@@ -2,7 +2,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "resource_id_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class ResourceIdModel with ResourceIdModelMappable {
   final String kind;
   final String videoId;

@@ -21,7 +21,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "localized_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class LocalizedModel with LocalizedModelMappable {
   final String title;
   final String description;

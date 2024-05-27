@@ -37,8 +37,7 @@ class PlaylistItemModelMapper extends ClassMapperBase<PlaylistItemModel> {
   static ContentDetailsModel? _$contentDetails(PlaylistItemModel v) =>
       v.contentDetails;
   static const Field<PlaylistItemModel, ContentDetailsModel> _f$contentDetails =
-      Field('contentDetails', _$contentDetails,
-          key: 'content_details', opt: true);
+      Field('contentDetails', _$contentDetails, opt: true);
   static VideoStatusModel? _$status(PlaylistItemModel v) => v.status;
   static const Field<PlaylistItemModel, VideoStatusModel> _f$status =
       Field('status', _$status, opt: true);

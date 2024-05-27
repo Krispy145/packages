@@ -22,22 +22,22 @@ class VideoStreamModelMapper extends ClassMapperBase<VideoStreamModel> {
 
   static int? _$widthPixels(VideoStreamModel v) => v.widthPixels;
   static const Field<VideoStreamModel, int> _f$widthPixels =
-      Field('widthPixels', _$widthPixels, key: 'width_pixels', opt: true);
+      Field('widthPixels', _$widthPixels, opt: true);
   static int? _$heightPixels(VideoStreamModel v) => v.heightPixels;
   static const Field<VideoStreamModel, int> _f$heightPixels =
-      Field('heightPixels', _$heightPixels, key: 'height_pixels', opt: true);
+      Field('heightPixels', _$heightPixels, opt: true);
   static double? _$frameRateFps(VideoStreamModel v) => v.frameRateFps;
   static const Field<VideoStreamModel, double> _f$frameRateFps =
-      Field('frameRateFps', _$frameRateFps, key: 'frame_rate_fps', opt: true);
+      Field('frameRateFps', _$frameRateFps, opt: true);
   static double? _$aspectRatio(VideoStreamModel v) => v.aspectRatio;
   static const Field<VideoStreamModel, double> _f$aspectRatio =
-      Field('aspectRatio', _$aspectRatio, key: 'aspect_ratio', opt: true);
+      Field('aspectRatio', _$aspectRatio, opt: true);
   static String? _$codec(VideoStreamModel v) => v.codec;
   static const Field<VideoStreamModel, String> _f$codec =
       Field('codec', _$codec, opt: true);
   static int? _$bitrateBps(VideoStreamModel v) => v.bitrateBps;
   static const Field<VideoStreamModel, int> _f$bitrateBps =
-      Field('bitrateBps', _$bitrateBps, key: 'bitrate_bps', opt: true);
+      Field('bitrateBps', _$bitrateBps, opt: true);
   static String? _$rotation(VideoStreamModel v) => v.rotation;
   static const Field<VideoStreamModel, String> _f$rotation =
       Field('rotation', _$rotation, opt: true);

@@ -1,11 +1,12 @@
 import "package:dart_mappable/dart_mappable.dart";
+import "package:flutter/foundation.dart";
 import "package:youtube/data/models/content_details_model.dart";
 import "package:youtube/data/models/video_snippet_model.dart";
 import "package:youtube/data/models/video_status_model.dart";
 
 part "playlist_item_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class PlaylistItemModel with PlaylistItemModelMappable {
   final String id;
   final String? kind;

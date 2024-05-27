@@ -25,49 +25,45 @@ class ProcessingDetailsModelMapper
   static String? _$processingStatus(ProcessingDetailsModel v) =>
       v.processingStatus;
   static const Field<ProcessingDetailsModel, String> _f$processingStatus =
-      Field('processingStatus', _$processingStatus,
-          key: 'processing_status', opt: true);
+      Field('processingStatus', _$processingStatus, opt: true);
   static ProcessingProgressModel? _$processingProgress(
           ProcessingDetailsModel v) =>
       v.processingProgress;
   static const Field<ProcessingDetailsModel, ProcessingProgressModel>
-      _f$processingProgress = Field('processingProgress', _$processingProgress,
-          key: 'processing_progress', opt: true);
+      _f$processingProgress =
+      Field('processingProgress', _$processingProgress, opt: true);
   static String? _$processingFailureReason(ProcessingDetailsModel v) =>
       v.processingFailureReason;
   static const Field<ProcessingDetailsModel, String>
-      _f$processingFailureReason = Field(
-          'processingFailureReason', _$processingFailureReason,
-          key: 'processing_failure_reason', opt: true);
+      _f$processingFailureReason =
+      Field('processingFailureReason', _$processingFailureReason, opt: true);
   static String? _$fileDetailsAvailability(ProcessingDetailsModel v) =>
       v.fileDetailsAvailability;
   static const Field<ProcessingDetailsModel, String>
-      _f$fileDetailsAvailability = Field(
-          'fileDetailsAvailability', _$fileDetailsAvailability,
-          key: 'file_details_availability', opt: true);
+      _f$fileDetailsAvailability =
+      Field('fileDetailsAvailability', _$fileDetailsAvailability, opt: true);
   static String? _$processingIssuesAvailability(ProcessingDetailsModel v) =>
       v.processingIssuesAvailability;
   static const Field<ProcessingDetailsModel, String>
       _f$processingIssuesAvailability = Field(
           'processingIssuesAvailability', _$processingIssuesAvailability,
-          key: 'processing_issues_availability', opt: true);
+          opt: true);
   static String? _$tagSuggestionsAvailability(ProcessingDetailsModel v) =>
       v.tagSuggestionsAvailability;
   static const Field<ProcessingDetailsModel, String>
       _f$tagSuggestionsAvailability = Field(
           'tagSuggestionsAvailability', _$tagSuggestionsAvailability,
-          key: 'tag_suggestions_availability', opt: true);
+          opt: true);
   static String? _$editorSuggestionsAvailability(ProcessingDetailsModel v) =>
       v.editorSuggestionsAvailability;
   static const Field<ProcessingDetailsModel, String>
       _f$editorSuggestionsAvailability = Field(
           'editorSuggestionsAvailability', _$editorSuggestionsAvailability,
-          key: 'editor_suggestions_availability', opt: true);
+          opt: true);
   static String? _$thumbnailsAvailability(ProcessingDetailsModel v) =>
       v.thumbnailsAvailability;
   static const Field<ProcessingDetailsModel, String> _f$thumbnailsAvailability =
-      Field('thumbnailsAvailability', _$thumbnailsAvailability,
-          key: 'thumbnails_availability', opt: true);
+      Field('thumbnailsAvailability', _$thumbnailsAvailability, opt: true);
 
   @override
   final MappableFields<ProcessingDetailsModel> fields = const {

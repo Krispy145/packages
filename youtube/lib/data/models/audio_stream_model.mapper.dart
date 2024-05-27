@@ -22,13 +22,13 @@ class AudioStreamModelMapper extends ClassMapperBase<AudioStreamModel> {
 
   static int? _$channelCount(AudioStreamModel v) => v.channelCount;
   static const Field<AudioStreamModel, int> _f$channelCount =
-      Field('channelCount', _$channelCount, key: 'channel_count', opt: true);
+      Field('channelCount', _$channelCount, opt: true);
   static String? _$codec(AudioStreamModel v) => v.codec;
   static const Field<AudioStreamModel, String> _f$codec =
       Field('codec', _$codec, opt: true);
   static int? _$bitrateBps(AudioStreamModel v) => v.bitrateBps;
   static const Field<AudioStreamModel, int> _f$bitrateBps =
-      Field('bitrateBps', _$bitrateBps, key: 'bitrate_bps', opt: true);
+      Field('bitrateBps', _$bitrateBps, opt: true);
   static String? _$vendor(AudioStreamModel v) => v.vendor;
   static const Field<AudioStreamModel, String> _f$vendor =
       Field('vendor', _$vendor, opt: true);

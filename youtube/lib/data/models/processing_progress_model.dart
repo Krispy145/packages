@@ -16,7 +16,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "processing_progress_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class ProcessingProgressModel with ProcessingProgressModelMappable {
   final int? partsTotal;
   final int? partsProcessed;

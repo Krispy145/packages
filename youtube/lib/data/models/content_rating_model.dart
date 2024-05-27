@@ -2,7 +2,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "content_rating_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class ContentRatingModel with ContentRatingModelMappable {
   final String? acbRating;
   final String? agcomRating;

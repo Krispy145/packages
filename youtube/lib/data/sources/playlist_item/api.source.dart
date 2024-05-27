@@ -27,7 +27,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
           options: BaseOptions(
             queryParameters: {
               "key": apiKey,
-              "part": "snippet,contentDetails",
+              "part": "id,snippet,contentDetails,status",
             },
             headers: {
               "Access-Control-Allow-Origin": "*",

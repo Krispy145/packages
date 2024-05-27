@@ -26,8 +26,7 @@ class TagSuggestionModelMapper extends ClassMapperBase<TagSuggestionModel> {
   static List<String>? _$categoryRestricts(TagSuggestionModel v) =>
       v.categoryRestricts;
   static const Field<TagSuggestionModel, List<String>> _f$categoryRestricts =
-      Field('categoryRestricts', _$categoryRestricts,
-          key: 'category_restricts', opt: true);
+      Field('categoryRestricts', _$categoryRestricts, opt: true);
 
   @override
   final MappableFields<TagSuggestionModel> fields = const {

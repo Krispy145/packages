@@ -15,7 +15,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "region_restriction_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class RegionRestrictionModel with RegionRestrictionModelMappable {
   final List<String>? allowed;
   final List<String>? blocked;

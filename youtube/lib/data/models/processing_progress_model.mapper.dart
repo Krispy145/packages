@@ -24,14 +24,13 @@ class ProcessingProgressModelMapper
 
   static int? _$partsTotal(ProcessingProgressModel v) => v.partsTotal;
   static const Field<ProcessingProgressModel, int> _f$partsTotal =
-      Field('partsTotal', _$partsTotal, key: 'parts_total', opt: true);
+      Field('partsTotal', _$partsTotal, opt: true);
   static int? _$partsProcessed(ProcessingProgressModel v) => v.partsProcessed;
-  static const Field<ProcessingProgressModel, int> _f$partsProcessed = Field(
-      'partsProcessed', _$partsProcessed,
-      key: 'parts_processed', opt: true);
+  static const Field<ProcessingProgressModel, int> _f$partsProcessed =
+      Field('partsProcessed', _$partsProcessed, opt: true);
   static int? _$timeLeftMs(ProcessingProgressModel v) => v.timeLeftMs;
   static const Field<ProcessingProgressModel, int> _f$timeLeftMs =
-      Field('timeLeftMs', _$timeLeftMs, key: 'time_left_ms', opt: true);
+      Field('timeLeftMs', _$timeLeftMs, opt: true);
 
   @override
   final MappableFields<ProcessingProgressModel> fields = const {

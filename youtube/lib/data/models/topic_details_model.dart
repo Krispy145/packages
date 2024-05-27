@@ -16,7 +16,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "topic_details_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class TopicDetailsModel with TopicDetailsModelMappable {
   final List<String>? topicIds;
   final List<String>? relevantTopicIds;

@@ -2,7 +2,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "localizations_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class LocalizationsModel with LocalizationsModelMappable {
   final String? title;
   final String? description;

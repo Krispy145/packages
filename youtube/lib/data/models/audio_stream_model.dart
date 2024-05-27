@@ -2,7 +2,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "audio_stream_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class AudioStreamModel with AudioStreamModelMappable {
   final int? channelCount;
   final String? codec;

@@ -14,7 +14,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "recording_details_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class RecordingDetailsModel with RecordingDetailsModelMappable {
   final DateTime? recordingDate;
 

@@ -20,7 +20,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "playlist_status_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class PlaylistStatusModel with PlaylistStatusModelMappable {
   final String? privacyStatus;
 

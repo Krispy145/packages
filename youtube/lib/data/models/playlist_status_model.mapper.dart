@@ -22,7 +22,7 @@ class PlaylistStatusModelMapper extends ClassMapperBase<PlaylistStatusModel> {
 
   static String? _$privacyStatus(PlaylistStatusModel v) => v.privacyStatus;
   static const Field<PlaylistStatusModel, String> _f$privacyStatus =
-      Field('privacyStatus', _$privacyStatus, key: 'privacy_status', opt: true);
+      Field('privacyStatus', _$privacyStatus, opt: true);
 
   @override
   final MappableFields<PlaylistStatusModel> fields = const {

@@ -25,33 +25,28 @@ class LiveStreamingDetailsModelMapper
   static DateTime? _$actualStartTime(LiveStreamingDetailsModel v) =>
       v.actualStartTime;
   static const Field<LiveStreamingDetailsModel, DateTime> _f$actualStartTime =
-      Field('actualStartTime', _$actualStartTime,
-          key: 'actual_start_time', opt: true);
+      Field('actualStartTime', _$actualStartTime, opt: true);
   static DateTime? _$actualEndTime(LiveStreamingDetailsModel v) =>
       v.actualEndTime;
   static const Field<LiveStreamingDetailsModel, DateTime> _f$actualEndTime =
-      Field('actualEndTime', _$actualEndTime,
-          key: 'actual_end_time', opt: true);
+      Field('actualEndTime', _$actualEndTime, opt: true);
   static DateTime? _$scheduledStartTime(LiveStreamingDetailsModel v) =>
       v.scheduledStartTime;
   static const Field<LiveStreamingDetailsModel, DateTime>
-      _f$scheduledStartTime = Field('scheduledStartTime', _$scheduledStartTime,
-          key: 'scheduled_start_time', opt: true);
+      _f$scheduledStartTime =
+      Field('scheduledStartTime', _$scheduledStartTime, opt: true);
   static DateTime? _$scheduledEndTime(LiveStreamingDetailsModel v) =>
       v.scheduledEndTime;
   static const Field<LiveStreamingDetailsModel, DateTime> _f$scheduledEndTime =
-      Field('scheduledEndTime', _$scheduledEndTime,
-          key: 'scheduled_end_time', opt: true);
+      Field('scheduledEndTime', _$scheduledEndTime, opt: true);
   static int? _$concurrentViewers(LiveStreamingDetailsModel v) =>
       v.concurrentViewers;
   static const Field<LiveStreamingDetailsModel, int> _f$concurrentViewers =
-      Field('concurrentViewers', _$concurrentViewers,
-          key: 'concurrent_viewers', opt: true);
+      Field('concurrentViewers', _$concurrentViewers, opt: true);
   static String? _$activeLiveChatId(LiveStreamingDetailsModel v) =>
       v.activeLiveChatId;
   static const Field<LiveStreamingDetailsModel, String> _f$activeLiveChatId =
-      Field('activeLiveChatId', _$activeLiveChatId,
-          key: 'active_live_chat_id', opt: true);
+      Field('activeLiveChatId', _$activeLiveChatId, opt: true);
 
   @override
   final MappableFields<LiveStreamingDetailsModel> fields = const {

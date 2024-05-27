@@ -26,7 +26,9 @@ class PlaylistItemRepository {
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {"playlistId": playlistId},
+      queryParameters: {
+        "playlistId": playlistId,
+      },
     );
     _lastResponse = _response.first;
     return _response.second;

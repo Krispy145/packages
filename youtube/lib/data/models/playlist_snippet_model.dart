@@ -31,7 +31,7 @@ import "package:youtube/data/models/thumbnails_model.dart";
 
 part "playlist_snippet_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class PlaylistSnippetModel with PlaylistSnippetModelMappable {
   final DateTime? publishedAt;
   final String? channelId;

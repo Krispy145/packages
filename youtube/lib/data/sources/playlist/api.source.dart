@@ -26,15 +26,15 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
           options: BaseOptions(
             queryParameters: {
               "key": apiKey,
-              "part": "snippet,contentDetails",
+              "part": "id,snippet,contentDetails,status",
             },
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
-              "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true"
-            },
+            // headers: {
+            //   "Access-Control-Allow-Origin": "*",
+            //   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
+            //   "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+            //   "Content-Type": "application/json",
+            //   "Access-Control-Allow-Credentials": "true"
+            // },
           ),
         );
 

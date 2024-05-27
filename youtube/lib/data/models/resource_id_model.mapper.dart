@@ -24,7 +24,7 @@ class ResourceIdModelMapper extends ClassMapperBase<ResourceIdModel> {
   static const Field<ResourceIdModel, String> _f$kind = Field('kind', _$kind);
   static String _$videoId(ResourceIdModel v) => v.videoId;
   static const Field<ResourceIdModel, String> _f$videoId =
-      Field('videoId', _$videoId, key: 'video_id');
+      Field('videoId', _$videoId);
 
   @override
   final MappableFields<ResourceIdModel> fields = const {

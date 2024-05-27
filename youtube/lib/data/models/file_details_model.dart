@@ -4,7 +4,7 @@ import 'package:youtube/data/models/video_stream_model.dart';
 
 part "file_details_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class FileDetailsModel with FileDetailsModelMappable {
   final String? fileName;
   final int? fileSize;

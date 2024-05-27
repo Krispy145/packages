@@ -22,220 +22,215 @@ class ContentRatingModelMapper extends ClassMapperBase<ContentRatingModel> {
 
   static String? _$acbRating(ContentRatingModel v) => v.acbRating;
   static const Field<ContentRatingModel, String> _f$acbRating =
-      Field('acbRating', _$acbRating, key: 'acb_rating', opt: true);
+      Field('acbRating', _$acbRating, opt: true);
   static String? _$agcomRating(ContentRatingModel v) => v.agcomRating;
   static const Field<ContentRatingModel, String> _f$agcomRating =
-      Field('agcomRating', _$agcomRating, key: 'agcom_rating', opt: true);
+      Field('agcomRating', _$agcomRating, opt: true);
   static String? _$anatelRating(ContentRatingModel v) => v.anatelRating;
   static const Field<ContentRatingModel, String> _f$anatelRating =
-      Field('anatelRating', _$anatelRating, key: 'anatel_rating', opt: true);
+      Field('anatelRating', _$anatelRating, opt: true);
   static String? _$bbfcRating(ContentRatingModel v) => v.bbfcRating;
   static const Field<ContentRatingModel, String> _f$bbfcRating =
-      Field('bbfcRating', _$bbfcRating, key: 'bbfc_rating', opt: true);
+      Field('bbfcRating', _$bbfcRating, opt: true);
   static String? _$bfvcRating(ContentRatingModel v) => v.bfvcRating;
   static const Field<ContentRatingModel, String> _f$bfvcRating =
-      Field('bfvcRating', _$bfvcRating, key: 'bfvc_rating', opt: true);
+      Field('bfvcRating', _$bfvcRating, opt: true);
   static String? _$bmukkRating(ContentRatingModel v) => v.bmukkRating;
   static const Field<ContentRatingModel, String> _f$bmukkRating =
-      Field('bmukkRating', _$bmukkRating, key: 'bmukk_rating', opt: true);
+      Field('bmukkRating', _$bmukkRating, opt: true);
   static String? _$catvRating(ContentRatingModel v) => v.catvRating;
   static const Field<ContentRatingModel, String> _f$catvRating =
-      Field('catvRating', _$catvRating, key: 'catv_rating', opt: true);
+      Field('catvRating', _$catvRating, opt: true);
   static String? _$catvfrRating(ContentRatingModel v) => v.catvfrRating;
   static const Field<ContentRatingModel, String> _f$catvfrRating =
-      Field('catvfrRating', _$catvfrRating, key: 'catvfr_rating', opt: true);
+      Field('catvfrRating', _$catvfrRating, opt: true);
   static String? _$cbfcRating(ContentRatingModel v) => v.cbfcRating;
   static const Field<ContentRatingModel, String> _f$cbfcRating =
-      Field('cbfcRating', _$cbfcRating, key: 'cbfc_rating', opt: true);
+      Field('cbfcRating', _$cbfcRating, opt: true);
   static String? _$cccRating(ContentRatingModel v) => v.cccRating;
   static const Field<ContentRatingModel, String> _f$cccRating =
-      Field('cccRating', _$cccRating, key: 'ccc_rating', opt: true);
+      Field('cccRating', _$cccRating, opt: true);
   static String? _$cceRating(ContentRatingModel v) => v.cceRating;
   static const Field<ContentRatingModel, String> _f$cceRating =
-      Field('cceRating', _$cceRating, key: 'cce_rating', opt: true);
+      Field('cceRating', _$cceRating, opt: true);
   static String? _$chfilmRating(ContentRatingModel v) => v.chfilmRating;
   static const Field<ContentRatingModel, String> _f$chfilmRating =
-      Field('chfilmRating', _$chfilmRating, key: 'chfilm_rating', opt: true);
+      Field('chfilmRating', _$chfilmRating, opt: true);
   static String? _$chvrsRating(ContentRatingModel v) => v.chvrsRating;
   static const Field<ContentRatingModel, String> _f$chvrsRating =
-      Field('chvrsRating', _$chvrsRating, key: 'chvrs_rating', opt: true);
+      Field('chvrsRating', _$chvrsRating, opt: true);
   static String? _$cicfRating(ContentRatingModel v) => v.cicfRating;
   static const Field<ContentRatingModel, String> _f$cicfRating =
-      Field('cicfRating', _$cicfRating, key: 'cicf_rating', opt: true);
+      Field('cicfRating', _$cicfRating, opt: true);
   static String? _$cnaRating(ContentRatingModel v) => v.cnaRating;
   static const Field<ContentRatingModel, String> _f$cnaRating =
-      Field('cnaRating', _$cnaRating, key: 'cna_rating', opt: true);
+      Field('cnaRating', _$cnaRating, opt: true);
   static String? _$cncRating(ContentRatingModel v) => v.cncRating;
   static const Field<ContentRatingModel, String> _f$cncRating =
-      Field('cncRating', _$cncRating, key: 'cnc_rating', opt: true);
+      Field('cncRating', _$cncRating, opt: true);
   static String? _$csaRating(ContentRatingModel v) => v.csaRating;
   static const Field<ContentRatingModel, String> _f$csaRating =
-      Field('csaRating', _$csaRating, key: 'csa_rating', opt: true);
+      Field('csaRating', _$csaRating, opt: true);
   static String? _$cscfRating(ContentRatingModel v) => v.cscfRating;
   static const Field<ContentRatingModel, String> _f$cscfRating =
-      Field('cscfRating', _$cscfRating, key: 'cscf_rating', opt: true);
+      Field('cscfRating', _$cscfRating, opt: true);
   static String? _$czfilmRating(ContentRatingModel v) => v.czfilmRating;
   static const Field<ContentRatingModel, String> _f$czfilmRating =
-      Field('czfilmRating', _$czfilmRating, key: 'czfilm_rating', opt: true);
+      Field('czfilmRating', _$czfilmRating, opt: true);
   static String? _$djctqRating(ContentRatingModel v) => v.djctqRating;
   static const Field<ContentRatingModel, String> _f$djctqRating =
-      Field('djctqRating', _$djctqRating, key: 'djctq_rating', opt: true);
+      Field('djctqRating', _$djctqRating, opt: true);
   static List<String>? _$djctqRatingReasons(ContentRatingModel v) =>
       v.djctqRatingReasons;
   static const Field<ContentRatingModel, List<String>> _f$djctqRatingReasons =
-      Field('djctqRatingReasons', _$djctqRatingReasons,
-          key: 'djctq_rating_reasons', opt: true);
+      Field('djctqRatingReasons', _$djctqRatingReasons, opt: true);
   static String? _$ecbmctRating(ContentRatingModel v) => v.ecbmctRating;
   static const Field<ContentRatingModel, String> _f$ecbmctRating =
-      Field('ecbmctRating', _$ecbmctRating, key: 'ecbmct_rating', opt: true);
+      Field('ecbmctRating', _$ecbmctRating, opt: true);
   static String? _$eefilmRating(ContentRatingModel v) => v.eefilmRating;
   static const Field<ContentRatingModel, String> _f$eefilmRating =
-      Field('eefilmRating', _$eefilmRating, key: 'eefilm_rating', opt: true);
+      Field('eefilmRating', _$eefilmRating, opt: true);
   static String? _$egfilmRating(ContentRatingModel v) => v.egfilmRating;
   static const Field<ContentRatingModel, String> _f$egfilmRating =
-      Field('egfilmRating', _$egfilmRating, key: 'egfilm_rating', opt: true);
+      Field('egfilmRating', _$egfilmRating, opt: true);
   static String? _$eirinRating(ContentRatingModel v) => v.eirinRating;
   static const Field<ContentRatingModel, String> _f$eirinRating =
-      Field('eirinRating', _$eirinRating, key: 'eirin_rating', opt: true);
+      Field('eirinRating', _$eirinRating, opt: true);
   static String? _$fcbmRating(ContentRatingModel v) => v.fcbmRating;
   static const Field<ContentRatingModel, String> _f$fcbmRating =
-      Field('fcbmRating', _$fcbmRating, key: 'fcbm_rating', opt: true);
+      Field('fcbmRating', _$fcbmRating, opt: true);
   static String? _$fcoRating(ContentRatingModel v) => v.fcoRating;
   static const Field<ContentRatingModel, String> _f$fcoRating =
-      Field('fcoRating', _$fcoRating, key: 'fco_rating', opt: true);
+      Field('fcoRating', _$fcoRating, opt: true);
   static String? _$fmocRating(ContentRatingModel v) => v.fmocRating;
   static const Field<ContentRatingModel, String> _f$fmocRating =
-      Field('fmocRating', _$fmocRating, key: 'fmoc_rating', opt: true);
+      Field('fmocRating', _$fmocRating, opt: true);
   static String? _$fpbRating(ContentRatingModel v) => v.fpbRating;
   static const Field<ContentRatingModel, String> _f$fpbRating =
-      Field('fpbRating', _$fpbRating, key: 'fpb_rating', opt: true);
+      Field('fpbRating', _$fpbRating, opt: true);
   static List<String>? _$fpbRatingReasons(ContentRatingModel v) =>
       v.fpbRatingReasons;
   static const Field<ContentRatingModel, List<String>> _f$fpbRatingReasons =
-      Field('fpbRatingReasons', _$fpbRatingReasons,
-          key: 'fpb_rating_reasons', opt: true);
+      Field('fpbRatingReasons', _$fpbRatingReasons, opt: true);
   static String? _$fskRating(ContentRatingModel v) => v.fskRating;
   static const Field<ContentRatingModel, String> _f$fskRating =
-      Field('fskRating', _$fskRating, key: 'fsk_rating', opt: true);
+      Field('fskRating', _$fskRating, opt: true);
   static String? _$grfilmRating(ContentRatingModel v) => v.grfilmRating;
   static const Field<ContentRatingModel, String> _f$grfilmRating =
-      Field('grfilmRating', _$grfilmRating, key: 'grfilm_rating', opt: true);
+      Field('grfilmRating', _$grfilmRating, opt: true);
   static String? _$icaaRating(ContentRatingModel v) => v.icaaRating;
   static const Field<ContentRatingModel, String> _f$icaaRating =
-      Field('icaaRating', _$icaaRating, key: 'icaa_rating', opt: true);
+      Field('icaaRating', _$icaaRating, opt: true);
   static String? _$ifcoRating(ContentRatingModel v) => v.ifcoRating;
   static const Field<ContentRatingModel, String> _f$ifcoRating =
-      Field('ifcoRating', _$ifcoRating, key: 'ifco_rating', opt: true);
+      Field('ifcoRating', _$ifcoRating, opt: true);
   static String? _$ilfilmRating(ContentRatingModel v) => v.ilfilmRating;
   static const Field<ContentRatingModel, String> _f$ilfilmRating =
-      Field('ilfilmRating', _$ilfilmRating, key: 'ilfilm_rating', opt: true);
+      Field('ilfilmRating', _$ilfilmRating, opt: true);
   static String? _$incaaRating(ContentRatingModel v) => v.incaaRating;
   static const Field<ContentRatingModel, String> _f$incaaRating =
-      Field('incaaRating', _$incaaRating, key: 'incaa_rating', opt: true);
+      Field('incaaRating', _$incaaRating, opt: true);
   static String? _$kfcbRating(ContentRatingModel v) => v.kfcbRating;
   static const Field<ContentRatingModel, String> _f$kfcbRating =
-      Field('kfcbRating', _$kfcbRating, key: 'kfcb_rating', opt: true);
+      Field('kfcbRating', _$kfcbRating, opt: true);
   static String? _$kijkwijzerRating(ContentRatingModel v) => v.kijkwijzerRating;
-  static const Field<ContentRatingModel, String> _f$kijkwijzerRating = Field(
-      'kijkwijzerRating', _$kijkwijzerRating,
-      key: 'kijkwijzer_rating', opt: true);
+  static const Field<ContentRatingModel, String> _f$kijkwijzerRating =
+      Field('kijkwijzerRating', _$kijkwijzerRating, opt: true);
   static String? _$kmrbRating(ContentRatingModel v) => v.kmrbRating;
   static const Field<ContentRatingModel, String> _f$kmrbRating =
-      Field('kmrbRating', _$kmrbRating, key: 'kmrb_rating', opt: true);
+      Field('kmrbRating', _$kmrbRating, opt: true);
   static String? _$lsfRating(ContentRatingModel v) => v.lsfRating;
   static const Field<ContentRatingModel, String> _f$lsfRating =
-      Field('lsfRating', _$lsfRating, key: 'lsf_rating', opt: true);
+      Field('lsfRating', _$lsfRating, opt: true);
   static String? _$mccaaRating(ContentRatingModel v) => v.mccaaRating;
   static const Field<ContentRatingModel, String> _f$mccaaRating =
-      Field('mccaaRating', _$mccaaRating, key: 'mccaa_rating', opt: true);
+      Field('mccaaRating', _$mccaaRating, opt: true);
   static String? _$mccypRating(ContentRatingModel v) => v.mccypRating;
   static const Field<ContentRatingModel, String> _f$mccypRating =
-      Field('mccypRating', _$mccypRating, key: 'mccyp_rating', opt: true);
+      Field('mccypRating', _$mccypRating, opt: true);
   static String? _$mcstRating(ContentRatingModel v) => v.mcstRating;
   static const Field<ContentRatingModel, String> _f$mcstRating =
-      Field('mcstRating', _$mcstRating, key: 'mcst_rating', opt: true);
+      Field('mcstRating', _$mcstRating, opt: true);
   static String? _$mdaRating(ContentRatingModel v) => v.mdaRating;
   static const Field<ContentRatingModel, String> _f$mdaRating =
-      Field('mdaRating', _$mdaRating, key: 'mda_rating', opt: true);
+      Field('mdaRating', _$mdaRating, opt: true);
   static String? _$medietilsynetRating(ContentRatingModel v) =>
       v.medietilsynetRating;
-  static const Field<ContentRatingModel, String> _f$medietilsynetRating = Field(
-      'medietilsynetRating', _$medietilsynetRating,
-      key: 'medietilsynet_rating', opt: true);
+  static const Field<ContentRatingModel, String> _f$medietilsynetRating =
+      Field('medietilsynetRating', _$medietilsynetRating, opt: true);
   static String? _$mekuRating(ContentRatingModel v) => v.mekuRating;
   static const Field<ContentRatingModel, String> _f$mekuRating =
-      Field('mekuRating', _$mekuRating, key: 'meku_rating', opt: true);
+      Field('mekuRating', _$mekuRating, opt: true);
   static String? _$mibacRating(ContentRatingModel v) => v.mibacRating;
   static const Field<ContentRatingModel, String> _f$mibacRating =
-      Field('mibacRating', _$mibacRating, key: 'mibac_rating', opt: true);
+      Field('mibacRating', _$mibacRating, opt: true);
   static String? _$mocRating(ContentRatingModel v) => v.mocRating;
   static const Field<ContentRatingModel, String> _f$mocRating =
-      Field('mocRating', _$mocRating, key: 'moc_rating', opt: true);
+      Field('mocRating', _$mocRating, opt: true);
   static String? _$moctwRating(ContentRatingModel v) => v.moctwRating;
   static const Field<ContentRatingModel, String> _f$moctwRating =
-      Field('moctwRating', _$moctwRating, key: 'moctw_rating', opt: true);
+      Field('moctwRating', _$moctwRating, opt: true);
   static String? _$mpaaRating(ContentRatingModel v) => v.mpaaRating;
   static const Field<ContentRatingModel, String> _f$mpaaRating =
-      Field('mpaaRating', _$mpaaRating, key: 'mpaa_rating', opt: true);
+      Field('mpaaRating', _$mpaaRating, opt: true);
   static String? _$mpaatRating(ContentRatingModel v) => v.mpaatRating;
   static const Field<ContentRatingModel, String> _f$mpaatRating =
-      Field('mpaatRating', _$mpaatRating, key: 'mpaat_rating', opt: true);
+      Field('mpaatRating', _$mpaatRating, opt: true);
   static String? _$mtrcbRating(ContentRatingModel v) => v.mtrcbRating;
   static const Field<ContentRatingModel, String> _f$mtrcbRating =
-      Field('mtrcbRating', _$mtrcbRating, key: 'mtrcb_rating', opt: true);
+      Field('mtrcbRating', _$mtrcbRating, opt: true);
   static String? _$nbcRating(ContentRatingModel v) => v.nbcRating;
   static const Field<ContentRatingModel, String> _f$nbcRating =
-      Field('nbcRating', _$nbcRating, key: 'nbc_rating', opt: true);
+      Field('nbcRating', _$nbcRating, opt: true);
   static String? _$nbcplRating(ContentRatingModel v) => v.nbcplRating;
   static const Field<ContentRatingModel, String> _f$nbcplRating =
-      Field('nbcplRating', _$nbcplRating, key: 'nbcpl_rating', opt: true);
+      Field('nbcplRating', _$nbcplRating, opt: true);
   static String? _$nfrcRating(ContentRatingModel v) => v.nfrcRating;
   static const Field<ContentRatingModel, String> _f$nfrcRating =
-      Field('nfrcRating', _$nfrcRating, key: 'nfrc_rating', opt: true);
+      Field('nfrcRating', _$nfrcRating, opt: true);
   static String? _$nfvcbRating(ContentRatingModel v) => v.nfvcbRating;
   static const Field<ContentRatingModel, String> _f$nfvcbRating =
-      Field('nfvcbRating', _$nfvcbRating, key: 'nfvcb_rating', opt: true);
+      Field('nfvcbRating', _$nfvcbRating, opt: true);
   static String? _$nkclvRating(ContentRatingModel v) => v.nkclvRating;
   static const Field<ContentRatingModel, String> _f$nkclvRating =
-      Field('nkclvRating', _$nkclvRating, key: 'nkclv_rating', opt: true);
+      Field('nkclvRating', _$nkclvRating, opt: true);
   static String? _$oflcRating(ContentRatingModel v) => v.oflcRating;
   static const Field<ContentRatingModel, String> _f$oflcRating =
-      Field('oflcRating', _$oflcRating, key: 'oflc_rating', opt: true);
+      Field('oflcRating', _$oflcRating, opt: true);
   static String? _$pefilmRating(ContentRatingModel v) => v.pefilmRating;
   static const Field<ContentRatingModel, String> _f$pefilmRating =
-      Field('pefilmRating', _$pefilmRating, key: 'pefilm_rating', opt: true);
+      Field('pefilmRating', _$pefilmRating, opt: true);
   static String? _$rcnofRating(ContentRatingModel v) => v.rcnofRating;
   static const Field<ContentRatingModel, String> _f$rcnofRating =
-      Field('rcnofRating', _$rcnofRating, key: 'rcnof_rating', opt: true);
+      Field('rcnofRating', _$rcnofRating, opt: true);
   static String? _$resorteviolenciaRating(ContentRatingModel v) =>
       v.resorteviolenciaRating;
   static const Field<ContentRatingModel, String> _f$resorteviolenciaRating =
-      Field('resorteviolenciaRating', _$resorteviolenciaRating,
-          key: 'resorteviolencia_rating', opt: true);
+      Field('resorteviolenciaRating', _$resorteviolenciaRating, opt: true);
   static String? _$rtcRating(ContentRatingModel v) => v.rtcRating;
   static const Field<ContentRatingModel, String> _f$rtcRating =
-      Field('rtcRating', _$rtcRating, key: 'rtc_rating', opt: true);
+      Field('rtcRating', _$rtcRating, opt: true);
   static String? _$rteRating(ContentRatingModel v) => v.rteRating;
   static const Field<ContentRatingModel, String> _f$rteRating =
-      Field('rteRating', _$rteRating, key: 'rte_rating', opt: true);
+      Field('rteRating', _$rteRating, opt: true);
   static String? _$russiaRating(ContentRatingModel v) => v.russiaRating;
   static const Field<ContentRatingModel, String> _f$russiaRating =
-      Field('russiaRating', _$russiaRating, key: 'russia_rating', opt: true);
+      Field('russiaRating', _$russiaRating, opt: true);
   static String? _$skfilmRating(ContentRatingModel v) => v.skfilmRating;
   static const Field<ContentRatingModel, String> _f$skfilmRating =
-      Field('skfilmRating', _$skfilmRating, key: 'skfilm_rating', opt: true);
+      Field('skfilmRating', _$skfilmRating, opt: true);
   static String? _$smaisRating(ContentRatingModel v) => v.smaisRating;
   static const Field<ContentRatingModel, String> _f$smaisRating =
-      Field('smaisRating', _$smaisRating, key: 'smais_rating', opt: true);
+      Field('smaisRating', _$smaisRating, opt: true);
   static String? _$smsaRating(ContentRatingModel v) => v.smsaRating;
   static const Field<ContentRatingModel, String> _f$smsaRating =
-      Field('smsaRating', _$smsaRating, key: 'smsa_rating', opt: true);
+      Field('smsaRating', _$smsaRating, opt: true);
   static String? _$tvpgRating(ContentRatingModel v) => v.tvpgRating;
   static const Field<ContentRatingModel, String> _f$tvpgRating =
-      Field('tvpgRating', _$tvpgRating, key: 'tvpg_rating', opt: true);
+      Field('tvpgRating', _$tvpgRating, opt: true);
   static String? _$ytRating(ContentRatingModel v) => v.ytRating;
   static const Field<ContentRatingModel, String> _f$ytRating =
-      Field('ytRating', _$ytRating, key: 'yt_rating', opt: true);
+      Field('ytRating', _$ytRating, opt: true);
 
   @override
   final MappableFields<ContentRatingModel> fields = const {

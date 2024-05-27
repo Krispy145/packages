@@ -14,7 +14,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "statistics_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class StatisticsModel with StatisticsModelMappable {
   final String? viewCount;
   final String? likeCount;

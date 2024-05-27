@@ -22,19 +22,19 @@ class StatisticsModelMapper extends ClassMapperBase<StatisticsModel> {
 
   static String? _$viewCount(StatisticsModel v) => v.viewCount;
   static const Field<StatisticsModel, String> _f$viewCount =
-      Field('viewCount', _$viewCount, key: 'view_count', opt: true);
+      Field('viewCount', _$viewCount, opt: true);
   static String? _$likeCount(StatisticsModel v) => v.likeCount;
   static const Field<StatisticsModel, String> _f$likeCount =
-      Field('likeCount', _$likeCount, key: 'like_count', opt: true);
+      Field('likeCount', _$likeCount, opt: true);
   static String? _$dislikeCount(StatisticsModel v) => v.dislikeCount;
   static const Field<StatisticsModel, String> _f$dislikeCount =
-      Field('dislikeCount', _$dislikeCount, key: 'dislike_count', opt: true);
+      Field('dislikeCount', _$dislikeCount, opt: true);
   static String? _$favoriteCount(StatisticsModel v) => v.favoriteCount;
   static const Field<StatisticsModel, String> _f$favoriteCount =
-      Field('favoriteCount', _$favoriteCount, key: 'favorite_count', opt: true);
+      Field('favoriteCount', _$favoriteCount, opt: true);
   static String? _$commentCount(StatisticsModel v) => v.commentCount;
   static const Field<StatisticsModel, String> _f$commentCount =
-      Field('commentCount', _$commentCount, key: 'comment_count', opt: true);
+      Field('commentCount', _$commentCount, opt: true);
 
   @override
   final MappableFields<StatisticsModel> fields = const {

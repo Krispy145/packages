@@ -24,10 +24,10 @@ class PlaylistSnippetModelMapper extends ClassMapperBase<PlaylistSnippetModel> {
 
   static DateTime? _$publishedAt(PlaylistSnippetModel v) => v.publishedAt;
   static const Field<PlaylistSnippetModel, DateTime> _f$publishedAt =
-      Field('publishedAt', _$publishedAt, key: 'published_at', opt: true);
+      Field('publishedAt', _$publishedAt, opt: true);
   static String? _$channelId(PlaylistSnippetModel v) => v.channelId;
   static const Field<PlaylistSnippetModel, String> _f$channelId =
-      Field('channelId', _$channelId, key: 'channel_id', opt: true);
+      Field('channelId', _$channelId, opt: true);
   static String? _$title(PlaylistSnippetModel v) => v.title;
   static const Field<PlaylistSnippetModel, String> _f$title =
       Field('title', _$title, opt: true);
@@ -40,11 +40,10 @@ class PlaylistSnippetModelMapper extends ClassMapperBase<PlaylistSnippetModel> {
       _f$thumbnails = Field('thumbnails', _$thumbnails, opt: true);
   static String? _$channelTitle(PlaylistSnippetModel v) => v.channelTitle;
   static const Field<PlaylistSnippetModel, String> _f$channelTitle =
-      Field('channelTitle', _$channelTitle, key: 'channel_title', opt: true);
+      Field('channelTitle', _$channelTitle, opt: true);
   static String? _$defaultLanguage(PlaylistSnippetModel v) => v.defaultLanguage;
-  static const Field<PlaylistSnippetModel, String> _f$defaultLanguage = Field(
-      'defaultLanguage', _$defaultLanguage,
-      key: 'default_language', opt: true);
+  static const Field<PlaylistSnippetModel, String> _f$defaultLanguage =
+      Field('defaultLanguage', _$defaultLanguage, opt: true);
   static LocalizedModel? _$localized(PlaylistSnippetModel v) => v.localized;
   static const Field<PlaylistSnippetModel, LocalizedModel> _f$localized =
       Field('localized', _$localized, opt: true);

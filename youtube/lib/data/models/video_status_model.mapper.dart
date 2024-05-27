@@ -22,20 +22,19 @@ class VideoStatusModelMapper extends ClassMapperBase<VideoStatusModel> {
 
   static String? _$uploadStatus(VideoStatusModel v) => v.uploadStatus;
   static const Field<VideoStatusModel, String> _f$uploadStatus =
-      Field('uploadStatus', _$uploadStatus, key: 'upload_status', opt: true);
+      Field('uploadStatus', _$uploadStatus, opt: true);
   static String? _$failureReason(VideoStatusModel v) => v.failureReason;
   static const Field<VideoStatusModel, String> _f$failureReason =
-      Field('failureReason', _$failureReason, key: 'failure_reason', opt: true);
+      Field('failureReason', _$failureReason, opt: true);
   static String? _$rejectionReason(VideoStatusModel v) => v.rejectionReason;
-  static const Field<VideoStatusModel, String> _f$rejectionReason = Field(
-      'rejectionReason', _$rejectionReason,
-      key: 'rejection_reason', opt: true);
+  static const Field<VideoStatusModel, String> _f$rejectionReason =
+      Field('rejectionReason', _$rejectionReason, opt: true);
   static String? _$privacyStatus(VideoStatusModel v) => v.privacyStatus;
   static const Field<VideoStatusModel, String> _f$privacyStatus =
-      Field('privacyStatus', _$privacyStatus, key: 'privacy_status', opt: true);
+      Field('privacyStatus', _$privacyStatus, opt: true);
   static DateTime? _$publishAt(VideoStatusModel v) => v.publishAt;
   static const Field<VideoStatusModel, DateTime> _f$publishAt =
-      Field('publishAt', _$publishAt, key: 'publish_at', opt: true);
+      Field('publishAt', _$publishAt, opt: true);
   static String? _$license(VideoStatusModel v) => v.license;
   static const Field<VideoStatusModel, String> _f$license =
       Field('license', _$license, opt: true);
@@ -44,17 +43,15 @@ class VideoStatusModelMapper extends ClassMapperBase<VideoStatusModel> {
       Field('embeddable', _$embeddable, opt: true);
   static bool? _$publicStatsViewable(VideoStatusModel v) =>
       v.publicStatsViewable;
-  static const Field<VideoStatusModel, bool> _f$publicStatsViewable = Field(
-      'publicStatsViewable', _$publicStatsViewable,
-      key: 'public_stats_viewable', opt: true);
+  static const Field<VideoStatusModel, bool> _f$publicStatsViewable =
+      Field('publicStatsViewable', _$publicStatsViewable, opt: true);
   static bool? _$madeForKids(VideoStatusModel v) => v.madeForKids;
   static const Field<VideoStatusModel, bool> _f$madeForKids =
-      Field('madeForKids', _$madeForKids, key: 'made_for_kids', opt: true);
+      Field('madeForKids', _$madeForKids, opt: true);
   static bool? _$selfDeclaredMadeForKids(VideoStatusModel v) =>
       v.selfDeclaredMadeForKids;
-  static const Field<VideoStatusModel, bool> _f$selfDeclaredMadeForKids = Field(
-      'selfDeclaredMadeForKids', _$selfDeclaredMadeForKids,
-      key: 'self_declared_made_for_kids', opt: true);
+  static const Field<VideoStatusModel, bool> _f$selfDeclaredMadeForKids =
+      Field('selfDeclaredMadeForKids', _$selfDeclaredMadeForKids, opt: true);
 
   @override
   final MappableFields<VideoStatusModel> fields = const {

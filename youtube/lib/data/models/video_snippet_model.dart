@@ -33,7 +33,7 @@ import "package:youtube/data/models/thumbnails_model.dart";
 
 part "video_snippet_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class VideoSnippetModel with VideoSnippetModelMappable {
   final DateTime? publishedAt;
   final String? channelId;

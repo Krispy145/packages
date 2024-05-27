@@ -14,7 +14,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "video_status_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class VideoStatusModel with VideoStatusModelMappable {
   final String? uploadStatus;
   final String? failureReason;

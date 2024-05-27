@@ -24,33 +24,33 @@ class FileDetailsModelMapper extends ClassMapperBase<FileDetailsModel> {
 
   static String? _$fileName(FileDetailsModel v) => v.fileName;
   static const Field<FileDetailsModel, String> _f$fileName =
-      Field('fileName', _$fileName, key: 'file_name', opt: true);
+      Field('fileName', _$fileName, opt: true);
   static int? _$fileSize(FileDetailsModel v) => v.fileSize;
   static const Field<FileDetailsModel, int> _f$fileSize =
-      Field('fileSize', _$fileSize, key: 'file_size', opt: true);
+      Field('fileSize', _$fileSize, opt: true);
   static String? _$fileType(FileDetailsModel v) => v.fileType;
   static const Field<FileDetailsModel, String> _f$fileType =
-      Field('fileType', _$fileType, key: 'file_type', opt: true);
+      Field('fileType', _$fileType, opt: true);
   static String? _$container(FileDetailsModel v) => v.container;
   static const Field<FileDetailsModel, String> _f$container =
       Field('container', _$container, opt: true);
   static List<VideoStreamModel>? _$videoStreams(FileDetailsModel v) =>
       v.videoStreams;
   static const Field<FileDetailsModel, List<VideoStreamModel>> _f$videoStreams =
-      Field('videoStreams', _$videoStreams, key: 'video_streams', opt: true);
+      Field('videoStreams', _$videoStreams, opt: true);
   static List<AudioStreamModel>? _$audioStreams(FileDetailsModel v) =>
       v.audioStreams;
   static const Field<FileDetailsModel, List<AudioStreamModel>> _f$audioStreams =
-      Field('audioStreams', _$audioStreams, key: 'audio_streams', opt: true);
+      Field('audioStreams', _$audioStreams, opt: true);
   static int? _$durationMs(FileDetailsModel v) => v.durationMs;
   static const Field<FileDetailsModel, int> _f$durationMs =
-      Field('durationMs', _$durationMs, key: 'duration_ms', opt: true);
+      Field('durationMs', _$durationMs, opt: true);
   static int? _$bitrateBps(FileDetailsModel v) => v.bitrateBps;
   static const Field<FileDetailsModel, int> _f$bitrateBps =
-      Field('bitrateBps', _$bitrateBps, key: 'bitrate_bps', opt: true);
+      Field('bitrateBps', _$bitrateBps, opt: true);
   static String? _$creationTime(FileDetailsModel v) => v.creationTime;
   static const Field<FileDetailsModel, String> _f$creationTime =
-      Field('creationTime', _$creationTime, key: 'creation_time', opt: true);
+      Field('creationTime', _$creationTime, opt: true);
 
   @override
   final MappableFields<FileDetailsModel> fields = const {

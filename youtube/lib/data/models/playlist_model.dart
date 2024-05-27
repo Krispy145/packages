@@ -49,7 +49,7 @@
 
 // part "playlist_model.mapper.dart";
 
-// @MappableClass(caseStyle: CaseStyle.snakeCase)
+// @MappableClass(caseStyle: CaseStyle.camelCase)
 // class PlaylistModel with PlaylistModelMappable {
 //       final String id;
 //     String? kind;
@@ -110,7 +110,7 @@ import "package:youtube/utils/loggers.dart";
 
 part "playlist_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class PlaylistModel with PlaylistModelMappable {
   final String id;
   final String? kind;

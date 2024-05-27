@@ -26,7 +26,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
           options: BaseOptions(
             queryParameters: {
               "key": apiKey,
-              "part": "snippet,contentDetails",
+              "part": "id,snippet,contentDetails,status",
             },
             headers: {
               "Access-Control-Allow-Origin": "*",

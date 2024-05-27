@@ -14,6 +14,7 @@ dependencies:
   youtube_player_flutter:
   utilities:
     path: ../../packages/utilities
+  youtube_player_iframe: 5.1.2
 
 dev_dependencies:
   flutter_test:

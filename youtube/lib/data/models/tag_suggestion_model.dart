@@ -18,7 +18,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "tag_suggestion_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class TagSuggestionModel with TagSuggestionModelMappable {
   final String? tag;
   final List<String>? categoryRestricts;
