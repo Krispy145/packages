@@ -1,6 +1,6 @@
 import "package:socials/data/models/instagram/user_model.dart";
 import "package:socials/utils/loggers.dart";
-import "package:utilities/data_sources/secure/source.dart";
+import "package:utilities/data/sources/secure/source.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [SecureInstagramDataSource] is a class used to manage the secure storage of [InstagramUserModel] data.

@@ -25,6 +25,14 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
     });
   }
 
+  late final _$saveValueAsyncAction =
+      AsyncAction('_FormsModelStore.saveValue', context: context);
+
+  @override
+  Future<RequestResponse> saveValue() {
+    return _$saveValueAsyncAction.run(() => super.saveValue());
+  }
+
   late final _$_FormsModelStoreActionController =
       ActionController(name: '_FormsModelStore', context: context);
 
@@ -34,17 +42,6 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
         name: '_FormsModelStore.onValueChanged');
     try {
       return super.onValueChanged(newValue);
-    } finally {
-      _$_FormsModelStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void saveValue() {
-    final _$actionInfo = _$_FormsModelStoreActionController.startAction(
-        name: '_FormsModelStore.saveValue');
-    try {
-      return super.saveValue();
     } finally {
       _$_FormsModelStoreActionController.endAction(_$actionInfo);
     }

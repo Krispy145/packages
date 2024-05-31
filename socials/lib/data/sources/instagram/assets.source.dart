@@ -1,5 +1,5 @@
 // import "package:socials/utils/loggers.dart";
-// import "package:utilities/data_sources/local/assets.dart";
+// import "package:utilities/data/sources/local/assets.dart";
 // import "package:utilities/logger/logger.dart";
 
 // import "../../models/instagram/user_model.dart";

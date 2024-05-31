@@ -1,8 +1,7 @@
 import "package:authentication/data/models/user_model.dart";
-import "package:authentication/data/source/_source.dart";
-import "package:authentication/data/source/api_user.source.dart";
-import "package:authentication/data/source/firestore_user.source.dart";
-import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/data/sources/user/_source.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 
 /// [UserDataSourceTypes] is an enum that defines the different data sources.
 enum UserDataSourceTypes {
@@ -46,17 +45,17 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [addUser] adds a [T] based on the [user] and [source].
-  Future<T?> addUser(T user) async {
+  Future<Pair<RequestResponse, T?>> addUser(T user) async {
     return _dataSourceByType(source).add(user);
   }
 
   /// [updateUser] updates a [T] based on the [user] and [source].
-  Future<void> updateUser(T user) async {
+  Future<RequestResponse> updateUser(T user) async {
     return _dataSourceByType(source).update(user.id, user);
   }
 
   /// [deleteUser] deletes a [T] based on the [id] and [source].
-  Future<void> deleteUser({
+  Future<RequestResponse> deleteUser({
     required String id,
   }) async {
     return _dataSourceByType(source).delete(id);

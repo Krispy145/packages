@@ -9,8 +9,7 @@ import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class OutlinedBorderFormField
-    extends BaseFormField<OutlinedBorderFormFieldStore> {
+class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore> {
   const OutlinedBorderFormField({
     super.key,
     required super.store,
@@ -25,19 +24,24 @@ class OutlinedBorderFormField
           children: [
             SegmentedButton<OutlinedBorderType>(
               segments: OutlinedBorderType.values
-                  .map((type) => ButtonSegment<OutlinedBorderType>(
-                      value: type, label: Text(type.name.toTitleCase()),),)
+                  .map(
+                    (type) => ButtonSegment<OutlinedBorderType>(
+                      value: type,
+                      label: Text(type.name.toTitleCase()),
+                    ),
+                  )
                   .toList(),
               selected: {store.outlinedBorderType},
-              onSelectionChanged: (newSelection) =>
-                  store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             FilledButton(
               onPressed: () {},
               style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                      store.value.asOutlinedBorder(),),),
+                shape: WidgetStateProperty.all(
+                  store.value.asOutlinedBorder(),
+                ),
+              ),
               child: const Text("Border Preview"),
             ),
             Sizes.m.spacer(),

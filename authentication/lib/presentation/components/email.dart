@@ -4,6 +4,7 @@ import "package:authentication/domain/repositories/authentication.repository.dar
 import "package:authentication/helpers/constants.dart";
 import "package:authentication/helpers/exception.dart";
 import "package:email_validator/email_validator.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
@@ -74,13 +75,9 @@ class EmailAuthWidget extends StatefulWidget {
 
 class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController =
-      TextEditingController(text: "davidkisbeygreen145@gmail.com");
-  final _passwordController = TextEditingController(
-    text: "krispy123",
-  );
-  late final Map<AdditionalDataField, TextEditingController>
-      _additionalDataControllers;
+  final _emailController = TextEditingController(text: kDebugMode ? "davidkisbeygreen145@gmail.com" : null);
+  final _passwordController = TextEditingController(text: kDebugMode ? "DigitalOasis123!" : null);
+  late final Map<AdditionalDataField, TextEditingController> _additionalDataControllers;
 
   bool _isLoading = false;
   bool _showPassword = false;
@@ -114,8 +111,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   void _toggleSignIn() {
     setState(() {
       _forgotPassword = false;
-      action =
-          action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+      action = action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
     });
   }
 
@@ -143,9 +139,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
             validator: (value) {
-              if (value == null ||
-                  value.isEmpty ||
-                  !EmailValidator.validate(_emailController.text)) {
+              if (value == null || value.isEmpty || !EmailValidator.validate(_emailController.text)) {
                 return "Please enter a valid email address";
               }
               return null;
@@ -173,21 +167,20 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                     _showPassword = !_showPassword;
                   }),
                   child: Icon(
-                      _showPassword ? Icons.visibility : Icons.visibility_off,),
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                  ),
                 ),
               ),
               obscureText: !_showPassword,
               controller: _passwordController,
             ),
             Sizes.s.spacer(),
-            if (widget.additionalDataFields != null &&
-                action == AuthAction.signUp)
+            if (widget.additionalDataFields != null && action == AuthAction.signUp)
               ...widget.additionalDataFields!
                   .map(
                     (additionalDataField) => [
                       TextFormField(
-                        controller:
-                            _additionalDataControllers[additionalDataField],
+                        controller: _additionalDataControllers[additionalDataField],
                         decoration: InputDecoration(
                           label: Text(additionalDataField.label),
                           prefixIcon: additionalDataField.prefixIcon,
@@ -225,16 +218,18 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                 } on AuthenticationException catch (error) {
                   if (widget.onError == null && context.mounted) {
                     context.showSnackbar(
-                        configuration:
-                            SnackbarConfiguration.error(title: error.message),);
+                      configuration: SnackbarConfiguration.error(title: error.message),
+                    );
                   } else {
                     widget.onError?.call(error);
                   }
                 } catch (error) {
                   if (widget.onError == null && context.mounted) {
                     context.showSnackbar(
-                        configuration: SnackbarConfiguration.error(
-                            title: "Unexpected error has occurred: $error",),);
+                      configuration: SnackbarConfiguration.error(
+                        title: "Unexpected error has occurred: $error",
+                      ),
+                    );
                   } else {
                     widget.onError?.call(error);
                   }
@@ -260,9 +255,9 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
             TextButton(
               key: const ValueKey("toggleSignInButton"),
               onPressed: _toggleSignIn,
-              child: Text(action == AuthAction.signIn
-                  ? "Don't have an account? Sign up"
-                  : "Already have an account? Sign in",),
+              child: Text(
+                action == AuthAction.signIn ? "Don't have an account? Sign up" : "Already have an account? Sign in",
+              ),
             ),
           ],
           if (action == AuthAction.signIn && _forgotPassword) ...[
@@ -278,14 +273,15 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                   });
 
                   throw const AuthenticationException(
-                      "Forgot password is not implemented yet",);
+                    "Forgot password is not implemented yet",
+                  );
                   // final email = _emailController.text.trim();
                   // await supabase.auth.resetPasswordForEmail(email);
                   // widget.onPasswordResetEmailSent?.call();
                 } on AuthenticationException catch (error) {
                   context.showSnackbar(
-                      configuration:
-                          SnackbarConfiguration.error(title: error.message),);
+                    configuration: SnackbarConfiguration.error(title: error.message),
+                  );
                 } catch (error) {
                   widget.onError?.call(error);
                 }

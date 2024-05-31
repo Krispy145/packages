@@ -1,16 +1,20 @@
+import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
+import "package:uuid/uuid.dart";
+
+extension UUIDExtension on UUID {
+  bool isValidUUID() {
+    return Uuid.isValidUUID(fromString: this);
+  }
+}
 
 /// String Extensions
 extension StringExtension on String {
   /// Capitalize String
-  String _toCapitalized() =>
-      length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : "";
+  String _toCapitalized() => length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : "";
 
   /// Title Capitalize String
-  String toTitleCase() => replaceAll(RegExp(" +"), " ")
-      .split(" ")
-      .map((str) => str._toCapitalized())
-      .join(" ");
+  String toTitleCase() => replaceAll(RegExp(" +"), " ").split(" ").map((str) => str._toCapitalized()).join(" ");
 
   /// Checks if string is or isn't a number
   bool get isNumeric => double.tryParse(this) != null;
@@ -72,8 +76,7 @@ extension StringExtension on String {
   String replaceTextBetween(String start, String end, String replacement) {
     final startString = replaceAll("\n", r"\n");
     // ignore: prefer_interpolation_to_compose_strings
-    final result =
-        startString.replaceAllMapped(RegExp("($start)(.*?)($end)"), (m) {
+    final result = startString.replaceAllMapped(RegExp("($start)(.*?)($end)"), (m) {
       return '${m[1]}$replacement${m[3]}';
     });
     return result.replaceAll(r"\n", "\n");
@@ -119,4 +122,10 @@ extension StringExtension on String {
     final word = substring(startLetter, spaceIndexAfter);
     return Pair(word, startLetter);
   }
+}
+
+/// [generateUniqueId] method generates a unique id
+String generateUniqueId() {
+  const uuid = Uuid();
+  return uuid.v4();
 }

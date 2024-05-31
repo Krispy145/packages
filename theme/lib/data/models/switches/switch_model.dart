@@ -20,8 +20,7 @@ class SwitchModel with _$SwitchModel {
 
   const SwitchModel._();
 
-  factory SwitchModel.fromJson(Map<String, dynamic> json) =>
-      _$SwitchModelFromJson(json);
+  factory SwitchModel.fromJson(Map<String, dynamic> json) => _$SwitchModelFromJson(json);
 
   // static SwitchModel defaultSwitchModel() {
   //   return const SwitchModel(
@@ -36,16 +35,21 @@ class SwitchModel with _$SwitchModel {
 
   SwitchThemeData asSwitchThemeData({String? styleTypeName}) {
     return SwitchThemeData(
-      thumbColor: MaterialStateProperty.all(
-          thumbColor_themeColorString?.toColor(styleType: styleTypeName),),
-      trackColor: MaterialStateProperty.all(
-          trackColor_themeColorString?.toColor(styleType: styleTypeName),),
-      trackOutlineColor: MaterialStateProperty.all(
-          trackOutlineColor_themeColorString?.toColor(
-              styleType: styleTypeName,),),
-      trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth_double),
-      overlayColor: MaterialStateProperty.all(
-          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
+      thumbColor: WidgetStateProperty.all(
+        thumbColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      trackColor: WidgetStateProperty.all(
+        trackColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      trackOutlineColor: WidgetStateProperty.all(
+        trackOutlineColor_themeColorString?.toColor(
+          styleType: styleTypeName,
+        ),
+      ),
+      trackOutlineWidth: WidgetStateProperty.all(trackOutlineWidth_double),
+      overlayColor: WidgetStateProperty.all(
+        overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
       splashRadius: splashRadius_double,
     );
   }

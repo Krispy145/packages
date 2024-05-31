@@ -90,7 +90,8 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.add', context: context);
 
   @override
-  Future<NotificationModel?> add(NotificationModel notification) {
+  Future<Pair<RequestResponse, NotificationModel?>> add(
+      NotificationModel notification) {
     return _$addAsyncAction.run(() => super.add(notification));
   }
 
@@ -98,7 +99,7 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.addAll', context: context);
 
   @override
-  Future<void> addAll(List<NotificationModel> notifications) {
+  Future<RequestResponse> addAll(List<NotificationModel> notifications) {
     return _$addAllAsyncAction.run(() => super.addAll(notifications));
   }
 
@@ -106,7 +107,7 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.update', context: context);
 
   @override
-  Future<void> update(String id, NotificationModel notification) {
+  Future<RequestResponse> update(String id, NotificationModel notification) {
     return _$updateAsyncAction.run(() => super.update(id, notification));
   }
 
@@ -114,7 +115,8 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.updateAll', context: context);
 
   @override
-  Future<void> updateAll(Map<String, NotificationModel> notificationMap) {
+  Future<RequestResponse> updateAll(
+      Map<String, NotificationModel> notificationMap) {
     return _$updateAllAsyncAction.run(() => super.updateAll(notificationMap));
   }
 
@@ -122,7 +124,7 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.delete', context: context);
 
   @override
-  Future<void> delete(String id) {
+  Future<RequestResponse> delete(String id) {
     return _$deleteAsyncAction.run(() => super.delete(id));
   }
 
@@ -130,7 +132,7 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
       AsyncAction('_PushNotificationsStore.deleteAll', context: context);
 
   @override
-  Future<void> deleteAll() {
+  Future<RequestResponse> deleteAll() {
     return _$deleteAllAsyncAction.run(() => super.deleteAll());
   }
 

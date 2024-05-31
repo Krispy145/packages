@@ -25,16 +25,13 @@ class SearchBarModel with _$SearchBarModel {
     @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
     TextStyleString? textStyle_textStyleString,
     TextStyleString? hintStyle_textStyleString,
-    @Default(BoxConstraintsModel())
-    BoxConstraintsModel? constraints_boxConstraints,
-    @Default(TextCapitalization.none)
-    TextCapitalization? textCapitalization_enum_textCapitalization,
+    @Default(BoxConstraintsModel()) BoxConstraintsModel? constraints_boxConstraints,
+    @Default(TextCapitalization.none) TextCapitalization? textCapitalization_enum_textCapitalization,
   }) = _SearchBarModel;
 
   const SearchBarModel._();
 
-  factory SearchBarModel.fromJson(Map<String, dynamic> json) =>
-      _$SearchBarModelFromJson(json);
+  factory SearchBarModel.fromJson(Map<String, dynamic> json) => _$SearchBarModelFromJson(json);
 
   // static SearchBarModel defaultSearchBarModel() {
   //   return const SearchBarModel(
@@ -74,30 +71,37 @@ class SearchBarModel with _$SearchBarModel {
 
   SearchBarThemeData asSearchBarThemeData({String? styleTypeName}) {
     return SearchBarThemeData(
-      elevation: MaterialStateProperty.all(elevation_double),
-      backgroundColor: MaterialStateProperty.all(
-          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),),
-      shadowColor: MaterialStateProperty.all(
-          shadowColor_themeColorString?.toColor(styleType: styleTypeName),),
-      surfaceTintColor: MaterialStateProperty.all(
-          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),),
-      overlayColor: MaterialStateProperty.all(
-          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
-      side: MaterialStateProperty.all(
-          side_borderSide?.asBorderSide(styleTypeName: styleTypeName),),
-      shape: MaterialStateProperty.all(
-          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),),
-      padding: MaterialStateProperty.all(
-          padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ??
-              EdgeInsets.zero,),
-      textStyle: MaterialStateProperty.all(textStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle,),
-      hintStyle: MaterialStateProperty.all(hintStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle,),
+      elevation: WidgetStateProperty.all(elevation_double),
+      backgroundColor: WidgetStateProperty.all(
+        backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      shadowColor: WidgetStateProperty.all(
+        shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      surfaceTintColor: WidgetStateProperty.all(
+        surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      overlayColor: WidgetStateProperty.all(
+        overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      side: WidgetStateProperty.all(
+        side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
+      ),
+      shape: WidgetStateProperty.all(
+        shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      ),
+      padding: WidgetStateProperty.all(
+        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero,
+      ),
+      textStyle: WidgetStateProperty.all(
+        textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      ),
+      hintStyle: WidgetStateProperty.all(
+        hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      ),
       constraints: constraints_boxConstraints?.asBoxConstraints(
-          styleTypeName: styleTypeName,),
+        styleTypeName: styleTypeName,
+      ),
       textCapitalization: textCapitalization_enum_textCapitalization,
     );
   }

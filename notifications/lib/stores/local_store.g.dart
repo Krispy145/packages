@@ -141,7 +141,7 @@ mixin _$LocalNotificationsStore on _LocalNotificationsStore, Store {
       AsyncAction('_LocalNotificationsStore.delete', context: context);
 
   @override
-  Future<void> delete(String id) {
+  Future<RequestResponse> delete(String id) {
     return _$deleteAsyncAction.run(() => super.delete(id));
   }
 
@@ -149,7 +149,7 @@ mixin _$LocalNotificationsStore on _LocalNotificationsStore, Store {
       AsyncAction('_LocalNotificationsStore.deleteAll', context: context);
 
   @override
-  Future<void> deleteAll() {
+  Future<RequestResponse> deleteAll() {
     return _$deleteAllAsyncAction.run(() => super.deleteAll());
   }
 

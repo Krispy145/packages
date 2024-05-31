@@ -27,8 +27,7 @@ class NavigationDrawerModel with _$NavigationDrawerModel {
 
   const NavigationDrawerModel._();
 
-  factory NavigationDrawerModel.fromJson(Map<String, dynamic> json) =>
-      _$NavigationDrawerModelFromJson(json);
+  factory NavigationDrawerModel.fromJson(Map<String, dynamic> json) => _$NavigationDrawerModelFromJson(json);
 
   // static NavigationDrawerModel defaultNavigationDrawerModel() {
   //   return const NavigationDrawerModel(
@@ -51,25 +50,23 @@ class NavigationDrawerModel with _$NavigationDrawerModel {
   //   );
   // }
 
-  NavigationDrawerThemeData asNavigationDrawerThemeData(
-      {String? styleTypeName,}) {
+  NavigationDrawerThemeData asNavigationDrawerThemeData({
+    String? styleTypeName,
+  }) {
     return NavigationDrawerThemeData(
       tileHeight: tileHeight_double,
-      backgroundColor:
-          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor:
-          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor:
-          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      indicatorColor:
-          indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
-          styleTypeName: styleTypeName,),
+        styleTypeName: styleTypeName,
+      ),
       indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
-      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle,),
+      labelTextStyle: WidgetStateProperty.all(
+        labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      ),
     );
   }
 }

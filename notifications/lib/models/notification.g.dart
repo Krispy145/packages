@@ -10,7 +10,7 @@ _$NotificationModelImpl _$$NotificationModelImplFromJson(
         Map<String, dynamic> json) =>
     _$NotificationModelImpl(
       id: json['id'] as String,
-      localId: json['localId'] as int,
+      localId: (json['localId'] as num).toInt(),
       type: json['type'] as String?,
       title: json['title'] as String?,
       body: json['body'] as String?,

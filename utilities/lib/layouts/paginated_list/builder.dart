@@ -1,9 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
-import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
 import "package:utilities/sizes/spacers.dart";
-import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
 enum PaginatedResultsViewType {
@@ -50,49 +48,49 @@ class PaginatedListBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Padding(
-          padding: padding ?? EdgeInsets.zero,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (header != null) ...[
-                header!,
-                Sizes.m.spacer(),
-              ],
-              Expanded(
-                child: _buildResults(),
-              ),
-            ],
-          ),
-        ),
-        SafeArea(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: loadStateBuilder ??
-                  LoadStateBuilder(
-                    viewStore: store,
-                    loadedBuilder: (context) => const SizedBox.shrink(),
-                    errorBuilder: (context) {
-                      context.showSnackbar(
-                        configuration: SnackbarConfiguration.error(
-                          title: "Error Loading Results",
-                        ),
-                      );
-                      return IconButton(
-                        icon: const Icon(Icons.refresh),
-                        onPressed: store.refresh,
-                      );
-                    },
+    return Observer(
+      builder: (context) {
+        return Stack(
+          children: [
+            Padding(
+              padding: padding ?? EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (header != null) ...[
+                    header!,
+                    Sizes.m.spacer(),
+                  ],
+                  Expanded(
+                    child: _buildResults(),
                   ),
+                ],
+              ),
             ),
-          ),
-        ),
-        if (stackedWidgets != null) ...stackedWidgets!,
-      ],
+            if (!store.isLoaded)
+              SafeArea(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: loadStateBuilder ??
+                        LoadStateBuilder(
+                          viewStore: store,
+                          loadedBuilder: (context) => const SizedBox.shrink(),
+                          errorBuilder: (context) {
+                            return IconButton(
+                              icon: const Icon(Icons.refresh),
+                              onPressed: store.refresh,
+                            );
+                          },
+                        ),
+                  ),
+                ),
+              ),
+            if (stackedWidgets != null) ...stackedWidgets!,
+          ],
+        );
+      },
     );
   }
 
@@ -126,7 +124,7 @@ class _BuildGridView<T> extends StatelessWidget {
   });
 
   final PaginatedListStore<T> store;
-  final Widget? Function(BuildContext p1, int p2) itemBuilder;
+  final Widget? Function(BuildContext context, int index) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +150,7 @@ class _BuildListView<T> extends StatelessWidget {
   });
 
   final PaginatedListStore<T> store;
-  final Widget? Function(BuildContext p1, int p2) itemBuilder;
+  final Widget? Function(BuildContext context, int index) itemBuilder;
 
   @override
   Widget build(BuildContext context) {

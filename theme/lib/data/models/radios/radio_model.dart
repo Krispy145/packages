@@ -17,8 +17,7 @@ class RadioModel with _$RadioModel {
 
   const RadioModel._();
 
-  factory RadioModel.fromJson(Map<String, dynamic> json) =>
-      _$RadioModelFromJson(json);
+  factory RadioModel.fromJson(Map<String, dynamic> json) => _$RadioModelFromJson(json);
 
   // static RadioModel defaultRadioModel() {
   //   return const RadioModel(
@@ -30,10 +29,12 @@ class RadioModel with _$RadioModel {
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
-      fillColor: MaterialStateProperty.all(
-          fillColor_themeColorString?.toColor(styleType: styleTypeName),),
-      overlayColor: MaterialStateProperty.all(
-          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
+      fillColor: WidgetStateProperty.all(
+        fillColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      overlayColor: WidgetStateProperty.all(
+        overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
       splashRadius: splashRadius_double,
     );
   }

@@ -1,5 +1,5 @@
 import "package:dart_mappable/dart_mappable.dart";
-import "package:utilities/data_sources/paginated.dart";
+import "package:utilities/data/sources/paginated.dart";
 
 part "media_ids_response.mapper.dart";
 

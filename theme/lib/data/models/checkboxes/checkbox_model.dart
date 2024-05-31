@@ -22,8 +22,7 @@ class CheckboxModel with _$CheckboxModel {
 
   const CheckboxModel._();
 
-  factory CheckboxModel.fromJson(Map<String, dynamic> json) =>
-      _$CheckboxModelFromJson(json);
+  factory CheckboxModel.fromJson(Map<String, dynamic> json) => _$CheckboxModelFromJson(json);
   // static CheckboxModel defaultCheckboxModel() {
   //   return const CheckboxModel(
   //     fillColor: "primary",
@@ -47,15 +46,17 @@ class CheckboxModel with _$CheckboxModel {
 
   CheckboxThemeData asCheckboxThemeData({String? styleTypeName}) {
     return CheckboxThemeData(
-      fillColor: MaterialStateProperty.all(
-          fillColor_themeColorString?.toColor(styleType: styleTypeName),),
-      checkColor: MaterialStateProperty.all(
-          checkColor_themeColorString?.toColor(styleType: styleTypeName),),
-      overlayColor: MaterialStateProperty.all(
-          overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
+      fillColor: WidgetStateProperty.all(
+        fillColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      checkColor: WidgetStateProperty.all(
+        checkColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      overlayColor: WidgetStateProperty.all(
+        overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
       splashRadius: splashRadius_double,
-      shape:
-          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
     );
   }

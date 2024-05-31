@@ -26,8 +26,7 @@ class ScrollbarModel with _$ScrollbarModel {
 
   const ScrollbarModel._();
 
-  factory ScrollbarModel.fromJson(Map<String, dynamic> json) =>
-      _$ScrollbarModelFromJson(json);
+  factory ScrollbarModel.fromJson(Map<String, dynamic> json) => _$ScrollbarModelFromJson(json);
 
   // static ScrollbarModel defaultScrollbarModel() {
   //   return const ScrollbarModel(
@@ -47,18 +46,19 @@ class ScrollbarModel with _$ScrollbarModel {
 
   ScrollbarThemeData asScrollbarThemeData({String? styleTypeName}) {
     return ScrollbarThemeData(
-      thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
-      thickness: MaterialStateProperty.all(thickness_double),
-      trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
-      radius: radius_double != null
-          ? Radius.circular(radius_double!)
-          : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
-      thumbColor: MaterialStateProperty.all(
-          thumbColor_themeColorString?.toColor(styleType: styleTypeName),),
-      trackColor: MaterialStateProperty.all(
-          trackColor_themeColorString?.toColor(styleType: styleTypeName),),
-      trackBorderColor: MaterialStateProperty.all(
-          trackBorderColor_themeColorString?.toColor(styleType: styleTypeName),),
+      thumbVisibility: WidgetStateProperty.all(thumbVisibility_bool),
+      thickness: WidgetStateProperty.all(thickness_double),
+      trackVisibility: WidgetStateProperty.all(trackVisibility_bool),
+      radius: radius_double != null ? Radius.circular(radius_double!) : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
+      thumbColor: WidgetStateProperty.all(
+        thumbColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      trackColor: WidgetStateProperty.all(
+        trackColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
+      trackBorderColor: WidgetStateProperty.all(
+        trackBorderColor_themeColorString?.toColor(styleType: styleTypeName),
+      ),
       crossAxisMargin: crossAxisMargin_double,
       mainAxisMargin: mainAxisMargin_double,
       minThumbLength: minThumbLength_double,

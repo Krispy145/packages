@@ -26,14 +26,12 @@ class MenuStyleModel with _$MenuStyleModel {
     @Default(BorderSideModel()) BorderSideModel? side_borderSide,
     @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
     // @AlignmentConverter()
-    @Default(AlignmentOptions.center)
-    AlignmentOptions? alignment_enum_alignmentOptions,
+    @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
   }) = _MenuModel;
 
   const MenuStyleModel._();
 
-  factory MenuStyleModel.fromJson(Map<String, dynamic> json) =>
-      _$MenuStyleModelFromJson(json);
+  factory MenuStyleModel.fromJson(Map<String, dynamic> json) => _$MenuStyleModelFromJson(json);
 
   // static MenuModel defaultMenuModel() {
   //   return const MenuModel(
@@ -64,42 +62,28 @@ class MenuStyleModel with _$MenuStyleModel {
   // }
 
   MenuStyle asMenuStyle({String? styleTypeName}) {
-    final backgroundColor =
-        backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
-    final shadowColor =
-        shadowColor_themeColorString?.toColor(styleType: styleTypeName);
-    final surfaceTintColor =
-        surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
+    final backgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
+    final shadowColor = shadowColor_themeColorString?.toColor(styleType: styleTypeName);
+    final surfaceTintColor = surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
     final elevation = elevation_double;
-    final padding =
-        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
+    final padding = padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
     final minimumSize = minimumSize_size?.asSize(styleTypeName: styleTypeName);
     final fixedSize = fixedSize_size?.asSize(styleTypeName: styleTypeName);
     final maximumSize = maximumSize_size?.asSize(styleTypeName: styleTypeName);
     final side = side_borderSide?.asBorderSide(styleTypeName: styleTypeName);
-    final shape =
-        shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
+    final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
     final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-      backgroundColor: backgroundColor != null
-          ? MaterialStateProperty.all(backgroundColor)
-          : null,
-      shadowColor:
-          shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
-      surfaceTintColor: surfaceTintColor != null
-          ? MaterialStateProperty.all(surfaceTintColor)
-          : null,
-      elevation:
-          elevation != null ? MaterialStateProperty.all(elevation) : null,
-      padding: padding != null ? MaterialStateProperty.all(padding) : null,
-      minimumSize:
-          minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
-      fixedSize:
-          fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
-      maximumSize:
-          maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
-      side: side != null ? MaterialStateProperty.all(side) : null,
-      shape: shape != null ? MaterialStateProperty.all(shape) : null,
+      backgroundColor: backgroundColor != null ? WidgetStateProperty.all(backgroundColor) : null,
+      shadowColor: shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
+      surfaceTintColor: surfaceTintColor != null ? WidgetStateProperty.all(surfaceTintColor) : null,
+      elevation: elevation != null ? WidgetStateProperty.all(elevation) : null,
+      padding: padding != null ? WidgetStateProperty.all(padding) : null,
+      minimumSize: minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
+      fixedSize: fixedSize != null ? WidgetStateProperty.all(fixedSize) : null,
+      maximumSize: maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
+      side: side != null ? WidgetStateProperty.all(side) : null,
+      shape: shape != null ? WidgetStateProperty.all(shape) : null,
       alignment: alignment,
     );
   }

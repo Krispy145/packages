@@ -1,6 +1,6 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/firestore/source.dart";
+import "package:utilities/data/sources/firestore/source.dart";
 
 import "_source.dart";
 

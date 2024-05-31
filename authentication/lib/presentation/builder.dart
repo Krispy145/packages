@@ -26,13 +26,14 @@ class ShowAuthAction {
 class AuthenticationBuilder extends StatefulWidget {
   final AuthenticationRepository repository;
   final bool showEmailAuth;
+  final bool silentLogin;
   final ShowAuthAction? showPhoneAuth;
   final List<SocialButtonType>? socialTypes;
   final void Function(UserModel userModel)? onSuccess;
   final bool showSuccessSnackBar;
 
   /// [AuthenticationBuilder] constructor.
-  const AuthenticationBuilder({
+  const AuthenticationBuilder.authenticate({
     super.key,
     required this.repository,
     this.showEmailAuth = true,
@@ -40,7 +41,18 @@ class AuthenticationBuilder extends StatefulWidget {
     this.socialTypes,
     this.onSuccess,
     this.showSuccessSnackBar = false,
-  });
+  }) : silentLogin = false;
+
+  /// [AuthenticationBuilder] constructor.
+  const AuthenticationBuilder.silent({
+    super.key,
+    required this.repository,
+    this.showEmailAuth = false,
+    this.onSuccess,
+    this.showSuccessSnackBar = false,
+  })  : silentLogin = true,
+        showPhoneAuth = null,
+        socialTypes = null;
 
   @override
   State<AuthenticationBuilder> createState() => _AuthenticationBuilderState();
@@ -52,8 +64,10 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
   @override
   void initState() {
     super.initState();
-    _userModelSubscription =
-        widget.repository.currentUserModelStream.listen((data) {
+    if (widget.silentLogin) {
+      _signInAnonymously();
+    }
+    _userModelSubscription = widget.repository.currentUserModelStream.listen((data) {
       if (data != null) {
         final authStatus = data.status;
         if (authStatus == AuthStatus.authenticated) {
@@ -70,6 +84,15 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
     });
   }
 
+  Future<void> _signInAnonymously() async {
+    final response = await widget.repository.signIn(
+      params: AuthParams.anonymous(),
+    );
+    if (response != null) {
+      widget.onSuccess?.call(response);
+    }
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -78,11 +101,27 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    return widget.silentLogin
+        ? const Center(
+            child: CircularProgressIndicator(),
+          )
+        : _AuthenticateView(widget: widget);
+  }
+}
+
+class _AuthenticateView extends StatelessWidget {
+  const _AuthenticateView({
+    super.key,
+    required this.widget,
+  });
+
+  final AuthenticationBuilder widget;
+
+  @override
+  Widget build(BuildContext context) {
     final isMobile = context.isMobile;
-    final maxWidth =
-        MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
-    final socialButtonVariant =
-        isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
+    final maxWidth = MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
+    final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
       child: Center(
         child: ConstrainedBox(

@@ -4,7 +4,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:maps/data/models/geo_reference.dart';
 import 'package:maps/data/models/lat_lng.mapper.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:utilities/data_sources/firestore/source.dart';
+import 'package:utilities/data/sources/firestore/source.dart';
 
 import 'math.dart';
 import 'utils.dart' as utils;

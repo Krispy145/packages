@@ -46,7 +46,7 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
                   value: e.name,
                   label: e.name,
                   style: ButtonStyle(
-                    textStyle: MaterialStateProperty.all(
+                    textStyle: WidgetStateProperty.all(
                       AppTheme.fontsStore.getFont(e.name),
                     ),
                   ),

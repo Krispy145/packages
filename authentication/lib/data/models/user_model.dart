@@ -12,6 +12,7 @@ class UserModel with UserModelMappable {
   final String? idToken;
   final String? email;
   final String? displayName;
+  final String? role;
   final String? photoUrl;
   final String? phoneNumber;
   final String? refreshToken;
@@ -28,6 +29,7 @@ class UserModel with UserModelMappable {
     this.idToken,
     this.email,
     this.displayName,
+    this.role,
     this.photoUrl,
     this.phoneNumber,
     this.refreshToken,
@@ -46,6 +48,7 @@ class UserModel with UserModelMappable {
     return UserModel(
       id: id,
       displayName: displayName,
+      email: email,
     );
   }
 
@@ -54,12 +57,14 @@ class UserModel with UserModelMappable {
     authType: AuthType.anonymous,
     status: AuthStatus.unauthenticated,
     displayName: "Anonymous",
+    role: "user",
   );
 
   AuthParams toAuthParams() => AuthParams.fromUserModel(
         id: id,
         email: email,
         displayName: displayName,
+        role: role,
         photoUrl: photoUrl,
         phoneNumber: phoneNumber,
         accessToken: accessToken,

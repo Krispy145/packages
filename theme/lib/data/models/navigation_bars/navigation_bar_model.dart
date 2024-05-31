@@ -22,14 +22,12 @@ class NavigationBarModel with _$NavigationBarModel {
     ShapeBorderModel? indicatorShape_shapeBorder,
     TextStyleString? labelTextStyle_textStyleString,
     // @NavigationDestinationLabelConverter()
-    NavigationDestinationLabelBehavior?
-        labelBehavior_enum_navigationDestinationLabelBehavior,
+    NavigationDestinationLabelBehavior? labelBehavior_enum_navigationDestinationLabelBehavior,
   }) = _NavigationBarModel;
 
   const NavigationBarModel._();
 
-  factory NavigationBarModel.fromJson(Map<String, dynamic> json) =>
-      _$NavigationBarModelFromJson(json);
+  factory NavigationBarModel.fromJson(Map<String, dynamic> json) => _$NavigationBarModelFromJson(json);
 
   // static NavigationBarModel defaultNavigationBarModel() {
   //   return const NavigationBarModel(
@@ -48,20 +46,17 @@ class NavigationBarModel with _$NavigationBarModel {
   NavigationBarThemeData asNavigationBarThemeData({String? styleTypeName}) {
     return NavigationBarThemeData(
       height: height_double,
-      backgroundColor:
-          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor:
-          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor:
-          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      indicatorColor:
-          indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
-          styleTypeName: styleTypeName,),
-      labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle,),
+        styleTypeName: styleTypeName,
+      ),
+      labelTextStyle: WidgetStateProperty.all(
+        labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      ),
       labelBehavior: labelBehavior_enum_navigationDestinationLabelBehavior,
     );
   }

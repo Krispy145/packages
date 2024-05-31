@@ -5,8 +5,8 @@ import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:mobx/mobx.dart";
 import "package:notifications/models/notification.dart";
 import "package:notifications/models/permissions.dart";
-import "package:utilities/data_sources/hive/helpers/type_box.dart";
-import "package:utilities/data_sources/hive/source.dart";
+import "package:utilities/data/sources/hive/helpers/type_box.dart";
+import "package:utilities/data/sources/hive/source.dart";
 
 part "base_store.g.dart";
 

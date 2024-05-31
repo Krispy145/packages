@@ -45,7 +45,10 @@ abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
         results = ObservableList.of(results.toSet().toList());
         return Future.delayed(Durations.long4, setLoaded);
       } else {
-        if (results.isEmpty) return setEmpty();
+        if (results.isEmpty) {
+          results.clear();
+          return setEmpty();
+        }
         return setNoMoreToLoad();
       }
     } catch (e) {
