@@ -16,8 +16,9 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
   /// [PaginatedHiveDataSource] constructor
   PaginatedHiveDataSource(
     super.boxName, {
-    required super.convertDataTypeFromMap,
-    required super.convertDataTypeToMap,
+    required super.convertDataTypeFromJson,
+    required super.convertDataTypeToJson,
+    required super.getIdFromDataType,
   });
 
   @override

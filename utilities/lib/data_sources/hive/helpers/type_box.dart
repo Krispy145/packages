@@ -6,11 +6,11 @@ import "package:utilities/utils/loggers.dart";
 
 /// [TypeBox] is a wrapper class for [Box]
 class TypeBox<T> extends Box<T> {
-  /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
-  final T Function(Map<String, dynamic>) convertDataTypeFromMap;
+  /// [convertDataTypeFromJson] is the function that will be used to convert the data from a JSON [String] to [T]
+  final T Function(String) convertDataTypeFromJson;
 
-  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
-  final Map<String, dynamic> Function(T) convertDataTypeToMap;
+  /// [convertDataTypeFromJson] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
+  final String Function(T) convertDataTypeToJson;
 
   /// [boxName] is the name of the [Box]
   final String boxName;
@@ -18,21 +18,21 @@ class TypeBox<T> extends Box<T> {
   /// [TypeBox] constructor
   TypeBox({
     required this.boxName,
-    required this.convertDataTypeFromMap,
-    required this.convertDataTypeToMap,
+    required this.convertDataTypeFromJson,
+    required this.convertDataTypeToJson,
   });
 
-  Box<Map<String, dynamic>> get _box => Hive.box<Map<String, dynamic>>(boxName);
+  Box<String> get _box => Hive.box<String>(boxName);
   @override
   Future<int> add(T value) {
     throw UnimplementedError();
-    // return _box.add(convertDataTypeToMap(value));
+    // return _box.add(convertDataTypeToJson(value));
   }
 
   @override
   Future<Iterable<int>> addAll(Iterable<T> values) {
     throw UnimplementedError();
-    // return _box.addAll(values.map(convertDataTypeToMap));
+    // return _box.addAll(values.map(convertDataTypeToJson));
   }
 
   @override
@@ -89,8 +89,7 @@ class TypeBox<T> extends Box<T> {
     final rawValue = _box.get(key);
     if (rawValue == null) return null;
 
-    final value = Map<String, dynamic>.from(rawValue);
-    return convertDataTypeFromMap(value);
+    return convertDataTypeFromJson(rawValue);
   }
 
   @override
@@ -98,7 +97,8 @@ class TypeBox<T> extends Box<T> {
     // throw UnimplementedError();
     final value = _box.getAt(index);
     if (value == null) return null;
-    return convertDataTypeFromMap(value);
+    return convertDataTypeFromJson(value);
+    // return convertDataTypeFromJson(value);
   }
 
   @override
@@ -140,7 +140,7 @@ class TypeBox<T> extends Box<T> {
       );
       return Future.value();
     }
-    return _box.put(key, convertDataTypeToMap(value));
+    return _box.put(key, convertDataTypeToJson(value));
   }
 
   @override
@@ -151,9 +151,9 @@ class TypeBox<T> extends Box<T> {
           "Key is not a String",
           [UtilitiesLoggers.localDataSource],
         );
-        return MapEntry(key, convertDataTypeToMap(value));
+        return MapEntry(key, convertDataTypeToJson(value));
       }
-      return MapEntry(key, convertDataTypeToMap(value));
+      return MapEntry(key, convertDataTypeToJson(value));
     });
 
     for (final element in entryMap.keys) {
@@ -168,9 +168,9 @@ class TypeBox<T> extends Box<T> {
             "Key is not a String",
             [UtilitiesLoggers.localDataSource],
           );
-          return MapEntry(key, convertDataTypeToMap(value));
+          return MapEntry(key, convertDataTypeToJson(value));
         }
-        return MapEntry(key, convertDataTypeToMap(value));
+        return MapEntry(key, convertDataTypeToJson(value));
       }),
     );
   }
@@ -178,22 +178,22 @@ class TypeBox<T> extends Box<T> {
   @override
   Future<void> putAt(int index, T value) {
     // throw UnimplementedError();
-    return _box.putAt(index, convertDataTypeToMap(value));
+    return _box.putAt(index, convertDataTypeToJson(value));
   }
 
   @override
   Map<dynamic, T> toMap() {
     return _box.toMap().map(
-          (key, value) => MapEntry(key as String, convertDataTypeFromMap(value)),
+          (key, value) => MapEntry(key as String, convertDataTypeFromJson(value)),
         );
   }
 
   @override
-  Iterable<T> get values => _box.values.map(convertDataTypeFromMap);
+  Iterable<T> get values => _box.values.map(convertDataTypeFromJson);
 
   @override
   Iterable<T> valuesBetween({dynamic startKey, dynamic endKey}) {
-    return _box.valuesBetween(startKey: startKey, endKey: endKey).map(convertDataTypeFromMap);
+    return _box.valuesBetween(startKey: startKey, endKey: endKey).map(convertDataTypeFromJson);
   }
 
   @override

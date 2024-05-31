@@ -40,3 +40,11 @@ mixin Mappable<T> {
   /// [convertToMap] method converts the given map to a value
   Map<String, dynamic> convertToMap(T data);
 }
+
+// mixin Jsonable<T> {
+//   /// [convertFromJson] method converts the given value to a map
+//   T convertFromJson(String data);
+
+//   /// [convertToJson] method converts the given map to a value
+//   String convertToJson(T data);
+// }

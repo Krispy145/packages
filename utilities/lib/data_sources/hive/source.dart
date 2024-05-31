@@ -1,9 +1,8 @@
-import "dart:async";
+import "dart:core";
 
 import "package:flutter/foundation.dart";
 import "package:hive_flutter/hive_flutter.dart";
 import "package:mobx/mobx.dart";
-import "package:utilities/data_sources/hive/helpers/map_type_adaptor.dart";
 import "package:utilities/data_sources/hive/helpers/type_box.dart";
 import "package:utilities/data_sources/hive/helpers/type_box_listeneable.dart";
 import "package:utilities/data_sources/source.dart";
@@ -13,21 +12,26 @@ import "package:utilities/widgets/load_state/store.dart";
 import "package:uuid/uuid.dart";
 
 /// [HiveDataSource] is a wrapper class for [Hive]
-abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> implements DataSource<T, Q> {
+abstract class HiveDataSource<T, Q> extends LoadStateStore implements DataSource<T, Q> {
   /// [boxName] is the name of the [Box]
   final String boxName;
 
-  /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
-  final T Function(Map<String, dynamic>) convertDataTypeFromMap;
+  /// [convertDataTypeFromJson] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
+  // @override
+  final T Function(String) convertDataTypeFromJson;
 
-  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
-  final Map<String, dynamic> Function(T) convertDataTypeToMap;
+  /// [convertDataTypeToJson] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
+  // @override
+  final String Function(T) convertDataTypeToJson;
+
+  final String? Function(T) getIdFromDataType;
 
   /// [HiveDataSource] constructor
   HiveDataSource(
     this.boxName, {
-    required this.convertDataTypeFromMap,
-    required this.convertDataTypeToMap,
+    required this.convertDataTypeFromJson,
+    required this.convertDataTypeToJson,
+    required this.getIdFromDataType,
   }) {
     init();
   }
@@ -51,10 +55,11 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
         await Hive.initFlutter();
         isHiveInitialized = true;
       }
+
       if (compactionStrategy != null) {
-        Hive.registerAdapter<Map<String, dynamic>>(MapTypeAdaptor());
+        // Hive.registerAdapter<String>(MapTypeAdaptor());
         if (!isBoxOpened) {
-          await Hive.openBox<Map<String, dynamic>>(
+          await Hive.openBox<String>(
             boxName,
             compactionStrategy: compactionStrategy,
           );
@@ -67,7 +72,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
           ..print("Box Opened: $boxName", [UtilitiesLoggers.localDataSource]);
       } else {
         if (!isBoxOpened) {
-          await Hive.openBox<Map<String, dynamic>>(boxName);
+          await Hive.openBox<String>(boxName);
           isBoxOpened = true;
         }
         AppLogger.print(
@@ -88,8 +93,8 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
 
   TypeBox<T> get _box => TypeBox<T>(
         boxName: boxName,
-        convertDataTypeFromMap: convertDataTypeFromMap,
-        convertDataTypeToMap: convertDataTypeToMap,
+        convertDataTypeFromJson: convertDataTypeFromJson,
+        convertDataTypeToJson: convertDataTypeToJson,
       );
 
   /// [boxListenable] returns a [ValueListenable] for the [TypeBox]
@@ -101,11 +106,11 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
     return uuid.v4();
   }
 
-  @override
-  T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
+  // @override
+  // T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromJson(data);
 
-  @override
-  Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
+  // @override
+  // Map<String, dynamic> convertToMap(T data) => convertDataTypeToJson(data);
 
   bool matchesQuery(Q query, T item);
 
@@ -116,14 +121,16 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       await Hive.initFlutter();
       isHiveInitialized = true;
     }
-    if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
-      isBoxOpened = true;
-    }
+    // await Hive.deleteBoxFromDisk(boxName);
+    // if (!isBoxOpened) {
+    await Hive.openBox<String>(boxName);
+    //   isBoxOpened = true;
+    // }
     final value = _box.get(key);
-    AppLogger.print("Read: $key => $_box", [UtilitiesLoggers.localDataSource]);
+    AppLogger.print("Read: $key => $value", [UtilitiesLoggers.localDataSource]);
     if (value == null) return Future.value();
-    return Future.value(value);
+    // await close();
+    return value;
   }
 
   /// [getAll] method returns all the key-value pairs
@@ -133,20 +140,25 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       await Hive.initFlutter();
       isHiveInitialized = true;
     }
-    if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
-      isBoxOpened = true;
-    }
-    final result = _box.values
-        .whereType<Map<String, dynamic>>()
-        .map((item) => item)
-        .map(convertDataTypeFromMap) // Safely cast each map
-        .toList();
-    AppLogger.print(
-      "Read All Results => $result",
-      [UtilitiesLoggers.localDataSource],
-    );
-    return Future.value(result);
+    // if (!isBoxOpened) {
+    await Hive.openBox<String>(boxName);
+    // isBoxOpened = true;
+    // }
+    final boxValues = _box.values;
+    print("Box Values: ${boxValues.runtimeType} $boxValues");
+    final results = _box.values.toList();
+    return results;
+
+    // final items = result.map((item) => item);
+    // final convertedItems = items.map(convertDataTypeFromJson);
+    // final convertedItemsList = convertedItems.toList();
+
+    // await close();
+    // AppLogger.print(
+    //   "Read All Results => $result",
+    //   [UtilitiesLoggers.localDataSource],
+    // );
+    // return Future.value(convertedItemsList);
   }
 
   /// [delete] method deletes the value of the given key
@@ -157,11 +169,12 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       isHiveInitialized = true;
     }
     if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
+      await Hive.openBox<String>(boxName);
       isBoxOpened = true;
     }
 
     await _box.delete(key);
+    // await close();
     AppLogger.print("Deleted: $key", [UtilitiesLoggers.localDataSource]);
   }
 
@@ -173,11 +186,13 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       isHiveInitialized = true;
     }
     if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
+      await Hive.openBox<String>(boxName);
       isBoxOpened = true;
     }
 
     await _box.clear();
+    await _box.deleteFromDisk();
+    // await close();
     AppLogger.print("Deleted All", [UtilitiesLoggers.localDataSource]);
   }
 
@@ -189,12 +204,9 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       await Hive.initFlutter();
       isHiveInitialized = true;
     }
-    if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
-      isBoxOpened = true;
-    }
-    final id = generateUniqueId();
-    await _box.put(id, value);
+    await Hive.openBox<String>(boxName);
+    final key = getIdFromDataType(value) ?? generateUniqueId();
+    await _box.put(key, value);
     AppLogger.print("Added $value", [UtilitiesLoggers.localDataSource]);
     return value;
   }
@@ -207,7 +219,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       isHiveInitialized = true;
     }
     if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
+      await Hive.openBox<String>(boxName);
       isBoxOpened = true;
     }
     final entries = <String, T>{};
@@ -216,6 +228,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       entries[id] = value;
     }
     await _box.putAll(entries);
+    // await close();
     AppLogger.print("Added All", [UtilitiesLoggers.localDataSource]);
   }
 
@@ -227,11 +240,12 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       isHiveInitialized = true;
     }
     if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
+      await Hive.openBox<String>(boxName);
       isBoxOpened = true;
     }
 
     await _box.put(key, value);
+    // await close();
     AppLogger.print("Updated: $key", [UtilitiesLoggers.localDataSource]);
   }
 
@@ -243,7 +257,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       isHiveInitialized = true;
     }
     if (!isBoxOpened) {
-      await Hive.openBox<Map<String, dynamic>>(boxName);
+      await Hive.openBox<String>(boxName);
       isBoxOpened = true;
     }
 
@@ -252,6 +266,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
       updateMap[entry.key] = entry.value;
     }
     await _box.putAll(updateMap);
+    // await close();
     AppLogger.print(
       "Updated All: $entries",
       [UtilitiesLoggers.localDataSource],
@@ -262,6 +277,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore with Mappable<T> impl
   Future<void> close() async {
     if (_box.isOpen) {
       await _box.close();
+      isBoxOpened = false;
       AppLogger.print(
         "_TypeBox Closed: ${_box.name}",
         [UtilitiesLoggers.localDataSource],
