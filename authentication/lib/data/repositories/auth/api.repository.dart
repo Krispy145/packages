@@ -10,7 +10,7 @@ import "../../models/user_model.dart";
 import "_repository.dart";
 
 /// [ApiAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class ApiAuthDataRepository<T extends UserModel> implements AuthenticationDataRepository<T> {
+class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
   /// [baseUrl] is the base url for the api data source.
   final String baseUrl;
 
@@ -20,15 +20,14 @@ class ApiAuthDataRepository<T extends UserModel> implements AuthenticationDataRe
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
-  T? _currentUserModel;
-  @override
-  late final BehaviorSubject<T?> currentUserModelSubject;
-
   ApiAuthDataSource<T, Map<String, dynamic>> get _apiAuthDataSource => ApiAuthDataSource(
         baseUrl,
         convertDataTypeFromMap: convertDataTypeFromMap,
         convertDataTypeToMap: convertDataTypeToMap,
       );
+
+  @override
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(_apiAuthDataSource.currentUserModel);
 
   /// [ApiAuthDataRepository] constructor.
   ApiAuthDataRepository({
@@ -36,11 +35,16 @@ class ApiAuthDataRepository<T extends UserModel> implements AuthenticationDataRe
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
   }) {
-    currentUserModelSubject = BehaviorSubject<T>();
     if (_apiAuthDataSource.currentUserModel != null) {
-      _currentUserModel = _apiAuthDataSource.currentUserModel;
-      currentUserModelSubject.add(_currentUserModel);
+      userModelStream.add(_apiAuthDataSource.currentUserModel);
     }
+  }
+
+  @override
+  Future<T?> updateUserModel(T userModel) async {
+    await _apiAuthDataSource.update(userModel.id, userModel);
+    userModelStream.add(userModel);
+    return userModel;
   }
 
   @override
@@ -148,7 +152,7 @@ class ApiAuthDataRepository<T extends UserModel> implements AuthenticationDataRe
   @override
   Future<bool> signOut() async {
     try {
-      await _apiAuthDataSource.signOut(params: _currentUserModel!.toAuthParams());
+      await _apiAuthDataSource.signOut(params: userModelStream.value!.toAuthParams());
       return true;
     } catch (e) {
       AppLogger.print(

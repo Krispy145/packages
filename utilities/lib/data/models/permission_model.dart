@@ -11,11 +11,13 @@ part "permission_model.mapper.dart";
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class PermissionModel with PermissionModelMappable {
   final UUID id;
+  final String role;
   final Map<String, UserPermissionsModel> permissions;
   final Map<String, bool>? reviews;
 
   const PermissionModel({
     required this.id,
+    required this.role,
     required this.permissions,
     this.reviews,
   });
@@ -25,21 +27,24 @@ class PermissionModel with PermissionModelMappable {
 
   static PermissionModel collectionViewer(String collectionName) => PermissionModel(
         id: generateUniqueId(),
+        role: "viewer",
         permissions: {
           "$collectionName/all": UserPermissionsModel.viewExample,
         },
       );
 
-  static const empty = PermissionModel(
+  static const anonymous = PermissionModel(
     id: "",
+    role: "anonymous",
     permissions: {
-      "users/all": UserPermissionsModel.adminExample,
+      "users/all": UserPermissionsModel.viewExample,
       "shop/5MzfYGNX1U3ItKDYxRmE": UserPermissionsModel.adminExample,
     },
   );
 
   static final permissionOne = PermissionModel(
     id: generateUniqueId(),
+    role: "admin",
     permissions: {
       "users/all": UserPermissionsModel.adminExample,
       "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
@@ -48,6 +53,7 @@ class PermissionModel with PermissionModelMappable {
 
   static final permissionTwo = PermissionModel(
     id: generateUniqueId(),
+    role: "admin",
     permissions: {
       "users/all": UserPermissionsModel.adminExample,
       "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
@@ -55,6 +61,7 @@ class PermissionModel with PermissionModelMappable {
   );
   static final permissionThree = PermissionModel(
     id: generateUniqueId(),
+    role: "admin",
     permissions: {
       "users/all": UserPermissionsModel.adminExample,
       "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,

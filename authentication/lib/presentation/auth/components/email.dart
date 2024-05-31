@@ -3,10 +3,12 @@ import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:authentication/helpers/constants.dart";
 import "package:authentication/helpers/exception.dart";
+import "package:authentication/utils/loggers.dart";
 import "package:email_validator/email_validator.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/logger/logger.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
 
@@ -217,6 +219,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                   }
                 } on AuthenticationException catch (error) {
                   if (widget.onError == null && context.mounted) {
+                    AppLogger.print(error.message, [AuthenticationLoggers.authentication]);
                     context.showSnackbar(
                       configuration: SnackbarConfiguration.error(title: error.message),
                     );
@@ -327,6 +330,8 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   }
 
   Future<void> _signIn() async {
+    AppLogger.print("Signing in with email: ${_emailController.text} - ${_passwordController.text}", [AuthenticationLoggers.authentication]);
+
     final response = await widget.repository.signIn(
       params: AuthParams.email(
         email: _emailController.text.trim(),

@@ -4,15 +4,19 @@ import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:authentication/helpers/constants.dart";
-import "package:authentication/presentation/components/email.dart";
-import "package:authentication/presentation/components/phone.dart";
-import "package:authentication/presentation/components/social_types.dart";
-import "package:authentication/presentation/components/socials.dart";
+import "package:authentication/presentation/auth/components/email.dart";
+import "package:authentication/presentation/auth/components/phone.dart";
+import "package:authentication/presentation/auth/components/social_types.dart";
+import "package:authentication/presentation/auth/components/socials.dart";
 import "package:flutter/material.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/snackbar/configuration.dart";
 
-// import 'store.dart';
+enum AuthBuilderType {
+  authenticate,
+  silent,
+  authenticateThenSilent,
+}
 
 class ShowAuthAction {
   bool showSignUp;
@@ -26,13 +30,13 @@ class ShowAuthAction {
 class AuthenticationBuilder extends StatefulWidget {
   final AuthenticationRepository repository;
   final bool showEmailAuth;
-  final bool silentLogin;
+  final AuthBuilderType authBuilderType;
   final ShowAuthAction? showPhoneAuth;
   final List<SocialButtonType>? socialTypes;
   final void Function(UserModel userModel)? onSuccess;
   final bool showSuccessSnackBar;
 
-  /// [AuthenticationBuilder] constructor.
+  /// [AuthenticationBuilder.authenticate] constructor.
   const AuthenticationBuilder.authenticate({
     super.key,
     required this.repository,
@@ -41,16 +45,27 @@ class AuthenticationBuilder extends StatefulWidget {
     this.socialTypes,
     this.onSuccess,
     this.showSuccessSnackBar = false,
-  }) : silentLogin = false;
+  }) : authBuilderType = AuthBuilderType.authenticate;
 
-  /// [AuthenticationBuilder] constructor.
+  /// [AuthenticationBuilder.silent] constructor.
   const AuthenticationBuilder.silent({
     super.key,
     required this.repository,
     this.showEmailAuth = false,
     this.onSuccess,
     this.showSuccessSnackBar = false,
-  })  : silentLogin = true,
+  })  : authBuilderType = AuthBuilderType.silent,
+        showPhoneAuth = null,
+        socialTypes = null;
+
+  /// [AuthenticationBuilder] constructor.
+  const AuthenticationBuilder.authenticateThenSilent({
+    super.key,
+    required this.repository,
+    this.showEmailAuth = true,
+    this.onSuccess,
+    this.showSuccessSnackBar = false,
+  })  : authBuilderType = AuthBuilderType.authenticateThenSilent,
         showPhoneAuth = null,
         socialTypes = null;
 
@@ -59,29 +74,34 @@ class AuthenticationBuilder extends StatefulWidget {
 }
 
 class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
-  late final StreamSubscription<UserModel?> _userModelSubscription;
+  late final UserModel? _userModel;
 
   @override
   void initState() {
     super.initState();
-    if (widget.silentLogin) {
+    if (widget.authBuilderType == AuthBuilderType.silent) {
       _signInAnonymously();
     }
-    _userModelSubscription = widget.repository.currentUserModelStream.listen((data) {
-      if (data != null) {
-        final authStatus = data.status;
-        if (authStatus == AuthStatus.authenticated) {
-          widget.onSuccess?.call(data);
-          if (widget.showSuccessSnackBar) {
-            context.showSnackbar(
-              configuration: SnackbarConfiguration.confirmation(
-                title: "Successfully signed in",
-              ),
-            );
+    if (widget.authBuilderType == AuthBuilderType.authenticateThenSilent || widget.authBuilderType == AuthBuilderType.authenticate) {
+      setState(() {
+        _userModel = widget.repository.currentUserModelStream.value;
+        if (_userModel != null) {
+          final authStatus = _userModel.status;
+          if (authStatus == AuthStatus.authenticated) {
+            widget.onSuccess?.call(_userModel);
+            if (widget.showSuccessSnackBar) {
+              context.showSnackbar(
+                configuration: SnackbarConfiguration.confirmation(
+                  title: "Successfully signed in",
+                ),
+              );
+            }
           }
+        } else if ((_userModel?.status == AuthStatus.unauthenticated || _userModel == null) && widget.authBuilderType == AuthBuilderType.authenticateThenSilent) {
+          _signInAnonymously();
         }
-      }
-    });
+      });
+    }
   }
 
   Future<void> _signInAnonymously() async {
@@ -94,14 +114,8 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _userModelSubscription.cancel();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return widget.silentLogin
+    return widget.authBuilderType == AuthBuilderType.silent || widget.authBuilderType == AuthBuilderType.authenticateThenSilent
         ? const Center(
             child: CircularProgressIndicator(),
           )
@@ -111,7 +125,6 @@ class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
 
 class _AuthenticateView extends StatelessWidget {
   const _AuthenticateView({
-    super.key,
     required this.widget,
   });
 

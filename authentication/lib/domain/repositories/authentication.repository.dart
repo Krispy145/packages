@@ -13,6 +13,8 @@ import "package:flutter/foundation.dart";
 import "package:flutter_facebook_auth/flutter_facebook_auth.dart";
 import "package:rxdart/rxdart.dart";
 import "package:utilities/data/models/permission_model.dart";
+import "package:utilities/data/models/user_permissions_model.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [AuthenticationRepository] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
@@ -42,15 +44,9 @@ class AuthenticationRepository<T extends UserModel> {
   /// [required] for web.
   final String? facebookAppId;
 
-  /// [currentUserModelStream] is the current user model stream.
-  BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
+  BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.userModelStream;
 
-  T? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
-
-  /// [currentPermissionModelStream] is the current user model stream.
-  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>()..add(null);
-
-  PermissionModel? get currentPermissionModel => currentPermissionModelStream.value;
+  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
 
   bool isUserAuthenticated = false;
 
@@ -113,6 +109,14 @@ class AuthenticationRepository<T extends UserModel> {
     convertDataTypeToMap: convertDataTypeToMap,
   );
 
+  void setPermissionModel(List<Pair<String, UserPermissionsModel?>> permissions) {
+    final permissionsMap = <String, UserPermissionsModel>{};
+    for (final element in permissions) {
+      permissionsMap[element.first] = element.second!;
+    }
+    currentPermissionModelStream.add(currentPermissionModelStream.value?.copyWith(permissions: permissionsMap));
+  }
+
   late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api
       ? ApiAuthDataRepository(
           baseUrl: baseUrl!,
@@ -171,7 +175,8 @@ class AuthenticationRepository<T extends UserModel> {
       _currentResponse["last_login_at"] = DateTime.now();
       changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUser(changedUserModel);
-      currentUserModelStream.add(changedUserModel);
+      await _authenticationDataRepository.updateUserModel(changedUserModel);
+      await _setPermissions(changedUserModel);
       return changedUserModel;
     } catch (e) {
       AppLogger.print(
@@ -186,7 +191,7 @@ class AuthenticationRepository<T extends UserModel> {
   /// [signOut] signs out the user.
   Future<bool> signOut() async {
     AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
-    final _currentResponse = convertDataTypeToMap(currentUserModel!);
+    final _currentResponse = convertDataTypeToMap(currentUserModelStream.value!);
     _currentResponse["last_logout_at"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
@@ -221,7 +226,7 @@ class AuthenticationRepository<T extends UserModel> {
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.updateUser(currentUserModel!);
+    await userDataRepository.updateUser(currentUserModelStream.value!);
     return _authenticationDataRepository.reauthenticate(params);
   }
 
@@ -235,24 +240,16 @@ class AuthenticationRepository<T extends UserModel> {
     return _authenticationDataRepository.deleteAccount(userId);
   }
 
-  void _initStreams() {
+  Future<void> _initStreams() async {
     try {
-      currentUserModelStream.listen((value) {
-        if (value?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
+      currentUserModelStream.listen((event) async {
+        if (event?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
           AppLogger.print("User is authenticated", [AuthenticationLoggers.authentication]);
           isUserAuthenticated = true;
-          if (hasPermissions) {
-            final permissionDataRepository = PermissionDataRepository(
-              userDataSourceType: userSource,
-              userId: value!.id,
-            );
-            permissionDataRepository.getPermissionModel().then((value) {
-              currentPermissionModelStream
-                ..add(value)
-                ..close();
-            });
+          if (event != null) {
+            await _setPermissions(event);
           }
-        } else if (value?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
+        } else if (event?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
           AppLogger.print("User is unauthenticated", [AuthenticationLoggers.authentication]);
 
           isUserAuthenticated = false;
@@ -260,6 +257,22 @@ class AuthenticationRepository<T extends UserModel> {
       });
     } catch (e) {
       AppLogger.print("Error in initStreams: $e", [AuthenticationLoggers.authentication]);
+    }
+  }
+
+  Future<void> _setPermissions(UserModel changedUserModel) async {
+    if (hasPermissions) {
+      final permissionDataRepository = PermissionDataRepository(
+        userDataSourceType: userSource,
+        userId: changedUserModel.id,
+      );
+      currentPermissionModelStream.listen((event) async {
+        if (event == null) {
+          await permissionDataRepository.getPermissionModel().then((value) {
+            currentPermissionModelStream.add(value);
+          });
+        }
+      });
     }
   }
 

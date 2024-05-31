@@ -10,7 +10,8 @@ enum AuthSourceTypes {
 
 /// [AuthenticationDataRepository] is an abstract class that defines the authentication methods.
 abstract class AuthenticationDataRepository<T extends UserModel> {
-  BehaviorSubject<T?> get currentUserModelSubject;
+  final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>();
+  Future<T?> updateUserModel(T userModel);
   Future<T?> signInWithGoogle(AuthParams params);
   Future<T?> signInWithFacebook(AuthParams params);
   Future<T?> signInWithApple(AuthParams params);

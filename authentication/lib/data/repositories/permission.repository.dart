@@ -45,11 +45,18 @@ class PermissionDataRepository {
     return _dataSourceByType(userDataSourceType).addAll(permissionModels);
   }
 
-  /// [additPermissionModel] addits a single [PermissionModel] to the data source.
-  Future<Pair<RequestResponse, PermissionModel?>> additPermissionModel({
+  /// [addPermissionModel] adds a single [PermissionModel] to the data source.
+  Future<Pair<RequestResponse, PermissionModel?>> addPermissionModel({
     required PermissionModel permissionModel,
   }) async {
     return _dataSourceByType(userDataSourceType).add(permissionModel);
+  }
+
+  /// [updatePermissionModel] addits a single [PermissionModel] to the data source.
+  Future<RequestResponse> updatePermissionModel({
+    required PermissionModel permissionModel,
+  }) async {
+    return _dataSourceByType(userDataSourceType).update(permissionModel.id, permissionModel);
   }
 
   /// [deletePermissionModel] deletes a single [PermissionModel] from the data source.

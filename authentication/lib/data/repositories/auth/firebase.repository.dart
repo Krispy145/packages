@@ -14,7 +14,7 @@ import "../../models/user_model.dart";
 import "_repository.dart";
 
 /// [FirebaseAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationDataRepository<T> {
+class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -24,11 +24,11 @@ class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationD
   final _firebaseAuth = FirebaseAuth.instance;
   final bool hasPermission;
   User? get _user => _firebaseAuth.currentUser;
-  T? _currentUserModel;
+
   UserDataRepository<T>? userDataRepository;
 
   @override
-  late final BehaviorSubject<T?> currentUserModelSubject;
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(null);
 
   /// [FirebaseAuthDataRepository] constructor.
   FirebaseAuthDataRepository({
@@ -38,6 +38,12 @@ class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationD
     required this.convertDataTypeToMap,
   }) {
     _initStreams();
+  }
+
+  @override
+  Future<T?> updateUserModel(T userModel) async {
+    userModelStream.add(userModel);
+    return userModel;
   }
 
   @override
@@ -321,29 +327,25 @@ class FirebaseAuthDataRepository<T extends UserModel> implements AuthenticationD
   }
 
   Future<void> _initStreams() async {
-    currentUserModelSubject = BehaviorSubject<T?>.seeded(_currentUserModel);
-    if (_user != null && _currentUserModel == null) {
+    if (_user != null && userModelStream.value == null) {
       final databaseUser = await userDataRepository?.getUser(_user!.uid);
       if (databaseUser != null) {
         final _currentResponse = convertDataTypeToMap(databaseUser);
         _currentResponse["last_login_at"] = DateTime.now();
-        _currentUserModel = convertDataTypeFromMap(_currentResponse);
-        await userDataRepository?.updateUser(_currentUserModel!);
-        currentUserModelSubject.add(_currentUserModel);
+        userModelStream.add(convertDataTypeFromMap(_currentResponse));
+        await userDataRepository?.updateUser(convertDataTypeFromMap(_currentResponse));
       }
     }
     _firebaseAuth.authStateChanges().listen((event) async {
-      if (event?.uid != _user?.uid && _currentUserModel != null) {
-        final newUser = await reauthenticate(_currentUserModel!.toAuthParams());
-        _currentUserModel = newUser;
-        currentUserModelSubject.add(_currentUserModel);
+      if (event?.uid != _user?.uid && userModelStream.value != null) {
+        final newUser = await reauthenticate(userModelStream.value!.toAuthParams());
+        userModelStream.add(newUser);
       }
-      if (event == null && _currentUserModel != null) {
-        final _currentResponse = convertDataTypeToMap(_currentUserModel!);
+      if (event == null && userModelStream.value != null) {
+        final _currentResponse = convertDataTypeToMap(userModelStream.value!);
         _currentResponse["last_logout_at"] = DateTime.now();
         _currentResponse["status"] = AuthStatus.unauthenticated;
-        _currentUserModel = convertDataTypeFromMap(_currentResponse);
-        currentUserModelSubject.add(_currentUserModel);
+        userModelStream.add(convertDataTypeFromMap(_currentResponse));
       }
     });
   }

@@ -24,7 +24,7 @@ class FirestorePermissionDataSource<T extends UserModel> extends FirestoreDataSo
 
   /// [_handleError] is an optional helper method that handles errors when calling the Firestore.
   // ignore: unused_element
-  Future<T?> _handleError<T>(Future<T?> Function() firestoreCall) async {
+  Future<T?> _handleError(Future<T?> Function() firestoreCall) async {
     try {
       return await firestoreCall();
     } catch (e) {

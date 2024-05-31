@@ -51,7 +51,7 @@ extension _OAuthProviderExtension on AuthType {
 }
 
 /// [SupabaseAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class SupabaseAuthDataRepository<T extends UserModel> implements AuthenticationDataRepository<T> {
+class SupabaseAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -61,17 +61,22 @@ class SupabaseAuthDataRepository<T extends UserModel> implements AuthenticationD
   final _supabaseAuth = Supabase.instance.client.auth;
   Session? get _session => _supabaseAuth.currentSession;
   User? get _user => _supabaseAuth.currentUser;
-  T? _currentUserModel;
+
   @override
-  late final BehaviorSubject<T?> currentUserModelSubject;
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(null);
 
   /// [SupabaseAuthDataRepository] constructor.
   SupabaseAuthDataRepository({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
   }) {
-    currentUserModelSubject = BehaviorSubject<T?>.seeded(_currentUserModel);
     _initStreams();
+  }
+
+  @override
+  Future<T?> updateUserModel(T userModel) async {
+    userModelStream.add(userModel);
+    return userModel;
   }
 
   @override
@@ -243,36 +248,32 @@ class SupabaseAuthDataRepository<T extends UserModel> implements AuthenticationD
   void _initStreams() {
     _supabaseAuth.onAuthStateChange.listen((event) async {
       if (event.event == AuthChangeEvent.initialSession) {
-        _currentUserModel = _supabaseUserToUserModel();
-        currentUserModelSubject.add(_currentUserModel);
+        userModelStream.add(_supabaseUserToUserModel());
         AppLogger.print(
-          "Supabase user initialSession: ${_currentUserModel?.authType ?? AuthType.empty}",
+          "Supabase user initialSession: ${userModelStream.value?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.signedIn) {
-        _currentUserModel = _supabaseUserToUserModel();
-        currentUserModelSubject.add(_currentUserModel);
+        userModelStream.add(_supabaseUserToUserModel());
         AppLogger.print(
-          "Supabase user signedIn: ${_currentUserModel?.authType ?? AuthType.empty}",
+          "Supabase user signedIn: ${userModelStream.value?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.signedOut) {
-        final _currentResponse = convertDataTypeToMap(_currentUserModel!);
+        final _currentResponse = convertDataTypeToMap(userModelStream.value!);
         _currentResponse["status"] = AuthStatus.unauthenticated;
-        _currentUserModel = convertDataTypeFromMap(_currentResponse);
-        currentUserModelSubject.add(_currentUserModel);
+        userModelStream.add(convertDataTypeFromMap(_currentResponse));
         AppLogger.print(
-          "Supabase user signedOut: ${_currentUserModel?.authType ?? AuthType.empty}",
+          "Supabase user signedOut: ${userModelStream.value?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
       if (event.event == AuthChangeEvent.tokenRefreshed) {
-        _currentUserModel = await reauthenticate(_currentUserModel!.toAuthParams());
-        currentUserModelSubject.add(_currentUserModel);
+        userModelStream.add(_supabaseUserToUserModel());
         AppLogger.print(
-          "Supabase user tokenRefreshed: ${_currentUserModel?.authType ?? AuthType.empty}",
+          "Supabase user tokenRefreshed: ${userModelStream.value?.authType ?? AuthType.empty}",
           [AuthenticationLoggers.authentication],
         );
       }
@@ -289,7 +290,7 @@ class SupabaseAuthDataRepository<T extends UserModel> implements AuthenticationD
       refreshToken: _session!.refreshToken ?? _session!.providerRefreshToken,
       accessToken: _session!.accessToken,
       status: AuthStatus.authenticated,
-      authType: _currentUserModel?.authType ?? AuthType.empty,
+      authType: userModelStream.value?.authType ?? AuthType.empty,
       createdAt: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
       updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
