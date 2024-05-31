@@ -7,8 +7,8 @@ import "package:flutter/foundation.dart";
 import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:mobx/mobx.dart";
 import "package:notifications/models/local_android_notification_details.dart";
-import "package:notifications/models/notification.dart";
-import "package:notifications/models/permissions.dart";
+import "package:notifications/models/notification_model.dart";
+import "package:notifications/models/notifications_permissions_model.dart";
 import "package:notifications/stores/base_store.dart";
 import "package:notifications/utils/loggers.dart";
 import "package:universal_io/io.dart";
@@ -67,7 +67,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   @override
   Future<Pair<String?, AuthorizationStatus>> requestPermissions(
-    NotificationPermissions? permissions,
+    NotificationsPermissionsModel? permissions,
   ) async {
     // Request permissions if we don't already have them
     final settings = await _pushNotifications.requestPermission(
@@ -327,7 +327,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     bool shouldCallNotificationReceived = true,
   }) async {
     if (shouldUpdateAll) await _updateActiveNotificationsList();
-    final notification = NotificationModel.fromStringMap(notificationData);
+    final notification = NotificationModel.fromMap(notificationData);
     if (shouldCallNotificationReceived) {
       onNotificationReceived?.call(notification);
     }
@@ -365,7 +365,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     Map<String, dynamic> data,
   ) {
     if (data["id"] == null) return null;
-    final notification = NotificationModel.fromStringMap(data);
+    final notification = NotificationModel.fromMap(data);
     AppLogger.print(
       "Notification: $notification",
       [NotificationsLoggers.notifications],

@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:notifications/models/notification.dart";
+import "package:notifications/models/notification_model.dart";
 import "package:notifications/stores/local_store.dart";
 import "package:notifications/stores/push_store.dart";
 import "package:notifications/widgets/view/card.dart";

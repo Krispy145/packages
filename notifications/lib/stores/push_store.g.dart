@@ -63,7 +63,7 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
 
   @override
   Future<Pair<String?, AuthorizationStatus>> requestPermissions(
-      NotificationPermissions? permissions) {
+      InvalidType permissions) {
     return _$requestPermissionsAsyncAction
         .run(() => super.requestPermissions(permissions));
   }
