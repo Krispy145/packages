@@ -24,6 +24,8 @@ abstract class PaginatedSecureDataSource<T, Q> extends SecureDataSource<T, Q> wi
   Future<Pair<SecureResponseModel<T?>, List<T?>>> getPage({
     SecureResponseModel<T?>? lastResponse,
     int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
   }) async {
     final dataMap = await readAll();
     final data = dataMap.values.map((value) => convertFromMap(json.decode(value) as Map<String, dynamic>)).toList();

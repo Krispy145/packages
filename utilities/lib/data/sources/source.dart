@@ -5,7 +5,7 @@ enum RequestResponse { success, failure, denied, underReview }
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources
 /// see: HiveDataSource and RemoteDataSource
-mixin DataSource<T, Q> {
+abstract mixin class DataSource<T, Q> {
   /// [get] method returns the value of the given id
   Future<T?> get(String id);
 
@@ -44,3 +44,11 @@ mixin Mappable<T> {
   /// [convertToMap] method converts the given map to a value
   Map<String, dynamic> convertToMap(T data);
 }
+
+// mixin Jsonable<T> {
+//   /// [convertFromJson] method converts the given value to a map
+//   T convertFromJson(String data);
+
+//   /// [convertToJson] method converts the given map to a value
+//   String convertToJson(T data);
+// }

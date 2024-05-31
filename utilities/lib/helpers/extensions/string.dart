@@ -11,7 +11,7 @@ extension UUIDExtension on UUID {
 /// String Extensions
 extension StringExtension on String {
   /// Capitalize String
-  String _toCapitalized() => length > 0 ? '${this[0].toUpperCase()}${substring(1).toLowerCase()}' : "";
+  String _toCapitalized() => length > 0 ? "${this[0].toUpperCase()}${substring(1).toLowerCase()}" : "";
 
   /// Title Capitalize String
   String toTitleCase() => replaceAll(RegExp(" +"), " ").split(" ").map((str) => str._toCapitalized()).join(" ");
@@ -77,7 +77,7 @@ extension StringExtension on String {
     final startString = replaceAll("\n", r"\n");
     // ignore: prefer_interpolation_to_compose_strings
     final result = startString.replaceAllMapped(RegExp("($start)(.*?)($end)"), (m) {
-      return '${m[1]}$replacement${m[3]}';
+      return "${m[1]}$replacement${m[3]}";
     });
     return result.replaceAll(r"\n", "\n");
   }

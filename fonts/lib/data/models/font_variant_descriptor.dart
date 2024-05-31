@@ -55,10 +55,10 @@ class DOFontVariantDescriptor {
   /// filename part is "Regular".
   ///
   /// The following table shows how these filename parts convert:
-  /// 'Regular' -> weight: 400, style: normal
-  /// 'Italic' -> weight: 400, style: italic
-  /// 'Bold' -> weight: 700, style: normal
-  /// 'BoldItalic' -> weight: 700, style: italic
+  /// "Regular" -> weight: 400, style: normal
+  /// "Italic" -> weight: 400, style: italic
+  /// "Bold" -> weight: 700, style: normal
+  /// "BoldItalic" -> weight: 700, style: italic
   ///
   /// See [DOFontVariantDescriptor.toApiFilenamePart] for the inverse function.
   DOFontVariantDescriptor.fromApiFilenamePart(String filenamePart)
@@ -69,20 +69,15 @@ class DOFontVariantDescriptor {
   /// variant name.
   ///
   /// The following table shows how these variant strings convert:
-  /// 'regular' -> weight: 400, style: normal
-  /// 'italic' -> weight: 400, style: italic
-  /// '700' -> weight: 700, style: normal
-  /// '700italic' -> weight: 700, style: italic
+  /// "regular" -> weight: 400, style: normal
+  /// "italic" -> weight: 400, style: italic
+  /// "700" -> weight: 700, style: normal
+  /// "700italic" -> weight: 700, style: italic
   ///
   /// See [DOFontVariantDescriptor.toString] for the inverse function.
   DOFontVariantDescriptor.fromString(String variantString)
-      : fontWeight = FontWeight.values[variantString == _regular ||
-                variantString == _italic
-            ? 3
-            : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
-        fontStyle = variantString.contains(_italic)
-            ? FontStyle.italic
-            : FontStyle.normal;
+      : fontWeight = FontWeight.values[variantString == _regular || variantString == _italic ? 3 : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
+        fontStyle = variantString.contains(_italic) ? FontStyle.italic : FontStyle.normal;
 
   final FontWeight fontWeight;
   final FontStyle fontStyle;
@@ -119,41 +114,36 @@ class DOFontVariantDescriptor {
   /// filename part is "Regular".
   ///
   /// The following table shows how these [DOFontVariantDescriptor]s convert:
-  /// weight: 400, style: normal -> 'Regular'
-  /// weight: 400, style: italic -> 'Italic'
-  /// weight: 700, style: normal -> 'Bold'
-  /// weight: 700, style: italic -> 'BoldItalic'
+  /// weight: 400, style: normal -> "Regular"
+  /// weight: 400, style: italic -> "Italic"
+  /// weight: 700, style: normal -> "Bold"
+  /// weight: 700, style: italic -> "BoldItalic"
   ///
   /// See [`GoogleFontsVariant.fromApiFilenamePart`] for the inverse function.
   String toApiFilenamePart() {
-    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ??
-        _fontWeightToFilenameWeightParts[FontWeight.w400]!;
+    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ?? _fontWeightToFilenameWeightParts[FontWeight.w400]!;
     final italicSuffix = fontStyle == FontStyle.italic ? "Italic" : "";
     if (weightPrefix == "Regular") {
       return italicSuffix == "" ? weightPrefix : italicSuffix;
     }
-    return '$weightPrefix$italicSuffix';
+    return "$weightPrefix$italicSuffix";
   }
 
   /// Converts this [DOFontVariantDescriptor] to a Google Fonts API specific variant
   /// name string.
   ///
   /// The following table shows how these variant strings convert:
-  /// weight: 400, style: normal -> 'regular'
-  /// weight: 400, style: italic -> 'italic'
-  /// weight: 700, style: normal -> '700'
-  /// weight: 700, style: italic -> '700italic'
+  /// weight: 400, style: normal -> "regular"
+  /// weight: 400, style: italic -> "italic"
+  /// weight: 700, style: normal -> "700"
+  /// weight: 700, style: italic -> "700italic"
   ///
   /// See [DOFontVariantDescriptor.toString] for the inverse function.
   @override
   String toString() {
-    final fontWeightString =
-        fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
-    final fontStyleString = fontStyle
-        .toString()
-        .replaceAll("FontStyle.", "")
-        .replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
-    return '$fontWeightString$fontStyleString';
+    final fontWeightString = fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
+    final fontStyleString = fontStyle.toString().replaceAll("FontStyle.", "").replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
+    return "$fontWeightString$fontStyleString";
   }
 
   @override
@@ -167,9 +157,7 @@ class DOFontVariantDescriptor {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is DOFontVariantDescriptor &&
-        other.fontWeight == fontWeight &&
-        other.fontStyle == fontStyle;
+    return other is DOFontVariantDescriptor && other.fontWeight == fontWeight && other.fontStyle == fontStyle;
   }
 }
 
@@ -183,7 +171,7 @@ const _regular = "regular";
 /// of italic.
 const _italic = "italic";
 
-/// Mapping from font weight types to the 'weight' part of the Google Fonts API
+/// Mapping from font weight types to the "weight" part of the Google Fonts API
 /// specific filename.
 const _fontWeightToFilenameWeightParts = {
   FontWeight.w100: "Thin",
