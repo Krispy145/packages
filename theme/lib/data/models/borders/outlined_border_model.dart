@@ -2,7 +2,6 @@
 
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
-import "package:freezed_annotation/freezed_annotation.dart";
 import "package:theme/data/models/borders/border_radius_model.dart";
 import "package:theme/data/models/borders/border_side_model.dart";
 

@@ -1,5 +1,4 @@
 import "package:dart_mappable/dart_mappable.dart";
-import "package:flutter/material.dart";
 import "package:theme/data/models/text/text_style_model.dart";
 
 part "text_style_sizes_model.mapper.dart";

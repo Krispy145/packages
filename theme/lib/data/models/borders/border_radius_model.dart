@@ -72,7 +72,6 @@ class BorderRadiusModel with BorderRadiusModelMappable {
       case null:
         return null;
     }
-    return null;
   }
 }
 

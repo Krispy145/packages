@@ -1,6 +1,5 @@
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
-import "package:theme/data/models/text/text_style_model.dart";
 import "package:theme/data/models/text/text_style_sizes_model.dart";
 
 part "text_types_model.mapper.dart";
@@ -32,7 +31,7 @@ class TextTypesModel with TextTypesModelMappable {
   static const fromMap = TextTypesModelMapper.fromMap;
   static const fromJson = TextTypesModelMapper.fromJson;
 
-  /// [theme] converts the [TextTypes] to a [TextTheme].
+  /// [theme] converts the [TextTypesModel] to a [TextTheme].
   TextTheme get theme {
     return TextTheme(
       displayLarge: display?.large?.asTextStyle,
