@@ -46,7 +46,7 @@ class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldS
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppTheme.currentColorModel!.toJson().entries.map((entry) {
+                  children: AppTheme.currentColorModel!.toMap().entries.map((entry) {
                     final colorName = entry.key;
                     return InkWell(
                       onTap: () {

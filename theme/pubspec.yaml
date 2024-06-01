@@ -13,16 +13,17 @@ dependencies:
   archive: ^3.4.10
   flutter:
     sdk: flutter
-  get_it: ^7.6.9
-  utilities:
-    path: ../../packages/utilities
   fonts:
     path: ../../packages/fonts
   forms:
     path: ../../packages/forms
+  get_it: ^7.6.9
+  utilities:
+    path: ../../packages/utilities
 
 dev_dependencies:
   build_runner: null
+  dart_mappable_builder: ^4.2.3
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter

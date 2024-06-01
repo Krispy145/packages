@@ -1,4 +1,4 @@
-import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/repositories/theme_configuration.dart";
 import "package:theme/data/sources/theme/_source.dart";
 import "package:theme/data/sources/theme/assets.source.dart";
@@ -23,8 +23,8 @@ class ThemeDataRepository {
       ? _dataSourceByType<BaseThemeModel>(
           "baseThemes",
           baseThemeConfiguration!,
-          convertDataTypeFromMap: BaseThemeModel.fromJson,
-          convertDataTypeToMap: (model) => model.toJson(),
+          convertDataTypeFromMap: BaseThemeModel.fromMap,
+          convertDataTypeToMap: (model) => model.toMap(),
         )
       : null;
 
@@ -32,8 +32,8 @@ class ThemeDataRepository {
       ? _dataSourceByType<ComponentThemesModel>(
           "componentsThemes",
           componentThemesConfiguration!,
-          convertDataTypeFromMap: ComponentThemesModel.fromJson,
-          convertDataTypeToMap: (model) => model.toJson(),
+          convertDataTypeFromMap: ComponentThemesModel.fromMap,
+          convertDataTypeToMap: (model) => model.toMap(),
         )
       : null;
 

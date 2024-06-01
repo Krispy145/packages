@@ -1,4 +1,4 @@
-import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/repositories/theme.repository.dart";
 import "package:theme/data/repositories/theme_configuration.dart";
 
