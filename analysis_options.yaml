@@ -2,11 +2,9 @@ include: all_lint_rules.yaml
 analyzer:
   exclude:
     - "**/*.g.dart"
-    - "**/*.freezed.dart"
     - "build/**"
     - "**/*.g.dart"
     - "**/*.gr.dart"
-    - "**/*.freezed.dart"
   errors:
     included_file_warning: ignore
     invalid_annotation_target: ignore
