@@ -462,14 +462,14 @@ packages:
       path: "../fonts"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.2"
   forms:
     dependency: transitive
     description:
       path: "../forms"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.2"
   freezed_annotation:
     dependency: transitive
     description:
@@ -1161,7 +1161,7 @@ packages:
       path: "../theme"
       relative: true
     source: path
-    version: "0.0.1+2"
+    version: "0.0.2"
   timing:
     dependency: transitive
     description:
@@ -1280,7 +1280,7 @@ packages:
       path: "../utilities"
       relative: true
     source: path
-    version: "0.0.1+2"
+    version: "0.0.2"
   uuid:
     dependency: transitive
     description:
