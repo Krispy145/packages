@@ -8,8 +8,8 @@ import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:flutter_timezone/flutter_timezone.dart";
 import "package:mobx/mobx.dart";
 import "package:notifications/models/local_android_notification_details.dart";
-import "package:notifications/models/notification.dart";
-import "package:notifications/models/permissions.dart";
+import "package:notifications/models/notification_model.dart";
+import "package:notifications/models/notifications_permissions_model.dart";
 import "package:notifications/stores/base_store.dart";
 import "package:notifications/utils/loggers.dart";
 import "package:timezone/data/latest_all.dart" as tz;
@@ -78,7 +78,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   /// [requestPermissions] requests permissions for local notifications.
   @action
   @override
-  Future<bool> requestPermissions(NotificationPermissions? permissions) async {
+  Future<bool> requestPermissions(NotificationsPermissionsModel? permissions) async {
     if (Platform.isIOS) {
       final iosImplementation = localNotifications.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
       final grantedNotificationPermission = await iosImplementation?.requestPermissions(
@@ -227,7 +227,6 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   Future<RequestResponse> delete(String id) async {
     final notification = notifications.value.values.firstWhereOrNull((element) => element?.id == id);
     if (notification == null) return RequestResponse.failure;
-    await localNotifications.cancel(notification.localId);
     return super.delete(id);
   }
 
@@ -262,7 +261,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
     return DarwinInitializationSettings(
       onDidReceiveLocalNotification: (id, title, body, payload) {
         final notification = payload != null
-            ? NotificationModel.fromJson(
+            ? NotificationModel.fromMap(
                 json.decode(payload) as Map<String, dynamic>,
               )
             : null;
@@ -318,7 +317,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
       [NotificationsLoggers.notifications],
     );
     return notificationResponse.payload != null
-        ? NotificationModel.fromJson(
+        ? NotificationModel.fromMap(
             json.decode(notificationResponse.payload!) as Map<String, dynamic>,
           )
         : null;
@@ -332,7 +331,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
         activeNotifications.map(
           (notification) {
             return notification.payload != null
-                ? NotificationModel.fromJson(
+                ? NotificationModel.fromMap(
                     json.decode(notification.payload!) as Map<String, dynamic>,
                   )
                 : null;

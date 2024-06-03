@@ -3,8 +3,8 @@ import "dart:async";
 import "package:flutter/foundation.dart";
 import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:mobx/mobx.dart";
-import "package:notifications/models/notification.dart";
-import "package:notifications/models/permissions.dart";
+import "package:notifications/models/notification_model.dart";
+import "package:notifications/models/notifications_permissions_model.dart";
 import "package:utilities/data/sources/hive/helpers/type_box.dart";
 import "package:utilities/data/sources/hive/source.dart";
 
@@ -23,8 +23,9 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
   _NotificationsStore({this.onNotificationReceived})
       : super(
           "notifications",
-          convertDataTypeFromMap: NotificationModel.fromStringMap,
-          convertDataTypeToMap: (data) => data.toStringMap(),
+          getIdFromDataType: (data) => data.id,
+          convertDataTypeFromJson: NotificationModel.fromJson,
+          convertDataTypeToJson: (data) => data.toJson(),
         );
 
   /// [localNotifications] is the local notifications plugin.
@@ -36,7 +37,7 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
 
   /// [requestPermissions] requests permission for notifications.
   @action
-  Future<void> requestPermissions(NotificationPermissions? permissions) async {
+  Future<void> requestPermissions(NotificationsPermissionsModel? permissions) async {
     throw UnimplementedError();
   }
 

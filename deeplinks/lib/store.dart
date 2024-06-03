@@ -57,10 +57,8 @@ abstract class DeepLinksStoreBase with Store {
             [DeeplinksLoggers.deeplinks],
           );
           controllerData.sink.add(data.toString());
-          if (data.containsKey("+clicked_branch_link") &&
-              data["+clicked_branch_link"] == true) {
-            onDeepLinkReceived
-                ?.call(DeepLinkModel.fromJson(data as Map<String, dynamic>));
+          if (data.containsKey("+clicked_branch_link") && data["+clicked_branch_link"] == true) {
+            onDeepLinkReceived?.call(DeepLinkModel.fromMap(data as Map<String, dynamic>));
             AppLogger.print(
               "DeepLink Data: $data",
               [DeeplinksLoggers.deeplinks],
@@ -136,8 +134,7 @@ abstract class DeepLinksStoreBase with Store {
   }) async {
     try {
       AppLogger.print("Creating deep link...", [DeeplinksLoggers.deeplinks]);
-      final branchLinkProperties =
-          linkProperties?.branchLinkProperties ?? BranchLinkProperties();
+      final branchLinkProperties = linkProperties?.branchLinkProperties ?? BranchLinkProperties();
       final response = await FlutterBranchSdk.getShortUrl(
         buo: deepLink.branchUniversalObject,
         linkProperties: branchLinkProperties,
@@ -208,8 +205,7 @@ abstract class DeepLinksStoreBase with Store {
     LinkPropertiesModel? linkProperties,
     QRCodeModel? qrCode,
   }) async {
-    final branchLinkProperties =
-        linkProperties?.branchLinkProperties ?? BranchLinkProperties();
+    final branchLinkProperties = linkProperties?.branchLinkProperties ?? BranchLinkProperties();
     final code = qrCode ?? QRCodeModel();
     if (code.type == QRCodeType.raw) {
       final response = await FlutterBranchSdk.getQRCodeAsData(

@@ -3,7 +3,7 @@ import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:forms/presentation/components/theme_color_string/form_field.dart";
 import "package:theme/app/app.dart";
-import "package:theme/data/models/text/text_style_sizes.dart";
+import "package:theme/data/models/text/text_style_sizes_model.dart";
 import "package:theme/extensions/text_style_string.dart";
 import "package:utilities/sizes/spacers.dart";
 
@@ -35,13 +35,13 @@ class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldSto
                   onPressed: () => store.value = null,
                 ),
                 ThemeColorStringFormField(store: store.colorStore),
-                ...AppTheme.textStyleTypes()!.toJson().entries.map((entry) {
+                ...AppTheme.textStyleTypes()!.toMap().entries.map((entry) {
                   final styleTitle = entry.key; // TODO: Give better name
-                  final value = TextStyleSizes.fromJson(
+                  final value = TextStyleSizesModel.fromMap(
                     entry.value as Map<String, dynamic>,
                   );
                   return Column(
-                    children: value.toJson().entries.map((entry) {
+                    children: value.toMap().entries.map((entry) {
                       final title = entry.key; // TODO: Give better name
                       return InkWell(
                         onTap: () => store.updateTextStyle(styleTitle, title),

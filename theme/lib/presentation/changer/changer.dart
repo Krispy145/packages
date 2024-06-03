@@ -18,7 +18,7 @@ import "package:theme/data/models/cards/card_model.dart";
 import "package:theme/data/models/checkboxes/checkbox_model.dart";
 import "package:theme/data/models/chips/chip_model.dart";
 import "package:theme/data/models/colors/color_model.dart";
-import "package:theme/data/models/colors/color_schemes.dart";
+import "package:theme/data/models/colors/color_schemes_model.dart";
 import "package:theme/data/models/dialogs/dialog_model.dart";
 import "package:theme/data/models/drawers/drawer_model.dart";
 import "package:theme/data/models/dropdowns/dropdown_model.dart";
@@ -39,9 +39,9 @@ import "package:theme/data/models/sliders/slider_model.dart";
 import "package:theme/data/models/snackbars/snackbar_model.dart";
 import "package:theme/data/models/switches/switch_model.dart";
 import "package:theme/data/models/tab_bars/tab_bar_model.dart";
-import "package:theme/data/models/text/text_style_sizes.dart";
-import "package:theme/data/models/text/text_types.dart";
-import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/models/text/text_style_sizes_model.dart";
+import "package:theme/data/models/text/text_types_model.dart";
+import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/models/tooltips/tooltip_model.dart";
 import "package:theme/presentation/changer/view.dart";
 import "package:theme/presentation/components/colors/view.dart";
@@ -167,7 +167,7 @@ class ThemeChanger {
   /// [changeTextTypeStyle] is a function that is used to change the text style of the app.
   static void changeTextTypeStyle({
     required TextType textType,
-    required TextStyleSizes textStyle,
+    required TextStyleSizesModel textStyle,
   }) {
     if (_baseThemeModel == null) {
       AppLogger.print(
@@ -960,7 +960,7 @@ class ThemeChanger {
     }
   }
 
-  static Map<String, ColorSchemes>? _themeColorStringStyles(
+  static Map<String, ColorSchemesModel>? _themeColorStringStyles(
     ColorModel colorModel,
     bool isDark,
   ) {
@@ -969,11 +969,11 @@ class ThemeChanger {
     return colorStyles;
   }
 
-  static ColorSchemes _themeColorStringSchemes(
+  static ColorSchemesModel _themeColorStringSchemes(
     ColorModel colorModel,
     bool isDark,
   ) {
-    var colorSchemes = _baseThemeModel?.colors[styleType] ?? ColorSchemes.defaultSchemes();
+    var colorSchemes = _baseThemeModel?.colors[styleType] ?? ColorSchemesModel.defaultSchemes();
     switch (isDark) {
       case true:
         colorSchemes = colorSchemes.copyWith(dark: colorModel);
@@ -985,17 +985,17 @@ class ThemeChanger {
     return colorSchemes;
   }
 
-  static Map<String, TextTypes>? _textStyleStrings(
+  static Map<String, TextTypesModel>? _textStyleStrings(
     TextType textType,
-    TextStyleSizes textStyle,
+    TextStyleSizesModel textStyle,
   ) {
     final textStyles = _baseThemeModel?.textStyles ?? {};
     textStyles[styleType] = _textTypes(textType, textStyle);
     return textStyles;
   }
 
-  static TextTypes _textTypes(TextType textType, TextStyleSizes textStyle) {
-    var textTypes = _baseThemeModel?.textStyles?[styleType] ?? const TextTypes();
+  static TextTypesModel _textTypes(TextType textType, TextStyleSizesModel textStyle) {
+    var textTypes = _baseThemeModel?.textStyles?[styleType] ?? const TextTypesModel();
     switch (textType) {
       case TextType.display:
         textTypes = textTypes.copyWith(display: textStyle);

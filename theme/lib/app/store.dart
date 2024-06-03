@@ -5,7 +5,7 @@ import "package:fonts/store.dart";
 import "package:mobx/mobx.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 import "package:theme/data/models/colors/color_model.dart";
-import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/repositories/theme_configuration.dart";
 import "package:theme/domain/repositories/base.repository.dart";
 import "package:theme/domain/repositories/digital_oasis.repository.dart";

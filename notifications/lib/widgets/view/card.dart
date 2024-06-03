@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:notifications/models/notification.dart";
+import "package:notifications/models/notification_model.dart";
 import "package:notifications/stores/base_store.dart";
 import "package:notifications/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
@@ -19,14 +19,14 @@ class NotificationCard extends StatelessWidget {
     required this.store,
   });
 
-  String? get _subtitle => (notification.body ?? "").length >= 80
-      ? ("${notification.body?.substring(0, 80)}...")
-      : notification.body;
+  String? get _subtitle => (notification.body ?? "").length >= 80 ? ("${notification.body?.substring(0, 80)}...") : notification.body;
 
   @override
   Widget build(BuildContext context) {
     AppLogger.print(
-        notification.toString(), [NotificationsLoggers.notifications],);
+      notification.toString(),
+      [NotificationsLoggers.notifications],
+    );
     return Dismissible(
       key: Key("${notification.id}${notification.title}"),
       direction: DismissDirection.endToStart,

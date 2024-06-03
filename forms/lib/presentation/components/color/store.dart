@@ -19,7 +19,7 @@ abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColo
 
   /// [color] to change.
   @observable
-  late Color color = const ColorConverter().fromJson(value.value) ?? Colors.transparent;
+  late Color color = const ColorMapper().decode(value.value);
 
   /// Updates the [value] color of the field, triggering an update of the theme
   @action
@@ -49,6 +49,6 @@ abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColo
       blue?.roundToDouble() ?? color.blue.toDouble(),
       opacity ?? color.opacity,
     ];
-    color = const ColorConverter().fromJson(newColorList) ?? Colors.transparent;
+    color = const ColorMapper().decode(newColorList);
   }
 }

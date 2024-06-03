@@ -24,7 +24,11 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
       AsyncAction('_NotificationsStore.requestPermissions', context: context);
 
   @override
+<<<<<<< HEAD
   Future<void> requestPermissions(NotificationPermissions? permissions) {
+=======
+  Future<void> requestPermissions(InvalidType permissions) {
+>>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
     return _$requestPermissionsAsyncAction
         .run(() => super.requestPermissions(permissions));
   }

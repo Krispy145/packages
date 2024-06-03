@@ -2,19 +2,17 @@ import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:mobx/mobx.dart";
-import "package:notifications/models/notification.dart";
+import "package:notifications/models/notification_model.dart";
 import "package:notifications/stores/local_store.dart";
 import "package:timezone/timezone.dart" as tz;
 
 part "local_example_store.g.dart";
 
 /// [LocalNotificationsExamplesStore] is the base class for all local notifications examples stores.
-class LocalNotificationsExamplesStore = _LocalNotificationsExamplesStore
-    with _$LocalNotificationsExamplesStore;
+class LocalNotificationsExamplesStore = _LocalNotificationsExamplesStore with _$LocalNotificationsExamplesStore;
 
 /// [_LocalNotificationsExamplesStore] is the base class for all local notifications examples stores.
-abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
-    with Store {
+abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore with Store {
   /// [_LocalNotificationsExamplesStore] is the constructor for the [_LocalNotificationsExamplesStore] class.
   _LocalNotificationsExamplesStore();
 
@@ -41,8 +39,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
   Future<void> showNotificationWithActions(
     NotificationModel notification,
   ) async {
-    final AndroidNotificationDetails androidNotificationDetails =
-        androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
       actions: [
         const AndroidNotificationAction(
           "id_1",
@@ -109,8 +106,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
       allowGeneratedReplies: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails =
-        androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
       actions: [
         textAction,
       ],
@@ -165,8 +161,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
       contextual: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails =
-        androidLocalNotificationDetails.copyWith(
+    final AndroidNotificationDetails androidNotificationDetails = androidLocalNotificationDetails.copyWith(
       actions: [androidAction],
     );
 
@@ -207,8 +202,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
       ledOffMs: 500,
     );
 
-    final notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+    final notificationDetails = NotificationDetails(android: androidNotificationDetails);
     await show(notification: notification, details: notificationDetails);
   }
 
@@ -248,8 +242,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
   Future<void> repeatNotification(NotificationModel notification) async {
     final androidNotificationDetails = androidLocalNotificationDetails;
 
-    final notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+    final notificationDetails = NotificationDetails(android: androidNotificationDetails);
     await periodicallyShow(
       notification: notification,
       details: notificationDetails,

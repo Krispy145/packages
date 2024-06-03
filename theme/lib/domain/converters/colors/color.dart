@@ -1,35 +1,27 @@
 import "dart:convert";
 
+import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
-import "package:freezed_annotation/freezed_annotation.dart";
-import "package:theme/utils/loggers.dart";
-import "package:utilities/logger/logger.dart";
 
-/// [ColorConverter] is a converter that allows you to convert a [Color] to and from JSON.
-class ColorConverter implements JsonConverter<Color?, dynamic> {
-  /// [ColorConverter] constructor
-  const ColorConverter();
+class ColorMapper extends SimpleMapper<Color> {
+  final Color fallback;
 
-  /// This example shows how to use the [ColorConverter]:
-  Color? example() {
-    final json = const ColorConverter().toJson(Colors.green);
-    final color = const ColorConverter().fromJson(json);
-    AppLogger
-      ..print("COLOR fromJson -> $color", [ThemeLoggers.converters])
-      ..print("COLOR toJson -> $json", [ThemeLoggers.converters]);
-    return color;
-  }
-
+  const ColorMapper({this.fallback = Colors.transparent});
   @override
-  Color? fromJson(dynamic colorValue) {
-    if (colorValue is String) {
-      if (colorValue.startsWith("#")) {
-        return getColorFromHex(colorValue);
+  Color decode(dynamic value) {
+    if (value is String) {
+      if (value.startsWith("#")) {
+        final color = getColorFromHex(value);
+        try {
+          return color!;
+        } catch (e) {
+          return fallback;
+        }
       }
-      colorValue = json.decode(colorValue);
-      if (colorValue is List) {
+      value = json.decode(value);
+      if (value is List) {
         final colorList = <double>[];
-        for (final element in colorValue) {
+        for (final element in value) {
           if (element is int) {
             colorList.add(element.toDouble());
           } else if (element is double) {
@@ -39,10 +31,9 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
         return _getColorFromRGB(colorList);
       }
     }
-    if (colorValue is List &&
-        (colorValue.length == 3 || colorValue.length == 4)) {
+    if (value is List && (value.length == 3 || value.length == 4)) {
       final colorList = <double>[];
-      for (final element in colorValue) {
+      for (final element in value) {
         if (element is int) {
           colorList.add(element.toDouble());
         } else if (element is double) {
@@ -51,7 +42,13 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
       }
       return _getColorFromRGB(colorList);
     }
-    return null;
+    assert(false, "Invalid color value: $value");
+    return fallback;
+  }
+
+  @override
+  dynamic encode(Color self) {
+    return [self.red, self.green, self.blue, self.opacity].toString();
   }
 
   Color _getColorFromRGB(List<double> colorValue) {
@@ -69,43 +66,6 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
     );
   }
 
-  // @override
-  // String? toJson(Color? color) {
-  //   if (color != null) {
-  //     // Convert Color to hex string
-  //     String hexColor = '#${color.value.toRadixString(16).padLeft(8, '0')}';
-  //     return hexColor;
-  //   }
-  //   return null;
-  // }
-
-  @override
-  String? toJson(Color? color) {
-    if (color != null) {
-      return [color.red, color.green, color.blue, color.opacity].toString();
-    }
-    return null;
-  }
-
-  // static Color? getColorFromHex(String hexColor) {
-  //   // Remove any leading '#' character
-  //   if (hexColor.isNotEmpty && hexColor[0] == '#') {
-  //     hexColor = hexColor.substring(1);
-  //   }
-
-  //   // Parse the hex color code
-  //   final parsedColor = int.tryParse(hexColor, radix: 16) ?? 0xFF000000;
-
-  //   // Ensure the alpha channel is included (8 characters) or set to 255 (opaque)
-  //   if (hexColor.length == 6) {
-  //     return Color(0xFF000000 | parsedColor);
-  //   } else if (hexColor.length == 8) {
-  //     return Color(parsedColor);
-  //   } else {
-  //     return null;
-  //   }
-  // }
-
   /// [getColorFromHex] is a helper function that converts a hex color to a [Color].
   /// If alpha is provided, it should be at the end
   /// Can interpret rgb, rgbaa, rrggbb, rrggbbaa
@@ -118,20 +78,13 @@ class ColorConverter implements JsonConverter<Color?, dynamic> {
     // Has opacity (which needs to be moved to front)
     if (hexColor.length == 5 || hexColor.length == 8) {
       final dividingPoint = hexColor.length - 2;
-      hexColor = hexColor.substring(dividingPoint) +
-          hexColor.substring(0, dividingPoint);
+      hexColor = hexColor.substring(dividingPoint) + hexColor.substring(0, dividingPoint);
     }
 
     if (hexColor.length == 3 || hexColor.length == 5) {
       final alphaPart = hexColor.length == 5 ? hexColor.substring(0, 2) : "";
       final colorPart = hexColor.substring(hexColor.length == 5 ? 2 : 0);
-      hexColor = alphaPart +
-          colorPart[0] +
-          colorPart[0] +
-          colorPart[1] +
-          colorPart[1] +
-          colorPart[2] +
-          colorPart[2];
+      hexColor = alphaPart + colorPart[0] + colorPart[0] + colorPart[1] + colorPart[1] + colorPart[2] + colorPart[2];
     }
 
     // Parse the hex color code
