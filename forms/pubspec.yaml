@@ -1,6 +1,6 @@
 name: forms
 description: "A new Digital Oasis package project."
-version: 0.0.1
+version: 0.0.2
 homepage: null
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 

@@ -1,3 +1,10 @@
+## 0.0.2
+
+ - **FEAT**: dummy data source set up and polishing.
+ - **FEAT**(mappable): changed freezed classes to mappable classes.
+ - **FEAT**(loggers): changed names to {package name}Loggers.
+ - **FEAT**(loggers): updated packages to have local loggers.
+
 ## 0.0.1+2
 
  - Update a dependency to the latest release.
