@@ -1,7 +1,7 @@
 part of "_source.dart";
 
 /// [FirestoreUserDataSource] is a class that implements [UserDataSource] interface.
-class FirestoreUserDataSource<T extends UserModel> extends FirestoreDataSource<T, BasicSearchQueryModel> implements UserDataSource<T> {
+class FirestoreUserDataSource<T extends UserModel> extends PaginatedFirestoreDataSource<T, BasicSearchQueryModel> implements UserDataSource<FirestoreResponseModel<T?>, T> {
   /// [FirestoreUserDataSource] constructor.
   FirestoreUserDataSource({
     required super.convertDataTypeFromMap,

@@ -5,13 +5,14 @@ import "package:forms/presentation/components/base/form_field.dart";
 import "package:theme/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
 
+import "../enum.dart";
 import "store.dart";
 
 class IntFormField extends BaseFormField<IntFormFieldStore> {
   const IntFormField({
     super.key,
     required super.store,
-  });
+  }) : super(type: FormFieldType.intField);
 
   int get intFormFieldWidth => 180;
 

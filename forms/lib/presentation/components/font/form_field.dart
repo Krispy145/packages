@@ -6,13 +6,14 @@ import "package:theme/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
 
 import "../base/form_field.dart";
+import "../enum.dart";
 import "store.dart";
 
 class FontFormField extends BaseFormField<FontFormFieldStore> {
   const FontFormField({
     super.key,
     required super.store,
-  });
+  }) : super(type: FormFieldType.fontField);
 
   @override
   Widget buildField(BuildContext context) {

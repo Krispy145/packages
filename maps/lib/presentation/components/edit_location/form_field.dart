@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:forms/presentation/components/base/form_field.dart';
 import 'package:forms/presentation/components/double/form_field.dart';
+import 'package:forms/presentation/components/enum.dart';
 import 'package:maps/presentation/edit_location/view.dart';
 import 'package:utilities/sizes/spacers.dart';
 
 import 'store.dart';
 
 class EditLocationMapFormField extends BaseFormField<EditLocationMapFormFieldStore> {
-  const EditLocationMapFormField({super.key, required super.store});
+  const EditLocationMapFormField({
+    super.key,
+    required super.store,
+  }) : super(type: FormFieldType.mapField);
 
   @override
   Widget buildField(BuildContext context) {

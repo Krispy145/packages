@@ -25,6 +25,16 @@ mixin _$PermissionStore on _PermissionStore, Store {
     });
   }
 
+  late final _$additPermissionModelAsyncAction =
+      AsyncAction('_PermissionStore.additPermissionModel', context: context);
+
+  @override
+  Future<RequestResponse> additPermissionModel(
+      bool isAdding, PermissionModel permissionModel) {
+    return _$additPermissionModelAsyncAction
+        .run(() => super.additPermissionModel(isAdding, permissionModel));
+  }
+
   @override
   String toString() {
     return '''

@@ -3,10 +3,14 @@ import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
+import "../enum.dart";
 import "store.dart";
 
 class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
-  const DropdownFormField({super.key, required super.store});
+  const DropdownFormField({
+    super.key,
+    required super.store,
+  }) : super(type: FormFieldType.dropdownField);
 
   @override
   Widget buildField(BuildContext context) {

@@ -108,6 +108,7 @@ class ThemeChanger {
   }) {
     return showModalBottomSheet(
       barrierColor: Colors.transparent,
+      isScrollControlled: true,
       context: context,
       builder: (context) => ColorsView(),
     );

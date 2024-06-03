@@ -174,7 +174,7 @@ class AuthenticationRepository<T extends UserModel> {
       final _currentResponse = convertDataTypeToMap(changedUserModel!);
       _currentResponse["last_login_at"] = DateTime.now();
       changedUserModel = convertDataTypeFromMap(_currentResponse);
-      await userDataRepository.updateUser(changedUserModel);
+      await userDataRepository.updateUserModel(userModel: changedUserModel);
       await _authenticationDataRepository.updateUserModel(changedUserModel);
       await _setPermissions(changedUserModel);
       return changedUserModel;
@@ -195,7 +195,7 @@ class AuthenticationRepository<T extends UserModel> {
     _currentResponse["last_logout_at"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
-    await userDataRepository.updateUser(changedUserModel);
+    await userDataRepository.updateUserModel(userModel: changedUserModel);
     return _authenticationDataRepository.signOut();
   }
 
@@ -215,7 +215,7 @@ class AuthenticationRepository<T extends UserModel> {
       _currentResponse["last_login_at"] = DateTime.now();
       _currentResponse["status"] = AuthStatus.authenticated;
       final changedUserModel = convertDataTypeFromMap(_currentResponse);
-      await userDataRepository.updateUser(changedUserModel);
+      await userDataRepository.updateUserModel(userModel: changedUserModel);
     }
     return result;
   }
@@ -226,7 +226,7 @@ class AuthenticationRepository<T extends UserModel> {
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.updateUser(currentUserModelStream.value!);
+    await userDataRepository.updateUserModel(userModel: currentUserModelStream.value!);
     return _authenticationDataRepository.reauthenticate(params);
   }
 
@@ -236,7 +236,7 @@ class AuthenticationRepository<T extends UserModel> {
       "deleteAccount attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.deleteUser(id: userId);
+    await userDataRepository.deleteUserModel(id: userId);
     return _authenticationDataRepository.deleteAccount(userId);
   }
 

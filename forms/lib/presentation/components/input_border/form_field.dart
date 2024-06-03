@@ -9,10 +9,14 @@ import "../base/form_field.dart";
 import "../border_radius/form_field.dart";
 import "../border_side/form_field.dart";
 import "../double/form_field.dart";
+import "../enum.dart";
 import "store.dart";
 
 class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
-  const InputBorderFormField({super.key, required super.store});
+  const InputBorderFormField({
+    super.key,
+    required super.store,
+  }) : super(type: FormFieldType.inputBorderField);
 
   @override
   Widget buildField(BuildContext context) {
@@ -23,12 +27,15 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
           children: [
             SegmentedButton<InputBorderType>(
               segments: InputBorderType.values
-                  .map((type) => ButtonSegment<InputBorderType>(
-                      value: type, label: Text(type.name.toTitleCase()),),)
+                  .map(
+                    (type) => ButtonSegment<InputBorderType>(
+                      value: type,
+                      label: Text(type.name.toTitleCase()),
+                    ),
+                  )
                   .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) =>
-                  store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             TextField(
@@ -47,8 +54,9 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
             ),
             Sizes.m.spacer(),
             Visibility(
-                visible: store.showGapPaddingField,
-                child: DoubleFormField(store: store.gapPaddingStore),),
+              visible: store.showGapPaddingField,
+              child: DoubleFormField(store: store.gapPaddingStore),
+            ),
           ],
         );
       },
@@ -111,11 +119,12 @@ class NumberEditingTextField extends StatelessWidget {
   final bool enabled;
   final void Function(String) onChanged;
 
-  const NumberEditingTextField(
-      {super.key,
-      required this.controller,
-      required this.enabled,
-      required this.onChanged,});
+  const NumberEditingTextField({
+    super.key,
+    required this.controller,
+    required this.enabled,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

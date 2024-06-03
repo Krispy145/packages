@@ -6,10 +6,14 @@ import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "../base/form_field.dart";
+import "../enum.dart";
 import "store.dart";
 
 class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
-  const BorderRadiusFormField({super.key, required super.store});
+  const BorderRadiusFormField({
+    super.key,
+    required super.store,
+  }) : super(type: FormFieldType.borderRadiusField);
 
   double get doubleFormFieldWidth => 180;
 
@@ -22,12 +26,15 @@ class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
           children: [
             SegmentedButton<BorderRadiusType>(
               segments: BorderRadiusType.values
-                  .map((type) => ButtonSegment<BorderRadiusType>(
-                      value: type, label: Text(type.name.toTitleCase()),),)
+                  .map(
+                    (type) => ButtonSegment<BorderRadiusType>(
+                      value: type,
+                      label: Text(type.name.toTitleCase()),
+                    ),
+                  )
                   .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) =>
-                  store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             Container(
@@ -43,36 +50,41 @@ class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
                   Align(
                     alignment: Alignment.topLeft,
                     child: NumberEditingTextField(
-                        controller: store.topLeftController,
-                        enabled: store.type == BorderRadiusType.only,
-                        onChanged: store.onTopLeftChanged,),
+                      controller: store.topLeftController,
+                      enabled: store.type == BorderRadiusType.only,
+                      onChanged: store.onTopLeftChanged,
+                    ),
                   ),
                   Align(
                     alignment: Alignment.topRight,
                     child: NumberEditingTextField(
-                        controller: store.topRightController,
-                        enabled: store.type == BorderRadiusType.only,
-                        onChanged: store.onTopRightChanged,),
+                      controller: store.topRightController,
+                      enabled: store.type == BorderRadiusType.only,
+                      onChanged: store.onTopRightChanged,
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: NumberEditingTextField(
-                        controller: store.bottomLeftController,
-                        enabled: store.type == BorderRadiusType.only,
-                        onChanged: store.onBottomLeftChanged,),
+                      controller: store.bottomLeftController,
+                      enabled: store.type == BorderRadiusType.only,
+                      onChanged: store.onBottomLeftChanged,
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: NumberEditingTextField(
-                        controller: store.bottomRightController,
-                        enabled: store.type == BorderRadiusType.only,
-                        onChanged: store.onBottomRightChanged,),
+                      controller: store.bottomRightController,
+                      enabled: store.type == BorderRadiusType.only,
+                      onChanged: store.onBottomRightChanged,
+                    ),
                   ),
                   Align(
                     child: NumberEditingTextField(
-                        controller: store.allController,
-                        enabled: store.type == BorderRadiusType.circular,
-                        onChanged: store.onAllChanged,),
+                      controller: store.allController,
+                      enabled: store.type == BorderRadiusType.circular,
+                      onChanged: store.onAllChanged,
+                    ),
                   ),
                 ],
               ),
@@ -139,11 +151,12 @@ class NumberEditingTextField extends StatelessWidget {
   final bool enabled;
   final void Function(String) onChanged;
 
-  const NumberEditingTextField(
-      {super.key,
-      required this.controller,
-      required this.enabled,
-      required this.onChanged,});
+  const NumberEditingTextField({
+    super.key,
+    required this.controller,
+    required this.enabled,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {

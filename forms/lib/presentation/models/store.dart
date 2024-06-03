@@ -15,14 +15,14 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   _FormsModelStore({
     required this.value,
     // required this.onValueChanged,
-    required this.isAdding,
     required this.onValueSaved,
   }) {
     // reaction((r) => value, onValueChanged);
     setLoaded();
   }
 
-  final bool isAdding;
+  @computed
+  bool get isAdding => value == null;
 
   @action
   void onValueChanged(T newValue) {
@@ -34,6 +34,7 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
 
   @action
   Future<RequestResponse> saveValue() async {
+    print("Saving value: $value");
     return onValueSaved(isAdding, value);
   }
 }
