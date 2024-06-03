@@ -14,21 +14,13 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_local_notifications: ^16.1.0
-<<<<<<< HEAD
   cloud_functions: ^4.7.5
-  utilities:
-    # git:
-    #   url: git@github.com:digital-oasis-llc-fz/utilities.git
-    #   ref: v0.0.1
-    path: ../../packages/utilities
-=======
-  flutter_timezone: ^1.0.8
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
   navigation:
     path: ../../packages/navigation
   universal_io: ^2.2.2
   utilities:
     path: ../../packages/utilities
+  flutter_timezone: ^1.0.8
 
 dev_dependencies:
   build_runner: null

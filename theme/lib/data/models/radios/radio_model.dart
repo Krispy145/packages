@@ -18,16 +18,8 @@ class RadioModel with RadioModelMappable {
     this.splashRadius_double,
   });
 
-<<<<<<< HEAD
-  factory RadioModel.fromJson(Map<String, dynamic> json) => _$RadioModelFromJson(json);
-
-  // static RadioModel defaultRadioModel() {
-  //   return const RadioModel(
-  //     fillColor: "primary",
-  //     overlayColor: "surface",
-  //     splashRadius: 24.0,
-  //   );
-  // }
+  static const fromMap = RadioModelMapper.fromMap;
+  static const fromJson = RadioModelMapper.fromJson;
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
@@ -35,17 +27,6 @@ class RadioModel with RadioModelMappable {
         fillColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       overlayColor: WidgetStateProperty.all(
-=======
-  static const fromMap = RadioModelMapper.fromMap;
-  static const fromJson = RadioModelMapper.fromJson;
-
-  RadioThemeData asRadioThemeData({String? styleTypeName}) {
-    return RadioThemeData(
-      fillColor: MaterialStateProperty.all(
-        fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      overlayColor: MaterialStateProperty.all(
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,

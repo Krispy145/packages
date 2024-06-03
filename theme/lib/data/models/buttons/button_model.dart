@@ -84,7 +84,6 @@ class ButtonModel with ButtonModelMappable {
 
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     return ButtonStyle(
-<<<<<<< HEAD
       textStyle: WidgetStateProperty.all(
         textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
@@ -117,48 +116,11 @@ class ButtonModel with ButtonModelMappable {
         side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
       ),
       shape: WidgetStateProperty.all(
-=======
-      textStyle: MaterialStateProperty.all(
-        textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      ),
-      backgroundColor: MaterialStateProperty.all(
-        backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      foregroundColor: MaterialStateProperty.all(
-        foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      overlayColor: MaterialStateProperty.all(
-        overlayColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      shadowColor: MaterialStateProperty.all(
-        shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      elevation: MaterialStateProperty.all(elevation_double),
-      padding: MaterialStateProperty.all(
-        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-      ),
-      minimumSize: MaterialStateProperty.all(
-        minimumSize_size?.asSize(styleTypeName: styleTypeName),
-      ),
-      fixedSize: MaterialStateProperty.all(
-        fixedSize_size?.asSize(styleTypeName: styleTypeName),
-      ),
-      maximumSize: MaterialStateProperty.all(
-        maximumSize_size?.asSize(styleTypeName: styleTypeName),
-      ),
-      side: MaterialStateProperty.all(
-        side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
-      ),
-      shape: MaterialStateProperty.all(
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
         shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       ),
     );
   }
 
-<<<<<<< HEAD
-  factory ButtonModel.fromJson(Map<String, dynamic> json) => _$ButtonModelFromJson(json);
-=======
   // static const empty = ButtonModel(id: "");
 
   // static const buttonOne = ButtonModel(
@@ -181,7 +143,6 @@ class ButtonModel with ButtonModelMappable {
   //   buttonTwo,
   //   buttonThree,
   // ];
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
 }
 
 // @unfreezed

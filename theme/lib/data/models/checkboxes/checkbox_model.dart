@@ -6,55 +6,6 @@ import "package:theme/data/models/borders/border_side_model.dart";
 import "package:theme/data/models/borders/outlined_border_model.dart";
 import "package:theme/extensions/theme_color_string.dart";
 
-<<<<<<< HEAD
-part "checkbox_model.freezed.dart";
-part "checkbox_model.g.dart";
-
-@freezed
-class CheckboxModel with _$CheckboxModel {
-  const factory CheckboxModel({
-    ThemeColorString? fillColor_themeColorString,
-    ThemeColorString? checkColor_themeColorString,
-    ThemeColorString? overlayColor_themeColorString,
-    double? splashRadius_double,
-    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-    @Default(BorderSideModel()) BorderSideModel? side_borderSide,
-  }) = _CheckboxModel;
-
-  const CheckboxModel._();
-
-  factory CheckboxModel.fromJson(Map<String, dynamic> json) => _$CheckboxModelFromJson(json);
-  // static CheckboxModel defaultCheckboxModel() {
-  //   return const CheckboxModel(
-  //     fillColor: "primary",
-  //     checkColor: "primaryContainer",
-  //     overlayColor: "surface",
-  //     splashRadius: 24.0,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(4.0),
-  //         topRight: Radius.circular(4.0),
-  //         bottomLeft: Radius.circular(4.0),
-  //         bottomRight: Radius.circular(4.0),
-  //       ),
-  //     ),
-  //     side: BorderSide(
-  //       color: Colors.transparent,
-  //       width: 0.0,
-  //     ),
-  //   );
-  // }
-
-  CheckboxThemeData asCheckboxThemeData({String? styleTypeName}) {
-    return CheckboxThemeData(
-      fillColor: WidgetStateProperty.all(
-        fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      checkColor: WidgetStateProperty.all(
-        checkColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      overlayColor: WidgetStateProperty.all(
-=======
 part "checkbox_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
@@ -82,14 +33,13 @@ class CheckboxModel with CheckboxModelMappable {
 
   CheckboxThemeData asCheckboxThemeData({String? styleTypeName}) {
     return CheckboxThemeData(
-      fillColor: MaterialStateProperty.all(
+      fillColor: WidgetStateProperty.all(
         fillColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      checkColor: MaterialStateProperty.all(
+      checkColor: WidgetStateProperty.all(
         checkColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      overlayColor: MaterialStateProperty.all(
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
+      overlayColor: WidgetStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,

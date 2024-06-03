@@ -8,38 +8,6 @@ import "package:theme/data/models/edge_insets_model.dart";
 import "package:theme/extensions/text_style_string.dart";
 import "package:theme/extensions/theme_color_string.dart";
 
-<<<<<<< HEAD
-part "chip_model.freezed.dart";
-part "chip_model.g.dart";
-
-@freezed
-class ChipModel with _$ChipModel {
-  const factory ChipModel({
-    ThemeColorString? color_themeColorString,
-    ThemeColorString? backgroundColor_themeColorString,
-    ThemeColorString? deleteIconColor_themeColorString,
-    ThemeColorString? disabledColor_themeColorString,
-    ThemeColorString? selectedColor_themeColorString,
-    ThemeColorString? secondarySelectedColor_themeColorString,
-    ThemeColorString? shadowColor_themeColorString,
-    ThemeColorString? surfaceTintColor_themeColorString,
-    ThemeColorString? selectedShadowColor_themeColorString,
-    bool? showCheckmark_bool,
-    ThemeColorString? checkmarkColor_themeColorString,
-    @Default(EdgeInsetsModel()) EdgeInsetsModel? labelPadding_edgeInsets,
-    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
-    BorderSideModel? side_borderSide,
-    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-    TextStyleString? labelStyle_textStyleString,
-    TextStyleString? secondaryLabelStyle_textStyleString,
-    double? elevation_double,
-    double? pressElevation_double,
-  }) = _ChipModel;
-
-  const ChipModel._();
-
-  factory ChipModel.fromJson(Map<String, dynamic> json) => _$ChipModelFromJson(json);
-=======
 part "chip_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
@@ -91,16 +59,11 @@ class ChipModel with ChipModelMappable {
 
   static const fromMap = ChipModelMapper.fromMap;
   static const fromJson = ChipModelMapper.fromJson;
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
 
   ChipThemeData asChipThemeData({String? styleTypeName}) {
     return ChipThemeData(
       color: color_themeColorString != null
-<<<<<<< HEAD
           ? WidgetStateProperty.all(
-=======
-          ? MaterialStateProperty.all(
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
               color_themeColorString?.toColor(styleType: styleTypeName),
             )
           : null,

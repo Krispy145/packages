@@ -68,11 +68,7 @@ class ColorsView extends StatelessWidget {
                   children: AppTheme.currentColorModel!.toMap().entries.map(
                     (e) {
                       return ColorCircle(
-<<<<<<< HEAD
-                        color: const ColorConverter().fromJson(e.value) ?? Colors.transparent,
-=======
                         color: const ColorMapper().decode(e.value),
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
                         onTap: () {
                           store.setSelectedColor(e);
                           if (!panelStore.isOpen) {

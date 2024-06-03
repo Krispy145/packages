@@ -48,7 +48,7 @@ mixin _$TextTypesStore on _TextTypesStore, Store {
   }
 
   @override
-  InvalidType setTextStyleModel(
+  TextTypesModel? setTextStyleModel(
       String type, String size, String key, dynamic value) {
     final _$actionInfo = _$_TextTypesStoreActionController.startAction(
         name: '_TextTypesStore.setTextStyleModel');

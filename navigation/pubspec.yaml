@@ -1,12 +1,7 @@
 name: navigation
 description: A new Flutter package project.
-<<<<<<< HEAD
 version: 0.0.2
 homepage:
-=======
-version: 0.0.1+2
-homepage: null
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:

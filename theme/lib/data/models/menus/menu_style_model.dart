@@ -9,59 +9,6 @@ import "package:theme/data/models/edge_insets_model.dart";
 import "package:theme/data/models/general/size_model.dart";
 import "package:theme/extensions/theme_color_string.dart";
 
-<<<<<<< HEAD
-part "menu_style_model.freezed.dart";
-part "menu_style_model.g.dart";
-
-@freezed
-class MenuStyleModel with _$MenuStyleModel {
-  const factory MenuStyleModel({
-    ThemeColorString? backgroundColor_themeColorString,
-    ThemeColorString? shadowColor_themeColorString,
-    ThemeColorString? surfaceTintColor_themeColorString,
-    double? elevation_double,
-    @Default(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
-    @Default(SizeModel()) SizeModel? minimumSize_size,
-    @Default(SizeModel()) SizeModel? fixedSize_size,
-    @Default(SizeModel()) SizeModel? maximumSize_size,
-    @Default(BorderSideModel()) BorderSideModel? side_borderSide,
-    @Default(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-    // @AlignmentConverter()
-    @Default(AlignmentOptions.center) AlignmentOptions? alignment_enum_alignmentOptions,
-  }) = _MenuModel;
-
-  const MenuStyleModel._();
-
-  factory MenuStyleModel.fromJson(Map<String, dynamic> json) => _$MenuStyleModelFromJson(json);
-
-  // static MenuModel defaultMenuModel() {
-  //   return const MenuModel(
-  //     backgroundColor: "surface",
-  //     shadowColor: "outline",
-  //     surfaceTintColor: "surface",
-  //     elevation: 8.0,
-  //     padding: EdgeInsets.only(
-  //       left: 8.0,
-  //       top: 8.0,
-  //       right: 8.0,
-  //       bottom: 8.0,
-  //     ),
-  //     minimumSize: Size(64.0, 36.0),
-  //     // fixedSize: Size(64.0, 36.0),
-  //     maximumSize: Size(1600.0, 960.0),
-  //     side: BorderSide.none,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.only(
-  //         topLeft: Radius.circular(0.0),
-  //         topRight: Radius.circular(0.0),
-  //         bottomLeft: Radius.circular(0.0),
-  //         bottomRight: Radius.circular(0.0),
-  //       ),
-  //     ),
-  //     alignment: Alignment.center,
-  //   );
-  // }
-=======
 part "menu_style_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
@@ -101,7 +48,6 @@ class MenuStyleModel with MenuStyleModelMappable {
 
   static const fromMap = MenuStyleModelMapper.fromMap;
   static const fromJson = MenuStyleModelMapper.fromJson;
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
 
   MenuStyle asMenuStyle({String? styleTypeName}) {
     final backgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
@@ -116,7 +62,6 @@ class MenuStyleModel with MenuStyleModelMappable {
     final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
     final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-<<<<<<< HEAD
       backgroundColor: backgroundColor != null ? WidgetStateProperty.all(backgroundColor) : null,
       shadowColor: shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
       surfaceTintColor: surfaceTintColor != null ? WidgetStateProperty.all(surfaceTintColor) : null,
@@ -127,18 +72,6 @@ class MenuStyleModel with MenuStyleModelMappable {
       maximumSize: maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
       side: side != null ? WidgetStateProperty.all(side) : null,
       shape: shape != null ? WidgetStateProperty.all(shape) : null,
-=======
-      backgroundColor: backgroundColor != null ? MaterialStateProperty.all(backgroundColor) : null,
-      shadowColor: shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
-      surfaceTintColor: surfaceTintColor != null ? MaterialStateProperty.all(surfaceTintColor) : null,
-      elevation: elevation != null ? MaterialStateProperty.all(elevation) : null,
-      padding: padding != null ? MaterialStateProperty.all(padding) : null,
-      minimumSize: minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
-      fixedSize: fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
-      maximumSize: maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
-      side: side != null ? MaterialStateProperty.all(side) : null,
-      shape: shape != null ? MaterialStateProperty.all(shape) : null,
->>>>>>> e2c0d9a28d92669ca254504fbb66dc030dd5f623
       alignment: alignment,
     );
   }
