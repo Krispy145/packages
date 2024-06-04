@@ -3,13 +3,14 @@ import "package:theme/data/models/text/text_style_model.dart";
 
 part "text_style_sizes_model.mapper.dart";
 
+@MappableEnum()
 enum TextSizes {
   large,
   medium,
   small,
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class TextStyleSizesModel with TextStyleSizesModelMappable {
   final TextStyleModel? large;
   final TextStyleModel? medium;

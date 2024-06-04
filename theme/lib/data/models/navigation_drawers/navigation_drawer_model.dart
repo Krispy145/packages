@@ -9,7 +9,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "navigation_drawer_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class NavigationDrawerModel with NavigationDrawerModelMappable {
   final double? tileHeight_double;
   final ThemeColorString? backgroundColor_themeColorString;

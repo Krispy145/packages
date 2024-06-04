@@ -8,7 +8,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "appbar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class AppbarModel with AppbarModelMappable {
   final ThemeColorString? color_themeColorString;
   final ThemeColorString? backgroundColor_themeColorString;

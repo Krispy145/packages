@@ -7,7 +7,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "slider_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class SliderModel with SliderModelMappable {
   final double? trackHeight_double;
   final ThemeColorString? activeTrackColor_themeColorString;

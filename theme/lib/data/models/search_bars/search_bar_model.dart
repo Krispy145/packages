@@ -11,7 +11,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "search_bar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class SearchBarModel with SearchBarModelMappable {
   final double? elevation_double;
   final ThemeColorString? backgroundColor_themeColorString;

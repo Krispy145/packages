@@ -24,8 +24,7 @@ class ProgressIndicatorModelMapper
   static String? _$color_themeColorString(ProgressIndicatorModel v) =>
       v.color_themeColorString;
   static const Field<ProgressIndicatorModel, String> _f$color_themeColorString =
-      Field('color_themeColorString', _$color_themeColorString,
-          key: 'color_theme_color_string', opt: true);
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static String? _$linearTrackColor_themeColorString(
           ProgressIndicatorModel v) =>
       v.linearTrackColor_themeColorString;
@@ -33,13 +32,11 @@ class ProgressIndicatorModelMapper
       _f$linearTrackColor_themeColorString = Field(
           'linearTrackColor_themeColorString',
           _$linearTrackColor_themeColorString,
-          key: 'linear_track_color_theme_color_string',
           opt: true);
   static double? _$linearMinHeight_double(ProgressIndicatorModel v) =>
       v.linearMinHeight_double;
   static const Field<ProgressIndicatorModel, double> _f$linearMinHeight_double =
-      Field('linearMinHeight_double', _$linearMinHeight_double,
-          key: 'linear_min_height_double', opt: true);
+      Field('linearMinHeight_double', _$linearMinHeight_double, opt: true);
   static String? _$circularTrackColor_themeColorString(
           ProgressIndicatorModel v) =>
       v.circularTrackColor_themeColorString;
@@ -47,7 +44,6 @@ class ProgressIndicatorModelMapper
       _f$circularTrackColor_themeColorString = Field(
           'circularTrackColor_themeColorString',
           _$circularTrackColor_themeColorString,
-          key: 'circular_track_color_theme_color_string',
           opt: true);
   static String? _$refreshBackgroundColor_themeColorString(
           ProgressIndicatorModel v) =>
@@ -56,7 +52,6 @@ class ProgressIndicatorModelMapper
       _f$refreshBackgroundColor_themeColorString = Field(
           'refreshBackgroundColor_themeColorString',
           _$refreshBackgroundColor_themeColorString,
-          key: 'refresh_background_color_theme_color_string',
           opt: true);
 
   @override

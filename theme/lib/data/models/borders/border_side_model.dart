@@ -6,7 +6,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "border_side_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BorderSideModel with BorderSideModelMappable {
   final ThemeColorString? color_themeColorString;
   final double? width_double;

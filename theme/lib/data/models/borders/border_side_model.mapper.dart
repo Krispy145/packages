@@ -22,22 +22,19 @@ class BorderSideModelMapper extends ClassMapperBase<BorderSideModel> {
 
   static String? _$color_themeColorString(BorderSideModel v) =>
       v.color_themeColorString;
-  static const Field<BorderSideModel, String> _f$color_themeColorString = Field(
-      'color_themeColorString', _$color_themeColorString,
-      key: 'color_theme_color_string', opt: true);
+  static const Field<BorderSideModel, String> _f$color_themeColorString =
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static double? _$width_double(BorderSideModel v) => v.width_double;
   static const Field<BorderSideModel, double> _f$width_double =
       Field('width_double', _$width_double, opt: true);
   static BorderStyle? _$style_enum_borderStyle(BorderSideModel v) =>
       v.style_enum_borderStyle;
   static const Field<BorderSideModel, BorderStyle> _f$style_enum_borderStyle =
-      Field('style_enum_borderStyle', _$style_enum_borderStyle,
-          key: 'style_enum_border_style', opt: true);
+      Field('style_enum_borderStyle', _$style_enum_borderStyle, opt: true);
   static double? _$strokeAlign_double(BorderSideModel v) =>
       v.strokeAlign_double;
-  static const Field<BorderSideModel, double> _f$strokeAlign_double = Field(
-      'strokeAlign_double', _$strokeAlign_double,
-      key: 'stroke_align_double', opt: true);
+  static const Field<BorderSideModel, double> _f$strokeAlign_double =
+      Field('strokeAlign_double', _$strokeAlign_double, opt: true);
 
   @override
   final MappableFields<BorderSideModel> fields = const {

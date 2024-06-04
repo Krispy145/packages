@@ -23,14 +23,12 @@ class PopupMenuModelMapper extends ClassMapperBase<PopupMenuModel> {
 
   static String? _$color_themeColorString(PopupMenuModel v) =>
       v.color_themeColorString;
-  static const Field<PopupMenuModel, String> _f$color_themeColorString = Field(
-      'color_themeColorString', _$color_themeColorString,
-      key: 'color_theme_color_string', opt: true);
+  static const Field<PopupMenuModel, String> _f$color_themeColorString =
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static ShapeBorderModel? _$shape_shapeBorder(PopupMenuModel v) =>
       v.shape_shapeBorder;
   static const Field<PopupMenuModel, ShapeBorderModel> _f$shape_shapeBorder =
-      Field('shape_shapeBorder', _$shape_shapeBorder,
-          key: 'shape_shape_border', opt: true);
+      Field('shape_shapeBorder', _$shape_shapeBorder, opt: true);
   static double? _$elevation_double(PopupMenuModel v) => v.elevation_double;
   static const Field<PopupMenuModel, double> _f$elevation_double =
       Field('elevation_double', _$elevation_double, opt: true);
@@ -38,29 +36,27 @@ class PopupMenuModelMapper extends ClassMapperBase<PopupMenuModel> {
       v.shadowColor_themeColorString;
   static const Field<PopupMenuModel, String> _f$shadowColor_themeColorString =
       Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(PopupMenuModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<PopupMenuModel, String>
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string',
           opt: true);
   static String? _$textStyle_textStyleString(PopupMenuModel v) =>
       v.textStyle_textStyleString;
   static const Field<PopupMenuModel, String> _f$textStyle_textStyleString =
       Field('textStyle_textStyleString', _$textStyle_textStyleString,
-          key: 'text_style_text_style_string', opt: true);
+          opt: true);
   static String? _$labelTextStyle_textStyleString(PopupMenuModel v) =>
       v.labelTextStyle_textStyleString;
   static const Field<PopupMenuModel, String> _f$labelTextStyle_textStyleString =
       Field('labelTextStyle_textStyleString', _$labelTextStyle_textStyleString,
-          key: 'label_text_style_text_style_string', opt: true);
+          opt: true);
   static bool? _$enableFeedback_bool(PopupMenuModel v) => v.enableFeedback_bool;
-  static const Field<PopupMenuModel, bool> _f$enableFeedback_bool = Field(
-      'enableFeedback_bool', _$enableFeedback_bool,
-      key: 'enable_feedback_bool', opt: true);
+  static const Field<PopupMenuModel, bool> _f$enableFeedback_bool =
+      Field('enableFeedback_bool', _$enableFeedback_bool, opt: true);
   static PopupMenuPosition _$position(PopupMenuModel v) => v.position;
   static const Field<PopupMenuModel, PopupMenuPosition> _f$position =
       Field('position', _$position, opt: true, def: PopupMenuPosition.under);
@@ -68,11 +64,10 @@ class PopupMenuModelMapper extends ClassMapperBase<PopupMenuModel> {
       v.iconColor_themeColorString;
   static const Field<PopupMenuModel, String> _f$iconColor_themeColorString =
       Field('iconColor_themeColorString', _$iconColor_themeColorString,
-          key: 'icon_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$iconSize_double(PopupMenuModel v) => v.iconSize_double;
-  static const Field<PopupMenuModel, double> _f$iconSize_double = Field(
-      'iconSize_double', _$iconSize_double,
-      key: 'icon_size_double', opt: true);
+  static const Field<PopupMenuModel, double> _f$iconSize_double =
+      Field('iconSize_double', _$iconSize_double, opt: true);
 
   @override
   final MappableFields<PopupMenuModel> fields = const {

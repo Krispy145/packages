@@ -26,12 +26,12 @@ class DrawerModelMapper extends ClassMapperBase<DrawerModel> {
   static const Field<DrawerModel, String> _f$backgroundColor_themeColorString =
       Field('backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$scrimColor_themeColorString(DrawerModel v) =>
       v.scrimColor_themeColorString;
   static const Field<DrawerModel, String> _f$scrimColor_themeColorString =
       Field('scrimColor_themeColorString', _$scrimColor_themeColorString,
-          key: 'scrim_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$elevation_double(DrawerModel v) => v.elevation_double;
   static const Field<DrawerModel, double> _f$elevation_double =
       Field('elevation_double', _$elevation_double, opt: true);
@@ -39,28 +39,24 @@ class DrawerModelMapper extends ClassMapperBase<DrawerModel> {
       v.shadowColor_themeColorString;
   static const Field<DrawerModel, String> _f$shadowColor_themeColorString =
       Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(DrawerModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<DrawerModel, String> _f$surfaceTintColor_themeColorString =
       Field('surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string', opt: true);
+          opt: true);
   static OutlinedBorderModel? _$shape_outlinedBorder(DrawerModel v) =>
       v.shape_outlinedBorder;
   static const Field<DrawerModel, OutlinedBorderModel> _f$shape_outlinedBorder =
       Field('shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
   static OutlinedBorderModel? _$endShape_outlinedBorder(DrawerModel v) =>
       v.endShape_outlinedBorder;
   static const Field<DrawerModel, OutlinedBorderModel>
       _f$endShape_outlinedBorder = Field(
           'endShape_outlinedBorder', _$endShape_outlinedBorder,
-          key: 'end_shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
   static double? _$width_double(DrawerModel v) => v.width_double;
   static const Field<DrawerModel, double> _f$width_double =
       Field('width_double', _$width_double, opt: true);

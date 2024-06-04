@@ -8,7 +8,7 @@ import "package:theme/extensions/text_style_string.dart";
 
 part "dropdown_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class DropdownModel with DropdownModelMappable {
   final TextStyleString? textStyle_textStyleString;
   final InputDecorationModel? inputDecoration_inputDecoration;

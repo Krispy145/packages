@@ -25,110 +25,100 @@ class ChipModelMapper extends ClassMapperBase<ChipModel> {
 
   static String? _$color_themeColorString(ChipModel v) =>
       v.color_themeColorString;
-  static const Field<ChipModel, String> _f$color_themeColorString = Field(
-      'color_themeColorString', _$color_themeColorString,
-      key: 'color_theme_color_string', opt: true);
+  static const Field<ChipModel, String> _f$color_themeColorString =
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static String? _$backgroundColor_themeColorString(ChipModel v) =>
       v.backgroundColor_themeColorString;
   static const Field<ChipModel, String> _f$backgroundColor_themeColorString =
       Field('backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$deleteIconColor_themeColorString(ChipModel v) =>
       v.deleteIconColor_themeColorString;
   static const Field<ChipModel, String> _f$deleteIconColor_themeColorString =
       Field('deleteIconColor_themeColorString',
           _$deleteIconColor_themeColorString,
-          key: 'delete_icon_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$disabledColor_themeColorString(ChipModel v) =>
       v.disabledColor_themeColorString;
   static const Field<ChipModel, String> _f$disabledColor_themeColorString =
       Field('disabledColor_themeColorString', _$disabledColor_themeColorString,
-          key: 'disabled_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$selectedColor_themeColorString(ChipModel v) =>
       v.selectedColor_themeColorString;
   static const Field<ChipModel, String> _f$selectedColor_themeColorString =
       Field('selectedColor_themeColorString', _$selectedColor_themeColorString,
-          key: 'selected_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$secondarySelectedColor_themeColorString(ChipModel v) =>
       v.secondarySelectedColor_themeColorString;
   static const Field<ChipModel, String>
       _f$secondarySelectedColor_themeColorString = Field(
           'secondarySelectedColor_themeColorString',
           _$secondarySelectedColor_themeColorString,
-          key: 'secondary_selected_color_theme_color_string',
           opt: true);
   static String? _$shadowColor_themeColorString(ChipModel v) =>
       v.shadowColor_themeColorString;
   static const Field<ChipModel, String> _f$shadowColor_themeColorString = Field(
       'shadowColor_themeColorString', _$shadowColor_themeColorString,
-      key: 'shadow_color_theme_color_string', opt: true);
+      opt: true);
   static String? _$surfaceTintColor_themeColorString(ChipModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<ChipModel, String> _f$surfaceTintColor_themeColorString =
       Field('surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$selectedShadowColor_themeColorString(ChipModel v) =>
       v.selectedShadowColor_themeColorString;
   static const Field<ChipModel, String>
       _f$selectedShadowColor_themeColorString = Field(
           'selectedShadowColor_themeColorString',
           _$selectedShadowColor_themeColorString,
-          key: 'selected_shadow_color_theme_color_string',
           opt: true);
   static bool? _$showCheckmark_bool(ChipModel v) => v.showCheckmark_bool;
-  static const Field<ChipModel, bool> _f$showCheckmark_bool = Field(
-      'showCheckmark_bool', _$showCheckmark_bool,
-      key: 'show_checkmark_bool', opt: true);
+  static const Field<ChipModel, bool> _f$showCheckmark_bool =
+      Field('showCheckmark_bool', _$showCheckmark_bool, opt: true);
   static String? _$checkmarkColor_themeColorString(ChipModel v) =>
       v.checkmarkColor_themeColorString;
   static const Field<ChipModel, String> _f$checkmarkColor_themeColorString =
       Field(
           'checkmarkColor_themeColorString', _$checkmarkColor_themeColorString,
-          key: 'checkmark_color_theme_color_string', opt: true);
+          opt: true);
   static EdgeInsetsModel? _$labelPadding_edgeInsets(ChipModel v) =>
       v.labelPadding_edgeInsets;
   static const Field<ChipModel, EdgeInsetsModel> _f$labelPadding_edgeInsets =
       Field('labelPadding_edgeInsets', _$labelPadding_edgeInsets,
-          key: 'label_padding_edge_insets',
-          opt: true,
-          def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static EdgeInsetsModel? _$padding_edgeInsets(ChipModel v) =>
       v.padding_edgeInsets;
   static const Field<ChipModel, EdgeInsetsModel> _f$padding_edgeInsets = Field(
       'padding_edgeInsets', _$padding_edgeInsets,
-      key: 'padding_edge_insets', opt: true, def: const EdgeInsetsModel());
+      opt: true, def: const EdgeInsetsModel());
   static BorderSideModel? _$side_borderSide(ChipModel v) => v.side_borderSide;
-  static const Field<ChipModel, BorderSideModel> _f$side_borderSide = Field(
-      'side_borderSide', _$side_borderSide,
-      key: 'side_border_side', opt: true);
+  static const Field<ChipModel, BorderSideModel> _f$side_borderSide =
+      Field('side_borderSide', _$side_borderSide, opt: true);
   static OutlinedBorderModel? _$shape_outlinedBorder(ChipModel v) =>
       v.shape_outlinedBorder;
   static const Field<ChipModel, OutlinedBorderModel> _f$shape_outlinedBorder =
       Field('shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
   static String? _$labelStyle_textStyleString(ChipModel v) =>
       v.labelStyle_textStyleString;
   static const Field<ChipModel, String> _f$labelStyle_textStyleString = Field(
       'labelStyle_textStyleString', _$labelStyle_textStyleString,
-      key: 'label_style_text_style_string', opt: true);
+      opt: true);
   static String? _$secondaryLabelStyle_textStyleString(ChipModel v) =>
       v.secondaryLabelStyle_textStyleString;
   static const Field<ChipModel, String> _f$secondaryLabelStyle_textStyleString =
       Field('secondaryLabelStyle_textStyleString',
           _$secondaryLabelStyle_textStyleString,
-          key: 'secondary_label_style_text_style_string', opt: true);
+          opt: true);
   static double? _$elevation_double(ChipModel v) => v.elevation_double;
   static const Field<ChipModel, double> _f$elevation_double =
       Field('elevation_double', _$elevation_double, opt: true);
   static double? _$pressElevation_double(ChipModel v) =>
       v.pressElevation_double;
-  static const Field<ChipModel, double> _f$pressElevation_double = Field(
-      'pressElevation_double', _$pressElevation_double,
-      key: 'press_elevation_double', opt: true);
+  static const Field<ChipModel, double> _f$pressElevation_double =
+      Field('pressElevation_double', _$pressElevation_double, opt: true);
 
   @override
   final MappableFields<ChipModel> fields = const {

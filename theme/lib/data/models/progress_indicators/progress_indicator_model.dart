@@ -6,7 +6,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "progress_indicator_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ProgressIndicatorModel with ProgressIndicatorModelMappable {
   final ThemeColorString? color_themeColorString;
   final ThemeColorString? linearTrackColor_themeColorString;

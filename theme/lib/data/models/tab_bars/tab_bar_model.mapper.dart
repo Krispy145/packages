@@ -25,20 +25,19 @@ class TabBarModelMapper extends ClassMapperBase<TabBarModel> {
   static BoxDecorationModel? _$indicator_boxDecoration(TabBarModel v) =>
       v.indicator_boxDecoration;
   static const Field<TabBarModel, BoxDecorationModel>
-      _f$indicator_boxDecoration = Field(
-          'indicator_boxDecoration', _$indicator_boxDecoration,
-          key: 'indicator_box_decoration', opt: true);
+      _f$indicator_boxDecoration =
+      Field('indicator_boxDecoration', _$indicator_boxDecoration, opt: true);
   static String? _$indicatorColor_themeColorString(TabBarModel v) =>
       v.indicatorColor_themeColorString;
   static const Field<TabBarModel, String> _f$indicatorColor_themeColorString =
       Field(
           'indicatorColor_themeColorString', _$indicatorColor_themeColorString,
-          key: 'indicator_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$dividerColor_themeColorString(TabBarModel v) =>
       v.dividerColor_themeColorString;
   static const Field<TabBarModel, String> _f$dividerColor_themeColorString =
       Field('dividerColor_themeColorString', _$dividerColor_themeColorString,
-          key: 'divider_color_theme_color_string', opt: true);
+          opt: true);
   static TabBarIndicatorSize? _$indicatorSize_enum_tabBarIndicatorSize(
           TabBarModel v) =>
       v.indicatorSize_enum_tabBarIndicatorSize;
@@ -46,37 +45,32 @@ class TabBarModelMapper extends ClassMapperBase<TabBarModel> {
       _f$indicatorSize_enum_tabBarIndicatorSize = Field(
           'indicatorSize_enum_tabBarIndicatorSize',
           _$indicatorSize_enum_tabBarIndicatorSize,
-          key: 'indicator_size_enum_tab_bar_indicator_size',
           opt: true);
   static double? _$dividerHeight_double(TabBarModel v) =>
       v.dividerHeight_double;
-  static const Field<TabBarModel, double> _f$dividerHeight_double = Field(
-      'dividerHeight_double', _$dividerHeight_double,
-      key: 'divider_height_double', opt: true);
+  static const Field<TabBarModel, double> _f$dividerHeight_double =
+      Field('dividerHeight_double', _$dividerHeight_double, opt: true);
   static String? _$labelColor_themeColorString(TabBarModel v) =>
       v.labelColor_themeColorString;
   static const Field<TabBarModel, String> _f$labelColor_themeColorString =
       Field('labelColor_themeColorString', _$labelColor_themeColorString,
-          key: 'label_color_theme_color_string', opt: true);
+          opt: true);
   static EdgeInsetsModel? _$labelPadding_edgeInsets(TabBarModel v) =>
       v.labelPadding_edgeInsets;
   static const Field<TabBarModel, EdgeInsetsModel> _f$labelPadding_edgeInsets =
       Field('labelPadding_edgeInsets', _$labelPadding_edgeInsets,
-          key: 'label_padding_edge_insets',
-          opt: true,
-          def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static String? _$labelStyle_textStyleString(TabBarModel v) =>
       v.labelStyle_textStyleString;
   static const Field<TabBarModel, String> _f$labelStyle_textStyleString = Field(
       'labelStyle_textStyleString', _$labelStyle_textStyleString,
-      key: 'label_style_text_style_string', opt: true);
+      opt: true);
   static String? _$unselectedLabelColor_themeColorString(TabBarModel v) =>
       v.unselectedLabelColor_themeColorString;
   static const Field<TabBarModel, String>
       _f$unselectedLabelColor_themeColorString = Field(
           'unselectedLabelColor_themeColorString',
           _$unselectedLabelColor_themeColorString,
-          key: 'unselected_label_color_theme_color_string',
           opt: true);
   static String? _$unselectedLabelStyle_textStyleString(TabBarModel v) =>
       v.unselectedLabelStyle_textStyleString;
@@ -84,19 +78,18 @@ class TabBarModelMapper extends ClassMapperBase<TabBarModel> {
       _f$unselectedLabelStyle_textStyleString = Field(
           'unselectedLabelStyle_textStyleString',
           _$unselectedLabelStyle_textStyleString,
-          key: 'unselected_label_style_text_style_string',
           opt: true);
   static String? _$overlayColor_themeColorString(TabBarModel v) =>
       v.overlayColor_themeColorString;
   static const Field<TabBarModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static TabAlignment? _$tabAlignment_enum_tabAlignment(TabBarModel v) =>
       v.tabAlignment_enum_tabAlignment;
   static const Field<TabBarModel, TabAlignment>
       _f$tabAlignment_enum_tabAlignment = Field(
           'tabAlignment_enum_tabAlignment', _$tabAlignment_enum_tabAlignment,
-          key: 'tab_alignment_enum_tab_alignment', opt: true);
+          opt: true);
 
   @override
   final MappableFields<TabBarModel> fields = const {

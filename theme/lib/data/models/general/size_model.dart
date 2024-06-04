@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 
 part "size_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class SizeModel with SizeModelMappable {
   final double? width_double;
   final double? height_double;

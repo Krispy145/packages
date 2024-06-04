@@ -26,15 +26,13 @@ class NavigationDrawerModelMapper
   static double? _$tileHeight_double(NavigationDrawerModel v) =>
       v.tileHeight_double;
   static const Field<NavigationDrawerModel, double> _f$tileHeight_double =
-      Field('tileHeight_double', _$tileHeight_double,
-          key: 'tile_height_double', opt: true);
+      Field('tileHeight_double', _$tileHeight_double, opt: true);
   static String? _$backgroundColor_themeColorString(NavigationDrawerModel v) =>
       v.backgroundColor_themeColorString;
   static const Field<NavigationDrawerModel, String>
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static double? _$elevation_double(NavigationDrawerModel v) =>
       v.elevation_double;
@@ -45,41 +43,38 @@ class NavigationDrawerModelMapper
   static const Field<NavigationDrawerModel, String>
       _f$shadowColor_themeColorString = Field(
           'shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(NavigationDrawerModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<NavigationDrawerModel, String>
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string',
           opt: true);
   static String? _$indicatorColor_themeColorString(NavigationDrawerModel v) =>
       v.indicatorColor_themeColorString;
   static const Field<NavigationDrawerModel, String>
       _f$indicatorColor_themeColorString = Field(
           'indicatorColor_themeColorString', _$indicatorColor_themeColorString,
-          key: 'indicator_color_theme_color_string', opt: true);
+          opt: true);
   static ShapeBorderModel? _$indicatorShape_shapeBorder(
           NavigationDrawerModel v) =>
       v.indicatorShape_shapeBorder;
   static const Field<NavigationDrawerModel, ShapeBorderModel>
       _f$indicatorShape_shapeBorder = Field(
           'indicatorShape_shapeBorder', _$indicatorShape_shapeBorder,
-          key: 'indicator_shape_shape_border',
-          opt: true,
-          def: const ShapeBorderModel());
+          opt: true, def: const ShapeBorderModel());
   static SizeModel? _$indicatorSize_size(NavigationDrawerModel v) =>
       v.indicatorSize_size;
   static const Field<NavigationDrawerModel, SizeModel> _f$indicatorSize_size =
       Field('indicatorSize_size', _$indicatorSize_size,
-          key: 'indicator_size_size', opt: true, def: const SizeModel());
+          opt: true, def: const SizeModel());
   static String? _$labelTextStyle_textStyleString(NavigationDrawerModel v) =>
       v.labelTextStyle_textStyleString;
   static const Field<NavigationDrawerModel, String>
       _f$labelTextStyle_textStyleString = Field(
           'labelTextStyle_textStyleString', _$labelTextStyle_textStyleString,
-          key: 'label_text_style_text_style_string', opt: true);
+          opt: true);
 
   @override
   final MappableFields<NavigationDrawerModel> fields = const {

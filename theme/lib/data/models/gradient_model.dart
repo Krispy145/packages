@@ -6,9 +6,10 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "gradient_model.mapper.dart";
 
+@MappableEnum()
 enum GradientType { linear, radial, sweep }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class GradientModel with GradientModelMappable {
   final GradientType? type_enum_gradientType;
   final List<ThemeColorString>? colors_list_themeColorString;

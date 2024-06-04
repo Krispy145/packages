@@ -7,7 +7,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "box_shadow_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BoxShadowModel with BoxShadowModelMappable {
   final ThemeColorString? color_themeColorString;
   @MappableValue(OffsetModel())

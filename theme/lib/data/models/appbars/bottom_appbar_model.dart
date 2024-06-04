@@ -5,7 +5,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "bottom_appbar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BottomAppbarModel with BottomAppbarModelMappable {
   final ThemeColorString? color_themeColorString;
   final double? elevation_double;

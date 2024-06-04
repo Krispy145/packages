@@ -11,6 +11,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "button_model.mapper.dart";
 
+@MappableEnum()
 enum ButtonModelType {
   elevated,
   outlined,
@@ -23,7 +24,7 @@ enum ButtonModelType {
   segmented,
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ButtonModel with ButtonModelMappable {
   final TextStyleString? textStyle_textStyleString;
   final ThemeColorString? backgroundColor_themeColorString;

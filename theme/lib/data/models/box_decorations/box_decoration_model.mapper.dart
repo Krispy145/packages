@@ -27,26 +27,24 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
   static String? _$color_themeColorString(BoxDecorationModel v) =>
       v.color_themeColorString;
   static const Field<BoxDecorationModel, String> _f$color_themeColorString =
-      Field('color_themeColorString', _$color_themeColorString,
-          key: 'color_theme_color_string', opt: true);
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static BoxBorderModel? _$border_boxBorder(BoxDecorationModel v) =>
       v.border_boxBorder;
   static const Field<BoxDecorationModel, BoxBorderModel> _f$border_boxBorder =
-      Field('border_boxBorder', _$border_boxBorder,
-          key: 'border_box_border', opt: true);
+      Field('border_boxBorder', _$border_boxBorder, opt: true);
   static BorderRadiusModel? _$borderRadius_borderRadius(BoxDecorationModel v) =>
       v.borderRadius_borderRadius;
   static const Field<BoxDecorationModel, BorderRadiusModel>
       _f$borderRadius_borderRadius = Field(
           'borderRadius_borderRadius', _$borderRadius_borderRadius,
-          key: 'border_radius_border_radius', opt: true);
+          opt: true);
   static List<BoxShadowModel>? _$boxShadows_list_boxShadow(
           BoxDecorationModel v) =>
       v.boxShadows_list_boxShadow;
   static const Field<BoxDecorationModel, List<BoxShadowModel>>
       _f$boxShadows_list_boxShadow = Field(
           'boxShadows_list_boxShadow', _$boxShadows_list_boxShadow,
-          key: 'box_shadows_list_box_shadow', opt: true, def: const []);
+          opt: true, def: const []);
   static GradientModel? _$gradient_gradient(BoxDecorationModel v) =>
       v.gradient_gradient;
   static const Field<BoxDecorationModel, GradientModel> _f$gradient_gradient =
@@ -59,13 +57,12 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
       _f$backgroundBlendMode_enum_blendMode = Field(
           'backgroundBlendMode_enum_blendMode',
           _$backgroundBlendMode_enum_blendMode,
-          key: 'background_blend_mode_enum_blend_mode',
           opt: true);
   static BoxShape? _$shape_enum_boxShape(BoxDecorationModel v) =>
       v.shape_enum_boxShape;
   static const Field<BoxDecorationModel, BoxShape> _f$shape_enum_boxShape =
       Field('shape_enum_boxShape', _$shape_enum_boxShape,
-          key: 'shape_enum_box_shape', opt: true, def: BoxShape.rectangle);
+          opt: true, def: BoxShape.rectangle);
 
   @override
   final MappableFields<BoxDecorationModel> fields = const {

@@ -27,7 +27,7 @@ class DialogModelMapper extends ClassMapperBase<DialogModel> {
   static const Field<DialogModel, String> _f$backgroundColor_themeColorString =
       Field('backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$elevation_double(DialogModel v) => v.elevation_double;
   static const Field<DialogModel, double> _f$elevation_double =
       Field('elevation_double', _$elevation_double, opt: true);
@@ -35,48 +35,45 @@ class DialogModelMapper extends ClassMapperBase<DialogModel> {
       v.shadowColor_themeColorString;
   static const Field<DialogModel, String> _f$shadowColor_themeColorString =
       Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(DialogModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<DialogModel, String> _f$surfaceTintColor_themeColorString =
       Field('surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string', opt: true);
+          opt: true);
   static ShapeBorderModel? _$shape_shapeBorder(DialogModel v) =>
       v.shape_shapeBorder;
   static const Field<DialogModel, ShapeBorderModel> _f$shape_shapeBorder =
-      Field('shape_shapeBorder', _$shape_shapeBorder,
-          key: 'shape_shape_border', opt: true);
+      Field('shape_shapeBorder', _$shape_shapeBorder, opt: true);
   static AlignmentOptions? _$alignment_enum_alignmentOptions(DialogModel v) =>
       v.alignment_enum_alignmentOptions;
   static const Field<DialogModel, AlignmentOptions>
       _f$alignment_enum_alignmentOptions = Field(
           'alignment_enum_alignmentOptions', _$alignment_enum_alignmentOptions,
-          key: 'alignment_enum_alignment_options', opt: true);
+          opt: true);
   static String? _$iconColor_themeColorString(DialogModel v) =>
       v.iconColor_themeColorString;
   static const Field<DialogModel, String> _f$iconColor_themeColorString = Field(
       'iconColor_themeColorString', _$iconColor_themeColorString,
-      key: 'icon_color_theme_color_string', opt: true);
+      opt: true);
   static String? _$titleTextStyle_textStyleString(DialogModel v) =>
       v.titleTextStyle_textStyleString;
   static const Field<DialogModel, String> _f$titleTextStyle_textStyleString =
       Field('titleTextStyle_textStyleString', _$titleTextStyle_textStyleString,
-          key: 'title_text_style_text_style_string', opt: true);
+          opt: true);
   static String? _$contentTextStyle_textStyleString(DialogModel v) =>
       v.contentTextStyle_textStyleString;
   static const Field<DialogModel, String> _f$contentTextStyle_textStyleString =
       Field('contentTextStyle_textStyleString',
           _$contentTextStyle_textStyleString,
-          key: 'content_text_style_text_style_string', opt: true);
+          opt: true);
   static EdgeInsetsModel? _$actionsPadding_edgeInsets(DialogModel v) =>
       v.actionsPadding_edgeInsets;
   static const Field<DialogModel, EdgeInsetsModel>
       _f$actionsPadding_edgeInsets = Field(
           'actionsPadding_edgeInsets', _$actionsPadding_edgeInsets,
-          key: 'actions_padding_edge_insets',
-          opt: true,
-          def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
 
   @override
   final MappableFields<DialogModel> fields = const {

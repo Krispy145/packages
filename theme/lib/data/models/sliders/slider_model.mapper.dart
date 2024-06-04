@@ -21,22 +21,20 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
   final String id = 'SliderModel';
 
   static double? _$trackHeight_double(SliderModel v) => v.trackHeight_double;
-  static const Field<SliderModel, double> _f$trackHeight_double = Field(
-      'trackHeight_double', _$trackHeight_double,
-      key: 'track_height_double', opt: true);
+  static const Field<SliderModel, double> _f$trackHeight_double =
+      Field('trackHeight_double', _$trackHeight_double, opt: true);
   static String? _$activeTrackColor_themeColorString(SliderModel v) =>
       v.activeTrackColor_themeColorString;
   static const Field<SliderModel, String> _f$activeTrackColor_themeColorString =
       Field('activeTrackColor_themeColorString',
           _$activeTrackColor_themeColorString,
-          key: 'active_track_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$inactiveTrackColor_themeColorString(SliderModel v) =>
       v.inactiveTrackColor_themeColorString;
   static const Field<SliderModel, String>
       _f$inactiveTrackColor_themeColorString = Field(
           'inactiveTrackColor_themeColorString',
           _$inactiveTrackColor_themeColorString,
-          key: 'inactive_track_color_theme_color_string',
           opt: true);
   static String? _$secondaryActiveTrackColor_themeColorString(SliderModel v) =>
       v.secondaryActiveTrackColor_themeColorString;
@@ -44,7 +42,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$secondaryActiveTrackColor_themeColorString = Field(
           'secondaryActiveTrackColor_themeColorString',
           _$secondaryActiveTrackColor_themeColorString,
-          key: 'secondary_active_track_color_theme_color_string',
           opt: true);
   static String? _$disabledActiveTrackColor_themeColorString(SliderModel v) =>
       v.disabledActiveTrackColor_themeColorString;
@@ -52,7 +49,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$disabledActiveTrackColor_themeColorString = Field(
           'disabledActiveTrackColor_themeColorString',
           _$disabledActiveTrackColor_themeColorString,
-          key: 'disabled_active_track_color_theme_color_string',
           opt: true);
   static String? _$disabledInactiveTrackColor_themeColorString(SliderModel v) =>
       v.disabledInactiveTrackColor_themeColorString;
@@ -60,7 +56,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$disabledInactiveTrackColor_themeColorString = Field(
           'disabledInactiveTrackColor_themeColorString',
           _$disabledInactiveTrackColor_themeColorString,
-          key: 'disabled_inactive_track_color_theme_color_string',
           opt: true);
   static String? _$disabledSecondaryActiveTrackColor_themeColorString(
           SliderModel v) =>
@@ -69,7 +64,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$disabledSecondaryActiveTrackColor_themeColorString = Field(
           'disabledSecondaryActiveTrackColor_themeColorString',
           _$disabledSecondaryActiveTrackColor_themeColorString,
-          key: 'disabled_secondary_active_track_color_theme_color_string',
           opt: true);
   static String? _$activeTickMarkColor_themeColorString(SliderModel v) =>
       v.activeTickMarkColor_themeColorString;
@@ -77,7 +71,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$activeTickMarkColor_themeColorString = Field(
           'activeTickMarkColor_themeColorString',
           _$activeTickMarkColor_themeColorString,
-          key: 'active_tick_mark_color_theme_color_string',
           opt: true);
   static String? _$inactiveTickMarkColor_themeColorString(SliderModel v) =>
       v.inactiveTickMarkColor_themeColorString;
@@ -85,7 +78,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$inactiveTickMarkColor_themeColorString = Field(
           'inactiveTickMarkColor_themeColorString',
           _$inactiveTickMarkColor_themeColorString,
-          key: 'inactive_tick_mark_color_theme_color_string',
           opt: true);
   static String? _$disabledActiveTickMarkColor_themeColorString(
           SliderModel v) =>
@@ -94,7 +86,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$disabledActiveTickMarkColor_themeColorString = Field(
           'disabledActiveTickMarkColor_themeColorString',
           _$disabledActiveTickMarkColor_themeColorString,
-          key: 'disabled_active_tick_mark_color_theme_color_string',
           opt: true);
   static String? _$disabledInactiveTickMarkColor_themeColorString(
           SliderModel v) =>
@@ -103,13 +94,12 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$disabledInactiveTickMarkColor_themeColorString = Field(
           'disabledInactiveTickMarkColor_themeColorString',
           _$disabledInactiveTickMarkColor_themeColorString,
-          key: 'disabled_inactive_tick_mark_color_theme_color_string',
           opt: true);
   static String? _$thumbColor_themeColorString(SliderModel v) =>
       v.thumbColor_themeColorString;
   static const Field<SliderModel, String> _f$thumbColor_themeColorString =
       Field('thumbColor_themeColorString', _$thumbColor_themeColorString,
-          key: 'thumb_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$overlappingShapeStrokeColor_themeColorString(
           SliderModel v) =>
       v.overlappingShapeStrokeColor_themeColorString;
@@ -117,7 +107,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$overlappingShapeStrokeColor_themeColorString = Field(
           'overlappingShapeStrokeColor_themeColorString',
           _$overlappingShapeStrokeColor_themeColorString,
-          key: 'overlapping_shape_stroke_color_theme_color_string',
           opt: true);
   static String? _$disabledThumbColor_themeColorString(SliderModel v) =>
       v.disabledThumbColor_themeColorString;
@@ -125,20 +114,18 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$disabledThumbColor_themeColorString = Field(
           'disabledThumbColor_themeColorString',
           _$disabledThumbColor_themeColorString,
-          key: 'disabled_thumb_color_theme_color_string',
           opt: true);
   static String? _$overlayColor_themeColorString(SliderModel v) =>
       v.overlayColor_themeColorString;
   static const Field<SliderModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$valueIndicatorColor_themeColorString(SliderModel v) =>
       v.valueIndicatorColor_themeColorString;
   static const Field<SliderModel, String>
       _f$valueIndicatorColor_themeColorString = Field(
           'valueIndicatorColor_themeColorString',
           _$valueIndicatorColor_themeColorString,
-          key: 'value_indicator_color_theme_color_string',
           opt: true);
   static ShowValueIndicator? _$showValueIndicator_enum_showValueIndicator(
           SliderModel v) =>
@@ -147,7 +134,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$showValueIndicator_enum_showValueIndicator = Field(
           'showValueIndicator_enum_showValueIndicator',
           _$showValueIndicator_enum_showValueIndicator,
-          key: 'show_value_indicator_enum_show_value_indicator',
           opt: true);
   static SliderInteraction? _$allowedInteraction_enum_sliderInteraction(
           SliderModel v) =>
@@ -156,7 +142,6 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$allowedInteraction_enum_sliderInteraction = Field(
           'allowedInteraction_enum_sliderInteraction',
           _$allowedInteraction_enum_sliderInteraction,
-          key: 'allowed_interaction_enum_slider_interaction',
           opt: true);
   static String? _$valueIndicatorTextStyle_textStyleString(SliderModel v) =>
       v.valueIndicatorTextStyle_textStyleString;
@@ -164,13 +149,12 @@ class SliderModelMapper extends ClassMapperBase<SliderModel> {
       _f$valueIndicatorTextStyle_textStyleString = Field(
           'valueIndicatorTextStyle_textStyleString',
           _$valueIndicatorTextStyle_textStyleString,
-          key: 'value_indicator_text_style_text_style_string',
           opt: true);
   static double? _$minThumbSeparation_double(SliderModel v) =>
       v.minThumbSeparation_double;
   static const Field<SliderModel, double> _f$minThumbSeparation_double = Field(
       'minThumbSeparation_double', _$minThumbSeparation_double,
-      key: 'min_thumb_separation_double', opt: true);
+      opt: true);
 
   @override
   final MappableFields<SliderModel> fields = const {

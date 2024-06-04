@@ -21,23 +21,19 @@ class BoxConstraintsModelMapper extends ClassMapperBase<BoxConstraintsModel> {
   final String id = 'BoxConstraintsModel';
 
   static double? _$minWidth_double(BoxConstraintsModel v) => v.minWidth_double;
-  static const Field<BoxConstraintsModel, double> _f$minWidth_double = Field(
-      'minWidth_double', _$minWidth_double,
-      key: 'min_width_double', opt: true);
+  static const Field<BoxConstraintsModel, double> _f$minWidth_double =
+      Field('minWidth_double', _$minWidth_double, opt: true);
   static double? _$maxWidth_double(BoxConstraintsModel v) => v.maxWidth_double;
-  static const Field<BoxConstraintsModel, double> _f$maxWidth_double = Field(
-      'maxWidth_double', _$maxWidth_double,
-      key: 'max_width_double', opt: true);
+  static const Field<BoxConstraintsModel, double> _f$maxWidth_double =
+      Field('maxWidth_double', _$maxWidth_double, opt: true);
   static double? _$minHeight_double(BoxConstraintsModel v) =>
       v.minHeight_double;
-  static const Field<BoxConstraintsModel, double> _f$minHeight_double = Field(
-      'minHeight_double', _$minHeight_double,
-      key: 'min_height_double', opt: true);
+  static const Field<BoxConstraintsModel, double> _f$minHeight_double =
+      Field('minHeight_double', _$minHeight_double, opt: true);
   static double? _$maxHeight_double(BoxConstraintsModel v) =>
       v.maxHeight_double;
-  static const Field<BoxConstraintsModel, double> _f$maxHeight_double = Field(
-      'maxHeight_double', _$maxHeight_double,
-      key: 'max_height_double', opt: true);
+  static const Field<BoxConstraintsModel, double> _f$maxHeight_double =
+      Field('maxHeight_double', _$maxHeight_double, opt: true);
 
   @override
   final MappableFields<BoxConstraintsModel> fields = const {

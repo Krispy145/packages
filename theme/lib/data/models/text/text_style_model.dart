@@ -10,11 +10,35 @@ import "package:utilities/logger/logger.dart";
 
 part "text_style_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+class DOFontStyleMapper extends SimpleMapper<FontStyle> {
+  const DOFontStyleMapper();
+  @override
+  FontStyle decode(Object value) {
+    switch (value) {
+      case "normal":
+        return FontStyle.normal;
+      case "italic":
+        return FontStyle.italic;
+      default:
+        return FontStyle.normal;
+    }
+  }
+
+  @override
+  Object? encode(FontStyle self) {
+    switch (self) {
+      case FontStyle.normal:
+        return "normal";
+      case FontStyle.italic:
+        return "italic";
+    }
+  }
+}
+
+@MappableClass(includeCustomMappers: [DOFontStyleMapper()])
 class TextStyleModel with TextStyleModelMappable {
   final String? fontFamilyName_font;
   final ThemeColorString? color_themeColorString;
-  @MappableValue(FontStyle.normal)
   final FontStyle? fontFamilyStyle_enum_fontStyle;
   final double? fontWeight_double;
   final double? fontSize_double;

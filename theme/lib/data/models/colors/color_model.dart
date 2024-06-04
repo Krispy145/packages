@@ -8,7 +8,7 @@ import "package:xml/xml.dart";
 
 part "color_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase, includeCustomMappers: [ColorMapper()])
+@MappableClass(caseStyle: CaseStyle.camelCase, includeCustomMappers: [ColorMapper()])
 class ColorModel with ColorModelMappable {
   final Color? primary;
 
@@ -185,15 +185,13 @@ class ColorModel with ColorModelMappable {
       primaryContainer: primaryContainer ?? seedColor.primary,
       secondary: secondary ?? seedColor.secondary,
       secondaryContainer: secondaryContainer ?? seedColor.secondaryContainer,
-      background: background ?? seedColor.background,
       surface: surface ?? seedColor.surface,
       error: error,
       onPrimary: onPrimary ?? seedColor.onPrimary,
       onSecondary: onSecondary ?? seedColor.onSecondary,
-      onBackground: onBackground ?? seedColor.onBackground,
       onSurface: onSurface ?? seedColor.onSurface,
       onError: onError,
-      surfaceVariant: surfaceVariant ?? seedColor.surfaceVariant,
+      surfaceContainerHighest: surfaceVariant ?? seedColor.surfaceContainerHighest,
       onErrorContainer: onErrorContainer ?? seedColor.onErrorContainer,
       onInverseSurface: onInverseSurface ?? seedColor.onInverseSurface,
       onPrimaryContainer: onPrimaryContainer ?? seedColor.onPrimaryContainer,
@@ -281,12 +279,12 @@ class ColorModel with ColorModelMappable {
       primaryContainer: seedColorScheme.primaryContainer,
       secondary: seedColorScheme.secondary,
       secondaryContainer: seedColorScheme.secondaryContainer,
-      background: seedColorScheme.background,
+      background: seedColorScheme.surface,
       surface: seedColorScheme.surface,
       error: seedColorScheme.error,
       onPrimary: seedColorScheme.onPrimary,
       onSecondary: seedColorScheme.onSecondary,
-      onBackground: seedColorScheme.onBackground,
+      onBackground: seedColorScheme.onSurface,
       onSurface: seedColorScheme.onSurface,
       onError: seedColorScheme.onError,
       onErrorContainer: seedColorScheme.onErrorContainer,

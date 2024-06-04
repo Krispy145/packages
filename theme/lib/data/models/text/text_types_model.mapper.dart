@@ -6,6 +6,64 @@
 
 part of 'text_types_model.dart';
 
+class TextTypeMapper extends EnumMapper<TextType> {
+  TextTypeMapper._();
+
+  static TextTypeMapper? _instance;
+  static TextTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = TextTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static TextType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  TextType decode(dynamic value) {
+    switch (value) {
+      case 'display':
+        return TextType.display;
+      case 'headline':
+        return TextType.headline;
+      case 'title':
+        return TextType.title;
+      case 'body':
+        return TextType.body;
+      case 'label':
+        return TextType.label;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(TextType self) {
+    switch (self) {
+      case TextType.display:
+        return 'display';
+      case TextType.headline:
+        return 'headline';
+      case TextType.title:
+        return 'title';
+      case TextType.body:
+        return 'body';
+      case TextType.label:
+        return 'label';
+    }
+  }
+}
+
+extension TextTypeMapperExtension on TextType {
+  String toValue() {
+    TextTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<TextType>(this) as String;
+  }
+}
+
 class TextTypesModelMapper extends ClassMapperBase<TextTypesModel> {
   TextTypesModelMapper._();
 

@@ -10,7 +10,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "box_decoration_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BoxDecorationModel with BoxDecorationModelMappable {
   const BoxDecorationModel({
     this.color_themeColorString,

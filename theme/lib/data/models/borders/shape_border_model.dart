@@ -14,7 +14,7 @@ enum ShapeBorderType {
   boxBorder,
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ShapeBorderModel with ShapeBorderModelMappable {
   final ShapeBorderType? type_enum_shapeBorderType;
   final BoxBorderModel? boxBorder_boxBorder;

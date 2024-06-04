@@ -28,27 +28,23 @@ class ShapeBorderModelMapper extends ClassMapperBase<ShapeBorderModel> {
   static const Field<ShapeBorderModel, ShapeBorderType>
       _f$type_enum_shapeBorderType = Field(
           'type_enum_shapeBorderType', _$type_enum_shapeBorderType,
-          key: 'type_enum_shape_border_type', opt: true);
+          opt: true);
   static BoxBorderModel? _$boxBorder_boxBorder(ShapeBorderModel v) =>
       v.boxBorder_boxBorder;
   static const Field<ShapeBorderModel, BoxBorderModel> _f$boxBorder_boxBorder =
-      Field('boxBorder_boxBorder', _$boxBorder_boxBorder,
-          key: 'box_border_box_border', opt: true);
+      Field('boxBorder_boxBorder', _$boxBorder_boxBorder, opt: true);
   static InputBorderModel? _$inputBorder_inputBorder(ShapeBorderModel v) =>
       v.inputBorder_inputBorder;
   static const Field<ShapeBorderModel, InputBorderModel>
-      _f$inputBorder_inputBorder = Field(
-          'inputBorder_inputBorder', _$inputBorder_inputBorder,
-          key: 'input_border_input_border', opt: true);
+      _f$inputBorder_inputBorder =
+      Field('inputBorder_inputBorder', _$inputBorder_inputBorder, opt: true);
   static OutlinedBorderModel _$outlinedBorder_outlinedBorder(
           ShapeBorderModel v) =>
       v.outlinedBorder_outlinedBorder;
   static const Field<ShapeBorderModel, OutlinedBorderModel>
       _f$outlinedBorder_outlinedBorder = Field(
           'outlinedBorder_outlinedBorder', _$outlinedBorder_outlinedBorder,
-          key: 'outlined_border_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
 
   @override
   final MappableFields<ShapeBorderModel> fields = const {

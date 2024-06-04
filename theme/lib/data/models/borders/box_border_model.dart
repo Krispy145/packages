@@ -4,7 +4,7 @@ import "package:theme/data/models/borders/border_side_model.dart";
 
 part "box_border_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BoxBorderModel with BoxBorderModelMappable {
   final BorderSideModel? top;
   final BorderSideModel? bottom;

@@ -26,35 +26,30 @@ class BadgeModelMapper extends ClassMapperBase<BadgeModel> {
       v.backgroundColor_themeColorString;
   static const Field<BadgeModel, String> _f$backgroundColor_themeColorString =
       Field('backgroundColor_themeColorString',
-          _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string');
+          _$backgroundColor_themeColorString);
   static String? _$textColor_themeColorString(BadgeModel v) =>
       v.textColor_themeColorString;
-  static const Field<BadgeModel, String> _f$textColor_themeColorString = Field(
-      'textColor_themeColorString', _$textColor_themeColorString,
-      key: 'text_color_theme_color_string');
+  static const Field<BadgeModel, String> _f$textColor_themeColorString =
+      Field('textColor_themeColorString', _$textColor_themeColorString);
   static double? _$smallSize_double(BadgeModel v) => v.smallSize_double;
   static const Field<BadgeModel, double> _f$smallSize_double =
-      Field('smallSize_double', _$smallSize_double, key: 'small_size_double');
+      Field('smallSize_double', _$smallSize_double);
   static double? _$largeSize_double(BadgeModel v) => v.largeSize_double;
   static const Field<BadgeModel, double> _f$largeSize_double =
-      Field('largeSize_double', _$largeSize_double, key: 'large_size_double');
+      Field('largeSize_double', _$largeSize_double);
   static String? _$textStyle_textStyleString(BadgeModel v) =>
       v.textStyle_textStyleString;
-  static const Field<BadgeModel, String> _f$textStyle_textStyleString = Field(
-      'textStyle_textStyleString', _$textStyle_textStyleString,
-      key: 'text_style_text_style_string');
+  static const Field<BadgeModel, String> _f$textStyle_textStyleString =
+      Field('textStyle_textStyleString', _$textStyle_textStyleString);
   static EdgeInsetsModel? _$padding_edgeInsets(BadgeModel v) =>
       v.padding_edgeInsets;
-  static const Field<BadgeModel, EdgeInsetsModel> _f$padding_edgeInsets = Field(
-      'padding_edgeInsets', _$padding_edgeInsets,
-      key: 'padding_edge_insets');
+  static const Field<BadgeModel, EdgeInsetsModel> _f$padding_edgeInsets =
+      Field('padding_edgeInsets', _$padding_edgeInsets);
   static AlignmentOptions? _$alignment_enum_alignmentOptions(BadgeModel v) =>
       v.alignment_enum_alignmentOptions;
   static const Field<BadgeModel, AlignmentOptions>
       _f$alignment_enum_alignmentOptions = Field(
-          'alignment_enum_alignmentOptions', _$alignment_enum_alignmentOptions,
-          key: 'alignment_enum_alignment_options');
+          'alignment_enum_alignmentOptions', _$alignment_enum_alignmentOptions);
   static OffsetModel? _$offset_offset(BadgeModel v) => v.offset_offset;
   static const Field<BadgeModel, OffsetModel> _f$offset_offset =
       Field('offset_offset', _$offset_offset);

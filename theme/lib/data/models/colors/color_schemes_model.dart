@@ -5,7 +5,7 @@ import "package:xml/xml.dart";
 
 part "color_schemes_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ColorSchemesModel with ColorSchemesModelMappable {
   final ColorModel light;
   final ColorModel dark;

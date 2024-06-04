@@ -175,7 +175,16 @@ class AuthenticationRepository<T extends UserModel> {
       _currentResponse["last_login_at"] = DateTime.now();
       changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUserModel(userModel: changedUserModel);
-      await _authenticationDataRepository.updateUserModel(changedUserModel);
+      try {
+        await _authenticationDataRepository.updateUserModel(changedUserModel);
+      } catch (e) {
+        AppLogger.print(
+          "Error in updating user model: $e, trying to add user model",
+          [AuthenticationLoggers.authentication],
+          type: LoggerType.error,
+        );
+        await userDataRepository.addUserModel(userModel: changedUserModel);
+      }
       await _setPermissions(changedUserModel);
       return changedUserModel;
     } catch (e) {

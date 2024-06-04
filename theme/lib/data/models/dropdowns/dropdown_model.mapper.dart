@@ -26,18 +26,17 @@ class DropdownModelMapper extends ClassMapperBase<DropdownModel> {
       v.textStyle_textStyleString;
   static const Field<DropdownModel, String> _f$textStyle_textStyleString =
       Field('textStyle_textStyleString', _$textStyle_textStyleString,
-          key: 'text_style_text_style_string', opt: true);
+          opt: true);
   static InputDecorationModel? _$inputDecoration_inputDecoration(
           DropdownModel v) =>
       v.inputDecoration_inputDecoration;
   static const Field<DropdownModel, InputDecorationModel>
       _f$inputDecoration_inputDecoration = Field(
           'inputDecoration_inputDecoration', _$inputDecoration_inputDecoration,
-          key: 'input_decoration_input_decoration', opt: true);
+          opt: true);
   static MenuStyleModel? _$menuStyle_menu(DropdownModel v) => v.menuStyle_menu;
-  static const Field<DropdownModel, MenuStyleModel> _f$menuStyle_menu = Field(
-      'menuStyle_menu', _$menuStyle_menu,
-      key: 'menu_style_menu', opt: true);
+  static const Field<DropdownModel, MenuStyleModel> _f$menuStyle_menu =
+      Field('menuStyle_menu', _$menuStyle_menu, opt: true);
 
   @override
   final MappableFields<DropdownModel> fields = const {

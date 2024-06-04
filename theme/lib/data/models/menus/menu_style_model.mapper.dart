@@ -30,20 +30,18 @@ class MenuStyleModelMapper extends ClassMapperBase<MenuStyleModel> {
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static String? _$shadowColor_themeColorString(MenuStyleModel v) =>
       v.shadowColor_themeColorString;
   static const Field<MenuStyleModel, String> _f$shadowColor_themeColorString =
       Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(MenuStyleModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<MenuStyleModel, String>
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string',
           opt: true);
   static double? _$elevation_double(MenuStyleModel v) => v.elevation_double;
   static const Field<MenuStyleModel, double> _f$elevation_double =
@@ -52,41 +50,37 @@ class MenuStyleModelMapper extends ClassMapperBase<MenuStyleModel> {
       v.padding_edgeInsets;
   static const Field<MenuStyleModel, EdgeInsetsModel> _f$padding_edgeInsets =
       Field('padding_edgeInsets', _$padding_edgeInsets,
-          key: 'padding_edge_insets', opt: true, def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static SizeModel? _$minimumSize_size(MenuStyleModel v) => v.minimumSize_size;
   static const Field<MenuStyleModel, SizeModel> _f$minimumSize_size = Field(
       'minimumSize_size', _$minimumSize_size,
-      key: 'minimum_size_size', opt: true, def: const SizeModel());
+      opt: true, def: const SizeModel());
   static SizeModel? _$fixedSize_size(MenuStyleModel v) => v.fixedSize_size;
   static const Field<MenuStyleModel, SizeModel> _f$fixedSize_size = Field(
       'fixedSize_size', _$fixedSize_size,
-      key: 'fixed_size_size', opt: true, def: const SizeModel());
+      opt: true, def: const SizeModel());
   static SizeModel? _$maximumSize_size(MenuStyleModel v) => v.maximumSize_size;
   static const Field<MenuStyleModel, SizeModel> _f$maximumSize_size = Field(
       'maximumSize_size', _$maximumSize_size,
-      key: 'maximum_size_size', opt: true, def: const SizeModel());
+      opt: true, def: const SizeModel());
   static BorderSideModel? _$side_borderSide(MenuStyleModel v) =>
       v.side_borderSide;
   static const Field<MenuStyleModel, BorderSideModel> _f$side_borderSide =
       Field('side_borderSide', _$side_borderSide,
-          key: 'side_border_side', opt: true, def: const BorderSideModel());
+          opt: true, def: const BorderSideModel());
   static OutlinedBorderModel? _$shape_outlinedBorder(MenuStyleModel v) =>
       v.shape_outlinedBorder;
   static const Field<MenuStyleModel, OutlinedBorderModel>
       _f$shape_outlinedBorder = Field(
           'shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
   static AlignmentOptions? _$alignment_enum_alignmentOptions(
           MenuStyleModel v) =>
       v.alignment_enum_alignmentOptions;
   static const Field<MenuStyleModel, AlignmentOptions>
       _f$alignment_enum_alignmentOptions = Field(
           'alignment_enum_alignmentOptions', _$alignment_enum_alignmentOptions,
-          key: 'alignment_enum_alignment_options',
-          opt: true,
-          def: AlignmentOptions.center);
+          opt: true, def: AlignmentOptions.center);
 
   @override
   final MappableFields<MenuStyleModel> fields = const {

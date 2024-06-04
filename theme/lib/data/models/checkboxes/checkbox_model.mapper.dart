@@ -26,33 +26,30 @@ class CheckboxModelMapper extends ClassMapperBase<CheckboxModel> {
       v.fillColor_themeColorString;
   static const Field<CheckboxModel, String> _f$fillColor_themeColorString =
       Field('fillColor_themeColorString', _$fillColor_themeColorString,
-          key: 'fill_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$checkColor_themeColorString(CheckboxModel v) =>
       v.checkColor_themeColorString;
   static const Field<CheckboxModel, String> _f$checkColor_themeColorString =
       Field('checkColor_themeColorString', _$checkColor_themeColorString,
-          key: 'check_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$overlayColor_themeColorString(CheckboxModel v) =>
       v.overlayColor_themeColorString;
   static const Field<CheckboxModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$splashRadius_double(CheckboxModel v) =>
       v.splashRadius_double;
-  static const Field<CheckboxModel, double> _f$splashRadius_double = Field(
-      'splashRadius_double', _$splashRadius_double,
-      key: 'splash_radius_double', opt: true);
+  static const Field<CheckboxModel, double> _f$splashRadius_double =
+      Field('splashRadius_double', _$splashRadius_double, opt: true);
   static OutlinedBorderModel? _$shape_outlinedBorder(CheckboxModel v) =>
       v.shape_outlinedBorder;
   static const Field<CheckboxModel, OutlinedBorderModel>
-      _f$shape_outlinedBorder = Field(
-          'shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border', opt: true);
+      _f$shape_outlinedBorder =
+      Field('shape_outlinedBorder', _$shape_outlinedBorder, opt: true);
   static BorderSideModel? _$side_borderSide(CheckboxModel v) =>
       v.side_borderSide;
-  static const Field<CheckboxModel, BorderSideModel> _f$side_borderSide = Field(
-      'side_borderSide', _$side_borderSide,
-      key: 'side_border_side', opt: true);
+  static const Field<CheckboxModel, BorderSideModel> _f$side_borderSide =
+      Field('side_borderSide', _$side_borderSide, opt: true);
 
   @override
   final MappableFields<CheckboxModel> fields = const {

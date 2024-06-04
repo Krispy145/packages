@@ -8,7 +8,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "card_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class CardModel with CardModelMappable {
   final ThemeColorString? color_themeColorString;
   final ThemeColorString? shadowColor_themeColorString;

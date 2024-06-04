@@ -28,35 +28,33 @@ class ListTileModelMapper extends ClassMapperBase<ListTileModel> {
   static ShapeBorderModel? _$shape_shapeBorder(ListTileModel v) =>
       v.shape_shapeBorder;
   static const Field<ListTileModel, ShapeBorderModel> _f$shape_shapeBorder =
-      Field('shape_shapeBorder', _$shape_shapeBorder,
-          key: 'shape_shape_border', opt: true);
+      Field('shape_shapeBorder', _$shape_shapeBorder, opt: true);
   static String? _$selectedColor_themeColorString(ListTileModel v) =>
       v.selectedColor_themeColorString;
   static const Field<ListTileModel, String> _f$selectedColor_themeColorString =
       Field('selectedColor_themeColorString', _$selectedColor_themeColorString,
-          key: 'selected_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$iconColor_themeColorString(ListTileModel v) =>
       v.iconColor_themeColorString;
   static const Field<ListTileModel, String> _f$iconColor_themeColorString =
       Field('iconColor_themeColorString', _$iconColor_themeColorString,
-          key: 'icon_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$textColor_themeColorString(ListTileModel v) =>
       v.textColor_themeColorString;
   static const Field<ListTileModel, String> _f$textColor_themeColorString =
       Field('textColor_themeColorString', _$textColor_themeColorString,
-          key: 'text_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$titleTextStyle_textStyleString(ListTileModel v) =>
       v.titleTextStyle_textStyleString;
   static const Field<ListTileModel, String> _f$titleTextStyle_textStyleString =
       Field('titleTextStyle_textStyleString', _$titleTextStyle_textStyleString,
-          key: 'title_text_style_text_style_string', opt: true);
+          opt: true);
   static String? _$subtitleTextStyle_textStyleString(ListTileModel v) =>
       v.subtitleTextStyle_textStyleString;
   static const Field<ListTileModel, String>
       _f$subtitleTextStyle_textStyleString = Field(
           'subtitleTextStyle_textStyleString',
           _$subtitleTextStyle_textStyleString,
-          key: 'subtitle_text_style_text_style_string',
           opt: true);
   static String? _$leadingAndTrailingTextStyle_textStyleString(
           ListTileModel v) =>
@@ -65,48 +63,42 @@ class ListTileModelMapper extends ClassMapperBase<ListTileModel> {
       _f$leadingAndTrailingTextStyle_textStyleString = Field(
           'leadingAndTrailingTextStyle_textStyleString',
           _$leadingAndTrailingTextStyle_textStyleString,
-          key: 'leading_and_trailing_text_style_text_style_string',
           opt: true);
   static EdgeInsetsModel? _$contentPadding_edgeInsets(ListTileModel v) =>
       v.contentPadding_edgeInsets;
   static const Field<ListTileModel, EdgeInsetsModel>
       _f$contentPadding_edgeInsets = Field(
           'contentPadding_edgeInsets', _$contentPadding_edgeInsets,
-          key: 'content_padding_edge_insets',
-          opt: true,
-          def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static String? _$tileColor_themeColorString(ListTileModel v) =>
       v.tileColor_themeColorString;
   static const Field<ListTileModel, String> _f$tileColor_themeColorString =
       Field('tileColor_themeColorString', _$tileColor_themeColorString,
-          key: 'tile_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$selectedTileColor_themeColorString(ListTileModel v) =>
       v.selectedTileColor_themeColorString;
   static const Field<ListTileModel, String>
       _f$selectedTileColor_themeColorString = Field(
           'selectedTileColor_themeColorString',
           _$selectedTileColor_themeColorString,
-          key: 'selected_tile_color_theme_color_string',
           opt: true);
   static double? _$horizontalTitleGap_double(ListTileModel v) =>
       v.horizontalTitleGap_double;
   static const Field<ListTileModel, double> _f$horizontalTitleGap_double =
       Field('horizontalTitleGap_double', _$horizontalTitleGap_double,
-          key: 'horizontal_title_gap_double', opt: true);
+          opt: true);
   static double? _$minVerticalPadding_double(ListTileModel v) =>
       v.minVerticalPadding_double;
   static const Field<ListTileModel, double> _f$minVerticalPadding_double =
       Field('minVerticalPadding_double', _$minVerticalPadding_double,
-          key: 'min_vertical_padding_double', opt: true);
+          opt: true);
   static double? _$minLeadingWidth_double(ListTileModel v) =>
       v.minLeadingWidth_double;
-  static const Field<ListTileModel, double> _f$minLeadingWidth_double = Field(
-      'minLeadingWidth_double', _$minLeadingWidth_double,
-      key: 'min_leading_width_double', opt: true);
+  static const Field<ListTileModel, double> _f$minLeadingWidth_double =
+      Field('minLeadingWidth_double', _$minLeadingWidth_double, opt: true);
   static bool? _$enableFeedback_bool(ListTileModel v) => v.enableFeedback_bool;
-  static const Field<ListTileModel, bool> _f$enableFeedback_bool = Field(
-      'enableFeedback_bool', _$enableFeedback_bool,
-      key: 'enable_feedback_bool', opt: true);
+  static const Field<ListTileModel, bool> _f$enableFeedback_bool =
+      Field('enableFeedback_bool', _$enableFeedback_bool, opt: true);
   static ListTileTitleAlignment? _$titleAlignment_enum_listTileTitleAlignment(
           ListTileModel v) =>
       v.titleAlignment_enum_listTileTitleAlignment;
@@ -114,7 +106,6 @@ class ListTileModelMapper extends ClassMapperBase<ListTileModel> {
       _f$titleAlignment_enum_listTileTitleAlignment = Field(
           'titleAlignment_enum_listTileTitleAlignment',
           _$titleAlignment_enum_listTileTitleAlignment,
-          key: 'title_alignment_enum_list_tile_title_alignment',
           opt: true);
 
   @override

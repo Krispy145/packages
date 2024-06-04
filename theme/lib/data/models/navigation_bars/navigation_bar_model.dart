@@ -8,7 +8,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "navigation_bar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class NavigationBarModel with NavigationBarModelMappable {
   final double? height_double;
   final ThemeColorString? backgroundColor_themeColorString;

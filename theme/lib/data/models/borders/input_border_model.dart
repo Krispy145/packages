@@ -16,7 +16,7 @@ enum InputBorderType {
   underlined,
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class InputBorderModel with InputBorderModelMappable {
   const InputBorderModel({
     this.type_enum_inputBorderType = InputBorderType.none,

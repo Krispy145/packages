@@ -23,7 +23,10 @@ enum FormFieldType {
   themeColorField,
   mapField,
   searchMapField,
-  permissionsField;
+  permissionsField,
+  dateAndTimeField,
+  tagsField,
+  imagesField;
 
   BaseFormFieldStore<dynamic> buildStore<T>({
     required T value,

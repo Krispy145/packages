@@ -9,7 +9,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "list_tile_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ListTileModel with ListTileModelMappable {
   final bool? dense_bool;
   // @OutlinedBorderConverter(;

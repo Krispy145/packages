@@ -33,62 +33,55 @@ class SearchBarModelMapper extends ClassMapperBase<SearchBarModel> {
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static String? _$shadowColor_themeColorString(SearchBarModel v) =>
       v.shadowColor_themeColorString;
   static const Field<SearchBarModel, String> _f$shadowColor_themeColorString =
       Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(SearchBarModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<SearchBarModel, String>
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string',
           opt: true);
   static String? _$overlayColor_themeColorString(SearchBarModel v) =>
       v.overlayColor_themeColorString;
   static const Field<SearchBarModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static BorderSideModel? _$side_borderSide(SearchBarModel v) =>
       v.side_borderSide;
   static const Field<SearchBarModel, BorderSideModel> _f$side_borderSide =
-      Field('side_borderSide', _$side_borderSide,
-          key: 'side_border_side', opt: true);
+      Field('side_borderSide', _$side_borderSide, opt: true);
   static OutlinedBorderModel? _$shape_outlinedBorder(SearchBarModel v) =>
       v.shape_outlinedBorder;
   static const Field<SearchBarModel, OutlinedBorderModel>
       _f$shape_outlinedBorder = Field(
           'shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
   static EdgeInsetsModel? _$padding_edgeInsets(SearchBarModel v) =>
       v.padding_edgeInsets;
   static const Field<SearchBarModel, EdgeInsetsModel> _f$padding_edgeInsets =
       Field('padding_edgeInsets', _$padding_edgeInsets,
-          key: 'padding_edge_insets', opt: true, def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static String? _$textStyle_textStyleString(SearchBarModel v) =>
       v.textStyle_textStyleString;
   static const Field<SearchBarModel, String> _f$textStyle_textStyleString =
       Field('textStyle_textStyleString', _$textStyle_textStyleString,
-          key: 'text_style_text_style_string', opt: true);
+          opt: true);
   static String? _$hintStyle_textStyleString(SearchBarModel v) =>
       v.hintStyle_textStyleString;
   static const Field<SearchBarModel, String> _f$hintStyle_textStyleString =
       Field('hintStyle_textStyleString', _$hintStyle_textStyleString,
-          key: 'hint_style_text_style_string', opt: true);
+          opt: true);
   static BoxConstraintsModel? _$constraints_boxConstraints(SearchBarModel v) =>
       v.constraints_boxConstraints;
   static const Field<SearchBarModel, BoxConstraintsModel>
       _f$constraints_boxConstraints = Field(
           'constraints_boxConstraints', _$constraints_boxConstraints,
-          key: 'constraints_box_constraints',
-          opt: true,
-          def: const BoxConstraintsModel());
+          opt: true, def: const BoxConstraintsModel());
   static TextCapitalization? _$textCapitalization_enum_textCapitalization(
           SearchBarModel v) =>
       v.textCapitalization_enum_textCapitalization;
@@ -96,7 +89,6 @@ class SearchBarModelMapper extends ClassMapperBase<SearchBarModel> {
       _f$textCapitalization_enum_textCapitalization = Field(
           'textCapitalization_enum_textCapitalization',
           _$textCapitalization_enum_textCapitalization,
-          key: 'text_capitalization_enum_text_capitalization',
           opt: true,
           def: TextCapitalization.none);
 

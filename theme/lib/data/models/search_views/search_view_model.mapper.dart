@@ -29,7 +29,6 @@ class SearchViewModelMapper extends ClassMapperBase<SearchViewModel> {
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static double? _$elevation_double(SearchViewModel v) => v.elevation_double;
   static const Field<SearchViewModel, double> _f$elevation_double =
@@ -40,46 +39,40 @@ class SearchViewModelMapper extends ClassMapperBase<SearchViewModel> {
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string',
           opt: true);
   static BoxConstraintsModel? _$constraints_boxConstraints(SearchViewModel v) =>
       v.constraints_boxConstraints;
   static const Field<SearchViewModel, BoxConstraintsModel>
       _f$constraints_boxConstraints = Field(
           'constraints_boxConstraints', _$constraints_boxConstraints,
-          key: 'constraints_box_constraints',
-          opt: true,
-          def: const BoxConstraintsModel());
+          opt: true, def: const BoxConstraintsModel());
   static BorderSideModel? _$side_borderSide(SearchViewModel v) =>
       v.side_borderSide;
   static const Field<SearchViewModel, BorderSideModel> _f$side_borderSide =
-      Field('side_borderSide', _$side_borderSide,
-          key: 'side_border_side', opt: true);
+      Field('side_borderSide', _$side_borderSide, opt: true);
   static OutlinedBorderModel? _$shape_outlinedBorder(SearchViewModel v) =>
       v.shape_outlinedBorder;
   static const Field<SearchViewModel, OutlinedBorderModel>
       _f$shape_outlinedBorder = Field(
           'shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
   static String? _$headerTextStyle_textStyleString(SearchViewModel v) =>
       v.headerTextStyle_textStyleString;
   static const Field<SearchViewModel, String>
       _f$headerTextStyle_textStyleString = Field(
           'headerTextStyle_textStyleString', _$headerTextStyle_textStyleString,
-          key: 'header_text_style_text_style_string', opt: true);
+          opt: true);
   static String? _$headerHintStyle_textStyleString(SearchViewModel v) =>
       v.headerHintStyle_textStyleString;
   static const Field<SearchViewModel, String>
       _f$headerHintStyle_textStyleString = Field(
           'headerHintStyle_textStyleString', _$headerHintStyle_textStyleString,
-          key: 'header_hint_style_text_style_string', opt: true);
+          opt: true);
   static String? _$dividerColor_themeColorString(SearchViewModel v) =>
       v.dividerColor_themeColorString;
   static const Field<SearchViewModel, String> _f$dividerColor_themeColorString =
       Field('dividerColor_themeColorString', _$dividerColor_themeColorString,
-          key: 'divider_color_theme_color_string', opt: true);
+          opt: true);
 
   @override
   final MappableFields<SearchViewModel> fields = const {

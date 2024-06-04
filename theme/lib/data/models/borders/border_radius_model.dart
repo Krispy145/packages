@@ -5,13 +5,14 @@ import "package:flutter/material.dart";
 
 part "border_radius_model.mapper.dart";
 
+@MappableEnum(defaultValue: BorderRadiusType.all)
 enum BorderRadiusType {
-  // all,
+  all,
   circular,
   only,
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BorderRadiusModel with BorderRadiusModelMappable {
   @MappableValue(BorderRadiusType.circular)
   final BorderRadiusType? type_enum_borderRadiusType;
@@ -58,8 +59,8 @@ class BorderRadiusModel with BorderRadiusModelMappable {
 
   BorderRadius? asBorderRadius({String? styleTypeName}) {
     switch (type_enum_borderRadiusType) {
-      // case BorderRadiusType.all:
-      //   return BorderRadius.all(all_double != null ? Radius.circular(all_double!) : Radius.zero);
+      case BorderRadiusType.all:
+        return BorderRadius.all(all_double != null ? Radius.circular(all_double!) : Radius.zero);
       case BorderRadiusType.only:
         return BorderRadius.only(
           topLeft: topLeft_double != null ? Radius.circular(topLeft_double!) : Radius.zero,

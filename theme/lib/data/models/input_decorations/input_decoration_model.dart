@@ -11,7 +11,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "input_decoration_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class InputDecorationModel with InputDecorationModelMappable {
   final TextStyleString? labelStyle_textStyleString;
   final TextStyleString? floatingLabelStyle_textStyleString;

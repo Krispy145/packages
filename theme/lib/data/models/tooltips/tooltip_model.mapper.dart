@@ -28,53 +28,45 @@ class TooltipModelMapper extends ClassMapperBase<TooltipModel> {
   static EdgeInsetsModel? _$padding_edgeInsets(TooltipModel v) =>
       v.padding_edgeInsets;
   static const Field<TooltipModel, EdgeInsetsModel> _f$padding_edgeInsets =
-      Field('padding_edgeInsets', _$padding_edgeInsets,
-          key: 'padding_edge_insets', opt: true);
+      Field('padding_edgeInsets', _$padding_edgeInsets, opt: true);
   static EdgeInsetsModel? _$margin_edgeInsets(TooltipModel v) =>
       v.margin_edgeInsets;
   static const Field<TooltipModel, EdgeInsetsModel> _f$margin_edgeInsets =
-      Field('margin_edgeInsets', _$margin_edgeInsets,
-          key: 'margin_edge_insets', opt: true);
+      Field('margin_edgeInsets', _$margin_edgeInsets, opt: true);
   static double? _$verticalOffset_double(TooltipModel v) =>
       v.verticalOffset_double;
-  static const Field<TooltipModel, double> _f$verticalOffset_double = Field(
-      'verticalOffset_double', _$verticalOffset_double,
-      key: 'vertical_offset_double', opt: true);
+  static const Field<TooltipModel, double> _f$verticalOffset_double =
+      Field('verticalOffset_double', _$verticalOffset_double, opt: true);
   static bool? _$preferBelow_bool(TooltipModel v) => v.preferBelow_bool;
-  static const Field<TooltipModel, bool> _f$preferBelow_bool = Field(
-      'preferBelow_bool', _$preferBelow_bool,
-      key: 'prefer_below_bool', opt: true);
+  static const Field<TooltipModel, bool> _f$preferBelow_bool =
+      Field('preferBelow_bool', _$preferBelow_bool, opt: true);
   static bool? _$excludeFromSemantics_bool(TooltipModel v) =>
       v.excludeFromSemantics_bool;
   static const Field<TooltipModel, bool> _f$excludeFromSemantics_bool = Field(
       'excludeFromSemantics_bool', _$excludeFromSemantics_bool,
-      key: 'exclude_from_semantics_bool', opt: true);
+      opt: true);
   static BoxDecorationModel? _$decoration_boxDecoration(TooltipModel v) =>
       v.decoration_boxDecoration;
   static const Field<TooltipModel, BoxDecorationModel>
-      _f$decoration_boxDecoration = Field(
-          'decoration_boxDecoration', _$decoration_boxDecoration,
-          key: 'decoration_box_decoration', opt: true);
+      _f$decoration_boxDecoration =
+      Field('decoration_boxDecoration', _$decoration_boxDecoration, opt: true);
   static String? _$textStyle_textStyleString(TooltipModel v) =>
       v.textStyle_textStyleString;
   static const Field<TooltipModel, String> _f$textStyle_textStyleString = Field(
       'textStyle_textStyleString', _$textStyle_textStyleString,
-      key: 'text_style_text_style_string', opt: true);
+      opt: true);
   static TextAlign? _$textAlign_enum_textAlign(TooltipModel v) =>
       v.textAlign_enum_textAlign;
   static const Field<TooltipModel, TextAlign> _f$textAlign_enum_textAlign =
-      Field('textAlign_enum_textAlign', _$textAlign_enum_textAlign,
-          key: 'text_align_enum_text_align', opt: true);
+      Field('textAlign_enum_textAlign', _$textAlign_enum_textAlign, opt: true);
   static Duration? _$waitDuration_duration(TooltipModel v) =>
       v.waitDuration_duration;
-  static const Field<TooltipModel, Duration> _f$waitDuration_duration = Field(
-      'waitDuration_duration', _$waitDuration_duration,
-      key: 'wait_duration_duration', opt: true);
+  static const Field<TooltipModel, Duration> _f$waitDuration_duration =
+      Field('waitDuration_duration', _$waitDuration_duration, opt: true);
   static Duration? _$showDuration_duration(TooltipModel v) =>
       v.showDuration_duration;
-  static const Field<TooltipModel, Duration> _f$showDuration_duration = Field(
-      'showDuration_duration', _$showDuration_duration,
-      key: 'show_duration_duration', opt: true);
+  static const Field<TooltipModel, Duration> _f$showDuration_duration =
+      Field('showDuration_duration', _$showDuration_duration, opt: true);
   static TooltipTriggerMode? _$triggerMode_enum_tooltipTriggerMode(
           TooltipModel v) =>
       v.triggerMode_enum_tooltipTriggerMode;
@@ -82,12 +74,10 @@ class TooltipModelMapper extends ClassMapperBase<TooltipModel> {
       _f$triggerMode_enum_tooltipTriggerMode = Field(
           'triggerMode_enum_tooltipTriggerMode',
           _$triggerMode_enum_tooltipTriggerMode,
-          key: 'trigger_mode_enum_tooltip_trigger_mode',
           opt: true);
   static bool? _$enableFeedback_bool(TooltipModel v) => v.enableFeedback_bool;
-  static const Field<TooltipModel, bool> _f$enableFeedback_bool = Field(
-      'enableFeedback_bool', _$enableFeedback_bool,
-      key: 'enable_feedback_bool', opt: true);
+  static const Field<TooltipModel, bool> _f$enableFeedback_bool =
+      Field('enableFeedback_bool', _$enableFeedback_bool, opt: true);
 
   @override
   final MappableFields<TooltipModel> fields = const {

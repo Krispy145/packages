@@ -22,17 +22,15 @@ class ScrollbarModelMapper extends ClassMapperBase<ScrollbarModel> {
 
   static bool? _$thumbVisibility_bool(ScrollbarModel v) =>
       v.thumbVisibility_bool;
-  static const Field<ScrollbarModel, bool> _f$thumbVisibility_bool = Field(
-      'thumbVisibility_bool', _$thumbVisibility_bool,
-      key: 'thumb_visibility_bool', opt: true);
+  static const Field<ScrollbarModel, bool> _f$thumbVisibility_bool =
+      Field('thumbVisibility_bool', _$thumbVisibility_bool, opt: true);
   static double? _$thickness_double(ScrollbarModel v) => v.thickness_double;
   static const Field<ScrollbarModel, double> _f$thickness_double =
       Field('thickness_double', _$thickness_double, opt: true);
   static bool? _$trackVisibility_bool(ScrollbarModel v) =>
       v.trackVisibility_bool;
-  static const Field<ScrollbarModel, bool> _f$trackVisibility_bool = Field(
-      'trackVisibility_bool', _$trackVisibility_bool,
-      key: 'track_visibility_bool', opt: true);
+  static const Field<ScrollbarModel, bool> _f$trackVisibility_bool =
+      Field('trackVisibility_bool', _$trackVisibility_bool, opt: true);
   static double? _$radius_double(ScrollbarModel v) => v.radius_double;
   static const Field<ScrollbarModel, double> _f$radius_double =
       Field('radius_double', _$radius_double, opt: true);
@@ -40,35 +38,31 @@ class ScrollbarModelMapper extends ClassMapperBase<ScrollbarModel> {
       v.thumbColor_themeColorString;
   static const Field<ScrollbarModel, String> _f$thumbColor_themeColorString =
       Field('thumbColor_themeColorString', _$thumbColor_themeColorString,
-          key: 'thumb_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$trackColor_themeColorString(ScrollbarModel v) =>
       v.trackColor_themeColorString;
   static const Field<ScrollbarModel, String> _f$trackColor_themeColorString =
       Field('trackColor_themeColorString', _$trackColor_themeColorString,
-          key: 'track_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$trackBorderColor_themeColorString(ScrollbarModel v) =>
       v.trackBorderColor_themeColorString;
   static const Field<ScrollbarModel, String>
       _f$trackBorderColor_themeColorString = Field(
           'trackBorderColor_themeColorString',
           _$trackBorderColor_themeColorString,
-          key: 'track_border_color_theme_color_string',
           opt: true);
   static double? _$crossAxisMargin_double(ScrollbarModel v) =>
       v.crossAxisMargin_double;
-  static const Field<ScrollbarModel, double> _f$crossAxisMargin_double = Field(
-      'crossAxisMargin_double', _$crossAxisMargin_double,
-      key: 'cross_axis_margin_double', opt: true);
+  static const Field<ScrollbarModel, double> _f$crossAxisMargin_double =
+      Field('crossAxisMargin_double', _$crossAxisMargin_double, opt: true);
   static double? _$mainAxisMargin_double(ScrollbarModel v) =>
       v.mainAxisMargin_double;
-  static const Field<ScrollbarModel, double> _f$mainAxisMargin_double = Field(
-      'mainAxisMargin_double', _$mainAxisMargin_double,
-      key: 'main_axis_margin_double', opt: true);
+  static const Field<ScrollbarModel, double> _f$mainAxisMargin_double =
+      Field('mainAxisMargin_double', _$mainAxisMargin_double, opt: true);
   static double? _$minThumbLength_double(ScrollbarModel v) =>
       v.minThumbLength_double;
-  static const Field<ScrollbarModel, double> _f$minThumbLength_double = Field(
-      'minThumbLength_double', _$minThumbLength_double,
-      key: 'min_thumb_length_double', opt: true);
+  static const Field<ScrollbarModel, double> _f$minThumbLength_double =
+      Field('minThumbLength_double', _$minThumbLength_double, opt: true);
   static bool? _$interactive_bool(ScrollbarModel v) => v.interactive_bool;
   static const Field<ScrollbarModel, bool> _f$interactive_bool =
       Field('interactive_bool', _$interactive_bool, opt: true);

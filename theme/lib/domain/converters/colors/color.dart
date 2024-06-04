@@ -42,7 +42,7 @@ class ColorMapper extends SimpleMapper<Color> {
       }
       return _getColorFromRGB(colorList);
     }
-    assert(false, "Invalid color value: $value");
+    // assert(false, "Invalid color value: $value");
     return fallback;
   }
 

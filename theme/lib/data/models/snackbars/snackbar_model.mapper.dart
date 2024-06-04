@@ -28,7 +28,6 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static String? _$actionTextColor_themeColorString(SnackbarModel v) =>
       v.actionTextColor_themeColorString;
@@ -36,7 +35,6 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
       _f$actionTextColor_themeColorString = Field(
           'actionTextColor_themeColorString',
           _$actionTextColor_themeColorString,
-          key: 'action_text_color_theme_color_string',
           opt: true);
   static String? _$disabledActionTextColor_themeColorString(SnackbarModel v) =>
       v.disabledActionTextColor_themeColorString;
@@ -44,7 +42,6 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
       _f$disabledActionTextColor_themeColorString = Field(
           'disabledActionTextColor_themeColorString',
           _$disabledActionTextColor_themeColorString,
-          key: 'disabled_action_text_color_theme_color_string',
           opt: true);
   static String? _$contentTextStyle_textStyleString(SnackbarModel v) =>
       v.contentTextStyle_textStyleString;
@@ -52,7 +49,6 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
       _f$contentTextStyle_textStyleString = Field(
           'contentTextStyle_textStyleString',
           _$contentTextStyle_textStyleString,
-          key: 'content_text_style_text_style_string',
           opt: true);
   static double? _$elevation_double(SnackbarModel v) => v.elevation_double;
   static const Field<SnackbarModel, double> _f$elevation_double =
@@ -60,48 +56,42 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
   static OutlinedBorderModel? _$shape_outlinedBorder(SnackbarModel v) =>
       v.shape_outlinedBorder;
   static const Field<SnackbarModel, OutlinedBorderModel>
-      _f$shape_outlinedBorder = Field(
-          'shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border', opt: true);
+      _f$shape_outlinedBorder =
+      Field('shape_outlinedBorder', _$shape_outlinedBorder, opt: true);
   static SnackBarBehavior _$behavior_enum_snackBarBehavior(SnackbarModel v) =>
       v.behavior_enum_snackBarBehavior;
   static const Field<SnackbarModel, SnackBarBehavior>
       _f$behavior_enum_snackBarBehavior = Field(
           'behavior_enum_snackBarBehavior', _$behavior_enum_snackBarBehavior,
-          key: 'behavior_enum_snack_bar_behavior',
-          opt: true,
-          def: SnackBarBehavior.floating);
+          opt: true, def: SnackBarBehavior.floating);
   static double? _$width_double(SnackbarModel v) => v.width_double;
   static const Field<SnackbarModel, double> _f$width_double =
       Field('width_double', _$width_double, opt: true);
   static EdgeInsetsModel? _$insetPadding_edgeInsets(SnackbarModel v) =>
       v.insetPadding_edgeInsets;
   static const Field<SnackbarModel, EdgeInsetsModel>
-      _f$insetPadding_edgeInsets = Field(
-          'insetPadding_edgeInsets', _$insetPadding_edgeInsets,
-          key: 'inset_padding_edge_insets', opt: true);
+      _f$insetPadding_edgeInsets =
+      Field('insetPadding_edgeInsets', _$insetPadding_edgeInsets, opt: true);
   static bool? _$showCloseIcon_bool(SnackbarModel v) => v.showCloseIcon_bool;
-  static const Field<SnackbarModel, bool> _f$showCloseIcon_bool = Field(
-      'showCloseIcon_bool', _$showCloseIcon_bool,
-      key: 'show_close_icon_bool', opt: true);
+  static const Field<SnackbarModel, bool> _f$showCloseIcon_bool =
+      Field('showCloseIcon_bool', _$showCloseIcon_bool, opt: true);
   static String? _$closeIconColor_themeColorString(SnackbarModel v) =>
       v.closeIconColor_themeColorString;
   static const Field<SnackbarModel, String> _f$closeIconColor_themeColorString =
       Field(
           'closeIconColor_themeColorString', _$closeIconColor_themeColorString,
-          key: 'close_icon_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$actionOverflowThreshold_double(SnackbarModel v) =>
       v.actionOverflowThreshold_double;
   static const Field<SnackbarModel, double> _f$actionOverflowThreshold_double =
       Field('actionOverflowThreshold_double', _$actionOverflowThreshold_double,
-          key: 'action_overflow_threshold_double', opt: true);
+          opt: true);
   static String? _$actionBackgroundColor_themeColorString(SnackbarModel v) =>
       v.actionBackgroundColor_themeColorString;
   static const Field<SnackbarModel, String>
       _f$actionBackgroundColor_themeColorString = Field(
           'actionBackgroundColor_themeColorString',
           _$actionBackgroundColor_themeColorString,
-          key: 'action_background_color_theme_color_string',
           opt: true);
   static String? _$disabledActionBackgroundColor_themeColorString(
           SnackbarModel v) =>
@@ -110,7 +100,6 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
       _f$disabledActionBackgroundColor_themeColorString = Field(
           'disabledActionBackgroundColor_themeColorString',
           _$disabledActionBackgroundColor_themeColorString,
-          key: 'disabled_action_background_color_theme_color_string',
           opt: true);
 
   @override

@@ -6,7 +6,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "radio_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class RadioModel with RadioModelMappable {
   final ThemeColorString? fillColor_themeColorString;
   final ThemeColorString? overlayColor_themeColorString;

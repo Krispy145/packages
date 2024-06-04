@@ -6,6 +6,80 @@
 
 part of 'button_model.dart';
 
+class ButtonModelTypeMapper extends EnumMapper<ButtonModelType> {
+  ButtonModelTypeMapper._();
+
+  static ButtonModelTypeMapper? _instance;
+  static ButtonModelTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ButtonModelTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static ButtonModelType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  ButtonModelType decode(dynamic value) {
+    switch (value) {
+      case 'elevated':
+        return ButtonModelType.elevated;
+      case 'outlined':
+        return ButtonModelType.outlined;
+      case 'text':
+        return ButtonModelType.text;
+      case 'toggle':
+        return ButtonModelType.toggle;
+      case 'icon':
+        return ButtonModelType.icon;
+      case 'filled':
+        return ButtonModelType.filled;
+      case 'floating':
+        return ButtonModelType.floating;
+      case 'menu':
+        return ButtonModelType.menu;
+      case 'segmented':
+        return ButtonModelType.segmented;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(ButtonModelType self) {
+    switch (self) {
+      case ButtonModelType.elevated:
+        return 'elevated';
+      case ButtonModelType.outlined:
+        return 'outlined';
+      case ButtonModelType.text:
+        return 'text';
+      case ButtonModelType.toggle:
+        return 'toggle';
+      case ButtonModelType.icon:
+        return 'icon';
+      case ButtonModelType.filled:
+        return 'filled';
+      case ButtonModelType.floating:
+        return 'floating';
+      case ButtonModelType.menu:
+        return 'menu';
+      case ButtonModelType.segmented:
+        return 'segmented';
+    }
+  }
+}
+
+extension ButtonModelTypeMapperExtension on ButtonModelType {
+  String toValue() {
+    ButtonModelTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<ButtonModelType>(this) as String;
+  }
+}
+
 class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
   ButtonModelMapper._();
 
@@ -28,35 +102,35 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
       v.textStyle_textStyleString;
   static const Field<ButtonModel, String> _f$textStyle_textStyleString = Field(
       'textStyle_textStyleString', _$textStyle_textStyleString,
-      key: 'text_style_text_style_string', opt: true);
+      opt: true);
   static String? _$backgroundColor_themeColorString(ButtonModel v) =>
       v.backgroundColor_themeColorString;
   static const Field<ButtonModel, String> _f$backgroundColor_themeColorString =
       Field('backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$foregroundColor_themeColorString(ButtonModel v) =>
       v.foregroundColor_themeColorString;
   static const Field<ButtonModel, String> _f$foregroundColor_themeColorString =
       Field('foregroundColor_themeColorString',
           _$foregroundColor_themeColorString,
-          key: 'foreground_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$overlayColor_themeColorString(ButtonModel v) =>
       v.overlayColor_themeColorString;
   static const Field<ButtonModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$shadowColor_themeColorString(ButtonModel v) =>
       v.shadowColor_themeColorString;
   static const Field<ButtonModel, String> _f$shadowColor_themeColorString =
       Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(ButtonModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<ButtonModel, String> _f$surfaceTintColor_themeColorString =
       Field('surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$elevation_double(ButtonModel v) => v.elevation_double;
   static const Field<ButtonModel, double> _f$elevation_double =
       Field('elevation_double', _$elevation_double, opt: true);
@@ -64,39 +138,36 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
       v.padding_edgeInsets;
   static const Field<ButtonModel, EdgeInsetsModel> _f$padding_edgeInsets =
       Field('padding_edgeInsets', _$padding_edgeInsets,
-          key: 'padding_edge_insets', opt: true, def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static SizeModel? _$minimumSize_size(ButtonModel v) => v.minimumSize_size;
   static const Field<ButtonModel, SizeModel> _f$minimumSize_size = Field(
       'minimumSize_size', _$minimumSize_size,
-      key: 'minimum_size_size', opt: true, def: const SizeModel());
+      opt: true, def: const SizeModel());
   static SizeModel? _$fixedSize_size(ButtonModel v) => v.fixedSize_size;
   static const Field<ButtonModel, SizeModel> _f$fixedSize_size = Field(
       'fixedSize_size', _$fixedSize_size,
-      key: 'fixed_size_size', opt: true, def: const SizeModel());
+      opt: true, def: const SizeModel());
   static SizeModel? _$maximumSize_size(ButtonModel v) => v.maximumSize_size;
   static const Field<ButtonModel, SizeModel> _f$maximumSize_size = Field(
       'maximumSize_size', _$maximumSize_size,
-      key: 'maximum_size_size', opt: true, def: const SizeModel());
+      opt: true, def: const SizeModel());
   static String? _$iconColor_themeColorString(ButtonModel v) =>
       v.iconColor_themeColorString;
   static const Field<ButtonModel, String> _f$iconColor_themeColorString = Field(
       'iconColor_themeColorString', _$iconColor_themeColorString,
-      key: 'icon_color_theme_color_string', opt: true);
+      opt: true);
   static double? _$iconSize_double(ButtonModel v) => v.iconSize_double;
-  static const Field<ButtonModel, double> _f$iconSize_double = Field(
-      'iconSize_double', _$iconSize_double,
-      key: 'icon_size_double', opt: true);
+  static const Field<ButtonModel, double> _f$iconSize_double =
+      Field('iconSize_double', _$iconSize_double, opt: true);
   static BorderSideModel? _$side_borderSide(ButtonModel v) => v.side_borderSide;
   static const Field<ButtonModel, BorderSideModel> _f$side_borderSide = Field(
       'side_borderSide', _$side_borderSide,
-      key: 'side_border_side', opt: true, def: const BorderSideModel());
+      opt: true, def: const BorderSideModel());
   static OutlinedBorderModel? _$shape_outlinedBorder(ButtonModel v) =>
       v.shape_outlinedBorder;
   static const Field<ButtonModel, OutlinedBorderModel> _f$shape_outlinedBorder =
       Field('shape_outlinedBorder', _$shape_outlinedBorder,
-          key: 'shape_outlined_border',
-          opt: true,
-          def: const OutlinedBorderModel());
+          opt: true, def: const OutlinedBorderModel());
 
   @override
   final MappableFields<ButtonModel> fields = const {

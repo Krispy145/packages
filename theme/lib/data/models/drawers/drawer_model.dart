@@ -7,7 +7,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "drawer_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class DrawerModel with DrawerModelMappable {
   final ThemeColorString? backgroundColor_themeColorString;
   final ThemeColorString? scrimColor_themeColorString;

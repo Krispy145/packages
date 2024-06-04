@@ -9,7 +9,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "toggle_button_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ToggleButtonModel with ToggleButtonModelMappable {
   final TextStyleString? textStyle_textStyleString;
   @MappableValue(BoxConstraintsModel())

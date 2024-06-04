@@ -23,21 +23,18 @@ class BoxShadowModelMapper extends ClassMapperBase<BoxShadowModel> {
 
   static String? _$color_themeColorString(BoxShadowModel v) =>
       v.color_themeColorString;
-  static const Field<BoxShadowModel, String> _f$color_themeColorString = Field(
-      'color_themeColorString', _$color_themeColorString,
-      key: 'color_theme_color_string');
+  static const Field<BoxShadowModel, String> _f$color_themeColorString =
+      Field('color_themeColorString', _$color_themeColorString);
   static OffsetModel? _$offset_offset(BoxShadowModel v) => v.offset_offset;
   static const Field<BoxShadowModel, OffsetModel> _f$offset_offset =
       Field('offset_offset', _$offset_offset);
   static double? _$blurRadius_double(BoxShadowModel v) => v.blurRadius_double;
-  static const Field<BoxShadowModel, double> _f$blurRadius_double = Field(
-      'blurRadius_double', _$blurRadius_double,
-      key: 'blur_radius_double');
+  static const Field<BoxShadowModel, double> _f$blurRadius_double =
+      Field('blurRadius_double', _$blurRadius_double);
   static double? _$spreadRadius_double(BoxShadowModel v) =>
       v.spreadRadius_double;
-  static const Field<BoxShadowModel, double> _f$spreadRadius_double = Field(
-      'spreadRadius_double', _$spreadRadius_double,
-      key: 'spread_radius_double');
+  static const Field<BoxShadowModel, double> _f$spreadRadius_double =
+      Field('spreadRadius_double', _$spreadRadius_double);
 
   @override
   final MappableFields<BoxShadowModel> fields = const {

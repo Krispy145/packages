@@ -10,7 +10,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "chip_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ChipModel with ChipModelMappable {
   final ThemeColorString? color_themeColorString;
   final ThemeColorString? backgroundColor_themeColorString;

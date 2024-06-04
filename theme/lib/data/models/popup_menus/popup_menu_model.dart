@@ -8,7 +8,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "popup_menu_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class PopupMenuModel with PopupMenuModelMappable {
   final ThemeColorString? color_themeColorString;
   final ShapeBorderModel? shape_shapeBorder;

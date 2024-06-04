@@ -7,7 +7,7 @@ part "edge_insets_model.mapper.dart";
 
 enum EdgeInsetsTypes { all, symmetric, only, zero }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class EdgeInsetsModel with EdgeInsetsModelMappable {
   final double? top_double;
   final double? left_double;

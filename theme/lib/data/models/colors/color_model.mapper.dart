@@ -26,43 +26,37 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
       Field('primary', _$primary, opt: true);
   static Color? _$onPrimary(ColorModel v) => v.onPrimary;
   static const Field<ColorModel, Color> _f$onPrimary =
-      Field('onPrimary', _$onPrimary, key: 'on_primary', opt: true);
+      Field('onPrimary', _$onPrimary, opt: true);
   static Color? _$primaryContainer(ColorModel v) => v.primaryContainer;
-  static const Field<ColorModel, Color> _f$primaryContainer = Field(
-      'primaryContainer', _$primaryContainer,
-      key: 'primary_container', opt: true);
+  static const Field<ColorModel, Color> _f$primaryContainer =
+      Field('primaryContainer', _$primaryContainer, opt: true);
   static Color? _$onPrimaryContainer(ColorModel v) => v.onPrimaryContainer;
-  static const Field<ColorModel, Color> _f$onPrimaryContainer = Field(
-      'onPrimaryContainer', _$onPrimaryContainer,
-      key: 'on_primary_container', opt: true);
+  static const Field<ColorModel, Color> _f$onPrimaryContainer =
+      Field('onPrimaryContainer', _$onPrimaryContainer, opt: true);
   static Color? _$secondary(ColorModel v) => v.secondary;
   static const Field<ColorModel, Color> _f$secondary =
       Field('secondary', _$secondary, opt: true);
   static Color? _$onSecondary(ColorModel v) => v.onSecondary;
   static const Field<ColorModel, Color> _f$onSecondary =
-      Field('onSecondary', _$onSecondary, key: 'on_secondary', opt: true);
+      Field('onSecondary', _$onSecondary, opt: true);
   static Color? _$secondaryContainer(ColorModel v) => v.secondaryContainer;
-  static const Field<ColorModel, Color> _f$secondaryContainer = Field(
-      'secondaryContainer', _$secondaryContainer,
-      key: 'secondary_container', opt: true);
+  static const Field<ColorModel, Color> _f$secondaryContainer =
+      Field('secondaryContainer', _$secondaryContainer, opt: true);
   static Color? _$onSecondaryContainer(ColorModel v) => v.onSecondaryContainer;
-  static const Field<ColorModel, Color> _f$onSecondaryContainer = Field(
-      'onSecondaryContainer', _$onSecondaryContainer,
-      key: 'on_secondary_container', opt: true);
+  static const Field<ColorModel, Color> _f$onSecondaryContainer =
+      Field('onSecondaryContainer', _$onSecondaryContainer, opt: true);
   static Color? _$tertiary(ColorModel v) => v.tertiary;
   static const Field<ColorModel, Color> _f$tertiary =
       Field('tertiary', _$tertiary, opt: true);
   static Color? _$onTertiary(ColorModel v) => v.onTertiary;
   static const Field<ColorModel, Color> _f$onTertiary =
-      Field('onTertiary', _$onTertiary, key: 'on_tertiary', opt: true);
+      Field('onTertiary', _$onTertiary, opt: true);
   static Color? _$tertiaryContainer(ColorModel v) => v.tertiaryContainer;
-  static const Field<ColorModel, Color> _f$tertiaryContainer = Field(
-      'tertiaryContainer', _$tertiaryContainer,
-      key: 'tertiary_container', opt: true);
+  static const Field<ColorModel, Color> _f$tertiaryContainer =
+      Field('tertiaryContainer', _$tertiaryContainer, opt: true);
   static Color? _$onTertiaryContainer(ColorModel v) => v.onTertiaryContainer;
-  static const Field<ColorModel, Color> _f$onTertiaryContainer = Field(
-      'onTertiaryContainer', _$onTertiaryContainer,
-      key: 'on_tertiary_container', opt: true);
+  static const Field<ColorModel, Color> _f$onTertiaryContainer =
+      Field('onTertiaryContainer', _$onTertiaryContainer, opt: true);
   static Color _$disabled(ColorModel v) => v.disabled;
   static const Field<ColorModel, Color> _f$disabled =
       Field('disabled', _$disabled, opt: true, def: Colors.grey);
@@ -70,65 +64,58 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
   static const Field<ColorModel, Color> _f$error =
       Field('error', _$error, opt: true, def: Colors.red);
   static Color _$onError(ColorModel v) => v.onError;
-  static const Field<ColorModel, Color> _f$onError = Field('onError', _$onError,
-      key: 'on_error', opt: true, def: Colors.white);
+  static const Field<ColorModel, Color> _f$onError =
+      Field('onError', _$onError, opt: true, def: Colors.white);
   static Color? _$errorContainer(ColorModel v) => v.errorContainer;
-  static const Field<ColorModel, Color> _f$errorContainer = Field(
-      'errorContainer', _$errorContainer,
-      key: 'error_container', opt: true);
+  static const Field<ColorModel, Color> _f$errorContainer =
+      Field('errorContainer', _$errorContainer, opt: true);
   static Color? _$onErrorContainer(ColorModel v) => v.onErrorContainer;
-  static const Field<ColorModel, Color> _f$onErrorContainer = Field(
-      'onErrorContainer', _$onErrorContainer,
-      key: 'on_error_container', opt: true);
+  static const Field<ColorModel, Color> _f$onErrorContainer =
+      Field('onErrorContainer', _$onErrorContainer, opt: true);
   static Color _$confirmation(ColorModel v) => v.confirmation;
   static const Field<ColorModel, Color> _f$confirmation =
       Field('confirmation', _$confirmation, opt: true, def: Colors.green);
   static Color _$onConfirmation(ColorModel v) => v.onConfirmation;
-  static const Field<ColorModel, Color> _f$onConfirmation = Field(
-      'onConfirmation', _$onConfirmation,
-      key: 'on_confirmation', opt: true, def: Colors.white);
+  static const Field<ColorModel, Color> _f$onConfirmation =
+      Field('onConfirmation', _$onConfirmation, opt: true, def: Colors.white);
   static Color _$confirmationContainer(ColorModel v) => v.confirmationContainer;
   static const Field<ColorModel, Color> _f$confirmationContainer = Field(
       'confirmationContainer', _$confirmationContainer,
-      key: 'confirmation_container', opt: true, def: const Color(0xFFC4FFC7));
+      opt: true, def: const Color(0xFFC4FFC7));
   static Color _$onConfirmationContainer(ColorModel v) =>
       v.onConfirmationContainer;
   static const Field<ColorModel, Color> _f$onConfirmationContainer = Field(
       'onConfirmationContainer', _$onConfirmationContainer,
-      key: 'on_confirmation_container',
-      opt: true,
-      def: const Color(0xFF004203));
+      opt: true, def: const Color(0xFF004203));
   static Color _$information(ColorModel v) => v.information;
   static const Field<ColorModel, Color> _f$information =
       Field('information', _$information, opt: true, def: Colors.blue);
   static Color _$onInformation(ColorModel v) => v.onInformation;
-  static const Field<ColorModel, Color> _f$onInformation = Field(
-      'onInformation', _$onInformation,
-      key: 'on_information', opt: true, def: Colors.white);
+  static const Field<ColorModel, Color> _f$onInformation =
+      Field('onInformation', _$onInformation, opt: true, def: Colors.white);
   static Color _$informationContainer(ColorModel v) => v.informationContainer;
   static const Field<ColorModel, Color> _f$informationContainer = Field(
       'informationContainer', _$informationContainer,
-      key: 'information_container', opt: true, def: const Color(0xFFBCE1FF));
+      opt: true, def: const Color(0xFFBCE1FF));
   static Color _$onInformationContainer(ColorModel v) =>
       v.onInformationContainer;
   static const Field<ColorModel, Color> _f$onInformationContainer = Field(
       'onInformationContainer', _$onInformationContainer,
-      key: 'on_information_container', opt: true, def: const Color(0xFF012542));
+      opt: true, def: const Color(0xFF012542));
   static Color _$warning(ColorModel v) => v.warning;
   static const Field<ColorModel, Color> _f$warning =
       Field('warning', _$warning, opt: true, def: Colors.orange);
   static Color _$onWarning(ColorModel v) => v.onWarning;
-  static const Field<ColorModel, Color> _f$onWarning = Field(
-      'onWarning', _$onWarning,
-      key: 'on_warning', opt: true, def: Colors.white);
+  static const Field<ColorModel, Color> _f$onWarning =
+      Field('onWarning', _$onWarning, opt: true, def: Colors.white);
   static Color _$warningContainer(ColorModel v) => v.warningContainer;
   static const Field<ColorModel, Color> _f$warningContainer = Field(
       'warningContainer', _$warningContainer,
-      key: 'warning_container', opt: true, def: const Color(0xFFFFE0B3));
+      opt: true, def: const Color(0xFFFFE0B3));
   static Color _$onWarningContainer(ColorModel v) => v.onWarningContainer;
   static const Field<ColorModel, Color> _f$onWarningContainer = Field(
       'onWarningContainer', _$onWarningContainer,
-      key: 'on_warning_container', opt: true, def: const Color(0xFF4C2E01));
+      opt: true, def: const Color(0xFF4C2E01));
   static Color? _$outline(ColorModel v) => v.outline;
   static const Field<ColorModel, Color> _f$outline =
       Field('outline', _$outline, opt: true);
@@ -137,43 +124,37 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
       Field('background', _$background, opt: true);
   static Color? _$onBackground(ColorModel v) => v.onBackground;
   static const Field<ColorModel, Color> _f$onBackground =
-      Field('onBackground', _$onBackground, key: 'on_background', opt: true);
+      Field('onBackground', _$onBackground, opt: true);
   static Color? _$surface(ColorModel v) => v.surface;
   static const Field<ColorModel, Color> _f$surface =
       Field('surface', _$surface, opt: true);
   static Color? _$onSurface(ColorModel v) => v.onSurface;
   static const Field<ColorModel, Color> _f$onSurface =
-      Field('onSurface', _$onSurface, key: 'on_surface', opt: true);
+      Field('onSurface', _$onSurface, opt: true);
   static Color? _$surfaceVariant(ColorModel v) => v.surfaceVariant;
-  static const Field<ColorModel, Color> _f$surfaceVariant = Field(
-      'surfaceVariant', _$surfaceVariant,
-      key: 'surface_variant', opt: true);
+  static const Field<ColorModel, Color> _f$surfaceVariant =
+      Field('surfaceVariant', _$surfaceVariant, opt: true);
   static Color? _$onSurfaceVariant(ColorModel v) => v.onSurfaceVariant;
-  static const Field<ColorModel, Color> _f$onSurfaceVariant = Field(
-      'onSurfaceVariant', _$onSurfaceVariant,
-      key: 'on_surface_variant', opt: true);
+  static const Field<ColorModel, Color> _f$onSurfaceVariant =
+      Field('onSurfaceVariant', _$onSurfaceVariant, opt: true);
   static Color? _$inverseSurface(ColorModel v) => v.inverseSurface;
-  static const Field<ColorModel, Color> _f$inverseSurface = Field(
-      'inverseSurface', _$inverseSurface,
-      key: 'inverse_surface', opt: true);
+  static const Field<ColorModel, Color> _f$inverseSurface =
+      Field('inverseSurface', _$inverseSurface, opt: true);
   static Color? _$onInverseSurface(ColorModel v) => v.onInverseSurface;
-  static const Field<ColorModel, Color> _f$onInverseSurface = Field(
-      'onInverseSurface', _$onInverseSurface,
-      key: 'on_inverse_surface', opt: true);
+  static const Field<ColorModel, Color> _f$onInverseSurface =
+      Field('onInverseSurface', _$onInverseSurface, opt: true);
   static Color? _$inversePrimary(ColorModel v) => v.inversePrimary;
-  static const Field<ColorModel, Color> _f$inversePrimary = Field(
-      'inversePrimary', _$inversePrimary,
-      key: 'inverse_primary', opt: true);
+  static const Field<ColorModel, Color> _f$inversePrimary =
+      Field('inversePrimary', _$inversePrimary, opt: true);
   static Color? _$shadow(ColorModel v) => v.shadow;
   static const Field<ColorModel, Color> _f$shadow =
       Field('shadow', _$shadow, opt: true);
   static Color? _$surfaceTint(ColorModel v) => v.surfaceTint;
   static const Field<ColorModel, Color> _f$surfaceTint =
-      Field('surfaceTint', _$surfaceTint, key: 'surface_tint', opt: true);
+      Field('surfaceTint', _$surfaceTint, opt: true);
   static Color? _$outlineVariant(ColorModel v) => v.outlineVariant;
-  static const Field<ColorModel, Color> _f$outlineVariant = Field(
-      'outlineVariant', _$outlineVariant,
-      key: 'outline_variant', opt: true);
+  static const Field<ColorModel, Color> _f$outlineVariant =
+      Field('outlineVariant', _$outlineVariant, opt: true);
   static Color? _$scrim(ColorModel v) => v.scrim;
   static const Field<ColorModel, Color> _f$scrim =
       Field('scrim', _$scrim, opt: true);

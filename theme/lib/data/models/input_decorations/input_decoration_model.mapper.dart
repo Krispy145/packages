@@ -29,105 +29,96 @@ class InputDecorationModelMapper extends ClassMapperBase<InputDecorationModel> {
   static const Field<InputDecorationModel, String>
       _f$labelStyle_textStyleString = Field(
           'labelStyle_textStyleString', _$labelStyle_textStyleString,
-          key: 'label_style_text_style_string', opt: true);
+          opt: true);
   static String? _$floatingLabelStyle_textStyleString(InputDecorationModel v) =>
       v.floatingLabelStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$floatingLabelStyle_textStyleString = Field(
           'floatingLabelStyle_textStyleString',
           _$floatingLabelStyle_textStyleString,
-          key: 'floating_label_style_text_style_string',
           opt: true);
   static String? _$helperStyle_textStyleString(InputDecorationModel v) =>
       v.helperStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$helperStyle_textStyleString = Field(
           'helperStyle_textStyleString', _$helperStyle_textStyleString,
-          key: 'helper_style_text_style_string', opt: true);
+          opt: true);
   static int? _$helperMaxLines_int(InputDecorationModel v) =>
       v.helperMaxLines_int;
-  static const Field<InputDecorationModel, int> _f$helperMaxLines_int = Field(
-      'helperMaxLines_int', _$helperMaxLines_int,
-      key: 'helper_max_lines_int', opt: true);
+  static const Field<InputDecorationModel, int> _f$helperMaxLines_int =
+      Field('helperMaxLines_int', _$helperMaxLines_int, opt: true);
   static String? _$hintStyle_textStyleString(InputDecorationModel v) =>
       v.hintStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$hintStyle_textStyleString = Field(
           'hintStyle_textStyleString', _$hintStyle_textStyleString,
-          key: 'hint_style_text_style_string', opt: true);
+          opt: true);
   static Duration? _$hintFadeDuration_duration(InputDecorationModel v) =>
       v.hintFadeDuration_duration;
   static const Field<InputDecorationModel, Duration>
       _f$hintFadeDuration_duration = Field(
           'hintFadeDuration_duration', _$hintFadeDuration_duration,
-          key: 'hint_fade_duration_duration', opt: true);
+          opt: true);
   static String? _$errorStyle_textStyleString(InputDecorationModel v) =>
       v.errorStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$errorStyle_textStyleString = Field(
           'errorStyle_textStyleString', _$errorStyle_textStyleString,
-          key: 'error_style_text_style_string', opt: true);
+          opt: true);
   static int? _$errorMaxLines_int(InputDecorationModel v) =>
       v.errorMaxLines_int;
-  static const Field<InputDecorationModel, int> _f$errorMaxLines_int = Field(
-      'errorMaxLines_int', _$errorMaxLines_int,
-      key: 'error_max_lines_int', opt: true);
+  static const Field<InputDecorationModel, int> _f$errorMaxLines_int =
+      Field('errorMaxLines_int', _$errorMaxLines_int, opt: true);
   static bool _$isDense_bool(InputDecorationModel v) => v.isDense_bool;
-  static const Field<InputDecorationModel, bool> _f$isDense_bool = Field(
-      'isDense_bool', _$isDense_bool,
-      key: 'is_dense_bool', opt: true, def: false);
+  static const Field<InputDecorationModel, bool> _f$isDense_bool =
+      Field('isDense_bool', _$isDense_bool, opt: true, def: false);
   static EdgeInsetsModel? _$contentPadding_edgeInsets(InputDecorationModel v) =>
       v.contentPadding_edgeInsets;
   static const Field<InputDecorationModel, EdgeInsetsModel>
       _f$contentPadding_edgeInsets = Field(
           'contentPadding_edgeInsets', _$contentPadding_edgeInsets,
-          key: 'content_padding_edge_insets',
-          opt: true,
-          def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static bool _$isCollapsed_bool(InputDecorationModel v) => v.isCollapsed_bool;
-  static const Field<InputDecorationModel, bool> _f$isCollapsed_bool = Field(
-      'isCollapsed_bool', _$isCollapsed_bool,
-      key: 'is_collapsed_bool', opt: true, def: false);
+  static const Field<InputDecorationModel, bool> _f$isCollapsed_bool =
+      Field('isCollapsed_bool', _$isCollapsed_bool, opt: true, def: false);
   static String? _$iconColor_themeColorString(InputDecorationModel v) =>
       v.iconColor_themeColorString;
   static const Field<InputDecorationModel, String>
       _f$iconColor_themeColorString = Field(
           'iconColor_themeColorString', _$iconColor_themeColorString,
-          key: 'icon_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$prefixStyle_textStyleString(InputDecorationModel v) =>
       v.prefixStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$prefixStyle_textStyleString = Field(
           'prefixStyle_textStyleString', _$prefixStyle_textStyleString,
-          key: 'prefix_style_text_style_string', opt: true);
+          opt: true);
   static String? _$prefixIconColor_themeColorString(InputDecorationModel v) =>
       v.prefixIconColor_themeColorString;
   static const Field<InputDecorationModel, String>
       _f$prefixIconColor_themeColorString = Field(
           'prefixIconColor_themeColorString',
           _$prefixIconColor_themeColorString,
-          key: 'prefix_icon_color_theme_color_string',
           opt: true);
   static String? _$suffixStyle_textStyleString(InputDecorationModel v) =>
       v.suffixStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$suffixStyle_textStyleString = Field(
           'suffixStyle_textStyleString', _$suffixStyle_textStyleString,
-          key: 'suffix_style_text_style_string', opt: true);
+          opt: true);
   static String? _$suffixIconColor_themeColorString(InputDecorationModel v) =>
       v.suffixIconColor_themeColorString;
   static const Field<InputDecorationModel, String>
       _f$suffixIconColor_themeColorString = Field(
           'suffixIconColor_themeColorString',
           _$suffixIconColor_themeColorString,
-          key: 'suffix_icon_color_theme_color_string',
           opt: true);
   static String? _$counterStyle_textStyleString(InputDecorationModel v) =>
       v.counterStyle_textStyleString;
   static const Field<InputDecorationModel, String>
       _f$counterStyle_textStyleString = Field(
           'counterStyle_textStyleString', _$counterStyle_textStyleString,
-          key: 'counter_style_text_style_string', opt: true);
+          opt: true);
   static bool _$filled_bool(InputDecorationModel v) => v.filled_bool;
   static const Field<InputDecorationModel, bool> _f$filled_bool =
       Field('filled_bool', _$filled_bool, opt: true, def: false);
@@ -136,7 +127,7 @@ class InputDecorationModelMapper extends ClassMapperBase<InputDecorationModel> {
   static const Field<InputDecorationModel, String>
       _f$fillColor_themeColorString = Field(
           'fillColor_themeColorString', _$fillColor_themeColorString,
-          key: 'fill_color_theme_color_string', opt: true);
+          opt: true);
   static BorderSideModel? _$activeIndicatorBorder_borderSide(
           InputDecorationModel v) =>
       v.activeIndicatorBorder_borderSide;
@@ -144,7 +135,6 @@ class InputDecorationModelMapper extends ClassMapperBase<InputDecorationModel> {
       _f$activeIndicatorBorder_borderSide = Field(
           'activeIndicatorBorder_borderSide',
           _$activeIndicatorBorder_borderSide,
-          key: 'active_indicator_border_border_side',
           opt: true,
           def: const BorderSideModel());
   static BorderSideModel? _$outlineBorder_borderSide(InputDecorationModel v) =>
@@ -152,84 +142,70 @@ class InputDecorationModelMapper extends ClassMapperBase<InputDecorationModel> {
   static const Field<InputDecorationModel, BorderSideModel>
       _f$outlineBorder_borderSide = Field(
           'outlineBorder_borderSide', _$outlineBorder_borderSide,
-          key: 'outline_border_border_side',
-          opt: true,
-          def: const BorderSideModel());
+          opt: true, def: const BorderSideModel());
   static String? _$focusColor_themeColorString(InputDecorationModel v) =>
       v.focusColor_themeColorString;
   static const Field<InputDecorationModel, String>
       _f$focusColor_themeColorString = Field(
           'focusColor_themeColorString', _$focusColor_themeColorString,
-          key: 'focus_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$hoverColor_themeColorString(InputDecorationModel v) =>
       v.hoverColor_themeColorString;
   static const Field<InputDecorationModel, String>
       _f$hoverColor_themeColorString = Field(
           'hoverColor_themeColorString', _$hoverColor_themeColorString,
-          key: 'hover_color_theme_color_string', opt: true);
+          opt: true);
   static InputBorderModel? _$errorBorder_inputBorder(InputDecorationModel v) =>
       v.errorBorder_inputBorder;
   static const Field<InputDecorationModel, InputBorderModel>
       _f$errorBorder_inputBorder = Field(
           'errorBorder_inputBorder', _$errorBorder_inputBorder,
-          key: 'error_border_input_border',
-          opt: true,
-          def: const InputBorderModel());
+          opt: true, def: const InputBorderModel());
   static InputBorderModel? _$focusedBorder_inputBorder(
           InputDecorationModel v) =>
       v.focusedBorder_inputBorder;
   static const Field<InputDecorationModel, InputBorderModel>
       _f$focusedBorder_inputBorder = Field(
           'focusedBorder_inputBorder', _$focusedBorder_inputBorder,
-          key: 'focused_border_input_border',
-          opt: true,
-          def: const InputBorderModel());
+          opt: true, def: const InputBorderModel());
   static InputBorderModel? _$focusedErrorBorder_inputBorder(
           InputDecorationModel v) =>
       v.focusedErrorBorder_inputBorder;
   static const Field<InputDecorationModel, InputBorderModel>
       _f$focusedErrorBorder_inputBorder = Field(
           'focusedErrorBorder_inputBorder', _$focusedErrorBorder_inputBorder,
-          key: 'focused_error_border_input_border',
-          opt: true,
-          def: const InputBorderModel());
+          opt: true, def: const InputBorderModel());
   static InputBorderModel? _$disabledBorder_inputBorder(
           InputDecorationModel v) =>
       v.disabledBorder_inputBorder;
   static const Field<InputDecorationModel, InputBorderModel>
       _f$disabledBorder_inputBorder = Field(
           'disabledBorder_inputBorder', _$disabledBorder_inputBorder,
-          key: 'disabled_border_input_border',
-          opt: true,
-          def: const InputBorderModel());
+          opt: true, def: const InputBorderModel());
   static InputBorderModel? _$enabledBorder_inputBorder(
           InputDecorationModel v) =>
       v.enabledBorder_inputBorder;
   static const Field<InputDecorationModel, InputBorderModel>
       _f$enabledBorder_inputBorder = Field(
           'enabledBorder_inputBorder', _$enabledBorder_inputBorder,
-          key: 'enabled_border_input_border',
-          opt: true,
-          def: const InputBorderModel());
+          opt: true, def: const InputBorderModel());
   static InputBorderModel? _$border_inputBorder(InputDecorationModel v) =>
       v.border_inputBorder;
   static const Field<InputDecorationModel, InputBorderModel>
       _f$border_inputBorder = Field('border_inputBorder', _$border_inputBorder,
-          key: 'border_input_border', opt: true, def: const InputBorderModel());
+          opt: true, def: const InputBorderModel());
   static bool _$alignLabelWithHint_bool(InputDecorationModel v) =>
       v.alignLabelWithHint_bool;
   static const Field<InputDecorationModel, bool> _f$alignLabelWithHint_bool =
       Field('alignLabelWithHint_bool', _$alignLabelWithHint_bool,
-          key: 'align_label_with_hint_bool', opt: true, def: false);
+          opt: true, def: false);
   static BoxConstraintsModel? _$constraints_boxConstraints(
           InputDecorationModel v) =>
       v.constraints_boxConstraints;
   static const Field<InputDecorationModel, BoxConstraintsModel>
       _f$constraints_boxConstraints = Field(
           'constraints_boxConstraints', _$constraints_boxConstraints,
-          key: 'constraints_box_constraints',
-          opt: true,
-          def: const BoxConstraintsModel());
+          opt: true, def: const BoxConstraintsModel());
 
   @override
   final MappableFields<InputDecorationModel> fields = const {

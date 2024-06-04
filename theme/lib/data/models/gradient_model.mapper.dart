@@ -6,6 +6,56 @@
 
 part of 'gradient_model.dart';
 
+class GradientTypeMapper extends EnumMapper<GradientType> {
+  GradientTypeMapper._();
+
+  static GradientTypeMapper? _instance;
+  static GradientTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = GradientTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static GradientType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  GradientType decode(dynamic value) {
+    switch (value) {
+      case 'linear':
+        return GradientType.linear;
+      case 'radial':
+        return GradientType.radial;
+      case 'sweep':
+        return GradientType.sweep;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(GradientType self) {
+    switch (self) {
+      case GradientType.linear:
+        return 'linear';
+      case GradientType.radial:
+        return 'radial';
+      case GradientType.sweep:
+        return 'sweep';
+    }
+  }
+}
+
+extension GradientTypeMapperExtension on GradientType {
+  String toValue() {
+    GradientTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<GradientType>(this) as String;
+  }
+}
+
 class GradientModelMapper extends ClassMapperBase<GradientModel> {
   GradientModelMapper._();
 
@@ -13,6 +63,7 @@ class GradientModelMapper extends ClassMapperBase<GradientModel> {
   static GradientModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = GradientModelMapper._());
+      GradientTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -23,14 +74,13 @@ class GradientModelMapper extends ClassMapperBase<GradientModel> {
   static GradientType? _$type_enum_gradientType(GradientModel v) =>
       v.type_enum_gradientType;
   static const Field<GradientModel, GradientType> _f$type_enum_gradientType =
-      Field('type_enum_gradientType', _$type_enum_gradientType,
-          key: 'type_enum_gradient_type', opt: true);
+      Field('type_enum_gradientType', _$type_enum_gradientType, opt: true);
   static List<String>? _$colors_list_themeColorString(GradientModel v) =>
       v.colors_list_themeColorString;
   static const Field<GradientModel, List<String>>
       _f$colors_list_themeColorString = Field(
           'colors_list_themeColorString', _$colors_list_themeColorString,
-          key: 'colors_list_theme_color_string', opt: true);
+          opt: true);
 
   @override
   final MappableFields<GradientModel> fields = const {

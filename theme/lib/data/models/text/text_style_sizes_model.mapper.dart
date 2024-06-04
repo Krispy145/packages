@@ -6,6 +6,56 @@
 
 part of 'text_style_sizes_model.dart';
 
+class TextSizesMapper extends EnumMapper<TextSizes> {
+  TextSizesMapper._();
+
+  static TextSizesMapper? _instance;
+  static TextSizesMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = TextSizesMapper._());
+    }
+    return _instance!;
+  }
+
+  static TextSizes fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  TextSizes decode(dynamic value) {
+    switch (value) {
+      case 'large':
+        return TextSizes.large;
+      case 'medium':
+        return TextSizes.medium;
+      case 'small':
+        return TextSizes.small;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(TextSizes self) {
+    switch (self) {
+      case TextSizes.large:
+        return 'large';
+      case TextSizes.medium:
+        return 'medium';
+      case TextSizes.small:
+        return 'small';
+    }
+  }
+}
+
+extension TextSizesMapperExtension on TextSizes {
+  String toValue() {
+    TextSizesMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<TextSizes>(this) as String;
+  }
+}
+
 class TextStyleSizesModelMapper extends ClassMapperBase<TextStyleSizesModel> {
   TextStyleSizesModelMapper._();
 

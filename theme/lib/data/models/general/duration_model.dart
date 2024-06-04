@@ -4,7 +4,7 @@ import "package:dart_mappable/dart_mappable.dart";
 
 part "duration_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class DurationModel with DurationModelMappable {
   final int? days_int;
   final int? hours_int;

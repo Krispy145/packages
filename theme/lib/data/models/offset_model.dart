@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 
 part "offset_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class OffsetModel with OffsetModelMappable {
   @MappableValue(0)
   final double? dx_double;

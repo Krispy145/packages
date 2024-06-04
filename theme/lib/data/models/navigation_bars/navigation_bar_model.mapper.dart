@@ -30,7 +30,6 @@ class NavigationBarModelMapper extends ClassMapperBase<NavigationBarModel> {
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static double? _$elevation_double(NavigationBarModel v) => v.elevation_double;
   static const Field<NavigationBarModel, double> _f$elevation_double =
@@ -40,33 +39,32 @@ class NavigationBarModelMapper extends ClassMapperBase<NavigationBarModel> {
   static const Field<NavigationBarModel, String>
       _f$shadowColor_themeColorString = Field(
           'shadowColor_themeColorString', _$shadowColor_themeColorString,
-          key: 'shadow_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(NavigationBarModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<NavigationBarModel, String>
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string',
           opt: true);
   static String? _$indicatorColor_themeColorString(NavigationBarModel v) =>
       v.indicatorColor_themeColorString;
   static const Field<NavigationBarModel, String>
       _f$indicatorColor_themeColorString = Field(
           'indicatorColor_themeColorString', _$indicatorColor_themeColorString,
-          key: 'indicator_color_theme_color_string', opt: true);
+          opt: true);
   static ShapeBorderModel? _$indicatorShape_shapeBorder(NavigationBarModel v) =>
       v.indicatorShape_shapeBorder;
   static const Field<NavigationBarModel, ShapeBorderModel>
       _f$indicatorShape_shapeBorder = Field(
           'indicatorShape_shapeBorder', _$indicatorShape_shapeBorder,
-          key: 'indicator_shape_shape_border', opt: true);
+          opt: true);
   static String? _$labelTextStyle_textStyleString(NavigationBarModel v) =>
       v.labelTextStyle_textStyleString;
   static const Field<NavigationBarModel, String>
       _f$labelTextStyle_textStyleString = Field(
           'labelTextStyle_textStyleString', _$labelTextStyle_textStyleString,
-          key: 'label_text_style_text_style_string', opt: true);
+          opt: true);
   static NavigationDestinationLabelBehavior?
       _$labelBehavior_enum_navigationDestinationLabelBehavior(
               NavigationBarModel v) =>
@@ -75,7 +73,6 @@ class NavigationBarModelMapper extends ClassMapperBase<NavigationBarModel> {
       _f$labelBehavior_enum_navigationDestinationLabelBehavior = Field(
           'labelBehavior_enum_navigationDestinationLabelBehavior',
           _$labelBehavior_enum_navigationDestinationLabelBehavior,
-          key: 'label_behavior_enum_navigation_destination_label_behavior',
           opt: true);
 
   @override

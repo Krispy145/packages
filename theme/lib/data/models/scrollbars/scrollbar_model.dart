@@ -6,7 +6,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "scrollbar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ScrollbarModel with ScrollbarModelMappable {
   final bool? thumbVisibility_bool;
   final double? thickness_double;

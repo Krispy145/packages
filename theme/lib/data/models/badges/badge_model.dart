@@ -44,7 +44,7 @@ enum AlignmentOptions {
   }
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BadgeModel with BadgeModelMappable {
   final ThemeColorString? backgroundColor_themeColorString;
   final ThemeColorString? textColor_themeColorString;

@@ -32,7 +32,6 @@ class FloatingActionButtonModelMapper
       _f$foregroundColor_themeColorString = Field(
           'foregroundColor_themeColorString',
           _$foregroundColor_themeColorString,
-          key: 'foreground_color_theme_color_string',
           opt: true);
   static String? _$backgroundColor_themeColorString(
           FloatingActionButtonModel v) =>
@@ -41,26 +40,25 @@ class FloatingActionButtonModelMapper
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static String? _$focusColor_themeColorString(FloatingActionButtonModel v) =>
       v.focusColor_themeColorString;
   static const Field<FloatingActionButtonModel, String>
       _f$focusColor_themeColorString = Field(
           'focusColor_themeColorString', _$focusColor_themeColorString,
-          key: 'focus_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$hoverColor_themeColorString(FloatingActionButtonModel v) =>
       v.hoverColor_themeColorString;
   static const Field<FloatingActionButtonModel, String>
       _f$hoverColor_themeColorString = Field(
           'hoverColor_themeColorString', _$hoverColor_themeColorString,
-          key: 'hover_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$splashColor_themeColorString(FloatingActionButtonModel v) =>
       v.splashColor_themeColorString;
   static const Field<FloatingActionButtonModel, String>
       _f$splashColor_themeColorString = Field(
           'splashColor_themeColorString', _$splashColor_themeColorString,
-          key: 'splash_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$elevation_double(FloatingActionButtonModel v) =>
       v.elevation_double;
   static const Field<FloatingActionButtonModel, double> _f$elevation_double =
@@ -68,51 +66,44 @@ class FloatingActionButtonModelMapper
   static double? _$focusElevation_double(FloatingActionButtonModel v) =>
       v.focusElevation_double;
   static const Field<FloatingActionButtonModel, double>
-      _f$focusElevation_double = Field(
-          'focusElevation_double', _$focusElevation_double,
-          key: 'focus_elevation_double', opt: true);
+      _f$focusElevation_double =
+      Field('focusElevation_double', _$focusElevation_double, opt: true);
   static double? _$hoverElevation_double(FloatingActionButtonModel v) =>
       v.hoverElevation_double;
   static const Field<FloatingActionButtonModel, double>
-      _f$hoverElevation_double = Field(
-          'hoverElevation_double', _$hoverElevation_double,
-          key: 'hover_elevation_double', opt: true);
+      _f$hoverElevation_double =
+      Field('hoverElevation_double', _$hoverElevation_double, opt: true);
   static double? _$disabledElevation_double(FloatingActionButtonModel v) =>
       v.disabledElevation_double;
   static const Field<FloatingActionButtonModel, double>
-      _f$disabledElevation_double = Field(
-          'disabledElevation_double', _$disabledElevation_double,
-          key: 'disabled_elevation_double', opt: true);
+      _f$disabledElevation_double =
+      Field('disabledElevation_double', _$disabledElevation_double, opt: true);
   static double? _$highlightElevation_double(FloatingActionButtonModel v) =>
       v.highlightElevation_double;
   static const Field<FloatingActionButtonModel, double>
       _f$highlightElevation_double = Field(
           'highlightElevation_double', _$highlightElevation_double,
-          key: 'highlight_elevation_double', opt: true);
+          opt: true);
   static ShapeBorderModel? _$shape_shapeBorder(FloatingActionButtonModel v) =>
       v.shape_shapeBorder;
   static const Field<FloatingActionButtonModel, ShapeBorderModel>
-      _f$shape_shapeBorder = Field('shape_shapeBorder', _$shape_shapeBorder,
-          key: 'shape_shape_border', opt: true);
+      _f$shape_shapeBorder =
+      Field('shape_shapeBorder', _$shape_shapeBorder, opt: true);
   static bool? _$enableFeedback_bool(FloatingActionButtonModel v) =>
       v.enableFeedback_bool;
   static const Field<FloatingActionButtonModel, bool> _f$enableFeedback_bool =
-      Field('enableFeedback_bool', _$enableFeedback_bool,
-          key: 'enable_feedback_bool', opt: true);
+      Field('enableFeedback_bool', _$enableFeedback_bool, opt: true);
   static double? _$iconSize_double(FloatingActionButtonModel v) =>
       v.iconSize_double;
   static const Field<FloatingActionButtonModel, double> _f$iconSize_double =
-      Field('iconSize_double', _$iconSize_double,
-          key: 'icon_size_double', opt: true);
+      Field('iconSize_double', _$iconSize_double, opt: true);
   static BoxConstraintsModel? _$sizeConstraints_boxConstraints(
           FloatingActionButtonModel v) =>
       v.sizeConstraints_boxConstraints;
   static const Field<FloatingActionButtonModel, BoxConstraintsModel>
       _f$sizeConstraints_boxConstraints = Field(
           'sizeConstraints_boxConstraints', _$sizeConstraints_boxConstraints,
-          key: 'size_constraints_box_constraints',
-          opt: true,
-          def: const BoxConstraintsModel());
+          opt: true, def: const BoxConstraintsModel());
   static BoxConstraintsModel? _$smallSizeConstraints_boxConstraints(
           FloatingActionButtonModel v) =>
       v.smallSizeConstraints_boxConstraints;
@@ -120,7 +111,6 @@ class FloatingActionButtonModelMapper
       _f$smallSizeConstraints_boxConstraints = Field(
           'smallSizeConstraints_boxConstraints',
           _$smallSizeConstraints_boxConstraints,
-          key: 'small_size_constraints_box_constraints',
           opt: true,
           def: const BoxConstraintsModel());
   static BoxConstraintsModel? _$largeSizeConstraints_boxConstraints(
@@ -130,7 +120,6 @@ class FloatingActionButtonModelMapper
       _f$largeSizeConstraints_boxConstraints = Field(
           'largeSizeConstraints_boxConstraints',
           _$largeSizeConstraints_boxConstraints,
-          key: 'large_size_constraints_box_constraints',
           opt: true,
           def: const BoxConstraintsModel());
   static BoxConstraintsModel? _$extendedSizeConstraints_boxConstraints(
@@ -140,7 +129,6 @@ class FloatingActionButtonModelMapper
       _f$extendedSizeConstraints_boxConstraints = Field(
           'extendedSizeConstraints_boxConstraints',
           _$extendedSizeConstraints_boxConstraints,
-          key: 'extended_size_constraints_box_constraints',
           opt: true,
           def: const BoxConstraintsModel());
   static double? _$extendedIconLabelSpacing_double(
@@ -149,16 +137,14 @@ class FloatingActionButtonModelMapper
   static const Field<FloatingActionButtonModel, double>
       _f$extendedIconLabelSpacing_double = Field(
           'extendedIconLabelSpacing_double', _$extendedIconLabelSpacing_double,
-          key: 'extended_icon_label_spacing_double', opt: true);
+          opt: true);
   static EdgeInsetsModel? _$extendedPadding_edgeInsets(
           FloatingActionButtonModel v) =>
       v.extendedPadding_edgeInsets;
   static const Field<FloatingActionButtonModel, EdgeInsetsModel>
       _f$extendedPadding_edgeInsets = Field(
           'extendedPadding_edgeInsets', _$extendedPadding_edgeInsets,
-          key: 'extended_padding_edge_insets',
-          opt: true,
-          def: const EdgeInsetsModel());
+          opt: true, def: const EdgeInsetsModel());
   static String? _$extendedTextStyle_textStyleString(
           FloatingActionButtonModel v) =>
       v.extendedTextStyle_textStyleString;
@@ -166,7 +152,6 @@ class FloatingActionButtonModelMapper
       _f$extendedTextStyle_textStyleString = Field(
           'extendedTextStyle_textStyleString',
           _$extendedTextStyle_textStyleString,
-          key: 'extended_text_style_text_style_string',
           opt: true);
 
   @override

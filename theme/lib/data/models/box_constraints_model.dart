@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 
 part "box_constraints_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class BoxConstraintsModel with BoxConstraintsModelMappable {
   final double? minWidth_double;
   final double? maxWidth_double;

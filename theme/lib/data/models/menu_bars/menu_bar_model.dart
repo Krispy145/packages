@@ -4,7 +4,7 @@ import "package:theme/data/models/menus/menu_style_model.dart";
 
 part "menu_bar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class MenuBarModel with MenuBarModelMappable {
   final MenuStyleModel? style;
 

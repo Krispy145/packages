@@ -8,14 +8,14 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "navigation_rail_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class NavigationRailModel with NavigationRailModelMappable {
   final ThemeColorString? backgroundColor_themeColorString;
   final double? elevation_double;
   final TextStyleString? unselectedLabelTextStyle_textStyleString;
   final TextStyleString? selectedLabelTextStyle_textStyleString;
   final double? groupAlignment_double;
-  // @NavigationRailLabelConverter(;
+  @MappableEnum()
   final NavigationRailLabelType? labelType_enum_navigationRailLabelType;
   final bool? useIndicator_bool;
   final ThemeColorString? indicatorColor_themeColorString;

@@ -6,6 +6,56 @@
 
 part of 'border_radius_model.dart';
 
+class BorderRadiusTypeMapper extends EnumMapper<BorderRadiusType> {
+  BorderRadiusTypeMapper._();
+
+  static BorderRadiusTypeMapper? _instance;
+  static BorderRadiusTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = BorderRadiusTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static BorderRadiusType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  BorderRadiusType decode(dynamic value) {
+    switch (value) {
+      case 'all':
+        return BorderRadiusType.all;
+      case 'circular':
+        return BorderRadiusType.circular;
+      case 'only':
+        return BorderRadiusType.only;
+      default:
+        return BorderRadiusType.values[0];
+    }
+  }
+
+  @override
+  dynamic encode(BorderRadiusType self) {
+    switch (self) {
+      case BorderRadiusType.all:
+        return 'all';
+      case BorderRadiusType.circular:
+        return 'circular';
+      case BorderRadiusType.only:
+        return 'only';
+    }
+  }
+}
+
+extension BorderRadiusTypeMapperExtension on BorderRadiusType {
+  String toValue() {
+    BorderRadiusTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<BorderRadiusType>(this) as String;
+  }
+}
+
 class BorderRadiusModelMapper extends ClassMapperBase<BorderRadiusModel> {
   BorderRadiusModelMapper._();
 
@@ -13,6 +63,7 @@ class BorderRadiusModelMapper extends ClassMapperBase<BorderRadiusModel> {
   static BorderRadiusModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = BorderRadiusModelMapper._());
+      BorderRadiusTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -25,25 +76,21 @@ class BorderRadiusModelMapper extends ClassMapperBase<BorderRadiusModel> {
   static const Field<BorderRadiusModel, BorderRadiusType>
       _f$type_enum_borderRadiusType = Field(
           'type_enum_borderRadiusType', _$type_enum_borderRadiusType,
-          key: 'type_enum_border_radius_type', opt: true);
+          opt: true);
   static double? _$topLeft_double(BorderRadiusModel v) => v.topLeft_double;
-  static const Field<BorderRadiusModel, double> _f$topLeft_double = Field(
-      'topLeft_double', _$topLeft_double,
-      key: 'top_left_double', opt: true);
+  static const Field<BorderRadiusModel, double> _f$topLeft_double =
+      Field('topLeft_double', _$topLeft_double, opt: true);
   static double? _$topRight_double(BorderRadiusModel v) => v.topRight_double;
-  static const Field<BorderRadiusModel, double> _f$topRight_double = Field(
-      'topRight_double', _$topRight_double,
-      key: 'top_right_double', opt: true);
+  static const Field<BorderRadiusModel, double> _f$topRight_double =
+      Field('topRight_double', _$topRight_double, opt: true);
   static double? _$bottomLeft_double(BorderRadiusModel v) =>
       v.bottomLeft_double;
-  static const Field<BorderRadiusModel, double> _f$bottomLeft_double = Field(
-      'bottomLeft_double', _$bottomLeft_double,
-      key: 'bottom_left_double', opt: true);
+  static const Field<BorderRadiusModel, double> _f$bottomLeft_double =
+      Field('bottomLeft_double', _$bottomLeft_double, opt: true);
   static double? _$bottomRight_double(BorderRadiusModel v) =>
       v.bottomRight_double;
-  static const Field<BorderRadiusModel, double> _f$bottomRight_double = Field(
-      'bottomRight_double', _$bottomRight_double,
-      key: 'bottom_right_double', opt: true);
+  static const Field<BorderRadiusModel, double> _f$bottomRight_double =
+      Field('bottomRight_double', _$bottomRight_double, opt: true);
   static double? _$all_double(BorderRadiusModel v) => v.all_double;
   static const Field<BorderRadiusModel, double> _f$all_double =
       Field('all_double', _$all_double, opt: true);

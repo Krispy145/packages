@@ -9,7 +9,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "tab_bar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class TabBarModel with TabBarModelMappable {
   final BoxDecorationModel? indicator_boxDecoration;
   final ThemeColorString? indicatorColor_themeColorString;

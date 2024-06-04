@@ -26,73 +26,69 @@ class ToggleButtonModelMapper extends ClassMapperBase<ToggleButtonModel> {
       v.textStyle_textStyleString;
   static const Field<ToggleButtonModel, String> _f$textStyle_textStyleString =
       Field('textStyle_textStyleString', _$textStyle_textStyleString,
-          key: 'text_style_text_style_string', opt: true);
+          opt: true);
   static BoxConstraintsModel? _$constraints_boxConstraints(
           ToggleButtonModel v) =>
       v.constraints_boxConstraints;
   static const Field<ToggleButtonModel, BoxConstraintsModel>
       _f$constraints_boxConstraints = Field(
           'constraints_boxConstraints', _$constraints_boxConstraints,
-          key: 'constraints_box_constraints',
-          opt: true,
-          def: const BoxConstraintsModel());
+          opt: true, def: const BoxConstraintsModel());
   static String? _$color_themeColorString(ToggleButtonModel v) =>
       v.color_themeColorString;
   static const Field<ToggleButtonModel, String> _f$color_themeColorString =
-      Field('color_themeColorString', _$color_themeColorString,
-          key: 'color_theme_color_string', opt: true);
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static String? _$selectedColor_themeColorString(ToggleButtonModel v) =>
       v.selectedColor_themeColorString;
   static const Field<ToggleButtonModel, String>
       _f$selectedColor_themeColorString = Field(
           'selectedColor_themeColorString', _$selectedColor_themeColorString,
-          key: 'selected_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$disabledColor_themeColorString(ToggleButtonModel v) =>
       v.disabledColor_themeColorString;
   static const Field<ToggleButtonModel, String>
       _f$disabledColor_themeColorString = Field(
           'disabledColor_themeColorString', _$disabledColor_themeColorString,
-          key: 'disabled_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$fillColor_themeColorString(ToggleButtonModel v) =>
       v.fillColor_themeColorString;
   static const Field<ToggleButtonModel, String> _f$fillColor_themeColorString =
       Field('fillColor_themeColorString', _$fillColor_themeColorString,
-          key: 'fill_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$focusColor_themeColorString(ToggleButtonModel v) =>
       v.focusColor_themeColorString;
   static const Field<ToggleButtonModel, String> _f$focusColor_themeColorString =
       Field('focusColor_themeColorString', _$focusColor_themeColorString,
-          key: 'focus_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$highlightColor_themeColorString(ToggleButtonModel v) =>
       v.highlightColor_themeColorString;
   static const Field<ToggleButtonModel, String>
       _f$highlightColor_themeColorString = Field(
           'highlightColor_themeColorString', _$highlightColor_themeColorString,
-          key: 'highlight_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$hoverColor_themeColorString(ToggleButtonModel v) =>
       v.hoverColor_themeColorString;
   static const Field<ToggleButtonModel, String> _f$hoverColor_themeColorString =
       Field('hoverColor_themeColorString', _$hoverColor_themeColorString,
-          key: 'hover_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$splashColor_themeColorString(ToggleButtonModel v) =>
       v.splashColor_themeColorString;
   static const Field<ToggleButtonModel, String>
       _f$splashColor_themeColorString = Field(
           'splashColor_themeColorString', _$splashColor_themeColorString,
-          key: 'splash_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$borderColor_themeColorString(ToggleButtonModel v) =>
       v.borderColor_themeColorString;
   static const Field<ToggleButtonModel, String>
       _f$borderColor_themeColorString = Field(
           'borderColor_themeColorString', _$borderColor_themeColorString,
-          key: 'border_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$selectedBorderColor_themeColorString(ToggleButtonModel v) =>
       v.selectedBorderColor_themeColorString;
   static const Field<ToggleButtonModel, String>
       _f$selectedBorderColor_themeColorString = Field(
           'selectedBorderColor_themeColorString',
           _$selectedBorderColor_themeColorString,
-          key: 'selected_border_color_theme_color_string',
           opt: true);
   static String? _$disabledBorderColor_themeColorString(ToggleButtonModel v) =>
       v.disabledBorderColor_themeColorString;
@@ -100,21 +96,17 @@ class ToggleButtonModelMapper extends ClassMapperBase<ToggleButtonModel> {
       _f$disabledBorderColor_themeColorString = Field(
           'disabledBorderColor_themeColorString',
           _$disabledBorderColor_themeColorString,
-          key: 'disabled_border_color_theme_color_string',
           opt: true);
   static BorderRadiusModel? _$borderRadius_borderRadius(ToggleButtonModel v) =>
       v.borderRadius_borderRadius;
   static const Field<ToggleButtonModel, BorderRadiusModel>
       _f$borderRadius_borderRadius = Field(
           'borderRadius_borderRadius', _$borderRadius_borderRadius,
-          key: 'border_radius_border_radius',
-          opt: true,
-          def: const BorderRadiusModel());
+          opt: true, def: const BorderRadiusModel());
   static double? _$borderWidth_double(ToggleButtonModel v) =>
       v.borderWidth_double;
-  static const Field<ToggleButtonModel, double> _f$borderWidth_double = Field(
-      'borderWidth_double', _$borderWidth_double,
-      key: 'border_width_double', opt: true);
+  static const Field<ToggleButtonModel, double> _f$borderWidth_double =
+      Field('borderWidth_double', _$borderWidth_double, opt: true);
 
   @override
   final MappableFields<ToggleButtonModel> fields = const {

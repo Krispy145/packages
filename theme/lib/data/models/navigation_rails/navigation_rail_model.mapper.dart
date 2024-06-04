@@ -27,7 +27,6 @@ class NavigationRailModelMapper extends ClassMapperBase<NavigationRailModel> {
       _f$backgroundColor_themeColorString = Field(
           'backgroundColor_themeColorString',
           _$backgroundColor_themeColorString,
-          key: 'background_color_theme_color_string',
           opt: true);
   static double? _$elevation_double(NavigationRailModel v) =>
       v.elevation_double;
@@ -40,7 +39,6 @@ class NavigationRailModelMapper extends ClassMapperBase<NavigationRailModel> {
       _f$unselectedLabelTextStyle_textStyleString = Field(
           'unselectedLabelTextStyle_textStyleString',
           _$unselectedLabelTextStyle_textStyleString,
-          key: 'unselected_label_text_style_text_style_string',
           opt: true);
   static String? _$selectedLabelTextStyle_textStyleString(
           NavigationRailModel v) =>
@@ -49,13 +47,11 @@ class NavigationRailModelMapper extends ClassMapperBase<NavigationRailModel> {
       _f$selectedLabelTextStyle_textStyleString = Field(
           'selectedLabelTextStyle_textStyleString',
           _$selectedLabelTextStyle_textStyleString,
-          key: 'selected_label_text_style_text_style_string',
           opt: true);
   static double? _$groupAlignment_double(NavigationRailModel v) =>
       v.groupAlignment_double;
   static const Field<NavigationRailModel, double> _f$groupAlignment_double =
-      Field('groupAlignment_double', _$groupAlignment_double,
-          key: 'group_alignment_double', opt: true);
+      Field('groupAlignment_double', _$groupAlignment_double, opt: true);
   static NavigationRailLabelType? _$labelType_enum_navigationRailLabelType(
           NavigationRailModel v) =>
       v.labelType_enum_navigationRailLabelType;
@@ -63,35 +59,31 @@ class NavigationRailModelMapper extends ClassMapperBase<NavigationRailModel> {
       _f$labelType_enum_navigationRailLabelType = Field(
           'labelType_enum_navigationRailLabelType',
           _$labelType_enum_navigationRailLabelType,
-          key: 'label_type_enum_navigation_rail_label_type',
           opt: true);
   static bool? _$useIndicator_bool(NavigationRailModel v) =>
       v.useIndicator_bool;
-  static const Field<NavigationRailModel, bool> _f$useIndicator_bool = Field(
-      'useIndicator_bool', _$useIndicator_bool,
-      key: 'use_indicator_bool', opt: true);
+  static const Field<NavigationRailModel, bool> _f$useIndicator_bool =
+      Field('useIndicator_bool', _$useIndicator_bool, opt: true);
   static String? _$indicatorColor_themeColorString(NavigationRailModel v) =>
       v.indicatorColor_themeColorString;
   static const Field<NavigationRailModel, String>
       _f$indicatorColor_themeColorString = Field(
           'indicatorColor_themeColorString', _$indicatorColor_themeColorString,
-          key: 'indicator_color_theme_color_string', opt: true);
+          opt: true);
   static ShapeBorderModel? _$indicatorShape_shapeBorder(
           NavigationRailModel v) =>
       v.indicatorShape_shapeBorder;
   static const Field<NavigationRailModel, ShapeBorderModel>
       _f$indicatorShape_shapeBorder = Field(
           'indicatorShape_shapeBorder', _$indicatorShape_shapeBorder,
-          key: 'indicator_shape_shape_border', opt: true);
+          opt: true);
   static double? _$minWidth_double(NavigationRailModel v) => v.minWidth_double;
-  static const Field<NavigationRailModel, double> _f$minWidth_double = Field(
-      'minWidth_double', _$minWidth_double,
-      key: 'min_width_double', opt: true);
+  static const Field<NavigationRailModel, double> _f$minWidth_double =
+      Field('minWidth_double', _$minWidth_double, opt: true);
   static double? _$minExtendedWidth_double(NavigationRailModel v) =>
       v.minExtendedWidth_double;
   static const Field<NavigationRailModel, double> _f$minExtendedWidth_double =
-      Field('minExtendedWidth_double', _$minExtendedWidth_double,
-          key: 'min_extended_width_double', opt: true);
+      Field('minExtendedWidth_double', _$minExtendedWidth_double, opt: true);
 
   @override
   final MappableFields<NavigationRailModel> fields = const {

@@ -27,29 +27,22 @@ class InputBorderModelMapper extends ClassMapperBase<InputBorderModel> {
   static const Field<InputBorderModel, InputBorderType>
       _f$type_enum_inputBorderType = Field(
           'type_enum_inputBorderType', _$type_enum_inputBorderType,
-          key: 'type_enum_input_border_type',
-          opt: true,
-          def: InputBorderType.none);
+          opt: true, def: InputBorderType.none);
   static BorderRadiusModel? _$borderRadius_borderRadius(InputBorderModel v) =>
       v.borderRadius_borderRadius;
   static const Field<InputBorderModel, BorderRadiusModel>
       _f$borderRadius_borderRadius = Field(
           'borderRadius_borderRadius', _$borderRadius_borderRadius,
-          key: 'border_radius_border_radius',
-          opt: true,
-          def: const BorderRadiusModel());
+          opt: true, def: const BorderRadiusModel());
   static BorderSideModel? _$borderSide_borderSide(InputBorderModel v) =>
       v.borderSide_borderSide;
   static const Field<InputBorderModel, BorderSideModel>
       _f$borderSide_borderSide = Field(
           'borderSide_borderSide', _$borderSide_borderSide,
-          key: 'border_side_border_side',
-          opt: true,
-          def: const BorderSideModel());
+          opt: true, def: const BorderSideModel());
   static double? _$gapPadding_double(InputBorderModel v) => v.gapPadding_double;
-  static const Field<InputBorderModel, double> _f$gapPadding_double = Field(
-      'gapPadding_double', _$gapPadding_double,
-      key: 'gap_padding_double', opt: true);
+  static const Field<InputBorderModel, double> _f$gapPadding_double =
+      Field('gapPadding_double', _$gapPadding_double, opt: true);
 
   @override
   final MappableFields<InputBorderModel> fields = const {

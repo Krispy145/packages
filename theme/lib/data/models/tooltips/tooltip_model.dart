@@ -2,14 +2,13 @@
 
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
-
 import "package:theme/data/models/box_decorations/box_decoration_model.dart";
 import "package:theme/data/models/edge_insets_model.dart";
 import "package:theme/extensions/text_style_string.dart";
 
 part "tooltip_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class TooltipModel with TooltipModelMappable {
   final double? height_double;
   @MappableValue(EdgeInsetsModel())

@@ -39,7 +39,7 @@ import "package:utilities/logger/logger.dart";
 
 part "theme_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ThemeModel with ThemeModelMappable {
   final String id;
   final String? name;
@@ -218,7 +218,7 @@ class ThemeModel with ThemeModelMappable {
   // ];
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass(caseStyle: CaseStyle.camelCase)
 class BaseThemeModel with BaseThemeModelMappable {
   final String id;
   final String? name;
@@ -259,7 +259,7 @@ class BaseThemeModel with BaseThemeModelMappable {
   // ];
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class ComponentThemesModel with ComponentThemesModelMappable {
   final String id;
   final String? name;

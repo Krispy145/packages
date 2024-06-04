@@ -9,7 +9,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "snackbar_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class SnackbarModel with SnackbarModelMappable {
   final ThemeColorString? backgroundColor_themeColorString;
   final ThemeColorString? actionTextColor_themeColorString;

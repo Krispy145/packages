@@ -27,13 +27,13 @@ class ShowAuthAction {
 
 //TODO: Make the auth store and extend loadstate to init getting the autentication status from the repository.
 /// [AuthenticationBuilder] is a class that uses [_AuthenticationBuilderState] to manage state of the authentication feature.
-class AuthenticationBuilder extends StatefulWidget {
+class AuthenticationBuilder<T extends UserModel> extends StatefulWidget {
   final AuthenticationRepository repository;
   final bool showEmailAuth;
   final AuthBuilderType authBuilderType;
   final ShowAuthAction? showPhoneAuth;
   final List<SocialButtonType>? socialTypes;
-  final void Function(UserModel userModel)? onSuccess;
+  final void Function(T userModel)? onSuccess;
   final bool showSuccessSnackBar;
 
   /// [AuthenticationBuilder.authenticate] constructor.

@@ -24,34 +24,31 @@ class SwitchModelMapper extends ClassMapperBase<SwitchModel> {
       v.thumbColor_themeColorString;
   static const Field<SwitchModel, String> _f$thumbColor_themeColorString =
       Field('thumbColor_themeColorString', _$thumbColor_themeColorString,
-          key: 'thumb_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$trackColor_themeColorString(SwitchModel v) =>
       v.trackColor_themeColorString;
   static const Field<SwitchModel, String> _f$trackColor_themeColorString =
       Field('trackColor_themeColorString', _$trackColor_themeColorString,
-          key: 'track_color_theme_color_string', opt: true);
+          opt: true);
   static String? _$trackOutlineColor_themeColorString(SwitchModel v) =>
       v.trackOutlineColor_themeColorString;
   static const Field<SwitchModel, String>
       _f$trackOutlineColor_themeColorString = Field(
           'trackOutlineColor_themeColorString',
           _$trackOutlineColor_themeColorString,
-          key: 'track_outline_color_theme_color_string',
           opt: true);
   static double? _$trackOutlineWidth_double(SwitchModel v) =>
       v.trackOutlineWidth_double;
-  static const Field<SwitchModel, double> _f$trackOutlineWidth_double = Field(
-      'trackOutlineWidth_double', _$trackOutlineWidth_double,
-      key: 'track_outline_width_double', opt: true);
+  static const Field<SwitchModel, double> _f$trackOutlineWidth_double =
+      Field('trackOutlineWidth_double', _$trackOutlineWidth_double, opt: true);
   static String? _$overlayColor_themeColorString(SwitchModel v) =>
       v.overlayColor_themeColorString;
   static const Field<SwitchModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$splashRadius_double(SwitchModel v) => v.splashRadius_double;
-  static const Field<SwitchModel, double> _f$splashRadius_double = Field(
-      'splashRadius_double', _$splashRadius_double,
-      key: 'splash_radius_double', opt: true);
+  static const Field<SwitchModel, double> _f$splashRadius_double =
+      Field('splashRadius_double', _$splashRadius_double, opt: true);
 
   @override
   final MappableFields<SwitchModel> fields = const {

@@ -6,7 +6,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "switch_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class SwitchModel with SwitchModelMappable {
   final ThemeColorString? thumbColor_themeColorString;
   final ThemeColorString? trackColor_themeColorString;

@@ -6,6 +6,76 @@
 
 part of 'outlined_border_model.dart';
 
+class OutlinedBorderTypeMapper extends EnumMapper<OutlinedBorderType> {
+  OutlinedBorderTypeMapper._();
+
+  static OutlinedBorderTypeMapper? _instance;
+  static OutlinedBorderTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = OutlinedBorderTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static OutlinedBorderType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  OutlinedBorderType decode(dynamic value) {
+    switch (value) {
+      case 'circleBorder':
+        return OutlinedBorderType.circleBorder;
+      case 'stadiumBorder':
+        return OutlinedBorderType.stadiumBorder;
+      case 'starBorder':
+        return OutlinedBorderType.starBorder;
+      case 'beveledRectangleBorder':
+        return OutlinedBorderType.beveledRectangleBorder;
+      case 'ovalBorder':
+        return OutlinedBorderType.ovalBorder;
+      case 'continuousRectangleBorder':
+        return OutlinedBorderType.continuousRectangleBorder;
+      case 'roundedRectangleBorder':
+        return OutlinedBorderType.roundedRectangleBorder;
+      case 'linearBorder':
+        return OutlinedBorderType.linearBorder;
+      default:
+        return OutlinedBorderType.values[6];
+    }
+  }
+
+  @override
+  dynamic encode(OutlinedBorderType self) {
+    switch (self) {
+      case OutlinedBorderType.circleBorder:
+        return 'circleBorder';
+      case OutlinedBorderType.stadiumBorder:
+        return 'stadiumBorder';
+      case OutlinedBorderType.starBorder:
+        return 'starBorder';
+      case OutlinedBorderType.beveledRectangleBorder:
+        return 'beveledRectangleBorder';
+      case OutlinedBorderType.ovalBorder:
+        return 'ovalBorder';
+      case OutlinedBorderType.continuousRectangleBorder:
+        return 'continuousRectangleBorder';
+      case OutlinedBorderType.roundedRectangleBorder:
+        return 'roundedRectangleBorder';
+      case OutlinedBorderType.linearBorder:
+        return 'linearBorder';
+    }
+  }
+}
+
+extension OutlinedBorderTypeMapperExtension on OutlinedBorderType {
+  String toValue() {
+    OutlinedBorderTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<OutlinedBorderType>(this) as String;
+  }
+}
+
 class OutlinedBorderModelMapper extends ClassMapperBase<OutlinedBorderModel> {
   OutlinedBorderModelMapper._();
 
@@ -13,6 +83,7 @@ class OutlinedBorderModelMapper extends ClassMapperBase<OutlinedBorderModel> {
   static OutlinedBorderModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = OutlinedBorderModelMapper._());
+      OutlinedBorderTypeMapper.ensureInitialized();
       BorderSideModelMapper.ensureInitialized();
       BorderRadiusModelMapper.ensureInitialized();
     }
@@ -28,21 +99,18 @@ class OutlinedBorderModelMapper extends ClassMapperBase<OutlinedBorderModel> {
   static const Field<OutlinedBorderModel, OutlinedBorderType>
       _f$type_enum_outlinedBorderType = Field(
           'type_enum_outlinedBorderType', _$type_enum_outlinedBorderType,
-          key: 'type_enum_outlined_border_type',
-          opt: true,
-          def: OutlinedBorderType.roundedRectangleBorder);
+          opt: true, def: OutlinedBorderType.roundedRectangleBorder);
   static BorderSideModel? _$side_borderSide(OutlinedBorderModel v) =>
       v.side_borderSide;
   static const Field<OutlinedBorderModel, BorderSideModel> _f$side_borderSide =
-      Field('side_borderSide', _$side_borderSide,
-          key: 'side_border_side', opt: true);
+      Field('side_borderSide', _$side_borderSide, opt: true);
   static BorderRadiusModel? _$borderRadius_borderRadius(
           OutlinedBorderModel v) =>
       v.borderRadius_borderRadius;
   static const Field<OutlinedBorderModel, BorderRadiusModel>
       _f$borderRadius_borderRadius = Field(
           'borderRadius_borderRadius', _$borderRadius_borderRadius,
-          key: 'border_radius_border_radius', opt: true);
+          opt: true);
 
   @override
   final MappableFields<OutlinedBorderModel> fields = const {

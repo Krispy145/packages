@@ -10,7 +10,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "dialog_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class DialogModel with DialogModelMappable {
   final ThemeColorString? backgroundColor_themeColorString;
   final double? elevation_double;

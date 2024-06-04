@@ -8,7 +8,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "checkbox_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class CheckboxModel with CheckboxModelMappable {
   final ThemeColorString? fillColor_themeColorString;
   final ThemeColorString? checkColor_themeColorString;

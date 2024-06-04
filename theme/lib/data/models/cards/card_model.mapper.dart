@@ -24,20 +24,19 @@ class CardModelMapper extends ClassMapperBase<CardModel> {
 
   static String? _$color_themeColorString(CardModel v) =>
       v.color_themeColorString;
-  static const Field<CardModel, String> _f$color_themeColorString = Field(
-      'color_themeColorString', _$color_themeColorString,
-      key: 'color_theme_color_string', opt: true);
+  static const Field<CardModel, String> _f$color_themeColorString =
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static String? _$shadowColor_themeColorString(CardModel v) =>
       v.shadowColor_themeColorString;
   static const Field<CardModel, String> _f$shadowColor_themeColorString = Field(
       'shadowColor_themeColorString', _$shadowColor_themeColorString,
-      key: 'shadow_color_theme_color_string', opt: true);
+      opt: true);
   static String? _$surfaceTintColor_themeColorString(CardModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<CardModel, String> _f$surfaceTintColor_themeColorString =
       Field('surfaceTintColor_themeColorString',
           _$surfaceTintColor_themeColorString,
-          key: 'surface_tint_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$elevation_double(CardModel v) => v.elevation_double;
   static const Field<CardModel, double> _f$elevation_double =
       Field('elevation_double', _$elevation_double, opt: true);
@@ -45,12 +44,11 @@ class CardModelMapper extends ClassMapperBase<CardModel> {
       v.margin_edgeInsets;
   static const Field<CardModel, EdgeInsetsModel> _f$margin_edgeInsets = Field(
       'margin_edgeInsets', _$margin_edgeInsets,
-      key: 'margin_edge_insets', opt: true, def: const EdgeInsetsModel());
+      opt: true, def: const EdgeInsetsModel());
   static ShapeBorderModel? _$shape_shapeBorder(CardModel v) =>
       v.shape_shapeBorder;
-  static const Field<CardModel, ShapeBorderModel> _f$shape_shapeBorder = Field(
-      'shape_shapeBorder', _$shape_shapeBorder,
-      key: 'shape_shape_border', opt: true);
+  static const Field<CardModel, ShapeBorderModel> _f$shape_shapeBorder =
+      Field('shape_shapeBorder', _$shape_shapeBorder, opt: true);
 
   @override
   final MappableFields<CardModel> fields = const {

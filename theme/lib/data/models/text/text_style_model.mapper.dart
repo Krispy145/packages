@@ -13,6 +13,7 @@ class TextStyleModelMapper extends ClassMapperBase<TextStyleModel> {
   static TextStyleModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = TextStyleModelMapper._());
+      MapperContainer.globals.useAll([DOFontStyleMapper()]);
     }
     return _instance!;
   }
@@ -22,39 +23,31 @@ class TextStyleModelMapper extends ClassMapperBase<TextStyleModel> {
 
   static String? _$fontFamilyName_font(TextStyleModel v) =>
       v.fontFamilyName_font;
-  static const Field<TextStyleModel, String> _f$fontFamilyName_font = Field(
-      'fontFamilyName_font', _$fontFamilyName_font,
-      key: 'font_family_name_font', opt: true);
+  static const Field<TextStyleModel, String> _f$fontFamilyName_font =
+      Field('fontFamilyName_font', _$fontFamilyName_font, opt: true);
   static String? _$color_themeColorString(TextStyleModel v) =>
       v.color_themeColorString;
-  static const Field<TextStyleModel, String> _f$color_themeColorString = Field(
-      'color_themeColorString', _$color_themeColorString,
-      key: 'color_theme_color_string', opt: true);
+  static const Field<TextStyleModel, String> _f$color_themeColorString =
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static FontStyle? _$fontFamilyStyle_enum_fontStyle(TextStyleModel v) =>
       v.fontFamilyStyle_enum_fontStyle;
   static const Field<TextStyleModel, FontStyle>
       _f$fontFamilyStyle_enum_fontStyle = Field(
           'fontFamilyStyle_enum_fontStyle', _$fontFamilyStyle_enum_fontStyle,
-          key: 'font_family_style_enum_font_style',
-          opt: true,
-          def: FontStyle.normal);
+          opt: true, def: FontStyle.normal);
   static double? _$fontWeight_double(TextStyleModel v) => v.fontWeight_double;
-  static const Field<TextStyleModel, double> _f$fontWeight_double = Field(
-      'fontWeight_double', _$fontWeight_double,
-      key: 'font_weight_double', opt: true);
+  static const Field<TextStyleModel, double> _f$fontWeight_double =
+      Field('fontWeight_double', _$fontWeight_double, opt: true);
   static double? _$fontSize_double(TextStyleModel v) => v.fontSize_double;
-  static const Field<TextStyleModel, double> _f$fontSize_double = Field(
-      'fontSize_double', _$fontSize_double,
-      key: 'font_size_double', opt: true);
+  static const Field<TextStyleModel, double> _f$fontSize_double =
+      Field('fontSize_double', _$fontSize_double, opt: true);
   static double? _$lineHeight_double(TextStyleModel v) => v.lineHeight_double;
-  static const Field<TextStyleModel, double> _f$lineHeight_double = Field(
-      'lineHeight_double', _$lineHeight_double,
-      key: 'line_height_double', opt: true);
+  static const Field<TextStyleModel, double> _f$lineHeight_double =
+      Field('lineHeight_double', _$lineHeight_double, opt: true);
   static double? _$letterSpacing_double(TextStyleModel v) =>
       v.letterSpacing_double;
-  static const Field<TextStyleModel, double> _f$letterSpacing_double = Field(
-      'letterSpacing_double', _$letterSpacing_double,
-      key: 'letter_spacing_double', opt: true);
+  static const Field<TextStyleModel, double> _f$letterSpacing_double =
+      Field('letterSpacing_double', _$letterSpacing_double, opt: true);
 
   @override
   final MappableFields<TextStyleModel> fields = const {

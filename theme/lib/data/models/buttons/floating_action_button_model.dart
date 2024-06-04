@@ -10,7 +10,7 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "floating_action_button_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class FloatingActionButtonModel with FloatingActionButtonModelMappable {
   final ThemeColorString? foregroundColor_themeColorString;
   final ThemeColorString? backgroundColor_themeColorString;

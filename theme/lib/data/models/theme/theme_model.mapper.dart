@@ -59,53 +59,47 @@ class ThemeModelMapper extends ClassMapperBase<ThemeModel> {
   static Map<String, ButtonModel>? _$elevatedButtons(ThemeModel v) =>
       v.elevatedButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$elevatedButtons =
-      Field('elevatedButtons', _$elevatedButtons,
-          key: 'elevated_buttons', opt: true);
+      Field('elevatedButtons', _$elevatedButtons, opt: true);
   static Map<String, ButtonModel>? _$filledButtons(ThemeModel v) =>
       v.filledButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$filledButtons =
-      Field('filledButtons', _$filledButtons, key: 'filled_buttons', opt: true);
+      Field('filledButtons', _$filledButtons, opt: true);
   static Map<String, ButtonModel>? _$outlinedButtons(ThemeModel v) =>
       v.outlinedButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$outlinedButtons =
-      Field('outlinedButtons', _$outlinedButtons,
-          key: 'outlined_buttons', opt: true);
+      Field('outlinedButtons', _$outlinedButtons, opt: true);
   static Map<String, ButtonModel>? _$textButtons(ThemeModel v) => v.textButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$textButtons =
-      Field('textButtons', _$textButtons, key: 'text_buttons', opt: true);
+      Field('textButtons', _$textButtons, opt: true);
   static Map<String, ToggleButtonModel>? _$toggleButtons(ThemeModel v) =>
       v.toggleButtons;
   static const Field<ThemeModel, Map<String, ToggleButtonModel>>
-      _f$toggleButtons =
-      Field('toggleButtons', _$toggleButtons, key: 'toggle_buttons', opt: true);
+      _f$toggleButtons = Field('toggleButtons', _$toggleButtons, opt: true);
   static Map<String, ButtonModel>? _$iconButtons(ThemeModel v) => v.iconButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$iconButtons =
-      Field('iconButtons', _$iconButtons, key: 'icon_buttons', opt: true);
+      Field('iconButtons', _$iconButtons, opt: true);
   static Map<String, FloatingActionButtonModel>? _$floatingActionButtons(
           ThemeModel v) =>
       v.floatingActionButtons;
   static const Field<ThemeModel, Map<String, FloatingActionButtonModel>>
-      _f$floatingActionButtons = Field(
-          'floatingActionButtons', _$floatingActionButtons,
-          key: 'floating_action_buttons', opt: true);
+      _f$floatingActionButtons =
+      Field('floatingActionButtons', _$floatingActionButtons, opt: true);
   static Map<String, ButtonModel>? _$menuButtons(ThemeModel v) => v.menuButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$menuButtons =
-      Field('menuButtons', _$menuButtons, key: 'menu_buttons', opt: true);
+      Field('menuButtons', _$menuButtons, opt: true);
   static Map<String, ButtonModel>? _$segmentedButtons(ThemeModel v) =>
       v.segmentedButtons;
   static const Field<ThemeModel, Map<String, ButtonModel>> _f$segmentedButtons =
-      Field('segmentedButtons', _$segmentedButtons,
-          key: 'segmented_buttons', opt: true);
+      Field('segmentedButtons', _$segmentedButtons, opt: true);
   static Map<String, InputDecorationModel>? _$inputDecorations(ThemeModel v) =>
       v.inputDecorations;
   static const Field<ThemeModel, Map<String, InputDecorationModel>>
-      _f$inputDecorations = Field('inputDecorations', _$inputDecorations,
-          key: 'input_decorations', opt: true);
+      _f$inputDecorations =
+      Field('inputDecorations', _$inputDecorations, opt: true);
   static Map<String, BoxDecorationModel>? _$boxDecorations(ThemeModel v) =>
       v.boxDecorations;
   static const Field<ThemeModel, Map<String, BoxDecorationModel>>
-      _f$boxDecorations = Field('boxDecorations', _$boxDecorations,
-          key: 'box_decorations', opt: true);
+      _f$boxDecorations = Field('boxDecorations', _$boxDecorations, opt: true);
   static Map<String, CardModel>? _$cards(ThemeModel v) => v.cards;
   static const Field<ThemeModel, Map<String, CardModel>> _f$cards =
       Field('cards', _$cards, opt: true);
@@ -121,8 +115,7 @@ class ThemeModelMapper extends ClassMapperBase<ThemeModel> {
   static Map<String, BottomAppbarModel>? _$bottomAppbars(ThemeModel v) =>
       v.bottomAppbars;
   static const Field<ThemeModel, Map<String, BottomAppbarModel>>
-      _f$bottomAppbars =
-      Field('bottomAppbars', _$bottomAppbars, key: 'bottom_appbars', opt: true);
+      _f$bottomAppbars = Field('bottomAppbars', _$bottomAppbars, opt: true);
   static Map<String, DropdownModel>? _$dropdowns(ThemeModel v) => v.dropdowns;
   static const Field<ThemeModel, Map<String, DropdownModel>> _f$dropdowns =
       Field('dropdowns', _$dropdowns, opt: true);
@@ -135,7 +128,7 @@ class ThemeModelMapper extends ClassMapperBase<ThemeModel> {
   static Map<String, PopupMenuModel>? _$popupMenus(ThemeModel v) =>
       v.popupMenus;
   static const Field<ThemeModel, Map<String, PopupMenuModel>> _f$popupMenus =
-      Field('popupMenus', _$popupMenus, key: 'popup_menus', opt: true);
+      Field('popupMenus', _$popupMenus, opt: true);
   static Map<String, SliderModel>? _$sliders(ThemeModel v) => v.sliders;
   static const Field<ThemeModel, Map<String, SliderModel>> _f$sliders =
       Field('sliders', _$sliders, opt: true);
@@ -149,8 +142,8 @@ class ThemeModelMapper extends ClassMapperBase<ThemeModel> {
   static Map<String, NavigationRailModel>? _$navigationRails(ThemeModel v) =>
       v.navigationRails;
   static const Field<ThemeModel, Map<String, NavigationRailModel>>
-      _f$navigationRails = Field('navigationRails', _$navigationRails,
-          key: 'navigation_rails', opt: true);
+      _f$navigationRails =
+      Field('navigationRails', _$navigationRails, opt: true);
   static Map<String, CheckboxModel>? _$checkboxes(ThemeModel v) => v.checkboxes;
   static const Field<ThemeModel, Map<String, CheckboxModel>> _f$checkboxes =
       Field('checkboxes', _$checkboxes, opt: true);
@@ -165,41 +158,40 @@ class ThemeModelMapper extends ClassMapperBase<ThemeModel> {
       Field('drawers', _$drawers, opt: true);
   static Map<String, ListTileModel>? _$listTiles(ThemeModel v) => v.listTiles;
   static const Field<ThemeModel, Map<String, ListTileModel>> _f$listTiles =
-      Field('listTiles', _$listTiles, key: 'list_tiles', opt: true);
+      Field('listTiles', _$listTiles, opt: true);
   static Map<String, MenuStyleModel>? _$menus(ThemeModel v) => v.menus;
   static const Field<ThemeModel, Map<String, MenuStyleModel>> _f$menus =
       Field('menus', _$menus, opt: true);
   static Map<String, MenuBarModel>? _$menuBars(ThemeModel v) => v.menuBars;
   static const Field<ThemeModel, Map<String, MenuBarModel>> _f$menuBars =
-      Field('menuBars', _$menuBars, key: 'menu_bars', opt: true);
+      Field('menuBars', _$menuBars, opt: true);
   static Map<String, NavigationBarModel>? _$navigationBars(ThemeModel v) =>
       v.navigationBars;
   static const Field<ThemeModel, Map<String, NavigationBarModel>>
-      _f$navigationBars = Field('navigationBars', _$navigationBars,
-          key: 'navigation_bars', opt: true);
+      _f$navigationBars = Field('navigationBars', _$navigationBars, opt: true);
   static Map<String, NavigationDrawerModel>? _$navigationDrawers(
           ThemeModel v) =>
       v.navigationDrawers;
   static const Field<ThemeModel, Map<String, NavigationDrawerModel>>
-      _f$navigationDrawers = Field('navigationDrawers', _$navigationDrawers,
-          key: 'navigation_drawers', opt: true);
+      _f$navigationDrawers =
+      Field('navigationDrawers', _$navigationDrawers, opt: true);
   static Map<String, ProgressIndicatorModel>? _$progressIndicators(
           ThemeModel v) =>
       v.progressIndicators;
   static const Field<ThemeModel, Map<String, ProgressIndicatorModel>>
-      _f$progressIndicators = Field('progressIndicators', _$progressIndicators,
-          key: 'progress_indicators', opt: true);
+      _f$progressIndicators =
+      Field('progressIndicators', _$progressIndicators, opt: true);
   static Map<String, SearchBarModel>? _$searchBars(ThemeModel v) =>
       v.searchBars;
   static const Field<ThemeModel, Map<String, SearchBarModel>> _f$searchBars =
-      Field('searchBars', _$searchBars, key: 'search_bars', opt: true);
+      Field('searchBars', _$searchBars, opt: true);
   static Map<String, SearchViewModel>? _$searchViews(ThemeModel v) =>
       v.searchViews;
   static const Field<ThemeModel, Map<String, SearchViewModel>> _f$searchViews =
-      Field('searchViews', _$searchViews, key: 'search_views', opt: true);
+      Field('searchViews', _$searchViews, opt: true);
   static Map<String, TabBarModel>? _$tabBars(ThemeModel v) => v.tabBars;
   static const Field<ThemeModel, Map<String, TabBarModel>> _f$tabBars =
-      Field('tabBars', _$tabBars, key: 'tab_bars', opt: true);
+      Field('tabBars', _$tabBars, opt: true);
 
   @override
   final MappableFields<ThemeModel> fields = const {
@@ -952,8 +944,7 @@ class BaseThemeModelMapper extends ClassMapperBase<BaseThemeModel> {
   static Map<String, TextTypesModel>? _$textStyles(BaseThemeModel v) =>
       v.textStyles;
   static const Field<BaseThemeModel, Map<String, TextTypesModel>>
-      _f$textStyles =
-      Field('textStyles', _$textStyles, key: 'text_styles', opt: true);
+      _f$textStyles = Field('textStyles', _$textStyles, opt: true);
 
   @override
   final MappableFields<BaseThemeModel> fields = const {
@@ -1137,63 +1128,56 @@ class ComponentThemesModelMapper extends ClassMapperBase<ComponentThemesModel> {
   static Map<String, ButtonModel>? _$elevatedButtons(ComponentThemesModel v) =>
       v.elevatedButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$elevatedButtons = Field('elevatedButtons', _$elevatedButtons,
-          key: 'elevated_buttons', opt: true);
+      _f$elevatedButtons =
+      Field('elevatedButtons', _$elevatedButtons, opt: true);
   static Map<String, ButtonModel>? _$filledButtons(ComponentThemesModel v) =>
       v.filledButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$filledButtons =
-      Field('filledButtons', _$filledButtons, key: 'filled_buttons', opt: true);
+      _f$filledButtons = Field('filledButtons', _$filledButtons, opt: true);
   static Map<String, ButtonModel>? _$outlinedButtons(ComponentThemesModel v) =>
       v.outlinedButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$outlinedButtons = Field('outlinedButtons', _$outlinedButtons,
-          key: 'outlined_buttons', opt: true);
+      _f$outlinedButtons =
+      Field('outlinedButtons', _$outlinedButtons, opt: true);
   static Map<String, ButtonModel>? _$textButtons(ComponentThemesModel v) =>
       v.textButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$textButtons =
-      Field('textButtons', _$textButtons, key: 'text_buttons', opt: true);
+      _f$textButtons = Field('textButtons', _$textButtons, opt: true);
   static Map<String, ToggleButtonModel>? _$toggleButtons(
           ComponentThemesModel v) =>
       v.toggleButtons;
   static const Field<ComponentThemesModel, Map<String, ToggleButtonModel>>
-      _f$toggleButtons =
-      Field('toggleButtons', _$toggleButtons, key: 'toggle_buttons', opt: true);
+      _f$toggleButtons = Field('toggleButtons', _$toggleButtons, opt: true);
   static Map<String, ButtonModel>? _$iconButtons(ComponentThemesModel v) =>
       v.iconButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$iconButtons =
-      Field('iconButtons', _$iconButtons, key: 'icon_buttons', opt: true);
+      _f$iconButtons = Field('iconButtons', _$iconButtons, opt: true);
   static Map<String, FloatingActionButtonModel>? _$floatingActionButtons(
           ComponentThemesModel v) =>
       v.floatingActionButtons;
   static const Field<ComponentThemesModel,
           Map<String, FloatingActionButtonModel>> _f$floatingActionButtons =
-      Field('floatingActionButtons', _$floatingActionButtons,
-          key: 'floating_action_buttons', opt: true);
+      Field('floatingActionButtons', _$floatingActionButtons, opt: true);
   static Map<String, ButtonModel>? _$menuButtons(ComponentThemesModel v) =>
       v.menuButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$menuButtons =
-      Field('menuButtons', _$menuButtons, key: 'menu_buttons', opt: true);
+      _f$menuButtons = Field('menuButtons', _$menuButtons, opt: true);
   static Map<String, ButtonModel>? _$segmentedButtons(ComponentThemesModel v) =>
       v.segmentedButtons;
   static const Field<ComponentThemesModel, Map<String, ButtonModel>>
-      _f$segmentedButtons = Field('segmentedButtons', _$segmentedButtons,
-          key: 'segmented_buttons', opt: true);
+      _f$segmentedButtons =
+      Field('segmentedButtons', _$segmentedButtons, opt: true);
   static Map<String, InputDecorationModel>? _$inputDecorations(
           ComponentThemesModel v) =>
       v.inputDecorations;
   static const Field<ComponentThemesModel, Map<String, InputDecorationModel>>
-      _f$inputDecorations = Field('inputDecorations', _$inputDecorations,
-          key: 'input_decorations', opt: true);
+      _f$inputDecorations =
+      Field('inputDecorations', _$inputDecorations, opt: true);
   static Map<String, BoxDecorationModel>? _$boxDecorations(
           ComponentThemesModel v) =>
       v.boxDecorations;
   static const Field<ComponentThemesModel, Map<String, BoxDecorationModel>>
-      _f$boxDecorations = Field('boxDecorations', _$boxDecorations,
-          key: 'box_decorations', opt: true);
+      _f$boxDecorations = Field('boxDecorations', _$boxDecorations, opt: true);
   static Map<String, CardModel>? _$cards(ComponentThemesModel v) => v.cards;
   static const Field<ComponentThemesModel, Map<String, CardModel>> _f$cards =
       Field('cards', _$cards, opt: true);
@@ -1212,8 +1196,7 @@ class ComponentThemesModelMapper extends ClassMapperBase<ComponentThemesModel> {
           ComponentThemesModel v) =>
       v.bottomAppbars;
   static const Field<ComponentThemesModel, Map<String, BottomAppbarModel>>
-      _f$bottomAppbars =
-      Field('bottomAppbars', _$bottomAppbars, key: 'bottom_appbars', opt: true);
+      _f$bottomAppbars = Field('bottomAppbars', _$bottomAppbars, opt: true);
   static Map<String, DropdownModel>? _$dropdowns(ComponentThemesModel v) =>
       v.dropdowns;
   static const Field<ComponentThemesModel, Map<String, DropdownModel>>
@@ -1228,8 +1211,7 @@ class ComponentThemesModelMapper extends ClassMapperBase<ComponentThemesModel> {
   static Map<String, PopupMenuModel>? _$popupMenus(ComponentThemesModel v) =>
       v.popupMenus;
   static const Field<ComponentThemesModel, Map<String, PopupMenuModel>>
-      _f$popupMenus =
-      Field('popupMenus', _$popupMenus, key: 'popup_menus', opt: true);
+      _f$popupMenus = Field('popupMenus', _$popupMenus, opt: true);
   static Map<String, SliderModel>? _$sliders(ComponentThemesModel v) =>
       v.sliders;
   static const Field<ComponentThemesModel, Map<String, SliderModel>>
@@ -1246,8 +1228,8 @@ class ComponentThemesModelMapper extends ClassMapperBase<ComponentThemesModel> {
           ComponentThemesModel v) =>
       v.navigationRails;
   static const Field<ComponentThemesModel, Map<String, NavigationRailModel>>
-      _f$navigationRails = Field('navigationRails', _$navigationRails,
-          key: 'navigation_rails', opt: true);
+      _f$navigationRails =
+      Field('navigationRails', _$navigationRails, opt: true);
   static Map<String, CheckboxModel>? _$checkboxes(ComponentThemesModel v) =>
       v.checkboxes;
   static const Field<ComponentThemesModel, Map<String, CheckboxModel>>
@@ -1266,8 +1248,7 @@ class ComponentThemesModelMapper extends ClassMapperBase<ComponentThemesModel> {
   static Map<String, ListTileModel>? _$listTiles(ComponentThemesModel v) =>
       v.listTiles;
   static const Field<ComponentThemesModel, Map<String, ListTileModel>>
-      _f$listTiles =
-      Field('listTiles', _$listTiles, key: 'list_tiles', opt: true);
+      _f$listTiles = Field('listTiles', _$listTiles, opt: true);
   static Map<String, MenuStyleModel>? _$menus(ComponentThemesModel v) =>
       v.menus;
   static const Field<ComponentThemesModel, Map<String, MenuStyleModel>>
@@ -1275,39 +1256,36 @@ class ComponentThemesModelMapper extends ClassMapperBase<ComponentThemesModel> {
   static Map<String, MenuBarModel>? _$menuBars(ComponentThemesModel v) =>
       v.menuBars;
   static const Field<ComponentThemesModel, Map<String, MenuBarModel>>
-      _f$menuBars = Field('menuBars', _$menuBars, key: 'menu_bars', opt: true);
+      _f$menuBars = Field('menuBars', _$menuBars, opt: true);
   static Map<String, NavigationBarModel>? _$navigationBars(
           ComponentThemesModel v) =>
       v.navigationBars;
   static const Field<ComponentThemesModel, Map<String, NavigationBarModel>>
-      _f$navigationBars = Field('navigationBars', _$navigationBars,
-          key: 'navigation_bars', opt: true);
+      _f$navigationBars = Field('navigationBars', _$navigationBars, opt: true);
   static Map<String, NavigationDrawerModel>? _$navigationDrawers(
           ComponentThemesModel v) =>
       v.navigationDrawers;
   static const Field<ComponentThemesModel, Map<String, NavigationDrawerModel>>
-      _f$navigationDrawers = Field('navigationDrawers', _$navigationDrawers,
-          key: 'navigation_drawers', opt: true);
+      _f$navigationDrawers =
+      Field('navigationDrawers', _$navigationDrawers, opt: true);
   static Map<String, ProgressIndicatorModel>? _$progressIndicators(
           ComponentThemesModel v) =>
       v.progressIndicators;
   static const Field<ComponentThemesModel, Map<String, ProgressIndicatorModel>>
-      _f$progressIndicators = Field('progressIndicators', _$progressIndicators,
-          key: 'progress_indicators', opt: true);
+      _f$progressIndicators =
+      Field('progressIndicators', _$progressIndicators, opt: true);
   static Map<String, SearchBarModel>? _$searchBars(ComponentThemesModel v) =>
       v.searchBars;
   static const Field<ComponentThemesModel, Map<String, SearchBarModel>>
-      _f$searchBars =
-      Field('searchBars', _$searchBars, key: 'search_bars', opt: true);
+      _f$searchBars = Field('searchBars', _$searchBars, opt: true);
   static Map<String, SearchViewModel>? _$searchViews(ComponentThemesModel v) =>
       v.searchViews;
   static const Field<ComponentThemesModel, Map<String, SearchViewModel>>
-      _f$searchViews =
-      Field('searchViews', _$searchViews, key: 'search_views', opt: true);
+      _f$searchViews = Field('searchViews', _$searchViews, opt: true);
   static Map<String, TabBarModel>? _$tabBars(ComponentThemesModel v) =>
       v.tabBars;
   static const Field<ComponentThemesModel, Map<String, TabBarModel>>
-      _f$tabBars = Field('tabBars', _$tabBars, key: 'tab_bars', opt: true);
+      _f$tabBars = Field('tabBars', _$tabBars, opt: true);
 
   @override
   final MappableFields<ComponentThemesModel> fields = const {

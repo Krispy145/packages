@@ -9,6 +9,7 @@ part "outlined_border_model.mapper.dart";
 // part "outlined_border_model.freezed.dart";
 // part "outlined_border_model.g.dart";
 
+@MappableEnum(defaultValue: OutlinedBorderType.roundedRectangleBorder)
 enum OutlinedBorderType {
   circleBorder,
   stadiumBorder,
@@ -20,9 +21,8 @@ enum OutlinedBorderType {
   linearBorder,
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase)
+@MappableClass()
 class OutlinedBorderModel with OutlinedBorderModelMappable {
-  @MappableValue(OutlinedBorderType.roundedRectangleBorder)
   final OutlinedBorderType? type_enum_outlinedBorderType;
   @MappableValue(BorderSideModel())
   final BorderSideModel? side_borderSide;

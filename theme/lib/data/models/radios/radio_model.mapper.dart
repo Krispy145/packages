@@ -24,16 +24,15 @@ class RadioModelMapper extends ClassMapperBase<RadioModel> {
       v.fillColor_themeColorString;
   static const Field<RadioModel, String> _f$fillColor_themeColorString = Field(
       'fillColor_themeColorString', _$fillColor_themeColorString,
-      key: 'fill_color_theme_color_string', opt: true);
+      opt: true);
   static String? _$overlayColor_themeColorString(RadioModel v) =>
       v.overlayColor_themeColorString;
   static const Field<RadioModel, String> _f$overlayColor_themeColorString =
       Field('overlayColor_themeColorString', _$overlayColor_themeColorString,
-          key: 'overlay_color_theme_color_string', opt: true);
+          opt: true);
   static double? _$splashRadius_double(RadioModel v) => v.splashRadius_double;
-  static const Field<RadioModel, double> _f$splashRadius_double = Field(
-      'splashRadius_double', _$splashRadius_double,
-      key: 'splash_radius_double', opt: true);
+  static const Field<RadioModel, double> _f$splashRadius_double =
+      Field('splashRadius_double', _$splashRadius_double, opt: true);
 
   @override
   final MappableFields<RadioModel> fields = const {
