@@ -33,13 +33,13 @@ class CheckboxModel with CheckboxModelMappable {
 
   CheckboxThemeData asCheckboxThemeData({String? styleTypeName}) {
     return CheckboxThemeData(
-      fillColor: WidgetStateProperty.all(
+      fillColor: MaterialStateProperty.all(
         fillColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      checkColor: WidgetStateProperty.all(
+      checkColor: MaterialStateProperty.all(
         checkColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      overlayColor: WidgetStateProperty.all(
+      overlayColor: MaterialStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,

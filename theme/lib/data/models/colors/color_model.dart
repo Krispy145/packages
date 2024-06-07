@@ -182,6 +182,8 @@ class ColorModel with ColorModelMappable {
     return ColorScheme(
       brightness: Brightness.light,
       primary: primary!,
+      background: background ?? seedColor.background,
+      onBackground: onBackground ?? seedColor.onBackground,
       primaryContainer: primaryContainer ?? seedColor.primary,
       secondary: secondary ?? seedColor.secondary,
       secondaryContainer: secondaryContainer ?? seedColor.secondaryContainer,
@@ -191,7 +193,7 @@ class ColorModel with ColorModelMappable {
       onSecondary: onSecondary ?? seedColor.onSecondary,
       onSurface: onSurface ?? seedColor.onSurface,
       onError: onError,
-      surfaceContainerHighest: surfaceVariant ?? seedColor.surfaceContainerHighest,
+      surfaceVariant: surfaceVariant ?? seedColor.surfaceVariant,
       onErrorContainer: onErrorContainer ?? seedColor.onErrorContainer,
       onInverseSurface: onInverseSurface ?? seedColor.onInverseSurface,
       onPrimaryContainer: onPrimaryContainer ?? seedColor.onPrimaryContainer,

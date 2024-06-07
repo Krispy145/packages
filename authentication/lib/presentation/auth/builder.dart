@@ -146,28 +146,73 @@ class _AuthenticateView extends StatelessWidget {
               if (widget.showEmailAuth)
                 EmailAuthWidget(
                   repository: widget.repository,
-                  onSignInComplete: widget.onSuccess ?? (userModel) {},
-                  onSignUpComplete: widget.onSuccess ?? (userModel) {},
+                  onSignInComplete: (userModel) {
+                    if (widget.showSuccessSnackBar) {
+                      context.showSnackbar(
+                        configuration: SnackbarConfiguration.confirmation(
+                          title: "Successfully signed in",
+                        ),
+                      );
+                    }
+                    widget.onSuccess?.call(userModel);
+                  },
+                  onSignUpComplete: (userModel) {
+                    if (widget.showSuccessSnackBar) {
+                      context.showSnackbar(
+                        configuration: SnackbarConfiguration.confirmation(
+                          title: "Successfully signed in",
+                        ),
+                      );
+                    }
+                    widget.onSuccess?.call(userModel);
+                  },
                 ),
               if (widget.showPhoneAuth != null) ...[
                 if (widget.showPhoneAuth!.showSignIn)
                   PhoneAuthWidget(
                     repository: widget.repository,
                     authAction: AuthAction.signIn,
-                    onSuccess: widget.onSuccess ?? (userModel) {},
+                    onSuccess: (userModel) {
+                      if (widget.showSuccessSnackBar) {
+                        context.showSnackbar(
+                          configuration: SnackbarConfiguration.confirmation(
+                            title: "Successfully signed in",
+                          ),
+                        );
+                      }
+                      widget.onSuccess?.call(userModel);
+                    },
                   ),
                 if (widget.showPhoneAuth!.showSignUp)
                   PhoneAuthWidget(
                     repository: widget.repository,
                     authAction: AuthAction.signUp,
-                    onSuccess: widget.onSuccess ?? (userModel) {},
+                    onSuccess: (userModel) {
+                      if (widget.showSuccessSnackBar) {
+                        context.showSnackbar(
+                          configuration: SnackbarConfiguration.confirmation(
+                            title: "Successfully signed in",
+                          ),
+                        );
+                      }
+                      widget.onSuccess?.call(userModel);
+                    },
                   ),
               ],
               if (widget.socialTypes != null)
                 SocialButtons(
                   repository: widget.repository,
                   socialTypes: widget.socialTypes!,
-                  onSuccess: widget.onSuccess ?? (userModel) {},
+                  onSuccess: (userModel) {
+                    if (widget.showSuccessSnackBar) {
+                      context.showSnackbar(
+                        configuration: SnackbarConfiguration.confirmation(
+                          title: "Successfully signed in",
+                        ),
+                      );
+                    }
+                    widget.onSuccess?.call(userModel);
+                  },
                   socialButtonVariant: socialButtonVariant,
                 ),
             ],

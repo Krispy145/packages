@@ -11,13 +11,13 @@ part "permission_model.mapper.dart";
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class PermissionModel with PermissionModelMappable {
   final UUID id;
-  final String role;
+  // final String role;
   final Map<String, UserPermissionsModel> permissions;
   final Map<String, bool>? reviews;
 
   const PermissionModel({
     required this.id,
-    required this.role,
+    // required this.role,
     required this.permissions,
     this.reviews,
   });
@@ -27,7 +27,7 @@ class PermissionModel with PermissionModelMappable {
 
   static PermissionModel collectionViewer(String collectionName) => PermissionModel(
         id: generateUniqueId(),
-        role: "viewer",
+        // role: "viewer",
         permissions: {
           "$collectionName/all": UserPermissionsModel.viewExample,
         },
@@ -35,7 +35,7 @@ class PermissionModel with PermissionModelMappable {
 
   static const anonymous = PermissionModel(
     id: "",
-    role: "anonymous",
+    // role: "anonymous",
     permissions: {
       "users/all": UserPermissionsModel.viewExample,
       "shop/5MzfYGNX1U3ItKDYxRmE": UserPermissionsModel.adminExample,
@@ -44,7 +44,7 @@ class PermissionModel with PermissionModelMappable {
 
   static final permissionOne = PermissionModel(
     id: generateUniqueId(),
-    role: "admin",
+    // role: "admin",
     permissions: {
       "users/all": UserPermissionsModel.adminExample,
       "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
@@ -53,7 +53,7 @@ class PermissionModel with PermissionModelMappable {
 
   static final permissionTwo = PermissionModel(
     id: generateUniqueId(),
-    role: "admin",
+    // role: "admin",
     permissions: {
       "users/all": UserPermissionsModel.adminExample,
       "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
@@ -61,7 +61,7 @@ class PermissionModel with PermissionModelMappable {
   );
   static final permissionThree = PermissionModel(
     id: generateUniqueId(),
-    role: "admin",
+    // role: "admin",
     permissions: {
       "users/all": UserPermissionsModel.adminExample,
       "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,

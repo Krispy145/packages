@@ -29,19 +29,19 @@ class SwitchModel with SwitchModelMappable {
 
   SwitchThemeData asSwitchThemeData({String? styleTypeName}) {
     return SwitchThemeData(
-      thumbColor: WidgetStateProperty.all(
+      thumbColor: MaterialStateProperty.all(
         thumbColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackColor: WidgetStateProperty.all(
+      trackColor: MaterialStateProperty.all(
         trackColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackOutlineColor: WidgetStateProperty.all(
+      trackOutlineColor: MaterialStateProperty.all(
         trackOutlineColor_themeColorString?.toColor(
           styleType: styleTypeName,
         ),
       ),
-      trackOutlineWidth: WidgetStateProperty.all(trackOutlineWidth_double),
-      overlayColor: WidgetStateProperty.all(
+      trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth_double),
+      overlayColor: MaterialStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,

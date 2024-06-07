@@ -85,38 +85,38 @@ class ButtonModel with ButtonModelMappable {
 
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     return ButtonStyle(
-      textStyle: WidgetStateProperty.all(
+      textStyle: MaterialStateProperty.all(
         textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
-      backgroundColor: WidgetStateProperty.all(
+      backgroundColor: MaterialStateProperty.all(
         backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      foregroundColor: WidgetStateProperty.all(
+      foregroundColor: MaterialStateProperty.all(
         foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      overlayColor: WidgetStateProperty.all(
+      overlayColor: MaterialStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      shadowColor: WidgetStateProperty.all(
+      shadowColor: MaterialStateProperty.all(
         shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      elevation: WidgetStateProperty.all(elevation_double),
-      padding: WidgetStateProperty.all(
+      elevation: MaterialStateProperty.all(elevation_double),
+      padding: MaterialStateProperty.all(
         padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       ),
-      minimumSize: WidgetStateProperty.all(
+      minimumSize: MaterialStateProperty.all(
         minimumSize_size?.asSize(styleTypeName: styleTypeName),
       ),
-      fixedSize: WidgetStateProperty.all(
+      fixedSize: MaterialStateProperty.all(
         fixedSize_size?.asSize(styleTypeName: styleTypeName),
       ),
-      maximumSize: WidgetStateProperty.all(
+      maximumSize: MaterialStateProperty.all(
         maximumSize_size?.asSize(styleTypeName: styleTypeName),
       ),
-      side: WidgetStateProperty.all(
+      side: MaterialStateProperty.all(
         side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
       ),
-      shape: WidgetStateProperty.all(
+      shape: MaterialStateProperty.all(
         shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       ),
     );

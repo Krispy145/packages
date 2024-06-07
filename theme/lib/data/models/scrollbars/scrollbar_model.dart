@@ -40,17 +40,17 @@ class ScrollbarModel with ScrollbarModelMappable {
 
   ScrollbarThemeData asScrollbarThemeData({String? styleTypeName}) {
     return ScrollbarThemeData(
-      thumbVisibility: WidgetStateProperty.all(thumbVisibility_bool),
-      thickness: WidgetStateProperty.all(thickness_double),
-      trackVisibility: WidgetStateProperty.all(trackVisibility_bool),
+      thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
+      thickness: MaterialStateProperty.all(thickness_double),
+      trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
       radius: radius_double != null ? Radius.circular(radius_double!) : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
-      thumbColor: WidgetStateProperty.all(
+      thumbColor: MaterialStateProperty.all(
         thumbColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackColor: WidgetStateProperty.all(
+      trackColor: MaterialStateProperty.all(
         trackColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackBorderColor: WidgetStateProperty.all(
+      trackBorderColor: MaterialStateProperty.all(
         trackBorderColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       crossAxisMargin: crossAxisMargin_double,

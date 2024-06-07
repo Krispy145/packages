@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
@@ -53,54 +54,49 @@ class PaginatedListBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return Stack(
-          children: [
-            Padding(
-              padding: padding ?? EdgeInsets.zero,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (header != null) ...[
-                    header!,
-                    Sizes.m.spacer(),
-                  ],
-                  Expanded(
-                    child: _buildResults(),
-                  ),
-                ],
+    return Stack(
+      children: [
+        Padding(
+          padding: padding ?? EdgeInsets.zero,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (header != null) ...[
+                header!,
+                Sizes.m.spacer(),
+              ],
+              Expanded(
+                child: _buildResults(),
               ),
+            ],
+          ),
+        ),
+        SafeArea(
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: loadStateBuilder ??
+                  LoadStateBuilder(
+                    viewStore: store,
+                    loadedBuilder: (context) => const SizedBox.shrink(),
+                    errorBuilder: (context) {
+                      return IconButton(
+                        icon: const Icon(Icons.refresh),
+                        onPressed: store.refresh,
+                      );
+                    },
+                  ),
             ),
-            if (!store.isLoaded)
-              SafeArea(
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: loadStateBuilder ??
-                        LoadStateBuilder(
-                          viewStore: store,
-                          loadedBuilder: (context) => const SizedBox.shrink(),
-                          errorBuilder: (context) {
-                            return IconButton(
-                              icon: const Icon(Icons.refresh),
-                              onPressed: store.refresh,
-                            );
-                          },
-                        ),
-                  ),
-                ),
-              ),
-            if (stackedWidgets != null) ...stackedWidgets!,
-          ],
-        );
-      },
+          ),
+        ),
+        if (stackedWidgets != null) ...stackedWidgets!,
+      ],
     );
   }
 
   Widget _buildResults() {
-    if (canRefresh) {
+    if (canRefresh && !kIsWeb) {
       return RefreshIndicator(
         onRefresh: store.refresh,
         child: _buildView(),
@@ -159,7 +155,6 @@ class _BuildGridView<T> extends StatelessWidget {
             gridDelegate: gridDelegate,
             itemCount: store.results.length,
             controller: store.scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: itemBuilder,
           );
         }
@@ -193,7 +188,6 @@ class _BuildListView<T> extends StatelessWidget {
           return ListView.builder(
             itemCount: store.results.length,
             controller: store.scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: itemBuilder,
           );
         }

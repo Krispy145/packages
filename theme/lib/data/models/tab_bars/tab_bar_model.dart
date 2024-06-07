@@ -57,7 +57,7 @@ class TabBarModel with TabBarModelMappable {
         styleType: styleTypeName,
       ),
       unselectedLabelStyle: unselectedLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      overlayColor: WidgetStateProperty.all(
+      overlayColor: MaterialStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       tabAlignment: tabAlignment_enum_tabAlignment,

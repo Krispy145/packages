@@ -4,7 +4,6 @@ import "package:authentication/data/sources/review/_source.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:collection/collection.dart";
-import "package:get_it/get_it.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/source.dart";
@@ -14,13 +13,13 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q> {
+  final AuthenticationRepository authRepo;
   SecuredFirestoreDataSource(
     super.collectionName, {
+    required this.authRepo,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
   });
-
-  final authRepo = GetIt.instance.get<AuthenticationRepository>();
 
   late final FirestoreReviewDataSource<T> reviewDataSource = FirestoreReviewDataSource(
     collectionName,
@@ -29,7 +28,11 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
     convertDataTypeToMap: convertDataTypeToMap,
   );
 
-  List<Pair<String, UserPermissionsModel?>>? get currentPermissionModel => authRepo.currentPermissionModelStream.value?.permissions.entries.map((e) => Pair(e.key, e.value)).toList();
+  List<Pair<String, UserPermissionsModel?>>? get currentPermissionModel => authRepo.currentPermissionModelStream.value?.permissions.entries
+      .map(
+        (e) => Pair(e.key, e.value),
+      )
+      .toList();
 
   UserModel? get currentUser => authRepo.currentUserModelStream.value;
 

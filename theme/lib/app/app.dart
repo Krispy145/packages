@@ -58,10 +58,10 @@ class AppTheme {
 
   static String get styleType => _themeStore.styleType;
 
-  /// [colorStyles] is a getter that returns the [ColorSchemes] instance.
+  /// [colorStyles] is a getter that returns the [ColorSchemesModel] instance.
   static ColorSchemesModel colorStyles({String? styleTypeName}) => baseThemeModel?.colors[styleTypeName ?? styleType] ?? const ColorSchemesModel(dark: ColorModel(), light: ColorModel());
 
-  /// [textStyleTypes] is a getter that returns the [TextTypes] instance.
+  /// [textStyleTypes] is a getter that returns the [TextTypesModel] instance.
   static TextTypesModel? textStyleTypes({String? styleTypeName}) => baseThemeModel?.textStyles?[styleTypeName ?? styleType];
 
   /// [textTheme] is a getter that returns the [TextTheme] instance.

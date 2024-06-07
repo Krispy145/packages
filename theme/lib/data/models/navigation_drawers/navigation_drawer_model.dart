@@ -52,7 +52,7 @@ class NavigationDrawerModel with NavigationDrawerModelMappable {
         styleTypeName: styleTypeName,
       ),
       indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
-      labelTextStyle: WidgetStateProperty.all(
+      labelTextStyle: MaterialStateProperty.all(
         labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
     );

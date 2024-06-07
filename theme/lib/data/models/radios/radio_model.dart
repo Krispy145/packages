@@ -23,10 +23,10 @@ class RadioModel with RadioModelMappable {
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
-      fillColor: WidgetStateProperty.all(
+      fillColor: MaterialStateProperty.all(
         fillColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      overlayColor: WidgetStateProperty.all(
+      overlayColor: MaterialStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,

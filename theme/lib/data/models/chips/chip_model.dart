@@ -63,7 +63,7 @@ class ChipModel with ChipModelMappable {
   ChipThemeData asChipThemeData({String? styleTypeName}) {
     return ChipThemeData(
       color: color_themeColorString != null
-          ? WidgetStateProperty.all(
+          ? MaterialStateProperty.all(
               color_themeColorString?.toColor(styleType: styleTypeName),
             )
           : null,

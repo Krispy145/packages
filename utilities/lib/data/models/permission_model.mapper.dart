@@ -23,8 +23,6 @@ class PermissionModelMapper extends ClassMapperBase<PermissionModel> {
 
   static String _$id(PermissionModel v) => v.id;
   static const Field<PermissionModel, String> _f$id = Field('id', _$id);
-  static String _$role(PermissionModel v) => v.role;
-  static const Field<PermissionModel, String> _f$role = Field('role', _$role);
   static Map<String, UserPermissionsModel> _$permissions(PermissionModel v) =>
       v.permissions;
   static const Field<PermissionModel, Map<String, UserPermissionsModel>>
@@ -36,7 +34,6 @@ class PermissionModelMapper extends ClassMapperBase<PermissionModel> {
   @override
   final MappableFields<PermissionModel> fields = const {
     #id: _f$id,
-    #role: _f$role,
     #permissions: _f$permissions,
     #reviews: _f$reviews,
   };
@@ -44,7 +41,6 @@ class PermissionModelMapper extends ClassMapperBase<PermissionModel> {
   static PermissionModel _instantiate(DecodingData data) {
     return PermissionModel(
         id: data.dec(_f$id),
-        role: data.dec(_f$role),
         permissions: data.dec(_f$permissions),
         reviews: data.dec(_f$reviews));
   }
@@ -111,7 +107,6 @@ abstract class PermissionModelCopyWith<$R, $In extends PermissionModel, $Out>
   MapCopyWith<$R, String, bool, ObjectCopyWith<$R, bool, bool>>? get reviews;
   $R call(
       {String? id,
-      String? role,
       Map<String, UserPermissionsModel>? permissions,
       Map<String, bool>? reviews});
   PermissionModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -147,19 +142,16 @@ class _PermissionModelCopyWithImpl<$R, $Out>
   @override
   $R call(
           {String? id,
-          String? role,
           Map<String, UserPermissionsModel>? permissions,
           Object? reviews = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
-        if (role != null) #role: role,
         if (permissions != null) #permissions: permissions,
         if (reviews != $none) #reviews: reviews
       }));
   @override
   PermissionModel $make(CopyWithData data) => PermissionModel(
       id: data.get(#id, or: $value.id),
-      role: data.get(#role, or: $value.role),
       permissions: data.get(#permissions, or: $value.permissions),
       reviews: data.get(#reviews, or: $value.reviews));
 

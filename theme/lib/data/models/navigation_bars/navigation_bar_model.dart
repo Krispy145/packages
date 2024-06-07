@@ -48,7 +48,7 @@ class NavigationBarModel with NavigationBarModelMappable {
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
         styleTypeName: styleTypeName,
       ),
-      labelTextStyle: WidgetStateProperty.all(
+      labelTextStyle: MaterialStateProperty.all(
         labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
       labelBehavior: labelBehavior_enum_navigationDestinationLabelBehavior,
