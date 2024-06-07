@@ -32,7 +32,6 @@ class AuthParams {
   String? password;
   String? phoneNumber;
   String? displayName;
-  String? role;
   String? photoUrl;
   String? accessToken;
   String? idToken;
@@ -49,7 +48,6 @@ class AuthParams {
     this.password,
     this.phoneNumber,
     this.displayName,
-    this.role,
     this.photoUrl,
     this.accessToken,
     this.idToken,
@@ -111,14 +109,12 @@ class AuthParams {
     this.photoUrl,
     this.updatedAt,
   })  : authType = AuthType.empty,
-        authStatus = AuthStatus.unauthenticated,
-        role = "user";
+        authStatus = AuthStatus.unauthenticated;
 
   AuthParams.fromUserModel({
     required this.id,
     required this.email,
     required this.displayName,
-    required this.role,
     required this.photoUrl,
     required this.phoneNumber,
     required this.accessToken,
@@ -135,7 +131,6 @@ class AuthParams {
       id: "defaultId",
       email: email,
       displayName: displayName,
-      role: role,
       photoUrl: photoUrl,
       phoneNumber: phoneNumber,
       accessToken: accessToken,
@@ -168,7 +163,6 @@ class AuthParams {
       password: password ?? this.password,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       displayName: displayName ?? this.displayName,
-      role: role ?? this.role,
       photoUrl: photoUrl ?? this.photoUrl,
       accessToken: accessToken ?? this.accessToken,
       idToken: idToken ?? this.idToken,
@@ -188,7 +182,6 @@ class AuthParams {
       "password": password,
       "phoneNumber": phoneNumber,
       "displayName": displayName,
-      "role": role,
       "photoUrl": photoUrl,
       "accessToken": accessToken,
       "idToken": idToken,
@@ -208,7 +201,6 @@ class AuthParams {
       password: map["password"] as String?,
       phoneNumber: map["phoneNumber"] as String?,
       displayName: map["displayName"] as String?,
-      role: map["role"] as String?,
       photoUrl: map["photoUrl"] as String?,
       accessToken: map["accessToken"] as String?,
       idToken: map["idToken"] as String?,
@@ -227,7 +219,7 @@ class AuthParams {
 
   @override
   String toString() {
-    return "AuthParams(id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, role: $role, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)";
+    return "AuthParams(id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)";
   }
 
   @override
@@ -240,7 +232,6 @@ class AuthParams {
         other.password == password &&
         other.phoneNumber == phoneNumber &&
         other.displayName == displayName &&
-        other.role == role &&
         other.photoUrl == photoUrl &&
         other.accessToken == accessToken &&
         other.idToken == idToken &&
@@ -259,7 +250,6 @@ class AuthParams {
         password.hashCode ^
         phoneNumber.hashCode ^
         displayName.hashCode ^
-        role.hashCode ^
         photoUrl.hashCode ^
         accessToken.hashCode ^
         idToken.hashCode ^

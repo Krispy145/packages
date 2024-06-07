@@ -4,6 +4,7 @@ import "package:authentication/data/sources/review/_source.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:collection/collection.dart";
+import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/source.dart";
@@ -28,7 +29,9 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
     convertDataTypeToMap: convertDataTypeToMap,
   );
 
-  List<Pair<String, UserPermissionsModel?>>? get currentPermissionModel => authRepo.currentPermissionModelStream.value?.permissions.entries
+  PermissionModel? get currentPermissionModel => authRepo.currentPermissionModelStream.value;
+
+  List<Pair<String, UserPermissionsModel?>>? get currentUserPermissionModel => authRepo.currentPermissionModelStream.value?.permissions.entries
       .map(
         (e) => Pair(e.key, e.value),
       )
@@ -37,13 +40,13 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
   UserModel? get currentUser => authRepo.currentUserModelStream.value;
 
   Future<List<Pair<String, PermissionLevel>>> checkPermissionLevel(CRUD requestType) async {
-    if (currentPermissionModel == null) {
+    if (currentUserPermissionModel == null) {
       await getUserPermissions();
     }
-    if (currentUser != null && currentUser?.role == "superAdmin") {
+    if (currentUser != null && currentPermissionModel?.role == "superAdmin") {
       return [Pair("$collectionName/all", PermissionLevel.yes)];
     }
-    final results = currentPermissionModel?.map((path) {
+    final results = currentUserPermissionModel?.map((path) {
       switch (requestType) {
         case CRUD.create:
           return Pair(path.first, path.second?.canCreate ?? PermissionLevel.no);

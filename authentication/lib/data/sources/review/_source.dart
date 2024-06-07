@@ -1,10 +1,10 @@
 library data.sources.review;
 
 import "package:authentication/data/models/review_model.dart";
-import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
+import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/sources/dummy/paginated.dart";
 import "package:utilities/data/sources/firestore/paginated.dart";
 import "package:utilities/data/sources/firestore/source.dart";
@@ -38,9 +38,9 @@ sealed class ReviewDataSource<Resp extends ResponseModel, T> {
     required this.convertDataTypeToMap,
   });
 
-  UserModel? get currentUser => authRepo.currentUserModelStream.value;
+  PermissionModel? get currentUserPermissions => authRepo.currentPermissionModelStream.value;
 
-  bool get _canReview => authRepo.currentPermissionModelStream.value?.reviews?[sourcePath] ?? currentUser?.role == "superAdmin";
+  bool get _canReview => authRepo.currentPermissionModelStream.value?.reviews?[sourcePath] ?? currentUserPermissions?.role == "superAdmin";
 
   Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecific(CRUD crud);
 
