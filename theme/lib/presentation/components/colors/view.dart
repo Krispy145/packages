@@ -26,7 +26,7 @@ class ColorsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpandingPanelViewBuilder.right(
-      widthPercentage: 0.5,
+      widthPercentage: 0.45,
       panelViewBuilder: (context) {
         return Observer(
           builder: (context) {
@@ -36,13 +36,19 @@ class ColorsView extends StatelessWidget {
               title: selectedColor.key,
               onValueChanged: (color) {
                 AppLogger.print(
-                    "on value changed: ${color.value}", [ThemeLoggers.colors],);
+                  "on value changed: ${color.value}",
+                  [ThemeLoggers.colors],
+                );
                 store.selectedColor = color;
                 ThemeChanger.changeCurrentThemeStyle(
-                    colorModel: store.setColorModel(),);
+                  colorModel: store.setColorModel(),
+                );
               },
             );
-            return ColorFormField(store: colorFormFieldStore);
+            return ColorFormField(
+              showTitle: false,
+              store: colorFormFieldStore,
+            );
           },
         );
       },
@@ -59,11 +65,10 @@ class ColorsView extends StatelessWidget {
                     crossAxisSpacing: Sizes.m.points(context),
                     mainAxisSpacing: Sizes.m.points(context),
                   ),
-                  children: AppTheme.currentColorModel!.toJson().entries.map(
+                  children: AppTheme.currentColorModel!.toMap().entries.map(
                     (e) {
                       return ColorCircle(
-                        color: const ColorConverter().fromJson(e.value) ??
-                            Colors.transparent,
+                        color: const ColorMapper().decode(e.value),
                         onTap: () {
                           store.setSelectedColor(e);
                           if (!panelStore.isOpen) {

@@ -1,6 +1,6 @@
 import "package:supabase_flutter/supabase_flutter.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
-import "package:utilities/data_sources/supabase/source.dart";
+import "package:utilities/data/sources/supabase/source.dart";
 
 import "_source.dart";
 

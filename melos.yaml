@@ -14,10 +14,10 @@ packages:
   - maps
   - forms
   - socials
- - youtube
- - contacts
- - youtube
- # MELOS_PACKAGE_LIST_END
+  - youtube
+  - contacts
+  - youtube
+  # MELOS_PACKAGE_LIST_END
 
 scripts:
   analyze:

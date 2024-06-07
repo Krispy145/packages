@@ -1,4 +1,4 @@
-import 'package:utilities/data_sources/paginated.dart';
+import 'package:utilities/data/sources/paginated.dart';
 import 'package:utilities/helpers/tuples.dart';
 import 'package:youtube/data/models/playlist_item_model.dart';
 import 'package:youtube/data/sources/playlist_item/_source.dart';

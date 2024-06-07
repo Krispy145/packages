@@ -5,8 +5,13 @@ import "package:forms/presentation/components/base/form_field.dart";
 import "package:forms/presentation/components/double/store.dart";
 import "package:utilities/sizes/spacers.dart";
 
+import "../enum.dart";
+
 class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
-  const DoubleFormField({super.key, required super.store});
+  const DoubleFormField({
+    super.key,
+    required super.store,
+  }) : super(type: FormFieldType.doubleField);
 
   @override
   Widget buildField(BuildContext context) {

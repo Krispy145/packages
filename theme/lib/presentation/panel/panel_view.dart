@@ -25,8 +25,7 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   final Widget Function(BuildContext context) panelViewBuilder;
 
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel)
-      viewBuilder;
+  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel) viewBuilder;
 
   /// [type] is the [ExpandingPanelViewType] of the panel view.
   final ExpandingPanelViewType type;
@@ -69,20 +68,17 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [store] is the [ExpandingPanelViewStore] for the panel view.
   final ExpandingPanelViewStore store = ExpandingPanelViewStore();
 
-  Color? get _onSecondaryContainer =>
-      AppTheme.currentColorModel?.onSecondaryContainer;
+  Color? get _onSecondaryContainer => AppTheme.currentColorModel?.onSecondaryContainer;
 
   double _buildPanelViewWidth(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.left ||
-        type == ExpandingPanelViewType.right) {
+    if (type == ExpandingPanelViewType.left || type == ExpandingPanelViewType.right) {
       return context.screenWidth * percentage;
     }
     return context.screenWidth;
   }
 
   double _buildPanelViewHeight(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.top ||
-        type == ExpandingPanelViewType.bottom) {
+    if (type == ExpandingPanelViewType.top || type == ExpandingPanelViewType.bottom) {
       return context.screenHeight * percentage;
     }
     return context.screenHeight;
@@ -140,9 +136,9 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   Alignment _buildPanelAlignment() {
     switch (type) {
       case ExpandingPanelViewType.left:
-        return Alignment.centerLeft;
+        return Alignment.topLeft;
       case ExpandingPanelViewType.right:
-        return Alignment.centerRight;
+        return Alignment.topRight;
       case ExpandingPanelViewType.top:
         return Alignment.topCenter;
       case ExpandingPanelViewType.bottom:
@@ -154,20 +150,25 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
     if (!store.isOpen) {
       return const SizedBox.shrink(); //_buildPanelChild(context);
     }
-    return Stack(
-      children: [
-        _buildPanelChild(context),
-        Align(
-          alignment: _buildPanelAlignment(),
-          child: IconButton(
-            icon: Icon(
-              _buildPanelViewIcon(),
-              color: _onSecondaryContainer,
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: _onSecondaryContainer,
+      ),
+      child: Column(
+        children: [
+          Align(
+            alignment: _buildPanelAlignment(),
+            child: IconButton(
+              icon: Icon(
+                _buildPanelViewIcon(),
+                color: AppTheme.currentColorModel?.primary,
+              ),
+              onPressed: store.toggle,
             ),
-            onPressed: store.toggle,
           ),
-        ),
-      ],
+          _buildPanelChild(context),
+        ],
+      ),
     );
 
     // return Column(
@@ -184,23 +185,15 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
     // );
   }
 
-  AnimatedCrossFade _buildPanelChild(BuildContext context) {
+  Widget _buildPanelChild(BuildContext context) {
     return AnimatedCrossFade(
       duration: const Duration(milliseconds: 300),
       firstCurve: Curves.easeInOut,
       secondCurve: Curves.easeInOut,
-      crossFadeState:
-          store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-      firstChild: Container(
-        decoration: BoxDecoration(
-          color: _onSecondaryContainer,
-        ),
-        width: _buildPanelViewWidth(context, widthPercentage),
-        height: _buildPanelViewHeight(context, widthPercentage),
-        child: GestureDetector(
-          onDoubleTap: store.toggle,
-          child: panelViewBuilder(context),
-        ),
+      crossFadeState: store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      firstChild: GestureDetector(
+        onDoubleTap: store.toggle,
+        child: panelViewBuilder(context),
       ),
       secondChild: SizedBox(
         width: _buildPanelViewWidth(context, 0.05),

@@ -1,9 +1,8 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
-import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
 import "package:utilities/sizes/spacers.dart";
-import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
 enum PaginatedResultsViewType {
@@ -55,7 +54,6 @@ class PaginatedListBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (slivers) return _buildResults();
     return Stack(
       children: [
         Padding(
@@ -83,11 +81,6 @@ class PaginatedListBuilder<T> extends StatelessWidget {
                     viewStore: store,
                     loadedBuilder: (context) => const SizedBox.shrink(),
                     errorBuilder: (context) {
-                      context.showSnackbar(
-                        configuration: SnackbarConfiguration.error(
-                          title: "Error Loading Results",
-                        ),
-                      );
                       return IconButton(
                         icon: const Icon(Icons.refresh),
                         onPressed: store.refresh,
@@ -103,7 +96,7 @@ class PaginatedListBuilder<T> extends StatelessWidget {
   }
 
   Widget _buildResults() {
-    if (canRefresh) {
+    if (canRefresh && !kIsWeb) {
       return RefreshIndicator(
         onRefresh: store.refresh,
         child: _buildView(),
@@ -142,7 +135,7 @@ class _BuildGridView<T> extends StatelessWidget {
   });
 
   final PaginatedListStore<T> store;
-  final Widget? Function(BuildContext p1, int p2) itemBuilder;
+  final Widget? Function(BuildContext context, int index) itemBuilder;
   final bool slivers;
 
   @override
@@ -162,7 +155,6 @@ class _BuildGridView<T> extends StatelessWidget {
             gridDelegate: gridDelegate,
             itemCount: store.results.length,
             controller: store.scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: itemBuilder,
           );
         }
@@ -180,7 +172,7 @@ class _BuildListView<T> extends StatelessWidget {
   });
 
   final PaginatedListStore<T> store;
-  final Widget? Function(BuildContext p1, int p2) itemBuilder;
+  final Widget? Function(BuildContext context, int index) itemBuilder;
   final bool slivers;
 
   @override
@@ -196,7 +188,6 @@ class _BuildListView<T> extends StatelessWidget {
           return ListView.builder(
             itemCount: store.results.length,
             controller: store.scrollController,
-            physics: const AlwaysScrollableScrollPhysics(),
             itemBuilder: itemBuilder,
           );
         }

@@ -1,7 +1,7 @@
 name: deeplinks
 description: "A new Flutter package project."
-version: 0.0.1+2
-homepage: null
+version: 0.0.2
+homepage:
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 environment:

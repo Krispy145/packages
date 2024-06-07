@@ -1,6 +1,6 @@
 import "package:mobx/mobx.dart";
 import "package:theme/app/app.dart";
-import "package:theme/data/models/text/text_types.dart";
+import "package:theme/data/models/text/text_types_model.dart";
 import "package:theme/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
 
@@ -14,7 +14,7 @@ abstract class _TextTypesStore with Store {
   /// [selectedTextType] is a property that stores the selected color from the current scheme.
   @observable
   // ignore: prefer_const_constructors
-  Map<String, dynamic>? selectedTextType = AppTheme.textStyleTypes()?.toJson();
+  Map<String, dynamic>? selectedTextType = AppTheme.textStyleTypes()?.toMap();
 
   // @observable
   // Map<String, dynamic> defaultTextType = TextTypes.defaultTextTypes().toJson();
@@ -36,21 +36,28 @@ abstract class _TextTypesStore with Store {
   void setSelectedTextType(Map<String, dynamic> value) {
     selectedTextType = value;
     AppLogger.print(
-        "selectedTextType: $selectedTextType", [ThemeLoggers.textStyles],);
+      "selectedTextType: $selectedTextType",
+      [ThemeLoggers.textStyles],
+    );
   }
 
   /// [setTextStyleModel] is a method that sets the current model.
   @action
-  TextTypes? setTextStyleModel(
-      String type, String size, String key, dynamic value,) {
+  TextTypesModel? setTextStyleModel(
+    String type,
+    String size,
+    String key,
+    dynamic value,
+  ) {
     try {
       selectedTextType![type][size][key] = value;
-      return TextTypes.fromJson(selectedTextType!);
+      return TextTypesModel.fromMap(selectedTextType!);
     } catch (e, stackTrace) {
       AppLogger.print(
-          "selectedTextType: $selectedTextType\nStackTrace: $stackTrace",
-          [ThemeLoggers.textStyles],
-          type: LoggerType.error,);
+        "selectedTextType: $selectedTextType\nStackTrace: $stackTrace",
+        [ThemeLoggers.textStyles],
+        type: LoggerType.error,
+      );
     }
     return null;
   }

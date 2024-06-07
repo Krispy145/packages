@@ -1,5 +1,5 @@
 // import 'package:firebase_core/firebase_core.dart';
-// import 'package:utilities/data_sources/remote/firestore.dart';
+// import 'package:utilities/data/sources/remote/firestore.dart';
 
 // import '_source.dart';
 

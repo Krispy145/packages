@@ -1,32 +1,21 @@
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
-import "package:authentication/data/repositories/_repository.dart";
-import "package:authentication/data/repositories/api_auth.repository.dart";
-import "package:authentication/data/repositories/firebase_auth.repository.dart";
-import "package:authentication/data/repositories/supabase_auth.repository.dart";
+import "package:authentication/data/repositories/auth/_repository.dart";
+import "package:authentication/data/repositories/auth/api.repository.dart";
+import "package:authentication/data/repositories/auth/firebase.repository.dart";
+import "package:authentication/data/repositories/auth/supabase.repository.dart";
+import "package:authentication/data/repositories/permission.repository.dart";
 import "package:authentication/data/repositories/user.repository.dart";
-import "package:authentication/data/source/_source.dart";
-import "package:authentication/data/source/api_user.source.dart";
-import "package:authentication/data/source/firestore_user.source.dart";
-import "package:authentication/data/source/supabase_user.source.dart";
+import "package:authentication/data/sources/user/_source.dart";
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_facebook_auth/flutter_facebook_auth.dart";
 import "package:rxdart/rxdart.dart";
+import "package:utilities/data/models/permission_model.dart";
+import "package:utilities/data/models/user_permissions_model.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
-
-/// [AuthSourceTypes] is an enum that defines the different types of data sources.
-enum AuthSourceTypes {
-  /// [api] is the api data source.
-  api,
-
-  /// [firebase] is the firestore data source.
-  firebase,
-
-  /// [supabase] is the supabase data source.
-  supabase,
-}
 
 /// [AuthenticationRepository] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
 /// It also defines the different types of data sources.
@@ -34,7 +23,7 @@ enum AuthSourceTypes {
 /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
 class AuthenticationRepository<T extends UserModel> {
   final String? baseUrl;
-  final AuthSourceTypes authSource;
+  // final AuthSourceTypes authSource;
 
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
@@ -46,15 +35,18 @@ class AuthenticationRepository<T extends UserModel> {
   /// It is used to call the different data sources' methods.
   /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
   final UserDataSourceTypes userSource;
+  final bool hasPermissions;
+
+  /// [authSource] is an instance of [AuthSourceTypes] interface.
+  AuthSourceTypes authSource;
 
   /// [facebookAppId] is the facebook app id used for facebook authentication,
   /// [required] for web.
   final String? facebookAppId;
 
-  /// [currentUserModelStream] is the current user model stream.
-  BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.currentUserModelSubject;
+  BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.userModelStream;
 
-  T? get currentUserModel => _authenticationDataRepository.currentUserModelSubject.value;
+  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
 
   bool isUserAuthenticated = false;
 
@@ -71,6 +63,7 @@ class AuthenticationRepository<T extends UserModel> {
     required this.baseUrl,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.hasPermissions,
     this.userSource = UserDataSourceTypes.api,
     this.facebookAppId,
   }) : authSource = AuthSourceTypes.api {
@@ -84,6 +77,7 @@ class AuthenticationRepository<T extends UserModel> {
   AuthenticationRepository.firebase({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.hasPermissions,
     this.userSource = UserDataSourceTypes.firestore,
     this.facebookAppId,
   })  : baseUrl = null,
@@ -98,6 +92,7 @@ class AuthenticationRepository<T extends UserModel> {
   AuthenticationRepository.supabase({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.hasPermissions,
     this.userSource = UserDataSourceTypes.supabase,
     this.facebookAppId,
   })  : baseUrl = null,
@@ -114,6 +109,14 @@ class AuthenticationRepository<T extends UserModel> {
     convertDataTypeToMap: convertDataTypeToMap,
   );
 
+  void setPermissionModel(List<Pair<String, UserPermissionsModel?>> permissions) {
+    final permissionsMap = <String, UserPermissionsModel>{};
+    for (final element in permissions) {
+      permissionsMap[element.first] = element.second!;
+    }
+    currentPermissionModelStream.add(currentPermissionModelStream.value?.copyWith(permissions: permissionsMap));
+  }
+
   late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api
       ? ApiAuthDataRepository(
           baseUrl: baseUrl!,
@@ -122,6 +125,7 @@ class AuthenticationRepository<T extends UserModel> {
         )
       : authSource == AuthSourceTypes.firebase
           ? FirebaseAuthDataRepository(
+              hasPermission: hasPermissions,
               userDataRepository: userDataRepository,
               convertDataTypeFromMap: convertDataTypeFromMap,
               convertDataTypeToMap: convertDataTypeToMap,
@@ -170,8 +174,18 @@ class AuthenticationRepository<T extends UserModel> {
       final _currentResponse = convertDataTypeToMap(changedUserModel!);
       _currentResponse["last_login_at"] = DateTime.now();
       changedUserModel = convertDataTypeFromMap(_currentResponse);
-      await userDataRepository.updateUser(changedUserModel);
-      currentUserModelStream.add(changedUserModel);
+      await userDataRepository.updateUserModel(userModel: changedUserModel);
+      try {
+        await _authenticationDataRepository.updateUserModel(changedUserModel);
+      } catch (e) {
+        AppLogger.print(
+          "Error in updating user model: $e, trying to add user model",
+          [AuthenticationLoggers.authentication],
+          type: LoggerType.error,
+        );
+        await userDataRepository.addUserModel(userModel: changedUserModel);
+      }
+      await _setPermissions(changedUserModel);
       return changedUserModel;
     } catch (e) {
       AppLogger.print(
@@ -186,11 +200,11 @@ class AuthenticationRepository<T extends UserModel> {
   /// [signOut] signs out the user.
   Future<bool> signOut() async {
     AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
-    final _currentResponse = convertDataTypeToMap(currentUserModel!);
+    final _currentResponse = convertDataTypeToMap(currentUserModelStream.value!);
     _currentResponse["last_logout_at"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
-    await userDataRepository.updateUser(changedUserModel);
+    await userDataRepository.updateUserModel(userModel: changedUserModel);
     return _authenticationDataRepository.signOut();
   }
 
@@ -200,15 +214,19 @@ class AuthenticationRepository<T extends UserModel> {
       "signUp attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
     );
-    final _currentResponse = convertDataTypeToMap(currentUserModel!);
-    _currentResponse["last_login_at"] = DateTime.now();
-    _currentResponse["status"] = AuthStatus.authenticated;
-    final changedUserModel = convertDataTypeFromMap(_currentResponse);
-    await userDataRepository.updateUser(changedUserModel);
-    return _authenticationDataRepository.signUpWithEmail(
+
+    final result = await _authenticationDataRepository.signUpWithEmail(
       params.email!,
       params.password!,
     );
+    if (result != null) {
+      final _currentResponse = result.toMap();
+      _currentResponse["last_login_at"] = DateTime.now();
+      _currentResponse["status"] = AuthStatus.authenticated;
+      final changedUserModel = convertDataTypeFromMap(_currentResponse);
+      await userDataRepository.updateUserModel(userModel: changedUserModel);
+    }
+    return result;
   }
 
   /// [params] refreshes the user's token.
@@ -217,7 +235,7 @@ class AuthenticationRepository<T extends UserModel> {
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.updateUser(currentUserModel!);
+    await userDataRepository.updateUserModel(userModel: currentUserModelStream.value!);
     return _authenticationDataRepository.reauthenticate(params);
   }
 
@@ -227,21 +245,44 @@ class AuthenticationRepository<T extends UserModel> {
       "deleteAccount attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.deleteUser(id: userId);
+    await userDataRepository.deleteUserModel(id: userId);
     return _authenticationDataRepository.deleteAccount(userId);
   }
 
-  void _initStreams() {
-    currentUserModelStream.listen((value) {
-      if (value?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
-        AppLogger.print("User is authenticated", [AuthenticationLoggers.authentication]);
-        isUserAuthenticated = true;
-      }
-      if (value?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
-        AppLogger.print("User is unauthenticated", [AuthenticationLoggers.authentication]);
-        isUserAuthenticated = false;
-      }
-    });
+  Future<void> _initStreams() async {
+    try {
+      currentUserModelStream.listen((event) async {
+        if (event?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
+          AppLogger.print("User is authenticated", [AuthenticationLoggers.authentication]);
+          isUserAuthenticated = true;
+          if (event != null) {
+            await _setPermissions(event);
+          }
+        } else if (event?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
+          AppLogger.print("User is unauthenticated", [AuthenticationLoggers.authentication]);
+
+          isUserAuthenticated = false;
+        }
+      });
+    } catch (e) {
+      AppLogger.print("Error in initStreams: $e", [AuthenticationLoggers.authentication]);
+    }
+  }
+
+  Future<void> _setPermissions(UserModel changedUserModel) async {
+    if (hasPermissions) {
+      final permissionDataRepository = PermissionDataRepository(
+        userDataSourceType: userSource,
+        userId: changedUserModel.id,
+      );
+      currentPermissionModelStream.listen((event) async {
+        if (event == null) {
+          await permissionDataRepository.getPermissionModel().then((value) {
+            currentPermissionModelStream.add(value);
+          });
+        }
+      });
+    }
   }
 
   Future<void> _initializeFacebookForWeb() async {

@@ -1,4 +1,4 @@
-// import "package:utilities/data_sources/local/dummy_data.dart";
+// import "package:utilities/data/sources/local/dummy_data.dart";
 
 // import "../../models/instagram/user_model.dart";
 // import "_source.dart";

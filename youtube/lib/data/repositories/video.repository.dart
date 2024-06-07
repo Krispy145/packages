@@ -1,4 +1,4 @@
-import 'package:utilities/data_sources/paginated.dart';
+import 'package:utilities/data/sources/paginated.dart';
 import 'package:utilities/helpers/tuples.dart';
 
 import '/data/models/video_model.dart';

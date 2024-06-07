@@ -1,24 +1,23 @@
 import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 
 abstract class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
   final S store;
   final Widget? header;
-  final bool isEditing;
   final String updateButtonTitle;
   final String createButtonTitle;
   final EdgeInsets? scrollViewPadding;
-  final void Function(bool)? onBack;
+  final void Function(RequestResponse? requestResponse)? onBack;
   const FormsModelView({
     super.key,
     required this.store,
-    this.isEditing = false,
     this.header,
     this.scrollViewPadding,
     this.updateButtonTitle = "Update",
@@ -26,12 +25,14 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
     this.onBack,
   });
 
-  bool get isUpdating => isEditing && store.value != null;
-
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
+    return LoadStateBuilder(
+      viewStore: store,
+      errorBuilder: (context) => Center(
+        child: Text("Error loading ${T.toString().replaceAll("?", "")}"),
+      ),
+      loadedBuilder: (context) {
         return Stack(
           children: [
             Column(
@@ -55,7 +56,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
                 Sizes.m.spacer(),
                 ElevatedButton(
                   onPressed: () => _showConfirmationDialog(context),
-                  child: Text(isUpdating ? updateButtonTitle : createButtonTitle),
+                  child: Text(store.isAdding ? createButtonTitle : updateButtonTitle),
                 ),
               ],
             ),
@@ -71,7 +72,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
   List<Widget>? stackedWidgets(BuildContext context);
 
   Future<void> _showConfirmationDialog(BuildContext context) async {
-    await showDialog<bool>(
+    await showDialog<RequestResponse?>(
       context: context,
       builder: (context) {
         return AlertDialog(
@@ -83,9 +84,8 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
               child: const Text("Cancel"),
             ),
             TextButton(
-              onPressed: () {
-                store.saveValue();
-                Navigator.of(context).pop(true);
+              onPressed: () async {
+                await store.saveValue().then((value) => Navigator.of(context).pop(value));
               },
               child: const Text("Submit"),
             ),
@@ -97,23 +97,39 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
       if (result == null) {
         return context.showSnackbar(
           configuration: SnackbarConfiguration.error(
-            title: 'Error ${isUpdating ? 'updating' : 'creating'} $modelType',
+            title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
           ),
         );
       }
-      if (result == false) {
-        return context.showSnackbar(
-          configuration: SnackbarConfiguration.warning(
-            title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of $modelType',
-          ),
-        );
+      switch (result) {
+        case RequestResponse.failure:
+          return context.showSnackbar(
+            configuration: SnackbarConfiguration.error(
+              title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
+            ),
+          );
+        case RequestResponse.denied:
+          context.showSnackbar(
+            configuration: SnackbarConfiguration.warning(
+              title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
+            ),
+          );
+          return onBack?.call(result);
+        case RequestResponse.success:
+          context.showSnackbar(
+            configuration: SnackbarConfiguration.confirmation(
+              title: "$modelType ${store.isAdding ? "created" : "updated"} successfully",
+            ),
+          );
+          return onBack?.call(result);
+        case RequestResponse.underReview:
+          context.showSnackbar(
+            configuration: SnackbarConfiguration.information(
+              title: "create $modelType sent for review",
+            ),
+          );
+          return onBack?.call(result);
       }
-      context.showSnackbar(
-        configuration: SnackbarConfiguration.confirmation(
-          title: '${isUpdating ? 'Updated' : 'Created'} $modelType',
-        ),
-      );
-      onBack?.call(result);
     });
   }
 }

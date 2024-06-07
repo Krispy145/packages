@@ -1,4 +1,4 @@
-import 'package:utilities/data_sources/paginated.dart';
+import 'package:utilities/data/sources/paginated.dart';
 import 'package:youtube/data/enums/video_rating.dart';
 import 'package:youtube/data/models/video_model.dart';
 import 'package:youtube/data/repositories/video.repository.dart';

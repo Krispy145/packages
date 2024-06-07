@@ -9,6 +9,14 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
+  Computed<bool>? _$isAddingComputed;
+
+  @override
+  bool get isAdding =>
+      (_$isAddingComputed ??= Computed<bool>(() => super.isAdding,
+              name: '_FormsModelStore.isAdding'))
+          .value;
+
   late final _$valueAtom =
       Atom(name: '_FormsModelStore.value', context: context);
 
@@ -23,6 +31,14 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
     _$valueAtom.reportWrite(value, super.value, () {
       super.value = value;
     });
+  }
+
+  late final _$saveValueAsyncAction =
+      AsyncAction('_FormsModelStore.saveValue', context: context);
+
+  @override
+  Future<RequestResponse> saveValue() {
+    return _$saveValueAsyncAction.run(() => super.saveValue());
   }
 
   late final _$_FormsModelStoreActionController =
@@ -40,20 +56,10 @@ mixin _$FormsModelStore<T> on _FormsModelStore<T>, Store {
   }
 
   @override
-  void saveValue() {
-    final _$actionInfo = _$_FormsModelStoreActionController.startAction(
-        name: '_FormsModelStore.saveValue');
-    try {
-      return super.saveValue();
-    } finally {
-      _$_FormsModelStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-value: ${value}
+value: ${value},
+isAdding: ${isAdding}
     ''';
   }
 }

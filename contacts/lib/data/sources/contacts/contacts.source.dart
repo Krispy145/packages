@@ -1,7 +1,8 @@
 import 'package:contacts/utils/loggers.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import "package:utilities/data/models/basic_search_query_model.dart";
-import 'package:utilities/data_sources/source.dart';
+import 'package:utilities/data/sources/source.dart';
+import 'package:utilities/helpers/tuples.dart';
 import 'package:utilities/logger/logger.dart';
 
 /// [ContactsDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
@@ -76,41 +77,45 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   }
 
   @override
-  Future<Contact?> add(Contact value) async {
+  Future<Pair<RequestResponse, Contact?>> add(Contact value) async {
     await FlutterContacts.requestPermission();
     final contact = await FlutterContacts.openExternalInsert();
-    return contact;
+    return Pair(RequestResponse.success, contact);
   }
 
   @override
-  Future<void> addAll(List<Contact> values) async {
+  Future<RequestResponse> addAll(List<Contact> values) async {
     await FlutterContacts.requestPermission();
     await Future.forEach(values, (contact) async => await FlutterContacts.insertContact(contact));
+    return RequestResponse.success;
   }
   //
   // UPDATE
   //
 
-  Future<void> updateExternally(String id) async {
+  Future<RequestResponse> updateExternally(String id) async {
     await FlutterContacts.requestPermission();
     await FlutterContacts.openExternalEdit(id);
+    return RequestResponse.success;
   }
 
   /// [update] update the contact with the given id
   @override
-  Future<void> update(String id, Contact contact) async {
+  Future<RequestResponse> update(String id, Contact contact) async {
     await FlutterContacts.requestPermission();
     assert(contact.id == id, "The id of the contact to update must be the same as the id in the contact");
     await contact.update();
+    return RequestResponse.success;
   }
 
   @override
-  Future<void> updateAll(Map<String, Contact> values) async {
+  Future<RequestResponse> updateAll(Map<String, Contact> values) async {
     await FlutterContacts.requestPermission();
     await Future.forEach(values.entries, (entry) async {
       assert(entry.key == entry.value.id, "The id of the contact to update must be the same as the id in the contact");
       await entry.value.update();
     });
+    return RequestResponse.success;
   }
 
   //
@@ -118,18 +123,19 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   //
 
   @override
-  Future<void> delete(String id, {Contact? contact}) async {
+  Future<RequestResponse> delete(String id, {Contact? contact}) async {
     await FlutterContacts.requestPermission();
     final contactToDelete = contact ?? await FlutterContacts.getContact(id);
     if (contactToDelete == null) {
       AppLogger.print("Contact not found to delete ($id)", [ContactsLoggers.contacts], type: LoggerType.error);
-      return;
+      return RequestResponse.failure;
     }
     contactToDelete.delete();
+    return RequestResponse.success;
   }
 
   @override
-  Future<void> deleteAll() async {
+  Future<RequestResponse> deleteAll() async {
     throw UnimplementedError("deleteAll is not implemented in ContactsDataSource");
   }
 

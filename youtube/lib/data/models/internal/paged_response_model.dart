@@ -1,4 +1,4 @@
-import 'package:utilities/data_sources/paginated.dart';
+import 'package:utilities/data/sources/paginated.dart';
 
 /// [PagedResponse] is a generic class that is used to return a items of items with a next page token.
 class PagedResponse<T> extends ResponseModel {

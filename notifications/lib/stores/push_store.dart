@@ -2,6 +2,7 @@
 
 import "dart:convert";
 
+import "package:cloud_functions/cloud_functions.dart";
 import "package:firebase_messaging/firebase_messaging.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_local_notifications/flutter_local_notifications.dart";
@@ -12,7 +13,7 @@ import "package:notifications/models/notifications_permissions_model.dart";
 import "package:notifications/stores/base_store.dart";
 import "package:notifications/utils/loggers.dart";
 import "package:universal_io/io.dart";
-import "package:utilities/data_sources/source.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
@@ -42,6 +43,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
 
   /// [_pushNotifications] is the push notifications plugin.
   final FirebaseMessaging _pushNotifications = FirebaseMessaging.instance;
+
+  /// [functions] is an instance of [FirebaseFunctions].
+  FirebaseFunctions functions = FirebaseFunctions.instance;
 
   /// [androidPushNotificationsChannel] is the Android push notifications channel.
   final androidPushNotificationsChannel = const AndroidNotificationChannel(
@@ -208,50 +212,55 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [add] adds a notification with [notification].
   @action
   @override
-  Future<NotificationModel?> add(NotificationModel notification) async {
-    await remoteDataSource?.add(notification);
-    if (storeNotificationsLocally) await super.add(notification);
-    return notification;
+  Future<Pair<RequestResponse, NotificationModel?>> add(NotificationModel notification) async {
+    var result = await remoteDataSource?.add(notification);
+    if (storeNotificationsLocally) result = await super.add(notification);
+    return result ?? const Pair(RequestResponse.failure, null);
   }
 
   /// [addAll] adds all notifications with [notifications].
   @action
   @override
-  Future<void> addAll(List<NotificationModel> notifications) async {
+  Future<RequestResponse> addAll(List<NotificationModel> notifications) async {
     await remoteDataSource?.addAll(notifications);
-    if (storeNotificationsLocally) await super.addAll(notifications);
+    if (storeNotificationsLocally) return super.addAll(notifications);
+    return RequestResponse.failure;
   }
 
   /// [update] updates a notification by [id] with [notification].
   @action
   @override
-  Future<void> update(String id, NotificationModel notification) async {
+  Future<RequestResponse> update(String id, NotificationModel notification) async {
     await remoteDataSource?.update(id, notification);
-    if (storeNotificationsLocally) await super.update(id, notification);
+    if (storeNotificationsLocally) return super.update(id, notification);
+    return RequestResponse.failure;
   }
 
   /// [updateAll] updates all notifications with [notificationMap].
   @action
   @override
-  Future<void> updateAll(Map<String, NotificationModel> notificationMap) async {
+  Future<RequestResponse> updateAll(Map<String, NotificationModel> notificationMap) async {
     await remoteDataSource?.updateAll(notificationMap);
-    if (storeNotificationsLocally) await super.updateAll(notificationMap);
+    if (storeNotificationsLocally) return super.updateAll(notificationMap);
+    return RequestResponse.failure;
   }
 
   /// [delete] cancels a notification by [id].
   @action
   @override
-  Future<void> delete(String id) async {
+  Future<RequestResponse> delete(String id) async {
     await remoteDataSource?.delete(id);
-    if (storeNotificationsLocally) await super.delete(id);
+    if (storeNotificationsLocally) return super.delete(id);
+    return RequestResponse.failure;
   }
 
   /// [deleteAll] cancels all notifications.
   @action
   @override
-  Future<void> deleteAll() async {
+  Future<RequestResponse> deleteAll() async {
     await remoteDataSource?.deleteAll();
-    if (storeNotificationsLocally) await super.deleteAll();
+    if (storeNotificationsLocally) return super.deleteAll();
+    return RequestResponse.failure;
   }
 
   /// [handleSilentNotifications] handles silent notifications.

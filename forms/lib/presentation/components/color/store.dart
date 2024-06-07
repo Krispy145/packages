@@ -8,21 +8,18 @@ import "../base/store.dart";
 part "store.g.dart";
 
 // ignore: library_private_types_in_public_api
-class ColorFormFieldStore = _ThemeColorStringFormFieldStore
-    with _$ColorFormFieldStore;
+class ColorFormFieldStore = _ThemeColorStringFormFieldStore with _$ColorFormFieldStore;
 
-abstract class _ThemeColorStringFormFieldStore
-    extends BaseFormFieldStore<DOColor> with Store {
+abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
   _ThemeColorStringFormFieldStore({
     required super.value,
-    required super.onValueChanged,
     required super.title,
+    required super.onValueChanged,
   });
 
   /// [color] to change.
   @observable
-  late Color color =
-      const ColorConverter().fromJson(value.value) ?? Colors.transparent;
+  late Color color = const ColorMapper().decode(value.value);
 
   /// Updates the [value] color of the field, triggering an update of the theme
   @action
@@ -40,14 +37,18 @@ abstract class _ThemeColorStringFormFieldStore
 
   /// Updates the [color] property within the field (not the field's [value])
   @action
-  void updateColor(
-      {double? red, double? green, double? blue, double? opacity,}) {
+  void updateColor({
+    double? red,
+    double? green,
+    double? blue,
+    double? opacity,
+  }) {
     final newColorList = [
       red?.roundToDouble() ?? color.red.toDouble(),
       green?.roundToDouble() ?? color.green.toDouble(),
       blue?.roundToDouble() ?? color.blue.toDouble(),
       opacity ?? color.opacity,
     ];
-    color = const ColorConverter().fromJson(newColorList) ?? Colors.transparent;
+    color = const ColorMapper().decode(newColorList);
   }
 }

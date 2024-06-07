@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
 import "package:theme/app/app.dart";
 import "package:theme/data/models/colors/color_model.dart";
-import "package:theme/data/models/theme/theme.dart";
+import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/widgets/load_state/store.dart";

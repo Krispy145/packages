@@ -2,10 +2,10 @@ library data.sources.video;
 
 import 'package:dio/dio.dart';
 import "package:utilities/data/models/basic_search_query_model.dart";
-import 'package:utilities/data_sources/api/paginated.dart';
-import 'package:utilities/data_sources/dummy/source.dart';
-import 'package:utilities/data_sources/paginated.dart';
-import 'package:utilities/data_sources/source.dart';
+import 'package:utilities/data/sources/api/paginated.dart';
+import 'package:utilities/data/sources/dummy/source.dart';
+import 'package:utilities/data/sources/paginated.dart';
+import 'package:utilities/data/sources/source.dart';
 import 'package:utilities/helpers/tuples.dart';
 import 'package:utilities/logger/logger.dart';
 import 'package:youtube/data/models/internal/paged_response_model.dart';

@@ -1,4 +1,12 @@
+import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
+import "package:uuid/uuid.dart";
+
+extension UUIDExtension on UUID {
+  bool isValidUUID() {
+    return Uuid.isValidUUID(fromString: this);
+  }
+}
 
 /// String Extensions
 extension StringExtension on String {
@@ -114,4 +122,10 @@ extension StringExtension on String {
     final word = substring(startLetter, spaceIndexAfter);
     return Pair(word, startLetter);
   }
+}
+
+/// [generateUniqueId] method generates a unique id
+String generateUniqueId() {
+  const uuid = Uuid();
+  return uuid.v4();
 }

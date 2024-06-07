@@ -15,6 +15,7 @@ import "package:notifications/utils/loggers.dart";
 import "package:timezone/data/latest_all.dart" as tz;
 import "package:timezone/timezone.dart" as tz;
 import "package:universal_io/io.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/logger/logger.dart";
 
 part "local_store.g.dart";
@@ -223,19 +224,18 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   /// [delete] cancels a notification by [id].
   @action
   @override
-  Future<void> delete(String id) async {
+  Future<RequestResponse> delete(String id) async {
     final notification = notifications.value.values.firstWhereOrNull((element) => element?.id == id);
-    if (notification == null) return;
-    await localNotifications.cancel(notification.localId);
-    await super.delete(id);
+    if (notification == null) return RequestResponse.failure;
+    return super.delete(id);
   }
 
   /// [deleteAll] cancels all notifications.
   @action
   @override
-  Future<void> deleteAll() async {
+  Future<RequestResponse> deleteAll() async {
     await localNotifications.cancelAll();
-    await super.deleteAll();
+    return super.deleteAll();
   }
 
   @action

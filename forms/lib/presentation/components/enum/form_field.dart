@@ -1,10 +1,15 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+
 import "../base/form_field.dart";
+import "../enum.dart";
 import "store.dart";
 
 class EnumFormField extends BaseFormField<EnumFormFieldStore> {
-  const EnumFormField({super.key, required super.store});
+  const EnumFormField({
+    super.key,
+    required super.store,
+  }) : super(type: FormFieldType.enumField);
 
   double get doubleFormFieldWidth => 180;
 
@@ -21,8 +26,12 @@ class EnumFormField extends BaseFormField<EnumFormFieldStore> {
                 alignment: Alignment.bottomCenter,
                 onChanged: (newValue) => store.value = newValue,
                 items: store.options
-                    .map((enumValue) => DropdownMenuItem<Enum>(
-                        value: enumValue, child: Text(enumValue.name),),)
+                    .map(
+                      (enumValue) => DropdownMenuItem<Enum>(
+                        value: enumValue,
+                        child: Text(enumValue.name),
+                      ),
+                    )
                     .toList(),
               ),
             if (store.value != null)

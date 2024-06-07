@@ -8,13 +8,14 @@ import "package:theme/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/sizes/spacers.dart";
 
+import "../enum.dart";
 import "store.dart";
 
 class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
   const ThemeColorStringFormField({
     super.key,
     required super.store,
-  });
+  }) : super(type: FormFieldType.themeColorField);
 
   @override
   Widget buildField(BuildContext context) {
@@ -46,7 +47,7 @@ class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldS
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppTheme.currentColorModel!.toJson().entries.map((entry) {
+                  children: AppTheme.currentColorModel!.toMap().entries.map((entry) {
                     final colorName = entry.key;
                     return InkWell(
                       onTap: () {
