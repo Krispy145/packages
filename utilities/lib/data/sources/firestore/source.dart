@@ -173,12 +173,6 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     final firestoreQuery = buildQuery(query, collectionReference);
     final querySnapshot = await firestoreQuery.get();
     return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
-    // final query = collectionReference;
-    // for (final entry in queries.entries) {
-    //   query.where(entry.key, isGreaterThanOrEqualTo: entry.value);
-    // }
-    // final querySnapshot = await query.get();
-    // return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
   }
 
   void _logRequest(String method, String path, T? data) {

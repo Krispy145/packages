@@ -36,7 +36,7 @@ abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> w
       firestoreDataSource.collectionName,
       convertDataTypeFromMap: firestoreDataSource.convertDataTypeFromMap,
       convertDataTypeToMap: firestoreDataSource.convertDataTypeToMap,
-      authRepo: firestoreDataSource.authRepo,
+      currentUserPermissions: firestoreDataSource.userDataRepository.currentPermissionModelStream.value,
     ),
   );
 

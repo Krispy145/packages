@@ -10,7 +10,8 @@ abstract class SecuredPaginatedFirestoreDataSource<T, Q> extends SecuredFirestor
   /// [SecuredPaginatedFirestoreDataSource] constructor
   SecuredPaginatedFirestoreDataSource(
     super.collectionName, {
-    required super.authRepo,
+    required super.userDataRepository,
+    required super.currentUser,
     required super.convertDataTypeToMap,
     required super.convertDataTypeFromMap,
   });

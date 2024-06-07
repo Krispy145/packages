@@ -9,7 +9,7 @@ class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseMod
   /// [FirestoreReviewDataSource] constructor.
   FirestoreReviewDataSource(
     super.sourcePath, {
-    required super.authRepo,
+    required super.currentUserPermissions,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
   });

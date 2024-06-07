@@ -1,3 +1,4 @@
+import "package:authentication/data/repositories/user.repository.dart";
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:theme/extensions/build_context.dart";
@@ -10,12 +11,14 @@ import "store.dart";
 /// [PermissionBuilder] for the Permission View.
 class PermissionBuilder extends StatelessWidget {
   final UUID userId;
+  final UserDataSourceTypes userDataSourceType;
   final PermissionModel? initialPermissionModel;
 
   /// [PermissionBuilder] constructor.
   PermissionBuilder({
     super.key,
     required this.userId,
+    required this.userDataSourceType,
     this.initialPermissionModel,
   });
 
@@ -23,6 +26,7 @@ class PermissionBuilder extends StatelessWidget {
   /// initialized in the constructor.
   late final PermissionStore store = PermissionStore(
     userId: userId,
+    userDataSourceType: userDataSourceType,
     initialPermissionModel: initialPermissionModel,
   );
   @override

@@ -1,7 +1,7 @@
 import "package:authentication/data/models/review_model.dart";
 import "package:authentication/data/models/user_model.dart";
+import "package:authentication/data/repositories/user.repository.dart";
 import "package:authentication/data/sources/review/_source.dart";
-import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:collection/collection.dart";
 import "package:utilities/data/models/permission_model.dart";
@@ -14,30 +14,30 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q> {
-  final AuthenticationRepository authRepo;
+  final UserDataRepository userDataRepository;
+  final UserModel? currentUser;
   SecuredFirestoreDataSource(
     super.collectionName, {
-    required this.authRepo,
+    required this.userDataRepository,
+    required this.currentUser,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
   });
 
   late final FirestoreReviewDataSource<T> reviewDataSource = FirestoreReviewDataSource(
     collectionName,
-    authRepo: authRepo,
+    currentUserPermissions: userDataRepository.currentPermissionModelStream.value,
     convertDataTypeFromMap: convertDataTypeFromMap,
     convertDataTypeToMap: convertDataTypeToMap,
   );
 
-  PermissionModel? get currentPermissionModel => authRepo.currentPermissionModelStream.value;
+  PermissionModel? get currentPermissionModel => userDataRepository.currentPermissionModelStream.value;
 
-  List<Pair<String, UserPermissionsModel?>>? get currentUserPermissionModel => authRepo.currentPermissionModelStream.value?.permissions.entries
+  List<Pair<String, UserPermissionsModel?>>? get currentUserPermissionModel => userDataRepository.currentPermissionModelStream.value?.permissions.entries
       .map(
         (e) => Pair(e.key, e.value),
       )
       .toList();
-
-  UserModel? get currentUser => authRepo.currentUserModelStream.value;
 
   Future<List<Pair<String, PermissionLevel>>> checkPermissionLevel(CRUD requestType) async {
     if (currentUserPermissionModel == null) {
@@ -64,7 +64,7 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
   /// [getUserPermissions] is a helper method that gets the user permissions for the current collection
   /// It returns a [Pair<String, UserPermissionsModel>] if the user has permissions for the collection
   Future<void> getUserPermissions() async {
-    final initialPermissions = authRepo.currentPermissionModelStream.value;
+    final initialPermissions = userDataRepository.currentPermissionModelStream.value;
 
     try {
       if (initialPermissions == null) return;
@@ -82,7 +82,7 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
       final results = foundPaths.map((path) {
         return Pair(path, initialPermissions.permissions[path]);
       }).toList();
-      authRepo.setPermissionModel(results);
+      userDataRepository.setPermissionModel(results);
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
     }

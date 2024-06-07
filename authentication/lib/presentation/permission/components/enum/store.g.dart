@@ -41,22 +41,6 @@ mixin _$PermissionsFormFieldStore on _PermissionsFormFieldStore, Store {
     });
   }
 
-  late final _$optionsMapAtom =
-      Atom(name: '_PermissionsFormFieldStore.optionsMap', context: context);
-
-  @override
-  ObservableMap<String, PermissionLevel> get optionsMap {
-    _$optionsMapAtom.reportRead();
-    return super.optionsMap;
-  }
-
-  @override
-  set optionsMap(ObservableMap<String, PermissionLevel> value) {
-    _$optionsMapAtom.reportWrite(value, super.optionsMap, () {
-      super.optionsMap = value;
-    });
-  }
-
   late final _$_PermissionsFormFieldStoreActionController =
       ActionController(name: '_PermissionsFormFieldStore', context: context);
 
@@ -72,22 +56,10 @@ mixin _$PermissionsFormFieldStore on _PermissionsFormFieldStore, Store {
   }
 
   @override
-  void saveCurrentValues() {
-    final _$actionInfo = _$_PermissionsFormFieldStoreActionController
-        .startAction(name: '_PermissionsFormFieldStore.saveCurrentValues');
-    try {
-      return super.saveCurrentValues();
-    } finally {
-      _$_PermissionsFormFieldStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 selectedPermission: ${selectedPermission},
-currentValue: ${currentValue},
-optionsMap: ${optionsMap}
+currentValue: ${currentValue}
     ''';
   }
 }

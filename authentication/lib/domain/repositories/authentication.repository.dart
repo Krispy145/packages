@@ -4,7 +4,6 @@ import "package:authentication/data/repositories/auth/_repository.dart";
 import "package:authentication/data/repositories/auth/api.repository.dart";
 import "package:authentication/data/repositories/auth/firebase.repository.dart";
 import "package:authentication/data/repositories/auth/supabase.repository.dart";
-import "package:authentication/data/repositories/permission.repository.dart";
 import "package:authentication/data/repositories/user.repository.dart";
 import "package:authentication/data/sources/user/_source.dart";
 import "package:authentication/helpers/exception.dart";
@@ -12,9 +11,6 @@ import "package:authentication/utils/loggers.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_facebook_auth/flutter_facebook_auth.dart";
 import "package:rxdart/rxdart.dart";
-import "package:utilities/data/models/permission_model.dart";
-import "package:utilities/data/models/user_permissions_model.dart";
-import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [AuthenticationRepository] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
@@ -45,8 +41,6 @@ class AuthenticationRepository<T extends UserModel> {
   final String? facebookAppId;
 
   BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.userModelStream;
-
-  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
 
   bool isUserAuthenticated = false;
 
@@ -104,18 +98,11 @@ class AuthenticationRepository<T extends UserModel> {
   }
   late final userDataRepository = UserDataRepository<T>(
     userSource,
+    hasPermissions,
     baseUrl: baseUrl,
     convertDataTypeFromMap: convertDataTypeFromMap,
     convertDataTypeToMap: convertDataTypeToMap,
   );
-
-  void setPermissionModel(List<Pair<String, UserPermissionsModel?>> permissions) {
-    final permissionsMap = <String, UserPermissionsModel>{};
-    for (final element in permissions) {
-      permissionsMap[element.first] = element.second!;
-    }
-    currentPermissionModelStream.add(currentPermissionModelStream.value?.copyWith(permissions: permissionsMap));
-  }
 
   late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api
       ? ApiAuthDataRepository(
@@ -185,7 +172,7 @@ class AuthenticationRepository<T extends UserModel> {
         );
         await userDataRepository.addUserModel(userModel: changedUserModel);
       }
-      await _setPermissions(changedUserModel);
+      await userDataRepository.initPermissions(changedUserModel);
       return changedUserModel;
     } catch (e) {
       AppLogger.print(
@@ -255,8 +242,8 @@ class AuthenticationRepository<T extends UserModel> {
         if (event?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
           AppLogger.print("User is authenticated", [AuthenticationLoggers.authentication]);
           isUserAuthenticated = true;
-          if (event != null) {
-            await _setPermissions(event);
+          if (event != null && hasPermissions) {
+            await userDataRepository.initPermissions(event);
           }
         } else if (event?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
           AppLogger.print("User is unauthenticated", [AuthenticationLoggers.authentication]);
@@ -266,22 +253,6 @@ class AuthenticationRepository<T extends UserModel> {
       });
     } catch (e) {
       AppLogger.print("Error in initStreams: $e", [AuthenticationLoggers.authentication]);
-    }
-  }
-
-  Future<void> _setPermissions(UserModel changedUserModel) async {
-    if (hasPermissions) {
-      final permissionDataRepository = PermissionDataRepository(
-        userDataSourceType: userSource,
-        userId: changedUserModel.id,
-      );
-      currentPermissionModelStream.listen((event) async {
-        if (event == null) {
-          await permissionDataRepository.getPermissionModel().then((value) {
-            currentPermissionModelStream.add(value);
-          });
-        }
-      });
     }
   }
 

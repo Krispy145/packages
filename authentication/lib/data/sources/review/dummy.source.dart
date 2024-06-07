@@ -5,7 +5,7 @@ class DummyReviewDataSource<T> extends ReviewDataSource<DummyDataResponseModel<R
   /// [DummyReviewDataSource] constructor.
   DummyReviewDataSource(
     super.sourcePath, {
-    required super.authRepo,
+    required super.currentUserPermissions,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
   });

@@ -1,6 +1,10 @@
 import "package:authentication/data/models/user_model.dart";
+import "package:authentication/data/repositories/permission.repository.dart";
 import "package:authentication/data/sources/user/_source.dart";
 import "package:authentication/utils/loggers.dart";
+import "package:rxdart/rxdart.dart";
+import "package:utilities/data/models/permission_model.dart";
+import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
@@ -22,6 +26,7 @@ enum UserDataSourceTypes {
 class UserDataRepository<T extends UserModel> {
   final String? baseUrl;
   final UserDataSourceTypes source;
+  final bool hasPermissions;
 
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
@@ -31,15 +36,45 @@ class UserDataRepository<T extends UserModel> {
 
   /// [UserDataRepository] constructor.
   UserDataRepository(
-    this.source, {
+    this.source,
+    this.hasPermissions, {
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
     this.baseUrl,
   });
+  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
+  late PermissionDataRepository? permissionDataRepository;
+
+  void setPermissionModel(List<Pair<String, UserPermissionsModel?>> permissions) {
+    final permissionsMap = <String, UserPermissionsModel>{};
+    for (final element in permissions) {
+      permissionsMap[element.first] = element.second!;
+    }
+    currentPermissionModelStream.add(currentPermissionModelStream.value?.copyWith(permissions: permissionsMap));
+  }
+
+  Future<void> initPermissions(UserModel changedUserModel) async {
+    if (hasPermissions) {
+      permissionDataRepository = PermissionDataRepository(
+        userDataSourceType: source,
+        userId: changedUserModel.id,
+      );
+      await permissionDataRepository!.getPermissionModel().then((value) {
+        currentPermissionModelStream.add(value);
+      });
+    }
+  }
 
   /// [getAllUserModels] returns a list of [UserModel]s.
   Future<List<T?>> getAllUserModels() async {
     return _dataSourceByType(source).getAll();
+  }
+
+  /// [searchUserModelsByAuthType] searches the [UserModel] data source.
+  Future<List<T?>> searchUserModelsByAuthType({
+    required UserSearchQueryModel query,
+  }) async {
+    return _dataSourceByType(source).searchAllAuthTypes(query);
   }
 
   /// [getPagedUserModels] returns a page of [UserModel]s.
