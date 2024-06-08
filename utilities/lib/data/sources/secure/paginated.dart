@@ -3,6 +3,7 @@ import "dart:convert";
 import "package:dart_mappable/dart_mappable.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/secure/source.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 
 part "paginated.mapper.dart";
@@ -21,7 +22,7 @@ abstract class PaginatedSecureDataSource<T, Q> extends SecureDataSource<T, Q> wi
     required super.convertDataTypeToMap,
   });
   @override
-  Future<Pair<SecureResponseModel<T?>, List<T?>>> getPage({
+  Future<Pair<RequestResponse, Pair<SecureResponseModel<T?>, List<T?>>>> getPage({
     SecureResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -35,11 +36,14 @@ abstract class PaginatedSecureDataSource<T, Q> extends SecureDataSource<T, Q> wi
     final subList = data.skip(nextIndex).toList();
     final nextData = subList.take(size ?? subList.length).toList();
     final nextResponse = SecureResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
-    return Future.value(Pair(nextResponse, nextData));
+    if (nextData.isEmpty) {
+      return Future.value(Pair(RequestResponse.success, Pair(nextResponse, nextData)));
+    }
+    return Future.value(Pair(RequestResponse.success, Pair(nextResponse, nextData)));
   }
 
   @override
-  Future<Pair<SecureResponseModel<T?>, List<T?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<SecureResponseModel<T?>, List<T?>>>> searchPage({
     SecureResponseModel<T?>? lastResponse,
     int? size,
     required Q query,
@@ -51,6 +55,9 @@ abstract class PaginatedSecureDataSource<T, Q> extends SecureDataSource<T, Q> wi
     final subList = data.skip(nextIndex).toList();
     final nextData = subList.whereType<T>().where((item) => matchesQuery(query, item)).take(size ?? subList.length).toList();
     final nextResponse = SecureResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
-    return Future.value(Pair(nextResponse, nextData));
+    if (nextData.isEmpty) {
+      return Future.value(Pair(RequestResponse.success, Pair(nextResponse, nextData)));
+    }
+    return Future.value(Pair(RequestResponse.success, Pair(nextResponse, nextData)));
   }
 }

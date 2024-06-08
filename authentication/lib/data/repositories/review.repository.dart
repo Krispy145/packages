@@ -13,22 +13,22 @@ class ReviewDataRepository<Resp extends ResponseModel, T> {
   ReviewDataRepository(this.reviewDataSource);
 
   /// [getAllCRUDSpecific] returns a list of [ReviewModel]s.
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecific(CRUD crud) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud) async {
     return reviewDataSource.getAllCRUDSpecific(crud);
   }
 
   /// [getAllCRUDSpecificByUserId] returns a list of [ReviewModel]s by [userId].
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecificByUserId(CRUD crud, {required UUID userId}) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecificByUserId(CRUD crud, {required UUID userId}) async {
     return reviewDataSource.getAllCRUDSpecificByUserId(crud, userId: userId);
   }
 
   /// [getAllPagedCRUD] returns a list of [ReviewModel]s.
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUD(CRUD crud, {Resp? lastResponse, int? size, String? orderBy}) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUD(CRUD crud, {Resp? lastResponse, int? size, String? orderBy}) async {
     return reviewDataSource.getAllPagedCRUD(crud, lastResponse: lastResponse, size: size, orderBy: orderBy);
   }
 
   /// [getCRUDSpecifReviewModel] returns a [ReviewModel] by [id].
-  Future<Pair<ReviewModel?, T?>> getCRUDSpecifReviewModel(String id) async {
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>> getCRUDSpecifReviewModel(String id) async {
     return reviewDataSource.getCRUDSpecifReviewModel(id);
   }
 
@@ -38,7 +38,7 @@ class ReviewDataRepository<Resp extends ResponseModel, T> {
   }
 
   /// [getAllPagedCRUDByUserId] returns a list of [ReviewModel]s by [userId].
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUDByUserId(CRUD crud, {required UUID userId, Resp? lastResponse, int? size, String? orderBy}) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUDByUserId(CRUD crud, {required UUID userId, Resp? lastResponse, int? size, String? orderBy}) async {
     return reviewDataSource.getAllPagedCRUDByUserId(crud, userId: userId, lastResponse: lastResponse, size: size, orderBy: orderBy);
   }
 

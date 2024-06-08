@@ -25,41 +25,10 @@ mixin _$PermissionsFormFieldStore on _PermissionsFormFieldStore, Store {
     });
   }
 
-  late final _$currentValueAtom =
-      Atom(name: '_PermissionsFormFieldStore.currentValue', context: context);
-
-  @override
-  Pair<String, UserPermissionsModel>? get currentValue {
-    _$currentValueAtom.reportRead();
-    return super.currentValue;
-  }
-
-  @override
-  set currentValue(Pair<String, UserPermissionsModel>? value) {
-    _$currentValueAtom.reportWrite(value, super.currentValue, () {
-      super.currentValue = value;
-    });
-  }
-
-  late final _$_PermissionsFormFieldStoreActionController =
-      ActionController(name: '_PermissionsFormFieldStore', context: context);
-
-  @override
-  void updatePermission(String key, PermissionLevel value) {
-    final _$actionInfo = _$_PermissionsFormFieldStoreActionController
-        .startAction(name: '_PermissionsFormFieldStore.updatePermission');
-    try {
-      return super.updatePermission(key, value);
-    } finally {
-      _$_PermissionsFormFieldStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
-selectedPermission: ${selectedPermission},
-currentValue: ${currentValue}
+selectedPermission: ${selectedPermission}
     ''';
   }
 }

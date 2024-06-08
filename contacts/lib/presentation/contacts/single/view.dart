@@ -15,12 +15,12 @@ class ContactsView extends StatelessWidget {
 
   /// [ContactsView] constructor.
   ContactsView({super.key, this.id, this.contactsModel}) {
-    store = ContactsStore(id: id, initialContact: contactsModel);
+    store = ContactStore(id: id, initialContact: contactsModel);
   }
 
-  /// [store] is an instance of [ContactsStore], used in the [LoadStateBuilder].
+  /// [store] is an instance of [ContactStore], used in the [LoadStateBuilder].
   /// initialized in the constructor.
-  late final ContactsStore store;
+  late final ContactStore store;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

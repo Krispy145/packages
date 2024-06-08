@@ -1,6 +1,7 @@
 import "package:dart_mappable/dart_mappable.dart";
 import "package:utilities/data/sources/hive/source.dart";
 import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 
 part "paginated.mapper.dart";
@@ -22,7 +23,7 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
   });
 
   @override
-  Future<Pair<HiveResponseModel<T?>, List<T?>>> getPage({
+  Future<Pair<RequestResponse, Pair<HiveResponseModel<T?>, List<T?>>>> getPage({
     HiveResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -31,31 +32,39 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
     final data = await getAll();
     final lastIndex = lastResponse?.lastIndex ?? -1;
     final nextIndex = lastIndex + 1;
-    final subList = data.skip(nextIndex).toList();
+    final subList = data.second.skip(nextIndex).toList();
     final nextData = subList.take(size ?? subList.length).toList();
     final nextResponse = HiveResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
-    return Pair(nextResponse, nextData);
+    return Pair(RequestResponse.success, Pair(nextResponse, nextData));
   }
 
   @override
-  Future<T?> search(Q query) async {
-    return (await searchAll(query)).firstOrNull;
+  Future<Pair<RequestResponse, T?>> search(Q query) async {
+    final data = await searchAll(query);
+    final singleData = data.second.firstOrNull;
+    if (singleData == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, singleData);
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) async {
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     final data = await getAll();
-    return data.whereType<T>().where((element) => matchesQuery(query, element)).toList();
+    if (data.second.isEmpty) {
+      const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, data.second.whereType<T>().where((element) => matchesQuery(query, element)).toList());
   }
 
   @override
-  Future<Pair<HiveResponseModel<T?>, List<T?>>> searchPage({HiveResponseModel<T?>? lastResponse, int? size, required Q query}) async {
+  Future<Pair<RequestResponse, Pair<HiveResponseModel<T?>, List<T?>>>> searchPage({HiveResponseModel<T?>? lastResponse, int? size, required Q query}) async {
     final data = await searchAll(query);
     final lastIndex = lastResponse?.lastIndex ?? -1;
     final nextIndex = lastIndex + 1;
-    final subList = data.skip(nextIndex).toList();
+    final subList = data.second.skip(nextIndex).toList();
     final nextData = subList.take(size ?? subList.length).toList();
     final nextResponse = HiveResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
-    return Pair(nextResponse, nextData);
+    return Pair(RequestResponse.success, Pair(nextResponse, nextData));
   }
 }

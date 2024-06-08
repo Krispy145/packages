@@ -16,6 +16,7 @@ abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q> with Store 
   /// [_CRUDReviewStore] constructor.
   _CRUDReviewStore({
     required super.crud,
+    required super.currentUserPermissions,
     required super.firestoreDataSource,
     this.id,
     ReviewModel? initialReviewModel,
@@ -31,7 +32,7 @@ abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q> with Store 
     if (initialReviewModel == null && id != null) {
       setLoading();
       repository.getCRUDSpecifReviewModel(id!).then((value) {
-        currentReview = value.first;
+        currentReview = value.second.first;
       });
     } else {
       currentReview = initialReviewModel;

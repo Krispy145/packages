@@ -2,6 +2,7 @@ import "package:cloud_firestore/cloud_firestore.dart";
 import "package:dart_mappable/dart_mappable.dart";
 import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 
 part "paginated.mapper.dart";
@@ -27,7 +28,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
   });
 
   @override
-  Future<Pair<FirestoreResponseModel<T?>, List<T?>>> getPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> getPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -61,13 +62,16 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
             response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
           ),
         );
-        return _response;
+        if (response.docs.isEmpty) {
+          return Pair(RequestResponse.failure, _response);
+        }
+        return Pair(RequestResponse.success, _response);
       },
     );
   }
 
   @override
-  Future<Pair<FirestoreResponseModel<T?>, List<T?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> searchPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -95,7 +99,10 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
             response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
           ),
         );
-        return _response;
+        if (response.docs.isEmpty) {
+          return Pair(RequestResponse.failure, _response);
+        }
+        return Pair(RequestResponse.success, _response);
       },
     );
   }

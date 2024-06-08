@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:utilities/layouts/list/store.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
@@ -8,7 +11,7 @@ part "store.g.dart";
 class PaginatedListStore<T> = _PaginatedListStore<T> with _$PaginatedListStore<T>;
 
 /// [_PaginatedListStore] is a class that manages the state of the topTips feature.
-abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
+abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
   final int limit;
 
   /// [_PaginatedListStore] constructor.
@@ -20,8 +23,10 @@ abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
       }
     });
   }
-  late final ScrollController scrollController = ScrollController();
-  late final Future<List<T?>> Function({int? limit, bool refresh}) loadMoreFromRepository;
+  late final Future<Pair<RequestResponse, List<T?>>> Function({int? limit, bool refresh}) loadMoreFromRepository;
+
+  @observable
+  late RequestResponse requestResponse;
 
   /// [results] is an observable list of [T]s.
   ObservableList<T?> results = ObservableList<T?>();
@@ -39,9 +44,10 @@ abstract class _PaginatedListStore<T> extends LoadStateStore with Store {
     try {
       setLoading();
       final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
-      if (loadedResults.isNotEmpty) {
+      requestResponse = loadedResults.first;
+      if (loadedResults.second.isNotEmpty) {
         if (refresh) results.clear();
-        results.addAll(loadedResults);
+        results.addAll(loadedResults.second);
         results = ObservableList.of(results.toSet().toList());
         return Future.delayed(Durations.long4, setLoaded);
       } else {

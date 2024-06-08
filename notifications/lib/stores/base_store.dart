@@ -7,6 +7,8 @@ import "package:notifications/models/notification_model.dart";
 import "package:notifications/models/notifications_permissions_model.dart";
 import "package:utilities/data/sources/hive/helpers/type_box.dart";
 import "package:utilities/data/sources/hive/source.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 
 part "base_store.g.dart";
 
@@ -80,7 +82,7 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
   /// [search] searches for notifications with the given [query].
   @override
   @action
-  Future<List<NotificationModel?>> searchAll(Map<String, dynamic> query) async {
+  Future<Pair<RequestResponse, List<NotificationModel?>>> searchAll(Map<String, dynamic> query) async {
     final results = <NotificationModel>[];
     for (final element in notifications.value.values) {
       if (element != null) {
@@ -90,15 +92,22 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
         }
       }
     }
-    return Future.value(results);
+    if (results.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    return Pair(RequestResponse.success, results);
   }
 
   // [search] searches for the notification with the given [query].
   @override
   @action
-  Future<NotificationModel?> search(Map<String, dynamic> query) async {
+  Future<Pair<RequestResponse, NotificationModel?>> search(Map<String, dynamic> query) async {
     final results = await searchAll(query);
-    return Future.value(results.isNotEmpty ? results.first : null);
+    final result = results.second.isNotEmpty ? results.second.first : null;
+    if (result != null) {
+      return Pair(RequestResponse.success, result);
+    }
+    return const Pair(RequestResponse.failure, null);
   }
 
   /// [replaceAll] replaces all notifications with the given [notificationList].

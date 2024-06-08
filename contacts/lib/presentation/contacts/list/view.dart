@@ -1,5 +1,5 @@
 import "package:auto_route/auto_route.dart";
-import "package:contacts/presentation/contacts/single/store.dart";
+import "package:contacts/presentation/contacts/list/store.dart";
 import "package:flutter/material.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
@@ -20,9 +20,9 @@ class ContactsView extends StatelessWidget {
         child: Text("Empty contacts view."),
       ),
       loadedBuilder: (context) => ListView.builder(
-        itemCount: store.contactss.length,
+        itemCount: store.contacts.length,
         itemBuilder: (context, index) {
-          final contactsModel = store.contactss[index];
+          final contactsModel = store.contacts[index];
           return ListTile(
             title: Text("ID: ${contactsModel?.id}"),
             subtitle: Text("Name: ${contactsModel?.name.first} ${contactsModel?.name.last}"),

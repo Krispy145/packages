@@ -45,8 +45,10 @@ abstract class _PermissionStore extends LoadStateStore with Store {
       final result = await dataRepository.addPermissionModel(
         permissionModel: permissionModel,
       );
+      currentPermission = permissionModel;
       return result.first;
     } else {
+      currentPermission = permissionModel;
       return dataRepository.updatePermissionModel(permissionModel: permissionModel);
     }
   }
@@ -56,7 +58,7 @@ abstract class _PermissionStore extends LoadStateStore with Store {
     if (initialPermissionModel == null) {
       setLoading();
       dataRepository.getPermissionModel().then((value) {
-        currentPermission = value;
+        currentPermission = value.second;
       });
     } else {
       currentPermission = initialPermissionModel;

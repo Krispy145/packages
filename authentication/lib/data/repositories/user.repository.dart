@@ -7,6 +7,7 @@ import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
@@ -43,30 +44,35 @@ class UserDataRepository<T extends UserModel> {
     this.baseUrl,
   });
   BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
-  late PermissionDataRepository? permissionDataRepository;
+  PermissionDataRepository permissionDataRepository(UUID userId) => PermissionDataRepository(
+        userDataSourceType: source,
+        userId: userId,
+      );
 
-  void setPermissionModel(List<Pair<String, UserPermissionsModel?>> permissions) {
+  Future<void> setPermissionModel(UUID userId, List<Pair<String, UserPermissionsModel?>> permissions) async {
     final permissionsMap = <String, UserPermissionsModel>{};
     for (final element in permissions) {
       permissionsMap[element.first] = element.second!;
     }
+    final _currentPermissionModel = currentPermissionModelStream.value;
+    if (_currentPermissionModel == null) {
+      return permissionDataRepository(userId).getPermissionModel().then((value) {
+        currentPermissionModelStream.add(value.second);
+      });
+    }
     currentPermissionModelStream.add(currentPermissionModelStream.value?.copyWith(permissions: permissionsMap));
   }
 
-  Future<void> initPermissions(UserModel changedUserModel) async {
+  Future<void> initPermissions(UUID userId) async {
     if (hasPermissions) {
-      permissionDataRepository = PermissionDataRepository(
-        userDataSourceType: source,
-        userId: changedUserModel.id,
-      );
-      await permissionDataRepository!.getPermissionModel().then((value) {
-        currentPermissionModelStream.add(value);
+      await permissionDataRepository(userId).getPermissionModel().then((value) {
+        currentPermissionModelStream.add(value.second);
       });
     }
   }
 
   /// [getAllUserModels] returns a list of [UserModel]s.
-  Future<List<T?>> getAllUserModels() async {
+  Future<Pair<RequestResponse, List<T?>>> getAllUserModels() async {
     return _dataSourceByType(source).getAll();
   }
 
@@ -78,7 +84,7 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [getPagedUserModels] returns a page of [UserModel]s.
-  Future<Pair<ResponseModel?, List<T?>>> getPagedUserModels({
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> getPagedUserModels({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,
@@ -93,7 +99,7 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [getUserModel] returns a single [UserModel].
-  Future<T?> getUserModel({
+  Future<Pair<RequestResponse, T?>> getUserModel({
     required String id,
   }) async {
     return _dataSourceByType(source).get(id);

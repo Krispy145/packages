@@ -23,15 +23,14 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
   @observable
   UserPermissionsModel? selectedPermission;
 
-  @observable
-  Pair<String, UserPermissionsModel>? currentValue;
-
   late final collectionStore = DropdownFormFieldStore<String>(
-    value: initialSelectedCollection.split("/").first,
+    value: _setCollectionString(initialSelectedCollection).split("/").first,
     labelBuilder: (collection) => collection,
     initialItems: collections,
     onValueChanged: (newValue) {
-      onValueChanged(Pair("${newValue ?? initialSelectedCollection}/all", selectedPermission ?? UserPermissionsModel.viewExample));
+      selectedPermission = UserPermissionsModel.fromMap({_setCollectionString(newValue): selectedPermission?.toMap() ?? {}});
+      final _newPair = Pair(_setCollectionString(newValue), selectedPermission ?? UserPermissionsModel.viewExample);
+      onValueChanged(_newPair);
     },
     title: title,
   );
@@ -42,17 +41,27 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
       labelBuilder: (permission) => permission.name,
       initialItems: PermissionLevel.values,
       onValueChanged: (newValue) {
-        selectedPermission = UserPermissionsModel.fromMap({initialSelectedCollection: newValue});
-        onValueChanged(Pair(_setCollectionString(currentValue?.first), selectedPermission ?? UserPermissionsModel.viewExample));
+        final _newPermissionsModelResult = _newPermissionsModel(e, newValue ?? PermissionLevel.no);
+        final _newPair = Pair(collectionStore.value ?? initialSelectedCollection, _newPermissionsModelResult);
+        onValueChanged(_newPair);
       },
       title: e.name,
     );
   }).toList();
 
-  @action
-  void updatePermission(String key, PermissionLevel value) {
-    final optionsMap = currentValue?.second.toMap() ?? {};
-    currentValue = Pair(_setCollectionString(currentValue?.first), UserPermissionsModel.fromMap(optionsMap));
+  UserPermissionsModel _newPermissionsModel(CRUD key, PermissionLevel permissionValue) {
+    switch (key) {
+      case CRUD.create:
+        return value!.second.copyWith(canCreate: permissionValue);
+      case CRUD.read:
+        return value!.second.copyWith(canRead: permissionValue);
+      case CRUD.update:
+        return value!.second.copyWith(canUpdate: permissionValue);
+      case CRUD.delete:
+        return value!.second.copyWith(canDelete: permissionValue);
+      default:
+        return UserPermissionsModel.viewExample;
+    }
   }
 
   PermissionLevel _getPermissionLevel(CRUD key) {
@@ -61,19 +70,27 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
     switch (key) {
       case CRUD.create:
         result = _userPermissionsModel?.canCreate ?? PermissionLevel.no;
+        break;
       case CRUD.read:
         result = _userPermissionsModel?.canRead ?? PermissionLevel.no;
+        break;
       case CRUD.update:
         result = _userPermissionsModel?.canUpdate ?? PermissionLevel.no;
+        break;
       case CRUD.delete:
         result = _userPermissionsModel?.canDelete ?? PermissionLevel.no;
+        break;
     }
-    print(result);
     return result;
   }
 
   String _setCollectionString(String? collection) {
-    if (collection == null) return "$initialSelectedCollection/all";
-    return "${collection.split("/").first}/all";
+    final _collectionBase = collection?.replaceAll("/all", "");
+    final _initialSelectedCollection = _sanitizeCollectionString(initialSelectedCollection).split("/").first;
+    return "${_collectionBase ?? _initialSelectedCollection}/all";
+  }
+
+  String _sanitizeCollectionString(String collection) {
+    return collection.replaceAll("/all", "");
   }
 }

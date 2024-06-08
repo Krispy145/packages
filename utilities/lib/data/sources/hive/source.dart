@@ -117,7 +117,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore implements DataSource
 
   /// [get] method returns the value of the given key
   @override
-  Future<T?> get(String key) async {
+  Future<Pair<RequestResponse, T?>> get(String key) async {
     if (!isHiveInitialized) {
       await Hive.initFlutter();
       isHiveInitialized = true;
@@ -129,14 +129,14 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore implements DataSource
     // }
     final value = _box.get(key);
     AppLogger.print("Read: $key => $value", [UtilitiesLoggers.localDataSource]);
-    if (value == null) return Future.value();
+    if (value == null) return const Pair(RequestResponse.failure, null);
     // await close();
-    return value;
+    return Pair(RequestResponse.success, value);
   }
 
   /// [getAll] method returns all the key-value pairs
   @override
-  Future<List<T?>> getAll() async {
+  Future<Pair<RequestResponse, List<T?>>> getAll() async {
     if (!isHiveInitialized) {
       await Hive.initFlutter();
       isHiveInitialized = true;
@@ -148,7 +148,8 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore implements DataSource
     final boxValues = _box.values;
     print("Box Values: ${boxValues.runtimeType} $boxValues");
     final results = _box.values.toList();
-    return results;
+    if (results.isEmpty) return const Pair(RequestResponse.failure, []);
+    return Pair(RequestResponse.success, results);
 
     // final items = result.map((item) => item);
     // final convertedItems = items.map(convertDataTypeFromJson);

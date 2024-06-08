@@ -37,7 +37,7 @@ mixin _$InstagramMediaStore on _InstagramMediaStore, Store {
       AsyncAction('_InstagramMediaStore.getUserMedia', context: context);
 
   @override
-  Future<List<InstagramMediaModel?>> getUserMedia(
+  Future<Pair<RequestResponse, List<InstagramMediaModel?>>> getUserMedia(
       {int? limit, bool refresh = false}) {
     return _$getUserMediaAsyncAction
         .run(() => super.getUserMedia(limit: limit, refresh: refresh));

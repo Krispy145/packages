@@ -36,7 +36,7 @@ abstract class _VideoStore extends LoadStateStore with Store {
     if (initialVideoModel == null && id != null) {
       setLoading();
       repository.getVideoModel(id!).then((value) {
-        currentVideo = value;
+        currentVideo = value.second;
       });
     } else {
       currentVideo = initialVideoModel;

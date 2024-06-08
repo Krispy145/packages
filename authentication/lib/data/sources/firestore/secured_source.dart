@@ -1,6 +1,5 @@
 import "package:authentication/data/models/review_model.dart";
 import "package:authentication/data/models/user_model.dart";
-import "package:authentication/data/repositories/user.repository.dart";
 import "package:authentication/data/sources/review/_source.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:collection/collection.dart";
@@ -14,26 +13,24 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q> {
-  final UserDataRepository userDataRepository;
-  final UserModel? currentUser;
+  final UserModel currentUser;
+  final PermissionModel userPermissions;
   SecuredFirestoreDataSource(
     super.collectionName, {
-    required this.userDataRepository,
     required this.currentUser,
+    required this.userPermissions,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
   });
 
   late final FirestoreReviewDataSource<T> reviewDataSource = FirestoreReviewDataSource(
     collectionName,
-    currentUserPermissions: userDataRepository.currentPermissionModelStream.value,
+    currentUserPermissions: userPermissions,
     convertDataTypeFromMap: convertDataTypeFromMap,
     convertDataTypeToMap: convertDataTypeToMap,
   );
 
-  PermissionModel? get currentPermissionModel => userDataRepository.currentPermissionModelStream.value;
-
-  List<Pair<String, UserPermissionsModel?>>? get currentUserPermissionModel => userDataRepository.currentPermissionModelStream.value?.permissions.entries
+  late List<Pair<String, UserPermissionsModel?>>? currentUserPermissionModel = userPermissions.permissions.entries
       .map(
         (e) => Pair(e.key, e.value),
       )
@@ -43,7 +40,7 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
     if (currentUserPermissionModel == null) {
       await getUserPermissions();
     }
-    if (currentUser != null && currentPermissionModel?.role == "superAdmin") {
+    if (userPermissions.role == "superAdmin") {
       return [Pair("$collectionName/all", PermissionLevel.yes)];
     }
     final results = currentUserPermissionModel?.map((path) {
@@ -64,12 +61,8 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
   /// [getUserPermissions] is a helper method that gets the user permissions for the current collection
   /// It returns a [Pair<String, UserPermissionsModel>] if the user has permissions for the collection
   Future<void> getUserPermissions() async {
-    final initialPermissions = userDataRepository.currentPermissionModelStream.value;
-
     try {
-      if (initialPermissions == null) return;
-
-      final userPermissionsPairs = _evaluatePermissions(initialPermissions.permissions);
+      final userPermissionsPairs = _evaluatePermissions(userPermissions.permissions);
       final collectionPairs = _changePathToPairs("$collectionName/all");
 
       final foundPaths = <String>[];
@@ -80,27 +73,27 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
         }
       }
       final results = foundPaths.map((path) {
-        return Pair(path, initialPermissions.permissions[path]);
+        return Pair(path, userPermissions.permissions[path]);
       }).toList();
-      userDataRepository.setPermissionModel(results);
+      currentUserPermissionModel = results;
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
     }
   }
 
   @override
-  Future<T?> get(String id) async {
+  Future<Pair<RequestResponse, T?>> get(String id) async {
     final checkPermissions = await checkPermissionLevel(CRUD.read);
     final isCheckPermissionsNotEqualToId = !checkPermissions.any((element) => element.first.split("/").last == id);
     final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.split("/").last == "all");
     if (isCheckPermissionsNotEqualToAll || isCheckPermissionsNotEqualToId) {
-      return null;
+      return const Pair(RequestResponse.denied, null);
     }
     return super.get(id);
   }
 
   @override
-  Future<List<T?>> getAll() async {
+  Future<Pair<RequestResponse, List<T?>>> getAll() async {
     try {
       final checkPermissions = await checkPermissionLevel(CRUD.read);
       if (checkPermissions.any((element) => element.first == "all")) {
@@ -110,10 +103,19 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
               (e) => e.first.split("/").last,
             )
             .toList();
-        final query = collectionReference.where("id", whereNotIn: _specificIDOverrideRemove);
-        final querySnapshot = await query.get();
-        AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        if (_specificIDOverrideRemove.isNotEmpty) {
+          final query = collectionReference.where("id", whereNotIn: _specificIDOverrideRemove);
+          final querySnapshot = await query.get();
+
+          if (querySnapshot.docs.isEmpty) {
+            return const Pair(RequestResponse.failure, []);
+          }
+
+          AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
+          final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+          return Pair(RequestResponse.success, result);
+        }
+        return const Pair(RequestResponse.denied, []);
       } else {
         final _specificIDOverrideAdd = checkPermissions
             .where((element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes)
@@ -121,14 +123,21 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
               (e) => e.first.split("/").last,
             )
             .toList();
+        if (_specificIDOverrideAdd.isEmpty) {
+          return const Pair(RequestResponse.denied, []);
+        }
         final query = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
         final querySnapshot = await query.get();
+        if (querySnapshot.docs.isEmpty) {
+          return const Pair(RequestResponse.failure, []);
+        }
         AppLogger.print("Get All with Permissions Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        return Pair(RequestResponse.success, result);
       }
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
@@ -261,7 +270,7 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
   }
 
   @override
-  Future<T?> search(Q query) async {
+  Future<Pair<RequestResponse, T?>> search(Q query) async {
     try {
       final checkPermissions = await checkPermissionLevel(CRUD.read);
       if (checkPermissions.any((element) => element.first == "all")) {
@@ -271,10 +280,17 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
               (e) => e.first.split("/").last,
             )
             .toList();
-        final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
-        final querySnapshot = await newQuery.get();
-        AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+        if (_specificIDOverrideRemove.isNotEmpty) {
+          final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
+          final querySnapshot = await newQuery.get();
+          if (querySnapshot.docs.isEmpty) {
+            return const Pair(RequestResponse.failure, null);
+          }
+          AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
+          final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+          return Pair(RequestResponse.success, result);
+        }
+        return const Pair(RequestResponse.denied, null);
       } else {
         var newQuery = buildQuery(query, collectionReference);
         final _specificIDOverrideAdd = checkPermissions
@@ -283,19 +299,26 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
               (e) => e.first.split("/").last,
             )
             .toList();
+        if (_specificIDOverrideAdd.isEmpty) {
+          return const Pair(RequestResponse.denied, null);
+        }
         newQuery = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
         final querySnapshot = await newQuery.get();
+        if (querySnapshot.docs.isEmpty) {
+          return const Pair(RequestResponse.failure, null);
+        }
         AppLogger.print("Get All with Permissions Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+        final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+        return Pair(RequestResponse.success, result);
       }
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
-      return null;
+      return const Pair(RequestResponse.failure, null);
     }
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) async {
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     try {
       final checkPermissions = await checkPermissionLevel(CRUD.read);
       if (checkPermissions.any((element) => element.first == "all")) {
@@ -305,10 +328,17 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
               (e) => e.first.split("/").last,
             )
             .toList();
-        final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
-        final querySnapshot = await newQuery.get();
-        AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        if (_specificIDOverrideRemove.isNotEmpty) {
+          final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
+          final querySnapshot = await newQuery.get();
+          if (querySnapshot.docs.isEmpty) {
+            return const Pair(RequestResponse.failure, []);
+          }
+          AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
+          final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+          return Pair(RequestResponse.success, result);
+        }
+        return const Pair(RequestResponse.denied, []);
       } else {
         var newQuery = buildQuery(query, collectionReference);
         final _specificIDOverrideAdd = checkPermissions
@@ -317,14 +347,21 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
               (e) => e.first.split("/").last,
             )
             .toList();
+        if (_specificIDOverrideAdd.isEmpty) {
+          return const Pair(RequestResponse.denied, []);
+        }
         newQuery = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
         final querySnapshot = await newQuery.get();
+        if (querySnapshot.docs.isEmpty) {
+          return const Pair(RequestResponse.failure, []);
+        }
         AppLogger.print("Get All with Permissions Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        return Pair(RequestResponse.success, result);
       }
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
@@ -336,6 +373,7 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
     if (!(isCheckPermissionsEqualToAll != null || isCheckPermissionsEqualToId != null)) {
       return RequestResponse.denied;
     }
+
     if (isCheckPermissionsEqualToAll?.second == PermissionLevel.review || isCheckPermissionsEqualToId?.second == PermissionLevel.review) {
       id ??= collectionReference.doc().id;
       final result = await reviewDataSource.updateReviewModel(
@@ -344,7 +382,7 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
           id: id,
           crud: crud,
           documentReference: collectionReference.doc(id).path,
-          user: currentUser!.reference(),
+          user: currentUser.reference(),
           writeData: data != null ? convertDataTypeToMap(data) : null,
           createdAt: DateTime.now(),
         ),

@@ -1,10 +1,12 @@
-import 'package:utilities/data/sources/paginated.dart';
-import 'package:youtube/data/models/playlist_item_model.dart';
-import 'package:youtube/data/models/playlist_model.dart';
-import 'package:youtube/data/repositories/playlist_item.repository.dart';
-import 'package:youtube/data/sources/playlist_item/_source.dart';
+import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:youtube/data/models/playlist_item_model.dart";
+import "package:youtube/data/models/playlist_model.dart";
+import "package:youtube/data/repositories/playlist_item.repository.dart";
+import "package:youtube/data/sources/playlist_item/_source.dart";
 
-import '/data/repositories/_repositories.dart';
+import "/data/repositories/_repositories.dart";
 
 /// [PlaylistItemRepository] is a class that defines the basic CRUD operations for the [PlaylistModel] entity.
 class PlaylistItemRepository {
@@ -54,7 +56,7 @@ class PlaylistItemRepository {
   // }
 
   /// [getPagedPlaylistItems] fetches a page of [PlaylistModel]s from the data source.
-  Future<List<PlaylistItemModel?>> getPagedPlaylistItems({int? limit, bool refresh = false, String? playlistId}) async {
+  Future<Pair<RequestResponse, List<PlaylistItemModel?>>> getPagedPlaylistItems({int? limit, bool refresh = false, String? playlistId}) async {
     final _response = await _playlistItemDataRepository.getPagedPlaylistItemModels(
       source: _source,
       limit: limit,
@@ -63,7 +65,8 @@ class PlaylistItemRepository {
         "playlistId": playlistId,
       },
     );
-    _lastResponse = _response.first;
-    return _response.second;
+    _lastResponse = _response.second.first;
+    final _playlistItems = _response.second.second;
+    return Pair(_response.first, _playlistItems);
   }
 }

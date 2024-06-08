@@ -3,7 +3,9 @@ import "package:authentication/data/repositories/review.repository.dart";
 import "package:authentication/data/sources/firestore/secured_paginated.dart";
 import "package:authentication/data/sources/review/_source.dart";
 import "package:mobx/mobx.dart";
+import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/sources/firestore/paginated.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
 
@@ -14,20 +16,22 @@ class CRUDReviewsStore<T, Q> = _CRUDReviewsStore<T, Q> with _$CRUDReviewsStore<T
 
 /// [_CRUDReviewsStore] is a class that manages the state of the reviews feature.
 abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> with Store {
+  final PermissionModel currentUserPermissions;
   final CRUD crud;
   final SecuredPaginatedFirestoreDataSource<T, Q> firestoreDataSource;
 
   /// [_CRUDReviewsStore] constructor.
   _CRUDReviewsStore({
+    required this.currentUserPermissions,
     required this.crud,
     required this.firestoreDataSource,
   });
   @override
   late final loadMoreFromRepository = loadMoreCRUDSpecific;
 
-  Future<List<ReviewModel?>> loadMoreCRUDSpecific({int? limit, bool refresh = false}) async {
+  Future<Pair<RequestResponse, List<ReviewModel?>>> loadMoreCRUDSpecific({int? limit, bool refresh = false}) async {
     final loadedReviews = await repository.getAllPagedCRUD(crud);
-    return loadedReviews.map((e) => e.first).toList();
+    return Pair(loadedReviews.first, loadedReviews.second.map((e) => e.first).toList());
   }
 
   /// [repository] is an instance of [ReviewDataRepository].
@@ -36,7 +40,7 @@ abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> w
       firestoreDataSource.collectionName,
       convertDataTypeFromMap: firestoreDataSource.convertDataTypeFromMap,
       convertDataTypeToMap: firestoreDataSource.convertDataTypeToMap,
-      currentUserPermissions: firestoreDataSource.userDataRepository.currentPermissionModelStream.value,
+      currentUserPermissions: currentUserPermissions,
     ),
   );
 
@@ -46,7 +50,7 @@ abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> w
     try {
       setLoading();
       final loadedReviews = await repository.getAllCRUDSpecific(crud);
-      if (loadedReviews.isNotEmpty) {
+      if (loadedReviews.second.isNotEmpty) {
         final _loadedResults = results.whereType<Pair<ReviewModel?, T?>>().map((e) => e.first).toList();
         results
           ..clear()

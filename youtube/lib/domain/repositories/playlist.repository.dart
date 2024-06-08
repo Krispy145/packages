@@ -1,9 +1,11 @@
-import 'package:utilities/data/sources/paginated.dart';
-import 'package:youtube/data/models/playlist_model.dart';
-import 'package:youtube/data/repositories/playlist.repository.dart';
-import 'package:youtube/data/sources/playlist/_source.dart';
+import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:youtube/data/models/playlist_model.dart";
+import "package:youtube/data/repositories/playlist.repository.dart";
+import "package:youtube/data/sources/playlist/_source.dart";
 
-import '/data/repositories/_repositories.dart';
+import "/data/repositories/_repositories.dart";
 
 /// [PlaylistRepository] is a class that defines the basic CRUD operations for the [PlaylistModel] entity.
 class PlaylistRepository {
@@ -20,7 +22,7 @@ class PlaylistRepository {
   ResponseModel? _lastResponse;
 
   /// [getPagedChannelPlaylists] fetches a page of [PlaylistModel]s from the data source.
-  Future<List<PlaylistModel?>> getPagedChannelPlaylists({int? limit, bool refresh = false, String? channelId}) async {
+  Future<Pair<RequestResponse, List<PlaylistModel?>>> getPagedChannelPlaylists({int? limit, bool refresh = false, String? channelId}) async {
     final _response = await _playlistDataRepository.getPagedPlaylistModels(
       source: _source,
       limit: limit,
@@ -29,12 +31,13 @@ class PlaylistRepository {
         "channelId": channelId,
       },
     );
-    _lastResponse = _response.first;
-    return _response.second;
+    _lastResponse = _response.second.first;
+    final _playlists = _response.second.second;
+    return Pair(_response.first, _playlists);
   }
 
   /// [getPagedMyPlaylists] fetches a page of [PlaylistModel]s from the data source.
-  Future<List<PlaylistModel?>> getPagedMyPlaylists({
+  Future<Pair<RequestResponse, List<PlaylistModel?>>> getPagedMyPlaylists({
     int? limit,
     bool refresh = false,
   }) async {
@@ -46,12 +49,13 @@ class PlaylistRepository {
         "mine": true,
       },
     );
-    _lastResponse = _response.first;
-    return _response.second;
+    _lastResponse = _response.second.first;
+    final _playlists = _response.second.second;
+    return Pair(_response.first, _playlists);
   }
 
   /// [getPlaylistModel] fetches a single [PlaylistModel] from the data source.
-  Future<PlaylistModel?> getPlaylistModel(String id) {
+  Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel(String id) {
     return _playlistDataRepository.getPlaylistModel(
       source: _source,
       id: id,

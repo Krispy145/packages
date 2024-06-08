@@ -329,8 +329,8 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
   Future<void> _initStreams() async {
     if (_user != null && userModelStream.value == null) {
       final databaseUser = await userDataRepository?.getUserModel(id: _user!.uid);
-      if (databaseUser != null) {
-        final _currentResponse = convertDataTypeToMap(databaseUser);
+      if (databaseUser?.second != null) {
+        final _currentResponse = convertDataTypeToMap(databaseUser!.second!);
         _currentResponse["last_login_at"] = DateTime.now();
         userModelStream.add(convertDataTypeFromMap(_currentResponse));
         await userDataRepository?.updateUserModel(userModel: convertDataTypeFromMap(_currentResponse));

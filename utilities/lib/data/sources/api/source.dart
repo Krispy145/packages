@@ -103,7 +103,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
   Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) => Pair("$url/$id", null);
 
   @override
-  Future<T?> get(
+  Future<Pair<RequestResponse, T?>> get(
     String id, {
     String? pathExtensions,
     Map<String, dynamic>? queryParameters,
@@ -120,11 +120,14 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
       cancelToken: getCancelToken(cancelKey),
     );
     final convertedResponse = response.data != null ? convertDataTypeFromMap(response.data!) : null;
-    return convertedResponse;
+    if (convertedResponse == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, convertedResponse);
   }
 
   @override
-  Future<List<T?>> getAll({
+  Future<Pair<RequestResponse, List<T?>>> getAll({
     String? pathExtensions,
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
@@ -139,7 +142,11 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
       queryParameters: queryParameters,
       cancelToken: getCancelToken(cancelKey),
     );
-    return response.data!.map(convertDataTypeFromMap).toList();
+    final result = response.data!.map(convertDataTypeFromMap).toList();
+    if (result.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   @override
@@ -287,7 +294,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
   Map<String, dynamic> buildQuery(Q query);
 
   @override
-  Future<T?> search(
+  Future<Pair<RequestResponse, T?>> search(
     Q query, {
     String? pathExtensions,
     bool cancelPreviousRequest = false,
@@ -304,11 +311,15 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     );
     AppLogger.print(response.data.toString(), [UtilitiesLoggers.apiDataSource]);
 
-    return response.data != null ? convertDataTypeFromMap(response.data!) : null;
+    final result = response.data != null ? convertDataTypeFromMap(response.data!) : null;
+    if (result == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   @override
-  Future<List<T?>> searchAll(
+  Future<Pair<RequestResponse, List<T?>>> searchAll(
     Q query, {
     String? pathExtensions,
     bool cancelPreviousRequest = false,
@@ -323,7 +334,11 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
       queryParameters: buildQuery(query),
       cancelToken: getCancelToken(cancelKey),
     );
-    return response.data!.map(convertDataTypeFromMap).toList();
+    final result = response.data!.map(convertDataTypeFromMap).toList();
+    if (result.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   CancelToken getCancelToken(String id) {

@@ -22,7 +22,8 @@ class GooglePlacesDataRepository {
 
   /// [textSearchGooglePlaces] returns a list of [GooglePlace]s based on the [GoogleTextSearchParameters].
   Future<List<GooglePlace?>> textSearchGooglePlaces({required DataSourceTypes source, required GoogleTextSearchParameters parameters}) async {
-    final results = await _dataSourceByType(source).search(parameters.toMap());
+    final resultsResponse = await _dataSourceByType(source).search(parameters.toMap());
+    final results = resultsResponse.second;
     if (results == null) {
       AppLogger.print(
         "Failed to search for places with parameters: $parameters",
@@ -36,7 +37,8 @@ class GooglePlacesDataRepository {
 
   /// [getGooglePlaceDetails] returns a [GooglePlace] based on the [placeId].
   Future<GooglePlace?> getGooglePlaceDetails({required DataSourceTypes source, required String placeId}) async {
-    final result = await _dataSourceByType(source).get(placeId);
+    final resultResponse = await _dataSourceByType(source).get(placeId);
+    final result = resultResponse.second;
     if (result == null) {
       AppLogger.print(
         "Failed to get place details with placeId: $placeId",

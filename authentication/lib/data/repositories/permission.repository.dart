@@ -23,17 +23,17 @@ class PermissionDataRepository {
   PermissionModel? currentPermissionModel;
 
   /// [getAllPermissionModels] returns a list of [PermissionModel]s.
-  Future<List<PermissionModel?>> getAllPermissionModels() async {
+  Future<Pair<RequestResponse, List<PermissionModel?>>> getAllPermissionModels() async {
     return _dataSourceByType(userDataSourceType).getAll();
   }
 
   /// [getPermissionModel] returns a single [PermissionModel].
-  Future<PermissionModel?> getPermissionModel() async {
+  Future<Pair<RequestResponse, PermissionModel?>> getPermissionModel() async {
     return _dataSourceByType(userDataSourceType).getAll().then((value) {
-      if (value.isNotEmpty) {
-        return value.first;
+      if (value.second.isNotEmpty) {
+        return Pair(value.first, value.second.first);
       } else {
-        return null;
+        return Pair(value.first, null);
       }
     });
   }

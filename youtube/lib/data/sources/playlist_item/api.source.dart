@@ -34,7 +34,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
               "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
               "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
               "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true"
+              "Access-Control-Allow-Credentials": "true",
             },
           ),
         );
@@ -66,7 +66,8 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>> _handlePagedError(Future<Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>> Function() apiCall) async {
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> _handlePagedError(
+      Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> Function() apiCall) async {
     try {
       return await apiCall();
     } catch (e) {
@@ -80,7 +81,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
   }
 
   @override
-  Future<Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>> getPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> getPage({
     PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     String? orderBy,
@@ -100,7 +101,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
   }
 
   @override
-  Future<Pair<PagedResponse<PlaylistItemModel>, List<PlaylistItemModel?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>, List<PlaylistItemModel?>>>> searchPage({
     PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,

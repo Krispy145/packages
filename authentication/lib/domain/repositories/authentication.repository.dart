@@ -172,7 +172,7 @@ class AuthenticationRepository<T extends UserModel> {
         );
         await userDataRepository.addUserModel(userModel: changedUserModel);
       }
-      await userDataRepository.initPermissions(changedUserModel);
+      await userDataRepository.initPermissions(changedUserModel.id);
       return changedUserModel;
     } catch (e) {
       AppLogger.print(
@@ -243,7 +243,8 @@ class AuthenticationRepository<T extends UserModel> {
           AppLogger.print("User is authenticated", [AuthenticationLoggers.authentication]);
           isUserAuthenticated = true;
           if (event != null && hasPermissions) {
-            await userDataRepository.initPermissions(event);
+            final _user = convertDataTypeFromMap(convertDataTypeToMap(event));
+            await userDataRepository.initPermissions(_user.id);
           }
         } else if (event?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
           AppLogger.print("User is unauthenticated", [AuthenticationLoggers.authentication]);

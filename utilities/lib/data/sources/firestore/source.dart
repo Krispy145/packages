@@ -35,7 +35,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   Query<Map<String, dynamic>> buildQuery(Q query, Query<Map<String, dynamic>> collectionReference);
 
   @override
-  Future<T?> get(String id) async {
+  Future<Pair<RequestResponse, T?>> get(String id) async {
     final response = await _handleRequest("GET", () async {
       final documentSnapshot = await collectionReference.doc(id).get();
       if (documentSnapshot.exists) {
@@ -44,17 +44,21 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
         return null;
       }
     });
-    return response.second;
+    return response;
   }
 
   @override
-  Future<List<T?>> getAll() async {
+  Future<Pair<RequestResponse, List<T?>>> getAll() async {
     try {
       final querySnapshot = await collectionReference.get();
-      return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      if (querySnapshot.docs.isEmpty) {
+        return const Pair(RequestResponse.success, []);
+      }
+      final data = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      return Pair(RequestResponse.success, data);
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
@@ -157,22 +161,25 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   }
 
   @override
-  Future<T?> search(Q query) async {
+  Future<Pair<RequestResponse, T?>> search(Q query) async {
     final firestoreQuery = buildQuery(query, collectionReference);
     final querySnapshot = await firestoreQuery.get();
-    // final query = collectionReference;
-    // for (final entry in queries.entries) {
-    //   query.where(entry.key, isEqualTo: entry.value);
-    // }
-    // final querySnapshot = await query.get();
-    return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+    if (querySnapshot.docs.isEmpty) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    final data = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).first;
+    return Pair(RequestResponse.success, data);
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) async {
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     final firestoreQuery = buildQuery(query, collectionReference);
     final querySnapshot = await firestoreQuery.get();
-    return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+    if (querySnapshot.docs.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    final data = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+    return Pair(RequestResponse.success, data);
   }
 
   void _logRequest(String method, String path, T? data) {

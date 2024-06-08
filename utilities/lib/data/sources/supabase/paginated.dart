@@ -1,6 +1,7 @@
 import "package:dart_mappable/dart_mappable.dart";
 import "package:supabase_flutter/supabase_flutter.dart";
 import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/data/sources/supabase/source.dart";
 import "package:utilities/helpers/tuples.dart";
 
@@ -41,13 +42,13 @@ abstract class PaginatedSupabaseDataSource<T, Q> extends SupabaseDataSource<T, Q
   }
 
   @override
-  Future<Pair<SupabaseResponseModel<T?>?, List<T?>>> getPage({SupabaseResponseModel<T?>? lastResponse, int? size, String? orderBy, Map<String, dynamic>? queryParameters}) {
+  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>> getPage({SupabaseResponseModel<T?>? lastResponse, int? size, String? orderBy, Map<String, dynamic>? queryParameters}) {
     // TODO: implement getPage
     throw UnimplementedError();
   }
 
   @override
-  Future<Pair<SupabaseResponseModel<T?>?, List<T?>>> searchPage({SupabaseResponseModel<T?>? lastResponse, int? size, required Q query}) {
+  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>> searchPage({SupabaseResponseModel<T?>? lastResponse, int? size, required Q query}) {
     // TODO: implement searchPage
     throw UnimplementedError();
   }

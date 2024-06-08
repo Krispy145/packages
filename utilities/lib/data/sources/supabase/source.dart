@@ -43,7 +43,7 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
   Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
 
   @override
-  Future<T?> get(String id) async {
+  Future<Pair<RequestResponse, T?>> get(String id) async {
     var _filterBuilder = _supabaseClient!.from(_tableName).select().eq("id", id);
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     return _handleRequest("GET", () async {
@@ -57,15 +57,15 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
   }
 
   @override
-  Future<List<T?>> getAll() async {
+  Future<Pair<RequestResponse, List<T?>>> getAll() async {
     var _filterBuilder = _supabaseClient!.from(_tableName).select();
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     try {
       final results = await _filterBuilder;
-      return results.map(convertDataTypeFromMap).toList();
+      return Pair(RequestResponse.success, results.map(convertDataTypeFromMap).toList());
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.supabaseDataSource]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
@@ -167,13 +167,14 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
   SupabaseQueryBuilder buildQuery(Q query, SupabaseQueryBuilder table);
 
   @override
-  Future<T?> search(Q query) async {
+  Future<Pair<RequestResponse, T?>> search(Q query) async {
     final table = await _supabaseClient!.from(_tableName) as SupabaseQueryBuilder;
     final supabaseQuery = buildQuery(query, table);
     var _filterBuilder = supabaseQuery.select();
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     final results = await _filterBuilder.limit(1);
-    return results.map(convertDataTypeFromMap).toList().firstOrNull;
+    if (results.isEmpty) return const Pair(RequestResponse.failure, null);
+    return Pair(RequestResponse.success, results.map(convertDataTypeFromMap).firstOrNull);
     // final results = await _supabase?.from(tableName);
     // final columnNames = queries.keys.toList();
     // final values = queries.values.toList();
@@ -181,13 +182,14 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) async {
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     final table = await _supabaseClient!.from(_tableName) as SupabaseQueryBuilder;
     final supabaseQuery = buildQuery(query, table);
     var _filterBuilder = supabaseQuery.select();
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     final results = await _filterBuilder.limit(12);
-    return results.map(convertDataTypeFromMap).toList();
+    if (results.isEmpty) return const Pair(RequestResponse.failure, []);
+    return Pair(RequestResponse.success, results.map(convertDataTypeFromMap).toList());
     // final columnNames = queries.keys.toList();
     // final values = queries.values.toList();
     // final results = await _supabase!.from(tableName).select(columnNames.join(",")).eq(columnNames.join(","), values.join(","));
@@ -269,7 +271,7 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     );
   }
 
-  Future<T?> _handleRequest(
+  Future<Pair<RequestResponse, T?>> _handleRequest(
     String method,
     Future<T?> Function() apiCall,
   ) async {
@@ -277,10 +279,10 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
       _logRequest(method, tableReference, null);
       final response = await apiCall();
       _logResponse(method, "Success", response);
-      return response;
+      return Pair(RequestResponse.success, response);
     } catch (error) {
       _logError(method, "Error", error);
-      return null;
+      return const Pair(RequestResponse.failure, null);
     }
   }
 }

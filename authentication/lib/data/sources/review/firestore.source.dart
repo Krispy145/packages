@@ -17,28 +17,32 @@ class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseMod
   CollectionReference<Map<String, dynamic>> get collectionReference => firestore.collection("$sourcePath-reviews");
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecific(CRUD crud) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud) async {
     try {
-      if (!_canReview) return [];
+      if (!_canReview) return const Pair(RequestResponse.denied, []);
       final querySnapshot = await collectionReference.where("crud", isEqualTo: crud.name).get();
-      return querySnapshot.docs.map((doc) {
+      final result = querySnapshot.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
         final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
+      if (result.isEmpty) {
+        return const Pair(RequestResponse.failure, []);
+      }
+      return Pair(RequestResponse.success, result);
     } catch (e) {
       AppLogger.print("Error: $e", [AuthenticationLoggers.review]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecificByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecificByUserId(
     CRUD crud, {
     required UUID userId,
   }) async {
     try {
-      if (!_canReview) return [];
+      if (!_canReview) return const Pair(RequestResponse.denied, []);
       final querySnapshot = await collectionReference
           .where("crud", isEqualTo: crud.name)
           .where(
@@ -46,48 +50,56 @@ class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseMod
             isEqualTo: userId,
           )
           .get();
-      return querySnapshot.docs.map((doc) {
+      final result = querySnapshot.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
         final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
+      if (result.isEmpty) {
+        return const Pair(RequestResponse.failure, []);
+      }
+      return Pair(RequestResponse.success, result);
     } catch (e) {
       AppLogger.print("Error: $e", [AuthenticationLoggers.review]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUD(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUD(
     CRUD crud, {
     FirestoreResponseModel<ReviewModel?>? lastResponse,
     int? size,
     String? orderBy,
   }) async {
     try {
-      if (!_canReview) return [];
+      if (!_canReview) return const Pair(RequestResponse.denied, []);
       final querySnapshot = await collectionReference.where("crud", isEqualTo: crud.name).get();
-      return querySnapshot.docs.map((doc) {
+      final result = querySnapshot.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
         final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
+      if (result.isEmpty) {
+        return const Pair(RequestResponse.failure, []);
+      }
+      return Pair(RequestResponse.success, result);
     } catch (e) {
       AppLogger.print("Error: $e", [AuthenticationLoggers.review]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
   @override
-  Future<Pair<ReviewModel?, T?>> getCRUDSpecifReviewModel(String id) async {
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>> getCRUDSpecifReviewModel(String id) async {
     try {
       final documentSnapshot = await collectionReference.doc(id).get();
       final review = ReviewModel.fromMap(documentSnapshot.data()!);
       final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
-      return Pair(review, writeMapToType);
+      return Pair(RequestResponse.success, Pair(review, writeMapToType));
     } catch (e) {
       AppLogger.print("Error: $e", [AuthenticationLoggers.review]);
-      return const Pair(null, null);
+      return const Pair(RequestResponse.failure, Pair(null, null));
     }
   }
 
@@ -107,7 +119,7 @@ class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseMod
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUDByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUDByUserId(
     CRUD crud, {
     required UUID userId,
     FirestoreResponseModel<ReviewModel?>? lastResponse,
@@ -115,7 +127,7 @@ class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseMod
     String? orderBy,
   }) async {
     try {
-      if (!_canReview) return [];
+      if (!_canReview) return const Pair(RequestResponse.denied, []);
       final querySnapshot = await collectionReference
           .where("crud", isEqualTo: crud.name)
           .where(
@@ -123,14 +135,18 @@ class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseMod
             isEqualTo: userId,
           )
           .get();
-      return querySnapshot.docs.map((doc) {
+      final result = querySnapshot.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
         final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
+      if (result.isEmpty) {
+        return const Pair(RequestResponse.failure, []);
+      }
+      return Pair(RequestResponse.success, result);
     } catch (e) {
       AppLogger.print("Error: $e", [AuthenticationLoggers.review]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 

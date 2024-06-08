@@ -33,31 +33,32 @@ class DummyReviewDataSource<T> extends ReviewDataSource<DummyDataResponseModel<R
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecific(CRUD crud) {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud) {
     // TODO: implement getAllCRUDSpecific
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecificByUserId(CRUD crud, {required UUID userId}) {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecificByUserId(CRUD crud, {required UUID userId}) {
     // TODO: implement getAllCRUDSpecificByUserId
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUD(CRUD crud, {DummyDataResponseModel<ReviewModel?>? lastResponse, int? size, String? orderBy}) {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUD(CRUD crud, {DummyDataResponseModel<ReviewModel?>? lastResponse, int? size, String? orderBy}) {
     // TODO: implement getAllPagedCRUD
     throw UnimplementedError();
   }
 
   @override
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUDByUserId(CRUD crud, {required UUID userId, DummyDataResponseModel<ReviewModel?>? lastResponse, int? size, String? orderBy}) {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUDByUserId(CRUD crud,
+      {required UUID userId, DummyDataResponseModel<ReviewModel?>? lastResponse, int? size, String? orderBy}) {
     // TODO: implement getAllPagedCRUDByUserId
     throw UnimplementedError();
   }
 
   @override
-  Future<Pair<ReviewModel?, T?>> getCRUDSpecifReviewModel(String id) {
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>> getCRUDSpecifReviewModel(String id) {
     // TODO: implement getCRUDSpecifReviewModel
     throw UnimplementedError();
   }
