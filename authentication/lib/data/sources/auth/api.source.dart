@@ -1,7 +1,8 @@
 part of "_source.dart";
 
 /// [ApiAuthDataSource] is a class that implements [AuthenticationDataSource] interface.
-class ApiAuthDataSource<T extends UserModel, Q> extends ApiDataSource<T, Q> implements AuthenticationDataSource<T, Q> {
+class ApiAuthDataSource<T extends UserModel, Q> extends ApiDataSource<T, Q>
+    implements AuthenticationDataSource<T, Q> {
   T? _currentUserModel;
   T? get currentUserModel => _currentUserModel;
 

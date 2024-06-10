@@ -37,11 +37,15 @@ sealed class ReviewDataSource<Resp extends ResponseModel, T> {
     required this.convertDataTypeToMap,
   });
 
-  bool get _canReview => currentUserPermissions?.reviews?[sourcePath] ?? currentUserPermissions?.role == "superAdmin";
+  bool get _canReview =>
+      currentUserPermissions?.reviews?[sourcePath] ??
+      currentUserPermissions?.role == "superAdmin";
 
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud);
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllCRUDSpecific(CRUD crud);
 
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecificByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllCRUDSpecificByUserId(
     CRUD crud, {
     required UUID userId,
   });
@@ -53,11 +57,13 @@ sealed class ReviewDataSource<Resp extends ResponseModel, T> {
     String? orderBy,
   });
 
-  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>> getCRUDSpecifReviewModel(String id);
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>>
+      getCRUDSpecifReviewModel(String id);
 
   Future<RequestResponse> updateReviewModel(String id, ReviewModel data);
 
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUDByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllPagedCRUDByUserId(
     CRUD crud, {
     required UUID userId,
     Resp? lastResponse,

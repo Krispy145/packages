@@ -11,7 +11,8 @@ import "package:utilities/logger/logger.dart";
 part "api.source.dart";
 
 /// [AuthenticationDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-sealed class AuthenticationDataSource<T extends UserModel, Q> with DataSource<T, Q> {
+sealed class AuthenticationDataSource<T extends UserModel, Q>
+    with DataSource<T, Q> {
   /// [signIn] signs in the user.
   Future<T?> signIn({required AuthParams params});
 

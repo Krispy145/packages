@@ -12,7 +12,8 @@ class CRUDReviewsBuilder<T, Q> extends StatelessWidget {
   final CRUD crud;
   final PermissionModel currentUserPermissions;
   final SecuredPaginatedFirestoreDataSource<T, Q> firestoreDataSource;
-  final Widget Function(BuildContext context, ReviewModel? review) reviewBuilder;
+  final Widget Function(BuildContext context, ReviewModel? review)
+      reviewBuilder;
 
   /// [CRUDReviewsBuilder] constructor.
   CRUDReviewsBuilder({

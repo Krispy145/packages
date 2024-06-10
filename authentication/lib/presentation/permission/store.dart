@@ -40,7 +40,8 @@ abstract class _PermissionStore extends LoadStateStore with Store {
 
   /// [additPermissionModel] addits a [PermissionModel] to the data source.
   @action
-  Future<RequestResponse> additPermissionModel(bool isAdding, PermissionModel permissionModel) async {
+  Future<RequestResponse> additPermissionModel(
+      bool isAdding, PermissionModel permissionModel) async {
     if (isAdding) {
       final result = await dataRepository.addPermissionModel(
         permissionModel: permissionModel,
@@ -49,7 +50,8 @@ abstract class _PermissionStore extends LoadStateStore with Store {
       return result.first;
     } else {
       currentPermission = permissionModel;
-      return dataRepository.updatePermissionModel(permissionModel: permissionModel);
+      return dataRepository.updatePermissionModel(
+          permissionModel: permissionModel);
     }
   }
 

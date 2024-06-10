@@ -7,9 +7,11 @@ import "package:utilities/helpers/tuples.dart";
 
 part "store.g.dart";
 
-class PermissionsFormFieldStore = _PermissionsFormFieldStore with _$PermissionsFormFieldStore;
+class PermissionsFormFieldStore = _PermissionsFormFieldStore
+    with _$PermissionsFormFieldStore;
 
-abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String, UserPermissionsModel>?> with Store {
+abstract class _PermissionsFormFieldStore
+    extends BaseFormFieldStore<Pair<String, UserPermissionsModel>?> with Store {
   final String initialSelectedCollection;
   final List<String> collections;
   _PermissionsFormFieldStore({
@@ -28,28 +30,35 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
     labelBuilder: (collection) => collection,
     initialItems: collections,
     onValueChanged: (newValue) {
-      selectedPermission = UserPermissionsModel.fromMap({_setCollectionString(newValue): selectedPermission?.toMap() ?? {}});
-      final _newPair = Pair(_setCollectionString(newValue), selectedPermission ?? UserPermissionsModel.viewExample);
+      selectedPermission = UserPermissionsModel.fromMap(
+          {_setCollectionString(newValue): selectedPermission?.toMap() ?? {}});
+      final _newPair = Pair(_setCollectionString(newValue),
+          selectedPermission ?? UserPermissionsModel.viewExample);
       onValueChanged(_newPair);
     },
     title: title,
   );
 
-  late final List<DropdownFormFieldStore<PermissionLevel>> permissions = CRUD.values.map((e) {
+  late final List<DropdownFormFieldStore<PermissionLevel>> permissions =
+      CRUD.values.map((e) {
     return DropdownFormFieldStore<PermissionLevel>(
       value: _getPermissionLevel(e),
       labelBuilder: (permission) => permission.name,
       initialItems: PermissionLevel.values,
       onValueChanged: (newValue) {
-        final _newPermissionsModelResult = _newPermissionsModel(e, newValue ?? PermissionLevel.no);
-        final _newPair = Pair(collectionStore.value ?? initialSelectedCollection, _newPermissionsModelResult);
+        final _newPermissionsModelResult =
+            _newPermissionsModel(e, newValue ?? PermissionLevel.no);
+        final _newPair = Pair(
+            collectionStore.value ?? initialSelectedCollection,
+            _newPermissionsModelResult);
         onValueChanged(_newPair);
       },
       title: e.name,
     );
   }).toList();
 
-  UserPermissionsModel _newPermissionsModel(CRUD key, PermissionLevel permissionValue) {
+  UserPermissionsModel _newPermissionsModel(
+      CRUD key, PermissionLevel permissionValue) {
     switch (key) {
       case CRUD.create:
         return value!.second.copyWith(canCreate: permissionValue);
@@ -86,7 +95,8 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
 
   String _setCollectionString(String? collection) {
     final _collectionBase = collection?.replaceAll("/all", "");
-    final _initialSelectedCollection = _sanitizeCollectionString(initialSelectedCollection).split("/").first;
+    final _initialSelectedCollection =
+        _sanitizeCollectionString(initialSelectedCollection).split("/").first;
     return "${_collectionBase ?? _initialSelectedCollection}/all";
   }
 

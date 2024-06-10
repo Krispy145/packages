@@ -112,14 +112,18 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
               try {
                 if (isSigningIn) {
                   final response = await widget.repository.signIn(
-                      params: AuthParams.phone(
-                          phoneNumber: _phone.text, password: _password.text,),);
+                    params: AuthParams.phone(
+                      phoneNumber: _phone.text,
+                      password: _password.text,
+                    ),
+                  );
                   if (response != null) {
                     widget.onSuccess(response);
                   }
                 } else {
                   throw const AuthenticationException(
-                      "Sign up with phone is not implemented yet",);
+                    "Sign up with phone is not implemented yet",
+                  );
                   //TODO: Add signup with phone
                   // final response = await widget.repository.signUp(params: AuthParams.phone(phoneNumber: _phone.text, password: _password.text));
                   // if (response != null) {
@@ -130,16 +134,19 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
               } on AuthenticationException catch (error) {
                 if (widget.onError == null && context.mounted) {
                   context.showSnackbar(
-                      configuration:
-                          SnackbarConfiguration.error(title: error.message),);
+                    configuration:
+                        SnackbarConfiguration.error(title: error.message),
+                  );
                 } else {
                   widget.onError?.call(error);
                 }
               } catch (error) {
                 if (widget.onError == null && context.mounted) {
                   context.showSnackbar(
-                      configuration: SnackbarConfiguration.error(
-                          title: "Unexpected error has occurred: $error",),);
+                    configuration: SnackbarConfiguration.error(
+                      title: "Unexpected error has occurred: $error",
+                    ),
+                  );
                 } else {
                   widget.onError?.call(error);
                 }

@@ -23,7 +23,9 @@ class SocialButtonType {
     required this.params,
   })  : name = name ?? params.authType.name,
         assert(
-            params.authType == AuthType.facebook, "AuthType must be facebook",);
+          params.authType == AuthType.facebook,
+          "AuthType must be facebook",
+        );
 
   SocialButtonType.github({
     String? name,

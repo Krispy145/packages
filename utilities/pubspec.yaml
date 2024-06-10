@@ -36,6 +36,7 @@ dependencies:
   universal_io: ^2.2.2
   universal_platform: ^1.0.0+1
   uuid: ^3.0.7
+  envied: ^0.5.3
 
 dev_dependencies:
   build_runner: null

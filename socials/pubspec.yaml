@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  envied: ^0.5.3
   flutter_inappwebview: ^6.0.0
   cached_network_image: ^3.3.1
   utilities:

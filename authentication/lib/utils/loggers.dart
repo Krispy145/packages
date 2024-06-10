@@ -12,4 +12,7 @@ enum AuthenticationLoggers {
 
   /// [user] is the feature reference for user.
   user,
+
+  /// [code] is the feature reference for code.
+  code,
 }

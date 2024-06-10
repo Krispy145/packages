@@ -43,24 +43,30 @@ class UserDataRepository<T extends UserModel> {
     required this.convertDataTypeToMap,
     this.baseUrl,
   });
-  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
-  PermissionDataRepository permissionDataRepository(UUID userId) => PermissionDataRepository(
+  BehaviorSubject<PermissionModel?> currentPermissionModelStream =
+      BehaviorSubject<PermissionModel?>.seeded(null);
+  PermissionDataRepository permissionDataRepository(UUID userId) =>
+      PermissionDataRepository(
         userDataSourceType: source,
         userId: userId,
       );
 
-  Future<void> setPermissionModel(UUID userId, List<Pair<String, UserPermissionsModel?>> permissions) async {
+  Future<void> setPermissionModel(UUID userId,
+      List<Pair<String, UserPermissionsModel?>> permissions) async {
     final permissionsMap = <String, UserPermissionsModel>{};
     for (final element in permissions) {
       permissionsMap[element.first] = element.second!;
     }
     final _currentPermissionModel = currentPermissionModelStream.value;
     if (_currentPermissionModel == null) {
-      return permissionDataRepository(userId).getPermissionModel().then((value) {
+      return permissionDataRepository(userId)
+          .getPermissionModel()
+          .then((value) {
         currentPermissionModelStream.add(value.second);
       });
     }
-    currentPermissionModelStream.add(currentPermissionModelStream.value?.copyWith(permissions: permissionsMap));
+    currentPermissionModelStream.add(currentPermissionModelStream.value
+        ?.copyWith(permissions: permissionsMap));
   }
 
   Future<void> initPermissions(UUID userId) async {
@@ -84,7 +90,8 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [getPagedUserModels] returns a page of [UserModel]s.
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> getPagedUserModels({
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>>
+      getPagedUserModels({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,
@@ -136,7 +143,8 @@ class UserDataRepository<T extends UserModel> {
   /// [_dataSourceByType] returns the appropriate [UserDataSource] based on the given [UserDataSourceTypes].
   /// Default is [FirestoreUserDataSource].
   /// This can be in local, an api, or firestore.
-  UserDataSource<ResponseModel, T> _dataSourceByType(UserDataSourceTypes source) {
+  UserDataSource<ResponseModel, T> _dataSourceByType(
+      UserDataSourceTypes source) {
     switch (source) {
       // case UserDataSourceTypes.api:
       //   return ApiUserDataSource(
@@ -155,7 +163,9 @@ class UserDataRepository<T extends UserModel> {
       //     convertDataTypeToMap: convertDataTypeToMap,
       //   );
       default:
-        AppLogger.print("UserDataSourceType not found: $source", [AuthenticationLoggers.user], type: LoggerType.error);
+        AppLogger.print("UserDataSourceType not found: $source",
+            [AuthenticationLoggers.user],
+            type: LoggerType.error);
         return FirestoreUserDataSource(
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,

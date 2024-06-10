@@ -38,7 +38,8 @@ class PermissionsFormField extends BaseFormField<PermissionsFormFieldStore> {
               ),
               ...store.permissions.map((permission) {
                 return ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: (maxWidth ?? 300) / 1.5),
+                  constraints:
+                      BoxConstraints(maxWidth: (maxWidth ?? 300) / 1.5),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

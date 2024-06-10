@@ -134,6 +134,9 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         email: params.email!,
         password: params.password!,
       );
+      if (!(userCredential.user?.emailVerified ?? false)) {
+        throw const AuthenticationException("Email not verified");
+      }
       final userModel = _userCredentialToUserModel(userCredential, params);
       return userModel;
     } catch (e) {
@@ -333,7 +336,9 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         final _currentResponse = convertDataTypeToMap(databaseUser!.second!);
         _currentResponse["last_login_at"] = DateTime.now();
         userModelStream.add(convertDataTypeFromMap(_currentResponse));
-        await userDataRepository?.updateUserModel(userModel: convertDataTypeFromMap(_currentResponse));
+        await userDataRepository?.updateUserModel(
+          userModel: convertDataTypeFromMap(_currentResponse),
+        );
       }
     }
     _firebaseAuth.authStateChanges().listen((event) async {

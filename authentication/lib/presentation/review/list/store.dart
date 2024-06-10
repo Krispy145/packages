@@ -12,10 +12,12 @@ import "package:utilities/layouts/paginated_list/store.dart";
 part "store.g.dart";
 
 /// [CRUDReviewsStore] is a class that uses [_CRUDReviewsStore] to manage state of the reviews feature.
-class CRUDReviewsStore<T, Q> = _CRUDReviewsStore<T, Q> with _$CRUDReviewsStore<T, Q>;
+class CRUDReviewsStore<T, Q> = _CRUDReviewsStore<T, Q>
+    with _$CRUDReviewsStore<T, Q>;
 
 /// [_CRUDReviewsStore] is a class that manages the state of the reviews feature.
-abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> with Store {
+abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel>
+    with Store {
   final PermissionModel currentUserPermissions;
   final CRUD crud;
   final SecuredPaginatedFirestoreDataSource<T, Q> firestoreDataSource;
@@ -29,13 +31,16 @@ abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> w
   @override
   late final loadMoreFromRepository = loadMoreCRUDSpecific;
 
-  Future<Pair<RequestResponse, List<ReviewModel?>>> loadMoreCRUDSpecific({int? limit, bool refresh = false}) async {
+  Future<Pair<RequestResponse, List<ReviewModel?>>> loadMoreCRUDSpecific(
+      {int? limit, bool refresh = false}) async {
     final loadedReviews = await repository.getAllPagedCRUD(crud);
-    return Pair(loadedReviews.first, loadedReviews.second.map((e) => e.first).toList());
+    return Pair(
+        loadedReviews.first, loadedReviews.second.map((e) => e.first).toList());
   }
 
   /// [repository] is an instance of [ReviewDataRepository].
-  late final ReviewDataRepository<FirestoreResponseModel<ReviewModel?>, T> repository = ReviewDataRepository(
+  late final ReviewDataRepository<FirestoreResponseModel<ReviewModel?>, T>
+      repository = ReviewDataRepository(
     FirestoreReviewDataSource(
       firestoreDataSource.collectionName,
       convertDataTypeFromMap: firestoreDataSource.convertDataTypeFromMap,
@@ -51,7 +56,10 @@ abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> w
       setLoading();
       final loadedReviews = await repository.getAllCRUDSpecific(crud);
       if (loadedReviews.second.isNotEmpty) {
-        final _loadedResults = results.whereType<Pair<ReviewModel?, T?>>().map((e) => e.first).toList();
+        final _loadedResults = results
+            .whereType<Pair<ReviewModel?, T?>>()
+            .map((e) => e.first)
+            .toList();
         results
           ..clear()
           ..addAll(_loadedResults);

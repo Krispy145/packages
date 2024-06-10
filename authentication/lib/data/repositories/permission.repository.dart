@@ -23,7 +23,8 @@ class PermissionDataRepository {
   PermissionModel? currentPermissionModel;
 
   /// [getAllPermissionModels] returns a list of [PermissionModel]s.
-  Future<Pair<RequestResponse, List<PermissionModel?>>> getAllPermissionModels() async {
+  Future<Pair<RequestResponse, List<PermissionModel?>>>
+      getAllPermissionModels() async {
     return _dataSourceByType(userDataSourceType).getAll();
   }
 
@@ -56,7 +57,8 @@ class PermissionDataRepository {
   Future<RequestResponse> updatePermissionModel({
     required PermissionModel permissionModel,
   }) async {
-    return _dataSourceByType(userDataSourceType).update(permissionModel.id, permissionModel);
+    return _dataSourceByType(userDataSourceType)
+        .update(permissionModel.id, permissionModel);
   }
 
   /// [deletePermissionModel] deletes a single [PermissionModel] from the data source.
@@ -76,7 +78,8 @@ class PermissionDataRepository {
           userId: userId,
         );
       default:
-        AppLogger.print("Unimplemented Data Source Type for $source", [AuthenticationLoggers.permission]);
+        AppLogger.print("Unimplemented Data Source Type for $source",
+            [AuthenticationLoggers.permission]);
         return FirestorePermissionDataSource(
           userId: userId,
         );
