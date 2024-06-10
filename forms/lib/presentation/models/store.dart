@@ -13,16 +13,15 @@ abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   final Future<RequestResponse> Function(bool isAdding, T value) onValueSaved;
 
   _FormsModelStore({
-    required this.value,
-    // required this.onValueChanged,
+    T? editingValue,
+    required T empty,
     required this.onValueSaved,
-  }) {
-    // reaction((r) => value, onValueChanged);
+  })  : isAdding = editingValue == null,
+        value = editingValue ?? empty {
     setLoaded();
   }
 
-  @computed
-  bool get isAdding => value == null;
+  final bool isAdding;
 
   @action
   void onValueChanged(T newValue) {
