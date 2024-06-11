@@ -59,8 +59,12 @@ class ListBuilder<T> extends StatelessWidget {
     this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
   })  : assert(
+          !(header != null && slivers),
+          "Cannot have header and use slivers",
+        ),
+        assert(
           !((stackedWidgets?.isNotEmpty ?? false) && slivers),
-          "Cannot have stacked widgets and use slivers",
+          "Cannot have stacked widgets or header and use slivers",
         ),
         assert(
           viewType == ListViewType.listView && gridDelegate == null || viewType == ListViewType.gridView && gridDelegate != null,
@@ -76,27 +80,30 @@ class ListBuilder<T> extends StatelessWidget {
           child: Text("No results found"),
         );
       },
-      loadedBuilder: (context) => Stack(
-        children: [
-          Padding(
-            padding: padding,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (header != null) ...[header!, Sizes.m.spacer()],
-                Expanded(
-                  child: Observer(
-                    builder: (context) {
-                      return buildView(store.showLoadingSpinnerAtBottom);
-                    },
+      loadedBuilder: (context) {
+        if (slivers) return buildView(store.showLoadingSpinnerAtBottom);
+        return Stack(
+          children: [
+            Padding(
+              padding: padding,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (header != null) ...[header!, Sizes.m.spacer()],
+                  Expanded(
+                    child: Observer(
+                      builder: (context) {
+                        return buildView(store.showLoadingSpinnerAtBottom);
+                      },
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          if (stackedWidgets != null) ...stackedWidgets!,
-        ],
-      ),
+            if (stackedWidgets != null) ...stackedWidgets!,
+          ],
+        );
+      },
       loadingBuilder: (context) => const SizedBox.shrink(),
       errorBuilder: (context) => const Center(child: Text("Error loading data")),
     );

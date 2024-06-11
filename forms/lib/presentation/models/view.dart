@@ -173,11 +173,11 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         );
       },
     ).then((result) {
-      final modelType = T.toString().replaceAll("?", "");
+      // final modelType = T.toString().replaceAll("?", "");
       if (result == null) {
         return context.showSnackbar(
           configuration: SnackbarConfiguration.error(
-            title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
+            title: "Error ${store.isAdding ? "creating" : "updating"}",
           ),
         );
       }
@@ -185,27 +185,30 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         case RequestResponse.failure:
           return context.showSnackbar(
             configuration: SnackbarConfiguration.error(
-              title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
+              title: "Error ${store.isAdding ? "creating" : "updating"}",
+              // title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
             ),
           );
         case RequestResponse.denied:
           context.showSnackbar(
             configuration: SnackbarConfiguration.warning(
-              title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
+              title: "You do not have permission to ${store.isAdding ? "create" : "update"} this",
+              // title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
             ),
           );
           return onBack?.call(result);
         case RequestResponse.success:
           context.showSnackbar(
             configuration: SnackbarConfiguration.confirmation(
-              title: "$modelType ${store.isAdding ? "created" : "updated"} successfully",
+              title: "Successfully ${store.isAdding ? "created" : "updated"}",
             ),
           );
           return onBack?.call(result);
         case RequestResponse.underReview:
           context.showSnackbar(
             configuration: SnackbarConfiguration.information(
-              title: "create $modelType sent for review",
+              title: "Added to review queue",
+              // title: "create $modelType sent for review",
             ),
           );
           return onBack?.call(result);

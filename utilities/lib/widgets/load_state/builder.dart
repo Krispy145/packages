@@ -73,18 +73,25 @@ class LoadStateBuilder extends StatelessWidget {
       builder: (context) {
         switch (viewStore.currentState) {
           case LoadState.initial:
+            print("initialBuilder");
             return initialBuilder?.call(context) ?? _defaultBuilder(context);
           case LoadState.loading:
+            print("loadingBuilder");
             return loadingBuilder?.call(context) ?? _defaultLoadingBuilder(context);
           case LoadState.loaded:
+            print("loadedBuilder");
             return loadedBuilder(context);
           case LoadState.empty:
+            print("emptyBuilder");
             return emptyBuilder?.call(context) ?? errorBuilder(context);
           case LoadState.error:
+            print("errorBuilder");
             return errorBuilder(context);
           case LoadState.idle:
+            print("idleBuilder");
             return idleBuilder?.call(context) ?? _defaultBuilder(context);
           case LoadState.noMoreToLoad:
+            print("noMoreToLoadBuilder");
             return noMoreToLoadBuilder?.call(context) ?? _defaultNoMoreToLoadSnackBarBuilder(context);
         }
       },
