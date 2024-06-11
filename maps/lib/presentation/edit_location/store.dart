@@ -18,6 +18,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     super.singleMarkerBuilder,
     // ignore: unused_element
     this.initialMarkers,
+    this.mapCenter,
   }) {
     _loadMap();
   }
@@ -40,13 +41,11 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     if (initialMarkers != null) {
       addMarkers(initialMarkers!);
     }
-    if (markers.isNotEmpty) {
-      animatedMapController.animateTo(
-        dest: markers.firstOrNull?.position,
-        zoom: 15,
-      );
-    }
     mapCenter = markers.firstOrNull?.position;
+    animatedMapController.animateTo(
+      dest: mapCenter ?? const LatLng(51.5072, -0.1276),
+      zoom: 12,
+    );
     isMapReady = true;
     setLoaded();
   }

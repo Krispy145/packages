@@ -16,6 +16,8 @@ class ListBuilder<T> extends StatelessWidget {
   final SliverGridDelegate? gridDelegate;
   final bool slivers;
 
+  static const double _defaultListEdgeSpacing = 8;
+
   /// [ListBuilder] constructor.
   ListBuilder.listView({
     super.key,
@@ -24,7 +26,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.itemBuilder,
     this.loadStateBuilder,
     this.stackedWidgets,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.listView,
@@ -39,7 +41,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.gridDelegate,
     this.loadStateBuilder,
     this.stackedWidgets,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.gridView;
@@ -54,7 +56,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.viewType,
     this.gridDelegate,
     this.stackedWidgets,
-    this.padding = const EdgeInsets.all(16),
+    this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
   })  : assert(
           !((stackedWidgets?.isNotEmpty ?? false) && slivers),
