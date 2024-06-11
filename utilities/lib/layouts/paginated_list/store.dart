@@ -29,6 +29,7 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
   late RequestResponse requestResponse;
 
   /// [results] is an observable list of [T]s.
+  @override
   ObservableList<T?> results = ObservableList<T?>();
 
   @action
@@ -61,4 +62,8 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
       setError();
     }
   }
+
+  @override
+  @computed
+  bool get showLoadingSpinnerAtBottom => isLoading;
 }

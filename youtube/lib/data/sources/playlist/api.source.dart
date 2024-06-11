@@ -66,7 +66,8 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
   Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> _handlePagedError(
-      Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> Function() apiCall) async {
+    Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> Function() apiCall,
+  ) async {
     try {
       return await apiCall();
     } catch (e) {

@@ -1,7 +1,7 @@
-import 'package:youtube/data/repositories/playlist.repository.dart';
-import 'package:youtube/data/repositories/playlist_item.repository.dart';
+import "package:youtube/data/repositories/playlist.repository.dart";
+import "package:youtube/data/repositories/playlist_item.repository.dart";
 
-import 'video.repository.dart';
+import "video.repository.dart";
 
 ///END OF IMPORTS
 

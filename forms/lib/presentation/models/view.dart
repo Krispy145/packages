@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
-import "package:utilities/layouts/components/build_list_view.dart";
 import "package:utilities/layouts/components/types.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
@@ -53,14 +52,13 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
                     Sizes.m.spacer(),
                   ],
                   Expanded(
-                    child: BuildListView(
+                    child: ListView.builder(
                       itemCount: modelFields(context).length,
                       itemBuilder: (context, index) {
                         final key = modelFields(context).keys.elementAt(index);
                         final widget = modelFields(context)[key];
                         return widget;
                       },
-                      slivers: slivers,
                     ),
                   ),
                 ],
@@ -162,7 +160,9 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
           content: const Text("Are you sure you want to submit?"),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
+              onPressed: () {
+                Navigator.of(context).pop(null);
+              },
               child: const Text("Cancel"),
             ),
             TextButton(
@@ -175,11 +175,11 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         );
       },
     ).then((result) {
-      final modelType = T.toString().replaceAll("?", "");
       if (result == null) {
+        Navigator.of(context).pop(null);
         return context.showSnackbar(
           configuration: SnackbarConfiguration.error(
-            title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
+            title: "Cancelled",
           ),
         );
       }
@@ -187,27 +187,30 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         case RequestResponse.failure:
           return context.showSnackbar(
             configuration: SnackbarConfiguration.error(
-              title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
+              title: "Error ${store.isAdding ? "creating" : "updating"}",
+              // title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
             ),
           );
         case RequestResponse.denied:
           context.showSnackbar(
             configuration: SnackbarConfiguration.warning(
-              title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
+              title: "You do not have permission to ${store.isAdding ? "create" : "update"} this",
+              // title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
             ),
           );
           return onBack?.call(result);
         case RequestResponse.success:
           context.showSnackbar(
             configuration: SnackbarConfiguration.confirmation(
-              title: "$modelType ${store.isAdding ? "created" : "updated"} successfully",
+              title: "Successfully ${store.isAdding ? "created" : "updated"}",
             ),
           );
           return onBack?.call(result);
         case RequestResponse.underReview:
           context.showSnackbar(
             configuration: SnackbarConfiguration.information(
-              title: "create $modelType sent for review",
+              title: "Added to review queue",
+              // title: "create $modelType sent for review",
             ),
           );
           return onBack?.call(result);

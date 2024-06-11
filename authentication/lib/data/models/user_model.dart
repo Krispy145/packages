@@ -6,9 +6,10 @@ part "user_model.mapper.dart";
 
 /// [UserModel] is a class that represents the user entity.
 @MappableClass(
-    caseStyle: CaseStyle.snakeCase,
-    ignoreNull: true,
-    includeSubClasses: [AuthType, AuthStatus])
+  caseStyle: CaseStyle.snakeCase,
+  ignoreNull: true,
+  includeSubClasses: [AuthType, AuthStatus],
+)
 class UserModel with UserModelMappable {
   final String id;
   final String? accessToken;

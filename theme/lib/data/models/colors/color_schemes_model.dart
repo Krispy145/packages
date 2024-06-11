@@ -51,12 +51,10 @@ class ColorSchemesModel with ColorSchemesModelMappable {
     return xmlBuilder.buildDocument();
   }
 
-  static ColorSchemesModel defaultSchemes() {
-    return ColorSchemesModel(
-      light: ColorModel.defaultModel(brightness: Brightness.light),
-      dark: ColorModel.defaultModel(brightness: Brightness.dark),
-    );
-  }
+  factory ColorSchemesModel.defaultSchemes() => ColorSchemesModel(
+        light: ColorModel.defaultModel(brightness: Brightness.light),
+        dark: ColorModel.defaultModel(brightness: Brightness.dark),
+      );
 
   static const fromMap = ColorSchemesModelMapper.fromMap;
   static const fromJson = ColorSchemesModelMapper.fromJson;

@@ -16,4 +16,9 @@ abstract class _ListStore<T> extends LoadStateStore with Store {
   ObservableList<T?> results = ObservableList<T?>();
 
   late final ScrollController scrollController = ScrollController();
+
+  @computed
+  bool get showLoadingSpinnerAtBottom {
+    return false;
+  }
 }

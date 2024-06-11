@@ -160,12 +160,12 @@ class PlaylistModel with PlaylistModelMappable {
 
   /// [toPlaylist] method that converts the [PlaylistModel] to a [Playlist].
   Playlist toPlaylist() {
-    AppLogger.print('Converting PlaylistModel to Playlist: $this', [YoutubeLoggers.playlist]);
+    AppLogger.print("Converting PlaylistModel to Playlist: $this", [YoutubeLoggers.playlist]);
     return Playlist(
       id: id,
       title: snippet?.title ?? "",
       description: snippet?.description,
-      thumbnailUrl: snippet?.thumbnails?['high']!.url,
+      thumbnailUrl: snippet?.thumbnails?["high"]!.url,
       videoCount: contentDetails?.itemCount ?? 0,
     );
   }
