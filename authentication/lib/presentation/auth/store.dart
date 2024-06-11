@@ -1,6 +1,10 @@
+// ignore_for_file: unused_element
+
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
+import "package:authentication/domain/repositories/code.repository.dart";
+import "package:authentication/helpers/env.dart";
 import "package:authentication/presentation/auth/builder.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/widgets/load_state/store.dart";
@@ -16,57 +20,126 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
   final bool showEmailAuth;
   final AuthBuilderType authBuilderType;
   final ShowAuthAction? showPhoneAuth;
+  final CodeDataSourceType? codeSource;
   final List<SocialButtonType>? socialTypes;
   final void Function(T userModel)? onSuccess;
   final bool showSuccessSnackBar;
 
-  _AuthStore({
-    required this.authBuilderType,
+  /// [_AuthStore.authenticate] constructor.
+  _AuthStore.authenticate({
     required this.repository,
-    required this.showEmailAuth,
-    required this.showPhoneAuth,
-    required this.socialTypes,
-    required this.onSuccess,
-    required this.showSuccessSnackBar,
-  }) {
+    this.showEmailAuth = true,
+    this.showPhoneAuth,
+    this.codeSource,
+    this.socialTypes,
+    this.onSuccess,
+    this.showSuccessSnackBar = false,
+  }) : authBuilderType = AuthBuilderType.authenticate {
+    init();
+  }
+
+  /// [_AuthStore.silent] constructor.
+  _AuthStore.silent({
+    required this.repository,
+    this.showEmailAuth = false,
+    this.codeSource,
+    this.onSuccess,
+    this.showSuccessSnackBar = false,
+  })  : authBuilderType = AuthBuilderType.silent,
+        showPhoneAuth = null,
+        socialTypes = null {
+    init();
+  }
+
+  /// [_AuthStore] constructor.
+  _AuthStore.authenticateThenSilent({
+    required this.repository,
+    this.showEmailAuth = true,
+    this.codeSource,
+    this.onSuccess,
+    this.showSuccessSnackBar = false,
+  })  : authBuilderType = AuthBuilderType.authenticateThenSilent,
+        showPhoneAuth = null,
+        socialTypes = null {
     init();
   }
 
   @observable
   UserModel? userModel;
-
   @action
   Future<void> init() async {
     try {
       setLoading();
-      if (authBuilderType == AuthBuilderType.silent || authBuilderType == AuthBuilderType.authenticateThenSilent) {
-        await signInAnonymously();
-      } else if (authBuilderType == AuthBuilderType.authenticateThenSilent || authBuilderType == AuthBuilderType.authenticate) {
-        final currentUser = repository.currentUserModelStream.value;
-        if (currentUser != null) {
-          userModel = currentUser;
-          if (userModel!.status == AuthStatus.authenticated) {
-            setLoaded();
-            return;
-          }
-        } else {
+
+      // Set code source if provided
+      if (codeSource != null) {
+        repository.setCodeSource(codeSource!);
+      }
+
+      // Handle different auth builder types
+      switch (authBuilderType) {
+        case AuthBuilderType.silent:
+          await handleSilent();
+          break;
+        case AuthBuilderType.authenticateThenSilent:
+          await handleAuthenticateThenSilent();
+          break;
+        case AuthBuilderType.authenticate:
+          await handleAuthenticate();
+          break;
+        default:
           setEmpty();
-        }
-      } else if ((userModel?.status == AuthStatus.unauthenticated || userModel == null) && authBuilderType == AuthBuilderType.authenticateThenSilent) {
-        await signInAnonymously();
-      } else {
-        setEmpty();
+          break;
       }
     } catch (e) {
       setError();
     }
   }
 
+  Future<void> handleSilent() async {
+    final currentUser = repository.currentUserModelStream.value;
+
+    if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
+      userModel = currentUser;
+      setLoaded();
+    } else {
+      await signInAnonymously();
+    }
+  }
+
+  Future<void> handleAuthenticateThenSilent() async {
+    final currentUser = repository.currentUserModelStream.value;
+
+    if (currentUser != null && currentUser.status == AuthStatus.authenticated) {
+      userModel = currentUser;
+      setLoaded();
+    } else {
+      await signInAnonymously();
+    }
+  }
+
+  Future<void> handleAuthenticate() async {
+    final currentUser = repository.currentUserModelStream.value;
+    if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
+      await repository.signOut();
+      setEmpty();
+    } else if (currentUser != null && currentUser.status == AuthStatus.authenticated) {
+      userModel = currentUser;
+      setLoaded();
+    } else {
+      setEmpty();
+    }
+  }
+
   @action
   Future<void> signInAnonymously() async {
     setLoading();
+    var params = AuthParams.anonymous();
+    if (codeSource != null) {
+      params = params.copyWith(code: AuthEnv.code);
+    }
     final response = await repository.signIn(
-      params: AuthParams.anonymous(),
+      params: params,
     );
     if (response != null) {
       userModel = response;

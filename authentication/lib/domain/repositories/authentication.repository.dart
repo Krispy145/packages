@@ -37,7 +37,6 @@ class AuthenticationRepository<T extends UserModel> {
 
   /// [authSource] is an instance of [AuthSourceTypes] interface.
   AuthSourceTypes authSource;
-  CodeDataSourceType? codeSource;
 
   /// [facebookAppId] is the facebook app id used for facebook authentication,
   /// [required] for web.
@@ -76,7 +75,6 @@ class AuthenticationRepository<T extends UserModel> {
     required this.convertDataTypeToMap,
     required this.hasPermissions,
     this.userSource = UserDataSourceTypes.firestore,
-    this.codeSource,
     this.facebookAppId,
   })  : baseUrl = null,
         authSource = AuthSourceTypes.firebase {
@@ -100,6 +98,13 @@ class AuthenticationRepository<T extends UserModel> {
     }
     _initStreams();
   }
+
+  CodeDataSourceType? _codeSource;
+
+  void setCodeSource(CodeDataSourceType codeSource) {
+    this._codeSource = codeSource;
+  }
+
   late final userDataRepository = UserDataRepository<T>(
     userSource,
     hasPermissions,
@@ -190,8 +195,8 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   Future<void> _verifyCode(AuthParams params, UserModel changedUserModel) async {
-    if (params.code != null && codeSource != null) {
-      final response = await codeSource?.source.verifyAndConsumeCode(params.code!);
+    if (params.code != null && _codeSource != null) {
+      final response = await _codeSource?.source.verifyAndConsumeCode(params.code!);
       if (response == RequestResponse.failure) {
         throw const AuthenticationException("Error in verifying code");
       }

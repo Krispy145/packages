@@ -10,4 +10,7 @@ class AuthEnv {
 
   @EnviedField(obfuscate: true, varName: "password")
   static String password = _AuthEnv.password;
+
+  @EnviedField(obfuscate: true, varName: "code")
+  static String code = _AuthEnv.code;
 }
