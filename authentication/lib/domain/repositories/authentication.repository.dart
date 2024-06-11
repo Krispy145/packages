@@ -253,13 +253,14 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   /// [deleteAccount] deletes the user's account.
-  Future<void> deleteAccount({required String userId}) async {
+  Future<RequestResponse> deleteAccount({required String userId}) async {
     AppLogger.print(
       "deleteAccount attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.deleteUserModel(id: userId);
-    return _authenticationDataRepository.deleteAccount(userId);
+    final _userResult = await userDataRepository.deleteUserModel(id: userId);
+    await _authenticationDataRepository.deleteAccount(userId);
+    return _userResult;
   }
 
   Future<void> _initStreams() async {

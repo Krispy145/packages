@@ -37,39 +37,6 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
     required this.store,
   });
 
-  // /// [AuthenticationBuilder.authenticate] constructor.
-  // AuthenticationBuilder.authenticate({
-  //   super.key,
-  //   required this.repository,
-  //   this.showEmailAuth = true,
-  //   this.showPhoneAuth,
-  //   this.socialTypes,
-  //   this.onSuccess,
-  //   this.showSuccessSnackBar = false,
-  // }) : authBuilderType = AuthBuilderType.authenticate;
-
-  // /// [AuthenticationBuilder.silent] constructor.
-  // AuthenticationBuilder.silent({
-  //   super.key,
-  //   required this.repository,
-  //   this.showEmailAuth = false,
-  //   this.onSuccess,
-  //   this.showSuccessSnackBar = false,
-  // })  : authBuilderType = AuthBuilderType.silent,
-  //       showPhoneAuth = null,
-  //       socialTypes = null;
-
-  // /// [AuthenticationBuilder] constructor.
-  // AuthenticationBuilder.authenticateThenSilent({
-  //   super.key,
-  //   required this.repository,
-  //   this.showEmailAuth = true,
-  //   this.onSuccess,
-  //   this.showSuccessSnackBar = false,
-  // })  : authBuilderType = AuthBuilderType.authenticateThenSilent,
-  //       showPhoneAuth = null,
-  //       socialTypes = null;
-
   @override
   Widget build(BuildContext context) {
     return LoadStateBuilder(

@@ -48,6 +48,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
 
   @override
   Future<void> deleteAccount(String userId) async {
+    await _firebaseAuth.currentUser?.reload();
     return _user!.delete();
   }
 
