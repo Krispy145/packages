@@ -5,6 +5,7 @@ import "package:authentication/domain/repositories/code.repository.dart";
 import "package:authentication/helpers/constants.dart";
 import "package:authentication/helpers/env.dart";
 import "package:authentication/helpers/exception.dart";
+import "package:authentication/presentation/auth/store.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:email_validator/email_validator.dart";
 import "package:flutter/foundation.dart";
@@ -18,7 +19,7 @@ class AdditionalDataField {
   /// Label of the `DOTextFormField` for this metadata
   final String label;
 
-  /// Key to be used when sending the metadata to Supabase
+  /// Key to be used when sending the metadata to Data Repository
   final String key;
 
   /// Validator function for the metadata field
@@ -35,14 +36,14 @@ class AdditionalDataField {
   });
 }
 
-class EmailAuthWidget extends StatefulWidget {
+class EmailAuthWidget<T extends UserModel> extends StatefulWidget {
   /// The [AuthenticationRepository] to be used for the auth action
-  final AuthenticationRepository repository;
+  final AuthStore<T> store;
 
   final CodeDataSourceType? codeDataSourceType;
 
   /// Callback for the user to complete a sign in.
-  final void Function(UserModel userModel) onSignInComplete;
+  final void Function(T userModel) onSignInComplete;
 
   /// Callback for the user to complete a signUp.
 
@@ -58,7 +59,7 @@ class EmailAuthWidget extends StatefulWidget {
 
   const EmailAuthWidget({
     super.key,
-    required this.repository,
+    required this.store,
     required this.onSignInComplete,
     this.codeDataSourceType,
     this.onPasswordResetEmailSent,
@@ -67,10 +68,10 @@ class EmailAuthWidget extends StatefulWidget {
   });
 
   @override
-  State<EmailAuthWidget> createState() => _EmailAuthWidgetState();
+  State<EmailAuthWidget<T>> createState() => _EmailAuthWidgetState<T>();
 }
 
-class _EmailAuthWidgetState extends State<EmailAuthWidget> {
+class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T>> {
   final _formKey = GlobalKey<FormState>();
   final _codeController = TextEditingController();
   final _emailController = TextEditingController(
@@ -136,6 +137,22 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (widget.additionalDataFields != null && action == AuthAction.signUp)
+            ...widget.additionalDataFields!
+                .map(
+                  (additionalDataField) => [
+                    TextFormField(
+                      controller: _additionalDataControllers[additionalDataField],
+                      decoration: InputDecoration(
+                        label: Text(additionalDataField.label),
+                        prefixIcon: additionalDataField.prefixIcon,
+                      ),
+                      validator: additionalDataField.validator,
+                    ),
+                    Sizes.s.spacer(),
+                  ],
+                )
+                .expand((element) => element),
           if (widget.codeDataSourceType != null && action == AuthAction.signUp) ...[
             TextFormField(
               decoration: const InputDecoration(
@@ -186,22 +203,6 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
               controller: _passwordController,
             ),
             Sizes.s.spacer(),
-            if (widget.additionalDataFields != null && action == AuthAction.signUp)
-              ...widget.additionalDataFields!
-                  .map(
-                    (additionalDataField) => [
-                      TextFormField(
-                        controller: _additionalDataControllers[additionalDataField],
-                        decoration: InputDecoration(
-                          label: Text(additionalDataField.label),
-                          prefixIcon: additionalDataField.prefixIcon,
-                        ),
-                        validator: additionalDataField.validator,
-                      ),
-                      Sizes.s.spacer(),
-                    ],
-                  )
-                  .expand((element) => element),
             ElevatedButton(
               child: _isLoading
                   ? SizedBox(
@@ -320,14 +321,25 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   }
 
   Future<void> _signUp(BuildContext context) async {
-    var params = AuthParams.email(
+    final paramsMap = AuthParams.email(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
+    ).toMap();
+    print("paramsMap: $paramsMap");
+    paramsMap.addAll(
+      _additionalDataControllers.map(
+        (key, value) => MapEntry(
+          key.key,
+          value.text,
+        ),
+      ),
     );
+    print("updated paramsMap: $paramsMap");
+    var params = AuthParams.fromMap(paramsMap);
     if (widget.codeDataSourceType != null) {
       params = params.copyWith(code: _codeController.text);
     }
-    await widget.repository
+    await widget.store.repository
         .signUpWithEmail(
       params: params,
     )
@@ -360,7 +372,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
       password: _passwordController.text.trim(),
     );
 
-    final response = await widget.repository.signIn(
+    final response = await widget.store.repository.signIn(
       params: params,
     );
     if (response != null) {

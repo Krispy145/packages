@@ -241,8 +241,8 @@ class AuthParams {
       code: map["code"] as CODE?,
       nonce: map["nonce"] as String?,
       refreshToken: map["refreshToken"] as String?,
-      authType: AuthType.values.firstWhere((element) => element == map["authType"]),
-      authStatus: AuthStatus.values.firstWhere((element) => element == map["authStatus"]),
+      authType: AuthType.values.firstWhere((element) => element.name == map["authType"]),
+      authStatus: AuthStatus.values.firstWhere((element) => element.name == map["authStatus"]),
       createdAt: map["createdAt"] != null ? DateTime.fromMillisecondsSinceEpoch(map["createdAt"] as int) : null,
       updatedAt: map["updatedAt"] != null ? DateTime.fromMillisecondsSinceEpoch(map["updatedAt"] as int) : null,
     );

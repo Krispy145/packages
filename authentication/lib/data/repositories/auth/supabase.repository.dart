@@ -51,8 +51,7 @@ extension _OAuthProviderExtension on AuthType {
 }
 
 /// [SupabaseAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class SupabaseAuthDataRepository<T extends UserModel>
-    extends AuthenticationDataRepository<T> {
+class SupabaseAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -64,8 +63,7 @@ class SupabaseAuthDataRepository<T extends UserModel>
   User? get _user => _supabaseAuth.currentUser;
 
   @override
-  late final BehaviorSubject<T?> userModelStream =
-      BehaviorSubject<T?>.seeded(null);
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(null);
 
   /// [SupabaseAuthDataRepository] constructor.
   SupabaseAuthDataRepository({
@@ -119,8 +117,7 @@ class SupabaseAuthDataRepository<T extends UserModel>
         nonce: appleParams.nonce,
       );
 
-      final userModel =
-          _authResponseToUserModel(appleParams, result.user != null);
+      final userModel = _authResponseToUserModel(appleParams, result.user != null);
       return userModel;
     } on AuthException catch (e) {
       AppLogger.print(
@@ -176,8 +173,7 @@ class SupabaseAuthDataRepository<T extends UserModel>
       provider: googleParams.authType.toOAuthProvider(),
       idToken: googleParams.idToken!,
     );
-    final userModel =
-        _authResponseToUserModel(googleParams, result.user != null);
+    final userModel = _authResponseToUserModel(googleParams, result.user != null);
     return userModel;
   }
 
@@ -239,11 +235,11 @@ class SupabaseAuthDataRepository<T extends UserModel>
   }
 
   @override
-  Future<T?> signUpWithEmail(String email, String password) async {
-    final result = await _supabaseAuth.signUp(password: password, email: email);
+  Future<T?> signUpWithEmail(AuthParams params) async {
+    final result = await _supabaseAuth.signUp(password: params.password!, email: params.email);
     if (result.session != null && result.user != null) {
       return signInWithEmail(
-        AuthParams.email(email: email, password: password),
+        params,
       );
     }
     return null;
@@ -296,8 +292,7 @@ class SupabaseAuthDataRepository<T extends UserModel>
       status: AuthStatus.authenticated,
       authType: userModelStream.value?.authType ?? AuthType.empty,
       createdAt: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());
   }
@@ -305,16 +300,15 @@ class SupabaseAuthDataRepository<T extends UserModel>
   T _authResponseToUserModel(AuthParams params, bool result) {
     final _baseUser = UserModel(
       id: _user!.id,
-      email: _user!.email,
-      phoneNumber: _user!.phone,
+      email: _user!.email ?? params.email,
+      phoneNumber: _user!.phone ?? params.phoneNumber,
       displayName: params.displayName ?? _user!.email,
       refreshToken: _session!.refreshToken ?? _session!.providerRefreshToken,
       accessToken: _session!.accessToken,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
       createdAt: params.createdAt ?? DateTime.now(),
-      updatedAt:
-          DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());
   }

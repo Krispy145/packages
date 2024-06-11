@@ -13,10 +13,10 @@ import "components/social_types.dart";
 
 part "store.g.dart";
 
-class AuthStore<T extends UserModel> = _AuthStore<T> with _$AuthStore<T>;
+class AuthStore<T extends UserModel> = _AuthStore<T> with _$AuthStore;
 
 abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store {
-  final AuthenticationRepository repository;
+  final AuthenticationRepository<T> repository;
   final bool showEmailAuth;
   final AuthBuilderType authBuilderType;
   final ShowAuthAction? showPhoneAuth;
@@ -65,7 +65,7 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
   }
 
   @observable
-  UserModel? userModel;
+  T? userModel;
   @action
   Future<void> init() async {
     try {

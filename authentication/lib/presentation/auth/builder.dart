@@ -29,12 +29,14 @@ class ShowAuthAction {
 //TODO: Make the auth store and extend loadstate to init getting the autentication status from the repository.
 /// [AuthenticationBuilder] is a class that uses [_AuthenticationBuilderState] to manage state of the authentication feature.
 class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
+  final List<AdditionalDataField>? additionalFields;
   final AuthStore<T> store;
 
   /// [AuthenticationBuilder] constructor.
   const AuthenticationBuilder({
     super.key,
     required this.store,
+    this.additionalFields,
   });
 
   @override
@@ -43,12 +45,14 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
       viewStore: store,
       emptyBuilder: (context) => _AuthenticateView(
         store: store,
+        additionalFields: additionalFields,
       ),
       loadedBuilder: (context) {
         conditionallyShowSnackbar(context);
-        store.onSuccess?.call(store.userModel! as T);
+        store.onSuccess?.call(store.userModel!);
         return _AuthenticateView(
           store: store,
+          additionalFields: additionalFields,
         );
       },
       errorBuilder: (context) => const Center(
@@ -71,11 +75,13 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
   }
 }
 
-class _AuthenticateView extends StatelessWidget {
+class _AuthenticateView<T extends UserModel> extends StatelessWidget {
+  final List<AdditionalDataField>? additionalFields;
   const _AuthenticateView({
     required this.store,
+    this.additionalFields,
   });
-  final AuthStore store;
+  final AuthStore<T> store;
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +97,10 @@ class _AuthenticateView extends StatelessWidget {
           child: Column(
             children: [
               if (store.showEmailAuth)
-                EmailAuthWidget(
-                  repository: store.repository,
+                EmailAuthWidget<T>(
+                  store: store,
                   codeDataSourceType: store.codeSource,
+                  additionalDataFields: additionalFields,
                   onSignInComplete: (userModel) {
                     if (store.showSuccessSnackBar) {
                       context.showSnackbar(
@@ -107,7 +114,7 @@ class _AuthenticateView extends StatelessWidget {
                 ),
               if (store.showPhoneAuth != null) ...[
                 if (store.showPhoneAuth!.showSignIn)
-                  PhoneAuthWidget(
+                  PhoneAuthWidget<T>(
                     repository: store.repository,
                     authAction: AuthAction.signIn,
                     onSuccess: (userModel) {
@@ -122,7 +129,7 @@ class _AuthenticateView extends StatelessWidget {
                     },
                   ),
                 if (store.showPhoneAuth!.showSignUp)
-                  PhoneAuthWidget(
+                  PhoneAuthWidget<T>(
                     repository: store.repository,
                     authAction: AuthAction.signUp,
                     onSuccess: (userModel) {
@@ -149,7 +156,8 @@ class _AuthenticateView extends StatelessWidget {
                         ),
                       );
                     }
-                    store.onSuccess?.call(userModel);
+
+                    store.onSuccess?.call(userModel as T);
                   },
                   socialButtonVariant: socialButtonVariant,
                 ),

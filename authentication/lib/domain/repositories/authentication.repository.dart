@@ -13,6 +13,7 @@ import "package:flutter/foundation.dart";
 import "package:flutter_facebook_auth/flutter_facebook_auth.dart";
 import "package:rxdart/rxdart.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [AuthenticationRepository] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
@@ -172,6 +173,8 @@ class AuthenticationRepository<T extends UserModel> {
       _currentResponse["last_login_at"] = DateTime.now();
       changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUserModel(userModel: changedUserModel);
+      final _updatedUserResponse = await userDataRepository.getUserModel(id: changedUserModel.id);
+      changedUserModel = _updatedUserResponse.second ?? changedUserModel;
       try {
         await _authenticationDataRepository.updateUserModel(changedUserModel);
       } catch (e) {
@@ -226,18 +229,24 @@ class AuthenticationRepository<T extends UserModel> {
     );
 
     final result = await _authenticationDataRepository.signUpWithEmail(
-      params.email!,
-      params.password!,
+      params,
     );
+    var changedUserModel = result;
     if (result != null) {
       await _verifyCode(params, result);
       final _currentResponse = result.toMap();
       _currentResponse["last_login_at"] = DateTime.now();
       _currentResponse["status"] = AuthStatus.authenticated;
-      final changedUserModel = convertDataTypeFromMap(_currentResponse);
+      final _paramsMap = params.toMap();
+      for (final element in _paramsMap.entries) {
+        if (element.key != "email" && element.key != "password" && element.value != null) {
+          _currentResponse[element.key.camelCaseToSnakeCase()] = element.value;
+        }
+      }
+      changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUserModel(userModel: changedUserModel);
     }
-    return result;
+    return changedUserModel;
   }
 
   /// [params] refreshes the user's token.
