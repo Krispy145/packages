@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
-import "package:utilities/layouts/components/build_list_view.dart";
 import "package:utilities/layouts/components/types.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
@@ -53,14 +52,13 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
                     Sizes.m.spacer(),
                   ],
                   Expanded(
-                    child: BuildListView(
+                    child: ListView.builder(
                       itemCount: modelFields(context).length,
                       itemBuilder: (context, index) {
                         final key = modelFields(context).keys.elementAt(index);
                         final widget = modelFields(context)[key];
                         return widget;
                       },
-                      slivers: slivers,
                     ),
                   ),
                 ],

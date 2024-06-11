@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
-import "package:utilities/layouts/components/build_grid_view.dart";
-import "package:utilities/layouts/components/build_list_view.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/layouts/components/types.dart";
 import "package:utilities/layouts/list/store.dart";
 import "package:utilities/sizes/spacers.dart";
@@ -82,12 +81,13 @@ class ListBuilder<T> extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (header != null) ...[
-                  header!,
-                  Sizes.m.spacer(),
-                ],
+                if (header != null) ...[header!, Sizes.m.spacer()],
                 Expanded(
-                  child: _buildView(),
+                  child: Observer(
+                    builder: (context) {
+                      return buildView(store.showLoadingSpinnerAtBottom);
+                    },
+                  ),
                 ),
               ],
             ),
@@ -95,30 +95,44 @@ class ListBuilder<T> extends StatelessWidget {
           if (stackedWidgets != null) ...stackedWidgets!,
         ],
       ),
-      errorBuilder: (context) {
-        return const Center(
-          child: Text("Error loading data"),
-        );
-      },
+      loadingBuilder: (context) => const SizedBox.shrink(),
+      errorBuilder: (context) => const Center(child: Text("Error loading data")),
     );
   }
 
-  Widget _buildView() {
+  Widget buildView(bool isLoadingMore) {
+    final itemCount = store.results.length + (isLoadingMore ? 1 : 0);
+    Widget? loadingOrItemBuilder(BuildContext context, int index) {
+      if (index == store.results.length) {
+        return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
+      }
+      return itemBuilder(context, index);
+    }
+
     if (viewType == ListViewType.listView) {
-      return BuildListView(
-        itemCount: store.results.length,
-        scrollController: store.scrollController,
-        itemBuilder: itemBuilder,
-        slivers: slivers,
-      );
+      return slivers
+          ? SliverList.builder(
+              itemCount: itemCount,
+              itemBuilder: loadingOrItemBuilder,
+            )
+          : ListView.builder(
+              itemCount: itemCount,
+              itemBuilder: loadingOrItemBuilder,
+              controller: store.scrollController,
+            );
     } else {
-      return BuildGridView(
-        itemCount: store.results.length,
-        scrollController: store.scrollController,
-        itemBuilder: itemBuilder,
-        gridDelegate: gridDelegate!,
-        slivers: slivers,
-      );
+      return slivers
+          ? SliverGrid.builder(
+              itemCount: itemCount,
+              itemBuilder: loadingOrItemBuilder,
+              gridDelegate: gridDelegate!,
+            )
+          : GridView.builder(
+              itemCount: itemCount,
+              controller: store.scrollController,
+              itemBuilder: loadingOrItemBuilder,
+              gridDelegate: gridDelegate!,
+            );
     }
   }
 }
