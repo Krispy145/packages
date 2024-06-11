@@ -160,7 +160,9 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
           content: const Text("Are you sure you want to submit?"),
           actions: <Widget>[
             TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
+              onPressed: () {
+                Navigator.of(context).pop(null);
+              },
               child: const Text("Cancel"),
             ),
             TextButton(
@@ -175,9 +177,10 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
     ).then((result) {
       // final modelType = T.toString().replaceAll("?", "");
       if (result == null) {
+        Navigator.of(context).pop(null);
         return context.showSnackbar(
           configuration: SnackbarConfiguration.error(
-            title: "Error ${store.isAdding ? "creating" : "updating"}",
+            title: "Cancelled",
           ),
         );
       }
