@@ -1,6 +1,8 @@
 import "package:socials/data/models/instagram/user_model.dart";
 import "package:socials/utils/loggers.dart";
 import "package:utilities/data/sources/secure/source.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [SecureInstagramDataSource] is a class used to manage the secure storage of [InstagramUserModel] data.
@@ -25,20 +27,20 @@ class SecureInstagramDataSource extends SecureDataSource<InstagramUserModel, Map
   }
 
   @override
-  Future<InstagramUserModel?> search(Map<String, dynamic> query) async {
+  Future<Pair<RequestResponse, InstagramUserModel?>> search(Map<String, dynamic> query) async {
     AppLogger.print(
       "IN MEMORY RESULT: Search not implemented for InstagramUserModel",
       [SocialsLoggers.instagram],
     );
-    return null;
+    return const Pair(RequestResponse.failure, null);
   }
 
   @override
-  Future<List<InstagramUserModel?>> searchAll(Map<String, dynamic> query) async {
+  Future<Pair<RequestResponse, List<InstagramUserModel?>>> searchAll(Map<String, dynamic> query) async {
     AppLogger.print(
       "IN MEMORY RESULT: Search all not implemented for InstagramUserModel",
       [SocialsLoggers.instagram],
     );
-    return [];
+    return const Pair(RequestResponse.failure, []);
   }
 }

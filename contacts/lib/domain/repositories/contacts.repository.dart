@@ -1,8 +1,10 @@
-import 'package:contacts/data/sources/contacts/contacts.source.dart';
-import 'package:flutter_contacts/contact.dart';
+import "package:contacts/data/sources/contacts/contacts.source.dart";
+import "package:flutter_contacts/contact.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 
-import '/data/repositories/_repositories.dart';
-import '/data/repositories/contacts.repository.dart';
+import "/data/repositories/_repositories.dart";
+import "/data/repositories/contacts.repository.dart";
 
 /// [ContactsRepository] is a class that defines the basic CRUD operations for the [Contact] entity.
 class ContactsRepository {
@@ -15,12 +17,12 @@ class ContactsRepository {
   final _source = ContactsDataSource();
 
   /// [getAllContacts] fetches all [Contact]s from the data source.
-  Future<List<Contact?>> getAllContacts() {
+  Future<Pair<RequestResponse, List<Contact?>>> getAllContacts() {
     return _contactsDataRepository.getAllContacts(source: _source);
   }
 
   /// [getContact] fetches a single [Contact] from the data source.
-  Future<Contact?> getContact(String id) {
+  Future<Pair<RequestResponse, Contact?>> getContact(String id) {
     return _contactsDataRepository.getContact(
       source: _source,
       id: id,

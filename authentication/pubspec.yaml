@@ -21,6 +21,8 @@ dependencies:
     path: ../../packages/utilities
   cryptography: ^2.7.0
   font_awesome_flutter: ^10.6.0
+  crypto: ^3.0.1
+  convert: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +31,7 @@ dev_dependencies:
   mobx_codegen: ^2.3.0
   json_serializable: ^6.7.1
   dart_mappable_builder: ^4.2.3
+  envied_generator: ^0.5.3
   build_runner:
   flutter_gen_runner:
 

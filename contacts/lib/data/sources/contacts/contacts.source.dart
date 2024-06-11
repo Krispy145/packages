@@ -1,9 +1,9 @@
-import 'package:contacts/utils/loggers.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
+import "package:contacts/utils/loggers.dart";
+import "package:flutter_contacts/flutter_contacts.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
-import 'package:utilities/data/sources/source.dart';
-import 'package:utilities/helpers/tuples.dart';
-import 'package:utilities/logger/logger.dart';
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:utilities/logger/logger.dart";
 
 /// [ContactsDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
 class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
@@ -26,13 +26,14 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   // GET
 
   @override
-  Future<Contact?> get(String id) async {
+  Future<Pair<RequestResponse, Contact?>> get(String id) async {
     await FlutterContacts.requestPermission();
     final contact = await FlutterContacts.getContact(id);
     if (contact == null) {
       AppLogger.print("Contact not found ($id)", [ContactsLoggers.contacts], type: LoggerType.error);
+      return const Pair(RequestResponse.failure, null);
     }
-    return contact;
+    return Pair(RequestResponse.success, contact);
   }
 
   Future<Contact?> getExternally() async {
@@ -42,7 +43,7 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   }
 
   @override
-  Future<List<Contact?>> getAll({
+  Future<Pair<RequestResponse, List<Contact?>>> getAll({
     bool withProperties = false,
     bool withThumbnail = false,
     bool withPhoto = false,
@@ -52,18 +53,21 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
     bool deduplicateProperties = true,
   }) async {
     if (await FlutterContacts.requestPermission()) {
-      return FlutterContacts.getContacts(
-        withProperties: withProperties,
-        withThumbnail: withThumbnail,
-        withPhoto: withPhoto,
-        withGroups: withGroups,
-        withAccounts: withAccounts,
-        sorted: sorted,
-        deduplicateProperties: deduplicateProperties,
+      return Pair(
+        RequestResponse.success,
+        await FlutterContacts.getContacts(
+          withProperties: withProperties,
+          withThumbnail: withThumbnail,
+          withPhoto: withPhoto,
+          withGroups: withGroups,
+          withAccounts: withAccounts,
+          sorted: sorted,
+          deduplicateProperties: deduplicateProperties,
+        ),
       );
     } else {
-      AppLogger.print("Request Permission returned false in \"getAll\"", [ContactsLoggers.contacts], type: LoggerType.error);
-      return [];
+      AppLogger.print('Request Permission returned false in "getAll"', [ContactsLoggers.contacts], type: LoggerType.error);
+      return const Pair(RequestResponse.failure, []);
     }
   }
 
@@ -140,15 +144,23 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   }
 
   @override
-  Future<Contact?> search(BasicSearchQueryModel query) async {
-    return await FlutterContacts.openExternalPick();
+  Future<Pair<RequestResponse, Contact?>> search(BasicSearchQueryModel query) async {
+    final result = await FlutterContacts.openExternalPick();
+    if (result == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   @override
-  Future<List<Contact?>> searchAll(BasicSearchQueryModel query) async {
+  Future<Pair<RequestResponse, List<Contact?>>> searchAll(BasicSearchQueryModel query) async {
     await FlutterContacts.requestPermission();
     final allContacts = await getAll();
-    return allContacts.where((element) => "${element?.name.first}${element?.name.last}${element?.name.nickname}".contains(query.searchTerm)).toList();
+    final result = allContacts.second.where((element) => "${element?.name.first}${element?.name.last}${element?.name.nickname}".contains(query.searchTerm)).toList();
+    if (result.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   ///

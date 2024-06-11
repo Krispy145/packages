@@ -10,6 +10,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
   const DropdownFormField({
     super.key,
     required super.store,
+    super.showTitle = true,
   }) : super(type: FormFieldType.dropdownField);
 
   @override
@@ -22,6 +23,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
           itemAsString: store.labelBuilder,
           selectedItem: store.value,
           asyncItems: (searchTerm) async => await store.itemFetcher?.call(searchTerm) ?? [],
+          items: store.items,
           compareFn: (i, s) => i == s,
           onChanged: (item) {
             if (item != null) store.value = item;

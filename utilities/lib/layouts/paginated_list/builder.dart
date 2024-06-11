@@ -1,14 +1,15 @@
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/layouts/components/build_grid_view.dart";
+import "package:utilities/layouts/components/build_list_view.dart";
+import "package:utilities/layouts/components/types.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
 import "package:utilities/sizes/spacers.dart";
+import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
-
-enum PaginatedResultsViewType {
-  listView,
-  gridView,
-}
 
 class PaginatedListBuilder<T> extends StatelessWidget {
   final PaginatedListStore<T> store;
@@ -18,7 +19,7 @@ class PaginatedListBuilder<T> extends StatelessWidget {
   final List<Widget>? stackedWidgets;
   final EdgeInsets? padding;
   final bool canRefresh;
-  final PaginatedResultsViewType viewType;
+  final ListViewType viewType;
   final SliverGridDelegate? gridDelegate;
   final bool slivers;
 
@@ -34,7 +35,7 @@ class PaginatedListBuilder<T> extends StatelessWidget {
     this.canRefresh = true,
     this.slivers = false,
   })  : assert(!((canRefresh == true || (stackedWidgets?.isNotEmpty ?? false)) && slivers), "Cannot have refresh or stacked widgets and use slivers"),
-        viewType = PaginatedResultsViewType.listView,
+        viewType = ListViewType.listView,
         gridDelegate = null;
 
   /// [PaginatedListBuilder] constructor.
@@ -50,7 +51,7 @@ class PaginatedListBuilder<T> extends StatelessWidget {
     this.canRefresh = true,
     this.slivers = false,
   })  : assert(!((canRefresh == true || (stackedWidgets?.isNotEmpty ?? false)) && slivers), "Cannot have refresh or stacked widgets and use slivers"),
-        viewType = PaginatedResultsViewType.gridView;
+        viewType = ListViewType.gridView;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +81,16 @@ class PaginatedListBuilder<T> extends StatelessWidget {
               child: loadStateBuilder ??
                   LoadStateBuilder(
                     viewStore: store,
-                    loadedBuilder: (context) => const SizedBox.shrink(),
+                    emptyBuilder: (context) {
+                      _showSnackBarRequestResponse(context);
+                      return const Center(
+                        child: Text("No results found"),
+                      );
+                    },
+                    loadedBuilder: (context) {
+                      _showSnackBarRequestResponse(context);
+                      return const SizedBox.shrink();
+                    },
                     errorBuilder: (context) {
                       return IconButton(
                         icon: const Icon(Icons.refresh),
@@ -96,6 +106,26 @@ class PaginatedListBuilder<T> extends StatelessWidget {
     );
   }
 
+  void _showSnackBarRequestResponse(
+    BuildContext context,
+  ) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      switch (store.requestResponse) {
+        case RequestResponse.success:
+        case RequestResponse.underReview:
+        case RequestResponse.failure:
+          break;
+        case RequestResponse.denied:
+          context.showSnackbar(
+            configuration: SnackbarConfiguration.warning(
+              title: "Request Denied",
+            ),
+          );
+          break;
+      }
+    });
+  }
+
   Widget _buildResults() {
     if (canRefresh && !kIsWeb) {
       return RefreshIndicator(
@@ -108,91 +138,29 @@ class PaginatedListBuilder<T> extends StatelessWidget {
   }
 
   Widget _buildView() {
-    if (viewType == PaginatedResultsViewType.listView) {
-      return _BuildListView(
-        store: store,
-        itemBuilder: itemBuilder,
-        slivers: slivers,
+    if (viewType == ListViewType.listView) {
+      return Observer(
+        builder: (context) {
+          return BuildListView(
+            itemCount: store.results.length,
+            scrollController: store.scrollController,
+            itemBuilder: itemBuilder,
+            slivers: slivers,
+          );
+        },
       );
     } else {
-      return _BuildGridView(
-        store: store,
-        itemBuilder: itemBuilder,
-        gridDelegate: gridDelegate!,
-        slivers: slivers,
+      return Observer(
+        builder: (context) {
+          return BuildGridView(
+            itemCount: store.results.length,
+            scrollController: store.scrollController,
+            itemBuilder: itemBuilder,
+            gridDelegate: gridDelegate!,
+            slivers: slivers,
+          );
+        },
       );
     }
-  }
-}
-
-class _BuildGridView<T> extends StatelessWidget {
-  final SliverGridDelegate gridDelegate;
-  const _BuildGridView({
-    super.key,
-    required this.store,
-    required this.itemBuilder,
-    required this.gridDelegate,
-    required this.slivers,
-  });
-
-  final PaginatedListStore<T> store;
-  final Widget? Function(BuildContext context, int index) itemBuilder;
-  final bool slivers;
-
-  @override
-  Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        if (slivers) {
-          return SliverGrid(
-            gridDelegate: gridDelegate,
-            delegate: SliverChildBuilderDelegate(
-              itemBuilder,
-              childCount: store.results.length,
-            ),
-          );
-        } else {
-          return GridView.builder(
-            gridDelegate: gridDelegate,
-            itemCount: store.results.length,
-            controller: store.scrollController,
-            itemBuilder: itemBuilder,
-          );
-        }
-      },
-    );
-  }
-}
-
-class _BuildListView<T> extends StatelessWidget {
-  const _BuildListView({
-    super.key,
-    required this.store,
-    required this.itemBuilder,
-    required this.slivers,
-  });
-
-  final PaginatedListStore<T> store;
-  final Widget? Function(BuildContext context, int index) itemBuilder;
-  final bool slivers;
-
-  @override
-  Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        if (slivers) {
-          return SliverList.builder(
-            itemBuilder: itemBuilder,
-            itemCount: store.results.length,
-          );
-        } else {
-          return ListView.builder(
-            itemCount: store.results.length,
-            controller: store.scrollController,
-            itemBuilder: itemBuilder,
-          );
-        }
-      },
-    );
   }
 }

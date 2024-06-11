@@ -15,7 +15,7 @@ class DummyPlaylistDataSource extends DummyDataSource<PlaylistModel, BasicSearch
   }
 
   @override
-  Future<Pair<ResponseModel, List<PlaylistModel?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<PlaylistModel?>>>> searchPage({
     ResponseModel? lastResponse,
     int? size,
     required BasicSearchQueryModel query,
@@ -25,7 +25,7 @@ class DummyPlaylistDataSource extends DummyDataSource<PlaylistModel, BasicSearch
   }
 
   @override
-  Future<Pair<ResponseModel, List<PlaylistModel?>>> getPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<PlaylistModel?>>>> getPage({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,

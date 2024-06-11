@@ -8,27 +8,27 @@ part of 'store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$ContactsStore on _ContactsStore, Store {
-  late final _$currentContactsAtom =
-      Atom(name: '_ContactsStore.currentContacts', context: context);
+mixin _$ContactStore on _ContactStore, Store {
+  late final _$currentContactAtom =
+      Atom(name: '_ContactStore.currentContact', context: context);
 
   @override
-  Contact? get currentContacts {
-    _$currentContactsAtom.reportRead();
-    return super.currentContacts;
+  Contact? get currentContact {
+    _$currentContactAtom.reportRead();
+    return super.currentContact;
   }
 
   @override
-  set currentContacts(Contact? value) {
-    _$currentContactsAtom.reportWrite(value, super.currentContacts, () {
-      super.currentContacts = value;
+  set currentContact(Contact? value) {
+    _$currentContactAtom.reportWrite(value, super.currentContact, () {
+      super.currentContact = value;
     });
   }
 
   @override
   String toString() {
     return '''
-currentContacts: ${currentContacts}
+currentContact: ${currentContact}
     ''';
   }
 }

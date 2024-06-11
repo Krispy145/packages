@@ -1,10 +1,12 @@
-import 'package:utilities/data/sources/paginated.dart';
-import 'package:youtube/data/enums/video_rating.dart';
-import 'package:youtube/data/models/video_model.dart';
-import 'package:youtube/data/repositories/video.repository.dart';
-import 'package:youtube/data/sources/video/_source.dart';
+import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:youtube/data/enums/video_rating.dart";
+import "package:youtube/data/models/video_model.dart";
+import "package:youtube/data/repositories/video.repository.dart";
+import "package:youtube/data/sources/video/_source.dart";
 
-import '/data/repositories/_repositories.dart';
+import "/data/repositories/_repositories.dart";
 
 /// [VideoRepository] is a class that defines the basic CRUD operations for the [VideoModel] entity.
 class VideoRepository {
@@ -21,19 +23,20 @@ class VideoRepository {
   ResponseModel? _lastResponse;
 
   /// [getMultipleVideoModelsPaged] fetches a page of [VideoModel]s from the data source.
-  Future<List<VideoModel?>> getMultipleVideoModelsPaged({int? limit, bool refresh = false, required List<String> videoIds}) async {
+  Future<Pair<RequestResponse, List<VideoModel?>>> getMultipleVideoModelsPaged({int? limit, bool refresh = false, required List<String> videoIds}) async {
     final _response = await _videoDataRepository.getPagedVideoModels(
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,
       queryParameters: {"id": videoIds.join(",")},
     );
-    _lastResponse = _response.first;
-    return _response.second;
+    _lastResponse = _response.second.first;
+    final _videos = _response.second.second;
+    return Pair(_response.first, _videos);
   }
 
   /// [getMostPopularVideosPaged] fetches a page of [VideoModel]s from the data source.
-  Future<List<VideoModel?>> getMostPopularVideosPaged({int? limit, bool refresh = false, required String videoCategoryId}) async {
+  Future<Pair<RequestResponse, List<VideoModel?>>> getMostPopularVideosPaged({int? limit, bool refresh = false, required String videoCategoryId}) async {
     final _response = await _videoDataRepository.getPagedVideoModels(
       source: _source,
       limit: limit,
@@ -42,12 +45,13 @@ class VideoRepository {
         "videoCategoryId": videoCategoryId,
       },
     );
-    _lastResponse = _response.first;
-    return _response.second;
+    _lastResponse = _response.second.first;
+    final _videos = _response.second.second;
+    return Pair(_response.first, _videos);
   }
 
   /// [getMyLikedVideos] fetches a page of [VideoModel]s from the data source.
-  Future<List<VideoModel?>> getMyLikedVideos({
+  Future<Pair<RequestResponse, List<VideoModel?>>> getMyLikedVideos({
     int? limit,
     bool refresh = false,
     required VideoRating videoRating,
@@ -60,12 +64,13 @@ class VideoRepository {
         "myRating": videoRating.name,
       },
     );
-    _lastResponse = _response.first;
-    return _response.second;
+    _lastResponse = _response.second.first;
+    final _videos = _response.second.second;
+    return Pair(_response.first, _videos);
   }
 
   /// [getVideoModel] fetches a single [VideoModel] from the data source.
-  Future<VideoModel?> getVideoModel(String id) {
+  Future<Pair<RequestResponse, VideoModel?>> getVideoModel(String id) {
     return _videoDataRepository.getVideoModel(
       source: _source,
       id: id,

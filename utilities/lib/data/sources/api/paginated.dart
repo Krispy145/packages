@@ -1,5 +1,6 @@
 import "package:utilities/data/sources/api/source.dart";
 import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
@@ -26,7 +27,7 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
   final Map<String, dynamic> Function(Resp? lastResponse, int? size, String? orderBy) getNexPageParametersFromResponse;
 
   @override
-  Future<Pair<Resp?, List<T?>>> getPage({
+  Future<Pair<RequestResponse, Pair<Resp?, List<T?>>>> getPage({
     Resp? lastResponse,
     int? size,
     String? orderBy,
@@ -44,20 +45,20 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
       );
       final convertedResponse = response.data != null ? convertResponseTypeFromMap(response.data!) : null;
       if (convertedResponse == null) {
-        return Pair(lastResponse, []);
+        return Pair(RequestResponse.failure, Pair(lastResponse, []));
       }
       final items = getItemsFromResponse(convertedResponse);
       AppLogger.print("Response: $_url, QueryParams: $parameters, Items: $items", [UtilitiesLoggers.apiDataSource]);
       print(response.requestOptions.queryParameters);
-      return Pair(convertedResponse, items);
+      return Pair(RequestResponse.success, Pair(convertedResponse, items));
     } catch (e) {
       AppLogger.print("Error caught: $_url, $e", [UtilitiesLoggers.apiDataSource], type: LoggerType.error);
-      return Pair(lastResponse, []);
+      return Pair(RequestResponse.failure, Pair(lastResponse, []));
     }
   }
 
   @override
-  Future<Pair<Resp?, List<T?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<Resp?, List<T?>>>> searchPage({
     Resp? lastResponse,
     int? size,
     String? orderBy,

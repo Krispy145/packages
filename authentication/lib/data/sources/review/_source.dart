@@ -1,7 +1,6 @@
 library data.sources.review;
 
 import "package:authentication/data/models/review_model.dart";
-import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:utilities/data/models/permission_model.dart";
@@ -28,39 +27,43 @@ sealed class ReviewDataSource<Resp extends ResponseModel, T> {
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
-  final AuthenticationRepository authRepo;
+  final PermissionModel? currentUserPermissions;
 
   /// [ReviewDataSource] constructor.
   ReviewDataSource(
     this.sourcePath, {
-    required this.authRepo,
+    required this.currentUserPermissions,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
   });
 
-  PermissionModel? get currentUserPermissions => authRepo.currentPermissionModelStream.value;
+  bool get _canReview =>
+      currentUserPermissions?.reviews?[sourcePath] ??
+      currentUserPermissions?.role == "superAdmin";
 
-  bool get _canReview => authRepo.currentPermissionModelStream.value?.reviews?[sourcePath] ?? currentUserPermissions?.role == "superAdmin";
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllCRUDSpecific(CRUD crud);
 
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecific(CRUD crud);
-
-  Future<List<Pair<ReviewModel?, T?>>> getAllCRUDSpecificByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllCRUDSpecificByUserId(
     CRUD crud, {
     required UUID userId,
   });
 
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUD(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUD(
     CRUD crud, {
     Resp? lastResponse,
     int? size,
     String? orderBy,
   });
 
-  Future<Pair<ReviewModel?, T?>> getCRUDSpecifReviewModel(String id);
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>>
+      getCRUDSpecifReviewModel(String id);
 
   Future<RequestResponse> updateReviewModel(String id, ReviewModel data);
 
-  Future<List<Pair<ReviewModel?, T?>>> getAllPagedCRUDByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllPagedCRUDByUserId(
     CRUD crud, {
     required UUID userId,
     Resp? lastResponse,

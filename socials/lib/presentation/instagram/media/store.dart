@@ -7,6 +7,8 @@ import "package:socials/data/models/instagram/media_model.dart";
 import "package:socials/data/models/instagram/user_model.dart";
 import "package:socials/domain/repositories/instagram.repository.dart";
 import "package:socials/utils/loggers.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
 import "package:utilities/logger/logger.dart";
 
@@ -46,7 +48,7 @@ abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaMod
   late final loadMoreFromRepository = getUserMedia;
 
   @action
-  Future<List<InstagramMediaModel?>> getUserMedia({int? limit, bool refresh = false}) async {
+  Future<Pair<RequestResponse, List<InstagramMediaModel?>>> getUserMedia({int? limit, bool refresh = false}) async {
     try {
       if (refresh) {
         mediaIds.clear();
@@ -59,17 +61,17 @@ abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaMod
         }
         setLoaded();
         AppLogger.print("Current State 1: $currentState - results length: ${results.length}", [SocialsLoggers.instagram]);
-        return results;
+        return Pair(RequestResponse.success, results);
       } else {
         setEmpty();
         AppLogger.print("Current State 2: $currentState", [SocialsLoggers.instagram]);
-        return [];
+        return const Pair(RequestResponse.success, []);
       }
     } catch (e) {
       AppLogger.print("getUserMedia: $e", [SocialsLoggers.instagram]);
       setError();
       AppLogger.print("Current State 3: $currentState", [SocialsLoggers.instagram]);
-      return [];
+      return const Pair(RequestResponse.failure, []);
     }
   }
 

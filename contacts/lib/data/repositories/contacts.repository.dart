@@ -1,16 +1,17 @@
-import 'package:contacts/data/sources/contacts/contacts.source.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
-import 'package:utilities/data/sources/source.dart';
+import "package:contacts/data/sources/contacts/contacts.source.dart";
+import "package:flutter_contacts/flutter_contacts.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 
 /// [ContactsDataRepository] is a class that defines the basic CRUD operations for the [Contact] entity.
 class ContactsDataRepository {
   /// [getAllContacts] returns a list of [Contact]s.
-  Future<List<Contact?>> getAllContacts({required ContactsDataSource source}) async {
+  Future<Pair<RequestResponse, List<Contact?>>> getAllContacts({required ContactsDataSource source}) async {
     return source.getAll();
   }
 
   /// [getContact] returns a single [Contact].
-  Future<Contact?> getContact({required ContactsDataSource source, required String id}) async {
+  Future<Pair<RequestResponse, Contact?>> getContact({required ContactsDataSource source, required String id}) async {
     return source.get(id);
   }
 

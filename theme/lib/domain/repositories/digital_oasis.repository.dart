@@ -150,8 +150,12 @@ class DORepository extends BaseThemeRepository {
 
   /// [fetchTheme] is the method that will be used to fetch the [BaseThemeModel] data.
   @override
-  Future<BaseThemeModel?>? fetchTheme({required String id}) {
-    return baseThemeDataSource.get(id);
+  Future<BaseThemeModel?>? fetchTheme({required String id}) async {
+    final result = await baseThemeDataSource.get(id);
+    if (result.second != null) {
+      return result.second;
+    }
+    return null;
   }
 
   @override
@@ -190,19 +194,20 @@ class DORepository extends BaseThemeRepository {
     required String id,
   }) async {
     final theme = await componentsThemesDataSource.get(id);
-    return theme ?? ComponentThemesModel(id: id);
+    return theme.second ?? ComponentThemesModel(id: id);
   }
 
   /// [fetchThemes] is the method that will be used to fetch the [BaseThemeModel] data.
   @override
   Future<List<BaseThemeModel?>> fetchThemes() async {
     final baseThemes = await baseThemeDataSource.getAll();
-    return baseThemes;
+    return baseThemes.second;
   }
 
   /// [fetchComponentThemes] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
   Future<List<ComponentThemesModel?>> fetchComponentThemes() async {
-    return componentsThemesDataSource.getAll();
+    final result = await componentsThemesDataSource.getAll();
+    return result.second;
   }
 }

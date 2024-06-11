@@ -36,10 +36,10 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   }
 
   @override
-  Future<T?> get(String id) async {
+  Future<Pair<RequestResponse, T?>> get(String id) async {
     final data = await tryLoadJson(rootBundleKey, id: id);
-    if (data.isEmpty) return null;
-    return data.first;
+    if (data.isEmpty) return const Pair(RequestResponse.failure, null);
+    return Pair(RequestResponse.success, data.first);
   }
 
   Future<List<T?>> tryLoadJson(String path, {String? id}) async {
@@ -77,9 +77,10 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   }
 
   @override
-  Future<List<T?>> getAll() async {
+  Future<Pair<RequestResponse, List<T?>>> getAll() async {
     final data = await tryLoadJson(rootBundleKey);
-    return data;
+    if (data.isEmpty) return const Pair(RequestResponse.failure, []);
+    return Pair(RequestResponse.success, data);
   }
 
   @override
@@ -115,13 +116,21 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   bool matchesQuery(Q query, T item);
 
   @override
-  Future<T?> search(Q query) async {
-    return (await searchAll(query)).firstOrNull;
+  Future<Pair<RequestResponse, T?>> search(Q query) async {
+    final result = (await searchAll(query)).second.firstOrNull;
+    if (result == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) async {
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     final data = await tryLoadJson(rootBundleKey);
-    return data.whereType<T>().where((element) => matchesQuery(query, element)).toList();
+    final result = data.whereType<T>().where((element) => matchesQuery(query, element)).toList();
+    if (result.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    return Pair(RequestResponse.success, result);
   }
 }

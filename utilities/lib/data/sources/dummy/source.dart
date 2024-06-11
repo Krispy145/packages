@@ -12,13 +12,13 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
   bool matchesQuery(Q query, T item);
 
   @override
-  Future<T?> get(String id) async {
-    return fakeData.firstWhereOrNull((element) => matchesID(id, element));
+  Future<Pair<RequestResponse, T?>> get(String id) async {
+    return Pair(RequestResponse.success, fakeData.firstWhereOrNull((element) => matchesID(id, element)));
   }
 
   @override
-  Future<List<T?>> getAll() async {
-    return fakeData;
+  Future<Pair<RequestResponse, List<T?>>> getAll() async {
+    return Pair(RequestResponse.success, fakeData);
   }
 
   @override
@@ -66,12 +66,20 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
   }
 
   @override
-  Future<T?> search(Q query) async {
-    return fakeData.where((element) => matchesQuery(query, element)).toList().firstOrNull;
+  Future<Pair<RequestResponse, T?>> search(Q query) async {
+    final result = fakeData.where((element) => matchesQuery(query, element)).toList().firstOrNull;
+    if (result == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, result);
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) async {
-    return fakeData.where((element) => matchesQuery(query, element)).toList();
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
+    final result = fakeData.where((element) => matchesQuery(query, element)).toList();
+    if (result.isEmpty) {
+      return const Pair(RequestResponse.failure, []);
+    }
+    return Pair(RequestResponse.success, result);
   }
 }

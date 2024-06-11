@@ -33,7 +33,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
               "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
               "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
               "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true"
+              "Access-Control-Allow-Credentials": "true",
             },
           ),
         );
@@ -65,7 +65,8 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<Pair<PagedResponse<VideoModel>?, List<VideoModel?>>> _handlePagedError(Future<Pair<PagedResponse<VideoModel>?, List<VideoModel?>>> Function() apiCall) async {
+  Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> _handlePagedError(
+      Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> Function() apiCall) async {
     try {
       return await apiCall();
     } catch (e) {
@@ -79,7 +80,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
   }
 
   @override
-  Future<Pair<PagedResponse<VideoModel>?, List<VideoModel?>>> getPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> getPage({
     PagedResponse<VideoModel>? lastResponse,
     int? size,
     String? orderBy,
@@ -99,7 +100,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
   }
 
   @override
-  Future<Pair<PagedResponse<VideoModel>, List<VideoModel?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>, List<VideoModel?>>>> searchPage({
     PagedResponse<VideoModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,

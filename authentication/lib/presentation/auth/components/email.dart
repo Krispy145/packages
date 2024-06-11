@@ -1,7 +1,9 @@
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
+import "package:authentication/domain/repositories/code.repository.dart";
 import "package:authentication/helpers/constants.dart";
+import "package:authentication/helpers/env.dart";
 import "package:authentication/helpers/exception.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:email_validator/email_validator.dart";
@@ -37,17 +39,12 @@ class EmailAuthWidget extends StatefulWidget {
   /// The [AuthenticationRepository] to be used for the auth action
   final AuthenticationRepository repository;
 
-  /// The URL to redirect the user to when clicking on the link on the
-  /// confirmation link after signing up.
-  // final String? redirectTo;
+  final CodeDataSourceType? codeDataSourceType;
 
   /// Callback for the user to complete a sign in.
   final void Function(UserModel userModel) onSignInComplete;
 
   /// Callback for the user to complete a signUp.
-  ///
-  /// If email confirmation is turned on, the user is
-  final void Function(UserModel userModel) onSignUpComplete;
 
   /// Callback for sending the password reset email
   final void Function()? onPasswordResetEmailSent;
@@ -59,13 +56,11 @@ class EmailAuthWidget extends StatefulWidget {
 
   final List<AdditionalDataField>? additionalDataFields;
 
-  /// {@macro supa_email_auth}
   const EmailAuthWidget({
     super.key,
     required this.repository,
-    // this.redirectTo,
     required this.onSignInComplete,
-    required this.onSignUpComplete,
+    this.codeDataSourceType,
     this.onPasswordResetEmailSent,
     this.onError,
     this.additionalDataFields,
@@ -77,8 +72,11 @@ class EmailAuthWidget extends StatefulWidget {
 
 class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController(text: kDebugMode ? "davidkisbeygreen145@gmail.com" : null);
-  final _passwordController = TextEditingController(text: kDebugMode ? "DigitalOasis123!" : null);
+  final _codeController = TextEditingController();
+  final _emailController = TextEditingController(
+    text: kDebugMode ? AuthEnv.email : null,
+  );
+  final _passwordController = TextEditingController(text: kDebugMode ? AuthEnv.password : null);
   late final Map<AdditionalDataField, TextEditingController> _additionalDataControllers;
 
   bool _isLoading = false;
@@ -102,6 +100,7 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
 
   @override
   void dispose() {
+    _codeController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     for (final controller in _additionalDataControllers.values) {
@@ -137,6 +136,16 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (widget.codeDataSourceType != null && action == AuthAction.signUp) ...[
+            TextFormField(
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.password_rounded),
+                label: Text("Enter your given code"),
+              ),
+              controller: _codeController,
+            ),
+            Sizes.s.spacer(),
+          ],
           TextFormField(
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
@@ -219,7 +228,10 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
                   }
                 } on AuthenticationException catch (error) {
                   if (widget.onError == null && context.mounted) {
-                    AppLogger.print(error.message, [AuthenticationLoggers.authentication]);
+                    AppLogger.print(
+                      error.message,
+                      [AuthenticationLoggers.authentication],
+                    );
                     context.showSnackbar(
                       configuration: SnackbarConfiguration.error(title: error.message),
                     );
@@ -308,35 +320,48 @@ class _EmailAuthWidgetState extends State<EmailAuthWidget> {
   }
 
   Future<void> _signUp(BuildContext context) async {
+    var params = AuthParams.email(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+    if (widget.codeDataSourceType != null) {
+      params = params.copyWith(code: _codeController.text);
+    }
     await widget.repository
         .signUpWithEmail(
-      params: AuthParams.email(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      ),
+      params: params,
     )
         .then((response) {
       if (response != null) {
-        widget.onSignUpComplete.call(response);
-      } else {
         context.showSnackbar(
           configuration: SnackbarConfiguration.information(
             title: "Email verification sent",
           ),
         );
         _toggleSignIn();
+      } else {
+        context.showSnackbar(
+          configuration: SnackbarConfiguration.error(
+            title: "Error signing up",
+          ),
+        );
       }
     });
   }
 
   Future<void> _signIn() async {
-    AppLogger.print("Signing in with email: ${_emailController.text} - ${_passwordController.text}", [AuthenticationLoggers.authentication]);
+    AppLogger.print(
+      "Signing in with email: ${_emailController.text} - ${_passwordController.text}",
+      [AuthenticationLoggers.authentication],
+    );
+
+    final params = AuthParams.email(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
 
     final response = await widget.repository.signIn(
-      params: AuthParams.email(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      ),
+      params: params,
     );
     if (response != null) {
       widget.onSignInComplete.call(response);

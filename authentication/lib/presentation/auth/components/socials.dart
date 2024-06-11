@@ -68,7 +68,8 @@ class SocialButtons extends StatelessWidget {
         final socialType = types[index];
 
         final foregroundColor = coloredBackground ? Colors.white : null;
-        final backgroundColor = coloredBackground ? socialType.backgroundColor : null;
+        final backgroundColor =
+            coloredBackground ? socialType.backgroundColor : null;
         final overlayColor = coloredBackground ? Colors.white10 : null;
 
         final iconColor = coloredBackground ? Colors.white : null;
@@ -88,7 +89,8 @@ class SocialButtons extends StatelessWidget {
           } on AuthenticationException catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(
-                configuration: SnackbarConfiguration.error(title: error.message),
+                configuration:
+                    SnackbarConfiguration.error(title: error.message),
               );
             } else {
               onError?.call(error);

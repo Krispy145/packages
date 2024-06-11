@@ -1,0 +1,4 @@
+enum ListViewType {
+  listView,
+  gridView,
+}

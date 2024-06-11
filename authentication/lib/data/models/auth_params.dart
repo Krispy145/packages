@@ -1,6 +1,7 @@
 import "dart:convert";
 
 import "package:authentication/data/models/user_model.dart";
+import "package:authentication/data/sources/code/_source.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 part "auth_params.mapper.dart";
@@ -35,6 +36,7 @@ class AuthParams {
   String? photoUrl;
   String? accessToken;
   String? idToken;
+  CODE? code;
   String? nonce;
   String? refreshToken;
   AuthType authType;
@@ -50,6 +52,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.accessToken,
+    this.code,
     this.idToken,
     this.nonce,
     this.refreshToken,
@@ -62,42 +65,69 @@ class AuthParams {
   AuthParams.email({
     required this.email,
     required this.password,
+    this.displayName,
+    this.photoUrl,
+    this.phoneNumber,
+    this.code,
   })  : authType = AuthType.email,
         authStatus = AuthStatus.unauthenticated;
 
-  AuthParams.google()
-      : authType = AuthType.google,
+  AuthParams.google({
+    this.displayName,
+    this.photoUrl,
+    this.code,
+  })  : authType = AuthType.google,
         authStatus = AuthStatus.unauthenticated;
 
-  AuthParams.facebook()
-      : authType = AuthType.facebook,
+  AuthParams.facebook({
+    this.displayName,
+    this.photoUrl,
+    this.code,
+  })  : authType = AuthType.facebook,
         authStatus = AuthStatus.unauthenticated;
 
-  AuthParams.apple()
-      : authType = AuthType.apple,
+  AuthParams.apple({
+    this.displayName,
+    this.photoUrl,
+    this.code,
+  })  : authType = AuthType.apple,
         authStatus = AuthStatus.unauthenticated;
 
-  AuthParams.github()
-      : authType = AuthType.github,
+  AuthParams.github({
+    this.displayName,
+    this.photoUrl,
+    this.code,
+  })  : authType = AuthType.github,
         authStatus = AuthStatus.unauthenticated;
 
-  AuthParams.microsoft()
-      : authType = AuthType.microsoft,
+  AuthParams.microsoft({
+    this.displayName,
+    this.photoUrl,
+    this.code,
+  })  : authType = AuthType.microsoft,
         authStatus = AuthStatus.unauthenticated;
 
   AuthParams.phone({
     required this.phoneNumber,
     required this.password,
+    this.displayName,
+    this.photoUrl,
+    this.email,
+    this.code,
   })  : authType = AuthType.phone,
         authStatus = AuthStatus.unauthenticated;
 
-  AuthParams.anonymous()
-      : authType = AuthType.anonymous,
+  AuthParams.anonymous({
+    this.code,
+  })  : authType = AuthType.anonymous,
         authStatus = AuthStatus.unauthenticated;
 
   AuthParams.passwordless({
     required this.email,
     required this.password,
+    this.displayName,
+    this.photoUrl,
+    this.code,
   })  : authType = AuthType.passwordless,
         authStatus = AuthStatus.unauthenticated;
 
@@ -108,6 +138,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.updatedAt,
+    this.code,
   })  : authType = AuthType.empty,
         authStatus = AuthStatus.unauthenticated;
 
@@ -151,6 +182,7 @@ class AuthParams {
     String? photoUrl,
     String? accessToken,
     String? idToken,
+    CODE? code,
     String? nonce,
     String? refreshToken,
     AuthType? authType,
@@ -166,6 +198,7 @@ class AuthParams {
       photoUrl: photoUrl ?? this.photoUrl,
       accessToken: accessToken ?? this.accessToken,
       idToken: idToken ?? this.idToken,
+      code: code ?? this.code,
       nonce: nonce ?? this.nonce,
       refreshToken: refreshToken ?? this.refreshToken,
       authType: authType ?? this.authType,
@@ -185,10 +218,11 @@ class AuthParams {
       "photoUrl": photoUrl,
       "accessToken": accessToken,
       "idToken": idToken,
+      "code": code,
       "nonce": nonce,
       "refreshToken": refreshToken,
-      "authType": authType,
-      "authStatus": authStatus,
+      "authType": authType.name,
+      "authStatus": authStatus.name,
       "createdAt": createdAt?.millisecondsSinceEpoch,
       "updatedAt": updatedAt?.millisecondsSinceEpoch,
     };
@@ -204,6 +238,7 @@ class AuthParams {
       photoUrl: map["photoUrl"] as String?,
       accessToken: map["accessToken"] as String?,
       idToken: map["idToken"] as String?,
+      code: map["code"] as CODE?,
       nonce: map["nonce"] as String?,
       refreshToken: map["refreshToken"] as String?,
       authType: AuthType.values.firstWhere((element) => element == map["authType"]),
@@ -219,7 +254,7 @@ class AuthParams {
 
   @override
   String toString() {
-    return "AuthParams(id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)";
+    return "AuthParams(code: $code id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)";
   }
 
   @override
@@ -235,6 +270,7 @@ class AuthParams {
         other.photoUrl == photoUrl &&
         other.accessToken == accessToken &&
         other.idToken == idToken &&
+        other.code == code &&
         other.nonce == nonce &&
         other.refreshToken == refreshToken &&
         other.authType == authType &&
@@ -253,6 +289,7 @@ class AuthParams {
         photoUrl.hashCode ^
         accessToken.hashCode ^
         idToken.hashCode ^
+        code.hashCode ^
         nonce.hashCode ^
         refreshToken.hashCode ^
         authType.hashCode ^

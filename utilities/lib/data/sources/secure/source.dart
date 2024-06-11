@@ -36,18 +36,21 @@ abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   );
 
   @override
-  Future<T?> get(String key) async {
+  Future<Pair<RequestResponse, T?>> get(String key) async {
     final value = await read(key);
     final convertedValue = value != null ? convertFromMap(json.decode(value) as Map<String, dynamic>) : null;
     AppLogger.print("GET: $key => $convertedValue", [UtilitiesLoggers.secureDataSource]);
-    return convertedValue;
+    return Pair(RequestResponse.success, convertedValue);
   }
 
   @override
-  Future<List<T>> getAll() async {
+  Future<Pair<RequestResponse, List<T>>> getAll() async {
     final allValues = await readAll();
     AppLogger.print("GET All: $allValues", [UtilitiesLoggers.secureDataSource]);
-    return allValues.values.map((value) => convertFromMap(json.decode(value) as Map<String, dynamic>)).toList();
+    return Pair(
+      RequestResponse.success,
+      allValues.values.map((value) => convertFromMap(json.decode(value) as Map<String, dynamic>)).toList(),
+    );
   }
 
   @override
@@ -102,14 +105,14 @@ abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   }
 
   @override
-  Future<T?> search(Q query) {
+  Future<Pair<RequestResponse, T?>> search(Q query) {
     // Implement search logic if applicable
     AppLogger.print("SEARCH: $query", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();
   }
 
   @override
-  Future<List<T?>> searchAll(Q query) {
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) {
     // Implement search logic if applicable
     AppLogger.print("SEARCH: $query", [UtilitiesLoggers.secureDataSource]);
     throw UnimplementedError();

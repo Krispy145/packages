@@ -1,16 +1,14 @@
-import "dart:async";
-
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
-import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:authentication/helpers/constants.dart";
 import "package:authentication/presentation/auth/components/email.dart";
 import "package:authentication/presentation/auth/components/phone.dart";
-import "package:authentication/presentation/auth/components/social_types.dart";
 import "package:authentication/presentation/auth/components/socials.dart";
+import "package:authentication/presentation/auth/store.dart";
 import "package:flutter/material.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/snackbar/configuration.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
 enum AuthBuilderType {
   authenticate,
@@ -22,113 +20,95 @@ class ShowAuthAction {
   bool showSignUp;
   bool showSignIn;
 
-  ShowAuthAction({required this.showSignUp, required this.showSignIn});
+  ShowAuthAction({
+    required this.showSignUp,
+    required this.showSignIn,
+  });
 }
 
 //TODO: Make the auth store and extend loadstate to init getting the autentication status from the repository.
 /// [AuthenticationBuilder] is a class that uses [_AuthenticationBuilderState] to manage state of the authentication feature.
-class AuthenticationBuilder<T extends UserModel> extends StatefulWidget {
-  final AuthenticationRepository repository;
-  final bool showEmailAuth;
-  final AuthBuilderType authBuilderType;
-  final ShowAuthAction? showPhoneAuth;
-  final List<SocialButtonType>? socialTypes;
-  final void Function(T userModel)? onSuccess;
-  final bool showSuccessSnackBar;
-
-  /// [AuthenticationBuilder.authenticate] constructor.
-  const AuthenticationBuilder.authenticate({
-    super.key,
-    required this.repository,
-    this.showEmailAuth = true,
-    this.showPhoneAuth,
-    this.socialTypes,
-    this.onSuccess,
-    this.showSuccessSnackBar = false,
-  }) : authBuilderType = AuthBuilderType.authenticate;
-
-  /// [AuthenticationBuilder.silent] constructor.
-  const AuthenticationBuilder.silent({
-    super.key,
-    required this.repository,
-    this.showEmailAuth = false,
-    this.onSuccess,
-    this.showSuccessSnackBar = false,
-  })  : authBuilderType = AuthBuilderType.silent,
-        showPhoneAuth = null,
-        socialTypes = null;
+class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
+  final AuthStore<T> store;
 
   /// [AuthenticationBuilder] constructor.
-  const AuthenticationBuilder.authenticateThenSilent({
+  const AuthenticationBuilder({
     super.key,
-    required this.repository,
-    this.showEmailAuth = true,
-    this.onSuccess,
-    this.showSuccessSnackBar = false,
-  })  : authBuilderType = AuthBuilderType.authenticateThenSilent,
-        showPhoneAuth = null,
-        socialTypes = null;
+    required this.store,
+  });
 
-  @override
-  State<AuthenticationBuilder> createState() => _AuthenticationBuilderState();
-}
+  // /// [AuthenticationBuilder.authenticate] constructor.
+  // AuthenticationBuilder.authenticate({
+  //   super.key,
+  //   required this.repository,
+  //   this.showEmailAuth = true,
+  //   this.showPhoneAuth,
+  //   this.socialTypes,
+  //   this.onSuccess,
+  //   this.showSuccessSnackBar = false,
+  // }) : authBuilderType = AuthBuilderType.authenticate;
 
-class _AuthenticationBuilderState extends State<AuthenticationBuilder> {
-  late final UserModel? _userModel;
+  // /// [AuthenticationBuilder.silent] constructor.
+  // AuthenticationBuilder.silent({
+  //   super.key,
+  //   required this.repository,
+  //   this.showEmailAuth = false,
+  //   this.onSuccess,
+  //   this.showSuccessSnackBar = false,
+  // })  : authBuilderType = AuthBuilderType.silent,
+  //       showPhoneAuth = null,
+  //       socialTypes = null;
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.authBuilderType == AuthBuilderType.silent) {
-      _signInAnonymously();
-    }
-    if (widget.authBuilderType == AuthBuilderType.authenticateThenSilent || widget.authBuilderType == AuthBuilderType.authenticate) {
-      setState(() {
-        _userModel = widget.repository.currentUserModelStream.value;
-        if (_userModel != null) {
-          final authStatus = _userModel.status;
-          if (authStatus == AuthStatus.authenticated) {
-            widget.onSuccess?.call(_userModel);
-            if (widget.showSuccessSnackBar) {
-              context.showSnackbar(
-                configuration: SnackbarConfiguration.confirmation(
-                  title: "Successfully signed in",
-                ),
-              );
-            }
-          }
-        } else if ((_userModel?.status == AuthStatus.unauthenticated || _userModel == null) && widget.authBuilderType == AuthBuilderType.authenticateThenSilent) {
-          _signInAnonymously();
-        }
-      });
-    }
-  }
-
-  Future<void> _signInAnonymously() async {
-    final response = await widget.repository.signIn(
-      params: AuthParams.anonymous(),
-    );
-    if (response != null) {
-      widget.onSuccess?.call(response);
-    }
-  }
+  // /// [AuthenticationBuilder] constructor.
+  // AuthenticationBuilder.authenticateThenSilent({
+  //   super.key,
+  //   required this.repository,
+  //   this.showEmailAuth = true,
+  //   this.onSuccess,
+  //   this.showSuccessSnackBar = false,
+  // })  : authBuilderType = AuthBuilderType.authenticateThenSilent,
+  //       showPhoneAuth = null,
+  //       socialTypes = null;
 
   @override
   Widget build(BuildContext context) {
-    return widget.authBuilderType == AuthBuilderType.silent || widget.authBuilderType == AuthBuilderType.authenticateThenSilent
-        ? const Center(
-            child: CircularProgressIndicator(),
-          )
-        : _AuthenticateView(widget: widget);
+    return LoadStateBuilder(
+      viewStore: store,
+      emptyBuilder: (context) => _AuthenticateView(
+        store: store,
+      ),
+      loadedBuilder: (context) {
+        conditionallyShowSnackbar(context);
+        store.onSuccess?.call(store.userModel! as T);
+        return _AuthenticateView(
+          store: store,
+        );
+      },
+      errorBuilder: (context) => const Center(
+        child: Text("Error loading authentication View"),
+      ),
+    );
+  }
+
+  void conditionallyShowSnackbar(BuildContext context) {
+    final _user = store.userModel;
+    final _shouldShow = _user?.status == AuthStatus.authenticated && store.showSuccessSnackBar && store.authBuilderType != AuthBuilderType.silent && _user?.authType != AuthType.anonymous;
+    if (!_shouldShow) return;
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.showSnackbar(
+        configuration: SnackbarConfiguration.confirmation(
+          title: "Successfully signed in",
+        ),
+      );
+    });
   }
 }
 
 class _AuthenticateView extends StatelessWidget {
   const _AuthenticateView({
-    required this.widget,
+    required this.store,
   });
-
-  final AuthenticationBuilder widget;
+  final AuthStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -143,75 +123,66 @@ class _AuthenticateView extends StatelessWidget {
           ),
           child: Column(
             children: [
-              if (widget.showEmailAuth)
+              if (store.showEmailAuth)
                 EmailAuthWidget(
-                  repository: widget.repository,
+                  repository: store.repository,
+                  codeDataSourceType: store.codeSource,
                   onSignInComplete: (userModel) {
-                    if (widget.showSuccessSnackBar) {
+                    if (store.showSuccessSnackBar) {
                       context.showSnackbar(
                         configuration: SnackbarConfiguration.confirmation(
                           title: "Successfully signed in",
                         ),
                       );
                     }
-                    widget.onSuccess?.call(userModel);
-                  },
-                  onSignUpComplete: (userModel) {
-                    if (widget.showSuccessSnackBar) {
-                      context.showSnackbar(
-                        configuration: SnackbarConfiguration.confirmation(
-                          title: "Successfully signed in",
-                        ),
-                      );
-                    }
-                    widget.onSuccess?.call(userModel);
+                    store.onSuccess?.call(userModel);
                   },
                 ),
-              if (widget.showPhoneAuth != null) ...[
-                if (widget.showPhoneAuth!.showSignIn)
+              if (store.showPhoneAuth != null) ...[
+                if (store.showPhoneAuth!.showSignIn)
                   PhoneAuthWidget(
-                    repository: widget.repository,
+                    repository: store.repository,
                     authAction: AuthAction.signIn,
                     onSuccess: (userModel) {
-                      if (widget.showSuccessSnackBar) {
+                      if (store.showSuccessSnackBar) {
                         context.showSnackbar(
                           configuration: SnackbarConfiguration.confirmation(
                             title: "Successfully signed in",
                           ),
                         );
                       }
-                      widget.onSuccess?.call(userModel);
+                      store.onSuccess?.call(userModel);
                     },
                   ),
-                if (widget.showPhoneAuth!.showSignUp)
+                if (store.showPhoneAuth!.showSignUp)
                   PhoneAuthWidget(
-                    repository: widget.repository,
+                    repository: store.repository,
                     authAction: AuthAction.signUp,
                     onSuccess: (userModel) {
-                      if (widget.showSuccessSnackBar) {
+                      if (store.showSuccessSnackBar) {
                         context.showSnackbar(
                           configuration: SnackbarConfiguration.confirmation(
                             title: "Successfully signed in",
                           ),
                         );
                       }
-                      widget.onSuccess?.call(userModel);
+                      store.onSuccess?.call(userModel);
                     },
                   ),
               ],
-              if (widget.socialTypes != null)
+              if (store.socialTypes != null)
                 SocialButtons(
-                  repository: widget.repository,
-                  socialTypes: widget.socialTypes!,
+                  repository: store.repository,
+                  socialTypes: store.socialTypes!,
                   onSuccess: (userModel) {
-                    if (widget.showSuccessSnackBar) {
+                    if (store.showSuccessSnackBar) {
                       context.showSnackbar(
                         configuration: SnackbarConfiguration.confirmation(
                           title: "Successfully signed in",
                         ),
                       );
                     }
-                    widget.onSuccess?.call(userModel);
+                    store.onSuccess?.call(userModel);
                   },
                   socialButtonVariant: socialButtonVariant,
                 ),

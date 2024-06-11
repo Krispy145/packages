@@ -1,41 +1,41 @@
 // ignore_for_file: unused_element
 
-import 'package:flutter_contacts/flutter_contacts.dart';
+import "package:flutter_contacts/flutter_contacts.dart";
 import "package:mobx/mobx.dart";
 
-import '../list/store.dart';
+import "../list/store.dart";
 
 part "store.g.dart";
 
-/// [ContactsStore] is a class that uses [_ContactsStore] to manage state of the Contacts feature.
-class ContactsStore = _ContactsStore with _$ContactsStore;
+/// [ContactStore] is a class that uses [_ContactStore] to manage state of the Contact feature.
+class ContactStore = _ContactStore with _$ContactStore;
 
-/// [_ContactsStore] is a class that manages the state of the Contacts feature.
-abstract class _ContactsStore extends ContactssStore with Store {
+/// [_ContactStore] is a class that manages the state of the Contact feature.
+abstract class _ContactStore extends ContactsStore with Store {
   final String? id;
 
-  /// [_ContactsStore] constructor.
-  _ContactsStore({
+  /// [_ContactStore] constructor.
+  _ContactStore({
     this.id,
     Contact? initialContact,
   }) {
-    _loadContacts(initialContact);
+    _loadContact(initialContact);
   }
 
-  /// [currentContacts] is an observable list of [Contact]s.
+  /// [currentContact] is an observable list of [Contact]s.
   @observable
-  Contact? currentContacts;
+  Contact? currentContact;
 
-  void _loadContacts(Contact? initialContact) {
+  void _loadContact(Contact? initialContact) {
     if (initialContact == null && id != null) {
       setLoading();
       repository.getContact(id!).then((value) {
-        currentContacts = value;
+        currentContact = value.second;
       });
     } else {
-      currentContacts = initialContact;
+      currentContact = initialContact;
     }
-    if (currentContacts != null) {
+    if (currentContact != null) {
       setLoaded();
     } else {
       setEmpty();

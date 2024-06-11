@@ -106,23 +106,40 @@ class InstagramRepository {
   }
 
   /// [refreshLongLivedAccessToken] returns a list of [InstagramUserModel]s.
-  Future<InstagramAccessTokenModel?> refreshLongLivedAccessToken({required InstagramAccessTokenModel currentLongLivedAccessToken}) async {
+  Future<InstagramAccessTokenModel?> refreshLongLivedAccessToken({
+    required InstagramAccessTokenModel currentLongLivedAccessToken,
+  }) async {
     try {
-      return _handleNotApiSource(() => _instagramDataRepository.refreshLongLivedAccessToken(currentLongLivedAccessToken));
+      return _handleNotApiSource(
+        () => _instagramDataRepository.refreshLongLivedAccessToken(currentLongLivedAccessToken),
+      );
     } catch (e) {
-      AppLogger.print("InstagramRepository: refreshLongLivedAccessToken: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramRepository: refreshLongLivedAccessToken: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
       return null;
     }
   }
 
   /// [getUserMediaIds] returns a list of [InstagramUserModel]s.
   /// [userId] is the user id. defaults to in constants as `me`.
-  Future<List<InstagramMediaIdModel>?> getUserMediaIds({String? userId, required InstagramAccessTokenModel accessTokenModel, required bool refresh}) async {
+  Future<List<InstagramMediaIdModel>?> getUserMediaIds({
+    String? userId,
+    required InstagramAccessTokenModel accessTokenModel,
+    required bool refresh,
+  }) async {
     if (refresh) {
       _currentMediaIdsResponse = null;
     }
-    _currentMediaIdsResponse =
-        await _handleNotApiSource(() => _instagramDataRepository.getUserMediaIds(userId: userId, accessTokenModel: accessTokenModel, lastMediaIdResponse: _currentMediaIdsResponse));
+    _currentMediaIdsResponse = await _handleNotApiSource(
+      () => _instagramDataRepository.getUserMediaIds(
+        userId: userId,
+        accessTokenModel: accessTokenModel,
+        lastMediaIdResponse: _currentMediaIdsResponse,
+      ),
+    );
     return _currentMediaIdsResponse?.media?.data;
   }
 
@@ -130,21 +147,44 @@ class InstagramRepository {
   /// [mediaId] is the media id.
   /// [fields] is a list of [InstagramMediaDetailsField]s.
   /// Defaults to all fields if not provided.
-  Future<InstagramMediaModel?> getMediaDetails(String mediaId, {List<InstagramMediaDetailsField>? fields, required InstagramAccessTokenModel accessTokenModel}) async {
-    return _handleNotApiSource(() => _instagramDataRepository.getMediaDetails(mediaId, fields: fields, accessTokenModel: accessTokenModel));
+  Future<InstagramMediaModel?> getMediaDetails(
+    String mediaId, {
+    List<InstagramMediaDetailsField>? fields,
+    required InstagramAccessTokenModel accessTokenModel,
+  }) async {
+    return _handleNotApiSource(
+      () => _instagramDataRepository.getMediaDetails(
+        mediaId,
+        fields: fields,
+        accessTokenModel: accessTokenModel,
+      ),
+    );
   }
 
   /// [getMediaAlbum] returns a list of [InstagramUserModel]s.
   /// [mediaId] is the media id.
   /// [fields] is a list of [InstagramMediaDetailsField]s.
   /// Defaults to all fields if not provided.
-  Future<List<InstagramMediaIdsResponse?>> getMediaAlbum(String mediaId, {List<InstagramMediaDetailsField>? fields, required InstagramAccessTokenModel accessTokenModel}) async {
-    return _handleNotApiSource(() => _instagramDataRepository.getMediaAlbum(mediaId, fields: fields, accessTokenModel: accessTokenModel));
+  Future<List<InstagramMediaIdsResponse?>> getMediaAlbum(
+    String mediaId, {
+    List<InstagramMediaDetailsField>? fields,
+    required InstagramAccessTokenModel accessTokenModel,
+  }) async {
+    return _handleNotApiSource(
+      () => _instagramDataRepository.getMediaAlbum(
+        mediaId,
+        fields: fields,
+        accessTokenModel: accessTokenModel,
+      ),
+    );
   }
 
   /// [getMe] returns a list of [InstagramUserModel]s.
   /// [fields] is a list of [InstagramUserDetailsField]s.
-  Future<InstagramUserModel?> getMe({List<InstagramUserDetailsField>? fields, required InstagramAccessTokenModel accessTokenModel}) async {
+  Future<InstagramUserModel?> getMe({
+    List<InstagramUserDetailsField>? fields,
+    required InstagramAccessTokenModel accessTokenModel,
+  }) async {
     return _handleNotApiSource(() => _instagramDataRepository.getMe(fields: fields, accessTokenModel: accessTokenModel));
   }
 
@@ -152,8 +192,16 @@ class InstagramRepository {
   /// [userId] is the user id.
   /// [fields] is a list of [InstagramUserDetailsField]s.
   /// Defaults to all fields if not provided.
-  Future<InstagramUserModel?> getUser(String userId, {List<InstagramUserDetailsField>? fields, required InstagramAccessTokenModel accessTokenModel}) async {
-    return _handleNotApiSource(() => _instagramDataRepository.getUser(userId, fields: fields, accessTokenModel: accessTokenModel));
+  Future<InstagramUserModel?> getUser(
+    String userId, {
+    List<InstagramUserDetailsField>? fields,
+    required InstagramAccessTokenModel accessTokenModel,
+  }) async {
+    return _handleNotApiSource(() => _instagramDataRepository.getUser(
+          userId,
+          fields: fields,
+          accessTokenModel: accessTokenModel,
+        ));
   }
 
   Future<T> _handleNotApiSource<T>(Future<T> Function() callback) {

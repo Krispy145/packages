@@ -79,12 +79,8 @@ abstract class _InstagramUserStore extends AuthStateStore with Store {
   @action
   Future<void> getLocalUser() async {
     final _user = await _secureDataSource.get("user");
-    if (_user != null) {
-      user = _user;
-      setAuthenticated();
-    } else {
-      setUnauthenticated();
-    }
+    user = _user.second;
+    setAuthenticated();
   }
 
   @action

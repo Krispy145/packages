@@ -36,10 +36,7 @@ class PermissionModel with PermissionModelMappable {
   static const anonymous = PermissionModel(
     id: "",
     role: "anonymous",
-    permissions: {
-      "users/all": UserPermissionsModel.viewExample,
-      "shop/5MzfYGNX1U3ItKDYxRmE": UserPermissionsModel.adminExample,
-    },
+    permissions: {},
   );
 
   static final permissionOne = PermissionModel(

@@ -15,7 +15,7 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
   }
 
   @override
-  Future<Pair<ResponseModel, List<VideoModel?>>> searchPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<VideoModel?>>>> searchPage({
     ResponseModel? lastResponse,
     int? size,
     required BasicSearchQueryModel query,
@@ -25,7 +25,7 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
   }
 
   @override
-  Future<Pair<ResponseModel, List<VideoModel?>>> getPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<VideoModel?>>>> getPage({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,

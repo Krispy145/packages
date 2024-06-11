@@ -3,6 +3,8 @@ import 'package:maps/constants/map_constants.dart';
 import 'package:maps/data/models/google/responses_model.dart';
 import 'package:maps/utils/loggers.dart';
 import 'package:utilities/data/sources/api/source.dart';
+import 'package:utilities/data/sources/source.dart';
+import 'package:utilities/helpers/tuples.dart';
 import 'package:utilities/logger/logger.dart';
 
 import '_source.dart';
@@ -36,7 +38,7 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
   }
 
   @override
-  Future<GoogleResponsesModel?> get(
+  Future<Pair<RequestResponse, GoogleResponsesModel?>> get(
     String id, {
     String? pathExtensions = "details/json",
     Map<String, dynamic>? queryParameters,
@@ -49,7 +51,7 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
   }
 
   @override
-  Future<GoogleResponsesModel?> search(
+  Future<Pair<RequestResponse, GoogleResponsesModel?>> search(
     Map<String, dynamic> query, {
     String? pathExtensions = "textsearch/json",
     bool cancelPreviousRequest = false,

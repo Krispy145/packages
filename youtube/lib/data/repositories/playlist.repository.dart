@@ -1,7 +1,8 @@
-import 'package:utilities/data/sources/paginated.dart';
-import 'package:utilities/helpers/tuples.dart';
-import 'package:youtube/data/models/playlist_model.dart';
-import 'package:youtube/data/sources/playlist/_source.dart';
+import "package:utilities/data/sources/paginated.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
+import "package:youtube/data/models/playlist_model.dart";
+import "package:youtube/data/sources/playlist/_source.dart";
 
 /// [PlaylistDataRepository] is a class that defines the basic CRUD operations for the [PlaylistModel] entity.
 class PlaylistDataRepository {
@@ -11,17 +12,17 @@ class PlaylistDataRepository {
   // }
 
   /// [getPagedPlaylistModels] returns a page of [PlaylistModel]s.
-  Future<Pair<ResponseModel?, List<PlaylistModel?>>> getPagedPlaylistModels({
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<PlaylistModel?>>>> getPagedPlaylistModels({
     required PlaylistDataSource source,
     int? limit,
     ResponseModel? lastResponse,
     Map<String, dynamic>? queryParameters,
   }) async {
-    return await source.getPage(size: limit, lastResponse: lastResponse, queryParameters: queryParameters);
+    return source.getPage(size: limit, lastResponse: lastResponse, queryParameters: queryParameters);
   }
 
   /// [getPlaylistModel] returns a single [PlaylistModel].
-  Future<PlaylistModel?> getPlaylistModel({required PlaylistDataSource source, required String id}) async {
+  Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel({required PlaylistDataSource source, required String id}) async {
     return source.get(id);
   }
 

@@ -190,7 +190,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [_updateActiveNotificationsList] updates the active notifications to the [notifications].
   @action
   Future<void> _updateActiveNotificationsList() async {
-    final activeNotifications = await remoteDataSource?.getAll() ?? await getAll();
+    final activeNotificationsResponse = await remoteDataSource?.getAll() ?? await getAll();
+    final activeNotifications = activeNotificationsResponse.second;
     final notificationMap = <String, NotificationModel>{};
     for (final notificationResponse in activeNotifications) {
       if (notificationResponse != null) {

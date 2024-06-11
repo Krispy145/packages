@@ -7,10 +7,10 @@ enum RequestResponse { success, failure, denied, underReview }
 /// see: HiveDataSource and RemoteDataSource
 abstract mixin class DataSource<T, Q> {
   /// [get] method returns the value of the given id
-  Future<T?> get(String id);
+  Future<Pair<RequestResponse, T?>> get(String id);
 
   /// [getAll] method returns all the key-value pairs
-  Future<List<T?>> getAll();
+  Future<Pair<RequestResponse, List<T?>>> getAll();
 
   /// [delete] method deletes the value of the given id
   Future<RequestResponse> delete(String id);
@@ -31,10 +31,10 @@ abstract mixin class DataSource<T, Q> {
   Future<RequestResponse> addAll(List<T> value);
 
   /// [search] method searches for the given queries
-  Future<T?> search(Q query);
+  Future<Pair<RequestResponse, T?>> search(Q query);
 
   /// [searchAll] method searches for all the key-value pairs
-  Future<List<T?>> searchAll(Q query);
+  Future<Pair<RequestResponse, List<T?>>> searchAll(Q query);
 }
 
 mixin Mappable<T> {

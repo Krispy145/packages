@@ -7,15 +7,18 @@ import "package:mobx/mobx.dart";
 part "store.g.dart";
 
 /// [CRUDReviewStore] is a class that uses [_CRUDReviewStore] to manage state of the reviews feature.
-class CRUDReviewStore<T, Q> = _CRUDReviewStore<T, Q> with _$CRUDReviewStore<T, Q>;
+class CRUDReviewStore<T, Q> = _CRUDReviewStore<T, Q>
+    with _$CRUDReviewStore<T, Q>;
 
 /// [_CRUDReviewStore<T,Q>] is a class that manages the state of the reviews feature.
-abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q> with Store {
+abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q>
+    with Store {
   final String? id;
 
   /// [_CRUDReviewStore] constructor.
   _CRUDReviewStore({
     required super.crud,
+    required super.currentUserPermissions,
     required super.firestoreDataSource,
     this.id,
     ReviewModel? initialReviewModel,
@@ -31,7 +34,7 @@ abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q> with Store 
     if (initialReviewModel == null && id != null) {
       setLoading();
       repository.getCRUDSpecifReviewModel(id!).then((value) {
-        currentReview = value.first;
+        currentReview = value.second.first;
       });
     } else {
       currentReview = initialReviewModel;

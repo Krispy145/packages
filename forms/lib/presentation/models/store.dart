@@ -11,20 +11,24 @@ abstract class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T
 abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   // final void Function(T) onValueChanged;
   final Future<RequestResponse> Function(bool isAdding, T value) onValueSaved;
+  final bool isAdding;
+  final bool startLoaded;
 
   _FormsModelStore({
     T? editingValue,
     required T empty,
     required this.onValueSaved,
+    this.startLoaded = true,
   })  : isAdding = editingValue == null,
         value = editingValue ?? empty {
-    setLoaded();
+    if (startLoaded) {
+      setLoaded();
+    }
   }
-
-  final bool isAdding;
 
   @action
   void onValueChanged(T newValue) {
+    print("Value changed: $newValue");
     value = newValue;
   }
 
