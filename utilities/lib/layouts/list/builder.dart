@@ -11,7 +11,7 @@ class ListBuilder<T> extends StatelessWidget {
   final Widget? Function(BuildContext, int) itemBuilder;
   final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
-  final EdgeInsets? padding;
+  final EdgeInsets padding;
   final ListViewType viewType;
   final SliverGridDelegate? gridDelegate;
   final bool slivers;
@@ -24,7 +24,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.itemBuilder,
     this.loadStateBuilder,
     this.stackedWidgets,
-    this.padding,
+    this.padding = const EdgeInsets.all(16),
     this.slivers = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.listView,
@@ -39,7 +39,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.gridDelegate,
     this.loadStateBuilder,
     this.stackedWidgets,
-    this.padding,
+    this.padding = const EdgeInsets.all(16),
     this.slivers = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.gridView;
@@ -54,7 +54,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.viewType,
     this.gridDelegate,
     this.stackedWidgets,
-    this.padding,
+    this.padding = const EdgeInsets.all(16),
     this.slivers = false,
   })  : assert(
           !((stackedWidgets?.isNotEmpty ?? false) && slivers),
@@ -77,7 +77,7 @@ class ListBuilder<T> extends StatelessWidget {
       loadedBuilder: (context) => Stack(
         children: [
           Padding(
-            padding: padding ?? EdgeInsets.zero,
+            padding: padding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

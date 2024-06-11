@@ -55,17 +55,12 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
     return Stack(
       children: [
         Padding(
-          padding: padding ?? EdgeInsets.zero,
+          padding: padding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (header != null) ...[
-                header!,
-                Sizes.m.spacer(),
-              ],
-              Expanded(
-                child: _buildResults(),
-              ),
+              if (header != null) ...[header!, Sizes.m.spacer()],
+              Expanded(child: _buildResults()),
             ],
           ),
         ),
