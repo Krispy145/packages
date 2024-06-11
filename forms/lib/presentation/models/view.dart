@@ -175,7 +175,6 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         );
       },
     ).then((result) {
-      // final modelType = T.toString().replaceAll("?", "");
       if (result == null) {
         Navigator.of(context).pop(null);
         return context.showSnackbar(
