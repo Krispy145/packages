@@ -13,13 +13,13 @@ mixin _$AuthStore<T extends UserModel> on _AuthStore<T>, Store {
       Atom(name: '_AuthStore.userModel', context: context);
 
   @override
-  UserModel? get userModel {
+  T? get userModel {
     _$userModelAtom.reportRead();
     return super.userModel;
   }
 
   @override
-  set userModel(UserModel? value) {
+  set userModel(T? value) {
     _$userModelAtom.reportWrite(value, super.userModel, () {
       super.userModel = value;
     });

@@ -9,15 +9,15 @@ import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
 
 /// UI component to create a phone + password signin/ signup form
-class PhoneAuthWidget extends StatefulWidget {
+class PhoneAuthWidget<T extends UserModel> extends StatefulWidget {
   /// The [AuthenticationRepository] to be used for the auth action
-  final AuthenticationRepository repository;
+  final AuthenticationRepository<T> repository;
 
   /// Whether the user is signing in or signin up
   final AuthAction authAction;
 
   /// Method to be called when the auth action is success
-  final void Function(UserModel userModel) onSuccess;
+  final void Function(T userModel) onSuccess;
 
   /// Method to be called when the auth action threw an excepction
   final void Function(Object error)? onError;
@@ -31,10 +31,10 @@ class PhoneAuthWidget extends StatefulWidget {
   });
 
   @override
-  State<PhoneAuthWidget> createState() => _PhoneAuthWidgetState();
+  State<PhoneAuthWidget<T>> createState() => _PhoneAuthWidgetState<T>();
 }
 
-class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
+class _PhoneAuthWidgetState<T extends UserModel> extends State<PhoneAuthWidget<T>> {
   final _formKey = GlobalKey<FormState>();
   final _phone = TextEditingController();
   final _password = TextEditingController();
@@ -134,8 +134,7 @@ class _PhoneAuthWidgetState extends State<PhoneAuthWidget> {
               } on AuthenticationException catch (error) {
                 if (widget.onError == null && context.mounted) {
                   context.showSnackbar(
-                    configuration:
-                        SnackbarConfiguration.error(title: error.message),
+                    configuration: SnackbarConfiguration.error(title: error.message),
                   );
                 } else {
                   widget.onError?.call(error);

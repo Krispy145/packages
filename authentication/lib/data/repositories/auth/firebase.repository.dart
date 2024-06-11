@@ -48,6 +48,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
 
   @override
   Future<void> deleteAccount(String userId) async {
+    await _firebaseAuth.currentUser?.reload();
     return _user!.delete();
   }
 
@@ -300,16 +301,16 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
   }
 
   @override
-  Future<T?> signUpWithEmail(String email, String password) async {
+  Future<T?> signUpWithEmail(AuthParams params) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+        email: params.email!,
+        password: params.password!,
       );
       await userCredential.user!.sendEmailVerification();
       final userModel = _userCredentialToUserModel(
         userCredential,
-        AuthParams.email(email: email, password: password),
+        params,
       );
       return userModel;
     } on FirebaseAuthException catch (e) {
@@ -361,10 +362,10 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
   ) {
     final _baseUser = UserModel(
       id: userCredential.user!.uid,
-      email: userCredential.user?.email,
-      displayName: userCredential.user?.displayName,
-      photoUrl: userCredential.user?.photoURL,
-      phoneNumber: userCredential.user?.phoneNumber,
+      email: userCredential.user?.email ?? params.email,
+      displayName: params.displayName ?? userCredential.user?.displayName,
+      photoUrl: userCredential.user?.photoURL ?? params.photoUrl,
+      phoneNumber: userCredential.user?.phoneNumber ?? params.phoneNumber,
       refreshToken: userCredential.user?.refreshToken,
       accessToken: params.accessToken,
       idToken: params.idToken,

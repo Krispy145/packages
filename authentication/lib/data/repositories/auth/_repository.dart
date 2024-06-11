@@ -28,7 +28,7 @@ abstract class AuthenticationDataRepository<T extends UserModel> {
     String email,
     String emailLink,
   );
-  Future<T?> signUpWithEmail(String email, String password);
+  Future<T?> signUpWithEmail(AuthParams params);
   Future<T?> reauthenticate(AuthParams params);
   Future<void> deleteAccount(String userId);
   Future<bool> signOut();

@@ -167,8 +167,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
   }
 
   @override
-  Future<T?> signUpWithEmail(String email, String password) async {
-    final params = AuthParams.email(email: email, password: password);
+  Future<T?> signUpWithEmail(AuthParams params) async {
     final result = await _apiAuthDataSource.signUp(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
