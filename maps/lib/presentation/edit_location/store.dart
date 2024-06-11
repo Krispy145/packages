@@ -41,9 +41,9 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     if (initialMarkers != null) {
       addMarkers(initialMarkers!);
     }
-    mapCenter = markers.firstOrNull?.position;
+    mapCenter = markers.firstOrNull?.position ?? const LatLng(51.5072, -0.1276);
     animatedMapController.animateTo(
-      dest: mapCenter ?? const LatLng(51.5072, -0.1276),
+      dest: mapCenter,
       zoom: 12,
     );
     isMapReady = true;
