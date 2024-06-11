@@ -197,11 +197,13 @@ class InstagramRepository {
     List<InstagramUserDetailsField>? fields,
     required InstagramAccessTokenModel accessTokenModel,
   }) async {
-    return _handleNotApiSource(() => _instagramDataRepository.getUser(
-          userId,
-          fields: fields,
-          accessTokenModel: accessTokenModel,
-        ));
+    return _handleNotApiSource(
+      () => _instagramDataRepository.getUser(
+        userId,
+        fields: fields,
+        accessTokenModel: accessTokenModel,
+      ),
+    );
   }
 
   Future<T> _handleNotApiSource<T>(Future<T> Function() callback) {

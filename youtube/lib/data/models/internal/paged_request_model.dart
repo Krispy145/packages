@@ -12,8 +12,8 @@ class PagedRequest {
   /// [PagedRequest] from JSON.
   factory PagedRequest.fromJson(Map<String, dynamic> json) {
     return PagedRequest(
-      nextPageToken: json['nextPageToken'] as String?,
-      pageSize: json['pageSize'] as int,
+      nextPageToken: json["nextPageToken"] as String?,
+      pageSize: json["pageSize"] as int,
     );
   }
 
@@ -21,9 +21,9 @@ class PagedRequest {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     if (nextPageToken != null) {
-      map['nextPageToken'] = nextPageToken;
+      map["nextPageToken"] = nextPageToken;
     }
-    map['pageSize'] = pageSize;
+    map["pageSize"] = pageSize;
     return map;
   }
 }

@@ -66,7 +66,8 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
   Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> _handlePagedError(
-      Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> Function() apiCall) async {
+    Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> Function() apiCall,
+  ) async {
     try {
       return await apiCall();
     } catch (e) {

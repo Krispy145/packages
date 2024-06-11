@@ -1,5 +1,7 @@
 // // ignore_for_file: non_constant_identifier_names
 
+// ignore_for_file: non_constant_identifier_names
+
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
 import "package:theme/data/models/borders/box_border_model.dart";

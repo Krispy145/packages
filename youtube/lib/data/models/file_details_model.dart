@@ -1,6 +1,6 @@
 import "package:dart_mappable/dart_mappable.dart";
-import 'package:youtube/data/models/audio_stream_model.dart';
-import 'package:youtube/data/models/video_stream_model.dart';
+import "package:youtube/data/models/audio_stream_model.dart";
+import "package:youtube/data/models/video_stream_model.dart";
 
 part "file_details_model.mapper.dart";
 

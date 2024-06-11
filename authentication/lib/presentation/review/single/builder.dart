@@ -12,8 +12,7 @@ class CRUDReviewBuilder<T, Q> extends StatelessWidget {
   final PermissionModel currentUserPermissions;
   final CRUD crud;
   final SecuredPaginatedFirestoreDataSource<T, Q> firestoreDataSource;
-  final Widget Function(BuildContext context, ReviewModel? review)
-      reviewBuilder;
+  final Widget Function(BuildContext context, ReviewModel? review) reviewBuilder;
 
   /// [CRUDReviewBuilder] constructor.
   CRUDReviewBuilder({
@@ -24,8 +23,10 @@ class CRUDReviewBuilder<T, Q> extends StatelessWidget {
     required this.crud,
     required this.firestoreDataSource,
     required this.reviewBuilder,
-  })  : assert(id != null || reviewModel != null,
-            "id or reviewModel must be provided."),
+  })  : assert(
+          id != null || reviewModel != null,
+          "id or reviewModel must be provided.",
+        ),
         store = CRUDReviewStore<T, Q>(
           crud: crud,
           currentUserPermissions: currentUserPermissions,

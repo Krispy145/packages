@@ -10,8 +10,7 @@ import "../../models/user_model.dart";
 import "_repository.dart";
 
 /// [ApiAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class ApiAuthDataRepository<T extends UserModel>
-    extends AuthenticationDataRepository<T> {
+class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
   /// [baseUrl] is the base url for the api data source.
   final String baseUrl;
 
@@ -21,16 +20,14 @@ class ApiAuthDataRepository<T extends UserModel>
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
-  ApiAuthDataSource<T, Map<String, dynamic>> get _apiAuthDataSource =>
-      ApiAuthDataSource(
+  ApiAuthDataSource<T, Map<String, dynamic>> get _apiAuthDataSource => ApiAuthDataSource(
         baseUrl,
         convertDataTypeFromMap: convertDataTypeFromMap,
         convertDataTypeToMap: convertDataTypeToMap,
       );
 
   @override
-  late final BehaviorSubject<T?> userModelStream =
-      BehaviorSubject<T?>.seeded(_apiAuthDataSource.currentUserModel);
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(_apiAuthDataSource.currentUserModel);
 
   /// [ApiAuthDataRepository] constructor.
   ApiAuthDataRepository({
@@ -95,8 +92,7 @@ class ApiAuthDataRepository<T extends UserModel>
 
   @override
   Future<T?> signInWithFacebook(AuthParams params) async {
-    final facebookParams =
-        await AuthRepositoryHelper.signInWithFacebook(params);
+    final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
     final result = await _apiAuthDataSource.signIn(params: facebookParams);
     final userModel = _authResponseToUserModel(facebookParams, result != null);
     return userModel;
@@ -140,8 +136,7 @@ class ApiAuthDataRepository<T extends UserModel>
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final params =
-        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
+    final params = AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
     final result = await _apiAuthDataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
@@ -158,7 +153,8 @@ class ApiAuthDataRepository<T extends UserModel>
   Future<bool> signOut() async {
     try {
       await _apiAuthDataSource.signOut(
-          params: userModelStream.value!.toAuthParams());
+        params: userModelStream.value!.toAuthParams(),
+      );
       return true;
     } catch (e) {
       AppLogger.print(
@@ -183,8 +179,7 @@ class ApiAuthDataRepository<T extends UserModel>
       id: _apiAuthDataSource.currentUserModel!.id,
       email: _apiAuthDataSource.currentUserModel!.email,
       phoneNumber: _apiAuthDataSource.currentUserModel!.phoneNumber,
-      displayName:
-          params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
+      displayName: params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
       refreshToken: _apiAuthDataSource.currentUserModel!.refreshToken,
       accessToken: _apiAuthDataSource.currentUserModel!.accessToken,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
