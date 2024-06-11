@@ -12,33 +12,52 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
   Computed<bool>? _$isInitialComputed;
 
   @override
-  bool get isInitial => (_$isInitialComputed ??= Computed<bool>(() => super.isInitial, name: '_LoadStateStore.isInitial')).value;
+  bool get isInitial =>
+      (_$isInitialComputed ??= Computed<bool>(() => super.isInitial,
+              name: '_LoadStateStore.isInitial'))
+          .value;
   Computed<bool>? _$isLoadingComputed;
 
   @override
-  bool get isLoading => (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading, name: '_LoadStateStore.isLoading')).value;
+  bool get isLoading =>
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: '_LoadStateStore.isLoading'))
+          .value;
   Computed<bool>? _$isLoadedComputed;
 
   @override
-  bool get isLoaded => (_$isLoadedComputed ??= Computed<bool>(() => super.isLoaded, name: '_LoadStateStore.isLoaded')).value;
+  bool get isLoaded =>
+      (_$isLoadedComputed ??= Computed<bool>(() => super.isLoaded,
+              name: '_LoadStateStore.isLoaded'))
+          .value;
   Computed<bool>? _$isNoMoreToLoadComputed;
 
   @override
-  bool get isNoMoreToLoad => (_$isNoMoreToLoadComputed ??= Computed<bool>(() => super.isNoMoreToLoad, name: '_LoadStateStore.isNoMoreToLoad')).value;
+  bool get isNoMoreToLoad =>
+      (_$isNoMoreToLoadComputed ??= Computed<bool>(() => super.isNoMoreToLoad,
+              name: '_LoadStateStore.isNoMoreToLoad'))
+          .value;
   Computed<bool>? _$isEmptyComputed;
 
   @override
-  bool get isEmpty => (_$isEmptyComputed ??= Computed<bool>(() => super.isEmpty, name: '_LoadStateStore.isEmpty')).value;
+  bool get isEmpty => (_$isEmptyComputed ??=
+          Computed<bool>(() => super.isEmpty, name: '_LoadStateStore.isEmpty'))
+      .value;
   Computed<bool>? _$isErrorComputed;
 
   @override
-  bool get isError => (_$isErrorComputed ??= Computed<bool>(() => super.isError, name: '_LoadStateStore.isError')).value;
+  bool get isError => (_$isErrorComputed ??=
+          Computed<bool>(() => super.isError, name: '_LoadStateStore.isError'))
+      .value;
   Computed<bool>? _$isIdleComputed;
 
   @override
-  bool get isIdle => (_$isIdleComputed ??= Computed<bool>(() => super.isIdle, name: '_LoadStateStore.isIdle')).value;
+  bool get isIdle => (_$isIdleComputed ??=
+          Computed<bool>(() => super.isIdle, name: '_LoadStateStore.isIdle'))
+      .value;
 
-  late final _$currentStateAtom = Atom(name: '_LoadStateStore.currentState', context: context);
+  late final _$currentStateAtom =
+      Atom(name: '_LoadStateStore.currentState', context: context);
 
   @override
   LoadState get currentState {
@@ -53,7 +72,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
     });
   }
 
-  late final _$hasShownNoMoreToLoadSnackBarAtom = Atom(name: '_LoadStateStore.hasShownNoMoreToLoadSnackBar', context: context);
+  late final _$hasShownNoMoreToLoadSnackBarAtom = Atom(
+      name: '_LoadStateStore.hasShownNoMoreToLoadSnackBar', context: context);
 
   @override
   bool get hasShownNoMoreToLoadSnackBar {
@@ -63,16 +83,19 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   set hasShownNoMoreToLoadSnackBar(bool value) {
-    _$hasShownNoMoreToLoadSnackBarAtom.reportWrite(value, super.hasShownNoMoreToLoadSnackBar, () {
+    _$hasShownNoMoreToLoadSnackBarAtom
+        .reportWrite(value, super.hasShownNoMoreToLoadSnackBar, () {
       super.hasShownNoMoreToLoadSnackBar = value;
     });
   }
 
-  late final _$_LoadStateStoreActionController = ActionController(name: '_LoadStateStore', context: context);
+  late final _$_LoadStateStoreActionController =
+      ActionController(name: '_LoadStateStore', context: context);
 
   @override
   void setInitial() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setInitial');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setInitial');
     try {
       return super.setInitial();
     } finally {
@@ -82,7 +105,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setLoading() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setLoading');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setLoading');
     try {
       return super.setLoading();
     } finally {
@@ -92,7 +116,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setLoaded() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setLoaded');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setLoaded');
     try {
       return super.setLoaded();
     } finally {
@@ -102,7 +127,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setNoMoreToLoad() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setNoMoreToLoad');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setNoMoreToLoad');
     try {
       return super.setNoMoreToLoad();
     } finally {
@@ -112,7 +138,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setNoMoreToLoadSnackBar() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setNoMoreToLoadSnackBar');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setNoMoreToLoadSnackBar');
     try {
       return super.setNoMoreToLoadSnackBar();
     } finally {
@@ -122,7 +149,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setEmpty() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setEmpty');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setEmpty');
     try {
       return super.setEmpty();
     } finally {
@@ -132,7 +160,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setError() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setError');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setError');
     try {
       return super.setError();
     } finally {
@@ -142,7 +171,8 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
 
   @override
   void setIdle() {
-    final _$actionInfo = _$_LoadStateStoreActionController.startAction(name: '_LoadStateStore.setIdle');
+    final _$actionInfo = _$_LoadStateStoreActionController.startAction(
+        name: '_LoadStateStore.setIdle');
     try {
       return super.setIdle();
     } finally {
