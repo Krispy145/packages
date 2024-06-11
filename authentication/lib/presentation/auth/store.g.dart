@@ -33,12 +33,39 @@ mixin _$AuthStore<T extends UserModel> on _AuthStore<T>, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
-  late final _$signInAnonymouslyAsyncAction =
-      AsyncAction('_AuthStore.signInAnonymously', context: context);
+  late final _$_handleSilentAsyncAction =
+      AsyncAction('_AuthStore._handleSilent', context: context);
 
   @override
-  Future<void> signInAnonymously() {
-    return _$signInAnonymouslyAsyncAction.run(() => super.signInAnonymously());
+  Future<void> _handleSilent() {
+    return _$_handleSilentAsyncAction.run(() => super._handleSilent());
+  }
+
+  late final _$_handleAuthenticateThenSilentAsyncAction =
+      AsyncAction('_AuthStore._handleAuthenticateThenSilent', context: context);
+
+  @override
+  Future<void> _handleAuthenticateThenSilent() {
+    return _$_handleAuthenticateThenSilentAsyncAction
+        .run(() => super._handleAuthenticateThenSilent());
+  }
+
+  late final _$_handleAuthenticateAsyncAction =
+      AsyncAction('_AuthStore._handleAuthenticate', context: context);
+
+  @override
+  Future<void> _handleAuthenticate() {
+    return _$_handleAuthenticateAsyncAction
+        .run(() => super._handleAuthenticate());
+  }
+
+  late final _$_signInAnonymouslyAsyncAction =
+      AsyncAction('_AuthStore._signInAnonymously', context: context);
+
+  @override
+  Future<void> _signInAnonymously() {
+    return _$_signInAnonymouslyAsyncAction
+        .run(() => super._signInAnonymously());
   }
 
   @override

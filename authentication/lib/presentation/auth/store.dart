@@ -79,13 +79,13 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
       // Handle different auth builder types
       switch (authBuilderType) {
         case AuthBuilderType.silent:
-          await handleSilent();
+          await _handleSilent();
           break;
         case AuthBuilderType.authenticateThenSilent:
-          await handleAuthenticateThenSilent();
+          await _handleAuthenticateThenSilent();
           break;
         case AuthBuilderType.authenticate:
-          await handleAuthenticate();
+          await _handleAuthenticate();
           break;
         default:
           setEmpty();
@@ -96,29 +96,32 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
     }
   }
 
-  Future<void> handleSilent() async {
+  @action
+  Future<void> _handleSilent() async {
     final currentUser = repository.currentUserModelStream.value;
 
     if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
       userModel = currentUser;
       setLoaded();
     } else {
-      await signInAnonymously();
+      await _signInAnonymously();
     }
   }
 
-  Future<void> handleAuthenticateThenSilent() async {
+  @action
+  Future<void> _handleAuthenticateThenSilent() async {
     final currentUser = repository.currentUserModelStream.value;
 
     if (currentUser != null && currentUser.status == AuthStatus.authenticated) {
       userModel = currentUser;
       setLoaded();
     } else {
-      await signInAnonymously();
+      await _signInAnonymously();
     }
   }
 
-  Future<void> handleAuthenticate() async {
+  @action
+  Future<void> _handleAuthenticate() async {
     final currentUser = repository.currentUserModelStream.value;
     if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
       await repository.signOut();
@@ -132,7 +135,7 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
   }
 
   @action
-  Future<void> signInAnonymously() async {
+  Future<void> _signInAnonymously() async {
     setLoading();
     var params = AuthParams.anonymous();
     if (codeSource != null) {
