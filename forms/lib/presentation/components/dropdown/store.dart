@@ -1,3 +1,4 @@
+import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
 
@@ -9,6 +10,8 @@ class DropdownFormFieldStore<T> = _DropdownFormFieldStore<T> with _$DropdownForm
 
 abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Store {
   _DropdownFormFieldStore({
+    String? initialId,
+    bool Function(String id, T item)? matcher,
     required super.value,
     required super.onValueChanged,
     required super.title,
@@ -19,7 +22,7 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
     this.initialItems,
     this.selectedItem,
   }) {
-    initialLoad();
+    initialLoad(initialId, matcher);
     // On Value Changed
     reaction<T?>((reaction) => value, (newValue) {
       if (newValue != null) {
@@ -31,7 +34,7 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
     });
   }
 
-  Future<void> initialLoad() async {
+  Future<void> initialLoad(String? initialId, bool Function(String id, T item)? matcher) async {
     setLoading();
     if (initialItems != null) {
       items.addAll(initialItems!);
@@ -40,6 +43,12 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
       final loadedItems = await itemFetcher!("");
       if (loadedItems != null) {
         items.addAll(loadedItems);
+      }
+    }
+    if (initialId != null) {
+      final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
+      if (item != null) {
+        selectedItem = item;
       }
     }
     if (items.isEmpty) {

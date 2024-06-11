@@ -55,6 +55,7 @@ class PaginatedListBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (slivers) return _buildView();
     return Stack(
       children: [
         Padding(

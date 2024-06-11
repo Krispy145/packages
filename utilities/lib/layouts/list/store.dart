@@ -11,5 +11,9 @@ class ListStore<T> = _ListStore<T> with _$ListStore<T>;
 abstract class _ListStore<T> extends LoadStateStore with Store {
   /// [_ListStore] constructor.
   _ListStore();
+
+  /// [results] is an observable list of [T]s.
+  ObservableList<T?> results = ObservableList<T?>();
+
   late final ScrollController scrollController = ScrollController();
 }

@@ -5,14 +5,16 @@ class BuildListView extends StatelessWidget {
   final int itemCount;
   final Widget? Function(BuildContext context, int index) itemBuilder;
   final bool slivers;
-  final ScrollController scrollController;
-  const BuildListView({
+  late final ScrollController _scrollController;
+  BuildListView({
     super.key,
     required this.itemCount,
     required this.itemBuilder,
     required this.slivers,
-    required this.scrollController,
-  });
+    ScrollController? scrollController,
+  }) {
+    _scrollController = scrollController ?? ScrollController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class BuildListView extends StatelessWidget {
         } else {
           return ListView.builder(
             itemCount: itemCount,
-            controller: scrollController,
+            controller: _scrollController,
             itemBuilder: itemBuilder,
           );
         }

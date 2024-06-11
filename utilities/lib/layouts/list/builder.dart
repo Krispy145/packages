@@ -2,16 +2,15 @@ import "package:flutter/material.dart";
 import "package:utilities/layouts/components/build_grid_view.dart";
 import "package:utilities/layouts/components/build_list_view.dart";
 import "package:utilities/layouts/components/types.dart";
+import "package:utilities/layouts/list/store.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/widgets/load_state/builder.dart";
-
-import "store.dart";
 
 class ListBuilder<T> extends StatelessWidget {
   final ListStore<T> store;
   final Widget? header;
-  final int itemCount;
   final Widget? Function(BuildContext, int) itemBuilder;
+  final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets? padding;
   final ListViewType viewType;
@@ -23,8 +22,8 @@ class ListBuilder<T> extends StatelessWidget {
     super.key,
     required this.store,
     this.header,
-    required this.itemCount,
     required this.itemBuilder,
+    this.loadStateBuilder,
     this.stackedWidgets,
     this.padding,
     this.slivers = false,
@@ -37,9 +36,9 @@ class ListBuilder<T> extends StatelessWidget {
     super.key,
     required this.store,
     this.header,
-    required this.itemCount,
     required this.itemBuilder,
     required this.gridDelegate,
+    this.loadStateBuilder,
     this.stackedWidgets,
     this.padding,
     this.slivers = false,
@@ -51,8 +50,8 @@ class ListBuilder<T> extends StatelessWidget {
     super.key,
     required this.store,
     this.header,
-    required this.itemCount,
     required this.itemBuilder,
+    this.loadStateBuilder,
     required this.viewType,
     this.gridDelegate,
     this.stackedWidgets,
@@ -107,14 +106,14 @@ class ListBuilder<T> extends StatelessWidget {
   Widget _buildView() {
     if (viewType == ListViewType.listView) {
       return BuildListView(
-        itemCount: itemCount,
+        itemCount: store.results.length,
         scrollController: store.scrollController,
         itemBuilder: itemBuilder,
         slivers: slivers,
       );
     } else {
       return BuildGridView(
-        itemCount: itemCount,
+        itemCount: store.results.length,
         scrollController: store.scrollController,
         itemBuilder: itemBuilder,
         gridDelegate: gridDelegate!,

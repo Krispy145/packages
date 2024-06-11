@@ -16,7 +16,7 @@ class LoadStateBuilder extends StatelessWidget {
   final WidgetBuilder errorBuilder;
 
   /// [initialBuilder] is the builder that will be used to build the UI when the load state is initial.
-  final WidgetBuilder initialBuilder;
+  final WidgetBuilder? initialBuilder;
 
   /// [loadingBuilder] is the builder that will be used to build the UI when the load state is loading.
   final WidgetBuilder? loadingBuilder;
@@ -30,24 +30,33 @@ class LoadStateBuilder extends StatelessWidget {
   /// [idleBuilder] is the builder that will be used to build the UI when the load state is idle.
   final WidgetBuilder? idleBuilder;
 
+  final bool slivers;
+
   /// [LoadStateBuilder] constructor
   const LoadStateBuilder({
     super.key,
     required this.viewStore,
     required this.loadedBuilder,
     required this.errorBuilder,
-    this.initialBuilder = _defaultBuilder,
+    this.initialBuilder,
     this.emptyBuilder,
     this.loadingBuilder,
     this.noMoreToLoadBuilder,
     this.idleBuilder,
+    this.slivers = false,
   });
 
-  static Widget _defaultBuilder(BuildContext context) {
+  Widget _defaultBuilder(BuildContext context) {
+    if (slivers) {
+      return const SliverToBoxAdapter(child: SizedBox.shrink());
+    }
     return const SizedBox.shrink();
   }
 
   Widget _defaultLoadingBuilder(BuildContext context) {
+    if (slivers) {
+      return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+    }
     return const Center(child: CircularProgressIndicator());
   }
 
@@ -66,7 +75,7 @@ class LoadStateBuilder extends StatelessWidget {
       builder: (context) {
         switch (viewStore.currentState) {
           case LoadState.initial:
-            return initialBuilder(context);
+            return initialBuilder?.call(context) ?? _defaultBuilder(context);
           case LoadState.loading:
             return loadingBuilder?.call(context) ?? _defaultLoadingBuilder(context);
           case LoadState.loaded:

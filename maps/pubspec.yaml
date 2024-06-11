@@ -30,6 +30,8 @@ dependencies:
     path: ../theme
   forms:
     path: ../forms
+  widgets:
+    path: ../widgets
   mapbox_search: ^4.2.0
   dropdown_search: ^5.0.6
   flutter_map_cancellable_tile_provider: ^2.0.0

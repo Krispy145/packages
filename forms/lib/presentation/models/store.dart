@@ -2,25 +2,25 @@
 
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
-import "package:utilities/layouts/list/store.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 
 abstract class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
 
-abstract class _FormsModelStore<T> extends ListStore<T> with Store {
+abstract class _FormsModelStore<T> extends LoadStateStore with Store {
   // final void Function(T) onValueChanged;
   final Future<RequestResponse> Function(bool isAdding, T value) onValueSaved;
   final bool isAdding;
   final bool startLoaded;
 
   _FormsModelStore({
-    required this.value,
-    required this.isAdding,
-    this.startLoaded = true,
-    // required this.onValueChanged,
+    T? editingValue,
+    required T empty,
     required this.onValueSaved,
-  }) {
+    this.startLoaded = true,
+  })  : isAdding = editingValue == null,
+        value = editingValue ?? empty {
     if (startLoaded) {
       setLoaded();
     }

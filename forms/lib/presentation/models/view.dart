@@ -2,8 +2,9 @@ import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/layouts/components/build_list_view.dart";
 import "package:utilities/layouts/components/types.dart";
-import "package:utilities/layouts/list/builder.dart";
+import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
@@ -40,19 +41,31 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         child: Text("Error loading ${T.toString().replaceAll("?", "")}"),
       ),
       loadedBuilder: (context) {
-        return ListBuilder.fromType(
-          store: store,
-          header: header,
-          slivers: slivers,
-          gridDelegate: gridDelegate,
-          itemCount: modelFields(context).length,
-          itemBuilder: (context, index) {
-            final key = modelFields(context).keys.elementAt(index);
-            final widget = modelFields(context)[key];
-            return widget;
-          },
-          viewType: viewType,
-          stackedWidgets: [
+        return Stack(
+          children: [
+            Padding(
+              padding: scrollViewPadding ?? EdgeInsets.zero,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (header != null) ...[
+                    header!,
+                    Sizes.m.spacer(),
+                  ],
+                  Expanded(
+                    child: BuildListView(
+                      itemCount: modelFields(context).length,
+                      itemBuilder: (context, index) {
+                        final key = modelFields(context).keys.elementAt(index);
+                        final widget = modelFields(context)[key];
+                        return widget;
+                      },
+                      slivers: slivers,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SafeArea(
               child: Align(
                 alignment: Alignment.bottomCenter,
@@ -64,10 +77,37 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
             ),
             if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
           ],
-          padding: scrollViewPadding,
         );
       },
     );
+    //     return ListBuilder.fromType(
+    //       store: store,
+    //       header: header,
+    //       slivers: slivers,
+    //       // gridDelegate: gridDelegate,
+    //       // itemCount: modelFields(context).length,
+    //       itemBuilder: (context, index) {
+    //         final key = modelFields(context).keys.elementAt(index);
+    //         final widget = modelFields(context)[key];
+    //         return widget;
+    //       },
+    //       viewType: viewType,
+    //       stackedWidgets: [
+    //         SafeArea(
+    //           child: Align(
+    //             alignment: Alignment.bottomCenter,
+    //             child: ElevatedButton(
+    //               onPressed: () => _showConfirmationDialog(context),
+    //               child: Text(store.isAdding ? createButtonTitle : updateButtonTitle),
+    //             ),
+    //           ),
+    //         ),
+    //         if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
+    //       ],
+    //       padding: scrollViewPadding,
+    //     );
+    //   },
+    // );
 
     // LoadStateBuilder(
     //   viewStore: store,
