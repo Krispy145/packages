@@ -33,9 +33,7 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                       if (store.changeOnSaved) return;
                       store.onValueChanged(double.tryParse(value) ?? 0);
                     },
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
+                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"-*[0-9]*(\.[0-9]*)*"))],
                   ),
                 ),
                 if (store.changeOnSaved) ...[
