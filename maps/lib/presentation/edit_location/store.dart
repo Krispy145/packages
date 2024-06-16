@@ -34,6 +34,14 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     isEditing = !isEditing;
   }
 
+  @observable
+  bool isLocked = true;
+
+  @action
+  void toggleLocked() {
+    isLocked = !isLocked;
+  }
+
   @override
   Future<void> onMapReady() async {
     setLoading();

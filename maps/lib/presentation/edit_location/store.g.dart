@@ -41,6 +41,22 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
     });
   }
 
+  late final _$isLockedAtom =
+      Atom(name: '_EditLocationMapStore.isLocked', context: context);
+
+  @override
+  bool get isLocked {
+    _$isLockedAtom.reportRead();
+    return super.isLocked;
+  }
+
+  @override
+  set isLocked(bool value) {
+    _$isLockedAtom.reportWrite(value, super.isLocked, () {
+      super.isLocked = value;
+    });
+  }
+
   late final _$_loadMapAsyncAction =
       AsyncAction('_EditLocationMapStore._loadMap', context: context);
 
@@ -58,6 +74,17 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
         name: '_EditLocationMapStore.toggleEditing');
     try {
       return super.toggleEditing();
+    } finally {
+      _$_EditLocationMapStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void toggleLocked() {
+    final _$actionInfo = _$_EditLocationMapStoreActionController.startAction(
+        name: '_EditLocationMapStore.toggleLocked');
+    try {
+      return super.toggleLocked();
     } finally {
       _$_EditLocationMapStoreActionController.endAction(_$actionInfo);
     }
@@ -89,7 +116,8 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
   String toString() {
     return '''
 mapCenter: ${mapCenter},
-isEditing: ${isEditing}
+isEditing: ${isEditing},
+isLocked: ${isLocked}
     ''';
   }
 }
