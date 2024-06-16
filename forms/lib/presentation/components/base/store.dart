@@ -39,6 +39,7 @@ abstract class _BaseFormFieldStore<T> extends LoadStateStore with Store {
     }
     reaction((r) => value, (value) {
       state = validate?.call(value) ?? FormFieldStateValid(value);
+      onValueChanged(value); // TODO: Handle validation logic first
     });
     setLoaded();
   }
