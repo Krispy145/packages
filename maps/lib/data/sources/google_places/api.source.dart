@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:maps/constants/map_constants.dart';
 import 'package:maps/data/models/google/responses_model.dart';
 import 'package:maps/utils/loggers.dart';
+import 'package:utilities/constants/env.dart';
 import 'package:utilities/data/sources/api/source.dart';
 import 'package:utilities/data/sources/source.dart';
 import 'package:utilities/helpers/tuples.dart';
@@ -25,13 +26,7 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
             queryParameters: {
               "key": googleApiKey,
             },
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
-              "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true"
-            },
+            headers: PublicHeaders.map,
           ),
         ) {
     AppLogger.print("API RESULT: Configuration set for Google Places API: $googleApiKey, ${MapConstants.googlePrefix}, ${MapConstants.googlePlaceSearchSuffix}", [MapLoggers.search]);
