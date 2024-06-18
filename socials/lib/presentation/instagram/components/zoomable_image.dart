@@ -44,7 +44,6 @@ class ZoomableImage extends StatelessWidget {
     final ImageProvider provider = DOCachedNetworkImageProvider(
       imageUrl,
     );
-    // CachedNetworkImageProvider(imageUrl);
 
     switch (myZoomImageType) {
       case ZoomImageType.circle:
