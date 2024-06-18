@@ -1,12 +1,16 @@
 import "package:cached_network_image/cached_network_image.dart";
+import "package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart";
 import "package:widgets/images/options/cached_provider.dart";
 
 class DOCachedNetworkImageProvider extends CachedNetworkImageProvider {
+  final String imageUrl;
   final CachedNetworkProviderOptions? options;
   DOCachedNetworkImageProvider(
-    super.url, {
+    this.imageUrl, {
     this.options,
   }) : super(
-          headers: options?.getProxyAndHeaders(url).third,
+          options?.getProxyAndHeaders(imageUrl).second ?? imageUrl,
+          headers: options?.getProxyAndHeaders(imageUrl).third,
+          imageRenderMethodForWeb: options?.getProxyAndHeaders(imageUrl).first ?? false ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
         );
 }
