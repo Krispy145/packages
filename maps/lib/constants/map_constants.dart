@@ -5,7 +5,6 @@ class MapConstants {
   static const double maxZoomLevel = 16;
   static const double minZoomLevel = 2;
   // https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$text&key=${widget.googleAPIKey}
-  static const proxy = "https://proxy.cors.sh/"; // "https://cors-anywhere.herokuapp.com/"; // "https://thingproxy.freeboard.io/fetch/"; // replacement for "https://corsproxy.io/?"
   static const googlePrefix = "https://maps.googleapis.com";
   static const googlePlaceSearchSuffix = "maps/api/place";
   static const googlePlacePhotoSuffix = "$googlePlaceSearchSuffix/photo";

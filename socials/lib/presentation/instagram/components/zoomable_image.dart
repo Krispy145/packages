@@ -1,5 +1,5 @@
-import "package:cached_network_image/cached_network_image.dart";
 import "package:flutter/material.dart";
+import "package:widgets/images/cached_network_provider.dart";
 
 enum ZoomImageType { circle, rectangle }
 
@@ -41,7 +41,10 @@ class ZoomableImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ImageProvider provider = CachedNetworkImageProvider(imageUrl);
+    final ImageProvider provider = DOCachedNetworkImageProvider(
+      imageUrl,
+    );
+    // CachedNetworkImageProvider(imageUrl);
 
     switch (myZoomImageType) {
       case ZoomImageType.circle:

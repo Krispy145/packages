@@ -1,8 +1,9 @@
-import "package:cached_network_image/cached_network_image.dart";
 import 'package:flutter/material.dart';
 import 'package:maps/data/models/marker_model.dart';
 import 'package:maps/presentation/markers/base_marker.dart';
 import 'package:maps/presentation/markers/helpers/ringed_marker_wrapper.dart';
+import 'package:widgets/images/options/network.dart';
+import 'package:widgets/images/widget.dart';
 
 class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
   final String? logoUrl;
@@ -18,7 +19,12 @@ class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
           child: RingedMarkerWrapper(
             selected: isSelected(markerModel),
             onTapped: () => onMarkerTapped?.call(markerModel),
-            childBuilder: (context) => CachedNetworkImage(imageUrl: logoUrl ?? fallbackUrl, fit: BoxFit.cover),
+            childBuilder: (context) => DOImage.network(
+              logoUrl ?? fallbackUrl,
+              options: NetworkImageOptions(fit: BoxFit.cover),
+            ),
+
+            //  CachedNetworkImage(imageUrl: logoUrl ?? fallbackUrl, fit: BoxFit.cover),
           ),
         );
 
