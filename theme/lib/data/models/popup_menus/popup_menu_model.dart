@@ -8,6 +8,21 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "popup_menu_model.mapper.dart";
 
+@MappableEnum(defaultValue: PopupMenuPositionType.under)
+enum PopupMenuPositionType {
+  over,
+  under;
+
+  PopupMenuPosition toPopupMenuPosition() {
+    switch (this) {
+      case PopupMenuPositionType.over:
+        return PopupMenuPosition.over;
+      case PopupMenuPositionType.under:
+        return PopupMenuPosition.under;
+    }
+  }
+}
+
 @MappableClass()
 class PopupMenuModel with PopupMenuModelMappable {
   final ThemeColorString? color_themeColorString;
@@ -18,8 +33,7 @@ class PopupMenuModel with PopupMenuModelMappable {
   final TextStyleString? textStyle_textStyleString;
   final TextStyleString? labelTextStyle_textStyleString;
   final bool? enableFeedback_bool;
-  @MappableValue(PopupMenuPosition.under)
-  final PopupMenuPosition position;
+  final PopupMenuPositionType position;
   final ThemeColorString? iconColor_themeColorString;
   final double? iconSize_double;
 
@@ -32,7 +46,7 @@ class PopupMenuModel with PopupMenuModelMappable {
     this.textStyle_textStyleString,
     this.labelTextStyle_textStyleString,
     this.enableFeedback_bool,
-    this.position = PopupMenuPosition.under,
+    this.position = PopupMenuPositionType.under,
     this.iconColor_themeColorString,
     this.iconSize_double,
   });
@@ -49,7 +63,7 @@ class PopupMenuModel with PopupMenuModelMappable {
       surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       enableFeedback: enableFeedback_bool,
-      position: position,
+      position: position.toPopupMenuPosition(),
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
       iconSize: iconSize_double,
     );

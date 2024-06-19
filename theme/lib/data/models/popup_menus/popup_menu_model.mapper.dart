@@ -6,6 +6,53 @@
 
 part of 'popup_menu_model.dart';
 
+class PopupMenuPositionTypeMapper extends EnumMapper<PopupMenuPositionType> {
+  PopupMenuPositionTypeMapper._();
+
+  static PopupMenuPositionTypeMapper? _instance;
+  static PopupMenuPositionTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = PopupMenuPositionTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static PopupMenuPositionType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  PopupMenuPositionType decode(dynamic value) {
+    switch (value) {
+      case 'over':
+        return PopupMenuPositionType.over;
+      case 'under':
+        return PopupMenuPositionType.under;
+      default:
+        return PopupMenuPositionType.values[1];
+    }
+  }
+
+  @override
+  dynamic encode(PopupMenuPositionType self) {
+    switch (self) {
+      case PopupMenuPositionType.over:
+        return 'over';
+      case PopupMenuPositionType.under:
+        return 'under';
+    }
+  }
+}
+
+extension PopupMenuPositionTypeMapperExtension on PopupMenuPositionType {
+  String toValue() {
+    PopupMenuPositionTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<PopupMenuPositionType>(this)
+        as String;
+  }
+}
+
 class PopupMenuModelMapper extends ClassMapperBase<PopupMenuModel> {
   PopupMenuModelMapper._();
 
@@ -14,6 +61,7 @@ class PopupMenuModelMapper extends ClassMapperBase<PopupMenuModel> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = PopupMenuModelMapper._());
       ShapeBorderModelMapper.ensureInitialized();
+      PopupMenuPositionTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -57,9 +105,10 @@ class PopupMenuModelMapper extends ClassMapperBase<PopupMenuModel> {
   static bool? _$enableFeedback_bool(PopupMenuModel v) => v.enableFeedback_bool;
   static const Field<PopupMenuModel, bool> _f$enableFeedback_bool =
       Field('enableFeedback_bool', _$enableFeedback_bool, opt: true);
-  static PopupMenuPosition _$position(PopupMenuModel v) => v.position;
-  static const Field<PopupMenuModel, PopupMenuPosition> _f$position =
-      Field('position', _$position, opt: true, def: PopupMenuPosition.under);
+  static PopupMenuPositionType _$position(PopupMenuModel v) => v.position;
+  static const Field<PopupMenuModel, PopupMenuPositionType> _f$position = Field(
+      'position', _$position,
+      opt: true, def: PopupMenuPositionType.under);
   static String? _$iconColor_themeColorString(PopupMenuModel v) =>
       v.iconColor_themeColorString;
   static const Field<PopupMenuModel, String> _f$iconColor_themeColorString =
@@ -165,7 +214,7 @@ abstract class PopupMenuModelCopyWith<$R, $In extends PopupMenuModel, $Out>
       String? textStyle_textStyleString,
       String? labelTextStyle_textStyleString,
       bool? enableFeedback_bool,
-      PopupMenuPosition? position,
+      PopupMenuPositionType? position,
       String? iconColor_themeColorString,
       double? iconSize_double});
   PopupMenuModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -194,7 +243,7 @@ class _PopupMenuModelCopyWithImpl<$R, $Out>
           Object? textStyle_textStyleString = $none,
           Object? labelTextStyle_textStyleString = $none,
           Object? enableFeedback_bool = $none,
-          PopupMenuPosition? position,
+          PopupMenuPositionType? position,
           Object? iconColor_themeColorString = $none,
           Object? iconSize_double = $none}) =>
       $apply(FieldCopyWithData({

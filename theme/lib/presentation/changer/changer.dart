@@ -953,7 +953,7 @@ class ThemeChanger {
     try {
       if (repository != null) {
         repository.updateTheme(_baseThemeModel!);
-        // ignore: cascade_invocations
+        print("Component themes model: $_componentThemesModel");
         repository.updateComponentTheme(_componentThemesModel!);
       } else {
         _themeStore.repository?.updateTheme(_baseThemeModel!);

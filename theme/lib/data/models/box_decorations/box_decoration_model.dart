@@ -10,6 +10,21 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "box_decoration_model.mapper.dart";
 
+@MappableEnum(defaultValue: BoxShapeType)
+enum BoxShapeType {
+  rectangle,
+  circle;
+
+  BoxShape toBoxShape() {
+    switch (this) {
+      case BoxShapeType.rectangle:
+        return BoxShape.rectangle;
+      case BoxShapeType.circle:
+        return BoxShape.circle;
+    }
+  }
+}
+
 @MappableClass()
 class BoxDecorationModel with BoxDecorationModelMappable {
   const BoxDecorationModel({
@@ -19,7 +34,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
     this.boxShadows_list_boxShadow = const [],
     this.gradient_gradient = const GradientModel(),
     this.backgroundBlendMode_enum_blendMode,
-    this.shape_enum_boxShape = BoxShape.rectangle,
+    this.shape_enum_boxShape = BoxShapeType.rectangle,
   });
 
   final ThemeColorString? color_themeColorString;
@@ -30,8 +45,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
   @MappableValue(GradientModel())
   final GradientModel? gradient_gradient;
   final BlendMode? backgroundBlendMode_enum_blendMode;
-  @MappableValue(BoxShape.rectangle)
-  final BoxShape? shape_enum_boxShape;
+  final BoxShapeType? shape_enum_boxShape;
 
   BoxDecoration asBoxDecoration({String? styleTypeName}) {
     return BoxDecoration(
@@ -43,7 +57,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
       boxShadow: boxShadows_list_boxShadow?.map((e) => e.asBoxShadow(styleTypeName: styleTypeName)).toList() ?? [],
       gradient: gradient_gradient?.asGradient(styleTypeName: styleTypeName),
       backgroundBlendMode: backgroundBlendMode_enum_blendMode,
-      shape: shape_enum_boxShape ?? BoxShape.rectangle,
+      shape: shape_enum_boxShape?.toBoxShape() ?? BoxShape.rectangle,
     );
   }
 
