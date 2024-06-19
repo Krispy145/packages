@@ -36,9 +36,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
   Widget build(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      errorBuilder: (context) => Center(
-        child: Text("Error loading ${T.toString().replaceAll("?", "")}"),
-      ),
+      errorBuilder: (context, error) => Center(child: Text(error)),
       loadedBuilder: (context) {
         return Stack(
           children: [

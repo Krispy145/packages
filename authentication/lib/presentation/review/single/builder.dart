@@ -43,9 +43,7 @@ class CRUDReviewBuilder<T, Q> extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      errorBuilder: (context) => Center(
-        child: Text("Error loading review: $id / $reviewModel."),
-      ),
+      errorBuilder: (context, error) => Center(child: Text(error)),
       loadedBuilder: (context) => reviewBuilder(context, store.currentReview),
     );
   }

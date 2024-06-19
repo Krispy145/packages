@@ -148,22 +148,22 @@ mixin _$LoadStateStore on _LoadStateStore, Store {
   }
 
   @override
-  void setEmpty() {
+  void setEmpty(String? emptyMessage) {
     final _$actionInfo = _$_LoadStateStoreActionController.startAction(
         name: '_LoadStateStore.setEmpty');
     try {
-      return super.setEmpty();
+      return super.setEmpty(emptyMessage);
     } finally {
       _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void setError() {
+  void setError(String? errorMessage) {
     final _$actionInfo = _$_LoadStateStoreActionController.startAction(
         name: '_LoadStateStore.setError');
     try {
-      return super.setError();
+      return super.setError(errorMessage);
     } finally {
       _$_LoadStateStoreActionController.endAction(_$actionInfo);
     }

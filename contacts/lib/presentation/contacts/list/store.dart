@@ -30,10 +30,10 @@ abstract class _ContactsStore extends LoadStateStore with Store {
           ..addAll(loadedContacts.second);
         setLoaded();
       } else {
-        setEmpty();
+        setEmpty("No contacts found.");
       }
     } catch (e) {
-      setError();
+      setError("There was a problem loading contacts.");
     }
   }
 }

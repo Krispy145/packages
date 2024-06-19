@@ -18,7 +18,7 @@ class StyleTypeWrapper extends StatelessWidget {
     final store = StyleTypeThemeStore(styleTypeName: styleTypeName);
     return LoadStateBuilder(
       viewStore: store,
-      errorBuilder: (context) => Builder(
+      errorBuilder: (context, error) => Builder(
         builder: (context) {
           WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
             context.showSnackbar(

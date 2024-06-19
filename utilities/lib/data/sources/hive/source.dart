@@ -88,7 +88,7 @@ abstract class HiveDataSource<T, Q> extends LoadStateStore implements DataSource
         [UtilitiesLoggers.localDataSource],
         type: LoggerType.error,
       );
-      setError();
+      setError("Error initializing HiveDataSource");
     }
   }
 

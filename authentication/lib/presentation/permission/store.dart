@@ -2,6 +2,7 @@
 
 import "package:authentication/data/repositories/permission.repository.dart";
 import "package:authentication/data/repositories/user.repository.dart";
+import "package:flutter/foundation.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/sources/source.dart";
@@ -71,7 +72,7 @@ abstract class _PermissionStore extends LoadStateStore with Store {
     if (currentPermission != null) {
       setLoaded();
     } else {
-      setEmpty();
+      setEmpty(kDebugMode ? "Unable to find permissions for user: $userId" : "Permission error");
     }
   }
 }

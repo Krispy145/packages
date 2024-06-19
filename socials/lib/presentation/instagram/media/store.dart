@@ -1,5 +1,6 @@
 // ignore_for_file: unused_element
 
+import "package:flutter/foundation.dart";
 import "package:mobx/mobx.dart";
 import "package:socials/data/constants/instagram.dart";
 import "package:socials/data/models/instagram/media_ids_response.dart";
@@ -63,13 +64,13 @@ abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaMod
         AppLogger.print("Current State 1: $currentState - results length: ${results.length}", [SocialsLoggers.instagram]);
         return Pair(RequestResponse.success, results);
       } else {
-        setEmpty();
+        setEmpty("No media found");
         AppLogger.print("Current State 2: $currentState", [SocialsLoggers.instagram]);
         return const Pair(RequestResponse.success, []);
       }
     } catch (e) {
       AppLogger.print("getUserMedia: $e", [SocialsLoggers.instagram]);
-      setError();
+      setError("Error loading media");
       AppLogger.print("Current State 3: $currentState", [SocialsLoggers.instagram]);
       return const Pair(RequestResponse.failure, []);
     }
@@ -86,7 +87,7 @@ abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaMod
       }
     } catch (e) {
       AppLogger.print("getUserMediaIds: $e", [SocialsLoggers.instagram]);
-      setError();
+      setError(kDebugMode ? "Error loading media ids" : "There was a problem loading media");
     }
   }
 
@@ -100,7 +101,7 @@ abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaMod
       }
     } catch (e) {
       AppLogger.print("getMediaDetails: $e", [SocialsLoggers.instagram]);
-      setError();
+      setError("Error loading media details");
     }
   }
 

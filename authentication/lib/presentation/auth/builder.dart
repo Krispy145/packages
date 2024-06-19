@@ -43,7 +43,7 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      emptyBuilder: (context) => _AuthenticateView(
+      emptyBuilder: (context, empty) => _AuthenticateView(
         store: store,
         additionalFields: additionalFields,
       ),
@@ -55,9 +55,7 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
           additionalFields: additionalFields,
         );
       },
-      errorBuilder: (context) => const Center(
-        child: Text("Error loading authentication View"),
-      ),
+      errorBuilder: (context, error) => Center(child: Text(error)),
     );
   }
 

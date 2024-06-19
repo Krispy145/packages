@@ -44,7 +44,7 @@ abstract class _VideoStore extends LoadStateStore with Store {
     if (currentVideo != null) {
       setLoaded();
     } else {
-      setEmpty();
+      setEmpty("Video not found: $id");
     }
   }
 }

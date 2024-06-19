@@ -17,7 +17,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
   Widget buildField(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      errorBuilder: (context) => const Text("Error loading data"),
+      errorBuilder: (context, error) => Text(error),
       loadedBuilder: (context) {
         return DropdownSearch<T>(
           itemAsString: store.labelBuilder,

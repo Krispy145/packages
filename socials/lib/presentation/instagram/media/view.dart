@@ -54,16 +54,8 @@ class InstagramMediaView extends StatelessWidget {
                     },
                     loadStateBuilder: LoadStateBuilder(
                       viewStore: store,
-                      emptyBuilder: (context) {
-                        return const Center(
-                          child: Text("No media found"),
-                        );
-                      },
-                      errorBuilder: (context) {
-                        return const Center(
-                          child: Text("Error loading media"),
-                        );
-                      },
+                      emptyBuilder: (context, empty) => Center(child: Text(empty)),
+                      errorBuilder: (context, error) => Center(child: Text(error)),
                       loadedBuilder: (context) => ElevatedButton(
                         onPressed: onPressedConfirmation,
                         child: const Text("Confirm"),

@@ -9,6 +9,9 @@ part "store.g.dart";
 class DropdownFormFieldStore<T> = _DropdownFormFieldStore<T> with _$DropdownFormFieldStore;
 
 abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Store {
+  final String emptyMessage;
+  final String errorMessage;
+
   _DropdownFormFieldStore({
     String? initialId,
     bool Function(String id, T item)? matcher,
@@ -21,6 +24,8 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
     this.itemFetcher,
     this.initialItems,
     this.selectedItem,
+    this.emptyMessage = "No items found",
+    this.errorMessage = "Error loading items",
   }) {
     initialLoad(initialId, matcher);
     // On Value Changed
@@ -35,26 +40,30 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
   }
 
   Future<void> initialLoad(String? initialId, bool Function(String id, T item)? matcher) async {
-    setLoading();
-    if (initialItems != null) {
-      items.addAll(initialItems!);
-    }
-    if (itemFetcher != null) {
-      final loadedItems = await itemFetcher!("");
-      if (loadedItems != null) {
-        items.addAll(loadedItems);
+    try {
+      setLoading();
+      if (initialItems != null) {
+        items.addAll(initialItems!);
       }
-    }
-    if (initialId != null) {
-      final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
-      if (item != null) {
-        selectedItem = item;
+      if (itemFetcher != null) {
+        final loadedItems = await itemFetcher!("");
+        if (loadedItems != null) {
+          items.addAll(loadedItems);
+        }
       }
-    }
-    if (items.isEmpty) {
-      setEmpty();
-    } else {
-      setLoaded();
+      if (initialId != null) {
+        final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
+        if (item != null) {
+          selectedItem = item;
+        }
+      }
+      if (items.isEmpty) {
+        setEmpty(emptyMessage);
+      } else {
+        setLoaded();
+      }
+    } catch (e) {
+      setError(errorMessage);
     }
   }
 
