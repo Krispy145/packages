@@ -12,8 +12,8 @@ import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
-abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q> {
-  final UserModel currentUser;
+abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends FirestoreDataSource<T, Q> {
+  final U currentUser;
   final PermissionModel userPermissions;
   SecuredFirestoreDataSource(
     super.collectionName, {
@@ -296,10 +296,14 @@ abstract class SecuredFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q
   Future<Pair<RequestResponse, T?>> add(T data) async {
     final checkPermissions = await checkPermissionLevel(CRUD.create);
     final writeResult = await _checkWritePermissions(checkPermissions, CRUD.create, data: data);
-    if (writeResult != RequestResponse.success || writeResult != RequestResponse.underReview) {
-      return Pair(writeResult, null);
+    if (writeResult == RequestResponse.success) {
+      return super.add(data);
     }
-    return super.add(data);
+    if (writeResult == RequestResponse.underReview) {
+      return const Pair(RequestResponse.underReview, null);
+    }
+
+    return Pair(writeResult, null);
   }
 
   @override

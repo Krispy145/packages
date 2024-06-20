@@ -1,12 +1,12 @@
 import "package:mobx/mobx.dart";
+
 import "../base/store.dart";
 
 part "store.g.dart";
 
-class EnumFormFieldStore = _EnumFormFieldStore with _$EnumFormFieldStore;
+class EnumFormFieldStore<E extends Enum> = _EnumFormFieldStore<E> with _$EnumFormFieldStore<E>;
 
-abstract class _EnumFormFieldStore extends BaseFormFieldStore<Enum?>
-    with Store {
+abstract class _EnumFormFieldStore<E extends Enum> extends BaseFormFieldStore<E?> with Store {
   _EnumFormFieldStore({
     required super.value,
     required super.onValueChanged,
@@ -14,5 +14,5 @@ abstract class _EnumFormFieldStore extends BaseFormFieldStore<Enum?>
     required super.title,
   });
 
-  final List<Enum> options;
+  final List<E> options;
 }

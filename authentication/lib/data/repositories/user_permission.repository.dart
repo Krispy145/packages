@@ -9,23 +9,16 @@ import "package:utilities/logger/logger.dart";
 
 import "/data/sources/permission/_source.dart";
 
-/// [PermissionDataRepository] is a class that defines the basic CRUD operations for the [PermissionModel] entity.
-class PermissionDataRepository {
+/// [UserPermissionDataRepository] is a class that defines the basic CRUD operations for the [PermissionModel] entity.
+class UserPermissionDataRepository {
   final UserDataSourceTypes userDataSourceType;
   final UUID userId;
 
-  /// [PermissionDataRepository] constructor.
-  PermissionDataRepository({
+  /// [UserPermissionDataRepository] constructor.
+  UserPermissionDataRepository({
     required this.userDataSourceType,
     required this.userId,
   });
-
-  PermissionModel? currentPermissionModel;
-
-  /// [getAllPermissionModels] returns a list of [PermissionModel]s.
-  Future<Pair<RequestResponse, List<PermissionModel?>>> getAllPermissionModels() async {
-    return _dataSourceByType(userDataSourceType).getAll();
-  }
 
   /// [getPermissionModel] returns a single [PermissionModel].
   Future<Pair<RequestResponse, PermissionModel?>> getPermissionModel() async {
@@ -36,20 +29,6 @@ class PermissionDataRepository {
         return Pair(value.first, null);
       }
     });
-  }
-
-  /// [addAllPermissionModels] adds all [PermissionModel]s to the data source.
-  Future<RequestResponse> addAllPermissionModels({
-    required List<PermissionModel> permissionModels,
-  }) async {
-    return _dataSourceByType(userDataSourceType).addAll(permissionModels);
-  }
-
-  /// [addPermissionModel] adds a single [PermissionModel] to the data source.
-  Future<Pair<RequestResponse, PermissionModel?>> addPermissionModel({
-    required PermissionModel permissionModel,
-  }) async {
-    return _dataSourceByType(userDataSourceType).add(permissionModel);
   }
 
   /// [updatePermissionModel] addits a single [PermissionModel] to the data source.

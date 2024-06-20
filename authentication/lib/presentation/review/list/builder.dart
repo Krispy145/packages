@@ -1,4 +1,5 @@
 import "package:authentication/data/models/review_model.dart";
+import "package:authentication/data/models/user_model.dart";
 import "package:authentication/data/sources/firestore/secured_paginated.dart";
 import "package:authentication/presentation/review/list/store.dart";
 import "package:flutter/material.dart";
@@ -11,9 +12,8 @@ import "package:utilities/widgets/load_state/builder.dart";
 class CRUDReviewsBuilder<T, Q> extends StatelessWidget {
   final CRUD crud;
   final PermissionModel currentUserPermissions;
-  final SecuredPaginatedFirestoreDataSource<T, Q> firestoreDataSource;
-  final Widget Function(BuildContext context, ReviewModel? review)
-      reviewBuilder;
+  final SecuredPaginatedFirestoreDataSource<UserModel, T, Q> firestoreDataSource;
+  final Widget Function(BuildContext context, ReviewModel? review) reviewBuilder;
 
   /// [CRUDReviewsBuilder] constructor.
   CRUDReviewsBuilder({

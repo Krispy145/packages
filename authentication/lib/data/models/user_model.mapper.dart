@@ -36,6 +36,9 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   static String? _$displayName(UserModel v) => v.displayName;
   static const Field<UserModel, String> _f$displayName =
       Field('displayName', _$displayName, key: 'display_name', opt: true);
+  static String? _$code(UserModel v) => v.code;
+  static const Field<UserModel, String> _f$code =
+      Field('code', _$code, opt: true);
   static String? _$photoUrl(UserModel v) => v.photoUrl;
   static const Field<UserModel, String> _f$photoUrl =
       Field('photoUrl', _$photoUrl, key: 'photo_url', opt: true);
@@ -71,6 +74,7 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
     #idToken: _f$idToken,
     #email: _f$email,
     #displayName: _f$displayName,
+    #code: _f$code,
     #photoUrl: _f$photoUrl,
     #phoneNumber: _f$phoneNumber,
     #refreshToken: _f$refreshToken,
@@ -91,6 +95,7 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
         idToken: data.dec(_f$idToken),
         email: data.dec(_f$email),
         displayName: data.dec(_f$displayName),
+        code: data.dec(_f$code),
         photoUrl: data.dec(_f$photoUrl),
         phoneNumber: data.dec(_f$phoneNumber),
         refreshToken: data.dec(_f$refreshToken),
@@ -158,6 +163,7 @@ abstract class UserModelCopyWith<$R, $In extends UserModel, $Out>
       String? idToken,
       String? email,
       String? displayName,
+      String? code,
       String? photoUrl,
       String? phoneNumber,
       String? refreshToken,
@@ -185,6 +191,7 @@ class _UserModelCopyWithImpl<$R, $Out>
           Object? idToken = $none,
           Object? email = $none,
           Object? displayName = $none,
+          Object? code = $none,
           Object? photoUrl = $none,
           Object? phoneNumber = $none,
           Object? refreshToken = $none,
@@ -200,6 +207,7 @@ class _UserModelCopyWithImpl<$R, $Out>
         if (idToken != $none) #idToken: idToken,
         if (email != $none) #email: email,
         if (displayName != $none) #displayName: displayName,
+        if (code != $none) #code: code,
         if (photoUrl != $none) #photoUrl: photoUrl,
         if (phoneNumber != $none) #phoneNumber: phoneNumber,
         if (refreshToken != $none) #refreshToken: refreshToken,
@@ -217,6 +225,7 @@ class _UserModelCopyWithImpl<$R, $Out>
       idToken: data.get(#idToken, or: $value.idToken),
       email: data.get(#email, or: $value.email),
       displayName: data.get(#displayName, or: $value.displayName),
+      code: data.get(#code, or: $value.code),
       photoUrl: data.get(#photoUrl, or: $value.photoUrl),
       phoneNumber: data.get(#phoneNumber, or: $value.phoneNumber),
       refreshToken: data.get(#refreshToken, or: $value.refreshToken),

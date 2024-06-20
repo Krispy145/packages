@@ -179,6 +179,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
       email: _apiAuthDataSource.currentUserModel!.email,
       phoneNumber: _apiAuthDataSource.currentUserModel!.phoneNumber,
       displayName: params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
+      code: params.code,
       refreshToken: _apiAuthDataSource.currentUserModel!.refreshToken,
       accessToken: _apiAuthDataSource.currentUserModel!.accessToken,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,

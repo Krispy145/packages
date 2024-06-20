@@ -1,4 +1,5 @@
 import "package:authentication/data/models/review_model.dart";
+import "package:authentication/data/models/user_model.dart";
 import "package:authentication/data/repositories/review.repository.dart";
 import "package:authentication/data/sources/firestore/secured_paginated.dart";
 import "package:authentication/data/sources/review/_source.dart";
@@ -18,7 +19,7 @@ class CRUDReviewsStore<T, Q> = _CRUDReviewsStore<T, Q> with _$CRUDReviewsStore<T
 abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> with Store {
   final PermissionModel currentUserPermissions;
   final CRUD crud;
-  final SecuredPaginatedFirestoreDataSource<T, Q> firestoreDataSource;
+  final SecuredPaginatedFirestoreDataSource<UserModel, T, Q> firestoreDataSource;
 
   /// [_CRUDReviewsStore] constructor.
   _CRUDReviewsStore({

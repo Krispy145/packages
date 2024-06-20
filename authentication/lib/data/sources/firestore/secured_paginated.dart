@@ -1,4 +1,5 @@
 import "package:authentication/data/models/review_model.dart";
+import "package:authentication/data/models/user_model.dart";
 import "package:authentication/data/sources/firestore/secured_source.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
@@ -7,7 +8,7 @@ import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 
-abstract class SecuredPaginatedFirestoreDataSource<T, Q> extends SecuredFirestoreDataSource<T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
+abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> extends SecuredFirestoreDataSource<U, T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
   /// [SecuredPaginatedFirestoreDataSource] constructor
   SecuredPaginatedFirestoreDataSource(
     super.collectionName, {

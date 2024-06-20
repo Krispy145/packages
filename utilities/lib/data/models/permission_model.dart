@@ -29,7 +29,7 @@ class PermissionModel with PermissionModelMappable {
         id: generateUniqueId(),
         role: "viewer",
         permissions: {
-          "$collectionName/all": UserPermissionsModel.viewExample,
+          "$collectionName/all": UserPermissionsModel.viewer,
         },
       );
 
@@ -43,8 +43,8 @@ class PermissionModel with PermissionModelMappable {
     id: generateUniqueId(),
     role: "admin",
     permissions: {
-      "users/all": UserPermissionsModel.adminExample,
-      "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
+      "users/all": UserPermissionsModel.admin,
+      "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewer,
     },
   );
 
@@ -52,16 +52,16 @@ class PermissionModel with PermissionModelMappable {
     id: generateUniqueId(),
     role: "admin",
     permissions: {
-      "users/all": UserPermissionsModel.adminExample,
-      "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
+      "users/all": UserPermissionsModel.admin,
+      "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewer,
     },
   );
   static final permissionThree = PermissionModel(
     id: generateUniqueId(),
     role: "admin",
     permissions: {
-      "users/all": UserPermissionsModel.adminExample,
-      "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewExample,
+      "users/all": UserPermissionsModel.admin,
+      "users/b3J8PzDkErTUnFEb9h0gwFWiH5b2": UserPermissionsModel.viewer,
     },
   );
 

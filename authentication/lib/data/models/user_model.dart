@@ -1,3 +1,4 @@
+import "package:authentication/data/sources/code/_source.dart";
 import "package:dart_mappable/dart_mappable.dart";
 
 import "auth_params.dart";
@@ -16,6 +17,7 @@ class UserModel with UserModelMappable {
   final String? idToken;
   final String? email;
   final String? displayName;
+  final CODE? code;
   final String? photoUrl;
   final String? phoneNumber;
   final String? refreshToken;
@@ -32,6 +34,7 @@ class UserModel with UserModelMappable {
     this.idToken,
     this.email,
     this.displayName,
+    this.code,
     this.photoUrl,
     this.phoneNumber,
     this.refreshToken,
@@ -68,6 +71,7 @@ class UserModel with UserModelMappable {
         photoUrl: photoUrl,
         phoneNumber: phoneNumber,
         accessToken: accessToken,
+        code: code,
         idToken: idToken,
         refreshToken: refreshToken,
         authType: authType ?? AuthType.anonymous,
