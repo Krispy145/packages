@@ -28,8 +28,8 @@ class LoadStateBuilder extends StatelessWidget {
   /// [emptyBuilder] is the builder that will be used to build the UI when the load state is empty.
   final TextWidgetBuilder? emptyBuilder;
 
-  /// [idleBuilder] is the builder that will be used to build the UI when the load state is idle.
-  final WidgetBuilder? idleBuilder;
+  // /// [idleBuilder] is the builder that will be used to build the UI when the load state is idle.
+  // final WidgetBuilder? idleBuilder;
 
   final bool slivers;
 
@@ -43,7 +43,7 @@ class LoadStateBuilder extends StatelessWidget {
     this.emptyBuilder,
     this.loadingBuilder,
     this.noMoreToLoadBuilder,
-    this.idleBuilder,
+    // this.idleBuilder,
     this.slivers = false,
   });
 
@@ -85,8 +85,8 @@ class LoadStateBuilder extends StatelessWidget {
             return emptyBuilder?.call(context, empty) ?? errorBuilder(context, empty);
           case ErrorLoadState(errorMessage: final error):
             return errorBuilder(context, error);
-          case IdleLoadState():
-            return idleBuilder?.call(context) ?? _defaultBuilder(context);
+          // case IdleLoadState():
+          //   return idleBuilder?.call(context) ?? _defaultBuilder(context);
           case NoMoreLoadState():
             return noMoreToLoadBuilder?.call(context) ?? _defaultNoMoreToLoadSnackBarBuilder(context);
         }

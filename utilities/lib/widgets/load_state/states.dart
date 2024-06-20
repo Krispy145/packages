@@ -28,6 +28,6 @@ class LoadedLoadState extends LoadState {
   LoadedLoadState();
 }
 
-class IdleLoadState extends LoadState {
-  IdleLoadState();
-}
+// class IdleLoadState extends LoadState {
+//   IdleLoadState();
+// }

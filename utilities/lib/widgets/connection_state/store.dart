@@ -2,26 +2,9 @@ import "package:internet_connection_checker_plus/internet_connection_checker_plu
 import "package:mobx/mobx.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
+import "package:utilities/widgets/connection_state/states.dart";
 
 part "store.g.dart";
-
-/// [ConnectionStoreState] is an enum that defines the different states of the connection.
-enum ConnectionStoreState {
-  /// [offline] is the state that will be used when the user is offline.
-  offline,
-
-  /// [online] is the state that will be used when the user is online.
-  online,
-
-  /// [syncing] is the state that will be used when the user is syncing.
-  syncing,
-
-  /// [paused] is the state that will be used when the user is paused.
-  paused,
-
-  /// [canceled] is the state that will be used when the user is canceled.
-  canceled,
-}
 
 /// [ConnectionStateStore] is the store that will be used to manage the state of the connection.
 class ConnectionStateStore = _ConnectionStateStore with _$ConnectionStateStore;

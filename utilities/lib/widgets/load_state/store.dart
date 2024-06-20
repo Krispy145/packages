@@ -1,13 +1,14 @@
 import "package:mobx/mobx.dart";
 import "package:utilities/widgets/load_state/states.dart";
 
-// part "store.g.dart";
-
-/// [LoadStateStore] is the store that will be used to manage the state of the loading.
+mixin LoadStateStore {
+// /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
 // class LoadStateStore = _LoadStateStore with _$LoadStateStore;
 
-/// [LoadStateStore] is the base store that will be used to manage the state of the loading.
-mixin LoadStateStore {
+// /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
+// abstract class _LoadStateStore with Store {
+  /// [LoadStateStore] is the base store that will be used to manage the state of the loading.
+
   /// [currentState] is the state that will be used to manage the state of the loading.
   final Observable<LoadState> _currentState = Observable(InitialLoadState());
   LoadState get currentState => _currentState.value;
@@ -21,7 +22,7 @@ mixin LoadStateStore {
   late final _isLoading = Computed(() => currentState is LoadingLoadState);
   bool get isLoading => _isLoading.value;
 
-  /// [isLoading] is a getter that will be used to check if the user is loading.
+  /// [isLoaded] is a getter that will be used to check if the user is loading.
   late final _isLoaded = Computed(() => currentState is LoadedLoadState);
   bool get isLoaded => _isLoaded.value;
 
@@ -37,9 +38,9 @@ mixin LoadStateStore {
   late final _isError = Computed(() => currentState is ErrorLoadState);
   bool get isError => _isError.value;
 
-  /// [isIdle] is a getter that will be used to check if the user is idle.
-  late final _isIdle = Computed(() => currentState is IdleLoadState);
-  bool get isIdle => _isIdle.value;
+  // /// [isIdle] is a getter that will be used to check if the user is idle.
+  // late final _isIdle = Computed(() => currentState is IdleLoadState);
+  // bool get isIdle => _isIdle.value;
 
   bool get hasShownNoMoreToLoadSnackBar => _hasShownNoMoreToLoadSnackBar.value;
   set hasShownNoMoreToLoadSnackBar(bool value) => _hasShownNoMoreToLoadSnackBar.value = value;
@@ -115,14 +116,120 @@ mixin LoadStateStore {
     }
     currentState = ErrorLoadState(errorMessage: errorMessage);
   }
-
-  // late final setIdle = Action(_setIdle);
-
-  // /// [setIdle] is a method that will be used to set the state to idle.
-  // @action
-  // void _setIdle() {
-  //   print("LoadState: Idle");
-  //   if (isIdle) return;
-  //   currentState.value = IdleLoadState();
-  // }
 }
+
+
+// // part "store.g.dart";
+// part "store.manual.dart";
+
+// // TO use in .g file: mixin _$LoadStateStore on _LoadStateStore, Store {
+
+// // TO use in this file:
+// // /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
+// // mixin LoadStateStore implements _LoadStateStore, _$LoadStateStore {}
+
+// // /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
+// // mixin _LoadStateStore on Store {
+
+// //
+// //
+// //
+
+// /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
+// mixin LoadStateStore on _LoadStateStore, _$LoadStateStore {}
+
+// /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
+// mixin _LoadStateStore {
+// // /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
+// // class LoadStateStore = _LoadStateStore with _$LoadStateStore;
+
+// // /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
+// // abstract class _LoadStateStore with Store {
+//   /// [LoadStateStore] is the base store that will be used to manage the state of the loading.
+
+//   @observable
+//   LoadState currentState = InitialLoadState();
+
+//   @computed
+//   bool get isInitial => currentState is InitialLoadState;
+
+//   @computed
+//   bool get isLoading => currentState is LoadingLoadState;
+
+//   @computed
+//   bool get isLoaded => currentState is LoadedLoadState;
+
+//   @computed
+//   bool get isNoMoreToLoad => currentState is NoMoreLoadState;
+
+//   @computed
+//   bool get isEmpty => currentState is EmptyLoadState;
+
+//   @computed
+//   bool get isError => currentState is ErrorLoadState;
+
+//   @computed
+//   bool get isIdle => currentState is IdleLoadState;
+ 
+//   @observable
+//   bool hasShownNoMoreToLoadSnackBar = false;
+
+//   @action
+//   void setInitial() {
+//     if (isInitial) return;
+//     currentState = InitialLoadState();
+//   }
+ 
+
+//   @action
+//   void setLoading() {
+//     if (isLoading) return;
+//     currentState = LoadingLoadState();
+//   }
+
+
+//   @action
+//   void setLoaded() {
+//     if (isLoaded) return;
+//     currentState = LoadedLoadState();
+//   }
+
+
+//   @action
+//   void setNoMoreToLoad() {
+//     if (isNoMoreToLoad) return;
+//     currentState = NoMoreLoadState();
+//   }
+
+
+//   @action
+//   void setNoMoreToLoadSnackBar() {
+//     if (hasShownNoMoreToLoadSnackBar) return;
+//     hasShownNoMoreToLoadSnackBar = true;
+//   }
+
+
+//   @action
+//   void setEmpty(String emptyMessage) {
+//     print("LoadState: Empty");
+//     if (currentState is EmptyLoadState) {
+//       if ((currentState as EmptyLoadState).emptyMessage == emptyMessage) {
+//         return;
+//       }
+//     }
+//     currentState = EmptyLoadState(emptyMessage: emptyMessage);
+//   }
+
+
+//   @action
+//   void setError(String errorMessage) {
+//     print("LoadState: Error");
+//     if (currentState is ErrorLoadState) {
+//       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
+//         return;
+//       }
+//     }
+//     currentState = ErrorLoadState(errorMessage: errorMessage);
+//   }
+
+// }
