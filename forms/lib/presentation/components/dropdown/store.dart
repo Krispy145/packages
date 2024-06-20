@@ -16,7 +16,7 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Lo
   _DropdownFormFieldStore({
     String? initialId,
     bool Function(String id, T item)? matcher,
-    required super.value,
+    required super.initialValue,
     required super.onValueChanged,
     required super.title,
     required this.labelBuilder,

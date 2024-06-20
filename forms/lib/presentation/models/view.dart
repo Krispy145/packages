@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/data/sources/source.dart";
@@ -51,6 +52,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
                   ],
                   Expanded(
                     child: ListView.builder(
+                      padding: const EdgeInsets.only(bottom: 80),
                       itemCount: modelFields(context).length,
                       itemBuilder: (context, index) {
                         final key = modelFields(context).keys.elementAt(index);
@@ -63,7 +65,8 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
               ),
             ),
             SafeArea(
-              child: Align(
+              child: Container(
+                padding: kIsWeb ? const EdgeInsets.only(bottom: 32) : EdgeInsets.zero,
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () => _showConfirmationDialog(context),

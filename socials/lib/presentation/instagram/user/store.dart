@@ -18,7 +18,7 @@ part "store.g.dart";
 class InstagramUserStore = _InstagramUserStore with _$InstagramUserStore;
 
 /// [_InstagramUserStore] is a class that manages the state of the Instagram feature.
-abstract class _InstagramUserStore extends AuthStateStore with Store {
+abstract class _InstagramUserStore with AuthStateStore, Store {
   final String? appId;
   final String? appSecret;
   final String appRedirectUrl;

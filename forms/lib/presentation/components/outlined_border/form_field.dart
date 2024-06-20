@@ -40,7 +40,7 @@ class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore
               onPressed: () {},
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(
-                  store.value.asOutlinedBorder(),
+                  store.value?.asOutlinedBorder(),
                 ),
               ),
               child: const Text("Border Preview"),

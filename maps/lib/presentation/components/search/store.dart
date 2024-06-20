@@ -17,7 +17,7 @@ abstract class _GooglePlaceSearchFormFieldStore extends BaseFormFieldStore<Googl
   _GooglePlaceSearchFormFieldStore({
     required this.googleAPIKey,
     required super.title,
-    required super.value,
+    required super.initialValue,
     required super.onValueChanged,
   }) {
     setLoaded();

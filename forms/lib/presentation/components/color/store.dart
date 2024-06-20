@@ -12,27 +12,29 @@ class ColorFormFieldStore = _ThemeColorStringFormFieldStore with _$ColorFormFiel
 
 abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
   _ThemeColorStringFormFieldStore({
-    required super.value,
+    required super.initialValue,
     required super.title,
     required super.onValueChanged,
   });
 
   /// [color] to change.
   @observable
-  late Color color = const ColorMapper().decode(value.value);
+  late Color color = const ColorMapper().decode(value?.value);
 
   /// Updates the [value] color of the field, triggering an update of the theme
   @action
   void onDone() {
-    value = MapEntry(
-      value.key,
-      [
-        color.red.toDouble(),
-        color.green.toDouble(),
-        color.blue.toDouble(),
-        color.opacity,
-      ],
-    );
+    if (value?.key != null) {
+      value = MapEntry(
+        value!.key,
+        [
+          color.red.toDouble(),
+          color.green.toDouble(),
+          color.blue.toDouble(),
+          color.opacity,
+        ],
+      );
+    }
   }
 
   /// Updates the [color] property within the field (not the field's [value])

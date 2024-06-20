@@ -36,7 +36,7 @@ enum FormFieldType {
     switch (this) {
       case FormFieldType.boolField:
         return BoolFormFieldStore(
-          value: value as bool,
+          initialValue: value as bool?,
           onValueChanged: (value) => onValueChanged(value as T?),
           title: title,
         );
@@ -48,13 +48,13 @@ enum FormFieldType {
       //   return ColorFormFieldStore();
       case FormFieldType.doubleField:
         return DoubleFormFieldStore(
-          value: value as double,
+          initialValue: value as double?,
           onValueChanged: (value) => onValueChanged(value as T?),
           title: title,
         );
       // case FormFieldType.dropdownField:
       //   return DropdownFormFieldStore(
-      //     value: value,
+      //     initialValue: value,
       //     onValueChanged: (value) => onValueChanged(value as T?),
       //     title: title,
       //   );
@@ -64,7 +64,7 @@ enum FormFieldType {
       //   return EdgeInsetsFormFieldStore();
       // case FormFieldType.enumField:
       //   return EnumFormFieldStore(
-      //     value: value as Enum,
+      //     initialValue: value as Enum,
       //     onValueChanged: (value) => onValueChanged(value as T?),
       //     title: title,
       //   );
@@ -74,7 +74,7 @@ enum FormFieldType {
       //   return InputBorderFormFieldStore();
       case FormFieldType.intField:
         return IntFormFieldStore(
-          value: value as int,
+          initialValue: value as int?,
           onValueChanged: (value) => onValueChanged(value as T?),
           title: title,
         );
@@ -82,14 +82,14 @@ enum FormFieldType {
       //   return OutlinedBorderFormFieldStore();
       case FormFieldType.textField:
         return TextFormFieldStore(
-          value: value as String,
+          initialValue: value as String?,
           onValueChanged: (value) => onValueChanged(value as T?),
           title: title,
         );
 
       default:
         return TextFormFieldStore(
-          value: value as String,
+          initialValue: value as String?,
           onValueChanged: (value) => onValueChanged(value as T?),
           title: title,
         );

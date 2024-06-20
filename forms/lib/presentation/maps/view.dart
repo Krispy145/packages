@@ -165,7 +165,7 @@ class FormsMapView extends StatelessWidget {
   ) {
     if (value is String) {
       final store = TextFormFieldStore(
-        value: value,
+        initialValue: value,
         onValueChanged: (newValue) => onChanged(keys, newValue),
         title: keys.last,
       );
@@ -174,14 +174,14 @@ class FormsMapView extends StatelessWidget {
       );
     } else if (value is int) {
       final store = IntFormFieldStore(
-        value: value,
+        initialValue: value,
         onValueChanged: (newValue) => onChanged(keys, newValue),
         title: keys.last,
       );
       return IntFormField(store: store);
     } else if (value is bool) {
       final store = BoolFormFieldStore(
-        value: value,
+        initialValue: value,
         onValueChanged: (newValue) => onChanged(keys, newValue),
         title: keys.last,
       );

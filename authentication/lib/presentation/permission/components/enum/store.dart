@@ -15,7 +15,7 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
   _PermissionsFormFieldStore({
     required this.initialSelectedCollection,
     required this.collections,
-    required super.value,
+    required super.initialValue,
     required super.onValueChanged,
     required super.title,
   });
@@ -24,7 +24,7 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
   UserPermissionsModel? selectedPermission;
 
   late final collectionStore = DropdownFormFieldStore<String>(
-    value: _setCollectionString(initialSelectedCollection).split("/").first,
+    initialValue: _setCollectionString(initialSelectedCollection).split("/").first,
     labelBuilder: (collection) => collection,
     initialItems: collections,
     onValueChanged: (newValue) {
@@ -42,7 +42,7 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<Pair<String
 
   late final List<DropdownFormFieldStore<PermissionLevel>> permissions = CRUD.values.map((e) {
     return DropdownFormFieldStore<PermissionLevel>(
-      value: _getPermissionLevel(e),
+      initialValue: _getPermissionLevel(e),
       labelBuilder: (permission) => permission.name,
       initialItems: PermissionLevel.values,
       onValueChanged: (newValue) {

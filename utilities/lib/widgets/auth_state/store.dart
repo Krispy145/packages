@@ -1,7 +1,7 @@
 import "package:mobx/mobx.dart";
 import "package:utilities/widgets/auth_state/states.dart";
 
-part "store.g.dart";
+// part "store.g.dart";
 
 /// [AuthStateStore] is the store that will be used to manage the state of the authentication.
 mixin AuthStateStore {

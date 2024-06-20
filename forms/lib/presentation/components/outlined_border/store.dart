@@ -2,23 +2,22 @@ import "package:mobx/mobx.dart";
 import "package:theme/data/models/borders/border_radius_model.dart";
 import "package:theme/data/models/borders/border_side_model.dart";
 import "package:theme/data/models/borders/outlined_border_model.dart";
+
 import "../base/store.dart";
 import "../border_radius/store.dart";
 import "../border_side/store.dart";
 
 part "store.g.dart";
 
-class OutlinedBorderFormFieldStore = _OutlinedBorderFormFieldStore
-    with _$OutlinedBorderFormFieldStore;
+class OutlinedBorderFormFieldStore = _OutlinedBorderFormFieldStore with _$OutlinedBorderFormFieldStore;
 
-abstract class _OutlinedBorderFormFieldStore
-    extends BaseFormFieldStore<OutlinedBorderModel> with Store {
-  _OutlinedBorderFormFieldStore(
-      {required super.value,
-      required super.onValueChanged,
-      required super.title,}) {
-    outlinedBorderType = value.type_enum_outlinedBorderType ??
-        OutlinedBorderType.roundedRectangleBorder;
+abstract class _OutlinedBorderFormFieldStore extends BaseFormFieldStore<OutlinedBorderModel> with Store {
+  _OutlinedBorderFormFieldStore({
+    required super.initialValue,
+    required super.onValueChanged,
+    required super.title,
+  }) {
+    outlinedBorderType = value?.type_enum_outlinedBorderType ?? OutlinedBorderType.roundedRectangleBorder;
 
     // On Type Changed
     // reaction<OutlinedBorderType>(
@@ -35,22 +34,22 @@ abstract class _OutlinedBorderFormFieldStore
   // @action
   // void onTypeChanged(OutlinedBorderType newType) {
   //   type = newType;
-  //   value = value.copyWith(type_enum_OutlinedBorderType: newType);
+  //   value = (value ?? OutlinedBorderModel()).copyWith(type_enum_OutlinedBorderType: newType);
   // }
 
   // @action
   // void onBorderSideChanged(BorderSideModel? borderSide) {
-  //   value = value.copyWith(borderSide_borderSide: borderSide);
+  //   value = (value ?? OutlinedBorderModel()).copyWith(borderSide_borderSide: borderSide);
   // }
 
   // @action
   // void onBorderRadiusChanged(BorderRadiusModel? borderRadius) {
-  //   value = value.copyWith(borderRadius_borderRadius: borderRadius);
+  //   value = (value ?? OutlinedBorderModel()).copyWith(borderRadius_borderRadius: borderRadius);
   // }
 
   // @action
   // void onGapPaddingChanged(double? gapPadding) {
-  //   value = value.copyWith(gapPadding_double: gapPadding);
+  //   value = (value ?? OutlinedBorderModel()).copyWith(gapPadding_double: gapPadding);
   // }
 
   // @computed
@@ -63,31 +62,31 @@ abstract class _OutlinedBorderFormFieldStore
   late OutlinedBorderType outlinedBorderType;
 
   late final borderSideStore = BorderSideFormFieldStore(
-    value: value.side_borderSide ?? const BorderSideModel(),
+    initialValue: value?.side_borderSide ?? const BorderSideModel(),
     onValueChanged: onBorderSideChanged,
     title: "Border Side",
   );
 
   late final borderRadiusStore = BorderRadiusFormFieldStore(
     onValueChanged: onBorderRadiusChanged,
-    value: value.borderRadius_borderRadius ?? const BorderRadiusModel(),
+    initialValue: value?.borderRadius_borderRadius ?? const BorderRadiusModel(),
     title: "Border Radius",
   );
 
   @action
   void onTypeChanged(OutlinedBorderType type) {
     outlinedBorderType = type;
-    value = value.copyWith(type_enum_outlinedBorderType: type);
+    value = (value ?? const OutlinedBorderModel()).copyWith(type_enum_outlinedBorderType: type);
   }
 
   @action
   void onBorderSideChanged(BorderSideModel? borderSide) {
-    value = value.copyWith(side_borderSide: borderSide);
+    value = (value ?? const OutlinedBorderModel()).copyWith(side_borderSide: borderSide);
   }
 
   @action
   void onBorderRadiusChanged(BorderRadiusModel? borderRadius) {
-    value = value.copyWith(borderRadius_borderRadius: borderRadius);
+    value = (value ?? const OutlinedBorderModel()).copyWith(borderRadius_borderRadius: borderRadius);
   }
 
   @computed

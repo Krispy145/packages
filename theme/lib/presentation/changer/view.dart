@@ -114,7 +114,7 @@ class ThemeComponentEditor extends FormsMapView {
     switch (valueType) {
       case "_double":
         final store = DoubleFormFieldStore(
-          value: value as double?,
+          initialValue: value as double?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           increment: 0.1,
           title: formattedKey,
@@ -122,21 +122,21 @@ class ThemeComponentEditor extends FormsMapView {
         return DoubleFormField(store: store);
       case "_int":
         final store = DoubleFormFieldStore(
-          value: value as double?,
+          initialValue: value as double?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: formattedKey,
         );
         return DoubleFormField(store: store);
       case "_bool":
         final store = BoolFormFieldStore(
-          value: value as bool?,
+          initialValue: value as bool?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: formattedKey,
         );
         return BoolFormField(store: store);
       case "_string":
         final store = TextFormFieldStore(
-          value: value as String?,
+          initialValue: value as String?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: keys.last,
         );
@@ -145,14 +145,14 @@ class ThemeComponentEditor extends FormsMapView {
         );
       case "_edgeInsets":
         final store = EdgeInsetsFormFieldStore(
-          value: value != null ? EdgeInsetsModel.fromMap(value as Map<String, dynamic>) : const EdgeInsetsModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          initialValue: value != null ? EdgeInsetsModel.fromMap(value as Map<String, dynamic>) : const EdgeInsetsModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
           title: formattedKey,
         );
         return EdgeInsetsFormField(store: store);
       case "_themeColorString":
         final store = ThemeColorStringFormFieldStore(
-          value: value as ThemeColorString?,
+          initialValue: value as ThemeColorString?,
           onValueChanged: (newValue) {
             onChanged(keys, newValue);
           },
@@ -161,7 +161,7 @@ class ThemeComponentEditor extends FormsMapView {
         return ThemeColorStringFormField(store: store);
       case "_font":
         final store = FontFormFieldStore(
-          value: value as String?,
+          initialValue: value as String?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: formattedKey,
         );
@@ -169,44 +169,44 @@ class ThemeComponentEditor extends FormsMapView {
 
       case "_textStyleString":
         final store = TextStyleStringFormFieldStore(
-          value: value as TextStyleString?,
+          initialValue: value as TextStyleString?,
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: formattedKey,
         );
         return TextStyleStringFormField(store: store);
       case "_borderSide":
         final store = BorderSideFormFieldStore(
-          value: value != null ? BorderSideModel.fromMap(value as Map<String, dynamic>) : const BorderSideModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          initialValue: value != null ? BorderSideModel.fromMap(value as Map<String, dynamic>) : const BorderSideModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
           title: formattedKey,
         );
         return BorderSideFormField(store: store);
       case "_borderRadius":
         final store = BorderRadiusFormFieldStore(
-          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
-          value: BorderRadiusModel.fromMap(value as Map<String, dynamic>? ?? {}),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          initialValue: BorderRadiusModel.fromMap(value as Map<String, dynamic>? ?? {}),
           title: formattedKey,
         );
         return BorderRadiusFormField(store: store);
 
       case "_outlinedBorder":
         final store = OutlinedBorderFormFieldStore(
-          value: value != null ? OutlinedBorderModel.fromMap(value as Map<String, dynamic>) : const OutlinedBorderModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          initialValue: value != null ? OutlinedBorderModel.fromMap(value as Map<String, dynamic>) : const OutlinedBorderModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
           title: formattedKey,
         );
         return OutlinedBorderFormField(store: store);
       case "_inputBorder":
         final store = InputBorderFormFieldStore(
-          value: value != null ? InputBorderModel.fromMap(value as Map<String, dynamic>) : const InputBorderModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          initialValue: value != null ? InputBorderModel.fromMap(value as Map<String, dynamic>) : const InputBorderModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
           title: formattedKey,
         );
         return InputBorderFormField(store: store);
       case "_duration":
         final store = DurationFormFieldStore(
-          value: value != null ? DurationModel.fromMap(value as Map<String, dynamic>) : const DurationModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue.toJson()),
+          initialValue: value != null ? DurationModel.fromMap(value as Map<String, dynamic>) : const DurationModel(),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
           title: formattedKey,
         );
         return DurationFormField(store: store);

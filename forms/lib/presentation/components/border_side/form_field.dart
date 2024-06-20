@@ -27,7 +27,7 @@ class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                border: Border.fromBorderSide(store.value.asBorderSide()),
+                border: store.value != null ? Border.fromBorderSide(store.value!.asBorderSide()) : null,
               ),
             ),
             ThemeColorStringFormField(store: store.colorStore),

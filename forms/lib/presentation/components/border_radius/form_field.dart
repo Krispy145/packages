@@ -40,7 +40,7 @@ class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                borderRadius: store.value.asBorderRadius(),
+                borderRadius: store.value?.asBorderRadius(),
                 border: Border.all(),
               ),
               height: 200,

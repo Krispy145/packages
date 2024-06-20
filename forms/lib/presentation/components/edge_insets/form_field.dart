@@ -9,7 +9,7 @@ import "../enum.dart";
 import "store.dart";
 
 class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
-  const EdgeInsetsFormField({
+  EdgeInsetsFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.edgeInsetsField);
@@ -49,7 +49,7 @@ class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
                   padding: const EdgeInsets.all(8),
                   child: Container(
                     color: Theme.of(context).primaryColor,
-                    padding: store.value.asEdgeInsets(),
+                    padding: store.value?.asEdgeInsets(),
                     child: Container(width: 40, height: 40, color: Colors.grey),
                   ),
                 ),
