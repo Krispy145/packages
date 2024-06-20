@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 import "dart:ui";
 
 import "package:flutter/gestures.dart";
@@ -5,7 +7,6 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:forms/presentation/components/base/states.dart";
 import "package:mobx/mobx.dart";
-import "package:utilities/helpers/extensions/text_editing_controller.dart";
 
 import "../base/store.dart";
 
@@ -14,31 +15,66 @@ part "store.g.dart";
 class TextFormFieldStore = _TextFormFieldStore with _$TextFormFieldStore;
 
 abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store {
-  int? minChars;
-  final FocusNode? focusNode;
-  final InputDecoration? decoration;
-  final TextInputType? keyboardType;
-  final TextCapitalization textCapitalization;
-  final TextInputAction? textInputAction;
-  final TextStyle? style;
-  final StrutStyle? strutStyle;
-  final TextDirection? textDirection;
-  final TextAlign textAlign;
-  final TextAlignVertical? textAlignVertical;
-  final bool autofocus;
-  final bool readOnly;
-  final bool? showCursor;
-  final String obscuringCharacter;
-  final bool obscureText;
-  final bool autocorrect;
-  final SmartDashesType? smartDashesType;
-  final SmartQuotesType? smartQuotesType;
-  final bool enableSuggestions;
+  // Validation
+  final int? minChars;
   final MaxLengthEnforcement? maxLengthEnforcement;
   final int? maxLines;
   final int? minLines;
-  final bool expands;
   final int? maxLength;
+  final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatters;
+  final Widget? Function(BuildContext, {required int currentLength, required bool isFocused, required int? maxLength})? buildCounter;
+  final AutovalidateMode? autovalidateMode;
+
+  // Style
+  final Brightness? keyboardAppearance;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
+  final TextAlign textAlign;
+  final TextAlignVertical? textAlignVertical;
+  final double cursorWidth;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
+  final Color? cursorColor;
+  final Color? cursorErrorColor;
+  final MouseCursor? mouseCursor;
+  final InputDecoration? decoration;
+  final bool? cursorOpacityAnimates;
+  final BoxHeightStyle selectionHeightStyle;
+  final BoxWidthStyle selectionWidthStyle;
+  final bool expands;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final bool? showCursor;
+  final String obscuringCharacter;
+  final bool obscureText;
+  final Clip clipBehavior;
+
+  // Focus
+
+  final FocusNode? focusNode;
+  final bool autofocus;
+
+  // Input / Interaction
+  final TextInputType? keyboardType;
+  final TextInputAction? textInputAction;
+  final bool enableSuggestions;
+  final Iterable<String>? autofillHints;
+  final SpellCheckConfiguration? spellCheckConfiguration;
+  final UndoHistoryController? undoController;
+  final bool scribbleEnabled;
+  final ScrollController? scrollController;
+  final bool readOnly;
+  final bool autocorrect;
+  final bool? enabled;
+  final ScrollPhysics? scrollPhysics;
+  final bool? enableInteractiveSelection;
+  final TextSelectionControls? selectionControls;
+  final TextMagnifierConfiguration? magnifierConfiguration;
+  final DragStartBehavior dragStartBehavior;
+  final bool canRequestFocus;
+
+  // Triggers
   final void Function(String)? onChanged;
   final void Function()? onTap;
   final bool onTapAlwaysCalled;
@@ -46,46 +82,26 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store
   final void Function()? onEditingComplete;
   final void Function(String)? onFieldSubmitted;
   final void Function(String?)? onSaved;
-  final String? Function(String?)? validator;
-  final List<TextInputFormatter>? inputFormatters;
-  final bool? enabled;
-  final double cursorWidth;
-  final double? cursorHeight;
-  final Radius? cursorRadius;
-  final Color? cursorColor;
-  final Color? cursorErrorColor;
-  final Brightness? keyboardAppearance;
+
+  // Other
+
+  final TextCapitalization textCapitalization;
+  final TextDirection? textDirection;
+
   final EdgeInsets scrollPadding;
-  final bool? enableInteractiveSelection;
-  final TextSelectionControls? selectionControls;
-  final Widget? Function(BuildContext, {required int currentLength, required bool isFocused, required int? maxLength})? buildCounter;
-  final ScrollPhysics? scrollPhysics;
-  final Iterable<String>? autofillHints;
-  final AutovalidateMode? autovalidateMode;
-  final ScrollController? scrollController;
-  final String? restorationId;
   final bool enableIMEPersonalizedLearning;
-  final MouseCursor? mouseCursor;
+  final String? restorationId;
   final Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
-  final SpellCheckConfiguration? spellCheckConfiguration;
-  final TextMagnifierConfiguration? magnifierConfiguration;
-  final UndoHistoryController? undoController;
   final void Function(String, Map<String, dynamic>)? onAppPrivateCommand;
-  final bool? cursorOpacityAnimates;
-  final BoxHeightStyle selectionHeightStyle;
-  final BoxWidthStyle selectionWidthStyle;
-  final DragStartBehavior dragStartBehavior;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
   final MaterialStatesController? statesController;
-  final Clip clipBehavior;
-  final bool scribbleEnabled;
-  final bool canRequestFocus;
 
   _TextFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
     required super.title,
     // this.textFormFieldController = const TextFormFieldController(),
+    this.minChars,
     this.focusNode,
     this.decoration,
     this.keyboardType,
@@ -154,21 +170,22 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store
   }) {
     textController = TextEditingController(text: value);
     // On Value Changed
-    reaction<String?>((reaction) => value, (newValue) {
-      textController.setTextIfNotEqual(newValue.toString());
-    });
+    // reaction<String?>((reaction) => value, (newValue) {
+    //   textController.setTextIfNotEqual(newValue.toString());
+    // });
   }
   @observable
   late TextEditingController textController;
 
-  // final TextFormFieldController textFormFieldController;
-
   @override
   FieldState<String> validate(String value) {
+    if (autovalidateMode == AutovalidateMode.disabled) {
+      return ValidFormFieldState(value);
+    }
+
     if (minChars != null && value.length < minChars!) {
       return IncompleteFormFieldState(value: value, error: "Minimum $minChars characters required");
     }
-
     return ValidFormFieldState(value);
   }
 }

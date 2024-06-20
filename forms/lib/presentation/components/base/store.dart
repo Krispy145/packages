@@ -18,9 +18,7 @@ abstract class _BaseFormFieldStore<T> with Store {
   // void setLoading(bool loading) => isLoading = loading;
 
   //
-  FieldState<T> validate(T value) {
-    return ValidFormFieldState(value);
-  }
+  FieldState<T> validate(T value) => ValidFormFieldState(value);
 
   final String title;
 
