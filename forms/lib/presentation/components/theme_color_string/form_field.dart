@@ -12,7 +12,7 @@ import "../enum.dart";
 import "store.dart";
 
 class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
-  const ThemeColorStringFormField({
+  ThemeColorStringFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.themeColorField);

@@ -10,7 +10,7 @@ part "store.g.dart";
 class ContactsStore = _ContactsStore with _$ContactsStore;
 
 /// [_ContactsStore] is a class that manages the state of the contacts feature.
-abstract class _ContactsStore extends LoadStateStore with Store {
+abstract class _ContactsStore with LoadStateStore, Store {
   /// [repository] is an instance of [ContactsRepository].
   final ContactsRepository repository = ContactsRepository();
 

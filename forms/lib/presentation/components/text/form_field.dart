@@ -8,7 +8,7 @@ import "store.dart";
 class DOTextFormField extends BaseFormField<TextFormFieldStore> {
   final Widget? leading;
   final List<Widget>? actions;
-  const DOTextFormField({
+  DOTextFormField({
     super.key,
     required super.store,
     super.showTitle,

@@ -15,7 +15,7 @@ part "store.g.dart";
 
 class AuthStore<T extends UserModel> = _AuthStore<T> with _$AuthStore;
 
-abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store {
+abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
   final AuthenticationRepository<T> repository;
   final bool showEmailAuth;
   final AuthBuilderType authBuilderType;

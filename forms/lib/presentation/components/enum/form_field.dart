@@ -6,7 +6,7 @@ import "../enum.dart";
 import "store.dart";
 
 class EnumFormField extends BaseFormField<EnumFormFieldStore> {
-  const EnumFormField({
+  EnumFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.enumField);

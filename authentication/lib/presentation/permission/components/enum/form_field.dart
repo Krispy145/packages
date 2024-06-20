@@ -11,7 +11,7 @@ import "store.dart";
 
 class PermissionsFormField extends BaseFormField<PermissionsFormFieldStore> {
   final double? maxWidth;
-  const PermissionsFormField({
+  PermissionsFormField({
     super.key,
     required super.store,
     this.maxWidth,
@@ -38,8 +38,7 @@ class PermissionsFormField extends BaseFormField<PermissionsFormFieldStore> {
               ),
               ...store.permissions.map((permission) {
                 return ConstrainedBox(
-                  constraints:
-                      BoxConstraints(maxWidth: (maxWidth ?? 300) / 1.5),
+                  constraints: BoxConstraints(maxWidth: (maxWidth ?? 300) / 1.5),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

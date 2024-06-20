@@ -12,7 +12,7 @@
 // class PlaylistStore = _PlaylistStore with _$PlaylistStore;
 
 // /// [_PlaylistStore] is a class that manages the state of the Playlist feature.
-// abstract class _PlaylistStore extends LoadStateStore with Store {
+// abstract class _PlaylistStore with LoadStateStore, Store {
 //   final String? id;
 
 //   final String apiKey;

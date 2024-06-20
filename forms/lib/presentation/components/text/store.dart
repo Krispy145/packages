@@ -16,13 +16,11 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String?> with Stor
     required super.title,
     this.textFormFieldController = const TextFormFieldController(),
   }) {
-    setLoading();
     textController = TextEditingController(text: value);
     // On Value Changed
     reaction<String?>((reaction) => value, (newValue) {
       textController.setTextIfNotEqual(newValue.toString());
     });
-    setLoaded();
   }
   @observable
   late TextEditingController textController;

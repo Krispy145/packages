@@ -10,7 +10,7 @@ import "../enum.dart";
 import "store.dart";
 
 class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
-  const BorderRadiusFormField({
+  BorderRadiusFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.borderRadiusField);

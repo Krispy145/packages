@@ -9,7 +9,7 @@ import "../enum.dart";
 import "store.dart";
 
 class IntFormField extends BaseFormField<IntFormFieldStore> {
-  const IntFormField({
+  IntFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.intField);

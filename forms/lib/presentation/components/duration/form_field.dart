@@ -7,7 +7,7 @@ import "../enum.dart";
 import "store.dart";
 
 class DurationFormField extends BaseFormField<DurationFormFieldStore> {
-  const DurationFormField({
+  DurationFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.durationField);

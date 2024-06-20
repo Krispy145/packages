@@ -13,7 +13,7 @@ import "package:utilities/widgets/load_state/store.dart";
 import "package:uuid/uuid.dart";
 
 /// [HiveDataSource] is a wrapper class for [Hive]
-abstract class HiveDataSource<T, Q> extends LoadStateStore implements DataSource<T, Q> {
+abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T, Q> {
   /// [boxName] is the name of the [Box]
   final String boxName;
 

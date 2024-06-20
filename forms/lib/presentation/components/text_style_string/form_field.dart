@@ -11,7 +11,7 @@ import "../enum.dart";
 import "store.dart";
 
 class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldStore> {
-  const TextStyleStringFormField({
+  TextStyleStringFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.textStyleField);

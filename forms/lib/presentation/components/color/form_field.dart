@@ -10,7 +10,7 @@ import "store.dart";
 /// [ColorFormField] to change color scheme colors for the theme.
 class ColorFormField extends BaseFormField<ColorFormFieldStore> {
   /// [ColorFormField] constructor.
-  const ColorFormField({
+  ColorFormField({
     super.key,
     required super.showTitle,
     required super.store,

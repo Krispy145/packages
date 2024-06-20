@@ -15,7 +15,7 @@ part "store.g.dart";
 class PermissionStore = _PermissionStore with _$PermissionStore;
 
 /// [_PermissionStore] is a class that manages the state of the Permission feature.
-abstract class _PermissionStore extends LoadStateStore with Store {
+abstract class _PermissionStore with LoadStateStore, Store {
   final UUID userId;
   final UserDataSourceTypes userDataSourceType;
   final PermissionModel? initialPermissionModel;

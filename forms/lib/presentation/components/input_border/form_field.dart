@@ -13,7 +13,7 @@ import "../enum.dart";
 import "store.dart";
 
 class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
-  const InputBorderFormField({
+  InputBorderFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.inputBorderField);

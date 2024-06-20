@@ -8,7 +8,7 @@ part "store.g.dart";
 class ListStore<T> = _ListStore<T> with _$ListStore<T>;
 
 /// [_ListStore] is a class that manages the state of the topTips feature.
-abstract class _ListStore<T> extends LoadStateStore with Store {
+abstract class _ListStore<T> with LoadStateStore, Store {
   /// [_ListStore] constructor.
   _ListStore();
 

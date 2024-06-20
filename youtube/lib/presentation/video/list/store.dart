@@ -9,7 +9,7 @@
 // class VideosStore = _VideosStore with _$VideosStore;
 
 // /// [_VideosStore] is a class that manages the state of the playlist feature.
-// abstract class _VideosStore extends LoadStateStore with Store {
+// abstract class _VideosStore with LoadStateStore, Store {
 //   final String apiKey;
 
 //   /// [repository] is an instance of [VideoRepository].

@@ -15,7 +15,7 @@ part "store.g.dart";
 class StyleTypeThemeStore = _StyleTypeStore with _$StyleTypeThemeStore;
 
 /// [_StyleTypeStore] is the base store that will be used to manage the state of the theme.
-abstract class _StyleTypeStore extends LoadStateStore with Store {
+abstract class _StyleTypeStore with LoadStateStore, Store {
   /// [styleTypeName] is the list of style type names that will be used to set the theme data.
   final String styleTypeName;
 

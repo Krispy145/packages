@@ -8,7 +8,7 @@ import "package:utilities/sizes/spacers.dart";
 import "../enum.dart";
 
 class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
-  const DoubleFormField({
+  DoubleFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.doubleField);

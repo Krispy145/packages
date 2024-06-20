@@ -7,7 +7,7 @@ import "../enum.dart";
 import "store.dart";
 
 class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
-  const DropdownFormField({
+  DropdownFormField({
     super.key,
     required super.store,
     super.showTitle = true,

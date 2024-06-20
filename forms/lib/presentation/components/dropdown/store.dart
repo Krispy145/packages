@@ -1,6 +1,7 @@
 import "package:collection/collection.dart";
 import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
 import "../base/store.dart";
 
@@ -8,7 +9,7 @@ part "store.g.dart";
 
 class DropdownFormFieldStore<T> = _DropdownFormFieldStore<T> with _$DropdownFormFieldStore;
 
-abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Store {
+abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with LoadStateStore, Store {
   final String emptyMessage;
   final String errorMessage;
 
@@ -40,8 +41,8 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
   }
 
   Future<void> initialLoad(String? initialId, bool Function(String id, T item)? matcher) async {
+    setLoading();
     try {
-      setLoading();
       if (initialItems != null) {
         items.addAll(initialItems!);
       }
@@ -58,7 +59,7 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
         }
       }
       if (items.isEmpty) {
-        setEmpty(emptyMessage);
+        setEmpty("No items found");
       } else {
         setLoaded();
       }

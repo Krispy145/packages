@@ -10,7 +10,7 @@ import "../theme_color_string/form_field.dart";
 import "store.dart";
 
 class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
-  const BorderSideFormField({
+  BorderSideFormField({
     super.key,
     required super.store,
   }) : super(type: FormFieldType.borderSideField);

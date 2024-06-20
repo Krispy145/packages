@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+import "package:utilities/widgets/load_state/states.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
 typedef TextWidgetBuilder = Widget Function(BuildContext context, String text);

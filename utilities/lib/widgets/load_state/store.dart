@@ -1,142 +1,99 @@
 import "package:mobx/mobx.dart";
+import "package:utilities/widgets/load_state/states.dart";
 
-part "store.g.dart";
-
-sealed class LoadState {}
-
-class InitialLoadState extends LoadState {
-  InitialLoadState();
-}
-
-class LoadingLoadState extends LoadState {
-  LoadingLoadState();
-}
-
-class NoMoreLoadState extends LoadState {
-  NoMoreLoadState();
-}
-
-class EmptyLoadState extends LoadState {
-  final String emptyMessage;
-
-  EmptyLoadState({required this.emptyMessage});
-}
-
-class ErrorLoadState extends LoadState {
-  final String errorMessage;
-
-  ErrorLoadState({required this.errorMessage});
-}
-
-class LoadedLoadState extends LoadState {
-  LoadedLoadState();
-}
-
-class IdleLoadState extends LoadState {
-  IdleLoadState();
-}
-
-// /// [LoadState] is an enum that defines the different states of loading.
-// enum LoadStateOld {
-//   /// [initial] is the state that will be used when the user is initial.
-//   initial,
-
-//   /// [loading] is the state that will be used when the user is loading.
-//   loading,
-
-//   /// [loaded] is the state that will be used when the user is loaded.
-//   loaded,
-
-//   /// [noMoreToLoad] is the state that will be used when the user has no more to load.
-//   noMoreToLoad,
-
-//   /// [empty] is the state that will be used when the user is empty.
-//   empty,
-
-//   /// [error] is the state that will be used when the user is error.
-//   error,
-
-//   /// [idle] is the state that will be used when the user is idle.
-//   idle,
-// }
+// part "store.g.dart";
 
 /// [LoadStateStore] is the store that will be used to manage the state of the loading.
-class LoadStateStore = _LoadStateStore with _$LoadStateStore;
+// class LoadStateStore = _LoadStateStore with _$LoadStateStore;
 
-/// [_LoadStateStore] is the base store that will be used to manage the state of the loading.
-abstract class _LoadStateStore with Store {
+/// [LoadStateStore] is the base store that will be used to manage the state of the loading.
+mixin LoadStateStore {
   /// [currentState] is the state that will be used to manage the state of the loading.
-  @observable
-  LoadState currentState = InitialLoadState();
+  final Observable<LoadState> _currentState = Observable(InitialLoadState());
+  LoadState get currentState => _currentState.value;
+  set currentState(LoadState value) => _currentState.value = value;
 
-  /// [isInitial] is a getter that will be used to check if the user is initial.
-  @computed
-  bool get isInitial => currentState is InitialLoadState;
+  /// [isInitial] is a getter that will be used to check if the user is loading.
+  late final _isInitial = Computed(() => currentState is InitialLoadState);
+  bool get isInitial => _isInitial.value;
 
   /// [isLoading] is a getter that will be used to check if the user is loading.
-  @computed
-  bool get isLoading => currentState is LoadingLoadState;
+  late final _isLoading = Computed(() => currentState is LoadingLoadState);
+  bool get isLoading => _isLoading.value;
 
-  /// [isLoaded] is a getter that will be used to check if the user is loaded.
-  @computed
-  bool get isLoaded => currentState is LoadedLoadState;
+  /// [isLoading] is a getter that will be used to check if the user is loading.
+  late final _isLoaded = Computed(() => currentState is LoadedLoadState);
+  bool get isLoaded => _isLoaded.value;
 
   /// [isNoMoreToLoad] is a getter that will be used to check if the user has no more to load.
-  @computed
-  bool get isNoMoreToLoad => currentState is NoMoreLoadState;
+  late final _isNoMoreToLoad = Computed(() => currentState is NoMoreLoadState);
+  bool get isNoMoreToLoad => _isNoMoreToLoad.value;
 
   /// [isEmpty] is a getter that will be used to check if the user is empty.
-  @computed
-  bool get isEmpty => currentState is EmptyLoadState;
+  late final _isEmpty = Computed(() => currentState is EmptyLoadState);
+  bool get isEmpty => _isEmpty.value;
 
   /// [isError] is a getter that will be used to check if the user is error.
-  @computed
-  bool get isError => currentState is ErrorLoadState;
+  late final _isError = Computed(() => currentState is ErrorLoadState);
+  bool get isError => _isError.value;
 
   /// [isIdle] is a getter that will be used to check if the user is idle.
-  @computed
-  bool get isIdle => currentState is IdleLoadState;
+  late final _isIdle = Computed(() => currentState is IdleLoadState);
+  bool get isIdle => _isIdle.value;
 
-  @observable
-  bool hasShownNoMoreToLoadSnackBar = false;
+  bool get hasShownNoMoreToLoadSnackBar => _hasShownNoMoreToLoadSnackBar.value;
+  set hasShownNoMoreToLoadSnackBar(bool value) => _hasShownNoMoreToLoadSnackBar.value = value;
+  final Observable<bool> _hasShownNoMoreToLoadSnackBar = Observable(false);
+
+  void setInitial() => setInitialAction.call([]);
+  late final setInitialAction = Action(_setInitial);
 
   /// [setInitial] is a method that will be used to set the state to initial.
-  @action
-  void setInitial() {
+  void _setInitial() {
     if (isInitial) return;
     currentState = InitialLoadState();
   }
 
+  void setLoading() => setLoadingAction.call([]);
+  late final setLoadingAction = Action(_setLoading);
+
   /// [setLoading] is a method that will be used to set the state to loading.
-  @action
-  void setLoading() {
+  void _setLoading() {
     if (isLoading) return;
     currentState = LoadingLoadState();
   }
 
+  void setLoaded() => setLoadedAction.call([]);
+  late final setLoadedAction = Action(_setLoaded);
+
   /// [setLoaded] is a method that will be used to set the state to loaded.
-  @action
-  void setLoaded() {
+  void _setLoaded() {
     if (isLoaded) return;
     currentState = LoadedLoadState();
   }
 
+  void setNoMoreToLoad() => setNoMoreToLoadAction.call([]);
+  late final setNoMoreToLoadAction = Action(_setNoMoreToLoad);
+
   /// [setNoMoreToLoad] is a method that will be used to set the state to noMoreToLoad.
-  @action
-  void setNoMoreToLoad() {
+  void _setNoMoreToLoad() {
     if (isNoMoreToLoad) return;
     currentState = NoMoreLoadState();
   }
 
-  @action
-  void setNoMoreToLoadSnackBar() {
+  void setNoMoreToLoadSnackBar() => setNoMoreToLoadSnackBarAction.call([]);
+  late final setNoMoreToLoadSnackBarAction = Action(_setNoMoreToLoadSnackBar);
+  void _setNoMoreToLoadSnackBar() {
     if (hasShownNoMoreToLoadSnackBar) return;
     hasShownNoMoreToLoadSnackBar = true;
   }
 
+  void setEmpty(String emptyMessage) => _setEmptyAction.call([emptyMessage]);
+  late final _setEmptyAction = Action(_setEmpty);
+
   /// [setEmpty] is a method that will be used to set the state to empty.
-  @action
-  void setEmpty(String emptyMessage) {
+  void _setEmpty(String emptyMessage) {
+    print("LoadState: Empty");
     if (currentState is EmptyLoadState) {
       if ((currentState as EmptyLoadState).emptyMessage == emptyMessage) {
         return;
@@ -145,9 +102,12 @@ abstract class _LoadStateStore with Store {
     currentState = EmptyLoadState(emptyMessage: emptyMessage);
   }
 
+  void setError(String errorMessage) => _setErrorAction.call([errorMessage]);
+  late final _setErrorAction = Action(_setError);
+
   /// [setError] is a method that will be used to set the state to error.
-  @action
-  void setError(String errorMessage) {
+  void _setError(String errorMessage) {
+    print("LoadState: Error");
     if (currentState is ErrorLoadState) {
       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
         return;
@@ -156,10 +116,13 @@ abstract class _LoadStateStore with Store {
     currentState = ErrorLoadState(errorMessage: errorMessage);
   }
 
-  /// [setIdle] is a method that will be used to set the state to idle.
-  @action
-  void setIdle() {
-    if (isIdle) return;
-    currentState = IdleLoadState();
-  }
+  // late final setIdle = Action(_setIdle);
+
+  // /// [setIdle] is a method that will be used to set the state to idle.
+  // @action
+  // void _setIdle() {
+  //   print("LoadState: Idle");
+  //   if (isIdle) return;
+  //   currentState.value = IdleLoadState();
+  // }
 }
