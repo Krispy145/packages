@@ -2,7 +2,6 @@ import "package:flutter/material.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "../base/form_field.dart";
-import "../enum.dart";
 import "store.dart";
 
 class DOTextFormField extends BaseFormField<TextFormFieldStore> {
@@ -14,7 +13,7 @@ class DOTextFormField extends BaseFormField<TextFormFieldStore> {
     super.showTitle,
     this.leading,
     this.actions,
-  }) : super(type: FormFieldType.textField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

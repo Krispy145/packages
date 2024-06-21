@@ -1,7 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:forms/presentation/components/enum.dart';
 import 'package:maps/data/models/google/place_model.dart';
 
 import 'store.dart';
@@ -10,7 +9,7 @@ class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFiel
   const GooglePlaceSearchFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.searchMapField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

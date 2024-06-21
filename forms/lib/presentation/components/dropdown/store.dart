@@ -9,9 +9,11 @@ part "store.g.dart";
 class DropdownFormFieldStore<T> = _DropdownFormFieldStore<T> with _$DropdownFormFieldStore;
 
 abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Store {
+  final bool showSearch;
   _DropdownFormFieldStore({
     String? initialId,
     bool Function(String id, T item)? matcher,
+    this.showSearch = true,
     required super.value,
     required super.onValueChanged,
     required super.title,
@@ -35,7 +37,6 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with St
   }
 
   Future<void> initialLoad(String? initialId, bool Function(String id, T item)? matcher) async {
-    setLoading();
     if (initialItems != null) {
       items.addAll(initialItems!);
     }

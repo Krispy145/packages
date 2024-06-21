@@ -3,7 +3,6 @@ import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
-import "../enum.dart";
 import "store.dart";
 
 class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
@@ -11,7 +10,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
     super.key,
     required super.store,
     super.showTitle = true,
-  }) : super(type: FormFieldType.dropdownField);
+  });
 
   @override
   Widget buildField(BuildContext context) {
@@ -23,7 +22,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
           itemAsString: store.labelBuilder,
           selectedItem: store.value,
           asyncItems: (searchTerm) async => await store.itemFetcher?.call(searchTerm) ?? [],
-          items: store.items,
+          items: store.itemFetcher != null ? [] : store.items,
           compareFn: (i, s) => i == s,
           onChanged: (item) {
             if (item != null) store.value = item;
@@ -31,7 +30,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
           popupProps: PopupPropsMultiSelection.menu(
             isFilterOnline: true,
             showSelectedItems: true,
-            showSearchBox: true,
+            showSearchBox: store.showSearch,
             itemBuilder: (context, item, isSelected) {
               return ListTile(
                 leading: store.leadingBuilder?.call(item),

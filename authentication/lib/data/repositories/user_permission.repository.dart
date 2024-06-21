@@ -7,7 +7,7 @@ import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
-import "/data/sources/permission/_source.dart";
+import "../sources/user_permission/_source.dart";
 
 /// [UserPermissionDataRepository] is a class that defines the basic CRUD operations for the [PermissionModel] entity.
 class UserPermissionDataRepository {
@@ -48,10 +48,10 @@ class UserPermissionDataRepository {
   /// [_dataSourceByType] returns the appropriate [UserDataSource] based on the given [UserDataSourceTypes].
   /// Default is [FirestoreUserDataSource].
   /// This can be in local, an api, or firestore.
-  PermissionDataSource _dataSourceByType(UserDataSourceTypes source) {
+  UserPermissionDataSource _dataSourceByType(UserDataSourceTypes source) {
     switch (source) {
       case UserDataSourceTypes.firestore:
-        return FirestorePermissionDataSource(
+        return FirestoreUserPermissionDataSource(
           userId: userId,
         );
       default:
@@ -59,7 +59,7 @@ class UserPermissionDataRepository {
           "Unimplemented Data Source Type for $source",
           [AuthenticationLoggers.permission],
         );
-        return FirestorePermissionDataSource(
+        return FirestoreUserPermissionDataSource(
           userId: userId,
         );
     }

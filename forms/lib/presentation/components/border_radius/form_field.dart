@@ -6,14 +6,13 @@ import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "../base/form_field.dart";
-import "../enum.dart";
 import "store.dart";
 
 class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
   const BorderRadiusFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.borderRadiusField);
+  });
 
   double get doubleFormFieldWidth => 180;
 

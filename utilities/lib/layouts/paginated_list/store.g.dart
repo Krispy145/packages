@@ -22,20 +22,15 @@ mixin _$PaginatedListStore<T> on _PaginatedListStore<T>, Store {
       Atom(name: '_PaginatedListStore.requestResponse', context: context);
 
   @override
-  RequestResponse get requestResponse {
+  RequestResponse? get requestResponse {
     _$requestResponseAtom.reportRead();
     return super.requestResponse;
   }
 
-  bool _requestResponseIsInitialized = false;
-
   @override
-  set requestResponse(RequestResponse value) {
-    _$requestResponseAtom.reportWrite(
-        value, _requestResponseIsInitialized ? super.requestResponse : null,
-        () {
+  set requestResponse(RequestResponse? value) {
+    _$requestResponseAtom.reportWrite(value, super.requestResponse, () {
       super.requestResponse = value;
-      _requestResponseIsInitialized = true;
     });
   }
 

@@ -1,3 +1,5 @@
+import "package:authentication/data/repositories/permission.repository.dart";
+
 import "code.repository.dart";
 
 ///END OF IMPORTS
@@ -13,10 +15,7 @@ class DataRepositories {
   final CodeDataRepository code = CodeDataRepository();
 
   // /// [permission] is the [PermissionDataRepository] instance.
-  // PermissionDataRepository permission(UUID userId, UserDataSourceTypes type) => PermissionDataRepository(
-  //       userId: userId,
-  //       userDataSourceType: type,
-  //     );
+  final PermissionDataRepository permission = PermissionDataRepository();
 
   ///END OF REPOSITORIES
 }

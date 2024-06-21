@@ -8,14 +8,13 @@ import "package:theme/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/sizes/spacers.dart";
 
-import "../enum.dart";
 import "store.dart";
 
 class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
   const ThemeColorStringFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.themeColorField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

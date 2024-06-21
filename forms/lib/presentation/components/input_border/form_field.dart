@@ -9,14 +9,13 @@ import "../base/form_field.dart";
 import "../border_radius/form_field.dart";
 import "../border_side/form_field.dart";
 import "../double/form_field.dart";
-import "../enum.dart";
 import "store.dart";
 
 class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
   const InputBorderFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.inputBorderField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

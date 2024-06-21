@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:forms/presentation/components/enum.dart";
 import "package:theme/extensions/build_context.dart";
 
 import "store.dart";
@@ -10,11 +9,11 @@ abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidg
     super.key,
     required this.store,
     this.showTitle = true,
-    required this.type,
+    // required this.type,
   });
 
   final T store;
-  final FormFieldType type;
+  // final FormFieldType type;
   final bool showTitle;
 
   @override

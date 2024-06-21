@@ -4,7 +4,6 @@ import "package:flutter_mobx/flutter_mobx.dart";
 
 import "../base/form_field.dart";
 import "../double/form_field.dart";
-import "../enum.dart";
 import "../enum/form_field.dart";
 import "../theme_color_string/form_field.dart";
 import "store.dart";
@@ -13,7 +12,7 @@ class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
   const BorderSideFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.borderSideField);
+  });
 
   double get doubleFormFieldWidth => 180;
 

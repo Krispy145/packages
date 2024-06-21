@@ -7,7 +7,6 @@ import "../base/store.dart";
 
 part "store.g.dart";
 
-// ignore: library_private_types_in_public_api
 class ColorFormFieldStore = _ThemeColorStringFormFieldStore with _$ColorFormFieldStore;
 
 abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {

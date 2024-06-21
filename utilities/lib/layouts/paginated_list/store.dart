@@ -26,7 +26,7 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
   late final Future<Pair<RequestResponse, List<T?>>> Function({int? limit, bool refresh}) loadMoreFromRepository;
 
   @observable
-  late RequestResponse requestResponse;
+  RequestResponse? requestResponse;
 
   /// [results] is an observable list of [T]s.
   @override

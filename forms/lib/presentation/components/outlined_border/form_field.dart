@@ -7,14 +7,13 @@ import "package:theme/data/models/borders/outlined_border_model.dart";
 import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/sizes/spacers.dart";
 
-import "../enum.dart";
 import "store.dart";
 
 class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore> {
   const OutlinedBorderFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.outlinedBorderField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

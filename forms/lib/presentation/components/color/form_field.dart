@@ -3,7 +3,6 @@ import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/sizes/spacers.dart";
 
-import "../enum.dart";
 import "color_circle.dart";
 import "store.dart";
 
@@ -14,7 +13,7 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
     super.key,
     required super.showTitle,
     required super.store,
-  }) : super(type: FormFieldType.colorField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

@@ -102,7 +102,8 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
     BuildContext context,
   ) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      switch (store.requestResponse) {
+      if (store.requestResponse == null) return;
+      switch (store.requestResponse!) {
         case RequestResponse.success:
         case RequestResponse.underReview:
         case RequestResponse.failure:
