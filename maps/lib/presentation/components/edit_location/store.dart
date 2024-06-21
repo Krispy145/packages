@@ -16,7 +16,7 @@ abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<MarkerM
 
   _EditLocationMapFormFieldStore({
     required this.mapTilesUrl,
-    required super.value,
+    required super.initialValue,
     required super.title,
     required super.onValueChanged,
     // ignore: unused_element
@@ -39,7 +39,7 @@ abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<MarkerM
   );
 
   late final DoubleFormFieldStore latitudeStore = DoubleFormFieldStore(
-    value: value?.position.latitude,
+    initialValue: value?.position.latitude,
     changeOnSaved: true,
     onValueChanged: (newLat) {
       if (newLat == null) return;
@@ -52,7 +52,7 @@ abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<MarkerM
   );
 
   late final DoubleFormFieldStore longitudeStore = DoubleFormFieldStore(
-    value: value?.position.longitude,
+    initialValue: value?.position.longitude,
     changeOnSaved: true,
     onValueChanged: (newLng) {
       if (newLng == null) return;

@@ -6,7 +6,7 @@ import "package:forms/presentation/components/double/store.dart";
 import "package:utilities/sizes/spacers.dart";
 
 class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
-  const DoubleFormField({
+  DoubleFormField({
     super.key,
     required super.store,
   });

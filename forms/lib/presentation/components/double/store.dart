@@ -14,7 +14,7 @@ abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with St
   final bool changeOnSaved;
 
   _DoubleFormFieldStore({
-    required super.value,
+    required super.initialValue,
     this.changeOnSaved = false,
     required super.onValueChanged,
     this.increment = 1,

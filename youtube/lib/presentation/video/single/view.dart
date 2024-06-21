@@ -24,8 +24,8 @@ class VideoView extends StatelessWidget {
     return Scaffold(
       body: LoadStateBuilder(
         viewStore: store,
-        errorBuilder: (context) => const Center(
-          child: Text("Error loading video."),
+        errorBuilder: (context, error) => Center(
+          child: Text(error),
         ),
         loadedBuilder: (context) {
           final video = store.currentVideo!.toVideo();

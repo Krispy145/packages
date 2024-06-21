@@ -52,12 +52,10 @@ class ThemedMaterialApp extends StatelessWidget {
           ),
         ),
       ),
-      errorBuilder: (context) => MaterialApp(
+      errorBuilder: (context, error) => MaterialApp(
         home: Scaffold(
           backgroundColor: initialBackgroundColor,
-          body: const Center(
-            child: Text("Error"),
-          ),
+          body: Center(child: Text(error)),
         ),
       ),
     );

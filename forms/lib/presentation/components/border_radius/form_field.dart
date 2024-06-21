@@ -9,7 +9,7 @@ import "../base/form_field.dart";
 import "store.dart";
 
 class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
-  const BorderRadiusFormField({
+  BorderRadiusFormField({
     super.key,
     required super.store,
   });
@@ -39,7 +39,7 @@ class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                borderRadius: store.value.asBorderRadius(),
+                borderRadius: store.value?.asBorderRadius(),
                 border: Border.all(),
               ),
               height: 200,

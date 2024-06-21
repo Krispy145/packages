@@ -64,10 +64,10 @@ abstract class _CRUDReviewsStore<T, Q> extends PaginatedListStore<ReviewModel> w
           ..addAll(_loadedResults);
         setLoaded();
       } else {
-        setEmpty();
+        setEmpty("No reviews yet");
       }
     } catch (e) {
-      setError();
+      setError("There was a problem loading reviews");
     }
   }
 }

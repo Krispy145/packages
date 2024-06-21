@@ -9,7 +9,7 @@ import "../base/form_field.dart";
 import "store.dart";
 
 class FontFormField extends BaseFormField<FontFormFieldStore> {
-  const FontFormField({
+  FontFormField({
     super.key,
     required super.store,
   });

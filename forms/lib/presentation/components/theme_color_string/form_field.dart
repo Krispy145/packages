@@ -11,7 +11,7 @@ import "package:utilities/sizes/spacers.dart";
 import "store.dart";
 
 class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
-  const ThemeColorStringFormField({
+  ThemeColorStringFormField({
     super.key,
     required super.store,
   });

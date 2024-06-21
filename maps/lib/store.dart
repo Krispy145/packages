@@ -9,7 +9,7 @@
 // class MapStore = _MapStore with _$MapStore;
 
 // /// [_MapStore] is a class that manages the state of the map feature.
-// abstract class _MapStore extends LoadStateStore with Store {
+// abstract class _MapStore with LoadStateStore, Store {
 //   /// [repository] is an instance of [MapRepository].
 //   final MapRepository repository = MapRepository();
 // }

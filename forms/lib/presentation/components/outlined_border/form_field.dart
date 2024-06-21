@@ -10,7 +10,7 @@ import "package:utilities/sizes/spacers.dart";
 import "store.dart";
 
 class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore> {
-  const OutlinedBorderFormField({
+  OutlinedBorderFormField({
     super.key,
     required super.store,
   });
@@ -39,7 +39,7 @@ class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore
               onPressed: () {},
               style: ButtonStyle(
                 shape: MaterialStateProperty.all(
-                  store.value.asOutlinedBorder(),
+                  store.value?.asOutlinedBorder(),
                 ),
               ),
               child: const Text("Border Preview"),

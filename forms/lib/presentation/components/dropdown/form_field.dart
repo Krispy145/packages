@@ -6,7 +6,7 @@ import "package:utilities/widgets/load_state/builder.dart";
 import "store.dart";
 
 class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
-  const DropdownFormField({
+  DropdownFormField({
     super.key,
     required super.store,
     super.showTitle = true,
@@ -16,7 +16,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
   Widget buildField(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      errorBuilder: (context) => const Text("Error loading data"),
+      errorBuilder: (context, error) => Text(error),
       loadedBuilder: (context) {
         return DropdownSearch<T>(
           itemAsString: store.labelBuilder,

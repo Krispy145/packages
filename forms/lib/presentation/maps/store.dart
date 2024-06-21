@@ -7,7 +7,7 @@ part "store.g.dart";
 
 class FormsMapStore = _FormsMapStore with _$FormsMapStore;
 
-abstract class _FormsMapStore extends LoadStateStore with Store {
+abstract class _FormsMapStore with LoadStateStore, Store {
   final void Function(ObservableMap<String, dynamic>) onValueChanged;
   final void Function(ObservableMap<String, dynamic>)? onValueSaved;
 

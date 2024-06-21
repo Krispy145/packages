@@ -1,31 +1,42 @@
-sealed class FormFieldState<T> {}
-
-class FormFieldStateEmpty<T> extends FormFieldState<T> {}
-
-class FormFieldStateRequiresValue<T> extends FormFieldState<T> {}
-
-// class FormFieldStateValidating<T> extends FormFieldState<T> {
-//   final T? value;
-
-//   FormFieldStateValidating({this.value});
+// sealed class FormFieldState<T> {
+//   bool get canUseValue;
 // }
 
-class FormFieldStateIncomplete<T> extends FormFieldState<T> {
-  final String? error;
-  final T? value;
+// class FormFieldStateEmpty<T> extends FormFieldState<T> {
+//   @override
+//   bool get canUseValue => true;
+// }
 
-  FormFieldStateIncomplete({this.value, this.error});
-}
+// class FormFieldStateRequiresValue<T> extends FormFieldState<T> {
+//   @override
+//   bool get canUseValue => false;
+// }
 
-class FormFieldStateInvalid<T> extends FormFieldState<T> {
-  final String error;
-  final T? invalidValue;
+// class FormFieldStateIncomplete<T> extends FormFieldState<T> {
+//   final String? error;
+//   final T? value;
 
-  FormFieldStateInvalid({required this.error, this.invalidValue});
-}
+//   FormFieldStateIncomplete({this.value, this.error});
 
-class FormFieldStateValid<T> extends FormFieldState<T> {
-  final T value;
+//   @override
+//   bool get canUseValue => false;
+// }
 
-  FormFieldStateValid(this.value);
-}
+// class FormFieldStateInvalid<T> extends FormFieldState<T> {
+//   final String error;
+//   final T? invalidValue;
+
+//   FormFieldStateInvalid({required this.error, this.invalidValue});
+
+//   @override
+//   bool get canUseValue => false;
+// }
+
+// class FormFieldStateValid<T> extends FormFieldState<T> {
+//   final T value;
+
+//   FormFieldStateValid(this.value);
+
+//   @override
+//   bool get canUseValue => true;
+// }

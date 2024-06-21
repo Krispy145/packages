@@ -3,7 +3,6 @@ import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/layouts/list/store.dart";
-import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 
@@ -41,7 +40,7 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
   /// [loadMore] loads all [T]s from the data source.
   @action
   Future<void> loadMore({int? limit, bool refresh = false}) async {
-    if (currentState == LoadState.noMoreToLoad && !refresh) return;
+    if (isNoMoreToLoad && !refresh) return;
     try {
       setLoading();
       final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
@@ -54,12 +53,12 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
       } else {
         if (results.isEmpty) {
           results.clear();
-          return setEmpty();
+          return setEmpty("No results found");
         }
         return setNoMoreToLoad();
       }
     } catch (e) {
-      setError();
+      setError("There was a problem loading the results.");
     }
   }
 

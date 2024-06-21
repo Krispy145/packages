@@ -8,7 +8,7 @@ import 'package:utilities/sizes/spacers.dart';
 import 'store.dart';
 
 class EditLocationMapFormField extends BaseFormField<EditLocationMapFormFieldStore> {
-  const EditLocationMapFormField({
+  EditLocationMapFormField({
     super.key,
     required super.store,
   });

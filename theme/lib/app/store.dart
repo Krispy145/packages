@@ -1,5 +1,6 @@
 // ignore_for_file: unused_element
 
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:fonts/store.dart";
 import "package:mobx/mobx.dart";
@@ -63,7 +64,7 @@ enum ThemeStateType {
 class ThemeStateStore = _ThemeStateStore with _$ThemeStateStore;
 
 /// [_ThemeStateStore] is the base store that will be used to manage the state of the theme.
-abstract class _ThemeStateStore extends LoadStateStore with Store {
+abstract class _ThemeStateStore with LoadStateStore, Store {
   String? id;
 
   /// [FontsStore] is the store that will be used to manage loading fonts dynamically
@@ -504,7 +505,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     try {
       await _loadLocalTheme(id: id);
     } catch (e) {
-      setError();
+      setError(kDebugMode ? "Error loading local from API: $id" : "Error loading theme");
       await _loadAssetsTheme(id: id);
     }
   }
@@ -513,7 +514,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     try {
       await _loadApiTheme(id: id);
     } catch (e) {
-      setError();
+      setError(kDebugMode ? "Error loading theme from API: $id" : "Error loading theme");
       await _loadLocalTheme(id: id);
     }
   }
@@ -522,7 +523,7 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     try {
       await _loadApiTheme(id: id);
     } catch (e) {
-      setError();
+      setError(kDebugMode ? "Error loading assets from API: $id" : "Error loading theme");
       await _loadAssetsTheme(id: id);
     }
   }
@@ -531,11 +532,11 @@ abstract class _ThemeStateStore extends LoadStateStore with Store {
     try {
       await _loadApiTheme(id: id);
     } catch (e) {
-      setError();
+      setError(kDebugMode ? "Error loading theme from API: $id" : "Error loading theme");
       try {
         await _loadLocalTheme(id: id);
       } catch (e) {
-        setError();
+        setError(kDebugMode ? "Error loading local from API: $id" : "Error loading theme");
         await _loadAssetsTheme(id: id);
       }
     }

@@ -5,7 +5,7 @@ import "../base/form_field.dart";
 import "store.dart";
 
 class BoolFormField extends BaseFormField<BoolFormFieldStore> {
-  const BoolFormField({
+  BoolFormField({
     super.key,
     required super.store,
   });

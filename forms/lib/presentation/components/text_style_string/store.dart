@@ -6,15 +6,14 @@ import "../base/store.dart";
 
 part "store.g.dart";
 
-class TextStyleStringFormFieldStore = _TextStyleStringStringFormFieldStore
-    with _$TextStyleStringFormFieldStore;
+class TextStyleStringFormFieldStore = _TextStyleStringStringFormFieldStore with _$TextStyleStringFormFieldStore;
 
-abstract class _TextStyleStringStringFormFieldStore
-    extends BaseFormFieldStore<TextStyleString?> with Store {
-  _TextStyleStringStringFormFieldStore(
-      {required super.value,
-      required super.onValueChanged,
-      required super.title,}) {
+abstract class _TextStyleStringStringFormFieldStore extends BaseFormFieldStore<TextStyleString?> with Store {
+  _TextStyleStringStringFormFieldStore({
+    required super.initialValue,
+    required super.onValueChanged,
+    required super.title,
+  }) {
     // On Value Changed
     // reaction<TextStyleString?>((reaction) => value, (newValue) {
     // });
@@ -23,10 +22,9 @@ abstract class _TextStyleStringStringFormFieldStore
   @observable
   String? color;
 
-  late final ThemeColorStringFormFieldStore colorStore =
-      ThemeColorStringFormFieldStore(
+  late final ThemeColorStringFormFieldStore colorStore = ThemeColorStringFormFieldStore(
     title: "Color",
-    value: null,
+    initialValue: null,
     onValueChanged: (newColor) {
       color = newColor;
     },

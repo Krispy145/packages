@@ -3,6 +3,7 @@ import 'package:maps/data/models/google/place_model.dart';
 import 'package:maps/data/models/google/text_search_query_parameters_model.dart';
 import 'package:maps/domain/repositories/google_places.repository.dart';
 import 'package:mobx/mobx.dart';
+import 'package:utilities/widgets/load_state/store.dart';
 
 part 'store.g.dart';
 
@@ -10,13 +11,13 @@ part 'store.g.dart';
 class GooglePlaceSearchFormFieldStore = _GooglePlaceSearchFormFieldStore with _$GooglePlaceSearchFormFieldStore;
 
 /// [_GooglePlaceSearchFormFieldStore] is a class that manages the state of the map feature.
-abstract class _GooglePlaceSearchFormFieldStore extends BaseFormFieldStore<GooglePlace?> with Store {
+abstract class _GooglePlaceSearchFormFieldStore extends BaseFormFieldStore<GooglePlace?> with LoadStateStore, Store {
   final String googleAPIKey;
 
   _GooglePlaceSearchFormFieldStore({
     required this.googleAPIKey,
     required super.title,
-    required super.value,
+    required super.initialValue,
     required super.onValueChanged,
   }) {
     setLoaded();

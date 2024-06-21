@@ -15,7 +15,7 @@ part "store.g.dart";
 
 class AuthStore<T extends UserModel> = _AuthStore<T> with _$AuthStore;
 
-abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store {
+abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
   final AuthenticationRepository<T> repository;
   final bool showEmailAuth;
   final AuthBuilderType authBuilderType;
@@ -88,11 +88,11 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
           await _handleAuthenticate();
           break;
         default:
-          setEmpty();
+          setEmpty("No auth type found");
           break;
       }
     } catch (e) {
-      setError();
+      setError("Error authenticating user");
     }
   }
 
@@ -125,12 +125,12 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
     final currentUser = repository.currentUserModelStream.value;
     if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
       await repository.signOut();
-      setEmpty();
+      setEmpty("User is anonymous");
     } else if (currentUser != null && currentUser.status == AuthStatus.authenticated) {
       userModel = currentUser;
       setLoaded();
     } else {
-      setEmpty();
+      setEmpty("User is not authenticated");
     }
   }
 
@@ -148,7 +148,7 @@ abstract class _AuthStore<T extends UserModel> extends LoadStateStore with Store
       userModel = response;
       setLoaded();
     } else {
-      setError();
+      setError("Error signing in anonymously");
     }
   }
 }

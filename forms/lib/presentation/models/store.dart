@@ -8,7 +8,7 @@ part "store.g.dart";
 
 abstract class FormsModelStore<T> = _FormsModelStore<T> with _$FormsModelStore<T>;
 
-abstract class _FormsModelStore<T> extends LoadStateStore with Store {
+abstract class _FormsModelStore<T> with LoadStateStore, Store {
   // final void Function(T) onValueChanged;
   final Future<RequestResponse> Function(bool isAdding, T value) onValueSaved;
   final bool isAdding;

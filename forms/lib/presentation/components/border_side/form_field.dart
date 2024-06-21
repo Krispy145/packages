@@ -9,7 +9,7 @@ import "../theme_color_string/form_field.dart";
 import "store.dart";
 
 class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
-  const BorderSideFormField({
+  BorderSideFormField({
     super.key,
     required super.store,
   });
@@ -26,7 +26,7 @@ class BorderSideFormField extends BaseFormField<BorderSideFormFieldStore> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                border: Border.fromBorderSide(store.value.asBorderSide()),
+                border: store.value != null ? Border.fromBorderSide(store.value!.asBorderSide()) : null,
               ),
             ),
             ThemeColorStringFormField(store: store.colorStore),

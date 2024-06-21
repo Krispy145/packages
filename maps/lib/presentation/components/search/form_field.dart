@@ -6,7 +6,7 @@ import 'package:maps/data/models/google/place_model.dart';
 import 'store.dart';
 
 class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFieldStore> {
-  const GooglePlaceSearchFormField({
+  GooglePlaceSearchFormField({
     super.key,
     required super.store,
   });

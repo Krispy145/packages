@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:utilities/widgets/connection_state/states.dart";
 import "package:utilities/widgets/connection_state/store.dart";
 
 /// [ConnectionStateBuilder] is a widget that will be used to build the UI based on the connection state.

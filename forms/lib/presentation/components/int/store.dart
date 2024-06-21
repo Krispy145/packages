@@ -12,7 +12,7 @@ class IntFormFieldStore = _IntFormFieldStore with _$IntFormFieldStore;
 
 abstract class _IntFormFieldStore extends BaseFormFieldStore<int?> with Store {
   _IntFormFieldStore({
-    required super.value,
+    required super.initialValue,
     required super.onValueChanged,
     this.increment = 1,
     this.showButtons = true,
@@ -27,8 +27,7 @@ abstract class _IntFormFieldStore extends BaseFormFieldStore<int?> with Store {
   final int increment;
   final bool showButtons;
 
-  late final TextEditingController textController =
-      TextEditingController(text: value.toString());
+  late final TextEditingController textController = TextEditingController(text: value.toString());
 
   @action
   void add() {

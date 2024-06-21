@@ -6,7 +6,7 @@ import "package:forms/presentation/components/int/form_field.dart";
 import "store.dart";
 
 class DurationFormField extends BaseFormField<DurationFormFieldStore> {
-  const DurationFormField({
+  DurationFormField({
     super.key,
     required super.store,
   });

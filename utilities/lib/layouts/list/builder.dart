@@ -75,11 +75,7 @@ class ListBuilder<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      emptyBuilder: (context) {
-        return const Center(
-          child: Text("No results found"),
-        );
-      },
+      emptyBuilder: (context, empty) => Center(child: Text(empty)),
       loadedBuilder: (context) {
         if (slivers) return buildView(store.showLoadingSpinnerAtBottom);
         return Stack(
@@ -105,7 +101,7 @@ class ListBuilder<T> extends StatelessWidget {
         );
       },
       loadingBuilder: (context) => const SizedBox.shrink(),
-      errorBuilder: (context) => const Center(child: Text("Error loading data")),
+      errorBuilder: (context, error) => Center(child: Text(error)),
     );
   }
 

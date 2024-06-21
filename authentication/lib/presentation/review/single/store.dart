@@ -2,17 +2,16 @@
 
 import "package:authentication/data/models/review_model.dart";
 import "package:authentication/presentation/review/list/store.dart";
+import "package:flutter/foundation.dart";
 import "package:mobx/mobx.dart";
 
 part "store.g.dart";
 
 /// [CRUDReviewStore] is a class that uses [_CRUDReviewStore] to manage state of the reviews feature.
-class CRUDReviewStore<T, Q> = _CRUDReviewStore<T, Q>
-    with _$CRUDReviewStore<T, Q>;
+class CRUDReviewStore<T, Q> = _CRUDReviewStore<T, Q> with _$CRUDReviewStore<T, Q>;
 
 /// [_CRUDReviewStore<T,Q>] is a class that manages the state of the reviews feature.
-abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q>
-    with Store {
+abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q> with Store {
   final String? id;
 
   /// [_CRUDReviewStore] constructor.
@@ -31,18 +30,22 @@ abstract class _CRUDReviewStore<T, Q> extends CRUDReviewsStore<T, Q>
   ReviewModel? currentReview;
 
   void _loadReview(ReviewModel? initialReviewModel) {
-    if (initialReviewModel == null && id != null) {
-      setLoading();
-      repository.getCRUDSpecifReviewModel(id!).then((value) {
-        currentReview = value.second.first;
-      });
-    } else {
-      currentReview = initialReviewModel;
-    }
-    if (currentReview != null) {
-      setLoaded();
-    } else {
-      setEmpty();
+    try {
+      if (initialReviewModel == null && id != null) {
+        setLoading();
+        repository.getCRUDSpecifReviewModel(id!).then((value) {
+          currentReview = value.second.first;
+        });
+      } else {
+        currentReview = initialReviewModel;
+      }
+      if (currentReview != null) {
+        setLoaded();
+      } else {
+        setEmpty(kDebugMode ? "Review not found: $id" : "Not found");
+      }
+    } catch (e) {
+      setError(kDebugMode ? "$id / $initialReviewModel : $e" : "Error loading review");
     }
   }
 }

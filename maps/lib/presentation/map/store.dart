@@ -24,7 +24,7 @@ part 'store.g.dart';
 class MapStore = _MapStore with _$MapStore;
 
 /// [_MapStore] is a class that manages the state of the map feature.
-abstract class _MapStore extends LoadStateStore with Store {
+abstract class _MapStore with LoadStateStore, Store {
   final DOTickerProvider vsync = DOTickerProvider();
   final Marker Function(MarkerModel marker)? singleMarkerBuilder;
   _MapStore({

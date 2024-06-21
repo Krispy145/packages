@@ -11,7 +11,7 @@ part "store.g.dart";
 class VideoStore = _VideoStore with _$VideoStore;
 
 /// [_VideoStore] is a class that manages the state of the Video feature.
-abstract class _VideoStore extends LoadStateStore with Store {
+abstract class _VideoStore with LoadStateStore, Store {
   final String? id;
 
   final String apiKey;
@@ -44,7 +44,7 @@ abstract class _VideoStore extends LoadStateStore with Store {
     if (currentVideo != null) {
       setLoaded();
     } else {
-      setEmpty();
+      setEmpty("Video not found: $id");
     }
   }
 }

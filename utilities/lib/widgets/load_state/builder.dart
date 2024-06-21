@@ -1,6 +1,9 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+import "package:utilities/widgets/load_state/states.dart";
 import "package:utilities/widgets/load_state/store.dart";
+
+typedef TextWidgetBuilder = Widget Function(BuildContext context, String text);
 
 /// [LoadStateBuilder] is a widget that will be used to build the UI based on the load state.
 class LoadStateBuilder extends StatelessWidget {
@@ -11,7 +14,7 @@ class LoadStateBuilder extends StatelessWidget {
   final WidgetBuilder loadedBuilder;
 
   /// [errorBuilder] is the builder that will be used to build the UI when the load state is error.
-  final WidgetBuilder errorBuilder;
+  final TextWidgetBuilder errorBuilder;
 
   /// [initialBuilder] is the builder that will be used to build the UI when the load state is initial.
   final WidgetBuilder? initialBuilder;
@@ -23,10 +26,10 @@ class LoadStateBuilder extends StatelessWidget {
   final WidgetBuilder? noMoreToLoadBuilder;
 
   /// [emptyBuilder] is the builder that will be used to build the UI when the load state is empty.
-  final WidgetBuilder? emptyBuilder;
+  final TextWidgetBuilder? emptyBuilder;
 
-  /// [idleBuilder] is the builder that will be used to build the UI when the load state is idle.
-  final WidgetBuilder? idleBuilder;
+  // /// [idleBuilder] is the builder that will be used to build the UI when the load state is idle.
+  // final WidgetBuilder? idleBuilder;
 
   final bool slivers;
 
@@ -40,7 +43,7 @@ class LoadStateBuilder extends StatelessWidget {
     this.emptyBuilder,
     this.loadingBuilder,
     this.noMoreToLoadBuilder,
-    this.idleBuilder,
+    // this.idleBuilder,
     this.slivers = false,
   });
 
@@ -72,28 +75,44 @@ class LoadStateBuilder extends StatelessWidget {
     return Observer(
       builder: (context) {
         switch (viewStore.currentState) {
-          case LoadState.initial:
-            print("initialBuilder");
+          case InitialLoadState():
             return initialBuilder?.call(context) ?? _defaultBuilder(context);
-          case LoadState.loading:
-            print("loadingBuilder");
+          case LoadingLoadState():
             return loadingBuilder?.call(context) ?? _defaultLoadingBuilder(context);
-          case LoadState.loaded:
-            print("loadedBuilder");
+          case LoadedLoadState():
             return loadedBuilder(context);
-          case LoadState.empty:
-            print("emptyBuilder");
-            return emptyBuilder?.call(context) ?? errorBuilder(context);
-          case LoadState.error:
-            print("errorBuilder");
-            return errorBuilder(context);
-          case LoadState.idle:
-            print("idleBuilder");
-            return idleBuilder?.call(context) ?? _defaultBuilder(context);
-          case LoadState.noMoreToLoad:
-            print("noMoreToLoadBuilder");
+          case EmptyLoadState(emptyMessage: final empty):
+            return emptyBuilder?.call(context, empty) ?? errorBuilder(context, empty);
+          case ErrorLoadState(errorMessage: final error):
+            return errorBuilder(context, error);
+          // case IdleLoadState():
+          //   return idleBuilder?.call(context) ?? _defaultBuilder(context);
+          case NoMoreLoadState():
             return noMoreToLoadBuilder?.call(context) ?? _defaultNoMoreToLoadSnackBarBuilder(context);
         }
+        // switch (viewStore.currentState) {
+        //   case LoadState.initial:
+        //     // print("initialBuilder");
+        //     return initialBuilder?.call(context) ?? _defaultBuilder(context);
+        //   case LoadState.loading:
+        //     // print("loadingBuilder");
+        //     return loadingBuilder?.call(context) ?? _defaultLoadingBuilder(context);
+        //   case LoadState.loaded:
+        //     // print("loadedBuilder");
+        //     return loadedBuilder(context);
+        //   case LoadState.empty:
+        //     // print("emptyBuilder");
+        //     return emptyBuilder?.call(context) ?? errorBuilder(context);
+        //   case LoadState.error:
+        //     // print("errorBuilder");
+        //     return errorBuilder(context);
+        //   case LoadState.idle:
+        //     // print("idleBuilder");
+        //     return idleBuilder?.call(context) ?? _defaultBuilder(context);
+        //   case LoadState.noMoreToLoad:
+        //     // print("noMoreToLoadBuilder");
+        //     return noMoreToLoadBuilder?.call(context) ?? _defaultNoMoreToLoadSnackBarBuilder(context);
+        // }
       },
     );
   }

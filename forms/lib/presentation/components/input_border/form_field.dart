@@ -12,7 +12,7 @@ import "../double/form_field.dart";
 import "store.dart";
 
 class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
-  const InputBorderFormField({
+  InputBorderFormField({
     super.key,
     required super.store,
   });
@@ -39,7 +39,7 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
             Sizes.m.spacer(),
             TextField(
               controller: TextEditingController(text: "Preview Text Field"),
-              decoration: InputDecoration(border: store.value.asInputBorder()),
+              decoration: InputDecoration(border: store.value?.asInputBorder()),
             ),
             Sizes.m.spacer(),
             Visibility(

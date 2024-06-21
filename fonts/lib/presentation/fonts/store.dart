@@ -10,7 +10,7 @@
 // class FontsStore = _FontsStore with _$FontsStore;
 
 // /// [_FontsStore] is a class that manages the state of the fonts feature.
-// abstract class _FontsStore extends LoadStateStore with Store {
+// abstract class _FontsStore with LoadStateStore, Store {
 //   /// [repository] is an instance of [FontsRepository].
 //   final FontsRepository repository = FontsRepository();
 

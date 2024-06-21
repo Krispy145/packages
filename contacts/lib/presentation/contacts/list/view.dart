@@ -16,9 +16,7 @@ class ContactsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LoadStateBuilder(
       viewStore: store,
-      emptyBuilder: (context) => const Center(
-        child: Text("Empty contacts view."),
-      ),
+      emptyBuilder: (context, empty) => Center(child: Text(empty)),
       loadedBuilder: (context) => ListView.builder(
         itemCount: store.contacts.length,
         itemBuilder: (context, index) {
@@ -29,9 +27,7 @@ class ContactsView extends StatelessWidget {
           );
         },
       ),
-      errorBuilder: (context) => const Center(
-        child: Text("Error loading contacts view."),
-      ),
+      errorBuilder: (context, error) => Center(child: Text(error)),
     );
   }
 }

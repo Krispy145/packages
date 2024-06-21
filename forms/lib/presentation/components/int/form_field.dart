@@ -8,7 +8,7 @@ import "package:utilities/sizes/spacers.dart";
 import "store.dart";
 
 class IntFormField extends BaseFormField<IntFormFieldStore> {
-  const IntFormField({
+  IntFormField({
     super.key,
     required super.store,
   });

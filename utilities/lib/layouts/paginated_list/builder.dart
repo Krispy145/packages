@@ -72,18 +72,16 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
               child: loadStateBuilder ??
                   LoadStateBuilder(
                     viewStore: store,
-                    emptyBuilder: (context) {
+                    emptyBuilder: (context, empty) {
                       _showSnackBarRequestResponse(context);
-                      return const Center(
-                        child: Text("No results found"),
-                      );
+                      return Center(child: Text(empty));
                     },
                     loadingBuilder: (context) => const SizedBox.shrink(),
                     loadedBuilder: (context) {
                       _showSnackBarRequestResponse(context);
                       return const SizedBox.shrink();
                     },
-                    errorBuilder: (context) {
+                    errorBuilder: (context, error) {
                       return IconButton(
                         icon: const Icon(Icons.refresh),
                         onPressed: store.refresh,

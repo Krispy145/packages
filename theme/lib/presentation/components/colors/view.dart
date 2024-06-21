@@ -32,17 +32,19 @@ class ColorsView extends StatelessWidget {
           builder: (context) {
             final selectedColor = store.selectedColor;
             final colorFormFieldStore = ColorFormFieldStore(
-              value: selectedColor,
+              initialValue: selectedColor,
               title: selectedColor.key,
               onValueChanged: (color) {
                 AppLogger.print(
-                  "on value changed: ${color.value}",
+                  "on value changed: ${color?.value}",
                   [ThemeLoggers.colors],
                 );
-                store.selectedColor = color;
-                ThemeChanger.changeCurrentThemeStyle(
-                  colorModel: store.setColorModel(),
-                );
+                if (color != null) {
+                  store.selectedColor = color;
+                  ThemeChanger.changeCurrentThemeStyle(
+                    colorModel: store.setColorModel(),
+                  );
+                }
               },
             );
             return ColorFormField(
