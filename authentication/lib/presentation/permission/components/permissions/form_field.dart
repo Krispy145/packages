@@ -10,7 +10,7 @@ import "package:utilities/sizes/spacers.dart";
 import "store.dart";
 
 class PermissionsFormField extends BaseFormField<PermissionsFormFieldStore> {
-  const PermissionsFormField({
+  PermissionsFormField({
     super.key,
     required super.store,
     this.horizontalPadding = 0,

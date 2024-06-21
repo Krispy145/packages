@@ -9,24 +9,16 @@ part "store.g.dart";
 
 class DropdownFormFieldStore<T> = _DropdownFormFieldStore<T> with _$DropdownFormFieldStore;
 
-<<<<<<< HEAD
-abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Store {
-  final bool showSearch;
-  _DropdownFormFieldStore({
-    String? initialId,
-    bool Function(String id, T item)? matcher,
-    this.showSearch = true,
-    required super.value,
-=======
 abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with LoadStateStore, Store {
   final String emptyMessage;
   final String errorMessage;
+  final bool showSearch;
 
   _DropdownFormFieldStore({
     String? initialId,
     bool Function(String id, T item)? matcher,
+    this.showSearch = true,
     required super.initialValue,
->>>>>>> origin/sealed-class-refactor
     required super.onValueChanged,
     required super.title,
     required this.labelBuilder,
@@ -51,37 +43,27 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Lo
   }
 
   Future<void> initialLoad(String? initialId, bool Function(String id, T item)? matcher) async {
-<<<<<<< HEAD
-    if (initialItems != null) {
-      items.addAll(initialItems!);
-    }
-    if (itemFetcher != null) {
-      final loadedItems = await itemFetcher!("");
-      if (loadedItems != null) {
-        items.addAll(loadedItems);
-=======
-    setLoading();
     try {
       if (initialItems != null) {
         items.addAll(initialItems!);
->>>>>>> origin/sealed-class-refactor
       }
       if (itemFetcher != null) {
         final loadedItems = await itemFetcher!("");
         if (loadedItems != null) {
           items.addAll(loadedItems);
         }
-      }
-      if (initialId != null) {
-        final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
-        if (item != null) {
-          selectedItem = item;
+
+        if (initialId != null) {
+          final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
+          if (item != null) {
+            selectedItem = item;
+          }
         }
-      }
-      if (items.isEmpty) {
-        setEmpty("No items found");
-      } else {
-        setLoaded();
+        if (items.isEmpty) {
+          setEmpty(emptyMessage);
+        } else {
+          setLoaded();
+        }
       }
     } catch (e) {
       setError(errorMessage);

@@ -39,7 +39,7 @@ abstract class _PermissionStore extends PermissionsStore with Store {
     if (currentPermission != null) {
       setLoaded();
     } else {
-      setEmpty();
+      setEmpty("No permission found");
     }
   }
 }

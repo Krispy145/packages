@@ -1,5 +1,6 @@
 import "package:forms/presentation/components/base/store.dart";
 import "package:mobx/mobx.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 
@@ -7,7 +8,7 @@ part "store.g.dart";
 class ChipsFormFieldStore<T> = _ChipsFormFieldStore<T> with _$ChipsFormFieldStore<T>;
 
 /// [_ChipsFormFieldStore] is a class that manages the state of the filters feature.
-abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?> with Store {
+abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?> with LoadStateStore, Store {
   _ChipsFormFieldStore(
     this.name, {
     required Future<List<T?>> Function() loadFilters,
@@ -17,7 +18,7 @@ abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?> with
   })  : _loadFilters = loadFilters,
         super(
           title: name,
-          value: null,
+          initialValue: null,
           onValueChanged: (value) => onSelectedChanged(value ?? []),
         );
 
@@ -107,10 +108,10 @@ abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?> with
           ..addAll(filters.whereType<T>());
         setLoaded();
       } else {
-        setEmpty();
+        setEmpty("No filters found");
       }
     } catch (e) {
-      setError();
+      setError("There was a problem loading the filters.");
     }
   }
 }

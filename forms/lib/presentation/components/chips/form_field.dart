@@ -6,7 +6,7 @@ import "store.dart";
 
 class ChipsFormField<T> extends BaseFormField<ChipsFormFieldStore<T>> {
   final String Function(T) titleBuilder;
-  const ChipsFormField({
+  ChipsFormField({
     super.key,
     required super.store,
     required this.titleBuilder,

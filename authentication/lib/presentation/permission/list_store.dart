@@ -35,10 +35,10 @@ abstract class _PermissionsStore extends PaginatedListStore<PermissionModel> wit
           ..addAll(loadedPermissions.second);
         setLoaded();
       } else {
-        setEmpty();
+        setEmpty("No permissions found");
       }
     } catch (e) {
-      setError();
+      setError("There was a problem loading the permissions.");
     }
   }
 }

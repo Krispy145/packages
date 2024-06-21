@@ -14,18 +14,18 @@ class PermissionsFormFieldStore = _PermissionsFormFieldStore with _$PermissionsF
 /// [_PermissionsFormFieldStore] is a class that manages the state of the filters feature.
 abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionModel> with Store {
   _PermissionsFormFieldStore({
-    required super.value,
+    required super.initialValue,
     required super.onValueChanged,
-  }) : super(title: value.role);
+  }) : super(title: initialValue?.role ?? "No Initial Role Title");
 
   late final TextFormFieldStore roleStore = TextFormFieldStore(
-    value: value.role,
+    initialValue: value?.role,
     onValueChanged: (role) {
-      onValueChanged(value.copyWith(role: role));
+      onValueChanged((value ?? PermissionModel.anonymous).copyWith(role: role));
     },
     title: "Role",
   );
-  late final Map<String, List<ChipsFormFieldStore<PermissionLevel>>> roleFields = collectionPermissions(value.permissions);
+  late final Map<String, List<ChipsFormFieldStore<PermissionLevel>>> roleFields = collectionPermissions((value ?? PermissionModel.anonymous).permissions);
 
   @observable
   bool isHovered = false;
@@ -49,9 +49,9 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
                 },
                 canSelectMultiple: false,
                 onSelectedChanged: (collectionSelection) {
-                  final newPermissions = value.permissions;
+                  final newPermissions = (value ?? PermissionModel.anonymous).permissions;
                   newPermissions[key] = changedPermissionLevel(userPermission, crud, collectionSelection);
-                  onValueChanged(value.copyWith(permissions: newPermissions));
+                  onValueChanged((value ?? PermissionModel.anonymous).copyWith(permissions: newPermissions));
                 },
               )
                 ..loadFiltersModels()
