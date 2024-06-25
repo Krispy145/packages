@@ -16,7 +16,9 @@ enum NavigationRailPosition {
 }
 
 /// [DashboardShellStructure] is a widget that is used to build the shell structure for the board branch.
-class DashboardShellStructure extends StatefulWidget {
+class DashboardShellStructure extends StatelessWidget {
+  final DashboardShellStructureStore store;
+
   /// The position of the navigation rail.
   final NavigationRailPosition boardNavigationRailPosition;
 
@@ -64,6 +66,7 @@ class DashboardShellStructure extends StatefulWidget {
   const DashboardShellStructure.left({
     super.key,
     required this.navigationRailPercentage,
+    required this.store,
     this.minWidth = 52,
     this.leading,
     this.trailing,
@@ -82,6 +85,7 @@ class DashboardShellStructure extends StatefulWidget {
   const DashboardShellStructure.right({
     super.key,
     required this.navigationRailPercentage,
+    required this.store,
     this.minWidth = 52,
     this.leading,
     this.trailing,
@@ -96,33 +100,18 @@ class DashboardShellStructure extends StatefulWidget {
     this.isCollapsible = true,
   }) : boardNavigationRailPosition = NavigationRailPosition.right;
 
-  @override
-  State<DashboardShellStructure> createState() =>
-      _DashboardShellStructureState();
-}
-
-class _DashboardShellStructureState extends State<DashboardShellStructure> {
-  final DashboardShellStructureStore store = DashboardShellStructureStore();
-
   double _getNavigationRailWidth(BuildContext context) {
-    return context.screenWidth * widget.navigationRailPercentage;
+    return context.screenWidth * navigationRailPercentage;
   }
-
-  // double _getNavigationRailMinWidth(BuildContext context) {
-  //   return context.screenWidth * 0.1;
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Material(
       child: Row(
         children: [
-          if (widget.boardNavigationRailPosition == NavigationRailPosition.left)
-            _buildNavigationRail(context),
+          if (boardNavigationRailPosition == NavigationRailPosition.left) _buildNavigationRail(context),
           const Expanded(child: AutoRouter()),
-          if (widget.boardNavigationRailPosition ==
-              NavigationRailPosition.right)
-            _buildNavigationRail(context),
+          if (boardNavigationRailPosition == NavigationRailPosition.right) _buildNavigationRail(context),
         ],
       ),
     );
@@ -132,25 +121,24 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
     return Observer(
       builder: (_) => IntrinsicHeightChildScroller(
         child: NavigationRail(
-          minWidth: widget.minWidth,
+          minWidth: minWidth,
           minExtendedWidth: _getNavigationRailWidth(context),
           useIndicator: false,
-          leading: widget.leading,
+          leading: leading,
           trailing: _buildTrailingStack(context),
-          extended: widget.labelType == NavigationRailLabelType.none &&
-              store.isNavigationRailExtended,
+          extended: labelType == NavigationRailLabelType.none && store.isNavigationRailExtended,
           selectedIndex: store.selectedIndex,
           onDestinationSelected: (value) {
-            widget.onDestinationSelected?.call(value);
+            onDestinationSelected?.call(value);
             store.selectedIndex = value;
           },
-          labelType: widget.labelType,
-          backgroundColor: widget.backgroundColor,
-          destinations: widget.destinations,
-          selectedIconTheme: widget.selectedIconTheme,
-          unselectedIconTheme: widget.unselectedIconTheme,
-          selectedLabelTextStyle: widget.selectedLabelTextStyle,
-          unselectedLabelTextStyle: widget.unSelectedLabelTextStyle,
+          labelType: labelType,
+          backgroundColor: backgroundColor,
+          destinations: destinations,
+          selectedIconTheme: selectedIconTheme,
+          unselectedIconTheme: unselectedIconTheme,
+          selectedLabelTextStyle: selectedLabelTextStyle,
+          unselectedLabelTextStyle: unSelectedLabelTextStyle,
         ),
       ),
     );
@@ -161,19 +149,13 @@ class _DashboardShellStructureState extends State<DashboardShellStructure> {
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
-          if (widget.trailing != null) widget.trailing!,
-          if (widget.isCollapsible)
+          if (trailing != null) trailing!,
+          if (isCollapsible)
             IconButton(
               icon: Icon(
                 store.isNavigationRailExtended
-                    ? (widget.boardNavigationRailPosition ==
-                            NavigationRailPosition.left
-                        ? Icons.chevron_left
-                        : Icons.chevron_right)
-                    : (widget.boardNavigationRailPosition ==
-                            NavigationRailPosition.left
-                        ? Icons.chevron_right
-                        : Icons.chevron_left),
+                    ? (boardNavigationRailPosition == NavigationRailPosition.left ? Icons.chevron_left : Icons.chevron_right)
+                    : (boardNavigationRailPosition == NavigationRailPosition.left ? Icons.chevron_right : Icons.chevron_left),
               ),
               onPressed: store.toggleNavigationRail,
             ),
