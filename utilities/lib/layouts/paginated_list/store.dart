@@ -45,11 +45,15 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
       setLoading();
       final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
       requestResponse = loadedResults.first;
-      if (loadedResults.second.isNotEmpty) {
+      if (loadedResults.second.isNotEmpty || refresh) {
         if (refresh) results.clear();
         results.addAll(loadedResults.second);
         results = ObservableList.of(results.toSet().toList());
-        return Future.delayed(Durations.long4, setLoaded);
+        if (results.isEmpty) {
+          results.clear();
+          return setEmpty("No results found");
+        }
+        return setLoaded();
       } else {
         if (results.isEmpty) {
           results.clear();

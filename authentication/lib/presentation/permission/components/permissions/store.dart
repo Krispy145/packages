@@ -45,7 +45,7 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
               return ChipsFormFieldStore<PermissionLevel>(
                 crud.name.toUpperCase(),
                 loadFilters: () async {
-                  return PermissionLevel.values;
+                  return optionsBasedOnCRUD(crud);
                 },
                 canSelectMultiple: false,
                 onSelectedChanged: (collectionSelection) {
@@ -64,16 +64,29 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
     return collection;
   }
 
+  List<PermissionLevel> optionsBasedOnCRUD(CRUD crud) {
+    switch (crud) {
+      case CRUD.create:
+        return [PermissionLevel.yes, PermissionLevel.no];
+      case CRUD.read:
+        return [PermissionLevel.yes, PermissionLevel.no];
+      case CRUD.update:
+        return [PermissionLevel.yes, PermissionLevel.no, PermissionLevel.review];
+      case CRUD.delete:
+        return [PermissionLevel.yes, PermissionLevel.no, PermissionLevel.review];
+    }
+  }
+
   UserPermissionsModel changedPermissionLevel(UserPermissionsModel crudOption, CRUD crud, List<PermissionLevel> permissionLevels) {
     if (permissionLevels.length > 1) throw Exception("Only one permission level can be selected");
     if (crud == CRUD.create) {
-      return crudOption.copyWith(canCreate: permissionLevels.first);
+      return crudOption.copyWith(canCreate: permissionLevels.firstOrNull);
     } else if (crud == CRUD.read) {
-      return crudOption.copyWith(canRead: permissionLevels.first);
+      return crudOption.copyWith(canRead: permissionLevels.firstOrNull);
     } else if (crud == CRUD.update) {
-      return crudOption.copyWith(canUpdate: permissionLevels.first);
+      return crudOption.copyWith(canUpdate: permissionLevels.firstOrNull);
     } else if (crud == CRUD.delete) {
-      return crudOption.copyWith(canDelete: permissionLevels.first);
+      return crudOption.copyWith(canDelete: permissionLevels.firstOrNull);
     }
     throw Exception("Invalid CRUD option");
   }

@@ -23,6 +23,17 @@ class FirestoreUserPermissionDataSource<T extends UserModel> extends FirestoreDa
     throw UnimplementedError();
   }
 
+  @override
+  Future<RequestResponse> update(String id, PermissionModel data) async {
+    await firestore.collection("users").doc(id).set(
+      {
+        "role": data.role,
+      },
+      SetOptions(merge: true),
+    );
+    return super.update(id, data);
+  }
+
   /// [_handleError] is an optional helper method that handles errors when calling the Firestore.
   // ignore: unused_element
   Future<T?> _handleError(Future<T?> Function() firestoreCall) async {

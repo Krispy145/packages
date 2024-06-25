@@ -89,9 +89,6 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
   static Map<String, dynamic>? _$writeData(ReviewModel v) => v.writeData;
   static const Field<ReviewModel, Map<String, dynamic>> _f$writeData =
       Field('writeData', _$writeData, key: 'write_data', opt: true);
-  static String? _$name(ReviewModel v) => v.name;
-  static const Field<ReviewModel, String> _f$name =
-      Field('name', _$name, opt: true);
   static DateTime _$createdAt(ReviewModel v) => v.createdAt;
   static const Field<ReviewModel, DateTime> _f$createdAt =
       Field('createdAt', _$createdAt, key: 'created_at');
@@ -103,7 +100,6 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
     #documentReference: _f$documentReference,
     #user: _f$user,
     #writeData: _f$writeData,
-    #name: _f$name,
     #createdAt: _f$createdAt,
   };
 
@@ -114,7 +110,6 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
         documentReference: data.dec(_f$documentReference),
         user: data.dec(_f$user),
         writeData: data.dec(_f$writeData),
-        name: data.dec(_f$name),
         createdAt: data.dec(_f$createdAt));
   }
 
@@ -178,7 +173,6 @@ abstract class ReviewModelCopyWith<$R, $In extends ReviewModel, $Out>
       String? documentReference,
       UserModel? user,
       Map<String, dynamic>? writeData,
-      String? name,
       DateTime? createdAt});
   ReviewModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -209,7 +203,6 @@ class _ReviewModelCopyWithImpl<$R, $Out>
           String? documentReference,
           UserModel? user,
           Object? writeData = $none,
-          Object? name = $none,
           DateTime? createdAt}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
@@ -217,7 +210,6 @@ class _ReviewModelCopyWithImpl<$R, $Out>
         if (documentReference != null) #documentReference: documentReference,
         if (user != null) #user: user,
         if (writeData != $none) #writeData: writeData,
-        if (name != $none) #name: name,
         if (createdAt != null) #createdAt: createdAt
       }));
   @override
@@ -228,7 +220,6 @@ class _ReviewModelCopyWithImpl<$R, $Out>
           data.get(#documentReference, or: $value.documentReference),
       user: data.get(#user, or: $value.user),
       writeData: data.get(#writeData, or: $value.writeData),
-      name: data.get(#name, or: $value.name),
       createdAt: data.get(#createdAt, or: $value.createdAt));
 
   @override
