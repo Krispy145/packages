@@ -252,17 +252,23 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
 
   @action
   void changeBaseThemeModel(BaseThemeModel model) {
+    toggleThemeMode();
     baseThemeModel = model;
+    toggleThemeMode();
   }
 
   @action
   void changeComponentThemesModel(ComponentThemesModel model) {
+    toggleThemeMode();
     componentThemesModel = model;
+    toggleThemeMode();
   }
 
   @action
   void setStyleType(String newStyleType) {
+    toggleThemeMode();
     styleType = newStyleType;
+    toggleThemeMode();
   }
 
   @action

@@ -6,6 +6,52 @@
 
 part of 'box_decoration_model.dart';
 
+class BoxShapeTypeMapper extends EnumMapper<BoxShapeType> {
+  BoxShapeTypeMapper._();
+
+  static BoxShapeTypeMapper? _instance;
+  static BoxShapeTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = BoxShapeTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static BoxShapeType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  BoxShapeType decode(dynamic value) {
+    switch (value) {
+      case 'rectangle':
+        return BoxShapeType.rectangle;
+      case 'circle':
+        return BoxShapeType.circle;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(BoxShapeType self) {
+    switch (self) {
+      case BoxShapeType.rectangle:
+        return 'rectangle';
+      case BoxShapeType.circle:
+        return 'circle';
+    }
+  }
+}
+
+extension BoxShapeTypeMapperExtension on BoxShapeType {
+  String toValue() {
+    BoxShapeTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<BoxShapeType>(this) as String;
+  }
+}
+
 class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
   BoxDecorationModelMapper._();
 
@@ -17,6 +63,7 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
       BorderRadiusModelMapper.ensureInitialized();
       BoxShadowModelMapper.ensureInitialized();
       GradientModelMapper.ensureInitialized();
+      BoxShapeTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -58,11 +105,11 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
           'backgroundBlendMode_enum_blendMode',
           _$backgroundBlendMode_enum_blendMode,
           opt: true);
-  static BoxShape? _$shape_enum_boxShape(BoxDecorationModel v) =>
+  static BoxShapeType? _$shape_enum_boxShape(BoxDecorationModel v) =>
       v.shape_enum_boxShape;
-  static const Field<BoxDecorationModel, BoxShape> _f$shape_enum_boxShape =
+  static const Field<BoxDecorationModel, BoxShapeType> _f$shape_enum_boxShape =
       Field('shape_enum_boxShape', _$shape_enum_boxShape,
-          opt: true, def: BoxShape.rectangle);
+          opt: true, def: BoxShapeType.rectangle);
 
   @override
   final MappableFields<BoxDecorationModel> fields = const {
@@ -158,7 +205,7 @@ abstract class BoxDecorationModelCopyWith<$R, $In extends BoxDecorationModel,
       List<BoxShadowModel>? boxShadows_list_boxShadow,
       GradientModel? gradient_gradient,
       BlendMode? backgroundBlendMode_enum_blendMode,
-      BoxShape? shape_enum_boxShape});
+      BoxShapeType? shape_enum_boxShape});
   BoxDecorationModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }

@@ -6,11 +6,23 @@ import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
 
 /// [ReviewDataRepository] is a class that defines the basic CRUD operations for the [ReviewModel] entity.
-class ReviewDataRepository<Resp extends ResponseModel, T> {
-  final ReviewDataSource<Resp, T> reviewDataSource;
+class ReviewDataRepository<T> {
+  final ReviewDataSource<ResponseModel, T> reviewDataSource;
 
   /// [ReviewDataRepository] constructor.
   ReviewDataRepository(this.reviewDataSource);
+
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPaged({
+    ResponseModel? lastResponse,
+    int? size,
+    String? orderBy,
+  }) {
+    return reviewDataSource.getPage(
+      lastResponse: lastResponse,
+      size: size,
+      orderBy: orderBy,
+    );
+  }
 
   /// [getAllCRUDSpecific] returns a list of [ReviewModel]s.
   Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud) async {
@@ -23,9 +35,9 @@ class ReviewDataRepository<Resp extends ResponseModel, T> {
   }
 
   /// [getAllPagedCRUD] returns a list of [ReviewModel]s.
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUD(
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUD(
     CRUD crud, {
-    Resp? lastResponse,
+    ResponseModel? lastResponse,
     int? size,
     String? orderBy,
   }) async {
@@ -48,10 +60,10 @@ class ReviewDataRepository<Resp extends ResponseModel, T> {
   }
 
   /// [getAllPagedCRUDByUserId] returns a list of [ReviewModel]s by [userId].
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllPagedCRUDByUserId(
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUDByUserId(
     CRUD crud, {
     required UUID userId,
-    Resp? lastResponse,
+    ResponseModel? lastResponse,
     int? size,
     String? orderBy,
   }) async {
@@ -62,6 +74,32 @@ class ReviewDataRepository<Resp extends ResponseModel, T> {
       size: size,
       orderBy: orderBy,
     );
+  }
+
+  Future<RequestResponse> acceptCRUD(CRUD crud, ReviewModel review) async {
+    switch (crud) {
+      case CRUD.create:
+        return reviewDataSource.acceptCreate(review);
+      case CRUD.update:
+        return reviewDataSource.acceptUpdate(review);
+      case CRUD.delete:
+        return reviewDataSource.acceptDelete(review);
+      default:
+        return RequestResponse.failure;
+    }
+  }
+
+  Future<RequestResponse> rejectCRUD(CRUD crud, ReviewModel review) async {
+    switch (crud) {
+      case CRUD.create:
+        return reviewDataSource.rejectCreate(review);
+      case CRUD.update:
+        return reviewDataSource.rejectUpdate(review);
+      case CRUD.delete:
+        return reviewDataSource.rejectDelete(review);
+      default:
+        return RequestResponse.failure;
+    }
   }
 
   /// [acceptCreate] accepts the creation of a [ReviewModel].
@@ -82,5 +120,15 @@ class ReviewDataRepository<Resp extends ResponseModel, T> {
   /// [rejectCreate] rejects the creation of a [ReviewModel].
   Future<RequestResponse> rejectCreate(ReviewModel review) async {
     return reviewDataSource.rejectCreate(review);
+  }
+
+  /// [rejectUpdate] rejects the update of a [ReviewModel].
+  Future<RequestResponse> rejectUpdate(ReviewModel review) async {
+    return reviewDataSource.rejectUpdate(review);
+  }
+
+  /// [rejectDelete] rejects the deletion of a [ReviewModel].
+  Future<RequestResponse> rejectDelete(ReviewModel review) async {
+    return reviewDataSource.rejectDelete(review);
   }
 }

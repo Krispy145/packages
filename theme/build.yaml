@@ -1,6 +1,4 @@
-targets:
-  $default:
-    builders:
-      json_serializable:
-        options:
-          explicit_to_json: true
+global_options:
+  dart_mappable_builder:
+    options:
+      ignoreNull: false # or true

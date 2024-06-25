@@ -336,6 +336,9 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       if (databaseUser?.second != null) {
         final _currentResponse = convertDataTypeToMap(databaseUser!.second!);
         _currentResponse["last_login_at"] = DateTime.now();
+        if (_currentResponse["created_at"] == null) {
+          _currentResponse["created_at"] = DateTime.now();
+        }
         userModelStream.add(convertDataTypeFromMap(_currentResponse));
         await userDataRepository?.updateUserModel(
           userModel: convertDataTypeFromMap(_currentResponse),
@@ -367,11 +370,11 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       photoUrl: userCredential.user?.photoURL ?? params.photoUrl,
       phoneNumber: userCredential.user?.phoneNumber ?? params.phoneNumber,
       refreshToken: userCredential.user?.refreshToken,
+      code: params.code,
       accessToken: params.accessToken,
       idToken: params.idToken,
       authType: params.authType,
       status: AuthStatus.authenticated,
-      createdAt: params.createdAt ?? DateTime.now(),
       updatedAt: params.updatedAt ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());

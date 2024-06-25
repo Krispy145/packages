@@ -1,5 +1,5 @@
 import "package:authentication/data/models/user_model.dart";
-import "package:authentication/data/repositories/permission.repository.dart";
+import "package:authentication/data/repositories/user_permission.repository.dart";
 import "package:authentication/data/sources/user/_source.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:rxdart/rxdart.dart";
@@ -44,7 +44,7 @@ class UserDataRepository<T extends UserModel> {
     this.baseUrl,
   });
   BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
-  PermissionDataRepository permissionDataRepository(UUID userId) => PermissionDataRepository(
+  UserPermissionDataRepository permissionDataRepository(UUID userId) => UserPermissionDataRepository(
         userDataSourceType: source,
         userId: userId,
       );
@@ -68,12 +68,16 @@ class UserDataRepository<T extends UserModel> {
     );
   }
 
-  Future<void> initPermissions(UUID userId) async {
+  Future<RequestResponse> initPermissions(UUID userId) async {
     if (hasPermissions) {
       await permissionDataRepository(userId).getPermissionModel().then((value) {
-        currentPermissionModelStream.add(value.second);
+        if (value.first == RequestResponse.success) {
+          currentPermissionModelStream.add(value.second);
+        }
+        return value.first;
       });
     }
+    return RequestResponse.success;
   }
 
   /// [getAllUserModels] returns a list of [UserModel]s.

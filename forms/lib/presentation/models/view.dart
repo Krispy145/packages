@@ -110,7 +110,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
 
     // LoadStateBuilder(
     //   viewStore: store,
-    //   errorBuilder: (context) => Center(
+    //   errorBuilder: (context,error) => Center(
     //     child: Text("Error loading ${T.toString().replaceAll("?", "")}"),
     //   ),
     //   loadedBuilder: (context) {

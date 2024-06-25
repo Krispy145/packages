@@ -12,10 +12,12 @@ class DropdownFormFieldStore<T> = _DropdownFormFieldStore<T> with _$DropdownForm
 abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with LoadStateStore, Store {
   final String emptyMessage;
   final String errorMessage;
+  final bool showSearch;
 
   _DropdownFormFieldStore({
     String? selectedId,
     bool Function(String id, T item)? matcher,
+    this.showSearch = true,
     required super.initialValue,
     required super.onValueChanged,
     required super.title,
@@ -41,7 +43,6 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Lo
   }
 
   Future<void> initialLoad(String? initialId, bool Function(String id, T item)? matcher) async {
-    setLoading();
     try {
       if (initialItems != null) {
         items.addAll(initialItems!);
@@ -51,17 +52,18 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Lo
         if (loadedItems != null) {
           items.addAll(loadedItems);
         }
-      }
-      if (initialId != null) {
-        final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
-        if (item != null) {
-          selectedItem = item;
+
+        if (initialId != null) {
+          final item = items.firstWhereOrNull((element) => matcher!(initialId, element));
+          if (item != null) {
+            selectedItem = item;
+          }
         }
-      }
-      if (items.isEmpty) {
-        setEmpty("No items found");
-      } else {
-        setLoaded();
+        if (items.isEmpty) {
+          setEmpty(emptyMessage);
+        } else {
+          setLoaded();
+        }
       }
     } catch (e) {
       setError(errorMessage);

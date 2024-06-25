@@ -7,14 +7,13 @@ import "package:theme/data/models/text/text_style_sizes_model.dart";
 import "package:theme/extensions/text_style_string.dart";
 import "package:utilities/sizes/spacers.dart";
 
-import "../enum.dart";
 import "store.dart";
 
 class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldStore> {
   TextStyleStringFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.textStyleField);
+  });
 
   @override
   Widget buildField(BuildContext context) {

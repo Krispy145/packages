@@ -15,7 +15,6 @@ enum CRUD {
 @MappableClass(caseStyle: CaseStyle.snakeCase, includeSubClasses: [CRUD])
 class ReviewModel with ReviewModelMappable {
   final String id;
-  final String? name;
   final CRUD crud;
   final String documentReference;
   final UserModel user;
@@ -28,7 +27,6 @@ class ReviewModel with ReviewModelMappable {
     required this.documentReference,
     required this.user,
     this.writeData,
-    this.name,
     required this.createdAt,
   });
 
@@ -45,7 +43,6 @@ class ReviewModel with ReviewModelMappable {
 
   static final reviewOne = ReviewModel(
     id: "reviewOneId",
-    name: "Review Model One",
     crud: CRUD.create,
     documentReference: "document/reference/id",
     user: UserModel.anonymous,
@@ -54,7 +51,6 @@ class ReviewModel with ReviewModelMappable {
 
   static final reviewTwo = ReviewModel(
     id: "reviewTwoId",
-    name: "Review Model Two",
     crud: CRUD.update,
     documentReference: "document/reference/id",
     user: UserModel.anonymous,
@@ -63,7 +59,6 @@ class ReviewModel with ReviewModelMappable {
 
   static final reviewThree = ReviewModel(
     id: "reviewThreeId",
-    name: "Review Model Three",
     crud: CRUD.delete,
     documentReference: "document/reference/id",
     user: UserModel.anonymous,

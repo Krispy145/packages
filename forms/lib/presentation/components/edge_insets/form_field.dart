@@ -5,14 +5,13 @@ import "package:utilities/helpers/extensions/string.dart";
 
 import "../base/form_field.dart";
 import "../double/form_field.dart";
-import "../enum.dart";
 import "store.dart";
 
 class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
   EdgeInsetsFormField({
     super.key,
     required super.store,
-  }) : super(type: FormFieldType.edgeInsetsField);
+  });
 
   double get doubleFormFieldWidth => 180;
 

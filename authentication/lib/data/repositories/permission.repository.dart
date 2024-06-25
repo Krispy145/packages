@@ -1,88 +1,53 @@
-import "package:authentication/data/repositories/user.repository.dart";
-import "package:authentication/data/sources/user/_source.dart";
-import "package:authentication/utils/loggers.dart";
 import "package:utilities/data/models/permission_model.dart";
+import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
-import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
-import "package:utilities/logger/logger.dart";
 
-import "/data/sources/permission/_source.dart";
+import "../sources/permission/_source.dart";
 
 /// [PermissionDataRepository] is a class that defines the basic CRUD operations for the [PermissionModel] entity.
 class PermissionDataRepository {
-  final UserDataSourceTypes userDataSourceType;
-  final UUID userId;
-
-  /// [PermissionDataRepository] constructor.
-  PermissionDataRepository({
-    required this.userDataSourceType,
-    required this.userId,
-  });
-
-  PermissionModel? currentPermissionModel;
-
   /// [getAllPermissionModels] returns a list of [PermissionModel]s.
-  Future<Pair<RequestResponse, List<PermissionModel?>>> getAllPermissionModels() async {
-    return _dataSourceByType(userDataSourceType).getAll();
+  Future<Pair<RequestResponse, List<PermissionModel?>>> getAllPermissionModels({required PermissionDataSource source}) async {
+    return source.getAll();
+  }
+
+  /// [getPagedPermissionModels] returns a page of [PermissionModel]s.
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<PermissionModel?>>>> getPagedPermissionModels({
+    required PermissionDataSource source,
+    int? limit,
+    ResponseModel? lastResponse,
+  }) async {
+    return source.getPage(size: limit, lastResponse: lastResponse);
   }
 
   /// [getPermissionModel] returns a single [PermissionModel].
-  Future<Pair<RequestResponse, PermissionModel?>> getPermissionModel() async {
-    return _dataSourceByType(userDataSourceType).getAll().then((value) {
-      if (value.second.isNotEmpty) {
-        return Pair(value.first, value.second.first);
-      } else {
-        return Pair(value.first, null);
-      }
-    });
+  Future<Pair<RequestResponse, PermissionModel?>> getPermissionModel({required PermissionDataSource source, required String id}) async {
+    return source.get(id);
   }
 
   /// [addAllPermissionModels] adds all [PermissionModel]s to the data source.
-  Future<RequestResponse> addAllPermissionModels({
-    required List<PermissionModel> permissionModels,
-  }) async {
-    return _dataSourceByType(userDataSourceType).addAll(permissionModels);
+  Future<RequestResponse> addAllPermissionModels({required PermissionDataSource source, required List<PermissionModel> permissionModels}) async {
+    return source.addAll(permissionModels);
   }
 
-  /// [addPermissionModel] adds a single [PermissionModel] to the data source.
-  Future<Pair<RequestResponse, PermissionModel?>> addPermissionModel({
-    required PermissionModel permissionModel,
-  }) async {
-    return _dataSourceByType(userDataSourceType).add(permissionModel);
+  /// [updateAllPermissionModels] updates all [PermissionModel]s in the data source.
+  Future<RequestResponse> updateAllPermissionModels({required PermissionDataSource source, required Map<String, PermissionModel> permissionModels}) async {
+    return source.updateAll(permissionModels);
   }
 
-  /// [updatePermissionModel] addits a single [PermissionModel] to the data source.
-  Future<RequestResponse> updatePermissionModel({
-    required PermissionModel permissionModel,
-  }) async {
-    return _dataSourceByType(userDataSourceType).update(permissionModel.id, permissionModel);
+  /// [addPermissionModel] addits a single [PermissionModel] to the data source.
+  Future<Pair<RequestResponse, PermissionModel?>> addPermissionModel({required PermissionDataSource source, required PermissionModel permissionModel}) async {
+    return source.add(permissionModel);
+  }
+
+  /// [updatePermissionModel] updates a single [PermissionModel] in the data source.
+  Future<RequestResponse> updatePermissionModel({required PermissionDataSource source, required PermissionModel permissionModel}) async {
+    return source.update(permissionModel.id, permissionModel);
   }
 
   /// [deletePermissionModel] deletes a single [PermissionModel] from the data source.
-  Future<RequestResponse> deletePermissionModel({
-    required String id,
-  }) async {
-    return _dataSourceByType(userDataSourceType).delete(id);
-  }
-
-  /// [_dataSourceByType] returns the appropriate [UserDataSource] based on the given [UserDataSourceTypes].
-  /// Default is [FirestoreUserDataSource].
-  /// This can be in local, an api, or firestore.
-  PermissionDataSource _dataSourceByType(UserDataSourceTypes source) {
-    switch (source) {
-      case UserDataSourceTypes.firestore:
-        return FirestorePermissionDataSource(
-          userId: userId,
-        );
-      default:
-        AppLogger.print(
-          "Unimplemented Data Source Type for $source",
-          [AuthenticationLoggers.permission],
-        );
-        return FirestorePermissionDataSource(
-          userId: userId,
-        );
-    }
+  Future<RequestResponse> deletePermissionModel({required PermissionDataSource source, required String id}) async {
+    return source.delete(id);
   }
 }

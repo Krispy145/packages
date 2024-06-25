@@ -16,7 +16,7 @@
 //   Widget build(BuildContext context) {
 //     return LoadStateBuilder(
 //       viewStore: store,
-//       emptyBuilder: (context) => const Center(
+//       emptyBuilder: (context,message) => const Center(
 //         child: Text("Empty video view."),
 //       ),
 //       loadedBuilder: (context) => ListView.builder(
@@ -29,7 +29,7 @@
 //           );
 //         },
 //       ),
-//       errorBuilder: (context) => const Center(
+//       errorBuilder: (context,error) => const Center(
 //         child: Text("Error loading video view."),
 //       ),
 //     );

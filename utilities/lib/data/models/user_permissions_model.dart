@@ -33,37 +33,37 @@ class UserPermissionsModel with UserPermissionsModelMappable {
   static const fromMap = UserPermissionsModelMapper.fromMap;
   static const fromJson = UserPermissionsModelMapper.fromJson;
 
-  static const UserPermissionsModel viewExample = UserPermissionsModel(
+  static const UserPermissionsModel viewer = UserPermissionsModel(
     canRead: PermissionLevel.yes,
   );
 
-  static const UserPermissionsModel adminExample = UserPermissionsModel(
+  static const UserPermissionsModel admin = UserPermissionsModel(
     canCreate: PermissionLevel.yes,
     canRead: PermissionLevel.yes,
     canUpdate: PermissionLevel.yes,
     canDelete: PermissionLevel.yes,
   );
 
-  static const UserPermissionsModel creatorExample = UserPermissionsModel(
+  static const UserPermissionsModel creator = UserPermissionsModel(
     canCreate: PermissionLevel.review,
     canRead: PermissionLevel.yes,
     canUpdate: PermissionLevel.review,
   );
 
-  static const UserPermissionsModel editorExample = UserPermissionsModel(
+  static const UserPermissionsModel editor = UserPermissionsModel(
     canRead: PermissionLevel.yes,
     canUpdate: PermissionLevel.review,
   );
 
-  static const UserPermissionsModel destroyerExample = UserPermissionsModel(
+  static const UserPermissionsModel destroyer = UserPermissionsModel(
     canDelete: PermissionLevel.yes,
   );
 
   static final List<UserPermissionsModel> fakeData = [
-    viewExample,
-    adminExample,
-    creatorExample,
-    editorExample,
-    destroyerExample,
+    viewer,
+    admin,
+    creator,
+    editor,
+    destroyer,
   ];
 }

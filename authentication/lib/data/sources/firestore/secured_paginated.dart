@@ -1,4 +1,5 @@
 import "package:authentication/data/models/review_model.dart";
+import "package:authentication/data/models/user_model.dart";
 import "package:authentication/data/sources/firestore/secured_source.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
@@ -7,7 +8,7 @@ import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 
-abstract class SecuredPaginatedFirestoreDataSource<T, Q> extends SecuredFirestoreDataSource<T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
+abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> extends SecuredFirestoreDataSource<U, T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
   /// [SecuredPaginatedFirestoreDataSource] constructor
   SecuredPaginatedFirestoreDataSource(
     super.collectionName, {
@@ -27,7 +28,7 @@ abstract class SecuredPaginatedFirestoreDataSource<T, Q> extends SecuredFirestor
     final _collection = firestore.collection(collectionName);
     Query<Map<String, dynamic>> query = _collection;
 
-    final permissionsFirestoreQuery = await _checkPermissionsForPage(query);
+    final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(query);
     if (permissionsFirestoreQuery == null) {
       return Pair(
         RequestResponse.denied,
@@ -77,7 +78,7 @@ abstract class SecuredPaginatedFirestoreDataSource<T, Q> extends SecuredFirestor
     required Q query,
   }) async {
     var firestoreQuery = buildQuery(query, collectionReference);
-    final permissionsFirestoreQuery = await _checkPermissionsForPage(firestoreQuery);
+    final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(firestoreQuery);
     if (permissionsFirestoreQuery == null) {
       return Pair(
         RequestResponse.denied,
@@ -114,29 +115,21 @@ abstract class SecuredPaginatedFirestoreDataSource<T, Q> extends SecuredFirestor
     );
   }
 
-  Future<Query<Map<String, dynamic>>?> _checkPermissionsForPage(
+  Future<Query<Map<String, dynamic>>?> _getPermissionBasedQueryForPage(
     Query<Map<String, dynamic>> query,
   ) async {
-    final checkPermissions = await checkPermissionLevel(CRUD.read);
-
-    final ids = <String>[];
-    final collectionNameEqualsFirst = checkPermissions.any(
-      (element) => element.first.split("/").first == collectionName && element.second == PermissionLevel.yes,
-    );
-    final secondEqualsAll = checkPermissions.any(
-      (element) => element.second == PermissionLevel.yes && element.first.split("/").last == "all",
-    );
-
-    if (collectionNameEqualsFirst && secondEqualsAll) {
+    final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
+    final pagedPermissionResponse = permissionChecker.checkPermissionsForPage(checkedPermissions: checkPermissions);
+    if (pagedPermissionResponse.first && pagedPermissionResponse.second) {
       query = query;
     } else {
-      ids.addAll(
-        checkPermissions
+      final ids = <String>[
+        ...checkPermissions
             .where(
               (element) => element.first.split("/").first == collectionName && element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
             )
             .map((e) => e.first.split("/").last),
-      );
+      ];
       if (ids.isEmpty) return null;
 
       query = query.where("id", whereIn: ids);

@@ -43,6 +43,7 @@ import "package:theme/data/models/text/text_style_sizes_model.dart";
 import "package:theme/data/models/text/text_types_model.dart";
 import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/models/tooltips/tooltip_model.dart";
+import "package:theme/domain/repositories/theme.repository.dart";
 import "package:theme/presentation/changer/view.dart";
 import "package:theme/presentation/components/colors/view.dart";
 import "package:theme/presentation/components/options.dart";
@@ -948,10 +949,16 @@ class ThemeChanger {
     html.Url.revokeObjectUrl(anchor.href!);
   }
 
-  static void updateThemeInRepository() {
+  static void updateThemeInRepository({ThemeRepository? repository}) {
     try {
-      _themeStore.repository?.updateTheme(_baseThemeModel!);
-      _themeStore.repository?.updateComponentTheme(_componentThemesModel!);
+      if (repository != null) {
+        repository.updateTheme(_baseThemeModel!);
+        print("Component themes model: $_componentThemesModel");
+        repository.updateComponentTheme(_componentThemesModel!);
+      } else {
+        _themeStore.repository?.updateTheme(_baseThemeModel!);
+        _themeStore.repository?.updateComponentTheme(_componentThemesModel!);
+      }
     } catch (e) {
       AppLogger.print(
         "Error updating theme in repository: $e",

@@ -1,9 +1,7 @@
 part of "_source.dart";
 
 /// [DummyPermissionDataSource] is a class that implements [PermissionDataSource] interface.
-class DummyPermissionDataSource
-    extends PaginatedDummyDataSource<PermissionModel, BasicSearchQueryModel>
-    implements PermissionDataSource<DummyDataResponseModel<PermissionModel?>> {
+class DummyPermissionDataSource extends PaginatedDummyDataSource<PermissionModel, BasicSearchQueryModel> implements PermissionDataSource<DummyDataResponseModel<PermissionModel?>> {
   @override
   List<PermissionModel> get fakeData => PermissionModel.fakeData;
 
