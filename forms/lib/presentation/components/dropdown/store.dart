@@ -14,7 +14,7 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Lo
   final String errorMessage;
 
   _DropdownFormFieldStore({
-    String? initialId,
+    String? selectedId,
     bool Function(String id, T item)? matcher,
     required super.initialValue,
     required super.onValueChanged,
@@ -28,7 +28,7 @@ abstract class _DropdownFormFieldStore<T> extends BaseFormFieldStore<T?> with Lo
     this.emptyMessage = "No items found",
     this.errorMessage = "Error loading items",
   }) {
-    initialLoad(initialId, matcher);
+    initialLoad(selectedId, matcher);
     // On Value Changed
     reaction<T?>((reaction) => value, (newValue) {
       if (newValue != null) {

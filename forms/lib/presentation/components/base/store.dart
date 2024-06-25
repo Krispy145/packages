@@ -39,12 +39,13 @@ abstract class _BaseFormFieldStore<T> with Store {
   }
 
   void valueChangeReaction() {
-    if (value == null) {
-      fieldState = fieldRequired ? EmptyRequiresValueFormFieldState<T>() : EmptyFormFieldState();
-    } else {
-      fieldState = validate(value as T);
-    }
-    onValueChanged(fieldState.canUseValue ? value : null);
+    onValueChanged(value);
+    // if (value == null) {
+    //   fieldState = fieldRequired ? EmptyRequiresValueFormFieldState<T>() : EmptyFormFieldState();
+    // } else {
+    //   fieldState = validate(value as T);
+    // }
+    // onValueChanged(fieldState.canUseValue ? value : null);
   }
 
   ///

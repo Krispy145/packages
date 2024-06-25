@@ -73,10 +73,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
   @action
   void setCenterMarker({MarkerModel? marker}) {
     if (marker == null) return;
-    addMarker(
-      marker,
-      clearFirst: true,
-    );
+    addMarker(marker, clearFirst: true);
     mapCenter = marker.position;
   }
 
