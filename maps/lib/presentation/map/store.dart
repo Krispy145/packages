@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
-import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:maps/constants/map_constants.dart';
 import 'package:maps/presentation/markers/helpers/cluster_data.dart';
 import 'package:maps/presentation/markers/icon_marker.dart';
 import 'package:maps/presentation/markers/number_marker.dart';
+import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:maps/utils/loggers.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/app/app.dart';

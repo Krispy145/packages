@@ -24,4 +24,7 @@ enum UtilitiesLoggers {
 
   /// [authentication] is the feature reference for authentication.
   authentication,
+
+  /// [timezone] is the feature reference for timezone.
+  timezone,
 }

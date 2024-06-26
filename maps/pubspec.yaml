@@ -17,10 +17,10 @@ dependencies:
   flutter_map:
   flutter_map_animations:
   # Github path neccessary until main branch gets updated with flutter_map v6 support
-  # flutter_map_supercluster: ^5.0.0-dev.1
-  # git:
-  #   url: https://github.com/rorystephenson/flutter_map_supercluster.git
-  #   ref: v5
+  flutter_map_supercluster:
+    git:
+      url: https://github.com/rorystephenson/flutter_map_supercluster.git
+      ref: v5
   latlong2:
   url_launcher: ^6.2.6
   forms:
