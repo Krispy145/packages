@@ -1,5 +1,4 @@
 import "package:forms/presentation/components/base/store.dart";
-import "package:forms/presentation/components/text/store.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/typedefs.dart";
 
@@ -23,60 +22,29 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
   @observable
   late ObservableList<URL> imageUrls = ObservableList();
 
-  @observable
-  late ObservableList<TextFormFieldStore> textStores = ObservableList();
+  @action
+  void addImage({required URL imageUrl}) {
+    imageUrls.add(imageUrl);
+    value = imageUrls;
+    print("IMAGES: Value after add: $value == $imageUrls");
+  }
 
   @action
-  void addImage({URL? imageUrl}) {
-    if (imageUrl == null) return;
-    imageUrls.add(imageUrl);
-    textStores.add(
-      TextFormFieldStore(
-        initialValue: imageUrl,
-        onValueChanged: (newValue) {
-          if (newValue != null) imageUrls[imageUrls.length - 1] = newValue;
-          onValueChanged(imageUrls);
-        },
-        title: "ImageUrl",
-      ),
-    );
+  void removeImage({required int index}) => imageUrls.removeAt(index);
+
+  @action
+  void updateImage({required URL imageUrl, required int index}) {
+    imageUrls[index] = imageUrl;
+    value = imageUrls;
+    print("IMAGES: Value after update: $value == $imageUrls");
   }
 
   @action
   void cancelChanges() {
     imageUrls = ObservableList.of(value ?? []);
-    textStores = ObservableList.of(
-      imageUrls
-          .map(
-            (e) => TextFormFieldStore(
-              initialValue: e,
-              onValueChanged: (newValue) {
-                final index = imageUrls.indexWhere((element) => element == e);
-                if (newValue != null) imageUrls[index] = newValue;
-              },
-              title: "ImageUrl",
-            ),
-          )
-          .toList(),
-    );
   }
 
   void _loadImages({List<URL>? value}) {
     imageUrls = ObservableList.of(value ?? []);
-    textStores = ObservableList.of(
-      imageUrls
-          .map(
-            (e) => TextFormFieldStore(
-              initialValue: e,
-              onValueChanged: (newValue) {
-                final index = imageUrls.indexWhere((element) => element == e);
-                if (newValue != null) imageUrls[index] = newValue;
-                onValueChanged(imageUrls);
-              },
-              title: "Image Url",
-            ),
-          )
-          .toList(),
-    );
   }
 }
