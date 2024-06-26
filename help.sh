@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the packages and projects lists
-packages=("utilities" "maps" "forms")
+packages=("maps")
 projects=("fellowship" "thrift_findr")
 
 # Define the project suffixes
