@@ -14,8 +14,11 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
   }) {
     _loadImages(value: value);
     // On Value Changed
-    reaction<List<String>?>((reaction) => value, (newValue) {
-      _loadImages(value: newValue);
+    // reaction<List<String>?>((reaction) => value, (newValue) {
+    //   _loadImages(value: newValue);
+    // });
+    reaction((p0) => imageUrls, (p0) {
+      value = imageUrls;
     });
   }
 
@@ -25,18 +28,32 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
   @action
   void addImage({required URL imageUrl}) {
     imageUrls.add(imageUrl);
-    value = imageUrls;
-    print("IMAGES: Value after add: $value == $imageUrls");
   }
 
   @action
-  void removeImage({required int index}) => imageUrls.removeAt(index);
+  void removeImage({required int index}) {
+    imageUrls.removeAt(index);
+  }
 
   @action
   void updateImage({required URL imageUrl, required int index}) {
     imageUrls[index] = imageUrl;
-    value = imageUrls;
-    print("IMAGES: Value after update: $value == $imageUrls");
+  }
+
+  @action
+  void reorderImages({required int oldIndex, required int newIndex}) {
+    if (oldIndex >= imageUrls.length) {
+      return;
+    }
+    if (oldIndex == newIndex) {
+      return;
+    }
+    var newIndexAfterCheck = newIndex;
+    if (newIndex >= imageUrls.length) {
+      newIndexAfterCheck = imageUrls.length - 1;
+    }
+    final item = imageUrls.removeAt(oldIndex);
+    imageUrls.insert(newIndexAfterCheck, item);
   }
 
   @action

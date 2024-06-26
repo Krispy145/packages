@@ -24,47 +24,53 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
           children: [
             SizedBox(
               height: 100,
-              child: Observer(
-                builder: (context) {
-                  return ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(width: 8),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: store.imageUrls.length + 1,
-                    itemBuilder: (context, index) {
-                      return Observer(
-                        builder: (context) => Container(
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                          clipBehavior: Clip.hardEdge,
-                          child: AspectRatio(
-                            aspectRatio: 1.7,
-                            child: Observer(
-                              builder: (context) {
-                                if (index == store.imageUrls.length) {
-                                  return InkWell(
-                                    onTap: () async => addOrEditImage(context, null),
-                                    child: Container(
-                                      color: context.colorScheme.primary.withOpacity(0.4),
-                                      child: Icon(Icons.add, color: context.colorScheme.onPrimary),
-                                    ),
-                                  );
-                                }
-                                return InkWell(
-                                  onTap: () async => addOrEditImage(context, index),
-                                  child: DOImage.network(
-                                    store.imageUrls[index],
-                                    options: NetworkImageOptions(
-                                      headers: PublicHeaders.map,
-                                      fit: BoxFit.cover,
-                                      errorWidget: (context, error, stackTrace) => const Icon(Icons.error),
-                                    ),
-                                  ),
-                                );
-                              },
+              child: ReorderableListView.builder(
+                onReorder: (oldIndex, newIndex) => store.reorderImages(oldIndex: oldIndex, newIndex: newIndex),
+                scrollDirection: Axis.horizontal,
+                itemCount: store.imageUrls.length + 1,
+                buildDefaultDragHandles: false,
+                itemBuilder: (context, index) {
+                  if (index == store.imageUrls.length) {
+                    return Container(
+                      key: const ValueKey("add_card"),
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                      clipBehavior: Clip.hardEdge,
+                      child: AspectRatio(
+                        aspectRatio: 1.7,
+                        child: InkWell(
+                          onTap: () async => addOrEditImage(context, null),
+                          child: Container(
+                            color: context.colorScheme.primary.withOpacity(0.4),
+                            child: Icon(Icons.add, color: context.colorScheme.onPrimary),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  return ReorderableDragStartListener(
+                    key: ValueKey("index-${store.imageUrls[index]}"),
+                    index: index,
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: Container(
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                        clipBehavior: Clip.hardEdge,
+                        child: AspectRatio(
+                          aspectRatio: 1.7,
+                          child: InkWell(
+                            onTap: () async => addOrEditImage(context, index),
+                            child: DOImage.network(
+                              store.imageUrls[index],
+                              options: NetworkImageOptions(
+                                headers: PublicHeaders.map,
+                                fit: BoxFit.cover,
+                                errorWidget: (context, error, stackTrace) => const Icon(Icons.error),
+                              ),
                             ),
                           ),
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   );
                 },
               ),
