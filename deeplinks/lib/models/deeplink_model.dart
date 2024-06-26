@@ -1,6 +1,7 @@
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter_branch_sdk/flutter_branch_sdk.dart";
 import "package:navigation/models/app_destination_model.dart";
+import "package:utilities/data/typedefs.dart";
 
 part "deeplink_model.mapper.dart";
 
@@ -9,8 +10,9 @@ class DeepLinkModel with DeepLinkModelMappable {
   final String canonicalIdentifier;
   final String title;
   final String? contentDescription;
-  final String? imageUrl;
-  final String? canonicalUrl;
+  final URL? imageUrl;
+  final URL? canonicalUrl;
+  final URL? fallbackUrl;
   final AppDestinationModel? destination;
   final Map<String, dynamic>? metadata;
   @MappableValue(<String>[])
@@ -27,6 +29,7 @@ class DeepLinkModel with DeepLinkModelMappable {
     this.contentDescription,
     this.imageUrl,
     this.canonicalUrl,
+    this.fallbackUrl,
     this.destination,
     this.metadata,
     this.keywords = const [],
@@ -37,29 +40,6 @@ class DeepLinkModel with DeepLinkModelMappable {
 
   static const fromMap = DeepLinkModelMapper.fromMap;
   static const fromJson = DeepLinkModelMapper.fromJson;
-
-  // static const empty = DeepLinkModel(id: "");
-
-  // static const deepLinkOne = DeepLinkModel(
-  //   id: "deepLinkOneId",
-  //   name: "{{name.titleCase()}} One",
-  // );
-
-  // static const deepLinkTwo = DeepLinkModel(
-  //   id: "deepLinkTwoId",
-  //   name: "{{name.titleCase()}} Two",
-  // );
-
-  // static const deepLinkThree = DeepLinkModel(
-  //   id: "deepLinkThreeId",
-  //   name: "{{name.titleCase()}} Three",
-  // );
-
-  // static final List<DeepLinkModel> fakeData = [
-  //   deepLinkOne,
-  //   deepLinkTwo,
-  //   deepLinkThree,
-  // ];
 
   /// BranchUniversalObject from the deep link model.
   BranchUniversalObject get branchUniversalObject => BranchUniversalObject(
@@ -126,11 +106,14 @@ class DeepLinkModel with DeepLinkModelMappable {
   BranchContentMetaData? _mapToBranchContentMetaData(
     Map<String, dynamic>? metadata,
   ) {
-    if (metadata == null) return null;
+    final _metadata = metadata ?? {};
     final contentMetadata = BranchContentMetaData();
-    metadata.forEach(contentMetadata.addCustomMetadata);
+    _metadata.forEach(contentMetadata.addCustomMetadata);
     if (destination != null) {
       contentMetadata.addCustomMetadata("destination", destination!.toJson());
+    }
+    if (fallbackUrl != null) {
+      contentMetadata.addCustomMetadata("fallback_url", fallbackUrl.toString());
     }
     return contentMetadata;
   }

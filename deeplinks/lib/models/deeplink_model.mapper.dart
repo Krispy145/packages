@@ -37,6 +37,9 @@ class DeepLinkModelMapper extends ClassMapperBase<DeepLinkModel> {
   static String? _$canonicalUrl(DeepLinkModel v) => v.canonicalUrl;
   static const Field<DeepLinkModel, String> _f$canonicalUrl =
       Field('canonicalUrl', _$canonicalUrl, key: 'canonical_url', opt: true);
+  static String? _$fallbackUrl(DeepLinkModel v) => v.fallbackUrl;
+  static const Field<DeepLinkModel, String> _f$fallbackUrl =
+      Field('fallbackUrl', _$fallbackUrl, key: 'fallback_url', opt: true);
   static AppDestinationModel? _$destination(DeepLinkModel v) => v.destination;
   static const Field<DeepLinkModel, AppDestinationModel> _f$destination =
       Field('destination', _$destination, opt: true);
@@ -66,6 +69,7 @@ class DeepLinkModelMapper extends ClassMapperBase<DeepLinkModel> {
     #contentDescription: _f$contentDescription,
     #imageUrl: _f$imageUrl,
     #canonicalUrl: _f$canonicalUrl,
+    #fallbackUrl: _f$fallbackUrl,
     #destination: _f$destination,
     #metadata: _f$metadata,
     #keywords: _f$keywords,
@@ -81,6 +85,7 @@ class DeepLinkModelMapper extends ClassMapperBase<DeepLinkModel> {
         contentDescription: data.dec(_f$contentDescription),
         imageUrl: data.dec(_f$imageUrl),
         canonicalUrl: data.dec(_f$canonicalUrl),
+        fallbackUrl: data.dec(_f$fallbackUrl),
         destination: data.dec(_f$destination),
         metadata: data.dec(_f$metadata),
         keywords: data.dec(_f$keywords),
@@ -153,6 +158,7 @@ abstract class DeepLinkModelCopyWith<$R, $In extends DeepLinkModel, $Out>
       String? contentDescription,
       String? imageUrl,
       String? canonicalUrl,
+      String? fallbackUrl,
       AppDestinationModel? destination,
       Map<String, dynamic>? metadata,
       List<String>? keywords,
@@ -193,6 +199,7 @@ class _DeepLinkModelCopyWithImpl<$R, $Out>
           Object? contentDescription = $none,
           Object? imageUrl = $none,
           Object? canonicalUrl = $none,
+          Object? fallbackUrl = $none,
           Object? destination = $none,
           Object? metadata = $none,
           List<String>? keywords,
@@ -207,6 +214,7 @@ class _DeepLinkModelCopyWithImpl<$R, $Out>
           #contentDescription: contentDescription,
         if (imageUrl != $none) #imageUrl: imageUrl,
         if (canonicalUrl != $none) #canonicalUrl: canonicalUrl,
+        if (fallbackUrl != $none) #fallbackUrl: fallbackUrl,
         if (destination != $none) #destination: destination,
         if (metadata != $none) #metadata: metadata,
         if (keywords != null) #keywords: keywords,
@@ -223,6 +231,7 @@ class _DeepLinkModelCopyWithImpl<$R, $Out>
           data.get(#contentDescription, or: $value.contentDescription),
       imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       canonicalUrl: data.get(#canonicalUrl, or: $value.canonicalUrl),
+      fallbackUrl: data.get(#fallbackUrl, or: $value.fallbackUrl),
       destination: data.get(#destination, or: $value.destination),
       metadata: data.get(#metadata, or: $value.metadata),
       keywords: data.get(#keywords, or: $value.keywords),
