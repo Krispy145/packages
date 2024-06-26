@@ -171,6 +171,10 @@ class AuthenticationRepository<T extends UserModel> {
       final _currentResponse = convertDataTypeToMap(changedUserModel!);
       await _verifyCode(params, changedUserModel);
       _currentResponse["last_login_at"] = DateTime.now();
+      await userDataRepository.initPermissions(changedUserModel.id);
+      if (userDataRepository.currentPermissionModelStream.value != null) {
+        _currentResponse["role"] = userDataRepository.currentPermissionModelStream.value!.role;
+      }
       changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUserModel(userModel: changedUserModel);
       final _updatedUserResponse = await userDataRepository.getUserModel(id: changedUserModel.id);
@@ -185,7 +189,6 @@ class AuthenticationRepository<T extends UserModel> {
         );
         await userDataRepository.addUserModel(userModel: changedUserModel);
       }
-      await userDataRepository.initPermissions(changedUserModel.id);
       return changedUserModel;
     } catch (e) {
       AppLogger.print(
@@ -218,6 +221,7 @@ class AuthenticationRepository<T extends UserModel> {
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
     await userDataRepository.updateUserModel(userModel: changedUserModel);
+    userDataRepository.currentPermissionModelStream.add(null);
     return _authenticationDataRepository.signOut();
   }
 
