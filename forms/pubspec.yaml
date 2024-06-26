@@ -14,8 +14,8 @@ dependencies:
     sdk: flutter
   theme:
     path: ../../packages/theme
-  utilities:
-    path: ../../packages/utilities
+  widgets:
+    path: ../../packages/widgets
   reactive_dropdown_search: ^3.0.2
   reactive_file_picker: ^3.0.0
   reactive_forms: ^17.0.0

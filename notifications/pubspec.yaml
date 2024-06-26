@@ -17,8 +17,6 @@ dependencies:
   navigation:
     path: ../../packages/navigation
   universal_io: ^2.2.2
-  utilities:
-    path: ../../packages/utilities
   flutter_timezone: ^1.0.8
 
 dev_dependencies:
