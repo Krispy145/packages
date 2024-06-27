@@ -108,12 +108,16 @@ class DeepLinkModel with DeepLinkModelMappable {
   ) {
     final _metadata = metadata ?? {};
     final contentMetadata = BranchContentMetaData();
-    _metadata.forEach(contentMetadata.addCustomMetadata);
+    for (final key in _metadata.keys) {
+      if (_metadata[key] != null && _metadata[key] != "") {
+        contentMetadata.addCustomMetadata(key, _metadata[key]);
+      }
+    }
     if (destination != null) {
       contentMetadata.addCustomMetadata("destination", destination!.toJson());
     }
-    if (fallbackUrl != null) {
-      contentMetadata.addCustomMetadata("fallback_url", fallbackUrl.toString());
+    if (fallbackUrl != null || (fallbackUrl?.isNotEmpty ?? false)) {
+      contentMetadata.addCustomMetadata(r"$fallback_url", fallbackUrl.toString());
     }
     return contentMetadata;
   }
