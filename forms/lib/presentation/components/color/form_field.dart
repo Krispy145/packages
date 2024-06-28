@@ -1,6 +1,8 @@
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "color_circle.dart";
@@ -78,7 +80,7 @@ class _ThemeColorStringSlider extends StatelessWidget {
   final Color fixedColor;
   final double max;
 
-  const _ThemeColorStringSlider({
+  _ThemeColorStringSlider({
     required this.label,
     required this.value,
     required this.onChanged,
@@ -86,28 +88,47 @@ class _ThemeColorStringSlider extends StatelessWidget {
     required this.max,
   });
 
+  final TextEditingController _controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(label),
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Slider(
-              max: max,
-              activeColor: fixedColor,
-              value: value,
-              label: value.toString(),
-              onChanged: onChanged,
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Slider(
+            max: max,
+            activeColor: fixedColor,
+            value: value,
+            label: value.toString(),
+            onChanged: onChanged,
+          ),
+          Sizes.s.spacer(),
+          SizedBox(
+            width: 100,
+            height: 32,
+            child: TextField(
+              controller: _controller..text = value.toString(),
+              style: TextStyle(color: context.colorScheme.onPrimary),
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                labelText: label,
+              ),
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp("[0-9.]")),
+              ],
+              onSubmitted: (value) {
+                final doubleValue = double.parse(value);
+                if (doubleValue >= 0 && doubleValue <= max) {
+                  onChanged(doubleValue);
+                }
+              },
             ),
-            Text(
-              double.parse(value.toStringAsFixed(2)).toString(),
-            ), // TODO: Change to better rounding
-          ],
-        ),
-      ],
+          ),
+          Sizes.xl.spacer(),
+        ],
+      ),
     );
   }
 }

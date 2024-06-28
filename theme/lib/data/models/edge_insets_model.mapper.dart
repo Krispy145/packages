@@ -6,6 +6,60 @@
 
 part of 'edge_insets_model.dart';
 
+class EdgeInsetsTypesMapper extends EnumMapper<EdgeInsetsTypes> {
+  EdgeInsetsTypesMapper._();
+
+  static EdgeInsetsTypesMapper? _instance;
+  static EdgeInsetsTypesMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = EdgeInsetsTypesMapper._());
+    }
+    return _instance!;
+  }
+
+  static EdgeInsetsTypes fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  EdgeInsetsTypes decode(dynamic value) {
+    switch (value) {
+      case 'all':
+        return EdgeInsetsTypes.all;
+      case 'symmetric':
+        return EdgeInsetsTypes.symmetric;
+      case 'only':
+        return EdgeInsetsTypes.only;
+      case 'zero':
+        return EdgeInsetsTypes.zero;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(EdgeInsetsTypes self) {
+    switch (self) {
+      case EdgeInsetsTypes.all:
+        return 'all';
+      case EdgeInsetsTypes.symmetric:
+        return 'symmetric';
+      case EdgeInsetsTypes.only:
+        return 'only';
+      case EdgeInsetsTypes.zero:
+        return 'zero';
+    }
+  }
+}
+
+extension EdgeInsetsTypesMapperExtension on EdgeInsetsTypes {
+  String toValue() {
+    EdgeInsetsTypesMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<EdgeInsetsTypes>(this) as String;
+  }
+}
+
 class EdgeInsetsModelMapper extends ClassMapperBase<EdgeInsetsModel> {
   EdgeInsetsModelMapper._();
 

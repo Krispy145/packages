@@ -1,9 +1,14 @@
+import "dart:math";
+
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:palette_generator/palette_generator.dart";
+import "package:theme/app/app.dart";
 import "package:theme/data/models/colors/color_schemes_model.dart";
 import "package:theme/domain/converters/colors/color.dart";
 import "package:utilities/helpers/extensions/string.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:xml/xml.dart";
 
 part "color_model.mapper.dart";
@@ -274,6 +279,121 @@ class ColorModel with ColorModelMappable {
     return xmlBuilder.buildDocument();
   }
 
+  static Future<ColorModel> fromImage({required ImageProvider provider}) async {
+    final brightness = AppTheme.isDark ? Brightness.dark : Brightness.light;
+    final paletteGenerator = await PaletteGenerator.fromImageProvider(provider, maximumColorCount: 10);
+
+    // Function to ensure high contrast
+    Color ensureHighContrast(Color backgroundColor, Color fallbackColor) {
+      return backgroundColor.computeLuminance() > 0.5 ? backgroundColor : fallbackColor;
+    }
+
+    final paletteColors = paletteGenerator.paletteColors.map((e) => Pair(e.color, e.population)).toList();
+
+    final distinctColors = <Pair<Color, int>>[];
+    for (final color in paletteColors) {
+      if (distinctColors.every((c) => isSignificantlyDifferent(c.first, color.first))) {
+        distinctColors.add(color);
+      }
+    }
+
+    final seededPrimary = ColorScheme.fromSeed(seedColor: distinctColors[0].first, brightness: brightness);
+    final seededSecondary = ColorScheme.fromSeed(seedColor: distinctColors[1].first, brightness: brightness);
+    final seededTertiary = ColorScheme.fromSeed(seedColor: distinctColors[2].first, brightness: brightness);
+
+    final brightnessMuted = brightness == Brightness.dark ? paletteGenerator.darkMutedColor?.color : paletteGenerator.lightMutedColor?.color;
+
+    final primary = distinctColors[0].first;
+    final secondary = distinctColors[1].first;
+    final tertiary = distinctColors[2].first;
+    final background = brightnessMuted ?? seededPrimary.background;
+    final surface = background.withBlue(background.blue - 8).withGreen(background.green - 8).withRed(background.red - 8);
+    final error = paletteGenerator.dominantColor?.color ?? seededPrimary.error;
+
+    return ColorModel(
+      //Primary Colors
+      primary: brightness == Brightness.dark ? ensureHighContrast(primary, seededSecondary.primary) : primary,
+      primaryContainer: brightness == Brightness.dark ? secondary : primary,
+      onPrimary: brightness == Brightness.dark ? primary : ensureHighContrast(primary, seededSecondary.primary),
+      onPrimaryContainer: brightness == Brightness.dark ? primary : secondary,
+      inversePrimary: seededSecondary.inversePrimary,
+
+      //Secondary Colors
+      secondary: secondary,
+      secondaryContainer: seededSecondary.primaryContainer,
+      onSecondary: ensureHighContrast(secondary, seededTertiary.primary),
+      onSecondaryContainer: seededSecondary.primaryContainer,
+
+      //Tertiary Colors
+      tertiary: tertiary,
+      tertiaryContainer: seededTertiary.primaryContainer,
+      onTertiary: ensureHighContrast(tertiary, primary),
+      onTertiaryContainer: seededTertiary.primaryContainer,
+
+      //Error Colors
+      error: error,
+      onError: ensureHighContrast(error, seededPrimary.onError),
+      errorContainer: seededPrimary.errorContainer,
+      onErrorContainer: seededPrimary.onErrorContainer,
+
+      //Background Colors
+      background: background,
+      surface: surface,
+      onBackground: seededPrimary.onBackground,
+      onSurface: seededPrimary.onSurface,
+      onInverseSurface: seededPrimary.onInverseSurface,
+      onSurfaceVariant: seededPrimary.onSurfaceVariant,
+      inverseSurface: seededPrimary.inverseSurface,
+
+      //Scrim Colors
+      outline: seededPrimary.outline,
+      outlineVariant: seededPrimary.outlineVariant,
+      scrim: seededPrimary.scrim,
+      shadow: seededPrimary.shadow,
+      surfaceTint: secondary,
+
+      //Information Colors
+      information: secondary,
+      onInformation: seededSecondary.onPrimary,
+      informationContainer: seededSecondary.primaryContainer,
+      onInformationContainer: seededSecondary.onPrimaryContainer,
+    );
+  }
+
+  static ColorModel fromSeed({required Color seedColor}) {
+    final seedColorScheme = ColorScheme.fromSeed(seedColor: seedColor);
+    return ColorModel(
+      primary: seedColorScheme.primary,
+      primaryContainer: seedColorScheme.primaryContainer,
+      secondary: seedColorScheme.secondary,
+      secondaryContainer: seedColorScheme.secondaryContainer,
+      background: seedColorScheme.surface,
+      surface: seedColorScheme.surface,
+      error: seedColorScheme.error,
+      onPrimary: seedColorScheme.onPrimary,
+      onSecondary: seedColorScheme.onSecondary,
+      onBackground: seedColorScheme.onSurface,
+      onSurface: seedColorScheme.onSurface,
+      onError: seedColorScheme.onError,
+      onErrorContainer: seedColorScheme.onErrorContainer,
+      onInverseSurface: seedColorScheme.onInverseSurface,
+      onPrimaryContainer: seedColorScheme.onPrimaryContainer,
+      onSecondaryContainer: seedColorScheme.onSecondaryContainer,
+      onSurfaceVariant: seedColorScheme.onSurfaceVariant,
+      onTertiary: seedColorScheme.onTertiary,
+      onTertiaryContainer: seedColorScheme.onTertiaryContainer,
+      outline: seedColorScheme.outline,
+      outlineVariant: seedColorScheme.outlineVariant,
+      scrim: seedColorScheme.scrim,
+      shadow: seedColorScheme.shadow,
+      surfaceTint: seedColorScheme.surfaceTint,
+      tertiary: seedColorScheme.tertiary,
+      tertiaryContainer: seedColorScheme.tertiaryContainer,
+      inversePrimary: seedColorScheme.inversePrimary,
+      inverseSurface: seedColorScheme.inverseSurface,
+    );
+  }
+
   static ColorModel defaultModel({required Brightness brightness}) {
     final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
     return ColorModel(
@@ -408,8 +528,6 @@ class ColorModel with ColorModelMappable {
   //       "scrim": const ColorMapper().toJson(scrim),
   //     };
 }
-
-
 
 //
 //
@@ -803,3 +921,61 @@ class ColorModel with ColorModelMappable {
 //   //       "scrim": const ColorMapper().toJson(scrim),
 //   //     };
 // }
+
+// Helper functions to convert RGB to XYZ
+List<double> _rgbToXyz(Color color) {
+  var r = color.red / 255.0;
+  var g = color.green / 255.0;
+  var b = color.blue / 255.0;
+
+  r = (r > 0.04045) ? pow((r + 0.055) / 1.055, 2.4).toDouble() : r / 12.92;
+  g = (g > 0.04045) ? pow((g + 0.055) / 1.055, 2.4).toDouble() : g / 12.92;
+  b = (b > 0.04045) ? pow((b + 0.055) / 1.055, 2.4).toDouble() : b / 12.92;
+
+  r *= 100;
+  g *= 100;
+  b *= 100;
+
+  // Observer. = 2°, Illuminant = D65
+  return [
+    r * 0.4124 + g * 0.3576 + b * 0.1805,
+    r * 0.2126 + g * 0.7152 + b * 0.0722,
+    r * 0.0193 + g * 0.1192 + b * 0.9505,
+  ];
+}
+
+// Helper functions to convert XYZ to LAB
+List<double> _xyzToLab(List<double> xyz) {
+  var x = xyz[0] / 95.047;
+  var y = xyz[1] / 100.000;
+  var z = xyz[2] / 108.883;
+
+  x = (x > 0.008856) ? pow(x, 1 / 3).toDouble() : (7.787 * x) + (16 / 116);
+  y = (y > 0.008856) ? pow(y, 1 / 3).toDouble() : (7.787 * y) + (16 / 116);
+  z = (z > 0.008856) ? pow(z, 1 / 3).toDouble() : (7.787 * z) + (16 / 116);
+
+  return [(116 * y) - 16, 500 * (x - y), 200 * (y - z)];
+}
+
+// Function to convert RGB to LAB
+List<double> rgbToLab(Color color) {
+  final xyz = _rgbToXyz(color);
+  return _xyzToLab(xyz);
+}
+
+// Function to calculate the Euclidean distance between two LAB colors
+double colorDifference(Color color1, Color color2) {
+  final lab1 = rgbToLab(color1);
+  final lab2 = rgbToLab(color2);
+
+  final deltaL = lab1[0] - lab2[0];
+  final deltaA = lab1[1] - lab2[1];
+  final deltaB = lab1[2] - lab2[2];
+
+  return sqrt(deltaL * deltaL + deltaA * deltaA + deltaB * deltaB);
+}
+
+// Function to check if the color difference is significant
+bool isSignificantlyDifferent(Color color1, Color color2, {double threshold = 30.0}) {
+  return colorDifference(color1, color2) > threshold;
+}

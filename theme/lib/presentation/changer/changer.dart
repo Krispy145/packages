@@ -45,7 +45,9 @@ import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/models/tooltips/tooltip_model.dart";
 import "package:theme/domain/repositories/theme.repository.dart";
 import "package:theme/presentation/changer/view.dart";
+import "package:theme/presentation/components/color_seed.dart";
 import "package:theme/presentation/components/colors/view.dart";
+import "package:theme/presentation/components/image_seed.dart";
 import "package:theme/presentation/components/options.dart";
 import "package:theme/presentation/components/textStyles/view.dart";
 import "package:theme/presentation/panel/base_view.dart";
@@ -113,6 +115,30 @@ class ThemeChanger {
       useSafeArea: true,
       context: context,
       builder: (context) => ColorsView(),
+    );
+  }
+
+  static Future<void> currentColorThemeFromImageChanger({
+    required BuildContext context,
+  }) {
+    return showModalBottomSheet(
+      barrierColor: Colors.transparent,
+      isScrollControlled: true,
+      useSafeArea: true,
+      context: context,
+      builder: (context) => const UploadImageWidget(),
+    );
+  }
+
+  static Future<void> currentColorThemeFromSeedChanger({
+    required BuildContext context,
+  }) {
+    return showModalBottomSheet(
+      barrierColor: Colors.transparent,
+      isScrollControlled: true,
+      useSafeArea: true,
+      context: context,
+      builder: (context) => ColorSeed(),
     );
   }
 

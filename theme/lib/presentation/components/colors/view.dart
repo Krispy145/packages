@@ -28,7 +28,7 @@ class ColorsView extends StatelessWidget {
     return ExpandingPanelViewBuilder.right(
       widthPercentage: 0.45,
       panelViewBuilder: (context) {
-        return Observer(
+        return Builder(
           builder: (context) {
             final selectedColor = store.selectedColor;
             final colorFormFieldStore = ColorFormFieldStore(
@@ -47,9 +47,13 @@ class ColorsView extends StatelessWidget {
                 }
               },
             );
-            return ColorFormField(
-              showTitle: false,
-              store: colorFormFieldStore,
+            return Observer(
+              builder: (context) {
+                return ColorFormField(
+                  showTitle: false,
+                  store: colorFormFieldStore,
+                );
+              },
             );
           },
         );
