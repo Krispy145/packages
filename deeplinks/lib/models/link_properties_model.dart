@@ -27,29 +27,6 @@ class LinkPropertiesModel with LinkPropertiesModelMappable {
   static const fromMap = LinkPropertiesModelMapper.fromMap;
   static const fromJson = LinkPropertiesModelMapper.fromJson;
 
-  // static const empty = LinkPropertiesModel(id: "");
-
-  // static const linkPropertiesOne = LinkPropertiesModel(
-  //   id: "linkPropertiesOneId",
-  //   name: "{{name.titleCase()}} One",
-  // );
-
-  // static const linkPropertiesTwo = LinkPropertiesModel(
-  //   id: "linkPropertiesTwoId",
-  //   name: "{{name.titleCase()}} Two",
-  // );
-
-  // static const linkPropertiesThree = LinkPropertiesModel(
-  //   id: "linkPropertiesThreeId",
-  //   name: "{{name.titleCase()}} Three",
-  // );
-
-  // static final List<LinkPropertiesModel> fakeData = [
-  //   linkPropertiesOne,
-  //   linkPropertiesTwo,
-  //   linkPropertiesThree,
-  // ];
-
   factory LinkPropertiesModel.empty() => const LinkPropertiesModel(
         feature: "",
         alias: "",
@@ -69,46 +46,3 @@ class LinkPropertiesModel with LinkPropertiesModelMappable {
         campaign: campaign ?? "",
       );
 }
-
-
-// import "package:flutter_branch_sdk/flutter_branch_sdk.dart";
-// import "package:freezed_annotation/freezed_annotation.dart";
-
-// part "link_properties_model.freezed.dart";
-// part "link_properties_model.g.dart";
-
-// @unfreezed
-// class LinkPropertiesModel with _$LinkPropertiesModel {
-//   factory LinkPropertiesModel({
-//     @Default([]) List<String> tags,
-//     String? feature,
-//     String? alias,
-//     String? stage,
-//     Duration? matchDuration,
-//     String? channel,
-//     String? campaign,
-//   }) = _LinkProperties;
-//   const LinkPropertiesModel._();
-
-//   factory LinkPropertiesModel.empty() => LinkPropertiesModel(
-//         feature: "",
-//         alias: "",
-//         stage: "",
-//         matchDuration: Duration.zero,
-//         channel: "",
-//         campaign: "",
-//       );
-
-//   BranchLinkProperties get branchLinkProperties => BranchLinkProperties(
-//         tags: tags,
-//         feature: feature ?? "",
-//         alias: alias ?? "",
-//         stage: stage ?? "",
-//         matchDuration: matchDuration?.inMilliseconds ?? 0,
-//         channel: channel ?? "",
-//         campaign: campaign ?? "",
-//       );
-
-//   factory LinkPropertiesModel.fromJson(Map<String, dynamic> json) =>
-//       _$LinkPropertiesModelFromJson(json);
-// }
