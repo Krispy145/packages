@@ -66,6 +66,17 @@ mixin _$ImagesFormFieldStore on _ImagesFormFieldStore, Store {
   }
 
   @override
+  void reorderImages({required int oldIndex, required int newIndex}) {
+    final _$actionInfo = _$_ImagesFormFieldStoreActionController.startAction(
+        name: '_ImagesFormFieldStore.reorderImages');
+    try {
+      return super.reorderImages(oldIndex: oldIndex, newIndex: newIndex);
+    } finally {
+      _$_ImagesFormFieldStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void cancelChanges() {
     final _$actionInfo = _$_ImagesFormFieldStoreActionController.startAction(
         name: '_ImagesFormFieldStore.cancelChanges');

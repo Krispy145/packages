@@ -1,14 +1,22 @@
 #!/bin/bash
 
 # Define the packages and projects lists
-packages=("maps")
-projects=("fellowship" "thrift_findr")
+packages=("forms" "maps" "deeplinks")
+projects=("thrift_findr")
 
 # Define the project suffixes
-suffixes=("_package" "_app" "_dashboard")
+suffixes=(
+    "_package" 
+    "_app" 
+    "_dashboard"
+)
 
 # Define the commands to run in each directory
-commands=("flutter clean" "flutter pub get" "dart run build_runner build --delete-conflicting-outputs")
+commands=(
+    "flutter clean" 
+    "flutter pub get" 
+    # "dart run build_runner build --delete-conflicting-outputs"
+)
 
 # Function to run specified commands in the given directory if it exists
 run_commands() {
