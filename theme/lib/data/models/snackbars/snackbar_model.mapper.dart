@@ -6,6 +6,53 @@
 
 part of 'snackbar_model.dart';
 
+class SnackbarBehaviorTypeMapper extends EnumMapper<SnackbarBehaviorType> {
+  SnackbarBehaviorTypeMapper._();
+
+  static SnackbarBehaviorTypeMapper? _instance;
+  static SnackbarBehaviorTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = SnackbarBehaviorTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static SnackbarBehaviorType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  SnackbarBehaviorType decode(dynamic value) {
+    switch (value) {
+      case 'floating':
+        return SnackbarBehaviorType.floating;
+      case 'fixed':
+        return SnackbarBehaviorType.fixed;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(SnackbarBehaviorType self) {
+    switch (self) {
+      case SnackbarBehaviorType.floating:
+        return 'floating';
+      case SnackbarBehaviorType.fixed:
+        return 'fixed';
+    }
+  }
+}
+
+extension SnackbarBehaviorTypeMapperExtension on SnackbarBehaviorType {
+  String toValue() {
+    SnackbarBehaviorTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<SnackbarBehaviorType>(this)
+        as String;
+  }
+}
+
 class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
   SnackbarModelMapper._();
 
@@ -14,6 +61,7 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SnackbarModelMapper._());
       OutlinedBorderModelMapper.ensureInitialized();
+      SnackbarBehaviorTypeMapper.ensureInitialized();
       EdgeInsetsModelMapper.ensureInitialized();
     }
     return _instance!;
@@ -58,12 +106,13 @@ class SnackbarModelMapper extends ClassMapperBase<SnackbarModel> {
   static const Field<SnackbarModel, OutlinedBorderModel>
       _f$shape_outlinedBorder =
       Field('shape_outlinedBorder', _$shape_outlinedBorder, opt: true);
-  static SnackBarBehavior _$behavior_enum_snackBarBehavior(SnackbarModel v) =>
+  static SnackbarBehaviorType _$behavior_enum_snackBarBehavior(
+          SnackbarModel v) =>
       v.behavior_enum_snackBarBehavior;
-  static const Field<SnackbarModel, SnackBarBehavior>
+  static const Field<SnackbarModel, SnackbarBehaviorType>
       _f$behavior_enum_snackBarBehavior = Field(
           'behavior_enum_snackBarBehavior', _$behavior_enum_snackBarBehavior,
-          opt: true, def: SnackBarBehavior.floating);
+          opt: true, def: SnackbarBehaviorType.floating);
   static double? _$width_double(SnackbarModel v) => v.width_double;
   static const Field<SnackbarModel, double> _f$width_double =
       Field('width_double', _$width_double, opt: true);
@@ -214,7 +263,7 @@ abstract class SnackbarModelCopyWith<$R, $In extends SnackbarModel, $Out>
       String? contentTextStyle_textStyleString,
       double? elevation_double,
       OutlinedBorderModel? shape_outlinedBorder,
-      SnackBarBehavior? behavior_enum_snackBarBehavior,
+      SnackbarBehaviorType? behavior_enum_snackBarBehavior,
       double? width_double,
       EdgeInsetsModel? insetPadding_edgeInsets,
       bool? showCloseIcon_bool,
@@ -249,7 +298,7 @@ class _SnackbarModelCopyWithImpl<$R, $Out>
           Object? contentTextStyle_textStyleString = $none,
           Object? elevation_double = $none,
           Object? shape_outlinedBorder = $none,
-          SnackBarBehavior? behavior_enum_snackBarBehavior,
+          SnackbarBehaviorType? behavior_enum_snackBarBehavior,
           Object? width_double = $none,
           Object? insetPadding_edgeInsets = $none,
           Object? showCloseIcon_bool = $none,

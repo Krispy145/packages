@@ -24,20 +24,20 @@ class AppbarModel with AppbarModelMappable {
   final TextStyleString? toolbarTextStyle_textStyleString;
   final TextStyleString? titleTextStyle_textStyleString;
 
-  AppbarModel({
-    required this.color_themeColorString,
-    required this.backgroundColor_themeColorString,
-    required this.foregroundColor_themeColorString,
-    required this.elevation_double,
-    required this.scrolledUnderElevation_double,
-    required this.shadowColor_themeColorString,
-    required this.surfaceTintColor_themeColorString,
-    required this.shape_shapeBorder,
-    required this.centerTitle_bool,
-    required this.titleSpacing_double,
-    required this.toolbarHeight_double,
-    required this.toolbarTextStyle_textStyleString,
-    required this.titleTextStyle_textStyleString,
+  const AppbarModel({
+    this.color_themeColorString,
+    this.backgroundColor_themeColorString,
+    this.foregroundColor_themeColorString,
+    this.elevation_double,
+    this.scrolledUnderElevation_double,
+    this.shadowColor_themeColorString,
+    this.surfaceTintColor_themeColorString,
+    this.shape_shapeBorder,
+    this.centerTitle_bool,
+    this.titleSpacing_double,
+    this.toolbarHeight_double,
+    this.toolbarTextStyle_textStyleString,
+    this.titleTextStyle_textStyleString,
   });
 
   static const fromMap = AppbarModelMapper.fromMap;

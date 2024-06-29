@@ -51,7 +51,9 @@ abstract class _BorderSideFormFieldStore extends BaseFormFieldStore<BorderSideMo
   );
   late final styleStore = EnumFormFieldStore(
     onValueChanged: (newStyle) => onValueChanged(
-      (value ?? const BorderSideModel()).copyWith(style_enum_borderStyle: newStyle as BorderStyle?),
+      (value ?? const BorderSideModel()).copyWith(
+        style_enum_borderStyle: BorderStyleType.values.firstWhere((element) => element.borderStyle == newStyle),
+      ),
     ),
     initialValue: value?.style_enum_borderStyle,
     options: BorderStyle.values,

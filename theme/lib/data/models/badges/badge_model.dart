@@ -59,14 +59,14 @@ class BadgeModel with BadgeModelMappable {
   final OffsetModel? offset_offset;
 
   const BadgeModel({
-    required this.backgroundColor_themeColorString,
-    required this.textColor_themeColorString,
-    required this.smallSize_double,
-    required this.largeSize_double,
-    required this.textStyle_textStyleString,
-    required this.padding_edgeInsets,
-    required this.alignment_enum_alignmentOptions,
-    required this.offset_offset,
+    this.backgroundColor_themeColorString,
+    this.textColor_themeColorString,
+    this.smallSize_double,
+    this.largeSize_double,
+    this.textStyle_textStyleString,
+    this.padding_edgeInsets,
+    this.alignment_enum_alignmentOptions,
+    this.offset_offset,
   });
 
   static const fromMap = BadgeModelMapper.fromMap;

@@ -932,8 +932,8 @@ class ThemeChanger {
   /// [saveJsonToFile] is a function that is used to save the json to a file.
   static void saveJsonToFile() {
     // Convert theme model to JSON
-    final baseThemeJson = jsonEncode(_baseThemeModel?.toJson());
-    final componentThemesJson = jsonEncode(_componentThemesModel?.toJson());
+    final baseThemeJson = jsonEncode(_baseThemeModel?.toMap());
+    final componentThemesJson = jsonEncode(_componentThemesModel?.toMap());
 
     // Create a zip archive
     final archive = Archive()
