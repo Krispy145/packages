@@ -2,7 +2,9 @@ import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
+import "package:theme/domain/converters/colors/color.dart";
 import "package:theme/extensions/build_context.dart";
+import "package:theme/presentation/components/colors/view.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "color_circle.dart";
@@ -10,11 +12,14 @@ import "store.dart";
 
 /// [ColorFormField] to change color scheme colors for the theme.
 class ColorFormField extends BaseFormField<ColorFormFieldStore> {
+  final void Function(Color changedColor)? onDone;
+
   /// [ColorFormField] constructor.
   ColorFormField({
     super.key,
     required super.showTitle,
     required super.store,
+    this.onDone,
   });
 
   @override
@@ -29,6 +34,7 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
                 ColorCircle(
                   color: store.color,
                   label: store.title,
+                  onTap: () => _openModalSheetForColorSelection(context, store),
                 ),
                 Sizes.m.spacer(),
                 _ThemeColorStringSlider(
@@ -60,7 +66,10 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
                   max: 1,
                 ),
                 ElevatedButton(
-                  onPressed: store.onDone,
+                  onPressed: () {
+                    store.onDone();
+                    onDone?.call(store.color);
+                  },
                   child: const Text("Apply"),
                 ),
                 Sizes.m.spacer(),
@@ -69,6 +78,36 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
           );
         },
       ),
+    );
+  }
+
+  void _openModalSheetForColorSelection(BuildContext context, ColorFormFieldStore store) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (context) {
+        return ColorModelView(
+          showPalette: true,
+          onPaletteColorSelected: (color) {
+            store.updateColor(
+              red: color.red.toDouble(),
+              green: color.green.toDouble(),
+              blue: color.blue.toDouble(),
+              opacity: color.opacity,
+            );
+            Navigator.of(context).pop();
+          },
+          onColorSelected: (e) {
+            final color = const ColorMapper().decode(e.value);
+            store.updateColor(
+              red: color.red.toDouble(),
+              green: color.green.toDouble(),
+              blue: color.blue.toDouble(),
+              opacity: color.opacity,
+            );
+            Navigator.of(context).pop();
+          },
+        );
+      },
     );
   }
 }

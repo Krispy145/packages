@@ -115,6 +115,7 @@ class ColorModel with ColorModelMappable {
   final Color? outlineVariant;
 
   final Color? scrim;
+  final List<Color>? palette;
 
   const ColorModel({
     this.primary,
@@ -160,6 +161,7 @@ class ColorModel with ColorModelMappable {
     this.surfaceTint,
     this.outlineVariant,
     this.scrim,
+    this.palette,
   });
 
   static const Color defaultError = Colors.red;
@@ -179,7 +181,7 @@ class ColorModel with ColorModelMappable {
   static const Color defaultOnWarningContainer = Color(0xFF4C2E01);
 
   static const fromMap = ColorModelMapper.fromMap;
-  static const fromJson = ColorModelMapper.fromMap;
+  static const fromJson = ColorModelMapper.fromJson;
 
   /// ] is a method that returns a [ColorScheme] based on the values of the [ColorModel].
   ColorScheme get scheme {
@@ -281,7 +283,7 @@ class ColorModel with ColorModelMappable {
 
   static Future<ColorModel> fromImage({required ImageProvider provider}) async {
     final brightness = AppTheme.isDark ? Brightness.dark : Brightness.light;
-    final paletteGenerator = await PaletteGenerator.fromImageProvider(provider, maximumColorCount: 10);
+    final paletteGenerator = await PaletteGenerator.fromImageProvider(provider, maximumColorCount: 50);
 
     // Function to ensure high contrast
     Color ensureHighContrast(Color backgroundColor, Color fallbackColor) {
@@ -357,6 +359,9 @@ class ColorModel with ColorModelMappable {
       onInformation: seededSecondary.onPrimary,
       informationContainer: seededSecondary.primaryContainer,
       onInformationContainer: seededSecondary.onPrimaryContainer,
+
+      //Palette Colors
+      palette: paletteGenerator.colors.map((e) => e).toList(),
     );
   }
 

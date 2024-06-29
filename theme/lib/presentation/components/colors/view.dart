@@ -26,8 +26,8 @@ class ColorsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpandingPanelViewBuilder.right(
-      widthPercentage: 0.45,
-      panelViewBuilder: (context) {
+      widthPercentage: 0.35,
+      panelViewBuilder: (context, panelStore) {
         return Builder(
           builder: (context) {
             final selectedColor = store.selectedColor;
@@ -36,7 +36,7 @@ class ColorsView extends StatelessWidget {
               title: selectedColor.key,
               onValueChanged: (color) {
                 AppLogger.print(
-                  "on value changed: ${color?.value}",
+                  "onValueChanged: ${color?.value}",
                   [ThemeLoggers.colors],
                 );
                 if (color != null) {
@@ -52,45 +52,100 @@ class ColorsView extends StatelessWidget {
                 return ColorFormField(
                   showTitle: false,
                   store: colorFormFieldStore,
+                  onDone: (color) {
+                    AppLogger.print("onDone: $color", [ThemeLoggers.colors]);
+                    panelStore.toggle();
+                  },
                 );
               },
             );
           },
         );
       },
-      viewBuilder: (context, panelStore) => Column(
-        children: [
-          Sizes.m.spacer(),
-          Expanded(
-            child: Observer(
-              builder: (context) {
-                return GridView(
-                  padding: AppEdgeInsets.all(context, Sizes.m),
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 160,
-                    crossAxisSpacing: Sizes.m.points(context),
-                    mainAxisSpacing: Sizes.m.points(context),
-                  ),
-                  children: AppTheme.currentColorModel!.toMap().entries.map(
-                    (e) {
-                      return ColorCircle(
-                        color: const ColorMapper().decode(e.value),
-                        onTap: () {
-                          store.setSelectedColor(e);
-                          if (!panelStore.isOpen) {
-                            panelStore.toggle();
-                          }
-                        },
-                        label: e.key,
-                      );
-                    },
-                  ).toList(),
-                );
-              },
-            ),
-          ),
-        ],
+      viewBuilder: (context, panelStore) => ColorModelView(
+        onColorSelected: (e) {
+          store.setSelectedColor(e);
+          if (!panelStore.isOpen) {
+            panelStore.toggle();
+          }
+        },
       ),
+    );
+  }
+}
+
+class ColorModelView extends StatelessWidget {
+  final void Function(MapEntry<String, dynamic> selected) onColorSelected;
+  final void Function(Color selectedColor)? onPaletteColorSelected;
+  final bool showPalette;
+  ColorModelView({
+    super.key,
+    required this.onColorSelected,
+    this.onPaletteColorSelected,
+    this.showPalette = false,
+  }) {
+    if (showPalette && onPaletteColorSelected == null) {
+      assert(false, "onPaletteColorSelected must be provided if showPalette is true");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print("showPalette: $showPalette");
+    print("appThemPalette: ${AppTheme.currentColorModel!.palette}");
+    return Observer(
+      builder: (context) {
+        return Column(
+          children: [
+            Sizes.m.spacer(),
+            if (AppTheme.currentColorModel!.palette != null && showPalette) ...[
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    const Text("Palette:"),
+                    Sizes.s.spacer(vertical: false),
+                    ...AppTheme.currentColorModel!.palette!.map(
+                      (e) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: ColorCircle(
+                            color: e,
+                            onTap: () => onPaletteColorSelected!(e),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+              Sizes.m.spacer(),
+            ],
+            Expanded(
+              child: GridView(
+                padding: AppEdgeInsets.all(context, Sizes.m),
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 160,
+                  crossAxisSpacing: Sizes.m.points(context),
+                  mainAxisSpacing: Sizes.m.points(context),
+                ),
+                children: AppTheme.currentColorModel!.toMap().entries.map(
+                  (e) {
+                    if (e.value is List) {
+                      return const SizedBox();
+                    }
+                    return ColorCircle(
+                      color: const ColorMapper().decode(e.value),
+                      onTap: () => onColorSelected(e),
+                      label: e.key,
+                    );
+                  },
+                ).toList(),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }
