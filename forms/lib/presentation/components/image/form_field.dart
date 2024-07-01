@@ -9,12 +9,17 @@ import "package:widgets/images/widget.dart";
 
 import "store.dart";
 
-class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
-  ImagesFormField({
+class ImageFormField extends BaseFormField<ImageFormFieldStore> {
+  ImageFormField({
     super.key,
-    required super.store,
+    this.height = 100,
+    this.width,
     super.showTitle,
-  }) : super();
+    required super.store,
+  });
+
+  final double? height;
+  final double? width;
 
   @override
   Widget buildField(BuildContext context) {
@@ -24,14 +29,10 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 100,
-              child: ReorderableListView.builder(
-                onReorder: (oldIndex, newIndex) => store.reorderImages(oldIndex: oldIndex, newIndex: newIndex),
-                scrollDirection: Axis.horizontal,
-                itemCount: store.imageUrls.length + 1,
-                buildDefaultDragHandles: false,
-                itemBuilder: (context, index) {
-                  if (index == store.imageUrls.length) {
+              height: height,
+              child: Builder(
+                builder: (context) {
+                  if (store.imageUrl == null) {
                     return Container(
                       key: const ValueKey("add_card"),
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
@@ -39,7 +40,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                       child: AspectRatio(
                         aspectRatio: 1.7,
                         child: InkWell(
-                          onTap: () async => addOrEditImage(context, null),
+                          onTap: () async => addOrEditImage(context),
                           child: Container(
                             color: context.colorScheme.primary.withOpacity(0.4),
                             child: Icon(Icons.add, color: context.colorScheme.onPrimary),
@@ -47,11 +48,8 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                         ),
                       ),
                     );
-                  }
-                  return ReorderableDragStartListener(
-                    key: ValueKey("index-${store.imageUrls[index]}"),
-                    index: index,
-                    child: Padding(
+                  } else {
+                    return Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: Container(
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
@@ -59,9 +57,9 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                         child: AspectRatio(
                           aspectRatio: 1.7,
                           child: InkWell(
-                            onTap: () async => addOrEditImage(context, index),
+                            onTap: () async => addOrEditImage(context),
                             child: DOImage.network(
-                              store.imageUrls[index],
+                              store.imageUrl!,
                               options: NetworkImageOptions(
                                 headers: PublicHeaders.map,
                                 fit: BoxFit.cover,
@@ -71,25 +69,24 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                           ),
                         ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 },
               ),
             ),
-            const SizedBox(height: 8),
-            Text("${store.imageUrls.length} ${store.imageUrls.length == 1 ? "image" : "images"}"),
           ],
         );
       },
     );
   }
 
-  Future<void> addOrEditImage(BuildContext context, int? index) async {
-    final isEditing = index != null;
+  Future<void> addOrEditImage(BuildContext context) async {
+    final currentImage = store.imageUrl;
+    final isEditing = currentImage != null;
 
     const imageUrlKey = "imageUrl";
     final form = FormGroup({
-      imageUrlKey: FormControl<String>(value: isEditing ? store.imageUrls[index] : null, validators: [Validators.required]),
+      imageUrlKey: FormControl<String>(value: currentImage, validators: [Validators.required]),
     });
     // if result is null, do nothing
     // if result is "", remove image
@@ -180,12 +177,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
 
     if (result == null) return;
 
-    if (result == "" && isEditing) store.removeImage(index: index);
-
-    if (isEditing) {
-      store.updateImage(imageUrl: result, index: index);
-    } else {
-      store.addImage(imageUrl: result);
-    }
+    if (result == "") store.removeImage();
+    store.updateImage(newImageUrl: result);
   }
 }
