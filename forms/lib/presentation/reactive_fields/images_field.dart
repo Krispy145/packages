@@ -18,7 +18,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
               initialValue: field.value,
               title: "Images",
             );
-            return ImagesFormField(store: store);
+            return ImagesFormField(store: store, showTitle: false);
           },
         );
 

@@ -45,70 +45,77 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   @override
   Future<Pair<RequestResponse, T?>> get(String id) async {
     final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
-    final isCheckPermissionsNotEqualToId = !checkPermissions.any((element) => element.first.split("/").last == id);
-    final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.split("/").last == "all");
-    if (isCheckPermissionsNotEqualToAll || isCheckPermissionsNotEqualToId) {
-      return const Pair(RequestResponse.denied, null);
+    final permissionsOverview = PermissionsSummary.fromPermissionLevel(checkPermissions);
+    // final isCheckPermissionsNotEqualToId = !checkPermissions.any((element) => element.first.split("/").last == id);
+    // final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.split("/").last == "all");
+    // if (isCheckPermissionsNotEqualToAll || isCheckPermissionsNotEqualToId) {
+    if (permissionsOverview.all || permissionsOverview.include.contains(id)) {
+      return super.get(id);
     }
-    return super.get(id);
+    return const Pair(RequestResponse.denied, null);
   }
 
   @override
   Future<Pair<RequestResponse, List<T?>>> getAll() async {
     try {
       final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
-      if (checkPermissions.any((element) => element.first == "all")) {
-        final _specificIDOverrideRemove = checkPermissions
-            .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
-            )
-            .map(
-              (e) => e.first.split("/").last,
-            )
-            .toList();
-        if (_specificIDOverrideRemove.isNotEmpty) {
-          final query = collectionReference.where(
-            "id",
-            whereNotIn: _specificIDOverrideRemove,
-          );
-          final querySnapshot = await query.get();
-
-          if (querySnapshot.docs.isEmpty) {
-            return const Pair(RequestResponse.failure, []);
-          }
-
-          AppLogger.print(
-            "Get All Success: ${querySnapshot.docs.length}",
-            [UtilitiesLoggers.firestoreDataSource],
-          );
-          final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
-          return Pair(RequestResponse.success, result);
-        }
+      final permissionsOverview = PermissionsSummary.fromPermissionLevel(checkPermissions);
+      final firestoreQuery = collectionReference.withPermissionsOverview(permissionsOverview);
+      if (firestoreQuery == null) {
         return const Pair(RequestResponse.denied, []);
-      } else {
-        final _specificIDOverrideAdd = checkPermissions
-            .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
-            )
-            .map(
-              (e) => e.first.split("/").last,
-            )
-            .toList();
-        if (_specificIDOverrideAdd.isEmpty) {
-          return const Pair(RequestResponse.denied, []);
-        }
-        final query = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
-        final querySnapshot = await query.get();
-        if (querySnapshot.docs.isEmpty) {
-          return const Pair(RequestResponse.failure, []);
-        }
-        AppLogger.print(
-          "Get All with Permissions Success: ${querySnapshot.docs.length}",
-          [UtilitiesLoggers.firestoreDataSource],
-        );
-        final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
-        return Pair(RequestResponse.success, result);
       }
+      // if (checkPermissions.any((element) => element.first == "all")) {
+      //   final _specificIDOverrideRemove = checkPermissions
+      //       .where(
+      //         (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
+      //       )
+      //       .map(
+      //         (e) => e.first.split("/").last,
+      //       )
+      //       .toList();
+      //   if (_specificIDOverrideRemove.isNotEmpty) {
+      //     final query = collectionReference.where(
+      //       "id",
+      //       whereNotIn: _specificIDOverrideRemove,
+      //     );
+      final querySnapshot = await firestoreQuery.get();
+
+      if (querySnapshot.docs.isEmpty) {
+        return const Pair(RequestResponse.failure, []);
+      }
+
+      AppLogger.print(
+        "Get All Success: ${querySnapshot.docs.length}",
+        [UtilitiesLoggers.firestoreDataSource],
+      );
+      final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      return Pair(RequestResponse.success, result);
+      //   }
+      //   return const Pair(RequestResponse.denied, []);
+      // } else {
+      //   final _specificIDOverrideAdd = checkPermissions
+      //       .where(
+      //         (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
+      //       )
+      //       .map(
+      //         (e) => e.first.split("/").last,
+      //       )
+      //       .toList();
+      //   if (_specificIDOverrideAdd.isEmpty) {
+      //     return const Pair(RequestResponse.denied, []);
+      //   }
+      //   final query = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
+      //   final querySnapshot = await query.get();
+      //   if (querySnapshot.docs.isEmpty) {
+      //     return const Pair(RequestResponse.failure, []);
+      //   }
+      //   AppLogger.print(
+      //     "Get All with Permissions Success: ${querySnapshot.docs.length}",
+      //     [UtilitiesLoggers.firestoreDataSource],
+      //   );
+      //   final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      //   return Pair(RequestResponse.success, result);
+      // }
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
       return const Pair(RequestResponse.failure, []);
@@ -151,13 +158,13 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   Future<RequestResponse> deleteAll() async {
     try {
       final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.delete);
-      if (checkPermissions.any((element) => element.first == "all")) {
+      if (checkPermissions.any((element) => element.first.getLastSection() == "all")) {
         final _specificIDOverrideRemove = checkPermissions
             .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
+              (element) => element.first.getLastSection() != "all" && element.second == PermissionLevel.no,
             )
             .map(
-              (e) => e.first.split("/").last,
+              (e) => e.first.getLastSection(),
             )
             .toList();
         final query = collectionReference.where(
@@ -178,10 +185,10 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       } else {
         final _specificIDOverrideAdd = checkPermissions
             .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
+              (element) => element.first.getLastSection() != "all" && element.second == PermissionLevel.yes,
             )
             .map(
-              (e) => e.first.split("/").last,
+              (e) => e.first.getLastSection(),
             )
             .toList();
         final query = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
@@ -233,13 +240,13 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   @override
   Future<RequestResponse> updateAll(Map<String, T> data) async {
     final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.update);
-    if (checkPermissions.any((element) => element.first == "all")) {
+    if (checkPermissions.any((element) => element.first.getLastSection() == "all")) {
       final _specificIDOverrideRemove = checkPermissions
           .where(
-            (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
+            (element) => element.first.getLastSection() != "all" && element.second == PermissionLevel.no,
           )
           .map(
-            (e) => e.first.split("/").last,
+            (e) => e.first.getLastSection(),
           )
           .toList();
       final result = <String, dynamic>{};
@@ -317,7 +324,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   Future<RequestResponse> addAll(List<T> data) async {
     final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.create);
 
-    final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.split("/").last == "all");
+    final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.getLastSection() == "all");
     if (isCheckPermissionsNotEqualToAll) {
       print("No permission to add all");
       return RequestResponse.denied;
@@ -329,54 +336,59 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   Future<Pair<RequestResponse, T?>> search(Q query) async {
     try {
       final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
-      if (checkPermissions.any((element) => element.first == "all")) {
-        final _specificIDOverrideRemove = checkPermissions
-            .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
-            )
-            .map(
-              (e) => e.first.split("/").last,
-            )
-            .toList();
-        if (_specificIDOverrideRemove.isNotEmpty) {
-          final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
-          final querySnapshot = await newQuery.get();
-          if (querySnapshot.docs.isEmpty) {
-            return const Pair(RequestResponse.failure, null);
-          }
-          AppLogger.print(
-            "Get All Success: ${querySnapshot.docs.length}",
-            [UtilitiesLoggers.firestoreDataSource],
-          );
-          final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
-          return Pair(RequestResponse.success, result);
-        }
+      final permissionsOverview = PermissionsSummary.fromPermissionLevel(checkPermissions);
+      final firestoreQuery = buildQuery(query, collectionReference).withPermissionsOverview(permissionsOverview);
+      if (firestoreQuery == null) {
         return const Pair(RequestResponse.denied, null);
-      } else {
-        var newQuery = buildQuery(query, collectionReference);
-        final _specificIDOverrideAdd = checkPermissions
-            .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
-            )
-            .map(
-              (e) => e.first.split("/").last,
-            )
-            .toList();
-        if (_specificIDOverrideAdd.isEmpty) {
-          return const Pair(RequestResponse.denied, null);
-        }
-        newQuery = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
-        final querySnapshot = await newQuery.get();
-        if (querySnapshot.docs.isEmpty) {
-          return const Pair(RequestResponse.failure, null);
-        }
-        AppLogger.print(
-          "Get All with Permissions Success: ${querySnapshot.docs.length}",
-          [UtilitiesLoggers.firestoreDataSource],
-        );
-        final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
-        return Pair(RequestResponse.success, result);
       }
+      // if (checkPermissions.any((element) => element.first == "all")) {
+      //   final _specificIDOverrideRemove = checkPermissions
+      //       .where(
+      //         (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
+      //       )
+      //       .map(
+      //         (e) => e.first.split("/").last,
+      //       )
+      //       .toList();
+      //   if (_specificIDOverrideRemove.isNotEmpty) {
+      //     final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
+      final querySnapshot = await firestoreQuery.get();
+      if (querySnapshot.docs.isEmpty) {
+        return const Pair(RequestResponse.failure, null);
+      }
+      AppLogger.print(
+        "Get All Success: ${querySnapshot.docs.length}",
+        [UtilitiesLoggers.firestoreDataSource],
+      );
+      final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+      return Pair(RequestResponse.success, result);
+      //   }
+      //   return const Pair(RequestResponse.denied, null);
+      // } else {
+      //   var newQuery = buildQuery(query, collectionReference);
+      //   final _specificIDOverrideAdd = checkPermissions
+      //       .where(
+      //         (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
+      //       )
+      //       .map(
+      //         (e) => e.first.split("/").last,
+      //       )
+      //       .toList();
+      //   if (_specificIDOverrideAdd.isEmpty) {
+      //     return const Pair(RequestResponse.denied, null);
+      //   }
+      //   newQuery = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
+      //   final querySnapshot = await newQuery.get();
+      //   if (querySnapshot.docs.isEmpty) {
+      //     return const Pair(RequestResponse.failure, null);
+      //   }
+      //   AppLogger.print(
+      //     "Get All with Permissions Success: ${querySnapshot.docs.length}",
+      //     [UtilitiesLoggers.firestoreDataSource],
+      //   );
+      //   final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
+      //   return Pair(RequestResponse.success, result);
+      // }
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
       return const Pair(RequestResponse.failure, null);
@@ -386,55 +398,87 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   @override
   Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     try {
+      // var firestoreQuery = buildQuery(query, collectionReference);
       final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
-      if (checkPermissions.any((element) => element.first == "all")) {
-        final _specificIDOverrideRemove = checkPermissions
-            .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.no,
-            )
-            .map(
-              (e) => e.first.split("/").last,
-            )
-            .toList();
-        if (_specificIDOverrideRemove.isNotEmpty) {
-          final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
-          final querySnapshot = await newQuery.get();
-          if (querySnapshot.docs.isEmpty) {
-            return const Pair(RequestResponse.failure, []);
-          }
-          AppLogger.print(
-            "Get All Success: ${querySnapshot.docs.length}",
-            [UtilitiesLoggers.firestoreDataSource],
-          );
-          final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
-          return Pair(RequestResponse.success, result);
-        }
+      final permissionsOverview = PermissionsSummary.fromPermissionLevel(checkPermissions);
+      final firestoreQuery = buildQuery(query, collectionReference).withPermissionsOverview(permissionsOverview);
+      if (firestoreQuery == null) {
         return const Pair(RequestResponse.denied, []);
-      } else {
-        var newQuery = buildQuery(query, collectionReference);
-        final _specificIDOverrideAdd = checkPermissions
-            .where(
-              (element) => element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
-            )
-            .map(
-              (e) => e.first.split("/").last,
-            )
-            .toList();
-        if (_specificIDOverrideAdd.isEmpty) {
-          return const Pair(RequestResponse.denied, []);
-        }
-        newQuery = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
-        final querySnapshot = await newQuery.get();
-        if (querySnapshot.docs.isEmpty) {
-          return const Pair(RequestResponse.failure, []);
-        }
-        AppLogger.print(
-          "Get All with Permissions Success: ${querySnapshot.docs.length}",
-          [UtilitiesLoggers.firestoreDataSource],
-        );
-        final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
-        return Pair(RequestResponse.success, result);
       }
+      // if (permissionsOverview.all) {
+      //   if (permissionsOverview.exclude.isNotEmpty) {
+      //     firestoreQuery = firestoreQuery.where("id", whereNotIn: permissionsOverview.exclude);
+      //   }
+      // } else {
+      //   if (permissionsOverview.include.isNotEmpty) {
+      //     firestoreQuery = firestoreQuery.where("id", whereIn: permissionsOverview.include);
+      //   } else {
+      //     return const Pair(RequestResponse.denied, []);
+      //   }
+      // }
+
+      final querySnapshot = await firestoreQuery.get();
+      if (querySnapshot.docs.isEmpty) {
+        return const Pair(RequestResponse.failure, []);
+      }
+      AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
+      final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      return Pair(RequestResponse.success, result);
+
+      //   if (checkPermissions.any((element) => element.first.getLastSection() == "all")) {
+      //     // CONTAINS ALL
+      //     //
+      //     // START - IDs to remove
+      //     //
+      //     final _specificIDOverrideRemove = checkPermissions
+      //         .where((element) {
+      //           return element.first.getLastSection() != "all" && element.second == PermissionLevel.no;
+      //         })
+      //         .map((e) => e.first.getLastSection())
+      //         .toList();
+      //     if (_specificIDOverrideRemove.isNotEmpty) {
+      //       final newQuery = buildQuery(query, collectionReference).where("id", whereNotIn: _specificIDOverrideRemove);
+      //       final querySnapshot = await newQuery.get();
+      //       if (querySnapshot.docs.isEmpty) {
+      //         return const Pair(RequestResponse.failure, []);
+      //       }
+      //       AppLogger.print(
+      //         "Get All Success: ${querySnapshot.docs.length}",
+      //         [UtilitiesLoggers.firestoreDataSource],
+      //       );
+      //       final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      //       return Pair(RequestResponse.success, result);
+      //     }
+      //     //
+      //     // END - IDs to remove
+      //     //
+      //     return const Pair(RequestResponse.denied, []);
+      //   } else {
+      //     // DOESN'T CONTAIN ALL
+      //     var newQuery = buildQuery(query, collectionReference);
+      //     final _specificIDOverrideAdd = checkPermissions
+      //         .where(
+      //           (element) => element.first.getLastSection() != "all" && element.second == PermissionLevel.yes,
+      //         )
+      //         .map(
+      //           (e) => e.first.split("/").last,
+      //         )
+      //         .toList();
+      //     if (_specificIDOverrideAdd.isEmpty) {
+      //       return const Pair(RequestResponse.denied, []);
+      //     }
+      //     newQuery = collectionReference.where("id", whereIn: _specificIDOverrideAdd);
+      //     final querySnapshot = await newQuery.get();
+      //     if (querySnapshot.docs.isEmpty) {
+      //       return const Pair(RequestResponse.failure, []);
+      //     }
+      //     AppLogger.print(
+      //       "Get All with Permissions Success: ${querySnapshot.docs.length}",
+      //       [UtilitiesLoggers.firestoreDataSource],
+      //     );
+      //     final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      //     return Pair(RequestResponse.success, result);
+      //   }
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
       return const Pair(RequestResponse.failure, []);
@@ -446,4 +490,53 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     Q query,
     Query<Map<String, dynamic>> collectionReference,
   );
+}
+
+extension on String {
+  String? getLastSection({String divider = "/"}) => split(divider).lastOrNull;
+}
+
+extension PermissionsQueryExtension on Query<Map<String, dynamic>> {
+  Query<Map<String, dynamic>>? withPermissionsOverview(PermissionsSummary permissions) {
+    if (permissions.all) {
+      if (permissions.exclude.isNotEmpty) {
+        return where("id", whereNotIn: permissions.exclude);
+      } else {
+        return this;
+      }
+    } else {
+      if (permissions.include.isNotEmpty) {
+        return where("id", whereIn: permissions.include);
+      } else {
+        return null;
+      }
+    }
+  }
+}
+
+class PermissionsSummary {
+  final bool all;
+  final List<String> include;
+  final List<String> exclude;
+
+  PermissionsSummary({required this.all, required this.include, required this.exclude});
+
+  factory PermissionsSummary.fromPermissionLevel(List<Pair<String, PermissionLevel>> permissions, {bool allowUnderReview = false}) {
+    var all = false;
+    final include = <String>[];
+    final exclude = <String>[];
+    final allowedPermissionLevels = [PermissionLevel.yes, if (allowUnderReview) PermissionLevel.review];
+    for (final permission in permissions) {
+      final lastSection = permission.first.getLastSection();
+      if (lastSection == null) continue;
+      if (lastSection == "all") {
+        all = true;
+      } else if (allowedPermissionLevels.contains(permission.second)) {
+        include.add(lastSection);
+      } else {
+        exclude.add(lastSection);
+      }
+    }
+    return PermissionsSummary(all: all, include: include, exclude: exclude);
+  }
 }
