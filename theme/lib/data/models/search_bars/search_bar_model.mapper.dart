@@ -6,6 +6,64 @@
 
 part of 'search_bar_model.dart';
 
+class TextCapitalizationOptionsMapper
+    extends EnumMapper<TextCapitalizationOptions> {
+  TextCapitalizationOptionsMapper._();
+
+  static TextCapitalizationOptionsMapper? _instance;
+  static TextCapitalizationOptionsMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals
+          .use(_instance = TextCapitalizationOptionsMapper._());
+    }
+    return _instance!;
+  }
+
+  static TextCapitalizationOptions fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  TextCapitalizationOptions decode(dynamic value) {
+    switch (value) {
+      case 'none':
+        return TextCapitalizationOptions.none;
+      case 'characters':
+        return TextCapitalizationOptions.characters;
+      case 'words':
+        return TextCapitalizationOptions.words;
+      case 'sentences':
+        return TextCapitalizationOptions.sentences;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(TextCapitalizationOptions self) {
+    switch (self) {
+      case TextCapitalizationOptions.none:
+        return 'none';
+      case TextCapitalizationOptions.characters:
+        return 'characters';
+      case TextCapitalizationOptions.words:
+        return 'words';
+      case TextCapitalizationOptions.sentences:
+        return 'sentences';
+    }
+  }
+}
+
+extension TextCapitalizationOptionsMapperExtension
+    on TextCapitalizationOptions {
+  String toValue() {
+    TextCapitalizationOptionsMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<TextCapitalizationOptions>(this)
+        as String;
+  }
+}
+
 class SearchBarModelMapper extends ClassMapperBase<SearchBarModel> {
   SearchBarModelMapper._();
 
@@ -17,6 +75,7 @@ class SearchBarModelMapper extends ClassMapperBase<SearchBarModel> {
       OutlinedBorderModelMapper.ensureInitialized();
       EdgeInsetsModelMapper.ensureInitialized();
       BoxConstraintsModelMapper.ensureInitialized();
+      TextCapitalizationOptionsMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -82,15 +141,15 @@ class SearchBarModelMapper extends ClassMapperBase<SearchBarModel> {
       _f$constraints_boxConstraints = Field(
           'constraints_boxConstraints', _$constraints_boxConstraints,
           opt: true, def: const BoxConstraintsModel());
-  static TextCapitalization? _$textCapitalization_enum_textCapitalization(
-          SearchBarModel v) =>
-      v.textCapitalization_enum_textCapitalization;
-  static const Field<SearchBarModel, TextCapitalization>
+  static TextCapitalizationOptions?
+      _$textCapitalization_enum_textCapitalization(SearchBarModel v) =>
+          v.textCapitalization_enum_textCapitalization;
+  static const Field<SearchBarModel, TextCapitalizationOptions>
       _f$textCapitalization_enum_textCapitalization = Field(
           'textCapitalization_enum_textCapitalization',
           _$textCapitalization_enum_textCapitalization,
           opt: true,
-          def: TextCapitalization.none);
+          def: TextCapitalizationOptions.none);
 
   @override
   final MappableFields<SearchBarModel> fields = const {
@@ -202,7 +261,7 @@ abstract class SearchBarModelCopyWith<$R, $In extends SearchBarModel, $Out>
       String? textStyle_textStyleString,
       String? hintStyle_textStyleString,
       BoxConstraintsModel? constraints_boxConstraints,
-      TextCapitalization? textCapitalization_enum_textCapitalization});
+      TextCapitalizationOptions? textCapitalization_enum_textCapitalization});
   SearchBarModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }

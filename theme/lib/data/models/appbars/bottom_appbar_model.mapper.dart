@@ -24,28 +24,30 @@ class BottomAppbarModelMapper extends ClassMapperBase<BottomAppbarModel> {
   static String? _$color_themeColorString(BottomAppbarModel v) =>
       v.color_themeColorString;
   static const Field<BottomAppbarModel, String> _f$color_themeColorString =
-      Field('color_themeColorString', _$color_themeColorString);
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static double? _$elevation_double(BottomAppbarModel v) => v.elevation_double;
   static const Field<BottomAppbarModel, double> _f$elevation_double =
-      Field('elevation_double', _$elevation_double);
+      Field('elevation_double', _$elevation_double, opt: true);
   static double? _$height_double(BottomAppbarModel v) => v.height_double;
   static const Field<BottomAppbarModel, double> _f$height_double =
-      Field('height_double', _$height_double);
+      Field('height_double', _$height_double, opt: true);
   static String? _$surfaceTintColor_themeColorString(BottomAppbarModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<BottomAppbarModel, String>
       _f$surfaceTintColor_themeColorString = Field(
           'surfaceTintColor_themeColorString',
-          _$surfaceTintColor_themeColorString);
+          _$surfaceTintColor_themeColorString,
+          opt: true);
   static String? _$shadowColor_themeColorString(BottomAppbarModel v) =>
       v.shadowColor_themeColorString;
   static const Field<BottomAppbarModel, String>
-      _f$shadowColor_themeColorString =
-      Field('shadowColor_themeColorString', _$shadowColor_themeColorString);
+      _f$shadowColor_themeColorString = Field(
+          'shadowColor_themeColorString', _$shadowColor_themeColorString,
+          opt: true);
   static EdgeInsetsModel? _$padding_edgeInsets(BottomAppbarModel v) =>
       v.padding_edgeInsets;
   static const Field<BottomAppbarModel, EdgeInsetsModel> _f$padding_edgeInsets =
-      Field('padding_edgeInsets', _$padding_edgeInsets);
+      Field('padding_edgeInsets', _$padding_edgeInsets, opt: true);
 
   @override
   final MappableFields<BottomAppbarModel> fields = const {

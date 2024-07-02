@@ -146,7 +146,7 @@ class ThemeComponentEditor extends FormsMapView {
       case "_edgeInsets":
         final store = EdgeInsetsFormFieldStore(
           initialValue: value != null ? EdgeInsetsModel.fromMap(value as Map<String, dynamic>) : const EdgeInsetsModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
           title: formattedKey,
         );
         return EdgeInsetsFormField(store: store);
@@ -177,13 +177,13 @@ class ThemeComponentEditor extends FormsMapView {
       case "_borderSide":
         final store = BorderSideFormFieldStore(
           initialValue: value != null ? BorderSideModel.fromMap(value as Map<String, dynamic>) : const BorderSideModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
           title: formattedKey,
         );
         return BorderSideFormField(store: store);
       case "_borderRadius":
         final store = BorderRadiusFormFieldStore(
-          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
           initialValue: BorderRadiusModel.fromMap(value as Map<String, dynamic>? ?? {}),
           title: formattedKey,
         );
@@ -192,21 +192,21 @@ class ThemeComponentEditor extends FormsMapView {
       case "_outlinedBorder":
         final store = OutlinedBorderFormFieldStore(
           initialValue: value != null ? OutlinedBorderModel.fromMap(value as Map<String, dynamic>) : const OutlinedBorderModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
           title: formattedKey,
         );
         return OutlinedBorderFormField(store: store);
       case "_inputBorder":
         final store = InputBorderFormFieldStore(
           initialValue: value != null ? InputBorderModel.fromMap(value as Map<String, dynamic>) : const InputBorderModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
           title: formattedKey,
         );
         return InputBorderFormField(store: store);
       case "_duration":
         final store = DurationFormFieldStore(
           initialValue: value != null ? DurationModel.fromMap(value as Map<String, dynamic>) : const DurationModel(),
-          onValueChanged: (newValue) => onChanged(keys, newValue?.toJson()),
+          onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
           title: formattedKey,
         );
         return DurationFormField(store: store);

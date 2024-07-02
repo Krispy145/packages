@@ -38,7 +38,7 @@ class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore
             FilledButton(
               onPressed: () {},
               style: ButtonStyle(
-                shape: MaterialStateProperty.all(
+                shape: WidgetStateProperty.all(
                   store.value?.asOutlinedBorder(),
                 ),
               ),

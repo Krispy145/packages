@@ -40,17 +40,17 @@ class ScrollbarModel with ScrollbarModelMappable {
 
   ScrollbarThemeData asScrollbarThemeData({String? styleTypeName}) {
     return ScrollbarThemeData(
-      thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
-      thickness: MaterialStateProperty.all(thickness_double),
-      trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
+      thumbVisibility: WidgetStateProperty.all(thumbVisibility_bool),
+      thickness: WidgetStateProperty.all(thickness_double),
+      trackVisibility: WidgetStateProperty.all(trackVisibility_bool),
       radius: radius_double != null ? Radius.circular(radius_double!) : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
-      thumbColor: MaterialStateProperty.all(
+      thumbColor: WidgetStateProperty.all(
         thumbColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackColor: MaterialStateProperty.all(
+      trackColor: WidgetStateProperty.all(
         trackColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackBorderColor: MaterialStateProperty.all(
+      trackBorderColor: WidgetStateProperty.all(
         trackBorderColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       crossAxisMargin: crossAxisMargin_double,
@@ -127,17 +127,17 @@ class ScrollbarModel with ScrollbarModelMappable {
 
 //   ScrollbarThemeData asScrollbarThemeData({String? styleTypeName}) {
 //     return ScrollbarThemeData(
-//       thumbVisibility: MaterialStateProperty.all(thumbVisibility_bool),
-//       thickness: MaterialStateProperty.all(thickness_double),
-//       trackVisibility: MaterialStateProperty.all(trackVisibility_bool),
+//       thumbVisibility: WidgetStateProperty.all(thumbVisibility_bool),
+//       thickness: WidgetStateProperty.all(thickness_double),
+//       trackVisibility: WidgetStateProperty.all(trackVisibility_bool),
 //       radius: radius_double != null
 //           ? Radius.circular(radius_double!)
 //           : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
-//       thumbColor: MaterialStateProperty.all(
+//       thumbColor: WidgetStateProperty.all(
 //           thumbColor_themeColorString?.toColor(styleType: styleTypeName),),
-//       trackColor: MaterialStateProperty.all(
+//       trackColor: WidgetStateProperty.all(
 //           trackColor_themeColorString?.toColor(styleType: styleTypeName),),
-//       trackBorderColor: MaterialStateProperty.all(
+//       trackBorderColor: WidgetStateProperty.all(
 //           trackBorderColor_themeColorString?.toColor(styleType: styleTypeName),),
 //       crossAxisMargin: crossAxisMargin_double,
 //       mainAxisMargin: mainAxisMargin_double,

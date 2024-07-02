@@ -38,6 +38,10 @@ class OutlinedBorderModel with OutlinedBorderModelMappable {
   static const fromMap = OutlinedBorderModelMapper.fromMap;
   static const fromJson = OutlinedBorderModelMapper.fromJson;
 
+  static const empty = OutlinedBorderModel(
+    type_enum_outlinedBorderType: OutlinedBorderType.stadiumBorder,
+  );
+
   // static const empty = OutlinedBorderModel(id: "");
 
   // static const outlinedBorderOne = OutlinedBorderModel(

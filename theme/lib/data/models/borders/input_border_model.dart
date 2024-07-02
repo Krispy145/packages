@@ -10,10 +10,11 @@ import "package:theme/data/models/borders/border_side_model.dart";
 
 part "input_border_model.mapper.dart";
 
+@MappableEnum()
 enum InputBorderType {
   none,
   outlined,
-  underlined,
+  underlined;
 }
 
 @MappableClass()

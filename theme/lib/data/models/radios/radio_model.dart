@@ -23,10 +23,10 @@ class RadioModel with RadioModelMappable {
 
   RadioThemeData asRadioThemeData({String? styleTypeName}) {
     return RadioThemeData(
-      fillColor: MaterialStateProperty.all(
+      fillColor: WidgetStateProperty.all(
         fillColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      overlayColor: MaterialStateProperty.all(
+      overlayColor: WidgetStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,
@@ -83,9 +83,9 @@ class RadioModel with RadioModelMappable {
 
 //   RadioThemeData asRadioThemeData({String? styleTypeName}) {
 //     return RadioThemeData(
-//       fillColor: MaterialStateProperty.all(
+//       fillColor: WidgetStateProperty.all(
 //           fillColor_themeColorString?.toColor(styleType: styleTypeName),),
-//       overlayColor: MaterialStateProperty.all(
+//       overlayColor: WidgetStateProperty.all(
 //           overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
 //       splashRadius: splashRadius_double,
 //     );

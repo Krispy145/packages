@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 
 part "edge_insets_model.mapper.dart";
 
+@MappableEnum()
 enum EdgeInsetsTypes { all, symmetric, only, zero }
 
 @MappableClass()

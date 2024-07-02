@@ -6,11 +6,26 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "border_side_model.mapper.dart";
 
+@MappableEnum()
+enum BorderStyleType {
+  none,
+  solid;
+
+  BorderStyle get borderStyle {
+    switch (this) {
+      case BorderStyleType.none:
+        return BorderStyle.none;
+      case BorderStyleType.solid:
+        return BorderStyle.solid;
+    }
+  }
+}
+
 @MappableClass()
 class BorderSideModel with BorderSideModelMappable {
   final ThemeColorString? color_themeColorString;
   final double? width_double;
-  final BorderStyle? style_enum_borderStyle;
+  final BorderStyleType? style_enum_borderStyle;
   final double? strokeAlign_double;
 
   const BorderSideModel({
@@ -23,11 +38,17 @@ class BorderSideModel with BorderSideModelMappable {
   static const fromMap = BorderSideModelMapper.fromMap;
   static const fromJson = BorderSideModelMapper.fromJson;
 
+  static const BorderSideModel empty = BorderSideModel(
+    width_double: 0,
+    style_enum_borderStyle: BorderStyleType.none,
+    strokeAlign_double: 0,
+  );
+
   BorderSide asBorderSide({String? styleTypeName}) {
     return BorderSide(
       color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
       width: width_double ?? 1.0,
-      style: style_enum_borderStyle ?? BorderStyle.solid,
+      style: style_enum_borderStyle?.borderStyle ?? BorderStyleType.solid.borderStyle,
       strokeAlign: strokeAlign_double ?? BorderSide.strokeAlignInside,
     );
   }

@@ -176,24 +176,7 @@ enum ChangerOptions {
               ),
               defaultComponentTheme: null,
             );
-      case ChangerOptions.elevatedButtons:
-        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
-              componentOption: this,
-              context: context,
-              // defaultComponentTheme: ButtonStyleModel(),
-              currentComponentTheme: AppTheme.elevatedButtonStyle(),
-              convertComponentThemeToMap: (data) => data.toMap(),
-              convertComponentThemeFromMap: ButtonModel.fromMap,
-              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(
-                buttonStyle: newTheme,
-                buttonType: ButtonModelType.elevated,
-              ),
-              headerBuilder: (context) => ElevatedButton(
-                onPressed: () {},
-                child: const Text("Elevated Button"),
-              ),
-              defaultComponentTheme: null,
-            );
+
       case ChangerOptions.segmentedButtons:
         return () => ThemeChanger.componentThemeChanger<ButtonModel>(
               componentOption: this,
@@ -508,6 +491,24 @@ enum ChangerOptions {
                 ],
                 onChanged: (value) {},
               ),
+            );
+      case ChangerOptions.elevatedButtons:
+        return () => ThemeChanger.componentThemeChanger<ButtonModel>(
+              componentOption: this,
+              context: context,
+              // defaultComponentTheme: ButtonStyleModel(),
+              currentComponentTheme: AppTheme.elevatedButtonStyle(),
+              convertComponentThemeToMap: (data) => data.toMap(),
+              convertComponentThemeFromMap: ButtonModel.fromMap,
+              onUpdateComponentTheme: (newTheme) => ThemeChanger.changeButtonStyle(
+                buttonStyle: newTheme,
+                buttonType: ButtonModelType.elevated,
+              ),
+              headerBuilder: (context) => ElevatedButton(
+                onPressed: () {},
+                child: const Text("Elevated Button"),
+              ),
+              defaultComponentTheme: null,
             );
       case ChangerOptions.chips:
         return () => ThemeChanger.componentThemeChanger<ChipModel>(

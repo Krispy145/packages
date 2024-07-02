@@ -2,7 +2,6 @@
 
 import "package:dart_mappable/dart_mappable.dart";
 import "package:flutter/material.dart";
-import "package:theme/data/models/badges/badge_model.dart";
 import "package:theme/data/models/borders/border_side_model.dart";
 import "package:theme/data/models/borders/outlined_border_model.dart";
 import "package:theme/data/models/edge_insets_model.dart";
@@ -10,6 +9,42 @@ import "package:theme/data/models/general/size_model.dart";
 import "package:theme/extensions/theme_color_string.dart";
 
 part "menu_style_model.mapper.dart";
+
+@MappableEnum()
+enum AlignmentOptionsType {
+  topLeft,
+  topCenter,
+  topRight,
+  centerLeft,
+  center,
+  centerRight,
+  bottomLeft,
+  bottomCenter,
+  bottomRight;
+
+  Alignment get alignment {
+    switch (this) {
+      case AlignmentOptionsType.topLeft:
+        return Alignment.topLeft;
+      case AlignmentOptionsType.topCenter:
+        return Alignment.topCenter;
+      case AlignmentOptionsType.topRight:
+        return Alignment.topRight;
+      case AlignmentOptionsType.centerLeft:
+        return Alignment.centerLeft;
+      case AlignmentOptionsType.center:
+        return Alignment.center;
+      case AlignmentOptionsType.centerRight:
+        return Alignment.centerRight;
+      case AlignmentOptionsType.bottomLeft:
+        return Alignment.bottomLeft;
+      case AlignmentOptionsType.bottomCenter:
+        return Alignment.bottomCenter;
+      case AlignmentOptionsType.bottomRight:
+        return Alignment.bottomRight;
+    }
+  }
+}
 
 @MappableClass()
 class MenuStyleModel with MenuStyleModelMappable {
@@ -29,8 +64,8 @@ class MenuStyleModel with MenuStyleModelMappable {
   final BorderSideModel? side_borderSide;
   @MappableValue(OutlinedBorderModel())
   final OutlinedBorderModel? shape_outlinedBorder;
-  @MappableValue(AlignmentOptions.center)
-  final AlignmentOptions? alignment_enum_alignmentOptions;
+  @MappableValue(AlignmentOptionsType.center)
+  final AlignmentOptionsType? alignment_enum_alignmentOptions;
 
   const MenuStyleModel({
     this.backgroundColor_themeColorString,
@@ -43,7 +78,7 @@ class MenuStyleModel with MenuStyleModelMappable {
     this.maximumSize_size = const SizeModel(),
     this.side_borderSide = const BorderSideModel(),
     this.shape_outlinedBorder = const OutlinedBorderModel(),
-    this.alignment_enum_alignmentOptions = AlignmentOptions.center,
+    this.alignment_enum_alignmentOptions = AlignmentOptionsType.center,
   });
 
   static const fromMap = MenuStyleModelMapper.fromMap;
@@ -62,16 +97,16 @@ class MenuStyleModel with MenuStyleModelMappable {
     final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
     final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-      backgroundColor: backgroundColor != null ? MaterialStateProperty.all(backgroundColor) : null,
-      shadowColor: shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
-      surfaceTintColor: surfaceTintColor != null ? MaterialStateProperty.all(surfaceTintColor) : null,
-      elevation: elevation != null ? MaterialStateProperty.all(elevation) : null,
-      padding: padding != null ? MaterialStateProperty.all(padding) : null,
-      minimumSize: minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
-      fixedSize: fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
-      maximumSize: maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
-      side: side != null ? MaterialStateProperty.all(side) : null,
-      shape: shape != null ? MaterialStateProperty.all(shape) : null,
+      backgroundColor: backgroundColor != null ? WidgetStateProperty.all(backgroundColor) : null,
+      shadowColor: shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
+      surfaceTintColor: surfaceTintColor != null ? WidgetStateProperty.all(surfaceTintColor) : null,
+      elevation: elevation != null ? WidgetStateProperty.all(elevation) : null,
+      padding: padding != null ? WidgetStateProperty.all(padding) : null,
+      minimumSize: minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
+      fixedSize: fixedSize != null ? WidgetStateProperty.all(fixedSize) : null,
+      maximumSize: maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
+      side: side != null ? WidgetStateProperty.all(side) : null,
+      shape: shape != null ? WidgetStateProperty.all(shape) : null,
       alignment: alignment,
     );
   }
@@ -179,24 +214,24 @@ class MenuStyleModel with MenuStyleModelMappable {
 //     final alignment = alignment_enum_alignmentOptions?.alignment;
 //     return MenuStyle(
 //       backgroundColor: backgroundColor != null
-//           ? MaterialStateProperty.all(backgroundColor)
+//           ? WidgetStateProperty.all(backgroundColor)
 //           : null,
 //       shadowColor:
-//           shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
+//           shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
 //       surfaceTintColor: surfaceTintColor != null
-//           ? MaterialStateProperty.all(surfaceTintColor)
+//           ? WidgetStateProperty.all(surfaceTintColor)
 //           : null,
 //       elevation:
-//           elevation != null ? MaterialStateProperty.all(elevation) : null,
-//       padding: padding != null ? MaterialStateProperty.all(padding) : null,
+//           elevation != null ? WidgetStateProperty.all(elevation) : null,
+//       padding: padding != null ? WidgetStateProperty.all(padding) : null,
 //       minimumSize:
-//           minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
+//           minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
 //       fixedSize:
-//           fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
+//           fixedSize != null ? WidgetStateProperty.all(fixedSize) : null,
 //       maximumSize:
-//           maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
-//       side: side != null ? MaterialStateProperty.all(side) : null,
-//       shape: shape != null ? MaterialStateProperty.all(shape) : null,
+//           maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
+//       side: side != null ? WidgetStateProperty.all(side) : null,
+//       shape: shape != null ? WidgetStateProperty.all(shape) : null,
 //       alignment: alignment,
 //     );
 //   }

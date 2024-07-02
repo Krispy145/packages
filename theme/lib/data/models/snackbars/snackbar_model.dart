@@ -9,6 +9,21 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "snackbar_model.mapper.dart";
 
+@MappableEnum()
+enum SnackbarBehaviorType {
+  floating,
+  fixed;
+
+  SnackBarBehavior get behavior {
+    switch (this) {
+      case SnackbarBehaviorType.floating:
+        return SnackBarBehavior.floating;
+      case SnackbarBehaviorType.fixed:
+        return SnackBarBehavior.fixed;
+    }
+  }
+}
+
 @MappableClass()
 class SnackbarModel with SnackbarModelMappable {
   final ThemeColorString? backgroundColor_themeColorString;
@@ -18,8 +33,8 @@ class SnackbarModel with SnackbarModelMappable {
   final double? elevation_double;
   @MappableValue(OutlinedBorderModel())
   final OutlinedBorderModel? shape_outlinedBorder;
-  @MappableValue(SnackBarBehavior.floating)
-  final SnackBarBehavior behavior_enum_snackBarBehavior;
+  @MappableValue(SnackbarBehaviorType.floating)
+  final SnackbarBehaviorType behavior_enum_snackBarBehavior;
   final double? width_double;
   @MappableValue(EdgeInsetsModel())
   final EdgeInsetsModel? insetPadding_edgeInsets;
@@ -36,7 +51,7 @@ class SnackbarModel with SnackbarModelMappable {
     this.contentTextStyle_textStyleString,
     this.elevation_double,
     this.shape_outlinedBorder,
-    this.behavior_enum_snackBarBehavior = SnackBarBehavior.floating,
+    this.behavior_enum_snackBarBehavior = SnackbarBehaviorType.floating,
     this.width_double,
     this.insetPadding_edgeInsets,
     this.showCloseIcon_bool,
@@ -57,7 +72,7 @@ class SnackbarModel with SnackbarModelMappable {
       contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       elevation: elevation_double,
       shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
-      behavior: behavior_enum_snackBarBehavior,
+      behavior: behavior_enum_snackBarBehavior.behavior,
       width: width_double,
       insetPadding: insetPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       showCloseIcon: showCloseIcon_bool,

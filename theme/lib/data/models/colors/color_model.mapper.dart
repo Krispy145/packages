@@ -158,6 +158,9 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
   static Color? _$scrim(ColorModel v) => v.scrim;
   static const Field<ColorModel, Color> _f$scrim =
       Field('scrim', _$scrim, opt: true);
+  static List<Color>? _$palette(ColorModel v) => v.palette;
+  static const Field<ColorModel, List<Color>> _f$palette =
+      Field('palette', _$palette, opt: true);
 
   @override
   final MappableFields<ColorModel> fields = const {
@@ -204,6 +207,7 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
     #surfaceTint: _f$surfaceTint,
     #outlineVariant: _f$outlineVariant,
     #scrim: _f$scrim,
+    #palette: _f$palette,
   };
 
   static ColorModel _instantiate(DecodingData data) {
@@ -250,7 +254,8 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
         shadow: data.dec(_f$shadow),
         surfaceTint: data.dec(_f$surfaceTint),
         outlineVariant: data.dec(_f$outlineVariant),
-        scrim: data.dec(_f$scrim));
+        scrim: data.dec(_f$scrim),
+        palette: data.dec(_f$palette));
   }
 
   @override
@@ -304,6 +309,7 @@ extension ColorModelValueCopy<$R, $Out>
 
 abstract class ColorModelCopyWith<$R, $In extends ColorModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, Color, ObjectCopyWith<$R, Color, Color>>? get palette;
   $R call(
       {Color? primary,
       Color? onPrimary,
@@ -347,7 +353,8 @@ abstract class ColorModelCopyWith<$R, $In extends ColorModel, $Out>
       Color? shadow,
       Color? surfaceTint,
       Color? outlineVariant,
-      Color? scrim});
+      Color? scrim,
+      List<Color>? palette});
   ColorModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -359,6 +366,14 @@ class _ColorModelCopyWithImpl<$R, $Out>
   @override
   late final ClassMapperBase<ColorModel> $mapper =
       ColorModelMapper.ensureInitialized();
+  @override
+  ListCopyWith<$R, Color, ObjectCopyWith<$R, Color, Color>>? get palette =>
+      $value.palette != null
+          ? ListCopyWith(
+              $value.palette!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(palette: v))
+          : null;
   @override
   $R call(
           {Object? primary = $none,
@@ -403,7 +418,8 @@ class _ColorModelCopyWithImpl<$R, $Out>
           Object? shadow = $none,
           Object? surfaceTint = $none,
           Object? outlineVariant = $none,
-          Object? scrim = $none}) =>
+          Object? scrim = $none,
+          Object? palette = $none}) =>
       $apply(FieldCopyWithData({
         if (primary != $none) #primary: primary,
         if (onPrimary != $none) #onPrimary: onPrimary,
@@ -455,7 +471,8 @@ class _ColorModelCopyWithImpl<$R, $Out>
         if (shadow != $none) #shadow: shadow,
         if (surfaceTint != $none) #surfaceTint: surfaceTint,
         if (outlineVariant != $none) #outlineVariant: outlineVariant,
-        if (scrim != $none) #scrim: scrim
+        if (scrim != $none) #scrim: scrim,
+        if (palette != $none) #palette: palette
       }));
   @override
   ColorModel $make(CopyWithData data) => ColorModel(
@@ -516,7 +533,8 @@ class _ColorModelCopyWithImpl<$R, $Out>
       shadow: data.get(#shadow, or: $value.shadow),
       surfaceTint: data.get(#surfaceTint, or: $value.surfaceTint),
       outlineVariant: data.get(#outlineVariant, or: $value.outlineVariant),
-      scrim: data.get(#scrim, or: $value.scrim));
+      scrim: data.get(#scrim, or: $value.scrim),
+      palette: data.get(#palette, or: $value.palette));
 
   @override
   ColorModelCopyWith<$R2, ColorModel, $Out2> $chain<$R2, $Out2>(

@@ -88,7 +88,6 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ButtonModelMapper._());
       EdgeInsetsModelMapper.ensureInitialized();
-      SizeModelMapper.ensureInitialized();
       BorderSideModelMapper.ensureInitialized();
       OutlinedBorderModelMapper.ensureInitialized();
     }
@@ -138,19 +137,12 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
       v.padding_edgeInsets;
   static const Field<ButtonModel, EdgeInsetsModel> _f$padding_edgeInsets =
       Field('padding_edgeInsets', _$padding_edgeInsets,
-          opt: true, def: const EdgeInsetsModel());
-  static SizeModel? _$minimumSize_size(ButtonModel v) => v.minimumSize_size;
-  static const Field<ButtonModel, SizeModel> _f$minimumSize_size = Field(
-      'minimumSize_size', _$minimumSize_size,
-      opt: true, def: const SizeModel());
-  static SizeModel? _$fixedSize_size(ButtonModel v) => v.fixedSize_size;
-  static const Field<ButtonModel, SizeModel> _f$fixedSize_size = Field(
-      'fixedSize_size', _$fixedSize_size,
-      opt: true, def: const SizeModel());
-  static SizeModel? _$maximumSize_size(ButtonModel v) => v.maximumSize_size;
-  static const Field<ButtonModel, SizeModel> _f$maximumSize_size = Field(
-      'maximumSize_size', _$maximumSize_size,
-      opt: true, def: const SizeModel());
+          opt: true,
+          def: const EdgeInsetsModel(
+              left_double: 16,
+              right_double: 16,
+              top_double: 4,
+              bottom_double: 4));
   static String? _$iconColor_themeColorString(ButtonModel v) =>
       v.iconColor_themeColorString;
   static const Field<ButtonModel, String> _f$iconColor_themeColorString = Field(
@@ -160,14 +152,12 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
   static const Field<ButtonModel, double> _f$iconSize_double =
       Field('iconSize_double', _$iconSize_double, opt: true);
   static BorderSideModel? _$side_borderSide(ButtonModel v) => v.side_borderSide;
-  static const Field<ButtonModel, BorderSideModel> _f$side_borderSide = Field(
-      'side_borderSide', _$side_borderSide,
-      opt: true, def: const BorderSideModel());
+  static const Field<ButtonModel, BorderSideModel> _f$side_borderSide =
+      Field('side_borderSide', _$side_borderSide, opt: true);
   static OutlinedBorderModel? _$shape_outlinedBorder(ButtonModel v) =>
       v.shape_outlinedBorder;
   static const Field<ButtonModel, OutlinedBorderModel> _f$shape_outlinedBorder =
-      Field('shape_outlinedBorder', _$shape_outlinedBorder,
-          opt: true, def: const OutlinedBorderModel());
+      Field('shape_outlinedBorder', _$shape_outlinedBorder, opt: true);
 
   @override
   final MappableFields<ButtonModel> fields = const {
@@ -179,9 +169,6 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
     #surfaceTintColor_themeColorString: _f$surfaceTintColor_themeColorString,
     #elevation_double: _f$elevation_double,
     #padding_edgeInsets: _f$padding_edgeInsets,
-    #minimumSize_size: _f$minimumSize_size,
-    #fixedSize_size: _f$fixedSize_size,
-    #maximumSize_size: _f$maximumSize_size,
     #iconColor_themeColorString: _f$iconColor_themeColorString,
     #iconSize_double: _f$iconSize_double,
     #side_borderSide: _f$side_borderSide,
@@ -202,9 +189,6 @@ class ButtonModelMapper extends ClassMapperBase<ButtonModel> {
             data.dec(_f$surfaceTintColor_themeColorString),
         elevation_double: data.dec(_f$elevation_double),
         padding_edgeInsets: data.dec(_f$padding_edgeInsets),
-        minimumSize_size: data.dec(_f$minimumSize_size),
-        fixedSize_size: data.dec(_f$fixedSize_size),
-        maximumSize_size: data.dec(_f$maximumSize_size),
         iconColor_themeColorString: data.dec(_f$iconColor_themeColorString),
         iconSize_double: data.dec(_f$iconSize_double),
         side_borderSide: data.dec(_f$side_borderSide),
@@ -264,9 +248,6 @@ abstract class ButtonModelCopyWith<$R, $In extends ButtonModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   EdgeInsetsModelCopyWith<$R, EdgeInsetsModel, EdgeInsetsModel>?
       get padding_edgeInsets;
-  SizeModelCopyWith<$R, SizeModel, SizeModel>? get minimumSize_size;
-  SizeModelCopyWith<$R, SizeModel, SizeModel>? get fixedSize_size;
-  SizeModelCopyWith<$R, SizeModel, SizeModel>? get maximumSize_size;
   BorderSideModelCopyWith<$R, BorderSideModel, BorderSideModel>?
       get side_borderSide;
   OutlinedBorderModelCopyWith<$R, OutlinedBorderModel, OutlinedBorderModel>?
@@ -280,9 +261,6 @@ abstract class ButtonModelCopyWith<$R, $In extends ButtonModel, $Out>
       String? surfaceTintColor_themeColorString,
       double? elevation_double,
       EdgeInsetsModel? padding_edgeInsets,
-      SizeModel? minimumSize_size,
-      SizeModel? fixedSize_size,
-      SizeModel? maximumSize_size,
       String? iconColor_themeColorString,
       double? iconSize_double,
       BorderSideModel? side_borderSide,
@@ -303,17 +281,6 @@ class _ButtonModelCopyWithImpl<$R, $Out>
       get padding_edgeInsets => $value.padding_edgeInsets?.copyWith
           .$chain((v) => call(padding_edgeInsets: v));
   @override
-  SizeModelCopyWith<$R, SizeModel, SizeModel>? get minimumSize_size =>
-      $value.minimumSize_size?.copyWith
-          .$chain((v) => call(minimumSize_size: v));
-  @override
-  SizeModelCopyWith<$R, SizeModel, SizeModel>? get fixedSize_size =>
-      $value.fixedSize_size?.copyWith.$chain((v) => call(fixedSize_size: v));
-  @override
-  SizeModelCopyWith<$R, SizeModel, SizeModel>? get maximumSize_size =>
-      $value.maximumSize_size?.copyWith
-          .$chain((v) => call(maximumSize_size: v));
-  @override
   BorderSideModelCopyWith<$R, BorderSideModel, BorderSideModel>?
       get side_borderSide => $value.side_borderSide?.copyWith
           .$chain((v) => call(side_borderSide: v));
@@ -331,9 +298,6 @@ class _ButtonModelCopyWithImpl<$R, $Out>
           Object? surfaceTintColor_themeColorString = $none,
           Object? elevation_double = $none,
           Object? padding_edgeInsets = $none,
-          Object? minimumSize_size = $none,
-          Object? fixedSize_size = $none,
-          Object? maximumSize_size = $none,
           Object? iconColor_themeColorString = $none,
           Object? iconSize_double = $none,
           Object? side_borderSide = $none,
@@ -354,9 +318,6 @@ class _ButtonModelCopyWithImpl<$R, $Out>
         if (elevation_double != $none) #elevation_double: elevation_double,
         if (padding_edgeInsets != $none)
           #padding_edgeInsets: padding_edgeInsets,
-        if (minimumSize_size != $none) #minimumSize_size: minimumSize_size,
-        if (fixedSize_size != $none) #fixedSize_size: fixedSize_size,
-        if (maximumSize_size != $none) #maximumSize_size: maximumSize_size,
         if (iconColor_themeColorString != $none)
           #iconColor_themeColorString: iconColor_themeColorString,
         if (iconSize_double != $none) #iconSize_double: iconSize_double,
@@ -370,28 +331,26 @@ class _ButtonModelCopyWithImpl<$R, $Out>
           or: $value.textStyle_textStyleString),
       backgroundColor_themeColorString: data.get(#backgroundColor_themeColorString,
           or: $value.backgroundColor_themeColorString),
-      foregroundColor_themeColorString: data.get(#foregroundColor_themeColorString,
+      foregroundColor_themeColorString: data.get(
+          #foregroundColor_themeColorString,
           or: $value.foregroundColor_themeColorString),
       overlayColor_themeColorString: data.get(#overlayColor_themeColorString,
           or: $value.overlayColor_themeColorString),
       shadowColor_themeColorString: data.get(#shadowColor_themeColorString,
           or: $value.shadowColor_themeColorString),
-      surfaceTintColor_themeColorString: data.get(#surfaceTintColor_themeColorString,
+      surfaceTintColor_themeColorString: data.get(
+          #surfaceTintColor_themeColorString,
           or: $value.surfaceTintColor_themeColorString),
       elevation_double:
           data.get(#elevation_double, or: $value.elevation_double),
       padding_edgeInsets:
           data.get(#padding_edgeInsets, or: $value.padding_edgeInsets),
-      minimumSize_size:
-          data.get(#minimumSize_size, or: $value.minimumSize_size),
-      fixedSize_size: data.get(#fixedSize_size, or: $value.fixedSize_size),
-      maximumSize_size:
-          data.get(#maximumSize_size, or: $value.maximumSize_size),
       iconColor_themeColorString: data.get(#iconColor_themeColorString,
           or: $value.iconColor_themeColorString),
       iconSize_double: data.get(#iconSize_double, or: $value.iconSize_double),
       side_borderSide: data.get(#side_borderSide, or: $value.side_borderSide),
-      shape_outlinedBorder: data.get(#shape_outlinedBorder, or: $value.shape_outlinedBorder));
+      shape_outlinedBorder:
+          data.get(#shape_outlinedBorder, or: $value.shape_outlinedBorder));
 
   @override
   ButtonModelCopyWith<$R2, ButtonModel, $Out2> $chain<$R2, $Out2>(

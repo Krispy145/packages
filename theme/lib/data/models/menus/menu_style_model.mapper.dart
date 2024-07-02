@@ -6,6 +6,81 @@
 
 part of 'menu_style_model.dart';
 
+class AlignmentOptionsTypeMapper extends EnumMapper<AlignmentOptionsType> {
+  AlignmentOptionsTypeMapper._();
+
+  static AlignmentOptionsTypeMapper? _instance;
+  static AlignmentOptionsTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = AlignmentOptionsTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static AlignmentOptionsType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  AlignmentOptionsType decode(dynamic value) {
+    switch (value) {
+      case 'topLeft':
+        return AlignmentOptionsType.topLeft;
+      case 'topCenter':
+        return AlignmentOptionsType.topCenter;
+      case 'topRight':
+        return AlignmentOptionsType.topRight;
+      case 'centerLeft':
+        return AlignmentOptionsType.centerLeft;
+      case 'center':
+        return AlignmentOptionsType.center;
+      case 'centerRight':
+        return AlignmentOptionsType.centerRight;
+      case 'bottomLeft':
+        return AlignmentOptionsType.bottomLeft;
+      case 'bottomCenter':
+        return AlignmentOptionsType.bottomCenter;
+      case 'bottomRight':
+        return AlignmentOptionsType.bottomRight;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(AlignmentOptionsType self) {
+    switch (self) {
+      case AlignmentOptionsType.topLeft:
+        return 'topLeft';
+      case AlignmentOptionsType.topCenter:
+        return 'topCenter';
+      case AlignmentOptionsType.topRight:
+        return 'topRight';
+      case AlignmentOptionsType.centerLeft:
+        return 'centerLeft';
+      case AlignmentOptionsType.center:
+        return 'center';
+      case AlignmentOptionsType.centerRight:
+        return 'centerRight';
+      case AlignmentOptionsType.bottomLeft:
+        return 'bottomLeft';
+      case AlignmentOptionsType.bottomCenter:
+        return 'bottomCenter';
+      case AlignmentOptionsType.bottomRight:
+        return 'bottomRight';
+    }
+  }
+}
+
+extension AlignmentOptionsTypeMapperExtension on AlignmentOptionsType {
+  String toValue() {
+    AlignmentOptionsTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<AlignmentOptionsType>(this)
+        as String;
+  }
+}
+
 class MenuStyleModelMapper extends ClassMapperBase<MenuStyleModel> {
   MenuStyleModelMapper._();
 
@@ -17,6 +92,7 @@ class MenuStyleModelMapper extends ClassMapperBase<MenuStyleModel> {
       SizeModelMapper.ensureInitialized();
       BorderSideModelMapper.ensureInitialized();
       OutlinedBorderModelMapper.ensureInitialized();
+      AlignmentOptionsTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -74,13 +150,13 @@ class MenuStyleModelMapper extends ClassMapperBase<MenuStyleModel> {
       _f$shape_outlinedBorder = Field(
           'shape_outlinedBorder', _$shape_outlinedBorder,
           opt: true, def: const OutlinedBorderModel());
-  static AlignmentOptions? _$alignment_enum_alignmentOptions(
+  static AlignmentOptionsType? _$alignment_enum_alignmentOptions(
           MenuStyleModel v) =>
       v.alignment_enum_alignmentOptions;
-  static const Field<MenuStyleModel, AlignmentOptions>
+  static const Field<MenuStyleModel, AlignmentOptionsType>
       _f$alignment_enum_alignmentOptions = Field(
           'alignment_enum_alignmentOptions', _$alignment_enum_alignmentOptions,
-          opt: true, def: AlignmentOptions.center);
+          opt: true, def: AlignmentOptionsType.center);
 
   @override
   final MappableFields<MenuStyleModel> fields = const {
@@ -188,7 +264,7 @@ abstract class MenuStyleModelCopyWith<$R, $In extends MenuStyleModel, $Out>
       SizeModel? maximumSize_size,
       BorderSideModel? side_borderSide,
       OutlinedBorderModel? shape_outlinedBorder,
-      AlignmentOptions? alignment_enum_alignmentOptions});
+      AlignmentOptionsType? alignment_enum_alignmentOptions});
   MenuStyleModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
