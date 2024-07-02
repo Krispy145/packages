@@ -36,9 +36,9 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
       viewStore: store,
       errorBuilder: (context, error) => Center(child: Text(error)),
       loadedBuilder: (context) {
-        return ReactiveFormBuilder(
-          form: () => store.form,
-          builder: (context, form, w) => formBuilder(context, form),
+        return ReactiveForm(
+          formGroup: store.form,
+          child: formBuilder(context),
           // canPop: null,
           // onPopInvoked: null,
         );
@@ -83,7 +83,7 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
     );
   }
 
-  Widget formBuilder(BuildContext context, FormGroup form);
+  Widget formBuilder(BuildContext context);
 
   // Map<String, BaseFormField> modelFields(BuildContext context);
 

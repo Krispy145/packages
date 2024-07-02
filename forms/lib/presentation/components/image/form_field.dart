@@ -101,9 +101,11 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             child: ReactiveForm(
               formGroup: form,
               child: Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(28),
                 child: Column(
                   children: [
+                    Text(isEditing ? "Change Image" : "Add Image", style: context.textTheme.titleMedium),
+                    const SizedBox(height: 16),
                     // IMAGE PREVIEW
                     Flexible(
                       child: AspectRatio(
@@ -134,7 +136,17 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                     ),
                     const SizedBox(height: 16),
                     // URL FIELD
-                    ReactiveTextField<String>(formControlName: imageUrlKey),
+                    ReactiveTextField<String>(
+                      formControlName: imageUrlKey,
+                      style: context.textTheme.bodyMedium,
+                      decoration: InputDecoration(
+                        hintText: "https://www.image.com",
+                        hintStyle: context.textTheme.bodyMedium?.copyWith(
+                          color: context.textTheme.bodyMedium?.color?.withOpacity(0.5),
+                          // color: context.colorScheme.onBackground.withOpacity(0.3),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 16),
                     // BUTTONS
                     ReactiveStatusListenableBuilder(

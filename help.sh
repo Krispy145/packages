@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define the packages and projects lists
-packages=("forms" "maps" "deeplinks")
-projects=("thrift_findr")
+packages=("forms")
+projects=("fellowship")
 
 # Define the project suffixes
 suffixes=(
@@ -13,7 +13,7 @@ suffixes=(
 
 # Define the commands to run in each directory
 commands=(
-    "flutter clean" 
+    # "flutter clean" 
     "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
 )

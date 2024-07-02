@@ -46,9 +46,6 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
   Future<Pair<RequestResponse, T?>> get(String id) async {
     final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
     final permissionsOverview = PermissionsSummary.fromPermissionLevel(checkPermissions);
-    // final isCheckPermissionsNotEqualToId = !checkPermissions.any((element) => element.first.split("/").last == id);
-    // final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.split("/").last == "all");
-    // if (isCheckPermissionsNotEqualToAll || isCheckPermissionsNotEqualToId) {
     if (permissionsOverview.all || permissionsOverview.include.contains(id)) {
       return super.get(id);
     }
@@ -79,7 +76,6 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       //       whereNotIn: _specificIDOverrideRemove,
       //     );
       final querySnapshot = await firestoreQuery.get();
-
       if (querySnapshot.docs.isEmpty) {
         return const Pair(RequestResponse.failure, []);
       }
@@ -521,11 +517,11 @@ class PermissionsSummary {
 
   PermissionsSummary({required this.all, required this.include, required this.exclude});
 
-  factory PermissionsSummary.fromPermissionLevel(List<Pair<String, PermissionLevel>> permissions, {bool allowUnderReview = false}) {
+  factory PermissionsSummary.fromPermissionLevel(List<Pair<String, PermissionLevel>> permissions, {List<PermissionLevel> allowedPermissionLevels = const [PermissionLevel.yes]}) {
     var all = false;
     final include = <String>[];
     final exclude = <String>[];
-    final allowedPermissionLevels = [PermissionLevel.yes, if (allowUnderReview) PermissionLevel.review];
+    // final allowedPermissionLevels = [PermissionLevel.yes, if (allowUnderReview) PermissionLevel.review];
     for (final permission in permissions) {
       final lastSection = permission.first.getLastSection();
       if (lastSection == null) continue;
