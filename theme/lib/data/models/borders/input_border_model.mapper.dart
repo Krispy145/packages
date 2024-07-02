@@ -6,6 +6,56 @@
 
 part of 'input_border_model.dart';
 
+class InputBorderTypeMapper extends EnumMapper<InputBorderType> {
+  InputBorderTypeMapper._();
+
+  static InputBorderTypeMapper? _instance;
+  static InputBorderTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = InputBorderTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static InputBorderType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  InputBorderType decode(dynamic value) {
+    switch (value) {
+      case 'none':
+        return InputBorderType.none;
+      case 'outlined':
+        return InputBorderType.outlined;
+      case 'underlined':
+        return InputBorderType.underlined;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(InputBorderType self) {
+    switch (self) {
+      case InputBorderType.none:
+        return 'none';
+      case InputBorderType.outlined:
+        return 'outlined';
+      case InputBorderType.underlined:
+        return 'underlined';
+    }
+  }
+}
+
+extension InputBorderTypeMapperExtension on InputBorderType {
+  String toValue() {
+    InputBorderTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<InputBorderType>(this) as String;
+  }
+}
+
 class InputBorderModelMapper extends ClassMapperBase<InputBorderModel> {
   InputBorderModelMapper._();
 
@@ -13,6 +63,7 @@ class InputBorderModelMapper extends ClassMapperBase<InputBorderModel> {
   static InputBorderModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = InputBorderModelMapper._());
+      InputBorderTypeMapper.ensureInitialized();
       BorderRadiusModelMapper.ensureInitialized();
       BorderSideModelMapper.ensureInitialized();
     }

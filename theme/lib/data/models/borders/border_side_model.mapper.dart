@@ -6,6 +6,52 @@
 
 part of 'border_side_model.dart';
 
+class BorderStyleTypeMapper extends EnumMapper<BorderStyleType> {
+  BorderStyleTypeMapper._();
+
+  static BorderStyleTypeMapper? _instance;
+  static BorderStyleTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = BorderStyleTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static BorderStyleType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  BorderStyleType decode(dynamic value) {
+    switch (value) {
+      case 'none':
+        return BorderStyleType.none;
+      case 'solid':
+        return BorderStyleType.solid;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(BorderStyleType self) {
+    switch (self) {
+      case BorderStyleType.none:
+        return 'none';
+      case BorderStyleType.solid:
+        return 'solid';
+    }
+  }
+}
+
+extension BorderStyleTypeMapperExtension on BorderStyleType {
+  String toValue() {
+    BorderStyleTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<BorderStyleType>(this) as String;
+  }
+}
+
 class BorderSideModelMapper extends ClassMapperBase<BorderSideModel> {
   BorderSideModelMapper._();
 
@@ -13,6 +59,7 @@ class BorderSideModelMapper extends ClassMapperBase<BorderSideModel> {
   static BorderSideModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = BorderSideModelMapper._());
+      BorderStyleTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -27,9 +74,10 @@ class BorderSideModelMapper extends ClassMapperBase<BorderSideModel> {
   static double? _$width_double(BorderSideModel v) => v.width_double;
   static const Field<BorderSideModel, double> _f$width_double =
       Field('width_double', _$width_double, opt: true);
-  static BorderStyle? _$style_enum_borderStyle(BorderSideModel v) =>
+  static BorderStyleType? _$style_enum_borderStyle(BorderSideModel v) =>
       v.style_enum_borderStyle;
-  static const Field<BorderSideModel, BorderStyle> _f$style_enum_borderStyle =
+  static const Field<BorderSideModel, BorderStyleType>
+      _f$style_enum_borderStyle =
       Field('style_enum_borderStyle', _$style_enum_borderStyle, opt: true);
   static double? _$strokeAlign_double(BorderSideModel v) =>
       v.strokeAlign_double;
@@ -108,7 +156,7 @@ abstract class BorderSideModelCopyWith<$R, $In extends BorderSideModel, $Out>
   $R call(
       {String? color_themeColorString,
       double? width_double,
-      BorderStyle? style_enum_borderStyle,
+      BorderStyleType? style_enum_borderStyle,
       double? strokeAlign_double});
   BorderSideModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);

@@ -5,7 +5,6 @@ import "package:flutter/material.dart";
 import "package:theme/data/models/borders/border_side_model.dart";
 import "package:theme/data/models/borders/outlined_border_model.dart";
 import "package:theme/data/models/edge_insets_model.dart";
-import "package:theme/data/models/general/size_model.dart";
 import "package:theme/extensions/text_style_string.dart";
 import "package:theme/extensions/theme_color_string.dart";
 
@@ -35,12 +34,12 @@ class ButtonModel with ButtonModelMappable {
   final double? elevation_double;
   @MappableValue(EdgeInsetsModel())
   final EdgeInsetsModel? padding_edgeInsets;
-  @MappableValue(SizeModel())
-  final SizeModel? minimumSize_size;
-  @MappableValue(SizeModel())
-  final SizeModel? fixedSize_size;
-  @MappableValue(SizeModel())
-  final SizeModel? maximumSize_size;
+  // @MappableValue(SizeModel())
+  // final SizeModel? minimumSize_size;
+  // @MappableValue(SizeModel())
+  // final SizeModel? fixedSize_size;
+  // @MappableValue(SizeModel())
+  // final SizeModel? maximumSize_size;
   final ThemeColorString? iconColor_themeColorString;
   final double? iconSize_double;
   @MappableValue(BorderSideModel())
@@ -56,18 +55,34 @@ class ButtonModel with ButtonModelMappable {
     this.shadowColor_themeColorString,
     this.surfaceTintColor_themeColorString,
     this.elevation_double,
-    this.padding_edgeInsets = const EdgeInsetsModel(),
-    this.minimumSize_size = const SizeModel(),
-    this.fixedSize_size = const SizeModel(),
-    this.maximumSize_size = const SizeModel(),
+    this.padding_edgeInsets = const EdgeInsetsModel(left_double: 16, right_double: 16, top_double: 4, bottom_double: 4),
+    // this.minimumSize_size,
+    // this.fixedSize_size,
+    // this.maximumSize_size,
     this.iconColor_themeColorString,
     this.iconSize_double,
-    this.side_borderSide = const BorderSideModel(),
-    this.shape_outlinedBorder = const OutlinedBorderModel(),
+    this.side_borderSide,
+    this.shape_outlinedBorder,
   });
 
   static const fromMap = ButtonModelMapper.fromMap;
   static const fromJson = ButtonModelMapper.fromJson;
+
+  static const ButtonModel empty = ButtonModel(
+    elevation_double: 0,
+    // maximumSize_size: SizeModel(
+    //   width_double: double.infinity,
+    //   height_double: double.infinity,
+    // ),
+    // minimumSize_size: SizeModel(
+    //   width_double: 64,
+    //   height_double: 36,
+    // ),
+    // fixedSize_size: SizeModel(
+    //   width_double: 120,
+    //   height_double: 36,
+    // ),
+  );
 
   ElevatedButtonThemeData toElevatedButtonThemeData() => ElevatedButtonThemeData(style: asButtonStyle());
 
@@ -77,164 +92,126 @@ class ButtonModel with ButtonModelMappable {
 
   FilledButtonThemeData toFilledButtonThemeData() => FilledButtonThemeData(style: asButtonStyle());
 
-  IconButtonThemeData toIconButtonThemeData() => IconButtonThemeData(style: asButtonStyle());
+  IconButtonThemeData toIconButtonThemeData() {
+    if (padding_edgeInsets ==
+        const EdgeInsetsModel(
+          top_double: 4,
+          left_double: 16,
+          bottom_double: 4,
+          right_double: 16,
+        )) {
+      return IconButtonThemeData(
+        style: asButtonStyle().copyWith(
+          padding: const WidgetStatePropertyAll(
+            EdgeInsets.all(8),
+          ),
+        ),
+      );
+    } else {
+      return IconButtonThemeData(
+        style: asButtonStyle().copyWith(
+          padding: WidgetStatePropertyAll(
+            padding_edgeInsets?.asEdgeInsets(),
+          ),
+        ),
+      );
+    }
+  }
 
   SegmentedButtonThemeData toSegmentedButtonThemeData() => SegmentedButtonThemeData(style: asButtonStyle());
 
   MenuButtonThemeData toMenuButtonThemeData() => MenuButtonThemeData(style: asButtonStyle());
 
   ButtonStyle asButtonStyle({String? styleTypeName}) {
-    return ButtonStyle(
-      textStyle: MaterialStateProperty.all(
-        textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      ),
-      backgroundColor: MaterialStateProperty.all(
-        backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      foregroundColor: MaterialStateProperty.all(
-        foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      overlayColor: MaterialStateProperty.all(
-        overlayColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      shadowColor: MaterialStateProperty.all(
-        shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      ),
-      elevation: MaterialStateProperty.all(elevation_double),
-      padding: MaterialStateProperty.all(
-        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-      ),
-      minimumSize: MaterialStateProperty.all(
-        minimumSize_size?.asSize(styleTypeName: styleTypeName),
-      ),
-      fixedSize: MaterialStateProperty.all(
-        fixedSize_size?.asSize(styleTypeName: styleTypeName),
-      ),
-      maximumSize: MaterialStateProperty.all(
-        maximumSize_size?.asSize(styleTypeName: styleTypeName),
-      ),
-      side: MaterialStateProperty.all(
-        side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
-      ),
-      shape: MaterialStateProperty.all(
-        shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
-      ),
-    );
+    final materialTextStyle = textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle == null
+        ? null
+        : WidgetStateProperty.all(
+            textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+          );
+    final materialBackgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+          );
+    final materialForegroundColor = foregroundColor_themeColorString?.toColor(styleType: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+          );
+    final materialOverlayColor = overlayColor_themeColorString?.toColor(styleType: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+          );
+    final materialShadowColor = shadowColor_themeColorString?.toColor(styleType: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+          );
+    final materialElevation = elevation_double == null ? null : WidgetStateProperty.all(elevation_double);
+    final materialPadding = padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+          );
+    // final materialMinimumSize = minimumSize_size?.asSize(styleTypeName: styleTypeName) == null
+    //     ? null
+    //     : WidgetStateProperty.all(
+    //         minimumSize_size?.asSize(styleTypeName: styleTypeName),
+    //       );
+    // final materialFixedSize = fixedSize_size?.asSize(styleTypeName: styleTypeName) == null
+    //     ? null
+    //     : WidgetStateProperty.all(
+    //         fixedSize_size?.asSize(styleTypeName: styleTypeName),
+    //       );
+    // final materialMaximumSize = maximumSize_size?.asSize(styleTypeName: styleTypeName) == null
+    //     ? null
+    //     : WidgetStateProperty.all(
+    //         maximumSize_size?.asSize(styleTypeName: styleTypeName),
+    //       );
+    final materialSide = side_borderSide?.asBorderSide(styleTypeName: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
+          );
+    final materialShape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName) == null
+        ? null
+        : WidgetStateProperty.all(
+            shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+          );
+
+    var button = const ButtonStyle();
+    if (materialTextStyle != null) {
+      button = button.copyWith(textStyle: materialTextStyle);
+    }
+    if (materialBackgroundColor != null) {
+      button = button.copyWith(backgroundColor: materialBackgroundColor);
+    }
+    if (materialForegroundColor != null) {
+      button = button.copyWith(foregroundColor: materialForegroundColor);
+    }
+    if (materialOverlayColor != null) {
+      button = button.copyWith(overlayColor: materialOverlayColor);
+    }
+    if (materialShadowColor != null) {
+      button = button.copyWith(shadowColor: materialShadowColor);
+    }
+    if (materialElevation != null) {
+      button = button.copyWith(elevation: materialElevation);
+    }
+    if (materialPadding != null) {
+      button = button.copyWith(padding: materialPadding);
+    }
+    // button = button.copyWith(minimumSize: materialMinimumSize);
+    // button = button.copyWith(fixedSize: materialFixedSize);
+    // button = button.copyWith(maximumSize: materialMaximumSize);
+    if (materialSide != null) {
+      button = button.copyWith(side: materialSide);
+    }
+    if (materialShape != null) {
+      button = button.copyWith(shape: materialShape);
+    }
+
+    return button;
   }
-
-  // static const empty = ButtonModel(id: "");
-
-  // static const buttonOne = ButtonModel(
-  //   id: "buttonOneId",
-  //   name: "{{name.titleCase()}} One",
-  // );
-
-  // static const buttonTwo = ButtonModel(
-  //   id: "buttonTwoId",
-  //   name: "{{name.titleCase()}} Two",
-  // );
-
-  // static const buttonThree = ButtonModel(
-  //   id: "buttonThreeId",
-  //   name: "{{name.titleCase()}} Three",
-  // );
-
-  // static final List<ButtonModel> fakeData = [
-  //   buttonOne,
-  //   buttonTwo,
-  //   buttonThree,
-  // ];
 }
-
-// @unfreezed
-// class ButtonModel with _$ButtonModel {
-//   factory ButtonModel({
-//     TextStyleString? textStyle_textStyleString,
-//     ThemeColorString? backgroundColor_themeColorString,
-//     ThemeColorString? foregroundColor_themeColorString,
-//     ThemeColorString? overlayColor_themeColorString,
-//     ThemeColorString? shadowColor_themeColorString,
-//     ThemeColorString? surfaceTintColor_themeColorString,
-//     double? elevation_double,
-//     @MappableValue(EdgeInsetsModel()) EdgeInsetsModel? padding_edgeInsets,
-//     @MappableValue(SizeModel()) SizeModel? minimumSize_size,
-//     @MappableValue(SizeModel()) SizeModel? fixedSize_size,
-//     @MappableValue(SizeModel()) SizeModel? maximumSize_size,
-//     ThemeColorString? iconColor_themeColorString,
-//     double? iconSize_double,
-//     // @BorderSideConverter()
-//     @MappableValue(BorderSideModel()) BorderSideModel? side_borderSide,
-//     // @OutlinedBorderConverter()
-//     @MappableValue(OutlinedBorderModel()) OutlinedBorderModel? shape_outlinedBorder,
-//   }) = _ButtonModel;
-//   ButtonModel._();
-
-//   ElevatedButtonThemeData toElevatedButtonThemeData() {
-//     return ElevatedButtonThemeData(style: asButtonStyle());
-//   }
-
-//   OutlinedButtonThemeData toOutlinedButtonThemeData() {
-//     return OutlinedButtonThemeData(style: asButtonStyle());
-//   }
-
-//   TextButtonThemeData toTextButtonThemeData() {
-//     return TextButtonThemeData(style: asButtonStyle());
-//   }
-
-//   FilledButtonThemeData toFilledButtonThemeData() {
-//     return FilledButtonThemeData(style: asButtonStyle());
-//   }
-
-//   IconButtonThemeData toIconButtonThemeData() {
-//     return IconButtonThemeData(style: asButtonStyle());
-//   }
-
-//   SegmentedButtonThemeData toSegmentedButtonThemeData() {
-//     return SegmentedButtonThemeData(style: asButtonStyle());
-//   }
-
-//   MenuButtonThemeData toMenuButtonThemeData() {
-//     return MenuButtonThemeData(style: asButtonStyle());
-//   }
-
-//   ButtonStyle asButtonStyle({String? styleTypeName}) {
-//     return ButtonStyle(
-//       textStyle: MaterialStateProperty.all(
-//         textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-//       ),
-//       backgroundColor: MaterialStateProperty.all(
-//         backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-//       ),
-//       foregroundColor: MaterialStateProperty.all(
-//         foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
-//       ),
-//       overlayColor: MaterialStateProperty.all(
-//         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
-//       ),
-//       shadowColor: MaterialStateProperty.all(
-//         shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-//       ),
-//       elevation: MaterialStateProperty.all(elevation_double),
-//       padding: MaterialStateProperty.all(
-//         padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-//       ),
-//       minimumSize: MaterialStateProperty.all(
-//         minimumSize_size?.asSize(styleTypeName: styleTypeName),
-//       ),
-//       fixedSize: MaterialStateProperty.all(
-//         fixedSize_size?.asSize(styleTypeName: styleTypeName),
-//       ),
-//       maximumSize: MaterialStateProperty.all(
-//         maximumSize_size?.asSize(styleTypeName: styleTypeName),
-//       ),
-//       side: MaterialStateProperty.all(
-//         side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
-//       ),
-//       shape: MaterialStateProperty.all(
-//         shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
-//       ),
-//     );
-//   }
-
-//   factory ButtonModel.fromJson(Map<String, dynamic> json) => _$ButtonModelFromJson(json);
-// }

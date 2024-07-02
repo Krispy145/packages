@@ -22,10 +22,10 @@ enum ExpandingPanelViewType {
 /// [ExpandingPanelViewBuilder] is a class that builds the panel view.
 class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context) panelViewBuilder;
+  final Widget Function(BuildContext context, ExpandingPanelViewStore panelStore) panelViewBuilder;
 
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context, ExpandingPanelViewStore viewModel) viewBuilder;
+  final Widget Function(BuildContext context, ExpandingPanelViewStore panelStore) viewBuilder;
 
   /// [type] is the [ExpandingPanelViewType] of the panel view.
   final ExpandingPanelViewType type;
@@ -112,24 +112,21 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onDoubleTap: store.toggle,
-      child: Stack(
-        children: [
-          viewBuilder(context, store),
-          Observer(
-            builder: (context) {
-              return Positioned(
-                top: type == ExpandingPanelViewType.top ? 0 : null,
-                bottom: type == ExpandingPanelViewType.bottom ? 0 : null,
-                left: type == ExpandingPanelViewType.left ? 0 : null,
-                right: type == ExpandingPanelViewType.right ? 0 : null,
-                child: _buildPanelAndToggle(context),
-              );
-            },
-          ),
-        ],
-      ),
+    return Stack(
+      children: [
+        viewBuilder(context, store),
+        Observer(
+          builder: (context) {
+            return Positioned(
+              top: type == ExpandingPanelViewType.top ? 0 : null,
+              bottom: type == ExpandingPanelViewType.bottom ? 0 : null,
+              left: type == ExpandingPanelViewType.left ? 0 : null,
+              right: type == ExpandingPanelViewType.right ? 0 : null,
+              child: _buildPanelAndToggle(context),
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -192,12 +189,16 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
       secondCurve: Curves.easeInOut,
       crossFadeState: store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: GestureDetector(
-        onDoubleTap: store.toggle,
-        child: panelViewBuilder(context),
+        onTap: store.toggle,
+        child: SizedBox(
+          width: _buildPanelViewWidth(context, widthPercentage),
+          height: _buildPanelViewHeight(context, 1),
+          child: panelViewBuilder(context, store),
+        ),
       ),
       secondChild: SizedBox(
-        width: _buildPanelViewWidth(context, 0.05),
-        height: _buildPanelViewHeight(context, 0.05),
+        width: _buildPanelViewWidth(context, widthPercentage),
+        height: _buildPanelViewHeight(context, 1),
         child: IconButton(
           icon: Icon(
             _buildPanelViewShowIcon(),

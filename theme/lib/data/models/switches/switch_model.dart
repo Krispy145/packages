@@ -29,19 +29,19 @@ class SwitchModel with SwitchModelMappable {
 
   SwitchThemeData asSwitchThemeData({String? styleTypeName}) {
     return SwitchThemeData(
-      thumbColor: MaterialStateProperty.all(
+      thumbColor: WidgetStateProperty.all(
         thumbColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackColor: MaterialStateProperty.all(
+      trackColor: WidgetStateProperty.all(
         trackColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      trackOutlineColor: MaterialStateProperty.all(
+      trackOutlineColor: WidgetStateProperty.all(
         trackOutlineColor_themeColorString?.toColor(
           styleType: styleTypeName,
         ),
       ),
-      trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth_double),
-      overlayColor: MaterialStateProperty.all(
+      trackOutlineWidth: WidgetStateProperty.all(trackOutlineWidth_double),
+      overlayColor: WidgetStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,
@@ -104,15 +104,15 @@ class SwitchModel with SwitchModelMappable {
 
 //   SwitchThemeData asSwitchThemeData({String? styleTypeName}) {
 //     return SwitchThemeData(
-//       thumbColor: MaterialStateProperty.all(
+//       thumbColor: WidgetStateProperty.all(
 //           thumbColor_themeColorString?.toColor(styleType: styleTypeName),),
-//       trackColor: MaterialStateProperty.all(
+//       trackColor: WidgetStateProperty.all(
 //           trackColor_themeColorString?.toColor(styleType: styleTypeName),),
-//       trackOutlineColor: MaterialStateProperty.all(
+//       trackOutlineColor: WidgetStateProperty.all(
 //           trackOutlineColor_themeColorString?.toColor(
 //               styleType: styleTypeName,),),
-//       trackOutlineWidth: MaterialStateProperty.all(trackOutlineWidth_double),
-//       overlayColor: MaterialStateProperty.all(
+//       trackOutlineWidth: WidgetStateProperty.all(trackOutlineWidth_double),
+//       overlayColor: WidgetStateProperty.all(
 //           overlayColor_themeColorString?.toColor(styleType: styleTypeName),),
 //       splashRadius: splashRadius_double,
 //     );

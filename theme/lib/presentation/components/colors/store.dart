@@ -15,7 +15,7 @@ abstract class _ColorSchemesStore with Store {
   /// [selectedColor] is a property that stores the selected color from the current scheme.
   @observable
   // ignore: prefer_const_constructors
-  MapEntry<String, dynamic> selectedColor = AppTheme.colorStyles().toMap().entries.first;
+  MapEntry<String, dynamic> selectedColor = AppTheme.currentColorModel!.toMap().entries.first;
 
   /// [selectedColor] is a method that sets the selected color from the current scheme.
   @action
@@ -28,18 +28,16 @@ abstract class _ColorSchemesStore with Store {
   @action
   ColorModel setColorModel() {
     try {
-      final colorSchemes = AppTheme.colorStyles();
+      final currentColorModel = AppTheme.currentColorModel!;
       Map<String, dynamic> jsonModel;
-      if (AppTheme.isDark) {
-        jsonModel = colorSchemes.dark.toMap();
-      } else {
-        jsonModel = colorSchemes.light.toMap();
-      }
+
+      jsonModel = currentColorModel.toMap();
+
       jsonModel[selectedColor.key] = selectedColor.value;
-      return ColorModel.fromJson(jsonModel);
+      return ColorModel.fromMap(jsonModel);
     } catch (e, stackTrace) {
       debugPrint("setColorModel: $e, $stackTrace");
-      return ColorModel.fromJson({});
+      return ColorModel.fromMap({});
     }
   }
 }

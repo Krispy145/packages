@@ -41,18 +41,6 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
             },
           ),
         );
-        // return DropdownMenu<T>(
-        //   searchCallback: (entries, query) {
-        //     if (query.isEmpty) return null;
-        //     final index = entries.indexWhere((entry) => entry.label.contains(query));
-        //     return index != -1 ? index : null;
-        //   },
-        //   expandedInsets: const EdgeInsets.all(8),
-        //   initialSelection: store.value,
-        //   textStyle: textStyle,
-        //   dropdownMenuEntries: store.items.map((item) => DropdownMenuEntry(value: item, label: store.labelBuilder(item))).toList(),
-        //   onSelected: store.onValueChanged,
-        // );
       },
     );
   }

@@ -24,56 +24,63 @@ class AppbarModelMapper extends ClassMapperBase<AppbarModel> {
   static String? _$color_themeColorString(AppbarModel v) =>
       v.color_themeColorString;
   static const Field<AppbarModel, String> _f$color_themeColorString =
-      Field('color_themeColorString', _$color_themeColorString);
+      Field('color_themeColorString', _$color_themeColorString, opt: true);
   static String? _$backgroundColor_themeColorString(AppbarModel v) =>
       v.backgroundColor_themeColorString;
   static const Field<AppbarModel, String> _f$backgroundColor_themeColorString =
       Field('backgroundColor_themeColorString',
-          _$backgroundColor_themeColorString);
+          _$backgroundColor_themeColorString,
+          opt: true);
   static String? _$foregroundColor_themeColorString(AppbarModel v) =>
       v.foregroundColor_themeColorString;
   static const Field<AppbarModel, String> _f$foregroundColor_themeColorString =
       Field('foregroundColor_themeColorString',
-          _$foregroundColor_themeColorString);
+          _$foregroundColor_themeColorString,
+          opt: true);
   static double? _$elevation_double(AppbarModel v) => v.elevation_double;
   static const Field<AppbarModel, double> _f$elevation_double =
-      Field('elevation_double', _$elevation_double);
+      Field('elevation_double', _$elevation_double, opt: true);
   static double? _$scrolledUnderElevation_double(AppbarModel v) =>
       v.scrolledUnderElevation_double;
   static const Field<AppbarModel, double> _f$scrolledUnderElevation_double =
-      Field('scrolledUnderElevation_double', _$scrolledUnderElevation_double);
+      Field('scrolledUnderElevation_double', _$scrolledUnderElevation_double,
+          opt: true);
   static String? _$shadowColor_themeColorString(AppbarModel v) =>
       v.shadowColor_themeColorString;
   static const Field<AppbarModel, String> _f$shadowColor_themeColorString =
-      Field('shadowColor_themeColorString', _$shadowColor_themeColorString);
+      Field('shadowColor_themeColorString', _$shadowColor_themeColorString,
+          opt: true);
   static String? _$surfaceTintColor_themeColorString(AppbarModel v) =>
       v.surfaceTintColor_themeColorString;
   static const Field<AppbarModel, String> _f$surfaceTintColor_themeColorString =
       Field('surfaceTintColor_themeColorString',
-          _$surfaceTintColor_themeColorString);
+          _$surfaceTintColor_themeColorString,
+          opt: true);
   static ShapeBorderModel? _$shape_shapeBorder(AppbarModel v) =>
       v.shape_shapeBorder;
   static const Field<AppbarModel, ShapeBorderModel> _f$shape_shapeBorder =
-      Field('shape_shapeBorder', _$shape_shapeBorder);
+      Field('shape_shapeBorder', _$shape_shapeBorder, opt: true);
   static bool? _$centerTitle_bool(AppbarModel v) => v.centerTitle_bool;
   static const Field<AppbarModel, bool> _f$centerTitle_bool =
-      Field('centerTitle_bool', _$centerTitle_bool);
+      Field('centerTitle_bool', _$centerTitle_bool, opt: true);
   static double? _$titleSpacing_double(AppbarModel v) => v.titleSpacing_double;
   static const Field<AppbarModel, double> _f$titleSpacing_double =
-      Field('titleSpacing_double', _$titleSpacing_double);
+      Field('titleSpacing_double', _$titleSpacing_double, opt: true);
   static double? _$toolbarHeight_double(AppbarModel v) =>
       v.toolbarHeight_double;
   static const Field<AppbarModel, double> _f$toolbarHeight_double =
-      Field('toolbarHeight_double', _$toolbarHeight_double);
+      Field('toolbarHeight_double', _$toolbarHeight_double, opt: true);
   static String? _$toolbarTextStyle_textStyleString(AppbarModel v) =>
       v.toolbarTextStyle_textStyleString;
   static const Field<AppbarModel, String> _f$toolbarTextStyle_textStyleString =
       Field('toolbarTextStyle_textStyleString',
-          _$toolbarTextStyle_textStyleString);
+          _$toolbarTextStyle_textStyleString,
+          opt: true);
   static String? _$titleTextStyle_textStyleString(AppbarModel v) =>
       v.titleTextStyle_textStyleString;
   static const Field<AppbarModel, String> _f$titleTextStyle_textStyleString =
-      Field('titleTextStyle_textStyleString', _$titleTextStyle_textStyleString);
+      Field('titleTextStyle_textStyleString', _$titleTextStyle_textStyleString,
+          opt: true);
 
   @override
   final MappableFields<AppbarModel> fields = const {

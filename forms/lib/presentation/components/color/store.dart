@@ -23,6 +23,7 @@ abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColo
   /// Updates the [value] color of the field, triggering an update of the theme
   @action
   void onDone() {
+    print("onDone: $value - $color");
     if (value?.key != null) {
       value = MapEntry(
         value!.key,

@@ -16,12 +16,12 @@ class BottomAppbarModel with BottomAppbarModelMappable {
   final EdgeInsetsModel? padding_edgeInsets;
 
   const BottomAppbarModel({
-    required this.color_themeColorString,
-    required this.elevation_double,
-    required this.height_double,
-    required this.surfaceTintColor_themeColorString,
-    required this.shadowColor_themeColorString,
-    required this.padding_edgeInsets,
+    this.color_themeColorString,
+    this.elevation_double,
+    this.height_double,
+    this.surfaceTintColor_themeColorString,
+    this.shadowColor_themeColorString,
+    this.padding_edgeInsets,
   });
 
   static const fromMap = BottomAppbarModelMapper.fromMap;

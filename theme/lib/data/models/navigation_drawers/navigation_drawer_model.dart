@@ -52,7 +52,7 @@ class NavigationDrawerModel with NavigationDrawerModelMappable {
         styleTypeName: styleTypeName,
       ),
       indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
-      labelTextStyle: MaterialStateProperty.all(
+      labelTextStyle: WidgetStateProperty.all(
         labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
     );
@@ -142,7 +142,7 @@ class NavigationDrawerModel with NavigationDrawerModelMappable {
 //       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
 //           styleTypeName: styleTypeName,),
 //       indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
-//       labelTextStyle: MaterialStateProperty.all(labelTextStyle_textStyleString
+//       labelTextStyle: WidgetStateProperty.all(labelTextStyle_textStyleString
 //           ?.toTextStyleModel(styleType: styleTypeName)
 //           ?.asTextStyle,),
 //     );
