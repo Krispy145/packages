@@ -321,9 +321,9 @@ class ColorModel with ColorModelMappable {
       inversePrimary: seededSecondary.inversePrimary,
 
       //Secondary Colors
-      secondary: secondary,
+      secondary: brightness == Brightness.dark ? ensureHighContrast(secondary, seededPrimary.primary) : secondary,
       secondaryContainer: seededSecondary.primaryContainer,
-      onSecondary: ensureHighContrast(secondary, seededTertiary.primary),
+      onSecondary: brightness == Brightness.dark ? secondary : ensureHighContrast(secondary, seededPrimary.primary),
       onSecondaryContainer: seededSecondary.primaryContainer,
 
       //Tertiary Colors

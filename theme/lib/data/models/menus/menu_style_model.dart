@@ -97,16 +97,16 @@ class MenuStyleModel with MenuStyleModelMappable {
     final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
     final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-      backgroundColor: backgroundColor != null ? MaterialStateProperty.all(backgroundColor) : null,
-      shadowColor: shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
-      surfaceTintColor: surfaceTintColor != null ? MaterialStateProperty.all(surfaceTintColor) : null,
-      elevation: elevation != null ? MaterialStateProperty.all(elevation) : null,
-      padding: padding != null ? MaterialStateProperty.all(padding) : null,
-      minimumSize: minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
-      fixedSize: fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
-      maximumSize: maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
-      side: side != null ? MaterialStateProperty.all(side) : null,
-      shape: shape != null ? MaterialStateProperty.all(shape) : null,
+      backgroundColor: backgroundColor != null ? WidgetStateProperty.all(backgroundColor) : null,
+      shadowColor: shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
+      surfaceTintColor: surfaceTintColor != null ? WidgetStateProperty.all(surfaceTintColor) : null,
+      elevation: elevation != null ? WidgetStateProperty.all(elevation) : null,
+      padding: padding != null ? WidgetStateProperty.all(padding) : null,
+      minimumSize: minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
+      fixedSize: fixedSize != null ? WidgetStateProperty.all(fixedSize) : null,
+      maximumSize: maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
+      side: side != null ? WidgetStateProperty.all(side) : null,
+      shape: shape != null ? WidgetStateProperty.all(shape) : null,
       alignment: alignment,
     );
   }
@@ -214,24 +214,24 @@ class MenuStyleModel with MenuStyleModelMappable {
 //     final alignment = alignment_enum_alignmentOptions?.alignment;
 //     return MenuStyle(
 //       backgroundColor: backgroundColor != null
-//           ? MaterialStateProperty.all(backgroundColor)
+//           ? WidgetStateProperty.all(backgroundColor)
 //           : null,
 //       shadowColor:
-//           shadowColor != null ? MaterialStateProperty.all(shadowColor) : null,
+//           shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
 //       surfaceTintColor: surfaceTintColor != null
-//           ? MaterialStateProperty.all(surfaceTintColor)
+//           ? WidgetStateProperty.all(surfaceTintColor)
 //           : null,
 //       elevation:
-//           elevation != null ? MaterialStateProperty.all(elevation) : null,
-//       padding: padding != null ? MaterialStateProperty.all(padding) : null,
+//           elevation != null ? WidgetStateProperty.all(elevation) : null,
+//       padding: padding != null ? WidgetStateProperty.all(padding) : null,
 //       minimumSize:
-//           minimumSize != null ? MaterialStateProperty.all(minimumSize) : null,
+//           minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
 //       fixedSize:
-//           fixedSize != null ? MaterialStateProperty.all(fixedSize) : null,
+//           fixedSize != null ? WidgetStateProperty.all(fixedSize) : null,
 //       maximumSize:
-//           maximumSize != null ? MaterialStateProperty.all(maximumSize) : null,
-//       side: side != null ? MaterialStateProperty.all(side) : null,
-//       shape: shape != null ? MaterialStateProperty.all(shape) : null,
+//           maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
+//       side: side != null ? WidgetStateProperty.all(side) : null,
+//       shape: shape != null ? WidgetStateProperty.all(shape) : null,
 //       alignment: alignment,
 //     );
 //   }

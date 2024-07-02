@@ -6,6 +6,7 @@ import "package:flutter/services.dart";
 import "package:forms/presentation/maps/store.dart";
 import "package:get_it/get_it.dart";
 import "package:mobx/mobx.dart";
+import "package:theme/app/app.dart";
 import "package:theme/app/store.dart";
 import "package:theme/data/models/appbars/appbar_model.dart";
 import "package:theme/data/models/appbars/bottom_appbar_model.dart";
@@ -43,16 +44,21 @@ import "package:theme/data/models/text/text_style_sizes_model.dart";
 import "package:theme/data/models/text/text_types_model.dart";
 import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/models/tooltips/tooltip_model.dart";
+import "package:theme/domain/repositories/digital_oasis.repository.dart";
 import "package:theme/domain/repositories/theme.repository.dart";
 import "package:theme/presentation/changer/view.dart";
 import "package:theme/presentation/components/color_seed.dart";
 import "package:theme/presentation/components/colors/view.dart";
 import "package:theme/presentation/components/image_seed.dart";
 import "package:theme/presentation/components/options.dart";
+import "package:theme/presentation/components/save_theme/store.dart";
+import "package:theme/presentation/components/save_theme/view.dart";
 import "package:theme/presentation/components/textStyles/view.dart";
+import "package:theme/presentation/components/theme_model_reference.dart";
 import "package:theme/presentation/panel/base_view.dart";
 import "package:theme/utils/loggers.dart";
 import "package:universal_html/html.dart" as html;
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/logger/logger.dart";
 
 // TODO: Move to relevant place
@@ -259,7 +265,7 @@ class ThemeChanger {
     required T buttonStyle,
   }) {
     // TODO: Tidy this
-    if (T.toString() == "ButtonStyleModel" || T.toString() == "ButtonStyleModel?") {
+    if (T.toString() == "ButtonModel" || T.toString() == "ButtonModel?") {
       _changeButtonStyleModel(
         buttonType: buttonType,
         buttonStyle: buttonStyle as ButtonModel,
@@ -272,7 +278,7 @@ class ThemeChanger {
       );
     }
     AppLogger.print(
-      "Button style changed: $buttonStyle",
+      "Button changed: $buttonStyle",
       [ThemeLoggers.changer],
     );
   }
@@ -929,6 +935,78 @@ class ThemeChanger {
     );
   }
 
+  /// [saveJsonToDatabase] is a function that is used to save the json to a database.
+  static Future<void> saveJsonToDatabase(BuildContext context) async {
+    await showModalBottomSheet<bool>(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setState) {
+            return Column(
+              children: [
+                const SizedBox(height: 20),
+                const Text("Do you want to add or Update this theme?"),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => Navigator.pop(context, true),
+                      child: const Text("Update"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => Navigator.pop(context, false),
+                      child: const Text("Add"),
+                    ),
+                  ],
+                ),
+              ],
+            );
+          },
+        );
+      },
+    ).then((value) {
+      final store = AdditThemeStore(
+        editingValue: (value ?? false) ? ThemeModelReference(themeId: AppTheme.baseThemeModel!.id, name: AppTheme.baseThemeModel!.name ?? "No Name") : null,
+        onValueSaved: (isAdding, value) async {
+          final repository = DORepository();
+          var baseTheme = _baseThemeModel;
+          var componentsTheme = _componentThemesModel;
+          RequestResponse baseResult;
+          RequestResponse componentsResult;
+          baseTheme = baseTheme!.copyWith(id: value.themeId, name: value.name);
+          componentsTheme = componentsTheme!.copyWith(id: value.themeId, name: value.name);
+          if (!isAdding) {
+            final baseResponse = await repository.baseThemeDataSource.update(baseTheme.id, baseTheme);
+            baseResult = baseResponse;
+            final componentsResponse = await repository.componentsThemesDataSource.update(componentsTheme.id, componentsTheme);
+            componentsResult = componentsResponse;
+          } else {
+            final baseResponse = await repository.baseThemeDataSource.add(baseTheme);
+            baseResult = baseResponse.first;
+
+            final componentsResponse = await repository.componentsThemesDataSource.add(componentsTheme);
+            componentsResult = componentsResponse.first;
+          }
+          if (baseResult == RequestResponse.success && componentsResult == RequestResponse.success) {
+            return RequestResponse.success;
+          } else {
+            return RequestResponse.failure;
+          }
+        },
+      );
+      return showModalBottomSheet<void>(
+        context: context,
+        builder: (context) => SaveThemeView(
+          store: store,
+          onBack: (_) => Navigator.pop(context),
+        ),
+      );
+    });
+  }
+
+  static void changeCurrentThemesFromSelection() {}
+
   /// [saveJsonToFile] is a function that is used to save the json to a file.
   static void saveJsonToFile() {
     // Convert theme model to JSON
@@ -978,9 +1056,9 @@ class ThemeChanger {
   static void updateThemeInRepository({ThemeRepository? repository}) {
     try {
       if (repository != null) {
-        repository.updateTheme(_baseThemeModel!);
-        print("Component themes model: $_componentThemesModel");
-        repository.updateComponentTheme(_componentThemesModel!);
+        repository
+          ..updateTheme(_baseThemeModel!)
+          ..updateComponentTheme(_componentThemesModel!);
       } else {
         _themeStore.repository?.updateTheme(_baseThemeModel!);
         _themeStore.repository?.updateComponentTheme(_componentThemesModel!);

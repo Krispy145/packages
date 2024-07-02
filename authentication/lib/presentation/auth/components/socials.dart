@@ -107,10 +107,10 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
         }
 
         final authButtonStyle = ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(foregroundColor),
-          backgroundColor: MaterialStateProperty.all(backgroundColor),
-          overlayColor: MaterialStateProperty.all(overlayColor),
-          iconColor: MaterialStateProperty.all(iconColor),
+          foregroundColor: WidgetStateProperty.all(foregroundColor),
+          backgroundColor: WidgetStateProperty.all(backgroundColor),
+          overlayColor: WidgetStateProperty.all(overlayColor),
+          iconColor: WidgetStateProperty.all(iconColor),
         );
 
         return Padding(

@@ -102,7 +102,7 @@ class ButtonModel with ButtonModelMappable {
         )) {
       return IconButtonThemeData(
         style: asButtonStyle().copyWith(
-          padding: const MaterialStatePropertyAll(
+          padding: const WidgetStatePropertyAll(
             EdgeInsets.all(8),
           ),
         ),
@@ -110,7 +110,7 @@ class ButtonModel with ButtonModelMappable {
     } else {
       return IconButtonThemeData(
         style: asButtonStyle().copyWith(
-          padding: MaterialStatePropertyAll(
+          padding: WidgetStatePropertyAll(
             padding_edgeInsets?.asEdgeInsets(),
           ),
         ),
@@ -125,58 +125,58 @@ class ButtonModel with ButtonModelMappable {
   ButtonStyle asButtonStyle({String? styleTypeName}) {
     final materialTextStyle = textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
           );
     final materialBackgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
           );
     final materialForegroundColor = foregroundColor_themeColorString?.toColor(styleType: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
           );
     final materialOverlayColor = overlayColor_themeColorString?.toColor(styleType: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             overlayColor_themeColorString?.toColor(styleType: styleTypeName),
           );
     final materialShadowColor = shadowColor_themeColorString?.toColor(styleType: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             shadowColor_themeColorString?.toColor(styleType: styleTypeName),
           );
-    final materialElevation = elevation_double == null ? null : MaterialStateProperty.all(elevation_double);
+    final materialElevation = elevation_double == null ? null : WidgetStateProperty.all(elevation_double);
     final materialPadding = padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
           );
     // final materialMinimumSize = minimumSize_size?.asSize(styleTypeName: styleTypeName) == null
     //     ? null
-    //     : MaterialStateProperty.all(
+    //     : WidgetStateProperty.all(
     //         minimumSize_size?.asSize(styleTypeName: styleTypeName),
     //       );
     // final materialFixedSize = fixedSize_size?.asSize(styleTypeName: styleTypeName) == null
     //     ? null
-    //     : MaterialStateProperty.all(
+    //     : WidgetStateProperty.all(
     //         fixedSize_size?.asSize(styleTypeName: styleTypeName),
     //       );
     // final materialMaximumSize = maximumSize_size?.asSize(styleTypeName: styleTypeName) == null
     //     ? null
-    //     : MaterialStateProperty.all(
+    //     : WidgetStateProperty.all(
     //         maximumSize_size?.asSize(styleTypeName: styleTypeName),
     //       );
     final materialSide = side_borderSide?.asBorderSide(styleTypeName: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
           );
     final materialShape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName) == null
         ? null
-        : MaterialStateProperty.all(
+        : WidgetStateProperty.all(
             shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
           );
 

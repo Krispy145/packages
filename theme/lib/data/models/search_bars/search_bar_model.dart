@@ -71,32 +71,32 @@ class SearchBarModel with SearchBarModelMappable {
 
   SearchBarThemeData asSearchBarThemeData({String? styleTypeName}) {
     return SearchBarThemeData(
-      elevation: MaterialStateProperty.all(elevation_double),
-      backgroundColor: MaterialStateProperty.all(
+      elevation: WidgetStateProperty.all(elevation_double),
+      backgroundColor: WidgetStateProperty.all(
         backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      shadowColor: MaterialStateProperty.all(
+      shadowColor: WidgetStateProperty.all(
         shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      surfaceTintColor: MaterialStateProperty.all(
+      surfaceTintColor: WidgetStateProperty.all(
         surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      overlayColor: MaterialStateProperty.all(
+      overlayColor: WidgetStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
-      side: MaterialStateProperty.all(
+      side: WidgetStateProperty.all(
         side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
       ),
-      shape: MaterialStateProperty.all(
+      shape: WidgetStateProperty.all(
         shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       ),
-      padding: MaterialStateProperty.all(
+      padding: WidgetStateProperty.all(
         padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero,
       ),
-      textStyle: MaterialStateProperty.all(
+      textStyle: WidgetStateProperty.all(
         textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
-      hintStyle: MaterialStateProperty.all(
+      hintStyle: WidgetStateProperty.all(
         hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       ),
       constraints: constraints_boxConstraints?.asBoxConstraints(
