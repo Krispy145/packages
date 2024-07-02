@@ -12,7 +12,7 @@ class SelectThemeField extends DropdownFormField<ThemeModelReference> {
           showTitle: false,
           store: DropdownFormFieldStore<ThemeModelReference>(
             title: "Select Theme",
-            initialId: AppTheme.baseThemeModel?.id ?? "",
+            // initialId: AppTheme.baseThemeModel?.id ?? "",
             matcher: (id, item) {
               return id == item.themeId;
             },

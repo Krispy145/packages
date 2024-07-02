@@ -2,7 +2,7 @@
 
 # Define the packages and projects lists
 packages=("forms")
-projects=("fellowship")
+projects=("fellowship" "thrift_findr")
 
 # Define the project suffixes
 suffixes=(
