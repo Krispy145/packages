@@ -29,7 +29,7 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
 
   /// [results] is an observable list of [T]s.
   @override
-  ObservableList<T?> results = ObservableList<T?>();
+  ObservableList<T> results = ObservableList<T>();
 
   @action
   Future<void> refresh() async {
@@ -47,7 +47,7 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
       requestResponse = loadedResults.first;
       if (loadedResults.second.isNotEmpty || refresh) {
         if (refresh) results.clear();
-        results.addAll(loadedResults.second);
+        results.addAll(loadedResults.second.whereType<T>());
         results = ObservableList.of(results.toSet().toList());
         if (results.isEmpty) {
           results.clear();

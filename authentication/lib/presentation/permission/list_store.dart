@@ -32,7 +32,7 @@ abstract class _PermissionsStore extends PaginatedListStore<PermissionModel> wit
       if (loadedPermissions.second.isNotEmpty) {
         results
           ..clear()
-          ..addAll(loadedPermissions.second);
+          ..addAll(loadedPermissions.second.whereType<PermissionModel>());
         setLoaded();
       } else {
         setEmpty("No permissions found");

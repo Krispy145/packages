@@ -13,7 +13,7 @@ abstract class _ListStore<T> with LoadStateStore, Store {
   _ListStore();
 
   /// [results] is an observable list of [T]s.
-  ObservableList<T?> results = ObservableList<T?>();
+  ObservableList<T> results = ObservableList<T>();
 
   late final ScrollController scrollController = ScrollController();
 

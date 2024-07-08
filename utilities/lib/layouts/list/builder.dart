@@ -4,11 +4,12 @@ import "package:utilities/layouts/components/types.dart";
 import "package:utilities/layouts/list/store.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/widgets/load_state/builder.dart";
+import "package:utilities/widgets/load_state/states.dart";
 
 class ListBuilder<T> extends StatelessWidget {
   final ListStore<T> store;
   final Widget? header;
-  final Widget? Function(BuildContext, int) itemBuilder;
+  final Widget? Function(BuildContext, int, T) itemBuilder;
   final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets padding;
@@ -73,36 +74,55 @@ class ListBuilder<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
-      viewStore: store,
-      emptyBuilder: (context, empty) => Center(child: Text(empty)),
-      loadedBuilder: (context) {
-        if (slivers) return buildView(store.showLoadingSpinnerAtBottom);
-        return Stack(
-          children: [
-            Padding(
-              padding: padding,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (header != null) ...[header!, Sizes.m.spacer()],
-                  Expanded(
-                    child: Observer(
-                      builder: (context) {
-                        return buildView(store.showLoadingSpinnerAtBottom);
-                      },
+    if (!slivers) {
+      return LoadStateBuilder(
+        viewStore: store,
+        emptyBuilder: (context, empty) => Center(child: Text(empty)),
+        loadedBuilder: (context) {
+          return Stack(
+            children: [
+              Padding(
+                padding: padding,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (header != null) ...[header!, Sizes.m.spacer()],
+                    Expanded(
+                      child: Observer(
+                        builder: (context) {
+                          return buildView(store.showLoadingSpinnerAtBottom);
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (stackedWidgets != null) ...stackedWidgets!,
-          ],
-        );
-      },
-      loadingBuilder: (context) => const SizedBox.shrink(),
-      errorBuilder: (context, error) => Center(child: Text(error)),
-    );
+              if (stackedWidgets != null) ...stackedWidgets!,
+            ],
+          );
+        },
+        loadingBuilder: (context) => const SizedBox.shrink(),
+        errorBuilder: (context, error) => Center(child: Text(error)),
+      );
+    } else {
+      return Observer(
+        builder: (context) {
+          if (store.isLoaded) {
+            return buildView(store.showLoadingSpinnerAtBottom);
+          } else if (store.isError) {
+            final errorState = store.currentState as ErrorLoadState;
+            return SliverToBoxAdapter(child: loadStateBuilder?.errorBuilder(context, errorState.errorMessage) ?? const SliverToBoxAdapter(child: SizedBox.shrink()));
+          } else if (store.isEmpty) {
+            final emptyState = store.currentState as EmptyLoadState;
+            return SliverToBoxAdapter(child: Center(child: Text(emptyState.emptyMessage)));
+          } else if (store.isLoading) {
+            return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+          } else {
+            return const SliverToBoxAdapter(child: SizedBox.shrink());
+          }
+        },
+      );
+    }
   }
 
   Widget buildView(bool isLoadingMore) {
@@ -111,7 +131,8 @@ class ListBuilder<T> extends StatelessWidget {
       if (index == store.results.length) {
         return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
       }
-      return itemBuilder(context, index);
+
+      return itemBuilder(context, index, store.results[index]);
     }
 
     if (viewType == ListViewType.listView) {

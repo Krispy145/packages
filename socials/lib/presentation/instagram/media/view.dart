@@ -38,11 +38,7 @@ class InstagramMediaView extends StatelessWidget {
                   child: PaginatedListBuilder<InstagramMediaModel>.gridView(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                     store: store,
-                    itemBuilder: (context, index) {
-                      final media = store.results[index];
-                      if (media == null) {
-                        return const SizedBox.shrink();
-                      }
+                    itemBuilder: (context, index, media) {
                       return InstagramSelectTile(
                         media: media,
                         onTap: () {
