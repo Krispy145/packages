@@ -372,6 +372,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       refreshToken: userCredential.user?.refreshToken,
       code: params.code,
       accessToken: params.accessToken,
+      isAuthorized: params.isAuthorized ?? false,
       idToken: params.idToken,
       authType: params.authType,
       status: AuthStatus.authenticated,

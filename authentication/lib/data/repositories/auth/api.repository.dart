@@ -182,6 +182,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
       code: params.code,
       refreshToken: _apiAuthDataSource.currentUserModel!.refreshToken,
       accessToken: _apiAuthDataSource.currentUserModel!.accessToken,
+      isAuthorized: params.isAuthorized ?? false,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
       createdAt: params.createdAt ?? DateTime.now(),

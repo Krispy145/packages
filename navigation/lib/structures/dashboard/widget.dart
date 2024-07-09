@@ -1,8 +1,8 @@
 import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/layouts/intrinsic_height_scroller.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 
@@ -107,39 +107,48 @@ class DashboardShellStructure extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Row(
-        children: [
-          if (boardNavigationRailPosition == NavigationRailPosition.left) _buildNavigationRail(context),
-          const Expanded(child: AutoRouter()),
-          if (boardNavigationRailPosition == NavigationRailPosition.right) _buildNavigationRail(context),
-        ],
+      child: LoadStateBuilder(
+        viewStore: store,
+        loadedBuilder: (_) => Row(
+          children: [
+            if (boardNavigationRailPosition == NavigationRailPosition.left) _buildNavigationRail(context),
+            const Expanded(child: AutoRouter()),
+            if (boardNavigationRailPosition == NavigationRailPosition.right) _buildNavigationRail(context),
+          ],
+        ),
+        errorBuilder: (context, error) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Error: $error"),
+            ],
+          ),
+        ),
       ),
     );
   }
 
   Widget _buildNavigationRail(BuildContext context) {
-    return Observer(
-      builder: (_) => IntrinsicHeightChildScroller(
-        child: NavigationRail(
-          minWidth: minWidth,
-          minExtendedWidth: _getNavigationRailWidth(context),
-          useIndicator: false,
-          leading: leading,
-          trailing: _buildTrailingStack(context),
-          extended: labelType == NavigationRailLabelType.none && store.isNavigationRailExtended,
-          selectedIndex: store.selectedIndex,
-          onDestinationSelected: (value) {
-            onDestinationSelected?.call(value);
-            store.selectedIndex = value;
-          },
-          labelType: labelType,
-          backgroundColor: backgroundColor,
-          destinations: destinations,
-          selectedIconTheme: selectedIconTheme,
-          unselectedIconTheme: unselectedIconTheme,
-          selectedLabelTextStyle: selectedLabelTextStyle,
-          unselectedLabelTextStyle: unSelectedLabelTextStyle,
-        ),
+    return IntrinsicHeightChildScroller(
+      child: NavigationRail(
+        minWidth: minWidth,
+        minExtendedWidth: _getNavigationRailWidth(context),
+        useIndicator: false,
+        leading: leading,
+        trailing: _buildTrailingStack(context),
+        extended: labelType == NavigationRailLabelType.none && store.isNavigationRailExtended,
+        selectedIndex: store.selectedIndex,
+        onDestinationSelected: (value) {
+          onDestinationSelected?.call(value);
+          store.selectedIndex = value;
+        },
+        labelType: labelType,
+        backgroundColor: backgroundColor,
+        destinations: destinations,
+        selectedIconTheme: selectedIconTheme,
+        unselectedIconTheme: unselectedIconTheme,
+        selectedLabelTextStyle: selectedLabelTextStyle,
+        unselectedLabelTextStyle: unSelectedLabelTextStyle,
       ),
     );
   }

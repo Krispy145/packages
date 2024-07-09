@@ -1,4 +1,5 @@
 import "package:mobx/mobx.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 
@@ -6,7 +7,7 @@ part "store.g.dart";
 class DashboardShellStructureStore = DashboardShellStructureStoreBase with _$DashboardShellStructureStore;
 
 /// [DashboardShellStructureStore] is a MobX Store that is used to manage the state of the DashboardShellStructure.
-abstract class DashboardShellStructureStoreBase with Store {
+abstract class DashboardShellStructureStoreBase with LoadStateStore, Store {
   @observable
   int _selectedIndex = 0;
 

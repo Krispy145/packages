@@ -176,6 +176,13 @@ class AuthenticationRepository<T extends UserModel> {
         _currentResponse["role"] = userDataRepository.currentPermissionModelStream.value!.role;
       }
       changedUserModel = convertDataTypeFromMap(_currentResponse);
+      final _currentUserResponse = await userDataRepository.getUserModel(id: changedUserModel.id);
+      final _isAuthorized = _currentUserResponse.second?.isAuthorized ?? false;
+      if (_isAuthorized) {
+        _currentResponse["is_authorized"] = true;
+        changedUserModel = convertDataTypeFromMap(_currentResponse);
+      }
+
       await userDataRepository.updateUserModel(userModel: changedUserModel);
       final _updatedUserResponse = await userDataRepository.getUserModel(id: changedUserModel.id);
       changedUserModel = _updatedUserResponse.second ?? changedUserModel;

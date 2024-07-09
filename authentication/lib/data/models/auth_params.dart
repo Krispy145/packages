@@ -36,6 +36,7 @@ class AuthParams {
   String? photoUrl;
   String? accessToken;
   String? idToken;
+  bool? isAuthorized;
   CODE? code;
   String? nonce;
   String? refreshToken;
@@ -54,6 +55,7 @@ class AuthParams {
     this.accessToken,
     this.code,
     this.idToken,
+    this.isAuthorized,
     this.nonce,
     this.refreshToken,
     required this.authType,
@@ -69,6 +71,7 @@ class AuthParams {
     this.photoUrl,
     this.phoneNumber,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.email,
         authStatus = AuthStatus.unauthenticated;
 
@@ -76,6 +79,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.google,
         authStatus = AuthStatus.unauthenticated;
 
@@ -83,6 +87,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.facebook,
         authStatus = AuthStatus.unauthenticated;
 
@@ -90,6 +95,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.apple,
         authStatus = AuthStatus.unauthenticated;
 
@@ -97,6 +103,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.github,
         authStatus = AuthStatus.unauthenticated;
 
@@ -104,6 +111,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.microsoft,
         authStatus = AuthStatus.unauthenticated;
 
@@ -114,11 +122,13 @@ class AuthParams {
     this.photoUrl,
     this.email,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.phone,
         authStatus = AuthStatus.unauthenticated;
 
   AuthParams.anonymous({
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.anonymous,
         authStatus = AuthStatus.unauthenticated;
 
@@ -128,6 +138,7 @@ class AuthParams {
     this.displayName,
     this.photoUrl,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.passwordless,
         authStatus = AuthStatus.unauthenticated;
 
@@ -139,6 +150,7 @@ class AuthParams {
     this.photoUrl,
     this.updatedAt,
     this.code,
+    this.isAuthorized,
   })  : authType = AuthType.empty,
         authStatus = AuthStatus.unauthenticated;
 
@@ -147,6 +159,7 @@ class AuthParams {
     required this.email,
     required this.displayName,
     required this.code,
+    required this.isAuthorized,
     required this.photoUrl,
     required this.phoneNumber,
     required this.accessToken,
@@ -165,6 +178,7 @@ class AuthParams {
       displayName: displayName,
       code: code,
       photoUrl: photoUrl,
+      isAuthorized: isAuthorized ?? false,
       phoneNumber: phoneNumber,
       accessToken: accessToken,
       idToken: idToken,

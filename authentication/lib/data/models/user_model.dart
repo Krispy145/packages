@@ -10,6 +10,7 @@ part "user_model.mapper.dart";
 class UserModel with UserModelMappable {
   final String id;
   final String? accessToken;
+  final bool isAuthorized;
   final String? idToken;
   final String? email;
   final String? displayName;
@@ -27,6 +28,7 @@ class UserModel with UserModelMappable {
   const UserModel({
     required this.id,
     this.accessToken,
+    this.isAuthorized = false,
     this.idToken,
     this.email,
     this.displayName,
@@ -69,6 +71,7 @@ class UserModel with UserModelMappable {
         accessToken: accessToken,
         code: code,
         idToken: idToken,
+        isAuthorized: isAuthorized,
         refreshToken: refreshToken,
         authType: authType ?? AuthType.anonymous,
         authStatus: status ?? AuthStatus.unauthenticated,

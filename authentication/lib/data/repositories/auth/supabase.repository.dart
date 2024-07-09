@@ -305,6 +305,7 @@ class SupabaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       displayName: params.displayName ?? _user!.email,
       refreshToken: _session!.refreshToken ?? _session!.providerRefreshToken,
       accessToken: _session!.accessToken,
+      isAuthorized: params.isAuthorized ?? false,
       code: params.code,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
