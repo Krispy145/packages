@@ -4,7 +4,6 @@ import "package:socials/presentation/instagram/components/select_tile.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/layouts/paginated_list/builder.dart";
 import "package:utilities/snackbar/configuration.dart";
-import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 
@@ -48,15 +47,15 @@ class InstagramMediaView extends StatelessWidget {
                         },
                       );
                     },
-                    loadStateBuilder: LoadStateBuilder(
-                      viewStore: store,
-                      emptyBuilder: (context, empty) => Center(child: Text(empty)),
-                      errorBuilder: (context, error) => Center(child: Text(error)),
-                      loadedBuilder: (context) => ElevatedButton(
-                        onPressed: onPressedConfirmation,
-                        child: const Text("Confirm"),
-                      ),
-                    ),
+                    // loadStateBuilder: LoadStateBuilder(
+                    //   viewStore: store,
+                    //   emptyBuilder: (context, empty) => Center(child: Text(empty)),
+                    //   errorBuilder: (context, error) => Center(child: Text(error)),
+                    //   loadedBuilder: (context) => ElevatedButton(
+                    //     onPressed: onPressedConfirmation,
+                    //     child: const Text("Confirm"),
+                    //   ),
+                    // ),
                   ),
                 ),
               ),
