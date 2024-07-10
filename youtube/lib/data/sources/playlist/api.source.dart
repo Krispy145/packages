@@ -9,7 +9,10 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
       : super(
           "https://www.googleapis.com/youtube/v3",
           sourceSuffix: "playlists",
-          convertDataTypeFromMap: (map) => PlaylistModel.fromMap(map),
+          convertDataTypeFromMap: (map) {
+            print("ABOUT TO DECODE: $map");
+            return PlaylistModel.fromMap(map);
+          },
           convertDataTypeToMap: (data) => data.toMap(),
           convertResponseTypeFromMap: (data) => PagedResponse.fromJson(data, PlaylistModel.fromMap),
           getNexPageParametersFromResponse: (lastResponse, size, orderBy) {
@@ -37,6 +40,30 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
             // },
           ),
         );
+
+  @override
+  Future<Pair<RequestResponse, PlaylistModel?>> get(
+    String id, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
+    final cancelKey = "$_url/$id/get";
+    if (cancelPreviousRequest) {
+      cancel(cancelKey);
+    }
+    final response = await dio.get<Map<String, dynamic>>(
+      createUrlWithId(_url, id).first,
+      queryParameters: {...?queryParameters, ...?createUrlWithId(_url, id).second},
+      cancelToken: getCancelToken(cancelKey),
+    );
+    final convertedResponse = response.data != null ? convertResponseTypeFromMap(response.data!) : null;
+    if (convertedResponse == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, convertedResponse.items.first);
+  }
 
   @override
   Map<String, dynamic> buildQuery(BasicSearchQueryModel query) {

@@ -42,7 +42,6 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
             final _queryParametersString = options.queryParameters.entries.map((e) => "${e.key}=${e.value}").join("&");
             print("queryParameters: ${options.queryParameters}");
             options
-              // ..path = "$proxy${Uri.encodeComponent("${options.path}?$_queryParametersString")}"
               ..path = "$proxy${"${options.path}?$_queryParametersString"}"
               ..queryParameters = {};
 
@@ -77,7 +76,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     );
   }
 
-  String get _baseUrl => "$baseUrl/$sourceSuffix";
+  String get baseUrlWithSuffix => "$baseUrl/$sourceSuffix";
 
   @override
   T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
@@ -92,12 +91,12 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final cancelKey = "$_baseUrl/$requestExtension";
+    final cancelKey = "$baseUrlWithSuffix/$requestExtension";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
     }
     final response = await dio.post<Map<String, dynamic>>(
-      "$_baseUrl/$requestExtension",
+      "$baseUrlWithSuffix/$requestExtension",
       data: requestType,
       queryParameters: queryParameters,
       cancelToken: getCancelToken(cancelKey),
@@ -114,7 +113,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/$id/get";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -137,7 +136,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/getAll";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -161,7 +160,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/$id/delete";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -180,7 +179,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/deleteAll";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -201,7 +200,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/$id/update";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -222,7 +221,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/updateAll";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -249,7 +248,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/add";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -275,7 +274,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/addAll";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -304,7 +303,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     String? pathExtensions,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -329,7 +328,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     String? pathExtensions,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$_baseUrl/$pathExtensions" : _baseUrl;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/search";
     if (cancelPreviousRequest) {
       cancel(cancelKey);

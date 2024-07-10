@@ -56,9 +56,6 @@ class PlaylistRepository {
 
   /// [getPlaylistModel] fetches a single [PlaylistModel] from the data source.
   Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel(String id) {
-    return _playlistDataRepository.getPlaylistModel(
-      source: _source,
-      id: id,
-    );
+    return _playlistDataRepository.getPlaylistModel(source: _source, id: id);
   }
 }

@@ -48,6 +48,30 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
     };
   }
 
+  @override
+  Future<Pair<RequestResponse, VideoModel?>> get(
+    String id, {
+    String? pathExtensions,
+    Map<String, dynamic>? queryParameters,
+    bool cancelPreviousRequest = false,
+  }) async {
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
+    final cancelKey = "$_url/$id/get";
+    if (cancelPreviousRequest) {
+      cancel(cancelKey);
+    }
+    final response = await dio.get<Map<String, dynamic>>(
+      createUrlWithId(_url, id).first,
+      queryParameters: {...?queryParameters, ...?createUrlWithId(_url, id).second},
+      cancelToken: getCancelToken(cancelKey),
+    );
+    final convertedResponse = response.data != null ? convertResponseTypeFromMap(response.data!) : null;
+    if (convertedResponse == null) {
+      return const Pair(RequestResponse.failure, null);
+    }
+    return Pair(RequestResponse.success, convertedResponse.items.firstOrNull);
+  }
+
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
   Future<VideoModel?> _handleError(Future<VideoModel?> Function() apiCall) async {
