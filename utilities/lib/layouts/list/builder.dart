@@ -105,22 +105,25 @@ class ListBuilder<T> extends StatelessWidget {
         errorBuilder: (context, error) => Center(child: Text(error)),
       );
     } else {
-      return Observer(
-        builder: (context) {
-          if (store.isLoaded) {
-            return buildView(store.showLoadingSpinnerAtBottom);
-          } else if (store.isError) {
-            final errorState = store.currentState as ErrorLoadState;
-            return SliverToBoxAdapter(child: loadStateBuilder?.errorBuilder(context, errorState.errorMessage) ?? const SliverToBoxAdapter(child: SizedBox.shrink()));
-          } else if (store.isEmpty) {
-            final emptyState = store.currentState as EmptyLoadState;
-            return SliverToBoxAdapter(child: Center(child: Text(emptyState.emptyMessage)));
-          } else if (store.isLoading) {
-            return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
-          } else {
-            return const SliverToBoxAdapter(child: SizedBox.shrink());
-          }
-        },
+      return SliverPadding(
+        padding: padding,
+        sliver: Observer(
+          builder: (context) {
+            if (store.isLoaded) {
+              return buildView(store.showLoadingSpinnerAtBottom);
+            } else if (store.isError) {
+              final errorState = store.currentState as ErrorLoadState;
+              return SliverToBoxAdapter(child: loadStateBuilder?.errorBuilder(context, errorState.errorMessage) ?? const SliverToBoxAdapter(child: SizedBox.shrink()));
+            } else if (store.isEmpty) {
+              final emptyState = store.currentState as EmptyLoadState;
+              return SliverToBoxAdapter(child: Center(child: Text(emptyState.emptyMessage)));
+            } else if (store.isLoading) {
+              return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+            } else {
+              return const SliverToBoxAdapter(child: SizedBox.shrink());
+            }
+          },
+        ),
       );
     }
   }

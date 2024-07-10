@@ -289,6 +289,12 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     await _pushNotifications.subscribeToTopic(topic);
   }
 
+  Future<List<String>> getSubscribedTopics() async {
+    final token = _pushNotifications.getToken();
+    // Hit endpoint to get topics
+    return [];
+  }
+
   /// [unSubscribeFromTopic] unsubscribes from a topic for notifications.
   @action
   Future<void> unSubscribeFromTopic(String topic) async {
