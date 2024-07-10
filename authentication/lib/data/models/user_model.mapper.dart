@@ -27,6 +27,10 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   static String? _$accessToken(UserModel v) => v.accessToken;
   static const Field<UserModel, String> _f$accessToken =
       Field('accessToken', _$accessToken, key: 'access_token', opt: true);
+  static bool _$isAuthorized(UserModel v) => v.isAuthorized;
+  static const Field<UserModel, bool> _f$isAuthorized = Field(
+      'isAuthorized', _$isAuthorized,
+      key: 'is_authorized', opt: true, def: false);
   static String? _$idToken(UserModel v) => v.idToken;
   static const Field<UserModel, String> _f$idToken =
       Field('idToken', _$idToken, key: 'id_token', opt: true);
@@ -71,6 +75,7 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   final MappableFields<UserModel> fields = const {
     #id: _f$id,
     #accessToken: _f$accessToken,
+    #isAuthorized: _f$isAuthorized,
     #idToken: _f$idToken,
     #email: _f$email,
     #displayName: _f$displayName,
@@ -92,6 +97,7 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
     return UserModel(
         id: data.dec(_f$id),
         accessToken: data.dec(_f$accessToken),
+        isAuthorized: data.dec(_f$isAuthorized),
         idToken: data.dec(_f$idToken),
         email: data.dec(_f$email),
         displayName: data.dec(_f$displayName),
@@ -160,6 +166,7 @@ abstract class UserModelCopyWith<$R, $In extends UserModel, $Out>
   $R call(
       {String? id,
       String? accessToken,
+      bool? isAuthorized,
       String? idToken,
       String? email,
       String? displayName,
@@ -188,6 +195,7 @@ class _UserModelCopyWithImpl<$R, $Out>
   $R call(
           {String? id,
           Object? accessToken = $none,
+          bool? isAuthorized,
           Object? idToken = $none,
           Object? email = $none,
           Object? displayName = $none,
@@ -204,6 +212,7 @@ class _UserModelCopyWithImpl<$R, $Out>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (accessToken != $none) #accessToken: accessToken,
+        if (isAuthorized != null) #isAuthorized: isAuthorized,
         if (idToken != $none) #idToken: idToken,
         if (email != $none) #email: email,
         if (displayName != $none) #displayName: displayName,
@@ -222,6 +231,7 @@ class _UserModelCopyWithImpl<$R, $Out>
   UserModel $make(CopyWithData data) => UserModel(
       id: data.get(#id, or: $value.id),
       accessToken: data.get(#accessToken, or: $value.accessToken),
+      isAuthorized: data.get(#isAuthorized, or: $value.isAuthorized),
       idToken: data.get(#idToken, or: $value.idToken),
       email: data.get(#email, or: $value.email),
       displayName: data.get(#displayName, or: $value.displayName),

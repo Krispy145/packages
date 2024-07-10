@@ -28,9 +28,6 @@ class UserSearchQueryModel extends BasicSearchQueryModel {
 }
 
 /// [UserDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-sealed class UserDataSource<Resp extends ResponseModel, T extends UserModel>
-    with
-        DataSource<T, UserSearchQueryModel>,
-        Paginated<Resp, T, UserSearchQueryModel> {
+sealed class UserDataSource<Resp extends ResponseModel, T extends UserModel> with DataSource<T, UserSearchQueryModel>, Paginated<Resp, T, UserSearchQueryModel> {
   Future<List<T?>> searchAllAuthTypes(UserSearchQueryModel query);
 }

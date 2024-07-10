@@ -85,11 +85,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     );
 
     if (Platform.isIOS || Platform.isMacOS) {
-      apnsToken = await getAPNSToken();
-      AppLogger.print(
-        "APNS Token: $apnsToken",
-        [NotificationsLoggers.notifications],
-      );
+      await setAPNSToken();
     }
     fcmToken = await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
     AppLogger.print(
@@ -324,15 +320,15 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     });
   }
 
-  /// [getAPNSToken] gets the APNS token for Apple push notifications.
+  /// [setAPNSToken] gets the APNS token for Apple push notifications.
   @action
-  Future<String?> getAPNSToken() async {
+  Future<void> setAPNSToken() async {
     final _token = await _pushNotifications.getAPNSToken();
     AppLogger.print(
       "APNS Token: $_token",
       [NotificationsLoggers.notifications],
     );
-    return _token;
+    apnsToken = _token;
   }
 
   /// [_receivePushNotification] receives a push notification.

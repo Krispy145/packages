@@ -172,12 +172,12 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
     return _$deleteTokenAsyncAction.run(() => super.deleteToken());
   }
 
-  late final _$getAPNSTokenAsyncAction =
-      AsyncAction('_PushNotificationsStore.getAPNSToken', context: context);
+  late final _$setAPNSTokenAsyncAction =
+      AsyncAction('_PushNotificationsStore.setAPNSToken', context: context);
 
   @override
-  Future<String?> getAPNSToken() {
-    return _$getAPNSTokenAsyncAction.run(() => super.getAPNSToken());
+  Future<void> setAPNSToken() {
+    return _$setAPNSTokenAsyncAction.run(() => super.setAPNSToken());
   }
 
   late final _$_receivePushNotificationAsyncAction = AsyncAction(

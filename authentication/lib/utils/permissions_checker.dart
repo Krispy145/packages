@@ -56,10 +56,10 @@ class PermissionChecker<T> {
 
   bool checkReadPermissions() {
     final permissionsList = checkPermissionLevel(CRUD.read);
-    final isCheckPermissionsEqualToAll = permissionsList.any(
-      (element) => element.first.split("/").last == "all" && element.second == PermissionLevel.yes,
+    final isCheckPermissionsEqualToAll = permissionsList.firstWhereOrNull(
+      (element) => element.first == "$dataReference/all" && element.second == PermissionLevel.yes,
     );
-    return isCheckPermissionsEqualToAll;
+    return isCheckPermissionsEqualToAll?.second == PermissionLevel.yes;
   }
 
   /// [getUserPermissions] is a helper method that gets the user permissions for the current collection

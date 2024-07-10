@@ -919,10 +919,10 @@ packages:
     dependency: transitive
     description:
       name: intl
-      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.18.1"
+    version: "0.19.0"
   io:
     dependency: transitive
     description:
@@ -1256,6 +1256,14 @@ packages:
     description:
       name: reactive_multi_select_flutter
       sha256: "1127da052f7d315e96563a23958c1aa5952ab702a6093aba20aa459d58c183eb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.1"
+  reactive_segmented_control:
+    dependency: transitive
+    description:
+      name: reactive_segmented_control
+      sha256: "6a86110f0f65ed9cb5272f005a16afee80ff3d23177dbf0418bbdaa0716f859e"
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
