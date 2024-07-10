@@ -285,9 +285,11 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     await _pushNotifications.subscribeToTopic(topic);
   }
 
+  @action
   Future<List<String>> getSubscribedTopics() async {
-    final token = _pushNotifications.getToken();
+    final token = await _pushNotifications.getToken();
     // Hit endpoint to get topics
+    print("FCM Token: $token");
     return [];
   }
 

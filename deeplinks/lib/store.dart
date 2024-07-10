@@ -38,9 +38,6 @@ abstract class _DeepLinksStore with Store {
     _initDeeplinksSession();
   }
 
-  @observable
-  DeepLinkModel? receivedDeepLink;
-
   void _initDeeplinksSession() {
     FlutterBranchSdk.init().then((value) {
       if (userId != null) {
@@ -58,70 +55,6 @@ abstract class _DeepLinksStore with Store {
           [DeeplinksLoggers.deeplinks],
         );
       }
-      streamSubscription = FlutterBranchSdk.listSession().listen(
-        (data) {
-          AppLogger.print(
-            "listenDynamicLinks - DeepLink Data: $data",
-            [DeeplinksLoggers.deeplinks],
-          );
-          controllerData.sink.add(data.toString());
-          if (data.containsKey("+clicked_branch_link") && data["+clicked_branch_link"] == true) {
-            final dataMap = <String, dynamic>{};
-            if (data.containsKey(r"$canonical_identifier")) {
-              dataMap["canonical_identifier"] = data[r"$canonical_identifier"];
-            }
-            if (data.containsKey("title")) {
-              dataMap["title"] = data["title"];
-            }
-            if (data.containsKey("content_description")) {
-              dataMap["contentD_description"] = data["content_description"];
-            }
-            if (data.containsKey("image_url")) {
-              dataMap["image_url"] = data["image_url"];
-            }
-            if (data.containsKey("canonical_url")) {
-              dataMap["canonical_url"] = data["canonical_url"];
-            }
-            if (data.containsKey("fallback_url")) {
-              dataMap["fallback_url"] = data["fallback_url"];
-            }
-            if (data.containsKey("destination")) {
-              dataMap["destination"] = json.decode(data["destination"] as String);
-            }
-            if (data.containsKey("metadata")) {
-              dataMap["metadata"] = data["metadata"];
-            }
-            if (data.containsKey("keywords")) {
-              dataMap["keywords"] = data["keywords"];
-            }
-            if (data.containsKey("public_index")) {
-              dataMap["public_index"] = data["public_index"];
-            }
-            if (data.containsKey("local_index")) {
-              dataMap["local_index"] = data["local_index"];
-            }
-            if (data.containsKey("expiration_date")) {
-              dataMap["expiration_date"] = data["expiration_date"];
-            }
-            receivedDeepLink = DeepLinkModel.fromMap(dataMap);
-            AppLogger.print(
-              "DeepLink Data: $data",
-              [DeeplinksLoggers.deeplinks],
-            );
-          }
-        },
-        onError: (error, stackTrace) {
-          final platformException = error as PlatformException;
-          AppLogger.print(
-            "InitSession error: ${platformException.code} - ${platformException.message}",
-            [DeeplinksLoggers.deeplinks],
-            type: LoggerType.error,
-          );
-          controllerInitSession.add(
-            "InitSession error: ${platformException.code} - ${platformException.message}",
-          );
-        },
-      );
     });
   }
 
@@ -130,10 +63,89 @@ abstract class _DeepLinksStore with Store {
   StreamSubscription<Map<dynamic, dynamic>>? streamSubscription;
 
   @action
-  void handleReceivedDeepLink(void Function(DeepLinkModel) onDeepLinkReceived) {
-    if (receivedDeepLink != null) {
-      onDeepLinkReceived.call(receivedDeepLink!);
-    }
+  void listenForReceivedDeepLink(void Function(DeepLinkModel) onDeepLinkReceived) {
+    streamSubscription = FlutterBranchSdk.listSession().listen(
+      (data) {
+        AppLogger.print(
+          "listenDynamicLinks - DeepLink Data: $data",
+          [DeeplinksLoggers.deeplinks],
+        );
+        controllerData.sink.add(data.toString());
+        if (data.containsKey("+clicked_branch_link") && data["+clicked_branch_link"] == true) {
+          final dataMap = <String, dynamic>{};
+          if (data.containsKey(r"$canonical_identifier")) {
+            dataMap["canonical_identifier"] = data[r"$canonical_identifier"];
+            data.remove(r"$canonical_identifier");
+          }
+          if (data.containsKey("title")) {
+            dataMap["title"] = data["title"];
+            data.remove("title");
+          }
+          if (data.containsKey("content_description")) {
+            dataMap["contentD_description"] = data["content_description"];
+            data.remove("content_description");
+          }
+          if (data.containsKey("image_url")) {
+            dataMap["image_url"] = data["image_url"];
+            data.remove("image_url");
+          }
+          if (data.containsKey("canonical_url")) {
+            dataMap["canonical_url"] = data["canonical_url"];
+            data.remove("canonical_url");
+          }
+          if (data.containsKey("fallback_url")) {
+            dataMap["fallback_url"] = data["fallback_url"];
+            data.remove("fallback_url");
+          }
+          if (data.containsKey("destination")) {
+            dataMap["destination"] = json.decode(data["destination"] as String);
+            data.remove("destination");
+          }
+          if (data.containsKey("metadata")) {
+            dataMap["metadata"] = data["metadata"];
+            data.remove("metadata");
+          }
+          if (data.containsKey("keywords")) {
+            dataMap["keywords"] = data["keywords"];
+            data.remove("keywords");
+          }
+          if (data.containsKey("public_index")) {
+            dataMap["public_index"] = data["public_index"];
+            data.remove("public_index");
+          }
+          if (data.containsKey("local_index")) {
+            dataMap["local_index"] = data["local_index"];
+            data.remove("local_index");
+          }
+          if (data.containsKey("expiration_date")) {
+            dataMap["expiration_date"] = data["expiration_date"];
+            data.remove("expiration_date");
+          }
+          final _metadataMap = <String, dynamic>{};
+          for (final element in data.entries) {
+            _metadataMap[element.key.toString()] = element.value;
+          }
+          dataMap["metadata"] = _metadataMap;
+          final receivedDeepLink = DeepLinkModel.fromMap(dataMap);
+          onDeepLinkReceived(receivedDeepLink);
+          AppLogger.print(
+            "DeepLink Data: $data",
+            [DeeplinksLoggers.deeplinks],
+          );
+        }
+      },
+      onError: (error, stackTrace) {
+        final platformException = error as PlatformException;
+        AppLogger.print(
+          "InitSession error: ${platformException.code} - ${platformException.message}",
+          [DeeplinksLoggers.deeplinks],
+          type: LoggerType.error,
+        );
+        controllerInitSession.add(
+          "InitSession error: ${platformException.code} - ${platformException.message}",
+        );
+      },
+    );
   }
 
   /// Check if the user is identified for deep links.

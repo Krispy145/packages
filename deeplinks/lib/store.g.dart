@@ -9,22 +9,6 @@ part of 'store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$DeepLinksStore on _DeepLinksStore, Store {
-  late final _$receivedDeepLinkAtom =
-      Atom(name: '_DeepLinksStore.receivedDeepLink', context: context);
-
-  @override
-  DeepLinkModel? get receivedDeepLink {
-    _$receivedDeepLinkAtom.reportRead();
-    return super.receivedDeepLink;
-  }
-
-  @override
-  set receivedDeepLink(DeepLinkModel? value) {
-    _$receivedDeepLinkAtom.reportWrite(value, super.receivedDeepLink, () {
-      super.receivedDeepLink = value;
-    });
-  }
-
   late final _$streamSubscriptionAtom =
       Atom(name: '_DeepLinksStore.streamSubscription', context: context);
 
@@ -113,11 +97,12 @@ mixin _$DeepLinksStore on _DeepLinksStore, Store {
       ActionController(name: '_DeepLinksStore', context: context);
 
   @override
-  void handleReceivedDeepLink(void Function(DeepLinkModel) onDeepLinkReceived) {
+  void listenForReceivedDeepLink(
+      void Function(DeepLinkModel) onDeepLinkReceived) {
     final _$actionInfo = _$_DeepLinksStoreActionController.startAction(
-        name: '_DeepLinksStore.handleReceivedDeepLink');
+        name: '_DeepLinksStore.listenForReceivedDeepLink');
     try {
-      return super.handleReceivedDeepLink(onDeepLinkReceived);
+      return super.listenForReceivedDeepLink(onDeepLinkReceived);
     } finally {
       _$_DeepLinksStoreActionController.endAction(_$actionInfo);
     }
@@ -148,7 +133,6 @@ mixin _$DeepLinksStore on _DeepLinksStore, Store {
   @override
   String toString() {
     return '''
-receivedDeepLink: ${receivedDeepLink},
 streamSubscription: ${streamSubscription}
     ''';
   }

@@ -145,6 +145,16 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
         .run(() => super.subscribeToTopic(topic));
   }
 
+  late final _$getSubscribedTopicsAsyncAction = AsyncAction(
+      '_PushNotificationsStore.getSubscribedTopics',
+      context: context);
+
+  @override
+  Future<List<String>> getSubscribedTopics() {
+    return _$getSubscribedTopicsAsyncAction
+        .run(() => super.getSubscribedTopics());
+  }
+
   late final _$unSubscribeFromTopicAsyncAction = AsyncAction(
       '_PushNotificationsStore.unSubscribeFromTopic',
       context: context);
