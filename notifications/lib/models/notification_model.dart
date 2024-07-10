@@ -36,29 +36,29 @@ class NotificationModel with NotificationModelMappable {
   static const fromMap = NotificationModelMapper.fromMap;
   static const fromJson = NotificationModelMapper.fromJson;
 
-  /// [NotificationModel] constructor from string map.
-  factory NotificationModel.fromStringMap(Map<String, dynamic> map) {
-    return NotificationModel(
-      id: map["id"] as String,
-      localId: int.parse(map["local_id"] as String),
-      type: map["type"] as String?,
-      title: map["title"] as String?,
-      body: map["body"] as String?,
-      imageUrl: map["image_url"] as String?,
-      topic: map["topic"] as String?,
-      scheduledTime: map["scheduled_time"] != null ? DateTime.parse(map["scheduled_time"] as String) : null,
-      isLocalNotification: map["is_local_notification"] != null ? bool.parse(map["is_local_notification"] as String) : false,
-      isRead: map["is_read"] != null ? bool.parse(map["is_read"] as String) : false,
-      destination: map["destination"] != null
-          ? AppDestinationModel.fromStringMap(
-              map["destination"] as Map<String, dynamic>,
-            )
-          : null,
-    );
-  }
+  // /// [NotificationModel] constructor from string map.
+  // factory NotificationModel.fromStringMap(Map<String, dynamic> map) {
+  //   return NotificationModel(
+  //     id: map["id"] as String,
+  //     localId: int.parse(map["local_id"] as String),
+  //     type: map["type"] as String?,
+  //     title: map["title"] as String?,
+  //     body: map["body"] as String?,
+  //     imageUrl: map["image_url"] as String?,
+  //     topic: map["topic"] as String?,
+  //     scheduledTime: map["scheduled_time"] != null ? DateTime.parse(map["scheduled_time"] as String) : null,
+  //     isLocalNotification: map["is_local_notification"] != null ? bool.parse(map["is_local_notification"] as String) : false,
+  //     isRead: map["is_read"] != null ? bool.parse(map["is_read"] as String) : false,
+  //     destination: map["destination"] != null
+  //         ? AppDestinationModel.fromStringMap(
+  //             map["destination"] as Map<String, dynamic>,
+  //           )
+  //         : null,
+  //   );
+  // }
 
   /// [toStringMap] converts the [NotificationModel] to a string map.
-  Map<String, String?> toStringMap() {
+  Map<String, String> toStringMap() {
     final returnMap = <String, String>{};
     returnMap["id"] = id;
     returnMap["local_id"] = localId.toString();
@@ -80,7 +80,6 @@ class NotificationModel with NotificationModelMappable {
     if (scheduledTime != null) {
       returnMap["scheduled_time"] = scheduledTime!.toIso8601String();
     }
-
     returnMap["is_local_notification"] = isLocalNotification.toString();
     returnMap["is_read"] = isRead.toString();
     if (destination != null) {

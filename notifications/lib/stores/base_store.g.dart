@@ -20,6 +20,23 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
                   name: '_NotificationsStore.notifications'))
           .value;
 
+  late final _$receivedNotificationAtom =
+      Atom(name: '_NotificationsStore.receivedNotification', context: context);
+
+  @override
+  NotificationModel? get receivedNotification {
+    _$receivedNotificationAtom.reportRead();
+    return super.receivedNotification;
+  }
+
+  @override
+  set receivedNotification(NotificationModel? value) {
+    _$receivedNotificationAtom.reportWrite(value, super.receivedNotification,
+        () {
+      super.receivedNotification = value;
+    });
+  }
+
   late final _$requestPermissionsAsyncAction =
       AsyncAction('_NotificationsStore.requestPermissions', context: context);
 
@@ -51,6 +68,18 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
       ActionController(name: '_NotificationsStore', context: context);
 
   @override
+  void listenForReceivedNotification(
+      void Function(NotificationModel) onNotificationReceived) {
+    final _$actionInfo = _$_NotificationsStoreActionController.startAction(
+        name: '_NotificationsStore.listenForReceivedNotification');
+    try {
+      return super.listenForReceivedNotification(onNotificationReceived);
+    } finally {
+      _$_NotificationsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void replaceAll(List<NotificationModel> notificationList) {
     final _$actionInfo = _$_NotificationsStoreActionController.startAction(
         name: '_NotificationsStore.replaceAll');
@@ -64,6 +93,7 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
   @override
   String toString() {
     return '''
+receivedNotification: ${receivedNotification},
 notifications: ${notifications}
     ''';
   }

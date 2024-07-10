@@ -243,6 +243,18 @@ mixin _$LocalNotificationsStore on _LocalNotificationsStore, Store {
   }
 
   @override
+  void listenForReceivedNotification(
+      void Function(NotificationModel) onNotificationReceived) {
+    final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(
+        name: '_LocalNotificationsStore.listenForReceivedNotification');
+    try {
+      return super.listenForReceivedNotification(onNotificationReceived);
+    } finally {
+      _$_LocalNotificationsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   NotificationModel? _convertNotificationResponseToModel(
       NotificationResponse notificationResponse) {
     final _$actionInfo = _$_LocalNotificationsStoreActionController.startAction(

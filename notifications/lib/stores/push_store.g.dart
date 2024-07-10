@@ -136,6 +136,17 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
     return _$deleteAllAsyncAction.run(() => super.deleteAll());
   }
 
+  late final _$listenForReceivedNotificationAsyncAction = AsyncAction(
+      '_PushNotificationsStore.listenForReceivedNotification',
+      context: context);
+
+  @override
+  Future<void> listenForReceivedNotification(
+      void Function(NotificationModel) onNotificationReceived) {
+    return _$listenForReceivedNotificationAsyncAction
+        .run(() => super.listenForReceivedNotification(onNotificationReceived));
+  }
+
   late final _$subscribeToTopicAsyncAction =
       AsyncAction('_PushNotificationsStore.subscribeToTopic', context: context);
 
@@ -196,10 +207,11 @@ mixin _$PushNotificationsStore on _PushNotificationsStore, Store {
 
   @override
   Future<void> _receivePushNotification(Map<String, dynamic> notificationData,
+      void Function(NotificationModel) onNotificationReceived,
       {bool shouldUpdateAll = true,
       bool shouldCallNotificationReceived = true}) {
     return _$_receivePushNotificationAsyncAction.run(() => super
-        ._receivePushNotification(notificationData,
+        ._receivePushNotification(notificationData, onNotificationReceived,
             shouldUpdateAll: shouldUpdateAll,
             shouldCallNotificationReceived: shouldCallNotificationReceived));
   }

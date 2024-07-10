@@ -40,13 +40,9 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
         onRequest: (options, handler) {
           if (proxy != null) {
             final _queryParametersString = options.queryParameters.entries.map((e) => "${e.key}=${e.value}").join("&");
-            print("queryParameters: ${options.queryParameters}");
             options
               ..path = "$proxy${"${options.path}?$_queryParametersString"}"
               ..queryParameters = {};
-
-            print("FINAL URL WITH PROXY without Uri.encodeComponent: ${options.path}?$_queryParametersString");
-            print("FINAL URI WITH PROXY: ${options.uri}");
           }
           // Log the request
           AppLogger.print(
