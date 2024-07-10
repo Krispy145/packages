@@ -64,7 +64,7 @@ class DOImage extends StatelessWidget {
   }
 
   factory DOImage.network(
-    String url, {
+    String? url, {
     NetworkImageOptions? options,
   }) {
     return DOImage._(
@@ -144,45 +144,81 @@ class DOImage extends StatelessWidget {
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.network:
-        return _buildNetworkImage();
+        final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
+        if (url == null) return _networkOptions.placeholder?.call(context, "") ?? const Center(child: Icon(Icons.image));
+        final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
+        final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
+        final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
+        return CachedNetworkImage(
+          imageUrl: _finalUrl,
+          httpHeaders: _httpHeaders,
+          width: _networkOptions.width,
+          height: _networkOptions.height,
+          color: _networkOptions.color,
+          colorBlendMode: _networkOptions.colorBlendMode,
+          fit: _networkOptions.fit,
+          alignment: _networkOptions.alignment,
+          repeat: _networkOptions.repeat,
+          matchTextDirection: _networkOptions.matchTextDirection,
+          filterQuality: _networkOptions.filterQuality,
+          imageBuilder: _networkOptions.imageBuilder,
+          placeholder: _networkOptions.placeholder,
+          progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
+          errorWidget: _networkOptions.errorWidget,
+          fadeOutDuration: _networkOptions.fadeOutDuration,
+          fadeOutCurve: _networkOptions.fadeOutCurve,
+          fadeInDuration: _networkOptions.fadeInDuration,
+          fadeInCurve: _networkOptions.fadeInCurve,
+          cacheManager: _networkOptions.cacheManager,
+          useOldImageOnUrlChange: _networkOptions.useOldImageOnUrlChange,
+          placeholderFadeInDuration: _networkOptions.placeholderFadeInDuration,
+          memCacheWidth: _networkOptions.memCacheWidth,
+          memCacheHeight: _networkOptions.memCacheHeight,
+          cacheKey: _networkOptions.cacheKey,
+          maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
+          maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
+          errorListener: _networkOptions.errorListener,
+          imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
+        );
+      // return _buildNetworkImage();
     }
   }
 
-  Widget _buildNetworkImage() {
-    final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
-    final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
-    final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
-    final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
-    return CachedNetworkImage(
-      imageUrl: _finalUrl,
-      httpHeaders: _httpHeaders,
-      width: _networkOptions.width,
-      height: _networkOptions.height,
-      color: _networkOptions.color,
-      colorBlendMode: _networkOptions.colorBlendMode,
-      fit: _networkOptions.fit,
-      alignment: _networkOptions.alignment,
-      repeat: _networkOptions.repeat,
-      matchTextDirection: _networkOptions.matchTextDirection,
-      filterQuality: _networkOptions.filterQuality,
-      imageBuilder: _networkOptions.imageBuilder,
-      placeholder: _networkOptions.placeholder,
-      progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
-      errorWidget: _networkOptions.errorWidget,
-      fadeOutDuration: _networkOptions.fadeOutDuration,
-      fadeOutCurve: _networkOptions.fadeOutCurve,
-      fadeInDuration: _networkOptions.fadeInDuration,
-      fadeInCurve: _networkOptions.fadeInCurve,
-      cacheManager: _networkOptions.cacheManager,
-      useOldImageOnUrlChange: _networkOptions.useOldImageOnUrlChange,
-      placeholderFadeInDuration: _networkOptions.placeholderFadeInDuration,
-      memCacheWidth: _networkOptions.memCacheWidth,
-      memCacheHeight: _networkOptions.memCacheHeight,
-      cacheKey: _networkOptions.cacheKey,
-      maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
-      maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
-      errorListener: _networkOptions.errorListener,
-      imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
-    );
-  }
+  // Widget _buildNetworkImage() {
+  //   final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
+  //   final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
+  //   final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
+  //   final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
+  //   return CachedNetworkImage(
+  //     imageUrl: _finalUrl,
+  //     httpHeaders: _httpHeaders,
+  //     width: _networkOptions.width,
+  //     height: _networkOptions.height,
+  //     color: _networkOptions.color,
+  //     colorBlendMode: _networkOptions.colorBlendMode,
+  //     fit: _networkOptions.fit,
+  //     alignment: _networkOptions.alignment,
+  //     repeat: _networkOptions.repeat,
+  //     matchTextDirection: _networkOptions.matchTextDirection,
+  //     filterQuality: _networkOptions.filterQuality,
+  //     imageBuilder: _networkOptions.imageBuilder,
+  //     placeholder: _networkOptions.placeholder,
+  //     progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
+  //     errorWidget: _networkOptions.errorWidget,
+  //     fadeOutDuration: _networkOptions.fadeOutDuration,
+  //     fadeOutCurve: _networkOptions.fadeOutCurve,
+  //     fadeInDuration: _networkOptions.fadeInDuration,
+  //     fadeInCurve: _networkOptions.fadeInCurve,
+  //     cacheManager: _networkOptions.cacheManager,
+  //     useOldImageOnUrlChange: _networkOptions.useOldImageOnUrlChange,
+  //     placeholderFadeInDuration: _networkOptions.placeholderFadeInDuration,
+  //     memCacheWidth: _networkOptions.memCacheWidth,
+  //     memCacheHeight: _networkOptions.memCacheHeight,
+  //     cacheKey: _networkOptions.cacheKey,
+  //     maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
+  //     maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
+  //     errorListener: _networkOptions.errorListener,
+  //     imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
+  //   );
+  // }
 }
