@@ -1,6 +1,7 @@
 // ignore_for_file: inference_failure_on_untyped_parameter
 
 import "dart:async";
+import "dart:convert";
 
 import "package:deeplinks/models/deeplink_model.dart";
 import "package:deeplinks/models/link_properties_model.dart";
@@ -16,10 +17,10 @@ import "package:utilities/logger/logger.dart";
 part "store.g.dart";
 
 /// A store for DeepLinks ads.
-class DeepLinksStore = DeepLinksStoreBase with _$DeepLinksStore;
+class DeepLinksStore = _DeepLinksStore with _$DeepLinksStore;
 
-/// [DeepLinksStoreBase] is a MobX Store that is used to manage the state of the [DeepLinksStore].
-abstract class DeepLinksStoreBase with Store {
+/// [_DeepLinksStore] is a MobX Store that is used to manage the state of the [DeepLinksStore].
+abstract class _DeepLinksStore with Store {
   /// A controller for the data of the deep link.
   final controllerData = BehaviorSubject<String>();
 
@@ -29,11 +30,18 @@ abstract class DeepLinksStoreBase with Store {
   /// An optional user id for deep links.
   final String? userId;
 
-  /// An optional function to be called when a deep link is received.
-  final void Function(DeepLinkModel)? onDeepLinkReceived;
+  /// toggle checking sdk integration
+  final bool checkSDKIntegration;
 
-  /// [DeepLinksStoreBase] constructor.
-  DeepLinksStoreBase({this.userId, this.onDeepLinkReceived}) {
+  /// [_DeepLinksStore] constructor.
+  _DeepLinksStore({this.userId, this.checkSDKIntegration = false}) {
+    _initDeeplinksSession();
+  }
+
+  @observable
+  DeepLinkModel? receivedDeepLink;
+
+  void _initDeeplinksSession() {
     FlutterBranchSdk.init().then((value) {
       if (userId != null) {
         FlutterBranchSdk.setIdentity(userId!);
@@ -43,22 +51,59 @@ abstract class DeepLinksStoreBase with Store {
           type: LoggerType.confirmation,
         );
       }
+      if (kDebugMode && !kIsWeb && checkSDKIntegration) {
+        FlutterBranchSdk.validateSDKIntegration();
+        AppLogger.print(
+          "validateSDKIntegration",
+          [DeeplinksLoggers.deeplinks],
+        );
+      }
       streamSubscription = FlutterBranchSdk.listSession().listen(
         (data) {
-          if (kDebugMode && !kIsWeb) {
-            FlutterBranchSdk.validateSDKIntegration();
-            AppLogger.print(
-              "validateSDKIntegration",
-              [DeeplinksLoggers.deeplinks],
-            );
-          }
           AppLogger.print(
             "listenDynamicLinks - DeepLink Data: $data",
             [DeeplinksLoggers.deeplinks],
           );
           controllerData.sink.add(data.toString());
           if (data.containsKey("+clicked_branch_link") && data["+clicked_branch_link"] == true) {
-            onDeepLinkReceived?.call(DeepLinkModel.fromMap(data as Map<String, dynamic>));
+            final dataMap = <String, dynamic>{};
+            if (data.containsKey(r"$canonical_identifier")) {
+              dataMap["canonical_identifier"] = data[r"$canonical_identifier"];
+            }
+            if (data.containsKey("title")) {
+              dataMap["title"] = data["title"];
+            }
+            if (data.containsKey("content_description")) {
+              dataMap["contentD_description"] = data["content_description"];
+            }
+            if (data.containsKey("image_url")) {
+              dataMap["image_url"] = data["image_url"];
+            }
+            if (data.containsKey("canonical_url")) {
+              dataMap["canonical_url"] = data["canonical_url"];
+            }
+            if (data.containsKey("fallback_url")) {
+              dataMap["fallback_url"] = data["fallback_url"];
+            }
+            if (data.containsKey("destination")) {
+              dataMap["destination"] = json.decode(data["destination"] as String);
+            }
+            if (data.containsKey("metadata")) {
+              dataMap["metadata"] = data["metadata"];
+            }
+            if (data.containsKey("keywords")) {
+              dataMap["keywords"] = data["keywords"];
+            }
+            if (data.containsKey("public_index")) {
+              dataMap["public_index"] = data["public_index"];
+            }
+            if (data.containsKey("local_index")) {
+              dataMap["local_index"] = data["local_index"];
+            }
+            if (data.containsKey("expiration_date")) {
+              dataMap["expiration_date"] = data["expiration_date"];
+            }
+            receivedDeepLink = DeepLinkModel.fromMap(dataMap);
             AppLogger.print(
               "DeepLink Data: $data",
               [DeeplinksLoggers.deeplinks],
@@ -83,6 +128,13 @@ abstract class DeepLinksStoreBase with Store {
   /// A stream for the data of the deep link.
   @observable
   StreamSubscription<Map<dynamic, dynamic>>? streamSubscription;
+
+  @action
+  void handleReceivedDeepLink(void Function(DeepLinkModel) onDeepLinkReceived) {
+    if (receivedDeepLink != null) {
+      onDeepLinkReceived.call(receivedDeepLink!);
+    }
+  }
 
   /// Check if the user is identified for deep links.
   @action
