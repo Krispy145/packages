@@ -20,11 +20,14 @@ class UserSearchQueryModel extends BasicSearchQueryModel {
   final AuthType authType;
   final bool mustInclude;
   final bool mustExclude;
-  UserSearchQueryModel({
+  final bool? isAuthorized;
+  const UserSearchQueryModel({
+    super.searchTerm = "auth_type",
     required this.authType,
     required this.mustInclude,
     required this.mustExclude,
-  }) : super(searchTerm: "auth_type");
+    this.isAuthorized,
+  });
 }
 
 /// [UserDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.

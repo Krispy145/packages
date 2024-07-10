@@ -48,8 +48,16 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
 
   @override
   Future<void> deleteAccount(String userId) async {
-    await _firebaseAuth.currentUser?.reload();
-    return _user!.delete();
+    try {
+      await _firebaseAuth.currentUser?.reload();
+      return _user!.delete();
+    } catch (e) {
+      AppLogger.print(
+        "deleteAccount attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+    }
   }
 
   @override
