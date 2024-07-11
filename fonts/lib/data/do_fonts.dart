@@ -149,7 +149,7 @@ enum DOFonts {
             ): null,
             const DOFontVariantDescriptor(
               fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
             ): null,
             const DOFontVariantDescriptor(
               fontStyle: FontStyle.normal,
@@ -178,7 +178,7 @@ enum DOFonts {
             ): null,
             const DOFontVariantDescriptor(
               fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w300,
             ): null,
             const DOFontVariantDescriptor(
               fontStyle: FontStyle.italic,
