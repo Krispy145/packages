@@ -153,8 +153,7 @@ class DashboardShellStructure extends StatelessWidget {
                       selectedIndex: store.selectedIndex,
                       destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
                       onDestinationSelected: (value) {
-                        onDestinationSelected?.call(value);
-                        store.selectedIndex = value;
+                        _onDestinationSelected(value);
                         Scaffold.of(context).closeDrawer();
                       },
                     ),
@@ -187,10 +186,7 @@ class DashboardShellStructure extends StatelessWidget {
                 width: store.isNavigationRailExtended ? _getNavigationRailWidth(context) : 72,
                 padding: EdgeInsets.zero,
                 selectedIndex: store.selectedIndex,
-                onDestinationSelected: (value) {
-                  onDestinationSelected?.call(value);
-                  store.selectedIndex = value;
-                },
+                onDestinationSelected: _onDestinationSelected,
                 extended: store.isNavigationRailExtended,
                 leading: leading,
                 destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
@@ -214,10 +210,7 @@ class DashboardShellStructure extends StatelessWidget {
                 selectedIndex: store.selectedIndex,
                 leading: leading,
                 trailing: _buildTrailingStack(context),
-                onDestinationSelected: (value) {
-                  onDestinationSelected?.call(value);
-                  store.selectedIndex = value;
-                },
+                onDestinationSelected: _onDestinationSelected,
                 destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
                 backgroundColor: backgroundColor,
                 selectedIconTheme: selectedIconTheme,
@@ -230,6 +223,11 @@ class DashboardShellStructure extends StatelessWidget {
         ),
       },
     );
+  }
+
+  void _onDestinationSelected(int value) {
+    onDestinationSelected?.call(value);
+    store.selectedIndex = value;
   }
 
   Widget _buildTrailingStack(BuildContext context) {
