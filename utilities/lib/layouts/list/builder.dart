@@ -5,12 +5,15 @@ import "package:utilities/layouts/list/store.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 import "package:utilities/widgets/load_state/states.dart";
+import "package:widgets/messages/warning_message.dart";
 
 class ListBuilder<T> extends StatelessWidget {
   final ListStore<T> store;
   final Widget? header;
   final Widget? Function(BuildContext, int, T) itemBuilder;
-  final LoadStateBuilder? loadStateBuilder;
+  final Widget? Function(BuildContext, String)? emptyBuilder;
+  final Widget? Function(BuildContext, String)? errorBuilder;
+  // final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets padding;
   final ListViewType viewType;
@@ -25,10 +28,12 @@ class ListBuilder<T> extends StatelessWidget {
     required this.store,
     this.header,
     required this.itemBuilder,
-    this.loadStateBuilder,
+    // this.loadStateBuilder,
     this.stackedWidgets,
     this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
+    this.emptyBuilder,
+    this.errorBuilder,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.listView,
         gridDelegate = null;
@@ -40,10 +45,12 @@ class ListBuilder<T> extends StatelessWidget {
     this.header,
     required this.itemBuilder,
     required this.gridDelegate,
-    this.loadStateBuilder,
+    // this.loadStateBuilder,
     this.stackedWidgets,
     this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
+    this.emptyBuilder,
+    this.errorBuilder,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.gridView;
 
@@ -53,12 +60,14 @@ class ListBuilder<T> extends StatelessWidget {
     required this.store,
     this.header,
     required this.itemBuilder,
-    this.loadStateBuilder,
+    // this.loadStateBuilder,
     required this.viewType,
     this.gridDelegate,
     this.stackedWidgets,
     this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
     this.slivers = false,
+    this.emptyBuilder,
+    this.errorBuilder,
   })  : assert(
           !(header != null && slivers),
           "Cannot have header and use slivers",
@@ -77,7 +86,7 @@ class ListBuilder<T> extends StatelessWidget {
     if (!slivers) {
       return LoadStateBuilder(
         viewStore: store,
-        emptyBuilder: (context, empty) => Center(child: Text(empty)),
+        emptyBuilder: (context, empty) => emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty),
         loadedBuilder: (context) {
           return Stack(
             children: [
@@ -102,7 +111,7 @@ class ListBuilder<T> extends StatelessWidget {
           );
         },
         loadingBuilder: (context) => const SizedBox.shrink(),
-        errorBuilder: (context, error) => Center(child: Text(error)),
+        errorBuilder: (context, error) => errorBuilder?.call(context, error) ?? WarningMessage.error(title: "Error", message: error),
       );
     } else {
       return SliverPadding(
@@ -113,10 +122,10 @@ class ListBuilder<T> extends StatelessWidget {
               return buildView(store.showLoadingSpinnerAtBottom);
             } else if (store.isError) {
               final errorState = store.currentState as ErrorLoadState;
-              return SliverToBoxAdapter(child: loadStateBuilder?.errorBuilder(context, errorState.errorMessage) ?? const SliverToBoxAdapter(child: SizedBox.shrink()));
+              return SliverToBoxAdapter(child: errorBuilder?.call(context, errorState.errorMessage) ?? WarningMessage.error(title: "Error", message: errorState.errorMessage));
             } else if (store.isEmpty) {
               final emptyState = store.currentState as EmptyLoadState;
-              return SliverToBoxAdapter(child: Center(child: Text(emptyState.emptyMessage)));
+              return SliverToBoxAdapter(child: emptyBuilder?.call(context, emptyState.emptyMessage) ?? WarningMessage.empty(message: emptyState.emptyMessage));
             } else if (store.isLoading) {
               return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
             } else {

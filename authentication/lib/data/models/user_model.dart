@@ -25,7 +25,7 @@ class UserModel with UserModelMappable {
   final DateTime? lastLogoutAt;
   final DateTime? updatedAt;
 
-  const UserModel({
+  UserModel({
     required this.id,
     this.accessToken,
     this.isAuthorized = false,
@@ -38,11 +38,11 @@ class UserModel with UserModelMappable {
     this.refreshToken,
     this.authType,
     this.status,
-    this.createdAt,
+    DateTime? createdAt,
     this.lastLoginAt,
     this.lastLogoutAt,
     this.updatedAt,
-  });
+  }) : createdAt = createdAt ?? DateTime.now();
 
   static const fromMap = UserModelMapper.fromMap;
   static const fromJson = UserModelMapper.fromJson;
@@ -55,7 +55,7 @@ class UserModel with UserModelMappable {
     );
   }
 
-  static const UserModel anonymous = UserModel(
+  static UserModel anonymous = UserModel(
     id: "anonymous",
     authType: AuthType.anonymous,
     status: AuthStatus.unauthenticated,

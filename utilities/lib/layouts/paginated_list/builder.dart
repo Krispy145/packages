@@ -23,7 +23,8 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
     required this.store,
     super.header,
     required super.itemBuilder,
-    super.loadStateBuilder,
+    super.emptyBuilder,
+    super.errorBuilder,
     super.stackedWidgets,
     super.padding,
     super.slivers = false,
@@ -36,7 +37,9 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
     super.header,
     required super.itemBuilder,
     required super.gridDelegate,
-    super.loadStateBuilder,
+    // super.loadStateBuilder,
+    super.emptyBuilder,
+    super.errorBuilder,
     super.stackedWidgets,
     super.padding,
     this.canRefresh = true,
@@ -69,25 +72,24 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: loadStateBuilder ??
-                  LoadStateBuilder(
-                    viewStore: store,
-                    emptyBuilder: (context, empty) {
-                      _showSnackBarRequestResponse(context);
-                      return Center(child: Text(empty));
-                    },
-                    loadingBuilder: (context) => const SizedBox.shrink(),
-                    loadedBuilder: (context) {
-                      _showSnackBarRequestResponse(context);
-                      return const SizedBox.shrink();
-                    },
-                    errorBuilder: (context, error) {
-                      return IconButton(
-                        icon: const Icon(Icons.refresh),
-                        onPressed: store.refresh,
-                      );
-                    },
-                  ),
+              child: LoadStateBuilder(
+                viewStore: store,
+                emptyBuilder: (context, empty) {
+                  _showSnackBarRequestResponse(context);
+                  return Center(child: Text(empty));
+                },
+                loadingBuilder: (context) => const SizedBox.shrink(),
+                loadedBuilder: (context) {
+                  _showSnackBarRequestResponse(context);
+                  return const SizedBox.shrink();
+                },
+                errorBuilder: (context, error) {
+                  return IconButton(
+                    icon: const Icon(Icons.refresh),
+                    onPressed: store.refresh,
+                  );
+                },
+              ),
             ),
           ),
         ),

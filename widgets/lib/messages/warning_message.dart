@@ -4,7 +4,7 @@ import "package:theme/extensions/build_context.dart";
 class WarningMessage extends StatelessWidget {
   final String title;
   final String? message;
-  final IconData icon;
+  final IconData? icon;
   final String? buttonText;
   final void Function(BuildContext context)? onButtonTap;
 
@@ -12,7 +12,7 @@ class WarningMessage extends StatelessWidget {
 
   const WarningMessage.error({super.key, this.title = "Error!", this.message, this.icon = Icons.warning_rounded, this.buttonText, this.onButtonTap});
 
-  const WarningMessage.empty({super.key, this.title = "No results", this.message, this.icon = Icons.warning_rounded, this.buttonText, this.onButtonTap});
+  const WarningMessage.empty({super.key, this.title = "No results", this.message, this.icon, this.buttonText, this.onButtonTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,11 @@ class WarningMessage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            icon,
-            size: 48,
-          ),
+          if (icon != null)
+            Icon(
+              icon,
+              size: 48,
+            ),
           Padding(
             padding: const EdgeInsets.only(top: 8),
             child: Text(
