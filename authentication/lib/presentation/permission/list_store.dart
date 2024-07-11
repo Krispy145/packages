@@ -23,6 +23,18 @@ abstract class _PermissionsStore extends PaginatedListStore<PermissionModel> wit
   /// [repository] is an instance of [PermissionRepository].
   late final PermissionRepository repository = PermissionRepository(sourceType: sourceType);
 
+  @action
+  Future<void> deletePermissionModel(String id) async {
+    try {
+      setLoading();
+      await repository.deletePermissionModel(id);
+      results.removeWhere((element) => element.id == id);
+      setLoaded();
+    } catch (e) {
+      setError("There was a problem deleting the permission.");
+    }
+  }
+
   /// [loadPermissionModels] loads all [PermissionModel]s from the data source.
   @action
   Future<void> loadPermissionModels() async {

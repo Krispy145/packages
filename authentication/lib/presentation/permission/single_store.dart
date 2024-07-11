@@ -2,6 +2,7 @@
 
 import "package:mobx/mobx.dart";
 import "package:utilities/data/models/permission_model.dart";
+import "package:utilities/data/sources/source.dart";
 
 import "list_store.dart";
 
@@ -21,6 +22,27 @@ abstract class _PermissionStore extends PermissionsStore with Store {
     PermissionModel? initialPermissionModel,
   }) {
     _loadPermission(initialPermissionModel);
+  }
+
+  /// [additPermissionModel] addits a [PermissionModel] to the data source.
+  @action
+  Future<RequestResponse> additPermissionModel(
+    bool isAdding,
+    PermissionModel permissionModel,
+  ) async {
+    if (isAdding) {
+      final result = await repository.addPermissionModel(permissionModel);
+      if (result.first == RequestResponse.success) {
+        currentPermission = result.second;
+      }
+      return result.first;
+    } else {
+      final result = await repository.updatePermissionModel(permissionModel);
+      if (result == RequestResponse.success) {
+        currentPermission = permissionModel;
+      }
+      return result;
+    }
   }
 
   /// [currentPermission] is an observable list of [PermissionModel]s.
