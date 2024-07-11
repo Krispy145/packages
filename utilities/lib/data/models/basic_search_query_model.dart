@@ -6,7 +6,7 @@ part "basic_search_query_model.mapper.dart";
 class BasicSearchQueryModel with BasicSearchQueryModelMappable {
   final String searchTerm;
 
-  BasicSearchQueryModel({
+  const BasicSearchQueryModel({
     required this.searchTerm,
   });
 

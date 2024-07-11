@@ -28,7 +28,7 @@ class LocalNotificationsStore = _LocalNotificationsStore with _$LocalNotificatio
 /// [_LocalNotificationsStore] is the base class for all notifications stores.
 abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   /// [_LocalNotificationsStore] constructor.
-  _LocalNotificationsStore({super.onNotificationReceived});
+  _LocalNotificationsStore();
 
   /// [androidLocalNotificationsChannel] is the Android local notifications channel.
   final androidLocalNotificationsChannel = const AndroidNotificationChannel(
@@ -238,6 +238,18 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
     return super.deleteAll();
   }
 
+  /// [listenForReceivedNotification] handles received notifications.
+  /// [onNotificationReceived] is the callback for when a notification is received.
+  /// This is used to update the UI when the app receives a notification from foreground/background/terminated state.
+  @override
+  @action
+  void listenForReceivedNotification(void Function(NotificationModel notification) onNotificationReceived) {
+    if (receivedNotification != null) {
+      onNotificationReceived.call(receivedNotification!);
+      receivedNotification = null;
+    }
+  }
+
   @action
   Future<ObservableList<NotificationModel?>> _getActiveNotifications() async {
     if (Platform.isLinux) return ObservableList();
@@ -306,6 +318,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
       notification.id,
       notification.copyWith(isLocalNotification: true),
     );
+    receivedNotification = notification;
   }
 
   @action

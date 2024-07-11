@@ -7,6 +7,7 @@ import "package:firebase_messaging/firebase_messaging.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter_local_notifications/flutter_local_notifications.dart";
 import "package:mobx/mobx.dart";
+import "package:navigation/models/app_destination_model.dart";
 import "package:notifications/models/local_android_notification_details.dart";
 import "package:notifications/models/notification_model.dart";
 import "package:notifications/models/notifications_permissions_model.dart";
@@ -36,7 +37,6 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     this.storeNotificationsLocally = true,
     this.fcmToken,
     this.apnsToken,
-    super.onNotificationReceived,
   }) {
     initialize();
   }
@@ -118,22 +118,12 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [initialize] registers for push notifications.
   @action
   Future<void> initialize() async {
-    // Get any messages which caused the application to open from a terminated state.
-    final initialMessage = await _pushNotifications.getInitialMessage();
-
     // Set foreground notification presentation options to allow heads up notifications for apple.
     await _pushNotifications.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
       sound: true,
     );
-
-    // set up the Android channel for foreground notifications
-    final _channel = _createAndroidForegroundPushNotificationChannel();
-
-    if (initialMessage != null) {
-      await _receivePushNotification(initialMessage.data);
-    }
 
     _pushNotifications.onTokenRefresh.listen((token) {
       if (token.isNotEmpty && token != fcmToken) {
@@ -145,41 +135,6 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
       }
     });
 
-    // Also handle any interaction when the app is in the background via a Stream listener
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      _receivePushNotification(message.data);
-    });
-
-    // Also handle any interaction when the app is in the foreground via a Stream listener
-    FirebaseMessaging.onMessage.listen((message) {
-      final notification = _convertRemoteNotificationToNotificationModel(message.data);
-      final android = message.notification?.android;
-
-      // for Android, we create a local notification to show to users using the created channel.
-      if (notification != null && android != null) {
-        localNotifications.show(
-          notification.localId,
-          notification.title,
-          notification.body,
-          NotificationDetails(
-            android: LocalAndroidNotificationDetails(
-              _channel.id,
-              _channel.name,
-            ).copyWith(
-              channelDescription: "Push Notifications Channel",
-              ticker: "ticker",
-              icon: android.smallIcon ?? "@mipmap/ic_launcher",
-            ),
-          ),
-          payload: jsonEncode(notification.toJson()),
-        );
-      }
-      _receivePushNotification(
-        message.data,
-        shouldUpdateAll: false,
-        shouldCallNotificationReceived: false,
-      );
-    });
     // handleSilentNotifications(onSilentNotificationReceived: () {});
   }
 
@@ -279,6 +234,58 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     );
   }
 
+  /// [listenForReceivedNotification] handles received notifications.
+  /// [onNotificationReceived] is the callback for when a notification is received.
+  /// This is used to update the UI when the app receives a notification from foreground/background/terminated state.
+  @override
+  @action
+  Future<void> listenForReceivedNotification(void Function(NotificationModel notification) onNotificationReceived) async {
+    // set up the Android channel for foreground notifications
+    final _channel = _createAndroidForegroundPushNotificationChannel();
+    // Get any messages which caused the application to open from a terminated state.
+    final initialMessage = await _pushNotifications.getInitialMessage();
+
+    if (initialMessage != null) {
+      await _receivePushNotification(initialMessage.data, onNotificationReceived);
+    }
+    // Also handle any interaction when the app is in the background via a Stream listener
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      _receivePushNotification(message.data, onNotificationReceived);
+    });
+
+    // Also handle any interaction when the app is in the foreground via a Stream listener
+    FirebaseMessaging.onMessage.listen((message) {
+      final notification = _convertRemoteNotificationToNotificationModel(message.data);
+      final android = message.notification?.android;
+
+      // for Android, we create a local notification to show to users using the created channel.
+      if (notification != null && android != null) {
+        localNotifications.show(
+          notification.localId,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: LocalAndroidNotificationDetails(
+              _channel.id,
+              _channel.name,
+            ).copyWith(
+              channelDescription: "Push Notifications Channel",
+              ticker: "ticker",
+              icon: android.smallIcon ?? "@mipmap/ic_launcher",
+            ),
+          ),
+          payload: jsonEncode(notification.toJson()),
+        );
+      }
+      _receivePushNotification(
+        message.data,
+        onNotificationReceived,
+        shouldUpdateAll: false,
+        shouldCallNotificationReceived: false,
+      );
+    });
+  }
+
   /// [subscribeToTopic] subscribes to a topic for notifications to be sent to user.
   @action
   Future<void> subscribeToTopic(String topic) async {
@@ -336,14 +343,22 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [_receivePushNotification] receives a push notification.
   @action
   Future<void> _receivePushNotification(
-    Map<String, dynamic> notificationData, {
+    Map<String, dynamic> notificationData,
+    void Function(NotificationModel notification) onNotificationReceived, {
     bool shouldUpdateAll = true,
     bool shouldCallNotificationReceived = true,
   }) async {
     if (shouldUpdateAll) await _updateActiveNotificationsList();
-    final notification = NotificationModel.fromMap(notificationData);
+    final _destinationString = notificationData["destination"] as String?;
+    notificationData.remove("destination");
+    var notification = NotificationModel.fromMap(notificationData);
+    if (_destinationString != null) {
+      final _destinationMap = _convertStringToMap(_destinationString);
+      notification = notification.copyWith(destination: AppDestinationModel.fromMap(_destinationMap));
+    }
     if (shouldCallNotificationReceived) {
-      onNotificationReceived?.call(notification);
+      onNotificationReceived(notification);
+      receivedNotification = notification;
     }
     if (notification.destination != null) {
       AppLogger.print(
@@ -351,6 +366,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
         [NotificationsLoggers.notifications],
       );
     }
+
     await update(notification.id, notification);
   }
 
@@ -379,11 +395,37 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     Map<String, dynamic> data,
   ) {
     if (data["id"] == null) return null;
-    final notification = NotificationModel.fromMap(data);
+    final _destinationString = data["destination"] as String?;
+    data.remove("destination");
+    var notification = NotificationModel.fromMap(data);
+    final _destinationMap = _convertStringToMap(_destinationString ?? "{}");
+    notification = notification.copyWith(destination: AppDestinationModel.fromMap(_destinationMap));
+    notification = NotificationModel.fromMap(data);
     AppLogger.print(
       "Notification: $notification",
       [NotificationsLoggers.notifications],
     );
     return notification;
+  }
+
+  Map<String, dynamic> _convertStringToMap(String str) {
+    // Add quotes around keys
+    var correctedStr = str.replaceAllMapped(
+      RegExp(r"(\w+)\s*:"),
+      (m) => '"${m[1]}":',
+    );
+
+    // Add quotes around values that are not objects, arrays, numbers, booleans, or null
+    correctedStr = correctedStr.replaceAllMapped(RegExp(r":\s*([^,{}\[\]]+)\s*([,}])"), (m) {
+      final value = m[1]!.trim();
+      if (RegExp(r"^\d+$").hasMatch(value) || value == "true" || value == "false" || value == "null") {
+        return ': $value${m[2]}';
+      } else {
+        return ': "$value"${m[2]}';
+      }
+    });
+
+    // Decode the JSON string to a Dart map
+    return json.decode(correctedStr) as Map<String, dynamic>;
   }
 }

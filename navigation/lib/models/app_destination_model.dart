@@ -26,7 +26,7 @@ class AppDestinationModel with AppDestinationModelMappable {
   /// [toStringMap] converts the [AppDestinationModel] to a string map.
   Map<String, String> toStringMap() {
     final map = <String, String>{};
-    map["routeName"] = routeName;
+    map["route_name"] = routeName;
     if (arguments != null) {
       map["arguments"] = arguments!.toString();
     }

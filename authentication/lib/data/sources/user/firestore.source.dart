@@ -29,10 +29,16 @@ class FirestoreUserDataSource<T extends UserModel> extends PaginatedFirestoreDat
   Future<List<T?>> searchAllAuthTypes(UserSearchQueryModel query) async {
     if (query.mustInclude) {
       return collectionReference.where(query.searchTerm, isEqualTo: query.authType.name).get().then((querySnapshot) {
+        if (query.isAuthorized != null) {
+          return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().where((element) => element.isAuthorized == query.isAuthorized).toList();
+        }
         return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
       });
     } else if (query.mustExclude) {
       return collectionReference.where(query.searchTerm, isNotEqualTo: query.authType.name).get().then((querySnapshot) {
+        if (query.isAuthorized != null) {
+          return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().where((element) => element.isAuthorized == query.isAuthorized).toList();
+        }
         return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
       });
     } else {

@@ -17,12 +17,9 @@ class NotificationsStore = _NotificationsStore with _$NotificationsStore;
 
 /// [_NotificationsStore] is the base class for [NotificationsStore].
 abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map<String, dynamic>> with Store {
-  /// [onNotificationReceived] is a callback for when a notification is received.
-  final void Function(NotificationModel notification)? onNotificationReceived;
-
   /// [_NotificationsStore] constructor.
   // ignore: unused_element
-  _NotificationsStore({this.onNotificationReceived})
+  _NotificationsStore()
       : super(
           "notifications",
           getIdFromDataType: (data) => data.id,
@@ -33,9 +30,17 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
   /// [localNotifications] is the local notifications plugin.
   final FlutterLocalNotificationsPlugin localNotifications = FlutterLocalNotificationsPlugin();
 
+  @observable
+  NotificationModel? receivedNotification;
+
   /// [notifications] is a list of notifications from the local data source.
   @computed
   ValueListenable<TypeBox<NotificationModel?>> get notifications => super.boxListenable;
+
+  @action
+  void listenForReceivedNotification(void Function(NotificationModel notification) onNotificationReceived) {
+    throw UnimplementedError();
+  }
 
   /// [requestPermissions] requests permission for notifications.
   @action
