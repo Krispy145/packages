@@ -41,10 +41,10 @@ class DashboardShellStructure extends StatelessWidget {
   final double maxWidth;
 
   /// The leading widget of the navigation rail.
-  final Widget? leading;
+  final Widget Function(BuildContext context)? leading;
 
   /// The trailing widget of the navigation rail.
-  final Widget? trailing;
+  final Widget Function(BuildContext context)? trailing;
 
   /// The destinations of the navigation rail.
   final List<NavigationDestination> destinations;
@@ -148,7 +148,7 @@ class DashboardShellStructure extends StatelessWidget {
                   return Drawer(
                     child: NavigationRail(
                       extended: true,
-                      leading: leading,
+                      leading: leading?.call(context),
                       trailing: _buildTrailingStack(context),
                       selectedIndex: store.selectedIndex,
                       destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
@@ -188,7 +188,7 @@ class DashboardShellStructure extends StatelessWidget {
                 selectedIndex: store.selectedIndex,
                 onDestinationSelected: _onDestinationSelected,
                 extended: store.isNavigationRailExtended,
-                leading: leading,
+                leading: leading?.call(context),
                 destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
                 trailing: _buildTrailingStack(context),
                 backgroundColor: backgroundColor,
@@ -208,7 +208,7 @@ class DashboardShellStructure extends StatelessWidget {
               return AdaptiveScaffold.standardNavigationRail(
                 padding: EdgeInsets.zero,
                 selectedIndex: store.selectedIndex,
-                leading: leading,
+                leading: leading?.call(context),
                 trailing: _buildTrailingStack(context),
                 onDestinationSelected: _onDestinationSelected,
                 destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
@@ -237,7 +237,7 @@ class DashboardShellStructure extends StatelessWidget {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              if (trailing != null) trailing!,
+              if (trailing != null) trailing!(context),
               if (isCollapsible)
                 IconButton(
                   icon: Icon(
