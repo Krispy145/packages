@@ -44,10 +44,13 @@ class BorderSideModel with BorderSideModelMappable {
     strokeAlign_double: 0,
   );
 
-  BorderSide asBorderSide({String? styleTypeName}) {
+  BorderSide? asBorderSide({String? styleTypeName}) {
+    if (![color_themeColorString, width_double, style_enum_borderStyle, strokeAlign_double].any((element) => element != null)) {
+      return null;
+    }
     return BorderSide(
-      color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
-      width: width_double ?? 1.0,
+      color: color_themeColorString?.toColor() ?? Colors.transparent,
+      width: width_double ?? 0,
       style: style_enum_borderStyle?.borderStyle ?? BorderStyleType.solid.borderStyle,
       strokeAlign: strokeAlign_double ?? BorderSide.strokeAlignInside,
     );
