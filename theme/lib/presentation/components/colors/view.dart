@@ -126,21 +126,152 @@ class ColorModelView extends StatelessWidget {
                 padding: AppEdgeInsets.all(context, Sizes.m),
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 160,
-                  crossAxisSpacing: Sizes.m.points(context),
-                  mainAxisSpacing: Sizes.m.points(context),
+                  crossAxisSpacing: Sizes.zero.points(context),
+                  mainAxisSpacing: Sizes.zero.points(context),
                 ),
-                children: AppTheme.currentColorModel!.toMap().entries.map(
-                  (e) {
-                    if (e.value is List) {
-                      return const SizedBox();
-                    }
-                    return ColorCircle(
-                      color: const ColorMapper().decode(e.value),
-                      onTap: () => onColorSelected(e),
-                      label: e.key,
-                    );
-                  },
-                ).toList(),
+                children: AppTheme.currentColorModel!.toMap().entries.map((e) {
+                  if (e.value is List) {
+                    return const SizedBox();
+                  }
+                  final Color? contrastColor;
+                  switch (e.key) {
+                    case "primary":
+                      contrastColor = AppTheme.currentColorModel!.onPrimary;
+                      break;
+                    case "onPrimary":
+                      contrastColor = AppTheme.currentColorModel!.primary;
+                      break;
+                    case "primaryContainer":
+                      contrastColor = AppTheme.currentColorModel!.onPrimaryContainer;
+                      break;
+                    case "onPrimaryContainer":
+                      contrastColor = AppTheme.currentColorModel!.primaryContainer;
+                      break;
+                    case "secondary":
+                      contrastColor = AppTheme.currentColorModel!.onSecondary;
+                      break;
+                    case "onSecondary":
+                      contrastColor = AppTheme.currentColorModel!.secondary;
+                      break;
+                    case "secondaryContainer":
+                      contrastColor = AppTheme.currentColorModel!.onSecondaryContainer;
+                      break;
+                    case "onSecondaryContainer":
+                      contrastColor = AppTheme.currentColorModel!.secondaryContainer;
+                      break;
+                    case "tertiary":
+                      contrastColor = AppTheme.currentColorModel!.onTertiary;
+                      break;
+                    case "onTertiary":
+                      contrastColor = AppTheme.currentColorModel!.tertiary;
+                      break;
+                    case "tertiaryContainer":
+                      contrastColor = AppTheme.currentColorModel!.onTertiaryContainer;
+                      break;
+                    case "onTertiaryContainer":
+                      contrastColor = AppTheme.currentColorModel!.tertiaryContainer;
+                      break;
+                    case "error":
+                      contrastColor = AppTheme.currentColorModel!.onError;
+                      break;
+                    case "onError":
+                      contrastColor = AppTheme.currentColorModel!.error;
+                      break;
+                    case "errorContainer":
+                      contrastColor = AppTheme.currentColorModel!.onErrorContainer;
+                      break;
+                    case "onErrorContainer":
+                      contrastColor = AppTheme.currentColorModel!.errorContainer;
+                      break;
+                    case "confirmation":
+                      contrastColor = AppTheme.currentColorModel!.onConfirmation;
+                      break;
+                    case "onConfirmation":
+                      contrastColor = AppTheme.currentColorModel!.confirmation;
+                      break;
+                    case "confirmationContainer":
+                      contrastColor = AppTheme.currentColorModel!.onConfirmationContainer;
+                      break;
+                    case "onConfirmationContainer":
+                      contrastColor = AppTheme.currentColorModel!.confirmationContainer;
+                      break;
+                    case "information":
+                      contrastColor = AppTheme.currentColorModel!.onInformation;
+                      break;
+                    case "onInformation":
+                      contrastColor = AppTheme.currentColorModel!.information;
+                      break;
+                    case "informationContainer":
+                      contrastColor = AppTheme.currentColorModel!.onInformationContainer;
+                      break;
+                    case "onInformationContainer":
+                      contrastColor = AppTheme.currentColorModel!.informationContainer;
+                      break;
+                    case "warning":
+                      contrastColor = AppTheme.currentColorModel!.onWarning;
+                      break;
+                    case "onWarning":
+                      contrastColor = AppTheme.currentColorModel!.warning;
+                      break;
+                    case "warningContainer":
+                      contrastColor = AppTheme.currentColorModel!.onWarningContainer;
+                      break;
+                    case "onWarningContainer":
+                      contrastColor = AppTheme.currentColorModel!.warningContainer;
+                      break;
+                    case "background":
+                      contrastColor = AppTheme.currentColorModel!.onBackground;
+                      break;
+                    case "onBackground":
+                      contrastColor = AppTheme.currentColorModel!.background;
+                      break;
+                    case "surface":
+                      contrastColor = AppTheme.currentColorModel!.onSurface;
+                      break;
+                    case "onSurface":
+                      contrastColor = AppTheme.currentColorModel!.surface;
+                      break;
+                    case "surfaceVariant":
+                      contrastColor = AppTheme.currentColorModel!.onSurfaceVariant;
+                      break;
+                    case "onSurfaceVariant":
+                      contrastColor = AppTheme.currentColorModel!.surfaceVariant;
+                      break;
+                    case "inverseSurface":
+                      contrastColor = AppTheme.currentColorModel!.onInverseSurface;
+                      break;
+                    case "onInverseSurface":
+                      contrastColor = AppTheme.currentColorModel!.inverseSurface;
+                      break;
+                    case "inversePrimary":
+                      contrastColor = AppTheme.currentColorModel!.onPrimary;
+                      break;
+                    case "shadow":
+                      contrastColor = AppTheme.currentColorModel!.background;
+                      break;
+                    case "disabled":
+                      contrastColor = AppTheme.currentColorModel!.background;
+                      break;
+                    case "surfaceTint":
+                      contrastColor = AppTheme.currentColorModel!.onSurface;
+                      break;
+                    case "outlineVariant":
+                      contrastColor = AppTheme.currentColorModel!.primaryContainer;
+                      break;
+                    case "scrim":
+                      contrastColor = AppTheme.currentColorModel!.background;
+                      break;
+                    default:
+                      contrastColor = null;
+                  }
+
+                  return ColorCircle(
+                    color: const ColorMapper().decode(e.value),
+                    onTap: () => onColorSelected(e),
+                    label: e.key,
+                    contrastColor: contrastColor,
+                  );
+                }).toList(),
               ),
             ),
           ],

@@ -12,12 +12,15 @@ class ColorCircle extends StatelessWidget {
   /// [label] of the circle.
   final String? label;
 
+  final Color? contrastColor;
+
   /// [ColorCircle] constructor.
   const ColorCircle({
     super.key,
     required this.color,
     this.label,
     this.onTap,
+    this.contrastColor,
   });
 
   @override
@@ -28,12 +31,23 @@ class ColorCircle extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 40,
-            height: 40,
+            width: 160,
+            height: 80,
             decoration: BoxDecoration(
               color: color,
-              shape: BoxShape.circle,
+              // shape: BoxShape.circle,
             ),
+            child: contrastColor != null
+                ? Center(
+                    child: Text(
+                      label ?? "Contrast",
+                      style: TextStyle(
+                        color: contrastColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                  )
+                : null,
           ),
           Sizes.xs.spacer(),
           if (label != null)

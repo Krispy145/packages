@@ -45,7 +45,7 @@ class AppbarModel with AppbarModelMappable {
 
   AppBarTheme asAppBarTheme({String? styleTypeName}) {
     return AppBarTheme(
-      color: color_themeColorString?.toColor(styleType: styleTypeName),
+      color: backgroundColor_themeColorString != null ? null : color_themeColorString?.toColor(styleType: styleTypeName),
       backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,

@@ -15,6 +15,8 @@ part "color_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.camelCase, includeCustomMappers: [ColorMapper()])
 class ColorModel with ColorModelMappable {
+  // Primary
+
   final Color? primary;
 
   final Color? onPrimary;
@@ -22,6 +24,8 @@ class ColorModel with ColorModelMappable {
   final Color? primaryContainer;
 
   final Color? onPrimaryContainer;
+
+  // Secondary
 
   final Color? secondary;
 
@@ -31,6 +35,8 @@ class ColorModel with ColorModelMappable {
 
   final Color? onSecondaryContainer;
 
+  // Tertiary
+
   final Color? tertiary;
 
   final Color? onTertiary;
@@ -39,8 +45,7 @@ class ColorModel with ColorModelMappable {
 
   final Color? onTertiaryContainer;
 
-  @MappableValue(Colors.grey)
-  final Color disabled;
+  // Error
 
   @MappableValue(Colors.red)
   final Color error;
@@ -51,6 +56,8 @@ class ColorModel with ColorModelMappable {
   final Color? errorContainer;
 
   final Color? onErrorContainer;
+
+  // Confirmation
 
   @MappableValue(Colors.green)
   final Color confirmation;
@@ -64,6 +71,8 @@ class ColorModel with ColorModelMappable {
   @MappableValue(Color(0xFF004203))
   final Color onConfirmationContainer;
 
+  // Information
+
   @MappableValue(Colors.blue)
   final Color information;
 
@@ -75,6 +84,8 @@ class ColorModel with ColorModelMappable {
 
   @MappableValue(Color(0xFF012542))
   final Color onInformationContainer;
+
+  // Warning
 
   @MappableValue(Colors.orange)
   final Color warning;
@@ -88,11 +99,7 @@ class ColorModel with ColorModelMappable {
   @MappableValue(Color(0xFF4C2E01))
   final Color onWarningContainer;
 
-  final Color? outline;
-
-  final Color? background;
-
-  final Color? onBackground;
+  // Surface
 
   final Color? surface;
 
@@ -105,6 +112,19 @@ class ColorModel with ColorModelMappable {
   final Color? inverseSurface;
 
   final Color? onInverseSurface;
+
+  // Background
+
+  final Color? background;
+
+  final Color? onBackground;
+
+  //
+
+  @MappableValue(Colors.grey)
+  final Color disabled;
+
+  final Color? outline;
 
   final Color? inversePrimary;
 
@@ -189,8 +209,6 @@ class ColorModel with ColorModelMappable {
     return ColorScheme(
       brightness: Brightness.light,
       primary: primary!,
-      background: background ?? seedColor.background,
-      onBackground: onBackground ?? seedColor.onBackground,
       primaryContainer: primaryContainer ?? seedColor.primary,
       secondary: secondary ?? seedColor.secondary,
       secondaryContainer: secondaryContainer ?? seedColor.secondaryContainer,
@@ -200,7 +218,7 @@ class ColorModel with ColorModelMappable {
       onSecondary: onSecondary ?? seedColor.onSecondary,
       onSurface: onSurface ?? seedColor.onSurface,
       onError: onError,
-      surfaceVariant: surfaceVariant ?? seedColor.surfaceVariant,
+      surfaceContainerHighest: surfaceVariant ?? seedColor.surfaceContainerHighest,
       onErrorContainer: onErrorContainer ?? seedColor.onErrorContainer,
       onInverseSurface: onInverseSurface ?? seedColor.onInverseSurface,
       onPrimaryContainer: onPrimaryContainer ?? seedColor.onPrimaryContainer,
@@ -308,7 +326,7 @@ class ColorModel with ColorModelMappable {
     final primary = distinctColors[0].first;
     final secondary = distinctColors[1].first;
     final tertiary = distinctColors[2].first;
-    final background = brightnessMuted ?? seededPrimary.background;
+    final background = brightnessMuted ?? seededPrimary.surface;
     final surface = background.withBlue(background.blue - 8).withGreen(background.green - 8).withRed(background.red - 8);
     final error = paletteGenerator.dominantColor?.color ?? seededPrimary.error;
 
@@ -341,7 +359,7 @@ class ColorModel with ColorModelMappable {
       //Background Colors
       background: background,
       surface: surface,
-      onBackground: seededPrimary.onBackground,
+      onBackground: seededPrimary.onSurface,
       onSurface: seededPrimary.onSurface,
       onInverseSurface: seededPrimary.onInverseSurface,
       onSurfaceVariant: seededPrimary.onSurfaceVariant,
