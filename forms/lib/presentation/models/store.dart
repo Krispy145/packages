@@ -28,8 +28,10 @@ abstract class _FormsModelStore<T> with LoadStateStore, Store {
 
   @action
   void onValueChanged(T newValue) {
-    print("Value changed: $newValue");
     value = newValue;
+    print("Value changed: $value");
+    print("New Value: $newValue");
+    print("Value changed: ${value == newValue}");
   }
 
   @observable

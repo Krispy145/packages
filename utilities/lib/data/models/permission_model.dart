@@ -25,6 +25,11 @@ class PermissionModel with PermissionModelMappable {
   static const fromMap = PermissionModelMapper.fromMap;
   static const fromJson = PermissionModelMapper.fromJson;
 
+  @override
+  String toString() {
+    return "PermissionModel(id: $id\nrole: $role\npermissions: $permissions\n)";
+  }
+
   static PermissionModel collectionViewer(String collectionName) => PermissionModel(
         id: generateUniqueId(),
         role: "viewer",
