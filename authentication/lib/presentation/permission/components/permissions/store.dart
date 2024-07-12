@@ -16,27 +16,29 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
   _PermissionsFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
-  }) : super(title: initialValue?.role ?? "No Initial Role Title");
+  }) : super(title: initialValue?.role ?? "No Initial Role Title") {
+    _initializeRoleFields();
+  }
 
   late final TextFormFieldStore roleStore = TextFormFieldStore(
     initialValue: value?.role,
     onValueChanged: (role) {
-      onValueChanged((value ?? PermissionModel.anonymous).copyWith(role: role));
+      onValueChanged(value!.copyWith(role: role));
     },
     title: "Role",
   );
-  late final Map<String, List<ChipsFormFieldStore<PermissionLevel>>> roleFields = collectionPermissions((value ?? PermissionModel.anonymous).permissions);
 
-  @observable
-  bool isHovered = false;
+  late final ObservableMap<String, UserPermissionsModel> newPermissions = ObservableMap<String, UserPermissionsModel>.of(value!.permissions);
+
+  late final Map<String, List<ChipsFormFieldStore<PermissionLevel>>> roleFields = {};
 
   @action
-  void setHovered(bool value) {
-    isHovered = value;
+  void _initializeRoleFields() {
+    roleFields.addAll(collectionPermissions);
   }
 
-  Map<String, List<ChipsFormFieldStore<PermissionLevel>>> collectionPermissions(Map<String, UserPermissionsModel> permissions) {
-    final collection = permissions.map(
+  Map<String, List<ChipsFormFieldStore<PermissionLevel>>> get collectionPermissions {
+    return newPermissions.map(
       (key, userPermission) {
         return MapEntry(
           key,
@@ -49,9 +51,10 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
                 },
                 canSelectMultiple: false,
                 onSelectedChanged: (collectionSelection) {
-                  final newPermissions = (value ?? PermissionModel.anonymous).permissions;
-                  newPermissions[key] = changedPermissionLevel(userPermission, crud, collectionSelection);
-                  onValueChanged((value ?? PermissionModel.anonymous).copyWith(permissions: newPermissions));
+                  final updatedUserPermission = changedPermissionLevel(newPermissions[key]!, crud, collectionSelection);
+                  newPermissions[key] = updatedUserPermission;
+                  value = value!.copyWith(permissions: newPermissions);
+                  onValueChanged(value);
                 },
               )
                 ..loadFiltersModels()
@@ -61,7 +64,6 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
         );
       },
     );
-    return collection;
   }
 
   List<PermissionLevel> optionsBasedOnCRUD(CRUD crud) {
@@ -77,18 +79,24 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionM
     }
   }
 
-  UserPermissionsModel changedPermissionLevel(UserPermissionsModel crudOption, CRUD crud, List<PermissionLevel> permissionLevels) {
+  UserPermissionsModel changedPermissionLevel(
+    UserPermissionsModel crudOption,
+    CRUD crud,
+    List<PermissionLevel> permissionLevels,
+  ) {
     if (permissionLevels.length > 1) throw Exception("Only one permission level can be selected");
-    if (crud == CRUD.create) {
-      return crudOption.copyWith(canCreate: permissionLevels.firstOrNull);
-    } else if (crud == CRUD.read) {
-      return crudOption.copyWith(canRead: permissionLevels.firstOrNull);
-    } else if (crud == CRUD.update) {
-      return crudOption.copyWith(canUpdate: permissionLevels.firstOrNull);
-    } else if (crud == CRUD.delete) {
-      return crudOption.copyWith(canDelete: permissionLevels.firstOrNull);
+    switch (crud) {
+      case CRUD.create:
+        return crudOption.copyWith(canCreate: permissionLevels.firstOrNull);
+      case CRUD.read:
+        return crudOption.copyWith(canRead: permissionLevels.firstOrNull);
+      case CRUD.update:
+        return crudOption.copyWith(canUpdate: permissionLevels.firstOrNull);
+      case CRUD.delete:
+        return crudOption.copyWith(canDelete: permissionLevels.firstOrNull);
+      default:
+        throw Exception("Invalid CRUD option");
     }
-    throw Exception("Invalid CRUD option");
   }
 
   PermissionLevel filtersFromUserPermissions(CRUD crud, UserPermissionsModel userPermission) {

@@ -33,6 +33,11 @@ class UserPermissionsModel with UserPermissionsModelMappable {
   static const fromMap = UserPermissionsModelMapper.fromMap;
   static const fromJson = UserPermissionsModelMapper.fromJson;
 
+  @override
+  String toString() {
+    return "\nUserPermissionsModel(\ncanCreate: $canCreate\ncanRead: $canRead\ncanUpdate: $canUpdate\ncanDelete: $canDelete)\n";
+  }
+
   static const UserPermissionsModel viewer = UserPermissionsModel(
     canRead: PermissionLevel.yes,
   );

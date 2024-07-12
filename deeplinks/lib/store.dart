@@ -19,7 +19,7 @@ part "store.g.dart";
 /// A store for DeepLinks ads.
 class DeepLinksStore = _DeepLinksStore with _$DeepLinksStore;
 
-/// [_DeepLinksStore] is a MobX Store that is used to manage the state of the [DeepLinksStore].
+/// [_DeepLinksStore] is a Store that is used to manage the state of the [DeepLinksStore].
 abstract class _DeepLinksStore with Store {
   /// A controller for the data of the deep link.
   final controllerData = BehaviorSubject<String>();

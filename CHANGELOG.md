@@ -210,7 +210,7 @@ Packages with other changes:
 - **FEAT**(theme): duration field added.
 - **FEAT**(theme): duration model added.
 - **FEAT**(lists): created paginated list feature with use of store and loadStateBuilder widget.
-- **FEAT**(theme): Bool field converted to MobX.
+- **FEAT**(theme): Bool field converted to .
 - **FEAT**: fonts updated to use Unbounded rather than Phonk and error handling added when font not found.
 - **FEAT**(theme): Border form fields added.
 - **FEAT**(theme): Border form fields added.
