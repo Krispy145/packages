@@ -138,48 +138,59 @@ class ColorModel with ColorModelMappable {
   final List<Color>? palette;
 
   const ColorModel({
+    //
     this.primary,
     this.onPrimary,
     this.primaryContainer,
     this.onPrimaryContainer,
+    //
     this.secondary,
     this.onSecondary,
     this.secondaryContainer,
     this.onSecondaryContainer,
+    //
     this.tertiary,
     this.onTertiary,
     this.tertiaryContainer,
     this.onTertiaryContainer,
-    this.disabled = Colors.grey,
+    //
     this.error = Colors.red,
     this.onError = Colors.white,
     this.errorContainer,
     this.onErrorContainer,
+    //
     this.confirmation = Colors.green,
     this.onConfirmation = Colors.white,
     this.confirmationContainer = const Color(0xFFC4FFC7),
     this.onConfirmationContainer = const Color(0xFF004203),
+    //
     this.information = Colors.blue,
     this.onInformation = Colors.white,
     this.informationContainer = const Color(0xFFBCE1FF),
     this.onInformationContainer = const Color(0xFF012542),
+    //
     this.warning = Colors.orange,
     this.onWarning = Colors.white,
     this.warningContainer = const Color(0xFFFFE0B3),
     this.onWarningContainer = const Color(0xFF4C2E01),
-    this.outline,
+    //
     this.background,
     this.onBackground,
+    //
+    this.outline,
+    this.outlineVariant,
+    //
     this.surface,
     this.onSurface,
     this.surfaceVariant,
     this.onSurfaceVariant,
     this.inverseSurface,
     this.onInverseSurface,
+    //
     this.inversePrimary,
+    this.disabled = Colors.grey,
     this.shadow,
     this.surfaceTint,
-    this.outlineVariant,
     this.scrim,
     this.palette,
   });

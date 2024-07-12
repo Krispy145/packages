@@ -57,9 +57,6 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
   static Color? _$onTertiaryContainer(ColorModel v) => v.onTertiaryContainer;
   static const Field<ColorModel, Color> _f$onTertiaryContainer =
       Field('onTertiaryContainer', _$onTertiaryContainer, opt: true);
-  static Color _$disabled(ColorModel v) => v.disabled;
-  static const Field<ColorModel, Color> _f$disabled =
-      Field('disabled', _$disabled, opt: true, def: Colors.grey);
   static Color _$error(ColorModel v) => v.error;
   static const Field<ColorModel, Color> _f$error =
       Field('error', _$error, opt: true, def: Colors.red);
@@ -116,15 +113,18 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
   static const Field<ColorModel, Color> _f$onWarningContainer = Field(
       'onWarningContainer', _$onWarningContainer,
       opt: true, def: const Color(0xFF4C2E01));
-  static Color? _$outline(ColorModel v) => v.outline;
-  static const Field<ColorModel, Color> _f$outline =
-      Field('outline', _$outline, opt: true);
   static Color? _$background(ColorModel v) => v.background;
   static const Field<ColorModel, Color> _f$background =
       Field('background', _$background, opt: true);
   static Color? _$onBackground(ColorModel v) => v.onBackground;
   static const Field<ColorModel, Color> _f$onBackground =
       Field('onBackground', _$onBackground, opt: true);
+  static Color? _$outline(ColorModel v) => v.outline;
+  static const Field<ColorModel, Color> _f$outline =
+      Field('outline', _$outline, opt: true);
+  static Color? _$outlineVariant(ColorModel v) => v.outlineVariant;
+  static const Field<ColorModel, Color> _f$outlineVariant =
+      Field('outlineVariant', _$outlineVariant, opt: true);
   static Color? _$surface(ColorModel v) => v.surface;
   static const Field<ColorModel, Color> _f$surface =
       Field('surface', _$surface, opt: true);
@@ -146,15 +146,15 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
   static Color? _$inversePrimary(ColorModel v) => v.inversePrimary;
   static const Field<ColorModel, Color> _f$inversePrimary =
       Field('inversePrimary', _$inversePrimary, opt: true);
+  static Color _$disabled(ColorModel v) => v.disabled;
+  static const Field<ColorModel, Color> _f$disabled =
+      Field('disabled', _$disabled, opt: true, def: Colors.grey);
   static Color? _$shadow(ColorModel v) => v.shadow;
   static const Field<ColorModel, Color> _f$shadow =
       Field('shadow', _$shadow, opt: true);
   static Color? _$surfaceTint(ColorModel v) => v.surfaceTint;
   static const Field<ColorModel, Color> _f$surfaceTint =
       Field('surfaceTint', _$surfaceTint, opt: true);
-  static Color? _$outlineVariant(ColorModel v) => v.outlineVariant;
-  static const Field<ColorModel, Color> _f$outlineVariant =
-      Field('outlineVariant', _$outlineVariant, opt: true);
   static Color? _$scrim(ColorModel v) => v.scrim;
   static const Field<ColorModel, Color> _f$scrim =
       Field('scrim', _$scrim, opt: true);
@@ -176,7 +176,6 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
     #onTertiary: _f$onTertiary,
     #tertiaryContainer: _f$tertiaryContainer,
     #onTertiaryContainer: _f$onTertiaryContainer,
-    #disabled: _f$disabled,
     #error: _f$error,
     #onError: _f$onError,
     #errorContainer: _f$errorContainer,
@@ -193,9 +192,10 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
     #onWarning: _f$onWarning,
     #warningContainer: _f$warningContainer,
     #onWarningContainer: _f$onWarningContainer,
-    #outline: _f$outline,
     #background: _f$background,
     #onBackground: _f$onBackground,
+    #outline: _f$outline,
+    #outlineVariant: _f$outlineVariant,
     #surface: _f$surface,
     #onSurface: _f$onSurface,
     #surfaceVariant: _f$surfaceVariant,
@@ -203,9 +203,9 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
     #inverseSurface: _f$inverseSurface,
     #onInverseSurface: _f$onInverseSurface,
     #inversePrimary: _f$inversePrimary,
+    #disabled: _f$disabled,
     #shadow: _f$shadow,
     #surfaceTint: _f$surfaceTint,
-    #outlineVariant: _f$outlineVariant,
     #scrim: _f$scrim,
     #palette: _f$palette,
   };
@@ -224,7 +224,6 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
         onTertiary: data.dec(_f$onTertiary),
         tertiaryContainer: data.dec(_f$tertiaryContainer),
         onTertiaryContainer: data.dec(_f$onTertiaryContainer),
-        disabled: data.dec(_f$disabled),
         error: data.dec(_f$error),
         onError: data.dec(_f$onError),
         errorContainer: data.dec(_f$errorContainer),
@@ -241,9 +240,10 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
         onWarning: data.dec(_f$onWarning),
         warningContainer: data.dec(_f$warningContainer),
         onWarningContainer: data.dec(_f$onWarningContainer),
-        outline: data.dec(_f$outline),
         background: data.dec(_f$background),
         onBackground: data.dec(_f$onBackground),
+        outline: data.dec(_f$outline),
+        outlineVariant: data.dec(_f$outlineVariant),
         surface: data.dec(_f$surface),
         onSurface: data.dec(_f$onSurface),
         surfaceVariant: data.dec(_f$surfaceVariant),
@@ -251,9 +251,9 @@ class ColorModelMapper extends ClassMapperBase<ColorModel> {
         inverseSurface: data.dec(_f$inverseSurface),
         onInverseSurface: data.dec(_f$onInverseSurface),
         inversePrimary: data.dec(_f$inversePrimary),
+        disabled: data.dec(_f$disabled),
         shadow: data.dec(_f$shadow),
         surfaceTint: data.dec(_f$surfaceTint),
-        outlineVariant: data.dec(_f$outlineVariant),
         scrim: data.dec(_f$scrim),
         palette: data.dec(_f$palette));
   }
@@ -323,7 +323,6 @@ abstract class ColorModelCopyWith<$R, $In extends ColorModel, $Out>
       Color? onTertiary,
       Color? tertiaryContainer,
       Color? onTertiaryContainer,
-      Color? disabled,
       Color? error,
       Color? onError,
       Color? errorContainer,
@@ -340,9 +339,10 @@ abstract class ColorModelCopyWith<$R, $In extends ColorModel, $Out>
       Color? onWarning,
       Color? warningContainer,
       Color? onWarningContainer,
-      Color? outline,
       Color? background,
       Color? onBackground,
+      Color? outline,
+      Color? outlineVariant,
       Color? surface,
       Color? onSurface,
       Color? surfaceVariant,
@@ -350,9 +350,9 @@ abstract class ColorModelCopyWith<$R, $In extends ColorModel, $Out>
       Color? inverseSurface,
       Color? onInverseSurface,
       Color? inversePrimary,
+      Color? disabled,
       Color? shadow,
       Color? surfaceTint,
-      Color? outlineVariant,
       Color? scrim,
       List<Color>? palette});
   ColorModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
@@ -388,7 +388,6 @@ class _ColorModelCopyWithImpl<$R, $Out>
           Object? onTertiary = $none,
           Object? tertiaryContainer = $none,
           Object? onTertiaryContainer = $none,
-          Color? disabled,
           Color? error,
           Color? onError,
           Object? errorContainer = $none,
@@ -405,9 +404,10 @@ class _ColorModelCopyWithImpl<$R, $Out>
           Color? onWarning,
           Color? warningContainer,
           Color? onWarningContainer,
-          Object? outline = $none,
           Object? background = $none,
           Object? onBackground = $none,
+          Object? outline = $none,
+          Object? outlineVariant = $none,
           Object? surface = $none,
           Object? onSurface = $none,
           Object? surfaceVariant = $none,
@@ -415,9 +415,9 @@ class _ColorModelCopyWithImpl<$R, $Out>
           Object? inverseSurface = $none,
           Object? onInverseSurface = $none,
           Object? inversePrimary = $none,
+          Color? disabled,
           Object? shadow = $none,
           Object? surfaceTint = $none,
-          Object? outlineVariant = $none,
           Object? scrim = $none,
           Object? palette = $none}) =>
       $apply(FieldCopyWithData({
@@ -437,7 +437,6 @@ class _ColorModelCopyWithImpl<$R, $Out>
         if (tertiaryContainer != $none) #tertiaryContainer: tertiaryContainer,
         if (onTertiaryContainer != $none)
           #onTertiaryContainer: onTertiaryContainer,
-        if (disabled != null) #disabled: disabled,
         if (error != null) #error: error,
         if (onError != null) #onError: onError,
         if (errorContainer != $none) #errorContainer: errorContainer,
@@ -458,9 +457,10 @@ class _ColorModelCopyWithImpl<$R, $Out>
         if (onWarning != null) #onWarning: onWarning,
         if (warningContainer != null) #warningContainer: warningContainer,
         if (onWarningContainer != null) #onWarningContainer: onWarningContainer,
-        if (outline != $none) #outline: outline,
         if (background != $none) #background: background,
         if (onBackground != $none) #onBackground: onBackground,
+        if (outline != $none) #outline: outline,
+        if (outlineVariant != $none) #outlineVariant: outlineVariant,
         if (surface != $none) #surface: surface,
         if (onSurface != $none) #onSurface: onSurface,
         if (surfaceVariant != $none) #surfaceVariant: surfaceVariant,
@@ -468,9 +468,9 @@ class _ColorModelCopyWithImpl<$R, $Out>
         if (inverseSurface != $none) #inverseSurface: inverseSurface,
         if (onInverseSurface != $none) #onInverseSurface: onInverseSurface,
         if (inversePrimary != $none) #inversePrimary: inversePrimary,
+        if (disabled != null) #disabled: disabled,
         if (shadow != $none) #shadow: shadow,
         if (surfaceTint != $none) #surfaceTint: surfaceTint,
-        if (outlineVariant != $none) #outlineVariant: outlineVariant,
         if (scrim != $none) #scrim: scrim,
         if (palette != $none) #palette: palette
       }));
@@ -494,7 +494,6 @@ class _ColorModelCopyWithImpl<$R, $Out>
           data.get(#tertiaryContainer, or: $value.tertiaryContainer),
       onTertiaryContainer:
           data.get(#onTertiaryContainer, or: $value.onTertiaryContainer),
-      disabled: data.get(#disabled, or: $value.disabled),
       error: data.get(#error, or: $value.error),
       onError: data.get(#onError, or: $value.onError),
       errorContainer: data.get(#errorContainer, or: $value.errorContainer),
@@ -518,9 +517,10 @@ class _ColorModelCopyWithImpl<$R, $Out>
           data.get(#warningContainer, or: $value.warningContainer),
       onWarningContainer:
           data.get(#onWarningContainer, or: $value.onWarningContainer),
-      outline: data.get(#outline, or: $value.outline),
       background: data.get(#background, or: $value.background),
       onBackground: data.get(#onBackground, or: $value.onBackground),
+      outline: data.get(#outline, or: $value.outline),
+      outlineVariant: data.get(#outlineVariant, or: $value.outlineVariant),
       surface: data.get(#surface, or: $value.surface),
       onSurface: data.get(#onSurface, or: $value.onSurface),
       surfaceVariant: data.get(#surfaceVariant, or: $value.surfaceVariant),
@@ -530,9 +530,9 @@ class _ColorModelCopyWithImpl<$R, $Out>
       onInverseSurface:
           data.get(#onInverseSurface, or: $value.onInverseSurface),
       inversePrimary: data.get(#inversePrimary, or: $value.inversePrimary),
+      disabled: data.get(#disabled, or: $value.disabled),
       shadow: data.get(#shadow, or: $value.shadow),
       surfaceTint: data.get(#surfaceTint, or: $value.surfaceTint),
-      outlineVariant: data.get(#outlineVariant, or: $value.outlineVariant),
       scrim: data.get(#scrim, or: $value.scrim),
       palette: data.get(#palette, or: $value.palette));
 
