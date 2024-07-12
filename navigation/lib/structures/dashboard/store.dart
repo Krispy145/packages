@@ -3,10 +3,10 @@ import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
 
-///MobX store for [DashboardShellStructureStore]
+/// store for [DashboardShellStructureStore]
 class DashboardShellStructureStore = DashboardShellStructureStoreBase with _$DashboardShellStructureStore;
 
-/// [DashboardShellStructureStore] is a MobX Store that is used to manage the state of the DashboardShellStructure.
+/// [DashboardShellStructureStore] is a Store that is used to manage the state of the DashboardShellStructure.
 abstract class DashboardShellStructureStoreBase with LoadStateStore, Store {
   @observable
   int _selectedIndex = 0;
@@ -43,10 +43,10 @@ abstract class DashboardShellStructureStoreBase with LoadStateStore, Store {
 
 // part "store.g.dart";
 
-// ///MobX store for [DashboardShellStructureStore]
+// /// store for [DashboardShellStructureStore]
 // class DashboardShellStructureStore = DashboardShellStructureStoreBase with _$DashboardShellStructureStore;
 
-// /// [DashboardShellStructureStore] is a MobX Store that is used to manage the state of the DashboardShellStructure.
+// /// [DashboardShellStructureStore] is a Store that is used to manage the state of the DashboardShellStructure.
 // abstract class DashboardShellStructureStoreBase with Store {
 //   @observable
 //   int _selectedIndex = 0;

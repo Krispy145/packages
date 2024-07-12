@@ -5,15 +5,13 @@ import "package:utilities/logger/logger.dart";
 
 part "store.g.dart";
 
-///MobX store for MapShellStructure
-class MapShellStructureStore = MapShellStructureStoreBase
-    with _$MapShellStructureStore;
+/// store for MapShellStructure
+class MapShellStructureStore = MapShellStructureStoreBase with _$MapShellStructureStore;
 
-/// [MapShellStructureStore] is a MobX Store that is used to manage the state of the MapShellStructure.
+/// [MapShellStructureStore] is a Store that is used to manage the state of the MapShellStructure.
 abstract class MapShellStructureStoreBase with Store {
   /// [OverlayPortalController] for MapShellStructure
-  final OverlayPortalController overlayPortalController =
-      OverlayPortalController();
+  final OverlayPortalController overlayPortalController = OverlayPortalController();
 
   /// [isMapOverlayVisible] is used to toggle the map overlay.
   @observable

@@ -22,7 +22,7 @@ enum AdMobType {
 /// A store for AdMob ads.
 class AdMobStore = _AdMobStore with _$AdMobStore;
 
-/// [_AdMobStore] is a MobX Store that is used to manage the state of the [AdMobStore].
+/// [_AdMobStore] is a Store that is used to manage the state of the [AdMobStore].
 abstract class _AdMobStore with Store {
   /// The banner ad unit id.
   final String? bannerAdUnitId;
@@ -68,8 +68,7 @@ abstract class _AdMobStore with Store {
 
   /// interstitialAdId getter.
   @computed
-  String get getInterstitialAdUnitId =>
-      interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
+  String get getInterstitialAdUnitId => interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
 
   /// rewardAdId getter.
   @computed
