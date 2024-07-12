@@ -15,12 +15,17 @@ class ScreenSize {
   /// [dimension] is a getter that returns the dimension of the screen.
   double dimension(Axis axis) => axis == Axis.vertical ? height : width;
 
+  static const Breakpoint mobileBreak = Breakpoint(start: 0, end: 600, name: "MOBILE");
+  static const Breakpoint tabletBreak = Breakpoint(start: 601, end: 800, name: "TABLET");
+  static const Breakpoint desktopBreak = Breakpoint(start: 801, end: 1920, name: "DESKTOP");
+  static const Breakpoint fourKBreak = Breakpoint(start: 1921, end: double.infinity, name: "4K");
+
   /// [defaultBreakpoints] is a getter that returns the default breakpoints.
   static const defaultBreakpoints = [
-    Breakpoint(start: 0, end: 600, name: MOBILE),
-    Breakpoint(start: 601, end: 800, name: TABLET),
-    Breakpoint(start: 801, end: 1920, name: DESKTOP),
-    Breakpoint(start: 1921, end: double.infinity, name: "4K"),
+    mobileBreak,
+    tabletBreak,
+    desktopBreak,
+    fourKBreak,
   ];
 }
 
