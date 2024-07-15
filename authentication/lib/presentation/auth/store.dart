@@ -4,6 +4,7 @@ import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";
 import "package:authentication/domain/repositories/code.repository.dart";
+import "package:authentication/helpers/constants.dart";
 import "package:authentication/helpers/env.dart";
 import "package:authentication/presentation/auth/builder.dart";
 import "package:mobx/mobx.dart";
@@ -66,6 +67,15 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
 
   @observable
   T? userModel;
+
+  @observable
+  AuthAction authAction = AuthAction.signUp;
+
+  @action
+  void toggleSignIn() {
+    authAction = authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+  }
+
   @action
   Future<void> init() async {
     try {
