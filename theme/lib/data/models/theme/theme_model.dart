@@ -170,6 +170,8 @@ class ComponentThemesModel with ComponentThemesModelMappable {
       return badges?[styleType]?.asBadgeThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, AppBarTheme>()) {
       return appbars?[styleType]?.asAppBarTheme(styleTypeName: styleType) as T;
+    } else if (isSameType<T, TabBarTheme>()) {
+      return tabBars?[styleType]?.asTabBarTheme(styleTypeName: styleType) as T;
     } else if (isSameType<T, BottomAppBarTheme>()) {
       return bottomAppbars?[styleType]?.asBottomAppBarTheme(styleTypeName: styleType) as T;
     } else if (isSameType<T, DropdownMenuThemeData>()) {
