@@ -1,67 +1,81 @@
 import "package:flutter/material.dart";
 import "package:flutter/widgets.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:forms/presentation/components/base/form_field.dart";
 import "package:forms/presentation/components/chips/form_field.dart";
-import "package:forms/presentation/components/text/form_field.dart";
+import "package:forms/presentation/components/chips/store.dart";
+import "package:reactive_forms/reactive_forms.dart";
 import "package:theme/extensions/build_context.dart";
+import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class PermissionsFormField extends BaseFormField<PermissionsFormFieldStore> {
-  PermissionsFormField({
+class ReactivePermissionsField extends ReactiveFormField<UserPermissionsModel, UserPermissionsModel> {
+  final String title;
+  ReactivePermissionsField({
+    required this.title,
     super.key,
-    required super.store,
-    this.horizontalPadding = 0,
-  }) : super(showTitle: false);
-
-  final double horizontalPadding;
+    super.formControlName,
+    super.formControl,
+    super.validationMessages,
+    super.valueAccessor,
+    super.showErrors,
+    super.focusNode,
+  }) : super(
+          builder: (field) {
+            final store = PermissionsFormFieldStore(
+              title: title,
+              onValueChanged: (model) => field.didChange(model),
+              initialValue: field.value,
+            );
+            return PermissionChipsField(permissionName: title, fields: store.roleFields);
+          },
+        );
 
   @override
-  Widget buildField(BuildContext context) {
-    return Observer(
-      builder: (context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          DOTextFormField(
-            store: store.roleStore,
-          ),
-          Sizes.s.spacer(),
-          ...store.roleFields.keys.map(
-            (key) {
-              final fields = store.roleFields[key]!;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(key.split("/").first, style: context.textTheme.titleMedium),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: fields.map(
-                        (field) {
-                          return ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 270, maxHeight: 100),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
-                              child: ChipsFormField(
-                                store: field,
-                                titleBuilder: (permission) => permission.name.toUpperCase(),
-                              ),
-                            ),
-                          );
-                        },
-                      ).toList(),
+  ReactiveFormFieldState<UserPermissionsModel, UserPermissionsModel> createState() => _ReactivePermissionsFieldState<UserPermissionsModel>();
+}
+
+class _ReactivePermissionsFieldState<T> extends ReactiveFormFieldState<T, UserPermissionsModel> {
+  _ReactivePermissionsFieldState();
+}
+
+class PermissionChipsField extends StatelessWidget {
+  final String permissionName;
+  final List<ChipsFormFieldStore<PermissionLevel>> fields;
+  const PermissionChipsField({
+    super.key,
+    required this.permissionName,
+    required this.fields,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(permissionName, style: context.textTheme.titleMedium),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: fields.map(
+              (field) {
+                return ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 270, maxHeight: 100),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: ChipsFormField(
+                      store: field,
+                      titleBuilder: (permission) => permission.name.toUpperCase(),
                     ),
                   ),
-                  Sizes.xs.spacer(),
-                ],
-              );
-            },
+                );
+              },
+            ).toList(),
           ),
-        ],
-      ),
+        ),
+        Sizes.xs.spacer(),
+      ],
     );
   }
 }
