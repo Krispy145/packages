@@ -10,9 +10,9 @@ import "package:widgets/messages/warning_message.dart";
 class ListBuilder<T> extends StatelessWidget {
   final ListStore<T> store;
   final Widget? header;
-  final Widget? Function(BuildContext, int, T) itemBuilder;
-  final Widget? Function(BuildContext, String)? emptyBuilder;
-  final Widget? Function(BuildContext, String)? errorBuilder;
+  final Widget? Function(BuildContext context, int index, T model) itemBuilder;
+  final Widget? Function(BuildContext context, String message)? emptyBuilder;
+  final Widget? Function(BuildContext context, String message)? errorBuilder;
   // final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets padding;
