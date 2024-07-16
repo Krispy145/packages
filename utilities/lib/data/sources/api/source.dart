@@ -1,4 +1,5 @@
 import "package:dio/dio.dart";
+import "package:flutter/foundation.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
@@ -38,7 +39,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          if (proxy != null) {
+          if (proxy != null && kIsWeb) {
             final _queryParametersString = options.queryParameters.entries.map((e) => "${e.key}=${e.value}").join("&");
             options
               ..path = "$proxy${"${options.path}?$_queryParametersString"}"
