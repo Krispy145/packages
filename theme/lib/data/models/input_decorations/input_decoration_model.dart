@@ -11,14 +11,47 @@ import "package:theme/extensions/theme_color_string.dart";
 
 part "input_decoration_model.mapper.dart";
 
-@MappableClass()
+class DurationMapper extends SimpleMapper<Duration> {
+  const DurationMapper();
+  @override
+  Duration decode(Object value) {
+    if (value is int) {
+      return Duration(microseconds: value);
+    } else if (value is Map) {
+      return Duration(
+        days: value["days_int"] as int? ?? 0,
+        hours: value["hours_int"] as int? ?? 0,
+        minutes: value["minutes_int"] as int? ?? 0,
+        seconds: value["seconds_int"] as int? ?? 0,
+        milliseconds: value["milliseconds_int"] as int? ?? 0,
+        microseconds: value["microseconds_int"] as int? ?? 0,
+      );
+    } else {
+      return Duration.zero;
+    }
+  }
+
+  @override
+  Object? encode(Duration self) {
+    return {
+      "days_int": self.inDays,
+      "hours_int": self.inHours,
+      "minutes_int": self.inMinutes,
+      "seconds_int": self.inSeconds,
+      "milliseconds_int": self.inMilliseconds,
+      "microseconds_int": self.inMicroseconds,
+    };
+  }
+}
+
+@MappableClass(includeCustomMappers: [DurationMapper()])
 class InputDecorationModel with InputDecorationModelMappable {
   final TextStyleString? labelStyle_textStyleString;
   final TextStyleString? floatingLabelStyle_textStyleString;
   final TextStyleString? helperStyle_textStyleString;
   final int? helperMaxLines_int;
   final TextStyleString? hintStyle_textStyleString;
-  final Duration? hintFadeDuration_duration;
+  final Duration? hintFadeDuration_duration; // TODO: Handle Duration mapping
   final TextStyleString? errorStyle_textStyleString;
   final int? errorMaxLines_int;
   @MappableValue(false)

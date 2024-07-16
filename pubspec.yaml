@@ -9,3 +9,4 @@ dependencies:
   firebase_crashlytics: ^4.0.0
   flutter_contacts: ^1.1.7+1
   universal_io: ^2.2.2
+  equatable: ^2.0.5

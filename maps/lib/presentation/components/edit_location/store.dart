@@ -10,7 +10,7 @@ part 'store.g.dart';
 
 class EditLocationMapFormFieldStore = _EditLocationMapFormFieldStore with _$EditLocationMapFormFieldStore;
 
-abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<MarkerModel?> with Store {
+abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<LatLng?> with Store {
   final String mapTilesUrl;
   final Marker Function(MarkerModel)? singleMarkerBuilder;
 
@@ -35,31 +35,31 @@ abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<MarkerM
   late final EditLocationMapStore mapStore = EditLocationMapStore(
     mapTilesUrl: mapTilesUrl,
     singleMarkerBuilder: singleMarkerBuilder,
-    initialMarkers: value != null ? [value!] : [],
+    initialMarkers: value != null ? [MarkerModel(id: "id", score: 1, position: value!)] : [],
   );
 
   late final DoubleFormFieldStore latitudeStore = DoubleFormFieldStore(
-    initialValue: value?.position.latitude,
+    initialValue: value?.latitude,
     changeOnSaved: true,
     onValueChanged: (newLat) {
       if (newLat == null) return;
-      final latLng = LatLng(newLat, value?.position.longitude ?? mapStore.markers.first.position.longitude);
-      value = value?.copyWith(position: latLng) ?? MarkerModel(position: latLng, id: "0", score: 0);
-      mapStore.setCenterMarker(marker: value);
-      mapStore.animatedMapController.mapController.move(latLng, 10);
+      value = LatLng(newLat, value?.longitude ?? mapStore.markers.first.position.longitude);
+      mapStore.setCenterMarker(center: value!);
+      try {
+        mapStore.animatedMapController.mapController.move(value!, 10);
+      } catch (e) {}
     },
     title: "Latitude",
   );
 
   late final DoubleFormFieldStore longitudeStore = DoubleFormFieldStore(
-    initialValue: value?.position.longitude,
+    initialValue: value?.longitude,
     changeOnSaved: true,
     onValueChanged: (newLng) {
       if (newLng == null) return;
-      final latLng = LatLng(value?.position.latitude ?? mapStore.markers.first.position.latitude, newLng);
-      value = value?.copyWith(position: latLng) ?? MarkerModel(position: latLng, id: "0", score: 0);
-      mapStore.setCenterMarker(marker: value);
-      mapStore.animatedMapController.mapController.move(latLng, 10);
+      value = LatLng(value?.latitude ?? mapStore.markers.first.position.latitude, newLng);
+      mapStore.setCenterMarker(center: value!);
+      mapStore.animatedMapController.mapController.move(value!, 10);
     },
     title: "Longitude",
   );

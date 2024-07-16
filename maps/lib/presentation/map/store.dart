@@ -3,12 +3,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_animations/flutter_map_animations.dart';
+import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:maps/constants/map_constants.dart';
 import 'package:maps/presentation/markers/helpers/cluster_data.dart';
 import 'package:maps/presentation/markers/icon_marker.dart';
 import 'package:maps/presentation/markers/number_marker.dart';
-import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
 import 'package:maps/utils/loggers.dart';
 import 'package:mobx/mobx.dart';
 import 'package:theme/app/app.dart';
@@ -40,6 +40,14 @@ abstract class _MapStore with LoadStateStore, Store {
     setLoaded();
   }
 
+  @observable
+  bool isLocked = true;
+
+  @action
+  void toggleLocked() {
+    isLocked = !isLocked;
+  }
+
   final superclusterController = SuperclusterMutableController();
 
   @observable
@@ -54,14 +62,19 @@ abstract class _MapStore with LoadStateStore, Store {
   /// Initialize the [AnimatedMapController] for the Flutter Map
   late final AnimatedMapController animatedMapController;
 
-  late final MapOptions mapOptions = MapOptions(
-    onMapReady: onMapReady,
-    onTap: onMapTapped,
-    onMapEvent: onMapEvent,
-    onPositionChanged: onMapPositionChanged,
-    backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
-    interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
-  );
+  @computed
+  MapOptions get mapOptions => MapOptions(
+        onMapReady: onMapReady,
+        onTap: onMapTapped,
+        onMapEvent: onMapEvent,
+        onPositionChanged: onMapPositionChanged,
+        backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
+        interactionOptions: isLocked
+            ? const InteractionOptions(
+                flags: InteractiveFlag.none,
+              )
+            : const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
+      );
 
   @observable
   ObservableList<MarkerModel> selectedMarkerIds = ObservableList<MarkerModel>();
@@ -70,8 +83,8 @@ abstract class _MapStore with LoadStateStore, Store {
   /// MAP TILES
   ///
 
-  final String mapTilesUserPackageName = "ae.digitaloasis";
   final String mapTilesUrl;
+  final String mapTilesUserPackageName = "ae.digitaloasis";
   final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///

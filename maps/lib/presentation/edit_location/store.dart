@@ -19,9 +19,12 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     // ignore: unused_element
     this.initialMarkers,
     this.mapCenter,
+    this.startZoomLevel = 12,
   }) {
     _loadMap();
   }
+
+  final double startZoomLevel;
 
   @observable
   LatLng? mapCenter;
@@ -34,14 +37,6 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     isEditing = !isEditing;
   }
 
-  @observable
-  bool isLocked = true;
-
-  @action
-  void toggleLocked() {
-    isLocked = !isLocked;
-  }
-
   @override
   Future<void> onMapReady() async {
     setLoading();
@@ -52,7 +47,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     mapCenter = markers.firstOrNull?.position ?? const LatLng(51.5072, -0.1276);
     animatedMapController.animateTo(
       dest: mapCenter,
-      zoom: 12,
+      zoom: startZoomLevel,
     );
     isMapReady = true;
     setLoaded();
@@ -62,19 +57,19 @@ abstract class _EditLocationMapStore extends MapStore with Store {
   @action
   void onMapPositionChanged(MapPosition position, bool changed) {
     if (position.center == null || !isMapReady || !isEditing) return;
-    final newMarker = MarkerModel(
-      position: position.center!,
-      id: markers.firstOrNull?.id ?? '',
-      score: markers.firstOrNull?.score ?? 0,
-    );
-    setCenterMarker(marker: newMarker);
+    setCenterMarker(center: position.center);
   }
 
   @action
-  void setCenterMarker({MarkerModel? marker}) {
-    if (marker == null) return;
-    addMarker(marker, clearFirst: true);
-    mapCenter = marker.position;
+  void setCenterMarker({LatLng? center}) {
+    if (center == null) return;
+    final newMarker = MarkerModel(
+      position: center,
+      id: markers.firstOrNull?.id ?? '',
+      score: markers.firstOrNull?.score ?? 0,
+    );
+    addMarker(newMarker, clearFirst: true);
+    mapCenter = center;
   }
 
   @action

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:maps/presentation/components/edit_location/form_field.dart';
-import 'package:maps/presentation/components/edit_location/store.dart';
-import 'package:reactive_forms/reactive_forms.dart';
+import "package:flutter/material.dart";
+import "package:forms/presentation/components/date_and_time/form_field.dart";
+import "package:forms/presentation/components/date_and_time/store.dart";
+import "package:reactive_forms/reactive_forms.dart";
+import "package:utilities/data/models/date_and_time_model.dart";
 
 /// A [ReactiveTextField] that contains a [TextField].
 ///
@@ -11,13 +11,13 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMapField<T> extends ReactiveFormField<LatLng, LatLng> {
-  final EditLocationMapFormFieldStore? _fieldStore;
+class ReactiveDateAndTimeField extends ReactiveFormField<DateAndTime, DateAndTime> {
+  final DateAndTimeFormFieldStore? _fieldStore;
 
-  final String mapTilesUrl;
-  final ReactiveFormFieldCallback<T>? onChanged;
+  final ReactiveFormFieldCallback<DateAndTime>? onChanged;
+  final String? title;
 
-  ReactiveMapField({
+  ReactiveDateAndTimeField({
     super.key,
     super.formControlName,
     super.formControl,
@@ -25,9 +25,9 @@ class ReactiveMapField<T> extends ReactiveFormField<LatLng, LatLng> {
     super.valueAccessor,
     super.showErrors,
     super.focusNode,
-    required this.mapTilesUrl,
-    EditLocationMapFormFieldStore? controller,
+    DateAndTimeFormFieldStore? controller,
     this.onChanged,
+    this.title,
 
     // InputDecoration decoration = const InputDecoration(),
     // TextInputType? keyboardType,
@@ -87,9 +87,9 @@ class ReactiveMapField<T> extends ReactiveFormField<LatLng, LatLng> {
     // TextMagnifierConfiguration? magnifierConfiguration,
   })  : _fieldStore = controller,
         super(
-          builder: (ReactiveFormFieldState<LatLng, LatLng> field) {
-            final state = field as _ReactiveMapFieldState;
-            return EditLocationMapFormField(
+          builder: (field) {
+            final state = field as _ReactiveDateAndTimeFieldState;
+            return DateAndTimeField(
               store: state._fieldStore,
               // enabled: field.control.enabled,
               // onTap: onTap != null ? () => onTap(field.control) : null,
@@ -104,11 +104,11 @@ class ReactiveMapField<T> extends ReactiveFormField<LatLng, LatLng> {
         );
 
   @override
-  ReactiveFormFieldState<LatLng, LatLng> createState() => _ReactiveMapFieldState();
+  ReactiveFormFieldState<DateAndTime, DateAndTime> createState() => _ReactiveDateAndTimeFieldState();
 }
 
-class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, LatLng> {
-  late EditLocationMapFormFieldStore _fieldStore;
+class _ReactiveDateAndTimeFieldState extends ReactiveFocusableFormFieldState<DateAndTime, DateAndTime> {
+  late DateAndTimeFormFieldStore _fieldStore;
 
   @override
   void initState() {
@@ -118,7 +118,7 @@ class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, Lat
 
   @override
   void onControlValueChanged(dynamic value) {
-    final effectiveValue = value as LatLng?;
+    final effectiveValue = value as DateAndTime?;
     _fieldStore.value = effectiveValue;
     super.onControlValueChanged(value);
   }
@@ -139,16 +139,16 @@ class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, Lat
 
   void _initializeFormFieldStore() {
     final initialValue = value;
-    final currentWidget = widget as ReactiveMapField;
+    final currentWidget = widget as ReactiveDateAndTimeField;
     if (currentWidget._fieldStore == null) {
-      _fieldStore = EditLocationMapFormFieldStore(
-          mapTilesUrl: currentWidget.mapTilesUrl,
-          initialValue: initialValue,
-          title: "Title",
-          onValueChanged: (val) {
-            didChange(value);
-            currentWidget.onChanged?.call(control);
-          });
+      _fieldStore = DateAndTimeFormFieldStore(
+        initialValue: initialValue,
+        title: currentWidget.title ?? "Date and Time",
+        onValueChanged: (val) {
+          didChange(value);
+          currentWidget.onChanged?.call(control);
+        },
+      );
     } else {
       _fieldStore = currentWidget._fieldStore!;
       _fieldStore.value = initialValue;
@@ -157,7 +157,7 @@ class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, Lat
 
   @override
   void dispose() {
-    final currentWidget = widget as ReactiveMapField<LatLng>;
+    final currentWidget = widget as ReactiveDateAndTimeField;
     if (currentWidget._fieldStore == null) {
       // _fieldStore.dispose();
     }
