@@ -16,6 +16,29 @@ mixin _$MapStore on _MapStore, Store {
       (_$markersComputed ??= Computed<Set<MarkerModel>>(() => super.markers,
               name: '_MapStore.markers'))
           .value;
+  Computed<MapOptions>? _$mapOptionsComputed;
+
+  @override
+  MapOptions get mapOptions =>
+      (_$mapOptionsComputed ??= Computed<MapOptions>(() => super.mapOptions,
+              name: '_MapStore.mapOptions'))
+          .value;
+
+  late final _$isLockedAtom =
+      Atom(name: '_MapStore.isLocked', context: context);
+
+  @override
+  bool get isLocked {
+    _$isLockedAtom.reportRead();
+    return super.isLocked;
+  }
+
+  @override
+  set isLocked(bool value) {
+    _$isLockedAtom.reportWrite(value, super.isLocked, () {
+      super.isLocked = value;
+    });
+  }
 
   late final _$isMapReadyAtom =
       Atom(name: '_MapStore.isMapReady', context: context);
@@ -103,6 +126,17 @@ mixin _$MapStore on _MapStore, Store {
       ActionController(name: '_MapStore', context: context);
 
   @override
+  void toggleLocked() {
+    final _$actionInfo =
+        _$_MapStoreActionController.startAction(name: '_MapStore.toggleLocked');
+    try {
+      return super.toggleLocked();
+    } finally {
+      _$_MapStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void addMarker(MarkerModel markerModel, {bool clearFirst = false}) {
     final _$actionInfo =
         _$_MapStoreActionController.startAction(name: '_MapStore.addMarker');
@@ -139,10 +173,12 @@ mixin _$MapStore on _MapStore, Store {
   @override
   String toString() {
     return '''
+isLocked: ${isLocked},
 isMapReady: ${isMapReady},
 selectedMarkerIds: ${selectedMarkerIds},
 selectedMarkerId: ${selectedMarkerId},
-markers: ${markers}
+markers: ${markers},
+mapOptions: ${mapOptions}
     ''';
   }
 }

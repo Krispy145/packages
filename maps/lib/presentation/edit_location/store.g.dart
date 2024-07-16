@@ -41,22 +41,6 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
     });
   }
 
-  late final _$isLockedAtom =
-      Atom(name: '_EditLocationMapStore.isLocked', context: context);
-
-  @override
-  bool get isLocked {
-    _$isLockedAtom.reportRead();
-    return super.isLocked;
-  }
-
-  @override
-  set isLocked(bool value) {
-    _$isLockedAtom.reportWrite(value, super.isLocked, () {
-      super.isLocked = value;
-    });
-  }
-
   late final _$_loadMapAsyncAction =
       AsyncAction('_EditLocationMapStore._loadMap', context: context);
 
@@ -80,17 +64,6 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
   }
 
   @override
-  void toggleLocked() {
-    final _$actionInfo = _$_EditLocationMapStoreActionController.startAction(
-        name: '_EditLocationMapStore.toggleLocked');
-    try {
-      return super.toggleLocked();
-    } finally {
-      _$_EditLocationMapStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void onMapPositionChanged(MapPosition position, bool changed) {
     final _$actionInfo = _$_EditLocationMapStoreActionController.startAction(
         name: '_EditLocationMapStore.onMapPositionChanged');
@@ -102,11 +75,11 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
   }
 
   @override
-  void setCenterMarker({MarkerModel? marker}) {
+  void setCenterMarker({LatLng? center}) {
     final _$actionInfo = _$_EditLocationMapStoreActionController.startAction(
         name: '_EditLocationMapStore.setCenterMarker');
     try {
-      return super.setCenterMarker(marker: marker);
+      return super.setCenterMarker(center: center);
     } finally {
       _$_EditLocationMapStoreActionController.endAction(_$actionInfo);
     }
@@ -116,8 +89,7 @@ mixin _$EditLocationMapStore on _EditLocationMapStore, Store {
   String toString() {
     return '''
 mapCenter: ${mapCenter},
-isEditing: ${isEditing},
-isLocked: ${isLocked}
+isEditing: ${isEditing}
     ''';
   }
 }

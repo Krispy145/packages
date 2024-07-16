@@ -13,6 +13,7 @@ class InputDecorationModelMapper extends ClassMapperBase<InputDecorationModel> {
   static InputDecorationModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = InputDecorationModelMapper._());
+      MapperContainer.globals.useAll([DurationMapper()]);
       EdgeInsetsModelMapper.ensureInitialized();
       BorderSideModelMapper.ensureInitialized();
       InputBorderModelMapper.ensureInitialized();

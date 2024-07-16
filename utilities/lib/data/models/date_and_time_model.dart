@@ -1,4 +1,5 @@
 import "package:dart_mappable/dart_mappable.dart";
+import "package:equatable/equatable.dart";
 import "package:flutter/material.dart";
 import "package:intl/intl.dart";
 import "package:timezone/timezone.dart" as tz;
@@ -32,7 +33,7 @@ class DateAndTimeMapper extends SimpleMapper<DateAndTime> {
 /// Allows you to store the date and an optional time, with lots of conversion and formatting helpers
 ///
 /// MUST use the DateAndTimeMapper to encode and decode DateAndTime objects
-class DateAndTime {
+class DateAndTime extends Equatable {
   final DateTime _justDate;
   final TimeOfDay? _time;
 
@@ -167,6 +168,16 @@ class DateAndTime {
   DateAndTime copyWith({DateTime? date, TimeOfDay? time}) {
     return DateAndTime(date ?? _justDate, time ?? _time);
   }
+
+  // Equality
+
+  @override
+  List<Object?> get props => [dateWithTime];
+
+  bool operator >=(DateAndTime other) => dateWithTime.microsecond >= other.dateWithTime.microsecond;
+  bool operator >(DateAndTime other) => dateWithTime.microsecond > other.dateWithTime.microsecond;
+  bool operator <(DateAndTime other) => dateWithTime.microsecond < other.dateWithTime.microsecond;
+  bool operator <=(DateAndTime other) => dateWithTime.microsecond <= other.dateWithTime.microsecond;
 }
 
 extension DateTimeExtension on DateTime {

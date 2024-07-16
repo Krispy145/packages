@@ -620,7 +620,7 @@ enum ChangerOptions {
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeScrollbarStyle(scrollbarStyle: newTheme),
               headerBuilder: (context) => ElevatedButton(
                 onPressed: () => showModalBottomSheet<void>(
-                  backgroundColor: Theme.of(context).colorScheme.background,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
                   context: context,
                   builder: (context) => Scrollbar(
                     child: ListView.builder(
@@ -661,7 +661,7 @@ enum ChangerOptions {
               ),
               headerBuilder: (context) => ElevatedButton(
                 onPressed: () => showModalBottomSheet<void>(
-                  backgroundColor: Theme.of(context).colorScheme.background,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
                   context: context,
                   builder: (context) => NavigationRail(
                     selectedIndex: 0,
@@ -958,9 +958,12 @@ enum ChangerOptions {
                 length: 3,
                 child: TabBar(
                   tabs: [
-                    Tab(icon: Icon(Icons.star)),
-                    Tab(icon: Icon(Icons.star)),
-                    Tab(icon: Icon(Icons.star)),
+                    Tab(text: "Option 1"),
+                    Tab(text: "Option 2"),
+                    Tab(text: "Option 3"),
+                    // Tab(icon: Icon(Icons.star)),
+                    // Tab(icon: Icon(Icons.star)),
+                    // Tab(icon: Icon(Icons.star)),
                   ],
                 ),
               ),

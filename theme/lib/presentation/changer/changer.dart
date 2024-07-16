@@ -1251,9 +1251,16 @@ class ThemeChanger {
   static Map<String, InputDecorationModel>? _inputDecorations(
     InputDecorationModel inputDecorationStyle,
   ) {
-    final inputDecorationStyles = _componentThemesModel?.inputDecorations ?? {styleType: inputDecorationStyle};
-    inputDecorationStyles[styleType] = inputDecorationStyle;
-    return inputDecorationStyles;
+    if (_componentThemesModel?.inputDecorations == null) {
+      return {styleType: inputDecorationStyle};
+    } else {
+      final newMap = Map<String, InputDecorationModel>.from(_componentThemesModel!.inputDecorations!);
+      newMap[styleType] = inputDecorationStyle;
+      return newMap;
+    }
+    // final inputDecorationStyles = _componentThemesModel?.inputDecorations ?? {styleType: inputDecorationStyle};
+    // inputDecorationStyles[styleType] = inputDecorationStyle;
+    // return inputDecorationStyles;
   }
 
   static Map<String, BoxDecorationModel>? _boxDecorations(
