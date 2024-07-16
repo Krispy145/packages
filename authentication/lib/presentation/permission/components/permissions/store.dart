@@ -1,9 +1,7 @@
 import "package:authentication/data/models/review_model.dart";
 import "package:forms/presentation/components/base/store.dart";
 import "package:forms/presentation/components/chips/store.dart";
-import "package:forms/presentation/components/text/store.dart";
 import "package:mobx/mobx.dart";
-import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 
 part "store.g.dart";
@@ -12,59 +10,40 @@ part "store.g.dart";
 class PermissionsFormFieldStore = _PermissionsFormFieldStore with _$PermissionsFormFieldStore;
 
 /// [_PermissionsFormFieldStore] is a class that manages the state of the filters feature.
-abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<PermissionModel> with Store {
+abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermissionsModel> with Store {
   _PermissionsFormFieldStore({
+    required super.title,
     required super.initialValue,
     required super.onValueChanged,
-  }) : super(title: initialValue?.role ?? "No Initial Role Title") {
+  }) {
     _initializeRoleFields();
   }
 
-  late final TextFormFieldStore roleStore = TextFormFieldStore(
-    initialValue: value?.role,
-    onValueChanged: (role) {
-      onValueChanged(value!.copyWith(role: role));
-    },
-    title: "Role",
-  );
-
-  late final ObservableMap<String, UserPermissionsModel> newPermissions = ObservableMap<String, UserPermissionsModel>.of(value!.permissions);
-
-  late final Map<String, List<ChipsFormFieldStore<PermissionLevel>>> roleFields = {};
+  late final List<ChipsFormFieldStore<PermissionLevel>> roleFields = [];
 
   @action
   void _initializeRoleFields() {
     roleFields.addAll(collectionPermissions);
   }
 
-  Map<String, List<ChipsFormFieldStore<PermissionLevel>>> get collectionPermissions {
-    return newPermissions.map(
-      (key, userPermission) {
-        return MapEntry(
-          key,
-          CRUD.values.map(
-            (crud) {
-              return ChipsFormFieldStore<PermissionLevel>(
-                crud.name.toUpperCase(),
-                loadFilters: () async {
-                  return optionsBasedOnCRUD(crud);
-                },
-                canSelectMultiple: false,
-                onSelectedChanged: (collectionSelection) {
-                  final updatedUserPermission = changedPermissionLevel(newPermissions[key]!, crud, collectionSelection);
-                  newPermissions[key] = updatedUserPermission;
-                  value = value!.copyWith(permissions: newPermissions);
-                  onValueChanged(value);
-                },
-              )
-                ..loadFiltersModels()
-                ..selectFilter(filtersFromUserPermissions(crud, userPermission));
+  List<ChipsFormFieldStore<PermissionLevel>> get collectionPermissions => CRUD.values.map(
+        (crud) {
+          return ChipsFormFieldStore<PermissionLevel>(
+            crud.name.toUpperCase(),
+            loadFilters: () async {
+              return optionsBasedOnCRUD(crud);
             },
-          ).toList(),
-        );
-      },
-    );
-  }
+            canSelectMultiple: false,
+            onSelectedChanged: (collectionSelection) {
+              final updatedUserPermission = changedPermissionLevel(value!, crud, collectionSelection);
+              value = updatedUserPermission;
+              onValueChanged(value);
+            },
+          )
+            ..loadFiltersModels()
+            ..selectFilter(filtersFromUserPermissions(crud, value!));
+        },
+      ).toList();
 
   List<PermissionLevel> optionsBasedOnCRUD(CRUD crud) {
     switch (crud) {

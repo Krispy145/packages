@@ -55,23 +55,16 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final types = socialTypes;
-    final coloredBackground = colored;
-
-    if (types.isEmpty) {
+    if (socialTypes.isEmpty) {
       return ErrorWidget(Exception("Social provider list cannot be empty"));
     }
 
     final authButtons = List.generate(
-      types.length,
+      socialTypes.length,
       (index) {
-        final socialType = types[index];
-
-        final foregroundColor = coloredBackground ? Colors.white : null;
-        final backgroundColor = coloredBackground ? socialType.backgroundColor : null;
-        final overlayColor = coloredBackground ? Colors.white10 : null;
-
-        final iconColor = coloredBackground ? Colors.white : null;
+        final socialType = socialTypes[index];
+        final backgroundColor = colored ? socialType.backgroundColor : null;
+        final iconColor = colored ? Colors.white : null;
 
         final Widget iconWidget = SizedBox(
           height: 48,
@@ -106,13 +99,6 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
           }
         }
 
-        final authButtonStyle = ButtonStyle(
-          foregroundColor: WidgetStateProperty.all(foregroundColor),
-          backgroundColor: WidgetStateProperty.all(backgroundColor),
-          overlayColor: WidgetStateProperty.all(overlayColor),
-          iconColor: WidgetStateProperty.all(iconColor),
-        );
-
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
           child: socialButtonVariant == SocialButtonVariant.icon
@@ -128,7 +114,6 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
                 )
               : ElevatedButton.icon(
                   icon: iconWidget,
-                  style: authButtonStyle,
                   onPressed: onAuthButtonPressed,
                   label: Text("Continue with ${socialType.displayName}"),
                 ),

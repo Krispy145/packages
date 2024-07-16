@@ -84,8 +84,6 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
   bool _showPassword = false;
   bool _forgotPassword = false;
 
-  AuthAction action = AuthAction.signUp;
-
   @override
   void initState() {
     super.initState();
@@ -113,7 +111,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
   void _toggleSignIn() {
     setState(() {
       _forgotPassword = false;
-      action = action == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+      widget.store.toggleSignIn();
     });
   }
 
@@ -137,7 +135,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (widget.additionalDataFields != null && action == AuthAction.signUp)
+          if (widget.additionalDataFields != null && widget.store.authAction == AuthAction.signUp)
             ...widget.additionalDataFields!
                 .map(
                   (additionalDataField) => [
@@ -153,7 +151,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                   ],
                 )
                 .expand((element) => element),
-          if (widget.codeDataSourceType != null && action == AuthAction.signUp) ...[
+          if (widget.codeDataSourceType != null && widget.store.authAction == AuthAction.signUp) ...[
             TextFormField(
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.password_rounded),
@@ -213,7 +211,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                         strokeWidth: 1.5,
                       ),
                     )
-                  : Text(action == AuthAction.signIn ? "Sign In" : "Sign Up"),
+                  : Text(widget.store.authAction == AuthAction.signIn ? "Sign In" : "Sign Up"),
               onPressed: () async {
                 if (!_formKey.currentState!.validate()) {
                   return;
@@ -222,7 +220,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                   _isLoading = true;
                 });
                 try {
-                  if (action == AuthAction.signIn) {
+                  if (widget.store.authAction == AuthAction.signIn) {
                     await _signIn();
                   } else {
                     await _signUp(context);
@@ -258,7 +256,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
               },
             ),
             Sizes.s.spacer(),
-            if (action == AuthAction.signIn) ...[
+            if (widget.store.authAction == AuthAction.signIn) ...[
               TextButton(
                 onPressed: () {
                   setState(() {
@@ -272,11 +270,11 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
               key: const ValueKey("toggleSignInButton"),
               onPressed: _toggleSignIn,
               child: Text(
-                action == AuthAction.signIn ? "Don't have an account? Sign up" : "Already have an account? Sign in",
+                widget.store.authAction == AuthAction.signIn ? "Don't have an account? Sign up" : "Already have an account? Sign in",
               ),
             ),
           ],
-          if (action == AuthAction.signIn && _forgotPassword) ...[
+          if (widget.store.authAction == AuthAction.signIn && _forgotPassword) ...[
             Sizes.s.spacer(),
             ElevatedButton(
               onPressed: () async {

@@ -32,54 +32,57 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
-      viewStore: store,
-      errorBuilder: (context, error) => Center(child: Text(error)),
-      loadedBuilder: (context) {
-        return ReactiveForm(
+    return Stack(
+      children: [
+        LoadStateBuilder(
+          viewStore: store,
+          errorBuilder: (context, error) => Center(child: Text(error)),
+          loadedBuilder: (context) => const SizedBox.shrink(),
+          // return Stack(
+          //   children: [
+          // Padding(
+          //   padding: scrollViewPadding ?? EdgeInsets.zero,
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       if (header != null) ...[
+          //         header!,
+          //         Sizes.m.spacer(),
+          //       ],
+          // Expanded(
+          //   child: ListView.builder(
+          //     padding: const EdgeInsets.only(bottom: 80),
+          //     itemCount: modelFields(context).length,
+          //     itemBuilder: (context, index) {
+          //       final key = modelFields(context).keys.elementAt(index);
+          //       final widget = modelFields(context)[key];
+          //       return widget;
+          //     },
+          //   ),
+          // ),
+          //     ],
+          //   ),
+          // ),
+          //         SafeArea(
+          //           child: Container(
+          //             padding: kIsWeb ? const EdgeInsets.only(bottom: 32) : EdgeInsets.zero,
+          //             alignment: Alignment.bottomCenter,
+          //             child: ElevatedButton(
+          //               onPressed: () => _showConfirmationDialog(context),
+          //               child: Text(store.isAdding ? createButtonTitle : updateButtonTitle),
+          //             ),
+          //           ),
+          //         ),
+          //         if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
+          // ],
+        ),
+        ReactiveForm(
           formGroup: store.form,
           child: formBuilder(context),
           // canPop: null,
           // onPopInvoked: null,
-        );
-        // return Stack(
-        //   children: [
-        // Padding(
-        //   padding: scrollViewPadding ?? EdgeInsets.zero,
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       if (header != null) ...[
-        //         header!,
-        //         Sizes.m.spacer(),
-        //       ],
-        // Expanded(
-        //   child: ListView.builder(
-        //     padding: const EdgeInsets.only(bottom: 80),
-        //     itemCount: modelFields(context).length,
-        //     itemBuilder: (context, index) {
-        //       final key = modelFields(context).keys.elementAt(index);
-        //       final widget = modelFields(context)[key];
-        //       return widget;
-        //     },
-        //   ),
-        // ),
-        //     ],
-        //   ),
-        // ),
-        //         SafeArea(
-        //           child: Container(
-        //             padding: kIsWeb ? const EdgeInsets.only(bottom: 32) : EdgeInsets.zero,
-        //             alignment: Alignment.bottomCenter,
-        //             child: ElevatedButton(
-        //               onPressed: () => _showConfirmationDialog(context),
-        //               child: Text(store.isAdding ? createButtonTitle : updateButtonTitle),
-        //             ),
-        //           ),
-        //         ),
-        //         if (stackedWidgets(context) != null) ...stackedWidgets(context)!,
-        // ],
-      },
+        ),
+      ],
     );
   }
 
@@ -99,7 +102,7 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(null);
+                Navigator.of(context).pop();
               },
               child: const Text("Cancel"),
             ),
@@ -114,7 +117,7 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
       },
     ).then((result) {
       if (result == null) {
-        Navigator.of(context).pop(null);
+        Navigator.of(context).pop();
         return context.showSnackbar(
           configuration: SnackbarConfiguration.error(
             title: "Cancelled",

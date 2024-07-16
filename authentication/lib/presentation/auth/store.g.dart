@@ -25,6 +25,22 @@ mixin _$AuthStore<T extends UserModel> on _AuthStore<T>, Store {
     });
   }
 
+  late final _$authActionAtom =
+      Atom(name: '_AuthStore.authAction', context: context);
+
+  @override
+  AuthAction get authAction {
+    _$authActionAtom.reportRead();
+    return super.authAction;
+  }
+
+  @override
+  set authAction(AuthAction value) {
+    _$authActionAtom.reportWrite(value, super.authAction, () {
+      super.authAction = value;
+    });
+  }
+
   late final _$initAsyncAction =
       AsyncAction('_AuthStore.init', context: context);
 
@@ -68,10 +84,25 @@ mixin _$AuthStore<T extends UserModel> on _AuthStore<T>, Store {
         .run(() => super._signInAnonymously());
   }
 
+  late final _$_AuthStoreActionController =
+      ActionController(name: '_AuthStore', context: context);
+
+  @override
+  void toggleSignIn() {
+    final _$actionInfo = _$_AuthStoreActionController.startAction(
+        name: '_AuthStore.toggleSignIn');
+    try {
+      return super.toggleSignIn();
+    } finally {
+      _$_AuthStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-userModel: ${userModel}
+userModel: ${userModel},
+authAction: ${authAction}
     ''';
   }
 }
