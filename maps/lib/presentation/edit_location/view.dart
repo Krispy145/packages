@@ -13,9 +13,6 @@ class EditLocationMapView extends MapView<EditLocationMapStore> {
 
   @override
   Widget build(BuildContext context) {
-    // return LoadStateBuilder(
-    //     viewStore: store,
-    //     loadedBuilder: (context) {
     return Observer(
       builder: (context) => FlutterMap(
         options: store.mapOptions,
@@ -28,7 +25,6 @@ class EditLocationMapView extends MapView<EditLocationMapStore> {
         ],
       ),
     );
-    //       });
   }
 
   @override

@@ -18,14 +18,10 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
     return super.imageUrl;
   }
 
-  bool _imageUrlIsInitialized = false;
-
   @override
   set imageUrl(String? value) {
-    _$imageUrlAtom
-        .reportWrite(value, _imageUrlIsInitialized ? super.imageUrl : null, () {
+    _$imageUrlAtom.reportWrite(value, super.imageUrl, () {
       super.imageUrl = value;
-      _imageUrlIsInitialized = true;
     });
   }
 
