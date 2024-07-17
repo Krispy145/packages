@@ -20,10 +20,6 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
 
   final FormGroup form = FormGroup({});
 
-  T? valueFromMap(Map<String, dynamic> map);
-
-  T? get currentValue => valueFromMap(form.value);
-
   FormControl<T> formControlByKey<T>(String key) => form.control(key) as FormControl<T>;
 
   _ReactiveFormsModelStore({
