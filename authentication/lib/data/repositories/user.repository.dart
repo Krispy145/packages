@@ -92,6 +92,12 @@ class UserDataRepository<T extends UserModel> {
     return _dataSourceByType(source).searchAllAuthTypes(query);
   }
 
+  Future<List<T?>> getUsersByIds({
+    required List<String> ids,
+  }) async {
+    return _dataSourceByType(source).getUsersByIds(ids);
+  }
+
   /// [getPagedUserModels] returns a page of [UserModel]s.
   Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> getPagedUserModels({
     ResponseModel? lastResponse,
