@@ -20,7 +20,7 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
 
   final FormGroup form = FormGroup({});
 
-  FormControl<T> formControlByKey<T>(String key) => form.control(key) as FormControl<T>;
+  FormControl<V> formControlByKey<V>(String key) => form.control(key) as FormControl<V>;
 
   _ReactiveFormsModelStore({
     required this.saveValue,
