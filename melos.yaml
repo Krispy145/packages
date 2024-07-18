@@ -17,7 +17,8 @@ packages:
   - youtube
   - contacts
   - youtube
-  # MELOS_PACKAGE_LIST_END
+  - text_recognition
+ # MELOS_PACKAGE_LIST_END
 
 scripts:
   analyze:
