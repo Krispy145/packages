@@ -2,7 +2,10 @@
 
 # Define the packages and projects lists
 packages=()
-projects=("fellowship" "thrift_findr")
+projects=(
+    # "fellowship" 
+    "thrift_findr"
+)
 
 # Define the project suffixes
 suffixes=(
@@ -17,11 +20,14 @@ commands=(
     # "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
     # "git pull origin main"
+    "git pull origin tags-refactor"
+    # "git merge origin tags-refactor"
 )
 
 # Commands to run in packages top level directory
 packagesCommands=(
     "git pull origin main"
+    # "git merge origin main"
 )
 
 # Function to run specified commands in the given directory if it exists
