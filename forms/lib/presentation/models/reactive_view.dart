@@ -12,6 +12,8 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
   final Widget? header;
   final String updateButtonTitle;
   final String createButtonTitle;
+  final Widget Function(BuildContext context)? loadingBuilder;
+  final Widget Function(BuildContext context, String message)? emptyBuilder;
   // final EdgeInsets? scrollViewPadding;
   final void Function(RequestResponse? requestResponse)? onBack;
   // final ListViewType viewType;
@@ -24,6 +26,8 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
     // this.scrollViewPadding,
     this.updateButtonTitle = "Update",
     this.createButtonTitle = "Create",
+    this.loadingBuilder,
+    this.emptyBuilder,
     // this.viewType = ListViewType.listView,
     // this.gridDelegate,
     // this.slivers = false,
@@ -36,8 +40,9 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
       children: [
         LoadStateBuilder(
           viewStore: store,
-          errorBuilder: (context, error) => Center(child: Text(error)),
+          emptyBuilder: emptyBuilder,
           loadedBuilder: (context) => const SizedBox.shrink(),
+          loadingBuilder: loadingBuilder,
           // return Stack(
           //   children: [
           // Padding(

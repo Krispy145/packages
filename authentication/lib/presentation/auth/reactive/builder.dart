@@ -28,7 +28,11 @@ class ReactiveAuthenticationBuilder<T extends UserModel> extends ReactiveFormsMo
     super.key,
     required super.store,
     this.additionalFields,
-  }) : super(onBack: (_) {});
+  }) : super(
+          onBack: (_) {},
+          loadingBuilder: (context) => const SizedBox.shrink(),
+          emptyBuilder: (context, message) => const SizedBox.shrink(),
+        );
 
   @override
   Widget formBuilder(BuildContext context) {
