@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the packages and projects lists
-packages=("forms")
+packages=()
 projects=("fellowship" "thrift_findr")
 
 # Define the project suffixes
@@ -14,8 +14,14 @@ suffixes=(
 # Define the commands to run in each directory
 commands=(
     # "flutter clean" 
-    "flutter pub get" 
+    # "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
+    # "git pull origin main"
+)
+
+# Commands to run in packages top level directory
+packagesCommands=(
+    "git pull origin main"
 )
 
 # Function to run specified commands in the given directory if it exists
@@ -33,6 +39,15 @@ run_commands() {
         echo "Directory $1 does not exist"
     fi
 }
+
+# Run commands in top level packages
+echo "In Packages"
+for command in "${packagesCommands[@]}"; do
+    echo "Running: $command"
+    $command
+done
+echo "Finished running commands in packages"
+
 
 # Run commands in the specified packages
 for package in "${packages[@]}"; do
