@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:forms/presentation/models/reactive_store.dart";
 import "package:reactive_forms/reactive_forms.dart";
@@ -45,8 +46,10 @@ class ReactiveFormErrorDisplay<T> extends StatelessWidget {
         final validationMessage = _findValidationMessage(context, errorKey);
         if (validationMessage != null) {
           errorMessages.add(validationMessage(form.getError(errorKey)!));
-        } else {
-          // errorMessages.add(errorKey);
+        } else if (form.errors[errorKey] is String) {
+          errorMessages.add(form.errors[errorKey]! as String);
+        } else if (kDebugMode) {
+          errorMessages.add(errorKey);
         }
       }
     }

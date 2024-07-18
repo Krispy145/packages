@@ -11,11 +11,11 @@ import 'package:reactive_forms/reactive_forms.dart';
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveMapField<T> extends ReactiveFormField<LatLng, LatLng> {
+class ReactiveMapField extends ReactiveFormField<LatLng, LatLng> {
   final EditLocationMapFormFieldStore? _fieldStore;
 
   final String mapTilesUrl;
-  final ReactiveFormFieldCallback<T>? onChanged;
+  final ReactiveFormFieldCallback<LatLng>? onChanged;
 
   ReactiveMapField({
     super.key,
@@ -157,7 +157,7 @@ class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, Lat
 
   @override
   void dispose() {
-    final currentWidget = widget as ReactiveMapField<LatLng>;
+    final currentWidget = widget as ReactiveMapField;
     if (currentWidget._fieldStore == null) {
       // _fieldStore.dispose();
     }

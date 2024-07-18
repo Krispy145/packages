@@ -28,7 +28,7 @@ class DateAndTimeField extends BaseFormField<DateAndTimeFormFieldStore> {
                   builder: (context) {
                     return TextButton(
                       onPressed: () async {
-                        final firstDate = store.value?.toTimezone().dateWithTime ?? DateTime.now();
+                        final firstDate = store.value?.toTimezone().dateTime ?? DateTime.now();
                         final date = await showDatePicker(context: context, firstDate: firstDate, lastDate: DateTime.now().add(const Duration(days: 365)));
                         if (date != null) store.updateDate(date);
                       },

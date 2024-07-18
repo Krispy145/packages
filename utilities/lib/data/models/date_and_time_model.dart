@@ -37,7 +37,7 @@ class DateAndTime extends Equatable {
   final DateTime _justDate;
   final TimeOfDay? _time;
 
-  DateTime get dateWithTime => _time == null ? _justDate : _justDate.setTimeOfDay(_time!);
+  // DateTime get dateTime => _time == null ? _justDate : _justDate.setTimeOfDay(_time!);
 
   DateAndTime(DateTime date, TimeOfDay? time)
       : _justDate = DateTime(date.year, date.month, date.day).copyWith(isUtc: true),
@@ -53,19 +53,19 @@ class DateAndTime extends Equatable {
   DateAndTime toUtc({tz.Location? timezone}) {
     AppLogger.print("Converting to UTC", [UtilitiesLoggers.timezone]);
     if (_time == null) return this;
-    final timezoneTime = timezone != null ? tz.TZDateTime.from(dateWithTime, timezone) : dateWithTime;
+    final timezoneTime = timezone != null ? tz.TZDateTime.from(dateTime, timezone) : dateTime;
     final timeZoneOffset = timezoneTime.timeZoneOffset;
-    final toUtc = dateWithTime.subtract(timeZoneOffset).copyWith(isUtc: true);
+    final toUtc = dateTime.subtract(timeZoneOffset).copyWith(isUtc: true);
     return toUtc.toDateAndTime();
   }
 
   DateAndTime toTimezone({tz.Location? timezone}) {
     AppLogger.print("Converting to timezone: ${timezone?.name}", [UtilitiesLoggers.timezone]);
     if (_time == null) return this;
-    final dateWithTimeAdded = _justDate.setTimeOfDay(_time!);
-    final timezoneTime = timezone != null ? tz.TZDateTime.from(dateWithTimeAdded, timezone) : dateWithTimeAdded;
+    final dateTimeAdded = _justDate.setTimeOfDay(_time!);
+    final timezoneTime = timezone != null ? tz.TZDateTime.from(dateTimeAdded, timezone) : dateTimeAdded;
     final timeZoneOffset = timezoneTime.timeZoneOffset;
-    final toTimezone = dateWithTimeAdded.add(timeZoneOffset).toDateAndTime();
+    final toTimezone = dateTimeAdded.add(timeZoneOffset).toDateAndTime();
     return toTimezone;
   }
 
@@ -75,8 +75,8 @@ class DateAndTime extends Equatable {
       AppLogger.print("Time is null -> returning $this", [UtilitiesLoggers.timezone]);
       return this;
     }
-    final dateWithTimeAdded = _justDate.setTimeOfDay(_time!);
-    final utc = dateWithTimeAdded.copyWith(isUtc: true);
+    final dateTimeAdded = _justDate.setTimeOfDay(_time!);
+    final utc = dateTimeAdded.copyWith(isUtc: true);
     final local = utc.toLocal();
     final dateAndTime = local.toDateAndTime();
     AppLogger.print("Converted to local: $dateAndTime", [UtilitiesLoggers.timezone]);
@@ -105,8 +105,8 @@ class DateAndTime extends Equatable {
 
   String formattedDateOnly({tz.Location? timezone}) {
     if (_time == null) return dateFormatter.format(_justDate);
-    final _dateWithTimezone = toTimezone(timezone: timezone);
-    return dateFormatter.format(_dateWithTimezone._justDate);
+    final _dateTimezone = toTimezone(timezone: timezone);
+    return dateFormatter.format(_dateTimezone._justDate);
   }
 
   String? formattedTimeOnly({tz.Location? timezone, bool showTimezone = true}) {
@@ -172,12 +172,12 @@ class DateAndTime extends Equatable {
   // Equality
 
   @override
-  List<Object?> get props => [dateWithTime];
+  List<Object?> get props => [dateTime];
 
-  bool operator >=(DateAndTime other) => dateWithTime.microsecond >= other.dateWithTime.microsecond;
-  bool operator >(DateAndTime other) => dateWithTime.microsecond > other.dateWithTime.microsecond;
-  bool operator <(DateAndTime other) => dateWithTime.microsecond < other.dateWithTime.microsecond;
-  bool operator <=(DateAndTime other) => dateWithTime.microsecond <= other.dateWithTime.microsecond;
+  bool operator >=(DateAndTime other) => dateTime.microsecond >= other.dateTime.microsecond;
+  bool operator >(DateAndTime other) => dateTime.microsecond > other.dateTime.microsecond;
+  bool operator <(DateAndTime other) => dateTime.microsecond < other.dateTime.microsecond;
+  bool operator <=(DateAndTime other) => dateTime.microsecond <= other.dateTime.microsecond;
 }
 
 extension DateTimeExtension on DateTime {

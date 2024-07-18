@@ -25,9 +25,7 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   _ReactiveFormsModelStore({
     required this.saveValue,
     this.editingValue,
-  }) : isAdding = editingValue == null {
-    setLoaded();
-  }
+  }) : isAdding = editingValue == null;
 
   @action
   Future<RequestResponse> submitPressed() async {

@@ -144,8 +144,8 @@ class _ReactiveDateAndTimeFieldState extends ReactiveFocusableFormFieldState<Dat
       _fieldStore = DateAndTimeFormFieldStore(
         initialValue: initialValue,
         title: currentWidget.title ?? "Date and Time",
-        onValueChanged: (val) {
-          didChange(value);
+        onValueChanged: (newValue) {
+          didChange(newValue);
           currentWidget.onChanged?.call(control);
         },
       );
