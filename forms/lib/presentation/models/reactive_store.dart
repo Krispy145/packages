@@ -31,9 +31,12 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   Future<RequestResponse> submitPressed() async {
     setLoading();
     final value = await prepareValueFromForm();
-    if (value == null) return RequestResponse.failure;
+    if (value == null) {
+      setError("Failed to prepare value from form");
+      return RequestResponse.failure;
+    }
     final response = await saveValue(isAdding, value);
-    if (response == RequestResponse.success) {
+    if (response == RequestResponse.success || response == RequestResponse.underReview) {
       setLoaded();
     } else {
       setError("Failed to save value");

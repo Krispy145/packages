@@ -12,13 +12,16 @@ class ReactiveFormSubmitButton<T> extends StatelessWidget {
     this.buttonText = "Submit",
     this.successMessage,
     this.errorMessage,
+    this.underReviewMessage,
+    this.onBack,
   });
 
   final ReactiveFormsModelStore<T> store;
   final String buttonText;
   final String? successMessage;
   final String? errorMessage;
-
+  final String? underReviewMessage;
+  final void Function(RequestResponse response)? onBack;
   @override
   Widget build(BuildContext context) {
     return ReactiveFormConsumer(
@@ -34,13 +37,20 @@ class ReactiveFormSubmitButton<T> extends StatelessWidget {
                           title: successMessage!,
                         ),
                       );
-                    } else if (errorMessage != null) {
+                    } else if (result == RequestResponse.failure && errorMessage != null) {
                       context.showSnackbar(
                         configuration: SnackbarConfiguration.error(
                           title: errorMessage!,
                         ),
                       );
+                    } else if (result == RequestResponse.underReview && underReviewMessage != null) {
+                      context.showSnackbar(
+                        configuration: SnackbarConfiguration.information(
+                          title: underReviewMessage!,
+                        ),
+                      );
                     }
+                    onBack?.call(result);
                   });
                 }
               : null,
