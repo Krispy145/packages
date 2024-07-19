@@ -28,7 +28,7 @@ commands=(
 # Commands to run in packages top level directory
 packagesCommands=(
     "git config pull.rebase false"
-    "git pull origin main"
+    "git pull origin tags-refactor"
     # "git merge origin main"
 )
 
