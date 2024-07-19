@@ -1,3 +1,5 @@
+import "dart:math";
+
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/layouts/components/types.dart";
@@ -19,6 +21,8 @@ class ListBuilder<T> extends StatelessWidget {
   final ListViewType viewType;
   final SliverGridDelegate? gridDelegate;
   final bool slivers;
+  final int? maxItemsCutOff;
+  final bool shrinkWrap;
 
   static const double _defaultListEdgeSpacing = 8;
 
@@ -34,6 +38,8 @@ class ListBuilder<T> extends StatelessWidget {
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
+    this.maxItemsCutOff,
+    this.shrinkWrap = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.listView,
         gridDelegate = null;
@@ -51,6 +57,8 @@ class ListBuilder<T> extends StatelessWidget {
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
+    this.maxItemsCutOff,
+    this.shrinkWrap = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.gridView;
 
@@ -68,6 +76,8 @@ class ListBuilder<T> extends StatelessWidget {
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
+    this.maxItemsCutOff,
+    this.shrinkWrap = false,
   })  : assert(
           !(header != null && slivers),
           "Cannot have header and use slivers",
@@ -79,6 +89,10 @@ class ListBuilder<T> extends StatelessWidget {
         assert(
           viewType == ListViewType.listView && gridDelegate == null || viewType == ListViewType.gridView && gridDelegate != null,
           "Grid view must have a grid delegate",
+        ),
+        assert(
+          !(slivers && shrinkWrap),
+          "Cannot use shrink wrap with slivers",
         );
 
   @override
@@ -88,27 +102,38 @@ class ListBuilder<T> extends StatelessWidget {
         viewStore: store,
         emptyBuilder: (context, empty) => emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty),
         loadedBuilder: (context) {
-          return Stack(
-            children: [
-              Padding(
-                padding: padding,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (header != null) ...[header!, Sizes.m.spacer()],
-                    Expanded(
-                      child: Observer(
-                        builder: (context) {
-                          return buildView(store.showLoadingSpinnerAtBottom);
-                        },
-                      ),
+          final contents = Padding(
+            padding: !slivers ? padding : EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
+              children: [
+                if (header != null) ...[header!, Sizes.m.spacer()],
+                if (shrinkWrap)
+                  Observer(
+                    builder: (context) {
+                      return buildView(store.showLoadingSpinnerAtBottom);
+                    },
+                  )
+                else
+                  Expanded(
+                    child: Observer(
+                      builder: (context) {
+                        return buildView(store.showLoadingSpinnerAtBottom);
+                      },
                     ),
-                  ],
-                ),
-              ),
-              if (stackedWidgets != null) ...stackedWidgets!,
-            ],
+                  ),
+              ],
+            ),
           );
+          return stackedWidgets != null
+              ? Stack(
+                  children: [
+                    contents,
+                    if (stackedWidgets != null) ...stackedWidgets!,
+                  ],
+                )
+              : contents;
         },
         loadingBuilder: (context) => const SizedBox.shrink(),
         errorBuilder: (context, error) => errorBuilder?.call(context, error) ?? WarningMessage.error(title: "Error", message: error),
@@ -138,12 +163,12 @@ class ListBuilder<T> extends StatelessWidget {
   }
 
   Widget buildView(bool isLoadingMore) {
-    final itemCount = store.results.length + (isLoadingMore ? 1 : 0);
+    final resultsCount = maxItemsCutOff != null ? min(maxItemsCutOff!, store.results.length) : store.results.length;
+    final itemCount = resultsCount + (isLoadingMore ? 1 : 0);
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
         return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
       }
-
       return itemBuilder(context, index, store.results[index]);
     }
 
@@ -154,10 +179,12 @@ class ListBuilder<T> extends StatelessWidget {
               itemBuilder: loadingOrItemBuilder,
             )
           : ListView.builder(
+              padding: padding,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: itemCount,
               itemBuilder: loadingOrItemBuilder,
               controller: store.scrollController,
+              shrinkWrap: shrinkWrap,
             );
     } else {
       return slivers
@@ -167,11 +194,13 @@ class ListBuilder<T> extends StatelessWidget {
               gridDelegate: gridDelegate!,
             )
           : GridView.builder(
+              padding: padding,
               itemCount: itemCount,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               controller: store.scrollController,
               itemBuilder: loadingOrItemBuilder,
               gridDelegate: gridDelegate!,
+              shrinkWrap: shrinkWrap,
             );
     }
   }

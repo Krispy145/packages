@@ -48,9 +48,9 @@ class FirestoreUserDataSource<T extends UserModel> extends PaginatedFirestoreDat
 
   @override
   Future<List<T?>> getUsersByIds(List<String> ids) async {
-    return collectionReference.where("id", whereIn: ids).get().then((querySnapshot) {
-      return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
-    });
+    if (ids.isEmpty) return Future<List<T>>.value([]);
+    final querySnapshot = await collectionReference.where("id", whereIn: ids).get();
+    return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
   }
 
   @override

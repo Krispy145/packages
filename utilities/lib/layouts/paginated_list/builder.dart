@@ -8,6 +8,7 @@ import "package:utilities/layouts/paginated_list/store.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
+import "package:widgets/messages/warning_message.dart";
 
 class PaginatedListBuilder<T> extends ListBuilder<T> {
   final bool canRefresh;
@@ -76,7 +77,7 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
                 viewStore: store,
                 emptyBuilder: (context, empty) {
                   _showSnackBarRequestResponse(context);
-                  return Center(child: Text(empty));
+                  return Center(child: WarningMessage.empty(title: empty));
                 },
                 loadingBuilder: (context) => const SizedBox.shrink(),
                 loadedBuilder: (context) {
@@ -84,9 +85,12 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
                   return const SizedBox.shrink();
                 },
                 errorBuilder: (context, error) {
-                  return IconButton(
-                    icon: const Icon(Icons.refresh),
-                    onPressed: store.refresh,
+                  return Center(
+                    child: WarningMessage.error(
+                      title: error,
+                      buttonText: "Try again",
+                      onButtonTap: (context) => store.refresh(),
+                    ),
                   );
                 },
               ),
