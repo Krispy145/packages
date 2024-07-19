@@ -47,7 +47,7 @@ class WarningMessage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 12),
               child: FilledButton(
-                child: Text(buttonText!, style: context.textTheme.bodyMedium),
+                child: Text(buttonText!, style: context.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
                 onPressed: () => onButtonTap?.call(context),
               ),
             ),

@@ -50,6 +50,15 @@ mixin _$AppLauncherStore on _AppLauncherStore, Store {
         .run(() => super.checkIsAppInstalled(identifier: identifier));
   }
 
+  late final _$launchAppFromDeepLinkAsyncAction =
+      AsyncAction('_AppLauncherStore.launchAppFromDeepLink', context: context);
+
+  @override
+  Future<bool> launchAppFromDeepLink({required AppIdentifier identifier}) {
+    return _$launchAppFromDeepLinkAsyncAction
+        .run(() => super.launchAppFromDeepLink(identifier: identifier));
+  }
+
   late final _$launchAppAsyncAction =
       AsyncAction('_AppLauncherStore.launchApp', context: context);
 
