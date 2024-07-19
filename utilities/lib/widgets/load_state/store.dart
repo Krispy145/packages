@@ -108,7 +108,7 @@ mixin LoadStateStore {
 
   /// [setError] is a method that will be used to set the state to error.
   void _setError(String errorMessage) {
-    print("LoadState: Error");
+    print("LoadState: Error: $errorMessage");
     if (currentState is ErrorLoadState) {
       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
         return;
