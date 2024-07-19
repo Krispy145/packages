@@ -41,7 +41,7 @@ abstract class _MapStore with LoadStateStore, Store {
   }
 
   @observable
-  bool isLocked = true;
+  bool isLocked = false;
 
   @action
   void toggleLocked() {

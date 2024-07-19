@@ -71,6 +71,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
 
   @action
   Future<void> _loadMap() async {
+    toggleLocked();
     // setLoading();
     // try {
     //   googlePlaces = await search.textSearchGooglePlaces(parameters: const GoogleTextSearchParameters(query: "Thrift stores Near me"));
