@@ -135,17 +135,31 @@ abstract class _MapStore with LoadStateStore, Store {
     superclusterController.addAll(toAdd.map(buildSingleMarker).toList());
 
     _markers.addAll(newMarkerModels);
-    AppLogger.print("Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})", [MapLoggers.markers]);
+    AppLogger.print(
+      "Markers after: count: ${_markers.length} ==> ${newMarkerModels.map((e) => '${e.id} - ${e.position}').toList()} (_markers: ${_markers.length})",
+      [MapLoggers.markers],
+    );
   }
 
   Marker buildSingleMarker(MarkerModel markerModel) {
     if (singleMarkerBuilder != null) return singleMarkerBuilder!(markerModel);
-    return IconMarker(icon: Icons.location_pin, iconSize: 56, markerModel: markerModel, isSelected: (markerModel) => isMarkerSelected(markerModel.id), onMarkerTapped: onMarkerTapped);
+    return IconMarker(
+      icon: Icons.location_pin,
+      iconSize: 56,
+      markerModel: markerModel,
+      isSelected: (markerModel) => isMarkerSelected(markerModel.id),
+      onMarkerTapped: onMarkerTapped,
+    );
   }
 
   Marker buildClusterMarker(MarkerClusterData clusterData, int count) {
     final topMarker = clusterData.topMarker;
-    return NumberRingedMarker(topMarkerModel: topMarker, markerCount: count, isSelected: (markerModel) => isMarkerSelected(markerModel.id));
+    return NumberRingedMarker(
+      topMarkerModel: topMarker,
+      markerCount: count,
+      isSelected: (markerModel) => isMarkerSelected(markerModel.id),
+      onTopMarkerTapped: onTopMarkerTapped,
+    );
   }
 
   ///
@@ -204,6 +218,18 @@ abstract class _MapStore with LoadStateStore, Store {
     if (markerModel.id != selectedMarkerId) {
       selectMarker(markerModel.id, markerModel.position);
       // Could go to marker details here...
+    }
+  }
+
+  /// [onTopMarkerTapped] is a helper function for zooming a cluster marker,
+  /// need to get the cluster markers to build a bounds to fit camera to
+  Future<void> onTopMarkerTapped(MarkerModel markerModel) async {
+    AppLogger.print("onTopMarkerTapped: LatLng: ${markerModel.id}", [MapLoggers.map]);
+    if (markerModel.id != selectedMarkerId) {
+      animatedMapController.animateTo(
+        dest: markerModel.position,
+        zoom: animatedMapController.mapController.camera.zoom + 1.5,
+      );
     }
   }
 
