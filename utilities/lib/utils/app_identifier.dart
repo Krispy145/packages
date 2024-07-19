@@ -58,4 +58,6 @@ abstract class AppIdentifier {
   TextButton buildAppTextButton();
 
   ElevatedButton buildAppElevatedButton();
+
+  Future<ElevatedButton?> buildAppElevationButtonIfInstalled();
 }

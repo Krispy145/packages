@@ -222,7 +222,7 @@ class MapAppIdentifier extends AppIdentifier {
   }
 
   @override
-  ElevatedButton buildAppElevatedButton({bool showIcon = true}) {
+  ElevatedButton buildAppElevatedButton({bool showIcon = true, bool displayIfInstalled = true}) {
     final appLauncherStore = AppLauncherStore();
     final style = ButtonStyle(
         backgroundColor: WidgetStateProperty.all(app.backgroundColor),
@@ -244,5 +244,17 @@ class MapAppIdentifier extends AppIdentifier {
         child: Text(app.displayName),
       );
     }
+  }
+
+  @override
+  Future<ElevatedButton?> buildAppElevationButtonIfInstalled() {
+    final appLauncherStore = AppLauncherStore();
+    return appLauncherStore.checkIsAppInstalled(identifier: this).then((value) {
+      if (value) {
+        return buildAppElevatedButton();
+      } else {
+        return null;
+      }
+    });
   }
 }

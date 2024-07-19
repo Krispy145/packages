@@ -28,77 +28,12 @@ class ReactiveMapField extends ReactiveFormField<LatLng, LatLng> {
     required this.mapTilesUrl,
     EditLocationMapFormFieldStore? controller,
     this.onChanged,
-
-    // InputDecoration decoration = const InputDecoration(),
-    // TextInputType? keyboardType,
-    // TextCapitalization textCapitalization = TextCapitalization.none,
-    // TextInputAction? textInputAction,
-    // TextStyle? style,
-    // StrutStyle? strutStyle,
-    // TextDirection? textDirection,
-    // TextAlign textAlign = TextAlign.start,
-    // TextAlignVertical? textAlignVertical,
-    // bool autofocus = false,
-    // bool readOnly = false,
-    // EditableTextContextMenuBuilder? contextMenuBuilder = _defaultContextMenuBuilder,
-    // bool? showCursor,
-    // bool obscureText = false,
-    // String obscuringCharacter = '•',
-    // bool autocorrect = true,
-    // SmartDashesType? smartDashesType,
-    // SmartQuotesType? smartQuotesType,
-    // bool enableSuggestions = true,
-    // MaxLengthEnforcement? maxLengthEnforcement,
-    // int? maxLines = 1,
-    // int? minLines,
-    // bool expands = false,
-    // int? maxLength,
-    // List<TextInputFormatter>? inputFormatters,
-    // double cursorWidth = 2.0,
-    // double? cursorHeight,
-    // Radius? cursorRadius,
-    // Color? cursorColor,
-    // Brightness? keyboardAppearance,
-    // EdgeInsets scrollPadding = const EdgeInsets.all(20.0),
-    // bool enableInteractiveSelection = true,
-    // InputCounterWidgetBuilder? buildCounter,
-    // ScrollPhysics? scrollPhysics,
-    // Iterable<String>? autofillHints,
-    // MouseCursor? mouseCursor,
-    // DragStartBehavior dragStartBehavior = DragStartBehavior.start,
-    // AppPrivateCommandCallback? onAppPrivateCommand,
-    // String? restorationId,
-    // ScrollController? scrollController,
-    // TextSelectionControls? selectionControls,
-    // ui.BoxHeightStyle selectionHeightStyle = ui.BoxHeightStyle.tight,
-    // ui.BoxWidthStyle selectionWidthStyle = ui.BoxWidthStyle.tight,
-    // Clip clipBehavior = Clip.hardEdge,
-    // bool enableIMEPersonalizedLearning = true,
-    // bool scribbleEnabled = true,
-    // ReactiveFormFieldCallback<T>? onTap,
-    // ReactiveFormFieldCallback<T>? onEditingComplete,
-    // ReactiveFormFieldCallback<T>? onSubmitted,
-    // UndoHistoryController? undoController,
-    // bool? cursorOpacityAnimates,
-    // TapRegionCallback? onTapOutside,
-    // ContentInsertionConfiguration? contentInsertionConfiguration,
-    // bool canRequestFocus = true,
-    // SpellCheckConfiguration? spellCheckConfiguration,
-    // TextMagnifierConfiguration? magnifierConfiguration,
   })  : _fieldStore = controller,
         super(
           builder: (ReactiveFormFieldState<LatLng, LatLng> field) {
             final state = field as _ReactiveMapFieldState;
             return EditLocationMapFormField(
               store: state._fieldStore,
-              // enabled: field.control.enabled,
-              // onTap: onTap != null ? () => onTap(field.control) : null,
-              // onSubmitted: onSubmitted != null ? (_) => onSubmitted(field.control) : null,
-              // onEditingComplete: onEditingComplete != null ? () => onEditingComplete.call(field.control) : null,
-              // onChanged: (value) {
-              //   field.didChange(value);
-              //   onChanged?.call(field.control);
-              // },
             );
           },
         );
@@ -120,6 +55,9 @@ class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, Lat
   void onControlValueChanged(dynamic value) {
     final effectiveValue = value as LatLng?;
     _fieldStore.value = effectiveValue;
+    didChange(effectiveValue);
+    _fieldStore.mapStore.setCenterMarker(center: effectiveValue);
+    if (effectiveValue != null) _fieldStore.mapStore.animatedMapController.mapController.move(effectiveValue, 10);
     super.onControlValueChanged(value);
   }
 
@@ -146,7 +84,7 @@ class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, Lat
           initialValue: initialValue,
           title: "Title",
           onValueChanged: (val) {
-            didChange(value);
+            didChange(val);
             currentWidget.onChanged?.call(control);
           });
     } else {

@@ -41,7 +41,7 @@ abstract class _MapStore with LoadStateStore, Store {
   }
 
   @observable
-  bool isLocked = true;
+  bool isLocked = false;
 
   @action
   void toggleLocked() {
@@ -96,7 +96,7 @@ abstract class _MapStore with LoadStateStore, Store {
     AppLogger.print("Initialize markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
     if (_markers.isNotEmpty) {
-      AppLogger.print("Initializing spot markers on map: ${_markers.length}", [MapLoggers.markers]);
+      AppLogger.print("Initializing markers on map: ${_markers.length}", [MapLoggers.markers]);
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }

@@ -41,9 +41,6 @@ abstract class _EditLocationMapStore extends MapStore with Store {
   Future<void> onMapReady() async {
     setLoading();
     await initializeMarkers();
-    if (initialMarkers != null) {
-      addMarkers(initialMarkers!);
-    }
     mapCenter = markers.firstOrNull?.position ?? const LatLng(51.5072, -0.1276);
     animatedMapController.animateTo(
       dest: mapCenter,
@@ -74,6 +71,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
 
   @action
   Future<void> _loadMap() async {
+    toggleLocked();
     // setLoading();
     // try {
     //   googlePlaces = await search.textSearchGooglePlaces(parameters: const GoogleTextSearchParameters(query: "Thrift stores Near me"));
