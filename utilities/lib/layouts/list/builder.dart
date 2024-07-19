@@ -154,6 +154,7 @@ class ListBuilder<T> extends StatelessWidget {
               itemBuilder: loadingOrItemBuilder,
             )
           : ListView.builder(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: itemCount,
               itemBuilder: loadingOrItemBuilder,
               controller: store.scrollController,
@@ -167,6 +168,7 @@ class ListBuilder<T> extends StatelessWidget {
             )
           : GridView.builder(
               itemCount: itemCount,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               controller: store.scrollController,
               itemBuilder: loadingOrItemBuilder,
               gridDelegate: gridDelegate!,
