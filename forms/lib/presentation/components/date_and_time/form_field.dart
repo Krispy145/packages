@@ -16,7 +16,7 @@ class DateAndTimeField extends BaseFormField<DateAndTimeFormFieldStore> {
   Widget buildField(BuildContext context) {
     return Observer(
       // errorBuilder: (context, error) => const SizedBox.shrink(),
-      // viewStore: store,
+      // store: store,
       builder: (context) {
         return Column(
           mainAxisSize: MainAxisSize.min,

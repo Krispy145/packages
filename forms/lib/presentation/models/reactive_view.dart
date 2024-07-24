@@ -39,7 +39,7 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
     return Stack(
       children: [
         LoadStateBuilder(
-          viewStore: store,
+          store: store,
           emptyBuilder: emptyBuilder,
           loadedBuilder: (context) => const SizedBox.shrink(),
           loadingBuilder: loadingBuilder,

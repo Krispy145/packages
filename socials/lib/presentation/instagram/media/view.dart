@@ -48,7 +48,7 @@ class InstagramMediaView extends StatelessWidget {
                       );
                     },
                     // loadStateBuilder: LoadStateBuilder(
-                    //   viewStore: store,
+                    //   store: store,
                     //   emptyBuilder: (context, empty) => Center(child: Text(empty)),
                     //   errorBuilder: (context, error) => Center(child: Text(error)),
                     //   loadedBuilder: (context) => ElevatedButton(

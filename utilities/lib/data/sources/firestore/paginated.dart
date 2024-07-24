@@ -70,6 +70,43 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     );
   }
 
+  Stream<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> streamPage({
+    int? size,
+    FirestoreResponseModel<T?>? lastResponse,
+  }) {
+    final _collection = firestore.collection(collectionName);
+    Query query = _collection;
+
+    if (lastResponse != null) {
+      if (lastResponse.lastDocumentSnapshot != null) {
+        query = query.startAfterDocument(
+          lastResponse.lastDocumentSnapshot!,
+        );
+      }
+    }
+
+    if (size != null) {
+      query = query.limit(size);
+    }
+
+    return query.snapshots().map(
+      (response) {
+        final _response = FirestoreResponseModel<T?>(
+          lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
+        );
+        return Pair(
+          RequestResponse.success,
+          Pair(
+            _response,
+            List<T?>.from(
+              response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> searchPage({
     FirestoreResponseModel<T?>? lastResponse,

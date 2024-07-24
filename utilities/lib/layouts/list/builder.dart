@@ -99,7 +99,7 @@ class ListBuilder<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!slivers) {
       return LoadStateBuilder(
-        viewStore: store,
+        store: store,
         emptyBuilder: (context, empty) => emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty),
         loadedBuilder: (context) {
           final contents = Padding(

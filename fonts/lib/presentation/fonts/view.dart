@@ -16,7 +16,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return LoadStateBuilder(
-//       viewStore: store,
+//       store: store,
 //       emptyBuilder: (context,message) => const Center(
 //         child: Text("Empty fonts view."),
 //       ),

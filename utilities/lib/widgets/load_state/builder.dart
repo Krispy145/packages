@@ -8,8 +8,8 @@ typedef TextWidgetBuilder = Widget Function(BuildContext context, String text);
 
 /// [LoadStateBuilder] is a widget that will be used to build the UI based on the load state.
 class LoadStateBuilder extends StatelessWidget {
-  /// [viewStore] is an instance of [LoadStateStore].
-  final LoadStateStore viewStore;
+  /// [store] is an instance of [LoadStateStore].
+  final LoadStateStore store;
 
   /// [loadedBuilder] is the builder that will be used to build the UI when the load state is loaded.
   final WidgetBuilder loadedBuilder;
@@ -37,7 +37,7 @@ class LoadStateBuilder extends StatelessWidget {
   /// [LoadStateBuilder] constructor
   const LoadStateBuilder({
     super.key,
-    required this.viewStore,
+    required this.store,
     required this.loadedBuilder,
     this.errorBuilder,
     this.initialBuilder,
@@ -64,9 +64,9 @@ class LoadStateBuilder extends StatelessWidget {
 
   Widget _defaultNoMoreToLoadSnackBarBuilder(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (viewStore.hasShownNoMoreToLoadSnackBar) return;
+      if (store.hasShownNoMoreToLoadSnackBar) return;
       // context.showSnackbar(configuration: SnackbarConfiguration.warning(title: "No more to load."));
-      viewStore.setNoMoreToLoadSnackBar();
+      store.setNoMoreToLoadSnackBar();
     });
     return loadedBuilder(context);
   }
@@ -75,7 +75,7 @@ class LoadStateBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        switch (viewStore.currentState) {
+        switch (store.currentState) {
           case InitialLoadState():
             return initialBuilder?.call(context) ?? _defaultBuilder(context);
           case LoadingLoadState():

@@ -23,7 +23,7 @@ class VideoView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: LoadStateBuilder(
-        viewStore: store,
+        store: store,
         errorBuilder: (context, error) => Center(
           child: Text(error),
         ),

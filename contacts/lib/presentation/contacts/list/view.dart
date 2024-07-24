@@ -15,7 +15,7 @@ class ContactsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadStateBuilder(
-      viewStore: store,
+      store: store,
       emptyBuilder: (context, empty) => Center(child: Text(empty)),
       loadedBuilder: (context) => ListView.builder(
         itemCount: store.contacts.length,
