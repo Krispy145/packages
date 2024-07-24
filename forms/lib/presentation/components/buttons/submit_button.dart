@@ -3,7 +3,6 @@ import "package:forms/presentation/models/reactive_store.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
-import "package:utilities/snackbar/configuration.dart";
 
 class ReactiveFormSubmitButton<T> extends StatelessWidget {
   const ReactiveFormSubmitButton({
@@ -30,28 +29,7 @@ class ReactiveFormSubmitButton<T> extends StatelessWidget {
         child: ElevatedButton(
           onPressed: form.valid
               ? () async {
-                  await store.submitPressed().then((result) {
-                    if (result == RequestResponse.success && successMessage != null) {
-                      context.showSnackbar(
-                        configuration: SnackbarConfiguration.confirmation(
-                          title: successMessage!,
-                        ),
-                      );
-                    } else if (result == RequestResponse.failure && errorMessage != null) {
-                      context.showSnackbar(
-                        configuration: SnackbarConfiguration.error(
-                          title: errorMessage!,
-                        ),
-                      );
-                    } else if (result == RequestResponse.underReview && underReviewMessage != null) {
-                      context.showSnackbar(
-                        configuration: SnackbarConfiguration.information(
-                          title: underReviewMessage!,
-                        ),
-                      );
-                    }
-                    onBack?.call(result);
-                  });
+                  await store.submitPressed(context.showSnackbar, (response) => onBack?.call(response));
                 }
               : null,
           child: Text(buttonText),

@@ -120,7 +120,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
             onPressed: () async {
               if (widget.store.form.invalid) {
                 context.showSnackbar(
-                  configuration: SnackbarConfiguration.error(title: widget.store.form.errors.toString()),
+                  SnackbarConfiguration.error(title: widget.store.form.errors.toString()),
                 );
                 return;
               }
@@ -140,7 +140,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                     [AuthenticationLoggers.authentication],
                   );
                   context.showSnackbar(
-                    configuration: SnackbarConfiguration.error(title: error.message),
+                    SnackbarConfiguration.error(title: error.message),
                   );
                 } else {
                   widget.onError?.call(error);
@@ -148,7 +148,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
               } catch (error) {
                 if (widget.onError == null && context.mounted) {
                   context.showSnackbar(
-                    configuration: SnackbarConfiguration.error(
+                    SnackbarConfiguration.error(
                       title: "Unexpected error has occurred: $error",
                     ),
                   );
@@ -202,7 +202,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                 // widget.onPasswordResetEmailSent?.call();
               } on AuthenticationException catch (error) {
                 context.showSnackbar(
-                  configuration: SnackbarConfiguration.error(title: error.message),
+                  SnackbarConfiguration.error(title: error.message),
                 );
               } catch (error) {
                 widget.onError?.call(error);
@@ -229,14 +229,14 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
     await widget.store.signUpWithEmail().then((response) {
       if (response != null) {
         context.showSnackbar(
-          configuration: SnackbarConfiguration.information(
+          SnackbarConfiguration.information(
             title: "Email verification sent",
           ),
         );
         _toggleSignIn();
       } else {
         context.showSnackbar(
-          configuration: SnackbarConfiguration.error(
+          SnackbarConfiguration.error(
             title: "Error signing up",
           ),
         );

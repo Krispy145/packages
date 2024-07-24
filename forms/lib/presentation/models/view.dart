@@ -162,7 +162,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(null);
+                Navigator.of(context).pop();
               },
               child: const Text("Cancel"),
             ),
@@ -177,9 +177,9 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
       },
     ).then((result) {
       if (result == null) {
-        Navigator.of(context).pop(null);
+        Navigator.of(context).pop();
         return context.showSnackbar(
-          configuration: SnackbarConfiguration.error(
+          SnackbarConfiguration.error(
             title: "Cancelled",
           ),
         );
@@ -187,14 +187,14 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
       switch (result) {
         case RequestResponse.failure:
           return context.showSnackbar(
-            configuration: SnackbarConfiguration.error(
+            SnackbarConfiguration.error(
               title: "Error ${store.isAdding ? "creating" : "updating"}",
               // title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
             ),
           );
         case RequestResponse.denied:
           context.showSnackbar(
-            configuration: SnackbarConfiguration.warning(
+            SnackbarConfiguration.warning(
               title: "You do not have permission to ${store.isAdding ? "create" : "update"} this",
               // title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
             ),
@@ -202,14 +202,14 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
           return onBack?.call(result);
         case RequestResponse.success:
           context.showSnackbar(
-            configuration: SnackbarConfiguration.confirmation(
+            SnackbarConfiguration.confirmation(
               title: "Successfully ${store.isAdding ? "created" : "updated"}",
             ),
           );
           return onBack?.call(result);
         case RequestResponse.underReview:
           context.showSnackbar(
-            configuration: SnackbarConfiguration.information(
+            SnackbarConfiguration.information(
               title: "Added to review queue",
               // title: "create $modelType sent for review",
             ),

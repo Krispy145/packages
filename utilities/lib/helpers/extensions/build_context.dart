@@ -8,13 +8,9 @@ extension ShowSnackbar on BuildContext {
   SnackbarMessage get _snackbarMessage => SnackbarMessage(this);
 
   /// Displays a basic snackbar
-  void showSnackbar({
-    required SnackbarConfiguration configuration,
-  }) {
+  void showSnackbar(SnackbarConfiguration configuration) {
     ScaffoldMessenger.of(this).clearSnackBars();
-    _snackbarMessage.show(
-      configuration: configuration,
-    );
+    _snackbarMessage.show(configuration: configuration);
   }
 }
 

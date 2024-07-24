@@ -81,7 +81,7 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
           } on AuthenticationException catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(
-                configuration: SnackbarConfiguration.error(title: error.message),
+                SnackbarConfiguration.error(title: error.message),
               );
             } else {
               onError?.call(error);
@@ -89,7 +89,7 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
           } catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(
-                configuration: SnackbarConfiguration.error(
+                SnackbarConfiguration.error(
                   title: "Unexpected error has occurred: $error",
                 ),
               );

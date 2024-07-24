@@ -134,7 +134,7 @@ class _PhoneAuthWidgetState<T extends UserModel> extends State<PhoneAuthWidget<T
               } on AuthenticationException catch (error) {
                 if (widget.onError == null && context.mounted) {
                   context.showSnackbar(
-                    configuration: SnackbarConfiguration.error(title: error.message),
+                    SnackbarConfiguration.error(title: error.message),
                   );
                 } else {
                   widget.onError?.call(error);
@@ -142,7 +142,7 @@ class _PhoneAuthWidgetState<T extends UserModel> extends State<PhoneAuthWidget<T
               } catch (error) {
                 if (widget.onError == null && context.mounted) {
                   context.showSnackbar(
-                    configuration: SnackbarConfiguration.error(
+                    SnackbarConfiguration.error(
                       title: "Unexpected error has occurred: $error",
                     ),
                   );

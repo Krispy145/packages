@@ -42,7 +42,7 @@ class InstagramMediaView extends StatelessWidget {
                         media: media,
                         onTap: () {
                           context.showSnackbar(
-                            configuration: SnackbarConfiguration.information(title: "Selected ${media.caption}"),
+                            SnackbarConfiguration.information(title: "Selected ${media.caption}"),
                           );
                         },
                       );

@@ -65,7 +65,7 @@ class LoadStateBuilder extends StatelessWidget {
   Widget _defaultNoMoreToLoadSnackBarBuilder(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (viewStore.hasShownNoMoreToLoadSnackBar) return;
-      // context.showSnackbar(configuration: SnackbarConfiguration.warning(title: "No more to load."));
+      // context.showSnackbar(SnackbarConfiguration.warning(title: "No more to load."));
       viewStore.setNoMoreToLoadSnackBar();
     });
     return loadedBuilder(context);

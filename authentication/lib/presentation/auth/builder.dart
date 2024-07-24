@@ -65,7 +65,7 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
     if (!_shouldShow) return;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.showSnackbar(
-        configuration: SnackbarConfiguration.confirmation(
+        SnackbarConfiguration.confirmation(
           title: "Successfully signed in",
         ),
       );
@@ -102,7 +102,7 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
                   onSignInComplete: (userModel) {
                     if (store.showSuccessSnackBar) {
                       context.showSnackbar(
-                        configuration: SnackbarConfiguration.confirmation(
+                        SnackbarConfiguration.confirmation(
                           title: "Successfully signed in",
                         ),
                       );
@@ -118,7 +118,7 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
                     onSuccess: (userModel) {
                       if (store.showSuccessSnackBar) {
                         context.showSnackbar(
-                          configuration: SnackbarConfiguration.confirmation(
+                          SnackbarConfiguration.confirmation(
                             title: "Successfully signed in",
                           ),
                         );
@@ -133,7 +133,7 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
                     onSuccess: (userModel) {
                       if (store.showSuccessSnackBar) {
                         context.showSnackbar(
-                          configuration: SnackbarConfiguration.confirmation(
+                          SnackbarConfiguration.confirmation(
                             title: "Successfully signed in",
                           ),
                         );
@@ -149,7 +149,7 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
                   onSuccess: (userModel) {
                     if (store.showSuccessSnackBar) {
                       context.showSnackbar(
-                        configuration: SnackbarConfiguration.confirmation(
+                        SnackbarConfiguration.confirmation(
                           title: "Successfully signed in",
                         ),
                       );

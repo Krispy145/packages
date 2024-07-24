@@ -114,7 +114,7 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
           break;
         case RequestResponse.denied:
           context.showSnackbar(
-            configuration: SnackbarConfiguration.warning(
+            SnackbarConfiguration.warning(
               title: "Request Denied",
             ),
           );

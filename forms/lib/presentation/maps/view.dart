@@ -217,20 +217,20 @@ class FormsMapView extends StatelessWidget {
     ).then((result) {
       if (result == null) {
         return context.showSnackbar(
-          configuration: SnackbarConfiguration.error(
+          SnackbarConfiguration.error(
             title: 'Error ${isUpdating ? 'updating' : 'creating'} Map Type',
           ),
         );
       }
       if (result == false) {
         return context.showSnackbar(
-          configuration: SnackbarConfiguration.warning(
+          SnackbarConfiguration.warning(
             title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of Map Type',
           ),
         );
       }
       context.showSnackbar(
-        configuration: SnackbarConfiguration.confirmation(
+        SnackbarConfiguration.confirmation(
           title: '${isUpdating ? 'Updated' : 'Created'} Map Type',
         ),
       );

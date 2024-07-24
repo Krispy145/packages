@@ -13,8 +13,11 @@ mixin _$ReactiveFormsModelStore<T> on _ReactiveFormsModelStore<T>, Store {
       AsyncAction('_ReactiveFormsModelStore.submitPressed', context: context);
 
   @override
-  Future<RequestResponse> submitPressed() {
-    return _$submitPressedAsyncAction.run(() => super.submitPressed());
+  Future<RequestResponse> submitPressed(
+      void Function(SnackbarConfiguration) showSnackbar,
+      void Function(RequestResponse) onBack) {
+    return _$submitPressedAsyncAction
+        .run(() => super.submitPressed(showSnackbar, onBack));
   }
 
   late final _$_ReactiveFormsModelStoreActionController =
