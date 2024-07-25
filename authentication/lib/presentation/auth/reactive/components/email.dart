@@ -6,9 +6,12 @@ import "package:authentication/helpers/exception.dart";
 import "package:authentication/presentation/auth/reactive/store.dart";
 import "package:authentication/utils/loggers.dart";
 import "package:flutter/material.dart";
+import "package:flutter/services.dart";
 import "package:reactive_forms/src/validators/validation_message.dart";
 import "package:reactive_forms/src/widgets/reactive_text_field.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/helpers/extensions/platform.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
@@ -68,6 +71,22 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
 
   @override
   Widget build(BuildContext context) {
+    if (PlatformExtension.hasKeyboard) {
+      return KeyboardListener(
+        focusNode: FocusNode(),
+        onKeyEvent: (event) {
+          if (event.logicalKey == LogicalKeyboardKey.enter) {
+            _handleSignSignUpTrigger();
+          }
+        },
+        child: _buildEmail(context),
+      );
+    }
+
+    return _buildEmail(context);
+  }
+
+  Column _buildEmail(BuildContext context) {
     return Column(
       children: [
         ReactiveTextField<String>(
@@ -107,61 +126,17 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
           ),
           Sizes.s.spacer(),
           ElevatedButton(
+            onPressed: _handleSignSignUpTrigger,
             child: _isLoading
                 ? SizedBox(
                     height: 16,
                     width: 16,
                     child: CircularProgressIndicator(
-                      color: Theme.of(context).colorScheme.onPrimary,
+                      color: context.colorScheme.onPrimary,
                       strokeWidth: 1.5,
                     ),
                   )
                 : Text(widget.store.authAction == AuthAction.signIn ? "Sign In" : "Sign Up"),
-            onPressed: () async {
-              if (widget.store.form.invalid) {
-                context.showSnackbar(
-                  configuration: SnackbarConfiguration.error(title: widget.store.form.errors.toString()),
-                );
-                return;
-              }
-              setState(() {
-                _isLoading = true;
-              });
-              try {
-                if (widget.store.authAction == AuthAction.signIn) {
-                  await _signIn();
-                } else {
-                  await _signUp(context);
-                }
-              } on AuthenticationException catch (error) {
-                if (widget.onError == null && context.mounted) {
-                  AppLogger.print(
-                    error.message,
-                    [AuthenticationLoggers.authentication],
-                  );
-                  context.showSnackbar(
-                    configuration: SnackbarConfiguration.error(title: error.message),
-                  );
-                } else {
-                  widget.onError?.call(error);
-                }
-              } catch (error) {
-                if (widget.onError == null && context.mounted) {
-                  context.showSnackbar(
-                    configuration: SnackbarConfiguration.error(
-                      title: "Unexpected error has occurred: $error",
-                    ),
-                  );
-                } else {
-                  widget.onError?.call(error);
-                }
-              }
-              if (mounted) {
-                setState(() {
-                  _isLoading = false;
-                });
-              }
-            },
           ),
           Sizes.s.spacer(),
           if (widget.store.authAction == AuthAction.signIn) ...[
@@ -223,6 +198,52 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
         Sizes.s.spacer(),
       ],
     );
+  }
+
+  Future<void> _handleSignSignUpTrigger() async {
+    if (widget.store.form.invalid) {
+      context.showSnackbar(
+        configuration: SnackbarConfiguration.error(title: "Please fill in all fields and fix any errors"),
+      );
+      return;
+    }
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      if (widget.store.authAction == AuthAction.signIn) {
+        await _signIn();
+      } else {
+        await _signUp(context);
+      }
+    } on AuthenticationException catch (error) {
+      if (widget.onError == null && context.mounted) {
+        AppLogger.print(
+          error.message,
+          [AuthenticationLoggers.authentication],
+        );
+        context.showSnackbar(
+          configuration: SnackbarConfiguration.error(title: error.message),
+        );
+      } else {
+        widget.onError?.call(error);
+      }
+    } catch (error) {
+      if (widget.onError == null && context.mounted) {
+        context.showSnackbar(
+          configuration: SnackbarConfiguration.error(
+            title: "Unexpected error has occurred: $error",
+          ),
+        );
+      } else {
+        widget.onError?.call(error);
+      }
+    }
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   Future<void> _signUp(BuildContext context) async {

@@ -4,6 +4,7 @@ import "package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/sizes/screen_size.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 
@@ -133,19 +134,20 @@ class DashboardShellStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveLayout(
-      transitionDuration: const Duration(milliseconds: 800),
-      primaryNavigation: boardNavigationRailPosition == NavigationRailPosition.left ? _buildRail() : null,
-      secondaryNavigation: boardNavigationRailPosition == NavigationRailPosition.right ? _buildRail() : null,
-      body: SlotLayout(
-        config: <Breakpoint, SlotLayoutConfig>{
-          _small: SlotLayout.from(
-            key: _bodySmallKey,
-            builder: (_) => Scaffold(
-              appBar: appBar ?? AppBar(),
-              drawer: Observer(
-                builder: (context) {
-                  return Drawer(
+    return LoadStateBuilder(
+      store: store,
+      loadedBuilder: (context) {
+        return AdaptiveLayout(
+          transitionDuration: const Duration(milliseconds: 800),
+          primaryNavigation: boardNavigationRailPosition == NavigationRailPosition.left ? _buildRail() : null,
+          secondaryNavigation: boardNavigationRailPosition == NavigationRailPosition.right ? _buildRail() : null,
+          body: SlotLayout(
+            config: <Breakpoint, SlotLayoutConfig>{
+              _small: SlotLayout.from(
+                key: _bodySmallKey,
+                builder: (_) => Scaffold(
+                  appBar: appBar ?? AppBar(),
+                  drawer: Drawer(
                     child: NavigationRail(
                       extended: true,
                       leading: leading?.call(context),
@@ -157,20 +159,20 @@ class DashboardShellStructure extends StatelessWidget {
                         Scaffold.of(context).closeDrawer();
                       },
                     ),
-                  );
-                },
+                  ),
+                  body: const AutoRouter(
+                    key: _primaryBodyKey,
+                  ),
+                ),
               ),
-              body: const AutoRouter(
-                key: _primaryBodyKey,
+              _mediumAndUp: SlotLayout.from(
+                key: const Key("Body Small and Up"),
+                builder: (_) => const AutoRouter(),
               ),
-            ),
+            },
           ),
-          _mediumAndUp: SlotLayout.from(
-            key: const Key("Body Small and Up"),
-            builder: (_) => const AutoRouter(),
-          ),
-        },
-      ),
+        );
+      },
     );
   }
 
@@ -180,45 +182,37 @@ class DashboardShellStructure extends StatelessWidget {
         _mediumAndUp: SlotLayout.from(
           key: _primaryLargeNavigationKey,
           inAnimation: AdaptiveScaffold.stayOnScreen,
-          builder: (_) => Observer(
-            builder: (context) {
-              return AdaptiveScaffold.standardNavigationRail(
-                width: store.isNavigationRailExtended ? _getNavigationRailWidth(context) : 72,
-                padding: EdgeInsets.zero,
-                selectedIndex: store.selectedIndex,
-                onDestinationSelected: _onDestinationSelected,
-                extended: store.isNavigationRailExtended,
-                leading: leading?.call(context),
-                destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
-                trailing: _buildTrailingStack(context),
-                backgroundColor: backgroundColor,
-                selectedIconTheme: selectedIconTheme,
-                unselectedIconTheme: unselectedIconTheme,
-                selectedLabelTextStyle: selectedLabelTextStyle,
-                unSelectedLabelTextStyle: unSelectedLabelTextStyle,
-              );
-            },
+          builder: (context) => AdaptiveScaffold.standardNavigationRail(
+            width: store.isNavigationRailExtended ? _getNavigationRailWidth(context) : 72,
+            padding: EdgeInsets.zero,
+            selectedIndex: store.selectedIndex,
+            onDestinationSelected: _onDestinationSelected,
+            extended: store.isNavigationRailExtended,
+            leading: leading?.call(context),
+            destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
+            trailing: _buildTrailingStack(context),
+            backgroundColor: backgroundColor,
+            selectedIconTheme: selectedIconTheme,
+            unselectedIconTheme: unselectedIconTheme,
+            selectedLabelTextStyle: selectedLabelTextStyle,
+            unSelectedLabelTextStyle: unSelectedLabelTextStyle,
           ),
         ),
         _medium: SlotLayout.from(
           inAnimation: AdaptiveScaffold.stayOnScreen,
           key: _primaryMediumNavigationKey,
-          builder: (_) => Observer(
-            builder: (context) {
-              return AdaptiveScaffold.standardNavigationRail(
-                padding: EdgeInsets.zero,
-                selectedIndex: store.selectedIndex,
-                leading: leading?.call(context),
-                trailing: _buildTrailingStack(context),
-                onDestinationSelected: _onDestinationSelected,
-                destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
-                backgroundColor: backgroundColor,
-                selectedIconTheme: selectedIconTheme,
-                unselectedIconTheme: unselectedIconTheme,
-                selectedLabelTextStyle: selectedLabelTextStyle,
-                unSelectedLabelTextStyle: unSelectedLabelTextStyle,
-              );
-            },
+          builder: (context) => AdaptiveScaffold.standardNavigationRail(
+            padding: EdgeInsets.zero,
+            selectedIndex: store.selectedIndex,
+            leading: leading?.call(context),
+            trailing: _buildTrailingStack(context),
+            onDestinationSelected: _onDestinationSelected,
+            destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
+            backgroundColor: backgroundColor,
+            selectedIconTheme: selectedIconTheme,
+            unselectedIconTheme: unselectedIconTheme,
+            selectedLabelTextStyle: selectedLabelTextStyle,
+            unSelectedLabelTextStyle: unSelectedLabelTextStyle,
           ),
         ),
       },

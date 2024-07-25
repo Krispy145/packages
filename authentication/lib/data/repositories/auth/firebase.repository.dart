@@ -63,50 +63,59 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
   @override
   Future<T?> reauthenticate(AuthParams params) async {
     UserCredential? userCredential;
-    switch (params.authType) {
-      case AuthType.google:
-        final credential = GoogleAuthProvider.credential(
-          accessToken: params.accessToken,
-          idToken: params.idToken,
-        );
-        userCredential = await _user!.reauthenticateWithCredential(credential);
-        break;
-      case AuthType.facebook:
-        final credential = FacebookAuthProvider.credential(params.accessToken!);
-        userCredential = await _user!.reauthenticateWithCredential(credential);
-        break;
-      case AuthType.apple:
-        final credential = AppleAuthProvider.credential(params.accessToken!);
-        userCredential = await _user!.reauthenticateWithCredential(credential);
-        break;
-      case AuthType.github:
-        final credential = GithubAuthProvider.credential(params.accessToken!);
-        userCredential = await _user!.reauthenticateWithCredential(credential);
-        break;
-      case AuthType.microsoft:
-        final credential = MicrosoftAuthProvider.credential(params.accessToken!);
-        userCredential = await _user!.reauthenticateWithCredential(credential);
-        break;
-      case AuthType.x:
-        final provider = TwitterAuthProvider();
-        await _user!.reauthenticateWithProvider(provider);
-        break;
+    try {
+      switch (params.authType) {
+        case AuthType.google:
+          final credential = GoogleAuthProvider.credential(
+            accessToken: params.accessToken,
+            idToken: params.idToken,
+          );
+          userCredential = await _user!.reauthenticateWithCredential(credential);
+          break;
+        case AuthType.facebook:
+          final credential = FacebookAuthProvider.credential(params.accessToken!);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
+          break;
+        case AuthType.apple:
+          final credential = AppleAuthProvider.credential(params.accessToken!);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
+          break;
+        case AuthType.github:
+          final credential = GithubAuthProvider.credential(params.accessToken!);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
+          break;
+        case AuthType.microsoft:
+          final credential = MicrosoftAuthProvider.credential(params.accessToken!);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
+          break;
+        case AuthType.x:
+          final provider = TwitterAuthProvider();
+          await _user!.reauthenticateWithProvider(provider);
+          break;
 
-      case AuthType.email:
-        final credential = EmailAuthProvider.credential(
-          email: params.email!,
-          password: params.password!,
-        );
-        userCredential = await _user!.reauthenticateWithCredential(credential);
-        break;
-      case AuthType.phone:
-      // TODO: Handle reauthenticate with phone.
-      case AuthType.anonymous:
-      // TODO: Handle reauthenticate with anonymous.
-      case AuthType.passwordless:
-      // TODO: Handle reauthenticate with passwordless.
-      case AuthType.empty:
-        break;
+        case AuthType.email:
+          final credential = EmailAuthProvider.credential(
+            email: params.email!,
+            password: params.password!,
+          );
+          userCredential = await _user!.reauthenticateWithCredential(credential);
+          break;
+        case AuthType.phone:
+        // TODO: Handle reauthenticate with phone.
+        case AuthType.anonymous:
+        // TODO: Handle reauthenticate with anonymous.
+        case AuthType.passwordless:
+        // TODO: Handle reauthenticate with passwordless.
+        case AuthType.empty:
+          break;
+      }
+    } catch (e) {
+      AppLogger.print(
+        "reauthenticate attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
     }
     if (userCredential == null) return null;
     final userModel = _userCredentialToUserModel(userCredential, params);
@@ -115,25 +124,44 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
 
   @override
   Future<T?> signInAnonymously(AuthParams params) async {
-    final userCredential = await _firebaseAuth.signInAnonymously();
-    final userModel = _userCredentialToUserModel(userCredential, params);
-    return userModel;
+    try {
+      final userCredential = await _firebaseAuth.signInAnonymously();
+      final userModel = _userCredentialToUserModel(userCredential, params);
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signInAnonymously attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
+      return null;
+    }
   }
 
   @override
   Future<T?> signInWithApple(AuthParams params) async {
-    final appleProvider = AppleAuthProvider()
-      ..addScope("email")
-      ..addScope("fullName");
-    UserCredential userCredential;
-    if (kIsWeb) {
-      userCredential = await _firebaseAuth.signInWithPopup(appleProvider);
-    } else {
-      userCredential = await _firebaseAuth.signInWithProvider(appleProvider);
-    }
+    try {
+      final appleProvider = AppleAuthProvider()
+        ..addScope("email")
+        ..addScope("fullName");
+      UserCredential userCredential;
+      if (kIsWeb) {
+        userCredential = await _firebaseAuth.signInWithPopup(appleProvider);
+      } else {
+        userCredential = await _firebaseAuth.signInWithProvider(appleProvider);
+      }
 
-    final userModel = _userCredentialToUserModel(userCredential, params);
-    return userModel;
+      final userModel = _userCredentialToUserModel(userCredential, params);
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signIn attempt -> ${params.authType}: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.toString());
+    }
   }
 
   @override
@@ -154,7 +182,8 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
-      throw AuthenticationException(e.toString());
+      _handleFirebaseAuthException(e);
+      return null;
     }
   }
 
@@ -178,21 +207,32 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
-      throw AuthenticationException(e.toString());
+      _handleFirebaseAuthException(e);
+      return null;
     }
   }
 
   @override
   Future<T?> signInWithGitHub(AuthParams params) async {
-    final githubAuthProvider = GithubAuthProvider();
-    UserCredential userCredential;
-    if (kIsWeb) {
-      userCredential = await _firebaseAuth.signInWithPopup(githubAuthProvider);
-    } else {
-      userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
+    try {
+      final githubAuthProvider = GithubAuthProvider();
+      UserCredential userCredential;
+      if (kIsWeb) {
+        userCredential = await _firebaseAuth.signInWithPopup(githubAuthProvider);
+      } else {
+        userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
+      }
+      final userModel = _userCredentialToUserModel(userCredential, params);
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signIn attempt -> ${params.authType}: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
+      return null;
     }
-    final userModel = _userCredentialToUserModel(userCredential, params);
-    return userModel;
   }
 
   @override
@@ -225,21 +265,32 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
-      throw AuthenticationException(e.toString());
+      _handleFirebaseAuthException(e);
+      return null;
     }
   }
 
   @override
   Future<T?> signInWithMicrosoft(AuthParams params) async {
-    final microsoftProvider = MicrosoftAuthProvider();
-    UserCredential userCredential;
-    if (kIsWeb) {
-      userCredential = await _firebaseAuth.signInWithPopup(microsoftProvider);
-    } else {
-      userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
+    try {
+      final microsoftProvider = MicrosoftAuthProvider();
+      UserCredential userCredential;
+      if (kIsWeb) {
+        userCredential = await _firebaseAuth.signInWithPopup(microsoftProvider);
+      } else {
+        userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
+      }
+      final userModel = _userCredentialToUserModel(userCredential, params);
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signIn attempt -> ${params.authType}: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
+      return null;
     }
-    final userModel = _userCredentialToUserModel(userCredential, params);
-    return userModel;
   }
 
   //TODO: add sendEmailLink function
@@ -248,19 +299,29 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
     String email,
     String emailLink,
   ) async {
-    final isEmailVerified = _firebaseAuth.isSignInWithEmailLink(emailLink);
-    if (!isEmailVerified) {
+    try {
+      final isEmailVerified = _firebaseAuth.isSignInWithEmailLink(emailLink);
+      if (!isEmailVerified) {
+        return null;
+      }
+      final userCredential = await _firebaseAuth.signInWithEmailLink(
+        email: email,
+        emailLink: emailLink,
+      );
+      final userModel = _userCredentialToUserModel(
+        userCredential,
+        AuthParams.passwordless(email: email, password: emailLink),
+      );
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signIn attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
       return null;
     }
-    final userCredential = await _firebaseAuth.signInWithEmailLink(
-      email: email,
-      emailLink: emailLink,
-    );
-    final userModel = _userCredentialToUserModel(
-      userCredential,
-      AuthParams.passwordless(email: email, password: emailLink),
-    );
-    return userModel;
   }
 
   //TODO: add verifyPhoneNumber function
@@ -269,28 +330,48 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final confirmationResult = await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
+    try {
+      final confirmationResult = await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
 
-    final userCredential = await confirmationResult.confirm(confirmationCode);
+      final userCredential = await confirmationResult.confirm(confirmationCode);
 
-    final userModel = _userCredentialToUserModel(
-      userCredential,
-      AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
-    );
-    return userModel;
+      final userModel = _userCredentialToUserModel(
+        userCredential,
+        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode),
+      );
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signIn attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
+      return null;
+    }
   }
 
   @override
   Future<T?> signInWithX(AuthParams params) async {
-    final xAuthProvider = TwitterAuthProvider();
-    UserCredential userCredential;
-    if (kIsWeb) {
-      userCredential = await _firebaseAuth.signInWithPopup(xAuthProvider);
-    } else {
-      userCredential = await _firebaseAuth.signInWithProvider(xAuthProvider);
+    try {
+      final xAuthProvider = TwitterAuthProvider();
+      UserCredential userCredential;
+      if (kIsWeb) {
+        userCredential = await _firebaseAuth.signInWithPopup(xAuthProvider);
+      } else {
+        userCredential = await _firebaseAuth.signInWithProvider(xAuthProvider);
+      }
+      final userModel = _userCredentialToUserModel(userCredential, params);
+      return userModel;
+    } catch (e) {
+      AppLogger.print(
+        "signIn attempt -> ${params.authType}: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      _handleFirebaseAuthException(e);
+      return null;
     }
-    final userModel = _userCredentialToUserModel(userCredential, params);
-    return userModel;
   }
 
   @override
@@ -327,7 +408,8 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         [AuthenticationLoggers.authentication],
         type: LoggerType.error,
       );
-      throw AuthenticationException(e.message.toString());
+      _handleFirebaseAuthException(e);
+      return null;
     } catch (e) {
       AppLogger.print(
         "signUp attempt -> $e",
@@ -387,5 +469,33 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       updatedAt: params.updatedAt ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());
+  }
+
+  void _handleFirebaseAuthException(Object e) {
+    if (e is FirebaseAuthException) {
+      if (e.code == "user-not-found") {
+        throw const AuthenticationException("User not found");
+      }
+      if (e.code == "wrong-password") {
+        throw const AuthenticationException("Wrong password");
+      }
+      if (e.code == "user-disabled") {
+        throw const AuthenticationException("User is disabled");
+      }
+      if (e.code == "too-many-requests") {
+        throw const AuthenticationException("Too many requests");
+      }
+      if (e.code == "operation-not-allowed") {
+        throw const AuthenticationException("Requested operation not allowed");
+      }
+      if (e.code == "invalid-email") {
+        throw const AuthenticationException("Invalid email");
+      }
+      if (e.code == "invalid-credential") {
+        throw const AuthenticationException("Email or password is incorrect");
+      }
+      throw AuthenticationException(e.message.toString());
+    }
+    throw AuthenticationException(e.toString());
   }
 }

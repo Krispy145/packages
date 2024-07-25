@@ -269,6 +269,7 @@ class AuthenticationRepository<T extends UserModel> {
     await userDataRepository.updateUserModel(
       userModel: currentUserModelStream.value!,
     );
+    await userDataRepository.initPermissions(currentUserModelStream.value!.id);
     return _authenticationDataRepository.reauthenticate(params);
   }
 

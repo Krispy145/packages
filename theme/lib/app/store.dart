@@ -154,7 +154,7 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
         type = ThemeStateType.firestore,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
-    _loadFirestoreTheme(baseThemeId: baseThemeId);
+    _loadFirestoreTheme(baseThemeId: baseThemeId, componentThemesId: componentThemesId);
   }
 
   _ThemeStateStore.digitalOasis({

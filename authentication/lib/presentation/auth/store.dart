@@ -69,7 +69,7 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
   T? userModel;
 
   @observable
-  AuthAction authAction = AuthAction.signUp;
+  AuthAction authAction = AuthAction.signIn;
 
   @action
   void toggleSignIn() {
