@@ -148,15 +148,19 @@ class DashboardShellStructure extends StatelessWidget {
                 builder: (_) => Scaffold(
                   appBar: appBar ?? AppBar(),
                   drawer: Drawer(
-                    child: NavigationRail(
-                      extended: true,
-                      leading: leading?.call(context),
-                      trailing: _buildTrailingStack(context),
-                      selectedIndex: store.selectedIndex,
-                      destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
-                      onDestinationSelected: (value) {
-                        _onDestinationSelected(value);
-                        Scaffold.of(context).closeDrawer();
+                    child: Observer(
+                      builder: (context) {
+                        return NavigationRail(
+                          extended: true,
+                          leading: leading?.call(context),
+                          trailing: _buildTrailingStack(context),
+                          selectedIndex: store.selectedIndex,
+                          destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
+                          onDestinationSelected: (value) {
+                            _onDestinationSelected(value);
+                            Scaffold.of(context).closeDrawer();
+                          },
+                        );
                       },
                     ),
                   ),
@@ -182,37 +186,41 @@ class DashboardShellStructure extends StatelessWidget {
         _mediumAndUp: SlotLayout.from(
           key: _primaryLargeNavigationKey,
           inAnimation: AdaptiveScaffold.stayOnScreen,
-          builder: (context) => AdaptiveScaffold.standardNavigationRail(
-            width: store.isNavigationRailExtended ? _getNavigationRailWidth(context) : 72,
-            padding: EdgeInsets.zero,
-            selectedIndex: store.selectedIndex,
-            onDestinationSelected: _onDestinationSelected,
-            extended: store.isNavigationRailExtended,
-            leading: leading?.call(context),
-            destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
-            trailing: _buildTrailingStack(context),
-            backgroundColor: backgroundColor,
-            selectedIconTheme: selectedIconTheme,
-            unselectedIconTheme: unselectedIconTheme,
-            selectedLabelTextStyle: selectedLabelTextStyle,
-            unSelectedLabelTextStyle: unSelectedLabelTextStyle,
+          builder: (context) => Observer(
+            builder: (context) => AdaptiveScaffold.standardNavigationRail(
+              width: store.isNavigationRailExtended ? _getNavigationRailWidth(context) : 72,
+              padding: EdgeInsets.zero,
+              selectedIndex: store.selectedIndex,
+              onDestinationSelected: _onDestinationSelected,
+              extended: store.isNavigationRailExtended,
+              leading: leading?.call(context),
+              destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
+              trailing: _buildTrailingStack(context),
+              backgroundColor: backgroundColor,
+              selectedIconTheme: selectedIconTheme,
+              unselectedIconTheme: unselectedIconTheme,
+              selectedLabelTextStyle: selectedLabelTextStyle,
+              unSelectedLabelTextStyle: unSelectedLabelTextStyle,
+            ),
           ),
         ),
         _medium: SlotLayout.from(
           inAnimation: AdaptiveScaffold.stayOnScreen,
           key: _primaryMediumNavigationKey,
-          builder: (context) => AdaptiveScaffold.standardNavigationRail(
-            padding: EdgeInsets.zero,
-            selectedIndex: store.selectedIndex,
-            leading: leading?.call(context),
-            trailing: _buildTrailingStack(context),
-            onDestinationSelected: _onDestinationSelected,
-            destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
-            backgroundColor: backgroundColor,
-            selectedIconTheme: selectedIconTheme,
-            unselectedIconTheme: unselectedIconTheme,
-            selectedLabelTextStyle: selectedLabelTextStyle,
-            unSelectedLabelTextStyle: unSelectedLabelTextStyle,
+          builder: (context) => Observer(
+            builder: (context) => AdaptiveScaffold.standardNavigationRail(
+              padding: EdgeInsets.zero,
+              selectedIndex: store.selectedIndex,
+              leading: leading?.call(context),
+              trailing: _buildTrailingStack(context),
+              onDestinationSelected: _onDestinationSelected,
+              destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
+              backgroundColor: backgroundColor,
+              selectedIconTheme: selectedIconTheme,
+              unselectedIconTheme: unselectedIconTheme,
+              selectedLabelTextStyle: selectedLabelTextStyle,
+              unSelectedLabelTextStyle: unSelectedLabelTextStyle,
+            ),
           ),
         ),
       },
@@ -220,8 +228,8 @@ class DashboardShellStructure extends StatelessWidget {
   }
 
   void _onDestinationSelected(int value) {
-    onDestinationSelected?.call(value);
     store.selectedIndex = value;
+    onDestinationSelected?.call(value);
   }
 
   Widget _buildTrailingStack(BuildContext context) {
