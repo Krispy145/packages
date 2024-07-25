@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Define the packages and projects lists
-packages=()
+packages=(
+    "media"
+)
+
 projects=(
-    # "fellowship" 
-    "thrift_findr"
+    "fellowship" 
+    # "thrift_findr"
 )
 
 # Define the project suffixes
@@ -16,19 +19,19 @@ suffixes=(
 
 # Define the commands to run in each directory
 commands=(
-    # "flutter clean" 
-    # "flutter pub get" 
+    "flutter clean" 
+    "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
     # "git pull origin main"
-    "git config pull.rebase false"
-    "git pull origin tags-refactor"
+    # "git config pull.rebase false"
+    # "git pull origin tags-refactor"
     # "git merge origin tags-refactor"
 )
 
 # Commands to run in packages top level directory
 packagesCommands=(
-    "git config pull.rebase false"
-    "git pull origin tags-refactor"
+    # "git config pull.rebase false"
+    # "git pull origin tags-refactor"
     # "git merge origin main"
 )
 

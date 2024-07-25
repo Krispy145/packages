@@ -1,81 +1,87 @@
-import "package:utilities/data/sources/paginated.dart";
-import "package:utilities/data/sources/source.dart";
-import "package:utilities/helpers/tuples.dart";
-import "package:youtube/data/enums/video_rating.dart";
+// import "package:utilities/data/sources/paginated.dart";
+// import "package:utilities/data/sources/source.dart";
+// import "package:utilities/helpers/tuples.dart";
+// import "package:youtube/data/enums/video_rating.dart";
 import "package:youtube/data/models/video_model.dart";
-import "package:youtube/data/repositories/video.repository.dart";
-import "package:youtube/data/sources/video/_source.dart";
+// import "package:youtube/data/repositories/video.repository.dart";
+// import "package:youtube/data/sources/video/_source.dart";
+import "package:youtube_explode_dart/youtube_explode_dart.dart";
 
-import "/data/repositories/_repositories.dart";
+// import "/data/repositories/_repositories.dart";
 
 /// [VideoRepository] is a class that defines the basic CRUD operations for the [VideoModel] entity.
 class VideoRepository {
-  final VideoDataRepository _videoDataRepository = DataRepositories.instance.video;
+  final youtubeExplode = YoutubeExplode();
 
-  final String apiKey;
+  // final VideoDataRepository _videoDataRepository = DataRepositories.instance.video;
 
-  /// [VideoRepository] constructor.
-  VideoRepository(this.apiKey);
+  // final String apiKey;
 
-  //* VideoModel Data Source Type
-  late final _source = ApiVideoDataSource(apiKey);
+  // /// [VideoRepository] constructor.
+  // VideoRepository(this.apiKey);
 
-  ResponseModel? _lastResponse;
+  // //* VideoModel Data Source Type
+  // late final _source = ApiVideoDataSource(apiKey);
 
-  /// [getMultipleVideoModelsPaged] fetches a page of [VideoModel]s from the data source.
-  Future<Pair<RequestResponse, List<VideoModel?>>> getMultipleVideoModelsPaged({int? limit, bool refresh = false, required List<String> videoIds}) async {
-    final _response = await _videoDataRepository.getPagedVideoModels(
-      source: _source,
-      limit: limit,
-      lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {"id": videoIds.join(",")},
-    );
-    _lastResponse = _response.second.first;
-    final _videos = _response.second.second;
-    return Pair(_response.first, _videos);
-  }
+  // ResponseModel? _lastResponse;
 
-  /// [getMostPopularVideosPaged] fetches a page of [VideoModel]s from the data source.
-  Future<Pair<RequestResponse, List<VideoModel?>>> getMostPopularVideosPaged({int? limit, bool refresh = false, required String videoCategoryId}) async {
-    final _response = await _videoDataRepository.getPagedVideoModels(
-      source: _source,
-      limit: limit,
-      lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {
-        "videoCategoryId": videoCategoryId,
-      },
-    );
-    _lastResponse = _response.second.first;
-    final _videos = _response.second.second;
-    return Pair(_response.first, _videos);
-  }
+  // /// [getMultipleVideoModelsPaged] fetches a page of [VideoModel]s from the data source.
+  // Future<Pair<RequestResponse, List<VideoModel?>>> getMultipleVideoModelsPaged({int? limit, bool refresh = false, required List<String> videoIds}) async {
+  //   final _response = await _videoDataRepository.getPagedVideoModels(
+  //     source: _source,
+  //     limit: limit,
+  //     lastResponse: refresh ? null : _lastResponse,
+  //     queryParameters: {"id": videoIds.join(",")},
+  //   );
+  //   _lastResponse = _response.second.first;
+  //   final _videos = _response.second.second;
+  //   return Pair(_response.first, _videos);
+  // }
 
-  /// [getMyLikedVideos] fetches a page of [VideoModel]s from the data source.
-  Future<Pair<RequestResponse, List<VideoModel?>>> getMyLikedVideos({
-    int? limit,
-    bool refresh = false,
-    required VideoRating videoRating,
-  }) async {
-    final _response = await _videoDataRepository.getPagedVideoModels(
-      source: _source,
-      limit: limit,
-      lastResponse: refresh ? null : _lastResponse,
-      queryParameters: {
-        "myRating": videoRating.name,
-      },
-    );
-    _lastResponse = _response.second.first;
-    final _videos = _response.second.second;
-    return Pair(_response.first, _videos);
-  }
+  // /// [getMostPopularVideosPaged] fetches a page of [VideoModel]s from the data source.
+  // Future<Pair<RequestResponse, List<VideoModel?>>> getMostPopularVideosPaged({int? limit, bool refresh = false, required String videoCategoryId}) async {
+  //   final _response = await _videoDataRepository.getPagedVideoModels(
+  //     source: _source,
+  //     limit: limit,
+  //     lastResponse: refresh ? null : _lastResponse,
+  //     queryParameters: {
+  //       "videoCategoryId": videoCategoryId,
+  //     },
+  //   );
+  //   _lastResponse = _response.second.first;
+  //   final _videos = _response.second.second;
+  //   return Pair(_response.first, _videos);
+  // }
 
-  /// [getVideoModel] fetches a single [VideoModel] from the data source.
-  Future<Pair<RequestResponse, VideoModel?>> getVideoModel(String id) {
-    return _videoDataRepository.getVideoModel(
-      source: _source,
-      id: id,
-    );
-  }
+  // /// [getMyLikedVideos] fetches a page of [VideoModel]s from the data source.
+  // Future<Pair<RequestResponse, List<VideoModel?>>> getMyLikedVideos({
+  //   int? limit,
+  //   bool refresh = false,
+  //   required VideoRating videoRating,
+  // }) async {
+  //   final _response = await _videoDataRepository.getPagedVideoModels(
+  //     source: _source,
+  //     limit: limit,
+  //     lastResponse: refresh ? null : _lastResponse,
+  //     queryParameters: {
+  //       "myRating": videoRating.name,
+  //     },
+  //   );
+  //   _lastResponse = _response.second.first;
+  //   final _videos = _response.second.second;
+  //   return Pair(_response.first, _videos);
+  // }
+
+  // /// [getVideoModel] fetches a single [VideoModel] from the data source.
+  // Future<Pair<RequestResponse, VideoModel?>> getVideoModel(String id) => _videoDataRepository.getVideoModel(source: _source, id: id);
+
+  Future<Video> getYTExplodeVideo(String id) => youtubeExplode.videos.get(id);
+  Future<List<Video>> searchYTExplodeVideos(String searchQuery, {SearchFilter filter = TypeFilters.video}) => youtubeExplode.search.search(searchQuery, filter: filter);
+  Future<Video?> getYTExplodeLatestVideo(String channelId) async => (await youtubeExplode.channels.getUploadsFromPage(channelId)).firstOrNull;
+  Future<StreamManifest> getYTExplodeStreamManifest(String id) => youtubeExplode.videos.streams.getManifest(id, fullManifest: true);
+
+  Future<Playlist> getYTExplodePlaylist(String id) => youtubeExplode.playlists.get(id);
+  Stream<Video> getYTExplodePlaylistVideosStream(String id) => youtubeExplode.playlists.getVideos(id);
 
 // list (by video ID) ✅
 // -- This example retrieves information about a specific video. It uses the id parameter to identify the video.

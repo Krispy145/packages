@@ -13,22 +13,39 @@ mixin _$VideoStore on _VideoStore, Store {
       Atom(name: '_VideoStore.currentVideo', context: context);
 
   @override
-  VideoModel? get currentVideo {
+  Video? get currentVideo {
     _$currentVideoAtom.reportRead();
     return super.currentVideo;
   }
 
   @override
-  set currentVideo(VideoModel? value) {
+  set currentVideo(Video? value) {
     _$currentVideoAtom.reportWrite(value, super.currentVideo, () {
       super.currentVideo = value;
+    });
+  }
+
+  late final _$streamManifestAtom =
+      Atom(name: '_VideoStore.streamManifest', context: context);
+
+  @override
+  StreamManifest? get streamManifest {
+    _$streamManifestAtom.reportRead();
+    return super.streamManifest;
+  }
+
+  @override
+  set streamManifest(StreamManifest? value) {
+    _$streamManifestAtom.reportWrite(value, super.streamManifest, () {
+      super.streamManifest = value;
     });
   }
 
   @override
   String toString() {
     return '''
-currentVideo: ${currentVideo}
+currentVideo: ${currentVideo},
+streamManifest: ${streamManifest}
     ''';
   }
 }
