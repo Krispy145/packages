@@ -13,6 +13,11 @@ import "package:youtube_explode_dart/youtube_explode_dart.dart";
 class VideoRepository {
   final youtubeExplode = YoutubeExplode();
 
+  Future<Video> getYTExplodeVideo(String id) => youtubeExplode.videos.get(id);
+  Future<List<Video>> searchYTExplodeVideos(String searchQuery, {SearchFilter filter = TypeFilters.video}) => youtubeExplode.search.search(searchQuery, filter: filter);
+  Future<Video?> getYTExplodeLatestVideo(String channelId) async => (await youtubeExplode.channels.getUploadsFromPage(channelId)).firstOrNull;
+  Future<StreamManifest> getYTExplodeStreamManifest(String id) => youtubeExplode.videos.streams.getManifest(id, fullManifest: true);
+
   // final VideoDataRepository _videoDataRepository = DataRepositories.instance.video;
 
   // final String apiKey;
@@ -74,14 +79,6 @@ class VideoRepository {
 
   // /// [getVideoModel] fetches a single [VideoModel] from the data source.
   // Future<Pair<RequestResponse, VideoModel?>> getVideoModel(String id) => _videoDataRepository.getVideoModel(source: _source, id: id);
-
-  Future<Video> getYTExplodeVideo(String id) => youtubeExplode.videos.get(id);
-  Future<List<Video>> searchYTExplodeVideos(String searchQuery, {SearchFilter filter = TypeFilters.video}) => youtubeExplode.search.search(searchQuery, filter: filter);
-  Future<Video?> getYTExplodeLatestVideo(String channelId) async => (await youtubeExplode.channels.getUploadsFromPage(channelId)).firstOrNull;
-  Future<StreamManifest> getYTExplodeStreamManifest(String id) => youtubeExplode.videos.streams.getManifest(id, fullManifest: true);
-
-  Future<Playlist> getYTExplodePlaylist(String id) => youtubeExplode.playlists.get(id);
-  Stream<Video> getYTExplodePlaylistVideosStream(String id) => youtubeExplode.playlists.getVideos(id);
 
 // list (by video ID) ✅
 // -- This example retrieves information about a specific video. It uses the id parameter to identify the video.
