@@ -163,7 +163,7 @@ class AuthenticationRepository<T extends UserModel> {
           changedUserModel = await _authenticationDataRepository.signInWithX(params);
         case AuthType.empty:
           AppLogger.print(
-            "AuthType.empty not implemented for signIn",
+            "${params.authType.name} not implemented for signIn",
             [AuthenticationLoggers.authentication],
             type: LoggerType.error,
           );
