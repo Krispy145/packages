@@ -31,7 +31,7 @@ class ThemedMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadStateBuilder(
-      viewStore: themeStore,
+      store: themeStore,
       loadedBuilder: (context) => Observer(
         builder: (context) {
           return ResponsiveBreakpoints.builder(

@@ -12,10 +12,11 @@ class PaginatedListStore<T> = _PaginatedListStore<T> with _$PaginatedListStore<T
 /// [_PaginatedListStore] is a class that manages the state of the topTips feature.
 abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
   final int limit;
+  final bool shouldLoadMoreInitially;
 
   /// [_PaginatedListStore] constructor.
-  _PaginatedListStore({this.limit = 12}) {
-    loadMore(limit: limit);
+  _PaginatedListStore({this.limit = 12, this.shouldLoadMoreInitially = true}) {
+    if (shouldLoadMoreInitially) loadMore(limit: limit);
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         loadMore(limit: limit);
@@ -26,10 +27,6 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
 
   @observable
   RequestResponse? requestResponse;
-
-  /// [results] is an observable list of [T]s.
-  @override
-  ObservableList<T> results = ObservableList<T>();
 
   @action
   Future<void> refresh() async {

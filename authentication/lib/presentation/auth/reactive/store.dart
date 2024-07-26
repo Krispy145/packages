@@ -84,11 +84,21 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   }
 
   @observable
-  AuthAction authAction = AuthAction.signUp;
+  AuthAction authAction = AuthAction.signIn;
 
   @action
   void toggleSignIn() {
     authAction = authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+    if (codeSource != null && authAction == AuthAction.signUp) {
+      form.addAll({
+        codeKey: FormControl<String>(
+          validators: [
+            Validators.required,
+          ],
+        ),
+      });
+      repository.setCodeSource(codeSource!);
+    }
   }
 
   final idKey = "id";
@@ -114,18 +124,23 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
         Validators.minLength(8),
       ],
     ),
-    codeKey: FormControl<String?>(),
   });
 
   @action
   Future<void> init() async {
     try {
       setLoading();
-      form.addAll(additionalFields?.controls ?? {});
-      // Set code source if provided
-      if (codeSource != null) {
+      if (codeSource != null && authAction == AuthAction.signUp) {
+        form.addAll({
+          codeKey: FormControl<String>(
+            validators: [
+              Validators.required,
+            ],
+          ),
+        });
         repository.setCodeSource(codeSource!);
       }
+      form.addAll(additionalFields?.controls ?? {});
 
       // Handle different auth builder types
       switch (authBuilderType) {
@@ -173,7 +188,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
       );
     var params = AuthParams.fromMap(paramsMap);
     if (codeSource != null) {
-      params = params.copyWith(code: form.control(codeKey).value as String?);
+      params = params.copyWith(code: form.control(codeKey).value as String);
     }
     final result = await repository.signUpWithEmail(
       params: params,

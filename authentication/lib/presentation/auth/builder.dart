@@ -42,7 +42,7 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LoadStateBuilder(
-      viewStore: store,
+      store: store,
       emptyBuilder: (context, empty) => _AuthenticateView(
         store: store,
         additionalFields: additionalFields,

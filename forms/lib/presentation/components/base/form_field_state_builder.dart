@@ -7,8 +7,8 @@
 
 // /// [FormStateBuilder] is a widget that will be used to build the UI based on the load state.
 // class FormStateBuilder<T> extends SingleChildStatelessWidget {
-//   /// [viewStore] is an instance of [BaseFormFieldStore].
-//   final BaseFormFieldStore<T> viewStore;
+//   /// [store] is an instance of [BaseFormFieldStore].
+//   final BaseFormFieldStore<T> store;
 
 //   ///
 //   final WidgetBuilder fieldBuilder;
@@ -36,7 +36,7 @@
 //   /// [FormStateBuilder] constructor
 //   const FormStateBuilder({
 //     super.key,
-//     required this.viewStore,
+//     required this.store,
 //     required this.errorBuilder,
 //     this.emptyBuilder,
 //     required this.fieldBuilder,
@@ -91,7 +91,7 @@
 //   Widget build(BuildContext context) {
 //     // return Observer(
 //     //   builder: (context) {
-//     //     switch (viewStore.state) {
+//     //     switch (store.state) {
 //     //       case ValidFormFieldState():
 //     //         return validBuilder(context);
 //     //       case EmptyFormFieldState():

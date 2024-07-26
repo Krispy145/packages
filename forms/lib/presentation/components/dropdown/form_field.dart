@@ -15,7 +15,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
   @override
   Widget buildField(BuildContext context) {
     return LoadStateBuilder(
-      viewStore: store,
+      store: store,
       errorBuilder: (context, error) => Text(error),
       loadedBuilder: (context) {
         return DropdownSearch<T>(
@@ -31,11 +31,14 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
             isFilterOnline: true,
             showSelectedItems: true,
             showSearchBox: store.showSearch,
+            listViewProps: const ListViewProps(
+              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            ),
             itemBuilder: (context, item, isSelected) {
               return ListTile(
                 leading: store.leadingBuilder?.call(item),
                 title: Text(store.labelBuilder(item)),
-                subtitle: Text(store.subtitleBuilder?.call(item) ?? ""),
+                subtitle: store.subtitleBuilder != null ? Text(store.subtitleBuilder!(item)!) : null,
                 trailing: isSelected ? const Icon(Icons.check) : null,
               );
             },

@@ -74,7 +74,7 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: LoadStateBuilder(
-                viewStore: store,
+                store: store,
                 emptyBuilder: (context, empty) {
                   _showSnackBarRequestResponse(context);
                   return Center(child: WarningMessage.empty(title: empty));

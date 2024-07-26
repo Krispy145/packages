@@ -70,12 +70,12 @@ class UserDataRepository<T extends UserModel> {
 
   Future<RequestResponse> initPermissions(UUID userId) async {
     if (hasPermissions) {
-      await permissionDataRepository(userId).getPermissionModel().then((value) {
-        if (value.first == RequestResponse.success) {
-          currentPermissionModelStream.add(value.second);
-        }
-        return value.first;
-      });
+      final result = await permissionDataRepository(userId).getPermissionModel();
+
+      if (result.first == RequestResponse.success) {
+        currentPermissionModelStream.add(result.second);
+      }
+      return result.first;
     }
     return RequestResponse.success;
   }

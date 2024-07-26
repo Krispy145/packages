@@ -2,12 +2,12 @@
 
 # Define the packages and projects lists
 packages=(
-    "media"
+    # "media"
 )
 
 projects=(
-    "fellowship" 
-    # "thrift_findr"
+    # "fellowship" 
+    "thrift_findr"
 )
 
 # Define the project suffixes
@@ -23,15 +23,15 @@ commands=(
     "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
     # "git pull origin main"
-    # "git config pull.rebase false"
-    # "git pull origin tags-refactor"
+    "git config pull.rebase false"
+    "git pull origin clean-up"
     # "git merge origin tags-refactor"
 )
 
 # Commands to run in packages top level directory
 packagesCommands=(
-    # "git config pull.rebase false"
-    # "git pull origin tags-refactor"
+    "git config pull.rebase false"
+    "git pull origin clean-up"
     # "git merge origin main"
 )
 

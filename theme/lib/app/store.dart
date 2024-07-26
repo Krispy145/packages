@@ -12,6 +12,7 @@ import "package:theme/domain/repositories/base.repository.dart";
 import "package:theme/domain/repositories/digital_oasis.repository.dart";
 import "package:theme/domain/repositories/theme.repository.dart";
 import "package:theme/utils/loggers.dart";
+import "package:utilities/data/typedefs.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
@@ -144,15 +145,16 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
   }
 
   _ThemeStateStore.firestore({
-    String? baseThemeTableName,
-    String? componentThemesTableName,
-    this.id,
-  })  : baseThemeUrlPath = baseThemeTableName ?? "baseThemes",
-        componentThemesUrlPath = componentThemesTableName ?? "componentsThemes",
+    required UUID baseThemeId,
+    String? baseThemeCollectionName,
+    String? componentThemesCollectionName,
+    UUID? componentThemesId,
+  })  : baseThemeUrlPath = baseThemeCollectionName ?? "baseThemes",
+        componentThemesUrlPath = componentThemesCollectionName ?? "componentsThemes",
         type = ThemeStateType.firestore,
         baseThemeAssetPath = null,
         componentThemesAssetPath = null {
-    _loadFirestoreTheme(id: id ?? primaryThemeId);
+    _loadFirestoreTheme(baseThemeId: baseThemeId, componentThemesId: componentThemesId);
   }
 
   _ThemeStateStore.digitalOasis({
@@ -462,14 +464,14 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     setLoaded();
   }
 
-  Future<void> _loadFirestoreTheme({String? id}) async {
+  Future<void> _loadFirestoreTheme({required UUID baseThemeId, UUID? componentThemesId}) async {
     setLoading();
     _setRepository(
       baseThemeConfiguration: ThemeConfiguration.firestore(collectionName: baseThemeUrlPath!),
       componentThemesConfiguration: ThemeConfiguration.firestore(collectionName: componentThemesUrlPath!),
     );
-    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+    baseThemeModel = await repository!.fetchTheme(id: baseThemeId);
+    if (componentThemesId != null) componentThemesModel = await repository!.fetchComponentsTheme(id: componentThemesId);
     AppLogger.print(
       "ThemeModel - Firestore: $baseThemeModel",
       [ThemeLoggers.theme],
