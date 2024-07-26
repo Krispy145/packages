@@ -5,16 +5,43 @@ import 'package:maps/presentation/markers/base_marker.dart';
 class IconMarker<T extends MarkerModel> extends BaseMarker {
   final IconData icon;
   final double? iconSize;
+  final Color? backgroundColor;
+  final Color? iconColor;
   IconMarker({
     required super.markerModel,
     required super.isSelected,
     super.onMarkerTapped,
     required this.icon,
     this.iconSize,
-  }) : super(
+    this.iconColor,
+  })  : backgroundColor = null,
+        super(
           child: Icon(
             icon,
             size: iconSize ?? 36,
+            color: iconColor,
+          ),
+        );
+
+  IconMarker.circle({
+    required super.markerModel,
+    required super.isSelected,
+    super.onMarkerTapped,
+    required this.icon,
+    this.iconSize,
+    this.backgroundColor,
+    this.iconColor,
+  }) : super(
+          child: CircleAvatar(
+            backgroundColor: backgroundColor,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Icon(
+                icon,
+                size: iconSize ?? 24,
+                color: iconColor,
+              ),
+            ),
           ),
         );
 
