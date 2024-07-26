@@ -123,34 +123,37 @@ class _DOListTileState extends State<DOListTile> {
   Widget _buildCenter() {
     if (widget.expandWidth) {
       return Expanded(
-        child: Padding(
-          padding: widget.centrePadding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(widget.title, style: widget.titleStyle),
-              if (widget.subtitle != null) ...[
-                Sizes.s.spacer(),
-                Text(
-                  widget.subtitle!,
-                  style: widget.subtitleStyle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ],
-          ),
-        ),
+        child: _CenterListWidget(widget: widget),
       );
     }
+    return Flexible(
+      child: _CenterListWidget(widget: widget),
+    );
+  }
+}
+
+class _CenterListWidget extends StatelessWidget {
+  const _CenterListWidget({
+    required this.widget,
+  });
+
+  final DOListTile widget;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: widget.centrePadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(widget.title, style: widget.titleStyle),
+          Text(
+            widget.title,
+            style: widget.titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
           if (widget.subtitle != null) ...[
-            Sizes.s.spacer(),
+            Sizes.xxs.spacer(),
             Text(
               widget.subtitle!,
               style: widget.subtitleStyle,
