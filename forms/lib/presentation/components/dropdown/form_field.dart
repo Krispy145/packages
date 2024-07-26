@@ -2,6 +2,7 @@ import "package:dropdown_search/dropdown_search.dart";
 import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/form_field.dart";
 import "package:utilities/widgets/load_state/builder.dart";
+import "package:widgets/list_tile.dart";
 
 import "store.dart";
 
@@ -35,10 +36,10 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             ),
             itemBuilder: (context, item, isSelected) {
-              return ListTile(
+              return DOListTile(
                 leading: store.leadingBuilder?.call(item),
-                title: Text(store.labelBuilder(item)),
-                subtitle: store.subtitleBuilder != null ? Text(store.subtitleBuilder!(item)!) : null,
+                title: store.labelBuilder(item),
+                subtitle: store.subtitleBuilder?.call(item),
                 trailing: isSelected ? const Icon(Icons.check) : null,
               );
             },
