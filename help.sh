@@ -6,7 +6,7 @@ packages=(
 )
 
 projects=(
-    # "fellowship" 
+    "fellowship" 
     "thrift_findr"
 )
 
@@ -19,8 +19,8 @@ suffixes=(
 
 # Define the commands to run in each directory
 commands=(
-    "flutter clean" 
-    "flutter pub get" 
+    # "flutter clean" 
+    # "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
     # "git pull origin main"
     "git config pull.rebase false"
