@@ -56,7 +56,7 @@ class PlaylistItemRepository {
   // }
 
   /// [getPagedPlaylistItems] fetches a page of [PlaylistModel]s from the data source.
-  Future<Pair<RequestResponse, List<PlaylistItemModel?>>> getPagedPlaylistItems({int? limit, bool refresh = false, String? playlistId}) async {
+  Future<Pair<RequestResponse, List<PlaylistItemModel?>>> getPagedPlaylistItems({int? limit, bool refresh = false, required String playlistId}) async {
     final _response = await _playlistItemDataRepository.getPagedPlaylistItemModels(
       source: _source,
       limit: limit,

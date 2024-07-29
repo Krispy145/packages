@@ -17,6 +17,14 @@ class VideoRepository {
   Future<List<Video>> searchYTExplodeVideos(String searchQuery, {SearchFilter filter = TypeFilters.video}) => youtubeExplode.search.search(searchQuery, filter: filter);
   Future<Video?> getYTExplodeLatestVideo(String channelId) async => (await youtubeExplode.channels.getUploadsFromPage(channelId)).firstOrNull;
   Future<StreamManifest> getYTExplodeStreamManifest(String id) => youtubeExplode.videos.streams.getManifest(id, fullManifest: true);
+  // Future<List<Video>> getYTExplodePlaylistVideos(String id) async {
+  //   final videos = youtubeExplode.playlists.getVideos(id);
+  //   return videos.toList();
+  // }
+
+  // Stream<Video> getYTExplodePlaylistVideosStream(String id) {
+  //   return youtubeExplode.playlists.getVideos(id);
+  // }
 
   // final VideoDataRepository _videoDataRepository = DataRepositories.instance.video;
 

@@ -14,7 +14,9 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
             return PlaylistModel.fromMap(map);
           },
           convertDataTypeToMap: (data) => data.toMap(),
-          convertResponseTypeFromMap: (data) => PagedResponse.fromJson(data, PlaylistModel.fromMap),
+          convertResponseTypeFromMap: (data) {
+            return PagedResponse.fromJson(data, PlaylistModel.fromMap);
+          },
           getNexPageParametersFromResponse: (lastResponse, size, orderBy) {
             final parameters = <String, dynamic>{};
             if (lastResponse != null) {

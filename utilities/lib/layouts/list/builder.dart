@@ -23,6 +23,7 @@ class ListBuilder<T> extends StatelessWidget {
   final bool slivers;
   final int? maxItemsCutOff;
   final bool shrinkWrap;
+  final Axis scrollDirection;
 
   static const double _defaultListEdgeSpacing = 8;
 
@@ -40,7 +41,9 @@ class ListBuilder<T> extends StatelessWidget {
     this.errorBuilder,
     this.maxItemsCutOff,
     this.shrinkWrap = false,
+    this.scrollDirection = Axis.vertical,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
+        assert(!(slivers && scrollDirection == Axis.horizontal), "Cannot use horizontal scroll direction with slivers"),
         viewType = ListViewType.listView,
         gridDelegate = null;
 
@@ -60,7 +63,8 @@ class ListBuilder<T> extends StatelessWidget {
     this.maxItemsCutOff,
     this.shrinkWrap = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
-        viewType = ListViewType.gridView;
+        viewType = ListViewType.gridView,
+        scrollDirection = Axis.vertical;
 
   /// [ListBuilder] constructor.
   ListBuilder.fromType({
@@ -93,7 +97,8 @@ class ListBuilder<T> extends StatelessWidget {
         assert(
           !(slivers && shrinkWrap),
           "Cannot use shrink wrap with slivers",
-        );
+        ),
+        scrollDirection = Axis.vertical;
 
   @override
   Widget build(BuildContext context) {
@@ -179,6 +184,7 @@ class ListBuilder<T> extends StatelessWidget {
               itemBuilder: loadingOrItemBuilder,
             )
           : ListView.builder(
+              scrollDirection: scrollDirection,
               padding: padding,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: itemCount,

@@ -13,7 +13,7 @@ class PlaylistItemDataRepository {
     ResponseModel? lastResponse,
     Map<String, dynamic>? queryParameters,
   }) async {
-    return await source.getPage(size: limit, lastResponse: lastResponse, queryParameters: queryParameters);
+    return source.getPage(size: limit, lastResponse: lastResponse, queryParameters: queryParameters);
   }
 
   /// [getPlaylistItemModel] returns a single [PlaylistItemModel].

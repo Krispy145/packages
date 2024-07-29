@@ -29,6 +29,7 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
     super.stackedWidgets,
     super.padding,
     super.slivers = false,
+    super.scrollDirection = Axis.vertical,
   }) : super.listView(store: store);
 
   /// [PaginatedListBuilder] constructor.

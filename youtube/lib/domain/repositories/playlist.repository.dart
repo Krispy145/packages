@@ -4,16 +4,15 @@ import "package:utilities/helpers/tuples.dart";
 import "package:youtube/data/models/playlist_model.dart";
 import "package:youtube/data/repositories/playlist.repository.dart";
 import "package:youtube/data/sources/playlist/_source.dart";
-import "package:youtube_explode_dart/youtube_explode_dart.dart";
 
 import "/data/repositories/_repositories.dart";
 
 /// [PlaylistRepository] is a class that defines the basic CRUD operations for the [PlaylistModel] entity.
 class PlaylistRepository {
-  final youtubeExplode = YoutubeExplode();
+  // final youtubeExplode = YoutubeExplode();
 
-  Future<Playlist> getYTExplodePlaylist(String id) => youtubeExplode.playlists.get(id);
-  Stream<Video> getYTExplodePlaylistVideosStream(String id) => youtubeExplode.playlists.getVideos(id);
+  // Future<Playlist> getYTExplodePlaylist(String id) => youtubeExplode.playlists.get(id);
+  // Stream<Video> getYTExplodePlaylistVideosStream(String id) => youtubeExplode.playlists.getVideos(id);
 
   final PlaylistDataRepository _playlistDataRepository = DataRepositories.instance.playlist;
 
@@ -60,8 +59,8 @@ class PlaylistRepository {
   //   return Pair(_response.first, _playlists);
   // }
 
-  // /// [getPlaylistModel] fetches a single [PlaylistModel] from the data source.
-  // Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel(String id) {
-  //   return _playlistDataRepository.getPlaylistModel(source: _source, id: id);
-  // }
+  /// [getPlaylistModel] fetches a single [PlaylistModel] from the data source.
+  Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel(String id) {
+    return _playlistDataRepository.getPlaylistModel(source: _source, id: id);
+  }
 }

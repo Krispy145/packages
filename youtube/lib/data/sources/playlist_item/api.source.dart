@@ -12,7 +12,10 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
           sourceSuffix: "playlistItems",
           convertDataTypeFromMap: (map) => PlaylistItemModel.fromMap(map),
           convertDataTypeToMap: (data) => data.toMap(),
-          convertResponseTypeFromMap: (data) => PagedResponse.fromJson(data, PlaylistItemModel.fromMap),
+          convertResponseTypeFromMap: (data) {
+            print(data);
+            return PagedResponse.fromJson(data, PlaylistItemModel.fromMap);
+          },
           getNexPageParametersFromResponse: (lastResponse, size, orderBy) {
             final parameters = <String, dynamic>{};
             if (lastResponse != null) {
@@ -29,13 +32,13 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
               "key": apiKey,
               "part": "id,snippet,contentDetails,status",
             },
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
-              "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
-              "Content-Type": "application/json",
-              "Access-Control-Allow-Credentials": "true",
-            },
+            // headers: {
+            //   "Access-Control-Allow-Origin": "*",
+            //   "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
+            //   "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+            //   "Content-Type": "application/json",
+            //   "Access-Control-Allow-Credentials": "true",
+            // },
           ),
         );
 
@@ -102,14 +105,23 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>, List<PlaylistItemModel?>>>> searchPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> searchPage({
     PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,
     String? orderBy,
     Map<String, dynamic>? queryParameters,
   }) {
-    // TODO: implement searchPage
-    throw UnimplementedError();
+    return _handlePagedError(
+      () async {
+        final page = await super.searchPage(
+          lastResponse: lastResponse,
+          size: size,
+          orderBy: orderBy,
+          query: query,
+        );
+        return page;
+      },
+    );
   }
 }

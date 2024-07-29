@@ -5,9 +5,11 @@ import "package:widgets/images/options/abstract.dart";
 
 class ProxyUrls {
   static const googleAPI = "https://maps.googleapis.com";
+  static const ytThumbnails = "https://i.ytimg.com";
 
   static const List<String> list = [
     googleAPI,
+    ytThumbnails,
   ];
 }
 
