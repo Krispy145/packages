@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.digitaloasis.media">
+  package="ae.digitaloasis.media">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 

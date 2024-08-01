@@ -34,7 +34,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.digitaloasis.media
+        package: ae.digitaloasis.media
         pluginClass: MediaPlugin
       ios:
         pluginClass: MediaPlugin

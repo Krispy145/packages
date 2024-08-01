@@ -1,4 +1,4 @@
-package com.digitaloasis.media;
+package ae.digitaloasis.media;
 
 public enum PlayerState {
     IDLE,

@@ -1,4 +1,4 @@
-package com.digitaloasis.media.audio;
+package ae.digitaloasis.media.audio;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -23,10 +23,10 @@ import androidx.core.app.NotificationCompat;
 
 import java.io.IOException;
 
-import com.digitaloasis.media.FlutterAVPlayer;
-import com.digitaloasis.media.PlayerNotificationUtil;
-import com.digitaloasis.media.PlayerState;
-import com.digitaloasis.media.R;
+import ae.digitaloasis.media.FlutterAVPlayer;
+import ae.digitaloasis.media.PlayerNotificationUtil;
+import ae.digitaloasis.media.PlayerState;
+import ae.digitaloasis.media.R;
 
 public class AudioServiceBinder
         extends Binder

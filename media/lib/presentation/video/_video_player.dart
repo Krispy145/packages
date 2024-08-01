@@ -77,7 +77,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
       /* Android */
       if (Platform.isAndroid) {
         _playerWidget = AndroidView(
-          viewType: 'com.digitaloasis/NativeVideoPlayer',
+          viewType: 'ae.digitaloasis/NativeVideoPlayer',
           creationParams: {
             "autoPlay": widget.autoPlay,
             "loop": widget.loop,
@@ -109,7 +109,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
       /* iOS */
       else if (Platform.isIOS) {
         _playerWidget = UiKitView(
-          viewType: 'com.digitaloasis/NativeVideoPlayer',
+          viewType: 'ae.digitaloasis/NativeVideoPlayer',
           creationParams: {
             "autoPlay": widget.autoPlay,
             "loop": widget.loop,
@@ -172,7 +172,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
 
   void _onPlatformViewCreated(int viewId) {
     _platformViewId = viewId;
-    _methodChannel = MethodChannel("com.digitaloasis/NativeVideoPlayerMethodChannel_$viewId");
+    _methodChannel = MethodChannel("ae.digitaloasis/NativeVideoPlayerMethodChannel_$viewId");
   }
 
   /// The [desiredState] flag has changed so need to update playback to

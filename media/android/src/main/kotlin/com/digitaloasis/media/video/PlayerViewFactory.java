@@ -1,4 +1,4 @@
-package com.digitaloasis.media.video;
+package ae.digitaloasis.media.video;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,7 +22,7 @@ public class PlayerViewFactory extends PlatformViewFactory {
 
         final PlayerViewFactory plugin = new PlayerViewFactory(registrar.messenger(), registrar.activity());
 
-        registrar.platformViewRegistry().registerViewFactory("com.digitaloasis/NativeVideoPlayer", plugin);
+        registrar.platformViewRegistry().registerViewFactory("ae.digitaloasis/NativeVideoPlayer", plugin);
 
         registrar.addViewDestroyListener(new PluginRegistry.ViewDestroyListener() {
             @Override

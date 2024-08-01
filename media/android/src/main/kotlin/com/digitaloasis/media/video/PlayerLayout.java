@@ -1,4 +1,4 @@
-package com.digitaloasis.media.video;
+package ae.digitaloasis.media.video;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -51,11 +51,11 @@ import java.util.HashMap;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.JSONMethodCodec;
-import com.digitaloasis.media.FlutterAVPlayer;
-import com.digitaloasis.media.MediaNotificationManagerService;
-import com.digitaloasis.media.PlayerNotificationUtil;
-import com.digitaloasis.media.PlayerState;
-import com.digitaloasis.media.R;
+import ae.digitaloasis.media.FlutterAVPlayer;
+import ae.digitaloasis.media.MediaNotificationManagerService;
+import ae.digitaloasis.media.PlayerNotificationUtil;
+import ae.digitaloasis.media.PlayerState;
+import ae.digitaloasis.media.R;
 
 public class PlayerLayout extends PlayerView implements FlutterAVPlayer, EventChannel.StreamHandler {
     /**
@@ -253,7 +253,7 @@ public class PlayerLayout extends PlayerView implements FlutterAVPlayer, EventCh
 
         new EventChannel(
                 messenger,
-                "com.digitaloasis/NativeVideoPlayerEventChannel_" + this.viewId,
+                "ae.digitaloasis/NativeVideoPlayerEventChannel_" + this.viewId,
                 JSONMethodCodec.INSTANCE).setStreamHandler(this);
 
         updateMediaSource();

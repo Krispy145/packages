@@ -1,4 +1,4 @@
-package com.digitaloasis.media.audio;
+package ae.digitaloasis.media.audio;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

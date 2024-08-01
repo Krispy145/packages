@@ -1,4 +1,4 @@
-package com.digitaloasis.media.audio;
+package ae.digitaloasis.media.audio;
 
 import android.app.Activity;
 import android.content.ComponentName;
@@ -22,7 +22,7 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.view.FlutterNativeView;
-import com.digitaloasis.media.MediaNotificationManagerService;
+import ae.digitaloasis.media.MediaNotificationManagerService;
 
 public class AudioPlayer implements MethodChannel.MethodCallHandler, EventChannel.StreamHandler {
 
@@ -114,10 +114,10 @@ public class AudioPlayer implements MethodChannel.MethodCallHandler, EventChanne
 
         this.audioProgressUpdateHandler = new IncomingMessageHandler(this);
 
-        new MethodChannel(messenger, "com.digitaloasis/NativeAudioChannel")
+        new MethodChannel(messenger, "ae.digitaloasis/NativeAudioChannel")
                 .setMethodCallHandler(this);
 
-        new EventChannel(messenger, "com.digitaloasis/NativeAudioEventChannel", JSONMethodCodec.INSTANCE)
+        new EventChannel(messenger, "ae.digitaloasis/NativeAudioEventChannel", JSONMethodCodec.INSTANCE)
                 .setStreamHandler(this);
     }
 
