@@ -21,7 +21,7 @@ class AudioPlayer: NSObject, FlutterPlugin, FlutterStreamHandler {
             try audioSession.setCategory(AVAudioSession.Category.playback)
         } catch _ { }
         
-        let channel = FlutterMethodChannel(name: "com.digitaloasis/NativeAudioChannel", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "ae.digitaloasis/NativeAudioChannel", binaryMessenger: registrar.messenger())
         
         registrar.addMethodCallDelegate(player, channel: channel)
         
@@ -31,7 +31,7 @@ class AudioPlayer: NSObject, FlutterPlugin, FlutterStreamHandler {
     private static func setupEventChannel(messenger:FlutterBinaryMessenger, instance:AudioPlayer) {
         
         /* register for Flutter event channel */
-        instance.eventChannel = FlutterEventChannel(name: "com.digitaloasis/NativeAudioEventChannel", binaryMessenger: messenger, codec: FlutterJSONMethodCodec.sharedInstance())
+        instance.eventChannel = FlutterEventChannel(name: "ae.digitaloasis/NativeAudioEventChannel", binaryMessenger: messenger, codec: FlutterJSONMethodCodec.sharedInstance())
         
         instance.eventChannel!.setStreamHandler(instance)
     }

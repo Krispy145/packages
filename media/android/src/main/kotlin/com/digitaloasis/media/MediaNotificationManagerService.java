@@ -1,4 +1,4 @@
-package com.digitaloasis.media;
+package ae.digitaloasis.media;
 
 import android.app.Service;
 import android.content.Intent;

@@ -8,7 +8,7 @@ import 'package:flutter/services.dart';
 mixin MultiAudioSupport {
   MethodChannel? _methodChannel;
   Future<void> enableMultiAudioSupport(int viewId) async {
-    _methodChannel = MethodChannel("com.digitaloasis/NativeVideoPlayerMethodChannel_$viewId");
+    _methodChannel = MethodChannel("ae.digitaloasis/NativeVideoPlayerMethodChannel_$viewId");
   }
 
   /// Set/Change audio language for currently playing asset. [languageCode]

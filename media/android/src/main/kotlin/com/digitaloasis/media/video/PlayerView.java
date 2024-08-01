@@ -1,4 +1,4 @@
-package com.digitaloasis.media.video;
+package ae.digitaloasis.media.video;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,7 +17,7 @@ public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler
 
     PlayerView(Context context, Activity activity, int id, BinaryMessenger messenger, Object args) {
 
-        new MethodChannel(messenger, "com.digitaloasis/NativeVideoPlayerMethodChannel_" + id)
+        new MethodChannel(messenger, "ae.digitaloasis/NativeVideoPlayerMethodChannel_" + id)
                 .setMethodCallHandler(this);
 
         player = new PlayerLayout(context, activity, messenger, id, args);

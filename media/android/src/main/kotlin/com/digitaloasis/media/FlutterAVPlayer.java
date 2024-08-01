@@ -1,4 +1,4 @@
-package com.digitaloasis.media;
+package ae.digitaloasis.media;
 
 public interface FlutterAVPlayer {
     void onDestroy();

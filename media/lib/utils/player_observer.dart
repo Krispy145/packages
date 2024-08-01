@@ -6,12 +6,12 @@ import 'package:flutter/services.dart';
 /// [onPlay], [onPause] etc. See example on how to use.
 mixin PlayerObserver {
   Future<void> listenForVideoPlayerEvents(int viewId) async {
-    EventChannel eventChannel = EventChannel("com.digitaloasis/NativeVideoPlayerEventChannel_$viewId", JSONMethodCodec());
+    EventChannel eventChannel = EventChannel("ae.digitaloasis/NativeVideoPlayerEventChannel_$viewId", JSONMethodCodec());
     eventChannel.receiveBroadcastStream().listen(_processEvent);
   }
 
   Future<void> listenForAudioPlayerEvents() async {
-    EventChannel eventChannel = EventChannel("com.digitaloasis/NativeAudioEventChannel", JSONMethodCodec());
+    EventChannel eventChannel = EventChannel("ae.digitaloasis/NativeAudioEventChannel", JSONMethodCodec());
     eventChannel.receiveBroadcastStream().listen(_processEvent);
   }
 

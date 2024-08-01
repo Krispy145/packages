@@ -1,4 +1,4 @@
-package com.digitaloasis.media.video;
+package ae.digitaloasis.media.video;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

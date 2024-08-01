@@ -1,8 +1,8 @@
-package com.digitaloasis.media
+package ae.digitaloasis.media
 
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import com.digitaloasis.media.audio.AudioPlayer
-import com.digitaloasis.media.video.PlayerViewFactory
+import ae.digitaloasis.media.audio.AudioPlayer
+import ae.digitaloasis.media.video.PlayerViewFactory
 
 class MediaPlugin {
   companion object {

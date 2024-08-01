@@ -2,7 +2,7 @@ import 'package:flutter/services.dart';
 
 /// See [play] method as well as example app on how to use.
 class Audio {
-  static const MethodChannel _audioChannel = MethodChannel('com.digitaloasis/NativeAudioChannel');
+  static const MethodChannel _audioChannel = MethodChannel('ae.digitaloasis/NativeAudioChannel');
 
   Audio._();
 
