@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
+import androidx.media3.common.util.UnstableApi;
+import androidx.media3.exoplayer.ExoPlayer;
+
 import org.jetbrains.annotations.NotNull;
 
 import io.flutter.plugin.common.BinaryMessenger;
@@ -11,7 +14,7 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.platform.PlatformView;
 
-public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler {
+@UnstableApi public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler {
 
     private final PlayerLayout player;
 
@@ -25,7 +28,7 @@ public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler
 
     @Override
     public View getView() {
-        return player;
+        return player.getView();
     }
 
     @Override
@@ -71,5 +74,8 @@ public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler
             default:
                 result.notImplemented();
         }
+    }
+
+    protected void setPlayer(ExoPlayer mPlayerView) {
     }
 }

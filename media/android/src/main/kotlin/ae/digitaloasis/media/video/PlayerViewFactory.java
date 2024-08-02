@@ -3,6 +3,8 @@ package ae.digitaloasis.media.video;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.media3.common.util.UnstableApi;
+
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.JSONMessageCodec;
 import io.flutter.plugin.common.PluginRegistry;
@@ -10,7 +12,7 @@ import io.flutter.plugin.platform.PlatformView;
 import io.flutter.plugin.platform.PlatformViewFactory;
 import io.flutter.view.FlutterNativeView;
 
-public class PlayerViewFactory extends PlatformViewFactory {
+@UnstableApi public class PlayerViewFactory extends PlatformViewFactory {
 
     private final Activity activity;
 
