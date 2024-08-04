@@ -6,7 +6,7 @@ import android.os.IBinder;
 
 public class AudioService extends Service {
 
-    private AudioServiceBinder audioServiceBinder = new AudioServiceBinder();
+    private final AudioServiceBinder audioServiceBinder = new AudioServiceBinder();
 
     public AudioService() {
     }

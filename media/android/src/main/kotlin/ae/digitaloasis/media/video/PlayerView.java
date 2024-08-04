@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 
-import androidx.media3.common.util.UnstableApi;
-import androidx.media3.exoplayer.ExoPlayer;
-
 import org.jetbrains.annotations.NotNull;
 
 import io.flutter.plugin.common.BinaryMessenger;
@@ -14,57 +11,61 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.platform.PlatformView;
 
-@UnstableApi public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler {
+public class PlayerView implements PlatformView, MethodChannel.MethodCallHandler {
 
-    private final PlayerLayout player;
+    private final PlayerLayout playerLayout;
 
-    PlayerView(Context context, Activity activity, int id, BinaryMessenger messenger, Object args) {
-
+    public PlayerView(Context context, Activity activity, int id, BinaryMessenger messenger, Object args) {
+        // Set up the method channel to communicate with the Flutter side
         new MethodChannel(messenger, "ae.digitaloasis/NativeVideoPlayerMethodChannel_" + id)
                 .setMethodCallHandler(this);
 
-        player = new PlayerLayout(context, activity, messenger, id, args);
+        // Initialize the PlayerLayout which contains the ExoPlayer logic
+        playerLayout = new PlayerLayout(context, activity, messenger, id, args);
     }
 
     @Override
     public View getView() {
-        return player.getView();
+        // Return the view associated with the player layout
+        return playerLayout.getView();
     }
 
     @Override
     public void dispose() {
-        player.onDestroy();
+        // Clean up resources
+        playerLayout.onDestroy();
     }
 
     @Override
     public void onMethodCall(MethodCall call, @NotNull MethodChannel.Result result) {
+        // Handle method calls from the Flutter side
         switch (call.method) {
             case "onMediaChanged":
-                player.onMediaChanged(call.arguments);
+                playerLayout.onMediaChanged(call.arguments);
                 result.success(true);
                 break;
             case "onShowControlsFlagChanged":
-                player.onShowControlsFlagChanged(call.arguments);
+                playerLayout.onShowControlsFlagChanged(call.arguments);
                 result.success(true);
                 break;
             case "resume":
-                player.play();
+                playerLayout.play();
                 result.success(true);
                 break;
             case "pause":
-                player.pause();
+                playerLayout.pause();
                 result.success(true);
                 break;
             case "setPreferredAudioLanguage":
-                player.setPreferredAudioLanguage(call.arguments);
+                playerLayout.setPreferredAudioLanguage(call.arguments);
                 result.success(true);
                 break;
             case "setPreferredTextLanguage":
-                player.setPreferredTextLanguage(call.arguments);
+                playerLayout.setPreferredTextLanguage(call.arguments);
                 result.success(true);
                 break;
             case "seekTo":
-                player.seekTo(call.arguments);
+                playerLayout.seekTo(call.arguments);
                 result.success(true);
                 break;
             case "dispose":
@@ -74,8 +75,5 @@ import io.flutter.plugin.platform.PlatformView;
             default:
                 result.notImplemented();
         }
-    }
-
-    protected void setPlayer(ExoPlayer mPlayerView) {
     }
 }
