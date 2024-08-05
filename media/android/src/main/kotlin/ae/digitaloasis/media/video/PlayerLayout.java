@@ -177,6 +177,7 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
             playerView = new PlayerView(context);
             playerView.setPlayer(exoPlayer);
             playerView.setUseController(showControls);
+            listenForPlayerTimeChange();
 
             new EventChannel(
                     messenger,
@@ -193,7 +194,6 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
     }
 
     public View getView() {
-        // Return the PlayerView instance
         return playerView;
     }
 
@@ -554,6 +554,7 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
 
     public void onDestroy() {
         try {
+
             if (exoPlayer != null) {
                 exoPlayer.stop();
                 exoPlayer.release();
