@@ -56,6 +56,8 @@ class TabBarModel with TabBarModelMappable {
       overlayColor: WidgetStateProperty.all(overlayColor_themeColorString?.toColor(styleType: styleTypeName)),
       tabAlignment: tabAlignment_enum_tabAlignment,
       splashFactory: NoSplash.splashFactory,
+      dividerColor: dividerColor_themeColorString?.toColor(styleType: styleTypeName),
+      dividerHeight: dividerHeight_double,
     );
   }
 

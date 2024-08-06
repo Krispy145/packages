@@ -58,6 +58,17 @@ mixin _$EdgeInsetsFormFieldStore on _EdgeInsetsFormFieldStore, Store {
       ActionController(name: '_EdgeInsetsFormFieldStore', context: context);
 
   @override
+  void setType(EdgeInsetsTypes newType) {
+    final _$actionInfo = _$_EdgeInsetsFormFieldStoreActionController
+        .startAction(name: '_EdgeInsetsFormFieldStore.setType');
+    try {
+      return super.setType(newType);
+    } finally {
+      _$_EdgeInsetsFormFieldStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void onTopFieldChanged(double? topValue) {
     final _$actionInfo = _$_EdgeInsetsFormFieldStoreActionController
         .startAction(name: '_EdgeInsetsFormFieldStore.onTopFieldChanged');
