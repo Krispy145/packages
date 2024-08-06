@@ -148,7 +148,7 @@ class _CenterListWidget extends StatelessWidget {
         children: [
           Text(
             widget.title,
-            style: widget.titleStyle,
+            style: widget.titleStyle ?? Theme.of(context).textTheme.headlineSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -156,7 +156,7 @@ class _CenterListWidget extends StatelessWidget {
             Sizes.xxs.spacer(),
             Text(
               widget.subtitle!,
-              style: widget.subtitleStyle,
+              style: widget.subtitleStyle ?? Theme.of(context).textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
