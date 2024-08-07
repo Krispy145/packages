@@ -5,10 +5,7 @@ import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/layouts/list/builder.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
-import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
-import "package:utilities/widgets/load_state/builder.dart";
-import "package:widgets/messages/warning_message.dart";
 
 class PaginatedListBuilder<T> extends ListBuilder<T> {
   final bool canRefresh;
@@ -48,60 +45,62 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
     super.slivers = false,
   }) : super.gridView(store: store);
 
-  @override
-  Widget build(BuildContext context) {
-    if (slivers) {
-      return Observer(
-        builder: (context) {
-          return buildView(store.showLoadingSpinnerAtBottom);
-        },
-      );
-    }
-    return Stack(
-      children: [
-        Padding(
-          padding: padding,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (header != null) ...[header!, Sizes.m.spacer()],
-              Expanded(child: _buildResults()),
-            ],
-          ),
-        ),
-        SafeArea(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: LoadStateBuilder(
-                store: store,
-                emptyBuilder: (context, empty) {
-                  _showSnackBarRequestResponse(context);
-                  return Center(child: WarningMessage.empty(title: empty));
-                },
-                loadingBuilder: (context) => const SizedBox.shrink(),
-                loadedBuilder: (context) {
-                  _showSnackBarRequestResponse(context);
-                  return const SizedBox.shrink();
-                },
-                errorBuilder: (context, error) {
-                  return Center(
-                    child: WarningMessage.error(
-                      title: error,
-                      buttonText: "Try again",
-                      onButtonTap: (context) => store.refresh(),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
-        if (stackedWidgets != null) ...stackedWidgets!,
-      ],
-    );
-  }
+  // @override
+  // Widget build(BuildContext context) {
+  //   if (slivers) {
+  //     return Observer(
+  //       builder: (context) {
+  //         return buildView(store.showLoadingSpinnerAtBottom);
+  //       },
+  //     );
+  //   }
+  //   return Stack(
+  //     children: [
+  //       Padding(
+  //         padding: padding,
+  //         child: Column(
+  //           crossAxisAlignment: CrossAxisAlignment.start,
+  //           children: [
+  //             if (header != null) ...[header!, Sizes.m.spacer()],
+  //             Expanded(child: _buildResults()),
+  //           ],
+  //         ),
+  //       ),
+  //       SafeArea(
+  //         child: Align(
+  //           alignment: Alignment.bottomCenter,
+  //           child: Padding(
+  //             padding: const EdgeInsets.only(bottom: 8),
+  //             child: LoadStateBuilder(
+  //               store: store,
+  //               emptyBuilder: emptyBuilder ??
+  //                   (context, empty) {
+  //                     _showSnackBarRequestResponse(context);
+  //                     return Center(child: WarningMessage.empty(title: empty));
+  //                   },
+  //               loadingBuilder: (context) => const SizedBox.shrink(),
+  //               loadedBuilder: (context) {
+  //                 _showSnackBarRequestResponse(context);
+  //                 return const SizedBox.shrink();
+  //               },
+  //               errorBuilder: errorBuilder ??
+  //                   (context, error) {
+  //                     return Center(
+  //                       child: WarningMessage.error(
+  //                         title: error,
+  //                         buttonText: "Try again",
+  //                         onButtonTap: (context) => store.refresh(),
+  //                       ),
+  //                     );
+  //                   },
+  //             ),
+  //           ),
+  //         ),
+  //       ),
+  //       if (stackedWidgets != null) ...stackedWidgets!,
+  //     ],
+  //   );
+  // }
 
   void _showSnackBarRequestResponse(
     BuildContext context,

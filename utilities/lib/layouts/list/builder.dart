@@ -13,8 +13,8 @@ class ListBuilder<T> extends StatelessWidget {
   final ListStore<T> store;
   final Widget? header;
   final Widget? Function(BuildContext context, int index, T model) itemBuilder;
-  final Widget? Function(BuildContext context, String message)? emptyBuilder;
-  final Widget? Function(BuildContext context, String message)? errorBuilder;
+  final Widget Function(BuildContext context, String message)? emptyBuilder;
+  final Widget Function(BuildContext context, String message)? errorBuilder;
   // final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets padding;
@@ -105,8 +105,12 @@ class ListBuilder<T> extends StatelessWidget {
     if (!slivers) {
       return LoadStateBuilder(
         store: store,
-        emptyBuilder: (context, empty) => emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty),
+        emptyBuilder: (context, empty) {
+          print("EMPTY BUILDER: $empty");
+          return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty);
+        },
         loadedBuilder: (context) {
+          print("LOADED BUILDER");
           final contents = Padding(
             padding: !slivers ? padding : EdgeInsets.zero,
             child: Column(
