@@ -8,19 +8,19 @@ class HLSManifestLanguage {
 
   factory HLSManifestLanguage.fromJson(Map<String, dynamic> json) {
     return HLSManifestLanguage(
-      json["code"],
-      json["name"],
-      nativeName: json["nativeName"],
-      url: json["url"],
+      json["code"] as String?,
+      json["name"] as String?,
+      nativeName: json["nativeName"] as String?,
+      url: json["url"] as String?,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'code': code,
-      'name': name,
-      'nativeName': nativeName,
-      'url': url,
+      "code": code,
+      "name": name,
+      "nativeName": nativeName,
+      "url": url,
     };
   }
 
