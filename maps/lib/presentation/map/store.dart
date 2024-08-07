@@ -248,14 +248,24 @@ abstract class _MapStore with LoadStateStore, Store {
     }
   }
 
+  void onDragStart() {
+    unselectMarker();
+  }
+
+  void onDragEnd() {}
+
+  void onDrag() {}
+
   void onMapEvent(MapEvent event) {
     switch (event.source) {
       case MapEventSource.dragStart:
-        unselectMarker();
+        onDragStart();
         break;
       case MapEventSource.onDrag:
+        onDrag();
         break;
       case MapEventSource.dragEnd:
+        onDragEnd();
         break;
       default:
     }
