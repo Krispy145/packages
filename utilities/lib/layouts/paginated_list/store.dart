@@ -1,4 +1,3 @@
-import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
@@ -30,8 +29,7 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
 
   @action
   Future<void> refresh() async {
-    await loadMore(limit: limit, refresh: true);
-    return Future.delayed(Durations.long4, setLoaded);
+    return loadMore(limit: limit, refresh: true);
   }
 
   /// [loadMore] loads all [T]s from the data source.
@@ -49,8 +47,9 @@ abstract class _PaginatedListStore<T> extends ListStore<T> with Store {
         if (results.isEmpty) {
           results.clear();
           return setEmpty("No results found");
+        } else {
+          return setLoaded();
         }
-        return setLoaded();
       } else {
         if (results.isEmpty) {
           results.clear();
