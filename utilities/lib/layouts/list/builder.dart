@@ -174,6 +174,8 @@ class ListBuilder<T> extends StatelessWidget {
   Widget buildView(bool isLoadingMore) {
     final resultsCount = maxItemsCutOff != null ? min(maxItemsCutOff!, store.results.length) : store.results.length;
     final itemCount = resultsCount + (isLoadingMore ? 1 : 0);
+
+    ///@Serena: not sure why we need a loadingOrItemBuilder function here?
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
         return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
