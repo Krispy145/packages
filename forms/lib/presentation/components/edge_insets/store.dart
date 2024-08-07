@@ -20,22 +20,22 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     //   (newType) {
     //     switch (newType) {
     //       case EdgeInsetsTypes.all:
-    //         value = EdgeInsetsModel.all(value.top);
+    //         value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.top_double, right_double: value?.top_double, left_double: value?.top_double);
     //       case EdgeInsetsTypes.zero:
-    //         value = EdgeInsets.zero;
+    //         value = const EdgeInsetsModel(top_double: 0, bottom_double: 0, left_double: 0, right_double: 0);
     //       case EdgeInsetsTypes.symmetric:
-    //         value = EdgeInsets.symmetric(vertical: value.top, horizontal: value.left);
+    //         value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.top_double, right_double: value?.right_double, left_double: value?.left_double);
     //       case EdgeInsetsTypes.only:
-    //         value = EdgeInsets.only(top: value.top, bottom: value.bottom, left: value.left, right: value.right);
+    //         value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.bottom_double, left_double: value?.left_double, right_double: value?.right_double);
     //     }
     //   },
     // );
     // On Value Changed
-    // reaction<EdgeInsets>((reaction) => value, (newValue) {
-    // topController.text = newValue.top.toString();
-    // bottomController.text = newValue.bottom.toString();
-    // leftController.text = newValue.left.toString();
-    // rightController.text = newValue.right.toString();
+    // reaction<EdgeInsetsModel?>((reaction) => value, (newValue) {
+    //   topController.text = newValue.top.toString();
+    //   bottomController.text = newValue.bottom.toString();
+    //   leftController.text = newValue.left.toString();
+    //   rightController.text = newValue.right.toString();
     // });
   }
 
@@ -79,6 +79,21 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
   bool get leftEnabled => [EdgeInsetsTypes.symmetric, EdgeInsetsTypes.only].contains(type);
   @computed
   bool get rightEnabled => type == EdgeInsetsTypes.only;
+
+  @action
+  void setType(EdgeInsetsTypes newType) {
+    type = newType;
+    switch (newType) {
+      case EdgeInsetsTypes.all:
+        value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.top_double, right_double: value?.top_double, left_double: value?.top_double);
+      case EdgeInsetsTypes.zero:
+        value = const EdgeInsetsModel(top_double: 0, bottom_double: 0, left_double: 0, right_double: 0);
+      case EdgeInsetsTypes.symmetric:
+        value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.top_double, right_double: value?.right_double, left_double: value?.left_double);
+      case EdgeInsetsTypes.only:
+        value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.bottom_double, left_double: value?.left_double, right_double: value?.right_double);
+    }
+  }
 
   @action
   void onTopFieldChanged(double? topValue) {

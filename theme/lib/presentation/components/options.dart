@@ -31,6 +31,7 @@ import "package:theme/data/models/snackbars/snackbar_model.dart";
 import "package:theme/data/models/switches/switch_model.dart";
 import "package:theme/data/models/tab_bars/tab_bar_model.dart";
 import "package:theme/data/models/tooltips/tooltip_model.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:theme/presentation/changer/changer.dart";
 import "package:utilities/sizes/spacers.dart";
 
@@ -659,26 +660,37 @@ enum ChangerOptions {
               onUpdateComponentTheme: (newTheme) => ThemeChanger.changeNavigationRailStyle(
                 navigationRailStyle: newTheme,
               ),
-              headerBuilder: (context) => ElevatedButton(
-                onPressed: () => showModalBottomSheet<void>(
-                  backgroundColor: Theme.of(context).colorScheme.surface,
-                  context: context,
-                  builder: (context) => NavigationRail(
-                    selectedIndex: 0,
-                    destinations: const [
-                      NavigationRailDestination(
-                        icon: Icon(Icons.favorite_border),
-                        label: Text("First"),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(Icons.bookmark_border),
-                        label: Text("Second"),
-                      ),
-                    ],
-                  ),
+              headerBuilder: (context) =>
+                  // ElevatedButton(
+                  //   onPressed: () => showModalBottomSheet<void>(
+                  //     backgroundColor: Theme.of(context).colorScheme.surface,
+                  //     context: context,
+                  //     builder: (context) =>
+                  //   NavigationRail(
+                  //     selectedIndex: 0,
+                  //     destinations: const [
+                  //       NavigationRailDestination(
+                  //         icon: Icon(Icons.favorite_border),
+                  //         label: Text("First"),
+                  //       ),
+                  //       NavigationRailDestination(
+                  //         icon: Icon(Icons.bookmark_border),
+                  //         label: Text("Second"),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+                  Container(
+                color: context.colorScheme.surface,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Selected", style: Theme.of(context).navigationRailTheme.selectedLabelTextStyle),
+                    Text("Unselected", style: Theme.of(context).navigationRailTheme.unselectedLabelTextStyle),
+                  ],
                 ),
-                child: const Text("Show Navigation Rail"),
               ),
+              // ),
             );
       case ChangerOptions.switches:
         return () => ThemeChanger.componentThemeChanger<SwitchModel>(

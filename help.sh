@@ -23,7 +23,7 @@ commands=(
     # "flutter pub get" 
     # "dart run build_runner build --delete-conflicting-outputs"
     # "git pull origin main"
-    "git checkout serena"
+    # "git checkout serena"
     "git config pull.rebase false"
     "git pull origin main"
     # "git merge origin tags-refactor"
@@ -31,7 +31,7 @@ commands=(
 
 # Commands to run in packages top level directory
 packagesCommands=(
-    "git checkout serena"
+    # "git checkout serena"
     "git config pull.rebase false"
     "git pull origin main"
     # "git merge origin main"

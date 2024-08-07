@@ -31,7 +31,7 @@ class DOListTile extends StatefulWidget {
     this.trailing,
     this.trailingConstraints = const BoxConstraints(maxHeight: 64),
     this.expandWidth = false,
-    this.centrePadding = const EdgeInsets.all(8),
+    this.centrePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     this.tilePadding = const EdgeInsets.symmetric(vertical: 4),
   })  : isHoverable = false,
         shouldMaintainSize = false,
@@ -53,7 +53,7 @@ class DOListTile extends StatefulWidget {
     this.trailing,
     this.trailingConstraints = const BoxConstraints(maxHeight: 64),
     this.showOnHoverTrailing = true,
-    this.centrePadding = const EdgeInsets.all(8),
+    this.centrePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     this.tilePadding = const EdgeInsets.symmetric(vertical: 4),
     this.replacementSize,
     this.expandWidth = false,
@@ -148,7 +148,7 @@ class _CenterListWidget extends StatelessWidget {
         children: [
           Text(
             widget.title,
-            style: widget.titleStyle,
+            style: widget.titleStyle ?? Theme.of(context).textTheme.headlineSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -156,7 +156,7 @@ class _CenterListWidget extends StatelessWidget {
             Sizes.xxs.spacer(),
             Text(
               widget.subtitle!,
-              style: widget.subtitleStyle,
+              style: widget.subtitleStyle ?? Theme.of(context).textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),
