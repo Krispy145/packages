@@ -266,11 +266,18 @@ class AuthenticationRepository<T extends UserModel> {
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.updateUserModel(
-      userModel: currentUserModelStream.value!,
-    );
+    final _user = await _authenticationDataRepository.reauthenticate(params);
+    try {
+      await userDataRepository.updateUserModel(userModel: currentUserModelStream.value!);
+    } catch (e) {
+      AppLogger.print(
+        "Error in updating user model: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+    }
     await userDataRepository.initPermissions(currentUserModelStream.value!.id);
-    return _authenticationDataRepository.reauthenticate(params);
+    return _user;
   }
 
   /// [deleteAccount] deletes the user's account.

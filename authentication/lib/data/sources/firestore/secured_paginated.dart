@@ -77,42 +77,44 @@ abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> ex
     String? orderBy,
     required Q query,
   }) async {
-    var firestoreQuery = buildQuery(query, collectionReference);
-    final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(firestoreQuery);
-    if (permissionsFirestoreQuery == null) {
-      return Pair(
-        RequestResponse.denied,
-        Pair(FirestoreResponseModel<T?>(), []),
-      );
-    }
-
-    if (lastResponse != null) {
-      if (lastResponse.lastDocumentSnapshot != null) {
-        firestoreQuery = firestoreQuery.startAfterDocument(
-          lastResponse.lastDocumentSnapshot!,
+    try {
+      var firestoreQuery = buildQuery(query, collectionReference);
+      final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(firestoreQuery);
+      if (permissionsFirestoreQuery == null) {
+        return Pair(
+          RequestResponse.denied,
+          Pair(FirestoreResponseModel<T?>(), []),
         );
       }
-    }
 
-    if (size != null) {
-      firestoreQuery = firestoreQuery.limit(size);
-    }
-    return firestoreQuery.get().then(
-      (response) {
-        final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
-          FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
-          ),
-          List<T?>.from(
-            response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
-          ),
-        );
-        if (_response.second.isEmpty) {
-          return Pair(RequestResponse.failure, _response);
+      if (lastResponse != null) {
+        if (lastResponse.lastDocumentSnapshot != null) {
+          firestoreQuery = firestoreQuery.startAfterDocument(
+            lastResponse.lastDocumentSnapshot!,
+          );
         }
-        return Pair(RequestResponse.success, _response);
-      },
-    );
+      }
+
+      if (size != null) {
+        firestoreQuery = firestoreQuery.limit(size);
+      }
+      return firestoreQuery.get().then(
+        (response) {
+          final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
+            FirestoreResponseModel<T?>(
+              lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
+            ),
+            List<T?>.from(
+              response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
+            ),
+          );
+          return Pair(RequestResponse.success, _response);
+        },
+      );
+    } catch (e) {
+      print("Error: $e");
+      return Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []));
+    }
   }
 
   Future<Query<Map<String, dynamic>>?> _getPermissionBasedQueryForPage(
