@@ -1,18 +1,18 @@
-import 'package:flutter/material.dart';
-import 'package:theme/extensions/build_context.dart';
-import 'package:utilities/sizes/spacers.dart';
+import "package:flutter/material.dart";
+import "package:theme/extensions/build_context.dart";
+import "package:utilities/sizes/spacers.dart";
 
 class RingedMarkerWrapper extends StatelessWidget {
   final bool selected;
-  final Function()? onTapped;
+  final void Function()? onTapped;
   final Widget Function(BuildContext) childBuilder;
 
   const RingedMarkerWrapper({
-    Key? key,
+    super.key,
     required this.selected,
     required this.onTapped,
     required this.childBuilder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +30,13 @@ class RingedMarkerWrapper extends StatelessWidget {
             ),
           ),
           padding: EdgeInsets.all(Sizes.xxs.points(context)),
-          child: Container(
+          child: DecoratedBox(
             decoration: BoxDecoration(
               color: context.colorScheme.surface,
               shape: BoxShape.circle,
             ),
             child: Center(
-              child: Padding(padding: const EdgeInsets.all(8.0), child: childBuilder(context)),
+              child: Padding(padding: const EdgeInsets.all(8), child: childBuilder(context)),
             ),
           ),
         ),

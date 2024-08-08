@@ -91,7 +91,7 @@ abstract class _MapStore with LoadStateStore, Store {
   /// INITIALIZATION
   ///
 
-  /// Initialize the Markers from the spot search endpoint
+  /// Initialize the Markers from after the map is ready
   Future<void> initializeMarkers() async {
     AppLogger.print("Initialize markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers

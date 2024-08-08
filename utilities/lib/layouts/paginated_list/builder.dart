@@ -76,24 +76,31 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
               padding: const EdgeInsets.only(bottom: 8),
               child: LoadStateBuilder(
                 store: store,
-                emptyBuilder: (context, empty) {
-                  _showSnackBarRequestResponse(context);
-                  return Center(child: WarningMessage.empty(title: empty));
-                },
-                loadingBuilder: (context) => const SizedBox.shrink(),
+                emptyBuilder: emptyBuilder ??
+                    (context, empty) {
+                      _showSnackBarRequestResponse(context);
+                      return Center(child: WarningMessage.empty(title: empty));
+                    },
+                loadingBuilder: (context) => Column(
+                  mainAxisAlignment: store.results.length > 1 ? MainAxisAlignment.end : MainAxisAlignment.center,
+                  children: const [
+                    CircularProgressIndicator(),
+                  ],
+                ),
                 loadedBuilder: (context) {
                   _showSnackBarRequestResponse(context);
                   return const SizedBox.shrink();
                 },
-                errorBuilder: (context, error) {
-                  return Center(
-                    child: WarningMessage.error(
-                      title: error,
-                      buttonText: "Try again",
-                      onButtonTap: (context) => store.refresh(),
-                    ),
-                  );
-                },
+                errorBuilder: errorBuilder ??
+                    (context, error) {
+                      return Center(
+                        child: WarningMessage.error(
+                          title: error,
+                          buttonText: "Try again",
+                          onButtonTap: (context) => store.refresh(),
+                        ),
+                      );
+                    },
               ),
             ),
           ),

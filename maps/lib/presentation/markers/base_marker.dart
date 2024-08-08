@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:maps/constants/marker_constants.dart';
-import 'package:maps/data/models/marker_model.dart';
+import "package:flutter/material.dart";
+import "package:flutter_map/flutter_map.dart";
+import "package:maps/constants/marker_constants.dart";
+import "package:maps/data/models/marker_model.dart";
 
 class BaseMarker<T extends MarkerModel> extends Marker {
   final T markerModel;
   final bool Function(T markerModel) isSelected;
-  final Function(T markerModel)? onMarkerTapped;
+  final void Function(T markerModel)? onMarkerTapped;
   BaseMarker({
     required this.markerModel,
     required Widget child,
