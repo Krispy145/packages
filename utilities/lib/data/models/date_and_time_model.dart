@@ -161,7 +161,7 @@ class DateAndTime extends Equatable {
     return thisDate.day == otherDate.day && thisDate.month == otherDate.month && thisDate.year == otherDate.year;
   }
 
-  DateTime get dateTime => _time == null ? _justDate : _justDate.setTimeOfDay(_time!);
+  DateTime get dateTime => (_time == null ? _justDate : _justDate.setTimeOfDay(_time!)).copyWith(isUtc: true);
 
   TimeOfDay? get time => _time;
 

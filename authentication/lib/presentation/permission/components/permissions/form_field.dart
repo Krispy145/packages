@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
-import "package:flutter/widgets.dart";
-import "package:forms/presentation/components/chips/form_field.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/chips/store.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:theme/extensions/build_context.dart";
@@ -54,28 +53,64 @@ class PermissionChipsField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(permissionName, style: context.textTheme.titleMedium),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
+        SizedBox(
+          height: 80,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: fields.map(
-              (field) {
-                return ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 270, maxHeight: 100),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: ChipsFormField(
-                      store: field,
-                      titleBuilder: (permission) => permission.name.toUpperCase(),
+            children: fields.map((field) {
+              return Observer(
+                builder: (context) {
+                  final segments = field.available.map((filter) => ButtonSegment(value: filter, label: Text(filter.name))).toList();
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withOpacity(0.6))),
+                        ),
+                        SegmentedButton(
+                          segments: segments,
+                          selected: field.selected.toSet(),
+                          onSelectionChanged: (p0) => field.selectFilter(p0.first),
+                        ),
+                      ],
                     ),
-                  ),
-                );
-              },
-            ).toList(),
+                  );
+                },
+              );
+            }).toList(),
           ),
         ),
         Sizes.xs.spacer(),
       ],
     );
+    // return Column(
+    //   crossAxisAlignment: CrossAxisAlignment.start,
+    //   children: [
+    //     Text(permissionName, style: context.textTheme.titleMedium),
+    //     SingleChildScrollView(
+    //       scrollDirection: Axis.horizontal,
+    //       child: Row(
+    //         mainAxisSize: MainAxisSize.min,
+    //         children: fields.map(
+    //           (field) {
+    //             return ConstrainedBox(
+    //               constraints: const BoxConstraints(maxWidth: 270, maxHeight: 100),
+    //               child: Padding(
+    //                 padding: const EdgeInsets.symmetric(horizontal: 8),
+    //                 child: ChipsFormField(
+    //                   store: field,
+    //                   titleBuilder: (permission) => permission.name.toUpperCase(),
+    //                 ),
+    //               ),
+    //             );
+    //           },
+    //         ).toList(),
+    //       ),
+    //     ),
+    //     Sizes.xs.spacer(),
+    //   ],
+    // );
   }
 }
