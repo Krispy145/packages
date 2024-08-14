@@ -52,8 +52,13 @@ class AudioPlayer: NSObject, FlutterPlugin, FlutterStreamHandler {
                           if let position = arguments["position"] as? Double {
                             
                             if let isLiveStream = arguments["isLiveStream"] as? Bool {
-                                
+
+                               
+                           
                                 setup(title: title, subtitle: subtitle, position: position, url: audioURL, isLiveStream: isLiveStream)
+                                
+                                
+                                
                             }
                           }
                       }

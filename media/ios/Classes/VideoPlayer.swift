@@ -73,6 +73,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
     var isLiveStream:Bool = false
     var showControls:Bool = false
     var position:Double = 0.0
+    var allowsPictureInPicturePlayback:Bool = false
 
     private var mediaDuration = 0.0
 
@@ -120,6 +121,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
         self.title = parsedData["title"] as! String
         self.subtitle = parsedData["subtitle"] as! String
         self.isLiveStream = parsedData["isLiveStream"] as! Bool
+        self.allowsPictureInPicturePlayback = parsedData["allowsPictureInPicturePlayback"] as! Bool
         self.showControls = parsedData["showControls"] as! Bool
         self.position = parsedData["position"] as! Double
 
@@ -157,6 +159,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
                 self.isLiveStream = parsedData["isLiveStream"] as! Bool
                 self.showControls = parsedData["showControls"] as! Bool
                 self.position = parsedData["position"] as! Double
+                self.allowsPictureInPicturePlayback = parsedData["allowsPictureInPicturePlayback"] as! Bool
 
                 self.onMediaChanged()
 
@@ -266,6 +269,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
             self.playerViewController?.player = self.player
             self.playerViewController?.view.frame = self.frame
             self.playerViewController?.showsPlaybackControls = self.showControls
+            self.playerViewController?.allowsPictureInPicturePlayback = self.allowsPictureInPicturePlayback
             /* setup lock screen controls */
             setupRemoteTransportControls()
 
@@ -585,6 +589,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
     public func dispose() {
         
         self.player?.pause()
+
         
         /* clear lock screen metadata */
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nil

@@ -23,6 +23,7 @@ class VideoPlayer extends StatefulWidget {
   final String subtitle;
   final String preferredAudioLanguage;
   final String preferredTextLanguage;
+  final bool allowsPictureInPicturePlayback;
 
   final void Function()? onPlay;
   final void Function()? onPause;
@@ -32,7 +33,7 @@ class VideoPlayer extends StatefulWidget {
   final void Function(int? duration)? onDuration;
   final void Function(String? error)? onError;
 
-  VideoPlayer({
+  const VideoPlayer({
     super.key,
     this.desiredState = PlayerState.PLAYING,
     this.showPlayerControls = true,
@@ -52,6 +53,7 @@ class VideoPlayer extends StatefulWidget {
     this.onSeek,
     this.onDuration,
     this.onError,
+    this.allowsPictureInPicturePlayback = false,
   });
 
   @override
@@ -91,6 +93,7 @@ class _VideoPlayerState extends State<VideoPlayer> with PlayerObserver, MultiAud
       desiredState: widget.desiredState,
       preferredTextLanguage: widget.preferredTextLanguage,
       loop: widget.loop,
+      allowsPictureInPicturePlayback: widget.allowsPictureInPicturePlayback,
     );
   }
 
