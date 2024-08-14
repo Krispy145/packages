@@ -63,4 +63,41 @@ class NetworkImageOptions extends ImageOptions {
     }
     return Triple(false, url, _headers);
   }
+
+  NetworkImageOptions copyWith({
+    Map<String, String>? headers,
+    String? proxy,
+  }) {
+    return NetworkImageOptions(
+      headers: headers ?? this.headers,
+      proxy: proxy ?? this.proxy,
+      width: width,
+      height: height,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      fit: fit,
+      alignment: alignment,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      filterQuality: filterQuality,
+      imageBuilder: imageBuilder,
+      placeholder: placeholder,
+      progressIndicatorBuilder: progressIndicatorBuilder,
+      errorWidget: errorWidget,
+      fadeOutDuration: fadeOutDuration,
+      fadeOutCurve: fadeOutCurve,
+      fadeInDuration: fadeInDuration,
+      fadeInCurve: fadeInCurve,
+      cacheManager: cacheManager,
+      useOldImageOnUrlChange: useOldImageOnUrlChange,
+      placeholderFadeInDuration: placeholderFadeInDuration,
+      memCacheWidth: memCacheWidth,
+      memCacheHeight: memCacheHeight,
+      cacheKey: cacheKey,
+      maxWidthDiskCache: maxWidthDiskCache,
+      maxHeightDiskCache: maxHeightDiskCache,
+      errorListener: errorListener,
+      imageRenderMethodForWeb: imageRenderMethodForWeb,
+    );
+  }
 }
