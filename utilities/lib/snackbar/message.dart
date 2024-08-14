@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:get_it/get_it.dart";
 import "package:theme/app/store.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/sizes/edge_insets.dart";
 import "package:utilities/sizes/spacers.dart";
@@ -112,8 +113,7 @@ class SnackbarMessage {
                             children: [
                               Text(
                                 configuration.title,
-                                style: TextStyle(
-                                  fontSize: 16,
+                                style: context.textTheme.titleMedium?.copyWith(
                                   color: getTitleColor(),
                                 ),
                                 maxLines: 2,
@@ -126,8 +126,7 @@ class SnackbarMessage {
                                   configuration.subtitle!,
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 14,
+                                  style: context.textTheme.bodyMedium?.copyWith(
                                     color: getSubtitleColor(),
                                   ),
                                 ),

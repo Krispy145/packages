@@ -152,7 +152,7 @@ class _CenterListWidget extends StatelessWidget {
         children: [
           Text(
             widget.title,
-            style: widget.titleStyle ?? Theme.of(context).textTheme.headlineSmall,
+            style: widget.titleStyle ?? Theme.of(context).textTheme.titleSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
