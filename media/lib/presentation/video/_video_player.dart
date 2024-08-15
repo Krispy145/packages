@@ -68,9 +68,16 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: _playerWidget,
+    return PopScope(
+      onPopInvoked: (didPop) {
+        if (didPop) {
+          _disposePlatformView();
+        }
+      },
+      child: GestureDetector(
+        onTap: () {},
+        child: _playerWidget,
+      ),
     );
   }
 
@@ -146,7 +153,11 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
     if (widget.url == null || widget.url!.isEmpty) {
       _disposePlatformView();
     }
-    if (oldWidget.url != widget.url || oldWidget.title != widget.title || oldWidget.subtitle != widget.subtitle || oldWidget.isLiveStream != widget.isLiveStream) {
+    if (oldWidget.url != widget.url ||
+        oldWidget.title != widget.title ||
+        oldWidget.subtitle != widget.subtitle ||
+        oldWidget.isLiveStream != widget.isLiveStream ||
+        oldWidget.allowPictureInPicture != widget.allowPictureInPicture) {
       _onMediaChanged();
     }
     if (oldWidget.desiredState != widget.desiredState) {
@@ -235,6 +246,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
       if (_methodChannel == null) {
         _setupPlayer();
       } else {
+        _methodChannel!.invokeMethod("pause");
         _methodChannel!.invokeMethod("onMediaChanged", {
           "autoPlay": widget.autoPlay,
           "loop": widget.loop,
