@@ -17,17 +17,23 @@ import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.media3.common.C;
 import androidx.media3.common.MediaItem;
+import androidx.media3.common.PlaybackParameters;
 import androidx.media3.common.Player;
+import androidx.media3.common.util.UnstableApi;
 import androidx.media3.common.util.Util;
 import androidx.media3.datasource.DataSource;
 import androidx.media3.datasource.DefaultDataSourceFactory;
+import androidx.media3.exoplayer.DefaultLivePlaybackSpeedControl;
 import androidx.media3.exoplayer.ExoPlaybackException;
 import androidx.media3.exoplayer.ExoPlayer;
 import androidx.media3.exoplayer.analytics.AnalyticsListener;
@@ -37,6 +43,7 @@ import androidx.media3.exoplayer.source.MergingMediaSource;
 import androidx.media3.exoplayer.source.ProgressiveMediaSource;
 import androidx.media3.exoplayer.source.SingleSampleMediaSource;
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector;
+import androidx.media3.ui.PlayerControlView;
 import androidx.media3.ui.PlayerView;
 
 import org.json.JSONArray;
@@ -54,6 +61,7 @@ import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.JSONMethodCodec;
 
+@UnstableApi
 public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler {
     public static final String TAG = "PlayerLayout";
     public static final String mNotificationChannelId = "NotificationBarController";
@@ -161,12 +169,18 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
                             .setPreferredTextLanguage(this.preferredTextLanguage)
             );
 
-            exoPlayer = new ExoPlayer.Builder(context).setTrackSelector(trackSelector).build();
+
+            exoPlayer = new ExoPlayer.Builder(context).build();
+
+
+
+
             exoPlayer.setPlayWhenReady(this.autoPlay);
 
             if (this.loop) {
                 exoPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
             }
+
 
             exoPlayer.addAnalyticsListener(new PlayerAnalyticsEventsListener());
 
@@ -177,7 +191,9 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
             playerView = new PlayerView(context);
             playerView.setPlayer(exoPlayer);
             playerView.setUseController(showControls);
+            hideSettingsButton();
             listenForPlayerTimeChange();
+//           setupSettingsButton(); // Add settings button functionality
 
             new EventChannel(
                     messenger,
@@ -193,9 +209,116 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
         }
     }
 
+    private void hideSettingsButton() {
+        exoPlayer.getAvailableCommands().buildUpon().remove(Player.COMMAND_SET_SPEED_AND_PITCH).build();
+        View settingsButton = playerView.findViewById(androidx.media3.ui.R.id.exo_settings);
+        if (settingsButton != null) {
+            settingsButton.setVisibility(View.GONE);
+        }
+    }
+
     public View getView() {
         return playerView;
     }
+
+//    private void setupSettingsButton() {
+//        PlayerControlView controlView = playerView.findViewById(R.id.exo_settings); // Access the PlayerControlView
+//
+//        if (controlView != null) {
+//            // Loop through children to find "Speed" and "Audio" buttons
+//            for (int i = 0; i < controlView.getChildCount(); i++) {
+//                View child = controlView.getChildAt(i);
+//
+//                if (child instanceof TextView) {
+//                    TextView textView = (TextView) child;
+//                    CharSequence text = textView.getText();
+//
+//                    // Identify and customize the "Speed" button
+//                    if ("Speed".contentEquals(text)) {
+//                        textView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                // Custom behavior for Speed button
+//                                showSpeedPopupMenu(v);
+//                            }
+//                        });
+//                    }
+//
+//                    // Identify and customize the "Audio" button
+//                    if ("Audio".contentEquals(text)) {
+//                        textView.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                // Custom behavior for Audio button
+//                                showAudioTrackPopupMenu(v);
+//                            }
+//                        });
+//                    }
+//                }
+//            }
+//        }
+//    }
+
+    // Method to show Speed PopupMenu
+    private void showSpeedPopupMenu(View v) {
+        // Assuming 'context' is a field in your PlayerLayout class
+        PopupMenu popupMenu = new PopupMenu(context, v);
+        popupMenu.getMenuInflater().inflate(R.menu.player_settings_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.speed_0_5x) {
+                    exoPlayer.setPlaybackParameters(new PlaybackParameters(0.5f));
+                    return true;
+                } else if (itemId == R.id.speed_1x) {
+                    exoPlayer.setPlaybackParameters(new PlaybackParameters(1.0f));
+                    return true;
+                } else if (itemId == R.id.speed_1_5x) {
+                    exoPlayer.setPlaybackParameters(new PlaybackParameters(1.5f));
+                    return true;
+                } else if (itemId == R.id.speed_2x) {
+                    exoPlayer.setPlaybackParameters(new PlaybackParameters(2.0f));
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    // Method to show Audio Track PopupMenu
+    private void showAudioTrackPopupMenu(View v) {
+        // Assuming 'context' is a field in your PlayerLayout class
+        PopupMenu popupMenu = new PopupMenu(context, v);
+        popupMenu.getMenuInflater().inflate(R.menu.player_settings_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.audio_track_1) {
+                    trackSelector.setParameters(
+                            trackSelector.buildUponParameters().setPreferredAudioLanguage("eng")
+                    );
+                    return true;
+                } else if (itemId == R.id.audio_track_2) {
+                    trackSelector.setParameters(
+                            trackSelector.buildUponParameters().setPreferredAudioLanguage("spa")
+                    );
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+
+
 
     private void setupMediaSession() {
         try {
@@ -516,6 +639,29 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
         }
     }
 
+    public void setPlaybackSpeed(Object arguments) {
+        try {
+            // Cast the arguments to a HashMap
+            HashMap<String, Double> args = (HashMap<String, Double>) arguments;
+            // Extract the speed value
+            Double speedValue = args.get("speed");
+
+            // Ensure that the speed value is valid
+            if (speedValue != null && speedValue > 0) {
+                // Convert the Double to float
+                float speed = speedValue.floatValue();
+
+                if (exoPlayer != null) {
+                    // Set the playback speed using ExoPlayer
+                    exoPlayer.setPlaybackParameters(new PlaybackParameters(speed));
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error setting playback speed: ", e);
+        }
+    }
+
+
     public void seekTo(Object arguments) {
         try {
             HashMap<String, Double> args = (HashMap<String, Double>) arguments;
@@ -586,6 +732,11 @@ public class PlayerLayout implements FlutterAVPlayer, EventChannel.StreamHandler
         @Override
         public void onStop() {
             pause();
+        }
+        @Override
+        public void onSetPlaybackSpeed(float speed) {
+                exoPlayer.setPlaybackParameters(new PlaybackParameters(speed));
+                playerView.setUseController(false);
         }
     }
 
