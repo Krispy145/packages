@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
 
 class DOListTile extends StatefulWidget {
@@ -152,7 +153,7 @@ class _CenterListWidget extends StatelessWidget {
         children: [
           Text(
             widget.title,
-            style: widget.titleStyle ?? Theme.of(context).textTheme.titleSmall,
+            style: widget.titleStyle ?? context.textTheme.titleSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -160,7 +161,7 @@ class _CenterListWidget extends StatelessWidget {
             Sizes.xxs.spacer(),
             Text(
               widget.subtitle!,
-              style: widget.subtitleStyle ?? Theme.of(context).textTheme.bodySmall,
+              style: widget.subtitleStyle ?? context.textTheme.bodySmall,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

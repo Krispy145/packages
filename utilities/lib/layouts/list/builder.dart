@@ -111,29 +111,26 @@ class ListBuilder<T> extends StatelessWidget {
         },
         loadedBuilder: (context) {
           print("LOADED BUILDER");
-          final contents = Padding(
-            padding: !slivers ? padding : EdgeInsets.zero,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
-              children: [
-                if (header != null) ...[header!, Sizes.m.spacer()],
-                if (shrinkWrap)
-                  Observer(
+          final contents = Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
+            children: [
+              if (header != null) ...[header!, Sizes.m.spacer()],
+              if (shrinkWrap)
+                Observer(
+                  builder: (context) {
+                    return buildView(store.showLoadingSpinnerAtBottom);
+                  },
+                )
+              else
+                Expanded(
+                  child: Observer(
                     builder: (context) {
                       return buildView(store.showLoadingSpinnerAtBottom);
                     },
-                  )
-                else
-                  Expanded(
-                    child: Observer(
-                      builder: (context) {
-                        return buildView(store.showLoadingSpinnerAtBottom);
-                      },
-                    ),
                   ),
-              ],
-            ),
+                ),
+            ],
           );
           return stackedWidgets != null
               ? Stack(
@@ -178,7 +175,7 @@ class ListBuilder<T> extends StatelessWidget {
     ///@Serena: not sure why we need a loadingOrItemBuilder function here?
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
-        return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
+        return const SizedBox(height: 64, width: 64, child: Center(child: CircularProgressIndicator()));
       }
       return itemBuilder(context, index, store.results[index]);
     }
