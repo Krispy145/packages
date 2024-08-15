@@ -31,23 +31,25 @@ class _InternalVideoPlayer extends StatefulWidget {
   final double position;
   final Function? onViewCreated;
   final PlayerState desiredState;
+  final bool allowPictureInPicture;
 
-  const _InternalVideoPlayer(
-      {Key? key,
-      this.autoPlay = false,
-      this.loop = false,
-      this.showControls = true,
-      this.url,
-      this.title = "",
-      this.subtitle = "",
-      this.preferredAudioLanguage = "mul",
-      this.preferredTextLanguage = "",
-      this.isLiveStream = false,
-      this.position = -1,
-      this.onViewCreated,
-      this.desiredState = PlayerState.PLAYING,
-      this.textTracks})
-      : super(key: key);
+  const _InternalVideoPlayer({
+    Key? key,
+    this.autoPlay = false,
+    this.loop = false,
+    this.showControls = true,
+    this.url,
+    this.title = "",
+    this.subtitle = "",
+    this.preferredAudioLanguage = "mul",
+    this.preferredTextLanguage = "",
+    this.isLiveStream = false,
+    this.position = -1,
+    this.onViewCreated,
+    this.desiredState = PlayerState.PLAYING,
+    this.textTracks,
+    this.allowPictureInPicture = false,
+  }) : super(key: key);
 
   @override
   _InternalVideoPlayerState createState() => _InternalVideoPlayerState();
@@ -98,11 +100,11 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
               widget.onViewCreated!(viewId);
             }
           },
-          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
-            new Factory<OneSequenceGestureRecognizer>(
-              () => new EagerGestureRecognizer(),
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
             ),
-          ].toSet(),
+          },
         );
       }
 
@@ -120,6 +122,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
             "preferredAudioLanguage": widget.preferredAudioLanguage ?? "mul",
             "isLiveStream": widget.isLiveStream,
             "position": widget.position,
+            "allowPictureInPicture": widget.allowPictureInPicture,
           },
           creationParamsCodec: const JSONMessageCodec(),
           onPlatformViewCreated: (viewId) {
@@ -128,11 +131,11 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
               widget.onViewCreated!(viewId);
             }
           },
-          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
-            new Factory<OneSequenceGestureRecognizer>(
-              () => new EagerGestureRecognizer(),
+          gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>{
+            Factory<OneSequenceGestureRecognizer>(
+              () => EagerGestureRecognizer(),
             ),
-          ].toSet(),
+          },
         );
       }
     }

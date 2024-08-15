@@ -73,6 +73,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
     var isLiveStream:Bool = false
     var showControls:Bool = false
     var position:Double = 0.0
+    var allowPictureInPicture:Bool = false
 
     private var mediaDuration = 0.0
 
@@ -122,6 +123,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
         self.isLiveStream = parsedData["isLiveStream"] as! Bool
         self.showControls = parsedData["showControls"] as! Bool
         self.position = parsedData["position"] as! Double
+        self.allowPictureInPicture = parsedData["allowPictureInPicture"] as! Bool
 
         setupPlayer()
     }
@@ -157,6 +159,8 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
                 self.isLiveStream = parsedData["isLiveStream"] as! Bool
                 self.showControls = parsedData["showControls"] as! Bool
                 self.position = parsedData["position"] as! Double
+                self.allowPictureInPicture = parsedData["allowPictureInPicture"] as! Bool
+                
 
                 self.onMediaChanged()
 
@@ -266,6 +270,8 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
             self.playerViewController?.player = self.player
             self.playerViewController?.view.frame = self.frame
             self.playerViewController?.showsPlaybackControls = self.showControls
+            self.playerViewController?.allowsPictureInPicturePlayback = self.allowPictureInPicture
+            
             /* setup lock screen controls */
             setupRemoteTransportControls()
 
