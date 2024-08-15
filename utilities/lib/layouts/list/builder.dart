@@ -175,7 +175,7 @@ class ListBuilder<T> extends StatelessWidget {
     ///@Serena: not sure why we need a loadingOrItemBuilder function here?
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
-        return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
+        return const SizedBox(height: 64, width: 64, child: Center(child: CircularProgressIndicator()));
       }
       return itemBuilder(context, index, store.results[index]);
     }
