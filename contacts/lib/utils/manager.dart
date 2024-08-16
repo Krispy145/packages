@@ -58,7 +58,7 @@
 //   String createVCard(Contact contact) {
 //     // Export contact to vCard
 //     final vCard = contact.toVCard();
-//     print(vCard);
+//    debugPrint(vCard);
 //     return vCard;
 //   }
 

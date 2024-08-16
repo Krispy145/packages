@@ -106,11 +106,11 @@ class ListBuilder<T> extends StatelessWidget {
       return LoadStateBuilder(
         store: store,
         emptyBuilder: (context, empty) {
-          print("EMPTY BUILDER: $empty");
+          debugPrint("EMPTY BUILDER: $empty");
           return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty);
         },
         loadedBuilder: (context) {
-          print("LOADED BUILDER");
+          debugPrint("LOADED BUILDER");
           final contents = Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,

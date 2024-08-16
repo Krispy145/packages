@@ -18,13 +18,13 @@ abstract class _DateAndTimeFormFieldStore extends BaseFormFieldStore<DateAndTime
     required super.title,
     // super.validate,
   }) {
-    print("Updated time: constructor ($title) - UTC: $value, Timezone: ${value?.toTimezone(timezone: selectedTimeZone)}");
+    debugPrint("Updated time: constructor ($title) - UTC: $value, Timezone: ${value?.toTimezone(timezone: selectedTimeZone)}");
     reaction((p0) => value, (p0) {
-      print("Updated time: reaction - UTC: $p0, Timezone: ${p0?.toTimezone(timezone: selectedTimeZone)}");
+      debugPrint("Updated time: reaction - UTC: $p0, Timezone: ${p0?.toTimezone(timezone: selectedTimeZone)}");
     });
     timeZones = tz.timeZoneDatabase.locations;
     selectedTimeZone = tz.getLocation("Europe/London");
-    print(value);
+    debugPrint(value.toString());
     timezonesDropdownStore = DropdownFormFieldStore<tz.Location>(
       initialValue: selectedTimeZone,
       initialItems: timeZones.values.toList(),

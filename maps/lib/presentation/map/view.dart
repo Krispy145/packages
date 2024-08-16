@@ -72,7 +72,7 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
   }
 
   TileLayer buildTileLayer() {
-    print("Build tile layer");
+    debugPrint("Build tile layer");
     return TileLayer(
       urlTemplate: store.mapTilesUrl,
       userAgentPackageName: store.mapTilesUserPackageName,

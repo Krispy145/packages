@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/widgets/load_state/states.dart";
 
@@ -94,7 +95,7 @@ mixin LoadStateStore {
 
   /// [setEmpty] is a method that will be used to set the state to empty.
   void _setEmpty(String emptyMessage) {
-    print("LoadState: Empty");
+    debugPrint("LoadState: Empty");
     if (currentState is EmptyLoadState) {
       if ((currentState as EmptyLoadState).emptyMessage == emptyMessage) {
         return;
@@ -108,7 +109,7 @@ mixin LoadStateStore {
 
   /// [setError] is a method that will be used to set the state to error.
   void _setError(String errorMessage) {
-    print("LoadState: Error: $errorMessage");
+    debugPrint("LoadState: Error: $errorMessage");
     if (currentState is ErrorLoadState) {
       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
         return;
@@ -211,7 +212,7 @@ mixin LoadStateStore {
 
 //   @action
 //   void setEmpty(String emptyMessage) {
-//     print("LoadState: Empty");
+//    debugPrint("LoadState: Empty");
 //     if (currentState is EmptyLoadState) {
 //       if ((currentState as EmptyLoadState).emptyMessage == emptyMessage) {
 //         return;
@@ -223,7 +224,7 @@ mixin LoadStateStore {
 
 //   @action
 //   void setError(String errorMessage) {
-//     print("LoadState: Error");
+//    debugPrint("LoadState: Error");
 //     if (currentState is ErrorLoadState) {
 //       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
 //         return;

@@ -76,12 +76,12 @@
 // //   file: _fakeResponseDifferentFile,
 // // );
 
-// var printLog = <String>[];
+// vardebugPrintLog = <String>[];
 
 // void overridePrint(Future<void> Function() testFn) => () {
 //       var spec = ZoneSpecification(print: (_, __, ___, msg) {
-//         // Add to log instead of printing to stdout
-//         printLog.add(msg);
+//         // Add to log instead ofdebugPrinting to stdout
+//        debugPrintLog.add(msg);
 //       });
 //       return Zone.current.fork(specification: spec).run(testFn);
 //     };
@@ -104,7 +104,7 @@
 //   });
 
 //   tearDown(() {
-//     printLog.clear();
+//    debugPrintLog.clear();
 //     clearCache();
 //   });
 
@@ -131,12 +131,12 @@
 //       file: _fakeResponseFile,
 //     );
 
-//     // Call loadFontIfNecessary and verify that it prints an error.
+//     // Call loadFontIfNecessary and verify that itdebugPrints an error.
 //     overridePrint(() async {
 //       await loadFontIfNecessary(descriptorInAssets);
 //       expect(printLog.length, 1);
 //       expect(
-//         printLog[0],
+//        debugPrintLog[0],
 //         startsWith('google_fonts was unable to load font Foo-BlackItalic'),
 //       );
 //     });
@@ -156,16 +156,16 @@
 
 //     DynamicFonts.config.allowRuntimeFetching = false;
 
-//     // Call loadFontIfNecessary and verify that it prints an error.
+//     // Call loadFontIfNecessary and verify that itdebugPrints an error.
 //     overridePrint(() async {
 //       await loadFontIfNecessary(fakeDescriptor);
 //       expect(printLog.length, 1);
 //       expect(
-//         printLog[0],
+//        debugPrintLog[0],
 //         startsWith('google_fonts was unable to load font Foo-Regular'),
 //       );
 //       expect(
-//         printLog[0],
+//        debugPrintLog[0],
 //         endsWith(
 //           "Ensure Foo-Regular.ttf exists in a folder that is included in your pubspec's assets.",
 //         ),
@@ -335,7 +335,7 @@
 //       await loadFontIfNecessary(fakeDescriptor);
 //       expect(printLog.length, 1);
 //       expect(
-//         printLog[0],
+//        debugPrintLog[0],
 //         startsWith('google_fonts was unable to load font Foo-BlackItalic'),
 //       );
 //       directoryContents = await getApplicationSupportDirectory();

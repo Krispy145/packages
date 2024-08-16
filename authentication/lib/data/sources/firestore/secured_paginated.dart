@@ -2,6 +2,7 @@ import "package:authentication/data/models/review_model.dart";
 import "package:authentication/data/models/user_model.dart";
 import "package:authentication/data/sources/firestore/secured_source.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
+import "package:flutter/foundation.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/firestore/paginated.dart";
 import "package:utilities/data/sources/paginated.dart";
@@ -112,7 +113,7 @@ abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> ex
         },
       );
     } catch (e) {
-      print("Error: $e");
+      debugPrint("Error: $e");
       return Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []));
     }
   }

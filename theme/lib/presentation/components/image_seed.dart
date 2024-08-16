@@ -169,7 +169,7 @@ class _ImageColorsState extends State<ImageColors> {
     }
 
     for (final color in distinctColors) {
-      print("ColorImage Color: #${color.first.toString().substring(10)} - Population: ${color.second}");
+      debugPrint("ColorImage Color: #${color.first.toString().substring(10)} - Population: ${color.second}");
     }
     setState(() {});
   }
