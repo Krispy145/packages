@@ -70,6 +70,14 @@ class PermissionChipsField extends StatelessWidget {
                           child: Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withOpacity(0.6))),
                         ),
                         SegmentedButton(
+                          style: ButtonStyle(
+                            foregroundColor: WidgetStateProperty.resolveWith((states) {
+                              return states.contains(WidgetState.selected) ? context.colorScheme.onPrimaryContainer : context.colorScheme.onSurface;
+                            }),
+                            backgroundColor: WidgetStateProperty.resolveWith((states) {
+                              return states.contains(WidgetState.selected) ? context.colorScheme.primaryContainer : context.colorScheme.surface;
+                            }),
+                          ),
                           segments: segments,
                           selected: field.selected.toSet(),
                           onSelectionChanged: (p0) => field.selectFilter(p0.first),
