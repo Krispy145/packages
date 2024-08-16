@@ -72,7 +72,7 @@ class PermissionChipsField extends StatelessWidget {
                         SegmentedButton(
                           style: ButtonStyle(
                             foregroundColor: WidgetStateProperty.resolveWith((states) {
-                              return states.contains(WidgetState.selected) ? context.colorScheme.onPrimaryContainer : context.colorScheme.onSurface;
+                              return states.contains(WidgetState.selected) ? context.colorScheme.onPrimaryContainer : context.colorScheme.onSurface.withOpacity(0.8);
                             }),
                             backgroundColor: WidgetStateProperty.resolveWith((states) {
                               return states.contains(WidgetState.selected) ? context.colorScheme.primaryContainer : context.colorScheme.surface;
