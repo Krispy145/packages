@@ -323,7 +323,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     ).toMap();
-    print("paramsMap: $paramsMap");
+    debugPrint("paramsMap: $paramsMap");
     paramsMap.addAll(
       _additionalDataControllers.map(
         (key, value) => MapEntry(
@@ -332,7 +332,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
         ),
       ),
     );
-    print("updated paramsMap: $paramsMap");
+    debugPrint("updated paramsMap: $paramsMap");
     var params = AuthParams.fromMap(paramsMap);
     if (widget.codeDataSourceType != null) {
       params = params.copyWith(code: _codeController.text);

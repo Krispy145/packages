@@ -47,13 +47,18 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
         store: store,
         additionalFields: additionalFields,
       ),
+      loadingBuilder: (context) => const Center(child: CircularProgressIndicator()),
       loadedBuilder: (context) {
-        conditionallyShowSnackbar(context);
-        store.onSuccess?.call(store.userModel!);
-        return _AuthenticateView(
-          store: store,
-          additionalFields: additionalFields,
-        );
+        if (store.authBuilderType == AuthBuilderType.silent) {
+          conditionallyShowSnackbar(context);
+          store.onSuccess?.call(store.userModel!);
+          return const SizedBox.shrink();
+        } else {
+          return _AuthenticateView(
+            store: store,
+            additionalFields: additionalFields,
+          );
+        }
       },
       errorBuilder: (context, error) => Center(child: Text(error)),
     );

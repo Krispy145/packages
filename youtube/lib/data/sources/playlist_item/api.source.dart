@@ -13,7 +13,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
           convertDataTypeFromMap: (map) => PlaylistItemModel.fromMap(map),
           convertDataTypeToMap: (data) => data.toMap(),
           convertResponseTypeFromMap: (data) {
-            print(data);
+            debugPrint(data.toString());
             return PagedResponse.fromJson(data, PlaylistItemModel.fromMap);
           },
           getNexPageParametersFromResponse: (lastResponse, size, orderBy) {

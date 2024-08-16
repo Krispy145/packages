@@ -77,4 +77,5 @@ dependencies {
     implementation "androidx.media:media:1.7.0"
     implementation 'androidx.media3:media3-common:1.4.0'
     implementation 'androidx.media3:media3-exoplayer-hls:1.4.0'
+    implementation 'androidx.mediarouter:mediarouter:1.7.0'
 }

@@ -1,11 +1,11 @@
 // ignore_for_file: unused_element
 
-import 'package:maps/presentation/map/store.dart';
-import 'package:mobx/mobx.dart';
+import "package:maps/presentation/map/store.dart";
+import "package:mobx/mobx.dart";
 
-import '../../data/models/marker_model.dart';
+import "../../data/models/marker_model.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 /// [SingleMarkerStore] is a class that uses [_SingleMarkerStore] to manage state of the map feature.
 class SingleMarkerStore = _SingleMarkerStore with _$SingleMarkerStore;
@@ -28,7 +28,7 @@ abstract class _SingleMarkerStore extends MapStore with Store {
   Future<void> onMapReady() async {
     setLoading();
     addMarker(marker);
-    selectMarker(
+    await selectMarker(
       marker.id,
       marker.position,
     );

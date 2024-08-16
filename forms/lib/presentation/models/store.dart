@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import "package:flutter/foundation.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/widgets/load_state/store.dart";
@@ -29,9 +30,9 @@ abstract class _FormsModelStore<T> with LoadStateStore, Store {
   @action
   void onValueChanged(T newValue) {
     value = newValue;
-    print("Value changed: $value");
-    print("New Value: $newValue");
-    print("Value changed: ${value == newValue}");
+    debugPrint("Value changed: $value");
+    debugPrint("New Value: $newValue");
+    debugPrint("Value changed: ${value == newValue}");
   }
 
   @observable
@@ -39,7 +40,7 @@ abstract class _FormsModelStore<T> with LoadStateStore, Store {
 
   @action
   Future<RequestResponse> saveValue() async {
-    print("Saving value: $value");
+    debugPrint("Saving value: $value");
     return onValueSaved(isAdding, value);
   }
 }

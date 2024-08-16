@@ -45,6 +45,9 @@ class ThemedMaterialApp extends StatelessWidget {
         },
       ),
       loadingBuilder: (context) => MaterialApp(
+        themeMode: themeStore.currentThemeMode,
+        theme: themeStore.lightTheme,
+        darkTheme: themeStore.darkTheme,
         home: Scaffold(
           backgroundColor: initialBackgroundColor,
           body: const Center(

@@ -4,6 +4,7 @@ import "package:cached_network_image/cached_network_image.dart";
 import "package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:utilities/constants/env.dart";
 import "package:widgets/images/options/abstract.dart";
 import "package:widgets/images/options/asset.dart";
 import "package:widgets/images/options/file.dart";
@@ -82,7 +83,7 @@ class DOImage extends StatelessWidget {
         return Image.file(
           file!,
           frameBuilder: _assetOptions.frameBuilder,
-          errorBuilder: _assetOptions.errorBuilder,
+          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, error.toString(), error),
           // semanticLabel: _assetOptions?.semanticLabel,
           // excludeFromSemantics: _assetOptions?.excludeFromSemantics ?? false,
           width: _assetOptions.width,
@@ -104,7 +105,7 @@ class DOImage extends StatelessWidget {
         return Image.memory(
           memory!,
           frameBuilder: _memoryOptions.frameBuilder,
-          errorBuilder: _memoryOptions.errorBuilder,
+          errorBuilder: _memoryOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, error.toString(), error),
           // semanticLabel: _memoryOptions?.semanticLabel,
           // excludeFromSemantics: _memoryOptions?.excludeFromSemantics ?? false,
           width: _memoryOptions.width,
@@ -126,7 +127,7 @@ class DOImage extends StatelessWidget {
         return Image.asset(
           assetPath!,
           frameBuilder: _assetOptions.frameBuilder,
-          errorBuilder: _assetOptions.errorBuilder,
+          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, error.toString(), error),
           // semanticLabel: _assetOptions?.semanticLabel,
           // excludeFromSemantics: _assetOptions?.excludeFromSemantics ?? false,
           width: _assetOptions.width,
@@ -164,7 +165,7 @@ class DOImage extends StatelessWidget {
           imageBuilder: _networkOptions.imageBuilder,
           placeholder: _networkOptions.placeholder,
           progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
-          errorWidget: _networkOptions.errorWidget,
+          errorWidget: _buildErrorImageProxyBuilder,
           fadeOutDuration: _networkOptions.fadeOutDuration,
           fadeOutCurve: _networkOptions.fadeOutCurve,
           fadeInDuration: _networkOptions.fadeInDuration,
@@ -182,6 +183,48 @@ class DOImage extends StatelessWidget {
         );
       // return _buildNetworkImage();
     }
+  }
+
+  CachedNetworkImage _buildErrorImageProxyBuilder(BuildContext context, String error, Object object) {
+    final _networkOptions = (options as NetworkImageOptions? ?? NetworkImageOptions()).copyWith(proxy: DigitalOasis.proxy);
+    final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
+    final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
+    final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
+    return CachedNetworkImage(
+      imageUrl: _finalUrl,
+      httpHeaders: _httpHeaders,
+      width: _networkOptions.width,
+      height: _networkOptions.height,
+      color: _networkOptions.color,
+      colorBlendMode: _networkOptions.colorBlendMode,
+      fit: _networkOptions.fit,
+      alignment: _networkOptions.alignment,
+      repeat: _networkOptions.repeat,
+      matchTextDirection: _networkOptions.matchTextDirection,
+      filterQuality: _networkOptions.filterQuality,
+      imageBuilder: _networkOptions.imageBuilder,
+      placeholder: _networkOptions.placeholder,
+      progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
+      errorWidget: _networkOptions.errorWidget ?? buildDefaultErrorImage,
+      fadeOutDuration: _networkOptions.fadeOutDuration,
+      fadeOutCurve: _networkOptions.fadeOutCurve,
+      fadeInDuration: _networkOptions.fadeInDuration,
+      fadeInCurve: _networkOptions.fadeInCurve,
+      cacheManager: _networkOptions.cacheManager,
+      useOldImageOnUrlChange: _networkOptions.useOldImageOnUrlChange,
+      placeholderFadeInDuration: _networkOptions.placeholderFadeInDuration,
+      memCacheWidth: _networkOptions.memCacheWidth,
+      memCacheHeight: _networkOptions.memCacheHeight,
+      cacheKey: _networkOptions.cacheKey,
+      maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
+      maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
+      errorListener: _networkOptions.errorListener,
+      imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
+    );
+  }
+
+  Widget buildDefaultErrorImage(BuildContext context, String error, Object object) {
+    return const Center(child: Icon(Icons.error_outline));
   }
 
   // Widget _buildNetworkImage() {

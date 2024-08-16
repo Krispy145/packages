@@ -91,8 +91,8 @@ class ColorModelView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("showPalette: $showPalette");
-    print("appThemPalette: ${AppTheme.currentColorModel!.palette}");
+    debugPrint("showPalette: $showPalette");
+    debugPrint("appThemPalette: ${AppTheme.currentColorModel!.palette}");
     return Observer(
       builder: (context) {
         return Column(

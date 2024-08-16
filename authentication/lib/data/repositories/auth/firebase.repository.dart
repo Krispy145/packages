@@ -103,7 +103,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
         case AuthType.phone:
         // TODO: Handle reauthenticate with phone.
         case AuthType.anonymous:
-        // TODO: Handle reauthenticate with anonymous.
+          userCredential = await _firebaseAuth.signInAnonymously();
         case AuthType.passwordless:
         // TODO: Handle reauthenticate with passwordless.
         case AuthType.empty:

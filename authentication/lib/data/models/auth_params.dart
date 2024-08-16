@@ -37,6 +37,8 @@ class AuthParams {
   String? accessToken;
   String? idToken;
   bool? isAuthorized;
+  double? expiresIn;
+  String? tokenType;
   CODE? code;
   String? nonce;
   String? refreshToken;
@@ -55,6 +57,8 @@ class AuthParams {
     this.accessToken,
     this.code,
     this.idToken,
+    this.expiresIn,
+    this.tokenType,
     this.isAuthorized,
     this.nonce,
     this.refreshToken,

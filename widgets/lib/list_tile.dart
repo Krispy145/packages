@@ -8,6 +8,7 @@ class DOListTile extends StatefulWidget {
   final String? subtitle;
   final TextStyle? subtitleStyle;
   final void Function()? onTap;
+  final void Function()? onLongPress;
   final Widget? leading;
   final BoxConstraints leadingConstraints;
   final Widget? trailing;
@@ -25,6 +26,7 @@ class DOListTile extends StatefulWidget {
     required this.title,
     this.titleStyle,
     this.onTap,
+    this.onLongPress,
     this.subtitle,
     this.subtitleStyle,
     this.leading,
@@ -45,6 +47,7 @@ class DOListTile extends StatefulWidget {
     required this.title,
     this.titleStyle,
     this.onTap,
+    this.onLongPress,
     this.shouldMaintainSize = false,
     this.subtitle,
     this.subtitleStyle,
@@ -91,6 +94,7 @@ class _DOListTileState extends State<DOListTile> {
       padding: widget.tilePadding,
       child: InkWell(
         onTap: widget.onTap,
+        onLongPress: widget.onLongPress,
         child: Row(
           mainAxisSize: widget.expandWidth ? MainAxisSize.max : MainAxisSize.min,
           children: [

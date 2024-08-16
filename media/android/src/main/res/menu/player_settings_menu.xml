@@ -1,0 +1,21 @@
+<!-- res/menu/player_settings_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/speed_0_5x"
+        android:title="0.5x Speed" />
+    <item
+        android:id="@+id/speed_1x"
+        android:title="Normal Speed" />
+    <item
+        android:id="@+id/speed_1_5x"
+        android:title="1.5x Speed" />
+    <item
+        android:id="@+id/speed_2x"
+        android:title="2.0x Speed" />
+    <item
+        android:id="@+id/audio_track_1"
+        android:title="English Audio" />
+    <item
+        android:id="@+id/audio_track_2"
+        android:title="Spanish Audio" />
+</menu>

@@ -91,7 +91,7 @@ class VideoPlayer: NSObject, FlutterPlugin, FlutterStreamHandler, FlutterPlatfor
     private var nowPlayingInfo = [String : Any]()
 
     deinit {
-        print("[dealloc] ae.digitaloasis/NativeVideoPlayer")
+       debugPrint("[dealloc] ae.digitaloasis/NativeVideoPlayer")
     }
 
     init(frame:CGRect, viewId: Int64, messenger: FlutterBinaryMessenger, args: Any?) {

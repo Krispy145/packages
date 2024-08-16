@@ -100,7 +100,7 @@ class PermissionChecker<T> {
     return Pair(referenceNameEqualsFirst, secondEqualsAll);
   }
 
-  Future<RequestResponse> checkWritePermissions<U extends UserModel>({
+  Future<RequestResponse> checkWritePermissions<U extends UserModel?>({
     UUID? sourceId,
     required CRUD crud,
     required U user,
@@ -122,7 +122,7 @@ class PermissionChecker<T> {
     return RequestResponse.success;
   }
 
-  Future<RequestResponse> addForReview<Resp extends ResponseModel, U extends UserModel>({
+  Future<RequestResponse> addForReview<Resp extends ResponseModel, U extends UserModel?>({
     required UUID sourceId,
     required String dataSourceReference,
     CRUD crud = CRUD.create,
@@ -130,6 +130,9 @@ class PermissionChecker<T> {
     required U currentUser,
     required ReviewDataSource<Resp, T> reviewDataSource,
   }) async {
+    if (currentUser == null) {
+      return RequestResponse.failure;
+    }
     return reviewDataSource.updateReviewModel(
       sourceId,
       ReviewModel(
