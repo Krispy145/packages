@@ -158,7 +158,11 @@ class ListBuilder<T> extends StatelessWidget {
               final emptyState = store.currentState as EmptyLoadState;
               return SliverToBoxAdapter(child: emptyBuilder?.call(context, emptyState.emptyMessage) ?? WarningMessage.empty(message: emptyState.emptyMessage));
             } else if (store.isLoading) {
-              return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+              return const SliverToBoxAdapter(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             } else {
               return const SliverToBoxAdapter(child: SizedBox.shrink());
             }
