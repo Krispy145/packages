@@ -140,7 +140,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                       formControlName: imageUrlKey,
                       style: context.textTheme.bodyMedium,
                       decoration: InputDecoration(
-                        hintText: "https://www.image.com",
+                        labelText: "https://www.image.com",
                         hintStyle: context.textTheme.bodyMedium?.copyWith(
                           color: context.textTheme.bodyMedium?.color?.withOpacity(0.5),
                           // color: context.colorScheme.onBackground.withOpacity(0.3),

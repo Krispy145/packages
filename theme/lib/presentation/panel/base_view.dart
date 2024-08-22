@@ -18,8 +18,9 @@ class _ThemeChangerViewState extends State<ThemeChangerView> {
   void _onChanged(String value) {
     setState(() {
       _options = ChangerOptions.values
-          .where((element) =>
-              element.name.toLowerCase().contains(value.toLowerCase()),)
+          .where(
+            (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+          )
           .toList();
     });
   }
@@ -32,7 +33,7 @@ class _ThemeChangerViewState extends State<ThemeChangerView> {
         children: [
           TextField(
             decoration: const InputDecoration(
-              hintText: "Search",
+              labelText: "Search",
               prefixIcon: Icon(Icons.search),
             ),
             controller: _controller,

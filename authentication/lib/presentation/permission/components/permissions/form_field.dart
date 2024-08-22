@@ -63,7 +63,7 @@ class PermissionChipsField extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: context.colorScheme.inverseSurface,
+        color: context.colorScheme.inversePrimary,
         boxShadow: [
           BoxShadow(
             color: context.colorScheme.onSurface.withOpacity(0.1),
@@ -88,8 +88,6 @@ class PermissionChipsField extends StatelessWidget {
                           height: 32,
                           child: RadioListTile(
                             value: filter,
-                            // formControlName: formControlName,
-                            // formControl: formControl,
                             title: Text(filter.name.toTitleCase()),
                             selected: field.selected.contains(filter),
                             onChanged: (value) => field.selectFilter(value!),
