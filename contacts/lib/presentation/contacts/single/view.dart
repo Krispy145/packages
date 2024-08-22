@@ -2,7 +2,6 @@ import "package:auto_route/auto_route.dart";
 import "package:flutter/material.dart";
 import "package:flutter_contacts/contact.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
-import "package:theme/extensions/build_context.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
@@ -29,7 +28,6 @@ class ContactsView extends StatelessWidget {
           return Center(
             child: Text(
               store.isEmpty ? "Empty Contacts" : "store.currentContacts?.name",
-              style: context.textTheme.headlineMedium,
             ),
           );
         },

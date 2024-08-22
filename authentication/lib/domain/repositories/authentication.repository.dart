@@ -30,6 +30,8 @@ class AuthenticationRepository<T extends UserModel> {
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
+  final String Function(T) titleFromType;
+
   /// [userSource] is an instance of [UserDataSource] interface.
   /// It is used to call the different data sources' methods.
   /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
@@ -61,6 +63,7 @@ class AuthenticationRepository<T extends UserModel> {
     required this.dataRepository,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.titleFromType,
     required this.hasPermissions,
     this.userSource = UserDataSourceTypes.api,
     this.facebookAppId,
@@ -76,6 +79,7 @@ class AuthenticationRepository<T extends UserModel> {
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
     required this.hasPermissions,
+    required this.titleFromType,
     this.userSource = UserDataSourceTypes.firestore,
     this.facebookAppId,
   })  : baseUrl = null,
@@ -91,6 +95,7 @@ class AuthenticationRepository<T extends UserModel> {
   AuthenticationRepository.supabase({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.titleFromType,
     required this.hasPermissions,
     this.userSource = UserDataSourceTypes.supabase,
     this.facebookAppId,
@@ -115,6 +120,7 @@ class AuthenticationRepository<T extends UserModel> {
     baseUrl: baseUrl,
     convertDataTypeFromMap: convertDataTypeFromMap,
     convertDataTypeToMap: convertDataTypeToMap,
+    titleFromType: titleFromType,
   );
 
   late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api

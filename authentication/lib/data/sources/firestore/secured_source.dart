@@ -22,6 +22,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     required this.userPermissions,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
+    required super.titleFromType,
   });
 
   late final FirestoreReviewDataSource<T> reviewDataSource = FirestoreReviewDataSource(
@@ -131,8 +132,10 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       if (reviewData.second == null) {
         return RequestResponse.failure;
       }
+
       final result = await permissionChecker.addForReview(
         sourceId: id,
+        dataTitle: titleFromType(reviewData.second as T),
         dataSourceReference: collectionReference.doc(id).path,
         crud: CRUD.delete,
         dataMap: convertDataTypeToMap(reviewData.second as T),
@@ -143,6 +146,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       if (result == RequestResponse.failure) {
         return RequestResponse.failure;
       }
+      return RequestResponse.success;
     }
 
     if (writeResult != RequestResponse.success) {
@@ -217,6 +221,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     if (writeResult == RequestResponse.underReview) {
       final result = await permissionChecker.addForReview(
         sourceId: id,
+        dataTitle: titleFromType(data),
         dataSourceReference: collectionReference.doc(id).path,
         crud: CRUD.update,
         dataMap: convertDataTypeToMap(data),
@@ -297,6 +302,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     );
     if (writeResult == RequestResponse.underReview) {
       final result = await permissionChecker.addForReview(
+        dataTitle: titleFromType(data),
         sourceId: id,
         dataSourceReference: collectionReference.doc(id).path,
         crud: CRUD.create,

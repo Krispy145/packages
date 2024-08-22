@@ -11,6 +11,7 @@ class FirestoreThemeDataSource<T> extends FirestoreDataSource<T, BasicSearchQuer
     super.collectionName, {
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
+    required super.titleFromType,
   });
 
   @override

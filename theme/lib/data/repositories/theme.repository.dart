@@ -25,6 +25,7 @@ class ThemeDataRepository {
           baseThemeConfiguration!,
           convertDataTypeFromMap: BaseThemeModel.fromMap,
           convertDataTypeToMap: (model) => model.toMap(),
+          titleFromType: (data) => "Base Theme from ${data.name}",
         )
       : null;
 
@@ -34,6 +35,7 @@ class ThemeDataRepository {
           componentThemesConfiguration!,
           convertDataTypeFromMap: ComponentThemesModel.fromMap,
           convertDataTypeToMap: (model) => model.toMap(),
+          titleFromType: (data) => "Component Theme from ${data.name}",
         )
       : null;
 
@@ -45,6 +47,7 @@ class ThemeDataRepository {
     ThemeConfiguration type, {
     required T Function(Map<String, dynamic>) convertDataTypeFromMap,
     required Map<String, dynamic> Function(T) convertDataTypeToMap,
+    required String Function(T) titleFromType,
   }) {
     switch (type.dataSourceType) {
       case ThemeDataSourceType.firestore:
@@ -52,6 +55,7 @@ class ThemeDataRepository {
           type.path!,
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
+          titleFromType: titleFromType,
         );
       case ThemeDataSourceType.assets:
         return AssetsThemeDataSource(

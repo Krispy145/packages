@@ -31,6 +31,25 @@ mixin _$InputBorderFormFieldStore on _InputBorderFormFieldStore, Store {
               name: '_InputBorderFormFieldStore.showGapPaddingField'))
       .value;
 
+  late final _$typeAtom =
+      Atom(name: '_InputBorderFormFieldStore.type', context: context);
+
+  @override
+  InputBorderType get type {
+    _$typeAtom.reportRead();
+    return super.type;
+  }
+
+  bool _typeIsInitialized = false;
+
+  @override
+  set type(InputBorderType value) {
+    _$typeAtom.reportWrite(value, _typeIsInitialized ? super.type : null, () {
+      super.type = value;
+      _typeIsInitialized = true;
+    });
+  }
+
   late final _$_InputBorderFormFieldStoreActionController =
       ActionController(name: '_InputBorderFormFieldStore', context: context);
 
@@ -81,6 +100,7 @@ mixin _$InputBorderFormFieldStore on _InputBorderFormFieldStore, Store {
   @override
   String toString() {
     return '''
+type: ${type},
 showBorderRadiusField: ${showBorderRadiusField},
 showBorderSideField: ${showBorderSideField},
 showGapPaddingField: ${showGapPaddingField}

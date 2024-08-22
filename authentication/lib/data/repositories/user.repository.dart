@@ -35,12 +35,15 @@ class UserDataRepository<T extends UserModel> {
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
+  final String Function(T) titleFromType;
+
   /// [UserDataRepository] constructor.
   UserDataRepository(
     this.source,
     this.hasPermissions, {
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.titleFromType,
     this.baseUrl,
   });
   BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
@@ -165,6 +168,7 @@ class UserDataRepository<T extends UserModel> {
         return FirestoreUserDataSource(
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
+          titleFromType: titleFromType,
         );
       // case UserDataSourceTypes.supabase:
       //   return SupabaseUserDataSource(
@@ -180,6 +184,7 @@ class UserDataRepository<T extends UserModel> {
         return FirestoreUserDataSource(
           convertDataTypeFromMap: convertDataTypeFromMap,
           convertDataTypeToMap: convertDataTypeToMap,
+          titleFromType: titleFromType,
         );
     }
   }

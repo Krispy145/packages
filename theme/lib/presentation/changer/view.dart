@@ -210,6 +210,13 @@ class ThemeComponentEditor extends FormsMapView {
           title: formattedKey,
         );
         return DurationFormField(store: store);
+      // case "_boxDecoration":
+      //   final store = BoxDecorationFormFieldStore(
+      //     initialValue: value != null ? BoxDecorationModel.fromMap(value as Map<String, dynamic>) : const BoxDecorationModel(),
+      //     onValueChanged: (newValue) => onChanged(keys, newValue?.toMap()),
+      //     title: formattedKey,
+      //   );
+      //   return BoxDecorationFormField(store: store);
       default:
         return null;
     }

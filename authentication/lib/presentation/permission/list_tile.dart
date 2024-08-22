@@ -35,7 +35,7 @@ class PermissionListTile extends StatelessWidget {
       return DOListTile.hoverable(
         onTap: onTap,
         title: _title,
-        titleStyle: titleTextStyle,
+        // titleStyle: titleTextStyle,
         expandWidth: expendWidth,
         trailing: IconButton(
           icon: const Icon(Icons.delete),
@@ -52,7 +52,7 @@ class PermissionListTile extends StatelessWidget {
       onTap: onTap,
       expandWidth: expendWidth,
       title: _title,
-      titleStyle: titleTextStyle,
+      // titleStyle: titleTextStyle,
     );
   }
 
