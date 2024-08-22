@@ -17,6 +17,7 @@ abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> ex
     required super.userPermissions,
     required super.convertDataTypeToMap,
     required super.convertDataTypeFromMap,
+    required super.titleFromType,
   });
 
   @override

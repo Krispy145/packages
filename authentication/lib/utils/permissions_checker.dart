@@ -127,6 +127,7 @@ class PermissionChecker<T> {
     required String dataSourceReference,
     CRUD crud = CRUD.create,
     Map<String, dynamic>? dataMap,
+    required String dataTitle,
     required U currentUser,
     required ReviewDataSource<Resp, T> reviewDataSource,
   }) async {
@@ -138,6 +139,7 @@ class PermissionChecker<T> {
       ReviewModel(
         id: sourceId,
         crud: crud,
+        title: dataTitle,
         documentReference: dataSourceReference,
         user: currentUser.reference(),
         writeData: dataMap,

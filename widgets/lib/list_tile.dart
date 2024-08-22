@@ -4,9 +4,9 @@ import "package:utilities/sizes/spacers.dart";
 
 class DOListTile extends StatefulWidget {
   final String title;
-  final TextStyle? titleStyle;
+  // final TextStyle? titleStyle;
   final String? subtitle;
-  final TextStyle? subtitleStyle;
+  // final TextStyle? subtitleStyle;
   final void Function()? onTap;
   final void Function()? onLongPress;
   final Widget? leading;
@@ -24,18 +24,18 @@ class DOListTile extends StatefulWidget {
   const DOListTile({
     super.key,
     required this.title,
-    this.titleStyle,
+    // this.titleStyle,
     this.onTap,
     this.onLongPress,
     this.subtitle,
-    this.subtitleStyle,
+    // this.subtitleStyle,
     this.leading,
     this.leadingConstraints = const BoxConstraints(maxHeight: 64),
     this.trailing,
     this.trailingConstraints = const BoxConstraints(maxHeight: 64),
     this.expandWidth = false,
     this.centrePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    this.tilePadding = const EdgeInsets.symmetric(vertical: 4),
+    this.tilePadding = const EdgeInsets.all(8),
   })  : isHoverable = false,
         shouldMaintainSize = false,
         showOnHoverLeading = false,
@@ -45,12 +45,10 @@ class DOListTile extends StatefulWidget {
   const DOListTile.hoverable({
     super.key,
     required this.title,
-    this.titleStyle,
     this.onTap,
     this.onLongPress,
     this.shouldMaintainSize = false,
     this.subtitle,
-    this.subtitleStyle,
     this.leading,
     this.leadingConstraints = const BoxConstraints(maxHeight: 64),
     this.showOnHoverLeading = false,
@@ -58,7 +56,7 @@ class DOListTile extends StatefulWidget {
     this.trailingConstraints = const BoxConstraints(maxHeight: 64),
     this.showOnHoverTrailing = true,
     this.centrePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    this.tilePadding = const EdgeInsets.symmetric(vertical: 4),
+    this.tilePadding = const EdgeInsets.all(8),
     this.replacementSize,
     this.expandWidth = false,
   })  : isHoverable = true,
@@ -90,11 +88,17 @@ class _DOListTileState extends State<DOListTile> {
   }
 
   Widget _buildTile() {
-    return Padding(
-      padding: widget.tilePadding,
-      child: InkWell(
-        onTap: widget.onTap,
-        onLongPress: widget.onLongPress,
+    return InkWell(
+      onTap: widget.onTap,
+      onLongPress: widget.onLongPress,
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        decoration: BoxDecoration(
+          // ignore: deprecated_member_use
+          color: context.colorScheme.inversePrimary,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: widget.tilePadding,
         child: Row(
           mainAxisSize: widget.expandWidth ? MainAxisSize.max : MainAxisSize.min,
           children: [
@@ -153,7 +157,7 @@ class _CenterListWidget extends StatelessWidget {
         children: [
           Text(
             widget.title,
-            style: widget.titleStyle ?? context.textTheme.titleSmall,
+            style: context.textTheme.titleSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -161,7 +165,7 @@ class _CenterListWidget extends StatelessWidget {
             Sizes.xxs.spacer(),
             Text(
               widget.subtitle!,
-              style: widget.subtitleStyle ?? context.textTheme.bodySmall,
+              style: context.textTheme.labelMedium,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

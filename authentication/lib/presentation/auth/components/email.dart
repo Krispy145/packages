@@ -266,6 +266,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                 child: const Text("Forgot your password?"),
               ),
             ],
+            Sizes.xs.spacer(),
             TextButton(
               key: const ValueKey("toggleSignInButton"),
               onPressed: _toggleSignIn,

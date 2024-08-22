@@ -4,6 +4,7 @@ import "package:forms/presentation/components/chips/store.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:theme/extensions/build_context.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
+import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
@@ -26,7 +27,12 @@ class ReactivePermissionsField extends ReactiveFormField<UserPermissionsModel, U
               onValueChanged: (model) => field.didChange(model),
               initialValue: field.value,
             );
-            return PermissionChipsField(permissionName: title, fields: store.roleFields);
+            return PermissionChipsField(
+              permissionName: title,
+              fields: store.roleFields,
+              formControl: formControl,
+              formControlName: formControlName,
+            );
           },
         );
 
@@ -40,48 +46,78 @@ class _ReactivePermissionsFieldState<T> extends ReactiveFormFieldState<T, UserPe
 
 class PermissionChipsField extends StatelessWidget {
   final String permissionName;
+  final FormControl<UserPermissionsModel>? formControl;
+  final String? formControlName;
   final List<ChipsFormFieldStore<PermissionLevel>> fields;
   const PermissionChipsField({
     super.key,
     required this.permissionName,
     required this.fields,
+    required this.formControl,
+    required this.formControlName,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(permissionName, style: context.textTheme.titleMedium),
-        SizedBox(
-          height: 80,
-          child: Row(
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: context.colorScheme.inverseSurface,
+        boxShadow: [
+          BoxShadow(
+            color: context.colorScheme.onSurface.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Permissions for $permissionName", style: context.textTheme.titleMedium),
+          Wrap(
             children: fields.map((field) {
               return Observer(
                 builder: (context) {
-                  final segments = field.available.map((filter) => ButtonSegment(value: filter, label: Text(filter.name))).toList();
+                  // final segments = field.available.map((filter) => ButtonSegment(value: filter, label: Text(filter.name))).toList();
+                  final radios = field.available
+                      .map(
+                        (filter) => SizedBox(
+                          width: 160,
+                          height: 32,
+                          child: RadioListTile(
+                            value: filter,
+                            // formControlName: formControlName,
+                            // formControl: formControl,
+                            title: Text(filter.name.toTitleCase()),
+                            selected: field.selected.contains(filter),
+                            onChanged: (value) => field.selectFilter(value!),
+                            groupValue: field.selected.firstOrNull,
+                          ),
+                        ),
+                      )
+                      .toList();
                   return Padding(
-                    padding: const EdgeInsets.only(right: 16),
+                    padding: const EdgeInsets.only(top: 16, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
-                          child: Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withOpacity(0.6))),
-                        ),
-                        SegmentedButton(
-                          style: ButtonStyle(
-                            foregroundColor: WidgetStateProperty.resolveWith((states) {
-                              return states.contains(WidgetState.selected) ? context.colorScheme.onPrimaryContainer : context.colorScheme.onSurface.withOpacity(0.8);
-                            }),
-                            backgroundColor: WidgetStateProperty.resolveWith((states) {
-                              return states.contains(WidgetState.selected) ? context.colorScheme.primaryContainer : context.colorScheme.surface;
-                            }),
-                          ),
-                          segments: segments,
-                          selected: field.selected.toSet(),
-                          onSelectionChanged: (p0) => field.selectFilter(p0.first),
-                        ),
+                        Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withOpacity(0.6))),
+                        ...radios,
+                        // SegmentedButton(
+                        //   style: ButtonStyle(
+                        //     foregroundColor: WidgetStateProperty.resolveWith((states) {
+                        //       return states.contains(WidgetState.selected) ? context.colorScheme.onPrimaryContainer : context.colorScheme.onSurface.withOpacity(0.8);
+                        //     }),
+                        //     backgroundColor: WidgetStateProperty.resolveWith((states) {
+                        //       return states.contains(WidgetState.selected) ? context.colorScheme.primaryContainer : context.colorScheme.surface;
+                        //     }),
+                        //   ),
+                        //   segments: segments,
+                        //   selected: field.selected.toSet(),
+                        //   onSelectionChanged: (p0) => field.selectFilter(p0.first),
+                        // ),
                       ],
                     ),
                   );
@@ -89,9 +125,9 @@ class PermissionChipsField extends StatelessWidget {
               );
             }).toList(),
           ),
-        ),
-        Sizes.xs.spacer(),
-      ],
+          Sizes.xs.spacer(),
+        ],
+      ),
     );
     // return Column(
     //   crossAxisAlignment: CrossAxisAlignment.start,

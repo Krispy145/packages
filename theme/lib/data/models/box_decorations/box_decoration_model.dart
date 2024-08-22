@@ -51,9 +51,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
     return BoxDecoration(
       color: color_themeColorString?.toColor(styleType: styleTypeName),
       border: border_boxBorder?.asBoxBorder(styleTypeName: styleTypeName),
-      borderRadius: borderRadius_borderRadius?.asBorderRadius(
-        styleTypeName: styleTypeName,
-      ),
+      borderRadius: borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName),
       boxShadow: boxShadows_list_boxShadow?.map((e) => e.asBoxShadow(styleTypeName: styleTypeName)).toList() ?? [],
       gradient: gradient_gradient?.asGradient(styleTypeName: styleTypeName),
       backgroundBlendMode: backgroundBlendMode_enum_blendMode,

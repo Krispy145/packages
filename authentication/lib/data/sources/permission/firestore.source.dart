@@ -8,6 +8,7 @@ class FirestorePermissionDataSource extends PaginatedFirestoreDataSource<Permiss
           "permissions",
           convertDataTypeFromMap: PermissionModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
+          titleFromType: (data) => data.role.camelCaseToTitleCase(),
         );
 
   @override

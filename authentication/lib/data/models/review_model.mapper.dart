@@ -92,6 +92,8 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
   static DateTime _$createdAt(ReviewModel v) => v.createdAt;
   static const Field<ReviewModel, DateTime> _f$createdAt =
       Field('createdAt', _$createdAt, key: 'created_at');
+  static String _$title(ReviewModel v) => v.title;
+  static const Field<ReviewModel, String> _f$title = Field('title', _$title);
 
   @override
   final MappableFields<ReviewModel> fields = const {
@@ -101,6 +103,7 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
     #user: _f$user,
     #writeData: _f$writeData,
     #createdAt: _f$createdAt,
+    #title: _f$title,
   };
 
   static ReviewModel _instantiate(DecodingData data) {
@@ -110,7 +113,8 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
         documentReference: data.dec(_f$documentReference),
         user: data.dec(_f$user),
         writeData: data.dec(_f$writeData),
-        createdAt: data.dec(_f$createdAt));
+        createdAt: data.dec(_f$createdAt),
+        title: data.dec(_f$title));
   }
 
   @override
@@ -173,7 +177,8 @@ abstract class ReviewModelCopyWith<$R, $In extends ReviewModel, $Out>
       String? documentReference,
       UserModel? user,
       Map<String, dynamic>? writeData,
-      DateTime? createdAt});
+      DateTime? createdAt,
+      String? title});
   ReviewModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -203,14 +208,16 @@ class _ReviewModelCopyWithImpl<$R, $Out>
           String? documentReference,
           UserModel? user,
           Object? writeData = $none,
-          DateTime? createdAt}) =>
+          DateTime? createdAt,
+          String? title}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (crud != null) #crud: crud,
         if (documentReference != null) #documentReference: documentReference,
         if (user != null) #user: user,
         if (writeData != $none) #writeData: writeData,
-        if (createdAt != null) #createdAt: createdAt
+        if (createdAt != null) #createdAt: createdAt,
+        if (title != null) #title: title
       }));
   @override
   ReviewModel $make(CopyWithData data) => ReviewModel(
@@ -220,7 +227,8 @@ class _ReviewModelCopyWithImpl<$R, $Out>
           data.get(#documentReference, or: $value.documentReference),
       user: data.get(#user, or: $value.user),
       writeData: data.get(#writeData, or: $value.writeData),
-      createdAt: data.get(#createdAt, or: $value.createdAt));
+      createdAt: data.get(#createdAt, or: $value.createdAt),
+      title: data.get(#title, or: $value.title));
 
   @override
   ReviewModelCopyWith<$R2, ReviewModel, $Out2> $chain<$R2, $Out2>(

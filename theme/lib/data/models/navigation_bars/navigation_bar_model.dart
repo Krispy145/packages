@@ -17,6 +17,7 @@ class NavigationBarModel with NavigationBarModelMappable {
   final ThemeColorString? surfaceTintColor_themeColorString;
   final ThemeColorString? indicatorColor_themeColorString;
   // @OutlinedBorderConverter()
+  @MappableValue(ShapeBorderModel())
   final ShapeBorderModel? indicatorShape_shapeBorder;
   final TextStyleString? labelTextStyle_textStyleString;
   // @NavigationDestinationLabelConverter()
@@ -29,7 +30,7 @@ class NavigationBarModel with NavigationBarModelMappable {
     this.shadowColor_themeColorString,
     this.surfaceTintColor_themeColorString,
     this.indicatorColor_themeColorString,
-    this.indicatorShape_shapeBorder,
+    this.indicatorShape_shapeBorder = const ShapeBorderModel(),
     this.labelTextStyle_textStyleString,
     this.labelBehavior_enum_navigationDestinationLabelBehavior,
   });

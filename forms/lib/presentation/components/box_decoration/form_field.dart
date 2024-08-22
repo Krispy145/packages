@@ -1,21 +1,23 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
-import "package:theme/data/models/borders/input_border_model.dart";
-import "package:utilities/helpers/extensions/string.dart";
+import "package:forms/presentation/components/border_radius/form_field.dart";
+import "package:forms/presentation/components/border_side/form_field.dart";
+import "package:forms/presentation/components/enum/form_field.dart";
+import "package:forms/presentation/components/theme_color_string/form_field.dart";
+import "package:utilities/helpers/extensions/iterable.dart";
 import "package:utilities/sizes/spacers.dart";
 
 import "../base/form_field.dart";
-import "../border_radius/form_field.dart";
-import "../border_side/form_field.dart";
-import "../double/form_field.dart";
 import "store.dart";
 
-class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
-  InputBorderFormField({
+class BoxDecorationFormField extends BaseFormField<BoxDecorationFormFieldStore> {
+  BoxDecorationFormField({
     super.key,
     required super.store,
   });
+
+  double get doubleFormFieldWidth => 180;
 
   @override
   Widget buildField(BuildContext context) {
@@ -23,59 +25,27 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
       builder: (context) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            SegmentedButton<InputBorderType>(
-              segments: InputBorderType.values
-                  .map(
-                    (type) => ButtonSegment<InputBorderType>(
-                      value: type,
-                      label: Text(type.name.toTitleCase()),
-                    ),
-                  )
-                  .toList(),
-              selected: {store.type},
-              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
+          children: <Widget>[
+            BorderSideFormField(
+              store: store.borderSideStore,
             ),
-            Sizes.m.spacer(),
-            Theme(
-              data: Theme.of(context).copyWith(
-                inputDecorationTheme: Theme.of(context).inputDecorationTheme.copyWith(border: store.value?.asInputBorder()),
-              ),
-              child: TextField(
-                controller: TextEditingController(text: "Preview Text Field"),
-              ),
+            BorderRadiusFormField(
+              store: store.borderRadiusStore,
             ),
-            Sizes.m.spacer(),
-            // Sizes.m.spacer(),
-            // Visibility(
-            //   visible: store.showBorderSideField,
-            //   child: BorderSideFormField(store: store.borderSideStore),
-            // ),
-            if (store.showBorderSideField) ...[
-              BorderSideFormField(store: store.borderSideStore),
-              Sizes.m.spacer(),
-            ],
-
-            if (store.showBorderRadiusField) ...[
-              BorderRadiusFormField(store: store.borderRadiusStore),
-              Sizes.m.spacer(),
-            ],
-            if (store.showGapPaddingField) ...[
-              DoubleFormField(store: store.gapPaddingStore),
-              Sizes.m.spacer(),
-            ],
-            // Visibility(
-            //   visible: store.showGapPaddingField,
-            //   child: DoubleFormField(store: store.gapPaddingStore),
-            // ),
-          ],
+            ThemeColorStringFormField(
+              store: store.colorStore,
+            ),
+            EnumFormField(
+              store: store.shapeTypeStore,
+            ),
+          ].intersperse(Sizes.m.spacer()).toList(),
         );
       },
       //       return Column(
       //         mainAxisSize: MainAxisSize.min,
       //         children: [
-      //           SegmentedButton<InputBorderTypes>(
-      //             segments: InputBorderTypes.values.map((type) => ButtonSegment<InputBorderTypes>(value: type, label: Text(type.name.toTitleCase()))).toList(),
+      //           SegmentedButton<BoxDecorationTypes>(
+      //             segments: BoxDecorationTypes.values.map((type) => ButtonSegment<BoxDecorationTypes>(value: type, label: Text(type.name.toTitleCase()))).toList(),
       //             selected: {store.type},
       //             onSelectionChanged: (newSelection) => store.type = newSelection.first,
       //           ),
@@ -98,7 +68,7 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
       //                 showButtons: false,
       //               ),
       //               Padding(
-      //                 padding: const InputBorder.all(8),
+      //                 padding: const BoxDecoration.all(8),
       //                 child: Container(color: Theme.of(context).primaryColor, padding: store.value, child: Container(width: 40, height: 40, color: Colors.grey)),
       //               ),
       //               DoubleFormField(

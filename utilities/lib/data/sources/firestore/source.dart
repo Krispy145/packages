@@ -17,9 +17,13 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
+  /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
+  final String Function(T) titleFromType;
+
   /// [FirestoreDataSource] constructor
   FirestoreDataSource(
     this.collectionName, {
+    required this.titleFromType,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
   });

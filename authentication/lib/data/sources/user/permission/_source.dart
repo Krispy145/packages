@@ -11,6 +11,7 @@ import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/data/typedefs.dart";
+import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/logger/logger.dart";
 
 part "dummy.source.dart";

@@ -18,6 +18,15 @@ class BoxBorderModel with BoxBorderModelMappable {
     required this.right,
   });
 
+  factory BoxBorderModel.fromBorderSide(BorderSideModel borderSide) {
+    return BoxBorderModel(
+      top: borderSide,
+      bottom: borderSide,
+      left: borderSide,
+      right: borderSide,
+    );
+  }
+
   static const fromMap = BoxBorderModelMapper.fromMap;
   static const fromJson = BoxBorderModelMapper.fromJson;
 

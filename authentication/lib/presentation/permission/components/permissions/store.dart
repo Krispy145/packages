@@ -23,32 +23,50 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermiss
 
   @action
   void _initializeRoleFields() {
+    final collectionPermissions = CRUD.values.map(
+      (crud) {
+        return ChipsFormFieldStore<PermissionLevel>(
+          crud.name.toUpperCase(),
+          loadFilters: () async {
+            return optionsBasedOnCRUD(crud);
+          },
+          canSelectMultiple: false,
+          onSelectedChanged: (collectionSelection) {
+            final updatedUserPermission = changedPermissionLevel(value!, crud, collectionSelection);
+            value = updatedUserPermission;
+            onValueChanged(value);
+          },
+        )
+          ..loadFiltersModels()
+          ..selectFilter(filtersFromUserPermissions(crud, value!));
+      },
+    ).toList();
     roleFields.addAll(collectionPermissions);
   }
 
-  List<ChipsFormFieldStore<PermissionLevel>> get collectionPermissions => CRUD.values.map(
-        (crud) {
-          return ChipsFormFieldStore<PermissionLevel>(
-            crud.name.toUpperCase(),
-            loadFilters: () async {
-              return optionsBasedOnCRUD(crud);
-            },
-            canSelectMultiple: false,
-            onSelectedChanged: (collectionSelection) {
-              final updatedUserPermission = changedPermissionLevel(value!, crud, collectionSelection);
-              value = updatedUserPermission;
-              onValueChanged(value);
-            },
-          )
-            ..loadFiltersModels()
-            ..selectFilter(filtersFromUserPermissions(crud, value!));
-        },
-      ).toList();
+  // late final List<ChipsFormFieldStore<PermissionLevel>> collectionPermissions = CRUD.values.map(
+  //   (crud) {
+  //     return ChipsFormFieldStore<PermissionLevel>(
+  //       crud.name.toUpperCase(),
+  //       loadFilters: () async {
+  //         return optionsBasedOnCRUD(crud);
+  //       },
+  //       canSelectMultiple: false,
+  //       onSelectedChanged: (collectionSelection) {
+  //         final updatedUserPermission = changedPermissionLevel(value!, crud, collectionSelection);
+  //         value = updatedUserPermission;
+  //         onValueChanged(value);
+  //       },
+  //     )
+  //       ..loadFiltersModels()
+  //       ..selectFilter(filtersFromUserPermissions(crud, value!));
+  //   },
+  // ).toList();
 
   List<PermissionLevel> optionsBasedOnCRUD(CRUD crud) {
     switch (crud) {
       case CRUD.create:
-        return [PermissionLevel.yes, PermissionLevel.no];
+        return [PermissionLevel.yes, PermissionLevel.no, PermissionLevel.review];
       case CRUD.read:
         return [PermissionLevel.yes, PermissionLevel.no];
       case CRUD.update:

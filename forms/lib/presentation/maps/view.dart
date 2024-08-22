@@ -115,7 +115,7 @@ class FormsMapView extends StatelessWidget {
                             ),
                           ],
                         );
-                      } else if (listValue is Map<dynamic, dynamic>) {
+                      } else if (listValue is Map) {
                         return buildExpansionTile(
                           context,
                           "Index: $index",
