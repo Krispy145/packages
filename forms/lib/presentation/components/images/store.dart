@@ -24,7 +24,7 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
     required super.title,
   }) {
     reaction(
-      (p0) => imageUrls.iterator, //Note that the reaction of fields when using Lists requires the use of the iterator property.
+      (p0) => imageUrls.iterator, // Note that the reaction of fields when using Lists requires the use of the iterator property.
       (p0) => value = imageUrls,
     );
   }
