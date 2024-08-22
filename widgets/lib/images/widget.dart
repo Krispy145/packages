@@ -4,6 +4,7 @@ import "package:cached_network_image/cached_network_image.dart";
 import "package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:theme/extensions/build_context.dart";
 import "package:utilities/constants/env.dart";
 import "package:widgets/images/options/abstract.dart";
 import "package:widgets/images/options/asset.dart";
@@ -146,7 +147,16 @@ class DOImage extends StatelessWidget {
         );
       case ImageType.network:
         final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
-        if (url == null) return _networkOptions.placeholder?.call(context, "") ?? const Center(child: Icon(Icons.image));
+        if (url == null) {
+          return _networkOptions.placeholder?.call(context, "") ??
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  color: context.colorScheme.inverseSurface,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Container(color: context.colorScheme.outline.withOpacity(0.1), child: Icon(Icons.image, color: context.colorScheme.onSecondaryContainer)),
+              );
+        }
         final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
         final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
         final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
