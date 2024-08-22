@@ -1,3 +1,4 @@
+import "package:flutter/material.dart";
 import "package:forms/presentation/components/image/form_field.dart";
 import "package:forms/presentation/components/image/store.dart";
 import "package:reactive_forms/reactive_forms.dart";
@@ -7,6 +8,7 @@ import "package:storage/repository.dart";
 class ReactiveImageField extends ReactiveFormField<String, String> {
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
+  final Axis axis;
   ReactiveImageField.combined({
     String title = "Image",
     required this.storageRepository,
@@ -20,6 +22,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     super.focusNode,
     double? height,
     double? width,
+    this.axis = Axis.horizontal,
   }) : super(
           builder: (field) {
             final store = ImageFormFieldStore(
@@ -30,7 +33,8 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               initialValue: field.value,
               title: title,
             );
-            return ImageFormField(store: store, height: height, width: width, showTitle: false);
+
+            return ImageFormField(store: store, height: height, width: width, showTitle: false, axis: axis);
           },
         );
 
@@ -45,6 +49,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     super.focusNode,
     double? height,
     double? width,
+    this.axis = Axis.horizontal,
   })  : storageRepository = null,
         filePicker = null,
         super(
@@ -55,7 +60,8 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               initialValue: field.value,
               title: title,
             );
-            return ImageFormField(store: store, height: height, width: width, showTitle: false);
+
+            return ImageFormField(store: store, height: height, width: width, showTitle: false, axis: axis);
           },
         );
 
@@ -72,6 +78,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     super.focusNode,
     double? height,
     double? width,
+    this.axis = Axis.horizontal,
   }) : super(
           builder: (field) {
             final store = ImageFormFieldStore(
@@ -82,7 +89,8 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               initialValue: field.value,
               title: title,
             );
-            return ImageFormField(store: store, height: height, width: width, showTitle: false);
+
+            return ImageFormField(store: store, height: height, width: width, showTitle: false, axis: axis);
           },
         );
 

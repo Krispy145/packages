@@ -12,12 +12,14 @@ import "package:widgets/images/widget.dart";
 import "store.dart";
 
 class ImageFormField extends BaseFormField<ImageFormFieldStore> {
+  final Axis axis;
   ImageFormField({
     super.key,
     this.height = 100,
     this.width,
     super.showTitle,
     required super.store,
+    this.axis = Axis.horizontal,
   });
 
   final double? height;
@@ -40,7 +42,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                       clipBehavior: Clip.hardEdge,
                       child: AspectRatio(
-                        aspectRatio: 1.7,
+                        aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
                         child: InkWell(
                           onTap: () async => addOrEditImage(context),
                           child: Container(
@@ -57,7 +59,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                         clipBehavior: Clip.hardEdge,
                         child: AspectRatio(
-                          aspectRatio: 1.7,
+                          aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
                           child: InkWell(
                             onTap: () async => addOrEditImage(context),
                             child: DOImage.network(
@@ -90,10 +92,16 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
       context: context,
       builder: (context) {
         return Dialog(
-          child: SizedBox(
-            height: context.screenHeight * 0.5,
-            width: _maxWidth,
-            child: ImagePickerField(store: store),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: context.screenHeight * 0.5,
+              maxHeight: context.screenHeight * 0.8,
+              maxWidth: _maxWidth,
+            ),
+            child: ImagePickerField(
+              store: store,
+              axis: axis,
+            ),
           ),
         );
       },

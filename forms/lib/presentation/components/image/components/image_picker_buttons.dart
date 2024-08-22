@@ -20,6 +20,7 @@ class ImagePickerButtons extends StatelessWidget {
         final urlToReturn = hasValidUrl ? formControl.value : null;
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             // REMOVE BUTTON
             FilledButton.icon(

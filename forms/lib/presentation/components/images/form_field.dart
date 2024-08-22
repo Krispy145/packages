@@ -13,11 +13,18 @@ import "package:widgets/images/widget.dart";
 import "store.dart";
 
 class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
+  final Axis axis;
   ImagesFormField({
     super.key,
     required super.store,
     super.showTitle,
+    this.axis = Axis.horizontal,
+    this.height = 100,
+    this.width,
   });
+
+  final double? height;
+  final double? width;
 
   @override
   Widget buildField(BuildContext context) {
@@ -27,7 +34,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 100,
+              height: height,
               child: ReorderableListView.builder(
                 onReorder: (oldIndex, newIndex) => store.reorderImages(oldIndex: oldIndex, newIndex: newIndex),
                 scrollDirection: Axis.horizontal,
@@ -40,7 +47,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                       clipBehavior: Clip.hardEdge,
                       child: AspectRatio(
-                        aspectRatio: 1.7,
+                        aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
                         child: InkWell(
                           onTap: () async => addOrEditImage(context, null),
                           child: Container(
@@ -60,7 +67,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                         clipBehavior: Clip.hardEdge,
                         child: AspectRatio(
-                          aspectRatio: 1.7,
+                          aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
                           child: InkWell(
                             onTap: () async => addOrEditImage(context, index),
                             child: DOImage.network(
@@ -102,10 +109,13 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
       context: context,
       builder: (context) {
         return Dialog(
-          child: SizedBox(
-            height: context.screenHeight * 0.5,
-            width: _maxWidth,
-            child: ImagePickerField(store: addImageStore),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: context.screenHeight * 0.5,
+              maxHeight: context.screenHeight * 0.8,
+              maxWidth: _maxWidth,
+            ),
+            child: ImagePickerField(store: addImageStore, axis: axis),
           ),
         );
       },
@@ -113,11 +123,11 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
 
     if (result == null) return;
 
-    if (result == "" && isEditing) store.removeImage(index: index);
+    if (result == "" && isEditing) return store.removeImage(index: index);
 
     if (isEditing) {
       store.updateImage(imageUrl: result, index: index);
-    } else {
+    } else if (result != "") {
       store.addImage(imageUrl: result);
     }
   }

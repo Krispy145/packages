@@ -1,3 +1,4 @@
+import "package:flutter/widgets.dart";
 import "package:forms/presentation/components/image/store.dart";
 import "package:forms/presentation/components/images/form_field.dart";
 import "package:forms/presentation/components/images/store.dart";
@@ -8,6 +9,7 @@ import "package:storage/repository.dart";
 class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> {
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
+  final Axis axis;
   ReactiveImagesField.combined({
     super.key,
     required this.storageRepository,
@@ -18,6 +20,9 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.valueAccessor,
     super.showErrors,
     super.focusNode,
+    this.axis = Axis.horizontal,
+    double? height,
+    double? width,
   }) : super(
           builder: (field) {
             final store = ImagesFormFieldStore(
@@ -28,7 +33,8 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
               initialValue: field.value,
               title: "Images",
             );
-            return ImagesFormField(store: store, showTitle: false);
+
+            return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
           },
         );
 
@@ -40,6 +46,9 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.valueAccessor,
     super.showErrors,
     super.focusNode,
+    this.axis = Axis.horizontal,
+    double? height,
+    double? width,
   })  : storageRepository = null,
         filePicker = null,
         super(
@@ -50,7 +59,8 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
               initialValue: field.value,
               title: "Images",
             );
-            return ImagesFormField(store: store, showTitle: false);
+
+            return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
           },
         );
 
@@ -64,20 +74,21 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.valueAccessor,
     super.showErrors,
     super.focusNode,
+    this.axis = Axis.horizontal,
+    double? height,
+    double? width,
   }) : super(
           builder: (field) {
             final store = ImagesFormFieldStore(
-              onValueChanged: (urls) {
-                print("Urls: $urls");
-                field.didChange(urls);
-              },
+              onValueChanged: (urls) => field.didChange(urls),
               storageRepository: storageRepository,
               filePicker: filePicker,
               tabType: ImagePickerType.upload,
               initialValue: field.value,
               title: "Images",
             );
-            return ImagesFormField(store: store, showTitle: false);
+
+            return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
           },
         );
 
