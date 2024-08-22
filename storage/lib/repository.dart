@@ -1,33 +1,69 @@
-import 'interface.dart';
-
-enum StorageProvider {
-  firebase,
-  awsS3,
-  supabase,
-  local,
-  api,
-}
+import "package:cross_file/cross_file.dart";
+import "package:storage/providers/_base.dart";
 
 class StorageRepository {
-  final Map<StorageProvider, IStorageService> storageServices;
+  final BaseStorageProvider storageProvider;
 
-  StorageRepository({required this.storageServices});
+  StorageRepository({required this.storageProvider});
 
   Future<String> uploadFile({
-    required String filePath,
-    required String fileName,
-    required StorageProvider provider,
+    required XFile file,
     bool isPrivate = false,
   }) async {
-    final storageService = storageServices[provider];
-    if (storageService != null) {
-      return await storageService.uploadFile(
-        filePath: filePath,
-        fileName: fileName,
+    final storageService = storageProvider.getStorageService();
+    return storageService.uploadFile(
+      file: file,
+      isPrivate: isPrivate,
+    );
+  }
+
+  Future<List<String>> uploadMultipleFiles({
+    required List<XFile> files,
+    bool isPrivate = false,
+  }) async {
+    final storageService = storageProvider.getStorageService();
+    final uploadUrls = <String>[];
+
+    for (var i = 0; i < files.length; i++) {
+      final url = await storageService.uploadFile(
+        file: files[i],
         isPrivate: isPrivate,
       );
-    } else {
-      throw Exception('Storage provider not found');
+      uploadUrls.add(url);
+    }
+
+    return uploadUrls;
+  }
+
+  Future<String> uploadImage({
+    required XFile image,
+    bool isPrivate = false,
+  }) async {
+    return uploadFile(
+      file: image,
+      isPrivate: isPrivate,
+    );
+  }
+
+  Future<List<String>> uploadMultipleImages({
+    required List<XFile> images,
+    bool isPrivate = false,
+  }) async {
+    return uploadMultipleFiles(
+      files: images,
+      isPrivate: isPrivate,
+    );
+  }
+
+  Future<void> deleteFile(String path) async {
+    final storageService = storageProvider.getStorageService();
+    return storageService.deleteFile(path);
+  }
+
+  Future<void> deleteFiles(List<String> paths) async {
+    final storageService = storageProvider.getStorageService();
+    for (var i = 0; i < paths.length; i++) {
+      await storageService.deleteFile(paths[i]);
     }
   }
 }

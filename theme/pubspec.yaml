@@ -19,7 +19,6 @@ dependencies:
   forms:
     path: ../../packages/forms
   get_it: ^7.6.9
-  image_picker: ^1.1.2
   palette_generator: ^0.3.3+3
 
 dev_dependencies:

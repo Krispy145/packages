@@ -83,9 +83,7 @@ class DOImage extends StatelessWidget {
         return Image.file(
           file!,
           frameBuilder: _assetOptions.frameBuilder,
-          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, error.toString(), error),
-          // semanticLabel: _assetOptions?.semanticLabel,
-          // excludeFromSemantics: _assetOptions?.excludeFromSemantics ?? false,
+          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _assetOptions, error.toString(), error),
           width: _assetOptions.width,
           height: _assetOptions.height,
           color: _assetOptions.color,
@@ -97,7 +95,6 @@ class DOImage extends StatelessWidget {
           centerSlice: _assetOptions.centerSlice,
           matchTextDirection: _assetOptions.matchTextDirection,
           gaplessPlayback: _assetOptions.gaplessPlayback,
-          // isAntiAlias: _assetOptions?.isAntiAlias,
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.memory:
@@ -105,9 +102,7 @@ class DOImage extends StatelessWidget {
         return Image.memory(
           memory!,
           frameBuilder: _memoryOptions.frameBuilder,
-          errorBuilder: _memoryOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, error.toString(), error),
-          // semanticLabel: _memoryOptions?.semanticLabel,
-          // excludeFromSemantics: _memoryOptions?.excludeFromSemantics ?? false,
+          errorBuilder: _memoryOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _memoryOptions, error.toString(), error),
           width: _memoryOptions.width,
           height: _memoryOptions.height,
           color: _memoryOptions.color,
@@ -119,7 +114,6 @@ class DOImage extends StatelessWidget {
           centerSlice: _memoryOptions.centerSlice,
           matchTextDirection: _memoryOptions.matchTextDirection,
           gaplessPlayback: _memoryOptions.gaplessPlayback,
-          // isAntiAlias: _memoryOptions?.isAntiAlias,
           filterQuality: _memoryOptions.filterQuality,
         );
       case ImageType.asset:
@@ -127,9 +121,7 @@ class DOImage extends StatelessWidget {
         return Image.asset(
           assetPath!,
           frameBuilder: _assetOptions.frameBuilder,
-          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, error.toString(), error),
-          // semanticLabel: _assetOptions?.semanticLabel,
-          // excludeFromSemantics: _assetOptions?.excludeFromSemantics ?? false,
+          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _assetOptions, error.toString(), error),
           width: _assetOptions.width,
           height: _assetOptions.height,
           color: _assetOptions.color,
@@ -141,7 +133,6 @@ class DOImage extends StatelessWidget {
           centerSlice: _assetOptions.centerSlice,
           matchTextDirection: _assetOptions.matchTextDirection,
           gaplessPlayback: _assetOptions.gaplessPlayback,
-          // isAntiAlias: _assetOptions?.isAntiAlias,
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.network:
@@ -150,6 +141,7 @@ class DOImage extends StatelessWidget {
         final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
         final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
         final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
+        debugPrint("First try at loading Image");
         return CachedNetworkImage(
           imageUrl: _finalUrl,
           httpHeaders: _httpHeaders,
@@ -181,7 +173,6 @@ class DOImage extends StatelessWidget {
           errorListener: _networkOptions.errorListener,
           imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
         );
-      // return _buildNetworkImage();
     }
   }
 
@@ -190,6 +181,7 @@ class DOImage extends StatelessWidget {
     final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
     final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
     final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
+    debugPrint("Second try at loading Image");
     return CachedNetworkImage(
       imageUrl: _finalUrl,
       httpHeaders: _httpHeaders,
@@ -205,7 +197,7 @@ class DOImage extends StatelessWidget {
       imageBuilder: _networkOptions.imageBuilder,
       placeholder: _networkOptions.placeholder,
       progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
-      errorWidget: _networkOptions.errorWidget ?? buildDefaultErrorImage,
+      errorWidget: _networkOptions.errorWidget ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _networkOptions, error, stackTrace),
       fadeOutDuration: _networkOptions.fadeOutDuration,
       fadeOutCurve: _networkOptions.fadeOutCurve,
       fadeInDuration: _networkOptions.fadeInDuration,
@@ -223,45 +215,29 @@ class DOImage extends StatelessWidget {
     );
   }
 
-  Widget buildDefaultErrorImage(BuildContext context, String error, Object object) {
-    return const Center(child: Icon(Icons.error_outline));
+  Widget buildDefaultErrorImage(BuildContext context, ImageOptions options, String error, Object stackTrace) {
+    debugPrint("Third try at loading Image");
+    return Image.network(
+      error,
+      fit: options.fit,
+      width: options.width,
+      height: options.height,
+      errorBuilder: (context, errorObject, stackTrace) {
+        debugPrint("Could not load error image after 3 tries: URL: $error\nERROR: $errorObject\nSTACKTRACE: $stackTrace");
+        return options.errorBuilder?.call(context, error, stackTrace) ?? const Center(child: Icon(Icons.error_outline));
+      },
+      scale: options.memCacheWidth != null || options.memCacheHeight != null ? 1 : 1.5,
+      cacheHeight: options.memCacheHeight,
+      cacheWidth: options.memCacheWidth,
+      color: options.color,
+      colorBlendMode: options.colorBlendMode,
+      filterQuality: options.filterQuality,
+      alignment: options.alignment,
+      repeat: options.repeat,
+      matchTextDirection: options.matchTextDirection,
+      gaplessPlayback: options.gaplessPlayback,
+      centerSlice: options.centerSlice,
+      // headers: options is NetworkImageOptions ? options.headers : null,
+    );
   }
-
-  // Widget _buildNetworkImage() {
-  //   final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
-  //   final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
-  //   final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
-  //   final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
-  //   return CachedNetworkImage(
-  //     imageUrl: _finalUrl,
-  //     httpHeaders: _httpHeaders,
-  //     width: _networkOptions.width,
-  //     height: _networkOptions.height,
-  //     color: _networkOptions.color,
-  //     colorBlendMode: _networkOptions.colorBlendMode,
-  //     fit: _networkOptions.fit,
-  //     alignment: _networkOptions.alignment,
-  //     repeat: _networkOptions.repeat,
-  //     matchTextDirection: _networkOptions.matchTextDirection,
-  //     filterQuality: _networkOptions.filterQuality,
-  //     imageBuilder: _networkOptions.imageBuilder,
-  //     placeholder: _networkOptions.placeholder,
-  //     progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
-  //     errorWidget: _networkOptions.errorWidget,
-  //     fadeOutDuration: _networkOptions.fadeOutDuration,
-  //     fadeOutCurve: _networkOptions.fadeOutCurve,
-  //     fadeInDuration: _networkOptions.fadeInDuration,
-  //     fadeInCurve: _networkOptions.fadeInCurve,
-  //     cacheManager: _networkOptions.cacheManager,
-  //     useOldImageOnUrlChange: _networkOptions.useOldImageOnUrlChange,
-  //     placeholderFadeInDuration: _networkOptions.placeholderFadeInDuration,
-  //     memCacheWidth: _networkOptions.memCacheWidth,
-  //     memCacheHeight: _networkOptions.memCacheHeight,
-  //     cacheKey: _networkOptions.cacheKey,
-  //     maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
-  //     maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
-  //     errorListener: _networkOptions.errorListener,
-  //     imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
-  //   );
-  // }
 }

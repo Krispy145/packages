@@ -1,10 +1,9 @@
-import 'dart:io';
+import "package:aws_client/s3_2006_03_01.dart";
+import "package:cross_file/cross_file.dart";
 
-import 'package:aws_client/s3_2006_03_01.dart';
+import "_base.dart";
 
-import '../interface.dart';
-
-class AwsS3StorageService implements IStorageService {
+class AwsS3StorageService implements BaseStorageService {
   final S3 _s3Client;
   final String _bucketName;
 
@@ -24,30 +23,34 @@ class AwsS3StorageService implements IStorageService {
 
   @override
   Future<String> uploadFile({
-    required String filePath,
-    required String fileName,
+    required XFile file,
     bool isPrivate = false,
   }) async {
     try {
-      // Read the file as bytes
-      final fileBytes = File(filePath).readAsBytesSync();
-
-      // Upload the file to S3
+      final fileBytes = await file.readAsBytes();
       await _s3Client.putObject(
         bucket: _bucketName,
-        key: fileName,
+        key: file.name,
         body: fileBytes,
       );
 
-      final _location = await _s3Client.getBucketLocation(bucket: _bucketName);
-      // Generate the file URL
-      final fileUrl = 'https://$_bucketName.s3.${_location.locationConstraint?.value}.amazonaws.com/$fileName';
+      final location = await _s3Client.getBucketLocation(bucket: _bucketName);
+      final region = location.locationConstraint?.value ?? "us-east-1";
+      final fileUrl = "https://$_bucketName.s3.$region.amazonaws.com/${file.name}";
 
       return fileUrl;
     } catch (e) {
-      throw Exception('Failed to upload file to AWS S3: $e');
-    } finally {
-      _s3Client.close();
+      throw Exception("Failed to upload file to AWS S3: $e");
+    }
+  }
+
+  @override
+  Future<void> deleteFile(String url) async {
+    try {
+      final key = Uri.parse(url).pathSegments.last;
+      await _s3Client.deleteObject(bucket: _bucketName, key: key);
+    } catch (e) {
+      throw Exception("Failed to delete file from AWS S3: $e");
     }
   }
 }

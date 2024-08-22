@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 import "package:widgets/images/cached_network_provider.dart";
 
 enum ZoomImageType { circle, rectangle }
@@ -20,11 +21,10 @@ class ZoomableImage extends StatelessWidget {
   Future<void> _showImage(BuildContext context, ImageProvider provider) {
     return showDialog(
       context: context,
-      barrierDismissible: true,
       builder: (ctx) {
         return SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: context.screenWidth,
+          height: context.screenHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[

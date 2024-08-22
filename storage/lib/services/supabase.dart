@@ -1,9 +1,10 @@
-import 'package:supabase/supabase.dart';
-import 'package:universal_io/io.dart';
+import "package:cross_file/cross_file.dart";
+import "package:supabase/supabase.dart";
+import "package:universal_io/io.dart";
 
-import '../interface.dart';
+import "_base.dart";
 
-class SupabaseStorageService implements IStorageService {
+class SupabaseStorageService implements BaseStorageService {
   final SupabaseClient _supabase;
   final String bucketName;
 
@@ -11,10 +12,15 @@ class SupabaseStorageService implements IStorageService {
 
   @override
   Future<String> uploadFile({
-    required String filePath,
-    required String fileName,
+    required XFile file,
     bool isPrivate = false,
   }) async {
-    return await _supabase.storage.from(bucketName).upload(fileName, File(filePath));
+    final _ioFile = File(file.path);
+    return _supabase.storage.from(bucketName).upload(file.name, _ioFile);
+  }
+
+  @override
+  Future<void> deleteFile(String url) async {
+    await _supabase.storage.from(bucketName).remove([url]);
   }
 }

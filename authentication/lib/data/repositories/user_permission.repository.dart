@@ -7,7 +7,7 @@ import "package:utilities/data/typedefs.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
-import "../sources/user_permission/_source.dart";
+import "../sources/user/permission/_source.dart";
 
 /// [UserPermissionDataRepository] is a class that defines the basic CRUD operations for the [PermissionModel] entity.
 class UserPermissionDataRepository {

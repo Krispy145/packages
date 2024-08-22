@@ -89,7 +89,7 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
-    final maxWidth = MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
+    final maxWidth = context.screenWidth * (isMobile ? 0.85 : 0.5);
     final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
       child: Center(

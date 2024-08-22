@@ -18,15 +18,54 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
     return super.imageUrl;
   }
 
+  bool _imageUrlIsInitialized = false;
+
   @override
   set imageUrl(String? value) {
-    _$imageUrlAtom.reportWrite(value, super.imageUrl, () {
+    _$imageUrlAtom
+        .reportWrite(value, _imageUrlIsInitialized ? super.imageUrl : null, () {
       super.imageUrl = value;
+      _imageUrlIsInitialized = true;
     });
+  }
+
+  late final _$tabIndexAtom =
+      Atom(name: '_ImageFormFieldStore.tabIndex', context: context);
+
+  @override
+  int get tabIndex {
+    _$tabIndexAtom.reportRead();
+    return super.tabIndex;
+  }
+
+  @override
+  set tabIndex(int value) {
+    _$tabIndexAtom.reportWrite(value, super.tabIndex, () {
+      super.tabIndex = value;
+    });
+  }
+
+  late final _$removeImageAsyncAction =
+      AsyncAction('_ImageFormFieldStore.removeImage', context: context);
+
+  @override
+  Future<void> removeImage() {
+    return _$removeImageAsyncAction.run(() => super.removeImage());
   }
 
   late final _$_ImageFormFieldStoreActionController =
       ActionController(name: '_ImageFormFieldStore', context: context);
+
+  @override
+  void changeTab(int index) {
+    final _$actionInfo = _$_ImageFormFieldStoreActionController.startAction(
+        name: '_ImageFormFieldStore.changeTab');
+    try {
+      return super.changeTab(index);
+    } finally {
+      _$_ImageFormFieldStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void updateImage({required String newImageUrl}) {
@@ -40,20 +79,10 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
   }
 
   @override
-  void removeImage() {
-    final _$actionInfo = _$_ImageFormFieldStoreActionController.startAction(
-        name: '_ImageFormFieldStore.removeImage');
-    try {
-      return super.removeImage();
-    } finally {
-      _$_ImageFormFieldStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-imageUrl: ${imageUrl}
+imageUrl: ${imageUrl},
+tabIndex: ${tabIndex}
     ''';
   }
 }
