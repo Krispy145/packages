@@ -8,7 +8,6 @@ class DOMarketingButton extends StatelessWidget {
   const DOMarketingButton({
     super.key,
   });
-  final name = "packages/widgets/lib/assets/images/do-circle-icon.png";
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +22,18 @@ class DOMarketingButton extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ConstrainedBox(
-                  constraints: const BoxConstraints.tightFor(height: 60),
+                  constraints: const BoxConstraints.tightFor(height: 40),
                   child: Image.asset(
-                    name,
+                    "lib/assets/images/do-circle-icon.png",
+                    package: "widgets",
                     fit: BoxFit.contain,
                   ),
                 ),
                 Sizes.s.spacer(vertical: false),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    "Powered by Digital Oasis",
-                    style: context.textTheme.labelMedium?.copyWith(
-                      color: context.colorScheme.onSurface.withOpacity(0.75),
-                    ),
+                Text(
+                  "Powered by Digital Oasis",
+                  style: context.textTheme.labelMedium?.copyWith(
+                    color: context.colorScheme.onSurface.withOpacity(0.75),
                   ),
                 ),
               ],
