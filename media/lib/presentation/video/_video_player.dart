@@ -31,7 +31,7 @@ class _InternalVideoPlayer extends StatefulWidget {
   final double position;
   final Function? onViewCreated;
   final PlayerState desiredState;
-  final bool allowsPictureInPicturePlayback;
+  final bool allowPictureInPicture;
 
   const _InternalVideoPlayer({
     Key? key,
@@ -46,9 +46,9 @@ class _InternalVideoPlayer extends StatefulWidget {
     this.isLiveStream = false,
     this.position = -1,
     this.onViewCreated,
-    this.allowsPictureInPicturePlayback = false,
     this.desiredState = PlayerState.PLAYING,
     this.textTracks,
+    this.allowPictureInPicture = false,
   }) : super(key: key);
 
   @override
@@ -129,7 +129,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
             "preferredAudioLanguage": widget.preferredAudioLanguage ?? "mul",
             "isLiveStream": widget.isLiveStream,
             "position": widget.position,
-            "allowsPictureInPicturePlayback": widget.allowsPictureInPicturePlayback,
+            "allowPictureInPicture": widget.allowPictureInPicture,
           },
           creationParamsCodec: const JSONMessageCodec(),
           onPlatformViewCreated: (viewId) {
@@ -157,7 +157,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
         oldWidget.title != widget.title ||
         oldWidget.subtitle != widget.subtitle ||
         oldWidget.isLiveStream != widget.isLiveStream ||
-        oldWidget.allowsPictureInPicturePlayback != widget.allowsPictureInPicturePlayback) {
+        oldWidget.allowPictureInPicture != widget.allowPictureInPicture) {
       _onMediaChanged();
     }
     if (oldWidget.desiredState != widget.desiredState) {

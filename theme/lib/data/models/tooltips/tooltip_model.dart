@@ -18,6 +18,7 @@ class TooltipModel with TooltipModelMappable {
   final double? verticalOffset_double;
   final bool? preferBelow_bool;
   final bool? excludeFromSemantics_bool;
+  @MappableValue(BoxDecorationModel())
   final BoxDecorationModel? decoration_boxDecoration;
   // @BoxDecorationConverter() Map<BoxBorderType, BoxDecoration?>? decoration,
   final TextStyleString? textStyle_textStyleString;

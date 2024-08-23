@@ -1,5 +1,10 @@
+// ignore_for_file: unused_element
+
 import "package:forms/presentation/components/base/store.dart";
+import "package:forms/presentation/components/image/store.dart";
 import "package:mobx/mobx.dart";
+import "package:storage/pickers/_base.dart";
+import "package:storage/repository.dart";
 import "package:utilities/data/typedefs.dart";
 
 part "store.g.dart";
@@ -7,23 +12,24 @@ part "store.g.dart";
 class ImagesFormFieldStore = _ImagesFormFieldStore with _$ImagesFormFieldStore;
 
 abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with Store {
+  final BaseFilePicker? filePicker;
+  final StorageRepository? storageRepository;
+  final ImagePickerType tabType;
   _ImagesFormFieldStore({
+    this.filePicker,
+    this.storageRepository,
+    required this.tabType,
     required super.initialValue,
     required super.onValueChanged,
     required super.title,
   }) {
-    _loadImages(value: value);
-    // On Value Changed
-    // reaction<List<String>?>((reaction) => value, (newValue) {
-    //   _loadImages(value: newValue);
-    // });
-    reaction((p0) => imageUrls, (p0) {
-      value = imageUrls;
-    });
+    reaction(
+      (p0) => imageUrls.iterator, // Note that the reaction of fields when using Lists requires the use of the iterator property.
+      (p0) => value = imageUrls,
+    );
   }
 
-  @observable
-  late ObservableList<URL> imageUrls = ObservableList();
+  late ObservableList<URL> imageUrls = ObservableList<URL>.of(value ?? []);
 
   @action
   void addImage({required URL imageUrl}) {
@@ -37,6 +43,7 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
 
   @action
   void updateImage({required URL imageUrl, required int index}) {
+    if (imageUrls.isEmpty) return;
     imageUrls[index] = imageUrl;
   }
 
@@ -58,10 +65,6 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
 
   @action
   void cancelChanges() {
-    imageUrls = ObservableList.of(value ?? []);
-  }
-
-  void _loadImages({List<URL>? value}) {
     imageUrls = ObservableList.of(value ?? []);
   }
 }

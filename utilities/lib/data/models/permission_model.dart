@@ -38,9 +38,9 @@ class PermissionModel with PermissionModelMappable {
         },
       );
 
-  static const anonymous = PermissionModel(
+  static const empty = PermissionModel(
     id: "",
-    role: "anonymous",
+    role: "empty",
     permissions: {},
   );
 

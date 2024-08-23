@@ -15,7 +15,7 @@ abstract class _ListStore<T> with LoadStateStore, Store {
   /// [results] is an observable list of [T]s.
   ObservableList<T> results = ObservableList<T>();
 
-  late final ScrollController scrollController = ScrollController();
+  final ScrollController scrollController = ScrollController();
 
   @computed
   bool get showLoadingSpinnerAtBottom {

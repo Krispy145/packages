@@ -1,4 +1,5 @@
 import "package:contacts/utils/loggers.dart";
+import "package:flutter/foundation.dart";
 import "package:flutter_contacts/flutter_contacts.dart";
 import "package:utilities/data/models/basic_search_query_model.dart";
 import "package:utilities/data/sources/source.dart";
@@ -194,7 +195,7 @@ class ContactManager {
   String createVCard(Contact contact) {
     // Export contact to vCard
     final vCard = contact.toVCard();
-    print(vCard);
+    debugPrint(vCard);
     return vCard;
   }
 

@@ -21,6 +21,7 @@ abstract class _InputBorderFormFieldStore extends BaseFormFieldStore<InputBorder
     type = value?.type_enum_inputBorderType ?? InputBorderType.none;
   }
 
+  @observable
   late InputBorderType type;
 
   late final borderRadiusStore = BorderRadiusFormFieldStore(

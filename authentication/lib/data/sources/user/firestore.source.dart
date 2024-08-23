@@ -6,9 +6,8 @@ class FirestoreUserDataSource<T extends UserModel> extends PaginatedFirestoreDat
   FirestoreUserDataSource({
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
-  }) : super(
-          "users",
-        );
+    required super.titleFromType,
+  }) : super("users");
 
   /// [_handleError] is an optional helper method that handles errors when calling the Firestore database.
   // ignore: unused_element

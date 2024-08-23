@@ -11,6 +11,7 @@ part "tab_bar_model.mapper.dart";
 
 @MappableClass()
 class TabBarModel with TabBarModelMappable {
+  @MappableValue(BoxDecorationModel())
   final BoxDecorationModel? indicator_boxDecoration;
   final ThemeColorString? indicatorColor_themeColorString;
   final ThemeColorString? dividerColor_themeColorString;
@@ -26,7 +27,7 @@ class TabBarModel with TabBarModelMappable {
   final TabAlignment? tabAlignment_enum_tabAlignment;
 
   const TabBarModel({
-    this.indicator_boxDecoration,
+    this.indicator_boxDecoration = const BoxDecorationModel(),
     this.indicatorColor_themeColorString,
     this.dividerColor_themeColorString,
     this.indicatorSize_enum_tabBarIndicatorSize,

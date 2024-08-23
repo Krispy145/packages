@@ -22,13 +22,15 @@ import "package:utilities/logger/logger.dart";
 /// currently, there are 3 data sources: [ApiUserDataSource], [FirestoreUserDataSource], [SupabaseUserDataSource].
 class AuthenticationRepository<T extends UserModel> {
   final String? baseUrl;
-  // final AuthSourceTypes authSource;
+  final ApiAuthDataRepository<T, dynamic>? dataRepository;
 
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
+
+  final String Function(T) titleFromType;
 
   /// [userSource] is an instance of [UserDataSource] interface.
   /// It is used to call the different data sources' methods.
@@ -58,8 +60,10 @@ class AuthenticationRepository<T extends UserModel> {
   /// [AuthenticationRepository.api] constructor.
   AuthenticationRepository.api({
     required this.baseUrl,
+    required this.dataRepository,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.titleFromType,
     required this.hasPermissions,
     this.userSource = UserDataSourceTypes.api,
     this.facebookAppId,
@@ -75,9 +79,11 @@ class AuthenticationRepository<T extends UserModel> {
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
     required this.hasPermissions,
+    required this.titleFromType,
     this.userSource = UserDataSourceTypes.firestore,
     this.facebookAppId,
   })  : baseUrl = null,
+        dataRepository = null,
         authSource = AuthSourceTypes.firebase {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
@@ -89,10 +95,12 @@ class AuthenticationRepository<T extends UserModel> {
   AuthenticationRepository.supabase({
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
+    required this.titleFromType,
     required this.hasPermissions,
     this.userSource = UserDataSourceTypes.supabase,
     this.facebookAppId,
   })  : baseUrl = null,
+        dataRepository = null,
         authSource = AuthSourceTypes.supabase {
     if (facebookAppId != null) {
       _initializeFacebookForWeb();
@@ -112,14 +120,11 @@ class AuthenticationRepository<T extends UserModel> {
     baseUrl: baseUrl,
     convertDataTypeFromMap: convertDataTypeFromMap,
     convertDataTypeToMap: convertDataTypeToMap,
+    titleFromType: titleFromType,
   );
 
   late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api
-      ? ApiAuthDataRepository(
-          baseUrl: baseUrl!,
-          convertDataTypeFromMap: convertDataTypeFromMap,
-          convertDataTypeToMap: convertDataTypeToMap,
-        )
+      ? dataRepository!
       : authSource == AuthSourceTypes.firebase
           ? FirebaseAuthDataRepository(
               hasPermission: hasPermissions,
@@ -266,11 +271,18 @@ class AuthenticationRepository<T extends UserModel> {
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],
     );
-    await userDataRepository.updateUserModel(
-      userModel: currentUserModelStream.value!,
-    );
+    final _user = await _authenticationDataRepository.reauthenticate(params);
+    try {
+      await userDataRepository.updateUserModel(userModel: currentUserModelStream.value!);
+    } catch (e) {
+      AppLogger.print(
+        "Error in updating user model: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+    }
     await userDataRepository.initPermissions(currentUserModelStream.value!.id);
-    return _authenticationDataRepository.reauthenticate(params);
+    return _user;
   }
 
   /// [deleteAccount] deletes the user's account.

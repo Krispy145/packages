@@ -1,18 +1,12 @@
-library data.sources.authentication;
-
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
-import "package:authentication/helpers/exception.dart";
-import "package:authentication/utils/loggers.dart";
-import "package:utilities/data/sources/api/source.dart";
 import "package:utilities/data/sources/source.dart";
-import "package:utilities/logger/logger.dart";
-
-part "api.source.dart";
 
 /// [AuthenticationDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-sealed class AuthenticationDataSource<T extends UserModel, Q>
-    with DataSource<T, Q> {
+abstract class AuthenticationDataSource<T extends UserModel, Q> with DataSource<T, Q> {
+  T? _currentUserModel;
+  T? get currentUserModel => _currentUserModel;
+
   /// [signIn] signs in the user.
   Future<T?> signIn({required AuthParams params});
 

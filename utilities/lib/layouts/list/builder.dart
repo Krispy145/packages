@@ -15,6 +15,7 @@ class ListBuilder<T> extends StatelessWidget {
   final Widget? Function(BuildContext context, int index, T model) itemBuilder;
   final Widget Function(BuildContext context, String message)? emptyBuilder;
   final Widget Function(BuildContext context, String message)? errorBuilder;
+  final Widget Function(BuildContext, int)? separatorBuilder;
   // final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets padding;
@@ -42,8 +43,10 @@ class ListBuilder<T> extends StatelessWidget {
     this.maxItemsCutOff,
     this.shrinkWrap = false,
     this.scrollDirection = Axis.vertical,
+    this.separatorBuilder,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         assert(!(slivers && scrollDirection == Axis.horizontal), "Cannot use horizontal scroll direction with slivers"),
+        assert(!(separatorBuilder != null && slivers), "Cannot use separators with slivers"),
         viewType = ListViewType.listView,
         gridDelegate = null;
 
@@ -64,6 +67,7 @@ class ListBuilder<T> extends StatelessWidget {
     this.shrinkWrap = false,
   })  : assert(!((stackedWidgets?.isNotEmpty ?? false) && slivers), "Cannot have stacked widgets and use slivers"),
         viewType = ListViewType.gridView,
+        separatorBuilder = null,
         scrollDirection = Axis.vertical;
 
   /// [ListBuilder] constructor.
@@ -82,6 +86,7 @@ class ListBuilder<T> extends StatelessWidget {
     this.errorBuilder,
     this.maxItemsCutOff,
     this.shrinkWrap = false,
+    this.separatorBuilder,
   })  : assert(
           !(header != null && slivers),
           "Cannot have header and use slivers",
@@ -106,34 +111,31 @@ class ListBuilder<T> extends StatelessWidget {
       return LoadStateBuilder(
         store: store,
         emptyBuilder: (context, empty) {
-          print("EMPTY BUILDER: $empty");
+          debugPrint("EMPTY BUILDER: $empty");
           return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty);
         },
         loadedBuilder: (context) {
-          print("LOADED BUILDER");
-          final contents = Padding(
-            padding: !slivers ? padding : EdgeInsets.zero,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
-              children: [
-                if (header != null) ...[header!, Sizes.m.spacer()],
-                if (shrinkWrap)
-                  Observer(
+          debugPrint("LOADED BUILDER");
+          final contents = Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: shrinkWrap ? MainAxisSize.min : MainAxisSize.max,
+            children: [
+              if (header != null) ...[header!, Sizes.m.spacer()],
+              if (shrinkWrap)
+                Observer(
+                  builder: (context) {
+                    return buildView(store.showLoadingSpinnerAtBottom);
+                  },
+                )
+              else
+                Expanded(
+                  child: Observer(
                     builder: (context) {
                       return buildView(store.showLoadingSpinnerAtBottom);
                     },
-                  )
-                else
-                  Expanded(
-                    child: Observer(
-                      builder: (context) {
-                        return buildView(store.showLoadingSpinnerAtBottom);
-                      },
-                    ),
                   ),
-              ],
-            ),
+                ),
+            ],
           );
           return stackedWidgets != null
               ? Stack(
@@ -161,7 +163,11 @@ class ListBuilder<T> extends StatelessWidget {
               final emptyState = store.currentState as EmptyLoadState;
               return SliverToBoxAdapter(child: emptyBuilder?.call(context, emptyState.emptyMessage) ?? WarningMessage.empty(message: emptyState.emptyMessage));
             } else if (store.isLoading) {
-              return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+              return const SliverToBoxAdapter(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             } else {
               return const SliverToBoxAdapter(child: SizedBox.shrink());
             }
@@ -178,7 +184,7 @@ class ListBuilder<T> extends StatelessWidget {
     ///@Serena: not sure why we need a loadingOrItemBuilder function here?
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
-        return const SizedBox(height: 64, child: Center(child: CircularProgressIndicator()));
+        return const SizedBox(height: 64, width: 64, child: Center(child: CircularProgressIndicator()));
       }
       return itemBuilder(context, index, store.results[index]);
     }
@@ -189,7 +195,8 @@ class ListBuilder<T> extends StatelessWidget {
               itemCount: itemCount,
               itemBuilder: loadingOrItemBuilder,
             )
-          : ListView.builder(
+          : ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(height: 8, width: 8),
               scrollDirection: scrollDirection,
               padding: padding,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,

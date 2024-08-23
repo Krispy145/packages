@@ -26,7 +26,6 @@
 //           return Center(
 //             child: Text(
 //               store.isEmpty ? "Empty Playlist" : "store.currentPlaylist?.name",
-//               style: context.textTheme.headlineMedium,
 //             ),
 //           );
 //         },

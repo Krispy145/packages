@@ -12,6 +12,7 @@ class FirestoreUserPermissionDataSource<T extends UserModel> extends FirestoreDa
           "users/$userId/permissions",
           convertDataTypeFromMap: PermissionModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
+          titleFromType: (data) => data.role.camelCaseToTitleCase(),
         );
 
   @override

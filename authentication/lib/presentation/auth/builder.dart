@@ -47,13 +47,18 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
         store: store,
         additionalFields: additionalFields,
       ),
+      loadingBuilder: (context) => const Center(child: CircularProgressIndicator()),
       loadedBuilder: (context) {
-        conditionallyShowSnackbar(context);
-        store.onSuccess?.call(store.userModel!);
-        return _AuthenticateView(
-          store: store,
-          additionalFields: additionalFields,
-        );
+        if (store.authBuilderType == AuthBuilderType.silent) {
+          conditionallyShowSnackbar(context);
+          store.onSuccess?.call(store.userModel!);
+          return const SizedBox.shrink();
+        } else {
+          return _AuthenticateView(
+            store: store,
+            additionalFields: additionalFields,
+          );
+        }
       },
       errorBuilder: (context, error) => Center(child: Text(error)),
     );
@@ -84,7 +89,7 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
-    final maxWidth = MediaQuery.of(context).size.width * (isMobile ? 0.85 : 0.5);
+    final maxWidth = context.screenWidth * (isMobile ? 0.85 : 0.5);
     final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
       child: Center(

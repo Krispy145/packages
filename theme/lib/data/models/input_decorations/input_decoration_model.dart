@@ -75,21 +75,21 @@ class InputDecorationModel with InputDecorationModelMappable {
   final BorderSideModel? outlineBorder_borderSide;
   final ThemeColorString? focusColor_themeColorString;
   final ThemeColorString? hoverColor_themeColorString;
-  @MappableValue(InputBorderModel())
+  // @MappableValue(InputBorderModel())
   final InputBorderModel? errorBorder_inputBorder;
-  @MappableValue(InputBorderModel())
+  // @MappableValue(InputBorderModel())
   final InputBorderModel? focusedBorder_inputBorder;
-  @MappableValue(InputBorderModel())
+  // @MappableValue(InputBorderModel())
   final InputBorderModel? focusedErrorBorder_inputBorder;
-  @MappableValue(InputBorderModel())
+  // @MappableValue(InputBorderModel())
   final InputBorderModel? disabledBorder_inputBorder;
-  @MappableValue(InputBorderModel())
+  // @MappableValue(InputBorderModel())
   final InputBorderModel? enabledBorder_inputBorder;
-  @MappableValue(InputBorderModel())
+  // @MappableValue(InputBorderModel())
   final InputBorderModel? border_inputBorder;
-  @MappableValue(false)
+  @MappableValue(true)
   final bool alignLabelWithHint_bool;
-  @MappableValue(BoxConstraintsModel())
+  // @MappableValue(BoxConstraintsModel())
   final BoxConstraintsModel? constraints_boxConstraints;
 
   const InputDecorationModel({

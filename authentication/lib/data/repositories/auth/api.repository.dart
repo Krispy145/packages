@@ -10,57 +10,49 @@ import "../../models/user_model.dart";
 import "_repository.dart";
 
 /// [ApiAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
-  /// [baseUrl] is the base url for the api data source.
-  final String baseUrl;
-
+class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRepository<T> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
   /// [convertDataTypeToMap] is the function that will be used to convert the data from [T] to [Map<String, dynamic>
   final Map<String, dynamic> Function(T) convertDataTypeToMap;
 
-  ApiAuthDataSource<T, Map<String, dynamic>> get _apiAuthDataSource => ApiAuthDataSource(
-        baseUrl,
-        convertDataTypeFromMap: convertDataTypeFromMap,
-        convertDataTypeToMap: convertDataTypeToMap,
-      );
-
+  final AuthenticationDataSource<T, Q> dataSource;
   @override
-  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(_apiAuthDataSource.currentUserModel);
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(dataSource.currentUserModel);
 
   /// [ApiAuthDataRepository] constructor.
   ApiAuthDataRepository({
-    required this.baseUrl,
+    required this.dataSource,
     required this.convertDataTypeFromMap,
     required this.convertDataTypeToMap,
   }) {
-    if (_apiAuthDataSource.currentUserModel != null) {
-      userModelStream.add(_apiAuthDataSource.currentUserModel);
+    if (dataSource.currentUserModel != null) {
+      userModelStream.add(dataSource.currentUserModel);
     }
   }
 
   @override
   Future<T?> updateUserModel(T userModel) async {
-    await _apiAuthDataSource.update(userModel.id, userModel);
+    await dataSource.update(userModel.id, userModel);
     userModelStream.add(userModel);
     return userModel;
   }
 
   @override
   Future<void> deleteAccount(String userId) async {
-    await _apiAuthDataSource.delete(userId);
+    await dataSource.delete(userId);
   }
 
   @override
   Future<T?> reauthenticate(AuthParams params) async {
-    final result = await _apiAuthDataSource.reauthenticate(params: params);
+    final result = await dataSource.reauthenticate(params: params);
     return result;
   }
 
   @override
   Future<T?> signInAnonymously(AuthParams params) async {
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
@@ -69,7 +61,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
   Future<T?> signInWithApple(AuthParams params) async {
     try {
       final appleParams = await AuthRepositoryHelper.signInWithApple(params);
-      final result = await _apiAuthDataSource.signIn(params: appleParams);
+      final result = await dataSource.signIn(params: appleParams);
 
       final userModel = _authResponseToUserModel(appleParams, result != null);
       return userModel;
@@ -85,7 +77,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
 
   @override
   Future<T?> signInWithEmail(AuthParams params) async {
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
@@ -93,14 +85,14 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
   @override
   Future<T?> signInWithFacebook(AuthParams params) async {
     final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
-    final result = await _apiAuthDataSource.signIn(params: facebookParams);
+    final result = await dataSource.signIn(params: facebookParams);
     final userModel = _authResponseToUserModel(facebookParams, result != null);
     return userModel;
   }
 
   @override
   Future<T?> signInWithGitHub(AuthParams params) async {
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
@@ -108,14 +100,14 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
   @override
   Future<T?> signInWithGoogle(AuthParams params) async {
     final googleParams = await AuthRepositoryHelper.signInWithGoogle(params);
-    final result = await _apiAuthDataSource.signIn(params: googleParams);
+    final result = await dataSource.signIn(params: googleParams);
     final userModel = _authResponseToUserModel(googleParams, result != null);
     return userModel;
   }
 
   @override
   Future<T?> signInWithMicrosoft(AuthParams params) async {
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
@@ -126,7 +118,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
     String emailLink,
   ) async {
     final params = AuthParams.passwordless(email: email, password: emailLink);
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
@@ -137,14 +129,14 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
     String confirmationCode,
   ) async {
     final params = AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
 
   @override
   Future<T?> signInWithX(AuthParams params) async {
-    final result = await _apiAuthDataSource.signIn(params: params);
+    final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
@@ -152,7 +144,7 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
   @override
   Future<bool> signOut() async {
     try {
-      await _apiAuthDataSource.signOut(
+      await dataSource.signOut(
         params: userModelStream.value!.toAuthParams(),
       );
       return true;
@@ -168,26 +160,26 @@ class ApiAuthDataRepository<T extends UserModel> extends AuthenticationDataRepos
 
   @override
   Future<T?> signUpWithEmail(AuthParams params) async {
-    final result = await _apiAuthDataSource.signUp(params: params);
+    final result = await dataSource.signUp(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;
   }
 
   T? _authResponseToUserModel(AuthParams params, bool result) {
     final _baseUser = UserModel(
-      id: _apiAuthDataSource.currentUserModel!.id,
-      email: _apiAuthDataSource.currentUserModel!.email,
-      phoneNumber: _apiAuthDataSource.currentUserModel!.phoneNumber,
-      displayName: params.displayName ?? _apiAuthDataSource.currentUserModel!.email,
+      id: dataSource.currentUserModel!.id,
+      email: dataSource.currentUserModel!.email,
+      phoneNumber: dataSource.currentUserModel!.phoneNumber,
+      displayName: params.displayName ?? dataSource.currentUserModel!.email,
       code: params.code,
-      refreshToken: _apiAuthDataSource.currentUserModel!.refreshToken,
-      accessToken: _apiAuthDataSource.currentUserModel!.accessToken,
+      refreshToken: dataSource.currentUserModel!.refreshToken,
+      accessToken: dataSource.currentUserModel!.accessToken,
       isAuthorized: params.isAuthorized ?? false,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
       createdAt: params.createdAt ?? DateTime.now(),
       updatedAt: DateTime.tryParse(
-            _apiAuthDataSource.currentUserModel!.updatedAt.toString(),
+            dataSource.currentUserModel!.updatedAt.toString(),
           ) ??
           DateTime.now(),
     );

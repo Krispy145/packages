@@ -25,6 +25,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     super.collectionName, {
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
+    required super.titleFromType,
   });
 
   @override

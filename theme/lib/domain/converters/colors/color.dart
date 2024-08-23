@@ -53,6 +53,15 @@ class ColorMapper extends SimpleMapper<Color> {
 
   Color _getColorFromRGB(List<double> colorValue) {
     // Check if the list has 3 elements (R, G, B) or 4 elements (R, G, B, A)
+    if (colorValue.length == 1) {
+      return Color.fromRGBO(
+        colorValue[0].toInt(),
+        colorValue[0].toInt(),
+        colorValue[0].toInt(),
+        1,
+      );
+    }
+    if (colorValue.length < 3) return Colors.black;
     final alpha = (colorValue.length == 4)
         ? (colorValue[3] * 255)
         : colorValue.length == 4

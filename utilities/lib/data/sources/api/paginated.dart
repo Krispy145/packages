@@ -49,7 +49,6 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
       }
       final items = getItemsFromResponse(convertedResponse);
       AppLogger.print("Response: $_url, QueryParams: $parameters, Items: $items", [UtilitiesLoggers.apiDataSource]);
-      print(response.requestOptions.queryParameters);
       return Pair(RequestResponse.success, Pair(convertedResponse, items));
     } catch (e) {
       AppLogger.print("Error caught: $_url, $e", [UtilitiesLoggers.apiDataSource], type: LoggerType.error);

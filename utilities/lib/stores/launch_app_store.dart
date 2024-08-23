@@ -36,10 +36,8 @@ abstract class _AppLauncherStore with Store {
   @action
   Future<void> launchApp({required AppIdentifier identifier}) async {
     final result = await checkIsAppInstalled(identifier: identifier);
-    print("APP LAUNCHER STORE: $result");
     if (result || ((identifier.openStore ?? false) && !Platform.isAndroid)) {
       final url = identifier.buildUrl();
-      print("APP LAUNCHER STORE: ${identifier.androidPackageName}");
       await LaunchApp.openApp(
         iosUrlScheme: url,
         androidPackageName: identifier.androidPackageName,

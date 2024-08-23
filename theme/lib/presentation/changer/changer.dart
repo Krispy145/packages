@@ -75,6 +75,7 @@ class ThemeChanger {
     required BuildContext context,
   }) {
     return showModalBottomSheet(
+      barrierColor: Colors.transparent,
       context: context,
       builder: (context) => const ThemeChangerView(),
     );
@@ -187,6 +188,7 @@ class ThemeChanger {
       return Future.value();
     }
     return showModalBottomSheet(
+      barrierColor: Colors.transparent,
       context: context,
       builder: (context) => TextStyleView(
         onTextTypeChanged: (newTextType) => changeBaseThemeModel(
@@ -249,6 +251,7 @@ class ThemeChanger {
       value: ObservableMap<String, dynamic>.of(mergedMap),
     );
     return showModalBottomSheet(
+      barrierColor: Colors.transparent,
       context: context,
       builder: (context) => ThemeComponentEditor(
         title: componentOption.name,

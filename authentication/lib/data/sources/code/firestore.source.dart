@@ -8,6 +8,7 @@ class FirestoreCodeDataSource extends FirestoreDataSource<CodeModel, void> imple
           "codes",
           convertDataTypeFromMap: CodeModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
+          titleFromType: (data) => data.id,
         );
 
   @override

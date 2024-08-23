@@ -4,6 +4,7 @@ import "package:authentication/data/sources/review/_source.dart";
 import "package:authentication/utils/permissions_checker.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:collection/collection.dart";
+import "package:flutter/foundation.dart";
 import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/firestore/source.dart";
@@ -13,14 +14,15 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends FirestoreDataSource<T, Q> {
-  final U currentUser;
-  final PermissionModel userPermissions;
+  final U? currentUser;
+  final PermissionModel? userPermissions;
   SecuredFirestoreDataSource(
     super.collectionName, {
     required this.currentUser,
     required this.userPermissions,
     required super.convertDataTypeFromMap,
     required super.convertDataTypeToMap,
+    required super.titleFromType,
   });
 
   late final FirestoreReviewDataSource<T> reviewDataSource = FirestoreReviewDataSource(
@@ -29,7 +31,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     convertDataTypeFromMap: convertDataTypeFromMap,
     convertDataTypeToMap: convertDataTypeToMap,
   );
-  late final permissionChecker = PermissionChecker<T>(dataReference: collectionName, userPermissions: userPermissions);
+  late final permissionChecker = PermissionChecker<T>(dataReference: collectionName, userPermissions: userPermissions ?? PermissionModel.empty);
 
   Future<RequestResponse> checkWritePermissions({
     required String? sourceId,
@@ -130,8 +132,10 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       if (reviewData.second == null) {
         return RequestResponse.failure;
       }
+
       final result = await permissionChecker.addForReview(
         sourceId: id,
+        dataTitle: titleFromType(reviewData.second as T),
         dataSourceReference: collectionReference.doc(id).path,
         crud: CRUD.delete,
         dataMap: convertDataTypeToMap(reviewData.second as T),
@@ -142,6 +146,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       if (result == RequestResponse.failure) {
         return RequestResponse.failure;
       }
+      return RequestResponse.success;
     }
 
     if (writeResult != RequestResponse.success) {
@@ -216,6 +221,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     if (writeResult == RequestResponse.underReview) {
       final result = await permissionChecker.addForReview(
         sourceId: id,
+        dataTitle: titleFromType(data),
         dataSourceReference: collectionReference.doc(id).path,
         crud: CRUD.update,
         dataMap: convertDataTypeToMap(data),
@@ -296,6 +302,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
     );
     if (writeResult == RequestResponse.underReview) {
       final result = await permissionChecker.addForReview(
+        dataTitle: titleFromType(data),
         sourceId: id,
         dataSourceReference: collectionReference.doc(id).path,
         crud: CRUD.create,
@@ -322,7 +329,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
 
     final isCheckPermissionsNotEqualToAll = !checkPermissions.any((element) => element.first.getLastSection() == "all");
     if (isCheckPermissionsNotEqualToAll) {
-      print("No permission to add all");
+      debugPrint("No permission to add all");
       return RequestResponse.denied;
     }
     return super.addAll(data);

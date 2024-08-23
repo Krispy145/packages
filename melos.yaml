@@ -18,8 +18,10 @@ packages:
   - contacts
   - youtube
   - text_recognition
- - media
- # MELOS_PACKAGE_LIST_END
+  - media
+  - storage
+  - screen_capture_event
+  # MELOS_PACKAGE_LIST_END
 
 scripts:
   analyze:

@@ -5,14 +5,15 @@ class WarningMessage extends StatelessWidget {
   final String title;
   final String? message;
   final IconData? icon;
+  final double iconSize;
   final String? buttonText;
   final void Function(BuildContext context)? onButtonTap;
 
-  const WarningMessage({super.key, required this.title, this.message, required this.icon, this.buttonText, this.onButtonTap});
+  const WarningMessage({super.key, required this.title, this.message, required this.icon, this.buttonText, this.onButtonTap, this.iconSize = 48});
 
-  const WarningMessage.error({super.key, this.title = "Error!", this.message, this.icon = Icons.warning_rounded, this.buttonText, this.onButtonTap});
+  const WarningMessage.error({super.key, this.title = "Error!", this.message, this.icon = Icons.warning_rounded, this.buttonText, this.onButtonTap, this.iconSize = 48});
 
-  const WarningMessage.empty({super.key, this.title = "No results", this.message, this.icon, this.buttonText, this.onButtonTap});
+  const WarningMessage.empty({super.key, this.title = "No results", this.message, this.icon, this.buttonText, this.onButtonTap, this.iconSize = 48});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class WarningMessage extends StatelessWidget {
           if (icon != null)
             Icon(
               icon,
-              size: 48,
+              size: iconSize,
             ),
           Padding(
             padding: const EdgeInsets.only(top: 8),

@@ -37,25 +37,37 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
               onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
-            TextField(
-              controller: TextEditingController(text: "Preview Text Field"),
-              decoration: InputDecoration(border: store.value?.asInputBorder()),
+            Theme(
+              data: Theme.of(context).copyWith(
+                inputDecorationTheme: Theme.of(context).inputDecorationTheme.copyWith(border: store.value?.asInputBorder()),
+              ),
+              child: TextField(
+                controller: TextEditingController(text: "Preview Text Field"),
+              ),
             ),
             Sizes.m.spacer(),
-            Visibility(
-              visible: store.showBorderSideField,
-              child: BorderSideFormField(store: store.borderSideStore),
-            ),
-            Sizes.m.spacer(),
-            Visibility(
-              visible: store.showBorderRadiusField,
-              child: BorderRadiusFormField(store: store.borderRadiusStore),
-            ),
-            Sizes.m.spacer(),
-            Visibility(
-              visible: store.showGapPaddingField,
-              child: DoubleFormField(store: store.gapPaddingStore),
-            ),
+            // Sizes.m.spacer(),
+            // Visibility(
+            //   visible: store.showBorderSideField,
+            //   child: BorderSideFormField(store: store.borderSideStore),
+            // ),
+            if (store.showBorderSideField) ...[
+              BorderSideFormField(store: store.borderSideStore),
+              Sizes.m.spacer(),
+            ],
+
+            if (store.showBorderRadiusField) ...[
+              BorderRadiusFormField(store: store.borderRadiusStore),
+              Sizes.m.spacer(),
+            ],
+            if (store.showGapPaddingField) ...[
+              DoubleFormField(store: store.gapPaddingStore),
+              Sizes.m.spacer(),
+            ],
+            // Visibility(
+            //   visible: store.showGapPaddingField,
+            //   child: DoubleFormField(store: store.gapPaddingStore),
+            // ),
           ],
         );
       },

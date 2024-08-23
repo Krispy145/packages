@@ -26,7 +26,7 @@
 //     String errorMessage = "Error loading items",
 //   }) : super(
 //           builder: (field) {
-//             print("DROPDOWN: Rebuilding field in super");
+//            debugPrint("DROPDOWN: Rebuilding field in super");
 //             final store = DropdownFormFieldStore<T>(
 //               selectedId: field.value,
 //               matcher: matcher,
@@ -41,7 +41,7 @@
 //               errorMessage: errorMessage,
 //               title: title,
 //               onValueChanged: (item) {
-//                 print("DROPDOWN: DID CHANGE $title: $item -> ${item != null ? idFromItem(item) : null}");
+//                debugPrint("DROPDOWN: DID CHANGE $title: $item -> ${item != null ? idFromItem(item) : null}");
 //                 field.didChange(item != null ? idFromItem(item) : null);
 //               },
 //             );
