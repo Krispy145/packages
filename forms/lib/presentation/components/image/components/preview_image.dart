@@ -39,15 +39,10 @@ class PreviewImage extends StatelessWidget {
                   iconSize: 30,
                 ),
                 loadedBuilder: (context) {
-                  return formControl.isNull
-                      ? Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary))
-                      : DOImage.network(
-                          formControl.value as String? ?? "",
-                          options: NetworkImageOptions(
-                            headers: PublicHeaders.map,
-                            fit: BoxFit.cover,
-                          ),
-                        );
+                  return loadedPreview(context, formControl);
+                },
+                emptyBuilder: (context, text) {
+                  return Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary));
                 },
               ),
             );
@@ -55,5 +50,21 @@ class PreviewImage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget loadedPreview(BuildContext context, AbstractControl<Object?> formControl) {
+    if (store.imageBytes != null) {
+      return Image.memory(store.imageBytes!);
+    } else if (formControl.isNull) {
+      return Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary));
+    } else {
+      return DOImage.network(
+        formControl.value as String? ?? "",
+        options: NetworkImageOptions(
+          headers: PublicHeaders.map,
+          fit: BoxFit.cover,
+        ),
+      );
+    }
   }
 }

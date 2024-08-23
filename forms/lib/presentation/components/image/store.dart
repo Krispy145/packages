@@ -1,5 +1,8 @@
 // ignore_for_file: unused_element
 
+import "dart:typed_data";
+
+import "package:cross_file/cross_file.dart";
 import "package:flutter/material.dart";
 import "package:forms/presentation/components/base/store.dart";
 import "package:mobx/mobx.dart";
@@ -9,6 +12,7 @@ import "package:storage/pickers/_base.dart";
 import "package:storage/pickers/picker.dart";
 import "package:storage/repository.dart";
 import "package:utilities/data/typedefs.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
 part "store.g.dart";
@@ -33,7 +37,7 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
     required super.onValueChanged,
     required super.title,
   }) {
-    setLoaded();
+    setEmpty("No image selected");
     reaction(
       (p0) => imageUrl,
       (p0) => value = imageUrl,
@@ -42,6 +46,15 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   @observable
   late URL? imageUrl = value;
+
+  @observable
+  XFile? pickedImage;
+
+  @observable
+  Uint8List? imageBytes;
+
+  @observable
+  bool didPickImage = false;
 
   final pageController = PageController();
 
@@ -76,10 +89,9 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
     try {
       setLoading();
       if (fileUploadManager != null) {
-        final newImageUrl = await fileUploadManager!.pickAndUploadSingleImage();
-        if (newImageUrl != null) {
-          form.control(imageUrlKey).value = newImageUrl;
-        }
+        pickedImage = await fileUploadManager!.pickSingleImage();
+        imageBytes = await pickedImage?.readAsBytes();
+        didPickImage = pickedImage != null;
       }
       setLoaded();
     } catch (e) {
@@ -91,10 +103,9 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
     try {
       setLoading();
       if (fileUploadManager != null) {
-        final newImageUrl = await fileUploadManager!.pickAndUploadCameraImage();
-        if (newImageUrl != null) {
-          form.control(imageUrlKey).value = newImageUrl;
-        }
+        pickedImage = await fileUploadManager!.pickCameraImage();
+        imageBytes = await pickedImage?.readAsBytes();
+        didPickImage = pickedImage != null;
       }
       setLoaded();
     } catch (e) {
@@ -103,17 +114,25 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
   }
 
   @action
-  void updateImage({required URL newImageUrl}) {
-    imageUrl = newImageUrl;
+  Future<void> updateImage({required Pair<String?, bool> newImageOptions}) async {
+    imageUrl = newImageOptions.first;
+    if (imageUrl == null && newImageOptions.second && fileUploadManager != null) {
+      setLoading();
+      await fileUploadManager!.uploadImage(image: pickedImage!).then((value) {
+        imageUrl = value;
+        form.control(imageUrlKey).value = value;
+        setLoaded();
+      }).catchError((e) {
+        setError("Error uploading image");
+      });
+    }
   }
 
   @action
   Future<void> removeImage() async {
-    final _currentImageUrl = form.control(imageUrlKey).value as String?;
-    if (fileUploadManager != null && _currentImageUrl != null) {
-      await fileUploadManager!.deleteFile(path: _currentImageUrl);
-    }
     imageUrl = null;
+    pickedImage = null;
+    imageBytes = null;
     form.control(imageUrlKey).reset();
   }
 }

@@ -29,6 +29,54 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
     });
   }
 
+  late final _$pickedImageAtom =
+      Atom(name: '_ImageFormFieldStore.pickedImage', context: context);
+
+  @override
+  XFile? get pickedImage {
+    _$pickedImageAtom.reportRead();
+    return super.pickedImage;
+  }
+
+  @override
+  set pickedImage(XFile? value) {
+    _$pickedImageAtom.reportWrite(value, super.pickedImage, () {
+      super.pickedImage = value;
+    });
+  }
+
+  late final _$imageBytesAtom =
+      Atom(name: '_ImageFormFieldStore.imageBytes', context: context);
+
+  @override
+  Uint8List? get imageBytes {
+    _$imageBytesAtom.reportRead();
+    return super.imageBytes;
+  }
+
+  @override
+  set imageBytes(Uint8List? value) {
+    _$imageBytesAtom.reportWrite(value, super.imageBytes, () {
+      super.imageBytes = value;
+    });
+  }
+
+  late final _$didPickImageAtom =
+      Atom(name: '_ImageFormFieldStore.didPickImage', context: context);
+
+  @override
+  bool get didPickImage {
+    _$didPickImageAtom.reportRead();
+    return super.didPickImage;
+  }
+
+  @override
+  set didPickImage(bool value) {
+    _$didPickImageAtom.reportWrite(value, super.didPickImage, () {
+      super.didPickImage = value;
+    });
+  }
+
   late final _$tabIndexAtom =
       Atom(name: '_ImageFormFieldStore.tabIndex', context: context);
 
@@ -43,6 +91,15 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
     _$tabIndexAtom.reportWrite(value, super.tabIndex, () {
       super.tabIndex = value;
     });
+  }
+
+  late final _$updateImageAsyncAction =
+      AsyncAction('_ImageFormFieldStore.updateImage', context: context);
+
+  @override
+  Future<void> updateImage({required Pair<String?, bool> newImageOptions}) {
+    return _$updateImageAsyncAction
+        .run(() => super.updateImage(newImageOptions: newImageOptions));
   }
 
   late final _$removeImageAsyncAction =
@@ -68,20 +125,12 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
   }
 
   @override
-  void updateImage({required String newImageUrl}) {
-    final _$actionInfo = _$_ImageFormFieldStoreActionController.startAction(
-        name: '_ImageFormFieldStore.updateImage');
-    try {
-      return super.updateImage(newImageUrl: newImageUrl);
-    } finally {
-      _$_ImageFormFieldStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 imageUrl: ${imageUrl},
+pickedImage: ${pickedImage},
+imageBytes: ${imageBytes},
+didPickImage: ${didPickImage},
 tabIndex: ${tabIndex}
     ''';
   }

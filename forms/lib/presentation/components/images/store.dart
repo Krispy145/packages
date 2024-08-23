@@ -4,6 +4,7 @@ import "package:forms/presentation/components/base/store.dart";
 import "package:forms/presentation/components/image/store.dart";
 import "package:mobx/mobx.dart";
 import "package:storage/pickers/_base.dart";
+import "package:storage/pickers/picker.dart";
 import "package:storage/repository.dart";
 import "package:utilities/data/typedefs.dart";
 
@@ -11,7 +12,7 @@ part "store.g.dart";
 
 class ImagesFormFieldStore = _ImagesFormFieldStore with _$ImagesFormFieldStore;
 
-abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with Store {
+abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL?>> with Store {
   final BaseFilePicker? filePicker;
   final StorageRepository? storageRepository;
   final ImagePickerType tabType;
@@ -24,47 +25,78 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
     required super.title,
   }) {
     reaction(
-      (p0) => imageUrls.iterator, // Note that the reaction of fields when using Lists requires the use of the iterator property.
-      (p0) => value = imageUrls,
+      (p0) => _imageUrls.iterator, // Note that the reaction of fields when using Lists requires the use of the iterator property.
+      (p0) => value = _imageUrls,
     );
   }
 
-  late ObservableList<URL> imageUrls = ObservableList<URL>.of(value ?? []);
+  late final ObservableList<URL?> _imageUrls = ObservableList.of(value ?? []);
+
+  final DOFilePicker picker = DOFilePicker();
+
+  late ObservableList<ImageFormFieldStore> imageFormFields = ObservableList<ImageFormFieldStore>.of([addingImageStore]);
+
+  late final addingImageStore = ImageFormFieldStore(
+    filePicker: picker,
+    storageRepository: storageRepository,
+    tabType: ImagePickerType.upload,
+    initialValue: null,
+    onValueChanged: (uploadedResult) {
+      if (uploadedResult != null) {
+        _imageUrls.add(uploadedResult);
+      }
+    },
+    title: "Add Image",
+  );
 
   @action
-  void addImage({required URL imageUrl}) {
-    imageUrls.add(imageUrl);
+  void addNewImageFormField() {
+    imageFormFields.add(
+      ImageFormFieldStore(
+        filePicker: picker,
+        storageRepository: storageRepository,
+        tabType: ImagePickerType.upload,
+        initialValue: null,
+        onValueChanged: (uploadedResult) {
+          if (uploadedResult != null) {
+            _imageUrls.add(uploadedResult);
+          }
+        },
+        title: "Add Image",
+      ),
+    );
   }
 
   @action
   void removeImage({required int index}) {
-    imageUrls.removeAt(index);
+    if (imageFormFields.length <= 1) return;
+    imageFormFields.removeAt(index);
   }
 
-  @action
-  void updateImage({required URL imageUrl, required int index}) {
-    if (imageUrls.isEmpty) return;
-    imageUrls[index] = imageUrl;
-  }
+  // @action
+  // void updateImage({required Pair<URL?, bool> result, required int index}) {
+  //   if (imageFormFields.isEmpty) return;
+  //   imageFormFields[index].updateImage(newImageOptions: result);
+  // }
 
   @action
   void reorderImages({required int oldIndex, required int newIndex}) {
-    if (oldIndex >= imageUrls.length) {
+    if (oldIndex >= imageFormFields.length) {
       return;
     }
     if (oldIndex == newIndex) {
       return;
     }
     var newIndexAfterCheck = newIndex;
-    if (newIndex >= imageUrls.length) {
-      newIndexAfterCheck = imageUrls.length - 1;
+    if (newIndex >= imageFormFields.length) {
+      newIndexAfterCheck = imageFormFields.length - 1;
     }
-    final item = imageUrls.removeAt(oldIndex);
-    imageUrls.insert(newIndexAfterCheck, item);
+    final item = imageFormFields.removeAt(oldIndex);
+    imageFormFields.insert(newIndexAfterCheck, item);
   }
 
   @action
   void cancelChanges() {
-    imageUrls = ObservableList.of(value ?? []);
+    imageFormFields = ObservableList<ImageFormFieldStore>.of([]);
   }
 }

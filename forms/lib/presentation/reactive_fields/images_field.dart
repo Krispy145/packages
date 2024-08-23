@@ -6,7 +6,7 @@ import "package:reactive_forms/reactive_forms.dart";
 import "package:storage/pickers/_base.dart";
 import "package:storage/repository.dart";
 
-class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> {
+class ReactiveImagesField extends ReactiveFormField<List<String?>, List<String?>> {
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
   final Axis axis;
@@ -93,9 +93,9 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
         );
 
   @override
-  ReactiveFormFieldState<List<String>, List<String>> createState() => _ReactiveImagesFieldState<List<String>>();
+  ReactiveFormFieldState<List<String?>, List<String?>> createState() => _ReactiveImagesFieldState<List<String?>>();
 }
 
-class _ReactiveImagesFieldState<T> extends ReactiveFormFieldState<T, List<String>> {
+class _ReactiveImagesFieldState<T> extends ReactiveFormFieldState<T, List<String?>> {
   _ReactiveImagesFieldState();
 }
