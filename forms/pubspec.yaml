@@ -16,6 +16,8 @@ dependencies:
     path: ../../packages/theme
   widgets:
     path: ../../packages/widgets
+  storage:
+    path: ../../packages/storage
   reactive_dropdown_search: ^3.0.2
   reactive_file_picker: ^3.0.0
   reactive_forms: ^17.0.0

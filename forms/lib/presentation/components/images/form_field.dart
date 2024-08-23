@@ -1,20 +1,30 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:forms/presentation/components/base/form_field.dart";
-import "package:reactive_forms/reactive_forms.dart";
+import "package:forms/presentation/components/image/components/image_picker_field.dart";
+import "package:forms/presentation/components/image/store.dart";
 import "package:theme/extensions/build_context.dart";
+import "package:universal_io/io.dart";
 import "package:utilities/constants/env.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 import "package:widgets/images/options/network.dart";
 import "package:widgets/images/widget.dart";
 
 import "store.dart";
 
 class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
+  final Axis axis;
   ImagesFormField({
     super.key,
     required super.store,
     super.showTitle,
-  }) : super();
+    this.axis = Axis.horizontal,
+    this.height = 100,
+    this.width,
+  });
+
+  final double? height;
+  final double? width;
 
   @override
   Widget buildField(BuildContext context) {
@@ -24,7 +34,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 100,
+              height: height,
               child: ReorderableListView.builder(
                 onReorder: (oldIndex, newIndex) => store.reorderImages(oldIndex: oldIndex, newIndex: newIndex),
                 scrollDirection: Axis.horizontal,
@@ -37,7 +47,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                       clipBehavior: Clip.hardEdge,
                       child: AspectRatio(
-                        aspectRatio: 1.7,
+                        aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
                         child: InkWell(
                           onTap: () async => addOrEditImage(context, null),
                           child: Container(
@@ -57,7 +67,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                         clipBehavior: Clip.hardEdge,
                         child: AspectRatio(
-                          aspectRatio: 1.7,
+                          aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
                           child: InkWell(
                             onTap: () async => addOrEditImage(context, index),
                             child: DOImage.network(
@@ -65,7 +75,6 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                               options: NetworkImageOptions(
                                 headers: PublicHeaders.map,
                                 fit: BoxFit.cover,
-                                errorWidget: (context, error, stackTrace) => const Icon(Icons.error),
                               ),
                             ),
                           ),
@@ -86,93 +95,27 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
 
   Future<void> addOrEditImage(BuildContext context, int? index) async {
     final isEditing = index != null;
+    final _maxWidth = Platform.isAndroid || Platform.isIOS ? context.screenWidth * 0.85 : context.screenWidth * 0.5;
+    final addImageStore = ImageFormFieldStore(
+      onValueChanged: (url) {},
+      storageRepository: store.storageRepository,
+      filePicker: store.filePicker,
+      tabType: store.tabType,
+      initialValue: isEditing ? store.imageUrls[index] : null,
+      title: store.title,
+    );
 
-    const imageUrlKey = "imageUrl";
-    final form = FormGroup({
-      imageUrlKey: FormControl<String>(value: isEditing ? store.imageUrls[index] : null, validators: [Validators.required]),
-    });
-    // if result is null, do nothing
-    // if result is "", remove image
-    // if result is not null, add or update image
     final result = await showDialog<String?>(
       context: context,
       builder: (context) {
         return Dialog(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height / 2,
-            width: MediaQuery.of(context).size.width / 2,
-            child: ReactiveForm(
-              formGroup: form,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    // IMAGE PREVIEW
-                    Flexible(
-                      child: AspectRatio(
-                        aspectRatio: 1.7,
-                        child: ReactiveStatusListenableBuilder(
-                          formControlName: imageUrlKey,
-                          builder: (context, formControl, widget) {
-                            return Container(
-                              clipBehavior: Clip.hardEdge,
-                              decoration: BoxDecoration(
-                                color: context.colorScheme.primary.withOpacity(0.4),
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: formControl.isNull
-                                  ? Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary))
-                                  : DOImage.network(
-                                      formControl.value as String? ?? "",
-                                      options: NetworkImageOptions(
-                                        headers: PublicHeaders.map,
-                                        fit: BoxFit.cover,
-                                        errorWidget: (context, error, stackTrace) => const Icon(Icons.error),
-                                      ),
-                                    ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    // URL FIELD
-                    ReactiveTextField<String>(formControlName: imageUrlKey),
-                    const SizedBox(height: 16),
-                    // BUTTONS
-                    ReactiveStatusListenableBuilder(
-                      formControlName: imageUrlKey,
-                      builder: (context, formControl, w) {
-                        final hasValidUrl = formControl.isNotNull && ((formControl.value as String?)?.isNotEmpty ?? false);
-                        final urlToReturn = hasValidUrl ? formControl.value : null;
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // REMOVE BUTTON
-                            FilledButton.icon(
-                              onPressed: () => Navigator.pop(context, ""),
-                              icon: const Icon(Icons.delete),
-                              label: const Text("Remove"),
-                            ),
-                            const SizedBox(width: 16),
-                            // UPDATE / ADD BUTTON
-                            AnimatedOpacity(
-                              duration: Durations.short1,
-                              opacity: hasValidUrl ? 1 : 0.5,
-                              child: FilledButton.icon(
-                                onPressed: hasValidUrl ? () => Navigator.pop(context, urlToReturn) : null,
-                                icon: const Icon(Icons.check),
-                                label: Text(isEditing ? "Update" : "Add"),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: context.screenHeight * 0.5,
+              maxHeight: context.screenHeight * 0.8,
+              maxWidth: _maxWidth,
             ),
+            child: ImagePickerField(store: addImageStore, axis: axis),
           ),
         );
       },
@@ -180,11 +123,11 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
 
     if (result == null) return;
 
-    if (result == "" && isEditing) store.removeImage(index: index);
+    if (result == "" && isEditing) return store.removeImage(index: index);
 
     if (isEditing) {
       store.updateImage(imageUrl: result, index: index);
-    } else {
+    } else if (result != "") {
       store.addImage(imageUrl: result);
     }
   }

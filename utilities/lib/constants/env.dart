@@ -14,7 +14,6 @@ class DigitalOasis {
 
   @EnviedField(obfuscate: true)
   static String proxy = _DigitalOasis.proxy;
-  // "https://cors-anywhere.herokuapp.com/"; // "https://thingproxy.freeboard.io/fetch/"; // replacement for "https://corsproxy.io/?"
 }
 
 class PublicHeaders {
