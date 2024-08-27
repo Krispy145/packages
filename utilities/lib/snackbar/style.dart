@@ -26,9 +26,7 @@ enum SnackbarStyle {
 
   /// [backgroundColor] is the color that will be used for the background of the snackbar.
   Color backgroundColor() {
-    final colorScheme = AppTheme.isDark
-        ? AppTheme.colorStyles().dark
-        : AppTheme.colorStyles().light;
+    final colorScheme = AppTheme.isDark ? AppTheme.colorStyles().dark : AppTheme.colorStyles().light;
     switch (this) {
       case SnackbarStyle.information:
         return colorScheme.information;
@@ -44,6 +42,26 @@ enum SnackbarStyle {
         return AppTheme.currentColorModel?.secondary ?? Colors.blueGrey;
       case SnackbarStyle.progress:
         return AppTheme.currentColorModel?.secondary ?? Colors.blueGrey;
+    }
+  }
+
+  Color? onBackgroundColor() {
+    final colorScheme = AppTheme.isDark ? AppTheme.colorStyles().dark : AppTheme.colorStyles().light;
+    switch (this) {
+      case SnackbarStyle.information:
+        return colorScheme.onInformation;
+      case SnackbarStyle.confirmation:
+        return colorScheme.onConfirmation;
+      case SnackbarStyle.warning:
+        return colorScheme.onWarning;
+      case SnackbarStyle.error:
+        return colorScheme.onError;
+      case SnackbarStyle.theme:
+        return colorScheme.onPrimary;
+      case SnackbarStyle.saved:
+        return colorScheme.onSecondary;
+      case SnackbarStyle.progress:
+        return colorScheme.onSecondary;
     }
   }
 }
