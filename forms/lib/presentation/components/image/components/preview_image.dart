@@ -10,10 +10,12 @@ import "package:widgets/messages/warning_message.dart";
 
 class PreviewImage extends StatelessWidget {
   final Axis axis;
+  final double? aspectRatio;
   const PreviewImage({
     super.key,
     required this.store,
     this.axis = Axis.horizontal,
+    this.aspectRatio,
   });
 
   final ImageFormFieldStore store;
@@ -22,7 +24,7 @@ class PreviewImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Flexible(
       child: AspectRatio(
-        aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
+        aspectRatio: aspectRatio ?? (axis == Axis.horizontal ? 16 / 9 : 9 / 16),
         child: ReactiveStatusListenableBuilder(
           formControlName: store.imageUrlKey,
           builder: (context, formControl, _) {

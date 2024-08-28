@@ -103,6 +103,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             child: ImagePickerField(
               store: store,
               axis: axis,
+              aspectRatio: aspectRatio,
             ),
           ),
         );
