@@ -1,7 +1,9 @@
 import "package:flutter/material.dart";
 
 class FadingListView extends StatefulWidget {
-  const FadingListView({required this.child, super.key});
+  const FadingListView({required this.child, super.key, this.fadePercentage = 0.05});
+
+  final double fadePercentage;
 
   final ListView child;
 
@@ -19,9 +21,7 @@ class _FadingListViewState extends State<FadingListView> {
       onNotification: (scrollNotification) {
         setState(() {
           _stopStart = scrollNotification.metrics.pixels / 10;
-          _stopEnd = (scrollNotification.metrics.maxScrollExtent -
-                  scrollNotification.metrics.pixels) /
-              10;
+          _stopEnd = (scrollNotification.metrics.maxScrollExtent - scrollNotification.metrics.pixels) / 10;
 
           _stopStart = _stopStart.clamp(0.0, 1.0);
           _stopEnd = _stopEnd.clamp(0.0, 1.0);
@@ -31,12 +31,8 @@ class _FadingListViewState extends State<FadingListView> {
       child: ShaderMask(
         shaderCallback: (rect) {
           return LinearGradient(
-            begin: widget.child.scrollDirection == Axis.horizontal
-                ? Alignment.centerLeft
-                : Alignment.topCenter,
-            end: widget.child.scrollDirection == Axis.horizontal
-                ? Alignment.centerRight
-                : Alignment.bottomCenter,
+            begin: widget.child.scrollDirection == Axis.horizontal ? Alignment.centerLeft : Alignment.topCenter,
+            end: widget.child.scrollDirection == Axis.horizontal ? Alignment.centerRight : Alignment.bottomCenter,
             colors: const [
               Colors.black,
               Colors.transparent,
@@ -44,8 +40,8 @@ class _FadingListViewState extends State<FadingListView> {
               Colors.black,
             ],
             stops: widget.child.reverse
-                ? [0.0, 0.05 * _stopEnd, 1 - 0.05 * _stopStart, 1.0]
-                : [0.0, 0.05 * _stopStart, 1 - 0.05 * _stopEnd, 1.0],
+                ? [0.0, widget.fadePercentage * _stopEnd, 1 - widget.fadePercentage * _stopStart, 1.0]
+                : [0.0, widget.fadePercentage * _stopStart, 1 - widget.fadePercentage * _stopEnd, 1.0],
           ).createShader(rect);
         },
         blendMode: BlendMode.dstOut,
