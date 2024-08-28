@@ -41,6 +41,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       sourceId: sourceId,
       crud: crud,
       user: currentUser,
+      collectionName: collectionName,
     );
   }
 
@@ -126,6 +127,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       sourceId: id,
       crud: CRUD.delete,
       user: currentUser,
+      collectionName: collectionName,
     );
     if (writeResult == RequestResponse.underReview) {
       final reviewData = await get(id);
@@ -217,6 +219,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       sourceId: id,
       crud: CRUD.update,
       user: currentUser,
+      collectionName: collectionName,
     );
     if (writeResult == RequestResponse.underReview) {
       final result = await permissionChecker.addForReview(
@@ -299,6 +302,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends Fir
       sourceId: id,
       crud: CRUD.create,
       user: currentUser,
+      collectionName: collectionName,
     );
     if (writeResult == RequestResponse.underReview) {
       final result = await permissionChecker.addForReview(

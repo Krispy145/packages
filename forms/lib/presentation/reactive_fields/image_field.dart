@@ -9,6 +9,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
   final Axis axis;
+  final double? aspectRatio;
   ReactiveImageField.combined({
     String title = "Image",
     required this.storageRepository,
@@ -23,6 +24,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     double? height,
     double? width,
     this.axis = Axis.horizontal,
+    this.aspectRatio,
   }) : super(
           builder: (field) {
             final store = ImageFormFieldStore(
@@ -34,7 +36,14 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               title: title,
             );
 
-            return ImageFormField(store: store, height: height, width: width, showTitle: false, axis: axis);
+            return ImageFormField(
+              store: store,
+              height: height,
+              width: width,
+              showTitle: false,
+              axis: axis,
+              aspectRatio: aspectRatio,
+            );
           },
         );
 
@@ -50,6 +59,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     double? height,
     double? width,
     this.axis = Axis.horizontal,
+    this.aspectRatio,
   })  : storageRepository = null,
         filePicker = null,
         super(
@@ -61,7 +71,14 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               title: title,
             );
 
-            return ImageFormField(store: store, height: height, width: width, showTitle: false, axis: axis);
+            return ImageFormField(
+              store: store,
+              height: height,
+              width: width,
+              showTitle: false,
+              axis: axis,
+              aspectRatio: aspectRatio,
+            );
           },
         );
 
@@ -79,6 +96,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     double? height,
     double? width,
     this.axis = Axis.horizontal,
+    this.aspectRatio,
   }) : super(
           builder: (field) {
             final store = ImageFormFieldStore(

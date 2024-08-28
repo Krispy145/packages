@@ -78,7 +78,14 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
                       _showSnackBarRequestResponse(context);
                       return Center(child: WarningMessage.empty(title: empty));
                     },
-                loadingBuilder: (context) => const SizedBox(),
+                loadingBuilder: (context) => const SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      CircularProgressIndicator(),
+                    ],
+                  ),
+                ),
                 loadedBuilder: (context) {
                   _showSnackBarRequestResponse(context);
                   return const SizedBox.shrink();

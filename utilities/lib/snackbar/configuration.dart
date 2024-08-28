@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:theme/app/app.dart";
 import "package:utilities/snackbar/style.dart";
 
 /// [SnackbarConfiguration] is the configuration that will be used to display a snackbar.
@@ -63,16 +64,16 @@ class SnackbarConfiguration {
     /// [color] is the color of the snackbar
     /// If [color] is null, the color will be the information color of the theme
     Color? color,
-    Color? titleColor = Colors.white,
-    Color? subtitleColor = Colors.grey,
+    Color? titleColor,
+    Color? subtitleColor,
     Duration? duration = const Duration(seconds: 3),
-    Widget leadingIcon = const Icon(
-      Icons.info_outline,
-      color: Colors.white,
-    ),
     Widget? trailingIcon,
     void Function()? onTap,
   }) {
+    final leadingIcon = Icon(
+      Icons.info_outline,
+      color: titleColor ?? AppTheme.currentColorModel?.onInformation,
+    );
     final leadingInfoIcon = withLeadingIcon ? leadingIcon : null;
     return SnackbarConfiguration._(
       color: color,

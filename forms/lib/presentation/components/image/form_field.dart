@@ -13,11 +13,13 @@ import "store.dart";
 
 class ImageFormField extends BaseFormField<ImageFormFieldStore> {
   final Axis axis;
+  final double? aspectRatio;
   ImageFormField({
     super.key,
     this.height = 100,
     this.width,
     super.showTitle,
+    this.aspectRatio,
     required super.store,
     this.axis = Axis.horizontal,
   });
@@ -42,7 +44,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                       clipBehavior: Clip.hardEdge,
                       child: AspectRatio(
-                        aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
+                        aspectRatio: aspectRatio ?? (axis == Axis.horizontal ? 16 / 9 : 9 / 16),
                         child: InkWell(
                           onTap: () async => addOrEditImage(context),
                           child: Container(
@@ -59,7 +61,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
                         clipBehavior: Clip.hardEdge,
                         child: AspectRatio(
-                          aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
+                          aspectRatio: aspectRatio ?? (axis == Axis.horizontal ? 16 / 9 : 9 / 16),
                           child: InkWell(
                             onTap: () async => addOrEditImage(context),
                             child: DOImage.network(
@@ -101,6 +103,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             child: ImagePickerField(
               store: store,
               axis: axis,
+              aspectRatio: aspectRatio,
             ),
           ),
         );
