@@ -35,17 +35,24 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                 itemCount: store.imageFormFields.length,
                 buildDefaultDragHandles: false,
                 itemBuilder: (context, index) {
-                  // if (index == store.imageFormFields.length) {
-                  //   return ImageFormField(
-                  //     key: const ValueKey("add_card"),
-                  //     store: store.addingImageStore,
-                  //     axis: axis,
-                  //     onUpdated: () => store.addNewImageFormField(),
-                  //   );
-                  // }
+                  if (index == store.imageFormFields.length) {
+                    return ImageFormField(
+                      key: const ValueKey("add-image"),
+                      store: store.imageFormFields.last,
+                      showTitle: false,
+                      height: (height ?? 0) - Sizes.s.points(context),
+                      width: width,
+                      axis: axis,
+                      onUpdated: () {
+                        store.addNewImageFormField(index: index + 1);
+                      },
+                      onRemoved: () => store.removeImage(
+                        index: index,
+                      ),
+                    );
+                  }
                   return ReorderableDragStartListener(
                     key: ValueKey("index-${store.imageFormFields[index]}"),
-                    enabled: !store.imageFormFields[index].isEditing,
                     index: index,
                     child: ImageFormField(
                       store: store.imageFormFields[index],
@@ -53,14 +60,14 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                       height: (height ?? 0) - Sizes.s.points(context),
                       width: width,
                       axis: axis,
-                      onUpdated: store.addNewImageFormField,
+                      onRemoved: () => store.removeImage(
+                        index: index,
+                      ),
                     ),
                   );
                 },
               ),
             ),
-            Sizes.s.spacer(),
-            Text("${store.imageFormFields.length} ${store.imageFormFields.length == 1 ? "image" : "images"}"),
           ],
         );
       },

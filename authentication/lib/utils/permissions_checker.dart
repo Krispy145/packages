@@ -104,13 +104,22 @@ class PermissionChecker<T> {
     UUID? sourceId,
     required CRUD crud,
     required U user,
+    required String collectionName,
   }) async {
     final permissionsList = checkPermissionLevel(crud);
     final isCheckPermissionsEqualToId = permissionsList.firstWhereOrNull(
-      (element) => element.first.split("/").last == sourceId && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review),
+      (element) {
+        final _collectionNameCheck = element.first.split("/").first == collectionName;
+        return _collectionNameCheck && element.first.split("/").last == sourceId && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
+        // return element.first.split("/").last == sourceId && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
+      },
     );
     final isCheckPermissionsEqualToAll = permissionsList.firstWhereOrNull(
-      (element) => element.first.split("/").last == "all" && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review),
+      (element) {
+        final _collectionNameCheck = element.first.split("/").first == collectionName;
+        return _collectionNameCheck && element.first.split("/").last == "all" && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
+        // return element.first.split("/").last == "all" && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
+      },
     );
     if (!(isCheckPermissionsEqualToAll != null || isCheckPermissionsEqualToId != null)) {
       return RequestResponse.denied;

@@ -14,14 +14,18 @@ import "store.dart";
 
 class ImageFormField extends BaseFormField<ImageFormFieldStore> {
   final void Function()? onUpdated;
+  final void Function()? onRemoved;
   final Axis axis;
+  final double? aspectRatio;
   ImageFormField({
     super.key,
     this.height = 100,
     this.width,
     super.showTitle,
+    this.aspectRatio,
     required super.store,
     this.onUpdated,
+    this.onRemoved,
     this.axis = Axis.horizontal,
   });
 
@@ -90,6 +94,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             child: ImagePickerField(
               store: store,
               axis: axis,
+              aspectRatio: aspectRatio,
             ),
           ),
         );
@@ -98,7 +103,10 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
 
     if (result == null) return;
 
-    if (result.first == "" && result.second == false) return store.removeImage();
+    if ((result.first == "" || result.first == null) && result.second == false) {
+      onRemoved?.call();
+      return store.removeImage();
+    }
     onUpdated?.call();
     await store.updateImage(newImageOptions: result);
   }

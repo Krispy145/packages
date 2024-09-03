@@ -13,11 +13,22 @@ mixin _$ImagesFormFieldStore on _ImagesFormFieldStore, Store {
       ActionController(name: '_ImagesFormFieldStore', context: context);
 
   @override
-  void addNewImageFormField() {
+  void addNewImageFormField({required int index}) {
     final _$actionInfo = _$_ImagesFormFieldStoreActionController.startAction(
         name: '_ImagesFormFieldStore.addNewImageFormField');
     try {
-      return super.addNewImageFormField();
+      return super.addNewImageFormField(index: index);
+    } finally {
+      _$_ImagesFormFieldStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addImage({required String imageUrl}) {
+    final _$actionInfo = _$_ImagesFormFieldStoreActionController.startAction(
+        name: '_ImagesFormFieldStore.addImage');
+    try {
+      return super.addImage(imageUrl: imageUrl);
     } finally {
       _$_ImagesFormFieldStoreActionController.endAction(_$actionInfo);
     }
@@ -29,6 +40,17 @@ mixin _$ImagesFormFieldStore on _ImagesFormFieldStore, Store {
         name: '_ImagesFormFieldStore.removeImage');
     try {
       return super.removeImage(index: index);
+    } finally {
+      _$_ImagesFormFieldStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateImage({required String imageUrl, required int index}) {
+    final _$actionInfo = _$_ImagesFormFieldStoreActionController.startAction(
+        name: '_ImagesFormFieldStore.updateImage');
+    try {
+      return super.updateImage(imageUrl: imageUrl, index: index);
     } finally {
       _$_ImagesFormFieldStoreActionController.endAction(_$actionInfo);
     }

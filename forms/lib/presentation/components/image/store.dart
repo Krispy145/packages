@@ -37,7 +37,11 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
     required super.onValueChanged,
     required super.title,
   }) {
-    setEmpty("No image selected");
+    if (value != null) {
+      setLoaded();
+    } else {
+      setEmpty("No image selected");
+    }
     reaction(
       (p0) => imageUrl,
       (p0) => value = imageUrl,
@@ -71,7 +75,7 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   final imageUrlKey = "imageUrl";
   late final form = FormGroup({
-    imageUrlKey: FormControl<String>(value: imageUrl, validators: [Validators.required]),
+    imageUrlKey: FormControl<URL>(value: imageUrl, validators: [Validators.required]),
   });
 
   late final bool canStoreImage = storageRepository != null;
@@ -114,7 +118,7 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
   }
 
   @action
-  Future<void> updateImage({required Pair<String?, bool> newImageOptions}) async {
+  Future<void> updateImage({required Pair<URL?, bool> newImageOptions}) async {
     imageUrl = newImageOptions.first;
     if (imageUrl == null && newImageOptions.second && fileUploadManager != null) {
       setLoading();
@@ -130,9 +134,11 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   @action
   Future<void> removeImage() async {
+    setLoading();
     imageUrl = null;
     pickedImage = null;
     imageBytes = null;
     form.control(imageUrlKey).reset();
+    setEmpty("No image selected");
   }
 }

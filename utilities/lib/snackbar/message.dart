@@ -55,15 +55,15 @@ class SnackbarMessage {
     }
 
     Color getTitleColor() {
-      return configuration.titleColor ?? (configuration.color != null ? Colors.white : Colors.black);
+      return configuration.titleColor ?? configuration.style.onBackgroundColor() ?? (configuration.color != null ? Colors.white : Colors.black);
     }
 
     Color getSubtitleColor() {
-      return configuration.subtitleColor ?? (configuration.color != null ? Colors.grey[300]! : Colors.grey[800]!);
+      return configuration.subtitleColor ?? configuration.style.onBackgroundColor() ?? (configuration.color != null ? Colors.white : Colors.black);
     }
 
     Color progressBarColor() {
-      return configuration.color != null ? Colors.white : Colors.black;
+      return configuration.color ?? configuration.style.backgroundColor();
     }
 
     Container buildProgressBar() {

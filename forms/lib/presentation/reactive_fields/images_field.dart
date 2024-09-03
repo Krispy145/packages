@@ -2,11 +2,13 @@ import "package:flutter/widgets.dart";
 import "package:forms/presentation/components/image/store.dart";
 import "package:forms/presentation/components/images/form_field.dart";
 import "package:forms/presentation/components/images/store.dart";
+import "package:forms/utils/loggers.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:storage/pickers/_base.dart";
 import "package:storage/repository.dart";
+import "package:utilities/logger/logger.dart";
 
-class ReactiveImagesField extends ReactiveFormField<List<String?>, List<String?>> {
+class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> {
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
   final Axis axis;
@@ -24,18 +26,15 @@ class ReactiveImagesField extends ReactiveFormField<List<String?>, List<String?>
     double? height,
     double? width,
   }) : super(
-          builder: (field) {
-            final store = ImagesFormFieldStore(
-              onValueChanged: (urls) => field.didChange(urls),
-              storageRepository: storageRepository,
-              filePicker: filePicker,
-              tabType: ImagePickerType.combined,
-              initialValue: field.value,
-              title: "Images",
-            );
-
-            return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
-          },
+          builder: (field) => _buildField(
+            field: field,
+            storageRepository: storageRepository,
+            filePicker: filePicker,
+            axis: axis,
+            height: height,
+            width: width,
+            tabType: ImagePickerType.combined,
+          ),
         );
 
   ReactiveImagesField.url({
@@ -52,16 +51,13 @@ class ReactiveImagesField extends ReactiveFormField<List<String?>, List<String?>
   })  : storageRepository = null,
         filePicker = null,
         super(
-          builder: (field) {
-            final store = ImagesFormFieldStore(
-              onValueChanged: (urls) => field.didChange(urls),
-              tabType: ImagePickerType.url,
-              initialValue: field.value,
-              title: "Images",
-            );
-
-            return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
-          },
+          builder: (field) => _buildField(
+            field: field,
+            axis: axis,
+            height: height,
+            width: width,
+            tabType: ImagePickerType.url,
+          ),
         );
 
   ReactiveImagesField.upload({
@@ -78,24 +74,48 @@ class ReactiveImagesField extends ReactiveFormField<List<String?>, List<String?>
     double? height,
     double? width,
   }) : super(
-          builder: (field) {
-            final store = ImagesFormFieldStore(
-              onValueChanged: (urls) => field.didChange(urls),
-              storageRepository: storageRepository,
-              filePicker: filePicker,
-              tabType: ImagePickerType.upload,
-              initialValue: field.value,
-              title: "Images",
-            );
-
-            return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
-          },
+          builder: (field) => _buildField(
+            field: field,
+            storageRepository: storageRepository,
+            filePicker: filePicker,
+            axis: axis,
+            height: height,
+            width: width,
+            tabType: ImagePickerType.upload,
+          ),
         );
 
+  static ImagesFormField _buildField({
+    required ReactiveFormFieldState<List<String>, List<String>> field,
+    StorageRepository? storageRepository,
+    BaseFilePicker? filePicker,
+    required Axis axis,
+    double? height,
+    double? width,
+    required ImagePickerType tabType,
+  }) {
+    final store = ImagesFormFieldStore(
+      onValueChanged: (urls) {
+        try {
+          field.control.value = urls;
+        } catch (e) {
+          AppLogger.print("${tabType.name} Error: $e", [FormsLoggers.field], type: LoggerType.error);
+        }
+      },
+      storageRepository: storageRepository,
+      filePicker: filePicker,
+      tabType: tabType,
+      initialValue: field.value,
+      title: "Images",
+    );
+
+    return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
+  }
+
   @override
-  ReactiveFormFieldState<List<String?>, List<String?>> createState() => _ReactiveImagesFieldState<List<String?>>();
+  ReactiveFormFieldState<List<String>, List<String>> createState() => _ReactiveImagesFieldState<List<String>>();
 }
 
-class _ReactiveImagesFieldState<T> extends ReactiveFormFieldState<T, List<String?>> {
+class _ReactiveImagesFieldState<T> extends ReactiveFormFieldState<T, List<String>> {
   _ReactiveImagesFieldState();
 }
