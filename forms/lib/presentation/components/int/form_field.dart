@@ -30,7 +30,7 @@ class IntFormField extends BaseFormField<IntFormFieldStore> {
                   icon: Icon(Icons.remove, color: context.colorScheme.onPrimary),
                   onPressed: store.add,
                 ),
-                Sizes.s.spacer(vertical: false),
+                Sizes.s.spacer(axis: Axis.horizontal),
                 SizedBox(
                   width: 100,
                   child: TextField(
@@ -44,7 +44,7 @@ class IntFormField extends BaseFormField<IntFormFieldStore> {
                     ],
                   ),
                 ),
-                Sizes.s.spacer(vertical: false),
+                Sizes.s.spacer(axis: Axis.horizontal),
                 // if (widget.showButtons)
                 IconButton.filled(
                   icon: Icon(Icons.add, color: context.colorScheme.onPrimary),

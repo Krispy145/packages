@@ -30,27 +30,27 @@ class SnackbarMessage {
     List<Widget> buildLeadingIcon() {
       if (configuration.leadingIcon == null) {
         return [
-          Sizes.l.spacer(vertical: false),
+          Sizes.l.spacer(axis: Axis.horizontal),
         ];
       }
       return [
-        Sizes.s.spacer(vertical: false),
+        Sizes.s.spacer(axis: Axis.horizontal),
         configuration.leadingIcon!,
-        Sizes.s.spacer(vertical: false),
+        Sizes.s.spacer(axis: Axis.horizontal),
       ];
     }
 
     List<Widget> buildTrailingIcon() {
       if (configuration.trailingIcon == null) {
         return [
-          Sizes.l.spacer(vertical: false),
+          Sizes.l.spacer(axis: Axis.horizontal),
         ];
       }
 
       return [
-        Sizes.s.spacer(vertical: false),
+        Sizes.s.spacer(axis: Axis.horizontal),
         configuration.trailingIcon!,
-        Sizes.s.spacer(vertical: false),
+        Sizes.s.spacer(axis: Axis.horizontal),
       ];
     }
 
@@ -79,7 +79,7 @@ class SnackbarMessage {
     }
 
     double getWidth(BuildContext context) {
-      return context.screenWidth - (2 * Sizes.l.points(context, vertical: false));
+      return context.screenWidth - (2 * Sizes.l.points(context, axis: Axis.horizontal));
     }
 
     return SnackBar(

@@ -4,6 +4,8 @@ import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 part "paginated.mapper.dart";
 
@@ -75,37 +77,42 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     int? size,
     FirestoreResponseModel<T?>? lastResponse,
   }) {
-    final _collection = firestore.collection(collectionName);
-    Query query = _collection;
+    try {
+      final _collection = firestore.collection(collectionName);
+      Query query = _collection;
 
-    if (lastResponse != null) {
-      if (lastResponse.lastDocumentSnapshot != null) {
-        query = query.startAfterDocument(
-          lastResponse.lastDocumentSnapshot!,
-        );
+      if (lastResponse != null) {
+        if (lastResponse.lastDocumentSnapshot != null) {
+          query = query.startAfterDocument(
+            lastResponse.lastDocumentSnapshot!,
+          );
+        }
       }
-    }
 
-    if (size != null) {
-      query = query.limit(size);
-    }
+      if (size != null) {
+        query = query.limit(size);
+      }
 
-    return query.snapshots().map(
-      (response) {
-        final _response = FirestoreResponseModel<T?>(
-          lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
-        );
-        return Pair(
-          RequestResponse.success,
-          Pair(
-            _response,
-            List<T?>.from(
-              response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
+      return query.snapshots().map(
+        (response) {
+          final _response = FirestoreResponseModel<T?>(
+            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
+          );
+          return Pair(
+            RequestResponse.success,
+            Pair(
+              _response,
+              List<T?>.from(
+                response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
+              ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    } catch (e) {
+      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource], type: LoggerType.error);
+      return Stream.fromFuture(Future.value(Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []))));
+    }
   }
 
   @override

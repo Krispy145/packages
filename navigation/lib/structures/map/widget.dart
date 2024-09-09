@@ -101,8 +101,7 @@ class MapShellStructure extends StatelessWidget {
   Widget build(BuildContext context) {
     return OverlayPortal(
       controller: store.overlayPortalController,
-      overlayChildBuilder: (context) =>
-          _axis == Axis.vertical ? _buildRow() : _buildColumn(),
+      overlayChildBuilder: (context) => _axis == Axis.vertical ? _buildRow() : _buildColumn(),
       child: map,
     );
   }
@@ -110,9 +109,7 @@ class MapShellStructure extends StatelessWidget {
   Row _buildRow() {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: overlayPosition == MapOverlayPosition.left
-          ? MainAxisAlignment.start
-          : MainAxisAlignment.end,
+      mainAxisAlignment: overlayPosition == MapOverlayPosition.left ? MainAxisAlignment.start : MainAxisAlignment.end,
       children: [
         _overlay(),
       ],
@@ -122,9 +119,7 @@ class MapShellStructure extends StatelessWidget {
   Column _buildColumn() {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: overlayPosition == MapOverlayPosition.top
-          ? MainAxisAlignment.start
-          : MainAxisAlignment.end,
+      mainAxisAlignment: overlayPosition == MapOverlayPosition.top ? MainAxisAlignment.start : MainAxisAlignment.end,
       children: [
         _overlay(),
       ],
@@ -135,14 +130,8 @@ class MapShellStructure extends StatelessWidget {
     return Observer(
       builder: (context) {
         return SizedBox(
-          width: overlayPosition == MapOverlayPosition.left ||
-                  overlayPosition == MapOverlayPosition.right
-              ? _getOverlayWidth(context)
-              : null,
-          height: overlayPosition == MapOverlayPosition.bottom ||
-                  overlayPosition == MapOverlayPosition.top
-              ? _getOverlayHeight(context)
-              : null,
+          width: overlayPosition == MapOverlayPosition.left || overlayPosition == MapOverlayPosition.right ? _getOverlayWidth(context) : null,
+          height: overlayPosition == MapOverlayPosition.bottom || overlayPosition == MapOverlayPosition.top ? _getOverlayHeight(context) : null,
           child: const AutoRouter(),
         );
       },

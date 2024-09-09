@@ -33,7 +33,7 @@ class ImagePickerButtons extends StatelessWidget {
               icon: const Icon(Icons.delete),
               label: const Text("Remove"),
             ),
-            Sizes.s.spacer(vertical: false),
+            Sizes.s.spacer(axis: Axis.horizontal),
             // UPDATE / ADD BUTTON
             Observer(
               builder: (context) {

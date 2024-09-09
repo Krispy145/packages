@@ -104,7 +104,7 @@ class ColorModelView extends StatelessWidget {
                 child: Row(
                   children: [
                     const Text("Palette:"),
-                    Sizes.s.spacer(vertical: false),
+                    Sizes.s.spacer(axis: Axis.horizontal),
                     ...AppTheme.currentColorModel!.palette!.map(
                       (e) {
                         return Padding(

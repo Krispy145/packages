@@ -52,8 +52,7 @@ enum Sizes {
   xxxxl;
 
   /// [spacer] is a getter that returns a [SizedBox] with the size of the spacer based on the screen size
-  Widget spacer({bool vertical = true, SizeTypes type = SizeTypes.fixed, bool sliver = false}) {
-    final axis = vertical ? Axis.vertical : Axis.horizontal;
+  Widget spacer({Axis axis = Axis.vertical, SizeTypes type = SizeTypes.fixed, bool sliver = false}) {
     return _AppSpacer(
       size: this,
       axis: axis,
@@ -65,10 +64,9 @@ enum Sizes {
   /// [points] is a getter that returns the pixel size for the spacer based on the screen size
   double points(
     BuildContext context, {
-    bool vertical = true,
+    Axis axis = Axis.vertical,
     SizeTypes type = SizeTypes.fixed,
   }) {
-    final axis = vertical ? Axis.vertical : Axis.horizontal;
     switch (type) {
       case SizeTypes.fixed:
         return _getSize();
@@ -170,7 +168,7 @@ class _AppSpacer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = axis == Axis.horizontal ? size.points(context, vertical: false, type: type) : 0;
+    final double width = axis == Axis.horizontal ? size.points(context, axis: Axis.horizontal, type: type) : 0;
     final double height = axis == Axis.vertical ? size.points(context, type: type) : 0;
     if (sliver) {
       return SliverToBoxAdapter(child: SizedBox(width: width, height: height));

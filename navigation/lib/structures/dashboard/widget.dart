@@ -164,9 +164,7 @@ class DashboardShellStructure extends StatelessWidget {
                       },
                     ),
                   ),
-                  body: const AutoRouter(
-                    key: _primaryBodyKey,
-                  ),
+                  body: const AutoRouter(),
                 ),
               ),
               _mediumAndUp: SlotLayout.from(

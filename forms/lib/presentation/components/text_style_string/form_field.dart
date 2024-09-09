@@ -52,7 +52,7 @@ class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldSto
                               maxLines: 2,
                               style: "$styleTitle-$title".toTextStyleModel()?.asTextStyle,
                             ),
-                            Sizes.m.spacer(vertical: false),
+                            Sizes.m.spacer(axis: Axis.horizontal),
                           ],
                         ),
                       );

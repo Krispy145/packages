@@ -29,7 +29,7 @@ class DOMarketingButton extends StatelessWidget {
                     fit: BoxFit.contain,
                   ),
                 ),
-                Sizes.s.spacer(vertical: false),
+                Sizes.s.spacer(axis: Axis.horizontal),
                 Text(
                   "Powered by Digital Oasis",
                   style: context.textTheme.labelMedium?.copyWith(

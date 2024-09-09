@@ -22,7 +22,7 @@ class DOTextFormField extends BaseFormField<TextFormFieldStore> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (leading != null) ...[leading!, Sizes.s.spacer(vertical: false)],
+          if (leading != null) ...[leading!, Sizes.s.spacer(axis: Axis.horizontal)],
           Expanded(
             child: TextFormField(
               controller: store.textController,
@@ -75,7 +75,7 @@ class DOTextFormField extends BaseFormField<TextFormFieldStore> {
             ),
           ),
           if (actions != null) ...[
-            Sizes.s.spacer(vertical: false),
+            Sizes.s.spacer(axis: Axis.horizontal),
             ...actions!,
           ],
         ],

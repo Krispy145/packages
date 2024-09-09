@@ -30,11 +30,11 @@ class EditLocationMapFormField extends BaseFormField<EditLocationMapFormFieldSto
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Sizes.s.spacer(vertical: false),
+                Sizes.s.spacer(axis: Axis.horizontal),
                 DoubleFormField(store: store.latitudeStore),
-                Sizes.s.spacer(vertical: false),
+                Sizes.s.spacer(axis: Axis.horizontal),
                 DoubleFormField(store: store.longitudeStore),
-                Sizes.s.spacer(vertical: false),
+                Sizes.s.spacer(axis: Axis.horizontal),
               ],
             ),
           );

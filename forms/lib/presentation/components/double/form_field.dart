@@ -35,7 +35,7 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                   ),
                 ),
                 if (store.changeOnSaved) ...[
-                  Sizes.s.spacer(vertical: false),
+                  Sizes.s.spacer(axis: Axis.horizontal),
                   InkWell(
                     onTap: () => store.onValueChanged(double.tryParse(store.textController.text) ?? 0),
                     child: const Icon(Icons.check_circle_outline),
