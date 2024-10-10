@@ -378,6 +378,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
   Future<bool> signOut() async {
     try {
       await _firebaseAuth.signOut();
+      userModelStream.add(null);
       return true;
     } catch (e) {
       AppLogger.print(

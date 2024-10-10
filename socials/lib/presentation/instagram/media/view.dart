@@ -34,7 +34,7 @@ class InstagramMediaView extends StatelessWidget {
               ),
               Expanded(
                 child: SafeArea(
-                  child: PaginatedListBuilder<InstagramMediaModel>.gridView(
+                  child: PaginatedListBuilder<InstagramMediaModel, String>.gridView(
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                     store: store,
                     itemBuilder: (context, index, media) {

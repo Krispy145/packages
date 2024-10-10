@@ -101,6 +101,19 @@ class UserDataRepository<T extends UserModel> {
     return _dataSourceByType(source).getUsersByIds(ids);
   }
 
+  /// [searchPagedUserModels] returns a list of [UserModel]s based on the given [query].
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> searchPagedUserModels({
+    ResponseModel? lastResponse,
+    int? size,
+    required UserSearchQueryModel query,
+  }) async {
+    return _dataSourceByType(source).searchPage(
+      query: query,
+      lastResponse: lastResponse,
+      size: size,
+    );
+  }
+
   /// [getPagedUserModels] returns a page of [UserModel]s.
   Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> getPagedUserModels({
     ResponseModel? lastResponse,

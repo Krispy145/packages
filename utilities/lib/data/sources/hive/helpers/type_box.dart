@@ -198,6 +198,6 @@ class TypeBox<T> extends Box<T> {
 
   @override
   Stream<BoxEvent> watch({dynamic key}) {
-    return _box.watch(key: key as String);
+    return _box.watch(key: key as String?);
   }
 }

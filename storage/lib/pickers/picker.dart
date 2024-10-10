@@ -1,4 +1,5 @@
 import "package:file_picker/file_picker.dart";
+import "package:flutter/foundation.dart";
 import "package:image_picker/image_picker.dart";
 import "package:storage/pickers/_base.dart";
 
@@ -11,19 +12,19 @@ class DOFilePicker implements BaseFilePicker {
     final result = await _filePicker.pickFiles(withData: true);
 
     if (result != null && result.files.isNotEmpty) {
-      return XFile(result.files.first.path!, name: _fileName(result.files.first.path!), bytes: result.files.first.bytes);
+      return _getXFileFromPlatformFile(result.files.first);
     }
     return null; // No file selected
   }
 
   @override
-  Future<List<XFile>?> pickMultipleFiles() async {
+  Future<List<XFile>> pickMultipleFiles() async {
     final result = await _filePicker.pickFiles(allowMultiple: true, withData: true);
 
     if (result != null && result.files.isNotEmpty) {
-      return result.files.map((file) => XFile(file.path!, name: _fileName(file.path!), bytes: file.bytes)).toList();
+      return result.files.map(_getXFileFromPlatformFile).toList();
     }
-    return null; // No files selected
+    return []; // No files selected
   }
 
   @override
@@ -37,13 +38,15 @@ class DOFilePicker implements BaseFilePicker {
   }
 
   @override
-  Future<List<XFile>?> pickMultipleImages() async {
+  Future<List<XFile>> pickMultipleImages() async {
     final images = await _imagePicker.pickMultiImage();
 
     if (images.isNotEmpty) {
-      return images.map((image) => XFile(image.path, name: _fileName(image.path))).toList();
+      return images.map((image) {
+        return XFile(image.path, name: _fileName(image.path));
+      }).toList();
     }
-    return null; // No images selected
+    return []; // No images selected
   }
 
   @override
@@ -59,5 +62,12 @@ class DOFilePicker implements BaseFilePicker {
   String _fileName(String path) {
     final parts = path.split("/");
     return parts.last;
+  }
+
+  XFile _getXFileFromPlatformFile(PlatformFile file) {
+    if (kIsWeb) {
+      return XFile(file.name, name: file.name, bytes: file.bytes);
+    }
+    return XFile(file.path!, name: _fileName(file.path!), bytes: file.bytes);
   }
 }

@@ -8,11 +8,13 @@ import "store.dart";
 
 class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
   final Axis axis;
+  final BoxDecoration? decoration;
   ImagesFormField({
     super.key,
     required super.store,
     super.showTitle,
     this.axis = Axis.horizontal,
+    this.decoration,
     this.height = 100,
     this.width,
   });
@@ -39,6 +41,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                     return ImageFormField(
                       key: const ValueKey("add-image"),
                       store: store.imageFormFields.last,
+                      decoration: decoration,
                       showTitle: false,
                       height: (height ?? 0) - Sizes.s.points(context),
                       width: width,
@@ -57,6 +60,7 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
                     child: ImageFormField(
                       store: store.imageFormFields[index],
                       showTitle: false,
+                      decoration: decoration,
                       height: (height ?? 0) - Sizes.s.points(context),
                       width: width,
                       axis: axis,

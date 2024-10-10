@@ -57,6 +57,9 @@ class FirestoreUserDataSource<T extends UserModel> extends PaginatedFirestoreDat
     UserSearchQueryModel query,
     Query<Map<String, dynamic>> collectionReference,
   ) {
+    if (query.searchTerm.isEmpty) {
+      return collectionReference;
+    }
     if (query.mustExclude) {
       return collectionReference.where(
         "display_name",

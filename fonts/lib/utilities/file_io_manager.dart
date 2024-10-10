@@ -1,35 +1,64 @@
-import "dart:typed_data";
+import "dart:convert";
 
+import "package:cross_file/cross_file.dart";
+import "package:flutter/foundation.dart";
 import "package:path_provider/path_provider.dart";
 import "package:universal_io/io.dart";
+import "package:utilities/data/models/basic_search_query_model.dart";
+import "package:utilities/data/sources/hive/source.dart";
+import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/tuples.dart";
 
 // TODO: Create local data source for file storage based on this
 
-class FontFileIOManager {
+class FontFileIOManager extends HiveDataSource<XFile, BasicSearchQueryModel> {
+  FontFileIOManager()
+      : super(
+          "local-fonts",
+          getIdFromDataType: (data) => data.name,
+          convertDataTypeFromJson: (jsonString) {
+            final json = jsonDecode(jsonString) as Map<String, String>;
+            return XFile(json["path"]!, name: json["name"]);
+          },
+          convertDataTypeToJson: (data) => jsonEncode({"name": data.name, "path": data.path}),
+        );
+
   bool get isMacOS => Platform.isMacOS;
 
   bool get isAndroid => Platform.isAndroid;
 
   bool get isTest => Platform.environment.containsKey("FLUTTER_TEST");
 
-  static Future<void> saveFontToDeviceFileSystem({
+  Future<void> saveFontToDeviceFileSystem({
     required String name,
     required List<int> bytes,
   }) async {
-    final file = await _localFile(name);
-    await file.writeAsBytes(bytes);
+    if (kIsWeb) {
+      await super.add(XFile(name, name: name));
+    } else {
+      final file = await _localFile(name);
+      await file.writeAsBytes(bytes);
+    }
   }
 
-  static Future<ByteData?> loadFontFromDeviceFileSystem({
+  Future<ByteData?> loadFontFromDeviceFileSystem({
     required String name,
   }) async {
     try {
-      final file = await _localFile(name);
-      final fileExists = file.existsSync();
-      if (fileExists) {
-        final List<int> contents = await file.readAsBytes();
-        if (contents.isNotEmpty) {
-          return ByteData.view(Uint8List.fromList(contents).buffer);
+      if (kIsWeb) {
+        final file = await super.get(name);
+        if (file.second != null) {
+          final _bytes = await file.second!.readAsBytes();
+          return ByteData.view(Uint8List.fromList(_bytes).buffer);
+        }
+      } else {
+        final file = await _localFile(name);
+        final fileExists = file.existsSync();
+        if (fileExists) {
+          final List<int> contents = await file.readAsBytes();
+          if (contents.isNotEmpty) {
+            return ByteData.view(Uint8List.fromList(contents).buffer);
+          }
         }
       }
     } catch (e) {
@@ -50,5 +79,23 @@ class FontFileIOManager {
     // format instead of, for example, otf.
     // return File('$path/${name}_$fileHash.ttf');
     return File("$path/$name.ttf");
+  }
+
+  @override
+  bool matchesQuery(BasicSearchQueryModel query, XFile item) {
+    // TODO: implement matchesQuery
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Pair<RequestResponse, XFile?>> search(BasicSearchQueryModel query) {
+    // TODO: implement search
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Pair<RequestResponse, List<XFile?>>> searchAll(BasicSearchQueryModel query) {
+    // TODO: implement searchAll
+    throw UnimplementedError();
   }
 }

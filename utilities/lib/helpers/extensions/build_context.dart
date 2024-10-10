@@ -9,8 +9,13 @@ extension ShowSnackbar on BuildContext {
 
   /// Displays a basic snackbar
   void showSnackbar(SnackbarConfiguration configuration) {
-    ScaffoldMessenger.of(this).clearSnackBars();
+    clearSnackbars();
     _snackbarMessage.show(configuration: configuration);
+  }
+
+  /// Clears all snackbars
+  void clearSnackbars() {
+    ScaffoldMessenger.of(this).clearSnackBars();
   }
 }
 

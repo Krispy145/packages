@@ -2,9 +2,7 @@ import "package:cross_file/cross_file.dart";
 import "package:storage/managers/_base.dart";
 import "package:storage/pickers/_base.dart";
 import "package:storage/repository.dart";
-
-typedef FilesPreviewCallback = Future<bool> Function(List<XFile> files);
-typedef FilePreviewCallback = Future<bool> Function(XFile file);
+import "package:utilities/helpers/tuples.dart";
 
 class DOFileUploadManager implements BaseFileUploadManager {
   final BaseFilePicker filePickerService;
@@ -65,12 +63,12 @@ class DOFileUploadManager implements BaseFileUploadManager {
   Future<String?> pickAndUploadSingleFile({FilePreviewCallback? previewCallback}) async {
     final file = await pickSingleFile();
     if (file != null) {
-      var confirm = true;
+      var confirm = Pair(true, file);
       if (previewCallback != null) {
         confirm = await previewCallback(file);
       }
-      if (confirm) {
-        return uploadFile(file: file);
+      if (confirm.first) {
+        return uploadFile(file: confirm.second);
       }
     }
     return null;
@@ -80,12 +78,12 @@ class DOFileUploadManager implements BaseFileUploadManager {
   Future<List<String>?> pickAndUploadMultipleFiles({FilesPreviewCallback? previewCallback}) async {
     final files = await pickMultipleFiles();
     if (files != null && files.isNotEmpty) {
-      var confirm = true;
+      var confirm = Pair(true, files);
       if (previewCallback != null) {
         confirm = await previewCallback(files);
       }
-      if (confirm) {
-        return uploadFiles(files: files);
+      if (confirm.first) {
+        return uploadFiles(files: confirm.second);
       }
     }
     return null;
@@ -95,12 +93,12 @@ class DOFileUploadManager implements BaseFileUploadManager {
   Future<String?> pickAndUploadSingleImage({FilePreviewCallback? previewCallback}) async {
     final image = await pickSingleImage();
     if (image != null) {
-      var confirm = true;
+      var confirm = Pair(true, image);
       if (previewCallback != null) {
         confirm = await previewCallback(image);
       }
-      if (confirm) {
-        return uploadImage(image: image);
+      if (confirm.first) {
+        return uploadImage(image: confirm.second);
       }
     }
     return null;
@@ -110,12 +108,12 @@ class DOFileUploadManager implements BaseFileUploadManager {
   Future<String?> pickAndUploadCameraImage({FilePreviewCallback? previewCallback}) async {
     final image = await pickCameraImage();
     if (image != null) {
-      var confirm = true;
+      var confirm = Pair(true, image);
       if (previewCallback != null) {
         confirm = await previewCallback(image);
       }
-      if (confirm) {
-        return uploadImage(image: image);
+      if (confirm.first) {
+        return uploadImage(image: confirm.second);
       }
     }
     return null;
@@ -125,12 +123,12 @@ class DOFileUploadManager implements BaseFileUploadManager {
   Future<List<String>?> pickAndUploadMultipleImages({FilesPreviewCallback? previewCallback}) async {
     final images = await pickMultipleImages();
     if (images != null && images.isNotEmpty) {
-      var confirm = true;
+      var confirm = Pair(true, images);
       if (previewCallback != null) {
         confirm = await previewCallback(images);
       }
-      if (confirm) {
-        return uploadImages(images: images);
+      if (confirm.first) {
+        return uploadImages(images: confirm.second);
       }
     }
     return null;

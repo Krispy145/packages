@@ -8,7 +8,7 @@ import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
-import '_source.dart';
+import "_source.dart";
 
 /// [ApiGooglePlacesDataSource] is a class that implements [GooglePlacesDataSource] interface.
 class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<String, dynamic>> implements GooglePlacesDataSource {

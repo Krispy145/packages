@@ -10,12 +10,12 @@ import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 import "package:widgets/messages/warning_message.dart";
 
-class PaginatedListBuilder<T> extends ListBuilder<T> {
+class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> {
   final bool canRefresh;
 
   @override
   // ignore: overridden_fields
-  final PaginatedListStore<T> store;
+  final PaginatedListStore<T, K> store;
 
   /// [PaginatedListBuilder] constructor.
   PaginatedListBuilder.listView({
@@ -123,6 +123,13 @@ class PaginatedListBuilder<T> extends ListBuilder<T> {
           context.showSnackbar(
             SnackbarConfiguration.warning(
               title: "Request Denied",
+            ),
+          );
+          break;
+        case RequestResponse.cancelled:
+          context.showSnackbar(
+            SnackbarConfiguration.warning(
+              title: "Request Cancelled",
             ),
           );
           break;

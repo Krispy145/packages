@@ -122,6 +122,11 @@ extension StringExtension on String {
     final word = substring(startLetter, spaceIndexAfter);
     return Pair(word, startLetter);
   }
+
+  String truncate(int maxLength) {
+    if (length <= maxLength) return this;
+    return "${substring(0, maxLength)}...";
+  }
 }
 
 /// [generateUniqueId] method generates a unique id

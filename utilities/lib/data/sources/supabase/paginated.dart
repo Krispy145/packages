@@ -42,7 +42,12 @@ abstract class PaginatedSupabaseDataSource<T, Q> extends SupabaseDataSource<T, Q
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>> getPage({SupabaseResponseModel<T?>? lastResponse, int? size, String? orderBy, Map<String, dynamic>? queryParameters}) {
+  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>> getPage({
+    SupabaseResponseModel<T?>? lastResponse,
+    int? size,
+    String? orderBy,
+    Map<String, dynamic>? queryParameters,
+  }) {
     // TODO: implement getPage
     throw UnimplementedError();
   }

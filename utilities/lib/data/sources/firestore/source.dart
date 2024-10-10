@@ -186,6 +186,12 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     return Pair(RequestResponse.success, data);
   }
 
+  Future<int?> getCollectionCount() async {
+    final query = firestore.collection(collectionName);
+    final aggregateQuerySnapshot = await query.count().get();
+    return aggregateQuerySnapshot.count;
+  }
+
   void _logRequest(String method, String path, T? data) {
     final logMessage = "Firebase $method on $collectionName: $path";
     if (data != null) {

@@ -12,6 +12,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
   final Axis axis;
+  final BoxDecoration? decoration;
   ReactiveImagesField.combined({
     super.key,
     required this.storageRepository,
@@ -23,6 +24,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.showErrors,
     super.focusNode,
     this.axis = Axis.horizontal,
+    this.decoration,
     double? height,
     double? width,
   }) : super(
@@ -31,6 +33,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
             storageRepository: storageRepository,
             filePicker: filePicker,
             axis: axis,
+            decoration: decoration,
             height: height,
             width: width,
             tabType: ImagePickerType.combined,
@@ -46,6 +49,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.showErrors,
     super.focusNode,
     this.axis = Axis.horizontal,
+    this.decoration,
     double? height,
     double? width,
   })  : storageRepository = null,
@@ -54,6 +58,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
           builder: (field) => _buildField(
             field: field,
             axis: axis,
+            decoration: decoration,
             height: height,
             width: width,
             tabType: ImagePickerType.url,
@@ -71,6 +76,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.showErrors,
     super.focusNode,
     this.axis = Axis.horizontal,
+    this.decoration,
     double? height,
     double? width,
   }) : super(
@@ -79,6 +85,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
             storageRepository: storageRepository,
             filePicker: filePicker,
             axis: axis,
+            decoration: decoration,
             height: height,
             width: width,
             tabType: ImagePickerType.upload,
@@ -90,6 +97,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     StorageRepository? storageRepository,
     BaseFilePicker? filePicker,
     required Axis axis,
+    required BoxDecoration? decoration,
     double? height,
     double? width,
     required ImagePickerType tabType,
@@ -109,7 +117,14 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
       title: "Images",
     );
 
-    return ImagesFormField(store: store, showTitle: false, axis: axis, height: height, width: width);
+    return ImagesFormField(
+      store: store,
+      showTitle: false,
+      axis: axis,
+      decoration: decoration,
+      height: height,
+      width: width,
+    );
   }
 
   @override

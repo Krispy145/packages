@@ -1,4 +1,3 @@
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/data/sources/source.dart";
@@ -11,17 +10,14 @@ import "package:widgets/messages/warning_message.dart";
 
 import "store.dart";
 
-class StreamedListBuilder<T> extends ListBuilder<T> {
-  final bool canRefresh;
-
+class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> {
   @override
   // ignore: overridden_fields
-  final StreamedListStore<T> store;
+  final StreamedListStore<T, K> store;
 
   /// [StreamedListBuilder] constructor.
   StreamedListBuilder.listView({
     super.key,
-    this.canRefresh = true,
     required this.store,
     super.header,
     required super.itemBuilder,
@@ -44,7 +40,6 @@ class StreamedListBuilder<T> extends ListBuilder<T> {
     super.errorBuilder,
     super.stackedWidgets,
     super.padding,
-    this.canRefresh = true,
     super.slivers = false,
   }) : super.gridView(store: store);
 
@@ -126,27 +121,23 @@ class StreamedListBuilder<T> extends ListBuilder<T> {
             ),
           );
           break;
+        case RequestResponse.cancelled:
+          context.showSnackbar(
+            SnackbarConfiguration.warning(
+              title: "Request Cancelled",
+            ),
+          );
+          break;
       }
     });
   }
 
   Widget _buildResults() {
-    if (canRefresh && !kIsWeb) {
-      return Observer(
-        builder: (context) {
-          return RefreshIndicator(
-            onRefresh: store.refresh,
-            child: buildView(store.showLoadingSpinnerAtBottom),
-          );
-        },
-      );
-    } else {
-      return Observer(
-        builder: (context) {
-          return buildView(store.showLoadingSpinnerAtBottom);
-        },
-      );
-    }
+    return Observer(
+      builder: (context) {
+        return buildView(store.showLoadingSpinnerAtBottom);
+      },
+    );
   }
 
   @override

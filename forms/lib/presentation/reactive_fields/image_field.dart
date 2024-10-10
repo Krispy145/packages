@@ -9,9 +9,12 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
   final StorageRepository? storageRepository;
   final BaseFilePicker? filePicker;
   final Axis axis;
+  final BoxDecoration? decoration;
   final double? aspectRatio;
+  final bool showTitle;
   ReactiveImageField.combined({
     String title = "Image",
+    this.showTitle = true,
     required this.storageRepository,
     this.filePicker,
     super.key,
@@ -24,6 +27,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     double? height,
     double? width,
     this.axis = Axis.horizontal,
+    this.decoration,
     this.aspectRatio,
   }) : super(
           builder: (field) {
@@ -40,8 +44,9 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               store: store,
               height: height,
               width: width,
-              showTitle: false,
+              showTitle: showTitle,
               axis: axis,
+              decoration: decoration,
               aspectRatio: aspectRatio,
             );
           },
@@ -49,6 +54,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
 
   ReactiveImageField.url({
     String title = "Image",
+    this.showTitle = true,
     super.key,
     super.formControlName,
     super.formControl,
@@ -59,6 +65,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     double? height,
     double? width,
     this.axis = Axis.horizontal,
+    this.decoration,
     this.aspectRatio,
   })  : storageRepository = null,
         filePicker = null,
@@ -75,8 +82,9 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               store: store,
               height: height,
               width: width,
-              showTitle: false,
+              showTitle: showTitle,
               axis: axis,
+              decoration: decoration,
               aspectRatio: aspectRatio,
             );
           },
@@ -84,6 +92,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
 
   ReactiveImageField.upload({
     String title = "Image",
+    this.showTitle = true,
     required this.storageRepository,
     this.filePicker,
     super.key,
@@ -96,6 +105,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     double? height,
     double? width,
     this.axis = Axis.horizontal,
+    this.decoration,
     this.aspectRatio,
   }) : super(
           builder: (field) {
@@ -108,7 +118,14 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               title: title,
             );
 
-            return ImageFormField(store: store, height: height, width: width, showTitle: false, axis: axis);
+            return ImageFormField(
+              store: store,
+              height: height,
+              width: width,
+              showTitle: showTitle,
+              axis: axis,
+              decoration: decoration,
+            );
           },
         );
 

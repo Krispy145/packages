@@ -19,7 +19,7 @@ part "store.g.dart";
 class InstagramMediaStore = _InstagramMediaStore with _$InstagramMediaStore;
 
 /// [_InstagramMediaStore] is a class that manages the state of the Instagram feature.
-abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaModel> with Store {
+abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaModel, String> with Store {
   final String? appId;
   final String? appSecret;
   final String appRedirectUrl;

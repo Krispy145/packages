@@ -1,7 +1,8 @@
 import "package:cross_file/cross_file.dart";
+import "package:utilities/helpers/tuples.dart";
 
-typedef FilesPreviewCallback = Future<bool> Function(List<XFile> files);
-typedef FilePreviewCallback = Future<bool> Function(XFile file);
+typedef FilesPreviewCallback = Future<Pair<bool, List<XFile>>> Function(List<XFile> files);
+typedef FilePreviewCallback = Future<Pair<bool, XFile>> Function(XFile file);
 
 abstract class BaseFileUploadManager {
   // Picking files/images

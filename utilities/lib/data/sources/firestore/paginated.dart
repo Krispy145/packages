@@ -35,13 +35,14 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     final _collection = firestore.collection(collectionName);
     Query query = _collection;
 
     if (orderBy != null) {
-      query = query.orderBy(orderBy);
+      query = query.orderBy(orderBy, descending: descending);
     }
     if (lastResponse != null) {
       if (lastResponse.lastDocumentSnapshot != null) {
@@ -75,11 +76,17 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
 
   Stream<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> streamPage({
     int? size,
+    String? orderBy,
+    bool descending = false,
     FirestoreResponseModel<T?>? lastResponse,
   }) {
     try {
       final _collection = firestore.collection(collectionName);
       Query query = _collection;
+
+      if (orderBy != null) {
+        query = query.orderBy(orderBy, descending: descending);
+      }
 
       if (lastResponse != null) {
         if (lastResponse.lastDocumentSnapshot != null) {
@@ -120,9 +127,14 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     required Q query,
   }) async {
     var firestoreQuery = buildQuery(query, collectionReference);
+
+    if (orderBy != null) {
+      firestoreQuery = firestoreQuery.orderBy(orderBy, descending: descending);
+    }
     if (lastResponse != null) {
       if (lastResponse.lastDocumentSnapshot != null) {
         firestoreQuery = firestoreQuery.startAfterDocument(

@@ -81,8 +81,16 @@ abstract class _DeepLinksStore with Store {
             dataMap["title"] = data["title"];
             data.remove("title");
           }
+          if (data.containsKey(r"$og_title")) {
+            dataMap["title"] = data[r"$og_title"];
+            data.remove("title");
+          }
           if (data.containsKey("content_description")) {
-            dataMap["contentD_description"] = data["content_description"];
+            dataMap["content_description"] = data["content_description"];
+            data.remove("content_description");
+          }
+          if (data.containsKey(r"$og_description")) {
+            dataMap["content_description"] = data[r"$og_description"];
             data.remove("content_description");
           }
           if (data.containsKey("image_url")) {

@@ -12,10 +12,12 @@ import "package:utilities/sizes/spacers.dart";
 class ImagePickerField extends StatelessWidget {
   final Axis axis;
   final double? aspectRatio;
+  final BoxDecoration? decoration;
   const ImagePickerField({
     super.key,
     required this.store,
     this.axis = Axis.horizontal,
+    this.decoration,
     this.aspectRatio,
   });
 
@@ -33,7 +35,7 @@ class ImagePickerField extends StatelessWidget {
             Text(store.isEditing ? "Change Image" : "Add Image", style: context.textTheme.titleMedium),
             Sizes.s.spacer(),
             // IMAGE PREVIEW
-            PreviewImage(store: store, axis: axis, aspectRatio: aspectRatio),
+            PreviewImage(store: store, axis: axis, aspectRatio: aspectRatio, decoration: decoration),
             Sizes.s.spacer(),
             // IMAGE OPTIONS
             Flexible(child: _buildImageOptions(context)),

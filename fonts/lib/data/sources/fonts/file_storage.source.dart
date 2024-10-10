@@ -7,7 +7,9 @@ import "_source.dart";
 class FileStorageFontsDataSource implements FontsDataSource {
   @override
   LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) {
-    return FontFileIOManager.loadFontFromDeviceFileSystem(
-        name: fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix(),);
+    final fontFileIOManager = FontFileIOManager();
+    return fontFileIOManager.loadFontFromDeviceFileSystem(
+      name: fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix(),
+    );
   }
 }

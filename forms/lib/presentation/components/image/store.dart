@@ -62,6 +62,8 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   final pageController = PageController();
 
+  final BoxDecoration defaultDecoration = BoxDecoration(borderRadius: BorderRadius.circular(8));
+
   @action
   void changeTab(int index) {
     tabIndex = index;

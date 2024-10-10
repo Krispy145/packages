@@ -10,7 +10,7 @@ part "list_store.g.dart";
 class PermissionsStore = _PermissionsStore with _$PermissionsStore;
 
 /// [_PermissionsStore] is a class that manages the state of the permissions feature.
-abstract class _PermissionsStore extends PaginatedListStore<PermissionModel> with Store {
+abstract class _PermissionsStore extends PaginatedListStore<PermissionModel, String> with Store {
   final UserDataSourceTypes sourceType;
 
   /// [_PermissionsStore] constructor.

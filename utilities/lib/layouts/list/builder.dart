@@ -9,8 +9,8 @@ import "package:utilities/widgets/load_state/builder.dart";
 import "package:utilities/widgets/load_state/states.dart";
 import "package:widgets/messages/warning_message.dart";
 
-class ListBuilder<T> extends StatelessWidget {
-  final ListStore<T> store;
+class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
+  final ListStore<T, K> store;
   final Widget? header;
   final Widget? Function(BuildContext context, int index, T model) itemBuilder;
   final Widget Function(BuildContext context, String message)? emptyBuilder;
@@ -26,8 +26,6 @@ class ListBuilder<T> extends StatelessWidget {
   final bool shrinkWrap;
   final Axis scrollDirection;
 
-  static const double _defaultListEdgeSpacing = 8;
-
   /// [ListBuilder] constructor.
   ListBuilder.listView({
     super.key,
@@ -36,7 +34,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.itemBuilder,
     // this.loadStateBuilder,
     this.stackedWidgets,
-    this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
+    this.padding = const EdgeInsets.all(8),
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -59,7 +57,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.gridDelegate,
     // this.loadStateBuilder,
     this.stackedWidgets,
-    this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
+    this.padding = const EdgeInsets.all(8),
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -80,7 +78,7 @@ class ListBuilder<T> extends StatelessWidget {
     required this.viewType,
     this.gridDelegate,
     this.stackedWidgets,
-    this.padding = const EdgeInsets.all(_defaultListEdgeSpacing),
+    this.padding = const EdgeInsets.all(8),
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -196,8 +194,12 @@ class ListBuilder<T> extends StatelessWidget {
               itemBuilder: loadingOrItemBuilder,
             )
           : ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 8, width: 8),
+              separatorBuilder: (context, index) => SizedBox(
+                height: Sizes.xs.points(context),
+                width: Sizes.xs.points(context),
+              ),
               scrollDirection: scrollDirection,
+              reverse: store.reverseList,
               padding: padding,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: itemCount,
@@ -214,6 +216,8 @@ class ListBuilder<T> extends StatelessWidget {
             )
           : GridView.builder(
               padding: padding,
+              scrollDirection: scrollDirection,
+              reverse: store.reverseList,
               itemCount: itemCount,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               controller: store.scrollController,

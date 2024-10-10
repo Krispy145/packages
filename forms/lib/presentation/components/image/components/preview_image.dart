@@ -11,11 +11,13 @@ import "package:widgets/messages/warning_message.dart";
 
 class PreviewImage extends StatelessWidget {
   final Axis axis;
+  final BoxDecoration? decoration;
   final double? aspectRatio;
   const PreviewImage({
     super.key,
     required this.store,
     this.axis = Axis.horizontal,
+    this.decoration,
     this.aspectRatio,
   });
 
@@ -31,10 +33,7 @@ class PreviewImage extends StatelessWidget {
           builder: (context, formControl, _) {
             return Container(
               clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
-                color: context.colorScheme.primary.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(16),
-              ),
+              decoration: decoration ?? store.defaultDecoration,
               child: LoadStateBuilder(
                 store: store,
                 errorBuilder: (context, error) => WarningMessage.error(

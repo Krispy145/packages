@@ -17,6 +17,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
   final void Function()? onRemoved;
   final Axis axis;
   final double? aspectRatio;
+  final BoxDecoration? decoration;
   ImageFormField({
     super.key,
     this.height = 100,
@@ -27,6 +28,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
     this.onUpdated,
     this.onRemoved,
     this.axis = Axis.horizontal,
+    this.decoration,
   });
 
   final double? height;
@@ -44,7 +46,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             return Padding(
               padding: const EdgeInsets.only(right: 8),
               child: Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                decoration: decoration ?? store.defaultDecoration,
                 clipBehavior: Clip.hardEdge,
                 child: InkWell(
                   onTap: () async => addOrEditImage(context),
@@ -61,7 +63,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
           },
           emptyBuilder: (context, text) => Container(
             key: const ValueKey("add_card"),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+            decoration: decoration ?? store.defaultDecoration,
             clipBehavior: Clip.hardEdge,
             child: InkWell(
               onTap: () async => addOrEditImage(context),
@@ -94,6 +96,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             child: ImagePickerField(
               store: store,
               axis: axis,
+              decoration: decoration,
               aspectRatio: aspectRatio,
             ),
           ),

@@ -40,9 +40,14 @@ class ApiFontsDataSource implements FontsDataSource {
           "File from $url did not match expected length and checksum.",
         );
       }
+      final fontFileIOManager = FontFileIOManager();
 
-      _unawaited(FontFileIOManager.saveFontToDeviceFileSystem(
-          name: name, bytes: response.bodyBytes,),);
+      _unawaited(
+        fontFileIOManager.saveFontToDeviceFileSystem(
+          name: name,
+          bytes: response.bodyBytes,
+        ),
+      );
 
       return ByteData.view(response.bodyBytes.buffer);
     } else {

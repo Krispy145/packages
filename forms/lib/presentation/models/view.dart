@@ -192,6 +192,12 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
               // title: "Error ${store.isAdding ? "creating" : "updating"} $modelType",
             ),
           );
+        case RequestResponse.cancelled:
+          return context.showSnackbar(
+            SnackbarConfiguration.warning(
+              title: "Cancelled",
+            ),
+          );
         case RequestResponse.denied:
           context.showSnackbar(
             SnackbarConfiguration.warning(

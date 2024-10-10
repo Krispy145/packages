@@ -18,7 +18,7 @@ class ReactiveSocialButtons<T extends UserModel> extends StatelessWidget {
   /// Method to be called when the auth action is success
   final void Function(UserModel userModel) onSuccess;
 
-  /// Whether or not to color the social buttons in their respecful colors
+  /// Whether or not to color the social buttons in their respective colors
   ///
   /// You can control the appearance through `ElevatedButtonTheme` when set to false.
   final bool colored;
@@ -69,7 +69,10 @@ class ReactiveSocialButtons<T extends UserModel> extends StatelessWidget {
 
         Future<void> onAuthButtonPressed() async {
           try {
-            await repository.signIn(params: socialType.params);
+            final user = await repository.signIn(params: socialType.params);
+            if (user != null) {
+              onSuccess(user);
+            }
           } on AuthenticationException catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(

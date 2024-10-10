@@ -1,6 +1,6 @@
 import "package:utilities/helpers/tuples.dart";
 
-enum RequestResponse { success, failure, denied, underReview }
+enum RequestResponse { success, failure, denied, underReview, cancelled }
 
 /// [DataSource] is an abstract class that defines the methods that
 /// should be implemented by the data sources

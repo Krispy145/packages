@@ -63,6 +63,9 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
       case RequestResponse.denied:
         showSnackbar(SnackbarConfiguration.error(title: permissionDeniedMessage));
         break;
+      case RequestResponse.cancelled:
+        showSnackbar(SnackbarConfiguration.warning(title: "Request Cancelled"));
+        break;
     }
     // return response;
     // if (response == RequestResponse.success) {

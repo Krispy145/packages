@@ -4,15 +4,16 @@ import "package:utilities/sizes/spacers.dart";
 
 class DOListTile extends StatefulWidget {
   final String title;
-  // final TextStyle? titleStyle;
+  final TextStyle? titleStyle;
   final String? subtitle;
-  // final TextStyle? subtitleStyle;
+  final TextStyle? subtitleStyle;
   final void Function()? onTap;
   final void Function()? onLongPress;
   final Widget? leading;
   final BoxConstraints leadingConstraints;
   final Widget? trailing;
   final BoxConstraints trailingConstraints;
+  final Decoration? decoration;
   final bool shouldMaintainSize;
   final bool expandWidth;
   final Size? replacementSize;
@@ -24,11 +25,12 @@ class DOListTile extends StatefulWidget {
   const DOListTile({
     super.key,
     required this.title,
-    // this.titleStyle,
+    this.titleStyle,
+    this.decoration,
     this.onTap,
     this.onLongPress,
     this.subtitle,
-    // this.subtitleStyle,
+    this.subtitleStyle,
     this.leading,
     this.leadingConstraints = const BoxConstraints(maxHeight: 64),
     this.trailing,
@@ -45,10 +47,13 @@ class DOListTile extends StatefulWidget {
   const DOListTile.hoverable({
     super.key,
     required this.title,
+    this.titleStyle,
+    this.decoration,
     this.onTap,
     this.onLongPress,
     this.shouldMaintainSize = false,
     this.subtitle,
+    this.subtitleStyle,
     this.leading,
     this.leadingConstraints = const BoxConstraints(maxHeight: 64),
     this.showOnHoverLeading = false,
@@ -93,16 +98,16 @@ class _DOListTileState extends State<DOListTile> {
       onLongPress: widget.onLongPress,
       child: Container(
         clipBehavior: Clip.hardEdge,
-        decoration: BoxDecoration(
-          // ignore: deprecated_member_use
-          color: context.colorScheme.inversePrimary,
-          borderRadius: BorderRadius.circular(12),
-        ),
+        decoration: widget.decoration ??
+            BoxDecoration(
+              color: context.colorScheme.inversePrimary,
+              borderRadius: BorderRadius.circular(12),
+            ),
         padding: widget.tilePadding,
         child: Row(
           mainAxisSize: widget.expandWidth ? MainAxisSize.max : MainAxisSize.min,
           children: [
-            if (widget.shouldMaintainSize && (!isHovering || widget.leading == null))
+            if (widget.shouldMaintainSize && (!isHovering && widget.leading != null))
               SizedBox(
                 width: widget.replacementSize!.width,
                 height: widget.replacementSize!.height,
@@ -157,7 +162,7 @@ class _CenterListWidget extends StatelessWidget {
         children: [
           Text(
             widget.title,
-            style: context.textTheme.titleSmall,
+            style: widget.titleStyle ?? context.textTheme.titleSmall,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -165,7 +170,7 @@ class _CenterListWidget extends StatelessWidget {
             Sizes.xxs.spacer(),
             Text(
               widget.subtitle!,
-              style: context.textTheme.labelMedium,
+              style: widget.subtitleStyle ?? context.textTheme.labelMedium,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

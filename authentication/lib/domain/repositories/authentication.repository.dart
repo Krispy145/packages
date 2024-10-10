@@ -14,6 +14,7 @@ import "package:flutter_facebook_auth/flutter_facebook_auth.dart";
 import "package:rxdart/rxdart.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/string.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 
 /// [AuthenticationRepository] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
@@ -136,6 +137,24 @@ class AuthenticationRepository<T extends UserModel> {
               convertDataTypeFromMap: convertDataTypeFromMap,
               convertDataTypeToMap: convertDataTypeToMap,
             );
+
+  Future<Pair<RequestResponse, T>> updateCurrentUserModel(T userModel) async {
+    try {
+      final _currentResponse = convertDataTypeToMap(userModel);
+      _currentResponse["updated_at"] = DateTime.now();
+      final changedUserModel = convertDataTypeFromMap(_currentResponse);
+      await userDataRepository.updateUserModel(userModel: changedUserModel);
+      await _authenticationDataRepository.updateUserModel(changedUserModel);
+      return Pair(RequestResponse.success, changedUserModel);
+    } catch (e) {
+      AppLogger.print(
+        "Error in updating user model: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      return Pair(RequestResponse.failure, userModel);
+    }
+  }
 
   /// [signIn] signs in the user.
   Future<T?> signIn({required AuthParams params}) async {
