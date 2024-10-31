@@ -8,6 +8,7 @@ import "package:authentication/helpers/constants.dart";
 import "package:authentication/helpers/env.dart";
 import "package:authentication/presentation/auth/builder.dart";
 import "package:mobx/mobx.dart";
+import "package:utilities/data/sources/source.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
 import "components/social_types.dart";
@@ -104,6 +105,12 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
     } catch (e) {
       setError("Error authenticating user");
     }
+  }
+
+  @action
+  Future<RequestResponse> sendPasswordResetEmail(String email) async {
+    final response = await repository.sendPasswordResetEmail(email: email);
+    return response;
   }
 
   @action

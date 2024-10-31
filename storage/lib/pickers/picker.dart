@@ -3,7 +3,7 @@ import "package:flutter/foundation.dart";
 import "package:image_picker/image_picker.dart";
 import "package:storage/pickers/_base.dart";
 
-class DOFilePicker implements BaseFilePicker {
+class LYFilePicker implements BaseFilePicker {
   final ImagePicker _imagePicker = ImagePicker();
   final FilePicker _filePicker = FilePicker.platform;
 

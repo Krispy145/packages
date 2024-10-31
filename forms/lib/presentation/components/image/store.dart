@@ -82,10 +82,10 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   late final bool canStoreImage = storageRepository != null;
 
-  final DOFilePicker picker = DOFilePicker();
+  final LYFilePicker picker = LYFilePicker();
 
-  late final DOFileUploadManager? fileUploadManager = canStoreImage
-      ? DOFileUploadManager(
+  late final LYFileUploadManager? fileUploadManager = canStoreImage
+      ? LYFileUploadManager(
           storageRepository: storageRepository!,
           filePickerService: filePicker ?? picker,
         )

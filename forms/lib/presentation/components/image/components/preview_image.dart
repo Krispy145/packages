@@ -56,7 +56,7 @@ class PreviewImage extends StatelessWidget {
 
   Widget loadedPreview(BuildContext context, AbstractControl<Object?> formControl) {
     if (store.imageBytes != null) {
-      return DOImage.memory(
+      return LYImage.memory(
         store.imageBytes!,
         options: const MemoryImageOptions(
           fit: BoxFit.cover,
@@ -65,7 +65,7 @@ class PreviewImage extends StatelessWidget {
     } else if (formControl.isNull) {
       return Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary));
     } else {
-      return DOImage.network(
+      return LYImage.network(
         formControl.value as String? ?? "",
         options: NetworkImageOptions(
           headers: PublicHeaders.map,

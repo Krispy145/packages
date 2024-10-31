@@ -4,11 +4,11 @@ import "package:storage/pickers/_base.dart";
 import "package:storage/repository.dart";
 import "package:utilities/helpers/tuples.dart";
 
-class DOFileUploadManager implements BaseFileUploadManager {
+class LYFileUploadManager implements BaseFileUploadManager {
   final BaseFilePicker filePickerService;
   final StorageRepository storageRepository;
 
-  DOFileUploadManager({
+  LYFileUploadManager({
     required this.filePickerService,
     required this.storageRepository,
   });

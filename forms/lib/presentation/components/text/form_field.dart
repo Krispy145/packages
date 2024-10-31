@@ -4,10 +4,10 @@ import "package:utilities/sizes/spacers.dart";
 import "../base/form_field.dart";
 import "store.dart";
 
-class DOTextFormField extends BaseFormField<TextFormFieldStore> {
+class LYTextFormField extends BaseFormField<TextFormFieldStore> {
   final Widget? leading;
   final List<Widget>? actions;
-  DOTextFormField({
+  LYTextFormField({
     super.key,
     required super.store,
     super.showTitle,

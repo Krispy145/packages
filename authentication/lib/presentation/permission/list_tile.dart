@@ -32,7 +32,7 @@ class PermissionListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final _title = permission.role.camelCaseToTitleCase();
     if (isEditable) {
-      return DOListTile.hoverable(
+      return LYListTile.hoverable(
         onTap: onTap,
         title: _title,
         // titleStyle: titleTextStyle,
@@ -48,7 +48,7 @@ class PermissionListTile extends StatelessWidget {
         ),
       );
     }
-    return DOListTile(
+    return LYListTile(
       onTap: onTap,
       expandWidth: expendWidth,
       title: _title,

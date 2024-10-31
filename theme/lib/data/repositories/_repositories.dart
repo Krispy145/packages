@@ -1,4 +1,3 @@
-import "digital_oasis.repository.dart";
 import "theme.repository.dart";
 import "theme_configuration.dart";
 
@@ -28,9 +27,6 @@ class DataRepositories {
 
   /// [instance] is the singleton instance of [DataRepositories].
   static final DataRepositories instance = DataRepositories._();
-
-  /// [digitalOasis] is the [DODataRepository] instance.
-  final DODataRepository digitalOasis = DODataRepository();
 
   /// [theme] is the [ThemeDataRepository] instance.
   ThemeDataRepository theme({

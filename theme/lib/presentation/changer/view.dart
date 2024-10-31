@@ -140,7 +140,7 @@ class ThemeComponentEditor extends FormsMapView {
           onValueChanged: (newValue) => onChanged(keys, newValue),
           title: keys.last,
         );
-        return DOTextFormField(
+        return LYTextFormField(
           store: store,
         );
       case "_edgeInsets":

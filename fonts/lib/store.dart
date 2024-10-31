@@ -43,7 +43,7 @@ class FontsStore = _FontsStore with _$FontsStore;
 /// [_FontsStore] is a class that manages the state of the fonts feature.
 abstract class _FontsStore with LoadStateStore, Store {
   void initialize({
-    List<DOFonts> fonts = DOFonts.values,
+    List<LYFonts> fonts = LYFonts.values,
     bool allowRuntimeFetching = true,
   }) {
     this.allowRuntimeFetching = allowRuntimeFetching;
@@ -113,7 +113,7 @@ abstract class _FontsStore with LoadStateStore, Store {
   }
 
   Future<void> loadFontIfNecessary(
-    DOFontVariantAndUrl fontVariantAndUrl, [
+    LYFontVariantAndUrl fontVariantAndUrl, [
     FontLoader? fontLoader,
   ]) async {
     final familyWithVariantString = fontVariantAndUrl.familyWithVariant.toString();
@@ -141,16 +141,16 @@ abstract class _FontsStore with LoadStateStore, Store {
 
   void eagerlyLoadFamily({
     required String fontFamily,
-    required Map<DOFontVariantDescriptor, String?> fonts,
+    required Map<LYFontVariantDescriptor, String?> fonts,
   }) {
     final loader = FontLoader(fontFamily);
     final futures = <Future<void>>[];
     for (final variant in fonts.keys) {
-      final familyWithVariant = DOFontFamilyAndVariant(
+      final familyWithVariant = LYFontFamilyAndVariant(
         familyName: fontFamily,
         fontVariantDescriptor: variant,
       );
-      final descriptor = DOFontVariantAndUrl(
+      final descriptor = LYFontVariantAndUrl(
         familyWithVariant: familyWithVariant,
         url: fonts[variant],
       );
@@ -166,7 +166,7 @@ abstract class _FontsStore with LoadStateStore, Store {
 
   void register(
     String familyName,
-    Map<DOFontVariantDescriptor, String?> variantMap, {
+    Map<LYFontVariantDescriptor, String?> variantMap, {
     bool eager = false,
   }) {
     final style = styleBuilder(familyName, variantMap, eager);
@@ -250,7 +250,7 @@ abstract class _FontsStore with LoadStateStore, Store {
 
   TextStyleBuilder styleBuilder(
     String fontFamily,
-    Map<DOFontVariantDescriptor, String?> variantMap,
+    Map<LYFontVariantDescriptor, String?> variantMap,
     bool eager,
   ) =>
       ({
@@ -304,17 +304,17 @@ abstract class _FontsStore with LoadStateStore, Store {
           return textStyle.copyWith(fontFamily: fontFamily);
         }
 
-        final variant = DOFontVariantDescriptor(
+        final variant = LYFontVariantDescriptor(
           fontWeight: textStyle.fontWeight ?? FontWeight.w400,
           fontStyle: textStyle.fontStyle ?? FontStyle.normal,
         );
         final matchedVariant = variant.findClosestMatch(fonts.keys);
-        final familyWithVariant = DOFontFamilyAndVariant(
+        final familyWithVariant = LYFontFamilyAndVariant(
           familyName: fontFamily,
           fontVariantDescriptor: matchedVariant,
         );
 
-        final descriptor = DOFontVariantAndUrl(
+        final descriptor = LYFontVariantAndUrl(
           familyWithVariant: familyWithVariant,
           url: fonts[matchedVariant],
         );

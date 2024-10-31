@@ -245,6 +245,52 @@ class SupabaseAuthDataRepository<T extends UserModel> extends AuthenticationData
     return null;
   }
 
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _supabaseAuth.resetPasswordForEmail(email);
+    } on AuthException catch (e) {
+      AppLogger.print(
+        "sendPasswordResetEmail attempt: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+    }
+  }
+
+  @override
+  Future<T?> verifyAndUpdateEmail(String email) async {
+    try {
+      await _supabaseAuth.updateUser(
+        UserAttributes(email: email),
+      );
+      return _supabaseUserToUserModel();
+    } on AuthException catch (e) {
+      AppLogger.print(
+        "verifyAndUpdateEmail attempt: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.message);
+    }
+  }
+
+  @override
+  Future<void> changePassword(String password) async {
+    try {
+      await _supabaseAuth.updateUser(
+        UserAttributes(password: password),
+      );
+    } on AuthException catch (e) {
+      AppLogger.print(
+        "changePassword attempt: $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.message);
+    }
+  }
+
   void _initStreams() {
     _supabaseAuth.onAuthStateChange.listen((event) async {
       if (event.event == AuthChangeEvent.initialSession) {

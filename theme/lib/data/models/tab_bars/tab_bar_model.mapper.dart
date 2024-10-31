@@ -25,8 +25,9 @@ class TabBarModelMapper extends ClassMapperBase<TabBarModel> {
   static BoxDecorationModel? _$indicator_boxDecoration(TabBarModel v) =>
       v.indicator_boxDecoration;
   static const Field<TabBarModel, BoxDecorationModel>
-      _f$indicator_boxDecoration =
-      Field('indicator_boxDecoration', _$indicator_boxDecoration, opt: true);
+      _f$indicator_boxDecoration = Field(
+          'indicator_boxDecoration', _$indicator_boxDecoration,
+          opt: true, def: const BoxDecorationModel());
   static String? _$indicatorColor_themeColorString(TabBarModel v) =>
       v.indicatorColor_themeColorString;
   static const Field<TabBarModel, String> _f$indicatorColor_themeColorString =

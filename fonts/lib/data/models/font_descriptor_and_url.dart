@@ -8,12 +8,12 @@ import "font_family_and_variant.dart";
 ///
 /// This class mostly serves as a simple way to keep the connected font
 /// information together.
-class DOFontVariantAndUrl {
-  const DOFontVariantAndUrl({
+class LYFontVariantAndUrl {
+  const LYFontVariantAndUrl({
     required this.familyWithVariant,
     this.url,
   });
 
-  final DOFontFamilyAndVariant familyWithVariant;
+  final LYFontFamilyAndVariant familyWithVariant;
   final String? url;
 }

@@ -5,18 +5,21 @@ import "/data/repositories/_repositories.dart";
 import "/data/repositories/fonts.repository.dart";
 
 class FontsRepository {
-  final FontsDataRepository _fontsDataRepository =
-      DataRepositories.instance.fonts;
+  final FontsDataRepository _fontsDataRepository = DataRepositories.instance.fonts;
 
   /// [FontsRepository] constructor.
   FontsRepository();
 
   LoadingFontData? loadFont(
-      DOFontVariantAndUrl fontVariantAndUrl, bool allowApiFetching,) async {
+    LYFontVariantAndUrl fontVariantAndUrl,
+    bool allowApiFetching,
+  ) async {
     LoadingFontData? loadingFont;
 
     loadingFont = _fontsDataRepository.loadFontData(
-        fontVariantAndUrl, FontDataSources.asset,);
+      fontVariantAndUrl,
+      FontDataSources.asset,
+    );
 
     if (await loadingFont != null) {
       return loadingFont;
@@ -24,14 +27,18 @@ class FontsRepository {
 
     // Check if this font can be loaded from the device file system.
     loadingFont = _fontsDataRepository.loadFontData(
-        fontVariantAndUrl, FontDataSources.fileStorage,);
+      fontVariantAndUrl,
+      FontDataSources.fileStorage,
+    );
 
     if (await loadingFont != null) return loadingFont;
 
     // Attempt to load this font via http, unless disallowed.
     if (allowApiFetching) {
       loadingFont = _fontsDataRepository.loadFontData(
-          fontVariantAndUrl, FontDataSources.api,);
+        fontVariantAndUrl,
+        FontDataSources.api,
+      );
       if (await loadingFont != null) return loadingFont;
     } else {
       throw Exception(

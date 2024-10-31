@@ -6,7 +6,7 @@ import "_source.dart";
 /// [FileStorageFontsDataSource] is a class that implements [FontsDataSource] interface.
 class FileStorageFontsDataSource implements FontsDataSource {
   @override
-  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) {
+  LoadingFontData? loadFont(LYFontVariantAndUrl fontVariantAndUrl) {
     final fontFileIOManager = FontFileIOManager();
     return fontFileIOManager.loadFontFromDeviceFileSystem(
       name: fontVariantAndUrl.familyWithVariant.toApiFilenamePrefix(),

@@ -13,7 +13,7 @@ class ApiFontsDataSource implements FontsDataSource {
   ApiFontsDataSource();
 
   @override
-  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
+  LoadingFontData? loadFont(LYFontVariantAndUrl fontVariantAndUrl) async {
     final url = fontVariantAndUrl.url;
     if (url == null) {
       AppLogger.print("Font url is null", []);

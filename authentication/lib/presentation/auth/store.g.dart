@@ -49,6 +49,15 @@ mixin _$AuthStore<T extends UserModel> on _AuthStore<T>, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
+  late final _$sendPasswordResetEmailAsyncAction =
+      AsyncAction('_AuthStore.sendPasswordResetEmail', context: context);
+
+  @override
+  Future<RequestResponse> sendPasswordResetEmail(String email) {
+    return _$sendPasswordResetEmailAsyncAction
+        .run(() => super.sendPasswordResetEmail(email));
+  }
+
   late final _$_handleSilentAsyncAction =
       AsyncAction('_AuthStore._handleSilent', context: context);
 

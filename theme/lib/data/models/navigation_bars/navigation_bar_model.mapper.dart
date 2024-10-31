@@ -58,7 +58,7 @@ class NavigationBarModelMapper extends ClassMapperBase<NavigationBarModel> {
   static const Field<NavigationBarModel, ShapeBorderModel>
       _f$indicatorShape_shapeBorder = Field(
           'indicatorShape_shapeBorder', _$indicatorShape_shapeBorder,
-          opt: true);
+          opt: true, def: const ShapeBorderModel());
   static String? _$labelTextStyle_textStyleString(NavigationBarModel v) =>
       v.labelTextStyle_textStyleString;
   static const Field<NavigationBarModel, String>

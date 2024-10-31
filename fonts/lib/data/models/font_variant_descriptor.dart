@@ -5,24 +5,24 @@
 import "dart:ui";
 
 /// Represents a Google Fonts API variant in Flutter-specific types.
-class DOFontVariantDescriptor {
-  const DOFontVariantDescriptor({
+class LYFontVariantDescriptor {
+  const LYFontVariantDescriptor({
     required this.fontWeight,
     required this.fontStyle,
   });
 
-  /// Returns [DOFontVariantDescriptor] from [variantsToCompare] that most closely
-  /// matches this [DOFontVariantDescriptor] according to the [findClosestMatch] scoring function.
+  /// Returns [LYFontVariantDescriptor] from [variantsToCompare] that most closely
+  /// matches this [LYFontVariantDescriptor] according to the [findClosestMatch] scoring function.
   ///
   /// This logic is derived from the following section of the minikin library,
   /// which is ultimately how flutter handles matching fonts.
   /// https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L149
-  DOFontVariantDescriptor findClosestMatch(
-    // DOFontVariantDescriptor sourceVariant,
-    Iterable<DOFontVariantDescriptor> variantsToCompare,
+  LYFontVariantDescriptor findClosestMatch(
+    // LYFontVariantDescriptor sourceVariant,
+    Iterable<LYFontVariantDescriptor> variantsToCompare,
   ) {
     int? bestScore;
-    late DOFontVariantDescriptor bestMatch;
+    late LYFontVariantDescriptor bestMatch;
     for (final variantToCompare in variantsToCompare) {
       final score = _computeMatch(this, variantToCompare);
       if (bestScore == null || score < bestScore) {
@@ -36,7 +36,7 @@ class DOFontVariantDescriptor {
   // This logic is taken from the following section of the minikin library, which
 // is ultimately how flutter handles matching fonts.
 // * https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L128
-  int _computeMatch(DOFontVariantDescriptor a, DOFontVariantDescriptor b) {
+  int _computeMatch(LYFontVariantDescriptor a, LYFontVariantDescriptor b) {
     if (a == b) {
       return 0;
     }
@@ -47,7 +47,7 @@ class DOFontVariantDescriptor {
     return score;
   }
 
-  /// Creates a [DOFontVariantDescriptor] from a Google Fonts API specific
+  /// Creates a [LYFontVariantDescriptor] from a Google Fonts API specific
   /// filename part.
   ///
   /// A filename part is the part of the filename that does not include the
@@ -60,12 +60,12 @@ class DOFontVariantDescriptor {
   /// "Bold" -> weight: 700, style: normal
   /// "BoldItalic" -> weight: 700, style: italic
   ///
-  /// See [DOFontVariantDescriptor.toApiFilenamePart] for the inverse function.
-  DOFontVariantDescriptor.fromApiFilenamePart(String filenamePart)
+  /// See [LYFontVariantDescriptor.toApiFilenamePart] for the inverse function.
+  LYFontVariantDescriptor.fromApiFilenamePart(String filenamePart)
       : fontWeight = _extractFontWeightFromApiFilenamePart(filenamePart),
         fontStyle = _extractFontStyleFromApiFilenamePart(filenamePart);
 
-  /// Creates a [DOFontVariantDescriptor] from a Google Fonts API specific
+  /// Creates a [LYFontVariantDescriptor] from a Google Fonts API specific
   /// variant name.
   ///
   /// The following table shows how these variant strings convert:
@@ -74,8 +74,8 @@ class DOFontVariantDescriptor {
   /// "700" -> weight: 700, style: normal
   /// "700italic" -> weight: 700, style: italic
   ///
-  /// See [DOFontVariantDescriptor.toString] for the inverse function.
-  DOFontVariantDescriptor.fromString(String variantString)
+  /// See [LYFontVariantDescriptor.toString] for the inverse function.
+  LYFontVariantDescriptor.fromString(String variantString)
       : fontWeight = FontWeight.values[variantString == _regular || variantString == _italic ? 3 : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
         fontStyle = variantString.contains(_italic) ? FontStyle.italic : FontStyle.normal;
 
@@ -106,14 +106,14 @@ class DOFontVariantDescriptor {
     return FontStyle.normal;
   }
 
-  /// Converts this [DOFontVariantDescriptor] to a Google Fonts API specific filename
+  /// Converts this [LYFontVariantDescriptor] to a Google Fonts API specific filename
   /// part.
   ///
   /// A Filename part is the part of the filename that does not include the
   /// font family. For example: for the filename "Lato-Regular.ttf", the
   /// filename part is "Regular".
   ///
-  /// The following table shows how these [DOFontVariantDescriptor]s convert:
+  /// The following table shows how these [LYFontVariantDescriptor]s convert:
   /// weight: 400, style: normal -> "Regular"
   /// weight: 400, style: italic -> "Italic"
   /// weight: 700, style: normal -> "Bold"
@@ -129,7 +129,7 @@ class DOFontVariantDescriptor {
     return "$weightPrefix$italicSuffix";
   }
 
-  /// Converts this [DOFontVariantDescriptor] to a Google Fonts API specific variant
+  /// Converts this [LYFontVariantDescriptor] to a Google Fonts API specific variant
   /// name string.
   ///
   /// The following table shows how these variant strings convert:
@@ -138,7 +138,7 @@ class DOFontVariantDescriptor {
   /// weight: 700, style: normal -> "700"
   /// weight: 700, style: italic -> "700italic"
   ///
-  /// See [DOFontVariantDescriptor.toString] for the inverse function.
+  /// See [LYFontVariantDescriptor.toString] for the inverse function.
   @override
   String toString() {
     final fontWeightString = fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
@@ -157,7 +157,7 @@ class DOFontVariantDescriptor {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is DOFontVariantDescriptor && other.fontWeight == fontWeight && other.fontStyle == fontStyle;
+    return other is LYFontVariantDescriptor && other.fontWeight == fontWeight && other.fontStyle == fontStyle;
   }
 }
 

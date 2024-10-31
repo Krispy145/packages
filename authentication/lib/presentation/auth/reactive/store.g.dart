@@ -68,6 +68,16 @@ mixin _$ReactiveAuthStore<T extends UserModel> on _ReactiveAuthStore<T>, Store {
     return _$signUpWithEmailAsyncAction.run(() => super.signUpWithEmail());
   }
 
+  late final _$sendPasswordResetEmailAsyncAction = AsyncAction(
+      '_ReactiveAuthStore.sendPasswordResetEmail',
+      context: context);
+
+  @override
+  Future<RequestResponse> sendPasswordResetEmail(String email) {
+    return _$sendPasswordResetEmailAsyncAction
+        .run(() => super.sendPasswordResetEmail(email));
+  }
+
   late final _$_handleSilentAsyncAction =
       AsyncAction('_ReactiveAuthStore._handleSilent', context: context);
 

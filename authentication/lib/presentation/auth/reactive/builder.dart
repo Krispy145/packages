@@ -124,6 +124,13 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
                         }
                         store.onSuccess.call(userModel);
                       },
+                      onPasswordResetEmailSent: () {
+                        context.showSnackbar(
+                          SnackbarConfiguration.confirmation(
+                            title: "Password reset email sent",
+                          ),
+                        );
+                      },
                     ),
                   if (store.showPhoneAuth != null) ...[
                     if (store.showPhoneAuth!.showSignIn)

@@ -10,8 +10,8 @@ import "package:utilities/logger/logger.dart";
 
 part "text_style_model.mapper.dart";
 
-class DOFontStyleMapper extends SimpleMapper<FontStyle> {
-  const DOFontStyleMapper();
+class LYFontStyleMapper extends SimpleMapper<FontStyle> {
+  const LYFontStyleMapper();
   @override
   FontStyle decode(Object value) {
     switch (value) {
@@ -35,7 +35,7 @@ class DOFontStyleMapper extends SimpleMapper<FontStyle> {
   }
 }
 
-@MappableClass(includeCustomMappers: [DOFontStyleMapper()])
+@MappableClass(includeCustomMappers: [LYFontStyleMapper()])
 class TextStyleModel with TextStyleModelMappable {
   final String? fontFamilyName_font;
   final ThemeColorString? color_themeColorString;

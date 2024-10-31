@@ -19,7 +19,7 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
     TextStyle? textStyle;
 
     try {
-      textStyle = AppTheme.fontsStore.getFont(store.value ?? DOFonts.values.first.name);
+      textStyle = AppTheme.fontsStore.getFont(store.value ?? LYFonts.values.first.name);
     } catch (e) {
       AppLogger.print(
         "Get font failed: $e",
@@ -40,7 +40,7 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
               const MenuStyle(
                 alignment: Alignment.bottomLeft,
               ),
-          dropdownMenuEntries: DOFonts.values
+          dropdownMenuEntries: LYFonts.values
               .map(
                 (e) => DropdownMenuEntry(
                   value: e.name,

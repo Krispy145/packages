@@ -14,7 +14,7 @@ import "package:widgets/images/options/network.dart";
 
 enum ImageType { file, memory, asset, network }
 
-class DOImage extends StatelessWidget {
+class LYImage extends StatelessWidget {
   final ImageType imageType;
   final String? assetPath;
   final File? file;
@@ -23,7 +23,7 @@ class DOImage extends StatelessWidget {
 
   final ImageOptions? options;
 
-  const DOImage._({
+  const LYImage._({
     required this.imageType,
     this.assetPath,
     this.file,
@@ -32,44 +32,44 @@ class DOImage extends StatelessWidget {
     this.options,
   });
 
-  factory DOImage.file(
+  factory LYImage.file(
     File file, {
     FileImageOptions? options,
   }) {
-    return DOImage._(
+    return LYImage._(
       imageType: ImageType.file,
       file: file,
       options: options,
     );
   }
 
-  factory DOImage.memory(
+  factory LYImage.memory(
     Uint8List memory, {
     MemoryImageOptions? options,
   }) {
-    return DOImage._(
+    return LYImage._(
       imageType: ImageType.memory,
       memory: memory,
       options: options,
     );
   }
 
-  factory DOImage.asset(
+  factory LYImage.asset(
     String assetPath, {
     AssetImageOptions? options,
   }) {
-    return DOImage._(
+    return LYImage._(
       imageType: ImageType.asset,
       assetPath: assetPath,
       options: options,
     );
   }
 
-  factory DOImage.network(
+  factory LYImage.network(
     String? url, {
     NetworkImageOptions? options,
   }) {
-    return DOImage._(
+    return LYImage._(
       imageType: ImageType.network,
       url: url,
       options: options,

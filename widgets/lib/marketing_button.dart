@@ -4,8 +4,8 @@ import "package:url_launcher/url_launcher.dart";
 import "package:utilities/constants/env.dart";
 import "package:utilities/sizes/spacers.dart";
 
-class DOMarketingButton extends StatelessWidget {
-  const DOMarketingButton({
+class LYMarketingButton extends StatelessWidget {
+  const LYMarketingButton({
     super.key,
   });
 

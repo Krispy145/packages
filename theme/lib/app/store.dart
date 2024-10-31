@@ -9,7 +9,6 @@ import "package:theme/data/models/colors/color_model.dart";
 import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/repositories/theme_configuration.dart";
 import "package:theme/domain/repositories/base.repository.dart";
-import "package:theme/domain/repositories/digital_oasis.repository.dart";
 import "package:theme/domain/repositories/theme.repository.dart";
 import "package:theme/utils/loggers.dart";
 import "package:utilities/data/typedefs.dart";
@@ -157,15 +156,15 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     _loadFirestoreTheme(baseThemeId: baseThemeId, componentThemesId: componentThemesId);
   }
 
-  _ThemeStateStore.digitalOasis({
-    this.id,
-  })  : baseThemeUrlPath = "baseThemes",
-        componentThemesUrlPath = "componentsThemes",
-        type = ThemeStateType.digitalOasis,
-        baseThemeAssetPath = null,
-        componentThemesAssetPath = null {
-    _loadDOTheme(id: id ?? primaryThemeId);
-  }
+  // _ThemeStateStore.digitalOasis({
+  //   this.id,
+  // })  : baseThemeUrlPath = "baseThemes",
+  //       componentThemesUrlPath = "componentsThemes",
+  //       type = ThemeStateType.digitalOasis,
+  //       baseThemeAssetPath = null,
+  //       componentThemesAssetPath = null {
+  //   _loadDOTheme(id: id ?? primaryThemeId);
+  // }
 
   /// [_ThemeStateStore.localAssets] is the constructor that will be used to try fetch the data from local storage and catch the error,
   /// then fetch the data from assets.
@@ -479,17 +478,17 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     setLoaded();
   }
 
-  Future<void> _loadDOTheme({String? id}) async {
-    setLoading();
-    repository = DORepository();
-    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print(
-      "ThemeModel - Digital Oasis: $baseThemeModel",
-      [ThemeLoggers.theme],
-    );
-    setLoaded();
-  }
+  // Future<void> _loadDOTheme({String? id}) async {
+  //   setLoading();
+  //   repository = LYRepository();
+  //   baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
+  //   componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
+  //   AppLogger.print(
+  //     "ThemeModel - Digital Oasis: $baseThemeModel",
+  //     [ThemeLoggers.theme],
+  //   );
+  //   setLoaded();
+  // }
 
   Future<void> _loadApiTheme({String? id}) async {
     setLoading();

@@ -165,6 +165,22 @@ class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRe
     return userModel;
   }
 
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    await dataSource.sendPasswordResetEmail(email: email);
+  }
+
+  @override
+  Future<T?> verifyAndUpdateEmail(String email) async {
+    final result = await dataSource.verifyAndUpdateEmail(email: email);
+    return result;
+  }
+
+  @override
+  Future<void> changePassword(String password) async {
+    await dataSource.changePassword(password: password);
+  }
+
   T? _authResponseToUserModel(AuthParams params, bool result) {
     final _baseUser = UserModel(
       id: dataSource.currentUserModel!.id,

@@ -16,7 +16,7 @@ import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
 
 class AdditionalDataField {
-  /// Label of the `DOTextFormField` for this metadata
+  /// Label of the `LYTextFormField` for this metadata
   final String label;
 
   /// Key to be used when sending the metadata to Data Repository
@@ -25,7 +25,7 @@ class AdditionalDataField {
   /// Validator function for the metadata field
   final String? Function(String?)? validator;
 
-  /// Icon to show as the prefix icon in DOTextFormField
+  /// Icon to show as the prefix icon in `LYTextFormField`
   final Icon? prefixIcon;
 
   AdditionalDataField({
@@ -115,14 +115,14 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
     });
   }
 
-  //TODO: Complete change from TextFormField to DOTextFormField
+  //TODO: Complete change from TextFormField to `LYTextFormField`
   // void Widget _buildTextField(BuildContext context){
   //   final store = TextFormFieldStore(
   //       value: value,
   //       onValueChanged: (newValue) => onChanged(keys, newValue),
   //       title: keys.last,
   //     );
-  //     return DOTextFormField(
+  //     return `LYTextFormField`(
   //       store: store,
   //     );
   // }
@@ -278,29 +278,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
           if (widget.store.authAction == AuthAction.signIn && _forgotPassword) ...[
             Sizes.s.spacer(),
             ElevatedButton(
-              onPressed: () async {
-                try {
-                  if (!_formKey.currentState!.validate()) {
-                    return;
-                  }
-                  setState(() {
-                    _isLoading = true;
-                  });
-
-                  throw const AuthenticationException(
-                    "Forgot password is not implemented yet",
-                  );
-                  // final email = _emailController.text.trim();
-                  // await supabase.auth.resetPasswordForEmail(email);
-                  // widget.onPasswordResetEmailSent?.call();
-                } on AuthenticationException catch (error) {
-                  context.showSnackbar(
-                    SnackbarConfiguration.error(title: error.message),
-                  );
-                } catch (error) {
-                  widget.onError?.call(error);
-                }
-              },
+              onPressed: _resetPassword,
               child: const Text("Send password reset email"),
             ),
             Sizes.s.spacer(),
@@ -317,6 +295,35 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
         ],
       ),
     );
+  }
+
+  Future<void> _resetPassword() async {
+    try {
+      if (!_formKey.currentState!.validate()) {
+        return;
+      }
+      setState(() {
+        _isLoading = true;
+      });
+      final email = _emailController.text.trim();
+      await widget.store.sendPasswordResetEmail(email);
+      widget.onPasswordResetEmailSent?.call();
+      setState(() {
+        _forgotPassword = false;
+      });
+    } on AuthenticationException catch (error) {
+      context.showSnackbar(
+        SnackbarConfiguration.error(title: error.message),
+      );
+    } catch (error) {
+      widget.onError?.call(error);
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   Future<void> _signUp(BuildContext context) async {

@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "package:theme/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
 
-class DOListTile extends StatefulWidget {
+class LYListTile extends StatefulWidget {
   final String title;
   final TextStyle? titleStyle;
   final String? subtitle;
@@ -22,7 +22,7 @@ class DOListTile extends StatefulWidget {
   final bool showOnHoverTrailing;
   final EdgeInsets centrePadding;
   final EdgeInsets tilePadding;
-  const DOListTile({
+  const LYListTile({
     super.key,
     required this.title,
     this.titleStyle,
@@ -44,7 +44,7 @@ class DOListTile extends StatefulWidget {
         showOnHoverTrailing = false,
         replacementSize = null;
 
-  const DOListTile.hoverable({
+  const LYListTile.hoverable({
     super.key,
     required this.title,
     this.titleStyle,
@@ -71,10 +71,10 @@ class DOListTile extends StatefulWidget {
         );
 
   @override
-  State<DOListTile> createState() => _DOListTileState();
+  State<LYListTile> createState() => _LYListTileState();
 }
 
-class _DOListTileState extends State<DOListTile> {
+class _LYListTileState extends State<LYListTile> {
   bool isHovering = false;
   void _setHovering(bool value) {
     setState(() {
@@ -151,7 +151,7 @@ class _CenterListWidget extends StatelessWidget {
     required this.widget,
   });
 
-  final DOListTile widget;
+  final LYListTile widget;
 
   @override
   Widget build(BuildContext context) {

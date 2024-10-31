@@ -13,7 +13,7 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/sizes/edge_insets.dart";
 import "package:utilities/sizes/spacers.dart";
 
-typedef DOColor = MapEntry<String, dynamic>;
+typedef LYColor = MapEntry<String, dynamic>;
 
 /// [ColorsView] of the app.
 class ColorsView extends StatelessWidget {

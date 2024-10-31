@@ -32,4 +32,7 @@ abstract class AuthenticationDataRepository<T extends UserModel> {
   Future<T?> reauthenticate(AuthParams params);
   Future<void> deleteAccount(String userId);
   Future<bool> signOut();
+  Future<void> sendPasswordResetEmail(String email);
+  Future<T?> verifyAndUpdateEmail(String email);
+  Future<void> changePassword(String password);
 }

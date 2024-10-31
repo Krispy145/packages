@@ -5,5 +5,5 @@ typedef LoadingFontData = Future<ByteData?>;
 
 /// [FontsDataSource] is an abstract class that defines the basic CRUD operations for the [ByteData] entity.
 mixin FontsDataSource {
-  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl);
+  LoadingFontData? loadFont(LYFontVariantAndUrl fontVariantAndUrl);
 }

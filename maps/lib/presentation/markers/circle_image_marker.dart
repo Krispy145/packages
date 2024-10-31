@@ -17,7 +17,7 @@ class CircleImageMarker<T extends MarkerModel> extends BaseMarker {
   }) : super(
           child: logoUrl != null
               ? CircleAvatar(
-                  backgroundImage: DOCachedNetworkImageProvider(logoUrl),
+                  backgroundImage: LYCachedNetworkImageProvider(logoUrl),
                 )
               : fallbackWidget ??
                   IconMarker(

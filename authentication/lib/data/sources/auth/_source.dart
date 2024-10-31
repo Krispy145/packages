@@ -21,4 +21,13 @@ abstract class AuthenticationDataSource<T extends UserModel, Q> with DataSource<
 
   /// [deleteAccount] deletes the user's account.
   Future<void> deleteAccount({required String userId});
+
+  /// [sendPasswordResetEmail] sends a password reset email.
+  Future<void> sendPasswordResetEmail({required String email});
+
+  /// [verifyAndUpdateEmail] verifies and updates the user's email.
+  Future<T?> verifyAndUpdateEmail({required String email});
+
+  /// [changePassword] changes the user's password.
+  Future<void> changePassword({required String password});
 }

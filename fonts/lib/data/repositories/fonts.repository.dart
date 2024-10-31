@@ -13,7 +13,7 @@ enum FontDataSources {
 /// [FontsDataRepository] is a class that defines the basic CRUD operations for the [LoadingFontData] entity.
 class FontsDataRepository {
   LoadingFontData? loadFontData(
-    DOFontVariantAndUrl fontVariantAndUrl,
+    LYFontVariantAndUrl fontVariantAndUrl,
     FontDataSources type,
   ) {
     return _dataSourceByType(type).loadFont(fontVariantAndUrl);

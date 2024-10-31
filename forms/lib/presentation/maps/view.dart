@@ -169,7 +169,7 @@ class FormsMapView extends StatelessWidget {
         onValueChanged: (newValue) => onChanged(keys, newValue),
         title: keys.last,
       );
-      return DOTextFormField(
+      return LYTextFormField(
         store: store,
       );
     } else if (value is int) {

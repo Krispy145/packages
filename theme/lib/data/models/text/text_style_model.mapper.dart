@@ -13,7 +13,7 @@ class TextStyleModelMapper extends ClassMapperBase<TextStyleModel> {
   static TextStyleModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = TextStyleModelMapper._());
-      MapperContainer.globals.useAll([DOFontStyleMapper()]);
+      MapperContainer.globals.useAll([LYFontStyleMapper()]);
     }
     return _instance!;
   }

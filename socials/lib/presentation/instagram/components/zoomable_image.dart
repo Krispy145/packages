@@ -41,7 +41,7 @@ class ZoomableImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ImageProvider provider = DOCachedNetworkImageProvider(
+    final ImageProvider provider = LYCachedNetworkImageProvider(
       imageUrl,
     );
 

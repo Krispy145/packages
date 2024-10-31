@@ -9,7 +9,7 @@ part "store.g.dart";
 
 class ColorFormFieldStore = _ThemeColorStringFormFieldStore with _$ColorFormFieldStore;
 
-abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<DOColor> with Store {
+abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<LYColor> with Store {
   _ThemeColorStringFormFieldStore({
     required super.initialValue,
     required super.title,

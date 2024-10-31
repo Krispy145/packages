@@ -315,6 +315,42 @@ class AuthenticationRepository<T extends UserModel> {
     return _userResult;
   }
 
+  /// [sendPasswordResetEmail] sends a password reset email to the user.
+  Future<RequestResponse> sendPasswordResetEmail({required String email}) async {
+    AppLogger.print(
+      "sendPasswordResetEmail attempt",
+      [AuthenticationLoggers.authentication],
+    );
+    await _authenticationDataRepository.sendPasswordResetEmail(email);
+    return RequestResponse.success;
+  }
+
+  /// [verifyAndUpdateEmail] verifies the email and updates the user's email.
+  Future<Pair<RequestResponse, T?>> verifyAndUpdateEmail({required String newEmail}) async {
+    AppLogger.print(
+      "verifyAndUpdateEmail attempt",
+      [AuthenticationLoggers.authentication],
+    );
+    final _response = await _authenticationDataRepository.verifyAndUpdateEmail(newEmail);
+    if (_response != null) {
+      final _currentResponse = convertDataTypeToMap(_response);
+      _currentResponse["email"] = newEmail;
+      final changedUserModel = convertDataTypeFromMap(_currentResponse);
+      await userDataRepository.updateUserModel(userModel: changedUserModel);
+      return Pair(RequestResponse.success, changedUserModel);
+    }
+    return Pair(RequestResponse.failure, null);
+  }
+
+  /// [changePassword] changes the user's password.
+  Future<void> changePassword({required String password}) async {
+    AppLogger.print(
+      "changePassword attempt",
+      [AuthenticationLoggers.authentication],
+    );
+    return _authenticationDataRepository.changePassword(password);
+  }
+
   Future<void> _initStreams() async {
     try {
       currentUserModelStream.listen((event) async {

@@ -19,7 +19,7 @@ class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
           child: RingedMarkerWrapper(
             selected: isSelected(markerModel),
             onTapped: () => onMarkerTapped?.call(markerModel),
-            childBuilder: (context) => DOImage.network(
+            childBuilder: (context) => LYImage.network(
               logoUrl ?? fallbackUrl,
               options: NetworkImageOptions(fit: BoxFit.cover),
             ),

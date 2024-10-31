@@ -198,6 +198,12 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   }
 
   @action
+  Future<RequestResponse> sendPasswordResetEmail(String email) async {
+    final response = await repository.sendPasswordResetEmail(email: email);
+    return response;
+  }
+
+  @action
   Future<void> _handleSilent() async {
     if (editingValue != null && editingValue?.status == AuthStatus.authenticated && editingValue?.authType == AuthType.anonymous) {
       setLoaded();

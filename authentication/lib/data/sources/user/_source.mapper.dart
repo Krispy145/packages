@@ -23,9 +23,8 @@ class UserSearchQueryModelMapper extends ClassMapperBase<UserSearchQueryModel> {
   final String id = 'UserSearchQueryModel';
 
   static String _$searchTerm(UserSearchQueryModel v) => v.searchTerm;
-  static const Field<UserSearchQueryModel, String> _f$searchTerm = Field(
-      'searchTerm', _$searchTerm,
-      key: 'search_term', opt: true, def: "auth_type");
+  static const Field<UserSearchQueryModel, String> _f$searchTerm =
+      Field('searchTerm', _$searchTerm, key: 'search_term', opt: true, def: "");
   static AuthType _$authType(UserSearchQueryModel v) => v.authType;
   static const Field<UserSearchQueryModel, AuthType> _f$authType = Field(
       'authType', _$authType,
@@ -33,11 +32,14 @@ class UserSearchQueryModelMapper extends ClassMapperBase<UserSearchQueryModel> {
   static bool _$mustInclude(UserSearchQueryModel v) => v.mustInclude;
   static const Field<UserSearchQueryModel, bool> _f$mustInclude = Field(
       'mustInclude', _$mustInclude,
-      key: 'must_include', opt: true, def: false);
+      key: 'must_include', opt: true, def: true);
   static bool _$mustExclude(UserSearchQueryModel v) => v.mustExclude;
   static const Field<UserSearchQueryModel, bool> _f$mustExclude = Field(
       'mustExclude', _$mustExclude,
-      key: 'must_exclude', opt: true, def: true);
+      key: 'must_exclude', opt: true, def: false);
+  static bool? _$isAuthorized(UserSearchQueryModel v) => v.isAuthorized;
+  static const Field<UserSearchQueryModel, bool> _f$isAuthorized =
+      Field('isAuthorized', _$isAuthorized, key: 'is_authorized', opt: true);
 
   @override
   final MappableFields<UserSearchQueryModel> fields = const {
@@ -45,6 +47,7 @@ class UserSearchQueryModelMapper extends ClassMapperBase<UserSearchQueryModel> {
     #authType: _f$authType,
     #mustInclude: _f$mustInclude,
     #mustExclude: _f$mustExclude,
+    #isAuthorized: _f$isAuthorized,
   };
 
   static UserSearchQueryModel _instantiate(DecodingData data) {
@@ -52,7 +55,8 @@ class UserSearchQueryModelMapper extends ClassMapperBase<UserSearchQueryModel> {
         searchTerm: data.dec(_f$searchTerm),
         authType: data.dec(_f$authType),
         mustInclude: data.dec(_f$mustInclude),
-        mustExclude: data.dec(_f$mustExclude));
+        mustExclude: data.dec(_f$mustExclude),
+        isAuthorized: data.dec(_f$isAuthorized));
   }
 
   @override
@@ -117,7 +121,8 @@ abstract class UserSearchQueryModelCopyWith<
       {String? searchTerm,
       AuthType? authType,
       bool? mustInclude,
-      bool? mustExclude});
+      bool? mustExclude,
+      bool? isAuthorized});
   UserSearchQueryModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -135,19 +140,22 @@ class _UserSearchQueryModelCopyWithImpl<$R, $Out>
           {String? searchTerm,
           AuthType? authType,
           bool? mustInclude,
-          bool? mustExclude}) =>
+          bool? mustExclude,
+          Object? isAuthorized = $none}) =>
       $apply(FieldCopyWithData({
         if (searchTerm != null) #searchTerm: searchTerm,
         if (authType != null) #authType: authType,
         if (mustInclude != null) #mustInclude: mustInclude,
-        if (mustExclude != null) #mustExclude: mustExclude
+        if (mustExclude != null) #mustExclude: mustExclude,
+        if (isAuthorized != $none) #isAuthorized: isAuthorized
       }));
   @override
   UserSearchQueryModel $make(CopyWithData data) => UserSearchQueryModel(
       searchTerm: data.get(#searchTerm, or: $value.searchTerm),
       authType: data.get(#authType, or: $value.authType),
       mustInclude: data.get(#mustInclude, or: $value.mustInclude),
-      mustExclude: data.get(#mustExclude, or: $value.mustExclude));
+      mustExclude: data.get(#mustExclude, or: $value.mustExclude),
+      isAuthorized: data.get(#isAuthorized, or: $value.isAuthorized));
 
   @override
   UserSearchQueryModelCopyWith<$R2, UserSearchQueryModel, $Out2>

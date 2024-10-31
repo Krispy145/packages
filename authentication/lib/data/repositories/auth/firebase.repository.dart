@@ -421,6 +421,58 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
     }
   }
 
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      AppLogger.print(
+        "sendPasswordResetEmail attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.toString());
+    }
+  }
+
+  @override
+  Future<T?> verifyAndUpdateEmail(String email) async {
+    try {
+      await _firebaseAuth.currentUser?.verifyBeforeUpdateEmail(email);
+      final _currentResponse = convertDataTypeToMap(userModelStream.value!);
+      _currentResponse["email"] = email;
+      userModelStream.add(convertDataTypeFromMap(_currentResponse));
+      return userModelStream.value;
+    } catch (e) {
+      AppLogger.print(
+        "verifyAndUpdateEmail attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      throw AuthenticationException(e.toString());
+    }
+  }
+
+  @override
+  Future<void> changePassword(String password) async {
+    try {
+      return _firebaseAuth.currentUser?.updatePassword(password);
+    } catch (e) {
+      if (e is FirebaseAuthException) {
+        if (e.code == "requires-recent-login") {
+          await reauthenticate(userModelStream.value!.toAuthParams());
+          return changePassword(password);
+        }
+      }
+      AppLogger.print(
+        "changePassword attempt -> $e",
+        [AuthenticationLoggers.authentication],
+        type: LoggerType.error,
+      );
+      return _handleFirebaseAuthException(e);
+    }
+  }
+
   Future<void> _initStreams() async {
     if (_user != null && userModelStream.value == null) {
       final databaseUser = await userDataRepository?.getUserModel(id: _user!.uid);

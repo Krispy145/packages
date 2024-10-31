@@ -2,10 +2,10 @@ import "package:cached_network_image/cached_network_image.dart";
 import "package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart";
 import "package:widgets/images/options/cached_provider.dart";
 
-class DOCachedNetworkImageProvider extends CachedNetworkImageProvider {
+class LYCachedNetworkImageProvider extends CachedNetworkImageProvider {
   final String imageUrl;
   final CachedNetworkProviderOptions? options;
-  DOCachedNetworkImageProvider(
+  LYCachedNetworkImageProvider(
     this.imageUrl, {
     this.options,
   }) : super(

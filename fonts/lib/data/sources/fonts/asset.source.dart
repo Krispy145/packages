@@ -10,10 +10,12 @@ class AssetFontsDataSource implements FontsDataSource {
   AssetManifest assetManifest = AssetManifest();
 
   @override
-  LoadingFontData? loadFont(DOFontVariantAndUrl fontVariantAndUrl) async {
+  LoadingFontData? loadFont(LYFontVariantAndUrl fontVariantAndUrl) async {
     final assetManifestJson = await assetManifest.json();
     final assetPath = _findFamilyWithVariantAssetPath(
-        fontVariantAndUrl.familyWithVariant, assetManifestJson,);
+      fontVariantAndUrl.familyWithVariant,
+      assetManifestJson,
+    );
     if (assetPath == null) return null;
     return rootBundle.load(assetPath);
   }
@@ -21,7 +23,7 @@ class AssetFontsDataSource implements FontsDataSource {
   /// Looks for a matching [familyWithVariant] font, provided the asset manifest.
   /// Returns the path of the font asset if found, otherwise an empty string.
   String? _findFamilyWithVariantAssetPath(
-    DOFontFamilyAndVariant familyWithVariant,
+    LYFontFamilyAndVariant familyWithVariant,
     Map<String, List<String>>? manifestJson,
   ) {
     if (manifestJson == null) return null;
@@ -30,10 +32,8 @@ class AssetFontsDataSource implements FontsDataSource {
 
     for (final assetList in manifestJson.values) {
       for (final asset in assetList) {
-        for (final matchingSuffix
-            in [".ttf", ".otf", ".woff2"].where(asset.endsWith)) {
-          final assetWithoutExtension =
-              asset.substring(0, asset.length - matchingSuffix.length);
+        for (final matchingSuffix in [".ttf", ".otf", ".woff2"].where(asset.endsWith)) {
+          final assetWithoutExtension = asset.substring(0, asset.length - matchingSuffix.length);
           if (assetWithoutExtension.endsWith(apiFilenamePrefix)) {
             return asset;
           }

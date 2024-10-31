@@ -50,7 +50,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                 clipBehavior: Clip.hardEdge,
                 child: InkWell(
                   onTap: () async => addOrEditImage(context),
-                  child: DOImage.network(
+                  child: LYImage.network(
                     store.imageUrl,
                     options: NetworkImageOptions(
                       headers: PublicHeaders.map,
