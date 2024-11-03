@@ -5,7 +5,7 @@ import "package:flutter/material.dart";
 import "package:theme/data/models/borders/border_radius_model.dart";
 import "package:theme/data/models/borders/box_border_model.dart";
 import "package:theme/data/models/box_decorations/box_shadow_model.dart";
-import "package:theme/data/models/gradient_model.dart";
+// import "package:theme/data/models/gradient_model.dart";
 import "package:theme/extensions/theme_color_string.dart";
 
 part "box_decoration_model.mapper.dart";
@@ -32,7 +32,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
     this.border_boxBorder,
     this.borderRadius_borderRadius,
     this.boxShadows_list_boxShadow = const [],
-    this.gradient_gradient = const GradientModel(),
+    // this.gradient_gradient,
     this.backgroundBlendMode_enum_blendMode,
     this.shape_enum_boxShape = BoxShapeType.rectangle,
   });
@@ -42,8 +42,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
   final BorderRadiusModel? borderRadius_borderRadius;
   @MappableValue(<BoxShadowModel>[])
   final List<BoxShadowModel>? boxShadows_list_boxShadow;
-  @MappableValue(GradientModel())
-  final GradientModel? gradient_gradient;
+  // final GradientModel? gradient_gradient;
   final BlendMode? backgroundBlendMode_enum_blendMode;
   final BoxShapeType? shape_enum_boxShape;
 
@@ -53,7 +52,7 @@ class BoxDecorationModel with BoxDecorationModelMappable {
       border: border_boxBorder?.asBoxBorder(styleTypeName: styleTypeName),
       borderRadius: borderRadius_borderRadius?.asBorderRadius(styleTypeName: styleTypeName),
       boxShadow: boxShadows_list_boxShadow?.map((e) => e.asBoxShadow(styleTypeName: styleTypeName)).toList() ?? [],
-      gradient: gradient_gradient?.asGradient(styleTypeName: styleTypeName),
+      // gradient: gradient_gradient?.asGradient(styleTypeName: styleTypeName),
       backgroundBlendMode: backgroundBlendMode_enum_blendMode,
       shape: shape_enum_boxShape?.toBoxShape() ?? BoxShape.rectangle,
     );

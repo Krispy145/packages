@@ -17,7 +17,7 @@ class GradientModel with GradientModelMappable {
   const GradientModel({
     this.type_enum_gradientType,
     this.colors_list_themeColorString,
-  });
+  }) : assert((colors_list_themeColorString ?? const []).length >= 2, "Gradient colors must have at least 2 colors");
 
   static const fromMap = GradientModelMapper.fromMap;
   static const fromJson = GradientModelMapper.fromJson;

@@ -62,7 +62,6 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
       BoxBorderModelMapper.ensureInitialized();
       BorderRadiusModelMapper.ensureInitialized();
       BoxShadowModelMapper.ensureInitialized();
-      GradientModelMapper.ensureInitialized();
       BoxShapeTypeMapper.ensureInitialized();
     }
     return _instance!;
@@ -92,11 +91,6 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
       _f$boxShadows_list_boxShadow = Field(
           'boxShadows_list_boxShadow', _$boxShadows_list_boxShadow,
           opt: true, def: const []);
-  static GradientModel? _$gradient_gradient(BoxDecorationModel v) =>
-      v.gradient_gradient;
-  static const Field<BoxDecorationModel, GradientModel> _f$gradient_gradient =
-      Field('gradient_gradient', _$gradient_gradient,
-          opt: true, def: const GradientModel());
   static BlendMode? _$backgroundBlendMode_enum_blendMode(
           BoxDecorationModel v) =>
       v.backgroundBlendMode_enum_blendMode;
@@ -117,7 +111,6 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
     #border_boxBorder: _f$border_boxBorder,
     #borderRadius_borderRadius: _f$borderRadius_borderRadius,
     #boxShadows_list_boxShadow: _f$boxShadows_list_boxShadow,
-    #gradient_gradient: _f$gradient_gradient,
     #backgroundBlendMode_enum_blendMode: _f$backgroundBlendMode_enum_blendMode,
     #shape_enum_boxShape: _f$shape_enum_boxShape,
   };
@@ -128,7 +121,6 @@ class BoxDecorationModelMapper extends ClassMapperBase<BoxDecorationModel> {
         border_boxBorder: data.dec(_f$border_boxBorder),
         borderRadius_borderRadius: data.dec(_f$borderRadius_borderRadius),
         boxShadows_list_boxShadow: data.dec(_f$boxShadows_list_boxShadow),
-        gradient_gradient: data.dec(_f$gradient_gradient),
         backgroundBlendMode_enum_blendMode:
             data.dec(_f$backgroundBlendMode_enum_blendMode),
         shape_enum_boxShape: data.dec(_f$shape_enum_boxShape));
@@ -196,14 +188,11 @@ abstract class BoxDecorationModelCopyWith<$R, $In extends BoxDecorationModel,
   ListCopyWith<$R, BoxShadowModel,
           BoxShadowModelCopyWith<$R, BoxShadowModel, BoxShadowModel>>?
       get boxShadows_list_boxShadow;
-  GradientModelCopyWith<$R, GradientModel, GradientModel>?
-      get gradient_gradient;
   $R call(
       {String? color_themeColorString,
       BoxBorderModel? border_boxBorder,
       BorderRadiusModel? borderRadius_borderRadius,
       List<BoxShadowModel>? boxShadows_list_boxShadow,
-      GradientModel? gradient_gradient,
       BlendMode? backgroundBlendMode_enum_blendMode,
       BoxShapeType? shape_enum_boxShape});
   BoxDecorationModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -237,16 +226,11 @@ class _BoxDecorationModelCopyWithImpl<$R, $Out>
               (v) => call(boxShadows_list_boxShadow: v))
           : null;
   @override
-  GradientModelCopyWith<$R, GradientModel, GradientModel>?
-      get gradient_gradient => $value.gradient_gradient?.copyWith
-          .$chain((v) => call(gradient_gradient: v));
-  @override
   $R call(
           {Object? color_themeColorString = $none,
           Object? border_boxBorder = $none,
           Object? borderRadius_borderRadius = $none,
           Object? boxShadows_list_boxShadow = $none,
-          Object? gradient_gradient = $none,
           Object? backgroundBlendMode_enum_blendMode = $none,
           Object? shape_enum_boxShape = $none}) =>
       $apply(FieldCopyWithData({
@@ -257,7 +241,6 @@ class _BoxDecorationModelCopyWithImpl<$R, $Out>
           #borderRadius_borderRadius: borderRadius_borderRadius,
         if (boxShadows_list_boxShadow != $none)
           #boxShadows_list_boxShadow: boxShadows_list_boxShadow,
-        if (gradient_gradient != $none) #gradient_gradient: gradient_gradient,
         if (backgroundBlendMode_enum_blendMode != $none)
           #backgroundBlendMode_enum_blendMode:
               backgroundBlendMode_enum_blendMode,
@@ -274,8 +257,6 @@ class _BoxDecorationModelCopyWithImpl<$R, $Out>
           or: $value.borderRadius_borderRadius),
       boxShadows_list_boxShadow: data.get(#boxShadows_list_boxShadow,
           or: $value.boxShadows_list_boxShadow),
-      gradient_gradient:
-          data.get(#gradient_gradient, or: $value.gradient_gradient),
       backgroundBlendMode_enum_blendMode: data.get(
           #backgroundBlendMode_enum_blendMode,
           or: $value.backgroundBlendMode_enum_blendMode),
