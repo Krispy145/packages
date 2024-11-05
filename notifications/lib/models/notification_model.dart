@@ -13,6 +13,7 @@ class NotificationModel with NotificationModelMappable {
   final String? imageUrl;
   final String? topic;
   final DateTime? scheduledTime;
+  final DateTime? sentTime;
   final AppDestinationModel? destination;
   final bool isLocalNotification;
   final bool isRead;
@@ -26,6 +27,7 @@ class NotificationModel with NotificationModelMappable {
     this.imageUrl,
     this.topic,
     this.scheduledTime,
+    this.sentTime,
     this.destination,
     this.isLocalNotification = false,
     this.isRead = false,

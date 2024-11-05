@@ -44,6 +44,9 @@ class NotificationModelMapper extends ClassMapperBase<NotificationModel> {
   static DateTime? _$scheduledTime(NotificationModel v) => v.scheduledTime;
   static const Field<NotificationModel, DateTime> _f$scheduledTime =
       Field('scheduledTime', _$scheduledTime, key: 'scheduled_time', opt: true);
+  static DateTime? _$sentTime(NotificationModel v) => v.sentTime;
+  static const Field<NotificationModel, DateTime> _f$sentTime =
+      Field('sentTime', _$sentTime, key: 'sent_time', opt: true);
   static AppDestinationModel? _$destination(NotificationModel v) =>
       v.destination;
   static const Field<NotificationModel, AppDestinationModel> _f$destination =
@@ -67,6 +70,7 @@ class NotificationModelMapper extends ClassMapperBase<NotificationModel> {
     #imageUrl: _f$imageUrl,
     #topic: _f$topic,
     #scheduledTime: _f$scheduledTime,
+    #sentTime: _f$sentTime,
     #destination: _f$destination,
     #isLocalNotification: _f$isLocalNotification,
     #isRead: _f$isRead,
@@ -82,6 +86,7 @@ class NotificationModelMapper extends ClassMapperBase<NotificationModel> {
         imageUrl: data.dec(_f$imageUrl),
         topic: data.dec(_f$topic),
         scheduledTime: data.dec(_f$scheduledTime),
+        sentTime: data.dec(_f$sentTime),
         destination: data.dec(_f$destination),
         isLocalNotification: data.dec(_f$isLocalNotification),
         isRead: data.dec(_f$isRead));
@@ -153,6 +158,7 @@ abstract class NotificationModelCopyWith<$R, $In extends NotificationModel,
       String? imageUrl,
       String? topic,
       DateTime? scheduledTime,
+      DateTime? sentTime,
       AppDestinationModel? destination,
       bool? isLocalNotification,
       bool? isRead});
@@ -182,6 +188,7 @@ class _NotificationModelCopyWithImpl<$R, $Out>
           Object? imageUrl = $none,
           Object? topic = $none,
           Object? scheduledTime = $none,
+          Object? sentTime = $none,
           Object? destination = $none,
           bool? isLocalNotification,
           bool? isRead}) =>
@@ -194,6 +201,7 @@ class _NotificationModelCopyWithImpl<$R, $Out>
         if (imageUrl != $none) #imageUrl: imageUrl,
         if (topic != $none) #topic: topic,
         if (scheduledTime != $none) #scheduledTime: scheduledTime,
+        if (sentTime != $none) #sentTime: sentTime,
         if (destination != $none) #destination: destination,
         if (isLocalNotification != null)
           #isLocalNotification: isLocalNotification,
@@ -209,6 +217,7 @@ class _NotificationModelCopyWithImpl<$R, $Out>
       imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       topic: data.get(#topic, or: $value.topic),
       scheduledTime: data.get(#scheduledTime, or: $value.scheduledTime),
+      sentTime: data.get(#sentTime, or: $value.sentTime),
       destination: data.get(#destination, or: $value.destination),
       isLocalNotification:
           data.get(#isLocalNotification, or: $value.isLocalNotification),

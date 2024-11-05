@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:theme/extensions/build_context.dart";
+import "package:utilities/sizes/spacers.dart";
 
 class WarningMessage extends StatelessWidget {
   final String title;
@@ -22,36 +23,33 @@ class WarningMessage extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (icon != null)
+          if (icon != null) ...[
             Icon(
               icon,
               size: iconSize,
             ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: Text(
-              title,
-              style: context.textTheme.titleMedium,
+            Sizes.xs.spacer(),
+          ],
+          Text(
+            title,
+            style: context.textTheme.titleMedium,
+            textAlign: TextAlign.center,
+          ),
+          if (message != null) ...[
+            Sizes.xs.spacer(),
+            Text(
+              message!,
+              style: context.textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
-          ),
-          if (message != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                message!,
-                style: context.textTheme.bodyMedium,
-                textAlign: TextAlign.center,
-              ),
+          ],
+          if (buttonText != null) ...[
+            Sizes.m.spacer(),
+            FilledButton(
+              child: Text(buttonText!, style: context.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+              onPressed: () => onButtonTap?.call(context),
             ),
-          if (buttonText != null)
-            Padding(
-              padding: const EdgeInsets.only(top: 12),
-              child: FilledButton(
-                child: Text(buttonText!, style: context.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
-                onPressed: () => onButtonTap?.call(context),
-              ),
-            ),
+          ],
         ],
       ),
     );
