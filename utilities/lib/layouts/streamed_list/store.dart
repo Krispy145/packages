@@ -37,6 +37,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
         setEmpty("No data found.");
       } else {
         if (sortByKey != null) results.sortBy(sortByKey!);
+        if (reverseList) results = results.reversed.toList().asObservable();
         setLoaded();
       }
     });

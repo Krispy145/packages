@@ -47,7 +47,7 @@ class NotificationsPermissionsModelMapper
   static String? _$webVapidKey(NotificationsPermissionsModel v) =>
       v.webVapidKey;
   static const Field<NotificationsPermissionsModel, String> _f$webVapidKey =
-      Field('webVapidKey', _$webVapidKey, key: 'web_vapid_key');
+      Field('webVapidKey', _$webVapidKey, key: 'web_vapid_key', opt: true);
 
   @override
   final MappableFields<NotificationsPermissionsModel> fields = const {

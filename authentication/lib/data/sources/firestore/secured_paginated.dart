@@ -25,6 +25,7 @@ abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> ex
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     final _collection = firestore.collection(collectionName);

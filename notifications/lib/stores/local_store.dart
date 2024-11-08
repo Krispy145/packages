@@ -78,23 +78,25 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   /// [requestPermissions] requests permissions for local notifications.
   @action
   @override
-  Future<bool> requestPermissions(NotificationsPermissionsModel? permissions) async {
+  Future<bool> requestPermissions({
+    NotificationsPermissionsModel permissions = NotificationsPermissionsModel.standard,
+  }) async {
     if (Platform.isIOS) {
       final iosImplementation = localNotifications.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>();
       final grantedNotificationPermission = await iosImplementation?.requestPermissions(
-        alert: permissions?.alert ?? true,
-        badge: permissions?.badge ?? true,
-        provisional: permissions?.provisional ?? false,
-        sound: permissions?.sound ?? true,
+        alert: permissions.alert,
+        badge: permissions.badge,
+        provisional: permissions.provisional,
+        sound: permissions.sound,
       );
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isMacOS) {
       final macOSImplementation = localNotifications.resolvePlatformSpecificImplementation<MacOSFlutterLocalNotificationsPlugin>();
       final grantedNotificationPermission = await macOSImplementation?.requestPermissions(
-        alert: permissions?.alert ?? true,
-        badge: permissions?.badge ?? true,
-        provisional: permissions?.provisional ?? false,
-        sound: permissions?.sound ?? true,
+        alert: permissions.alert,
+        badge: permissions.badge,
+        provisional: permissions.provisional,
+        sound: permissions.sound,
       );
       _notificationsEnabled = grantedNotificationPermission ?? false;
     } else if (Platform.isAndroid) {

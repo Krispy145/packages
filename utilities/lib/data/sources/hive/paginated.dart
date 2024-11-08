@@ -27,6 +27,7 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
     HiveResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     final data = await getAll();

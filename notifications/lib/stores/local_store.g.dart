@@ -50,9 +50,11 @@ mixin _$LocalNotificationsStore on _LocalNotificationsStore, Store {
       context: context);
 
   @override
-  Future<bool> requestPermissions(NotificationsPermissionsModel? permissions) {
+  Future<bool> requestPermissions(
+      {NotificationsPermissionsModel permissions =
+          NotificationsPermissionsModel.standard}) {
     return _$requestPermissionsAsyncAction
-        .run(() => super.requestPermissions(permissions));
+        .run(() => super.requestPermissions(permissions: permissions));
   }
 
   late final _$initializeAsyncAction =

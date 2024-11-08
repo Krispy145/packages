@@ -19,6 +19,7 @@ abstract class PaginatedDummyDataSource<T, Q> extends DummyDataSource<T, Q> with
     DummyDataResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) {
     final lastIndex = lastResponse?.lastIndex ?? -1;

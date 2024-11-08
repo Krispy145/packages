@@ -10,6 +10,7 @@ mixin Paginated<LastResp extends ResponseModel, T, Q> on DataSource<T, Q> {
     LastResp? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   });
 

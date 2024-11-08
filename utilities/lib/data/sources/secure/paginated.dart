@@ -26,6 +26,7 @@ abstract class PaginatedSecureDataSource<T, Q> extends SecureDataSource<T, Q> wi
     SecureResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     final dataMap = await readAll();

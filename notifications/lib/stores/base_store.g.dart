@@ -41,9 +41,11 @@ mixin _$NotificationsStore on _NotificationsStore, Store {
       AsyncAction('_NotificationsStore.requestPermissions', context: context);
 
   @override
-  Future<void> requestPermissions(NotificationsPermissionsModel? permissions) {
+  Future<void> requestPermissions(
+      {NotificationsPermissionsModel permissions =
+          NotificationsPermissionsModel.standard}) {
     return _$requestPermissionsAsyncAction
-        .run(() => super.requestPermissions(permissions));
+        .run(() => super.requestPermissions(permissions: permissions));
   }
 
   late final _$searchAllAsyncAction =

@@ -73,6 +73,9 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
           if (sortByKey != null) {
             results.sortBy(sortByKey!);
           }
+          if (reverseList) {
+            results = ObservableList.of(results.reversed);
+          }
           return setLoaded();
         }
       } else {

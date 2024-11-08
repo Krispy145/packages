@@ -109,6 +109,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
     PagedResponse<VideoModel>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     return _handlePagedError(

@@ -63,7 +63,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
             lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
           ),
           List<T?>.from(
-            response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
+            response.docs.map((e) => convertFromMap(e.data()! as Map<String, dynamic>) as T?),
           ),
         );
         if (response.docs.isEmpty) {
@@ -77,7 +77,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
   Stream<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> streamPage({
     int? size,
     String? orderBy,
-    bool descending = false,
+    bool descending = true,
     FirestoreResponseModel<T?>? lastResponse,
   }) {
     try {
@@ -105,15 +105,16 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
           final _response = FirestoreResponseModel<T?>(
             lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
           );
-          return Pair(
+          final responsePair = Pair(
             RequestResponse.success,
             Pair(
               _response,
               List<T?>.from(
-                response.docs.map((e) => convertDataTypeFromMap(e.data()! as Map<String, dynamic>) as T?),
+                response.docs.map((e) => convertFromMap(e.data()! as Map<String, dynamic>) as T?),
               ),
             ),
           );
+          return responsePair;
         },
       );
     } catch (e) {
@@ -153,7 +154,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
             lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
           ),
           List<T?>.from(
-            response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
+            response.docs.map((e) => convertFromMap(e.data()) as T?),
           ),
         );
         if (response.docs.isEmpty) {

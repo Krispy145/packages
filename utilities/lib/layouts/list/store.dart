@@ -67,6 +67,9 @@ abstract class _ListStore<T, K extends Comparable<K>> with LoadStateStore, Store
           if (sortByKey != null) {
             results.sortBy(sortByKey!);
           }
+          if (reverseList) {
+            results = ObservableList.of(results.reversed);
+          }
           setLoaded();
         } else {
           setEmpty("No data found.");

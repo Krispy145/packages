@@ -44,7 +44,9 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
 
   /// [requestPermissions] requests permission for notifications.
   @action
-  Future<void> requestPermissions(NotificationsPermissionsModel? permissions) async {
+  Future<void> requestPermissions({
+    NotificationsPermissionsModel permissions = NotificationsPermissionsModel.standard,
+  }) async {
     throw UnimplementedError();
   }
 

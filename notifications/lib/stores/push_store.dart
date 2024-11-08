@@ -70,24 +70,24 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// returns a [Pair] of the token and the authorization status.
   @action
   @override
-  Future<Pair<String?, AuthorizationStatus>> requestPermissions(
-    NotificationsPermissionsModel? permissions,
-  ) async {
+  Future<Pair<String?, AuthorizationStatus>> requestPermissions({
+    NotificationsPermissionsModel permissions = NotificationsPermissionsModel.standard,
+  }) async {
     // Request permissions if we don't already have them
     final settings = await _pushNotifications.requestPermission(
-      alert: permissions?.alert ?? true,
-      announcement: permissions?.announcement ?? false,
-      badge: permissions?.badge ?? true,
-      carPlay: permissions?.carPlay ?? false,
-      criticalAlert: permissions?.criticalAlert ?? false,
-      provisional: permissions?.provisional ?? false,
-      sound: permissions?.sound ?? true,
+      alert: permissions.alert,
+      announcement: permissions.announcement,
+      badge: permissions.badge,
+      carPlay: permissions.carPlay,
+      criticalAlert: permissions.criticalAlert,
+      provisional: permissions.provisional,
+      sound: permissions.sound,
     );
 
     if (Platform.isIOS || Platform.isMacOS) {
       await setAPNSToken();
     }
-    fcmToken = await getToken(webVapidKey: kIsWeb ? permissions?.webVapidKey : null);
+    fcmToken = await getToken(webVapidKey: kIsWeb ? permissions.webVapidKey : null);
     AppLogger.print(
       "FCM Token: $fcmToken",
       [NotificationsLoggers.notifications],
@@ -289,7 +289,14 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [subscribeToTopic] subscribes to a topic for notifications to be sent to user.
   @action
   Future<void> subscribeToTopic(String topic) async {
-    await _pushNotifications.subscribeToTopic(topic);
+    try {
+      await _pushNotifications.subscribeToTopic(topic);
+    } catch (e) {
+      AppLogger.print(
+        "Error subscribing to topic: $e",
+        [NotificationsLoggers.notifications],
+      );
+    }
   }
 
   @action

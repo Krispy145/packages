@@ -31,6 +31,7 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
     Resp? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     final _url = "$baseUrl/$sourceSuffix";

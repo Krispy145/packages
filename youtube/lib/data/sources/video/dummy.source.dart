@@ -29,6 +29,7 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) {
     // TODO: implement getPage

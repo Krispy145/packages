@@ -114,6 +114,7 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
     PagedResponse<PlaylistModel>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) async {
     return _handlePagedError(

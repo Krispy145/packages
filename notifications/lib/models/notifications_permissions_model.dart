@@ -28,13 +28,21 @@ class NotificationsPermissionsModel with NotificationsPermissionsModelMappable {
     required this.criticalAlert,
     required this.provisional,
     required this.sound,
-    required this.webVapidKey,
+    this.webVapidKey,
   });
 
   static const fromMap = NotificationsPermissionsModelMapper.fromMap;
   static const fromJson = NotificationsPermissionsModelMapper.fromJson;
 
-  // static const empty = NotificationsPermissionsModel(id: "");
+  static const standard = NotificationsPermissionsModel(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
 
   // static const permissionsOne = NotificationsPermissionsModel(
   // id: "permissionsOneId",

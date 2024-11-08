@@ -46,6 +46,7 @@ abstract class PaginatedSupabaseDataSource<T, Q> extends SupabaseDataSource<T, Q
     SupabaseResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
+    bool descending = false,
     Map<String, dynamic>? queryParameters,
   }) {
     // TODO: implement getPage

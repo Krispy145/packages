@@ -30,11 +30,44 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
 
   CollectionReference<Map<String, dynamic>> get collectionReference => firestore.collection(collectionName);
 
-  @override
-  T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromMap(data);
+  Timestamp getTimestampFromDateTime(DateTime dateTime) {
+    return Timestamp.fromDate(dateTime);
+  }
+
+  DateTime getDateTimeFromTimestamp(Timestamp timestamp) {
+    return timestamp.toDate();
+  }
 
   @override
-  Map<String, dynamic> convertToMap(T data) => convertDataTypeToMap(data);
+  T convertFromMap(Map<String, dynamic> data) {
+    final _dataWithDateTime = data.map(
+      (key, value) {
+        if (value is Timestamp) {
+          return MapEntry(key, getDateTimeFromTimestamp(value));
+        }
+        return MapEntry(key, value);
+      },
+    );
+    return convertDataTypeFromMap(_dataWithDateTime);
+  }
+
+  @override
+  Map<String, dynamic> convertToMap(T data) {
+    final _dataWithTimestamp = convertDataTypeToMap(data).map(
+      (key, value) {
+        try {
+          final _possibleDateTimeString = DateTime.tryParse(value.toString());
+          if (_possibleDateTimeString != null) {
+            return MapEntry(key, getTimestampFromDateTime(_possibleDateTimeString));
+          }
+          return MapEntry(key, value);
+        } catch (e) {
+          return MapEntry(key, value);
+        }
+      },
+    );
+    return _dataWithTimestamp;
+  }
 
   Query<Map<String, dynamic>> buildQuery(Q query, Query<Map<String, dynamic>> collectionReference);
 
@@ -43,7 +76,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     final response = await _handleRequest("GET", () async {
       final documentSnapshot = await collectionReference.doc(id).get();
       if (documentSnapshot.exists) {
-        return convertDataTypeFromMap(documentSnapshot.data()!);
+        return convertFromMap(documentSnapshot.data()!);
       } else {
         return null;
       }
@@ -58,7 +91,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
       if (querySnapshot.docs.isEmpty) {
         return const Pair(RequestResponse.success, []);
       }
-      final data = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+      final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
       return Pair(RequestResponse.success, data);
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
@@ -97,7 +130,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
           await add(data);
         } else {
           await collectionReference.doc(id).set(
-                convertDataTypeToMap(data),
+                convertToMap(data),
                 SetOptions(merge: true),
               );
         }
@@ -116,7 +149,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
       final batch = firestore.batch();
       data.forEach((id, item) {
         final reference = collectionReference.doc(id);
-        batch.set(reference, convertDataTypeToMap(item));
+        batch.set(reference, convertToMap(item));
         result[id] = true;
       });
       await batch.commit();
@@ -129,14 +162,14 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   Future<Pair<RequestResponse, T?>> add(T data) async {
     try {
       _logRequest("ADD", collectionName, data);
-      final map = convertDataTypeToMap(data);
+      final map = convertToMap(data);
       final docRef = collectionReference.doc();
       if (map.containsKey("id")) {
         map["id"] = docRef.id;
       }
       await docRef.set(map, SetOptions(merge: true));
-      _logResponse("ADD", "Success", convertDataTypeFromMap(map));
-      return Pair(RequestResponse.success, convertDataTypeFromMap(map));
+      _logResponse("ADD", "Success", convertFromMap(map));
+      return Pair(RequestResponse.success, convertFromMap(map));
     } catch (e) {
       _logError("ADD", "Error", e);
       return const Pair(RequestResponse.failure, null);
@@ -148,7 +181,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     await _handleRequest("ADD_ALL", () async {
       final batch = firestore.batch();
       for (final item in data) {
-        final map = convertDataTypeToMap(item);
+        final map = convertToMap(item);
         final docRef = collectionReference.doc();
         if (map.containsKey("id")) {
           map["id"] = docRef.id;
@@ -171,7 +204,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     if (querySnapshot.docs.isEmpty) {
       return const Pair(RequestResponse.failure, null);
     }
-    final data = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).first;
+    final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).first;
     return Pair(RequestResponse.success, data);
   }
 
@@ -182,7 +215,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     if (querySnapshot.docs.isEmpty) {
       return const Pair(RequestResponse.failure, []);
     }
-    final data = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+    final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
     return Pair(RequestResponse.success, data);
   }
 
