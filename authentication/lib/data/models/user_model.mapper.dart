@@ -58,18 +58,25 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   static AuthStatus? _$status(UserModel v) => v.status;
   static const Field<UserModel, AuthStatus> _f$status =
       Field('status', _$status, opt: true);
-  static DateTime? _$createdAt(UserModel v) => v.createdAt;
-  static const Field<UserModel, DateTime> _f$createdAt =
-      Field('createdAt', _$createdAt, key: 'created_at', opt: true);
-  static DateTime? _$lastLoginAt(UserModel v) => v.lastLoginAt;
-  static const Field<UserModel, DateTime> _f$lastLoginAt =
-      Field('lastLoginAt', _$lastLoginAt, key: 'last_login_at', opt: true);
-  static DateTime? _$lastLogoutAt(UserModel v) => v.lastLogoutAt;
-  static const Field<UserModel, DateTime> _f$lastLogoutAt =
-      Field('lastLogoutAt', _$lastLogoutAt, key: 'last_logout_at', opt: true);
-  static DateTime? _$updatedAt(UserModel v) => v.updatedAt;
-  static const Field<UserModel, DateTime> _f$updatedAt =
-      Field('updatedAt', _$updatedAt, key: 'updated_at', opt: true);
+  static DateTime? _$createdAtTimestamp(UserModel v) => v.createdAtTimestamp;
+  static const Field<UserModel, DateTime> _f$createdAtTimestamp = Field(
+      'createdAtTimestamp', _$createdAtTimestamp,
+      key: 'created_at_timestamp', opt: true);
+  static DateTime? _$lastLoginTimestamp(UserModel v) => v.lastLoginTimestamp;
+  static const Field<UserModel, DateTime> _f$lastLoginTimestamp = Field(
+      'lastLoginTimestamp', _$lastLoginTimestamp,
+      key: 'last_login_timestamp', opt: true);
+  static DateTime? _$lastLogoutTimestamp(UserModel v) => v.lastLogoutTimestamp;
+  static const Field<UserModel, DateTime> _f$lastLogoutTimestamp = Field(
+      'lastLogoutTimestamp', _$lastLogoutTimestamp,
+      key: 'last_logout_timestamp', opt: true);
+  static DateTime? _$updatedAtTimestamp(UserModel v) => v.updatedAtTimestamp;
+  static const Field<UserModel, DateTime> _f$updatedAtTimestamp = Field(
+      'updatedAtTimestamp', _$updatedAtTimestamp,
+      key: 'updated_at_timestamp', opt: true);
+  static List<String>? _$searchCases(UserModel v) => v.searchCases;
+  static const Field<UserModel, List<String>> _f$searchCases =
+      Field('searchCases', _$searchCases, key: 'search_cases', opt: true);
 
   @override
   final MappableFields<UserModel> fields = const {
@@ -85,10 +92,11 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
     #refreshToken: _f$refreshToken,
     #authType: _f$authType,
     #status: _f$status,
-    #createdAt: _f$createdAt,
-    #lastLoginAt: _f$lastLoginAt,
-    #lastLogoutAt: _f$lastLogoutAt,
-    #updatedAt: _f$updatedAt,
+    #createdAtTimestamp: _f$createdAtTimestamp,
+    #lastLoginTimestamp: _f$lastLoginTimestamp,
+    #lastLogoutTimestamp: _f$lastLogoutTimestamp,
+    #updatedAtTimestamp: _f$updatedAtTimestamp,
+    #searchCases: _f$searchCases,
   };
   @override
   final bool ignoreNull = true;
@@ -107,10 +115,11 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
         refreshToken: data.dec(_f$refreshToken),
         authType: data.dec(_f$authType),
         status: data.dec(_f$status),
-        createdAt: data.dec(_f$createdAt),
-        lastLoginAt: data.dec(_f$lastLoginAt),
-        lastLogoutAt: data.dec(_f$lastLogoutAt),
-        updatedAt: data.dec(_f$updatedAt));
+        createdAtTimestamp: data.dec(_f$createdAtTimestamp),
+        lastLoginTimestamp: data.dec(_f$lastLoginTimestamp),
+        lastLogoutTimestamp: data.dec(_f$lastLogoutTimestamp),
+        updatedAtTimestamp: data.dec(_f$updatedAtTimestamp),
+        searchCases: data.dec(_f$searchCases));
   }
 
   @override
@@ -163,6 +172,7 @@ extension UserModelValueCopy<$R, $Out> on ObjectCopyWith<$R, UserModel, $Out> {
 
 abstract class UserModelCopyWith<$R, $In extends UserModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>? get searchCases;
   $R call(
       {String? id,
       String? accessToken,
@@ -176,10 +186,11 @@ abstract class UserModelCopyWith<$R, $In extends UserModel, $Out>
       String? refreshToken,
       AuthType? authType,
       AuthStatus? status,
-      DateTime? createdAt,
-      DateTime? lastLoginAt,
-      DateTime? lastLogoutAt,
-      DateTime? updatedAt});
+      DateTime? createdAtTimestamp,
+      DateTime? lastLoginTimestamp,
+      DateTime? lastLogoutTimestamp,
+      DateTime? updatedAtTimestamp,
+      List<String>? searchCases});
   UserModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -191,6 +202,14 @@ class _UserModelCopyWithImpl<$R, $Out>
   @override
   late final ClassMapperBase<UserModel> $mapper =
       UserModelMapper.ensureInitialized();
+  @override
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
+      get searchCases => $value.searchCases != null
+          ? ListCopyWith(
+              $value.searchCases!,
+              (v, t) => ObjectCopyWith(v, $identity, t),
+              (v) => call(searchCases: v))
+          : null;
   @override
   $R call(
           {String? id,
@@ -205,10 +224,11 @@ class _UserModelCopyWithImpl<$R, $Out>
           Object? refreshToken = $none,
           Object? authType = $none,
           Object? status = $none,
-          Object? createdAt = $none,
-          Object? lastLoginAt = $none,
-          Object? lastLogoutAt = $none,
-          Object? updatedAt = $none}) =>
+          Object? createdAtTimestamp = $none,
+          Object? lastLoginTimestamp = $none,
+          Object? lastLogoutTimestamp = $none,
+          Object? updatedAtTimestamp = $none,
+          Object? searchCases = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (accessToken != $none) #accessToken: accessToken,
@@ -222,10 +242,15 @@ class _UserModelCopyWithImpl<$R, $Out>
         if (refreshToken != $none) #refreshToken: refreshToken,
         if (authType != $none) #authType: authType,
         if (status != $none) #status: status,
-        if (createdAt != $none) #createdAt: createdAt,
-        if (lastLoginAt != $none) #lastLoginAt: lastLoginAt,
-        if (lastLogoutAt != $none) #lastLogoutAt: lastLogoutAt,
-        if (updatedAt != $none) #updatedAt: updatedAt
+        if (createdAtTimestamp != $none)
+          #createdAtTimestamp: createdAtTimestamp,
+        if (lastLoginTimestamp != $none)
+          #lastLoginTimestamp: lastLoginTimestamp,
+        if (lastLogoutTimestamp != $none)
+          #lastLogoutTimestamp: lastLogoutTimestamp,
+        if (updatedAtTimestamp != $none)
+          #updatedAtTimestamp: updatedAtTimestamp,
+        if (searchCases != $none) #searchCases: searchCases
       }));
   @override
   UserModel $make(CopyWithData data) => UserModel(
@@ -241,10 +266,15 @@ class _UserModelCopyWithImpl<$R, $Out>
       refreshToken: data.get(#refreshToken, or: $value.refreshToken),
       authType: data.get(#authType, or: $value.authType),
       status: data.get(#status, or: $value.status),
-      createdAt: data.get(#createdAt, or: $value.createdAt),
-      lastLoginAt: data.get(#lastLoginAt, or: $value.lastLoginAt),
-      lastLogoutAt: data.get(#lastLogoutAt, or: $value.lastLogoutAt),
-      updatedAt: data.get(#updatedAt, or: $value.updatedAt));
+      createdAtTimestamp:
+          data.get(#createdAtTimestamp, or: $value.createdAtTimestamp),
+      lastLoginTimestamp:
+          data.get(#lastLoginTimestamp, or: $value.lastLoginTimestamp),
+      lastLogoutTimestamp:
+          data.get(#lastLogoutTimestamp, or: $value.lastLogoutTimestamp),
+      updatedAtTimestamp:
+          data.get(#updatedAtTimestamp, or: $value.updatedAtTimestamp),
+      searchCases: data.get(#searchCases, or: $value.searchCases));
 
   @override
   UserModelCopyWith<$R2, UserModel, $Out2> $chain<$R2, $Out2>(

@@ -20,10 +20,11 @@ class UserModel with UserModelMappable {
   final String? refreshToken;
   final AuthType? authType;
   final AuthStatus? status;
-  final DateTime? createdAt;
-  final DateTime? lastLoginAt;
-  final DateTime? lastLogoutAt;
-  final DateTime? updatedAt;
+  final DateTime? createdAtTimestamp;
+  final DateTime? lastLoginTimestamp;
+  final DateTime? lastLogoutTimestamp;
+  final DateTime? updatedAtTimestamp;
+  List<String>? searchCases;
 
   UserModel({
     required this.id,
@@ -38,11 +39,12 @@ class UserModel with UserModelMappable {
     this.refreshToken,
     this.authType,
     this.status,
-    DateTime? createdAt,
-    this.lastLoginAt,
-    this.lastLogoutAt,
-    this.updatedAt,
-  }) : createdAt = createdAt ?? DateTime.now();
+    this.createdAtTimestamp,
+    this.lastLoginTimestamp,
+    this.lastLogoutTimestamp,
+    this.updatedAtTimestamp,
+    this.searchCases,
+  });
 
   static const fromMap = UserModelMapper.fromMap;
   static const fromJson = UserModelMapper.fromJson;
@@ -75,7 +77,15 @@ class UserModel with UserModelMappable {
         refreshToken: refreshToken,
         authType: authType ?? AuthType.anonymous,
         authStatus: status ?? AuthStatus.unauthenticated,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
+        createdAtTimestamp: createdAtTimestamp,
+        updatedAtTimestamp: updatedAtTimestamp,
       );
+
+  List<String> searchCasesFromName(String name) {
+    final cases = <String>[];
+    for (var i = 0; i < name.length; i++) {
+      cases.add(name.substring(0, i + 1));
+    }
+    return cases;
+  }
 }

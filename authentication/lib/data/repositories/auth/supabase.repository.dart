@@ -337,8 +337,8 @@ class SupabaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       accessToken: _session!.accessToken,
       status: AuthStatus.authenticated,
       authType: userModelStream.value?.authType ?? AuthType.empty,
-      createdAt: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      createdAtTimestamp: DateTime.tryParse(_user!.createdAt) ?? DateTime.now(),
+      updatedAtTimestamp: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());
   }
@@ -355,8 +355,8 @@ class SupabaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       code: params.code,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
-      createdAt: params.createdAt ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
+      createdAtTimestamp: params.createdAtTimestamp ?? DateTime.now(),
+      updatedAtTimestamp: DateTime.tryParse(_user!.updatedAt.toString()) ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());
   }

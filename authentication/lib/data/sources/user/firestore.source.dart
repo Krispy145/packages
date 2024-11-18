@@ -66,10 +66,19 @@ class FirestoreUserDataSource<T extends UserModel> extends PaginatedFirestoreDat
         isNotEqualTo: query.searchTerm,
       );
     } else {
-      return collectionReference.where(
-        "display_name",
-        isEqualTo: query.searchTerm,
-      );
+      var firestoreQuery = collectionReference;
+
+      final searchTerm = query.searchTerm;
+      if (searchTerm.isNotEmpty) {
+        final _filters = Filter.or(
+          Filter("search_cases", arrayContains: searchTerm),
+          Filter("search_cases", arrayContains: searchTerm.toLowerCase()),
+          Filter("search_cases", arrayContains: searchTerm.toTitleCase()),
+        );
+        firestoreQuery = firestoreQuery.where(_filters);
+      }
+
+      return firestoreQuery;
     }
   }
 }

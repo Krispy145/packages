@@ -87,7 +87,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     if (Platform.isIOS || Platform.isMacOS) {
       await setAPNSToken();
     }
-    fcmToken = await getToken(webVapidKey: kIsWeb ? permissions.webVapidKey : null);
+    fcmToken = await getToken(webVapidKey: permissions.webVapidKey);
     AppLogger.print(
       "FCM Token: $fcmToken",
       [NotificationsLoggers.notifications],
@@ -316,13 +316,21 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [getToken] gets the token for push notifications.
   @action
   Future<String?> getToken({String? webVapidKey}) async {
-    return _pushNotifications.getToken(vapidKey: webVapidKey).then((token) {
+    try {
+      final tokeResponse = await _pushNotifications.getToken(vapidKey: webVapidKey);
+      if (tokeResponse == null) return null;
       AppLogger.print(
-        "FCM Token: $token",
+        "FCM Token: $tokeResponse",
         [NotificationsLoggers.notifications],
       );
-      return token;
-    });
+      return tokeResponse;
+    } catch (e) {
+      AppLogger.print(
+        "Error getting FCM Token: $e",
+        [NotificationsLoggers.notifications],
+      );
+      return null;
+    }
   }
 
   /// [deleteToken] deletes the token for push notifications.

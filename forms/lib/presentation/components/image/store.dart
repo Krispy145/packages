@@ -122,15 +122,21 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
   @action
   Future<void> updateImage({required Pair<URL?, bool> newImageOptions}) async {
     imageUrl = newImageOptions.first;
-    if (imageUrl == null && newImageOptions.second && fileUploadManager != null) {
-      setLoading();
-      await fileUploadManager!.uploadImage(image: pickedImage!).then((value) {
-        imageUrl = value;
-        form.control(imageUrlKey).value = value;
+    if (newImageOptions.second && fileUploadManager != null) {
+      if (pickedImage != null) {
+        setLoading();
+        await fileUploadManager!.uploadImage(image: pickedImage!).then((value) {
+          imageUrl = value;
+          form.control(imageUrlKey).value = value;
+          setLoaded();
+        }).catchError((e) {
+          setError("Error uploading image");
+        });
+      } else if (newImageOptions.first != null) {
+        imageUrl = newImageOptions.first;
+        form.control(imageUrlKey).value = imageUrl;
         setLoaded();
-      }).catchError((e) {
-        setError("Error uploading image");
-      });
+      }
     }
   }
 

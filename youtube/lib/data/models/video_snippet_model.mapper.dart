@@ -23,9 +23,11 @@ class VideoSnippetModelMapper extends ClassMapperBase<VideoSnippetModel> {
   @override
   final String id = 'VideoSnippetModel';
 
-  static DateTime? _$publishedAt(VideoSnippetModel v) => v.publishedAt;
-  static const Field<VideoSnippetModel, DateTime> _f$publishedAt =
-      Field('publishedAt', _$publishedAt, opt: true);
+  static DateTime? _$publishedAtTimestamp(VideoSnippetModel v) =>
+      v.publishedAtTimestamp;
+  static const Field<VideoSnippetModel, DateTime> _f$publishedAtTimestamp =
+      Field('publishedAtTimestamp', _$publishedAtTimestamp,
+          key: 'publishedAt', opt: true);
   static String? _$channelId(VideoSnippetModel v) => v.channelId;
   static const Field<VideoSnippetModel, String> _f$channelId =
       Field('channelId', _$channelId, opt: true);
@@ -68,7 +70,7 @@ class VideoSnippetModelMapper extends ClassMapperBase<VideoSnippetModel> {
 
   @override
   final MappableFields<VideoSnippetModel> fields = const {
-    #publishedAt: _f$publishedAt,
+    #publishedAtTimestamp: _f$publishedAtTimestamp,
     #channelId: _f$channelId,
     #title: _f$title,
     #description: _f$description,
@@ -85,7 +87,7 @@ class VideoSnippetModelMapper extends ClassMapperBase<VideoSnippetModel> {
 
   static VideoSnippetModel _instantiate(DecodingData data) {
     return VideoSnippetModel(
-        publishedAt: data.dec(_f$publishedAt),
+        publishedAtTimestamp: data.dec(_f$publishedAtTimestamp),
         channelId: data.dec(_f$channelId),
         title: data.dec(_f$title),
         description: data.dec(_f$description),
@@ -162,7 +164,7 @@ abstract class VideoSnippetModelCopyWith<$R, $In extends VideoSnippetModel,
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>? get tags;
   LocalizedModelCopyWith<$R, LocalizedModel, LocalizedModel>? get localized;
   $R call(
-      {DateTime? publishedAt,
+      {DateTime? publishedAtTimestamp,
       String? channelId,
       String? title,
       String? description,
@@ -209,7 +211,7 @@ class _VideoSnippetModelCopyWithImpl<$R, $Out>
       $value.localized?.copyWith.$chain((v) => call(localized: v));
   @override
   $R call(
-          {Object? publishedAt = $none,
+          {Object? publishedAtTimestamp = $none,
           Object? channelId = $none,
           Object? title = $none,
           Object? description = $none,
@@ -223,7 +225,8 @@ class _VideoSnippetModelCopyWithImpl<$R, $Out>
           Object? localized = $none,
           Object? defaultAudioLanguage = $none}) =>
       $apply(FieldCopyWithData({
-        if (publishedAt != $none) #publishedAt: publishedAt,
+        if (publishedAtTimestamp != $none)
+          #publishedAtTimestamp: publishedAtTimestamp,
         if (channelId != $none) #channelId: channelId,
         if (title != $none) #title: title,
         if (description != $none) #description: description,
@@ -241,7 +244,8 @@ class _VideoSnippetModelCopyWithImpl<$R, $Out>
       }));
   @override
   VideoSnippetModel $make(CopyWithData data) => VideoSnippetModel(
-      publishedAt: data.get(#publishedAt, or: $value.publishedAt),
+      publishedAtTimestamp:
+          data.get(#publishedAtTimestamp, or: $value.publishedAtTimestamp),
       channelId: data.get(#channelId, or: $value.channelId),
       title: data.get(#title, or: $value.title),
       description: data.get(#description, or: $value.description),

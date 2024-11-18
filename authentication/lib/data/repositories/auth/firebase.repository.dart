@@ -478,9 +478,9 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       final databaseUser = await userDataRepository?.getUserModel(id: _user!.uid);
       if (databaseUser?.second != null) {
         final _currentResponse = convertDataTypeToMap(databaseUser!.second!);
-        _currentResponse["last_login_at"] = DateTime.now();
-        if (_currentResponse["created_at"] == null) {
-          _currentResponse["created_at"] = DateTime.now();
+        _currentResponse["last_login_at_timestamp"] = DateTime.now();
+        if (_currentResponse["created_at_timestamp"] == null) {
+          _currentResponse["created_at_timestamp"] = DateTime.now();
         }
         userModelStream.add(convertDataTypeFromMap(_currentResponse));
         await userDataRepository?.updateUserModel(
@@ -495,7 +495,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       }
       if (event == null && userModelStream.value != null) {
         final _currentResponse = convertDataTypeToMap(userModelStream.value!);
-        _currentResponse["last_logout_at"] = DateTime.now();
+        _currentResponse["last_logout_at_timestamp"] = DateTime.now();
         _currentResponse["status"] = AuthStatus.unauthenticated;
         userModelStream.add(convertDataTypeFromMap(_currentResponse));
       }
@@ -519,7 +519,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
       idToken: params.idToken,
       authType: params.authType,
       status: AuthStatus.authenticated,
-      updatedAt: params.updatedAt ?? DateTime.now(),
+      updatedAtTimestamp: params.updatedAtTimestamp ?? DateTime.now(),
     );
     return convertDataTypeFromMap(_baseUser.toMap());
   }

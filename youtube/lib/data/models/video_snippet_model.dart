@@ -35,7 +35,8 @@ part "video_snippet_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.camelCase)
 class VideoSnippetModel with VideoSnippetModelMappable {
-  final DateTime? publishedAt;
+  @MappableField(key: "publishedAt")
+  final DateTime? publishedAtTimestamp;
   final String? channelId;
   final String? title;
   final String? description;
@@ -50,7 +51,7 @@ class VideoSnippetModel with VideoSnippetModelMappable {
   final String? defaultAudioLanguage;
 
   const VideoSnippetModel({
-    this.publishedAt,
+    this.publishedAtTimestamp,
     this.channelId,
     this.title,
     this.description,

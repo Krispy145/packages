@@ -141,7 +141,7 @@ class AuthenticationRepository<T extends UserModel> {
   Future<Pair<RequestResponse, T>> updateCurrentUserModel(T userModel) async {
     try {
       final _currentResponse = convertDataTypeToMap(userModel);
-      _currentResponse["updated_at"] = DateTime.now();
+      _currentResponse["updated_at_timestamp"] = DateTime.now();
       final changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUserModel(userModel: changedUserModel);
       await _authenticationDataRepository.updateUserModel(changedUserModel);
@@ -194,7 +194,7 @@ class AuthenticationRepository<T extends UserModel> {
       }
       final _currentResponse = convertDataTypeToMap(changedUserModel!);
       await _verifyCode(params, changedUserModel);
-      _currentResponse["last_login_at"] = DateTime.now();
+      _currentResponse["last_login_at_timestamp"] = DateTime.now();
       await userDataRepository.initPermissions(changedUserModel.id);
       if (userDataRepository.currentPermissionModelStream.value != null) {
         _currentResponse["role"] = userDataRepository.currentPermissionModelStream.value!.role;
@@ -248,7 +248,7 @@ class AuthenticationRepository<T extends UserModel> {
   Future<bool> signOut() async {
     AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
     final _currentResponse = convertDataTypeToMap(currentUserModelStream.value!);
-    _currentResponse["last_logout_at"] = DateTime.now();
+    _currentResponse["last_logout_at_timestamp"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
     await userDataRepository.updateUserModel(userModel: changedUserModel);
@@ -270,7 +270,7 @@ class AuthenticationRepository<T extends UserModel> {
     if (result != null) {
       await _verifyCode(params, result);
       final _currentResponse = result.toMap();
-      _currentResponse["last_login_at"] = DateTime.now();
+      _currentResponse["last_login_at_timestamp"] = DateTime.now();
       _currentResponse["status"] = AuthStatus.authenticated;
       final _paramsMap = params.toMap();
       for (final element in _paramsMap.entries) {

@@ -147,21 +147,24 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     if (size != null) {
       firestoreQuery = firestoreQuery.limit(size);
     }
-    return firestoreQuery.get().then(
-      (response) {
-        final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
-          FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
-          ),
-          List<T?>.from(
-            response.docs.map((e) => convertFromMap(e.data()) as T?),
-          ),
-        );
-        if (response.docs.isEmpty) {
-          return Pair(RequestResponse.failure, _response);
-        }
-        return Pair(RequestResponse.success, _response);
-      },
-    );
+    try {
+      final _result = await firestoreQuery.get();
+
+      final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
+        FirestoreResponseModel<T?>(
+          lastDocumentSnapshot: _result.docs.isNotEmpty ? _result.docs.last : null,
+        ),
+        List<T?>.from(
+          _result.docs.map((e) => convertFromMap(e.data()) as T?),
+        ),
+      );
+      if (_result.docs.isEmpty) {
+        return Pair(RequestResponse.failure, _response);
+      }
+      return Pair(RequestResponse.success, _response);
+    } catch (e) {
+      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource], type: LoggerType.error);
+      return Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []));
+    }
   }
 }

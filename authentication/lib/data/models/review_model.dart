@@ -20,7 +20,7 @@ class ReviewModel with ReviewModelMappable {
   final String documentReference;
   final UserModel user;
   final Map<String, dynamic>? writeData;
-  final DateTime createdAt;
+  final DateTime createdAtTimestamp;
 
   const ReviewModel({
     required this.id,
@@ -28,7 +28,7 @@ class ReviewModel with ReviewModelMappable {
     required this.documentReference,
     required this.user,
     this.writeData,
-    required this.createdAt,
+    required this.createdAtTimestamp,
     required this.title,
   });
 
@@ -41,7 +41,7 @@ class ReviewModel with ReviewModelMappable {
     crud: CRUD.create,
     documentReference: "",
     user: UserModel.anonymous,
-    createdAt: DateTime.now(),
+    createdAtTimestamp: DateTime.now(),
   );
 
   static final reviewOne = ReviewModel(
@@ -50,7 +50,7 @@ class ReviewModel with ReviewModelMappable {
     title: "Review One Title",
     documentReference: "document/reference/id",
     user: UserModel.anonymous,
-    createdAt: DateTime.now(),
+    createdAtTimestamp: DateTime.now(),
   );
 
   static final reviewTwo = ReviewModel(
@@ -59,7 +59,7 @@ class ReviewModel with ReviewModelMappable {
     title: "Review Two Title",
     documentReference: "document/reference/id",
     user: UserModel.anonymous,
-    createdAt: DateTime.now(),
+    createdAtTimestamp: DateTime.now(),
   );
 
   static final reviewThree = ReviewModel(
@@ -68,7 +68,7 @@ class ReviewModel with ReviewModelMappable {
     crud: CRUD.delete,
     documentReference: "document/reference/id",
     user: UserModel.anonymous,
-    createdAt: DateTime.now(),
+    createdAtTimestamp: DateTime.now(),
   );
 
   static final List<ReviewModel> fakeData = [

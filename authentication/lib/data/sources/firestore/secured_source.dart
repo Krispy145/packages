@@ -5,6 +5,7 @@ import "package:authentication/utils/permissions_checker.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:collection/collection.dart";
 import "package:flutter/foundation.dart";
+import "package:utilities/data/models/basic_search_query_model.dart";
 import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/firestore/source.dart";
@@ -13,7 +14,7 @@ import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
-abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q> extends FirestoreDataSource<T, Q> {
+abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends BasicSearchQueryModel> extends FirestoreDataSource<T, Q> {
   final U? currentUser;
   final PermissionModel? userPermissions;
   SecuredFirestoreDataSource(

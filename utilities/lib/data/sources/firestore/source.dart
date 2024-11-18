@@ -51,14 +51,20 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     return convertDataTypeFromMap(_dataWithDateTime);
   }
 
+  bool isTimeBasedKey(String key) {
+    return key.toLowerCase().contains("time") || key.toLowerCase().contains("date");
+  }
+
   @override
   Map<String, dynamic> convertToMap(T data) {
     final _dataWithTimestamp = convertDataTypeToMap(data).map(
       (key, value) {
         try {
-          final _possibleDateTimeString = DateTime.tryParse(value.toString());
-          if (_possibleDateTimeString != null) {
-            return MapEntry(key, getTimestampFromDateTime(_possibleDateTimeString));
+          if (isTimeBasedKey(key)) {
+            final _possibleDateTimeString = DateTime.tryParse(value.toString());
+            if (_possibleDateTimeString != null) {
+              return MapEntry(key, getTimestampFromDateTime(_possibleDateTimeString));
+            }
           }
           return MapEntry(key, value);
         } catch (e) {

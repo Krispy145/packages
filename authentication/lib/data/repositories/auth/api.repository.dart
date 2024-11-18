@@ -193,9 +193,9 @@ class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRe
       isAuthorized: params.isAuthorized ?? false,
       status: result ? AuthStatus.authenticated : AuthStatus.unauthenticated,
       authType: params.authType,
-      createdAt: params.createdAt ?? DateTime.now(),
-      updatedAt: DateTime.tryParse(
-            dataSource.currentUserModel!.updatedAt.toString(),
+      createdAtTimestamp: params.createdAtTimestamp ?? DateTime.now(),
+      updatedAtTimestamp: DateTime.tryParse(
+            dataSource.currentUserModel!.updatedAtTimestamp.toString(),
           ) ??
           DateTime.now(),
     );

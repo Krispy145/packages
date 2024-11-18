@@ -3,13 +3,15 @@ import "package:authentication/data/models/user_model.dart";
 import "package:authentication/data/sources/firestore/secured_source.dart";
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:flutter/foundation.dart";
+import "package:utilities/data/models/basic_search_query_model.dart";
 import "package:utilities/data/models/user_permissions_model.dart";
 import "package:utilities/data/sources/firestore/paginated.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/helpers/tuples.dart";
 
-abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> extends SecuredFirestoreDataSource<U, T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
+class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends BasicSearchQueryModel> extends SecuredFirestoreDataSource<U, T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
   /// [SecuredPaginatedFirestoreDataSource] constructor
   SecuredPaginatedFirestoreDataSource(
     super.collectionName, {
@@ -140,5 +142,21 @@ abstract class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q> ex
       query = query.where("id", whereIn: ids);
     }
     return query;
+  }
+
+  @override
+  Query<Map<String, dynamic>> buildQuery(Q query, Query<Map<String, dynamic>> collectionReference) {
+    var firestoreQuery = collectionReference;
+
+    final searchTerm = query.searchTerm;
+    if (searchTerm.isNotEmpty) {
+      final _filters = Filter.or(
+        Filter("search_cases", arrayContains: searchTerm),
+        Filter("search_cases", arrayContains: searchTerm.toTitleCase()),
+      );
+      firestoreQuery = firestoreQuery.where(_filters);
+    }
+
+    return firestoreQuery;
   }
 }

@@ -32,9 +32,11 @@ class VideoStatusModelMapper extends ClassMapperBase<VideoStatusModel> {
   static String? _$privacyStatus(VideoStatusModel v) => v.privacyStatus;
   static const Field<VideoStatusModel, String> _f$privacyStatus =
       Field('privacyStatus', _$privacyStatus, opt: true);
-  static DateTime? _$publishAt(VideoStatusModel v) => v.publishAt;
-  static const Field<VideoStatusModel, DateTime> _f$publishAt =
-      Field('publishAt', _$publishAt, opt: true);
+  static DateTime? _$publishAtTimestamp(VideoStatusModel v) =>
+      v.publishAtTimestamp;
+  static const Field<VideoStatusModel, DateTime> _f$publishAtTimestamp = Field(
+      'publishAtTimestamp', _$publishAtTimestamp,
+      key: 'publishAt', opt: true);
   static String? _$license(VideoStatusModel v) => v.license;
   static const Field<VideoStatusModel, String> _f$license =
       Field('license', _$license, opt: true);
@@ -59,7 +61,7 @@ class VideoStatusModelMapper extends ClassMapperBase<VideoStatusModel> {
     #failureReason: _f$failureReason,
     #rejectionReason: _f$rejectionReason,
     #privacyStatus: _f$privacyStatus,
-    #publishAt: _f$publishAt,
+    #publishAtTimestamp: _f$publishAtTimestamp,
     #license: _f$license,
     #embeddable: _f$embeddable,
     #publicStatsViewable: _f$publicStatsViewable,
@@ -73,7 +75,7 @@ class VideoStatusModelMapper extends ClassMapperBase<VideoStatusModel> {
         failureReason: data.dec(_f$failureReason),
         rejectionReason: data.dec(_f$rejectionReason),
         privacyStatus: data.dec(_f$privacyStatus),
-        publishAt: data.dec(_f$publishAt),
+        publishAtTimestamp: data.dec(_f$publishAtTimestamp),
         license: data.dec(_f$license),
         embeddable: data.dec(_f$embeddable),
         publicStatsViewable: data.dec(_f$publicStatsViewable),
@@ -140,7 +142,7 @@ abstract class VideoStatusModelCopyWith<$R, $In extends VideoStatusModel, $Out>
       String? failureReason,
       String? rejectionReason,
       String? privacyStatus,
-      DateTime? publishAt,
+      DateTime? publishAtTimestamp,
       String? license,
       bool? embeddable,
       bool? publicStatsViewable,
@@ -164,7 +166,7 @@ class _VideoStatusModelCopyWithImpl<$R, $Out>
           Object? failureReason = $none,
           Object? rejectionReason = $none,
           Object? privacyStatus = $none,
-          Object? publishAt = $none,
+          Object? publishAtTimestamp = $none,
           Object? license = $none,
           Object? embeddable = $none,
           Object? publicStatsViewable = $none,
@@ -175,7 +177,8 @@ class _VideoStatusModelCopyWithImpl<$R, $Out>
         if (failureReason != $none) #failureReason: failureReason,
         if (rejectionReason != $none) #rejectionReason: rejectionReason,
         if (privacyStatus != $none) #privacyStatus: privacyStatus,
-        if (publishAt != $none) #publishAt: publishAt,
+        if (publishAtTimestamp != $none)
+          #publishAtTimestamp: publishAtTimestamp,
         if (license != $none) #license: license,
         if (embeddable != $none) #embeddable: embeddable,
         if (publicStatsViewable != $none)
@@ -190,7 +193,8 @@ class _VideoStatusModelCopyWithImpl<$R, $Out>
       failureReason: data.get(#failureReason, or: $value.failureReason),
       rejectionReason: data.get(#rejectionReason, or: $value.rejectionReason),
       privacyStatus: data.get(#privacyStatus, or: $value.privacyStatus),
-      publishAt: data.get(#publishAt, or: $value.publishAt),
+      publishAtTimestamp:
+          data.get(#publishAtTimestamp, or: $value.publishAtTimestamp),
       license: data.get(#license, or: $value.license),
       embeddable: data.get(#embeddable, or: $value.embeddable),
       publicStatsViewable:

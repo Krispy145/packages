@@ -9,6 +9,7 @@ import "package:utilities/data/models/basic_search_query_model.dart";
 import "package:utilities/data/sources/firestore/paginated.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/logger/logger.dart";
 
 import "../../models/user_model.dart";

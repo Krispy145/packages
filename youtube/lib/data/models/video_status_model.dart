@@ -20,7 +20,8 @@ class VideoStatusModel with VideoStatusModelMappable {
   final String? failureReason;
   final String? rejectionReason;
   final String? privacyStatus;
-  final DateTime? publishAt;
+  @MappableField(key: "publishAt")
+  final DateTime? publishAtTimestamp;
   final String? license;
   final bool? embeddable;
   final bool? publicStatsViewable;
@@ -32,7 +33,7 @@ class VideoStatusModel with VideoStatusModelMappable {
     this.failureReason,
     this.rejectionReason,
     this.privacyStatus,
-    this.publishAt,
+    this.publishAtTimestamp,
     this.license,
     this.embeddable,
     this.publicStatsViewable,

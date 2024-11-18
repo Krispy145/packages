@@ -22,9 +22,11 @@ class PlaylistSnippetModelMapper extends ClassMapperBase<PlaylistSnippetModel> {
   @override
   final String id = 'PlaylistSnippetModel';
 
-  static DateTime? _$publishedAt(PlaylistSnippetModel v) => v.publishedAt;
-  static const Field<PlaylistSnippetModel, DateTime> _f$publishedAt =
-      Field('publishedAt', _$publishedAt, opt: true);
+  static DateTime? _$publishedAtTimestamp(PlaylistSnippetModel v) =>
+      v.publishedAtTimestamp;
+  static const Field<PlaylistSnippetModel, DateTime> _f$publishedAtTimestamp =
+      Field('publishedAtTimestamp', _$publishedAtTimestamp,
+          key: 'publishedAt', opt: true);
   static String? _$channelId(PlaylistSnippetModel v) => v.channelId;
   static const Field<PlaylistSnippetModel, String> _f$channelId =
       Field('channelId', _$channelId, opt: true);
@@ -50,7 +52,7 @@ class PlaylistSnippetModelMapper extends ClassMapperBase<PlaylistSnippetModel> {
 
   @override
   final MappableFields<PlaylistSnippetModel> fields = const {
-    #publishedAt: _f$publishedAt,
+    #publishedAtTimestamp: _f$publishedAtTimestamp,
     #channelId: _f$channelId,
     #title: _f$title,
     #description: _f$description,
@@ -62,7 +64,7 @@ class PlaylistSnippetModelMapper extends ClassMapperBase<PlaylistSnippetModel> {
 
   static PlaylistSnippetModel _instantiate(DecodingData data) {
     return PlaylistSnippetModel(
-        publishedAt: data.dec(_f$publishedAt),
+        publishedAtTimestamp: data.dec(_f$publishedAtTimestamp),
         channelId: data.dec(_f$channelId),
         title: data.dec(_f$title),
         description: data.dec(_f$description),
@@ -134,7 +136,7 @@ abstract class PlaylistSnippetModelCopyWith<
       get thumbnails;
   LocalizedModelCopyWith<$R, LocalizedModel, LocalizedModel>? get localized;
   $R call(
-      {DateTime? publishedAt,
+      {DateTime? publishedAtTimestamp,
       String? channelId,
       String? title,
       String? description,
@@ -166,7 +168,7 @@ class _PlaylistSnippetModelCopyWithImpl<$R, $Out>
       $value.localized?.copyWith.$chain((v) => call(localized: v));
   @override
   $R call(
-          {Object? publishedAt = $none,
+          {Object? publishedAtTimestamp = $none,
           Object? channelId = $none,
           Object? title = $none,
           Object? description = $none,
@@ -175,7 +177,8 @@ class _PlaylistSnippetModelCopyWithImpl<$R, $Out>
           Object? defaultLanguage = $none,
           Object? localized = $none}) =>
       $apply(FieldCopyWithData({
-        if (publishedAt != $none) #publishedAt: publishedAt,
+        if (publishedAtTimestamp != $none)
+          #publishedAtTimestamp: publishedAtTimestamp,
         if (channelId != $none) #channelId: channelId,
         if (title != $none) #title: title,
         if (description != $none) #description: description,
@@ -186,7 +189,8 @@ class _PlaylistSnippetModelCopyWithImpl<$R, $Out>
       }));
   @override
   PlaylistSnippetModel $make(CopyWithData data) => PlaylistSnippetModel(
-      publishedAt: data.get(#publishedAt, or: $value.publishedAt),
+      publishedAtTimestamp:
+          data.get(#publishedAtTimestamp, or: $value.publishedAtTimestamp),
       channelId: data.get(#channelId, or: $value.channelId),
       title: data.get(#title, or: $value.title),
       description: data.get(#description, or: $value.description),

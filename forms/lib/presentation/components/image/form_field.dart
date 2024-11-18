@@ -80,9 +80,6 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
 
   Future<void> addOrEditImage(BuildContext context) async {
     final _maxWidth = Platform.isAndroid || Platform.isIOS ? context.screenWidth * 0.85 : context.screenWidth * 0.5;
-    // if result is null, do nothing
-    // if result is "", remove image
-    // if result is not null, add or update image
     final result = await showDialog<Pair<String?, bool>>(
       context: context,
       builder: (context) {

@@ -33,7 +33,8 @@ part "playlist_snippet_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.camelCase)
 class PlaylistSnippetModel with PlaylistSnippetModelMappable {
-  final DateTime? publishedAt;
+  @MappableField(key: "publishedAt")
+  final DateTime? publishedAtTimestamp;
   final String? channelId;
   final String? title;
   final String? description;
@@ -46,7 +47,7 @@ class PlaylistSnippetModel with PlaylistSnippetModelMappable {
   static const fromJson = PlaylistSnippetModelMapper.fromJson;
 
   PlaylistSnippetModel({
-    this.publishedAt,
+    this.publishedAtTimestamp,
     this.channelId,
     this.title,
     this.description,

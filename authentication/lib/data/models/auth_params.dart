@@ -44,8 +44,8 @@ class AuthParams {
   String? refreshToken;
   AuthType authType;
   AuthStatus authStatus;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  DateTime? createdAtTimestamp;
+  DateTime? updatedAtTimestamp;
 
   AuthParams._({
     this.id,
@@ -64,8 +64,8 @@ class AuthParams {
     this.refreshToken,
     required this.authType,
     required this.authStatus,
-    this.createdAt,
-    this.updatedAt,
+    this.createdAtTimestamp,
+    this.updatedAtTimestamp,
   });
 
   AuthParams.email({
@@ -152,7 +152,7 @@ class AuthParams {
     this.phoneNumber,
     this.displayName,
     this.photoUrl,
-    this.updatedAt,
+    this.updatedAtTimestamp,
     this.code,
     this.isAuthorized,
   })  : authType = AuthType.empty,
@@ -171,8 +171,8 @@ class AuthParams {
     required this.refreshToken,
     required this.authType,
     required this.authStatus,
-    required this.createdAt,
-    required this.updatedAt,
+    required this.createdAtTimestamp,
+    required this.updatedAtTimestamp,
   });
 
   UserModel toUserModel() {
@@ -188,8 +188,8 @@ class AuthParams {
       idToken: idToken,
       refreshToken: refreshToken,
       authType: authType,
-      createdAt: createdAt,
-      updatedAt: updatedAt,
+      createdAtTimestamp: createdAtTimestamp,
+      updatedAtTimestamp: updatedAtTimestamp,
     );
   }
 
@@ -207,8 +207,8 @@ class AuthParams {
     String? refreshToken,
     AuthType? authType,
     AuthStatus? authStatus,
-    DateTime? createdAt,
-    DateTime? updatedAt,
+    DateTime? createdAtTimestamp,
+    DateTime? updatedAtTimestamp,
   }) {
     return AuthParams._(
       email: email ?? this.email,
@@ -223,8 +223,8 @@ class AuthParams {
       refreshToken: refreshToken ?? this.refreshToken,
       authType: authType ?? this.authType,
       authStatus: authStatus ?? this.authStatus,
-      createdAt: createdAt ?? this.createdAt,
-      updatedAt: updatedAt ?? this.updatedAt,
+      createdAtTimestamp: createdAtTimestamp ?? this.createdAtTimestamp,
+      updatedAtTimestamp: updatedAtTimestamp ?? this.updatedAtTimestamp,
     );
   }
 
@@ -243,8 +243,8 @@ class AuthParams {
       "refreshToken": refreshToken,
       "authType": authType.name,
       "authStatus": authStatus.name,
-      "createdAt": createdAt?.millisecondsSinceEpoch,
-      "updatedAt": updatedAt?.millisecondsSinceEpoch,
+      "createdAtTimestamp": createdAtTimestamp?.millisecondsSinceEpoch,
+      "updatedAtTimestamp": updatedAtTimestamp?.millisecondsSinceEpoch,
     };
   }
 
@@ -263,8 +263,8 @@ class AuthParams {
       refreshToken: map["refreshToken"] as String?,
       authType: AuthType.values.firstWhere((element) => element.name == map["authType"]),
       authStatus: AuthStatus.values.firstWhere((element) => element.name == map["authStatus"]),
-      createdAt: map["createdAt"] != null ? DateTime.fromMillisecondsSinceEpoch(map["createdAt"] as int) : null,
-      updatedAt: map["updatedAt"] != null ? DateTime.fromMillisecondsSinceEpoch(map["updatedAt"] as int) : null,
+      createdAtTimestamp: map["createdAtTimestamp"] != null ? DateTime.fromMillisecondsSinceEpoch(map["createdAtTimestamp"] as int) : null,
+      updatedAtTimestamp: map["updatedAtTimestamp"] != null ? DateTime.fromMillisecondsSinceEpoch(map["updatedAtTimestamp"] as int) : null,
     );
   }
 
@@ -274,7 +274,7 @@ class AuthParams {
 
   @override
   String toString() {
-    return "AuthParams(code: $code id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAt: $createdAt, updatedAt: $updatedAt)";
+    return "AuthParams(code: $code id: $id, email: $email, password: $password, phoneNumber: $phoneNumber, displayName: $displayName, photoUrl: $photoUrl, accessToken: $accessToken, idToken: $idToken, nonce: $nonce, refreshToken: $refreshToken, authType: $authType, authStatus: $authStatus, createdAtTimestamp: $createdAtTimestamp, updatedAtTimestamp: $updatedAtTimestamp)";
   }
 
   @override
@@ -295,8 +295,8 @@ class AuthParams {
         other.refreshToken == refreshToken &&
         other.authType == authType &&
         other.authStatus == authStatus &&
-        other.createdAt == createdAt &&
-        other.updatedAt == updatedAt;
+        other.createdAtTimestamp == createdAtTimestamp &&
+        other.updatedAtTimestamp == updatedAtTimestamp;
   }
 
   @override
@@ -314,7 +314,7 @@ class AuthParams {
         refreshToken.hashCode ^
         authType.hashCode ^
         authStatus.hashCode ^
-        createdAt.hashCode ^
-        updatedAt.hashCode;
+        createdAtTimestamp.hashCode ^
+        updatedAtTimestamp.hashCode;
   }
 }

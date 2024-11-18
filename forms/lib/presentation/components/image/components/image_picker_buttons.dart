@@ -43,7 +43,11 @@ class ImagePickerButtons extends StatelessWidget {
                   duration: Durations.short1,
                   opacity: _canSubmit ? 1 : 0.5,
                   child: FilledButton.icon(
-                    onPressed: _canSubmit ? () => Navigator.pop(context, _resultCombination) : null,
+                    onPressed: _canSubmit
+                        ? () {
+                            Navigator.pop(context, _resultCombination);
+                          }
+                        : null,
                     icon: const Icon(Icons.check),
                     label: Text(store.isEditing ? "Update" : "Add"),
                   ),

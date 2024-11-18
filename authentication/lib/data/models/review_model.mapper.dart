@@ -89,9 +89,10 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
   static Map<String, dynamic>? _$writeData(ReviewModel v) => v.writeData;
   static const Field<ReviewModel, Map<String, dynamic>> _f$writeData =
       Field('writeData', _$writeData, key: 'write_data', opt: true);
-  static DateTime _$createdAt(ReviewModel v) => v.createdAt;
-  static const Field<ReviewModel, DateTime> _f$createdAt =
-      Field('createdAt', _$createdAt, key: 'created_at');
+  static DateTime _$createdAtTimestamp(ReviewModel v) => v.createdAtTimestamp;
+  static const Field<ReviewModel, DateTime> _f$createdAtTimestamp = Field(
+      'createdAtTimestamp', _$createdAtTimestamp,
+      key: 'created_at_timestamp');
   static String _$title(ReviewModel v) => v.title;
   static const Field<ReviewModel, String> _f$title = Field('title', _$title);
 
@@ -102,7 +103,7 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
     #documentReference: _f$documentReference,
     #user: _f$user,
     #writeData: _f$writeData,
-    #createdAt: _f$createdAt,
+    #createdAtTimestamp: _f$createdAtTimestamp,
     #title: _f$title,
   };
 
@@ -113,7 +114,7 @@ class ReviewModelMapper extends ClassMapperBase<ReviewModel> {
         documentReference: data.dec(_f$documentReference),
         user: data.dec(_f$user),
         writeData: data.dec(_f$writeData),
-        createdAt: data.dec(_f$createdAt),
+        createdAtTimestamp: data.dec(_f$createdAtTimestamp),
         title: data.dec(_f$title));
   }
 
@@ -177,7 +178,7 @@ abstract class ReviewModelCopyWith<$R, $In extends ReviewModel, $Out>
       String? documentReference,
       UserModel? user,
       Map<String, dynamic>? writeData,
-      DateTime? createdAt,
+      DateTime? createdAtTimestamp,
       String? title});
   ReviewModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -208,7 +209,7 @@ class _ReviewModelCopyWithImpl<$R, $Out>
           String? documentReference,
           UserModel? user,
           Object? writeData = $none,
-          DateTime? createdAt,
+          DateTime? createdAtTimestamp,
           String? title}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
@@ -216,7 +217,7 @@ class _ReviewModelCopyWithImpl<$R, $Out>
         if (documentReference != null) #documentReference: documentReference,
         if (user != null) #user: user,
         if (writeData != $none) #writeData: writeData,
-        if (createdAt != null) #createdAt: createdAt,
+        if (createdAtTimestamp != null) #createdAtTimestamp: createdAtTimestamp,
         if (title != null) #title: title
       }));
   @override
@@ -227,7 +228,8 @@ class _ReviewModelCopyWithImpl<$R, $Out>
           data.get(#documentReference, or: $value.documentReference),
       user: data.get(#user, or: $value.user),
       writeData: data.get(#writeData, or: $value.writeData),
-      createdAt: data.get(#createdAt, or: $value.createdAt),
+      createdAtTimestamp:
+          data.get(#createdAtTimestamp, or: $value.createdAtTimestamp),
       title: data.get(#title, or: $value.title));
 
   @override

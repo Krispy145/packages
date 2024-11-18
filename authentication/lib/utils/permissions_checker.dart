@@ -152,7 +152,7 @@ class PermissionChecker<T> {
         documentReference: dataSourceReference,
         user: currentUser.reference(),
         writeData: dataMap,
-        createdAt: DateTime.now(),
+        createdAtTimestamp: DateTime.now(),
       ),
     );
   }
