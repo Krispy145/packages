@@ -69,7 +69,9 @@ class ReactiveSocialButtons<T extends UserModel> extends StatelessWidget {
 
         Future<void> onAuthButtonPressed() async {
           try {
-            final user = await repository.signIn(params: socialType.params);
+            final paramsMap = socialType.params.toMap();
+            final params = repository.convertDataTypeFromMap(paramsMap);
+            final user = await repository.signIn(params: params);
             if (user != null) {
               onSuccess(user);
             }

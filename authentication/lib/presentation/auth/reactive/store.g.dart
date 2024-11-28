@@ -56,8 +56,8 @@ mixin _$ReactiveAuthStore<T extends UserModel> on _ReactiveAuthStore<T>, Store {
       AsyncAction('_ReactiveAuthStore.signIn', context: context);
 
   @override
-  Future<T?> signIn(AuthParams params) {
-    return _$signInAsyncAction.run(() => super.signIn(params));
+  Future<T?> signIn(AuthParams userParams) {
+    return _$signInAsyncAction.run(() => super.signIn(userParams));
   }
 
   late final _$signUpWithEmailAsyncAction =

@@ -154,10 +154,11 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
   @action
   Future<void> _signInAnonymously() async {
     setLoading();
-    var params = AuthParams.anonymous();
+    var anonymousParams = AuthParams.anonymous();
     if (codeSource != null) {
-      params = params.copyWith(code: AuthEnv.code);
+      anonymousParams = anonymousParams.copyWith(code: AuthEnv.code);
     }
+    final params = repository.convertDataTypeFromMap(anonymousParams.toMap());
     final response = await repository.signIn(
       params: params,
     );

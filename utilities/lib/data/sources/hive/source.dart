@@ -6,11 +6,11 @@ import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/hive/helpers/type_box.dart";
 import "package:utilities/data/sources/hive/helpers/type_box_listeneable.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 import "package:utilities/widgets/load_state/store.dart";
-import "package:uuid/uuid.dart";
 
 /// [HiveDataSource] is a wrapper class for [Hive]
 abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T, Q> {
@@ -100,12 +100,6 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
 
   /// [boxListenable] returns a [ValueListenable] for the [TypeBox]
   ValueListenable<TypeBox<T>> get boxListenable => TypeBoxListenable<T>(_box, null);
-
-  /// [generateUniqueId] method generates a unique id
-  String generateUniqueId() {
-    const uuid = Uuid();
-    return uuid.v4();
-  }
 
   // @override
   // T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromJson(data);

@@ -111,11 +111,13 @@ class _PhoneAuthWidgetState<T extends UserModel> extends State<PhoneAuthWidget<T
               }
               try {
                 if (isSigningIn) {
+                  final paramsMap = AuthParams.phone(
+                    phoneNumber: _phone.text,
+                    password: _password.text,
+                  ).toMap();
+                  final params = widget.repository.convertDataTypeFromMap(paramsMap);
                   final response = await widget.repository.signIn(
-                    params: AuthParams.phone(
-                      phoneNumber: _phone.text,
-                      password: _password.text,
-                    ),
+                    params: params,
                   );
                   if (response != null) {
                     widget.onSuccess(response);

@@ -157,7 +157,7 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   /// [signIn] signs in the user.
-  Future<T?> signIn({required AuthParams params}) async {
+  Future<T?> signIn({required T params}) async {
     AppLogger.print(
       "signIn attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
@@ -231,7 +231,7 @@ class AuthenticationRepository<T extends UserModel> {
     }
   }
 
-  Future<void> _verifyCode(AuthParams params, UserModel changedUserModel) async {
+  Future<void> _verifyCode(T params, UserModel changedUserModel) async {
     if (params.code != null && _codeSource != null) {
       final response = await _codeSource?.source.verifyAndConsumeCode(params.code!);
       if (response == RequestResponse.failure) {
@@ -257,7 +257,7 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   /// [signUpWithEmail] signs up the use with email and password.
-  Future<T?> signUpWithEmail({required AuthParams params}) async {
+  Future<T?> signUpWithEmail({required T params}) async {
     AppLogger.print(
       "signUp attempt -> ${params.authType}",
       [AuthenticationLoggers.authentication],
@@ -272,8 +272,9 @@ class AuthenticationRepository<T extends UserModel> {
       final _currentResponse = result.toMap();
       _currentResponse["last_login_at_timestamp"] = DateTime.now();
       _currentResponse["status"] = AuthStatus.authenticated;
-      final _paramsMap = params.toMap();
-      for (final element in _paramsMap.entries) {
+      _currentResponse["id"] = result.id;
+
+      for (final element in _currentResponse.entries) {
         if (element.key != "email" && element.key != "password" && element.value != null) {
           _currentResponse[element.key.camelCaseToSnakeCase()] = element.value;
         }
@@ -285,7 +286,7 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   /// [params] refreshes the user's token.
-  Future<T?> reauthenticate({required AuthParams params}) async {
+  Future<T?> reauthenticate({required T params}) async {
     AppLogger.print(
       "refreshToken attempt",
       [AuthenticationLoggers.authentication],

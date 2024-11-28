@@ -77,7 +77,9 @@ class SocialButtons<T extends UserModel> extends StatelessWidget {
 
         Future<void> onAuthButtonPressed() async {
           try {
-            await repository.signIn(params: socialType.params);
+            final paramsMap = socialType.params.toMap();
+            final params = repository.convertDataTypeFromMap(paramsMap);
+            await repository.signIn(params: params);
           } on AuthenticationException catch (error) {
             if (onError == null && context.mounted) {
               context.showSnackbar(

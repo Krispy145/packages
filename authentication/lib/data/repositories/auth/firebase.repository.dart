@@ -460,7 +460,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
     } catch (e) {
       if (e is FirebaseAuthException) {
         if (e.code == "requires-recent-login") {
-          await reauthenticate(userModelStream.value!.toAuthParams());
+          await reauthenticate(userModelStream.value!);
           return changePassword(password);
         }
       }
@@ -490,7 +490,7 @@ class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationData
     }
     _firebaseAuth.authStateChanges().listen((event) async {
       if (event?.uid != _user?.uid && userModelStream.value != null) {
-        final newUser = await reauthenticate(userModelStream.value!.toAuthParams());
+        final newUser = await reauthenticate(userModelStream.value!);
         userModelStream.add(newUser);
       }
       if (event == null && userModelStream.value != null) {

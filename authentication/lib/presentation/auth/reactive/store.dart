@@ -104,6 +104,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   final idKey = "id";
   final emailKey = "email";
   final passwordKey = "password";
+  final displayNameKey = "display_name";
   final codeKey = "code";
 
   @override
@@ -124,6 +125,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
         Validators.minLength(8),
       ],
     ),
+    displayNameKey: FormControl<String>(value: editingValue?.displayName ?? ""),
   });
 
   @action
@@ -163,10 +165,11 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   }
 
   @action
-  Future<T?> signIn(AuthParams params) async {
+  Future<T?> signIn(AuthParams userParams) async {
     setLoading();
-    form.control(emailKey).value = params.email;
-    form.control(passwordKey).value = params.password;
+    form.control(emailKey).value = userParams.email;
+    form.control(passwordKey).value = userParams.password;
+    final params = repository.convertDataTypeFromMap(userParams.toMap());
     final response = await repository.signIn(params: params);
     if (response != null) {
       setLoaded();
@@ -179,17 +182,16 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   @action
   Future<T?> signUpWithEmail() async {
     setLoading();
+    final _additionalFieldsMap = additionalFields?.controls.map((key, value) => MapEntry(key, value.value));
     final paramsMap = AuthParams.email(
       email: form.control(emailKey).value as String,
       password: form.control(passwordKey).value as String,
+      displayName: form.control(displayNameKey).value as String?,
     ).toMap()
       ..addAll(
-        additionalFields?.value ?? {},
+        _additionalFieldsMap ?? {},
       );
-    var params = AuthParams.fromMap(paramsMap);
-    if (codeSource != null) {
-      params = params.copyWith(code: form.control(codeKey).value as String);
-    }
+    final params = repository.convertDataTypeFromMap(paramsMap);
     final result = await repository.signUpWithEmail(
       params: params,
     );
@@ -237,10 +239,11 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   @action
   Future<void> _signInAnonymously() async {
     setLoading();
-    var params = AuthParams.anonymous();
+    var anonymousParams = AuthParams.anonymous();
     if (codeSource != null) {
-      params = params.copyWith(code: AuthEnv.code);
+      anonymousParams = anonymousParams.copyWith(code: AuthEnv.code);
     }
+    final params = repository.convertDataTypeFromMap(anonymousParams.toMap());
     final response = await repository.signIn(
       params: params,
     );

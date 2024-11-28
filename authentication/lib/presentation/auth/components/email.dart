@@ -341,10 +341,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       ),
     );
     debugPrint("updated paramsMap: $paramsMap");
-    var params = AuthParams.fromMap(paramsMap);
-    if (widget.codeDataSourceType != null) {
-      params = params.copyWith(code: _codeController.text);
-    }
+    final params = widget.store.repository.convertDataTypeFromMap(paramsMap);
     await widget.store.repository
         .signUpWithEmail(
       params: params,
@@ -373,11 +370,11 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       [AuthenticationLoggers.authentication],
     );
 
-    final params = AuthParams.email(
+    final paramsMap = AuthParams.email(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
-    );
-
+    ).toMap();
+    final params = widget.store.repository.convertDataTypeFromMap(paramsMap);
     final response = await widget.store.repository.signIn(
       params: params,
     );

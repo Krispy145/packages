@@ -145,7 +145,7 @@ class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRe
   Future<bool> signOut() async {
     try {
       await dataSource.signOut(
-        params: userModelStream.value!.toAuthParams(),
+        params: userModelStream.value!,
       );
       return true;
     } catch (e) {

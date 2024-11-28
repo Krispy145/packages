@@ -150,7 +150,7 @@ class PermissionChecker<T> {
         crud: crud,
         title: dataTitle,
         documentReference: dataSourceReference,
-        user: currentUser.reference(),
+        user: currentUser,
         writeData: dataMap,
         createdAtTimestamp: DateTime.now(),
       ),
