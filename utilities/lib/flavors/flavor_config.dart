@@ -23,16 +23,12 @@ class FlavorConfig {
   /// [environment] is the environment used for the app
   Environment? environment;
 
-  /// [apiPrefix] is the prefix used for the api
-  final String apiPrefix;
-
   /// [loggerFeatures] is the features used for the logger
   final Map<Enum, bool> loggerFeatures;
 
   /// [FlavorConfig] is the constructor for the class
   FlavorConfig(
     this._environmentName, {
-    required this.apiPrefix,
     required this.loggerFeatures,
   }) {
     _setEnvironment(_environmentName);
@@ -40,7 +36,6 @@ class FlavorConfig {
 
   /// [_setEnvironment] is a private method that sets the environment
   void _setEnvironment(String environmentName) {
-    environment =
-        Environment.values.firstWhere((e) => e.name == environmentName);
+    environment = Environment.values.firstWhere((e) => e.name == environmentName);
   }
 }

@@ -215,10 +215,10 @@ class ColorModel with ColorModelMappable {
   static const fromJson = ColorModelMapper.fromJson;
 
   /// ] is a method that returns a [ColorScheme] based on the values of the [ColorModel].
-  ColorScheme get scheme {
+  ColorScheme scheme(bool isDark) {
     final seedColor = ColorScheme.fromSeed(seedColor: primary!);
     return ColorScheme(
-      brightness: Brightness.light,
+      brightness: isDark ? Brightness.dark : Brightness.light,
       primary: primary!,
       primaryContainer: primaryContainer ?? seedColor.primary,
       secondary: secondary ?? seedColor.secondary,

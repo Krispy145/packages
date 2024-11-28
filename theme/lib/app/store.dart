@@ -301,13 +301,12 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
 
   ThemeData _buildTheme() {
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
-    final colorScheme = currentColorModel?.scheme;
+    final colorScheme = currentColorModel?.scheme(isDark);
     AppLogger.print(
       "Building App Theme: $styleType -> ${isDark ? "Dark" : "Light"}",
       [ThemeLoggers.theme],
     );
-    final chipTheme = componentThemesModel?.getComponentThemeFromStyleType<ChipThemeData?>(styleType);
-    AppLogger.print("ChipTheme in _build: $chipTheme", [ThemeLoggers.chips]);
+
     return ThemeData(
       colorScheme: colorScheme,
       textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
@@ -328,7 +327,7 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
       badgeTheme: componentThemesModel?.getComponentThemeFromStyleType<BadgeThemeData?>(styleType),
       appBarTheme: componentThemesModel?.getComponentThemeFromStyleType<AppBarTheme?>(styleType),
       bottomAppBarTheme: componentThemesModel?.getComponentThemeFromStyleType<BottomAppBarTheme?>(styleType),
-      chipTheme: chipTheme,
+      chipTheme: componentThemesModel?.getComponentThemeFromStyleType<ChipThemeData?>(styleType),
       dialogTheme: componentThemesModel?.getComponentThemeFromStyleType<DialogTheme?>(styleType),
       popupMenuTheme: componentThemesModel?.getComponentThemeFromStyleType<PopupMenuThemeData?>(styleType),
       sliderTheme: componentThemesModel?.getComponentThemeFromStyleType<SliderThemeData?>(styleType),
