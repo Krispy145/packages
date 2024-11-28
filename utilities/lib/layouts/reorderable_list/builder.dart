@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/layouts/components/types.dart";
-import "package:utilities/sizes/spacers.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 import "package:widgets/messages/warning_message.dart";
 
@@ -17,6 +16,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
   final Axis scrollDirection;
   final ListViewType viewType;
   final bool shrinkWrap;
+  final ScrollPhysics? physics;
 
   /// [defaultDragHandles] is used to build the default drag handles for the list.
   /// if [defaultDragHandles] is true, the default drag handles will be built.
@@ -32,6 +32,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
     this.header,
     required this.itemBuilder,
     this.padding = const EdgeInsets.all(8),
+    this.physics,
     this.shrinkWrap = false,
     this.defaultDragHandles = false,
     this.emptyBuilder,
@@ -48,6 +49,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
     required this.itemBuilder,
     required this.gridDelegate,
     this.padding = const EdgeInsets.all(8),
+    this.physics,
     this.shrinkWrap = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -66,7 +68,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
         final contents = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (header != null) ...[header!, Sizes.m.spacer()],
+            if (header != null) header!,
             if (shrinkWrap)
               Observer(
                 builder: (context) {
@@ -106,6 +108,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
       padding: padding,
       scrollDirection: scrollDirection,
       shrinkWrap: shrinkWrap,
+      physics: physics,
       onReorder: store.onReorder,
       buildDefaultDragHandles: defaultDragHandles,
       itemCount: store.results.length,
@@ -121,6 +124,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
       padding: padding,
       scrollDirection: scrollDirection,
       gridDelegate: gridDelegate!,
+      physics: physics,
       shrinkWrap: shrinkWrap,
       itemCount: store.results.length,
       itemBuilder: (context, index) {

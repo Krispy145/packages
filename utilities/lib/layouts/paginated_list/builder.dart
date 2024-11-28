@@ -28,6 +28,9 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
     super.errorBuilder,
     super.stackedWidgets,
     super.padding,
+    super.physics,
+    super.shrinkWrap = false,
+    super.separatorBuilder,
     super.slivers = false,
     super.scrollDirection = Axis.vertical,
   }) : super.listView(store: store);
@@ -44,6 +47,8 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
     super.errorBuilder,
     super.stackedWidgets,
     super.padding,
+    super.physics,
+    super.shrinkWrap = false,
     this.canRefresh = true,
     super.slivers = false,
   }) : super.gridView(store: store);

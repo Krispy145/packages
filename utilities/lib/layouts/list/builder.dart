@@ -16,6 +16,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
   final Widget Function(BuildContext context, String message)? emptyBuilder;
   final Widget Function(BuildContext context, String message)? errorBuilder;
   final Widget Function(BuildContext, int)? separatorBuilder;
+  final ScrollPhysics? physics;
   // final LoadStateBuilder? loadStateBuilder;
   final List<Widget>? stackedWidgets;
   final EdgeInsets padding;
@@ -35,6 +36,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     // this.loadStateBuilder,
     this.stackedWidgets,
     this.padding = const EdgeInsets.all(8),
+    this.physics,
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -58,6 +60,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     // this.loadStateBuilder,
     this.stackedWidgets,
     this.padding = const EdgeInsets.all(8),
+    this.physics,
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -79,6 +82,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     this.gridDelegate,
     this.stackedWidgets,
     this.padding = const EdgeInsets.all(8),
+    this.physics,
     this.slivers = false,
     this.emptyBuilder,
     this.errorBuilder,
@@ -201,6 +205,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
               scrollDirection: scrollDirection,
               reverse: store.reverseList,
               padding: padding,
+              physics: physics,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemCount: itemCount,
               itemBuilder: loadingOrItemBuilder,
@@ -217,6 +222,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
           : GridView.builder(
               padding: padding,
               scrollDirection: scrollDirection,
+              physics: physics,
               reverse: store.reverseList,
               itemCount: itemCount,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
