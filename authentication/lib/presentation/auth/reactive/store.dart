@@ -89,44 +89,73 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   @action
   void toggleSignIn() {
     authAction = authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
-    if (codeSource != null && authAction == AuthAction.signUp) {
-      form.addAll({
-        codeKey: FormControl<String>(
-          validators: [
-            Validators.required,
-          ],
-        ),
+    if (authAction == AuthAction.signUp) {
+      if (codeSource != null) {
+        form.addAll({
+          codeKey: FormControl<String>(
+            validators: [
+              Validators.required,
+            ],
+          ),
+        });
+        repository.setCodeSource(codeSource!);
+      }
+      additionalFields?.controls.forEach((key, value) {
+        value.setValidators([Validators.required]);
       });
-      repository.setCodeSource(codeSource!);
+      form
+        ..addAll(confirmFormControl)
+        ..setValidators(
+          [Validators.mustMatch(passwordKey, confirmPasswordKey)],
+        );
+    } else {
+      additionalFields?.controls.forEach((key, value) {
+        value.clearValidators();
+      });
+      form
+        ..setValidators([])
+        ..removeControl(confirmPasswordKey);
     }
   }
 
   final idKey = "id";
   final emailKey = "email";
   final passwordKey = "password";
+  final confirmPasswordKey = "confirm_password";
   final displayNameKey = "display_name";
   final codeKey = "code";
 
-  @override
-  @observable
-  late FormGroup form = FormGroup({
-    idKey: FormControl<String>(value: editingValue?.id ?? ""),
-    emailKey: FormControl<String>(
-      value: kDebugMode ? AuthEnv.email : null,
-      validators: [
-        Validators.required,
-        Validators.email,
-      ],
-    ),
-    passwordKey: FormControl<String>(
-      value: kDebugMode ? AuthEnv.password : null,
+  late final confirmFormControl = {
+    confirmPasswordKey: FormControl<String>(
       validators: [
         Validators.required,
         Validators.minLength(8),
       ],
     ),
-    displayNameKey: FormControl<String>(value: editingValue?.displayName ?? ""),
-  });
+  };
+
+  @override
+  @observable
+  late FormGroup form = FormGroup(
+    {
+      idKey: FormControl<String>(value: editingValue?.id ?? ""),
+      emailKey: FormControl<String>(
+        value: kDebugMode ? AuthEnv.email : null,
+        validators: [
+          Validators.required,
+          Validators.email,
+        ],
+      ),
+      passwordKey: FormControl<String>(
+        value: kDebugMode ? AuthEnv.password : null,
+        validators: [
+          Validators.required,
+          Validators.minLength(8),
+        ],
+      ),
+      displayNameKey: FormControl<String>(value: editingValue?.displayName ?? ""),
+    },
+  );
 
   @action
   Future<void> init() async {

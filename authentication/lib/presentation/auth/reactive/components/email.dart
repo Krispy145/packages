@@ -57,18 +57,6 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
     });
   }
 
-  //TODO: Complete change from TextFormField to LYTextFormField
-  // void Widget _buildTextField(BuildContext context){
-  //   final store = TextFormFieldStore(
-  //       value: value,
-  //       onValueChanged: (newValue) => onChanged(keys, newValue),
-  //       title: keys.last,
-  //     );
-  //     return LYTextFormField(
-  //       store: store,
-  //     );
-  // }
-
   @override
   Widget build(BuildContext context) {
     if (PlatformExtension.hasKeyboard) {
@@ -90,13 +78,14 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
     return Column(
       children: [
         ReactiveTextField<String>(
-          formControlName: "email",
+          formControlName: widget.store.emailKey,
           keyboardType: TextInputType.emailAddress,
           autofillHints: const [AutofillHints.email],
           validationMessages: {
             ValidationMessage.required: (_) => "An email is required",
             ValidationMessage.email: (_) => "Please enter a valid email",
           },
+          showErrors: (control) => control.invalid && control.dirty,
           decoration: const InputDecoration(
             prefixIcon: Icon(Icons.email),
             label: Text("Enter your email"),
@@ -105,11 +94,12 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
         if (!_forgotPassword) ...[
           Sizes.s.spacer(),
           ReactiveTextField<String>(
-            formControlName: "password",
+            formControlName: widget.store.passwordKey,
             validationMessages: {
               ValidationMessage.required: (_) => "A password is required",
               ValidationMessage.minLength: (data) => "Password must be at least 8 characters",
             },
+            showErrors: (control) => control.invalid && control.dirty,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.lock),
               label: const Text("Enter your password"),
@@ -125,6 +115,34 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
             obscureText: !_showPassword,
           ),
           Sizes.s.spacer(),
+          if (widget.store.authAction == AuthAction.signUp) ...[
+            ReactiveTextField<String>(
+              formControlName: widget.store.confirmPasswordKey,
+              validationMessages: {
+                ValidationMessage.required: (_) => "Please confirm your password",
+                ValidationMessage.minLength: (_) => "Password must be at least 8 characters",
+                ValidationMessage.mustMatch: (_) => "Passwords must match",
+              },
+              onChanged: (control) {
+                widget.store.form.control(widget.store.confirmPasswordKey).value = control.value;
+              },
+              showErrors: (control) => control.invalid && control.dirty && widget.store.authAction == AuthAction.signUp,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.lock),
+                label: const Text("Confirm your password"),
+                suffixIcon: GestureDetector(
+                  onTap: () => setState(() {
+                    _showPassword = !_showPassword;
+                  }),
+                  child: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                  ),
+                ),
+              ),
+              obscureText: !_showPassword,
+            ),
+            Sizes.s.spacer(),
+          ],
           ElevatedButton(
             onPressed: _handleSignSignUpTrigger,
             child: _isLoading
@@ -206,6 +224,7 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
 
   Future<void> _handleSignSignUpTrigger() async {
     if (widget.store.form.invalid) {
+      widget.store.form.markAllAsTouched();
       context.showSnackbar(
         SnackbarConfiguration.error(title: "Please fill in all fields and fix any errors"),
       );

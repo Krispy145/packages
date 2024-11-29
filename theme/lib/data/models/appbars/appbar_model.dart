@@ -135,8 +135,8 @@ class AppbarModel with AppbarModelMappable {
 //   //   );
 //   // }
 
-//   AppBarTheme asAppBarTheme({String? styleTypeName}) {
-//     return AppBarTheme(
+//   LYAppBarTheme asAppBarTheme({String? styleTypeName}) {
+//     return LYAppBarTheme(
 //       color: color_themeColorString?.toColor(styleType: styleTypeName),
 //       backgroundColor:
 //           backgroundColor_themeColorString?.toColor(styleType: styleTypeName),

@@ -58,7 +58,7 @@ class DefaultShellStructure extends StatelessWidget {
     return Scaffold(
       appBar: hasAppBar
           ? PreferredSize(
-              //TODO: Make appBar Sizes in utilities (or abstract AppBar class from PrefferedSizeWidget with a builder method to add in the visibility child)
+              //TODO: Make appBar Sizes in utilities (or abstract LYAppBar class from PrefferedSizeWidget with a builder method to add in the visibility child)
               preferredSize: const Size.fromHeight(kToolbarHeight),
               child: Observer(
                 builder: (_) => Visibility(
