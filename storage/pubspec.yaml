@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   utilities:
-    path: ../../packages/utilities
+    path: ../utilities
   cross_file: ^0.3.4+2
 
 dev_dependencies:

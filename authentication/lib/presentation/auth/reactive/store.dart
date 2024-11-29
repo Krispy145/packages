@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 import "package:authentication/data/models/auth_params.dart";
 import "package:authentication/data/models/user_model.dart";
 import "package:authentication/domain/repositories/authentication.repository.dart";

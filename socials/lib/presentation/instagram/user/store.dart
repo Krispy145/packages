@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 import "package:flutter_inappwebview/flutter_inappwebview.dart";
 import "package:mobx/mobx.dart";
 import "package:socials/data/constants/instagram.dart";

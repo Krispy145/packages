@@ -15,9 +15,9 @@ dependencies:
   flutter:
     sdk: flutter
   fonts:
-    path: ../../packages/fonts
+    path: ../fonts
   forms:
-    path: ../../packages/forms
+    path: ../forms
   get_it: ^7.6.9
   palette_generator: ^0.3.3+3
 

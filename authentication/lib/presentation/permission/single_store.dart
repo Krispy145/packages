@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 import "package:mobx/mobx.dart";
 import "package:utilities/data/models/permission_model.dart";
 import "package:utilities/data/sources/source.dart";

@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   utilities:
-    path: ../../packages/utilities
+    path: ../utilities
   youtube_explode_dart: ^2.2.1
 
 dev_dependencies:

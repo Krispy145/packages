@@ -18,7 +18,7 @@ dependencies:
   supabase_flutter: ^2.0.2
   email_validator: ^2.1.17
   utilities:
-    path: ../../packages/utilities
+    path: ../utilities
   cryptography: ^2.7.0
   font_awesome_flutter: ^10.6.0
   crypto: ^3.0.1

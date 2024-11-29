@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 import "package:maps/presentation/map/store.dart";
 import "package:mobx/mobx.dart";
 

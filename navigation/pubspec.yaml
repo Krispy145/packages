@@ -15,7 +15,7 @@ dependencies:
   mobx: ^2.2.0
   table_calendar: ^3.0.9
   utilities:
-    path: ../../packages/utilities
+    path: ../utilities
   flutter_adaptive_scaffold: ^0.1.11+1
 
 dev_dependencies:

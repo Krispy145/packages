@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_branch_sdk: ^7.1.0
   navigation:
-    path: ../../packages/navigation
+    path: ../navigation
   rxdart: ^0.27.7
 
 dev_dependencies:

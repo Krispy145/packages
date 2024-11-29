@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   flutter_contacts: ^1.1.7+1
   utilities:
-    path: ../../packages/utilities
+    path: ../utilities
 
 dev_dependencies:
   build_runner: null

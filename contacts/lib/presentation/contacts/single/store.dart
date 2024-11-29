@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 import "package:flutter/foundation.dart";
 import "package:flutter_contacts/flutter_contacts.dart";
 import "package:mobx/mobx.dart";

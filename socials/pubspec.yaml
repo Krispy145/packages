@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   cached_network_image: ^3.3.1
   widgets:
-    path: ../../packages/widgets
+    path: ../widgets
 
 dev_dependencies:
   flutter_test:
