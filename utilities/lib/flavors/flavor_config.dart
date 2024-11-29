@@ -26,10 +26,13 @@ class FlavorConfig {
   /// [loggerFeatures] is the features used for the logger
   final Map<Enum, bool> loggerFeatures;
 
+  final bool overrideFeatures;
+
   /// [FlavorConfig] is the constructor for the class
   FlavorConfig(
     this._environmentName, {
     required this.loggerFeatures,
+    required this.overrideFeatures,
   }) {
     _setEnvironment(_environmentName);
   }
