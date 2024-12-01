@@ -225,10 +225,15 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     return Pair(RequestResponse.success, data);
   }
 
-  Future<int?> getCollectionCount() async {
+  Future<Pair<RequestResponse, int>> getCollectionCount() async {
     final query = firestore.collection(collectionName);
-    final aggregateQuerySnapshot = await query.count().get();
-    return aggregateQuerySnapshot.count;
+    final querySnapshot = await query.get();
+    return Pair(RequestResponse.success, querySnapshot.docs.length);
+  }
+
+  Stream<Pair<RequestResponse, int>> getCollectionCountStream() {
+    final query = firestore.collection(collectionName);
+    return query.snapshots().map((event) => Pair(RequestResponse.success, event.docs.length));
   }
 
   void _logRequest(String method, String path, T? data) {
