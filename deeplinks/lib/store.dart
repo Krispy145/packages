@@ -206,7 +206,7 @@ abstract class _DeepLinksStore with Store {
   }) async {
     try {
       AppLogger.print("Creating deep link...", [DeeplinksLoggers.deeplinks]);
-      final branchLinkProperties = linkProperties?.branchLinkProperties ?? BranchLinkProperties();
+      final branchLinkProperties = linkProperties?.branchLinkProperties ?? LinkPropertiesModel.defaultShareProperties;
       final response = await FlutterBranchSdk.getShortUrl(
         buo: deepLink.branchUniversalObject,
         linkProperties: branchLinkProperties,
@@ -238,17 +238,13 @@ abstract class _DeepLinksStore with Store {
 
   /// Share a deep link.
   @action
-  Future<dynamic> shareDeepLink({
+  Future<String?> shareDeepLink({
     required String message,
     required DeepLinkModel deepLink,
     LinkPropertiesModel? linkProperties,
   }) async {
-    final branchLinkProperties = linkProperties?.branchLinkProperties ??
-        BranchLinkProperties(
-          channel: "share",
-          campaign: "share",
-          feature: "share",
-        );
+    final branchLinkProperties = linkProperties?.branchLinkProperties ?? LinkPropertiesModel.defaultShareProperties;
+
     final response = await FlutterBranchSdk.showShareSheet(
       buo: deepLink.branchUniversalObject,
       linkProperties: branchLinkProperties,
@@ -260,13 +256,14 @@ abstract class _DeepLinksStore with Store {
         [DeeplinksLoggers.deeplinks],
         type: LoggerType.confirmation,
       );
-      return response.result;
+      return response.result as String?;
     } else {
       AppLogger.print(
         "Error : ${response.errorCode} - ${response.errorMessage}",
         [DeeplinksLoggers.deeplinks],
         type: LoggerType.error,
       );
+      return response.errorMessage;
     }
   }
 

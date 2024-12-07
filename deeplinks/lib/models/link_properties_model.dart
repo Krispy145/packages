@@ -36,13 +36,22 @@ class LinkPropertiesModel with LinkPropertiesModelMappable {
         campaign: "",
       );
 
+  static BranchLinkProperties defaultShareProperties = const LinkPropertiesModel(
+    feature: "share",
+    alias: "",
+    stage: "",
+    matchDuration: Duration.zero,
+    channel: "share",
+    campaign: "share",
+  ).branchLinkProperties;
+
   BranchLinkProperties get branchLinkProperties => BranchLinkProperties(
         tags: tags,
-        feature: feature ?? "",
+        feature: feature ?? "share",
         alias: alias ?? "",
         stage: stage ?? "",
         matchDuration: matchDuration?.inMilliseconds ?? 0,
-        channel: channel ?? "",
-        campaign: campaign ?? "",
+        channel: channel ?? "share",
+        campaign: campaign ?? "share",
       );
 }

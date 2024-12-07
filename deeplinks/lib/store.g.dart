@@ -73,7 +73,7 @@ mixin _$DeepLinksStore on _DeepLinksStore, Store {
       AsyncAction('_DeepLinksStore.shareDeepLink', context: context);
 
   @override
-  Future<dynamic> shareDeepLink(
+  Future<String?> shareDeepLink(
       {required String message,
       required DeepLinkModel deepLink,
       LinkPropertiesModel? linkProperties}) {
