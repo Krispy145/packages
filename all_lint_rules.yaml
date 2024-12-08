@@ -36,7 +36,7 @@ linter:
     - avoid_returning_null_for_future
     - avoid_returning_null_for_void
     - avoid_returning_this
-    - avoid_setters_without_getters
+    # - avoid_setters_without_getters
     - avoid_shadowing_type_parameters
     - avoid_single_cascade_in_expression_statements
     - avoid_slow_async_io
@@ -197,7 +197,6 @@ linter:
     - use_named_constants
     - use_raw_strings
     - use_rethrow_when_possible
-    - use_setters_to_change_properties
     - use_string_buffers
     - use_string_in_part_of_directives
     - use_super_parameters

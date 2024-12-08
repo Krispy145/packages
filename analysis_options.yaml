@@ -11,6 +11,7 @@ analyzer:
     missing_required_param: error
     avoid_print: info
     unused_element: ignore
+    use_setters_to_change_properties: ignore
   language:
     strict-casts: true
     strict-inference: true
