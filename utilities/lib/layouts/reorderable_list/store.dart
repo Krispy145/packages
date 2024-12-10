@@ -14,6 +14,5 @@ abstract class _ReorderableListStore<T extends Object, K extends Comparable<K>> 
     super.reverseList = false,
   });
 
-  @action
   late final Future<void> Function(int oldIndex, int newIndex) onReorder;
 }

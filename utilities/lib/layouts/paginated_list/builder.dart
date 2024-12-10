@@ -81,28 +81,19 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
                 emptyBuilder: emptyBuilder ??
                     (context, empty) {
                       _showSnackBarRequestResponse(context);
-                      return Center(child: WarningMessage.empty(title: empty));
+                      return WarningMessage.empty(title: empty);
                     },
-                loadingBuilder: (context) => const SafeArea(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      CircularProgressIndicator(),
-                    ],
-                  ),
-                ),
+                loadingBuilder: (context) => const SizedBox.shrink(),
                 loadedBuilder: (context) {
                   _showSnackBarRequestResponse(context);
                   return const SizedBox.shrink();
                 },
                 errorBuilder: errorBuilder ??
                     (context, error) {
-                      return Center(
-                        child: WarningMessage.error(
-                          title: error,
-                          buttonText: "Try again",
-                          onButtonTap: (context) => store.refresh(),
-                        ),
+                      return WarningMessage.error(
+                        title: error,
+                        buttonText: "Try again",
+                        onButtonTap: (context) => store.refresh(),
                       );
                     },
               ),

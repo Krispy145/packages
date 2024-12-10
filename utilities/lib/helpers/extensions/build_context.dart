@@ -35,4 +35,14 @@ extension ResponsiveSize on BuildContext {
 
   /// [screenHeight] is a getter that returns the height of the screen.
   double get screenHeight => MediaQuery.sizeOf(this).height;
+
+  /// [minBottomPadding] is a getter that returns the minimum bottom padding of the screen.
+  /// This is useful for ensuring that the bottom of the screen is not covered by a floating action button or bottom navigation bar.
+  /// adds 16 to the bottom padding to ensure that the floating action button is not covered by the bottom navigation bar.
+  double minBottomPadding({double extraPadding = 16}) {
+    if (kFloatingActionButtonMargin + kBottomNavigationBarHeight > MediaQuery.viewInsetsOf(this).bottom) {
+      return kFloatingActionButtonMargin + kBottomNavigationBarHeight + extraPadding;
+    }
+    return kFloatingActionButtonMargin + kBottomNavigationBarHeight + extraPadding;
+  }
 }
