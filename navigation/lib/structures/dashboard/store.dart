@@ -1,3 +1,4 @@
+import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
@@ -8,6 +9,8 @@ class DashboardShellStructureStore = DashboardShellStructureStoreBase with _$Das
 
 /// [DashboardShellStructureStore] is a Store that is used to manage the state of the DashboardShellStructure.
 abstract class DashboardShellStructureStoreBase with LoadStateStore, Store {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @observable
   int _selectedIndex = 0;
 

@@ -13,7 +13,6 @@ const _primaryLargeNavigationKey = Key("Primary Navigation");
 const _primaryMediumNavigationKey = Key("Primary Navigation Medium");
 const _primaryBodyKey = Key("Primary Body");
 const _bodySmallKey = Key("Body Small");
-final _scaffoldStateKey = GlobalKey<ScaffoldState>();
 
 /// [NavigationRailPosition] is an enum that is used to determine the position of the navigation rail.
 enum NavigationRailPosition {
@@ -32,7 +31,7 @@ class DashboardShellStructure extends StatelessWidget {
   final NavigationRailPosition boardNavigationRailPosition;
 
   /// The app bar of the dashboard shell structure.
-  final AppBar? appBar;
+  final PreferredSizeWidget? appBar;
 
   /// The percentage of the screen that the navigation rail takes up.
   final double navigationRailPercentage;
@@ -44,10 +43,10 @@ class DashboardShellStructure extends StatelessWidget {
   final double maxWidth;
 
   /// The leading widget of the navigation rail.
-  final Widget Function(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey)? leading;
+  final Widget Function(BuildContext context)? leading;
 
   /// The trailing widget of the navigation rail.
-  final Widget Function(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey)? trailing;
+  final Widget Function(BuildContext context)? trailing;
 
   /// The destinations of the navigation rail.
   final List<NavigationDestination> destinations;
@@ -78,7 +77,7 @@ class DashboardShellStructure extends StatelessWidget {
   final bool isCollapsible;
 
   /// [builder] is a function that builds the navigation body of the dashboard shell structure.
-  final Widget Function(BuildContext context, GlobalKey<ScaffoldState> scaffoldKey)? builder;
+  final Widget Function(BuildContext context)? builder;
 
   /// Creates a [DashboardShellStructure] named constructor for using a left navigation rail.
   const DashboardShellStructure.left({
@@ -160,6 +159,10 @@ class DashboardShellStructure extends StatelessWidget {
   WidthPlatformBreakpoint get _medium => WidthPlatformBreakpoint(begin: ScreenSize.tabletBreak.start, end: ScreenSize.tabletBreak.end);
   WidthPlatformBreakpoint get _mediumAndUp => WidthPlatformBreakpoint(begin: ScreenSize.tabletBreak.start, end: double.infinity);
 
+  AutoRouter get _autoRouter => AutoRouter(
+        navigatorKey: store.navigatorKey,
+      );
+
   @override
   Widget build(BuildContext context) {
     return LoadStateBuilder(
@@ -176,35 +179,35 @@ class DashboardShellStructure extends StatelessWidget {
                 builder: builder != null
                     ? (context) => _navigationRailBuilder(
                           context,
-                          (context) => builder!(context, _scaffoldStateKey),
+                          (context) => builder!(context),
                           _small,
                         )
                     : (_) => Scaffold(
-                          key: _scaffoldStateKey,
+                          key: store.scaffoldKey,
                           appBar: appBar ?? AppBar(),
                           drawer: Drawer(
                             child: Observer(
                               builder: (context) {
                                 return NavigationRail(
                                   extended: true,
-                                  leading: leading?.call(context, _scaffoldStateKey),
+                                  leading: leading?.call(context),
                                   trailing: _buildTrailingStack(context),
                                   selectedIndex: store.selectedIndex,
                                   destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
                                   onDestinationSelected: (value) {
                                     _onDestinationSelected(value);
-                                    _scaffoldStateKey.currentState?.closeDrawer();
+                                    store.scaffoldKey.currentState?.closeDrawer();
                                   },
                                 );
                               },
                             ),
                           ),
-                          body: const AutoRouter(),
+                          body: _autoRouter,
                         ),
               ),
               _mediumAndUp: SlotLayout.from(
                 key: const Key("Body Small and Up"),
-                builder: (_) => const AutoRouter(),
+                builder: (_) => _autoRouter,
               ),
             },
           ),
@@ -223,7 +226,7 @@ class DashboardShellStructure extends StatelessWidget {
             builder: builder != null
                 ? (context) => _navigationRailBuilder(
                       context,
-                      (context) => builder!(context, _scaffoldStateKey),
+                      (context) => builder!(context),
                       _mediumAndUp,
                     )
                 : (context) => AdaptiveScaffold.standardNavigationRail(
@@ -232,7 +235,7 @@ class DashboardShellStructure extends StatelessWidget {
                       selectedIndex: store.selectedIndex,
                       onDestinationSelected: _onDestinationSelected,
                       extended: store.isNavigationRailExtended,
-                      leading: leading?.call(context, _scaffoldStateKey),
+                      leading: leading?.call(context),
                       destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
                       trailing: _buildTrailingStack(context),
                       backgroundColor: backgroundColor,
@@ -250,13 +253,13 @@ class DashboardShellStructure extends StatelessWidget {
             builder: builder != null
                 ? (context) => _navigationRailBuilder(
                       context,
-                      (context) => builder!(context, _scaffoldStateKey),
+                      (context) => builder!(context),
                       _medium,
                     )
                 : (context) => AdaptiveScaffold.standardNavigationRail(
                       padding: EdgeInsets.zero,
                       selectedIndex: store.selectedIndex,
-                      leading: leading?.call(context, _scaffoldStateKey),
+                      leading: leading?.call(context),
                       trailing: _buildTrailingStack(context),
                       onDestinationSelected: _onDestinationSelected,
                       destinations: destinations.map(AdaptiveScaffold.toRailDestination).toList(),
@@ -284,7 +287,7 @@ class DashboardShellStructure extends StatelessWidget {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              if (trailing != null) trailing!(context, _scaffoldStateKey),
+              if (trailing != null) trailing!(context),
               if (isCollapsible)
                 IconButton(
                   icon: Icon(
@@ -316,13 +319,13 @@ class DashboardShellStructure extends StatelessWidget {
 
   Scaffold _buildSmallLayoutBuilder(BuildContext context, Widget Function(BuildContext context) builder) {
     return Scaffold(
-      key: _scaffoldStateKey,
+      key: store.scaffoldKey,
       appBar: appBar ?? AppBar(),
       drawer: Drawer(
         width: maxWidth,
         child: _builderWrapper(context, builder),
       ),
-      body: const AutoRouter(),
+      body: _autoRouter,
     );
   }
 
