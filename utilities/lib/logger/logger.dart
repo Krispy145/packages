@@ -6,21 +6,14 @@ import "package:logger/logger.dart";
 // ignore: non_constant_identifier_names
 final AppLoggerInjector AppLogger = GetIt.instance<AppLoggerInjector>();
 
-/// [Logger] class responsible for logging.
-final _logger = Logger(
-  printer: PrettyPrinter(
-    printEmojis: false,
-    lineLength: 900,
-    levelColors: {
-      Level.trace: const AnsiColor.fg(175), // Light Red
-      Level.info: const AnsiColor.fg(4), // Blue
-      Level.debug: const AnsiColor.fg(2), // Green
-      Level.warning: const AnsiColor.fg(3), // Yellow
-      Level.error: const AnsiColor.fg(9), // Bright Red
-      Level.fatal: const AnsiColor.fg(1), // Bold Bright Red
-    },
-  ),
-);
+final Map<Level, AnsiColor> _levelColors = {
+  Level.trace: const AnsiColor.fg(175), // Light Red
+  Level.info: const AnsiColor.fg(4), // Blue
+  Level.debug: const AnsiColor.fg(2), // Green
+  Level.warning: const AnsiColor.fg(3), // Yellow
+  Level.error: const AnsiColor.fg(9), // Bright Red
+  Level.fatal: const AnsiColor.fg(1), // Bold Bright Red
+};
 
 /// enum [LoggerType] class responsible for storing log types.
 enum LoggerType {
@@ -54,6 +47,15 @@ class AppLoggerInjector {
     List<Enum> features, {
     LoggerType type = LoggerType.information,
   }) {
+    final lineLength = text.length + (features.join(", ").length) + 2;
+    final _logger = Logger(
+      printer: PrettyPrinter(
+        printEmojis: false,
+        lineLength: lineLength,
+        methodCount: 0,
+        levelColors: _levelColors,
+      ),
+    );
     if (!overrideFeatures) {
       if (type == LoggerType.error) {
         return _logger.e(

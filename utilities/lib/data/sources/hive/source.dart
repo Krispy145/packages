@@ -135,26 +135,11 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
       await Hive.initFlutter();
       isHiveInitialized = true;
     }
-    // if (!isBoxOpened) {
     await Hive.openBox<String>(boxName);
-    // isBoxOpened = true;
-    // }
     final boxValues = _box.values;
-    debugPrint("Box Values: ${boxValues.runtimeType} $boxValues");
-    final results = _box.values.toList();
+    final results = boxValues.toList();
     if (results.isEmpty) return const Pair(RequestResponse.failure, []);
     return Pair(RequestResponse.success, results);
-
-    // final items = result.map((item) => item);
-    // final convertedItems = items.map(convertDataTypeFromJson);
-    // final convertedItemsList = convertedItems.toList();
-
-    // await close();
-    // AppLogger.print(
-    //   "Read All Results => $result",
-    //   [UtilitiesLoggers.localDataSource],
-    // );
-    // return Future.value(convertedItemsList);
   }
 
   /// [delete] method deletes the value of the given key
@@ -189,7 +174,6 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
 
     await _box.clear();
     await _box.deleteFromDisk();
-    // await close();
     AppLogger.print("Deleted All", [UtilitiesLoggers.localDataSource]);
     return RequestResponse.success;
   }
@@ -226,7 +210,6 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
       entries[id] = value;
     }
     await _box.putAll(entries);
-    // await close();
     AppLogger.print("Added All", [UtilitiesLoggers.localDataSource]);
     return RequestResponse.success;
   }
@@ -244,7 +227,6 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
     }
 
     await _box.put(key, value);
-    // await close();
     AppLogger.print("Updated: $key", [UtilitiesLoggers.localDataSource]);
     return RequestResponse.success;
   }
@@ -266,7 +248,6 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
       updateMap[entry.key] = entry.value;
     }
     await _box.putAll(updateMap);
-    // await close();
     AppLogger.print(
       "Updated All: $entries",
       [UtilitiesLoggers.localDataSource],

@@ -34,9 +34,7 @@ import "package:theme/data/models/switches/switch_model.dart";
 import "package:theme/data/models/tab_bars/tab_bar_model.dart";
 import "package:theme/data/models/text/text_types_model.dart";
 import "package:theme/data/models/tooltips/tooltip_model.dart";
-import "package:theme/utils/loggers.dart";
 import "package:utilities/helpers/type_comparison.dart";
-import "package:utilities/logger/logger.dart";
 
 part "theme_model.mapper.dart";
 
@@ -178,7 +176,6 @@ class ComponentThemesModel with ComponentThemesModelMappable {
       return dropdowns?[styleType]?.asDropdownMenuThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, ChipThemeData>()) {
       final chipTheme = chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
-      AppLogger.print("Getting chip theme: $chipTheme", [ThemeLoggers.chips]);
       return chipTheme;
     } else if (isSameType<T, DialogTheme>()) {
       return dialogs?[styleType]?.asDialogTheme(styleTypeName: styleType) as T;

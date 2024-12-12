@@ -1,4 +1,3 @@
-import "package:flutter/foundation.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/widgets/load_state/states.dart";
 
@@ -95,7 +94,6 @@ mixin LoadStateStore {
 
   /// [setEmpty] is a method that will be used to set the state to empty.
   void _setEmpty(String emptyMessage) {
-    debugPrint("LoadState: Empty");
     if (currentState is EmptyLoadState) {
       if ((currentState as EmptyLoadState).emptyMessage == emptyMessage) {
         return;
@@ -109,7 +107,6 @@ mixin LoadStateStore {
 
   /// [setError] is a method that will be used to set the state to error.
   void _setError(String errorMessage) {
-    debugPrint("LoadState: Error: $errorMessage");
     if (currentState is ErrorLoadState) {
       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
         return;
@@ -118,119 +115,3 @@ mixin LoadStateStore {
     currentState = ErrorLoadState(errorMessage: errorMessage);
   }
 }
-
-
-// // part "store.g.dart";
-// part "store.manual.dart";
-
-// // TO use in .g file: mixin _$LoadStateStore on _LoadStateStore, Store {
-
-// // TO use in this file:
-// // /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
-// // mixin LoadStateStore implements _LoadStateStore, _$LoadStateStore {}
-
-// // /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
-// // mixin _LoadStateStore on Store {
-
-// //
-// //
-// //
-
-// /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
-// mixin LoadStateStore on _LoadStateStore, _$LoadStateStore {}
-
-// /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
-// mixin _LoadStateStore {
-// // /// [LoadStateStore] is the store that will be used to manage the state of the authentication.
-// // class LoadStateStore = _LoadStateStore with _$LoadStateStore;
-
-// // /// [_LoadStateStore] is the base store that will be used to manage the state of the authentication.
-// // abstract class _LoadStateStore with Store {
-//   /// [LoadStateStore] is the base store that will be used to manage the state of the loading.
-
-//   @observable
-//   LoadState currentState = InitialLoadState();
-
-//   @computed
-//   bool get isInitial => currentState is InitialLoadState;
-
-//   @computed
-//   bool get isLoading => currentState is LoadingLoadState;
-
-//   @computed
-//   bool get isLoaded => currentState is LoadedLoadState;
-
-//   @computed
-//   bool get isNoMoreToLoad => currentState is NoMoreLoadState;
-
-//   @computed
-//   bool get isEmpty => currentState is EmptyLoadState;
-
-//   @computed
-//   bool get isError => currentState is ErrorLoadState;
-
-//   @computed
-//   bool get isIdle => currentState is IdleLoadState;
- 
-//   @observable
-//   bool hasShownNoMoreToLoadSnackBar = false;
-
-//   @action
-//   void setInitial() {
-//     if (isInitial) return;
-//     currentState = InitialLoadState();
-//   }
- 
-
-//   @action
-//   void setLoading() {
-//     if (isLoading) return;
-//     currentState = LoadingLoadState();
-//   }
-
-
-//   @action
-//   void setLoaded() {
-//     if (isLoaded) return;
-//     currentState = LoadedLoadState();
-//   }
-
-
-//   @action
-//   void setNoMoreToLoad() {
-//     if (isNoMoreToLoad) return;
-//     currentState = NoMoreLoadState();
-//   }
-
-
-//   @action
-//   void setNoMoreToLoadSnackBar() {
-//     if (hasShownNoMoreToLoadSnackBar) return;
-//     hasShownNoMoreToLoadSnackBar = true;
-//   }
-
-
-//   @action
-//   void setEmpty(String emptyMessage) {
-//    debugPrint("LoadState: Empty");
-//     if (currentState is EmptyLoadState) {
-//       if ((currentState as EmptyLoadState).emptyMessage == emptyMessage) {
-//         return;
-//       }
-//     }
-//     currentState = EmptyLoadState(emptyMessage: emptyMessage);
-//   }
-
-
-//   @action
-//   void setError(String errorMessage) {
-//    debugPrint("LoadState: Error");
-//     if (currentState is ErrorLoadState) {
-//       if ((currentState as ErrorLoadState).errorMessage == errorMessage) {
-//         return;
-//       }
-//     }
-//     currentState = ErrorLoadState(errorMessage: errorMessage);
-//   }
-
-// }
