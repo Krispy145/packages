@@ -17,29 +17,33 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
     super.shouldLoadMoreInitially = false,
     super.reverseList = false,
     super.sortByKey,
-  }) {
-    _initializeStreamListener();
-  }
+  });
 
   late final Stream<Pair<RequestResponse, List<T?>>> Function({int? limit, bool refresh}) dataStream;
 
-  Future<void> _initializeStreamListener() async {
-    await super.initialize();
+  @override
+  Future<void> initialize() async {
     dataStream(limit: limit, refresh: false).listen((newData) {
-      if (newData.second.isEmpty) {
-        setNoMoreToLoad();
-      } else {
-        results
-          ..clear()
-          ..addAll(newData.second.whereType<T>());
-      }
-      if (results.isEmpty) {
-        setEmpty("No data found.");
-      } else {
-        if (sortByKey != null) results.sortBy(sortByKey!);
-        if (reverseList) results = results.reversed.toList().asObservable();
-        setLoaded();
+      try {
+        if (newData.second.isEmpty) {
+        } else {
+          results
+            ..clear()
+            ..addAll(newData.second.whereType<T>());
+        }
+        if (results.isNotEmpty) {
+          if (sortByKey != null) results.sortBy(sortByKey!);
+          if (reverseList) results = results.reversed.toList().asObservable();
+          scrollController.addListener(() {
+            if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+              loadMore(limit: limit);
+            }
+          });
+        }
+      } catch (e) {
+        setError("Error streaming data");
       }
     });
+    setLoaded();
   }
 }

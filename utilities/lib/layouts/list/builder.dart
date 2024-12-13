@@ -182,8 +182,6 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
   Widget buildView(bool isLoadingMore) {
     final resultsCount = maxItemsCutOff != null ? min(maxItemsCutOff!, store.results.length) : store.results.length;
     final itemCount = resultsCount + (isLoadingMore ? 1 : 0);
-
-    ///@Serena: not sure why we need a loadingOrItemBuilder function here?
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
         return const SizedBox(height: 64, width: 64, child: Center(child: CircularProgressIndicator()));
@@ -192,26 +190,28 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     }
 
     if (viewType == ListViewType.listView) {
-      return slivers
-          ? SliverList.builder(
-              itemCount: itemCount,
-              itemBuilder: loadingOrItemBuilder,
-            )
-          : ListView.separated(
-              separatorBuilder: (context, index) => SizedBox(
-                height: Sizes.xs.points(context),
-                width: Sizes.xs.points(context),
-              ),
-              scrollDirection: scrollDirection,
-              reverse: store.reverseList,
-              padding: padding,
-              physics: physics,
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              itemCount: itemCount,
-              itemBuilder: loadingOrItemBuilder,
-              controller: store.scrollController,
-              shrinkWrap: shrinkWrap,
-            );
+      if (slivers) {
+        return SliverList.builder(
+          itemCount: itemCount,
+          itemBuilder: loadingOrItemBuilder,
+        );
+      } else {
+        return ListView.separated(
+          separatorBuilder: (context, index) => SizedBox(
+            height: Sizes.xs.points(context),
+            width: Sizes.xs.points(context),
+          ),
+          scrollDirection: scrollDirection,
+          reverse: store.reverseList,
+          padding: padding,
+          physics: physics,
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          itemCount: itemCount,
+          itemBuilder: loadingOrItemBuilder,
+          controller: store.scrollController,
+          shrinkWrap: shrinkWrap,
+        );
+      }
     } else {
       return slivers
           ? SliverGrid.builder(

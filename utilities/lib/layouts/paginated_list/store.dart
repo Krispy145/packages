@@ -1,5 +1,4 @@
 import "package:collection/collection.dart";
-import "package:flutter/animation.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
@@ -27,13 +26,6 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
   @override
   Future<void> initialize() async {
     if (shouldLoadMoreInitially) await loadMore(limit: limit);
-    if (reverseList && shouldLoadMoreInitially) {
-      await scrollController.animateTo(
-        scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 500),
-        curve: Curves.easeOut,
-      );
-    }
     scrollController.addListener(() {
       if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
         loadMore(limit: limit);

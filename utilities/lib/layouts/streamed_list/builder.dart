@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
+import "package:utilities/helpers/tuples.dart";
 import "package:utilities/layouts/list/builder.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
@@ -133,9 +134,17 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
   }
 
   Widget _buildResults() {
-    return Observer(
-      builder: (context) {
-        return buildView(store.showLoadingSpinnerAtBottom);
+    return StreamBuilder<Pair<RequestResponse, List<T?>>>(
+      stream: store.dataStream(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        return Observer(
+          builder: (context) {
+            return buildView(store.showLoadingSpinnerAtBottom);
+          },
+        );
       },
     );
   }

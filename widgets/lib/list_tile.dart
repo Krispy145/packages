@@ -97,7 +97,6 @@ class _LYListTileState extends State<LYListTile> {
       onTap: widget.onTap,
       onLongPress: widget.onLongPress,
       child: Container(
-        clipBehavior: Clip.hardEdge,
         decoration: widget.decoration,
         padding: widget.tilePadding,
         child: Row(
