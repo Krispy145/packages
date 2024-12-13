@@ -1,95 +1,65 @@
 import "package:flutter/material.dart";
-import "package:flutter_mobx/flutter_mobx.dart";
-import "package:utilities/widgets/load_state/states.dart";
-import "package:utilities/widgets/load_state/store.dart";
 import "package:widgets/messages/warning_message.dart";
+
+import "_base.dart";
 
 typedef TextWidgetBuilder = Widget Function(BuildContext context, String text);
 
-/// [LoadStateBuilder] is a widget that will be used to build the UI based on the load state.
-class LoadStateBuilder extends StatelessWidget {
-  /// [store] is an instance of [LoadStateStore].
-  final LoadStateStore store;
-
-  /// [loadedBuilder] is the builder that will be used to build the UI when the load state is loaded.
+class PackageLoadStateBuilder extends BaseLoadStateBuilder {
   final WidgetBuilder loadedBuilder;
-
-  /// [errorBuilder] is the builder that will be used to build the UI when the load state is error.
   final TextWidgetBuilder? errorBuilder;
-
-  /// [initialBuilder] is the builder that will be used to build the UI when the load state is initial.
   final WidgetBuilder? initialBuilder;
-
-  /// [loadingBuilder] is the builder that will be used to build the UI when the load state is loading.
   final WidgetBuilder? loadingBuilder;
-
-  /// [noMoreToLoadBuilder] is the builder that will be used to build the UI when the load state is no more to load.
   final WidgetBuilder? noMoreToLoadBuilder;
-
-  /// [emptyBuilder] is the builder that will be used to build the UI when the load state is empty.
   final TextWidgetBuilder? emptyBuilder;
-
-  // /// [idleBuilder] is the builder that will be used to build the UI when the load state is idle.
-  // final WidgetBuilder? idleBuilder;
 
   final bool slivers;
 
-  /// [LoadStateBuilder] constructor
-  const LoadStateBuilder({
+  const PackageLoadStateBuilder({
     super.key,
-    required this.store,
+    required super.store,
     required this.loadedBuilder,
     this.errorBuilder,
     this.initialBuilder,
-    this.emptyBuilder,
     this.loadingBuilder,
     this.noMoreToLoadBuilder,
-    // this.idleBuilder,
+    this.emptyBuilder,
     this.slivers = false,
   });
 
-  Widget _defaultBuilder(BuildContext context) {
-    if (slivers) {
-      return const SliverToBoxAdapter(child: SizedBox.shrink());
-    }
-    return const SizedBox.shrink();
+  @override
+  Widget buildInitialState(BuildContext context) {
+    return initialBuilder?.call(context) ?? (slivers ? const SliverToBoxAdapter(child: SizedBox.shrink()) : const SizedBox.shrink());
   }
 
-  Widget _defaultLoadingBuilder(BuildContext context) {
-    if (slivers) {
-      return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
-    }
-    return const Center(child: CircularProgressIndicator());
+  @override
+  Widget buildLoadingState(BuildContext context) {
+    return loadingBuilder?.call(context) ?? (slivers ? const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator())) : const Center(child: CircularProgressIndicator()));
   }
 
-  Widget _defaultNoMoreToLoadSnackBarBuilder(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (store.hasShownNoMoreToLoadSnackBar) return;
-      // context.showSnackbar(configuration: SnackbarConfiguration.warning(title: "No more to load."));
-      store.setNoMoreToLoadSnackBar();
-    });
+  @override
+  Widget buildLoadedState(BuildContext context) {
     return loadedBuilder(context);
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        switch (store.currentState) {
-          case InitialLoadState():
-            return initialBuilder?.call(context) ?? _defaultBuilder(context);
-          case LoadingLoadState():
-            return loadingBuilder?.call(context) ?? _defaultLoadingBuilder(context);
-          case LoadedLoadState():
-            return loadedBuilder(context);
-          case EmptyLoadState(emptyMessage: final empty):
-            return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(message: empty);
-          case ErrorLoadState(errorMessage: final error):
-            return errorBuilder?.call(context, error) ?? WarningMessage.error(message: error);
-          case NoMoreLoadState():
-            return noMoreToLoadBuilder?.call(context) ?? _defaultNoMoreToLoadSnackBarBuilder(context);
-        }
-      },
-    );
+  Widget buildEmptyState(BuildContext context, String emptyMessage) {
+    return emptyBuilder?.call(context, emptyMessage) ?? WarningMessage.empty(message: emptyMessage);
+  }
+
+  @override
+  Widget buildErrorState(BuildContext context, String errorMessage) {
+    return errorBuilder?.call(context, errorMessage) ?? WarningMessage.error(message: errorMessage);
+  }
+
+  @override
+  Widget buildNoMoreToLoadState(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!store.hasShownNoMoreToLoadSnackBar) {
+        // Trigger a Snackbar or a similar mechanism
+        store.setNoMoreToLoadSnackBar();
+      }
+    });
+    return noMoreToLoadBuilder?.call(context) ?? buildLoadedState(context);
   }
 }

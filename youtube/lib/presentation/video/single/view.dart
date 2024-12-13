@@ -15,13 +15,13 @@ class VideoView extends StatelessWidget {
 
   final Widget Function(BuildContext context, Widget player, Video video)? builder;
 
-  /// [store] is an instance of [VideoStore], used in the [LoadStateBuilder].
+  /// [store] is an instance of [VideoStore], used in the [PackageLoadStateBuilder].
   /// initialized in the constructor.
   late final VideoStore store;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: LoadStateBuilder(
+      body: PackageLoadStateBuilder(
         store: store,
         errorBuilder: (context, error) => Center(
           child: Text(error),

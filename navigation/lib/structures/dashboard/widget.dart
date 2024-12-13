@@ -165,7 +165,7 @@ class DashboardShellStructure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: store,
       loadedBuilder: (context) {
         return AdaptiveLayout(

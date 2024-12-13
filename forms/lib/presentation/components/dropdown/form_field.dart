@@ -15,7 +15,7 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
 
   @override
   Widget buildField(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: store,
       errorBuilder: (context, error) => Text(error),
       loadedBuilder: (context) {

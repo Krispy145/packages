@@ -110,7 +110,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!slivers) {
-      return LoadStateBuilder(
+      return PackageLoadStateBuilder(
         store: store,
         emptyBuilder: (context, empty) {
           debugPrint("EMPTY BUILDER: $empty");

@@ -140,7 +140,11 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-        return buildView(store.showLoadingSpinnerAtBottom);
+        return Observer(
+          builder: (context) {
+            return buildView(store.showLoadingSpinnerAtBottom);
+          },
+        );
       },
     );
   }

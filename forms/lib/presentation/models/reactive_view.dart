@@ -36,7 +36,7 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        LoadStateBuilder(
+        PackageLoadStateBuilder(
           store: store,
           emptyBuilder: emptyBuilder,
           loadedBuilder: (context) => const SizedBox.shrink(),

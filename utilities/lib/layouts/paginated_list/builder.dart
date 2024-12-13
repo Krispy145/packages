@@ -76,7 +76,7 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.only(bottom: 8),
-              child: LoadStateBuilder(
+              child: PackageLoadStateBuilder(
                 store: store,
                 emptyBuilder: emptyBuilder ??
                     (context, empty) {

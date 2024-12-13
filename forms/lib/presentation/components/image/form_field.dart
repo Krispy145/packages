@@ -40,7 +40,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
       height: height,
       child: AspectRatio(
         aspectRatio: axis == Axis.horizontal ? 16 / 9 : 9 / 16,
-        child: LoadStateBuilder(
+        child: PackageLoadStateBuilder(
           store: store,
           loadedBuilder: (context) {
             return Padding(

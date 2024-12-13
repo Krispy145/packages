@@ -9,12 +9,12 @@ class ContactsView extends StatelessWidget {
   /// [ContactsView] constructor.
   ContactsView({super.key});
 
-  /// [store] is an instance of [ContactsStore], used in the [LoadStateBuilder].
+  /// [store] is an instance of [ContactsStore], used in the [PackageLoadStateBuilder].
   final ContactsStore store = ContactsStore()..loadContacts();
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: store,
       emptyBuilder: (context, empty) => Center(child: Text(empty)),
       loadedBuilder: (context) => ListView.builder(

@@ -19,7 +19,7 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
   /// [MapView] constructor.
   const MapView({super.key, required this.store});
 
-  /// [store] is an instance of [MapStore], used in the [LoadStateBuilder].
+  /// [store] is an instance of [MapStore], used in the [PackageLoadStateBuilder].
   final StoreType store;
 
   @override

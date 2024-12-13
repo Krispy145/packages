@@ -34,7 +34,7 @@ class PreviewImage extends StatelessWidget {
             return Container(
               clipBehavior: Clip.hardEdge,
               decoration: decoration ?? store.defaultDecoration,
-              child: LoadStateBuilder(
+              child: PackageLoadStateBuilder(
                 store: store,
                 errorBuilder: (context, error) => WarningMessage.error(
                   message: error,

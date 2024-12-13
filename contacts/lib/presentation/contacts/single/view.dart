@@ -17,7 +17,7 @@ class ContactsView extends StatelessWidget {
     store = ContactStore(id: id, initialContact: contactsModel);
   }
 
-  /// [store] is an instance of [ContactStore], used in the [LoadStateBuilder].
+  /// [store] is an instance of [ContactStore], used in the [PackageLoadStateBuilder].
   /// initialized in the constructor.
   late final ContactStore store;
   @override

@@ -35,7 +35,7 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: store,
       errorBuilder: (context, error) => Center(child: Text(error)),
       loadedBuilder: (context) {

@@ -59,7 +59,7 @@ class ReorderableListBuilder<T extends Object, K extends Comparable<K>> extends 
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: store,
       emptyBuilder: (context, empty) {
         return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty);

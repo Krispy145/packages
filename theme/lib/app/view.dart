@@ -30,7 +30,7 @@ class ThemedMaterialApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: themeStore,
       loadedBuilder: (context) => Observer(
         builder: (context) {

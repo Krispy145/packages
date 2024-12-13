@@ -41,13 +41,12 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoadStateBuilder(
+    return PackageLoadStateBuilder(
       store: store,
       emptyBuilder: (context, empty) => _AuthenticateView(
         store: store,
         additionalFields: additionalFields,
       ),
-      loadingBuilder: (context) => const Center(child: CircularProgressIndicator()),
       loadedBuilder: (context) {
         if (store.authBuilderType == AuthBuilderType.silent) {
           conditionallyShowSnackbar(context);
