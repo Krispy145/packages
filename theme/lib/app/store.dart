@@ -279,10 +279,6 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
   Future<void> reloadThemeModel() async {
     await repository?.fetchTheme(id: id ?? primaryThemeId);
     await repository?.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print(
-      "ThemeModel - Reloaded: $baseThemeModel",
-      [ThemeLoggers.theme],
-    );
   }
 
   /// [lightTheme] is the light theme that will be used to store the theme data.
@@ -300,11 +296,6 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
   ThemeData _buildTheme() {
     final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme(isDark);
-    AppLogger.print(
-      "Building App Theme: $styleType -> ${isDark ? "Dark" : "Light"}",
-      [ThemeLoggers.theme],
-    );
-
     return ThemeData(
       colorScheme: colorScheme,
       textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
@@ -377,10 +368,6 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print(
-      "ThemeModel - Local: $baseThemeModel",
-      [ThemeLoggers.theme],
-    );
     setLoaded();
   }
 
@@ -433,10 +420,6 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print(
-      "ThemeModel - Assets: $baseThemeModel",
-      [ThemeLoggers.theme],
-    );
     setLoaded();
   }
 
@@ -453,10 +436,6 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
     componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print(
-      "ThemeModel - Supabase: $baseThemeModel",
-      [ThemeLoggers.theme],
-    );
     setLoaded();
   }
 
@@ -468,24 +447,8 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     );
     baseThemeModel = await repository!.fetchTheme(id: baseThemeId);
     if (componentThemesId != null) componentThemesModel = await repository!.fetchComponentsTheme(id: componentThemesId);
-    AppLogger.print(
-      "ThemeModel - Firestore: $baseThemeModel",
-      [ThemeLoggers.theme],
-    );
     setLoaded();
   }
-
-  // Future<void> _loadDOTheme({String? id}) async {
-  //   setLoading();
-  //   repository = LYRepository();
-  //   baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-  //   componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-  //   AppLogger.print(
-  //     "ThemeModel - Digital Oasis: $baseThemeModel",
-  //     [ThemeLoggers.theme],
-  //   );
-  //   setLoaded();
-  // }
 
   Future<void> _loadApiTheme({String? id}) async {
     setLoading();

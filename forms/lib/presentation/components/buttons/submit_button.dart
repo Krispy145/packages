@@ -24,15 +24,18 @@ class ReactiveFormSubmitButton<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ReactiveFormConsumer(
-      builder: (context, form, w) => Opacity(
-        opacity: form.valid ? 1 : 0.5,
-        child: ElevatedButton(
-          onPressed: form.valid
-              ? () async {
-                  await store.submitPressed(context.showSnackbar, (response) => onBack?.call(response));
-                }
-              : null,
-          child: Text(buttonText),
+      builder: (context, form, w) => Align(
+        alignment: Alignment.bottomCenter,
+        child: Opacity(
+          opacity: form.valid ? 1 : 0.5,
+          child: ElevatedButton(
+            onPressed: form.valid
+                ? () async {
+                    await store.submitPressed(context.showSnackbar, (response) => onBack?.call(response));
+                  }
+                : null,
+            child: Text(buttonText),
+          ),
         ),
       ),
     );

@@ -136,4 +136,9 @@ class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel
     // TODO: implement searchPage
     throw UnimplementedError();
   }
+
+  @override
+  void closeStreams() {
+    // TODO: implement closeStreams
+  }
 }

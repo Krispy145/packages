@@ -141,4 +141,9 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
     // TODO: implement searchPage
     throw UnimplementedError();
   }
+
+  @override
+  void closeStreams() {
+    // TODO: implement closeStreams
+  }
 }

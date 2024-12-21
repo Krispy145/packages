@@ -31,6 +31,21 @@ enum LoggerType {
 
   /// [reset] is the log type for reset.
   reset;
+
+  Level get level {
+    switch (this) {
+      case LoggerType.information:
+        return Level.info;
+      case LoggerType.error:
+        return Level.error;
+      case LoggerType.warning:
+        return Level.warning;
+      case LoggerType.confirmation:
+        return Level.debug;
+      default:
+        return Level.info;
+    }
+  }
 }
 
 /// [AppLogger] class responsible for logging, utilizing the features.
@@ -47,7 +62,7 @@ class AppLoggerInjector {
     List<Enum> features, {
     LoggerType type = LoggerType.information,
   }) {
-    final lineLength = text.length + (features.join(", ").length) + 2;
+    final lineLength = (text.length + (features.join(", ").length) + 2) > 300 ? 300 : text.length + (features.join(", ").length) + 2;
     final _logger = Logger(
       printer: PrettyPrinter(
         printEmojis: false,
@@ -69,32 +84,14 @@ class AppLoggerInjector {
         }
       }
       if (activeFeatures.isNotEmpty && kDebugMode) {
-        // Determine the log level based on LoggerType
-        Level level;
-        switch (type) {
-          case LoggerType.information:
-            level = Level.info;
-            break;
-          case LoggerType.error:
-            level = Level.error;
-            break;
-          case LoggerType.warning:
-            level = Level.warning;
-            break;
-          case LoggerType.confirmation:
-            level = Level.debug;
-            break;
-          default:
-            level = Level.info;
-        }
         _logger.log(
-          level,
+          type.level,
           "Features (${activeFeatures.join(', ')}): $text",
         );
       }
     } else {
       _logger.log(
-        Level.warning,
+        type.level,
         "ALL OVERRIDE - ${features.join(", ")}: $text",
       );
     }

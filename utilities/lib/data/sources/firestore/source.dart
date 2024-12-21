@@ -1,4 +1,7 @@
+import "dart:async";
+
 import "package:cloud_firestore/cloud_firestore.dart";
+import "package:flutter/foundation.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
@@ -29,6 +32,10 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   });
 
   CollectionReference<Map<String, dynamic>> get collectionReference => firestore.collection(collectionName);
+
+  StreamSubscription<Pair<RequestResponse, int>>? _collectionCountStreamSubscription;
+
+  StreamSubscription<Pair<RequestResponse, int>>? get collectionCountStreamSubscription => _collectionCountStreamSubscription;
 
   Timestamp getTimestampFromDateTime(DateTime dateTime) {
     return Timestamp.fromDate(dateTime);
@@ -92,15 +99,18 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
 
   @override
   Future<Pair<RequestResponse, List<T?>>> getAll() async {
+    logRequest("GET_ALL", null);
     try {
       final querySnapshot = await collectionReference.get();
       if (querySnapshot.docs.isEmpty) {
+        logResponse("GET_ALL", "Success", null);
         return const Pair(RequestResponse.success, []);
       }
       final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
+      logResponse("GET_ALL", "Success", data);
       return Pair(RequestResponse.success, data);
     } catch (e) {
-      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
+      logError("GET_ALL", "Error", e);
       return const Pair(RequestResponse.failure, []);
     }
   }
@@ -166,18 +176,18 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
 
   @override
   Future<Pair<RequestResponse, T?>> add(T data) async {
+    logRequest("ADD", data);
     try {
-      _logRequest("ADD", collectionName, data);
       final map = convertToMap(data);
       final docRef = collectionReference.doc();
       if (map.containsKey("id")) {
         map["id"] = docRef.id;
       }
       await docRef.set(map, SetOptions(merge: true));
-      _logResponse("ADD", "Success", convertFromMap(map));
+      logResponse("ADD", "Success", convertFromMap(map));
       return Pair(RequestResponse.success, convertFromMap(map));
     } catch (e) {
-      _logError("ADD", "Error", e);
+      logError("ADD", "Error", e);
       return const Pair(RequestResponse.failure, null);
     }
   }
@@ -205,39 +215,86 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
 
   @override
   Future<Pair<RequestResponse, T?>> search(Q query) async {
-    final firestoreQuery = buildQuery(query, collectionReference);
-    final querySnapshot = await firestoreQuery.get();
-    if (querySnapshot.docs.isEmpty) {
+    logRequest("SEARCH", null);
+    try {
+      final firestoreQuery = buildQuery(query, collectionReference);
+      final querySnapshot = await firestoreQuery.get();
+      if (querySnapshot.docs.isEmpty) {
+        logResponse("SEARCH", "Success", null);
+        return const Pair(RequestResponse.failure, null);
+      }
+      final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).first;
+      logResponse("SEARCH", "Success", data);
+      return Pair(RequestResponse.success, data);
+    } catch (e) {
+      logError("SEARCH", "Error", e);
       return const Pair(RequestResponse.failure, null);
     }
-    final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).first;
-    return Pair(RequestResponse.success, data);
   }
 
   @override
   Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
-    final firestoreQuery = buildQuery(query, collectionReference);
-    final querySnapshot = await firestoreQuery.get();
-    if (querySnapshot.docs.isEmpty) {
+    logRequest("SEARCH_ALL", null);
+    try {
+      final firestoreQuery = buildQuery(query, collectionReference);
+      final querySnapshot = await firestoreQuery.get();
+      if (querySnapshot.docs.isEmpty) {
+        logResponse("SEARCH_ALL", "Success", null);
+        return const Pair(RequestResponse.failure, []);
+      }
+      final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
+      logResponse("SEARCH_ALL", "Success", data);
+      return Pair(RequestResponse.success, data);
+    } catch (e) {
+      logError("SEARCH_ALL", "Error", e);
       return const Pair(RequestResponse.failure, []);
     }
-    final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
-    return Pair(RequestResponse.success, data);
   }
 
   Future<Pair<RequestResponse, int>> getCollectionCount() async {
-    final query = firestore.collection(collectionName);
-    final querySnapshot = await query.get();
-    return Pair(RequestResponse.success, querySnapshot.docs.length);
+    logRequest("GET_COLLECTION_COUNT", null);
+    try {
+      final query = firestore.collection(collectionName);
+      final querySnapshot = await query.get();
+      return Pair(RequestResponse.success, querySnapshot.docs.length);
+    } catch (e) {
+      logError("GET_COLLECTION_COUNT", "Error", e);
+      return const Pair(RequestResponse.failure, 0);
+    }
   }
 
+  /// Stream to get the collection count
   Stream<Pair<RequestResponse, int>> getCollectionCountStream() {
     final query = firestore.collection(collectionName);
-    return query.snapshots().map((event) => Pair(RequestResponse.success, event.docs.length));
+
+    // Stream setup
+    final stream = query.snapshots().map((event) {
+      return Pair(RequestResponse.success, event.docs.length);
+    });
+
+    // Store subscription for lifecycle management
+    _collectionCountStreamSubscription = stream.listen(
+      (_) {},
+      // ignore: inference_failure_on_untyped_parameter
+      onError: (e) {
+        logError("GET_COLLECTION_COUNT_STREAM", collectionName, e);
+      },
+    );
+
+    return stream;
   }
 
-  void _logRequest(String method, String path, T? data) {
-    final logMessage = "Firebase $method on $collectionName: $path";
+  /// Close the stream subscription
+  @mustCallSuper
+  @override
+  void closeStreams() {
+    _collectionCountStreamSubscription?.cancel();
+    _collectionCountStreamSubscription = null;
+    AppLogger.print("Stream closed", [UtilitiesLoggers.firestoreDataSource]);
+  }
+
+  void logRequest(String method, T? data) {
+    final logMessage = "Firebase $method REQUEST on $collectionName:";
     if (data != null) {
       AppLogger.print(
         "$logMessage -> $data",
@@ -248,7 +305,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     }
   }
 
-  void _logResponse(
+  void logResponse(
     String method,
     String statusMessage,
     dynamic data,
@@ -258,13 +315,18 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
       AppLogger.print(
         "$logMessage -> $data",
         [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
       );
     } else {
-      AppLogger.print(logMessage, [UtilitiesLoggers.firestoreDataSource]);
+      AppLogger.print(
+        logMessage,
+        [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
+      );
     }
   }
 
-  void _logError(
+  void logError(
     String method,
     String statusMessage,
     dynamic error,
@@ -282,12 +344,12 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     Future<T?> Function() apiCall,
   ) async {
     try {
-      _logRequest(method, collectionName, null);
+      logRequest(method, null);
       final response = await apiCall();
-      _logResponse(method, "Success", response);
+      logResponse(method, "Success", response);
       return Pair(RequestResponse.success, response);
     } catch (error) {
-      _logError(method, "Error", error);
+      logError(method, "Error", error);
       return const Pair(RequestResponse.failure, null);
     }
   }

@@ -13,4 +13,9 @@ class DummyPermissionDataSource extends PaginatedDummyDataSource<PermissionModel
     // TODO: implement matchesQuery
     throw UnimplementedError();
   }
+
+  @override
+  void closeStreams() {
+    // TODO: implement closeStreams
+  }
 }

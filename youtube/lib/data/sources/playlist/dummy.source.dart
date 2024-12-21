@@ -35,4 +35,9 @@ class DummyPlaylistDataSource extends DummyDataSource<PlaylistModel, BasicSearch
     // TODO: implement getPage
     throw UnimplementedError();
   }
+
+  @override
+  void closeStreams() {
+    // TODO: implement closeStreams
+  }
 }

@@ -16,21 +16,22 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
   /// [_PaginatedListStore] constructor.
   _PaginatedListStore({
     this.limit = 12,
-    super.shouldLoadMoreInitially,
     super.sortByKey,
     super.reverseList = false,
-  }) {
-    initialize();
-  }
+  });
 
   @override
   Future<void> initialize() async {
-    if (shouldLoadMoreInitially) await loadMore(limit: limit);
-    scrollController.addListener(() {
-      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-        loadMore(limit: limit);
-      }
-    });
+    try {
+      scrollController.addListener(() {
+        if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+          loadMore(limit: limit);
+        }
+      });
+      return loadMore(limit: limit);
+    } catch (e) {
+      setError("There was a problem loading the results.");
+    }
   }
 
   late final Future<Pair<RequestResponse, List<T?>>> Function({int? limit, bool refresh}) loadMoreFromRepository;
@@ -55,8 +56,7 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
       if (loadedResults.second.isNotEmpty || refresh) {
         if (refresh) results.clear();
         results.addAll(loadedResults.second.whereType<T>());
-
-        results = ObservableList.of(results.toSet().toList()); // Ensure uniqueness
+        results = ObservableList.of(results.toSet().toList());
 
         if (results.isEmpty) {
           results.clear();

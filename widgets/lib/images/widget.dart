@@ -187,7 +187,7 @@ class LYImage extends StatelessWidget {
   }
 
   CachedNetworkImage _buildErrorImageProxyBuilder(BuildContext context, String error, Object object) {
-    final _networkOptions = (options as NetworkImageOptions? ?? NetworkImageOptions()).copyWith(proxy: DigitalOasis.proxy);
+    final _networkOptions = (options as NetworkImageOptions? ?? NetworkImageOptions()).copyWith(proxy: WebServices.proxy);
     final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
     final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
     final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;

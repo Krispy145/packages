@@ -98,4 +98,9 @@ class FontFileIOManager extends HiveDataSource<XFile, BasicSearchQueryModel> {
     // TODO: implement searchAll
     throw UnimplementedError();
   }
+
+  @override
+  void closeStreams() {
+    // TODO: implement closeStreams
+  }
 }

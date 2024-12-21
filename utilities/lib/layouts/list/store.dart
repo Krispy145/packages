@@ -14,16 +14,12 @@ class ListStore<T, K extends Comparable<K>> = _ListStore<T, K> with _$ListStore<
 abstract class _ListStore<T, K extends Comparable<K>> with LoadStateStore, Store {
   final bool reverseList;
   final K Function(T)? sortByKey;
-  final bool shouldLoadMoreInitially;
 
   /// [_ListStore] constructor.
   _ListStore({
     this.reverseList = false,
-    this.shouldLoadMoreInitially = true,
     this.sortByKey,
-  }) {
-    initialize();
-  }
+  });
 
   late final Future<Pair<RequestResponse, List<T?>>> Function() loadFromRepository;
 
@@ -44,13 +40,15 @@ abstract class _ListStore<T, K extends Comparable<K>> with LoadStateStore, Store
 
   @action
   Future<void> initialize() async {
-    if (shouldLoadMoreInitially) {
+    try {
       return load();
+    } catch (e) {
+      setError("There was a problem loading the results.");
     }
   }
 
   @action
-  Future<void> load({int? limit, bool refresh = false}) async {
+  Future<void> load({bool refresh = false}) async {
     try {
       setLoading();
       if (refresh) {

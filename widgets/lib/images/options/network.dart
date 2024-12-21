@@ -58,7 +58,7 @@ class NetworkImageOptions extends ImageOptions {
   Triple<bool, String, Map<String, String>> getProxyAndHeaders(String url) {
     final _headers = headers ?? PublicHeaders.map;
     if (kIsWeb && (proxy != null || ProxyUrls.list.any((element) => url.startsWith(element)))) {
-      final _proxy = proxy ?? DigitalOasis.proxy;
+      final _proxy = proxy ?? WebServices.proxy;
       return Triple(true, "$_proxy$url", _headers);
     }
     return Triple(false, url, _headers);

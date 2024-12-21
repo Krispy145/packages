@@ -27,4 +27,7 @@ enum UtilitiesLoggers {
 
   /// [timezone] is the feature reference for timezone.
   timezone,
+
+  /// [streamedListStore] is the feature reference for streamedListStore.
+  streamedListStore,
 }

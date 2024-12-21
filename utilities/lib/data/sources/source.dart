@@ -35,6 +35,9 @@ abstract mixin class DataSource<T, Q> {
 
   /// [searchAll] method searches for all the key-value pairs
   Future<Pair<RequestResponse, List<T?>>> searchAll(Q query);
+
+  /// [closeStreams] method closes all the streams (if any)
+  void closeStreams() {}
 }
 
 mixin Mappable<T> {

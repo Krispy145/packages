@@ -353,4 +353,7 @@ abstract class ApiDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> 
     cancelTokens[id]?.cancel();
     cancelTokens.remove(id);
   }
+
+  @override
+  void closeStreams() {}
 }

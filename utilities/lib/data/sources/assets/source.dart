@@ -133,4 +133,7 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
     }
     return Pair(RequestResponse.success, result);
   }
+
+  @override
+  void closeStreams() {}
 }

@@ -38,9 +38,8 @@ mixin _$ListStore<T, K extends Comparable<K>> on _ListStore<T, K>, Store {
       AsyncAction('_ListStore.load', context: context);
 
   @override
-  Future<void> load({int? limit, bool refresh = false}) {
-    return _$loadAsyncAction
-        .run(() => super.load(limit: limit, refresh: refresh));
+  Future<void> load({bool refresh = false}) {
+    return _$loadAsyncAction.run(() => super.load(refresh: refresh));
   }
 
   @override

@@ -17,4 +17,9 @@ class AssetsThemeDataSource<T> extends AssetsDataSource<T, BasicSearchQueryModel
     final map = convertDataTypeToMap(item);
     return (map["name"] as String).contains(RegExp(query.searchTerm, caseSensitive: false));
   }
+
+  @override
+  void closeStreams() {
+    // TODO: implement closeStreams
+  }
 }

@@ -87,6 +87,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       AppLogger.print(
         "Get All Success: ${querySnapshot.docs.length}",
         [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
       );
       final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
       return Pair(RequestResponse.success, result);
@@ -117,7 +118,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       //   return Pair(RequestResponse.success, result);
       // }
     } catch (e) {
-      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
+      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource], type: LoggerType.error);
       return const Pair(RequestResponse.failure, []);
     }
   }
@@ -184,6 +185,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
         AppLogger.print(
           "Delete All Success: ${result.length}",
           [UtilitiesLoggers.firestoreDataSource],
+          type: LoggerType.confirmation,
         );
         return RequestResponse.success;
       } else {
@@ -205,11 +207,16 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
         AppLogger.print(
           "Delete All with Permissions Success: ${result.length}",
           [UtilitiesLoggers.firestoreDataSource],
+          type: LoggerType.confirmation,
         );
         return RequestResponse.success;
       }
     } catch (e) {
-      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
+      AppLogger.print(
+        "Error: $e",
+        [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.error,
+      );
       return RequestResponse.failure;
     }
   }
@@ -269,6 +276,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       AppLogger.print(
         "Update All Success: ${result.length}",
         [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
       );
       return RequestResponse.success;
     } else {
@@ -291,6 +299,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       AppLogger.print(
         "Update All with Permissions Success: ${result.length}",
         [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
       );
       return RequestResponse.success;
     }
@@ -367,6 +376,7 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       AppLogger.print(
         "Get All Success: ${querySnapshot.docs.length}",
         [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
       );
       final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList().firstOrNull;
       return Pair(RequestResponse.success, result);
@@ -398,7 +408,11 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       //   return Pair(RequestResponse.success, result);
       // }
     } catch (e) {
-      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
+      AppLogger.print(
+        "Error: $e",
+        [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.error,
+      );
       return const Pair(RequestResponse.failure, null);
     }
   }
@@ -429,7 +443,11 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       if (querySnapshot.docs.isEmpty) {
         return const Pair(RequestResponse.failure, []);
       }
-      AppLogger.print("Get All Success: ${querySnapshot.docs.length}", [UtilitiesLoggers.firestoreDataSource]);
+      AppLogger.print(
+        "Get All Success: ${querySnapshot.docs.length}",
+        [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.confirmation,
+      );
       final result = querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
       return Pair(RequestResponse.success, result);
 
@@ -488,7 +506,11 @@ abstract class SecuredFirestoreDataSource<U extends UserModel, T, Q extends Basi
       //     return Pair(RequestResponse.success, result);
       //   }
     } catch (e) {
-      AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource]);
+      AppLogger.print(
+        "Error: $e",
+        [UtilitiesLoggers.firestoreDataSource],
+        type: LoggerType.error,
+      );
       return const Pair(RequestResponse.failure, []);
     }
   }

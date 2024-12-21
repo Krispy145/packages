@@ -64,13 +64,22 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
     }
     return Stack(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (header != null) ...[header!, Sizes.m.spacer()],
-            Expanded(child: _buildResults()),
-          ],
-        ),
+        if (scrollDirection == Axis.vertical)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (header != null) ...[header!, Sizes.m.spacer()],
+              Expanded(child: _buildResults()),
+            ],
+          ),
+        if (scrollDirection == Axis.horizontal)
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (header != null) ...[header!, Sizes.m.spacer()],
+              Expanded(child: _buildResults()),
+            ],
+          ),
         SafeArea(
           child: Align(
             alignment: Alignment.bottomCenter,
