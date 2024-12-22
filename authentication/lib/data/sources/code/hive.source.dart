@@ -34,9 +34,4 @@ class HiveCodeDataSource extends HiveDataSource<CodeModel, void> implements Code
     // TODO: implement searchAll
     throw UnimplementedError();
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

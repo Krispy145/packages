@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:collection/collection.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
@@ -20,13 +22,15 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
     super.sortByKey,
   });
 
+  StreamSubscription<Pair<RequestResponse, List<T?>>>? subscription;
+
   late final Stream<Pair<RequestResponse, List<T?>>> Function({int? limit}) dataStream;
 
   @override
   Future<void> initialize() async {
     AppLogger.print("Initializing StreamedListStore...", [UtilitiesLoggers.streamedListStore]);
 
-    dataStream(limit: limit).listen(
+    subscription = dataStream(limit: limit).listen(
       (newData) {
         try {
           AppLogger.print("New data received from stream: $newData", [UtilitiesLoggers.streamedListStore]);

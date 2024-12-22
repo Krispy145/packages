@@ -2,7 +2,6 @@ import "dart:async";
 
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:dart_mappable/dart_mappable.dart";
-import "package:flutter/foundation.dart";
 import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
@@ -30,11 +29,6 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     required super.convertDataTypeToMap,
     required super.titleFromType,
   });
-
-  StreamSubscription<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>? _pageStreamSubscription;
-
-  /// Tracks the stream subscription for cancellation
-  StreamSubscription<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>? get pageStreamSubscription => _pageStreamSubscription;
 
   @override
   Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> getPage({
@@ -131,79 +125,12 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
         },
       );
 
-      // Store the subscription for future management
-      _pageStreamSubscription = stream.listen(
-        (_) {},
-        // ignore: inference_failure_on_untyped_parameter
-        onError: (e) {
-          logError("STREAM_PAGE", collectionName, e);
-        },
-      );
-
       return stream;
     } catch (e) {
       logError("STREAM_PAGE", collectionName, e);
       return Stream.fromFuture(Future.value(Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []))));
     }
   }
-
-  /// Close the stream subscription
-  @mustCallSuper
-  @override
-  void closeStreams() {
-    _pageStreamSubscription?.cancel();
-    _pageStreamSubscription = null;
-    super.closeStreams();
-  }
-
-  // Stream<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> streamPage({
-  //   int? size,
-  //   String? orderBy,
-  //   bool descending = true,
-  //   FirestoreResponseModel<T?>? lastResponse,
-  // }) {
-  //   try {
-  //     final _collection = firestore.collection(collectionName);
-  //     Query query = _collection;
-
-  //     if (orderBy != null) {
-  //       query = query.orderBy(orderBy, descending: descending);
-  //     }
-
-  //     if (lastResponse != null) {
-  //       if (lastResponse.lastDocumentSnapshot != null) {
-  //         query = query.startAfterDocument(
-  //           lastResponse.lastDocumentSnapshot!,
-  //         );
-  //       }
-  //     }
-
-  //     if (size != null) {
-  //       query = query.limit(size);
-  //     }
-
-  //     return query.snapshots().map(
-  //       (response) {
-  //         final _response = FirestoreResponseModel<T?>(
-  //           lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
-  //         );
-  //         final responsePair = Pair(
-  //           RequestResponse.success,
-  //           Pair(
-  //             _response,
-  //             List<T?>.from(
-  //               response.docs.map((e) => convertFromMap(e.data()! as Map<String, dynamic>) as T?),
-  //             ),
-  //           ),
-  //         );
-  //         return responsePair;
-  //       },
-  //     );
-  //   } catch (e) {
-  //     AppLogger.print("Error: $e", [UtilitiesLoggers.firestoreDataSource], type: LoggerType.error);
-  //     return Stream.fromFuture(Future.value(Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []))));
-  //   }
-  // }
 
   @override
   Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> searchPage({

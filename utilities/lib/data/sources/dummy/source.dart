@@ -82,7 +82,4 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
     }
     return Pair(RequestResponse.success, result);
   }
-
-  @override
-  void closeStreams() {}
 }

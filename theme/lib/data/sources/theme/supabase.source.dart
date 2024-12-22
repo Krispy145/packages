@@ -19,9 +19,4 @@ class SupabaseThemeDataSource<T> extends SupabaseDataSource<T, BasicSearchQueryM
     // TODO: implement buildQuery
     throw UnimplementedError();
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

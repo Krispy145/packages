@@ -35,9 +35,4 @@ class DummyPlaylistItemDataSource extends DummyDataSource<PlaylistItemModel, Bas
     // TODO: implement getPage
     throw UnimplementedError();
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

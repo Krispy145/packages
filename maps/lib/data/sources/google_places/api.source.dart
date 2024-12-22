@@ -81,9 +81,4 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
   Map<String, dynamic> buildQuery(Map<String, dynamic> query) {
     return query;
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

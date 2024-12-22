@@ -1,7 +1,6 @@
 import "dart:async";
 
 import "package:cloud_firestore/cloud_firestore.dart";
-import "package:flutter/foundation.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
@@ -32,10 +31,6 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   });
 
   CollectionReference<Map<String, dynamic>> get collectionReference => firestore.collection(collectionName);
-
-  StreamSubscription<Pair<RequestResponse, int>>? _collectionCountStreamSubscription;
-
-  StreamSubscription<Pair<RequestResponse, int>>? get collectionCountStreamSubscription => _collectionCountStreamSubscription;
 
   Timestamp getTimestampFromDateTime(DateTime dateTime) {
     return Timestamp.fromDate(dateTime);
@@ -272,25 +267,7 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
       return Pair(RequestResponse.success, event.docs.length);
     });
 
-    // Store subscription for lifecycle management
-    _collectionCountStreamSubscription = stream.listen(
-      (_) {},
-      // ignore: inference_failure_on_untyped_parameter
-      onError: (e) {
-        logError("GET_COLLECTION_COUNT_STREAM", collectionName, e);
-      },
-    );
-
     return stream;
-  }
-
-  /// Close the stream subscription
-  @mustCallSuper
-  @override
-  void closeStreams() {
-    _collectionCountStreamSubscription?.cancel();
-    _collectionCountStreamSubscription = null;
-    AppLogger.print("Stream closed", [UtilitiesLoggers.firestoreDataSource]);
   }
 
   void logRequest(String method, T? data) {

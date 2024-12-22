@@ -123,9 +123,4 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
     super.deleteAll();
     super.addAll(notificationList);
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

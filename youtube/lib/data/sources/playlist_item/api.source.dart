@@ -125,9 +125,4 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<Pla
       },
     );
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

@@ -22,9 +22,4 @@ class SupabaseCodeDataSource extends SupabaseDataSource<CodeModel, void> impleme
     // TODO: implement buildQuery
     throw UnimplementedError();
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

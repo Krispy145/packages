@@ -271,7 +271,4 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
       );
     }
   }
-
-  @override
-  void closeStreams() {}
 }

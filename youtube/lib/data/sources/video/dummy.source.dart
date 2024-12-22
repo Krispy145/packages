@@ -35,9 +35,4 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
     // TODO: implement getPage
     throw UnimplementedError();
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

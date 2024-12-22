@@ -43,9 +43,4 @@ class SecureInstagramDataSource extends SecureDataSource<InstagramUserModel, Map
     );
     return const Pair(RequestResponse.failure, []);
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }

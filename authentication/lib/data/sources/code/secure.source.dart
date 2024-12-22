@@ -26,9 +26,4 @@ class SecureCodeDataSource extends PaginatedSecureDataSource<CodeModel, void> im
     // TODO: implement matchesQuery
     throw UnimplementedError();
   }
-
-  @override
-  void closeStreams() {
-    // TODO: implement closeStreams
-  }
 }
