@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:responsive_framework/responsive_framework.dart";
+import "package:utilities/sizes/screen_size.dart";
 import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/snackbar/message.dart";
 
@@ -23,6 +24,8 @@ extension ShowSnackbar on BuildContext {
 extension ResponsiveSize on BuildContext {
   /// [isMobile] is a getter that returns whether the screen size is mobile.
   bool get isMobile => ResponsiveBreakpoints.of(this).isMobile;
+
+  bool get isScreenWidthGreaterThanTablet => screenWidth >= ScreenSize.tabletBreak.start;
 
   /// [isDesktop] is a getter that returns whether the screen size is desktop.
   bool get isDesktop => ResponsiveBreakpoints.of(this).isDesktop;

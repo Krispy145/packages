@@ -8,22 +8,15 @@ import "reactive_store.dart";
 abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> extends StatelessWidget {
   final S store;
   final Widget? header;
-  final String updateButtonTitle;
-  final String createButtonTitle;
   final Widget Function(BuildContext context)? loadingBuilder;
   final Widget Function(BuildContext context, String message)? emptyBuilder;
-  // final EdgeInsets? scrollViewPadding;
+
   final void Function(RequestResponse requestResponse)? onBack;
-  // final ListViewType viewType;
-  // final SliverGridDelegate? gridDelegate;
-  // final bool slivers;
   const ReactiveFormsModelView({
     super.key,
     required this.store,
     this.header,
     // this.scrollViewPadding,
-    this.updateButtonTitle = "Update",
-    this.createButtonTitle = "Create",
     this.loadingBuilder,
     this.emptyBuilder,
     // this.viewType = ListViewType.listView,

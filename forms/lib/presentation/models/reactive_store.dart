@@ -25,7 +25,7 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
 
   final String permissionDeniedMessage = "You do not have permission to do this.";
 
-  final Future<RequestResponse> Function(bool isAdding, T value) saveValue;
+  final Future<RequestResponse> Function(bool isAdding, T value)? saveValue;
 
   final FormGroup form = FormGroup({});
 
@@ -44,7 +44,11 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
       setError("Failed to prepare value from form");
       return RequestResponse.failure;
     }
-    final response = await saveValue(isAdding, value);
+    final response = await saveValue?.call(isAdding, value);
+    if (response == null) {
+      setError("Failed to save value");
+      return RequestResponse.failure;
+    }
     if (response == RequestResponse.success || response == RequestResponse.underReview) {
       setLoaded();
     } else {
