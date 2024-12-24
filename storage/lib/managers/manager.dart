@@ -143,4 +143,14 @@ class LYFileUploadManager implements BaseFileUploadManager {
   Future<void> deleteFiles({required List<String> paths}) {
     return storageRepository.deleteFiles(paths);
   }
+
+  @override
+  Future<XFile?> downloadFile({required String path}) {
+    return storageRepository.downloadFile(path);
+  }
+
+  @override
+  Future<List<XFile>?> downloadFiles({required List<String> paths}) {
+    return storageRepository.downloadFiles(paths);
+  }
 }

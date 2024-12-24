@@ -23,4 +23,17 @@ class LocalStorageService implements BaseStorageService {
       await file.delete();
     }
   }
+
+  @override
+  Future<XFile?> downloadFile(String url) async {
+    try {
+      final file = File(url);
+      if (file.existsSync()) {
+        return XFile(file.path);
+      }
+      return null;
+    } catch (e) {
+      throw Exception("Failed to download file");
+    }
+  }
 }

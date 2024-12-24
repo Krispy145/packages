@@ -66,4 +66,23 @@ class StorageRepository {
       await storageService.deleteFile(paths[i]);
     }
   }
+
+  Future<XFile?> downloadFile(String url) async {
+    final storageService = storageProvider.getStorageService();
+    return storageService.downloadFile(url);
+  }
+
+  Future<List<XFile>> downloadFiles(List<String> urls) async {
+    final storageService = storageProvider.getStorageService();
+    final files = <XFile>[];
+
+    for (var i = 0; i < urls.length; i++) {
+      final file = await storageService.downloadFile(urls[i]);
+      if (file != null) {
+        files.add(file);
+      }
+    }
+
+    return files;
+  }
 }

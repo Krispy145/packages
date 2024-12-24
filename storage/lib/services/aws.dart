@@ -53,4 +53,16 @@ class AwsS3StorageService implements BaseStorageService {
       throw Exception("Failed to delete file from AWS S3: $e");
     }
   }
+
+  @override
+  Future<XFile?> downloadFile(String url) async {
+    try {
+      final key = Uri.parse(url).pathSegments.last;
+      final response = await _s3Client.getObject(bucket: _bucketName, key: key);
+      final fileBytes = response.body;
+      return XFile.fromData(fileBytes!);
+    } catch (e) {
+      throw Exception("Failed to download file from AWS S3: $e");
+    }
+  }
 }

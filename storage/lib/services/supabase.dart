@@ -23,4 +23,12 @@ class SupabaseStorageService implements BaseStorageService {
   Future<void> deleteFile(String url) async {
     await _supabase.storage.from(bucketName).remove([url]);
   }
+
+  @override
+  Future<XFile?> downloadFile(String url) async {
+    final _response = await _supabase.storage.from(bucketName).download(url);
+    final _ioFile = File(url);
+    await _ioFile.writeAsBytes(_response);
+    return XFile(_ioFile.path);
+  }
 }

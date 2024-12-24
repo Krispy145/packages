@@ -24,4 +24,8 @@ abstract class BaseFileUploadManager {
   Future<String?> pickAndUploadSingleImage({FilePreviewCallback? previewCallback});
   Future<String?> pickAndUploadCameraImage({FilePreviewCallback? previewCallback});
   Future<List<String>?> pickAndUploadMultipleImages({FilesPreviewCallback? previewCallback});
+
+  /// download file/image
+  Future<XFile?> downloadFile({required String path});
+  Future<List<XFile>?> downloadFiles({required List<String> paths});
 }

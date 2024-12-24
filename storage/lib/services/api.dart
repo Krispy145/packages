@@ -33,4 +33,16 @@ class ApiStorageService implements BaseStorageService {
       throw Exception("Failed to delete file");
     }
   }
+
+  @override
+  Future<XFile?> downloadFile(String url) async {
+    final response = await http.get(Uri.parse("$apiUrl/download/$url"));
+
+    if (response.statusCode == 200) {
+      final bytes = response.bodyBytes;
+      return XFile.fromData(bytes);
+    } else {
+      throw Exception("Failed to download file");
+    }
+  }
 }
