@@ -25,10 +25,9 @@ class UserSearchQueryModelMapper extends ClassMapperBase<UserSearchQueryModel> {
   static String _$searchTerm(UserSearchQueryModel v) => v.searchTerm;
   static const Field<UserSearchQueryModel, String> _f$searchTerm =
       Field('searchTerm', _$searchTerm, key: 'search_term', opt: true, def: "");
-  static AuthType _$authType(UserSearchQueryModel v) => v.authType;
-  static const Field<UserSearchQueryModel, AuthType> _f$authType = Field(
-      'authType', _$authType,
-      key: 'auth_type', opt: true, def: AuthType.anonymous);
+  static AuthType? _$authType(UserSearchQueryModel v) => v.authType;
+  static const Field<UserSearchQueryModel, AuthType> _f$authType =
+      Field('authType', _$authType, key: 'auth_type', opt: true);
   static bool _$mustInclude(UserSearchQueryModel v) => v.mustInclude;
   static const Field<UserSearchQueryModel, bool> _f$mustInclude = Field(
       'mustInclude', _$mustInclude,
@@ -138,13 +137,13 @@ class _UserSearchQueryModelCopyWithImpl<$R, $Out>
   @override
   $R call(
           {String? searchTerm,
-          AuthType? authType,
+          Object? authType = $none,
           bool? mustInclude,
           bool? mustExclude,
           Object? isAuthorized = $none}) =>
       $apply(FieldCopyWithData({
         if (searchTerm != null) #searchTerm: searchTerm,
-        if (authType != null) #authType: authType,
+        if (authType != $none) #authType: authType,
         if (mustInclude != null) #mustInclude: mustInclude,
         if (mustExclude != null) #mustExclude: mustExclude,
         if (isAuthorized != $none) #isAuthorized: isAuthorized

@@ -88,35 +88,42 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
     String? orderBy,
     bool descending = true,
     FirestoreResponseModel<T?>? lastResponse,
+    Q? query,
   }) {
     logRequest("STREAM_PAGE", null);
     try {
-      final _collection = firestore.collection(collectionName);
-      Query query = _collection;
+      Query<Map<String, dynamic>> firestoreQuery;
+
+      if (query != null) {
+        firestoreQuery = buildQuery(query, collectionReference);
+      }
+      {
+        firestoreQuery = collectionReference;
+      }
 
       if (orderBy != null) {
-        query = query.orderBy(orderBy, descending: descending);
+        firestoreQuery = firestoreQuery.orderBy(orderBy, descending: descending);
       }
 
       if (lastResponse?.lastDocumentSnapshot != null) {
-        query = query.startAfterDocument(lastResponse!.lastDocumentSnapshot!);
+        firestoreQuery = firestoreQuery.startAfterDocument(lastResponse!.lastDocumentSnapshot!);
       }
 
       if (size != null) {
-        query = query.limit(size);
+        firestoreQuery = firestoreQuery.limit(size);
       }
 
-      final stream = query.snapshots().map(
+      final stream = firestoreQuery.snapshots().map(
         (response) {
           final _response = FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>> : lastResponse?.lastDocumentSnapshot,
+            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot,
           );
           final responsePair = Pair(
             RequestResponse.success,
             Pair(
               _response,
               List<T?>.from(
-                response.docs.map((e) => convertFromMap(e.data()! as Map<String, dynamic>) as T?),
+                response.docs.map((e) => convertFromMap(e.data()) as T?),
               ),
             ),
           );

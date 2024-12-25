@@ -13,6 +13,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
   final ListStore<T, K> store;
   final Widget? header;
   final Widget? Function(BuildContext context, int index, T model) itemBuilder;
+  final Widget Function(BuildContext context)? loadingBuilder;
   final Widget Function(BuildContext context, String message)? emptyBuilder;
   final Widget Function(BuildContext context, String message)? errorBuilder;
   final Widget Function(BuildContext, int)? separatorBuilder;
@@ -39,6 +40,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     this.physics,
     this.slivers = false,
     this.emptyBuilder,
+    this.loadingBuilder,
     this.errorBuilder,
     this.maxItemsCutOff,
     this.shrinkWrap = false,
@@ -63,6 +65,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     this.physics,
     this.slivers = false,
     this.emptyBuilder,
+    this.loadingBuilder,
     this.errorBuilder,
     this.maxItemsCutOff,
     this.shrinkWrap = false,
@@ -85,6 +88,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     this.physics,
     this.slivers = false,
     this.emptyBuilder,
+    this.loadingBuilder,
     this.errorBuilder,
     this.maxItemsCutOff,
     this.shrinkWrap = false,
@@ -165,10 +169,8 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
               final emptyState = store.currentState as EmptyLoadState;
               return SliverToBoxAdapter(child: emptyBuilder?.call(context, emptyState.emptyMessage) ?? WarningMessage.empty(message: emptyState.emptyMessage));
             } else if (store.isLoading) {
-              return const SliverToBoxAdapter(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
+              return SliverToBoxAdapter(
+                child: Center(child: loadingBuilder?.call(context) ?? const CircularProgressIndicator()),
               );
             } else {
               return const SliverToBoxAdapter(child: SizedBox.shrink());
@@ -184,7 +186,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     final itemCount = resultsCount + (isLoadingMore ? 1 : 0);
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
-        return const SizedBox(height: 64, width: 64, child: Center(child: CircularProgressIndicator()));
+        return SizedBox(height: 64, width: 64, child: Center(child: loadingBuilder?.call(context) ?? const CircularProgressIndicator()));
       }
       return itemBuilder(context, index, store.results[index]);
     }

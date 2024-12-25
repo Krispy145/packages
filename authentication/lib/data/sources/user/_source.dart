@@ -21,13 +21,13 @@ part "firestore.source.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class UserSearchQueryModel extends BasicSearchQueryModel with UserSearchQueryModelMappable {
-  final AuthType authType;
+  final AuthType? authType;
   final bool mustInclude;
   final bool mustExclude;
   final bool? isAuthorized;
   const UserSearchQueryModel({
     super.searchTerm = "",
-    this.authType = AuthType.anonymous,
+    this.authType,
     this.mustInclude = true,
     this.mustExclude = false,
     this.isAuthorized,
