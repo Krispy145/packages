@@ -22,20 +22,18 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
         return DropdownSearch<T>(
           itemAsString: store.labelBuilder,
           selectedItem: store.value,
-          asyncItems: (searchTerm) async => await store.itemFetcher?.call(searchTerm) ?? [],
-          items: store.itemFetcher != null ? [] : store.items,
+          items: (searchTerm, searchProps) async => await store.itemFetcher?.call(searchTerm) ?? store.items,
           compareFn: (i, s) => i == s,
           onChanged: (item) {
             if (item != null) store.value = item;
           },
           popupProps: PopupPropsMultiSelection.menu(
-            isFilterOnline: true,
             showSelectedItems: true,
             showSearchBox: store.showSearch,
             listViewProps: const ListViewProps(
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             ),
-            itemBuilder: (context, item, isSelected) {
+            itemBuilder: (context, item, isDisabled, isSelected) {
               return LYListTile(
                 leading: store.leadingBuilder?.call(item),
                 title: store.labelBuilder(item),

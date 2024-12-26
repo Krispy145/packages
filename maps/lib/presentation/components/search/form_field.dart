@@ -1,9 +1,9 @@
-import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/material.dart';
-import 'package:forms/presentation/components/base/form_field.dart';
-import 'package:maps/data/models/google/place_model.dart';
+import "package:dropdown_search/dropdown_search.dart";
+import "package:flutter/material.dart";
+import "package:forms/presentation/components/base/form_field.dart";
+import "package:maps/data/models/google/place_model.dart";
 
-import 'store.dart';
+import "store.dart";
 
 class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFieldStore> {
   GooglePlaceSearchFormField({
@@ -16,14 +16,13 @@ class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFiel
     return DropdownSearch<GooglePlace>(
       itemAsString: (item) => item.name ?? "Name not found",
       selectedItem: store.value,
-      asyncItems: (query) => store.searchQuery(query),
+      items: (query, props) => store.searchQuery(query),
       compareFn: (i, s) => i == s,
       onChanged: store.onSelectedPlace,
       popupProps: PopupPropsMultiSelection.menu(
-        isFilterOnline: true,
         showSelectedItems: true,
         showSearchBox: true,
-        itemBuilder: (context, item, isSelected) {
+        itemBuilder: (context, item, isDisabled, isSelected) {
           return ListTile(
             leading: ImageIcon(
               NetworkImage(item.icon ?? ""),

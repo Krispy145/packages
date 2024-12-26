@@ -15,7 +15,7 @@ abstract class ReactiveFormsModelStore<T> = _ReactiveFormsModelStore<T> with _$R
 abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   final bool isAdding;
 
-  final T? editingValue;
+  T? editingValue;
 
   final String successMessage = "Success";
 
@@ -71,14 +71,7 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
         showSnackbar(SnackbarConfiguration.warning(title: "Request Cancelled"));
         break;
     }
-    // return response;
-    // if (response == RequestResponse.success) {
-    //   showSnackbar(SnackbarConfiguration.confirmation(title: successMessage));
-    // } else if (response == RequestResponse.failure) {
-    //   showSnackbar(SnackbarConfiguration.error(title: errorMessage));
-    // } else if (response == RequestResponse.underReview) {
-    //   showSnackbar(SnackbarConfiguration.information(title: underReviewMessage));
-    // }
+    editingValue = null;
     onBack.call(response);
     return response;
   }

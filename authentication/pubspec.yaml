@@ -11,12 +11,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_facebook_auth: ^6.0.3
+  flutter_facebook_auth: ^7.1.1
   google_sign_in: ^6.2.1
-  sign_in_with_apple: ^5.0.0
+  sign_in_with_apple: ^6.1.4
   firebase_auth: ^5.0.0
   supabase_flutter: ^2.0.2
-  email_validator: ^2.1.17
+  email_validator: ^3.0.0
   utilities:
     path: ../utilities
   cryptography: ^2.7.0
@@ -27,11 +27,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.1
+  flutter_lints: ^5.0.0
   mobx_codegen: ^2.3.0
   json_serializable: ^6.7.1
   dart_mappable_builder: ^4.2.3
-  envied_generator: ^0.5.3
+  envied_generator: ^1.0.0
   build_runner:
   flutter_gen_runner:
 

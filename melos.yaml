@@ -31,6 +31,9 @@ scripts:
   fix:
     exec: "dart fix --dry-run"
 
+  upgrade:
+    exec: "dart pub upgrade --major-versions"
+
   version:
     hooks:
       preCommit:

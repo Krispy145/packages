@@ -1,3 +1,5 @@
+// ignore_for_file: unused_element
+
 part of 'video_player.dart';
 
 /// Video plugin for playing HLS stream using native player. [autoPlay] flag
@@ -34,7 +36,7 @@ class _InternalVideoPlayer extends StatefulWidget {
   final bool allowPictureInPicture;
 
   const _InternalVideoPlayer({
-    Key? key,
+    super.key,
     this.autoPlay = false,
     this.loop = false,
     this.showControls = true,
@@ -49,7 +51,7 @@ class _InternalVideoPlayer extends StatefulWidget {
     this.desiredState = PlayerState.PLAYING,
     this.textTracks,
     this.allowPictureInPicture = false,
-  }) : super(key: key);
+  });
 
   @override
   _InternalVideoPlayerState createState() => _InternalVideoPlayerState();

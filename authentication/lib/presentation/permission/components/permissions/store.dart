@@ -91,8 +91,6 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermiss
         return crudOption.copyWith(canUpdate: permissionLevels.firstOrNull);
       case CRUD.delete:
         return crudOption.copyWith(canDelete: permissionLevels.firstOrNull);
-      default:
-        throw Exception("Invalid CRUD option");
     }
   }
 

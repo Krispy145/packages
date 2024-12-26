@@ -182,9 +182,6 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
         case AuthBuilderType.authenticate:
           await _handleAuthenticate();
           break;
-        default:
-          setEmpty("No auth type found");
-          break;
       }
     } catch (e) {
       setError("Error authenticating user");

@@ -159,6 +159,7 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
       interval,
       details,
       payload: json.encode(notification.toJson()),
+      androidScheduleMode: AndroidScheduleMode.exact,
     );
   }
 
@@ -271,14 +272,15 @@ abstract class _LocalNotificationsStore extends NotificationsStore with Store {
   @action
   Future<DarwinInitializationSettings> _initializeDarwin() async {
     return DarwinInitializationSettings(
-      onDidReceiveLocalNotification: (id, title, body, payload) {
-        final notification = payload != null
-            ? NotificationModel.fromMap(
-                json.decode(payload) as Map<String, dynamic>,
-              )
-            : null;
-        _onDidReceiveLocalNotification(notification);
-      },
+      /// commented out after latest local notifications plugin update
+      // onDidReceiveLocalNotification: (id, title, body, payload) {
+      //   final notification = payload != null
+      //       ? NotificationModel.fromMap(
+      //           json.decode(payload) as Map<String, dynamic>,
+      //         )
+      //       : null;
+      //   _onDidReceiveLocalNotification(notification);
+      // },
       notificationCategories: darwinNotificationCategories,
     );
   }

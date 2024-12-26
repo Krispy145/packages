@@ -155,9 +155,9 @@ class DashboardShellStructure extends StatelessWidget {
     return _suggestedWidth;
   }
 
-  WidthPlatformBreakpoint get _small => WidthPlatformBreakpoint(begin: ScreenSize.mobileBreak.start, end: ScreenSize.mobileBreak.end);
-  WidthPlatformBreakpoint get _medium => WidthPlatformBreakpoint(begin: ScreenSize.tabletBreak.start, end: ScreenSize.tabletBreak.end);
-  WidthPlatformBreakpoint get _mediumAndUp => WidthPlatformBreakpoint(begin: ScreenSize.tabletBreak.start, end: double.infinity);
+  Breakpoint get _small => Breakpoint(beginWidth: ScreenSize.mobileBreak.start, endWidth: ScreenSize.mobileBreak.end);
+  Breakpoint get _medium => Breakpoint(beginWidth: ScreenSize.tabletBreak.start, endWidth: ScreenSize.tabletBreak.end);
+  Breakpoint get _mediumAndUp => Breakpoint(beginWidth: ScreenSize.tabletBreak.start, endWidth: double.infinity);
 
   AutoRouter get _autoRouter => AutoRouter(
         navigatorKey: store.navigatorKey,
@@ -304,14 +304,14 @@ class DashboardShellStructure extends StatelessWidget {
     );
   }
 
-  Widget _navigationRailBuilder(BuildContext context, Widget Function(BuildContext context) builder, WidthPlatformBreakpoint breakpoint) {
+  Widget _navigationRailBuilder(BuildContext context, Widget Function(BuildContext context) builder, Breakpoint breakpoint) {
     if (Platform.isIOS || Platform.isAndroid) {
       return _buildSmallLayoutBuilder(context, builder);
     }
-    if (breakpoint.begin == _small.begin && breakpoint.end == _small.end) {
+    if (breakpoint.beginWidth == _small.beginWidth && breakpoint.endWidth == _small.endWidth) {
       return _buildSmallLayoutBuilder(context, builder);
     }
-    if (breakpoint.begin == _medium.begin && breakpoint.end == _medium.end) {
+    if (breakpoint.beginWidth == _medium.beginWidth && breakpoint.endWidth == _medium.endWidth) {
       return _buildMediumLayoutFromNavPosition(context, builder, boardNavigationRailPosition);
     }
     return _buildLargeLayoutFromNavPosition(context, builder, boardNavigationRailPosition);

@@ -96,9 +96,6 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
         case AuthBuilderType.authenticate:
           await _handleAuthenticate();
           break;
-        default:
-          setEmpty("No auth type found");
-          break;
       }
     } catch (e) {
       setError("Error authenticating user");

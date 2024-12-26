@@ -1029,7 +1029,6 @@ class ThemeChanger {
 
     // Convert the archive to a byte list
     final zipBytes = ZipEncoder().encode(archive);
-    if (zipBytes == null) return;
 
     // Create a Blob from the zip byte list
     final blob = html.Blob([Uint8List.fromList(zipBytes)]);

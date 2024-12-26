@@ -288,10 +288,6 @@ class LanguageCode {
         return HLSManifestLanguage(code, "Esperanto");
       case "est":
         return HLSManifestLanguage(code, "Estonian");
-      case "baq":
-        return HLSManifestLanguage(code, "Basque");
-      case "eus":
-        return HLSManifestLanguage(code, "Basque");
       case "ewe":
         return HLSManifestLanguage(code, "Ewe");
       case "ewo":
@@ -412,10 +408,6 @@ class LanguageCode {
         return HLSManifestLanguage(code, "Hungarian");
       case "hup":
         return HLSManifestLanguage(code, "Hupa");
-      case "arm":
-        return HLSManifestLanguage(code, "Armenian");
-      case "hye":
-        return HLSManifestLanguage(code, "Armenian");
       case "iba":
         return HLSManifestLanguage(code, "Iban");
       case "ibo":
@@ -618,10 +610,6 @@ class LanguageCode {
         return HLSManifestLanguage(code, "Minangkabau");
       case "mis":
         return HLSManifestLanguage(code, "Uncoded Languages");
-      case "mac":
-        return HLSManifestLanguage(code, "Macedonian");
-      case "mkd":
-        return HLSManifestLanguage(code, "Macedonian");
       case "mkh":
         return HLSManifestLanguage(code, "Mon-Khmer Languages");
       case "mlg":
