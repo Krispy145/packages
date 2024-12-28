@@ -83,11 +83,10 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
   }
 
   /// Stream Page Function with Subscription Management
-  Stream<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> streamPage({
+  Stream<Pair<RequestResponse, List<T?>>> streamPage({
     int? size,
     String? orderBy,
     bool descending = true,
-    FirestoreResponseModel<T?>? lastResponse,
     Q? query,
   }) {
     logRequest("STREAM_PAGE", null);
@@ -96,17 +95,12 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
 
       if (query != null) {
         firestoreQuery = buildQuery(query, collectionReference);
-      }
-      {
+      } else {
         firestoreQuery = collectionReference;
       }
 
       if (orderBy != null) {
         firestoreQuery = firestoreQuery.orderBy(orderBy, descending: descending);
-      }
-
-      if (lastResponse?.lastDocumentSnapshot != null) {
-        firestoreQuery = firestoreQuery.startAfterDocument(lastResponse!.lastDocumentSnapshot!);
       }
 
       if (size != null) {
@@ -115,16 +109,10 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
 
       final stream = firestoreQuery.snapshots().map(
         (response) {
-          final _response = FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot,
-          );
           final responsePair = Pair(
             RequestResponse.success,
-            Pair(
-              _response,
-              List<T?>.from(
-                response.docs.map((e) => convertFromMap(e.data()) as T?),
-              ),
+            List<T?>.from(
+              response.docs.map((e) => convertFromMap(e.data()) as T?),
             ),
           );
           logResponse("STREAM_PAGE", "Success", responsePair);
@@ -135,7 +123,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
       return stream;
     } catch (e) {
       logError("STREAM_PAGE", collectionName, e);
-      return Stream.fromFuture(Future.value(Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []))));
+      return Stream.fromFuture(Future.value(const Pair(RequestResponse.failure, [])));
     }
   }
 

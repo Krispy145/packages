@@ -18,8 +18,8 @@ class ImageTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: "https://www.image.com",
         hintStyle: context.textTheme.bodyMedium?.copyWith(
-          color: context.textTheme.bodyMedium?.color?.withOpacity(0.5),
-          // color: context.colorScheme.onBackground.withOpacity(0.3),
+          color: context.textTheme.bodyMedium?.color?.withValues(alpha: 127.5),
+          // color: context.colorScheme.onBackground.withValues(alpha:0.3),
         ),
       ),
     );

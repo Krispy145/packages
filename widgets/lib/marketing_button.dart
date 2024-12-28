@@ -38,7 +38,7 @@ class LYMarketingButton extends StatelessWidget {
                 Text(
                   "Powered by $companyName",
                   style: context.textTheme.labelMedium?.copyWith(
-                    color: context.colorScheme.onSurface.withOpacity(0.75),
+                    color: context.colorScheme.onSurface.withValues(alpha: 192),
                   ),
                 ),
               ],

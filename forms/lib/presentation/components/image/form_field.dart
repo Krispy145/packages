@@ -68,7 +68,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             child: InkWell(
               onTap: () async => addOrEditImage(context),
               child: Container(
-                color: context.colorScheme.primary.withOpacity(0.4),
+                color: context.colorScheme.primary.withValues(alpha: 102),
                 child: Icon(Icons.add, color: context.colorScheme.onPrimary),
               ),
             ),

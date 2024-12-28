@@ -62,7 +62,7 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
                   label: "Opacity",
                   value: store.color.opacity,
                   onChanged: (opacity) => store.updateColor(opacity: opacity),
-                  fixedColor: Colors.black.withOpacity(store.color.opacity),
+                  fixedColor: Colors.black.withValues(alpha: store.color.opacity),
                   max: 1,
                 ),
                 ElevatedButton(

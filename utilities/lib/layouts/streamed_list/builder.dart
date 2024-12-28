@@ -22,6 +22,8 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
     required this.store,
     super.header,
     required super.itemBuilder,
+    super.loadingBuilder,
+    super.shrinkWrap,
     super.emptyBuilder,
     super.errorBuilder,
     super.stackedWidgets,

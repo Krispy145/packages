@@ -145,7 +145,7 @@ class LYImage extends StatelessWidget {
                   color: context.colorScheme.inverseSurface,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Container(color: context.colorScheme.outline.withOpacity(0.1), child: Icon(Icons.image, color: context.colorScheme.onSecondaryContainer)),
+                child: Container(color: context.colorScheme.outline.withValues(alpha: 26), child: Icon(Icons.image, color: context.colorScheme.onSecondaryContainer)),
               );
         }
         final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
