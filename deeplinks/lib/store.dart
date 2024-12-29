@@ -11,7 +11,6 @@ import "package:flutter/foundation.dart";
 import "package:flutter/services.dart";
 import "package:flutter_branch_sdk/flutter_branch_sdk.dart";
 import "package:mobx/mobx.dart";
-import "package:rxdart/subjects.dart";
 import "package:utilities/logger/logger.dart";
 
 part "store.g.dart";
@@ -21,12 +20,6 @@ class DeepLinksStore = _DeepLinksStore with _$DeepLinksStore;
 
 /// [_DeepLinksStore] is a Store that is used to manage the state of the [DeepLinksStore].
 abstract class _DeepLinksStore with Store {
-  /// A controller for the data of the deep link.
-  final controllerData = BehaviorSubject<String>();
-
-  /// A controller for the init session of the deep link.
-  final controllerInitSession = BehaviorSubject<String>();
-
   /// An optional user id for deep links.
   final String? userId;
 
@@ -37,6 +30,9 @@ abstract class _DeepLinksStore with Store {
   _DeepLinksStore({this.userId, this.checkSDKIntegration = false}) {
     _initDeeplinksSession();
   }
+
+  @observable
+  DeepLinkModel? receivedDeepLink;
 
   void _initDeeplinksSession() {
     FlutterBranchSdk.init().then((value) {
@@ -55,6 +51,7 @@ abstract class _DeepLinksStore with Store {
           [DeeplinksLoggers.deeplinks],
         );
       }
+      _listenForReceivedDeepLink();
     });
   }
 
@@ -63,14 +60,14 @@ abstract class _DeepLinksStore with Store {
   StreamSubscription<Map<dynamic, dynamic>>? streamSubscription;
 
   @action
-  void listenForReceivedDeepLink(void Function(DeepLinkModel) onDeepLinkReceived) {
+  void _listenForReceivedDeepLink() {
     streamSubscription = FlutterBranchSdk.listSession().listen(
       (data) {
         AppLogger.print(
           "listenDynamicLinks - DeepLink Data: $data",
           [DeeplinksLoggers.deeplinks],
         );
-        controllerData.sink.add(data.toString());
+
         if (data.containsKey("+clicked_branch_link") && data["+clicked_branch_link"] == true) {
           final dataMap = <String, dynamic>{};
           if (data.containsKey(r"$canonical_identifier")) {
@@ -134,8 +131,7 @@ abstract class _DeepLinksStore with Store {
             _metadataMap[element.key.toString()] = element.value;
           }
           dataMap["metadata"] = _metadataMap;
-          final receivedDeepLink = DeepLinkModel.fromMap(dataMap);
-          onDeepLinkReceived(receivedDeepLink);
+          receivedDeepLink = DeepLinkModel.fromMap(dataMap);
           AppLogger.print(
             "DeepLink Data: $data",
             [DeeplinksLoggers.deeplinks],
@@ -149,11 +145,16 @@ abstract class _DeepLinksStore with Store {
           [DeeplinksLoggers.deeplinks],
           type: LoggerType.error,
         );
-        controllerInitSession.add(
-          "InitSession error: ${platformException.code} - ${platformException.message}",
-        );
+        streamSubscription?.cancel();
       },
     );
+  }
+
+  @action
+  void handleDeepLink(void Function(DeepLinkModel deepLink) onDeepLink) {
+    if (receivedDeepLink != null) {
+      onDeepLink(receivedDeepLink!);
+    }
   }
 
   /// Check if the user is identified for deep links.
@@ -165,8 +166,6 @@ abstract class _DeepLinksStore with Store {
   /// Dispose the controllers and the streamSubscription.
   @action
   Future<void> dispose() async {
-    await controllerData.close();
-    await controllerInitSession.close();
     await streamSubscription?.cancel();
   }
 

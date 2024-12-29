@@ -2,6 +2,7 @@ import "dart:async";
 
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/stream_wrapper.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
@@ -259,15 +260,15 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   }
 
   /// Stream to get the collection count
-  Stream<Pair<RequestResponse, int>> getCollectionCountStream() {
+  StreamWrapper<Pair<RequestResponse, int>> getCollectionCountStream() {
     final query = firestore.collection(collectionName);
 
     // Stream setup
     final stream = query.snapshots().map((event) {
       return Pair(RequestResponse.success, event.docs.length);
-    });
+    }).asBroadcastStream();
 
-    return stream;
+    return StreamWrapper(name: collectionName, stream: stream);
   }
 
   void logRequest(String method, T? data) {

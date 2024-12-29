@@ -136,7 +136,7 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
 
   Widget _buildResults() {
     return StreamBuilder<Pair<RequestResponse, List<T?>>>(
-      stream: store.dataStream(),
+      stream: store.dataStream.stream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());

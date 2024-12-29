@@ -25,7 +25,7 @@ class RingedMarkerWrapper extends StatelessWidget {
             shape: BoxShape.circle,
             color: Colors.transparent,
             border: Border.all(
-              color: Colors.white.withValues(alpha: 127.5),
+              color: Colors.white.withValues(alpha: 0.5),
               width: 4,
             ),
           ),

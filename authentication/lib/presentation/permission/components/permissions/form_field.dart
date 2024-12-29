@@ -66,7 +66,7 @@ class PermissionChipsField extends StatelessWidget {
         color: context.colorScheme.inversePrimary,
         boxShadow: [
           BoxShadow(
-            color: context.colorScheme.onSurface.withValues(alpha: 26),
+            color: context.colorScheme.onSurface.withValues(alpha: 0.1),
             blurRadius: 8,
             offset: const Offset(0, 4),
           ),
@@ -101,7 +101,7 @@ class PermissionChipsField extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withValues(alpha: 153))),
+                        Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withValues(alpha: 0.6))),
                         ...radios,
                         // SegmentedButton(
                         //   style: ButtonStyle(

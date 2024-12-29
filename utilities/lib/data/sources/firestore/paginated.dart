@@ -5,6 +5,7 @@ import "package:dart_mappable/dart_mappable.dart";
 import "package:utilities/data/sources/firestore/source.dart";
 import "package:utilities/data/sources/paginated.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/stream_wrapper.dart";
 import "package:utilities/helpers/tuples.dart";
 
 part "paginated.mapper.dart";
@@ -83,7 +84,7 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
   }
 
   /// Stream Page Function with Subscription Management
-  Stream<Pair<RequestResponse, List<T?>>> streamPage({
+  StreamWrapper<Pair<RequestResponse, List<T?>>> streamPage({
     int? size,
     String? orderBy,
     bool descending = true,
@@ -118,12 +119,12 @@ abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T,
           logResponse("STREAM_PAGE", "Success", responsePair);
           return responsePair;
         },
-      );
+      ).asBroadcastStream();
 
-      return stream;
+      return StreamWrapper(name: collectionName, stream: stream);
     } catch (e) {
       logError("STREAM_PAGE", collectionName, e);
-      return Stream.fromFuture(Future.value(const Pair(RequestResponse.failure, [])));
+      return StreamWrapper.empty();
     }
   }
 

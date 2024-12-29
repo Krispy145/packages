@@ -30,4 +30,7 @@ enum UtilitiesLoggers {
 
   /// [streamedListStore] is the feature reference for streamedListStore.
   streamedListStore,
+
+  /// [streamManager] is the feature reference for streamManager.
+  streamManager,
 }

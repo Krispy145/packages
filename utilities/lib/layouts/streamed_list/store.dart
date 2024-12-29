@@ -3,6 +3,7 @@ import "dart:async";
 import "package:collection/collection.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
+import "package:utilities/helpers/stream_wrapper.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/layouts/paginated_list/store.dart";
 import "package:utilities/logger/logger.dart";
@@ -22,16 +23,14 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
     super.sortByKey,
   });
 
-  StreamSubscription<Pair<RequestResponse, List<T?>>>? subscription;
-
-  late final Stream<Pair<RequestResponse, List<T?>>> Function({int? limit}) dataStream;
+  late final StreamWrapper<Pair<RequestResponse, List<T?>>> dataStream;
 
   @override
   Future<void> initialize() async {
     AppLogger.print("Initializing StreamedListStore...", [UtilitiesLoggers.streamedListStore]);
 
-    subscription = dataStream(limit: limit).listen(
-      (newData) {
+    dataStream.startListening(
+      onData: (newData) {
         try {
           AppLogger.print("New data received from stream: $newData", [UtilitiesLoggers.streamedListStore]);
 
@@ -67,7 +66,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
           }
         } catch (e, _) {
           AppLogger.print(
-            "Error while processing stream data: $e",
+            "Error while processing stream data for: $e",
             [UtilitiesLoggers.streamedListStore],
             type: LoggerType.error,
           );
@@ -75,7 +74,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
         }
       },
       onError: (dynamic error) {
-        AppLogger.print("Error occurred in the data stream: $error", [UtilitiesLoggers.streamedListStore], type: LoggerType.error);
+        dataStream.cancel();
         setError("Stream error: $error");
       },
     );

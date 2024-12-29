@@ -16,12 +16,8 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
     super.key,
     required this.store,
     this.header,
-    // this.scrollViewPadding,
     this.loadingBuilder,
     this.emptyBuilder,
-    // this.viewType = ListViewType.listView,
-    // this.gridDelegate,
-    // this.slivers = false,
     required this.onBack,
   });
 
@@ -32,14 +28,11 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
         PackageLoadStateBuilder(
           store: store,
           emptyBuilder: emptyBuilder,
-          loadedBuilder: (context) => const SizedBox.shrink(),
+          loadedBuilder: (context) => ReactiveForm(
+            formGroup: store.form,
+            child: formBuilder(context),
+          ),
           loadingBuilder: loadingBuilder,
-        ),
-        ReactiveForm(
-          formGroup: store.form,
-          child: formBuilder(context),
-          // canPop: null,
-          // onPopInvoked: null,
         ),
       ],
     );

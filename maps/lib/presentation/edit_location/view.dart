@@ -34,7 +34,7 @@ class EditLocationMapView extends MapView<EditLocationMapStore> {
         builder: (context) => Visibility(
           visible: store.isLocked,
           child: ColoredBox(
-            color: context.colorScheme.primary.withValues(alpha: 26),
+            color: context.colorScheme.primary.withValues(alpha: 0.1),
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
