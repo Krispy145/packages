@@ -44,12 +44,12 @@ mixin _$ReactiveAuthStore<T extends UserModel> on _ReactiveAuthStore<T>, Store {
     });
   }
 
-  late final _$initAsyncAction =
-      AsyncAction('_ReactiveAuthStore.init', context: context);
+  late final _$initializeAsyncAction =
+      AsyncAction('_ReactiveAuthStore.initialize', context: context);
 
   @override
-  Future<void> init() {
-    return _$initAsyncAction.run(() => super.init());
+  Future<void> initialize() {
+    return _$initializeAsyncAction.run(() => super.initialize());
   }
 
   late final _$signInAsyncAction =

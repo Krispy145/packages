@@ -23,18 +23,14 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        PackageLoadStateBuilder(
-          store: store,
-          emptyBuilder: emptyBuilder,
-          loadedBuilder: (context) => ReactiveForm(
-            formGroup: store.form,
-            child: formBuilder(context),
-          ),
-          loadingBuilder: loadingBuilder,
-        ),
-      ],
+    return PackageLoadStateBuilder(
+      store: store,
+      emptyBuilder: emptyBuilder,
+      loadedBuilder: (context) => ReactiveForm(
+        formGroup: store.form,
+        child: formBuilder(context),
+      ),
+      loadingBuilder: loadingBuilder,
     );
   }
 

@@ -41,9 +41,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
         super(
           saveValue: (isAdding, value) => onSuccess(value),
           editingValue: repository.currentUserModelStream.value,
-        ) {
-    init();
-  }
+        );
 
   /// [_ReactiveAuthStore.silent] constructor.
   _ReactiveAuthStore.silent({
@@ -59,9 +57,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
         super(
           saveValue: (isAdding, value) => onSuccess(value),
           editingValue: repository.currentUserModelStream.value,
-        ) {
-    init();
-  }
+        );
 
   /// [_ReactiveAuthStore] constructor.
   _ReactiveAuthStore.authenticateThenSilent({
@@ -77,9 +73,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
         super(
           saveValue: (isAdding, value) => onSuccess(value),
           editingValue: repository.currentUserModelStream.value,
-        ) {
-    init();
-  }
+        );
 
   @observable
   AuthAction authAction = AuthAction.signIn;
@@ -155,8 +149,9 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
     },
   );
 
+  @override
   @action
-  Future<void> init() async {
+  Future<void> initialize() async {
     try {
       setLoading();
       if (codeSource != null && authAction == AuthAction.signUp) {
@@ -183,6 +178,7 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
           await _handleAuthenticate();
           break;
       }
+      await super.initialize();
     } catch (e) {
       setError("Error authenticating user");
     }

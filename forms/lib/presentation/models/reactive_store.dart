@@ -34,7 +34,14 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   _ReactiveFormsModelStore({
     required this.saveValue,
     this.editingValue,
-  }) : isAdding = editingValue == null;
+  }) : isAdding = editingValue == null {
+    initialize();
+  }
+
+  @action
+  Future<void> initialize() async {
+    setLoaded();
+  }
 
   @action
   Future<RequestResponse> submitPressed(void Function(SnackbarConfiguration configuration) showSnackbar, void Function(RequestResponse response) onBack) async {
