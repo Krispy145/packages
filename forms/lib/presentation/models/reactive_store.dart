@@ -2,6 +2,7 @@
 
 import "dart:async";
 
+import "package:flutter/material.dart";
 import "package:mobx/mobx.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:utilities/data/sources/source.dart";
@@ -27,7 +28,8 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
 
   final Future<RequestResponse> Function(bool isAdding, T value)? saveValue;
 
-  final FormGroup form = FormGroup({});
+  @observable
+  FormGroup form = FormGroup({});
 
   FormControl<V> formControlByKey<V>(String key) => form.control(key) as FormControl<V>;
 
@@ -39,6 +41,7 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   }
 
   @action
+  @mustCallSuper
   Future<void> initialize() async {
     setLoaded();
   }

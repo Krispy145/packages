@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:flutter_mobx/flutter_mobx.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/widgets/load_state/builder.dart";
@@ -23,14 +24,23 @@ abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> e
 
   @override
   Widget build(BuildContext context) {
-    return PackageLoadStateBuilder(
-      store: store,
-      emptyBuilder: emptyBuilder,
-      loadedBuilder: (context) => ReactiveForm(
-        formGroup: store.form,
-        child: formBuilder(context),
-      ),
-      loadingBuilder: loadingBuilder,
+    return Stack(
+      children: [
+        PackageLoadStateBuilder(
+          store: store,
+          emptyBuilder: emptyBuilder,
+          loadedBuilder: (context) => const SizedBox.shrink(),
+          loadingBuilder: loadingBuilder,
+        ),
+        Observer(
+          builder: (context) {
+            return ReactiveForm(
+              formGroup: store.form,
+              child: formBuilder(context),
+            );
+          },
+        ),
+      ],
     );
   }
 
