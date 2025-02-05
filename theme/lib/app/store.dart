@@ -1,15 +1,12 @@
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:fonts/store.dart";
 import "package:mobx/mobx.dart";
-import "package:supabase_flutter/supabase_flutter.dart";
 import "package:theme/data/models/colors/color_model.dart";
 import "package:theme/data/models/theme/theme_model.dart";
 import "package:theme/data/repositories/theme_configuration.dart";
 import "package:theme/domain/repositories/base.repository.dart";
 import "package:theme/domain/repositories/theme.repository.dart";
 import "package:theme/utils/loggers.dart";
-import "package:utilities/data/typedefs.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
@@ -63,163 +60,27 @@ class ThemeStateStore = _ThemeStateStore with _$ThemeStateStore;
 
 /// [_ThemeStateStore] is the base store that will be used to manage the state of the theme.
 abstract class _ThemeStateStore with LoadStateStore, Store {
-  String? id;
+  /// [_ThemeStateStore] constructor.
+  _ThemeStateStore({
+    required ThemeConfiguration initialBaseThemeConfiguration,
+    ThemeConfiguration? initialComponentThemesConfiguration,
+  }) {
+    _setRepository(
+      initialBaseThemeConfiguration: initialBaseThemeConfiguration,
+      initialComponentThemesConfiguration: initialComponentThemesConfiguration,
+    );
+  }
 
   /// [FontsStore] is the store that will be used to manage loading fonts dynamically
   final FontsStore fontsStore = FontsStore()..initialize();
 
-  /// [_ThemeStateStore.local] is the constructor that will be used to fetch the data from local storage.
-  final ThemeStateType type;
+  @observable
+  late ThemeConfiguration baseThemeConfiguration;
 
-  /// [baseThemeUrlPath] is the path that will be used to fetch the data from an api.
-  final String? baseThemeUrlPath;
+  @observable
+  ThemeConfiguration? componentThemesConfiguration;
 
-  /// [componentThemesUrlPath] is the path that will be used to fetch the data from an api.
-  final String? componentThemesUrlPath;
-
-  /// [baseThemeAssetPath] is the path that will be used to fetch the data from assets.
-  final String? baseThemeAssetPath;
-
-  /// [componentThemesAssetPath] is the path that will be used to fetch the data from assets.
-  final String? componentThemesAssetPath;
-
-  /// [_ThemeStateStore.local] is the constructor that will be used to fetch the data from local storage.
-  _ThemeStateStore.local({
-    this.id,
-  })  : type = ThemeStateType.local,
-        baseThemeUrlPath = null,
-        componentThemesUrlPath = null,
-        baseThemeAssetPath = null,
-        componentThemesAssetPath = null {
-    _loadLocalTheme(id: id);
-  }
-
-  /// [_ThemeStateStore.assets] is the constructor that will be used to fetch the data from assets.
-  _ThemeStateStore.assets({
-    this.baseThemeAssetPath,
-    this.componentThemesAssetPath,
-    this.id,
-  })  : type = ThemeStateType.assets,
-        baseThemeUrlPath = null,
-        componentThemesUrlPath = null {
-    _loadAssetsTheme(id: id);
-  }
-
-  /// [_ThemeStateStore.api] is the constructor that will be used to fetch the data from an api.
-  _ThemeStateStore.api({
-    required this.id,
-    required this.baseThemeUrlPath,
-    this.componentThemesUrlPath,
-  })  : type = ThemeStateType.api,
-        baseThemeAssetPath = null,
-        componentThemesAssetPath = null {
-    _loadApiTheme(id: id);
-  }
-
-  /// [_ThemeStateStore.supabase] is the constructor that will be used to fetch the data from an api.
-  /// Serves the `Digital Oasis` Themes Tables as default.
-  /// [baseUrl] is the url of the supabase server,
-  /// [anonKey] is the anonymous key of the supabase server,
-  /// [baseThemeTableName] is the name of the table that contains the base theme data, defaults to `"baseTheme"`.
-  /// [componentThemesTableName] is the name of the table that contains the component themes data, defaults to `"componentsThemes"`.
-
-  _ThemeStateStore.supabase({
-    required String baseUrl,
-    required String anonKey,
-    String? baseThemeTableName,
-    String? componentThemesTableName,
-    this.id,
-  })  : baseThemeUrlPath = baseThemeTableName ?? "baseThemes",
-        componentThemesUrlPath = componentThemesTableName ?? "componentsThemes",
-        type = ThemeStateType.supabase,
-        baseThemeAssetPath = null,
-        componentThemesAssetPath = null {
-    _loadSupabaseTheme(
-      url: baseUrl,
-      anonKey: anonKey,
-      id: id ?? primaryThemeId,
-    );
-  }
-
-  _ThemeStateStore.firestore({
-    required UUID baseThemeId,
-    String? baseThemeCollectionName,
-    String? componentThemesCollectionName,
-    UUID? componentThemesId,
-  })  : baseThemeUrlPath = baseThemeCollectionName ?? "baseThemes",
-        componentThemesUrlPath = componentThemesCollectionName ?? "componentsThemes",
-        type = ThemeStateType.firestore,
-        baseThemeAssetPath = null,
-        componentThemesAssetPath = null {
-    _loadFirestoreTheme(baseThemeId: baseThemeId, componentThemesId: componentThemesId);
-  }
-
-  // _ThemeStateStore.digitalOasis({
-  //   this.id,
-  // })  : baseThemeUrlPath = "baseThemes",
-  //       componentThemesUrlPath = "componentsThemes",
-  //       type = ThemeStateType.digitalOasis,
-  //       baseThemeAssetPath = null,
-  //       componentThemesAssetPath = null {
-  //   _loadDOTheme(id: id ?? primaryThemeId);
-  // }
-
-  /// [_ThemeStateStore.localAssets] is the constructor that will be used to try fetch the data from local storage and catch the error,
-  /// then fetch the data from assets.
-  _ThemeStateStore.localAssets({
-    required this.baseThemeAssetPath,
-    required this.componentThemesAssetPath,
-    this.id,
-  })  : type = ThemeStateType.localAssets,
-        baseThemeUrlPath = null,
-        componentThemesUrlPath = null {
-    _loadLocalAssetsTheme(id: id);
-  }
-
-  /// [_ThemeStateStore.apiLocal] is the constructor that will be used to try fetch the data from api and catch the error,
-  /// then fetch the data from local storage.
-  _ThemeStateStore.apiLocal({
-    required this.baseThemeUrlPath,
-    this.componentThemesUrlPath,
-    this.id,
-  })  : type = ThemeStateType.apiLocal,
-        baseThemeAssetPath = null,
-        componentThemesAssetPath = null {
-    _loadApiLocalTheme(id: id);
-  }
-
-  /// [_ThemeStateStore.apiAssets] is the constructor that will be used to try fetch the data from api and catch the error,
-  /// then fetch the data from an assets.
-  _ThemeStateStore.apiAssets({
-    required this.baseThemeUrlPath,
-    required this.baseThemeAssetPath,
-    this.componentThemesUrlPath,
-    this.componentThemesAssetPath,
-    this.id,
-  }) : type = ThemeStateType.apiAssets {
-    _loadApiAssetsTheme(id: id);
-  }
-
-  /// [_ThemeStateStore.apiLocalAssets] is the constructor that will be used to try fetch the data from api and catch the error,
-  /// then fetch the data from local storage and catch the error,
-  /// then fetch the data from assets.
-  _ThemeStateStore.apiLocalAssets({
-    required this.baseThemeUrlPath,
-    required this.baseThemeAssetPath,
-    this.componentThemesUrlPath,
-    this.componentThemesAssetPath,
-    this.id,
-  }) : type = ThemeStateType.apiLocalAssets {
-    _loadApiLocalAssetsTheme(id: id);
-  }
-
-  // /// [baseDataSource] is an instance of [BaseThemeDataSource], (Colors and Text Styles) which takes in the appropriate source based on the [type].
-  // late BaseThemeDataSource baseDataSource;
-
-  // /// [componentThemesDataSource] is an instance of [ComponentThemesDataSource], which takes in the appropriate source based on the [type].
-  // late ComponentThemesDataSource componentThemesDataSource;
-
-  /// [repository] is an instance of [ThemeRepository] which takes in the appropriate source based on the [type].
+  /// [repository] is an instance of [ThemeRepository] which takes in the appropriate source based on the [ThemeStateType].
   BaseThemeRepository? repository;
 
   /// [baseThemeModel] is the model that will be used to store the theme data.
@@ -250,6 +111,31 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
       isDark ? (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.dark : (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.light;
 
   @action
+  Future<void> changeThemeConfiguration({
+    required ThemeConfiguration newBaseThemeConfiguration,
+    required ThemeConfiguration newComponentThemesConfiguration,
+    ThemeConfiguration? fallbackBaseThemeConfiguration,
+    ThemeConfiguration? fallbackComponentThemesConfiguration,
+  }) async {
+    baseThemeConfiguration = newBaseThemeConfiguration;
+    componentThemesConfiguration = newComponentThemesConfiguration;
+    repository = ThemeRepository(
+      baseThemeConfiguration: newBaseThemeConfiguration,
+      componentThemesConfiguration: newComponentThemesConfiguration,
+    );
+    final response = await _changeThemeModel();
+    if (!response && fallbackBaseThemeConfiguration != null) {
+      baseThemeConfiguration = fallbackBaseThemeConfiguration;
+      componentThemesConfiguration = fallbackComponentThemesConfiguration;
+      repository = ThemeRepository(
+        baseThemeConfiguration: fallbackBaseThemeConfiguration,
+        componentThemesConfiguration: fallbackComponentThemesConfiguration,
+      );
+      await _changeThemeModel();
+    }
+  }
+
+  @action
   void changeBaseThemeModel(BaseThemeModel model) {
     toggleThemeMode();
     baseThemeModel = model;
@@ -275,10 +161,15 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     currentThemeMode = isDark ? ThemeMode.light : ThemeMode.dark;
   }
 
-  @action
-  Future<void> reloadThemeModel() async {
-    await repository?.fetchTheme(id: id ?? primaryThemeId);
-    await repository?.fetchComponentsTheme(id: id ?? primaryThemeId);
+  Future<void> _loadThemeModel() async {
+    try {
+      baseThemeModel = await repository?.fetchTheme(id: baseThemeConfiguration.id);
+      if (componentThemesConfiguration != null) {
+        componentThemesModel = await repository?.fetchComponentsTheme(id: componentThemesConfiguration!.id);
+      }
+    } catch (e) {
+      AppLogger.print("Error loading theme model: $e", [ThemeLoggers.theme]);
+    }
   }
 
   /// [lightTheme] is the light theme that will be used to store the theme data.
@@ -343,14 +234,32 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
     );
   }
 
-  void _setRepository({
-    ThemeConfiguration? baseThemeConfiguration,
-    ThemeConfiguration? componentThemesConfiguration,
-  }) {
+  Future<void> _setRepository({
+    required ThemeConfiguration initialBaseThemeConfiguration,
+    ThemeConfiguration? initialComponentThemesConfiguration,
+  }) async {
+    setLoading();
+    baseThemeConfiguration = initialBaseThemeConfiguration;
+    componentThemesConfiguration = initialComponentThemesConfiguration;
     repository = ThemeRepository(
-      baseThemeConfiguration: baseThemeConfiguration,
-      componentThemesConfiguration: componentThemesConfiguration,
+      baseThemeConfiguration: initialBaseThemeConfiguration,
+      componentThemesConfiguration: initialComponentThemesConfiguration,
     );
+    await _loadThemeModel();
+    setLoaded();
+  }
+
+  Future<bool> _changeThemeModel() async {
+    try {
+      baseThemeModel = await repository?.fetchTheme(id: baseThemeConfiguration.id);
+      if (componentThemesConfiguration != null) {
+        componentThemesModel = await repository?.fetchComponentsTheme(id: componentThemesConfiguration!.id);
+      }
+      return baseThemeModel != null;
+    } catch (e) {
+      AppLogger.print("Error loading theme model: $e", [ThemeLoggers.theme]);
+      return false;
+    }
   }
 
   /// [setThemeMode] is the method that will be used to set the theme mode.
@@ -358,148 +267,5 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
   void setThemeMode(ThemeMode newThemeMode) {
     AppLogger.print("ThemeMode Changed: $newThemeMode", [ThemeLoggers.theme]);
     currentThemeMode = newThemeMode;
-  }
-
-  Future<void> _loadLocalTheme({String? id}) async {
-    setLoading();
-    _setRepository(
-      baseThemeConfiguration: const ThemeConfiguration.local(),
-      componentThemesConfiguration: const ThemeConfiguration.local(),
-    );
-    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    setLoaded();
-  }
-
-  Future<void> _loadAssetsTheme({String? id}) async {
-    setLoading();
-    ThemeConfiguration? baseThemeConfig;
-    ThemeConfiguration? componentsThemeConfig;
-    try {
-      if (baseThemeAssetPath != null) {
-        baseThemeConfig = ThemeConfiguration.assets(rootBundleKey: baseThemeAssetPath!);
-      } else {
-        AppLogger.print(
-          "Base Theme asset path is null",
-          [ThemeLoggers.theme],
-          type: LoggerType.error,
-        );
-        baseThemeConfig = null;
-      }
-    } catch (e) {
-      AppLogger.print(
-        "Base Theme could not be loaded",
-        [ThemeLoggers.theme],
-        type: LoggerType.error,
-      );
-      baseThemeConfig = null;
-    }
-    try {
-      if (componentThemesAssetPath != null) {
-        componentsThemeConfig = ThemeConfiguration.assets(rootBundleKey: componentThemesAssetPath!);
-      } else {
-        AppLogger.print(
-          "componentsThemeConfig Theme asset path is null",
-          [ThemeLoggers.theme],
-          type: LoggerType.error,
-        );
-        componentsThemeConfig = null;
-      }
-    } catch (e) {
-      AppLogger.print(
-        "componentsThemeConfig Theme could not be loaded",
-        [ThemeLoggers.theme],
-        type: LoggerType.error,
-      );
-      componentsThemeConfig = null;
-    }
-
-    _setRepository(
-      baseThemeConfiguration: baseThemeConfig,
-      componentThemesConfiguration: componentsThemeConfig,
-    );
-    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    setLoaded();
-  }
-
-  Future<void> _loadSupabaseTheme({
-    required String url,
-    required String anonKey,
-    String? id,
-  }) async {
-    final _client = SupabaseClient(url, anonKey);
-    setLoading();
-    _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
-      componentThemesConfiguration: ThemeConfiguration.supabase(supabaseClient: _client),
-    );
-    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    setLoaded();
-  }
-
-  Future<void> _loadFirestoreTheme({required UUID baseThemeId, UUID? componentThemesId}) async {
-    setLoading();
-    _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.firestore(collectionName: baseThemeUrlPath!),
-      componentThemesConfiguration: ThemeConfiguration.firestore(collectionName: componentThemesUrlPath!),
-    );
-    baseThemeModel = await repository!.fetchTheme(id: baseThemeId);
-    if (componentThemesId != null) componentThemesModel = await repository!.fetchComponentsTheme(id: componentThemesId);
-    setLoaded();
-  }
-
-  Future<void> _loadApiTheme({String? id}) async {
-    setLoading();
-    _setRepository(
-      baseThemeConfiguration: ThemeConfiguration.api(urlPath: baseThemeUrlPath!),
-      componentThemesConfiguration: ThemeConfiguration.api(urlPath: componentThemesUrlPath!),
-    );
-    baseThemeModel = await repository!.fetchTheme(id: id ?? primaryThemeId);
-    componentThemesModel = await repository!.fetchComponentsTheme(id: id ?? primaryThemeId);
-    AppLogger.print("ThemeModel - Api: $baseThemeModel", [ThemeLoggers.theme]);
-    setLoaded();
-  }
-
-  Future<void> _loadLocalAssetsTheme({String? id}) async {
-    try {
-      await _loadLocalTheme(id: id);
-    } catch (e) {
-      setError(kDebugMode ? "Error loading local from API: $id" : "Error loading theme");
-      await _loadAssetsTheme(id: id);
-    }
-  }
-
-  Future<void> _loadApiLocalTheme({String? id}) async {
-    try {
-      await _loadApiTheme(id: id);
-    } catch (e) {
-      setError(kDebugMode ? "Error loading theme from API: $id" : "Error loading theme");
-      await _loadLocalTheme(id: id);
-    }
-  }
-
-  Future<void> _loadApiAssetsTheme({String? id}) async {
-    try {
-      await _loadApiTheme(id: id);
-    } catch (e) {
-      setError(kDebugMode ? "Error loading assets from API: $id" : "Error loading theme");
-      await _loadAssetsTheme(id: id);
-    }
-  }
-
-  Future<void> _loadApiLocalAssetsTheme({String? id}) async {
-    try {
-      await _loadApiTheme(id: id);
-    } catch (e) {
-      setError(kDebugMode ? "Error loading theme from API: $id" : "Error loading theme");
-      try {
-        await _loadLocalTheme(id: id);
-      } catch (e) {
-        setError(kDebugMode ? "Error loading local from API: $id" : "Error loading theme");
-        await _loadAssetsTheme(id: id);
-      }
-    }
   }
 }

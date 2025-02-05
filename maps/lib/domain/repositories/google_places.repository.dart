@@ -1,8 +1,8 @@
-import 'package:maps/data/models/google/place_model.dart';
-import 'package:maps/data/models/google/text_search_query_parameters_model.dart';
+import "package:maps/data/models/google/place_model.dart";
+import "package:maps/data/models/google/text_search_query_parameters_model.dart";
 
-import '/data/repositories/_repositories.dart';
-import '/data/repositories/google_places.repository.dart';
+import "/data/repositories/_repositories.dart";
+import "/data/repositories/google_places.repository.dart";
 
 /// [GooglePlacesRepository] is an abstract class that defines the basic CRUD operations for the [GooglePlacesModel] entity.
 class GooglePlacesRepository {

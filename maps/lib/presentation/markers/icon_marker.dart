@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:maps/data/models/marker_model.dart';
-import 'package:maps/presentation/markers/base_marker.dart';
+import "package:flutter/material.dart";
+import "package:maps/data/models/marker_model.dart";
+import "package:maps/presentation/markers/base_marker.dart";
 
 class IconMarker<T extends MarkerModel> extends BaseMarker {
   final IconData icon;
@@ -35,7 +35,7 @@ class IconMarker<T extends MarkerModel> extends BaseMarker {
           child: CircleAvatar(
             backgroundColor: backgroundColor,
             child: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(4),
               child: Icon(
                 icon,
                 size: iconSize ?? 24,

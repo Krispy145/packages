@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:maps/data/models/marker_model.dart';
-import 'package:maps/presentation/markers/base_marker.dart';
-import 'package:maps/presentation/markers/icon_marker.dart';
+import "package:flutter/material.dart";
+import "package:maps/data/models/marker_model.dart";
+import "package:maps/presentation/markers/base_marker.dart";
+import "package:maps/presentation/markers/icon_marker.dart";
 import "package:widgets/images/cached_network_provider.dart";
 
 class CircleImageMarker<T extends MarkerModel> extends BaseMarker {

@@ -43,6 +43,46 @@ mixin _$ThemeStateStore on _ThemeStateStore, Store {
               name: '_ThemeStateStore.darkTheme'))
           .value;
 
+  late final _$baseThemeConfigurationAtom =
+      Atom(name: '_ThemeStateStore.baseThemeConfiguration', context: context);
+
+  @override
+  ThemeConfiguration get baseThemeConfiguration {
+    _$baseThemeConfigurationAtom.reportRead();
+    return super.baseThemeConfiguration;
+  }
+
+  bool _baseThemeConfigurationIsInitialized = false;
+
+  @override
+  set baseThemeConfiguration(ThemeConfiguration value) {
+    _$baseThemeConfigurationAtom.reportWrite(
+        value,
+        _baseThemeConfigurationIsInitialized
+            ? super.baseThemeConfiguration
+            : null, () {
+      super.baseThemeConfiguration = value;
+      _baseThemeConfigurationIsInitialized = true;
+    });
+  }
+
+  late final _$componentThemesConfigurationAtom = Atom(
+      name: '_ThemeStateStore.componentThemesConfiguration', context: context);
+
+  @override
+  ThemeConfiguration? get componentThemesConfiguration {
+    _$componentThemesConfigurationAtom.reportRead();
+    return super.componentThemesConfiguration;
+  }
+
+  @override
+  set componentThemesConfiguration(ThemeConfiguration? value) {
+    _$componentThemesConfigurationAtom
+        .reportWrite(value, super.componentThemesConfiguration, () {
+      super.componentThemesConfiguration = value;
+    });
+  }
+
   late final _$baseThemeModelAtom =
       Atom(name: '_ThemeStateStore.baseThemeModel', context: context);
 
@@ -108,12 +148,23 @@ mixin _$ThemeStateStore on _ThemeStateStore, Store {
     });
   }
 
-  late final _$reloadThemeModelAsyncAction =
-      AsyncAction('_ThemeStateStore.reloadThemeModel', context: context);
+  late final _$changeThemeConfigurationAsyncAction = AsyncAction(
+      '_ThemeStateStore.changeThemeConfiguration',
+      context: context);
 
   @override
-  Future<void> reloadThemeModel() {
-    return _$reloadThemeModelAsyncAction.run(() => super.reloadThemeModel());
+  Future<void> changeThemeConfiguration(
+      {required ThemeConfiguration newBaseThemeConfiguration,
+      required ThemeConfiguration newComponentThemesConfiguration,
+      ThemeConfiguration? fallbackBaseThemeConfiguration,
+      ThemeConfiguration? fallbackComponentThemesConfiguration}) {
+    return _$changeThemeConfigurationAsyncAction.run(() => super
+        .changeThemeConfiguration(
+            newBaseThemeConfiguration: newBaseThemeConfiguration,
+            newComponentThemesConfiguration: newComponentThemesConfiguration,
+            fallbackBaseThemeConfiguration: fallbackBaseThemeConfiguration,
+            fallbackComponentThemesConfiguration:
+                fallbackComponentThemesConfiguration));
   }
 
   late final _$_ThemeStateStoreActionController =
@@ -177,6 +228,8 @@ mixin _$ThemeStateStore on _ThemeStateStore, Store {
   @override
   String toString() {
     return '''
+baseThemeConfiguration: ${baseThemeConfiguration},
+componentThemesConfiguration: ${componentThemesConfiguration},
 baseThemeModel: ${baseThemeModel},
 componentThemesModel: ${componentThemesModel},
 currentThemeMode: ${currentThemeMode},

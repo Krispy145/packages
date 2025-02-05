@@ -26,7 +26,7 @@ class VideoRepository {
   //   return youtubeExplode.playlists.getVideos(id);
   // }
 
-  // final VideoDataRepository _videoDataRepository = DataRepositories.instance.video;
+  // final VideoDataRepository _videoDataRepository = DataRepositories().video;
 
   // final String apiKey;
 

@@ -32,7 +32,7 @@ abstract class _BaseFormFieldStore<T> with Store {
     required this.onValueChanged,
     this.fieldRequired = false,
   }) : value = initialValue {
-    valueChangeReaction();
+    // valueChangeReaction();
     reaction((p0) => value, (p0) {
       valueChangeReaction();
     });
