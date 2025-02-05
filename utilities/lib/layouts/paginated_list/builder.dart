@@ -91,7 +91,7 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
                 emptyBuilder: emptyBuilder ??
                     (context, empty) {
                       _showSnackBarRequestResponse(context);
-                      return WarningMessage.empty(title: empty);
+                      return Center(child: WarningMessage.empty(title: empty));
                     },
                 loadingBuilder: (context) => const SizedBox.shrink(),
                 loadedBuilder: (context) {

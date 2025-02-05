@@ -36,7 +36,6 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
 
           if (newData.second.isEmpty) {
             AppLogger.print("Stream received an empty data list.", [UtilitiesLoggers.streamedListStore]);
-            return;
           }
 
           if (newData.first == RequestResponse.success) {
@@ -44,7 +43,6 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
 
             if (possibleResults.isEmpty) {
               AppLogger.print("No valid results found in the new data.", [UtilitiesLoggers.streamedListStore]);
-              return;
             }
 
             AppLogger.print("Updating results with new data.", [UtilitiesLoggers.streamedListStore]);
@@ -59,6 +57,9 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
                 results = ObservableList.of(results.reversed);
                 AppLogger.print("Results reversed as per configuration.", [UtilitiesLoggers.streamedListStore]);
               }
+            } else {
+              AppLogger.print("No results found in the new data.", [UtilitiesLoggers.streamedListStore]);
+              setEmpty("No results found");
             }
           } else {
             AppLogger.print("Stream received a failure response.", [UtilitiesLoggers.streamedListStore]);
