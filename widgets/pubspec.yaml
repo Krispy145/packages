@@ -34,7 +34,6 @@ flutter_gen:
   line_length: 200
   integrations:
     flutter_svg: true
-    flare_flutter: true
     rive: true
     lottie: true
 

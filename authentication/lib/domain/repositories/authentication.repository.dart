@@ -145,6 +145,7 @@ class AuthenticationRepository<T extends UserModel> {
       final changedUserModel = convertDataTypeFromMap(_currentResponse);
       await userDataRepository.updateUserModel(userModel: changedUserModel);
       await _authenticationDataRepository.updateUserModel(changedUserModel);
+      currentUserModelStream.add(changedUserModel);
       return Pair(RequestResponse.success, changedUserModel);
     } catch (e) {
       AppLogger.print(
