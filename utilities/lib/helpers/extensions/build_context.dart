@@ -25,7 +25,7 @@ extension ResponsiveSize on BuildContext {
   /// [isMobile] is a getter that returns whether the screen size is mobile.
   bool get isMobile => ResponsiveBreakpoints.of(this).isMobile;
 
-  bool get isScreenWidthGreaterThanTablet => screenWidth >= ScreenSize.tabletBreak.start;
+  bool get isScreenWidthGreaterThanTablet => screenWidth >= ScreenSize.tabletBreak.end;
 
   /// [isDesktop] is a getter that returns whether the screen size is desktop.
   bool get isDesktop => ResponsiveBreakpoints.of(this).isDesktop;
