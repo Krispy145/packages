@@ -75,6 +75,27 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
         scrollDirection = Axis.vertical;
 
   /// [ListBuilder] constructor.
+  const ListBuilder.wrapView({
+    super.key,
+    required this.store,
+    this.header,
+    required this.itemBuilder,
+    // this.loadStateBuilder,
+    this.stackedWidgets,
+    this.padding = const EdgeInsets.all(8),
+    this.emptyBuilder,
+    this.loadingBuilder,
+    this.errorBuilder,
+    this.maxItemsCutOff,
+    this.shrinkWrap = false,
+  })  : viewType = ListViewType.wrapView,
+        gridDelegate = null,
+        separatorBuilder = null,
+        slivers = false,
+        physics = null,
+        scrollDirection = Axis.vertical;
+
+  /// [ListBuilder] constructor.
   ListBuilder.fromType({
     super.key,
     required this.store,
@@ -130,14 +151,14 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
               if (shrinkWrap)
                 Observer(
                   builder: (context) {
-                    return buildView(store.showLoadingSpinnerAtBottom);
+                    return buildView(context, store.showLoadingSpinnerAtBottom);
                   },
                 )
               else
                 Expanded(
                   child: Observer(
                     builder: (context) {
-                      return buildView(store.showLoadingSpinnerAtBottom);
+                      return buildView(context, store.showLoadingSpinnerAtBottom);
                     },
                   ),
                 ),
@@ -161,7 +182,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
         sliver: Observer(
           builder: (context) {
             if (store.isLoaded) {
-              return buildView(store.showLoadingSpinnerAtBottom);
+              return buildView(context, store.showLoadingSpinnerAtBottom);
             } else if (store.isError) {
               final errorState = store.currentState as ErrorLoadState;
               return SliverToBoxAdapter(child: errorBuilder?.call(context, errorState.errorMessage) ?? WarningMessage.error(title: "Error", message: errorState.errorMessage));
@@ -181,7 +202,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
     }
   }
 
-  Widget buildView(bool isLoadingMore) {
+  Widget buildView(BuildContext context, bool isLoadingMore) {
     final resultsCount = maxItemsCutOff != null ? min(maxItemsCutOff!, store.results.length) : store.results.length;
     final itemCount = resultsCount + (isLoadingMore ? 1 : 0);
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
@@ -191,48 +212,59 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
       return itemBuilder(context, index, store.results[index]);
     }
 
-    if (viewType == ListViewType.listView) {
-      if (slivers) {
-        return SliverList.builder(
-          itemCount: itemCount,
-          itemBuilder: loadingOrItemBuilder,
-        );
-      } else {
-        return ListView.separated(
-          separatorBuilder: (context, index) => SizedBox(
-            height: Sizes.xs.points(context),
-            width: Sizes.xs.points(context),
+    switch (viewType) {
+      case ListViewType.listView:
+        if (slivers) {
+          return SliverList.builder(
+            itemCount: itemCount,
+            itemBuilder: loadingOrItemBuilder,
+          );
+        } else {
+          return ListView.separated(
+            separatorBuilder: (context, index) => SizedBox(
+              height: Sizes.xs.points(context),
+              width: Sizes.xs.points(context),
+            ),
+            scrollDirection: scrollDirection,
+            reverse: store.reverseList,
+            padding: padding,
+            physics: physics,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            itemCount: itemCount,
+            itemBuilder: loadingOrItemBuilder,
+            controller: store.scrollController,
+            shrinkWrap: shrinkWrap,
+          );
+        }
+      case ListViewType.gridView:
+        return slivers
+            ? SliverGrid.builder(
+                itemCount: itemCount,
+                itemBuilder: loadingOrItemBuilder,
+                gridDelegate: gridDelegate!,
+              )
+            : GridView.builder(
+                padding: padding,
+                scrollDirection: scrollDirection,
+                physics: physics,
+                reverse: store.reverseList,
+                itemCount: itemCount,
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                controller: store.scrollController,
+                itemBuilder: loadingOrItemBuilder,
+                gridDelegate: gridDelegate!,
+                shrinkWrap: shrinkWrap,
+              );
+      case ListViewType.wrapView:
+        return Wrap(
+          direction: scrollDirection == Axis.vertical ? Axis.horizontal : Axis.vertical,
+          spacing: 8,
+          runSpacing: 8,
+          children: List.generate(
+            itemCount,
+            (index) => loadingOrItemBuilder(context, index) ?? const SizedBox.shrink(),
           ),
-          scrollDirection: scrollDirection,
-          reverse: store.reverseList,
-          padding: padding,
-          physics: physics,
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          itemCount: itemCount,
-          itemBuilder: loadingOrItemBuilder,
-          controller: store.scrollController,
-          shrinkWrap: shrinkWrap,
         );
-      }
-    } else {
-      return slivers
-          ? SliverGrid.builder(
-              itemCount: itemCount,
-              itemBuilder: loadingOrItemBuilder,
-              gridDelegate: gridDelegate!,
-            )
-          : GridView.builder(
-              padding: padding,
-              scrollDirection: scrollDirection,
-              physics: physics,
-              reverse: store.reverseList,
-              itemCount: itemCount,
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              controller: store.scrollController,
-              itemBuilder: loadingOrItemBuilder,
-              gridDelegate: gridDelegate!,
-              shrinkWrap: shrinkWrap,
-            );
     }
   }
 }

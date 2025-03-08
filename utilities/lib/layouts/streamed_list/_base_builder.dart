@@ -50,7 +50,7 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
     if (slivers) {
       return Observer(
         builder: (context) {
-          return buildView(store.showLoadingSpinnerAtBottom);
+          return buildView(context, store.showLoadingSpinnerAtBottom);
         },
       );
     }
@@ -143,7 +143,7 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
         }
         return Observer(
           builder: (context) {
-            return buildView(store.showLoadingSpinnerAtBottom);
+            return buildView(context, store.showLoadingSpinnerAtBottom);
           },
         );
       },
@@ -151,5 +151,5 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
   }
 
   @override
-  Widget buildView(bool isLoadingMore) => Observer(builder: (context) => super.buildView(isLoadingMore));
+  Widget buildView(BuildContext context, bool isLoadingMore) => Observer(builder: (context) => super.buildView(context, isLoadingMore));
 }

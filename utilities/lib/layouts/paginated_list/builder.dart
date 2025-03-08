@@ -54,12 +54,27 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
     super.slivers = false,
   }) : super.gridView(store: store);
 
+  /// [PaginatedListBuilder] constructor.
+  const PaginatedListBuilder.wrapView({
+    super.key,
+    required this.store,
+    super.header,
+    required super.itemBuilder,
+    super.emptyBuilder,
+    super.loadingBuilder,
+    super.errorBuilder,
+    super.stackedWidgets,
+    super.padding,
+    super.shrinkWrap = false,
+    this.canRefresh = true,
+  }) : super.wrapView(store: store);
+
   @override
   Widget build(BuildContext context) {
     if (slivers) {
       return Observer(
         builder: (context) {
-          return buildView(store.showLoadingSpinnerAtBottom);
+          return buildView(context, store.showLoadingSpinnerAtBottom);
         },
       );
     }
@@ -149,19 +164,19 @@ class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K>
         builder: (context) {
           return RefreshIndicator(
             onRefresh: store.refresh,
-            child: buildView(store.showLoadingSpinnerAtBottom),
+            child: buildView(context, store.showLoadingSpinnerAtBottom),
           );
         },
       );
     } else {
       return Observer(
         builder: (context) {
-          return buildView(store.showLoadingSpinnerAtBottom);
+          return buildView(context, store.showLoadingSpinnerAtBottom);
         },
       );
     }
   }
 
   @override
-  Widget buildView(bool isLoadingMore) => Observer(builder: (context) => super.buildView(isLoadingMore));
+  Widget buildView(BuildContext context, bool isLoadingMore) => Observer(builder: (context) => super.buildView(context, isLoadingMore));
 }

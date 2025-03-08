@@ -99,6 +99,8 @@ class ReorderablePaginatedListBuilder<T extends Object, K extends Comparable<K>>
         return buildReorderableListView();
       case ListViewType.gridView:
         return buildReorderableGridView();
+      case ListViewType.wrapView:
+        return const SizedBox.shrink();
     }
   }
 
