@@ -5,11 +5,11 @@ part "env.g.dart";
 /// WebServices Constants
 @Envied(path: "lib/constants/.env", name: "WebServices")
 class WebServices {
-  @EnviedField(obfuscate: true)
-  static String proxyKey = _WebServices.proxyKey;
+  // @EnviedField(obfuscate: true)
+  // static String proxyKey = _WebServices.proxyKey;
 
-  @EnviedField(obfuscate: true)
-  static String proxy = _WebServices.proxy;
+  // @EnviedField(obfuscate: true)
+  // static String proxy = _WebServices.proxy;
 }
 
 /// Dates Constants
@@ -101,7 +101,7 @@ class Dates {
 class PublicHeaders {
   static final map = {
     "Access-Control-Allow-Origin": "*",
-    "x-cors-api-key": WebServices.proxyKey,
+    // "x-cors-api-key": WebServices.proxyKey,
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
     "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
     "Content-Type": "application/json",

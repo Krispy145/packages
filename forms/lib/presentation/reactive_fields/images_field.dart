@@ -13,6 +13,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
   final BaseFilePicker? filePicker;
   final Axis axis;
   final BoxDecoration? decoration;
+  final bool isActive;
   ReactiveImagesField.combined({
     super.key,
     required this.storageRepository,
@@ -24,6 +25,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.showErrors,
     super.focusNode,
     this.axis = Axis.horizontal,
+    this.isActive = true,
     this.decoration,
     double? height,
     double? width,
@@ -33,6 +35,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
             storageRepository: storageRepository,
             filePicker: filePicker,
             axis: axis,
+            isActive: isActive,
             decoration: decoration,
             height: height,
             width: width,
@@ -49,6 +52,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.showErrors,
     super.focusNode,
     this.axis = Axis.horizontal,
+    this.isActive = true,
     this.decoration,
     double? height,
     double? width,
@@ -60,6 +64,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
             axis: axis,
             decoration: decoration,
             height: height,
+            isActive: isActive,
             width: width,
             tabType: ImagePickerType.url,
           ),
@@ -76,6 +81,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     super.showErrors,
     super.focusNode,
     this.axis = Axis.horizontal,
+    this.isActive = true,
     this.decoration,
     double? height,
     double? width,
@@ -85,6 +91,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
             storageRepository: storageRepository,
             filePicker: filePicker,
             axis: axis,
+            isActive: isActive,
             decoration: decoration,
             height: height,
             width: width,
@@ -97,6 +104,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
     StorageRepository? storageRepository,
     BaseFilePicker? filePicker,
     required Axis axis,
+    required bool isActive,
     required BoxDecoration? decoration,
     double? height,
     double? width,
@@ -121,6 +129,7 @@ class ReactiveImagesField extends ReactiveFormField<List<String>, List<String>> 
       store: store,
       showTitle: false,
       axis: axis,
+      isActive: isActive,
       decoration: decoration,
       height: height,
       width: width,

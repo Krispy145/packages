@@ -18,7 +18,7 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
   ApiGooglePlacesDataSource({required this.googleApiKey})
       : super(
           MapConstants.googlePrefix,
-          proxy: WebServices.proxy,
+          // proxy: WebServices.proxy,
           sourceSuffix: MapConstants.googlePlaceSearchSuffix,
           convertDataTypeFromMap: GoogleResponsesModelMapper.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),

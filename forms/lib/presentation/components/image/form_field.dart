@@ -18,6 +18,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
   final Axis axis;
   final double? aspectRatio;
   final BoxDecoration? decoration;
+  final bool isActive;
   ImageFormField({
     super.key,
     this.height = 100,
@@ -29,6 +30,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
     this.onRemoved,
     this.axis = Axis.horizontal,
     this.decoration,
+    this.isActive = true,
   });
 
   final double? height;
@@ -66,7 +68,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
             decoration: decoration ?? store.defaultDecoration,
             clipBehavior: Clip.hardEdge,
             child: InkWell(
-              onTap: () async => addOrEditImage(context),
+              onTap: isActive ? () async => addOrEditImage(context) : null,
               child: Container(
                 color: context.colorScheme.primary.withValues(alpha: 0.4),
                 child: Icon(Icons.add, color: context.colorScheme.onPrimary),

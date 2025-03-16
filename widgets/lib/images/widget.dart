@@ -5,7 +5,6 @@ import "package:cached_network_image_platform_interface/cached_network_image_pla
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:theme/extensions/build_context.dart";
-import "package:utilities/constants/env.dart";
 import "package:widgets/images/options/abstract.dart";
 import "package:widgets/images/options/asset.dart";
 import "package:widgets/images/options/file.dart";
@@ -187,7 +186,7 @@ class LYImage extends StatelessWidget {
   }
 
   CachedNetworkImage _buildErrorImageProxyBuilder(BuildContext context, String error, Object object) {
-    final _networkOptions = (options as NetworkImageOptions? ?? NetworkImageOptions()).copyWith(proxy: WebServices.proxy);
+    final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions(); //.copyWith(proxy: WebServices.proxy);
     final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
     final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
     final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;

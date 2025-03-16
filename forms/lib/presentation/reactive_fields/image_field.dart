@@ -12,6 +12,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
   final BoxDecoration? decoration;
   final double? aspectRatio;
   final bool showTitle;
+  final bool isActive;
   ReactiveImageField.combined({
     String title = "Image",
     this.showTitle = true,
@@ -29,6 +30,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     this.axis = Axis.horizontal,
     this.decoration,
     this.aspectRatio,
+    this.isActive = true,
   }) : super(
           builder: (field) {
             final store = ImageFormFieldStore(
@@ -46,6 +48,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               width: width,
               showTitle: showTitle,
               axis: axis,
+              isActive: isActive,
               decoration: decoration,
               aspectRatio: aspectRatio,
             );
@@ -67,6 +70,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     this.axis = Axis.horizontal,
     this.decoration,
     this.aspectRatio,
+    this.isActive = true,
   })  : storageRepository = null,
         filePicker = null,
         super(
@@ -84,6 +88,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               width: width,
               showTitle: showTitle,
               axis: axis,
+              isActive: isActive,
               decoration: decoration,
               aspectRatio: aspectRatio,
             );
@@ -107,6 +112,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
     this.axis = Axis.horizontal,
     this.decoration,
     this.aspectRatio,
+    this.isActive = true,
   }) : super(
           builder: (field) {
             final store = ImageFormFieldStore(
@@ -124,6 +130,7 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
               width: width,
               showTitle: showTitle,
               axis: axis,
+              isActive: isActive,
               decoration: decoration,
             );
           },
