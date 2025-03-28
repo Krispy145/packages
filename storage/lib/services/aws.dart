@@ -36,8 +36,7 @@ class AwsS3StorageService implements BaseStorageService {
 
       final location = await _s3Client.getBucketLocation(bucket: _bucketName);
       final region = location.locationConstraint?.value ?? "us-east-1";
-      final fileUrl =
-          "https://$_bucketName.s3.$region.amazonaws.com/${file.name}";
+      final fileUrl = "https://$_bucketName.s3.$region.amazonaws.com/${file.name}";
 
       return fileUrl;
     } catch (e) {
@@ -56,7 +55,7 @@ class AwsS3StorageService implements BaseStorageService {
   }
 
   @override
-  Future<XFile?> downloadFile(String url) async {
+  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
     try {
       final key = Uri.parse(url).pathSegments.last;
       final response = await _s3Client.getObject(bucket: _bucketName, key: key);

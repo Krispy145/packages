@@ -8,5 +8,5 @@ abstract class BaseStorageService {
 
   Future<void> deleteFile(String url);
 
-  Future<XFile?> downloadFile(String url);
+  Future<XFile?> downloadFile(String url, {required bool downloadToDevice});
 }

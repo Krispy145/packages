@@ -155,12 +155,12 @@ class LYFileUploadManager implements BaseFileUploadManager {
   }
 
   @override
-  Future<XFile?> downloadFile({required String path}) {
-    return storageRepository.downloadFile(path);
+  Future<XFile?> downloadFile({required String path, required bool downloadToDevice}) {
+    return storageRepository.downloadFile(path, downloadToDevice: downloadToDevice);
   }
 
   @override
-  Future<List<XFile>?> downloadFiles({required List<String> paths}) {
-    return storageRepository.downloadFiles(paths);
+  Future<List<XFile>?> downloadFiles({required List<String> paths, required bool downloadToDevice}) {
+    return storageRepository.downloadFiles(paths, downloadToDevice: downloadToDevice);
   }
 }

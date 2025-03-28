@@ -4,6 +4,7 @@ import "package:flutter/foundation.dart";
 import "package:http/http.dart" as http;
 import "package:universal_html/html.dart" as html;
 import "package:universal_io/io.dart" as io;
+import "package:url_launcher/url_launcher.dart" as url_launcher;
 
 import "_base.dart";
 
@@ -11,8 +12,7 @@ class FirebaseStorageService implements BaseStorageService {
   final String? folderName;
   final FirebaseStorage _firebaseStorage;
 
-  FirebaseStorageService({this.folderName, FirebaseStorage? firebaseStorage})
-      : _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
+  FirebaseStorageService({this.folderName, FirebaseStorage? firebaseStorage}) : _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
 
   @override
   Future<String> uploadFile({
@@ -58,14 +58,39 @@ class FirebaseStorageService implements BaseStorageService {
   }
 
   @override
-  Future<XFile?> downloadFile(String url) async {
+  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
     try {
       if (kIsWeb) {
+        // For web, create an anchor element and trigger download
+        if (downloadToDevice) {
+          final ref = _firebaseStorage.refFromURL(url);
+          final downloadUrl = await ref.getDownloadURL();
+          final anchor = html.AnchorElement(href: downloadUrl)
+            ..setAttribute("download", ref.name)
+            ..style.display = "none";
+          html.document.body!.append(anchor);
+          anchor
+            ..click()
+            ..remove();
+        }
         return fetchFileData(url);
+      } else {
+        // For mobile, try to open the URL in external app
+        final ref = _firebaseStorage.refFromURL(url);
+        final downloadUrl = await ref.getDownloadURL();
+        if (downloadToDevice) {
+          final canLaunch = await url_launcher.canLaunchUrl(Uri.parse(downloadUrl));
+          if (canLaunch) {
+            await url_launcher.launchUrl(
+              Uri.parse(downloadUrl),
+              mode: url_launcher.LaunchMode.externalApplication,
+            );
+          }
+        }
+        // Still download the file for app usage
+        final _bytes = await ref.getData();
+        return XFile.fromData(_bytes!, name: ref.name);
       }
-      final ref = _firebaseStorage.refFromURL(url);
-      final _bytes = await ref.getData();
-      return XFile.fromData(_bytes!, name: ref.name);
     } catch (e) {
       throw Exception("Failed to download file from Firebase Storage: $e");
     }

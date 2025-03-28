@@ -67,17 +67,17 @@ class StorageRepository {
     }
   }
 
-  Future<XFile?> downloadFile(String url) async {
+  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
     final storageService = storageProvider.getStorageService();
-    return storageService.downloadFile(url);
+    return storageService.downloadFile(url, downloadToDevice: downloadToDevice);
   }
 
-  Future<List<XFile>> downloadFiles(List<String> urls) async {
+  Future<List<XFile>> downloadFiles(List<String> urls, {required bool downloadToDevice}) async {
     final storageService = storageProvider.getStorageService();
     final files = <XFile>[];
 
     for (var i = 0; i < urls.length; i++) {
-      final file = await storageService.downloadFile(urls[i]);
+      final file = await storageService.downloadFile(urls[i], downloadToDevice: downloadToDevice);
       if (file != null) {
         files.add(file);
       }
