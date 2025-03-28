@@ -85,7 +85,10 @@ class ColorModelView extends StatelessWidget {
     this.showPalette = false,
   }) {
     if (showPalette && onPaletteColorSelected == null) {
-      assert(false, "onPaletteColorSelected must be provided if showPalette is true");
+      assert(
+        false,
+        "onPaletteColorSelected must be provided if showPalette is true",
+      );
     }
   }
 
@@ -142,10 +145,12 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.primary;
                       break;
                     case "primaryContainer":
-                      contrastColor = AppTheme.currentColorModel!.onPrimaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onPrimaryContainer;
                       break;
                     case "onPrimaryContainer":
-                      contrastColor = AppTheme.currentColorModel!.primaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.primaryContainer;
                       break;
                     case "secondary":
                       contrastColor = AppTheme.currentColorModel!.onSecondary;
@@ -154,10 +159,12 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.secondary;
                       break;
                     case "secondaryContainer":
-                      contrastColor = AppTheme.currentColorModel!.onSecondaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onSecondaryContainer;
                       break;
                     case "onSecondaryContainer":
-                      contrastColor = AppTheme.currentColorModel!.secondaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.secondaryContainer;
                       break;
                     case "tertiary":
                       contrastColor = AppTheme.currentColorModel!.onTertiary;
@@ -166,10 +173,12 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.tertiary;
                       break;
                     case "tertiaryContainer":
-                      contrastColor = AppTheme.currentColorModel!.onTertiaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onTertiaryContainer;
                       break;
                     case "onTertiaryContainer":
-                      contrastColor = AppTheme.currentColorModel!.tertiaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.tertiaryContainer;
                       break;
                     case "error":
                       contrastColor = AppTheme.currentColorModel!.onError;
@@ -178,22 +187,27 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.error;
                       break;
                     case "errorContainer":
-                      contrastColor = AppTheme.currentColorModel!.onErrorContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onErrorContainer;
                       break;
                     case "onErrorContainer":
-                      contrastColor = AppTheme.currentColorModel!.errorContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.errorContainer;
                       break;
                     case "confirmation":
-                      contrastColor = AppTheme.currentColorModel!.onConfirmation;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onConfirmation;
                       break;
                     case "onConfirmation":
                       contrastColor = AppTheme.currentColorModel!.confirmation;
                       break;
                     case "confirmationContainer":
-                      contrastColor = AppTheme.currentColorModel!.onConfirmationContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onConfirmationContainer;
                       break;
                     case "onConfirmationContainer":
-                      contrastColor = AppTheme.currentColorModel!.confirmationContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.confirmationContainer;
                       break;
                     case "information":
                       contrastColor = AppTheme.currentColorModel!.onInformation;
@@ -202,10 +216,12 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.information;
                       break;
                     case "informationContainer":
-                      contrastColor = AppTheme.currentColorModel!.onInformationContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onInformationContainer;
                       break;
                     case "onInformationContainer":
-                      contrastColor = AppTheme.currentColorModel!.informationContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.informationContainer;
                       break;
                     case "warning":
                       contrastColor = AppTheme.currentColorModel!.onWarning;
@@ -214,10 +230,12 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.warning;
                       break;
                     case "warningContainer":
-                      contrastColor = AppTheme.currentColorModel!.onWarningContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onWarningContainer;
                       break;
                     case "onWarningContainer":
-                      contrastColor = AppTheme.currentColorModel!.warningContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.warningContainer;
                       break;
                     case "background":
                       contrastColor = AppTheme.currentColorModel!.onBackground;
@@ -232,16 +250,20 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.surface;
                       break;
                     case "surfaceVariant":
-                      contrastColor = AppTheme.currentColorModel!.onSurfaceVariant;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onSurfaceVariant;
                       break;
                     case "onSurfaceVariant":
-                      contrastColor = AppTheme.currentColorModel!.surfaceVariant;
+                      contrastColor =
+                          AppTheme.currentColorModel!.surfaceVariant;
                       break;
                     case "inverseSurface":
-                      contrastColor = AppTheme.currentColorModel!.onInverseSurface;
+                      contrastColor =
+                          AppTheme.currentColorModel!.onInverseSurface;
                       break;
                     case "onInverseSurface":
-                      contrastColor = AppTheme.currentColorModel!.inverseSurface;
+                      contrastColor =
+                          AppTheme.currentColorModel!.inverseSurface;
                       break;
                     case "inversePrimary":
                       contrastColor = AppTheme.currentColorModel!.onPrimary;
@@ -256,7 +278,8 @@ class ColorModelView extends StatelessWidget {
                       contrastColor = AppTheme.currentColorModel!.onSurface;
                       break;
                     case "outlineVariant":
-                      contrastColor = AppTheme.currentColorModel!.primaryContainer;
+                      contrastColor =
+                          AppTheme.currentColorModel!.primaryContainer;
                       break;
                     case "scrim":
                       contrastColor = AppTheme.currentColorModel!.background;

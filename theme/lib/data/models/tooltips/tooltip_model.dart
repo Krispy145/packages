@@ -56,8 +56,12 @@ class TooltipModel with TooltipModelMappable {
       verticalOffset: verticalOffset_double,
       preferBelow: preferBelow_bool,
       excludeFromSemantics: excludeFromSemantics_bool,
-      decoration: decoration_boxDecoration?.asBoxDecoration(styleTypeName: styleTypeName),
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      decoration: decoration_boxDecoration?.asBoxDecoration(
+        styleTypeName: styleTypeName,
+      ),
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       enableFeedback: enableFeedback_bool,
     );
   }

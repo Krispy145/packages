@@ -15,7 +15,8 @@ abstract class _ColorSchemesStore with Store {
   /// [selectedColor] is a property that stores the selected color from the current scheme.
   @observable
   // ignore: prefer_const_constructors
-  MapEntry<String, dynamic> selectedColor = AppTheme.currentColorModel!.toMap().entries.first;
+  MapEntry<String, dynamic> selectedColor =
+      AppTheme.currentColorModel!.toMap().entries.first;
 
   /// [selectedColor] is a method that sets the selected color from the current scheme.
   @action

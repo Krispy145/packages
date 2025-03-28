@@ -34,7 +34,8 @@ class ImagesFormField extends BaseFormField<ImagesFormFieldStore> {
             SizedBox(
               height: height,
               child: ReorderableListView.builder(
-                onReorder: (oldIndex, newIndex) => store.reorderImages(oldIndex: oldIndex, newIndex: newIndex),
+                onReorder: (oldIndex, newIndex) =>
+                    store.reorderImages(oldIndex: oldIndex, newIndex: newIndex),
                 scrollDirection: Axis.horizontal,
                 itemCount: store.imageFormFields.length,
                 buildDefaultDragHandles: false,

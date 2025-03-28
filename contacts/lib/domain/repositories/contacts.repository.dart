@@ -8,7 +8,8 @@ import "/data/repositories/contacts.repository.dart";
 
 /// [ContactsRepository] is a class that defines the basic CRUD operations for the [Contact] entity.
 class ContactsRepository {
-  final ContactsDataRepository _contactsDataRepository = DataRepositories.instance.contacts;
+  final ContactsDataRepository _contactsDataRepository =
+      DataRepositories.instance.contacts;
 
   /// [ContactsRepository] constructor.
   ContactsRepository();

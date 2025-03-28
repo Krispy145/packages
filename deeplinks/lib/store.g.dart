@@ -41,6 +41,15 @@ mixin _$DeepLinksStore on _DeepLinksStore, Store {
     });
   }
 
+  late final _$handleDeepLinkAsyncAction =
+      AsyncAction('_DeepLinksStore.handleDeepLink', context: context);
+
+  @override
+  Future<void> handleDeepLink(void Function(DeepLinkModel) onDeepLink) {
+    return _$handleDeepLinkAsyncAction
+        .run(() => super.handleDeepLink(onDeepLink));
+  }
+
   late final _$isUserIdentifiedAsyncAction =
       AsyncAction('_DeepLinksStore.isUserIdentified', context: context);
 
@@ -118,17 +127,6 @@ mixin _$DeepLinksStore on _DeepLinksStore, Store {
         name: '_DeepLinksStore._listenForReceivedDeepLink');
     try {
       return super._listenForReceivedDeepLink();
-    } finally {
-      _$_DeepLinksStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void handleDeepLink(void Function(DeepLinkModel) onDeepLink) {
-    final _$actionInfo = _$_DeepLinksStoreActionController.startAction(
-        name: '_DeepLinksStore.handleDeepLink');
-    try {
-      return super.handleDeepLink(onDeepLink);
     } finally {
       _$_DeepLinksStoreActionController.endAction(_$actionInfo);
     }

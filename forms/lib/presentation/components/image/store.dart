@@ -23,7 +23,8 @@ enum ImagePickerType {
 
 class ImageFormFieldStore = _ImageFormFieldStore with _$ImageFormFieldStore;
 
-abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadStateStore, Store {
+abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL>
+    with LoadStateStore, Store {
   final BaseFilePicker? filePicker;
   final StorageRepository? storageRepository;
   final ImagePickerType tabType;
@@ -60,12 +61,17 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   final pageController = PageController();
 
-  final BoxDecoration defaultDecoration = BoxDecoration(borderRadius: BorderRadius.circular(8));
+  final BoxDecoration defaultDecoration =
+      BoxDecoration(borderRadius: BorderRadius.circular(8));
 
   @action
   void changeTab(int index) {
     tabIndex = index;
-    pageController.animateToPage(index, duration: Durations.short4, curve: Curves.easeInOut);
+    pageController.animateToPage(
+      index,
+      duration: Durations.short4,
+      curve: Curves.easeInOut,
+    );
   }
 
   late final bool isEditing = imageUrl != null;
@@ -75,7 +81,8 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadSta
 
   final imageUrlKey = "imageUrl";
   late final form = FormGroup({
-    imageUrlKey: FormControl<URL>(value: imageUrl, validators: [Validators.required]),
+    imageUrlKey:
+        FormControl<URL>(value: imageUrl, validators: [Validators.required]),
   });
 
   late final bool canStoreImage = storageRepository != null;

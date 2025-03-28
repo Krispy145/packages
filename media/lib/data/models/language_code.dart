@@ -213,7 +213,8 @@ class LanguageCode {
       case "cpf":
         return HLSManifestLanguage(code, "Creoles and Pidgins (Frensh based)");
       case "cpp":
-        return HLSManifestLanguage(code, "Creoles and Pidgins (Portuguese based)");
+        return HLSManifestLanguage(
+            code, "Creoles and Pidgins (Portuguese based)");
       case "cre":
         return HLSManifestLanguage(code, "Cree");
       case "crh":

@@ -35,7 +35,8 @@ class UserPermissionDataRepository {
   Future<RequestResponse> updatePermissionModel({
     required PermissionModel permissionModel,
   }) async {
-    return _dataSourceByType(userDataSourceType).update(permissionModel.id, permissionModel);
+    return _dataSourceByType(userDataSourceType)
+        .update(permissionModel.id, permissionModel);
   }
 
   /// [deletePermissionModel] deletes a single [PermissionModel] from the data source.

@@ -11,7 +11,8 @@ import "package:utilities/data/models/date_and_time_model.dart";
 ///
 /// A [ReactiveForm] ancestor is required.
 ///
-class ReactiveDateAndTimeField extends ReactiveFormField<DateAndTime, DateAndTime> {
+class ReactiveDateAndTimeField
+    extends ReactiveFormField<DateAndTime, DateAndTime> {
   final DateAndTimeFormFieldStore? _fieldStore;
 
   final ReactiveFormFieldCallback<DateAndTime>? onChanged;
@@ -104,10 +105,12 @@ class ReactiveDateAndTimeField extends ReactiveFormField<DateAndTime, DateAndTim
         );
 
   @override
-  ReactiveFormFieldState<DateAndTime, DateAndTime> createState() => _ReactiveDateAndTimeFieldState();
+  ReactiveFormFieldState<DateAndTime, DateAndTime> createState() =>
+      _ReactiveDateAndTimeFieldState();
 }
 
-class _ReactiveDateAndTimeFieldState extends ReactiveFocusableFormFieldState<DateAndTime, DateAndTime> {
+class _ReactiveDateAndTimeFieldState
+    extends ReactiveFocusableFormFieldState<DateAndTime, DateAndTime> {
   late DateAndTimeFormFieldStore _fieldStore;
 
   @override

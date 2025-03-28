@@ -52,19 +52,28 @@ class ToggleButtonModel with ToggleButtonModelMappable {
 
   ToggleButtonsThemeData asToggleButtonThemeData({String? styleTypeName}) {
     return ToggleButtonsThemeData(
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       constraints: constraints_boxConstraints?.asBoxConstraints(
         styleTypeName: styleTypeName,
       ),
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      selectedColor: selectedColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledColor: disabledColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedColor:
+          selectedColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledColor:
+          disabledColor_themeColorString?.toColor(styleType: styleTypeName),
       fillColor: fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      highlightColor: highlightColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      splashColor: splashColor_themeColorString?.toColor(styleType: styleTypeName),
-      borderColor: borderColor_themeColorString?.toColor(styleType: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      highlightColor:
+          highlightColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      splashColor:
+          splashColor_themeColorString?.toColor(styleType: styleTypeName),
+      borderColor:
+          borderColor_themeColorString?.toColor(styleType: styleTypeName),
       selectedBorderColor: selectedBorderColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),

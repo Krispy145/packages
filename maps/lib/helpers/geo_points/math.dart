@@ -1,44 +1,44 @@
-import 'dart:math';
+import "dart:math";
 
-import 'package:latlong2/latlong.dart';
+import "package:latlong2/latlong.dart";
 
 /// 32 codes to use aas Base32.
-const _base32Codes = '0123456789bcdefghjkmnpqrstuvwxyz';
+const _base32Codes = "0123456789bcdefghjkmnpqrstuvwxyz";
 
 /// Base 32 codes map.
 const _base32CodesMap = <String, int>{
-  '0': 0,
-  '1': 1,
-  '2': 2,
-  '3': 3,
-  '4': 4,
-  '5': 5,
-  '6': 6,
-  '7': 7,
-  '8': 8,
-  '9': 9,
-  'b': 10,
-  'c': 11,
-  'd': 12,
-  'e': 13,
-  'f': 14,
-  'g': 15,
-  'h': 16,
-  'j': 17,
-  'k': 18,
-  'm': 19,
-  'n': 20,
-  'p': 21,
-  'q': 22,
-  'r': 23,
-  's': 24,
-  't': 25,
-  'u': 26,
-  'v': 27,
-  'w': 28,
-  'x': 29,
-  'y': 30,
-  'z': 31,
+  "0": 0,
+  "1": 1,
+  "2": 2,
+  "3": 3,
+  "4": 4,
+  "5": 5,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 9,
+  "b": 10,
+  "c": 11,
+  "d": 12,
+  "e": 13,
+  "f": 14,
+  "g": 15,
+  "h": 16,
+  "j": 17,
+  "k": 18,
+  "m": 19,
+  "n": 20,
+  "p": 21,
+  "q": 22,
+  "r": 23,
+  "s": 24,
+  "t": 25,
+  "u": 26,
+  "v": 27,
+  "w": 28,
+  "x": 29,
+  "y": 30,
+  "z": 31,
 };
 
 /// Returns geoHash String from [latitude] and [longitude],
@@ -94,8 +94,10 @@ String encode({
 /// It includes 'latitude', 'longitude', 'latitudeError', 'longitudeError'.
 _CoordinatesWithErrors _decode(final String geoHash) {
   final boundingBox = _decodedBoundingBox(geoHash);
-  final latitude = _getMiddleOf(boundingBox.minLatitude, boundingBox.maxLatitude);
-  final longitude = _getMiddleOf(boundingBox.minLongitude, boundingBox.maxLongitude);
+  final latitude =
+      _getMiddleOf(boundingBox.minLatitude, boundingBox.maxLatitude);
+  final longitude =
+      _getMiddleOf(boundingBox.minLongitude, boundingBox.maxLongitude);
   final latitudeError = boundingBox.maxLatitude - latitude;
   final longitudeError = boundingBox.maxLongitude - longitude;
   return _CoordinatesWithErrors(
@@ -161,7 +163,8 @@ List<String> neighborGeoHashesOf(final String geoHash) {
   final coordinatesWithErrors = _decode(geoHash);
   return _clockwiseNeighborDirections
       .map(
-        (final direction) => direction.encodeNeighbor(coordinatesWithErrors, geoHash.length),
+        (final direction) =>
+            direction.encodeNeighbor(coordinatesWithErrors, geoHash.length),
       )
       .toList();
 }
@@ -181,8 +184,10 @@ class _NeighborDirection {
     final int geoHashLength,
   ) {
     return encode(
-      latitude: coordinatesWithErrors.latitude + latitudeDirection * coordinatesWithErrors.latitudeError * 2,
-      longitude: coordinatesWithErrors.longitude + longitudeDirection * coordinatesWithErrors.longitudeError * 2,
+      latitude: coordinatesWithErrors.latitude +
+          latitudeDirection * coordinatesWithErrors.latitudeError * 2,
+      longitude: coordinatesWithErrors.longitude +
+          longitudeDirection * coordinatesWithErrors.longitudeError * 2,
       geoHashLength: geoHashLength,
     );
   }

@@ -12,9 +12,11 @@ part "store.g.dart";
 
 // enum BorderSideTypes { all, symmetric, only, zero }
 
-class BorderSideFormFieldStore = _BorderSideFormFieldStore with _$BorderSideFormFieldStore;
+class BorderSideFormFieldStore = _BorderSideFormFieldStore
+    with _$BorderSideFormFieldStore;
 
-abstract class _BorderSideFormFieldStore extends BaseFormFieldStore<BorderSideModel> with Store {
+abstract class _BorderSideFormFieldStore
+    extends BaseFormFieldStore<BorderSideModel> with Store {
   _BorderSideFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
@@ -36,24 +38,33 @@ abstract class _BorderSideFormFieldStore extends BaseFormFieldStore<BorderSideMo
   // late final bottomRightController = TextEditingController(text: value.bottomRight_double?.toString());
 
   late final widthStore = DoubleFormFieldStore(
-    onValueChanged: (newWidth) => onValueChanged((value ?? const BorderSideModel()).copyWith(width_double: newWidth)),
+    onValueChanged: (newWidth) => onValueChanged(
+      (value ?? const BorderSideModel()).copyWith(width_double: newWidth),
+    ),
     initialValue: value?.width_double,
     title: "Width",
   );
   late final strokeAlignStore = DoubleFormFieldStore(
-    onValueChanged: (newStrokeAlign) => onValueChanged((value ?? const BorderSideModel()).copyWith(strokeAlign_double: newStrokeAlign)),
+    onValueChanged: (newStrokeAlign) => onValueChanged(
+      (value ?? const BorderSideModel())
+          .copyWith(strokeAlign_double: newStrokeAlign),
+    ),
     initialValue: value?.strokeAlign_double,
     title: "Stroke Align",
   );
   late final colorStore = ThemeColorStringFormFieldStore(
-    onValueChanged: (newColor) => onValueChanged((value ?? const BorderSideModel()).copyWith(color_themeColorString: newColor)),
+    onValueChanged: (newColor) => onValueChanged(
+      (value ?? const BorderSideModel())
+          .copyWith(color_themeColorString: newColor),
+    ),
     initialValue: value?.color_themeColorString,
     title: "Color",
   );
   late final styleStore = EnumFormFieldStore(
     onValueChanged: (newStyle) => onValueChanged(
       (value ?? const BorderSideModel()).copyWith(
-        style_enum_borderStyle: BorderStyleType.values.firstWhereOrNull((element) => element.borderStyle == newStyle),
+        style_enum_borderStyle: BorderStyleType.values
+            .firstWhereOrNull((element) => element.borderStyle == newStyle),
       ),
     ),
     initialValue: value?.style_enum_borderStyle,

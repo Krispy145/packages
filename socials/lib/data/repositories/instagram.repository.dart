@@ -5,8 +5,8 @@ import "package:socials/domain/repositories/instagram.repository.dart";
 import "package:socials/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
 
-import "../models/instagram/user_model.dart";
 import "/data/sources/instagram/api.source.dart";
+import "../models/instagram/user_model.dart";
 
 /// [InstagramDataRepository] is a class that defines the basic CRUD operations for the [InstagramUserModel] entity.
 class InstagramDataRepository {
@@ -22,7 +22,9 @@ class InstagramDataRepository {
   });
 
   /// [postShortLivedAccessToken] returns a list of [InstagramUserModel]s.
-  Future<InstagramAccessTokenModel?> postShortLivedAccessToken(CODE code) async {
+  Future<InstagramAccessTokenModel?> postShortLivedAccessToken(
+    CODE code,
+  ) async {
     final _response = await ApiInstagramDataSource(
       appRedirectUrl: appRedirectUrl,
       appId: appId,
@@ -32,7 +34,9 @@ class InstagramDataRepository {
   }
 
   /// [getLongLivedAccessToken] returns a list of [InstagramUserModel]s.
-  Future<InstagramAccessTokenModel?> getLongLivedAccessToken(InstagramAccessTokenModel shortLivedAccessToken) async {
+  Future<InstagramAccessTokenModel?> getLongLivedAccessToken(
+    InstagramAccessTokenModel shortLivedAccessToken,
+  ) async {
     final _response = await ApiInstagramDataSource(
       appRedirectUrl: appRedirectUrl,
       appId: appId,
@@ -42,7 +46,9 @@ class InstagramDataRepository {
   }
 
   /// [refreshLongLivedAccessToken] returns a list of [InstagramUserModel]s.
-  Future<InstagramAccessTokenModel?> refreshLongLivedAccessToken(InstagramAccessTokenModel currentLongLivedAccessToken) async {
+  Future<InstagramAccessTokenModel?> refreshLongLivedAccessToken(
+    InstagramAccessTokenModel currentLongLivedAccessToken,
+  ) async {
     final _response = await ApiInstagramDataSource(
       appRedirectUrl: appRedirectUrl,
       appId: appId,
@@ -63,9 +69,17 @@ class InstagramDataRepository {
         appRedirectUrl: appRedirectUrl,
         appId: appId,
         appSecret: appSecret,
-      ).userMediaIds(userId: userId, accessToken: accessTokenModel.accessToken, lastMediaIdResponse: lastMediaIdResponse);
+      ).userMediaIds(
+        userId: userId,
+        accessToken: accessTokenModel.accessToken,
+        lastMediaIdResponse: lastMediaIdResponse,
+      );
     } catch (e) {
-      AppLogger.print("InstagramDataRepository: getUserMediaIds: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramDataRepository: getUserMediaIds: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
     }
     return null;
   }
@@ -82,9 +96,17 @@ class InstagramDataRepository {
         appRedirectUrl: appRedirectUrl,
         appId: appId,
         appSecret: appSecret,
-      ).mediaDetails(mediaId: mediaId, accessToken: accessTokenModel.accessToken, fields: fields);
+      ).mediaDetails(
+        mediaId: mediaId,
+        accessToken: accessTokenModel.accessToken,
+        fields: fields,
+      );
     } catch (e) {
-      AppLogger.print("InstagramDataRepository: getMediaDetails: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramDataRepository: getMediaDetails: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
     }
     return null;
   }
@@ -101,9 +123,17 @@ class InstagramDataRepository {
         appRedirectUrl: appRedirectUrl,
         appId: appId,
         appSecret: appSecret,
-      ).mediaAlbum(mediaId: mediaId, accessToken: accessTokenModel.accessToken, fields: fields);
+      ).mediaAlbum(
+        mediaId: mediaId,
+        accessToken: accessTokenModel.accessToken,
+        fields: fields,
+      );
     } catch (e) {
-      AppLogger.print("InstagramDataRepository: getMediaAlbum: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramDataRepository: getMediaAlbum: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
     }
     return [];
   }
@@ -120,7 +150,11 @@ class InstagramDataRepository {
         appSecret: appSecret,
       ).me(accessToken: accessTokenModel.accessToken, fields: fields);
     } catch (e) {
-      AppLogger.print("InstagramDataRepository: getMe: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramDataRepository: getMe: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
     }
     return null;
   }
@@ -137,9 +171,17 @@ class InstagramDataRepository {
         appRedirectUrl: appRedirectUrl,
         appId: appId,
         appSecret: appSecret,
-      ).user(userId: userId, accessToken: accessTokenModel.accessToken, fields: fields);
+      ).user(
+        userId: userId,
+        accessToken: accessTokenModel.accessToken,
+        fields: fields,
+      );
     } catch (e) {
-      AppLogger.print("InstagramDataRepository: getUser: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramDataRepository: getUser: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
     }
     return null;
   }

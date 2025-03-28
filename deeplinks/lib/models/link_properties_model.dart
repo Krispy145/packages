@@ -36,7 +36,8 @@ class LinkPropertiesModel with LinkPropertiesModelMappable {
         campaign: "",
       );
 
-  static BranchLinkProperties defaultShareProperties = const LinkPropertiesModel(
+  static BranchLinkProperties defaultShareProperties =
+      const LinkPropertiesModel(
     feature: "share",
     alias: "",
     stage: "",

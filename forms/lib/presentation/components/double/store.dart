@@ -8,7 +8,8 @@ part "store.g.dart";
 
 class DoubleFormFieldStore = _DoubleFormFieldStore with _$DoubleFormFieldStore;
 
-abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with Store {
+abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?>
+    with Store {
   final bool changeOnSaved;
 
   _DoubleFormFieldStore({
@@ -28,7 +29,8 @@ abstract class _DoubleFormFieldStore extends BaseFormFieldStore<double?> with St
   final double increment;
   final bool showButtons;
 
-  late final TextEditingController textController = TextEditingController(text: value?.toString());
+  late final TextEditingController textController =
+      TextEditingController(text: value?.toString());
 
   @action
   void add() {

@@ -10,7 +10,8 @@ import "/data/repositories/_repositories.dart";
 
 /// [PlaylistItemRepository] is a class that defines the basic CRUD operations for the [PlaylistModel] entity.
 class PlaylistItemRepository {
-  final PlaylistItemDataRepository _playlistItemDataRepository = DataRepositories.instance.playlistItem;
+  final PlaylistItemDataRepository _playlistItemDataRepository =
+      DataRepositories.instance.playlistItem;
 
   final String apiKey;
 
@@ -56,8 +57,14 @@ class PlaylistItemRepository {
   // }
 
   /// [getPagedPlaylistItems] fetches a page of [PlaylistModel]s from the data source.
-  Future<Pair<RequestResponse, List<PlaylistItemModel?>>> getPagedPlaylistItems({int? limit, bool refresh = false, required String playlistId}) async {
-    final _response = await _playlistItemDataRepository.getPagedPlaylistItemModels(
+  Future<Pair<RequestResponse, List<PlaylistItemModel?>>>
+      getPagedPlaylistItems({
+    int? limit,
+    bool refresh = false,
+    required String playlistId,
+  }) async {
+    final _response =
+        await _playlistItemDataRepository.getPagedPlaylistItemModels(
       source: _source,
       limit: limit,
       lastResponse: refresh ? null : _lastResponse,

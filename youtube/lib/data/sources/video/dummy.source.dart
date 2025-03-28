@@ -1,7 +1,9 @@
 part of "_source.dart";
 
 /// [DummyVideoDataSource] is a class that implements [VideoDataSource] interface.
-class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryModel> implements VideoDataSource {
+class DummyVideoDataSource
+    extends DummyDataSource<VideoModel, BasicSearchQueryModel>
+    implements VideoDataSource {
   @override
   List<VideoModel> get fakeData => VideoModel.fakeData;
 
@@ -15,7 +17,8 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<ResponseModel, List<VideoModel?>>>> searchPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<VideoModel?>>>>
+      searchPage({
     ResponseModel? lastResponse,
     int? size,
     required BasicSearchQueryModel query,
@@ -25,7 +28,8 @@ class DummyVideoDataSource extends DummyDataSource<VideoModel, BasicSearchQueryM
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<ResponseModel, List<VideoModel?>>>> getPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<VideoModel?>>>>
+      getPage({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,

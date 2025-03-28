@@ -1,5 +1,5 @@
-import 'package:dart_mappable/dart_mappable.dart';
-import 'package:latlong2/latlong.dart';
+import "package:dart_mappable/dart_mappable.dart";
+import "package:latlong2/latlong.dart";
 
 class LatLngMapper extends SimpleMapper<LatLng> {
   const LatLngMapper();

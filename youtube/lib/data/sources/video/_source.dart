@@ -16,4 +16,7 @@ part "api.source.dart";
 part "dummy.source.dart";
 
 /// [VideoDataSource] is an mixin that defines the basic CRUD operations for the [VideoModel] entity.
-sealed class VideoDataSource<Resp extends ResponseModel> with DataSource<VideoModel, BasicSearchQueryModel>, Paginated<Resp, VideoModel, BasicSearchQueryModel> {}
+sealed class VideoDataSource<Resp extends ResponseModel>
+    with
+        DataSource<VideoModel, BasicSearchQueryModel>,
+        Paginated<Resp, VideoModel, BasicSearchQueryModel> {}

@@ -24,11 +24,12 @@ class PermissionChecker<T> {
     required this.dataReference,
   });
 
-  late List<Pair<String, UserPermissionsModel?>>? currentUserPermissionModel = userPermissions.permissions.entries
-      .map(
-        (e) => Pair(e.key, e.value),
-      )
-      .toList();
+  late List<Pair<String, UserPermissionsModel?>>? currentUserPermissionModel =
+      userPermissions.permissions.entries
+          .map(
+            (e) => Pair(e.key, e.value),
+          )
+          .toList();
 
   List<Pair<String, PermissionLevel>> checkPermissionLevel(
     CRUD requestType,
@@ -57,7 +58,9 @@ class PermissionChecker<T> {
   bool checkReadPermissions() {
     final permissionsList = checkPermissionLevel(CRUD.read);
     final isCheckPermissionsEqualToAll = permissionsList.firstWhereOrNull(
-      (element) => element.first == "$dataReference/all" && element.second == PermissionLevel.yes,
+      (element) =>
+          element.first == "$dataReference/all" &&
+          element.second == PermissionLevel.yes,
     );
     return isCheckPermissionsEqualToAll?.second == PermissionLevel.yes;
   }
@@ -66,12 +69,14 @@ class PermissionChecker<T> {
   /// It returns a [Pair<String, UserPermissionsModel>] if the user has permissions for the collection
   void getUserPermissions() {
     try {
-      final userPermissionsPairs = _evaluatePermissions(userPermissions.permissions);
+      final userPermissionsPairs =
+          _evaluatePermissions(userPermissions.permissions);
       final collectionPairs = _changePathToPairs("$dataReference/all");
 
       final foundPaths = <String>[];
       for (var i = 0; i < userPermissionsPairs.length; i++) {
-        final isFirstEqual = collectionPairs.any((element) => element.first == userPermissionsPairs[i].first);
+        final isFirstEqual = collectionPairs
+            .any((element) => element.first == userPermissionsPairs[i].first);
         if (isFirstEqual) {
           foundPaths.add(
             "${userPermissionsPairs[i].first}/${userPermissionsPairs[i].second}",
@@ -91,10 +96,14 @@ class PermissionChecker<T> {
     required List<Pair<String, PermissionLevel>> checkedPermissions,
   }) {
     final referenceNameEqualsFirst = checkedPermissions.any(
-      (element) => element.first.split("/").first == dataReference && element.second == PermissionLevel.yes,
+      (element) =>
+          element.first.split("/").first == dataReference &&
+          element.second == PermissionLevel.yes,
     );
     final secondEqualsAll = checkedPermissions.any(
-      (element) => element.second == PermissionLevel.yes && element.first.split("/").last == "all",
+      (element) =>
+          element.second == PermissionLevel.yes &&
+          element.first.split("/").last == "all",
     );
 
     return Pair(referenceNameEqualsFirst, secondEqualsAll);
@@ -109,29 +118,40 @@ class PermissionChecker<T> {
     final permissionsList = checkPermissionLevel(crud);
     final isCheckPermissionsEqualToId = permissionsList.firstWhereOrNull(
       (element) {
-        final _collectionNameCheck = element.first.split("/").first == collectionName;
-        return _collectionNameCheck && element.first.split("/").last == sourceId && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
+        final _collectionNameCheck =
+            element.first.split("/").first == collectionName;
+        return _collectionNameCheck &&
+            element.first.split("/").last == sourceId &&
+            (element.second == PermissionLevel.yes ||
+                element.second == PermissionLevel.review);
         // return element.first.split("/").last == sourceId && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
       },
     );
     final isCheckPermissionsEqualToAll = permissionsList.firstWhereOrNull(
       (element) {
-        final _collectionNameCheck = element.first.split("/").first == collectionName;
-        return _collectionNameCheck && element.first.split("/").last == "all" && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
+        final _collectionNameCheck =
+            element.first.split("/").first == collectionName;
+        return _collectionNameCheck &&
+            element.first.split("/").last == "all" &&
+            (element.second == PermissionLevel.yes ||
+                element.second == PermissionLevel.review);
         // return element.first.split("/").last == "all" && (element.second == PermissionLevel.yes || element.second == PermissionLevel.review);
       },
     );
-    if (!(isCheckPermissionsEqualToAll != null || isCheckPermissionsEqualToId != null)) {
+    if (!(isCheckPermissionsEqualToAll != null ||
+        isCheckPermissionsEqualToId != null)) {
       return RequestResponse.denied;
     }
 
-    if (isCheckPermissionsEqualToAll?.second == PermissionLevel.review || isCheckPermissionsEqualToId?.second == PermissionLevel.review) {
+    if (isCheckPermissionsEqualToAll?.second == PermissionLevel.review ||
+        isCheckPermissionsEqualToId?.second == PermissionLevel.review) {
       return RequestResponse.underReview;
     }
     return RequestResponse.success;
   }
 
-  Future<RequestResponse> addForReview<Resp extends ResponseModel, U extends UserModel?>({
+  Future<RequestResponse>
+      addForReview<Resp extends ResponseModel, U extends UserModel?>({
     required UUID sourceId,
     required String dataSourceReference,
     CRUD crud = CRUD.create,

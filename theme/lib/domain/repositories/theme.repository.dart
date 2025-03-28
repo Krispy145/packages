@@ -16,7 +16,8 @@ class ThemeRepository extends BaseThemeRepository {
     this.componentThemesConfiguration,
   });
 
-  ThemeDataRepository get _themeDataRepository => DataRepositories.instance.theme(
+  ThemeDataRepository get _themeDataRepository =>
+      DataRepositories.instance.theme(
         baseThemeConfiguration: baseThemeConfiguration,
         componentThemesConfiguration: componentThemesConfiguration,
       );
@@ -55,7 +56,8 @@ class ThemeRepository extends BaseThemeRepository {
 
   @override
   Future<void>? updateComponentTheme(ComponentThemesModel theme) {
-    return _themeDataRepository.componentThemesDataSource?.update(theme.id, theme);
+    return _themeDataRepository.componentThemesDataSource
+        ?.update(theme.id, theme);
   }
 
   /// [fetchComponentsTheme] is the method that will be used to fetch the [ComponentThemesModel] data.
@@ -77,7 +79,10 @@ class ThemeRepository extends BaseThemeRepository {
   /// [fetchComponentThemes] is the method that will be used to fetch the [ComponentThemesModel] data.
   @override
   Future<List<ComponentThemesModel?>> fetchComponentThemes() async {
-    final result = (await _themeDataRepository.componentThemesDataSource?.getAll())?.second ?? [];
+    final result =
+        (await _themeDataRepository.componentThemesDataSource?.getAll())
+                ?.second ??
+            [];
     return result;
   }
 }

@@ -20,7 +20,8 @@ part "_source.mapper.dart";
 part "firestore.source.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
-class UserSearchQueryModel extends BasicSearchQueryModel with UserSearchQueryModelMappable {
+class UserSearchQueryModel extends BasicSearchQueryModel
+    with UserSearchQueryModelMappable {
   final AuthType? authType;
   final bool mustInclude;
   final bool mustExclude;
@@ -38,7 +39,10 @@ class UserSearchQueryModel extends BasicSearchQueryModel with UserSearchQueryMod
 }
 
 /// [UserDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-sealed class UserDataSource<Resp extends ResponseModel, T extends UserModel> with DataSource<T, UserSearchQueryModel>, Paginated<Resp, T, UserSearchQueryModel> {
+sealed class UserDataSource<Resp extends ResponseModel, T extends UserModel>
+    with
+        DataSource<T, UserSearchQueryModel>,
+        Paginated<Resp, T, UserSearchQueryModel> {
   Future<List<T?>> searchAllAuthTypes(UserSearchQueryModel query);
 
   Future<List<T?>> getUsersByIds(List<String> ids);

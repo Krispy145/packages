@@ -19,7 +19,10 @@ class StreamSubscriptionManager {
   /// Cancel all subscriptions
   Future<void> cancelAll() async {
     for (final wrapper in _wrappers) {
-      AppLogger.print("Cancelling stream subscription: ${wrapper.name}", [UtilitiesLoggers.streamManager]);
+      AppLogger.print(
+        "Cancelling stream subscription: ${wrapper.name}",
+        [UtilitiesLoggers.streamManager],
+      );
       await wrapper.dispose();
     }
     _wrappers.clear();

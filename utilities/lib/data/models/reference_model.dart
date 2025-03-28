@@ -10,7 +10,12 @@ class DropdownItemModel {
   final String? subtitle;
   final URL? image;
 
-  DropdownItemModel({required this.id, required this.title, this.subtitle, this.image});
+  DropdownItemModel({
+    required this.id,
+    required this.title,
+    this.subtitle,
+    this.image,
+  });
 
   // static const fromMap = ReferenceModelMapper.fromMap;
   // static const fromJson = ReferenceModelMapper.fromJson;

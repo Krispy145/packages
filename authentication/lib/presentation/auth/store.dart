@@ -72,7 +72,8 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
 
   @action
   void toggleSignIn() {
-    authAction = authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+    authAction =
+        authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
   }
 
   @action
@@ -112,7 +113,9 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
   Future<void> _handleSilent() async {
     final currentUser = repository.currentUserModelStream.value;
 
-    if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
+    if (currentUser != null &&
+        currentUser.status == AuthStatus.authenticated &&
+        currentUser.authType == AuthType.anonymous) {
       userModel = currentUser;
       setLoaded();
     } else {
@@ -135,10 +138,13 @@ abstract class _AuthStore<T extends UserModel> with LoadStateStore, Store {
   @action
   Future<void> _handleAuthenticate() async {
     final currentUser = repository.currentUserModelStream.value;
-    if (currentUser != null && currentUser.status == AuthStatus.authenticated && currentUser.authType == AuthType.anonymous) {
+    if (currentUser != null &&
+        currentUser.status == AuthStatus.authenticated &&
+        currentUser.authType == AuthType.anonymous) {
       await repository.signOut();
       setEmpty("User is anonymous");
-    } else if (currentUser != null && currentUser.status == AuthStatus.authenticated) {
+    } else if (currentUser != null &&
+        currentUser.status == AuthStatus.authenticated) {
       userModel = currentUser;
       setLoaded();
     } else {

@@ -7,10 +7,12 @@ import "package:utilities/layouts/list/store.dart";
 part "store.g.dart";
 
 /// [PaginatedListStore] is a class that uses [_PaginatedListStore] to manage state of the topTips feature.
-class PaginatedListStore<T, K extends Comparable<K>> = _PaginatedListStore<T, K> with _$PaginatedListStore<T, K>;
+class PaginatedListStore<T, K extends Comparable<K>> = _PaginatedListStore<T, K>
+    with _$PaginatedListStore<T, K>;
 
 /// [_PaginatedListStore] is a class that manages the state of the topTips feature.
-abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore<T, K> with Store {
+abstract class _PaginatedListStore<T, K extends Comparable<K>>
+    extends ListStore<T, K> with Store {
   final int limit;
 
   /// [_PaginatedListStore] constructor.
@@ -24,7 +26,8 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
   Future<void> initialize() async {
     try {
       scrollController.addListener(() {
-        if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+        if (scrollController.position.pixels ==
+            scrollController.position.maxScrollExtent) {
           loadMore(limit: limit);
         }
       });
@@ -34,7 +37,10 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
     }
   }
 
-  late final Future<Pair<RequestResponse, List<T?>>> Function({int? limit, bool refresh}) loadMoreFromRepository;
+  late final Future<Pair<RequestResponse, List<T?>>> Function({
+    int? limit,
+    bool refresh,
+  }) loadMoreFromRepository;
 
   @observable
   RequestResponse? requestResponse;
@@ -51,7 +57,8 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
     if (isNoMoreToLoad && !refresh) return;
     try {
       setLoading();
-      final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
+      final loadedResults =
+          await loadMoreFromRepository(limit: limit, refresh: refresh);
       requestResponse = loadedResults.first;
       if (loadedResults.second.isNotEmpty || refresh) {
         if (refresh) results.clear();

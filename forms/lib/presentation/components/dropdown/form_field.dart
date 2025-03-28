@@ -22,7 +22,8 @@ class DropdownFormField<T> extends BaseFormField<DropdownFormFieldStore<T>> {
         return DropdownSearch<T>(
           itemAsString: store.labelBuilder,
           selectedItem: store.value,
-          items: (searchTerm, searchProps) async => await store.itemFetcher?.call(searchTerm) ?? store.items,
+          items: (searchTerm, searchProps) async =>
+              await store.itemFetcher?.call(searchTerm) ?? store.items,
           compareFn: (i, s) => i == s,
           onChanged: (item) {
             if (item != null) store.value = item;

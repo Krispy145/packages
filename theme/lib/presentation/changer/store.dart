@@ -30,7 +30,8 @@ abstract class _ComponentThemeChangerStore<T> with Store {
   late ObservableMap<String, dynamic> componentThemeMap =
       currentComponentTheme != null
           ? ObservableMap.of(
-              convertComponentThemeToMap(currentComponentTheme as T),)
+              convertComponentThemeToMap(currentComponentTheme as T),
+            )
           : ObservableMap.of(convertComponentThemeToMap(defaultComponentTheme));
 
   /// [mergedMap] is a map that merges the default and current component theme.
@@ -56,7 +57,9 @@ abstract class _ComponentThemeChangerStore<T> with Store {
   void setMapEntry(MapEntry<String, dynamic> value) {
     currentMapEntry = value;
     AppLogger.print(
-        "currentAppbarMapEntry: $currentMapEntry", [ThemeLoggers.changer],);
+      "currentAppbarMapEntry: $currentMapEntry",
+      [ThemeLoggers.changer],
+    );
   }
 
   /// [setMapEntryInMap] is a method that sets the current map entry in the map.
@@ -66,8 +69,11 @@ abstract class _ComponentThemeChangerStore<T> with Store {
       componentThemeMap[currentMapEntry.key] = currentMapEntry.value;
       return convertComponentThemeFromMap(componentThemeMap);
     } catch (e, stackTrace) {
-      AppLogger.print("setAppbarModel: $e, $stackTrace", [ThemeLoggers.changer],
-          type: LoggerType.error,);
+      AppLogger.print(
+        "setAppbarModel: $e, $stackTrace",
+        [ThemeLoggers.changer],
+        type: LoggerType.error,
+      );
       return convertComponentThemeFromMap(componentThemeMap);
     }
   }

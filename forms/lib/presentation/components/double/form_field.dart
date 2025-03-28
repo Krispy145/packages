@@ -24,20 +24,27 @@ class DoubleFormField extends BaseFormField<DoubleFormFieldStore> {
                 SizedBox(
                   width: 100,
                   child: TextField(
-                    decoration: const InputDecoration(border: UnderlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
                     onChanged: (value) {
                       if (store.changeOnSaved) return;
                       store.onValueChanged(double.tryParse(value) ?? 0);
                     },
-                    inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"-*[0-9]*(\.[0-9]*)*"))],
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(
+                        RegExp(r"-*[0-9]*(\.[0-9]*)*"),
+                      ),
+                    ],
                   ),
                 ),
                 if (store.changeOnSaved) ...[
                   Sizes.s.spacer(axis: Axis.horizontal),
                   InkWell(
-                    onTap: () => store.onValueChanged(double.tryParse(store.textController.text) ?? 0),
+                    onTap: () => store.onValueChanged(
+                      double.tryParse(store.textController.text) ?? 0,
+                    ),
                     child: const Icon(Icons.check_circle_outline),
                   ),
                 ],

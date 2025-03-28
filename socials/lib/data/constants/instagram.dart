@@ -8,7 +8,10 @@ class InstagramConstants {
   static String appRedirectUrl(String redirectUrl) => "https://$redirectUrl";
 
   /// [authorizeSuffix] is the suffix for the authorize endpoint. `/oauth/authorize`
-  static String authorizeSuffix({required String appId, required String redirectUrl}) =>
+  static String authorizeSuffix({
+    required String appId,
+    required String redirectUrl,
+  }) =>
       "${InstagramConstants.apiUrl}oauth/authorize?client_id=$appId&redirect_uri=${appRedirectUrl(redirectUrl)}&scope=user_profile,user_media&response_type=code";
 
   /// [shortLivedTokenSuffix] is the suffix for the access token endpoint. `/oauth/access_token`

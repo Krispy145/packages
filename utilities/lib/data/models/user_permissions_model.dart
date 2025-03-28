@@ -9,7 +9,10 @@ enum PermissionLevel {
   review;
 }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase, includeSubClasses: [PermissionLevel])
+@MappableClass(
+  caseStyle: CaseStyle.snakeCase,
+  includeSubClasses: [PermissionLevel],
+)
 class UserPermissionsModel with UserPermissionsModelMappable {
   /// [canCreate] is the permission to create.
   final PermissionLevel canCreate;

@@ -107,8 +107,11 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
   bool get isLight => currentThemeMode == ThemeMode.light;
 
   @computed
-  ColorModel? get currentColorModel =>
-      isDark ? (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.dark : (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])?.light;
+  ColorModel? get currentColorModel => isDark
+      ? (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])
+          ?.dark
+      : (baseThemeModel?.colors[styleType] ?? baseThemeModel?.colors[styleType])
+          ?.light;
 
   @action
   Future<void> changeThemeConfiguration({
@@ -163,9 +166,12 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
 
   Future<void> _loadThemeModel() async {
     try {
-      baseThemeModel = await repository?.fetchTheme(id: baseThemeConfiguration.id);
+      baseThemeModel =
+          await repository?.fetchTheme(id: baseThemeConfiguration.id);
       if (componentThemesConfiguration != null) {
-        componentThemesModel = await repository?.fetchComponentsTheme(id: componentThemesConfiguration!.id);
+        componentThemesModel = await repository?.fetchComponentsTheme(
+          id: componentThemesConfiguration!.id,
+        );
       }
     } catch (e) {
       AppLogger.print("Error loading theme model: $e", [ThemeLoggers.theme]);
@@ -185,11 +191,14 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
   }
 
   ThemeData _buildTheme() {
-    final buttonStyles = componentThemesModel?.getComponentThemeFromStyleType<ThemeData>(styleType);
+    final buttonStyles = componentThemesModel
+        ?.getComponentThemeFromStyleType<ThemeData>(styleType);
     final colorScheme = currentColorModel?.scheme(isDark);
     return ThemeData(
       colorScheme: colorScheme,
-      textTheme: (baseThemeModel?.textStyles?[styleType] ?? baseThemeModel?.textStyles?[styleType])?.theme,
+      textTheme: (baseThemeModel?.textStyles?[styleType] ??
+              baseThemeModel?.textStyles?[styleType])
+          ?.theme,
       elevatedButtonTheme: buttonStyles?.elevatedButtonTheme,
       iconButtonTheme: buttonStyles?.iconButtonTheme,
       iconTheme: IconThemeData(color: colorScheme?.primary),
@@ -200,37 +209,64 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
       menuButtonTheme: buttonStyles?.menuButtonTheme,
       floatingActionButtonTheme: buttonStyles?.floatingActionButtonTheme,
       segmentedButtonTheme: buttonStyles?.segmentedButtonTheme,
-      dropdownMenuTheme: componentThemesModel?.getComponentThemeFromStyleType<DropdownMenuThemeData?>(styleType),
-      inputDecorationTheme: componentThemesModel?.getComponentThemeFromStyleType<InputDecorationTheme?>(styleType),
-      cardTheme: componentThemesModel?.getComponentThemeFromStyleType<CardTheme?>(styleType),
-      snackBarTheme: componentThemesModel?.getComponentThemeFromStyleType<SnackBarThemeData?>(styleType),
-      badgeTheme: componentThemesModel?.getComponentThemeFromStyleType<BadgeThemeData?>(styleType),
-      appBarTheme: componentThemesModel?.getComponentThemeFromStyleType<AppBarTheme?>(styleType),
-      bottomAppBarTheme: componentThemesModel?.getComponentThemeFromStyleType<BottomAppBarTheme?>(styleType),
-      chipTheme: componentThemesModel?.getComponentThemeFromStyleType<ChipThemeData?>(styleType),
-      dialogTheme: componentThemesModel?.getComponentThemeFromStyleType<DialogTheme?>(styleType),
-      popupMenuTheme: componentThemesModel?.getComponentThemeFromStyleType<PopupMenuThemeData?>(styleType),
-      sliderTheme: componentThemesModel?.getComponentThemeFromStyleType<SliderThemeData?>(styleType),
-      scrollbarTheme: componentThemesModel?.getComponentThemeFromStyleType<ScrollbarThemeData?>(styleType),
-      tooltipTheme: componentThemesModel?.getComponentThemeFromStyleType<TooltipThemeData?>(styleType),
-      navigationRailTheme: componentThemesModel?.getComponentThemeFromStyleType<NavigationRailThemeData?>(styleType),
-      checkboxTheme: componentThemesModel?.getComponentThemeFromStyleType<CheckboxThemeData?>(styleType),
-      radioTheme: componentThemesModel?.getComponentThemeFromStyleType<RadioThemeData?>(styleType),
-      switchTheme: componentThemesModel?.getComponentThemeFromStyleType<SwitchThemeData?>(styleType),
-      drawerTheme: componentThemesModel?.getComponentThemeFromStyleType<DrawerThemeData?>(styleType),
-      listTileTheme: componentThemesModel?.getComponentThemeFromStyleType<ListTileThemeData?>(styleType),
-      menuBarTheme: componentThemesModel?.getComponentThemeFromStyleType<MenuBarThemeData?>(styleType),
-      menuTheme: componentThemesModel?.getComponentThemeFromStyleType<MenuThemeData?>(styleType),
-      navigationBarTheme: componentThemesModel?.getComponentThemeFromStyleType<NavigationBarThemeData?>(styleType),
-      navigationDrawerTheme: componentThemesModel?.getComponentThemeFromStyleType<NavigationDrawerThemeData?>(
+      dropdownMenuTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<DropdownMenuThemeData?>(styleType),
+      inputDecorationTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<InputDecorationTheme?>(styleType),
+      cardTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<CardTheme?>(styleType),
+      snackBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SnackBarThemeData?>(styleType),
+      badgeTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<BadgeThemeData?>(styleType),
+      appBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<AppBarTheme?>(styleType),
+      bottomAppBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<BottomAppBarTheme?>(styleType),
+      chipTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ChipThemeData?>(styleType),
+      dialogTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<DialogTheme?>(styleType),
+      popupMenuTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<PopupMenuThemeData?>(styleType),
+      sliderTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SliderThemeData?>(styleType),
+      scrollbarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ScrollbarThemeData?>(styleType),
+      tooltipTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<TooltipThemeData?>(styleType),
+      navigationRailTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<NavigationRailThemeData?>(styleType),
+      checkboxTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<CheckboxThemeData?>(styleType),
+      radioTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<RadioThemeData?>(styleType),
+      switchTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SwitchThemeData?>(styleType),
+      drawerTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<DrawerThemeData?>(styleType),
+      listTileTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ListTileThemeData?>(styleType),
+      menuBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<MenuBarThemeData?>(styleType),
+      menuTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<MenuThemeData?>(styleType),
+      navigationBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<NavigationBarThemeData?>(styleType),
+      navigationDrawerTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<NavigationDrawerThemeData?>(
         styleType,
       ),
-      progressIndicatorTheme: componentThemesModel?.getComponentThemeFromStyleType<ProgressIndicatorThemeData?>(
+      progressIndicatorTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<ProgressIndicatorThemeData?>(
         styleType,
       ),
-      searchBarTheme: componentThemesModel?.getComponentThemeFromStyleType<SearchBarThemeData?>(styleType),
-      searchViewTheme: componentThemesModel?.getComponentThemeFromStyleType<SearchViewThemeData?>(styleType),
-      tabBarTheme: componentThemesModel?.getComponentThemeFromStyleType<TabBarTheme?>(styleType),
+      searchBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SearchBarThemeData?>(styleType),
+      searchViewTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<SearchViewThemeData?>(styleType),
+      tabBarTheme: componentThemesModel
+          ?.getComponentThemeFromStyleType<TabBarTheme?>(styleType),
     );
   }
 
@@ -251,9 +287,12 @@ abstract class _ThemeStateStore with LoadStateStore, Store {
 
   Future<bool> _changeThemeModel() async {
     try {
-      baseThemeModel = await repository?.fetchTheme(id: baseThemeConfiguration.id);
+      baseThemeModel =
+          await repository?.fetchTheme(id: baseThemeConfiguration.id);
       if (componentThemesConfiguration != null) {
-        componentThemesModel = await repository?.fetchComponentsTheme(id: componentThemesConfiguration!.id);
+        componentThemesModel = await repository?.fetchComponentsTheme(
+          id: componentThemesConfiguration!.id,
+        );
       }
       return baseThemeModel != null;
     } catch (e) {

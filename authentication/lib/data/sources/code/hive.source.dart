@@ -1,7 +1,8 @@
 part of "_source.dart";
 
 /// [HiveCodeDataSource] is a class that implements [CodeDataSource] interface.
-class HiveCodeDataSource extends HiveDataSource<CodeModel, void> implements CodeDataSource {
+class HiveCodeDataSource extends HiveDataSource<CodeModel, void>
+    implements CodeDataSource {
   /// [HiveCodeDataSource] constructor.
   HiveCodeDataSource()
       : super(

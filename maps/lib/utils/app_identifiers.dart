@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import "package:font_awesome_flutter/font_awesome_flutter.dart";
-import 'package:latlong2/latlong.dart';
+import "package:latlong2/latlong.dart";
 import "package:utilities/stores/launch_app_store.dart";
-import 'package:utilities/utils/app_identifier.dart';
+import "package:utilities/utils/app_identifier.dart";
 
 enum MapApp {
   appleMaps,
@@ -101,7 +101,8 @@ class MapAppIdentifier extends AppIdentifier {
           deeplink: "http://maps.apple.com/",
           openStore: true,
           queryParams: {
-            if (destination != null) "daddr": "${destination.latitude},${destination.longitude}",
+            if (destination != null)
+              "daddr": "${destination.latitude},${destination.longitude}",
             if (query != null) "q": query,
           },
         );
@@ -115,7 +116,8 @@ class MapAppIdentifier extends AppIdentifier {
           deeplink: "https://www.google.com/maps",
           openStore: true,
           queryParams: {
-            if (destination != null) "daddr": "${destination.latitude},${destination.longitude}",
+            if (destination != null)
+              "daddr": "${destination.latitude},${destination.longitude}",
             if (query != null) "q": query,
           },
         );
@@ -126,11 +128,13 @@ class MapAppIdentifier extends AppIdentifier {
         super.launcher(
           androidPackageName: "com.waze",
           iosUrlScheme: "waze://",
-          appStoreLink: "https://apps.apple.com/us/app/waze-navigation-live-traffic/id323229106",
+          appStoreLink:
+              "https://apps.apple.com/us/app/waze-navigation-live-traffic/id323229106",
           deeplink: "https://waze.com/ul",
           openStore: true,
           queryParams: {
-            if (destination != null) "ll": "${destination.latitude},${destination.longitude}",
+            if (destination != null)
+              "ll": "${destination.latitude},${destination.longitude}",
             if (destination != null) "navigate": "yes",
             if (destination != null) "zoom": "17",
           },
@@ -149,8 +153,10 @@ class MapAppIdentifier extends AppIdentifier {
             if (pickup != null) "pickup[latitude]": "${pickup.latitude}",
             if (pickup != null) "pickup[longitude]": "${pickup.longitude}",
             if (pickup == null) "pickup": "my_location",
-            if (destination != null) "dropoff[latitude]": "${destination.latitude}",
-            if (destination != null) "dropoff[longitude]": "${destination.longitude}",
+            if (destination != null)
+              "dropoff[latitude]": "${destination.latitude}",
+            if (destination != null)
+              "dropoff[longitude]": "${destination.longitude}",
           },
         );
 
@@ -163,15 +169,20 @@ class MapAppIdentifier extends AppIdentifier {
           deeplink: "https://www.lyft.com/ride-with-lyft",
           openStore: true,
           queryParams: {
-            if (destination != null) "destination[latitude]": "${destination.latitude}",
-            if (destination != null) "destination[longitude]": "${destination.longitude}",
+            if (destination != null)
+              "destination[latitude]": "${destination.latitude}",
+            if (destination != null)
+              "destination[longitude]": "${destination.longitude}",
             if (pickup != null) "pickup[latitude]": "${pickup.latitude}",
             if (pickup != null) "pickup[longitude]": "${pickup.longitude}",
           },
         );
 
-  MapAppIdentifier.cityMapper({LatLng? destination, String? endName, String? endAddress})
-      : app = MapApp.cityMapper,
+  MapAppIdentifier.cityMapper({
+    LatLng? destination,
+    String? endName,
+    String? endAddress,
+  })  : app = MapApp.cityMapper,
         super.launcher(
           androidPackageName: "com.citymapper.app.release",
           iosUrlScheme: "citymapper://directions",
@@ -179,7 +190,8 @@ class MapAppIdentifier extends AppIdentifier {
           deeplink: "https://citymapper.com/directions",
           openStore: true,
           queryParams: {
-            if (destination != null) "endcoord": "${destination.latitude},${destination.longitude}",
+            if (destination != null)
+              "endcoord": "${destination.latitude},${destination.longitude}",
             if (endName != null) "endname": endName,
             if (endAddress != null) "endaddress": endAddress,
           },
@@ -191,7 +203,8 @@ class MapAppIdentifier extends AppIdentifier {
           androidPackageName: "com.mytaxi.driver",
           iosUrlScheme: "mytaxi://",
           deeplink: "https://www.free-now.com/uk/ride/download-app/",
-          appStoreLink: "https://apps.apple.com/us/app/mytaxi-the-taxi-app/id357852748",
+          appStoreLink:
+              "https://apps.apple.com/us/app/mytaxi-the-taxi-app/id357852748",
           openStore: true,
         );
 
@@ -216,20 +229,25 @@ class MapAppIdentifier extends AppIdentifier {
     } else {
       return TextButton(
         onPressed: () => appLauncherStore.launchApp(identifier: this),
-        child: Text(app.displayName, style: TextStyle(color: app.foregroundColor)),
+        child:
+            Text(app.displayName, style: TextStyle(color: app.foregroundColor)),
       );
     }
   }
 
   @override
-  ElevatedButton buildAppElevatedButton({bool showIcon = true, bool displayIfInstalled = true}) {
+  ElevatedButton buildAppElevatedButton({
+    bool showIcon = true,
+    bool displayIfInstalled = true,
+  }) {
     final appLauncherStore = AppLauncherStore();
     final style = ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(app.backgroundColor),
-        foregroundColor: WidgetStateProperty.all(app.foregroundColor),
-        minimumSize: WidgetStateProperty.all(
-          const Size(double.maxFinite, 48),
-        ));
+      backgroundColor: WidgetStateProperty.all(app.backgroundColor),
+      foregroundColor: WidgetStateProperty.all(app.foregroundColor),
+      minimumSize: WidgetStateProperty.all(
+        const Size(double.maxFinite, 48),
+      ),
+    );
     if (showIcon) {
       return ElevatedButton.icon(
         onPressed: () => appLauncherStore.launchApp(identifier: this),

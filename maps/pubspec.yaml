@@ -22,7 +22,6 @@ dependencies:
       url: https://github.com/rorystephenson/flutter_map_supercluster.git
       ref: v5
   latlong2:
-  url_launcher: ^6.2.6
   forms:
     path: ../forms
   mapbox_search: ^4.2.2

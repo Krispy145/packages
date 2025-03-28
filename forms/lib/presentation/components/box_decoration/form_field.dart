@@ -11,7 +11,8 @@ import "package:utilities/sizes/spacers.dart";
 import "../base/form_field.dart";
 import "store.dart";
 
-class BoxDecorationFormField extends BaseFormField<BoxDecorationFormFieldStore> {
+class BoxDecorationFormField
+    extends BaseFormField<BoxDecorationFormFieldStore> {
   BoxDecorationFormField({
     super.key,
     required super.store,

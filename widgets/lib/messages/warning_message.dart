@@ -10,11 +10,35 @@ class WarningMessage extends StatelessWidget {
   final String? buttonText;
   final void Function(BuildContext context)? onButtonTap;
 
-  const WarningMessage({super.key, required this.title, this.message, required this.icon, this.buttonText, this.onButtonTap, this.iconSize = 48});
+  const WarningMessage({
+    super.key,
+    required this.title,
+    this.message,
+    required this.icon,
+    this.buttonText,
+    this.onButtonTap,
+    this.iconSize = 48,
+  });
 
-  const WarningMessage.error({super.key, this.title = "Error!", this.message, this.icon = Icons.warning_rounded, this.buttonText, this.onButtonTap, this.iconSize = 48});
+  const WarningMessage.error({
+    super.key,
+    this.title = "Error!",
+    this.message,
+    this.icon = Icons.warning_rounded,
+    this.buttonText,
+    this.onButtonTap,
+    this.iconSize = 48,
+  });
 
-  const WarningMessage.empty({super.key, this.title = "No results", this.message, this.icon, this.buttonText, this.onButtonTap, this.iconSize = 48});
+  const WarningMessage.empty({
+    super.key,
+    this.title = "No results",
+    this.message,
+    this.icon,
+    this.buttonText,
+    this.onButtonTap,
+    this.iconSize = 48,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +68,11 @@ class WarningMessage extends StatelessWidget {
         if (buttonText != null) ...[
           Sizes.s.spacer(),
           FilledButton(
-            child: Text(buttonText!, style: context.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold)),
+            child: Text(
+              buttonText!,
+              style: context.textTheme.bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
             onPressed: () => onButtonTap?.call(context),
           ),
         ],

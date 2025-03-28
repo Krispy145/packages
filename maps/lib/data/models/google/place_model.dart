@@ -1,14 +1,14 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-import 'place_address_component_model.dart';
-import 'place_editorial_summary_model.dart';
-import 'place_geometry_model.dart';
-import 'place_opening_hours_model.dart';
-import 'place_photo_model.dart';
-import 'place_plus_code_model.dart';
-import 'place_review_model.dart';
+import "place_address_component_model.dart";
+import "place_editorial_summary_model.dart";
+import "place_geometry_model.dart";
+import "place_opening_hours_model.dart";
+import "place_photo_model.dart";
+import "place_plus_code_model.dart";
+import "place_review_model.dart";
 
-part 'place_model.mapper.dart';
+part "place_model.mapper.dart";
 
 @MappableEnum(caseStyle: CaseStyle.snakeCase)
 enum PlaceType {

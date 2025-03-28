@@ -13,7 +13,10 @@ import "package:xml/xml.dart";
 
 part "color_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.camelCase, includeCustomMappers: [ColorMapper()])
+@MappableClass(
+  caseStyle: CaseStyle.camelCase,
+  includeCustomMappers: [ColorMapper()],
+)
 class ColorModel with ColorModelMappable {
   // Primary
 
@@ -229,11 +232,13 @@ class ColorModel with ColorModelMappable {
       onSecondary: onSecondary ?? seedColor.onSecondary,
       onSurface: onSurface ?? seedColor.onSurface,
       onError: onError,
-      surfaceContainerHighest: surfaceVariant ?? seedColor.surfaceContainerHighest,
+      surfaceContainerHighest:
+          surfaceVariant ?? seedColor.surfaceContainerHighest,
       onErrorContainer: onErrorContainer ?? seedColor.onErrorContainer,
       onInverseSurface: onInverseSurface ?? seedColor.onInverseSurface,
       onPrimaryContainer: onPrimaryContainer ?? seedColor.onPrimaryContainer,
-      onSecondaryContainer: onSecondaryContainer ?? seedColor.onSecondaryContainer,
+      onSecondaryContainer:
+          onSecondaryContainer ?? seedColor.onSecondaryContainer,
       onSurfaceVariant: onSurfaceVariant ?? seedColor.onSurfaceVariant,
       onTertiary: onTertiary ?? seedColor.onTertiary,
       onTertiaryContainer: onTertiaryContainer ?? seedColor.onTertiaryContainer,
@@ -267,7 +272,8 @@ class ColorModel with ColorModelMappable {
 
       final hexColor = element.innerText;
 
-      final camelCaseName = name?.replaceFirst("${themeKey}_", "").snakeCaseToCamelCase();
+      final camelCaseName =
+          name?.replaceFirst("${themeKey}_", "").snakeCaseToCamelCase();
       if (camelCaseName != null && camelCaseName.isNotEmpty) {
         themeColors[camelCaseName] = hexColor;
       }
@@ -292,7 +298,8 @@ class ColorModel with ColorModelMappable {
           final snakeCaseName = key.camelCaseToSnakeCase();
           final name = "${themeKey}_$snakeCaseName";
           if (color is Color) {
-            final hexColor = const ColorMapper().encode(color)?.toString().toLowerCase();
+            final hexColor =
+                const ColorMapper().encode(color)?.toString().toLowerCase();
             xmlBuilder.element(
               "color",
               nest: hexColor,
@@ -312,47 +319,77 @@ class ColorModel with ColorModelMappable {
 
   static Future<ColorModel> fromImage({required ImageProvider provider}) async {
     final brightness = AppTheme.isDark ? Brightness.dark : Brightness.light;
-    final paletteGenerator = await PaletteGenerator.fromImageProvider(provider, maximumColorCount: 50);
+    final paletteGenerator = await PaletteGenerator.fromImageProvider(
+      provider,
+      maximumColorCount: 50,
+    );
 
     // Function to ensure high contrast
     Color ensureHighContrast(Color backgroundColor, Color fallbackColor) {
-      return backgroundColor.computeLuminance() > 0.5 ? backgroundColor : fallbackColor;
+      return backgroundColor.computeLuminance() > 0.5
+          ? backgroundColor
+          : fallbackColor;
     }
 
-    final paletteColors = paletteGenerator.paletteColors.map((e) => Pair(e.color, e.population)).toList();
+    final paletteColors = paletteGenerator.paletteColors
+        .map((e) => Pair(e.color, e.population))
+        .toList();
 
     final distinctColors = <Pair<Color, int>>[];
     for (final color in paletteColors) {
-      if (distinctColors.every((c) => isSignificantlyDifferent(c.first, color.first))) {
+      if (distinctColors
+          .every((c) => isSignificantlyDifferent(c.first, color.first))) {
         distinctColors.add(color);
       }
     }
 
-    final seededPrimary = ColorScheme.fromSeed(seedColor: distinctColors[0].first, brightness: brightness);
-    final seededSecondary = ColorScheme.fromSeed(seedColor: distinctColors[1].first, brightness: brightness);
-    final seededTertiary = ColorScheme.fromSeed(seedColor: distinctColors[2].first, brightness: brightness);
+    final seededPrimary = ColorScheme.fromSeed(
+      seedColor: distinctColors[0].first,
+      brightness: brightness,
+    );
+    final seededSecondary = ColorScheme.fromSeed(
+      seedColor: distinctColors[1].first,
+      brightness: brightness,
+    );
+    final seededTertiary = ColorScheme.fromSeed(
+      seedColor: distinctColors[2].first,
+      brightness: brightness,
+    );
 
-    final brightnessMuted = brightness == Brightness.dark ? paletteGenerator.darkMutedColor?.color : paletteGenerator.lightMutedColor?.color;
+    final brightnessMuted = brightness == Brightness.dark
+        ? paletteGenerator.darkMutedColor?.color
+        : paletteGenerator.lightMutedColor?.color;
 
     final primary = distinctColors[0].first;
     final secondary = distinctColors[1].first;
     final tertiary = distinctColors[2].first;
     final background = brightnessMuted ?? seededPrimary.surface;
-    final surface = background.withBlue(background.blue - 8).withGreen(background.green - 8).withRed(background.red - 8);
+    final surface = background
+        .withBlue(background.blue - 8)
+        .withGreen(background.green - 8)
+        .withRed(background.red - 8);
     final error = paletteGenerator.dominantColor?.color ?? seededPrimary.error;
 
     return ColorModel(
       //Primary Colors
-      primary: brightness == Brightness.dark ? ensureHighContrast(primary, seededSecondary.primary) : primary,
+      primary: brightness == Brightness.dark
+          ? ensureHighContrast(primary, seededSecondary.primary)
+          : primary,
       primaryContainer: brightness == Brightness.dark ? secondary : primary,
-      onPrimary: brightness == Brightness.dark ? primary : ensureHighContrast(primary, seededSecondary.primary),
+      onPrimary: brightness == Brightness.dark
+          ? primary
+          : ensureHighContrast(primary, seededSecondary.primary),
       onPrimaryContainer: brightness == Brightness.dark ? primary : secondary,
       inversePrimary: seededSecondary.inversePrimary,
 
       //Secondary Colors
-      secondary: brightness == Brightness.dark ? ensureHighContrast(secondary, seededPrimary.primary) : secondary,
+      secondary: brightness == Brightness.dark
+          ? ensureHighContrast(secondary, seededPrimary.primary)
+          : secondary,
       secondaryContainer: seededSecondary.primaryContainer,
-      onSecondary: brightness == Brightness.dark ? secondary : ensureHighContrast(secondary, seededPrimary.primary),
+      onSecondary: brightness == Brightness.dark
+          ? secondary
+          : ensureHighContrast(secondary, seededPrimary.primary),
       onSecondaryContainer: seededSecondary.primaryContainer,
 
       //Tertiary Colors
@@ -429,7 +466,8 @@ class ColorModel with ColorModelMappable {
   }
 
   static ColorModel defaultModel({required Brightness brightness}) {
-    final seedColorScheme = ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
+    final seedColorScheme =
+        ColorScheme.fromSeed(seedColor: Colors.teal, brightness: brightness);
     return ColorModel(
       primary: seedColorScheme.primary,
       primaryContainer: seedColorScheme.primaryContainer,
@@ -1010,6 +1048,10 @@ double colorDifference(Color color1, Color color2) {
 }
 
 // Function to check if the color difference is significant
-bool isSignificantlyDifferent(Color color1, Color color2, {double threshold = 30.0}) {
+bool isSignificantlyDifferent(
+  Color color1,
+  Color color2, {
+  double threshold = 30.0,
+}) {
   return colorDifference(color1, color2) > threshold;
 }

@@ -13,10 +13,17 @@ class BaseMarker<T extends MarkerModel> extends Marker {
     required this.isSelected,
     this.onMarkerTapped,
   }) : super(
-          width: isSelected(markerModel) ? MarkerConstants.selectedSize : MarkerConstants.unselectedSize,
-          height: isSelected(markerModel) ? MarkerConstants.selectedSize : MarkerConstants.unselectedSize,
+          width: isSelected(markerModel)
+              ? MarkerConstants.selectedSize
+              : MarkerConstants.unselectedSize,
+          height: isSelected(markerModel)
+              ? MarkerConstants.selectedSize
+              : MarkerConstants.unselectedSize,
           point: markerModel.position,
-          child: GestureDetector(onTap: () => onMarkerTapped?.call(markerModel), child: child),
+          child: GestureDetector(
+            onTap: () => onMarkerTapped?.call(markerModel),
+            child: child,
+          ),
         );
 
   @override
@@ -25,6 +32,7 @@ class BaseMarker<T extends MarkerModel> extends Marker {
   @override
   bool operator ==(covariant BaseMarker other) {
     if (identical(this, other)) return true;
-    return other.markerModel.id == markerModel.id && other.markerModel.position == markerModel.position;
+    return other.markerModel.id == markerModel.id &&
+        other.markerModel.position == markerModel.position;
   }
 }

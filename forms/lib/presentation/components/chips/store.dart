@@ -5,10 +5,12 @@ import "package:utilities/widgets/load_state/store.dart";
 part "store.g.dart";
 
 /// [ChipsFormFieldStore] is a class that uses [_ChipsFormFieldStore] to manage state of the filters feature.
-class ChipsFormFieldStore<T> = _ChipsFormFieldStore<T> with _$ChipsFormFieldStore<T>;
+class ChipsFormFieldStore<T> = _ChipsFormFieldStore<T>
+    with _$ChipsFormFieldStore<T>;
 
 /// [_ChipsFormFieldStore] is a class that manages the state of the filters feature.
-abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?> with LoadStateStore, Store {
+abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?>
+    with LoadStateStore, Store {
   _ChipsFormFieldStore(
     this.name, {
     required Future<List<T?>> Function() loadFilters,
@@ -39,7 +41,8 @@ abstract class _ChipsFormFieldStore<T> extends BaseFormFieldStore<List<T>?> with
   List<T> get selected => _selected;
 
   @computed
-  List<T> get unselected => _available.where((element) => !_selected.contains(element)).toList();
+  List<T> get unselected =>
+      _available.where((element) => !_selected.contains(element)).toList();
 
   @computed
   List<T> get filters {

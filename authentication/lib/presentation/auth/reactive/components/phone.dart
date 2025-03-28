@@ -34,7 +34,8 @@ class PhoneAuthWidget<T extends UserModel> extends StatefulWidget {
   State<PhoneAuthWidget<T>> createState() => _PhoneAuthWidgetState<T>();
 }
 
-class _PhoneAuthWidgetState<T extends UserModel> extends State<PhoneAuthWidget<T>> {
+class _PhoneAuthWidgetState<T extends UserModel>
+    extends State<PhoneAuthWidget<T>> {
   final _formKey = GlobalKey<FormState>();
   final _phone = TextEditingController();
   final _password = TextEditingController();
@@ -115,7 +116,8 @@ class _PhoneAuthWidgetState<T extends UserModel> extends State<PhoneAuthWidget<T
                     phoneNumber: _phone.text,
                     password: _password.text,
                   ).toMap();
-                  final params = widget.repository.convertDataTypeFromMap(paramsMap);
+                  final params =
+                      widget.repository.convertDataTypeFromMap(paramsMap);
                   final response = await widget.repository.signIn(
                     params: params,
                   );

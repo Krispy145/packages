@@ -30,7 +30,8 @@ class OutlinedBorderModel with OutlinedBorderModelMappable {
   final BorderRadiusModel? borderRadius_borderRadius;
 
   const OutlinedBorderModel({
-    this.type_enum_outlinedBorderType = OutlinedBorderType.roundedRectangleBorder,
+    this.type_enum_outlinedBorderType =
+        OutlinedBorderType.roundedRectangleBorder,
     this.side_borderSide,
     this.borderRadius_borderRadius,
   });
@@ -66,7 +67,9 @@ class OutlinedBorderModel with OutlinedBorderModelMappable {
   // ];
 
   OutlinedBorder asOutlinedBorder({String? styleTypeName}) {
-    final borderSide = side_borderSide?.asBorderSide(styleTypeName: styleTypeName) ?? BorderSide.none;
+    final borderSide =
+        side_borderSide?.asBorderSide(styleTypeName: styleTypeName) ??
+            BorderSide.none;
     final borderRadius = borderRadius_borderRadius?.asBorderRadius(
           styleTypeName: styleTypeName,
         ) ??

@@ -52,7 +52,11 @@ enum Sizes {
   xxxxl;
 
   /// [spacer] is a getter that returns a [SizedBox] with the size of the spacer based on the screen size
-  Widget spacer({Axis axis = Axis.vertical, SizeTypes type = SizeTypes.fixed, bool sliver = false}) {
+  Widget spacer({
+    Axis axis = Axis.vertical,
+    SizeTypes type = SizeTypes.fixed,
+    bool sliver = false,
+  }) {
     return _AppSpacer(
       size: this,
       axis: axis,
@@ -72,7 +76,9 @@ enum Sizes {
         return _getSize();
       case SizeTypes.scaling:
         final screenSizePoints = MediaQuery.sizeOf(context);
-        final screenDimension = axis == Axis.vertical ? screenSizePoints.height : screenSizePoints.width;
+        final screenDimension = axis == Axis.vertical
+            ? screenSizePoints.height
+            : screenSizePoints.width;
 
         final ordered = ScreenSizes.ordered;
 
@@ -81,7 +87,8 @@ enum Sizes {
         } else if (screenDimension <= ordered.first.dimension(axis)) {
           return _getSize(screenSize: ordered.first);
         } else {
-          final indexAfter = ordered.indexWhere((size) => size.dimension(axis) > screenDimension);
+          final indexAfter = ordered
+              .indexWhere((size) => size.dimension(axis) > screenDimension);
           final sizeAfter = ordered[indexAfter];
           final sizeBefore = ordered[indexAfter - 1];
           final dimensionAfter = sizeAfter.dimension(axis);
@@ -89,8 +96,10 @@ enum Sizes {
           final pointsAfter = _getSize(screenSize: sizeAfter);
           final pointsBefore = _getSize(screenSize: sizeBefore);
 
-          final percentage = (screenDimension - dimensionBefore) / (dimensionAfter - dimensionBefore);
-          final points = pointsBefore + (pointsAfter - pointsBefore) * percentage;
+          final percentage = (screenDimension - dimensionBefore) /
+              (dimensionAfter - dimensionBefore);
+          final points =
+              pointsBefore + (pointsAfter - pointsBefore) * percentage;
           return points;
         }
     }
@@ -168,8 +177,11 @@ class _AppSpacer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = axis == Axis.horizontal ? size.points(context, axis: Axis.horizontal, type: type) : 0;
-    final double height = axis == Axis.vertical ? size.points(context, type: type) : 0;
+    final double width = axis == Axis.horizontal
+        ? size.points(context, axis: Axis.horizontal, type: type)
+        : 0;
+    final double height =
+        axis == Axis.vertical ? size.points(context, type: type) : 0;
     if (sliver) {
       return SliverToBoxAdapter(child: SizedBox(width: width, height: height));
     } else {

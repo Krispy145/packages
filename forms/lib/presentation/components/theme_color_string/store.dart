@@ -5,9 +5,11 @@ import "../base/store.dart";
 
 part "store.g.dart";
 
-class ThemeColorStringFormFieldStore = _ThemeColorStringFormFieldStore with _$ThemeColorStringFormFieldStore;
+class ThemeColorStringFormFieldStore = _ThemeColorStringFormFieldStore
+    with _$ThemeColorStringFormFieldStore;
 
-abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<ThemeColorString?> with Store {
+abstract class _ThemeColorStringFormFieldStore
+    extends BaseFormFieldStore<ThemeColorString?> with Store {
   _ThemeColorStringFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,

@@ -55,11 +55,15 @@ class SnackbarMessage {
     }
 
     Color getTitleColor() {
-      return configuration.titleColor ?? configuration.style.onBackgroundColor() ?? (configuration.color != null ? Colors.white : Colors.black);
+      return configuration.titleColor ??
+          configuration.style.onBackgroundColor() ??
+          (configuration.color != null ? Colors.white : Colors.black);
     }
 
     Color getSubtitleColor() {
-      return configuration.subtitleColor ?? configuration.style.onBackgroundColor() ?? (configuration.color != null ? Colors.white : Colors.black);
+      return configuration.subtitleColor ??
+          configuration.style.onBackgroundColor() ??
+          (configuration.color != null ? Colors.white : Colors.black);
     }
 
     Color progressBarColor() {
@@ -79,7 +83,8 @@ class SnackbarMessage {
     }
 
     double getWidth(BuildContext context) {
-      return context.screenWidth - (2 * Sizes.l.points(context, axis: Axis.horizontal));
+      return context.screenWidth -
+          (2 * Sizes.l.points(context, axis: Axis.horizontal));
     }
 
     return SnackBar(
@@ -93,7 +98,8 @@ class SnackbarMessage {
             Container(
               height: 48,
               decoration: BoxDecoration(
-                color: configuration.color ?? configuration.style.backgroundColor(),
+                color: configuration.color ??
+                    configuration.style.backgroundColor(),
                 borderRadius: BorderRadius.circular(32),
               ),
               constraints: BoxConstraints(
@@ -103,7 +109,9 @@ class SnackbarMessage {
                 children: [
                   Expanded(
                     child: Row(
-                      mainAxisSize: configuration.progress != null ? MainAxisSize.max : MainAxisSize.min,
+                      mainAxisSize: configuration.progress != null
+                          ? MainAxisSize.max
+                          : MainAxisSize.min,
                       children: [
                         ...buildLeadingIcon(),
                         Flexible(

@@ -34,12 +34,15 @@ class InputBorderFormField extends BaseFormField<InputBorderFormFieldStore> {
                   )
                   .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) =>
+                  store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             Theme(
               data: Theme.of(context).copyWith(
-                inputDecorationTheme: Theme.of(context).inputDecorationTheme.copyWith(border: store.value?.asInputBorder()),
+                inputDecorationTheme: Theme.of(context)
+                    .inputDecorationTheme
+                    .copyWith(border: store.value?.asInputBorder()),
               ),
               child: TextField(
                 controller: TextEditingController(text: "Preview Text Field"),

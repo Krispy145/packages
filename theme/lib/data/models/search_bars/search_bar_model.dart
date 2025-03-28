@@ -63,7 +63,8 @@ class SearchBarModel with SearchBarModelMappable {
     this.textStyle_textStyleString,
     this.hintStyle_textStyleString,
     this.constraints_boxConstraints = const BoxConstraintsModel(),
-    this.textCapitalization_enum_textCapitalization = TextCapitalizationOptions.none,
+    this.textCapitalization_enum_textCapitalization =
+        TextCapitalizationOptions.none,
   });
 
   static const fromMap = SearchBarModelMapper.fromMap;
@@ -91,18 +92,24 @@ class SearchBarModel with SearchBarModelMappable {
         shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       ),
       padding: WidgetStateProperty.all(
-        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ?? EdgeInsets.zero,
+        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName) ??
+            EdgeInsets.zero,
       ),
       textStyle: WidgetStateProperty.all(
-        textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+        textStyle_textStyleString
+            ?.toTextStyleModel(styleType: styleTypeName)
+            ?.asTextStyle,
       ),
       hintStyle: WidgetStateProperty.all(
-        hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+        hintStyle_textStyleString
+            ?.toTextStyleModel(styleType: styleTypeName)
+            ?.asTextStyle,
       ),
       constraints: constraints_boxConstraints?.asBoxConstraints(
         styleTypeName: styleTypeName,
       ),
-      textCapitalization: textCapitalization_enum_textCapitalization?.textCapitalization,
+      textCapitalization:
+          textCapitalization_enum_textCapitalization?.textCapitalization,
     );
   }
 }

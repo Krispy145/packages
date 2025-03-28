@@ -5,7 +5,9 @@ import "package:utilities/data/sources/supabase/source.dart";
 import "_source.dart";
 
 /// [SupabaseThemeDataSource] is a class that implements [ThemeDataSource] interface.
-class SupabaseThemeDataSource<T> extends SupabaseDataSource<T, BasicSearchQueryModel> implements ThemeDataSource<T> {
+class SupabaseThemeDataSource<T>
+    extends SupabaseDataSource<T, BasicSearchQueryModel>
+    implements ThemeDataSource<T> {
   /// [SupabaseThemeDataSource] constructor.
   SupabaseThemeDataSource(
     super.tableName, {
@@ -15,7 +17,10 @@ class SupabaseThemeDataSource<T> extends SupabaseDataSource<T, BasicSearchQueryM
   });
 
   @override
-  SupabaseQueryBuilder buildQuery(BasicSearchQueryModel query, SupabaseQueryBuilder table) {
+  SupabaseQueryBuilder buildQuery(
+    BasicSearchQueryModel query,
+    SupabaseQueryBuilder table,
+  ) {
     // TODO: implement buildQuery
     throw UnimplementedError();
   }

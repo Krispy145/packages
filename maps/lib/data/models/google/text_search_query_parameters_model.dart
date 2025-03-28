@@ -1,6 +1,6 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-part 'text_search_query_parameters_model.mapper.dart';
+part "text_search_query_parameters_model.mapper.dart";
 
 //TODO: Complete the subModels for the GooglePlacesModel: ref https://developers.google.com/maps/documentation/places/web-service/search-text#TextSearchRequests
 @MappableClass(ignoreNull: true)

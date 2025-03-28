@@ -44,7 +44,12 @@ class PreviewImage extends StatelessWidget {
                   return loadedPreview(context, formControl);
                 },
                 emptyBuilder: (context, text) {
-                  return Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary));
+                  return Center(
+                    child: Icon(
+                      Icons.image,
+                      color: context.colorScheme.onPrimary,
+                    ),
+                  );
                 },
               ),
             );
@@ -54,7 +59,10 @@ class PreviewImage extends StatelessWidget {
     );
   }
 
-  Widget loadedPreview(BuildContext context, AbstractControl<Object?> formControl) {
+  Widget loadedPreview(
+    BuildContext context,
+    AbstractControl<Object?> formControl,
+  ) {
     if (store.imageBytes != null) {
       return LYImage.memory(
         store.imageBytes!,
@@ -63,7 +71,9 @@ class PreviewImage extends StatelessWidget {
         ),
       );
     } else if (formControl.isNull) {
-      return Center(child: Icon(Icons.image, color: context.colorScheme.onPrimary));
+      return Center(
+        child: Icon(Icons.image, color: context.colorScheme.onPrimary),
+      );
     } else {
       return LYImage.network(
         formControl.value as String? ?? "",

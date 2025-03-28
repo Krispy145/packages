@@ -14,7 +14,8 @@ class PlaylistRepository {
   // Future<Playlist> getYTExplodePlaylist(String id) => youtubeExplode.playlists.get(id);
   // Stream<Video> getYTExplodePlaylistVideosStream(String id) => youtubeExplode.playlists.getVideos(id);
 
-  final PlaylistDataRepository _playlistDataRepository = DataRepositories.instance.playlist;
+  final PlaylistDataRepository _playlistDataRepository =
+      DataRepositories.instance.playlist;
 
   final String apiKey;
 
@@ -27,7 +28,11 @@ class PlaylistRepository {
   ResponseModel? _lastResponse;
 
   /// [getPagedChannelPlaylists] fetches a page of [PlaylistModel]s from the data source.
-  Future<Pair<RequestResponse, List<PlaylistModel?>>> getPagedChannelPlaylists({int? limit, bool refresh = false, String? channelId}) async {
+  Future<Pair<RequestResponse, List<PlaylistModel?>>> getPagedChannelPlaylists({
+    int? limit,
+    bool refresh = false,
+    String? channelId,
+  }) async {
     final _response = await _playlistDataRepository.getPagedPlaylistModels(
       source: _source,
       limit: limit,

@@ -34,15 +34,21 @@ class InstagramMediaView extends StatelessWidget {
               ),
               Expanded(
                 child: SafeArea(
-                  child: PaginatedListBuilder<InstagramMediaModel, String>.gridView(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+                  child: PaginatedListBuilder<InstagramMediaModel,
+                      String>.gridView(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                    ),
                     store: store,
                     itemBuilder: (context, index, media) {
                       return InstagramSelectTile(
                         media: media,
                         onTap: () {
                           context.showSnackbar(
-                            SnackbarConfiguration.information(title: "Selected ${media.caption}"),
+                            SnackbarConfiguration.information(
+                              title: "Selected ${media.caption}",
+                            ),
                           );
                         },
                       );

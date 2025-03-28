@@ -7,10 +7,12 @@ import "package:utilities/data/models/user_permissions_model.dart";
 part "store.g.dart";
 
 /// [PermissionsFormFieldStore] is a class that uses [_PermissionsFormFieldStore] to manage state of the filters feature.
-class PermissionsFormFieldStore = _PermissionsFormFieldStore with _$PermissionsFormFieldStore;
+class PermissionsFormFieldStore = _PermissionsFormFieldStore
+    with _$PermissionsFormFieldStore;
 
 /// [_PermissionsFormFieldStore] is a class that manages the state of the filters feature.
-abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermissionsModel> with Store {
+abstract class _PermissionsFormFieldStore
+    extends BaseFormFieldStore<UserPermissionsModel> with Store {
   _PermissionsFormFieldStore({
     required super.title,
     required super.initialValue,
@@ -32,7 +34,8 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermiss
           },
           canSelectMultiple: false,
           onSelectedChanged: (collectionSelection) {
-            final updatedUserPermission = changedPermissionLevel(value!, crud, collectionSelection);
+            final updatedUserPermission =
+                changedPermissionLevel(value!, crud, collectionSelection);
             value = updatedUserPermission;
             onValueChanged(value);
           },
@@ -66,13 +69,25 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermiss
   List<PermissionLevel> optionsBasedOnCRUD(CRUD crud) {
     switch (crud) {
       case CRUD.create:
-        return [PermissionLevel.yes, PermissionLevel.no, PermissionLevel.review];
+        return [
+          PermissionLevel.yes,
+          PermissionLevel.no,
+          PermissionLevel.review,
+        ];
       case CRUD.read:
         return [PermissionLevel.yes, PermissionLevel.no];
       case CRUD.update:
-        return [PermissionLevel.yes, PermissionLevel.no, PermissionLevel.review];
+        return [
+          PermissionLevel.yes,
+          PermissionLevel.no,
+          PermissionLevel.review,
+        ];
       case CRUD.delete:
-        return [PermissionLevel.yes, PermissionLevel.no, PermissionLevel.review];
+        return [
+          PermissionLevel.yes,
+          PermissionLevel.no,
+          PermissionLevel.review,
+        ];
     }
   }
 
@@ -81,7 +96,9 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermiss
     CRUD crud,
     List<PermissionLevel> permissionLevels,
   ) {
-    if (permissionLevels.length > 1) throw Exception("Only one permission level can be selected");
+    if (permissionLevels.length > 1) {
+      throw Exception("Only one permission level can be selected");
+    }
     switch (crud) {
       case CRUD.create:
         return crudOption.copyWith(canCreate: permissionLevels.firstOrNull);
@@ -94,7 +111,10 @@ abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermiss
     }
   }
 
-  PermissionLevel filtersFromUserPermissions(CRUD crud, UserPermissionsModel userPermission) {
+  PermissionLevel filtersFromUserPermissions(
+    CRUD crud,
+    UserPermissionsModel userPermission,
+  ) {
     switch (crud) {
       case CRUD.create:
         return userPermission.canCreate;

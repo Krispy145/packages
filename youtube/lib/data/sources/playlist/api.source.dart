@@ -1,7 +1,9 @@
 part of "_source.dart";
 
 /// [ApiPlaylistDataSource] is a class that implements [PlaylistDataSource] interface.
-class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<PlaylistModel>, PlaylistModel, BasicSearchQueryModel> implements PlaylistDataSource<PagedResponse<PlaylistModel>> {
+class ApiPlaylistDataSource extends PaginatedApiDataSource<
+        PagedResponse<PlaylistModel>, PlaylistModel, BasicSearchQueryModel>
+    implements PlaylistDataSource<PagedResponse<PlaylistModel>> {
   final String apiKey;
 
   /// [ApiPlaylistDataSource] constructor.
@@ -50,17 +52,24 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
+    final _url = pathExtensions != null
+        ? "$baseUrlWithSuffix/$pathExtensions"
+        : baseUrlWithSuffix;
     final cancelKey = "$_url/$id/get";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
     }
     final response = await dio.get<Map<String, dynamic>>(
       createUrlWithId(_url, id).first,
-      queryParameters: {...?queryParameters, ...?createUrlWithId(_url, id).second},
+      queryParameters: {
+        ...?queryParameters,
+        ...?createUrlWithId(_url, id).second,
+      },
       cancelToken: getCancelToken(cancelKey),
     );
-    final convertedResponse = response.data != null ? convertResponseTypeFromMap(response.data!) : null;
+    final convertedResponse = response.data != null
+        ? convertResponseTypeFromMap(response.data!)
+        : null;
     if (convertedResponse == null) {
       return const Pair(RequestResponse.failure, null);
     }
@@ -75,11 +84,14 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
   }
 
   @override
-  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) => Pair(url, {"id": id});
+  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) =>
+      Pair(url, {"id": id});
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<PlaylistModel?> _handleError(Future<PlaylistModel?> Function() apiCall) async {
+  Future<PlaylistModel?> _handleError(
+    Future<PlaylistModel?> Function() apiCall,
+  ) async {
     try {
       return await apiCall();
     } catch (e) {
@@ -94,8 +106,15 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> _handlePagedError(
-    Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> Function() apiCall,
+  Future<
+          Pair<RequestResponse,
+              Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>>
+      _handlePagedError(
+    Future<
+                Pair<RequestResponse,
+                    Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>>
+            Function()
+        apiCall,
   ) async {
     try {
       return await apiCall();
@@ -110,7 +129,9 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> getPage({
+  Future<
+      Pair<RequestResponse,
+          Pair<PagedResponse<PlaylistModel>?, List<PlaylistModel?>>>> getPage({
     PagedResponse<PlaylistModel>? lastResponse,
     int? size,
     String? orderBy,
@@ -131,7 +152,10 @@ class ApiPlaylistDataSource extends PaginatedApiDataSource<PagedResponse<Playlis
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistModel>, List<PlaylistModel?>>>> searchPage({
+  Future<
+          Pair<RequestResponse,
+              Pair<PagedResponse<PlaylistModel>, List<PlaylistModel?>>>>
+      searchPage({
     PagedResponse<PlaylistModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,

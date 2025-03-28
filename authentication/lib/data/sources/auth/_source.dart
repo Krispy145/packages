@@ -3,7 +3,8 @@ import "package:authentication/data/models/user_model.dart";
 import "package:utilities/data/sources/source.dart";
 
 /// [AuthenticationDataSource] is an abstract class that defines the basic CRUD operations for the [UserModel] entity.
-abstract class AuthenticationDataSource<T extends UserModel, Q> with DataSource<T, Q> {
+abstract class AuthenticationDataSource<T extends UserModel, Q>
+    with DataSource<T, Q> {
   T? _currentUserModel;
   T? get currentUserModel => _currentUserModel;
 

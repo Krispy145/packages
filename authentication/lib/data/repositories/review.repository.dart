@@ -12,7 +12,9 @@ class ReviewDataRepository<T> {
   /// [ReviewDataRepository] constructor.
   ReviewDataRepository(this.reviewDataSource);
 
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPaged({
+  Future<
+      Pair<RequestResponse,
+          Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPaged({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,
@@ -25,17 +27,21 @@ class ReviewDataRepository<T> {
   }
 
   /// [getAllCRUDSpecific] returns a list of [ReviewModel]s.
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllCRUDSpecific(CRUD crud) async {
     return reviewDataSource.getAllCRUDSpecific(crud);
   }
 
   /// [getAllCRUDSpecificByUserId] returns a list of [ReviewModel]s by [userId].
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecificByUserId(CRUD crud, {required UUID userId}) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
+      getAllCRUDSpecificByUserId(CRUD crud, {required UUID userId}) async {
     return reviewDataSource.getAllCRUDSpecificByUserId(crud, userId: userId);
   }
 
   /// [getAllPagedCRUD] returns a list of [ReviewModel]s.
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUD(
+  Future<
+      Pair<RequestResponse,
+          Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUD(
     CRUD crud, {
     ResponseModel? lastResponse,
     int? size,
@@ -50,7 +56,8 @@ class ReviewDataRepository<T> {
   }
 
   /// [getCRUDSpecifReviewModel] returns a [ReviewModel] by [id].
-  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>> getCRUDSpecifReviewModel(String id) async {
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>>
+      getCRUDSpecifReviewModel(String id) async {
     return reviewDataSource.getCRUDSpecifReviewModel(id);
   }
 
@@ -60,7 +67,10 @@ class ReviewDataRepository<T> {
   }
 
   /// [getAllPagedCRUDByUserId] returns a list of [ReviewModel]s by [userId].
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUDByUserId(
+  Future<
+          Pair<RequestResponse,
+              Pair<ResponseModel?, List<Pair<ReviewModel, T?>>>>>
+      getAllPagedCRUDByUserId(
     CRUD crud, {
     required UUID userId,
     ResponseModel? lastResponse,

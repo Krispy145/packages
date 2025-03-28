@@ -10,7 +10,8 @@ import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 
-abstract class FormsModelView<T, S extends FormsModelStore<T>> extends StatelessWidget {
+abstract class FormsModelView<T, S extends FormsModelStore<T>>
+    extends StatelessWidget {
   final S store;
   final Widget? header;
   final String updateButtonTitle;
@@ -66,11 +67,15 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
             ),
             SafeArea(
               child: Container(
-                padding: kIsWeb ? const EdgeInsets.only(bottom: 32) : EdgeInsets.zero,
+                padding: kIsWeb
+                    ? const EdgeInsets.only(bottom: 32)
+                    : EdgeInsets.zero,
                 alignment: Alignment.bottomCenter,
                 child: ElevatedButton(
                   onPressed: () => _showConfirmationDialog(context),
-                  child: Text(store.isAdding ? createButtonTitle : updateButtonTitle),
+                  child: Text(
+                    store.isAdding ? createButtonTitle : updateButtonTitle,
+                  ),
                 ),
               ),
             ),
@@ -168,7 +173,9 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
             ),
             TextButton(
               onPressed: () async {
-                await store.saveValue().then((value) => Navigator.of(context).pop(value));
+                await store
+                    .saveValue()
+                    .then((value) => Navigator.of(context).pop(value));
               },
               child: const Text("Submit"),
             ),
@@ -201,7 +208,8 @@ abstract class FormsModelView<T, S extends FormsModelStore<T>> extends Stateless
         case RequestResponse.denied:
           context.showSnackbar(
             SnackbarConfiguration.warning(
-              title: "You do not have permission to ${store.isAdding ? "create" : "update"} this",
+              title:
+                  "You do not have permission to ${store.isAdding ? "create" : "update"} this",
               // title: "Permission denied to ${store.isAdding ? "create" : "update"} $modelType",
             ),
           );

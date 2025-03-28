@@ -19,7 +19,9 @@ class NotificationCard extends StatelessWidget {
     required this.store,
   });
 
-  String? get _subtitle => (notification.body ?? "").length >= 80 ? ("${notification.body?.substring(0, 80)}...") : notification.body;
+  String? get _subtitle => (notification.body ?? "").length >= 80
+      ? ("${notification.body?.substring(0, 80)}...")
+      : notification.body;
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,8 @@ import "package:mobx/mobx.dart";
 
 part "store.g.dart";
 
-class BaseFormFieldStore<T> = _BaseFormFieldStore<T> with _$BaseFormFieldStore<T>;
+class BaseFormFieldStore<T> = _BaseFormFieldStore<T>
+    with _$BaseFormFieldStore<T>;
 
 abstract class _BaseFormFieldStore<T> with Store {
   final void Function(T?) onValueChanged;
@@ -82,7 +83,9 @@ abstract class _BaseFormFieldStore<T> with Store {
   @action
   void setFieldEmpty() {
     if (fieldRequired) {
-      fieldState = EmptyRequiresValueFormFieldState(fieldRequiredMessage: fieldRequiredMessage);
+      fieldState = EmptyRequiresValueFormFieldState(
+        fieldRequiredMessage: fieldRequiredMessage,
+      );
     } else {
       fieldState = EmptyFormFieldState();
     }
@@ -91,7 +94,8 @@ abstract class _BaseFormFieldStore<T> with Store {
   /// [setFieldIncomplete] is a method that will be used to set the state to empty.
   @action
   void setFieldIncomplete(String incompleteMessage) {
-    fieldState = IncompleteFormFieldState(value: value, error: incompleteMessage);
+    fieldState =
+        IncompleteFormFieldState(value: value, error: incompleteMessage);
   }
 
   /// [setFieldError] is a method that will be used to set the state to error.

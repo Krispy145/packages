@@ -25,7 +25,8 @@ abstract class _IntFormFieldStore extends BaseFormFieldStore<int?> with Store {
   final int increment;
   final bool showButtons;
 
-  late final TextEditingController textController = TextEditingController(text: value.toString());
+  late final TextEditingController textController =
+      TextEditingController(text: value.toString());
 
   @action
   void add() {

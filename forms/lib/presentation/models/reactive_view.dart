@@ -6,7 +6,8 @@ import "package:utilities/widgets/load_state/builder.dart";
 
 import "reactive_store.dart";
 
-abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>> extends StatelessWidget {
+abstract class ReactiveFormsModelView<T, S extends ReactiveFormsModelStore<T>>
+    extends StatelessWidget {
   final S store;
   final Widget? header;
   final Widget Function(BuildContext context)? loadingBuilder;

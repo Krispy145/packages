@@ -32,8 +32,10 @@ class AssetFontsDataSource implements FontsDataSource {
 
     for (final assetList in manifestJson.values) {
       for (final asset in assetList) {
-        for (final matchingSuffix in [".ttf", ".otf", ".woff2"].where(asset.endsWith)) {
-          final assetWithoutExtension = asset.substring(0, asset.length - matchingSuffix.length);
+        for (final matchingSuffix
+            in [".ttf", ".otf", ".woff2"].where(asset.endsWith)) {
+          final assetWithoutExtension =
+              asset.substring(0, asset.length - matchingSuffix.length);
           if (assetWithoutExtension.endsWith(apiFilenamePrefix)) {
             return asset;
           }

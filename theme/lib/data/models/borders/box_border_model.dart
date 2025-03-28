@@ -64,7 +64,7 @@ class BoxBorderModel with BoxBorderModelMappable {
 }
 
 // import "package:flutter/material.dart";
-// 
+//
 // import "package:theme/data/models/borders/border_side_model.dart";
 
 // part "box_border_model.freezed.dart";

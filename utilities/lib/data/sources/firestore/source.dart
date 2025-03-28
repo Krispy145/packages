@@ -8,7 +8,9 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [FirestoreDataSource] is a wrapper class for [FirebaseFirestore]
-abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
+abstract class FirestoreDataSource<T, Q>
+    with Mappable<T>
+    implements DataSource<T, Q> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   /// [collectionName] is the name of the collection
@@ -31,7 +33,8 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     required this.convertDataTypeToMap,
   });
 
-  CollectionReference<Map<String, dynamic>> get collectionReference => firestore.collection(collectionName);
+  CollectionReference<Map<String, dynamic>> get collectionReference =>
+      firestore.collection(collectionName);
 
   Timestamp getTimestampFromDateTime(DateTime dateTime) {
     return Timestamp.fromDate(dateTime);
@@ -55,7 +58,8 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
   }
 
   bool isTimeBasedKey(String key) {
-    return key.toLowerCase().contains("time") || key.toLowerCase().contains("date");
+    return key.toLowerCase().contains("time") ||
+        key.toLowerCase().contains("date");
   }
 
   @override
@@ -66,7 +70,10 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
           if (isTimeBasedKey(key)) {
             final _possibleDateTimeString = DateTime.tryParse(value.toString());
             if (_possibleDateTimeString != null) {
-              return MapEntry(key, getTimestampFromDateTime(_possibleDateTimeString));
+              return MapEntry(
+                key,
+                getTimestampFromDateTime(_possibleDateTimeString),
+              );
             }
           }
           return MapEntry(key, value);
@@ -78,7 +85,10 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     return _dataWithTimestamp;
   }
 
-  Query<Map<String, dynamic>> buildQuery(Q query, Query<Map<String, dynamic>> collectionReference);
+  Query<Map<String, dynamic>> buildQuery(
+    Q query,
+    Query<Map<String, dynamic>> collectionReference,
+  );
 
   @override
   Future<Pair<RequestResponse, T?>> get(String id) async {
@@ -102,7 +112,8 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
         logResponse("GET_ALL", "Success", null);
         return const Pair(RequestResponse.success, []);
       }
-      final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
+      final data =
+          querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
       logResponse("GET_ALL", "Success", data);
       return Pair(RequestResponse.success, data);
     } catch (e) {
@@ -219,7 +230,8 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
         logResponse("SEARCH", "Success", null);
         return const Pair(RequestResponse.failure, null);
       }
-      final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).first;
+      final data =
+          querySnapshot.docs.map((doc) => convertFromMap(doc.data())).first;
       logResponse("SEARCH", "Success", data);
       return Pair(RequestResponse.success, data);
     } catch (e) {
@@ -238,7 +250,8 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
         logResponse("SEARCH_ALL", "Success", null);
         return const Pair(RequestResponse.failure, []);
       }
-      final data = querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
+      final data =
+          querySnapshot.docs.map((doc) => convertFromMap(doc.data())).toList();
       logResponse("SEARCH_ALL", "Success", data);
       return Pair(RequestResponse.success, data);
     } catch (e) {
@@ -309,7 +322,8 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     String statusMessage,
     dynamic error,
   ) {
-    final logMessage = "Firebase $method Error on $collectionName: $statusMessage - $error";
+    final logMessage =
+        "Firebase $method Error on $collectionName: $statusMessage - $error";
     AppLogger.print(
       logMessage,
       [UtilitiesLoggers.firestoreDataSource],
@@ -329,6 +343,24 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
     } catch (error) {
       logError(method, "Error", error);
       return const Pair(RequestResponse.failure, null);
+    }
+  }
+
+  Future<void> getJsonDoc({required String documentId}) async {
+    final doc = await FirebaseFirestore.instance
+        .collection(collectionName)
+        .doc(documentId)
+        .get();
+    if (doc.exists) {
+      AppLogger.print(
+        doc.data().toString(),
+        [UtilitiesLoggers.firestoreDataSource],
+      );
+    } else {
+      AppLogger.print(
+        "No such document",
+        [UtilitiesLoggers.firestoreDataSource],
+      );
     }
   }
 }

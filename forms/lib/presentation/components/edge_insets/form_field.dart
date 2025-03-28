@@ -32,7 +32,8 @@ class EdgeInsetsFormField extends BaseFormField<EdgeInsetsFormFieldStore> {
                   )
                   .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) => store.setType(newSelection.first),
+              onSelectionChanged: (newSelection) =>
+                  store.setType(newSelection.first),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

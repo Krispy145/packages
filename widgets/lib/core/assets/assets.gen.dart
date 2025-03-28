@@ -27,10 +27,12 @@ class $LibAssetsImagesGen {
   const $LibAssetsImagesGen();
 
   /// File path: lib/assets/images/do-circle-icon.png
-  AssetGenImage get doCircleIcon => const AssetGenImage('lib/assets/images/do-circle-icon.png');
+  AssetGenImage get doCircleIcon =>
+      const AssetGenImage('lib/assets/images/do-circle-icon.png');
 
   /// File path: lib/assets/images/do-icon.png
-  AssetGenImage get doIcon => const AssetGenImage('lib/assets/images/do-icon.png');
+  AssetGenImage get doIcon =>
+      const AssetGenImage('lib/assets/images/do-icon.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [doCircleIcon, doIcon];

@@ -20,7 +20,8 @@ class FontFileIOManager extends HiveDataSource<XFile, BasicSearchQueryModel> {
             final json = jsonDecode(jsonString) as Map<String, String>;
             return XFile(json["path"]!, name: json["name"]);
           },
-          convertDataTypeToJson: (data) => jsonEncode({"name": data.name, "path": data.path}),
+          convertDataTypeToJson: (data) =>
+              jsonEncode({"name": data.name, "path": data.path}),
         );
 
   bool get isMacOS => Platform.isMacOS;
@@ -94,7 +95,9 @@ class FontFileIOManager extends HiveDataSource<XFile, BasicSearchQueryModel> {
   }
 
   @override
-  Future<Pair<RequestResponse, List<XFile?>>> searchAll(BasicSearchQueryModel query) {
+  Future<Pair<RequestResponse, List<XFile?>>> searchAll(
+    BasicSearchQueryModel query,
+  ) {
     // TODO: implement searchAll
     throw UnimplementedError();
   }

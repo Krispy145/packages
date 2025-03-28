@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:responsive_framework/responsive_framework.dart";
+import "package:url_launcher/url_launcher.dart";
 import "package:utilities/sizes/screen_size.dart";
 import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/snackbar/message.dart";
@@ -17,6 +18,60 @@ extension ShowSnackbar on BuildContext {
   /// Clears all snackbars
   void clearSnackbars() {
     ScaffoldMessenger.of(this).clearSnackBars();
+  }
+}
+
+extension UrlLauncher on BuildContext {
+  Future<void> launchUrlInNewTab(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw Exception("Could not launch $url");
+    }
+  }
+}
+
+extension ShowBottomSheet on BuildContext {
+  Future<T?> showBottomSheet<T>({
+    required Widget Function(BuildContext context) builder,
+    Color? backgroundColor,
+    double? elevation,
+    ShapeBorder? shape,
+    Clip? clipBehavior,
+    Color? barrierColor,
+    bool isScrollControlled = false,
+    bool useRootNavigator = false,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    final double minWindowSize = 300,
+    final double minWindowHeight = 120,
+  }) {
+    return showModalBottomSheet(
+      context: this,
+      builder: (context) => SafeArea(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minWidth: minWindowSize,
+            minHeight: minWindowHeight,
+            maxHeight: context.screenHeight * 0.8,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: builder(context),
+          ),
+        ),
+      ),
+      backgroundColor: backgroundColor,
+      elevation: elevation,
+      shape: shape,
+      clipBehavior: clipBehavior,
+      barrierColor: barrierColor,
+      isScrollControlled: isScrollControlled,
+      useRootNavigator: useRootNavigator,
+      isDismissible: isDismissible,
+      enableDrag: enableDrag,
+      showDragHandle: enableDrag,
+    );
   }
 }
 

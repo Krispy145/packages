@@ -8,10 +8,12 @@ import "package:utilities/widgets/load_state/store.dart";
 part "store.g.dart";
 
 /// [ListStore] is a class that uses [_ListStore] to manage state of the topTips feature.
-class ListStore<T, K extends Comparable<K>> = _ListStore<T, K> with _$ListStore<T, K>;
+class ListStore<T, K extends Comparable<K>> = _ListStore<T, K>
+    with _$ListStore<T, K>;
 
 /// [_ListStore] is a class that manages the state of the topTips feature.
-abstract class _ListStore<T, K extends Comparable<K>> with LoadStateStore, Store {
+abstract class _ListStore<T, K extends Comparable<K>>
+    with LoadStateStore, Store {
   final bool reverseList;
   final K Function(T)? sortByKey;
 
@@ -21,7 +23,8 @@ abstract class _ListStore<T, K extends Comparable<K>> with LoadStateStore, Store
     this.sortByKey,
   });
 
-  late final Future<Pair<RequestResponse, List<T?>>> Function() loadFromRepository;
+  late final Future<Pair<RequestResponse, List<T?>>> Function()
+      loadFromRepository;
 
   /// [results] is an observable list of [T]s.
   ObservableList<T> results = ObservableList<T>();

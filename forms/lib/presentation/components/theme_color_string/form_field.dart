@@ -10,7 +10,8 @@ import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldStore> {
+class ThemeColorStringFormField
+    extends BaseFormField<ThemeColorStringFormFieldStore> {
   ThemeColorStringFormField({
     super.key,
     required super.store,
@@ -46,7 +47,8 @@ class ThemeColorStringFormField extends BaseFormField<ThemeColorStringFormFieldS
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: AppTheme.currentColorModel!.toMap().entries.map((entry) {
+                  children:
+                      AppTheme.currentColorModel!.toMap().entries.map((entry) {
                     final colorName = entry.key;
                     return InkWell(
                       onTap: () {

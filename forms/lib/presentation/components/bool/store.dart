@@ -6,7 +6,8 @@ part "store.g.dart";
 
 class BoolFormFieldStore = _BoolFormFieldStore with _$BoolFormFieldStore;
 
-abstract class _BoolFormFieldStore extends BaseFormFieldStore<bool?> with Store {
+abstract class _BoolFormFieldStore extends BaseFormFieldStore<bool?>
+    with Store {
   _BoolFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,

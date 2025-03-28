@@ -1,72 +1,79 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:payment/services/_base.dart';
-import 'package:payment/utils/const.dart';
-import 'package:payment/utils/loggers.dart';
-import 'package:utilities/logger/logger.dart';
-// import 'package:web/web.dart' as web;
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:cloud_functions/cloud_functions.dart";
+import 'package:collection/src/iterable_extensions.dart';
+import "package:firebase_auth/firebase_auth.dart";
+import "package:payment/data/models/price_item_model.dart";
+import "package:payment/data/models/session_data_model.dart";
+import "package:payment/utils/loggers.dart";
+import "package:url_launcher/url_launcher.dart";
+import "package:utilities/logger/logger.dart";
 
-class StripeService implements BasePaymentService {
-  StripeService._();
+import "_base.dart";
 
-  static final StripeService instance = StripeService._();
+class StripeService extends BasePaymentService<PriceItemModel> {
+  final FirebaseFunctions functions = FirebaseFunctions.instance;
 
   @override
-  Future<String?> makePayment(Future<String> Function(int, String) paymentIntent) async {
+  Future<String> createCheckoutSession(List<PriceItemModel> items, {String? successUrl, String? cancelUrl}) async {
     try {
-      return await paymentIntent(10, "usd");
-      //Web
-      // String getReturnUrl() => web.window.location.href;
-      // try {
-      //   await WebStripe.instance.confirmPaymentElement(
-      //     ConfirmPaymentElementOptions(
-      //       confirmParams: ConfirmPaymentParams(return_url: getReturnUrl()),
-      //     ),
-      //   );
-      // } catch (e) {
-      //   print(e);
-      // }
-    } catch (e) {
-      AppLogger.print(e.toString(), [PaymentLoggers.stripe], type: LoggerType.error);
-    }
-    return null;
-  }
+      final sessionData = SessionDataModel(
+        successUrl: successUrl ?? 'https://your-domain.com/success?session_id={CHECKOUT_SESSION_ID}',
+        cancelUrl: cancelUrl ?? 'https://your-domain.com/cancel',
+        items: items,
+      );
 
-  Future<void> displayPaymentSheet(String paymentIntentClientSecret) async {
-    try {
-      //Mobile
-      await Stripe.instance.initPaymentSheet(
-          paymentSheetParameters: SetupPaymentSheetParameters(
-        paymentIntentClientSecret: paymentIntentClientSecret,
-        merchantDisplayName: "Lets Yak",
-      ));
-      await Stripe.instance.presentPaymentSheet();
-      await Stripe.instance.confirmPaymentSheetPayment();
+      // Wrap sessionData in an object with 'sessionData' key
+      final result = await functions.httpsCallable('createCheckoutSession').call({'sessionData': sessionData.toMap()});
+
+      final sessionUrl = result.data['url'];
+      return sessionUrl;
     } catch (e) {
-      AppLogger.print(e.toString(), [PaymentLoggers.stripe], type: LoggerType.error);
+      AppLogger.print(e.toString(), [PaymentLoggers.stripe]);
+      rethrow;
     }
   }
 
-  Future<String?> _createPaymentIntent(int amount, String currency) async {
-    try {
-      final Dio dio = Dio();
-      Map<String, dynamic> data = {"amount": calculateAmount(amount), "currency": currency};
-
-      var response = await dio.post("https://api.stripe.com/v1/payment_intents",
-          data: data, options: Options(contentType: Headers.formUrlEncodedContentType, headers: {"Authorization": "Bearer $stripeSecretKey", "Content-Type": "application/x-www-form-urlencoded"}));
-
-      print(response.data);
-      return response.data['client_secret'];
-
-      return null;
-    } catch (e) {
-      AppLogger.print(e.toString(), [PaymentLoggers.stripe], type: LoggerType.error);
+  @override
+  Future<void> launchCheckout({required String sessionUrl}) async {
+    if (await canLaunchUrl(Uri.parse(sessionUrl))) {
+      await launchUrl(Uri.parse(sessionUrl));
+    } else {
+      throw Exception("Could not launch $sessionUrl");
     }
-    return null;
   }
 
-  String calculateAmount(int amount) {
-    final calculatedAmount = amount * 100;
-    return calculatedAmount.toString();
+  // Method to check subscription status
+  Stream<bool> listenForPaymentStatus() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) throw Exception('User not authenticated');
+
+    final collectionRef = FirebaseFirestore.instance.collection('stripe_customers/${user.uid}/payments');
+
+    return collectionRef.snapshots().map((snapshot) {
+      final latestDoc = snapshot.docs.firstWhereOrNull((doc) {
+        final hasBeenSeen = doc.data()['seen'] as bool;
+        return hasBeenSeen == false;
+      });
+
+      if (latestDoc == null) return false;
+
+      final data = latestDoc.data();
+      final status = data['status'] as String?;
+      final result = status == 'succeeded';
+      if (result) {
+        latestDoc.reference.update({'seen': true});
+      }
+      return result;
+    });
+  }
+
+  @override
+  Future<void> handleSuccessfulSubscription(String sessionId) async {
+    // TODO: Implement handleSuccessfulSubscription
+  }
+
+  @override
+  Future<void> handleExpiredSubscription(String sessionId) async {
+    // TODO: Implement handleExpiredSubscription
   }
 }

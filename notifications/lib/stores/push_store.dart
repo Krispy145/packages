@@ -19,7 +19,8 @@ import "package:utilities/logger/logger.dart";
 part "push_store.g.dart";
 
 /// [PushNotificationsStore] is the base class for all push notifications stores.
-class PushNotificationsStore = _PushNotificationsStore with _$PushNotificationsStore;
+class PushNotificationsStore = _PushNotificationsStore
+    with _$PushNotificationsStore;
 
 /// [_PushNotificationsStore] is the base class for all notifications stores.
 abstract class _PushNotificationsStore extends NotificationsStore with Store {
@@ -69,7 +70,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   @override
   Future<Pair<String?, AuthorizationStatus>> requestPermissions({
-    NotificationsPermissionsModel permissions = NotificationsPermissionsModel.standard,
+    NotificationsPermissionsModel permissions =
+        NotificationsPermissionsModel.standard,
   }) async {
     // Request permissions if we don't already have them
     final settings = await _pushNotifications.requestPermission(
@@ -92,13 +94,15 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     );
     authorizationStatus = settings.authorizationStatus;
 
-    if (settings.authorizationStatus == AuthorizationStatus.authorized && fcmToken != null) {
+    if (settings.authorizationStatus == AuthorizationStatus.authorized &&
+        fcmToken != null) {
       AppLogger.print(
         "User granted permission",
         [NotificationsLoggers.notifications],
       );
       return Pair(fcmToken, authorizationStatus);
-    } else if (authorizationStatus == AuthorizationStatus.authorized && fcmToken == null) {
+    } else if (authorizationStatus == AuthorizationStatus.authorized &&
+        fcmToken == null) {
       AppLogger.print(
         "User granted permission but token is null",
         [NotificationsLoggers.notifications],
@@ -139,7 +143,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [_updateActiveNotificationsList] updates the active notifications to the [notifications].
   @action
   Future<void> _updateActiveNotificationsList() async {
-    final activeNotificationsResponse = await remoteDataSource?.getAll() ?? await getAll();
+    final activeNotificationsResponse =
+        await remoteDataSource?.getAll() ?? await getAll();
     final activeNotifications = activeNotificationsResponse.second;
     final notificationMap = <String, NotificationModel>{};
     for (final notificationResponse in activeNotifications) {
@@ -162,7 +167,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [add] adds a notification with [notification].
   @action
   @override
-  Future<Pair<RequestResponse, NotificationModel?>> add(NotificationModel notification) async {
+  Future<Pair<RequestResponse, NotificationModel?>> add(
+    NotificationModel notification,
+  ) async {
     var result = await remoteDataSource?.add(notification);
     if (storeNotificationsLocally) result = await super.add(notification);
     return result ?? const Pair(RequestResponse.failure, null);
@@ -180,7 +187,10 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [update] updates a notification by [id] with [notification].
   @action
   @override
-  Future<RequestResponse> update(String id, NotificationModel notification) async {
+  Future<RequestResponse> update(
+    String id,
+    NotificationModel notification,
+  ) async {
     await remoteDataSource?.update(id, notification);
     if (storeNotificationsLocally) return super.update(id, notification);
     return RequestResponse.failure;
@@ -189,7 +199,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [updateAll] updates all notifications with [notificationMap].
   @action
   @override
-  Future<RequestResponse> updateAll(Map<String, NotificationModel> notificationMap) async {
+  Future<RequestResponse> updateAll(
+    Map<String, NotificationModel> notificationMap,
+  ) async {
     await remoteDataSource?.updateAll(notificationMap);
     if (storeNotificationsLocally) return super.updateAll(notificationMap);
     return RequestResponse.failure;
@@ -237,14 +249,19 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// This is used to update the UI when the app receives a notification from foreground/background/terminated state.
   @override
   @action
-  Future<void> listenForReceivedNotification(void Function(NotificationModel notification) onNotificationReceived) async {
+  Future<void> listenForReceivedNotification(
+    void Function(NotificationModel notification) onNotificationReceived,
+  ) async {
     // set up the Android channel for foreground notifications
     final _channel = _createAndroidForegroundPushNotificationChannel();
     // Get any messages which caused the application to open from a terminated state.
     final initialMessage = await _pushNotifications.getInitialMessage();
 
     if (initialMessage != null) {
-      await _receivePushNotification(initialMessage.data, onNotificationReceived);
+      await _receivePushNotification(
+        initialMessage.data,
+        onNotificationReceived,
+      );
     }
     // Also handle any interaction when the app is in the background via a Stream listener
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
@@ -253,7 +270,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
 
     // Also handle any interaction when the app is in the foreground via a Stream listener
     FirebaseMessaging.onMessage.listen((message) {
-      final notification = _convertRemoteNotificationToNotificationModel(message.data);
+      final notification =
+          _convertRemoteNotificationToNotificationModel(message.data);
       final android = message.notification?.android;
 
       // for Android, we create a local notification to show to users using the created channel.
@@ -315,7 +333,8 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<String?> getToken({String? webVapidKey}) async {
     try {
-      final tokeResponse = await _pushNotifications.getToken(vapidKey: webVapidKey);
+      final tokeResponse =
+          await _pushNotifications.getToken(vapidKey: webVapidKey);
       if (tokeResponse == null) return null;
       AppLogger.print(
         "FCM Token: $tokeResponse",
@@ -367,7 +386,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     var notification = NotificationModel.fromMap(notificationData);
     if (_destinationString != null) {
       final _destinationMap = _convertStringToMap(_destinationString);
-      notification = notification.copyWith(destination: AppDestinationModel.fromMap(_destinationMap));
+      notification = notification.copyWith(
+        destination: AppDestinationModel.fromMap(_destinationMap),
+      );
     }
     if (shouldCallNotificationReceived) {
       onNotificationReceived(notification);
@@ -386,7 +407,10 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   AndroidNotificationChannel _createAndroidForegroundPushNotificationChannel() {
     // Create an Android Notification Channel using local notifications.
-    localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(androidPushNotificationsChannel);
+    localNotifications
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(androidPushNotificationsChannel);
     return androidPushNotificationsChannel;
   }
 
@@ -412,7 +436,9 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     data.remove("destination");
     var notification = NotificationModel.fromMap(data);
     final _destinationMap = _convertStringToMap(_destinationString ?? "{}");
-    notification = notification.copyWith(destination: AppDestinationModel.fromMap(_destinationMap));
+    notification = notification.copyWith(
+      destination: AppDestinationModel.fromMap(_destinationMap),
+    );
     notification = NotificationModel.fromMap(data);
     AppLogger.print(
       "Notification: $notification",
@@ -429,9 +455,13 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     );
 
     // Add quotes around values that are not objects, arrays, numbers, booleans, or null
-    correctedStr = correctedStr.replaceAllMapped(RegExp(r":\s*([^,{}\[\]]+)\s*([,}])"), (m) {
+    correctedStr = correctedStr
+        .replaceAllMapped(RegExp(r":\s*([^,{}\[\]]+)\s*([,}])"), (m) {
       final value = m[1]!.trim();
-      if (RegExp(r"^\d+$").hasMatch(value) || value == "true" || value == "false" || value == "null") {
+      if (RegExp(r"^\d+$").hasMatch(value) ||
+          value == "true" ||
+          value == "false" ||
+          value == "null") {
         return ': $value${m[2]}';
       } else {
         return ': "$value"${m[2]}';

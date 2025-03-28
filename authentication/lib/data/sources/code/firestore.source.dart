@@ -1,7 +1,8 @@
 part of "_source.dart";
 
 /// [FirestoreCodeDataSource] is a class that implements [CodeDataSource] interface.
-class FirestoreCodeDataSource extends FirestoreDataSource<CodeModel, void> implements CodeDataSource {
+class FirestoreCodeDataSource extends FirestoreDataSource<CodeModel, void>
+    implements CodeDataSource {
   /// [FirestoreCodeDataSource] constructor.
   FirestoreCodeDataSource()
       : super(
@@ -45,7 +46,10 @@ class FirestoreCodeDataSource extends FirestoreDataSource<CodeModel, void> imple
   }
 
   @override
-  Query<Map<String, dynamic>> buildQuery(void query, Query<Map<String, dynamic>> collectionReference) {
+  Query<Map<String, dynamic>> buildQuery(
+    void query,
+    Query<Map<String, dynamic>> collectionReference,
+  ) {
     //TODO: Implement buildQuery
     throw UnimplementedError();
   }

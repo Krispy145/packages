@@ -116,7 +116,8 @@ abstract class _FontsStore with LoadStateStore, Store {
     LYFontVariantAndUrl fontVariantAndUrl, [
     FontLoader? fontLoader,
   ]) async {
-    final familyWithVariantString = fontVariantAndUrl.familyWithVariant.toString();
+    final familyWithVariantString =
+        fontVariantAndUrl.familyWithVariant.toString();
     // If this font has already already loaded or is loading, then there is no
     // need to attempt to load it again, unless the attempted load results in an
     // error.
@@ -127,7 +128,8 @@ abstract class _FontsStore with LoadStateStore, Store {
     }
 
     try {
-      final loadingFont = repository.loadFont(fontVariantAndUrl, allowRuntimeFetching);
+      final loadingFont =
+          repository.loadFont(fontVariantAndUrl, allowRuntimeFetching);
       return addFontLoaderFromByteData(
         familyWithVariantString,
         loadingFont,
@@ -162,7 +164,8 @@ abstract class _FontsStore with LoadStateStore, Store {
     Future.wait<void>(futures).then((_) => loader.load());
   }
 
-  Future<List<void>> pendingFonts([List<dynamic>? _]) => Future.wait(pendingFontFutures);
+  Future<List<void>> pendingFonts([List<dynamic>? _]) =>
+      Future.wait(pendingFontFutures);
 
   void register(
     String familyName,
@@ -329,7 +332,8 @@ abstract class _FontsStore with LoadStateStore, Store {
         );
       };
 
-  TextThemeBuilder themeBuilder(TextStyleBuilder styleBuilder) => ([textTheme]) {
+  TextThemeBuilder themeBuilder(TextStyleBuilder styleBuilder) =>
+      ([textTheme]) {
         textTheme ??= ThemeData.light().textTheme;
         return TextTheme(
           displayLarge: styleBuilder(textStyle: textTheme.displayLarge),

@@ -1,6 +1,6 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-part 'place_photo_model.mapper.dart';
+part "place_photo_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class PlacePhoto with PlacePhotoMappable {

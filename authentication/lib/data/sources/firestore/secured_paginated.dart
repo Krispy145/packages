@@ -11,7 +11,10 @@ import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/helpers/tuples.dart";
 
-class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends BasicSearchQueryModel> extends SecuredFirestoreDataSource<U, T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
+class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
+        Q extends BasicSearchQueryModel>
+    extends SecuredFirestoreDataSource<U, T, Q>
+    with Paginated<FirestoreResponseModel<T?>, T, Q> {
   /// [SecuredPaginatedFirestoreDataSource] constructor
   SecuredPaginatedFirestoreDataSource(
     super.collectionName, {
@@ -23,7 +26,8 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
   });
 
   @override
-  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> getPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>
+      getPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -33,7 +37,8 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
     final _collection = firestore.collection(collectionName);
     Query<Map<String, dynamic>> query = _collection;
 
-    final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(query);
+    final permissionsFirestoreQuery =
+        await _getPermissionBasedQueryForPage(query);
     if (permissionsFirestoreQuery == null) {
       return Pair(
         RequestResponse.denied,
@@ -60,7 +65,9 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
       (response) {
         final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
           FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot,
+            lastDocumentSnapshot: response.docs.isNotEmpty
+                ? response.docs.last
+                : lastResponse?.lastDocumentSnapshot,
           ),
           List<T?>.from(
             response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
@@ -76,7 +83,8 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> searchPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>
+      searchPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -84,7 +92,8 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
   }) async {
     try {
       var firestoreQuery = buildQuery(query, collectionReference);
-      final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(firestoreQuery);
+      final permissionsFirestoreQuery =
+          await _getPermissionBasedQueryForPage(firestoreQuery);
       if (permissionsFirestoreQuery == null) {
         return Pair(
           RequestResponse.denied,
@@ -107,7 +116,8 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
         (response) {
           final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
             FirestoreResponseModel<T?>(
-              lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
+              lastDocumentSnapshot:
+                  response.docs.isNotEmpty ? response.docs.last : null,
             ),
             List<T?>.from(
               response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
@@ -118,7 +128,10 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
       );
     } catch (e) {
       debugPrint("Error: $e");
-      return Pair(RequestResponse.failure, Pair(FirestoreResponseModel<T?>(), []));
+      return Pair(
+        RequestResponse.failure,
+        Pair(FirestoreResponseModel<T?>(), []),
+      );
     }
   }
 
@@ -126,14 +139,19 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
     Query<Map<String, dynamic>> query,
   ) async {
     final checkPermissions = permissionChecker.checkPermissionLevel(CRUD.read);
-    final pagedPermissionResponse = permissionChecker.checkPermissionsForPage(checkedPermissions: checkPermissions);
+    final pagedPermissionResponse = permissionChecker.checkPermissionsForPage(
+      checkedPermissions: checkPermissions,
+    );
     if (pagedPermissionResponse.first && pagedPermissionResponse.second) {
       query = query;
     } else {
       final ids = <String>[
         ...checkPermissions
             .where(
-              (element) => element.first.split("/").first == collectionName && element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
+              (element) =>
+                  element.first.split("/").first == collectionName &&
+                  element.first.split("/").last != "all" &&
+                  element.second == PermissionLevel.yes,
             )
             .map((e) => e.first.split("/").last),
       ];
@@ -145,7 +163,10 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends Basi
   }
 
   @override
-  Query<Map<String, dynamic>> buildQuery(Q query, Query<Map<String, dynamic>> collectionReference) {
+  Query<Map<String, dynamic>> buildQuery(
+    Q query,
+    Query<Map<String, dynamic>> collectionReference,
+  ) {
     var firestoreQuery = collectionReference;
 
     final searchTerm = query.searchTerm;

@@ -45,7 +45,8 @@ abstract class _VideoStore with LoadStateStore, Store {
       setEmpty("Video not found${kDebugMode ? ": $id" : ""}");
       return;
     }
-    streamManifest = await repository.getYTExplodeStreamManifest(currentVideo!.id.value);
+    streamManifest =
+        await repository.getYTExplodeStreamManifest(currentVideo!.id.value);
     if (streamManifest == null) {
       setEmpty("Video Details not found${kDebugMode ? ": $id" : ""}");
       return;

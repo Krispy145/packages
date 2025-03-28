@@ -29,12 +29,20 @@ class PackageLoadStateBuilder extends BaseLoadStateBuilder {
 
   @override
   Widget buildInitialState(BuildContext context) {
-    return initialBuilder?.call(context) ?? (slivers ? const SliverToBoxAdapter(child: SizedBox.shrink()) : const SizedBox.shrink());
+    return initialBuilder?.call(context) ??
+        (slivers
+            ? const SliverToBoxAdapter(child: SizedBox.shrink())
+            : const SizedBox.shrink());
   }
 
   @override
   Widget buildLoadingState(BuildContext context) {
-    return loadingBuilder?.call(context) ?? (slivers ? const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator())) : const Center(child: CircularProgressIndicator()));
+    return loadingBuilder?.call(context) ??
+        (slivers
+            ? const SliverToBoxAdapter(
+                child: Center(child: CircularProgressIndicator()),
+              )
+            : const Center(child: CircularProgressIndicator()));
   }
 
   @override
@@ -44,12 +52,14 @@ class PackageLoadStateBuilder extends BaseLoadStateBuilder {
 
   @override
   Widget buildEmptyState(BuildContext context, String emptyMessage) {
-    return emptyBuilder?.call(context, emptyMessage) ?? WarningMessage.empty(message: emptyMessage);
+    return emptyBuilder?.call(context, emptyMessage) ??
+        WarningMessage.empty(message: emptyMessage);
   }
 
   @override
   Widget buildErrorState(BuildContext context, String errorMessage) {
-    return errorBuilder?.call(context, errorMessage) ?? WarningMessage.error(message: errorMessage);
+    return errorBuilder?.call(context, errorMessage) ??
+        WarningMessage.error(message: errorMessage);
   }
 
   @override

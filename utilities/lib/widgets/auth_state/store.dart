@@ -6,16 +6,19 @@ import "package:utilities/widgets/auth_state/states.dart";
 /// [AuthStateStore] is the store that will be used to manage the state of the authentication.
 mixin AuthStateStore {
   /// [currentAuthState] is the state that will be used to manage the state of the authentication.
-  final Observable<AuthState> _currentAuthState = Observable(AuthState.unauthenticated);
+  final Observable<AuthState> _currentAuthState =
+      Observable(AuthState.unauthenticated);
   AuthState get currentAuthState => _currentAuthState.value;
   set currentAuthState(AuthState value) => _currentAuthState.value = value;
 
   /// [isAuthenticated] is a getter that will be used to check if the user is authenticated.
-  late final _isAuthenticated = Computed(() => currentAuthState == AuthState.authenticated);
+  late final _isAuthenticated =
+      Computed(() => currentAuthState == AuthState.authenticated);
   bool get isAuthenticated => _isAuthenticated.value;
 
   /// [isUnauthenticated] is a getter that will be used to check if the user is unauthenticated.
-  late final _isUnauthenticated = Computed(() => currentAuthState == AuthState.unauthenticated);
+  late final _isUnauthenticated =
+      Computed(() => currentAuthState == AuthState.unauthenticated);
   bool get isUnauthenticated => _isUnauthenticated.value;
 
   /// [setAuthenticated] is a method that will be used to set the state to authenticated.
@@ -32,7 +35,6 @@ mixin AuthStateStore {
     currentAuthState = AuthState.unauthenticated;
   }
 }
-
 
 // /// [AuthStateStore] is the store that will be used to manage the state of the authentication.
 // class AuthStateStore = _AuthStateStore with _$AuthStateStore;

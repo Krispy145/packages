@@ -86,21 +86,38 @@ class InstagramRepository {
   InstagramMediaIdsResponse? _currentMediaIdsResponse;
 
   /// [postShortLivedAccessToken] returns a list of [InstagramUserModel]s.
-  Future<InstagramAccessTokenModel?> postShortLivedAccessToken({required String authCode}) async {
+  Future<InstagramAccessTokenModel?> postShortLivedAccessToken({
+    required String authCode,
+  }) async {
     try {
-      return _handleNotApiSource(() => _instagramDataRepository.postShortLivedAccessToken(authCode));
+      return _handleNotApiSource(
+        () => _instagramDataRepository.postShortLivedAccessToken(authCode),
+      );
     } catch (e) {
-      AppLogger.print("InstagramRepository: postShortLivedAccessToken: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramRepository: postShortLivedAccessToken: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
       return null;
     }
   }
 
   /// [getLongLivedAccessToken] returns a list of [InstagramUserModel]s.
-  Future<InstagramAccessTokenModel?> getLongLivedAccessToken({required InstagramAccessTokenModel shortLivedAccessToken}) async {
+  Future<InstagramAccessTokenModel?> getLongLivedAccessToken({
+    required InstagramAccessTokenModel shortLivedAccessToken,
+  }) async {
     try {
-      return _handleNotApiSource(() => _instagramDataRepository.getLongLivedAccessToken(shortLivedAccessToken));
+      return _handleNotApiSource(
+        () => _instagramDataRepository
+            .getLongLivedAccessToken(shortLivedAccessToken),
+      );
     } catch (e) {
-      AppLogger.print("InstagramRepository: getLongLivedAccessToken: $e", [SocialsLoggers.instagram], type: LoggerType.error);
+      AppLogger.print(
+        "InstagramRepository: getLongLivedAccessToken: $e",
+        [SocialsLoggers.instagram],
+        type: LoggerType.error,
+      );
       return null;
     }
   }
@@ -111,7 +128,8 @@ class InstagramRepository {
   }) async {
     try {
       return _handleNotApiSource(
-        () => _instagramDataRepository.refreshLongLivedAccessToken(currentLongLivedAccessToken),
+        () => _instagramDataRepository
+            .refreshLongLivedAccessToken(currentLongLivedAccessToken),
       );
     } catch (e) {
       AppLogger.print(
@@ -185,7 +203,12 @@ class InstagramRepository {
     List<InstagramUserDetailsField>? fields,
     required InstagramAccessTokenModel accessTokenModel,
   }) async {
-    return _handleNotApiSource(() => _instagramDataRepository.getMe(fields: fields, accessTokenModel: accessTokenModel));
+    return _handleNotApiSource(
+      () => _instagramDataRepository.getMe(
+        fields: fields,
+        accessTokenModel: accessTokenModel,
+      ),
+    );
   }
 
   /// [getUser] returns a list of [InstagramUserModel]s.

@@ -23,7 +23,9 @@ class ContactsView extends StatelessWidget {
           final contactsModel = store.contacts[index];
           return ListTile(
             title: Text("ID: ${contactsModel?.id}"),
-            subtitle: Text("Name: ${contactsModel?.name.first} ${contactsModel?.name.last}"),
+            subtitle: Text(
+              "Name: ${contactsModel?.name.first} ${contactsModel?.name.last}",
+            ),
           );
         },
       ),

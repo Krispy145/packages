@@ -74,7 +74,11 @@ class TextStyleModel with TextStyleModelMappable {
           color: color_themeColorString?.toColor(),
         );
       } catch (e) {
-        AppLogger.print("Get font failed: $e", [ThemeLoggers.theme], type: LoggerType.error);
+        AppLogger.print(
+          "Get font failed: $e",
+          [ThemeLoggers.theme],
+          type: LoggerType.error,
+        );
       }
     }
     return TextStyle(

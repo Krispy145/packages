@@ -65,7 +65,10 @@ class AuthenticationBuilder<T extends UserModel> extends StatelessWidget {
 
   void conditionallyShowSnackbar(BuildContext context) {
     final _user = store.userModel;
-    final _shouldShow = _user?.status == AuthStatus.authenticated && store.showSuccessSnackBar && store.authBuilderType != AuthBuilderType.silent && _user?.authType != AuthType.anonymous;
+    final _shouldShow = _user?.status == AuthStatus.authenticated &&
+        store.showSuccessSnackBar &&
+        store.authBuilderType != AuthBuilderType.silent &&
+        _user?.authType != AuthType.anonymous;
     if (!_shouldShow) return;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.showSnackbar(
@@ -89,7 +92,8 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
     final maxWidth = context.screenWidth * (isMobile ? 0.85 : 0.5);
-    final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
+    final socialButtonVariant =
+        isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
       child: Center(
         child: ConstrainedBox(

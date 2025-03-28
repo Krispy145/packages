@@ -41,17 +41,25 @@ class SearchViewModel with SearchViewModelMappable {
 
   SearchViewThemeData asSearchViewThemeData({String? styleTypeName}) {
     return SearchViewThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       constraints: constraints_boxConstraints?.asBoxConstraints(
         styleTypeName: styleTypeName,
       ),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
-      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
-      headerTextStyle: headerTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      headerHintStyle: headerHintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      dividerColor: dividerColor_themeColorString?.toColor(styleType: styleTypeName),
+      shape:
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      headerTextStyle: headerTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      headerHintStyle: headerHintStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      dividerColor:
+          dividerColor_themeColorString?.toColor(styleType: styleTypeName),
     );
   }
 

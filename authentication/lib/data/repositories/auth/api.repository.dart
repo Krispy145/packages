@@ -10,7 +10,8 @@ import "../../models/user_model.dart";
 import "_repository.dart";
 
 /// [ApiAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRepository<T> {
+class ApiAuthDataRepository<T extends UserModel, Q>
+    extends AuthenticationDataRepository<T> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -19,7 +20,8 @@ class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRe
 
   final AuthenticationDataSource<T, Q> dataSource;
   @override
-  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(dataSource.currentUserModel);
+  late final BehaviorSubject<T?> userModelStream =
+      BehaviorSubject<T?>.seeded(dataSource.currentUserModel);
 
   /// [ApiAuthDataRepository] constructor.
   ApiAuthDataRepository({
@@ -84,7 +86,8 @@ class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRe
 
   @override
   Future<T?> signInWithFacebook(AuthParams params) async {
-    final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
+    final facebookParams =
+        await AuthRepositoryHelper.signInWithFacebook(params);
     final result = await dataSource.signIn(params: facebookParams);
     final userModel = _authResponseToUserModel(facebookParams, result != null);
     return userModel;
@@ -128,7 +131,8 @@ class ApiAuthDataRepository<T extends UserModel, Q> extends AuthenticationDataRe
     String phoneNumber,
     String confirmationCode,
   ) async {
-    final params = AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
+    final params =
+        AuthParams.phone(phoneNumber: phoneNumber, password: confirmationCode);
     final result = await dataSource.signIn(params: params);
     final userModel = _authResponseToUserModel(params, result != null);
     return userModel;

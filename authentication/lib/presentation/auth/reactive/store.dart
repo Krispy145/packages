@@ -14,9 +14,11 @@ import "package:utilities/data/sources/source.dart";
 
 part "store.g.dart";
 
-class ReactiveAuthStore<T extends UserModel> = _ReactiveAuthStore<T> with _$ReactiveAuthStore;
+class ReactiveAuthStore<T extends UserModel> = _ReactiveAuthStore<T>
+    with _$ReactiveAuthStore;
 
-abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsModelStore<T> with Store {
+abstract class _ReactiveAuthStore<T extends UserModel>
+    extends ReactiveFormsModelStore<T> with Store {
   final AuthenticationRepository<T> repository;
   final FormGroup? additionalFields;
   final bool showEmailAuth;
@@ -80,7 +82,8 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
 
   @action
   void toggleSignIn() {
-    authAction = authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
+    authAction =
+        authAction == AuthAction.signIn ? AuthAction.signUp : AuthAction.signIn;
     if (authAction == AuthAction.signUp) {
       if (codeSource != null) {
         form.addAll({
@@ -145,7 +148,8 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
           Validators.minLength(8),
         ],
       ),
-      displayNameKey: FormControl<String>(value: editingValue?.displayName ?? ""),
+      displayNameKey:
+          FormControl<String>(value: editingValue?.displayName ?? ""),
     },
   );
 
@@ -202,7 +206,8 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
   @action
   Future<T?> signUpWithEmail() async {
     setLoading();
-    final _additionalFieldsMap = additionalFields?.controls.map((key, value) => MapEntry(key, value.value));
+    final _additionalFieldsMap = additionalFields?.controls
+        .map((key, value) => MapEntry(key, value.value));
     final paramsMap = AuthParams.email(
       email: form.control(emailKey).value as String,
       password: form.control(passwordKey).value as String,
@@ -227,7 +232,9 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
 
   @action
   Future<void> _handleSilent() async {
-    if (editingValue != null && editingValue?.status == AuthStatus.authenticated && editingValue?.authType == AuthType.anonymous) {
+    if (editingValue != null &&
+        editingValue?.status == AuthStatus.authenticated &&
+        editingValue?.authType == AuthType.anonymous) {
       setLoaded();
     } else {
       await _signInAnonymously();
@@ -246,10 +253,13 @@ abstract class _ReactiveAuthStore<T extends UserModel> extends ReactiveFormsMode
 
   @action
   Future<void> _handleAuthenticate() async {
-    if (editingValue != null && editingValue?.status == AuthStatus.authenticated && editingValue?.authType == AuthType.anonymous) {
+    if (editingValue != null &&
+        editingValue?.status == AuthStatus.authenticated &&
+        editingValue?.authType == AuthType.anonymous) {
       await repository.signOut();
       setEmpty("User is anonymous");
-    } else if (editingValue != null && editingValue?.status == AuthStatus.authenticated) {
+    } else if (editingValue != null &&
+        editingValue?.status == AuthStatus.authenticated) {
       setLoaded();
     } else {
       setEmpty("User is not authenticated");

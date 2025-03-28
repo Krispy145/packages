@@ -25,7 +25,8 @@ abstract class AppIdentifier {
 
   String getQuery(Map<String, String> params) {
     const startQuery = "?";
-    final query = params.entries.map((entry) => "${entry.key}=${entry.value}").join("&");
+    final query =
+        params.entries.map((entry) => "${entry.key}=${entry.value}").join("&");
     return "$startQuery$query";
   }
 

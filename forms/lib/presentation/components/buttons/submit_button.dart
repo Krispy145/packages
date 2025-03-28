@@ -31,7 +31,10 @@ class ReactiveFormSubmitButton<T> extends StatelessWidget {
           child: ElevatedButton(
             onPressed: form.valid
                 ? () async {
-                    await store.submitPressed(context.showSnackbar, (response) => onBack?.call(response));
+                    await store.submitPressed(
+                      context.showSnackbar,
+                      (response) => onBack?.call(response),
+                    );
                   }
                 : null,
             child: Text(buttonText),

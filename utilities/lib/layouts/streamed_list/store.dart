@@ -12,10 +12,12 @@ import "package:utilities/utils/loggers.dart";
 part "store.g.dart";
 
 /// [StreamedListStore] is a class that uses [_StreamedListStore] to manage the state of the topTips feature.
-class StreamedListStore<T, K extends Comparable<K>> = _StreamedListStore<T, K> with _$StreamedListStore<T, K>;
+class StreamedListStore<T, K extends Comparable<K>> = _StreamedListStore<T, K>
+    with _$StreamedListStore<T, K>;
 
 /// [_StreamedListStore] is a class that manages the state of the topTips feature.
-abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedListStore<T, K> with Store {
+abstract class _StreamedListStore<T, K extends Comparable<K>>
+    extends PaginatedListStore<T, K> with Store {
   /// [_StreamedListStore] constructor.
   _StreamedListStore({
     super.limit = 12,
@@ -27,42 +29,69 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
 
   @override
   Future<void> initialize() async {
-    AppLogger.print("Initializing StreamedListStore...", [UtilitiesLoggers.streamedListStore]);
+    AppLogger.print(
+      "Initializing StreamedListStore...",
+      [UtilitiesLoggers.streamedListStore],
+    );
 
     dataStream.startListening(
       onData: (newData) {
         try {
-          AppLogger.print("New data received from stream: $newData", [UtilitiesLoggers.streamedListStore]);
+          AppLogger.print(
+            "New data received from stream: $newData",
+            [UtilitiesLoggers.streamedListStore],
+          );
 
           if (newData.second.isEmpty) {
-            AppLogger.print("Stream received an empty data list.", [UtilitiesLoggers.streamedListStore]);
+            AppLogger.print(
+              "Stream received an empty data list.",
+              [UtilitiesLoggers.streamedListStore],
+            );
           }
 
           if (newData.first == RequestResponse.success) {
             final possibleResults = newData.second.whereType<T>().toList();
 
             if (possibleResults.isEmpty) {
-              AppLogger.print("No valid results found in the new data.", [UtilitiesLoggers.streamedListStore]);
+              AppLogger.print(
+                "No valid results found in the new data.",
+                [UtilitiesLoggers.streamedListStore],
+              );
             }
 
-            AppLogger.print("Updating results with new data.", [UtilitiesLoggers.streamedListStore]);
+            AppLogger.print(
+              "Updating results with new data.",
+              [UtilitiesLoggers.streamedListStore],
+            );
             results = ObservableList.of(possibleResults.toSet().toList());
 
             if (results.isNotEmpty) {
               if (sortByKey != null) {
                 results.sortBy(sortByKey!);
-                AppLogger.print("Results sorted by the provided key.", [UtilitiesLoggers.streamedListStore]);
+                AppLogger.print(
+                  "Results sorted by the provided key.",
+                  [UtilitiesLoggers.streamedListStore],
+                );
               }
               if (reverseList) {
                 results = ObservableList.of(results.reversed);
-                AppLogger.print("Results reversed as per configuration.", [UtilitiesLoggers.streamedListStore]);
+                AppLogger.print(
+                  "Results reversed as per configuration.",
+                  [UtilitiesLoggers.streamedListStore],
+                );
               }
             } else {
-              AppLogger.print("No results found in the new data.", [UtilitiesLoggers.streamedListStore]);
+              AppLogger.print(
+                "No results found in the new data.",
+                [UtilitiesLoggers.streamedListStore],
+              );
               setEmpty("No results found");
             }
           } else {
-            AppLogger.print("Stream received a failure response.", [UtilitiesLoggers.streamedListStore]);
+            AppLogger.print(
+              "Stream received a failure response.",
+              [UtilitiesLoggers.streamedListStore],
+            );
             setNoMoreToLoad();
           }
         } catch (e, _) {
@@ -81,13 +110,20 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
     );
 
     scrollController.addListener(() {
-      if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-        AppLogger.print("Scroll reached the end. Loading more data...", [UtilitiesLoggers.streamedListStore]);
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        AppLogger.print(
+          "Scroll reached the end. Loading more data...",
+          [UtilitiesLoggers.streamedListStore],
+        );
         loadMore(limit: limit);
       }
     });
 
-    AppLogger.print("StreamedListStore initialization complete.", [UtilitiesLoggers.streamedListStore]);
+    AppLogger.print(
+      "StreamedListStore initialization complete.",
+      [UtilitiesLoggers.streamedListStore],
+    );
     setLoaded();
   }
 }

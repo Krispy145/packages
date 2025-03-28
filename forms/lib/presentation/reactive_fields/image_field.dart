@@ -137,7 +137,8 @@ class ReactiveImageField extends ReactiveFormField<String, String> {
         );
 
   @override
-  ReactiveFormFieldState<String, String> createState() => _ReactiveImageFieldState<String>();
+  ReactiveFormFieldState<String, String> createState() =>
+      _ReactiveImageFieldState<String>();
 }
 
 class _ReactiveImageFieldState<T> extends ReactiveFormFieldState<T, String> {

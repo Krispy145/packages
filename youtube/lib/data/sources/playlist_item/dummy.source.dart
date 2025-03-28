@@ -1,7 +1,9 @@
 part of "_source.dart";
 
 /// [DummyPlaylistItemDataSource] is a class that implements [PlaylistItemDataSource] interface.
-class DummyPlaylistItemDataSource extends DummyDataSource<PlaylistItemModel, BasicSearchQueryModel> implements PlaylistItemDataSource {
+class DummyPlaylistItemDataSource
+    extends DummyDataSource<PlaylistItemModel, BasicSearchQueryModel>
+    implements PlaylistItemDataSource {
   @override
   List<PlaylistItemModel> get fakeData => PlaylistItemModel.fakeData;
 
@@ -15,7 +17,8 @@ class DummyPlaylistItemDataSource extends DummyDataSource<PlaylistItemModel, Bas
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<ResponseModel, List<PlaylistItemModel?>>>> searchPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<PlaylistItemModel?>>>>
+      searchPage({
     ResponseModel? lastResponse,
     int? size,
     required BasicSearchQueryModel query,
@@ -25,7 +28,8 @@ class DummyPlaylistItemDataSource extends DummyDataSource<PlaylistItemModel, Bas
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<ResponseModel, List<PlaylistItemModel?>>>> getPage({
+  Future<Pair<RequestResponse, Pair<ResponseModel, List<PlaylistItemModel?>>>>
+      getPage({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,

@@ -10,7 +10,8 @@ part "store.g.dart";
 
 class ImagesFormFieldStore = _ImagesFormFieldStore with _$ImagesFormFieldStore;
 
-abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with Store {
+abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?>
+    with Store {
   final BaseFilePicker? filePicker;
   final StorageRepository? storageRepository;
   final ImagePickerType tabType;
@@ -23,16 +24,23 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
     required super.title,
   }) {
     reaction(
-      (p0) => imageFormFields.iterator, // Note that the reaction of fields when using Lists requires the use of the iterator property.
+      (p0) => imageFormFields
+          .iterator, // Note that the reaction of fields when using Lists requires the use of the iterator property.
       (p0) => value = imageUrls,
     );
   }
 
   late ObservableList<URL> imageUrls = ObservableList<URL>.of(value ?? []);
   late ObservableList<ImageFormFieldStore> imageFormFields =
-      ObservableList<ImageFormFieldStore>.of([...imageUrls.map((url) => buildStore(initialValue: url, index: imageUrls.indexOf(url))), addingImageStore]);
+      ObservableList<ImageFormFieldStore>.of([
+    ...imageUrls.map(
+      (url) => buildStore(initialValue: url, index: imageUrls.indexOf(url)),
+    ),
+    addingImageStore,
+  ]);
 
-  ImageFormFieldStore get addingImageStore => buildStore(index: imageUrls.length);
+  ImageFormFieldStore get addingImageStore =>
+      buildStore(index: imageUrls.length);
 
   ImageFormFieldStore buildStore({URL? initialValue, required int index}) {
     return ImageFormFieldStore(

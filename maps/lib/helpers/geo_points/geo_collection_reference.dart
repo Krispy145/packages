@@ -1,24 +1,25 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:maps/data/models/geo_reference.dart';
-import 'package:maps/data/models/lat_lng.mapper.dart';
-import 'package:rxdart/rxdart.dart';
-import 'package:utilities/data/sources/firestore/source.dart';
+import "package:cloud_firestore/cloud_firestore.dart";
+import "package:flutter/foundation.dart";
+import "package:latlong2/latlong.dart";
+import "package:maps/data/models/geo_reference.dart";
+import "package:maps/data/models/lat_lng.mapper.dart";
+import "package:rxdart/rxdart.dart";
+import "package:utilities/data/sources/firestore/source.dart";
 
-import 'math.dart';
-import 'utils.dart' as utils;
+import "math.dart";
+import "utils.dart" as utils;
 
 /// Extension on [FirestoreDataSource] to handle geo queries.
 extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   /// Detection range buffer when not strict mode.
   static const _detectionRangeBuffer = 1.02;
-  static const String _fieldName = 'geo_reference';
-  static const String _geoHashField = 'geo_hash';
+  static const String _fieldName = "geo_reference";
+  static const String _geoHashField = "geo_hash";
 
   // Function to get GeoPoint instance from Cloud Firestore document data.
   LatLng _geoPointFrom(Map<String, dynamic> data) {
-    return const LatLngMapper().decode((data[_fieldName] as Map<String, dynamic>)['geo_point']);
+    return const LatLngMapper()
+        .decode((data[_fieldName] as Map<String, dynamic>)["geo_point"]);
   }
 
   /// Updates document with given data and point hash.
@@ -57,7 +58,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   Stream<List<T?>> subscribeWithin({
     required final GeoReference center,
     required final double radiusInKm,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
     final bool strictMode = false,
     final bool asBroadcastStream = false,
   }) =>
@@ -67,7 +70,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
         queryBuilder: queryBuilder,
         strictMode: strictMode,
       ).map(
-        (final snapshots) => snapshots.map((final snapshot) => snapshot.documentSnapshot).toList(),
+        (final snapshots) => snapshots
+            .map((final snapshot) => snapshot.documentSnapshot)
+            .toList(),
       );
 
   /// Subscribes geo query results with distance from center in kilometers
@@ -84,7 +89,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   Stream<List<_GeoDocumentSnapshot<T>>> subscribeWithinWithDistance({
     required final GeoReference center,
     required final double radiusInKm,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
     final bool strictMode = false,
     final bool asBroadcastStream = false,
   }) {
@@ -96,10 +103,12 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
 
     final mergedCollectionStreams = _mergeCollectionStreams(collectionStreams);
 
-    final filteredGeoDocumentSnapshots = mergedCollectionStreams.map((final queryDocumentSnapshots) {
+    final filteredGeoDocumentSnapshots =
+        mergedCollectionStreams.map((final queryDocumentSnapshots) {
       final geoDocumentSnapshots = queryDocumentSnapshots
           .map(
-            (final queryDocumentSnapshot) => _nullableGeoDocumentSnapshotFromQueryDocumentSnapshot(
+            (final queryDocumentSnapshot) =>
+                _nullableGeoDocumentSnapshotFromQueryDocumentSnapshot(
               queryDocumentSnapshot: queryDocumentSnapshot,
               center: center,
             ),
@@ -110,13 +119,18 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
       // Filter fetched geoDocumentSnapshots by distance from center point on
       // client side if strict mode.
       final filteredList = geoDocumentSnapshots.where(
-        (final geoDocumentSnapshot) => !strictMode || geoDocumentSnapshot.distanceFromCenterInKm <= radiusInKm * _detectionRangeBuffer,
+        (final geoDocumentSnapshot) =>
+            !strictMode ||
+            geoDocumentSnapshot.distanceFromCenterInKm <=
+                radiusInKm * _detectionRangeBuffer,
       );
 
       // Returns sorted list by distance from center point.
       return filteredList.toList()
         ..sort(
-          (final a, final b) => (a.distanceFromCenterInKm * 1000).toInt() - (b.distanceFromCenterInKm * 1000).toInt(),
+          (final a, final b) =>
+              (a.distanceFromCenterInKm * 1000).toInt() -
+              (b.distanceFromCenterInKm * 1000).toInt(),
         );
     });
     if (asBroadcastStream) {
@@ -136,7 +150,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   Future<List<T?>> fetchWithin({
     required final GeoReference center,
     required final double radiusInKm,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
     final bool strictMode = false,
   }) async {
     final geoDocumentSnapshots = await fetchWithinWithDistance(
@@ -145,7 +161,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
       queryBuilder: queryBuilder,
       strictMode: strictMode,
     );
-    return geoDocumentSnapshots.map((final snapshot) => snapshot.documentSnapshot).toList();
+    return geoDocumentSnapshots
+        .map((final snapshot) => snapshot.documentSnapshot)
+        .toList();
   }
 
   /// Fetches geo query results with distance from center in kilometers
@@ -160,7 +178,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   Future<List<_GeoDocumentSnapshot<T>>> fetchWithinWithDistance({
     required final GeoReference center,
     required final double radiusInKm,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
     final bool strictMode = false,
   }) async {
     final collectionFutures = _collectionFutures(
@@ -173,7 +193,8 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
 
     final geoDocumentSnapshots = mergedCollections
         .map(
-          (final queryDocumentSnapshot) => _nullableGeoDocumentSnapshotFromQueryDocumentSnapshot(
+          (final queryDocumentSnapshot) =>
+              _nullableGeoDocumentSnapshotFromQueryDocumentSnapshot(
             queryDocumentSnapshot: queryDocumentSnapshot,
             center: center,
           ),
@@ -184,12 +205,17 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
     // client side if strict mode.
     final filteredList = geoDocumentSnapshots
         .where(
-          (final geoDocumentSnapshot) => !strictMode || geoDocumentSnapshot.distanceFromCenterInKm <= radiusInKm * _detectionRangeBuffer,
+          (final geoDocumentSnapshot) =>
+              !strictMode ||
+              geoDocumentSnapshot.distanceFromCenterInKm <=
+                  radiusInKm * _detectionRangeBuffer,
         )
         .toList()
       // sort list by distance from center point.
       ..sort(
-        (final a, final b) => (a.distanceFromCenterInKm * 1000).toInt() - (b.distanceFromCenterInKm * 1000).toInt(),
+        (final a, final b) =>
+            (a.distanceFromCenterInKm * 1000).toInt() -
+            (b.distanceFromCenterInKm * 1000).toInt(),
       );
     return filteredList;
   }
@@ -199,14 +225,20 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   List<Stream<List<T>>> _collectionStreams({
     required final double radiusInKm,
     required final GeoReference center,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
   }) {
     return _geoHashes(radiusInKm: radiusInKm, center: center)
         .map(
           (final geoHash) => geoQuery(
             geoHash: geoHash,
             queryBuilder: queryBuilder,
-          ).snapshots().map((final querySnapshot) => querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList()),
+          ).snapshots().map(
+                (final querySnapshot) => querySnapshot.docs
+                    .map((doc) => convertDataTypeFromMap(doc.data()))
+                    .toList(),
+              ),
         )
         .toList();
   }
@@ -216,7 +248,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   List<Future<List<T>>> _collectionFutures({
     required final double radiusInKm,
     required final GeoReference center,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
   }) {
     return _geoHashes(radiusInKm: radiusInKm, center: center).map(
       (final geoHash) async {
@@ -224,7 +258,9 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
           geoHash: geoHash,
           queryBuilder: queryBuilder,
         ).get();
-        return querySnapshot.docs.map((doc) => convertDataTypeFromMap(doc.data())).toList();
+        return querySnapshot.docs
+            .map((doc) => convertDataTypeFromMap(doc.data()))
+            .toList();
       },
     ).toList();
   }
@@ -247,13 +283,17 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   @visibleForTesting
   Query<Map<String, dynamic>> geoQuery({
     required final String geoHash,
-    final Query<Map<String, dynamic>>? Function(Query<Map<String, dynamic>> query)? queryBuilder,
+    final Query<Map<String, dynamic>>? Function(
+      Query<Map<String, dynamic>> query,
+    )? queryBuilder,
   }) {
     Query<Map<String, dynamic>> query = collectionReference;
     if (queryBuilder != null) {
       query = queryBuilder(query)!;
     }
-    return query.orderBy('$_fieldName.$_geoHashField').startAt([geoHash]).endAt(['$geoHash{']);
+    return query
+        .orderBy("$_fieldName.$_geoHashField")
+        .startAt([geoHash]).endAt(["$geoHash{"]);
   }
 
   /// Returns merged stream of collection streams.
@@ -263,7 +303,8 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
       Rx.combineLatest<List<T>, List<T>>(
         collectionStreams,
         (final values) => [
-          for (final queryDocumentSnapshots in values) ...queryDocumentSnapshots,
+          for (final queryDocumentSnapshots in values)
+            ...queryDocumentSnapshots,
         ],
       );
 
@@ -272,7 +313,8 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
     final List<Future<List<T>>> collectionFutures,
   ) async {
     final mergedQueryDocumentSnapshots = <T>[];
-    await Future.forEach<Future<List<T>>>(collectionFutures, (final values) async {
+    await Future.forEach<Future<List<T>>>(collectionFutures,
+        (final values) async {
       final queryDocumentSnapshots = await values;
       queryDocumentSnapshots.forEach(mergedQueryDocumentSnapshots.add);
     });
@@ -280,13 +322,15 @@ extension GeoCollectionReference<T, Q> on FirestoreDataSource<T, Q> {
   }
 
   /// Returns nullable [_GeoDocumentSnapshot] from given [QueryDocumentSnapshot].
-  _GeoDocumentSnapshot<T>? _nullableGeoDocumentSnapshotFromQueryDocumentSnapshot({
+  _GeoDocumentSnapshot<T>?
+      _nullableGeoDocumentSnapshotFromQueryDocumentSnapshot({
     required final T queryDocumentSnapshot,
     required final GeoReference center,
   }) {
     final fetchedData = queryDocumentSnapshot;
     final fetchedLatLng = _geoPointFrom(convertToMap(fetchedData));
-    final distanceFromCenterInKm = center.distanceBetweenInKm(geoPoint: fetchedLatLng);
+    final distanceFromCenterInKm =
+        center.distanceBetweenInKm(geoPoint: fetchedLatLng);
     return _GeoDocumentSnapshot(
       documentSnapshot: queryDocumentSnapshot,
       distanceFromCenterInKm: distanceFromCenterInKm,

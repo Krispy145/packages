@@ -5,7 +5,8 @@ import "package:utilities/widgets/load_state/store.dart";
 part "store.g.dart";
 
 /// store for [DashboardShellStructureStore]
-class DashboardShellStructureStore = DashboardShellStructureStoreBase with _$DashboardShellStructureStore;
+class DashboardShellStructureStore = DashboardShellStructureStoreBase
+    with _$DashboardShellStructureStore;
 
 /// [DashboardShellStructureStore] is a Store that is used to manage the state of the DashboardShellStructure.
 abstract class DashboardShellStructureStoreBase with LoadStateStore, Store {
@@ -36,11 +37,6 @@ abstract class DashboardShellStructureStoreBase with LoadStateStore, Store {
     _isNavigationRailExtended = !_isNavigationRailExtended;
   }
 }
-
-
-
-
-
 
 // import "package:mobx/mobx.dart";
 

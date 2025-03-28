@@ -62,7 +62,9 @@ class AppLoggerInjector {
     List<Enum> features, {
     LoggerType type = LoggerType.information,
   }) {
-    final lineLength = (text.length + (features.join(", ").length) + 2) > 300 ? 300 : text.length + (features.join(", ").length) + 2;
+    final lineLength = (text.length + (features.join(", ").length) + 2) > 300
+        ? 300
+        : text.length + (features.join(", ").length) + 2;
     final _logger = Logger(
       printer: PrettyPrinter(
         printEmojis: false,

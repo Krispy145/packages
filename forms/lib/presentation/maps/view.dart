@@ -73,7 +73,8 @@ class FormsMapView extends StatelessWidget {
           final key = entry.key as String;
           final value = entry.value;
           final updatedKeys = List<String>.from(keys)..add(key);
-          final valueEditor = buildValueEditor(context, value, updatedKeys, store.updateValue);
+          final valueEditor =
+              buildValueEditor(context, value, updatedKeys, store.updateValue);
           if (valueEditor != null) {
             return ExpansionTile(
               title: Text(key.split("_").first),
@@ -97,7 +98,8 @@ class FormsMapView extends StatelessWidget {
                   child: Column(
                     children: listValues.asMap().entries.map((entry) {
                       final index = entry.key;
-                      final listUpdatedKeys = List<String>.from(updatedKeys)..add(index.toString());
+                      final listUpdatedKeys = List<String>.from(updatedKeys)
+                        ..add(index.toString());
                       final listValue = entry.value;
                       final listValueEditor = buildValueEditor(
                         context,
@@ -225,7 +227,8 @@ class FormsMapView extends StatelessWidget {
       if (result == false) {
         return context.showSnackbar(
           SnackbarConfiguration.warning(
-            title: 'Cancelled ${isUpdating ? 'update' : 'creation'} of Map Type',
+            title:
+                'Cancelled ${isUpdating ? 'update' : 'creation'} of Map Type',
           ),
         );
       }

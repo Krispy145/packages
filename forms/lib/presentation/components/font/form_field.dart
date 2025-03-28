@@ -19,7 +19,8 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
     TextStyle? textStyle;
 
     try {
-      textStyle = AppTheme.fontsStore.getFont(store.value ?? LYFonts.values.first.name);
+      textStyle =
+          AppTheme.fontsStore.getFont(store.value ?? LYFonts.values.first.name);
     } catch (e) {
       AppLogger.print(
         "Get font failed: $e",

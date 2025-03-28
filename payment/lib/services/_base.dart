@@ -1,4 +1,6 @@
-abstract class BasePaymentService {
-  // Future<String?> createPaymentIntent({required int amount, String currency = 'zar'});
-  Future<String?> makePayment(Future<String> Function(int, String) paymentIntent);
+abstract class BasePaymentService<T> {
+  Future<String> createCheckoutSession(List<T> items);
+  Future<void> handleSuccessfulSubscription(String sessionId);
+  Future<void> handleExpiredSubscription(String sessionId);
+  Future<void> launchCheckout({required String sessionUrl});
 }

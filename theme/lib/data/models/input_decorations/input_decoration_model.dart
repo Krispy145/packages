@@ -131,28 +131,50 @@ class InputDecorationModel with InputDecorationModelMappable {
 
   InputDecorationTheme asInputDecorationTheme({String? styleTypeName}) {
     return InputDecorationTheme(
-      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      floatingLabelStyle: floatingLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      helperStyle: helperStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      labelStyle: labelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      floatingLabelStyle: floatingLabelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      helperStyle: helperStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       helperMaxLines: helperMaxLines_int,
-      hintStyle: hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      hintStyle: hintStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       hintFadeDuration: hintFadeDuration_duration,
-      errorStyle: errorStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      errorStyle: errorStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       errorMaxLines: errorMaxLines_int,
       isDense: isDense_bool,
-      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      contentPadding:
+          contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       isCollapsed: isCollapsed_bool,
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
-      prefixStyle: prefixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      prefixIconColor: prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      suffixStyle: suffixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      suffixIconColor: suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      counterStyle: counterStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      prefixStyle: prefixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      prefixIconColor:
+          prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      suffixStyle: suffixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      suffixIconColor:
+          suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      counterStyle: counterStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       filled: filled_bool,
       fillColor: fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      errorBorder: errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      errorBorder:
+          errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
       focusedBorder: focusedBorder_inputBorder?.asInputBorder(
         styleTypeName: styleTypeName,
       ),
@@ -175,28 +197,50 @@ class InputDecorationModel with InputDecorationModelMappable {
 
   InputDecoration asInputDecoration({String? styleTypeName}) {
     return InputDecoration(
-      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      floatingLabelStyle: floatingLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      helperStyle: helperStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      labelStyle: labelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      floatingLabelStyle: floatingLabelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      helperStyle: helperStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       helperMaxLines: helperMaxLines_int,
-      hintStyle: hintStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      hintStyle: hintStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       hintFadeDuration: hintFadeDuration_duration,
-      errorStyle: errorStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      errorStyle: errorStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       errorMaxLines: errorMaxLines_int,
       isDense: isDense_bool,
-      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      contentPadding:
+          contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       isCollapsed: isCollapsed_bool,
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
-      prefixStyle: prefixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      prefixIconColor: prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      suffixStyle: suffixStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      suffixIconColor: suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
-      counterStyle: counterStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      prefixStyle: prefixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      prefixIconColor:
+          prefixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      suffixStyle: suffixStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      suffixIconColor:
+          suffixIconColor_themeColorString?.toColor(styleType: styleTypeName),
+      counterStyle: counterStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       filled: filled_bool,
       fillColor: fillColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      errorBorder: errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      errorBorder:
+          errorBorder_inputBorder?.asInputBorder(styleTypeName: styleTypeName),
       focusedBorder: focusedBorder_inputBorder?.asInputBorder(
         styleTypeName: styleTypeName,
       ),

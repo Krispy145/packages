@@ -7,11 +7,15 @@ class StreamWrapper<T> {
   T? latestValue;
 
   /// Ensure the stream is a broadcast stream
-  StreamWrapper({required this.name, required Stream<T> stream}) : stream = stream.isBroadcast ? stream : stream.asBroadcastStream();
+  StreamWrapper({required this.name, required Stream<T> stream})
+      : stream = stream.isBroadcast ? stream : stream.asBroadcastStream();
 
   /// Create an empty StreamWrapper
   static StreamWrapper<T> empty<T>() {
-    return StreamWrapper(name: "Empty Stream", stream: Stream<T>.empty().asBroadcastStream());
+    return StreamWrapper(
+      name: "Empty Stream",
+      stream: Stream<T>.empty().asBroadcastStream(),
+    );
   }
 
   /// Start listening to the stream with an optional callback

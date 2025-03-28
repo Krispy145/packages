@@ -33,7 +33,8 @@ class BorderRadiusFormField extends BaseFormField<BorderRadiusFormFieldStore> {
                   )
                   .toList(),
               selected: {store.type},
-              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) =>
+                  store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             Container(

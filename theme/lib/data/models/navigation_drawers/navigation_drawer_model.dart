@@ -43,17 +43,23 @@ class NavigationDrawerModel with NavigationDrawerModelMappable {
   }) {
     return NavigationDrawerThemeData(
       tileHeight: tileHeight_double,
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor:
+          indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
         styleTypeName: styleTypeName,
       ),
       indicatorSize: indicatorSize_size?.asSize(styleTypeName: styleTypeName),
       labelTextStyle: WidgetStateProperty.all(
-        labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+        labelTextStyle_textStyleString
+            ?.toTextStyleModel(styleType: styleTypeName)
+            ?.asTextStyle,
       ),
     );
   }

@@ -25,8 +25,11 @@ class DropdownModel with DropdownModelMappable {
 
   DropdownMenuThemeData asDropdownMenuThemeData({String? styleTypeName}) {
     return DropdownMenuThemeData(
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      inputDecorationTheme: inputDecoration_inputDecoration?.asInputDecorationTheme(),
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      inputDecorationTheme:
+          inputDecoration_inputDecoration?.asInputDecorationTheme(),
       menuStyle: menuStyle_menu?.asMenuStyle(),
     );
   }

@@ -29,7 +29,9 @@ abstract class _AppLauncherStore with Store {
   }
 
   @action
-  Future<bool> launchAppFromDeepLink({required AppIdentifier identifier}) async {
+  Future<bool> launchAppFromDeepLink({
+    required AppIdentifier identifier,
+  }) async {
     return launchUrl(Uri.parse(identifier.buildDeepLink()));
   }
 

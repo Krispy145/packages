@@ -74,11 +74,14 @@ class BadgeModel with BadgeModelMappable {
 
   BadgeThemeData asBadgeThemeData({String? styleTypeName}) {
     return BadgeThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       textColor: textColor_themeColorString?.toColor(styleType: styleTypeName),
       smallSize: smallSize_double,
       largeSize: largeSize_double,
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       alignment: alignment_enum_alignmentOptions?.alignment,
       offset: offset_offset?.asOffset(styleTypeName: styleTypeName),
@@ -109,9 +112,8 @@ class BadgeModel with BadgeModelMappable {
   // ];
 }
 
-
 // import "package:flutter/material.dart";
-// 
+//
 // import "package:theme/data/models/edge_insets_model.dart";
 // import "package:theme/data/models/offset_model.dart";
 // import "package:theme/extensions/text_style_string.dart";

@@ -79,11 +79,18 @@ class LYImage extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (imageType) {
       case ImageType.file:
-        final _assetOptions = options as AssetImageOptions? ?? const AssetImageOptions();
+        final _assetOptions =
+            options as AssetImageOptions? ?? const AssetImageOptions();
         return Image.file(
           file!,
           frameBuilder: _assetOptions.frameBuilder,
-          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _assetOptions, error.toString(), error),
+          errorBuilder: _assetOptions.errorBuilder ??
+              (context, error, stackTrace) => buildDefaultErrorImage(
+                    context,
+                    _assetOptions,
+                    error.toString(),
+                    error,
+                  ),
           width: _assetOptions.width,
           height: _assetOptions.height,
           color: _assetOptions.color,
@@ -98,11 +105,18 @@ class LYImage extends StatelessWidget {
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.memory:
-        final _memoryOptions = options as MemoryImageOptions? ?? const MemoryImageOptions();
+        final _memoryOptions =
+            options as MemoryImageOptions? ?? const MemoryImageOptions();
         return Image.memory(
           memory!,
           frameBuilder: _memoryOptions.frameBuilder,
-          errorBuilder: _memoryOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _memoryOptions, error.toString(), error),
+          errorBuilder: _memoryOptions.errorBuilder ??
+              (context, error, stackTrace) => buildDefaultErrorImage(
+                    context,
+                    _memoryOptions,
+                    error.toString(),
+                    error,
+                  ),
           width: _memoryOptions.width,
           height: _memoryOptions.height,
           color: _memoryOptions.color,
@@ -117,11 +131,18 @@ class LYImage extends StatelessWidget {
           filterQuality: _memoryOptions.filterQuality,
         );
       case ImageType.asset:
-        final _assetOptions = options as AssetImageOptions? ?? const AssetImageOptions();
+        final _assetOptions =
+            options as AssetImageOptions? ?? const AssetImageOptions();
         return Image.asset(
           assetPath!,
           frameBuilder: _assetOptions.frameBuilder,
-          errorBuilder: _assetOptions.errorBuilder ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _assetOptions, error.toString(), error),
+          errorBuilder: _assetOptions.errorBuilder ??
+              (context, error, stackTrace) => buildDefaultErrorImage(
+                    context,
+                    _assetOptions,
+                    error.toString(),
+                    error,
+                  ),
           width: _assetOptions.width,
           height: _assetOptions.height,
           color: _assetOptions.color,
@@ -136,7 +157,8 @@ class LYImage extends StatelessWidget {
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.network:
-        final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
+        final _networkOptions =
+            options as NetworkImageOptions? ?? NetworkImageOptions();
         if (url == null) {
           return _networkOptions.placeholder?.call(context, "") ??
               DecoratedBox(
@@ -144,7 +166,13 @@ class LYImage extends StatelessWidget {
                   color: context.colorScheme.inverseSurface,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Container(color: context.colorScheme.outline.withValues(alpha: 0.1), child: Icon(Icons.image, color: context.colorScheme.onSecondaryContainer)),
+                child: Container(
+                  color: context.colorScheme.outline.withValues(alpha: 0.1),
+                  child: Icon(
+                    Icons.image,
+                    color: context.colorScheme.onSecondaryContainer,
+                  ),
+                ),
               );
         }
         final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
@@ -180,13 +208,20 @@ class LYImage extends StatelessWidget {
           maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
           maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
           errorListener: _networkOptions.errorListener,
-          imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
+          imageRenderMethodForWeb: _isUsingProxy
+              ? ImageRenderMethodForWeb.HttpGet
+              : _networkOptions.imageRenderMethodForWeb,
         );
     }
   }
 
-  CachedNetworkImage _buildErrorImageProxyBuilder(BuildContext context, String error, Object object) {
-    final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions(); //.copyWith(proxy: WebServices.proxy);
+  CachedNetworkImage _buildErrorImageProxyBuilder(
+    BuildContext context,
+    String error,
+    Object object,
+  ) {
+    final _networkOptions = options as NetworkImageOptions? ??
+        NetworkImageOptions(); //.copyWith(proxy: WebServices.proxy);
     final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
     final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
     final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
@@ -206,7 +241,13 @@ class LYImage extends StatelessWidget {
       imageBuilder: _networkOptions.imageBuilder,
       placeholder: _networkOptions.placeholder,
       progressIndicatorBuilder: _networkOptions.progressIndicatorBuilder,
-      errorWidget: _networkOptions.errorWidget ?? (context, error, stackTrace) => buildDefaultErrorImage(context, _networkOptions, error, stackTrace),
+      errorWidget: _networkOptions.errorWidget ??
+          (context, error, stackTrace) => buildDefaultErrorImage(
+                context,
+                _networkOptions,
+                error,
+                stackTrace,
+              ),
       fadeOutDuration: _networkOptions.fadeOutDuration,
       fadeOutCurve: _networkOptions.fadeOutCurve,
       fadeInDuration: _networkOptions.fadeInDuration,
@@ -220,11 +261,18 @@ class LYImage extends StatelessWidget {
       maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
       maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
       errorListener: _networkOptions.errorListener,
-      imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
+      imageRenderMethodForWeb: _isUsingProxy
+          ? ImageRenderMethodForWeb.HttpGet
+          : _networkOptions.imageRenderMethodForWeb,
     );
   }
 
-  Widget buildDefaultErrorImage(BuildContext context, ImageOptions options, String error, Object stackTrace) {
+  Widget buildDefaultErrorImage(
+    BuildContext context,
+    ImageOptions options,
+    String error,
+    Object stackTrace,
+  ) {
     debugPrint("Third try at loading Image");
     return Image.network(
       error,
@@ -232,10 +280,15 @@ class LYImage extends StatelessWidget {
       width: options.width,
       height: options.height,
       errorBuilder: (context, errorObject, stackTrace) {
-        debugPrint("Could not load error image after 3 tries: URL: $error\nERROR: $errorObject\nSTACKTRACE: $stackTrace");
-        return options.errorBuilder?.call(context, error, stackTrace) ?? const Center(child: Icon(Icons.error_outline));
+        debugPrint(
+          "Could not load error image after 3 tries: URL: $error\nERROR: $errorObject\nSTACKTRACE: $stackTrace",
+        );
+        return options.errorBuilder?.call(context, error, stackTrace) ??
+            const Center(child: Icon(Icons.error_outline));
       },
-      scale: options.memCacheWidth != null || options.memCacheHeight != null ? 1 : 1.5,
+      scale: options.memCacheWidth != null || options.memCacheHeight != null
+          ? 1
+          : 1.5,
       cacheHeight: options.memCacheHeight,
       cacheWidth: options.memCacheWidth,
       color: options.color,

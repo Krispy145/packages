@@ -1,11 +1,11 @@
-import 'package:dart_mappable/dart_mappable.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:maps/data/models/lat_lng.mapper.dart';
-import 'package:maps/helpers/geo_points/math.dart';
+import "package:dart_mappable/dart_mappable.dart";
+import "package:latlong2/latlong.dart";
+import "package:maps/data/models/lat_lng.mapper.dart";
+import "package:maps/helpers/geo_points/math.dart";
 
-import '../../helpers/geo_points/utils.dart' as utils;
+import "../../helpers/geo_points/utils.dart" as utils;
 
-part 'geo_reference.mapper.dart';
+part "geo_reference.mapper.dart";
 
 // /// A model corresponds to Cloud Firestore as geoPoint field.
 // class GeoReference {
@@ -36,7 +36,10 @@ part 'geo_reference.mapper.dart';
 //   Map<String, dynamic> get data => {'geoPoint': const LatLngMapper().encode(geoPoint), 'geoHash': geoHash};
 // }
 
-@MappableClass(caseStyle: CaseStyle.snakeCase, includeCustomMappers: [LatLngMapper()])
+@MappableClass(
+  caseStyle: CaseStyle.snakeCase,
+  includeCustomMappers: [LatLngMapper()],
+)
 class GeoReference with GeoReferenceMappable {
   final LatLng geoPoint;
   GeoReference({
@@ -50,18 +53,21 @@ class GeoReference with GeoReferenceMappable {
   double get longitude => geoPoint.longitude;
 
   /// Returns geoHash of [GeoReference].
-  String get geoHash => encode(latitude: geoPoint.latitude, longitude: geoPoint.longitude);
+  String get geoHash =>
+      encode(latitude: geoPoint.latitude, longitude: geoPoint.longitude);
 
   /// Returns all neighbors of [GeoReference].
   List<String> get neighbors => utils.neighborGeoHashesOf(geoHash: geoHash);
 
   /// Returns distance in kilometers between [GeoReference] and given
   /// [geoPoint].
-  double distanceBetweenInKm({required final LatLng geoPoint}) => distanceInKm(geoPoint1: this.geoPoint, geoPoint2: geoPoint);
+  double distanceBetweenInKm({required final LatLng geoPoint}) =>
+      distanceInKm(geoPoint1: this.geoPoint, geoPoint2: geoPoint);
 
   /// Returns [geoPoint] and [geoHash] as Map<String, dynamic>. Can be used when
   /// adding or updating to Firestore document.
-  Map<String, dynamic> get data => {'geo_point': const LatLngMapper().encode(geoPoint), 'geo_hash': geoHash};
+  Map<String, dynamic> get data =>
+      {"geo_point": const LatLngMapper().encode(geoPoint), "geo_hash": geoHash};
 
   @override
   Map<String, dynamic> toMap() => data;

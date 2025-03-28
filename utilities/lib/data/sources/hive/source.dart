@@ -13,7 +13,9 @@ import "package:utilities/utils/loggers.dart";
 import "package:utilities/widgets/load_state/store.dart";
 
 /// [HiveDataSource] is a wrapper class for [Hive]
-abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T, Q> {
+abstract class HiveDataSource<T, Q>
+    with LoadStateStore
+    implements DataSource<T, Q> {
   /// [boxName] is the name of the [Box]
   final String boxName;
 
@@ -99,7 +101,8 @@ abstract class HiveDataSource<T, Q> with LoadStateStore implements DataSource<T,
       );
 
   /// [boxListenable] returns a [ValueListenable] for the [TypeBox]
-  ValueListenable<TypeBox<T>> get boxListenable => TypeBoxListenable<T>(_box, null);
+  ValueListenable<TypeBox<T>> get boxListenable =>
+      TypeBoxListenable<T>(_box, null);
 
   // @override
   // T convertFromMap(Map<String, dynamic> data) => convertDataTypeFromJson(data);

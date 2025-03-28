@@ -9,7 +9,9 @@ class EmptyFormFieldState<T> extends FieldState<T> {
 
 class EmptyRequiresValueFormFieldState<T> extends FieldState<T> {
   final String fieldRequiredMessage;
-  EmptyRequiresValueFormFieldState({this.fieldRequiredMessage = "Field cannot be empty"});
+  EmptyRequiresValueFormFieldState({
+    this.fieldRequiredMessage = "Field cannot be empty",
+  });
 
   @override
   bool get canUseValue => false;

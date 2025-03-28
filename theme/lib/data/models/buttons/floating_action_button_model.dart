@@ -91,11 +91,16 @@ class FloatingActionButtonModel with FloatingActionButtonModelMappable {
     String? styleTypeName,
   }) {
     return FloatingActionButtonThemeData(
-      foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      focusColor: focusColor_themeColorString?.toColor(styleType: styleTypeName),
-      hoverColor: hoverColor_themeColorString?.toColor(styleType: styleTypeName),
-      splashColor: splashColor_themeColorString?.toColor(styleType: styleTypeName),
+      foregroundColor:
+          foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      focusColor:
+          focusColor_themeColorString?.toColor(styleType: styleTypeName),
+      hoverColor:
+          hoverColor_themeColorString?.toColor(styleType: styleTypeName),
+      splashColor:
+          splashColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       focusElevation: focusElevation_double,
       hoverElevation: hoverElevation_double,
@@ -107,14 +112,19 @@ class FloatingActionButtonModel with FloatingActionButtonModelMappable {
       sizeConstraints: sizeConstraints_boxConstraints?.asBoxConstraints(
         styleTypeName: styleTypeName,
       ),
-      smallSizeConstraints: smallSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
-      largeSizeConstraints: largeSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
-      extendedSizeConstraints: extendedSizeConstraints_boxConstraints?.asBoxConstraints(styleTypeName: styleTypeName),
+      smallSizeConstraints: smallSizeConstraints_boxConstraints
+          ?.asBoxConstraints(styleTypeName: styleTypeName),
+      largeSizeConstraints: largeSizeConstraints_boxConstraints
+          ?.asBoxConstraints(styleTypeName: styleTypeName),
+      extendedSizeConstraints: extendedSizeConstraints_boxConstraints
+          ?.asBoxConstraints(styleTypeName: styleTypeName),
       extendedIconLabelSpacing: extendedIconLabelSpacing_double,
       extendedPadding: extendedPadding_edgeInsets?.asEdgeInsets(
         styleTypeName: styleTypeName,
       ),
-      extendedTextStyle: extendedTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      extendedTextStyle: extendedTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
     );
   }
 }

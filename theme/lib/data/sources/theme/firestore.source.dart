@@ -5,7 +5,9 @@ import "package:utilities/data/sources/firestore/source.dart";
 import "_source.dart";
 
 /// [FirestoreThemeDataSource] is a class that implements [ThemeDataSource] interface.
-class FirestoreThemeDataSource<T> extends FirestoreDataSource<T, BasicSearchQueryModel> implements ThemeDataSource<T> {
+class FirestoreThemeDataSource<T>
+    extends FirestoreDataSource<T, BasicSearchQueryModel>
+    implements ThemeDataSource<T> {
   /// [FirestoreThemeDataSource] constructor.
   FirestoreThemeDataSource(
     super.collectionName, {
@@ -15,7 +17,13 @@ class FirestoreThemeDataSource<T> extends FirestoreDataSource<T, BasicSearchQuer
   });
 
   @override
-  Query<Map<String, dynamic>> buildQuery(BasicSearchQueryModel query, Query<Map<String, dynamic>> collectionReference) {
-    return collectionReference.where("name", isGreaterThanOrEqualTo: query.searchTerm);
+  Query<Map<String, dynamic>> buildQuery(
+    BasicSearchQueryModel query,
+    Query<Map<String, dynamic>> collectionReference,
+  ) {
+    return collectionReference.where(
+      "name",
+      isGreaterThanOrEqualTo: query.searchTerm,
+    );
   }
 }

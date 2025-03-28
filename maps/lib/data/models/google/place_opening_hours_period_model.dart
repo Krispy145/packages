@@ -1,8 +1,8 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-import 'place_opening_hours_time_model.dart';
+import "place_opening_hours_time_model.dart";
 
-part 'place_opening_hours_period_model.mapper.dart';
+part "place_opening_hours_period_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class PlaceOpeningHoursPeriod with PlaceOpeningHoursPeriodMappable {

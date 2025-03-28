@@ -29,7 +29,8 @@ class ColorSeed extends StatelessWidget {
               child: TextField(
                 onSubmitted: (value) {
                   ThemeChanger.changeCurrentThemeStyle(
-                    colorModel: ColorModel.fromSeed(seedColor: "#$value".toColor()!),
+                    colorModel:
+                        ColorModel.fromSeed(seedColor: "#$value".toColor()!),
                   );
                 },
                 inputFormatters: [

@@ -19,25 +19,27 @@ class ThemeDataRepository {
   });
 
   /// [dataSource] is the [ThemeDataSource] that will be used to fetch the data.
-  ThemeDataSource<BaseThemeModel>? get dataSource => baseThemeConfiguration != null
-      ? _dataSourceByType<BaseThemeModel>(
-          "baseThemes",
-          baseThemeConfiguration!,
-          convertDataTypeFromMap: BaseThemeModel.fromMap,
-          convertDataTypeToMap: (model) => model.toMap(),
-          titleFromType: (data) => "Base Theme from ${data.name}",
-        )
-      : null;
+  ThemeDataSource<BaseThemeModel>? get dataSource =>
+      baseThemeConfiguration != null
+          ? _dataSourceByType<BaseThemeModel>(
+              "baseThemes",
+              baseThemeConfiguration!,
+              convertDataTypeFromMap: BaseThemeModel.fromMap,
+              convertDataTypeToMap: (model) => model.toMap(),
+              titleFromType: (data) => "Base Theme from ${data.name}",
+            )
+          : null;
 
-  ThemeDataSource<ComponentThemesModel>? get componentThemesDataSource => componentThemesConfiguration != null
-      ? _dataSourceByType<ComponentThemesModel>(
-          "componentsThemes",
-          componentThemesConfiguration!,
-          convertDataTypeFromMap: ComponentThemesModel.fromMap,
-          convertDataTypeToMap: (model) => model.toMap(),
-          titleFromType: (data) => "Component Theme from ${data.name}",
-        )
-      : null;
+  ThemeDataSource<ComponentThemesModel>? get componentThemesDataSource =>
+      componentThemesConfiguration != null
+          ? _dataSourceByType<ComponentThemesModel>(
+              "componentsThemes",
+              componentThemesConfiguration!,
+              convertDataTypeFromMap: ComponentThemesModel.fromMap,
+              convertDataTypeToMap: (model) => model.toMap(),
+              titleFromType: (data) => "Component Theme from ${data.name}",
+            )
+          : null;
 
   /// [_dataSourceByType] returns the appropriate [ThemeDataSource] based on the [ThemeDataSourceType] enum.
   /// Defaults to [AssetsThemeDataSource] if no type is provided.

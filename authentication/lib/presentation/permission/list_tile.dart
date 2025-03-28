@@ -62,7 +62,8 @@ class PermissionListTile extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           title: const Text("Delete Permission"),
-          content: const Text("Are you sure you want to delete this permission?"),
+          content:
+              const Text("Are you sure you want to delete this permission?"),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),

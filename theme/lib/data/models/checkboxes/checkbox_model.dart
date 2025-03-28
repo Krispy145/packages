@@ -43,7 +43,8 @@ class CheckboxModel with CheckboxModelMappable {
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       splashRadius: splashRadius_double,
-      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      shape:
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       side: side_borderSide?.asBorderSide(styleTypeName: styleTypeName),
     );
   }

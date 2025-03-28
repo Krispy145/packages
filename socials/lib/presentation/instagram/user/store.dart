@@ -34,7 +34,8 @@ abstract class _InstagramUserStore with AuthStateStore, Store {
     tryAuthenticate();
   }
 
-  final SecureInstagramDataSource _secureDataSource = SecureInstagramDataSource();
+  final SecureInstagramDataSource _secureDataSource =
+      SecureInstagramDataSource();
 
   @observable
   InstagramUserModel? user;
@@ -100,21 +101,39 @@ abstract class _InstagramUserStore with AuthStateStore, Store {
     var localUser = InstagramUserModel();
     try {
       if (uri != null && uri.toString().contains(appRedirectUrl)) {
-        AppLogger.print("queryParams: ${uri.queryParameters}", [SocialsLoggers.instagram]);
+        AppLogger.print(
+          "queryParams: ${uri.queryParameters}",
+          [SocialsLoggers.instagram],
+        );
         if (uri.queryParameters.containsKey("code")) {
           final code = uri.queryParameters["code"]!;
           AppLogger.print("code: $code", [SocialsLoggers.instagram]);
-          final _shortLivedToken = await repository.postShortLivedAccessToken(authCode: code);
+          final _shortLivedToken =
+              await repository.postShortLivedAccessToken(authCode: code);
           if (_shortLivedToken != null) {
-            AppLogger.print("shortLivedToken: $_shortLivedToken", [SocialsLoggers.instagram]);
+            AppLogger.print(
+              "shortLivedToken: $_shortLivedToken",
+              [SocialsLoggers.instagram],
+            );
             localUser = localUser.copyWith(shortLivedToken: _shortLivedToken);
-            final _longLivedToken = await repository.getLongLivedAccessToken(shortLivedAccessToken: _shortLivedToken);
+            final _longLivedToken = await repository.getLongLivedAccessToken(
+              shortLivedAccessToken: _shortLivedToken,
+            );
             if (_longLivedToken != null) {
-              AppLogger.print("longLivedToken: $_longLivedToken", [SocialsLoggers.instagram]);
+              AppLogger.print(
+                "longLivedToken: $_longLivedToken",
+                [SocialsLoggers.instagram],
+              );
               localUser = localUser.copyWith(longLivedToken: _longLivedToken);
-              final _user = await repository.getMe(accessTokenModel: _longLivedToken);
+              final _user =
+                  await repository.getMe(accessTokenModel: _longLivedToken);
               if (_user != null) {
-                localUser = localUser.copyWith(id: _user.id, username: _user.username, accountType: _user.accountType, mediaCount: _user.mediaCount);
+                localUser = localUser.copyWith(
+                  id: _user.id,
+                  username: _user.username,
+                  accountType: _user.accountType,
+                  mediaCount: _user.mediaCount,
+                );
               }
               user = localUser;
               await tryAuthenticate();

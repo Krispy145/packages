@@ -5,7 +5,8 @@ import "package:utilities/helpers/tuples.dart";
 import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
-abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends ApiDataSource<T, Q> with Paginated<Resp, T, Q> {
+abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q>
+    extends ApiDataSource<T, Q> with Paginated<Resp, T, Q> {
   /// [PaginatedApiDataSource] constructor
   PaginatedApiDataSource(
     super.baseUrl, {
@@ -24,7 +25,11 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
 
   final List<T?> Function(Resp) getItemsFromResponse;
 
-  final Map<String, dynamic> Function(Resp? lastResponse, int? size, String? orderBy) getNexPageParametersFromResponse;
+  final Map<String, dynamic> Function(
+    Resp? lastResponse,
+    int? size,
+    String? orderBy,
+  ) getNexPageParametersFromResponse;
 
   @override
   Future<Pair<RequestResponse, Pair<Resp?, List<T?>>>> getPage({
@@ -35,7 +40,8 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
     Map<String, dynamic>? queryParameters,
   }) async {
     final _url = "$baseUrl/$sourceSuffix";
-    final nextPageParameters = getNexPageParametersFromResponse(lastResponse, size, orderBy);
+    final nextPageParameters =
+        getNexPageParametersFromResponse(lastResponse, size, orderBy);
     final parameters = {...?queryParameters, ...nextPageParameters};
 
     try {
@@ -44,15 +50,24 @@ abstract class PaginatedApiDataSource<Resp extends ResponseModel, T, Q> extends 
         queryParameters: parameters,
         cancelToken: getCancelToken(_url),
       );
-      final convertedResponse = response.data != null ? convertResponseTypeFromMap(response.data!) : null;
+      final convertedResponse = response.data != null
+          ? convertResponseTypeFromMap(response.data!)
+          : null;
       if (convertedResponse == null) {
         return Pair(RequestResponse.failure, Pair(lastResponse, []));
       }
       final items = getItemsFromResponse(convertedResponse);
-      AppLogger.print("Response: $_url, QueryParams: $parameters, Items: $items", [UtilitiesLoggers.apiDataSource]);
+      AppLogger.print(
+        "Response: $_url, QueryParams: $parameters, Items: $items",
+        [UtilitiesLoggers.apiDataSource],
+      );
       return Pair(RequestResponse.success, Pair(convertedResponse, items));
     } catch (e) {
-      AppLogger.print("Error caught: $_url, $e", [UtilitiesLoggers.apiDataSource], type: LoggerType.error);
+      AppLogger.print(
+        "Error caught: $_url, $e",
+        [UtilitiesLoggers.apiDataSource],
+        type: LoggerType.error,
+      );
       return Pair(RequestResponse.failure, Pair(lastResponse, []));
     }
   }

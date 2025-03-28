@@ -1,7 +1,9 @@
 import "package:cross_file/cross_file.dart";
 import "package:utilities/helpers/tuples.dart";
 
-typedef FilesPreviewCallback = Future<Pair<bool, List<XFile>>> Function(List<XFile> files);
+typedef FilesPreviewCallback = Future<Pair<bool, List<XFile>>> Function(
+  List<XFile> files,
+);
 typedef FilePreviewCallback = Future<Pair<bool, XFile>> Function(XFile file);
 
 abstract class BaseFileUploadManager {
@@ -19,11 +21,21 @@ abstract class BaseFileUploadManager {
   Future<void> deleteFiles({required List<String> paths});
 
   // Combined picking and uploading
-  Future<String?> pickAndUploadSingleFile({FilePreviewCallback? previewCallback});
-  Future<List<String>?> pickAndUploadMultipleFiles({FilesPreviewCallback? previewCallback});
-  Future<String?> pickAndUploadSingleImage({FilePreviewCallback? previewCallback});
-  Future<String?> pickAndUploadCameraImage({FilePreviewCallback? previewCallback});
-  Future<List<String>?> pickAndUploadMultipleImages({FilesPreviewCallback? previewCallback});
+  Future<String?> pickAndUploadSingleFile({
+    FilePreviewCallback? previewCallback,
+  });
+  Future<List<String>?> pickAndUploadMultipleFiles({
+    FilesPreviewCallback? previewCallback,
+  });
+  Future<String?> pickAndUploadSingleImage({
+    FilePreviewCallback? previewCallback,
+  });
+  Future<String?> pickAndUploadCameraImage({
+    FilePreviewCallback? previewCallback,
+  });
+  Future<List<String>?> pickAndUploadMultipleImages({
+    FilesPreviewCallback? previewCallback,
+  });
 
   /// download file/image
   Future<XFile?> downloadFile({required String path});

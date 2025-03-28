@@ -11,8 +11,10 @@ class CrudTabBar extends StatefulWidget {
   State<CrudTabBar> createState() => _CrudTabBarState();
 }
 
-class _CrudTabBarState extends State<CrudTabBar> with SingleTickerProviderStateMixin {
-  late final crudTabController = TabController(length: CRUD.values.length + 1, vsync: this);
+class _CrudTabBarState extends State<CrudTabBar>
+    with SingleTickerProviderStateMixin {
+  late final crudTabController =
+      TabController(length: CRUD.values.length + 1, vsync: this);
 
   @override
   Widget build(BuildContext context) {

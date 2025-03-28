@@ -87,13 +87,20 @@ class ColorMapper extends SimpleMapper<Color> {
     // Has opacity (which needs to be moved to front)
     if (hexColor.length == 5 || hexColor.length == 8) {
       final dividingPoint = hexColor.length - 2;
-      hexColor = hexColor.substring(dividingPoint) + hexColor.substring(0, dividingPoint);
+      hexColor = hexColor.substring(dividingPoint) +
+          hexColor.substring(0, dividingPoint);
     }
 
     if (hexColor.length == 3 || hexColor.length == 5) {
       final alphaPart = hexColor.length == 5 ? hexColor.substring(0, 2) : "";
       final colorPart = hexColor.substring(hexColor.length == 5 ? 2 : 0);
-      hexColor = alphaPart + colorPart[0] + colorPart[0] + colorPart[1] + colorPart[1] + colorPart[2] + colorPart[2];
+      hexColor = alphaPart +
+          colorPart[0] +
+          colorPart[0] +
+          colorPart[1] +
+          colorPart[1] +
+          colorPart[2] +
+          colorPart[2];
     }
 
     // Parse the hex color code

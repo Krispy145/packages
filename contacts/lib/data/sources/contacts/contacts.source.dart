@@ -31,7 +31,11 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
     await FlutterContacts.requestPermission();
     final contact = await FlutterContacts.getContact(id);
     if (contact == null) {
-      AppLogger.print("Contact not found ($id)", [ContactsLoggers.contacts], type: LoggerType.error);
+      AppLogger.print(
+        "Contact not found ($id)",
+        [ContactsLoggers.contacts],
+        type: LoggerType.error,
+      );
       return const Pair(RequestResponse.failure, null);
     }
     return Pair(RequestResponse.success, contact);
@@ -67,7 +71,11 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
         ),
       );
     } else {
-      AppLogger.print('Request Permission returned false in "getAll"', [ContactsLoggers.contacts], type: LoggerType.error);
+      AppLogger.print(
+        'Request Permission returned false in "getAll"',
+        [ContactsLoggers.contacts],
+        type: LoggerType.error,
+      );
       return const Pair(RequestResponse.failure, []);
     }
   }
@@ -91,7 +99,10 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   @override
   Future<RequestResponse> addAll(List<Contact> values) async {
     await FlutterContacts.requestPermission();
-    await Future.forEach(values, (contact) async => await FlutterContacts.insertContact(contact));
+    await Future.forEach(
+      values,
+      (contact) async => FlutterContacts.insertContact(contact),
+    );
     return RequestResponse.success;
   }
   //
@@ -108,7 +119,10 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   @override
   Future<RequestResponse> update(String id, Contact contact) async {
     await FlutterContacts.requestPermission();
-    assert(contact.id == id, "The id of the contact to update must be the same as the id in the contact");
+    assert(
+      contact.id == id,
+      "The id of the contact to update must be the same as the id in the contact",
+    );
     await contact.update();
     return RequestResponse.success;
   }
@@ -117,7 +131,10 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   Future<RequestResponse> updateAll(Map<String, Contact> values) async {
     await FlutterContacts.requestPermission();
     await Future.forEach(values.entries, (entry) async {
-      assert(entry.key == entry.value.id, "The id of the contact to update must be the same as the id in the contact");
+      assert(
+        entry.key == entry.value.id,
+        "The id of the contact to update must be the same as the id in the contact",
+      );
       await entry.value.update();
     });
     return RequestResponse.success;
@@ -132,7 +149,11 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
     await FlutterContacts.requestPermission();
     final contactToDelete = contact ?? await FlutterContacts.getContact(id);
     if (contactToDelete == null) {
-      AppLogger.print("Contact not found to delete ($id)", [ContactsLoggers.contacts], type: LoggerType.error);
+      AppLogger.print(
+        "Contact not found to delete ($id)",
+        [ContactsLoggers.contacts],
+        type: LoggerType.error,
+      );
       return RequestResponse.failure;
     }
     contactToDelete.delete();
@@ -141,11 +162,15 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
 
   @override
   Future<RequestResponse> deleteAll() async {
-    throw UnimplementedError("deleteAll is not implemented in ContactsDataSource");
+    throw UnimplementedError(
+      "deleteAll is not implemented in ContactsDataSource",
+    );
   }
 
   @override
-  Future<Pair<RequestResponse, Contact?>> search(BasicSearchQueryModel query) async {
+  Future<Pair<RequestResponse, Contact?>> search(
+    BasicSearchQueryModel query,
+  ) async {
     final result = await FlutterContacts.openExternalPick();
     if (result == null) {
       return const Pair(RequestResponse.failure, null);
@@ -154,10 +179,18 @@ class ContactsDataSource extends DataSource<Contact, BasicSearchQueryModel> {
   }
 
   @override
-  Future<Pair<RequestResponse, List<Contact?>>> searchAll(BasicSearchQueryModel query) async {
+  Future<Pair<RequestResponse, List<Contact?>>> searchAll(
+    BasicSearchQueryModel query,
+  ) async {
     await FlutterContacts.requestPermission();
     final allContacts = await getAll();
-    final result = allContacts.second.where((element) => "${element?.name.first}${element?.name.last}${element?.name.nickname}".contains(query.searchTerm)).toList();
+    final result = allContacts.second
+        .where(
+          (element) =>
+              "${element?.name.first}${element?.name.last}${element?.name.nickname}"
+                  .contains(query.searchTerm),
+        )
+        .toList();
     if (result.isEmpty) {
       return const Pair(RequestResponse.failure, []);
     }

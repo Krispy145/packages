@@ -10,11 +10,15 @@ abstract class BaseLoadStateBuilder extends StatelessWidget {
   const BaseLoadStateBuilder({super.key, required this.store});
 
   Widget buildInitialState(BuildContext context) => const SizedBox.shrink();
-  Widget buildLoadingState(BuildContext context) => const Center(child: CircularProgressIndicator());
+  Widget buildLoadingState(BuildContext context) =>
+      const Center(child: CircularProgressIndicator());
   Widget buildLoadedState(BuildContext context);
-  Widget buildEmptyState(BuildContext context, String emptyMessage) => WarningMessage.empty(message: emptyMessage);
-  Widget buildErrorState(BuildContext context, String errorMessage) => WarningMessage.error(message: errorMessage);
-  Widget buildNoMoreToLoadState(BuildContext context) => buildLoadedState(context);
+  Widget buildEmptyState(BuildContext context, String emptyMessage) =>
+      WarningMessage.empty(message: emptyMessage);
+  Widget buildErrorState(BuildContext context, String errorMessage) =>
+      WarningMessage.error(message: errorMessage);
+  Widget buildNoMoreToLoadState(BuildContext context) =>
+      buildLoadedState(context);
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,9 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [SupabaseDataSource] is a wrapper class for [SupabaseClient]
-abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
+abstract class SupabaseDataSource<T, Q>
+    with Mappable<T>
+    implements DataSource<T, Q> {
   SupabaseClient? _supabaseClient;
 
   /// [tableReference] is the name of the table
@@ -44,7 +46,8 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
 
   @override
   Future<Pair<RequestResponse, T?>> get(String id) async {
-    var _filterBuilder = _supabaseClient!.from(_tableName).select().eq("id", id);
+    var _filterBuilder =
+        _supabaseClient!.from(_tableName).select().eq("id", id);
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     return _handleRequest("GET", () async {
       final result = await _filterBuilder.single();
@@ -62,7 +65,10 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     try {
       final results = await _filterBuilder;
-      return Pair(RequestResponse.success, results.map(convertDataTypeFromMap).toList());
+      return Pair(
+        RequestResponse.success,
+        results.map(convertDataTypeFromMap).toList(),
+      );
     } catch (e) {
       AppLogger.print("Error: $e", [UtilitiesLoggers.supabaseDataSource]);
       return const Pair(RequestResponse.failure, []);
@@ -71,7 +77,8 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
 
   @override
   Future<RequestResponse> delete(String id) async {
-    var _filterBuilder = _supabaseClient!.from(_tableName).select().eq("id", id);
+    var _filterBuilder =
+        _supabaseClient!.from(_tableName).select().eq("id", id);
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     final results = await _filterBuilder.single();
     if (results.isEmpty) {
@@ -101,14 +108,18 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
 
   @override
   Future<RequestResponse> update(String id, T data) async {
-    var _filterBuilder = _supabaseClient!.from(_tableName).select().eq("id", id);
+    var _filterBuilder =
+        _supabaseClient!.from(_tableName).select().eq("id", id);
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     final results = await _filterBuilder.single();
     if (results.isEmpty) {
       return RequestResponse.failure;
     }
     await _handleRequest("UPDATE", () async {
-      await _supabaseClient!.from(_tableName).update(convertDataTypeToMap(data)).eq("id", id);
+      await _supabaseClient!
+          .from(_tableName)
+          .update(convertDataTypeToMap(data))
+          .eq("id", id);
       return null;
     });
     return RequestResponse.success;
@@ -124,7 +135,10 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     }
     await _handleRequest("UPDATE_ALL", () async {
       data.entries.map(
-        (e) async => await _supabaseClient!.from(_tableName).update(convertDataTypeToMap(e.value)).eq("id", e.key),
+        (e) async => await _supabaseClient!
+            .from(_tableName)
+            .update(convertDataTypeToMap(e.value))
+            .eq("id", e.key),
       );
       return null;
     });
@@ -136,7 +150,8 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
     try {
       _logRequest("ADD", tableReference, data);
       AppLogger.print("Data: $data", [UtilitiesLoggers.supabaseDataSource]);
-      final convertedData = convertDataTypeToMap(data)..addAll(_tableReferenceMapper(tableReference));
+      final convertedData = convertDataTypeToMap(data)
+        ..addAll(_tableReferenceMapper(tableReference));
       await _supabaseClient!.from(_tableName).insert(convertedData).then(
             (value) => AppLogger.print(
               "Response: $value",
@@ -168,13 +183,17 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
 
   @override
   Future<Pair<RequestResponse, T?>> search(Q query) async {
-    final table = await _supabaseClient!.from(_tableName) as SupabaseQueryBuilder;
+    final table =
+        await _supabaseClient!.from(_tableName) as SupabaseQueryBuilder;
     final supabaseQuery = buildQuery(query, table);
     var _filterBuilder = supabaseQuery.select();
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     final results = await _filterBuilder.limit(1);
     if (results.isEmpty) return const Pair(RequestResponse.failure, null);
-    return Pair(RequestResponse.success, results.map(convertDataTypeFromMap).firstOrNull);
+    return Pair(
+      RequestResponse.success,
+      results.map(convertDataTypeFromMap).firstOrNull,
+    );
     // final results = await _supabase?.from(tableName);
     // final columnNames = queries.keys.toList();
     // final values = queries.values.toList();
@@ -183,13 +202,17 @@ abstract class SupabaseDataSource<T, Q> with Mappable<T> implements DataSource<T
 
   @override
   Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
-    final table = await _supabaseClient!.from(_tableName) as SupabaseQueryBuilder;
+    final table =
+        await _supabaseClient!.from(_tableName) as SupabaseQueryBuilder;
     final supabaseQuery = buildQuery(query, table);
     var _filterBuilder = supabaseQuery.select();
     _filterBuilder = _filterJoinTableBuilder(_filterBuilder, tableReference);
     final results = await _filterBuilder.limit(12);
     if (results.isEmpty) return const Pair(RequestResponse.failure, []);
-    return Pair(RequestResponse.success, results.map(convertDataTypeFromMap).toList());
+    return Pair(
+      RequestResponse.success,
+      results.map(convertDataTypeFromMap).toList(),
+    );
     // final columnNames = queries.keys.toList();
     // final values = queries.values.toList();
     // final results = await _supabase!.from(tableName).select(columnNames.join(",")).eq(columnNames.join(","), values.join(","));

@@ -20,7 +20,8 @@ import "package:utilities/snackbar/configuration.dart";
 
 //TODO: Make the auth store and extend it to the reactive auth store
 /// [ReactiveAuthenticationBuilder] is a widget that builds the authentication view based on the [AuthStore].
-class ReactiveAuthenticationBuilder<T extends UserModel> extends ReactiveFormsModelView<T, ReactiveAuthStore<T>> {
+class ReactiveAuthenticationBuilder<T extends UserModel>
+    extends ReactiveFormsModelView<T, ReactiveAuthStore<T>> {
   final List<ReactiveFormField<dynamic, dynamic>>? additionalFields;
 
   /// [ReactiveAuthenticationBuilder] constructor.
@@ -51,7 +52,10 @@ class ReactiveAuthenticationBuilder<T extends UserModel> extends ReactiveFormsMo
 
   void conditionallyShowSnackbar(BuildContext context) {
     final _user = store.editingValue;
-    final _shouldShow = _user?.status == AuthStatus.authenticated && store.showSuccessSnackBar && store.authBuilderType != AuthBuilderType.silent && _user?.authType != AuthType.anonymous;
+    final _shouldShow = _user?.status == AuthStatus.authenticated &&
+        store.showSuccessSnackBar &&
+        store.authBuilderType != AuthBuilderType.silent &&
+        _user?.authType != AuthType.anonymous;
     if (!_shouldShow) return;
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       context.showSnackbar(
@@ -75,7 +79,8 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
   Widget build(BuildContext context) {
     final isMobile = context.isMobile;
     final maxWidth = context.screenWidth * (isMobile ? 0.85 : 0.5);
-    final socialButtonVariant = isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
+    final socialButtonVariant =
+        isMobile ? SocialButtonVariant.icon : SocialButtonVariant.iconAndText;
     return SingleChildScrollView(
       child: Center(
         child: ConstrainedBox(
@@ -86,7 +91,8 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
             builder: (context) {
               return Column(
                 children: [
-                  if (additionalFields != null && store.authAction == AuthAction.signUp)
+                  if (additionalFields != null &&
+                      store.authAction == AuthAction.signUp)
                     ...additionalFields!.map((field) {
                       return Column(
                         mainAxisSize: MainAxisSize.min,
@@ -96,7 +102,8 @@ class _AuthenticateView<T extends UserModel> extends StatelessWidget {
                         ],
                       );
                     }),
-                  if (store.codeSource != null && store.authAction == AuthAction.signUp) ...[
+                  if (store.codeSource != null &&
+                      store.authAction == AuthAction.signUp) ...[
                     ReactiveTextField<String?>(
                       formControlName: store.codeKey,
                       validationMessages: {

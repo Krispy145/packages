@@ -6,7 +6,8 @@ part "store.g.dart";
 
 class FontFormFieldStore = _FontFormFieldStore with _$FontFormFieldStore;
 
-abstract class _FontFormFieldStore extends BaseFormFieldStore<String?> with Store {
+abstract class _FontFormFieldStore extends BaseFormFieldStore<String?>
+    with Store {
   _FontFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,

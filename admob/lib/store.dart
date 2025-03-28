@@ -68,7 +68,8 @@ abstract class _AdMobStore with Store {
 
   /// interstitialAdId getter.
   @computed
-  String get getInterstitialAdUnitId => interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
+  String get getInterstitialAdUnitId =>
+      interstitialAdUnitId ?? AdHelper.interstitialAdUnitId;
 
   /// rewardAdId getter.
   @computed

@@ -18,10 +18,10 @@
 //   factory MarkerModel.fromJson(Map<String, dynamic> json) => _$MarkerModelFromJson(json);
 // }
 
-import 'package:dart_mappable/dart_mappable.dart';
-import 'package:latlong2/latlong.dart';
+import "package:dart_mappable/dart_mappable.dart";
+import "package:latlong2/latlong.dart";
 
-part 'marker_model.mapper.dart';
+part "marker_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class MarkerModel with MarkerModelMappable {

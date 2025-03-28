@@ -9,7 +9,8 @@ import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldStore> {
+class TextStyleStringFormField
+    extends BaseFormField<TextStyleStringFormFieldStore> {
   TextStyleStringFormField({
     super.key,
     required super.store,
@@ -50,7 +51,9 @@ class TextStyleStringFormField extends BaseFormField<TextStyleStringFormFieldSto
                             Text(
                               "$styleTitle-$title",
                               maxLines: 2,
-                              style: "$styleTitle-$title".toTextStyleModel()?.asTextStyle,
+                              style: "$styleTitle-$title"
+                                  .toTextStyleModel()
+                                  ?.asTextStyle,
                             ),
                             Sizes.m.spacer(axis: Axis.horizontal),
                           ],

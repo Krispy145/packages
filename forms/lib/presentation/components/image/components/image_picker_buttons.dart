@@ -18,7 +18,8 @@ class ImagePickerButtons extends StatelessWidget {
     return ReactiveStatusListenableBuilder(
       formControlName: store.imageUrlKey,
       builder: (context, formControl, w) {
-        final hasValidUrl = formControl.isNotNull && ((formControl.value as String?)?.isNotEmpty ?? false);
+        final hasValidUrl = formControl.isNotNull &&
+            ((formControl.value as String?)?.isNotEmpty ?? false);
         final urlToReturn = (hasValidUrl ? formControl.value : null) as String?;
 
         return Row(
@@ -38,7 +39,8 @@ class ImagePickerButtons extends StatelessWidget {
             Observer(
               builder: (context) {
                 final _canSubmit = hasValidUrl || store.didPickImage;
-                final _resultCombination = Pair(urlToReturn, store.didPickImage);
+                final _resultCombination =
+                    Pair(urlToReturn, store.didPickImage);
                 return AnimatedOpacity(
                   duration: Durations.short1,
                   opacity: _canSubmit ? 1 : 0.5,

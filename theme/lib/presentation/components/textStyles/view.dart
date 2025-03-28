@@ -15,7 +15,8 @@ class TextStyleView extends StatelessWidget {
     return ThemeComponentEditor(
       store: FormsMapStore(
         value: ObservableMap.of(store.mergedMap),
-        onValueChanged: (data) => onTextTypeChanged?.call(TextTypesModel.fromMap(data)),
+        onValueChanged: (data) =>
+            onTextTypeChanged?.call(TextTypesModel.fromMap(data)),
       ),
       title: "Text Styles",
     );

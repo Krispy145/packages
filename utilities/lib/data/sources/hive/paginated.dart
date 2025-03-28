@@ -7,13 +7,15 @@ import "package:utilities/helpers/tuples.dart";
 part "paginated.mapper.dart";
 
 @MappableClass()
-class HiveResponseModel<T> extends ResponseModel with HiveResponseModelMappable<T> {
+class HiveResponseModel<T> extends ResponseModel
+    with HiveResponseModelMappable<T> {
   final int? lastIndex;
 
   HiveResponseModel({this.lastIndex});
 }
 
-abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with Paginated<HiveResponseModel<T?>, T, Q> {
+abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q>
+    with Paginated<HiveResponseModel<T?>, T, Q> {
   /// [PaginatedHiveDataSource] constructor
   PaginatedHiveDataSource(
     super.boxName, {
@@ -35,7 +37,8 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
     final nextIndex = lastIndex + 1;
     final subList = data.second.skip(nextIndex).toList();
     final nextData = subList.take(size ?? subList.length).toList();
-    final nextResponse = HiveResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
+    final nextResponse =
+        HiveResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
     return Pair(RequestResponse.success, Pair(nextResponse, nextData));
   }
 
@@ -55,17 +58,29 @@ abstract class PaginatedHiveDataSource<T, Q> extends HiveDataSource<T, Q> with P
     if (data.second.isEmpty) {
       const Pair(RequestResponse.failure, null);
     }
-    return Pair(RequestResponse.success, data.second.whereType<T>().where((element) => matchesQuery(query, element)).toList());
+    return Pair(
+      RequestResponse.success,
+      data.second
+          .whereType<T>()
+          .where((element) => matchesQuery(query, element))
+          .toList(),
+    );
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<HiveResponseModel<T?>, List<T?>>>> searchPage({HiveResponseModel<T?>? lastResponse, int? size, required Q query}) async {
+  Future<Pair<RequestResponse, Pair<HiveResponseModel<T?>, List<T?>>>>
+      searchPage({
+    HiveResponseModel<T?>? lastResponse,
+    int? size,
+    required Q query,
+  }) async {
     final data = await searchAll(query);
     final lastIndex = lastResponse?.lastIndex ?? -1;
     final nextIndex = lastIndex + 1;
     final subList = data.second.skip(nextIndex).toList();
     final nextData = subList.take(size ?? subList.length).toList();
-    final nextResponse = HiveResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
+    final nextResponse =
+        HiveResponseModel<T?>(lastIndex: nextIndex + nextData.length - 1);
     return Pair(RequestResponse.success, Pair(nextResponse, nextData));
   }
 }

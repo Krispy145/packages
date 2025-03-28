@@ -76,8 +76,13 @@ class LYFontVariantDescriptor {
   ///
   /// See [LYFontVariantDescriptor.toString] for the inverse function.
   LYFontVariantDescriptor.fromString(String variantString)
-      : fontWeight = FontWeight.values[variantString == _regular || variantString == _italic ? 3 : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
-        fontStyle = variantString.contains(_italic) ? FontStyle.italic : FontStyle.normal;
+      : fontWeight = FontWeight.values[variantString == _regular ||
+                variantString == _italic
+            ? 3
+            : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
+        fontStyle = variantString.contains(_italic)
+            ? FontStyle.italic
+            : FontStyle.normal;
 
   final FontWeight fontWeight;
   final FontStyle fontStyle;
@@ -121,7 +126,8 @@ class LYFontVariantDescriptor {
   ///
   /// See [`GoogleFontsVariant.fromApiFilenamePart`] for the inverse function.
   String toApiFilenamePart() {
-    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ?? _fontWeightToFilenameWeightParts[FontWeight.w400]!;
+    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ??
+        _fontWeightToFilenameWeightParts[FontWeight.w400]!;
     final italicSuffix = fontStyle == FontStyle.italic ? "Italic" : "";
     if (weightPrefix == "Regular") {
       return italicSuffix == "" ? weightPrefix : italicSuffix;
@@ -141,8 +147,12 @@ class LYFontVariantDescriptor {
   /// See [LYFontVariantDescriptor.toString] for the inverse function.
   @override
   String toString() {
-    final fontWeightString = fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
-    final fontStyleString = fontStyle.toString().replaceAll("FontStyle.", "").replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
+    final fontWeightString =
+        fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
+    final fontStyleString = fontStyle
+        .toString()
+        .replaceAll("FontStyle.", "")
+        .replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
     return "$fontWeightString$fontStyleString";
   }
 
@@ -157,7 +167,9 @@ class LYFontVariantDescriptor {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is LYFontVariantDescriptor && other.fontWeight == fontWeight && other.fontStyle == fontStyle;
+    return other is LYFontVariantDescriptor &&
+        other.fontWeight == fontWeight &&
+        other.fontStyle == fontStyle;
   }
 }
 

@@ -8,7 +8,9 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [AssetsDataSource] is a wrapper class for [rootBundle] which implements [DataSource]
-abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
+abstract class AssetsDataSource<T, Q>
+    with Mappable<T>
+    implements DataSource<T, Q> {
   /// [rootBundleKey] is the path that will be used to fetch the data from assets.
   final String rootBundleKey;
 
@@ -53,7 +55,8 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
         );
         final data = response.map((e) => e as Map<String, dynamic>).toList();
         if (id != null) {
-          final result = data.firstWhereOrNull((element) => element["id"] == id);
+          final result =
+              data.firstWhereOrNull((element) => element["id"] == id);
           return [convertDataTypeFromMap(result ?? <String, dynamic>{})];
         }
         return data.map(convertDataTypeFromMap).toList();
@@ -127,7 +130,10 @@ abstract class AssetsDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   @override
   Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
     final data = await tryLoadJson(rootBundleKey);
-    final result = data.whereType<T>().where((element) => matchesQuery(query, element)).toList();
+    final result = data
+        .whereType<T>()
+        .where((element) => matchesQuery(query, element))
+        .toList();
     if (result.isEmpty) {
       return const Pair(RequestResponse.failure, []);
     }

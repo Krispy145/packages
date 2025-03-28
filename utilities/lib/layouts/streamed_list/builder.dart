@@ -11,7 +11,8 @@ import "package:widgets/messages/warning_message.dart";
 
 import "store.dart";
 
-class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> {
+class StreamedListBuilder<T, K extends Comparable<K>>
+    extends ListBuilder<T, K> {
   @override
   // ignore: overridden_fields
   final StreamedListStore<T, K> store;
@@ -152,5 +153,6 @@ class StreamedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> 
   }
 
   @override
-  Widget buildView(BuildContext context, bool isLoadingMore) => Observer(builder: (context) => super.buildView(context, isLoadingMore));
+  Widget buildView(BuildContext context, bool isLoadingMore) =>
+      Observer(builder: (context) => super.buildView(context, isLoadingMore));
 }

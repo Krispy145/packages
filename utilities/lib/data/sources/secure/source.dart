@@ -8,7 +8,9 @@ import "package:utilities/logger/logger.dart";
 import "package:utilities/utils/loggers.dart";
 
 /// [SecureDataSource] is a wrapper class for [FlutterSecureStorage]
-abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, Q> {
+abstract class SecureDataSource<T, Q>
+    with Mappable<T>
+    implements DataSource<T, Q> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -38,8 +40,13 @@ abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   @override
   Future<Pair<RequestResponse, T?>> get(String key) async {
     final value = await read(key);
-    final convertedValue = value != null ? convertFromMap(json.decode(value) as Map<String, dynamic>) : null;
-    AppLogger.print("GET: $key => $convertedValue", [UtilitiesLoggers.secureDataSource]);
+    final convertedValue = value != null
+        ? convertFromMap(json.decode(value) as Map<String, dynamic>)
+        : null;
+    AppLogger.print(
+      "GET: $key => $convertedValue",
+      [UtilitiesLoggers.secureDataSource],
+    );
     return Pair(RequestResponse.success, convertedValue);
   }
 
@@ -49,7 +56,12 @@ abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, 
     AppLogger.print("GET All: $allValues", [UtilitiesLoggers.secureDataSource]);
     return Pair(
       RequestResponse.success,
-      allValues.values.map((value) => convertFromMap(json.decode(value) as Map<String, dynamic>)).toList(),
+      allValues.values
+          .map(
+            (value) =>
+                convertFromMap(json.decode(value) as Map<String, dynamic>),
+          )
+          .toList(),
     );
   }
 
@@ -80,7 +92,10 @@ abstract class SecureDataSource<T, Q> with Mappable<T> implements DataSource<T, 
   @override
   Future<RequestResponse> updateAll(Map<String, T> values) async {
     for (final entry in values.entries) {
-      await write(key: entry.key, value: json.encode(convertToMap(entry.value)));
+      await write(
+        key: entry.key,
+        value: json.encode(convertToMap(entry.value)),
+      );
     }
     AppLogger.print("UPDATE All: $values", [UtilitiesLoggers.secureDataSource]);
     return RequestResponse.success;

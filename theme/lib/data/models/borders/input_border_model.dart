@@ -39,7 +39,9 @@ class InputBorderModel with InputBorderModelMappable {
           styleTypeName: styleTypeName,
         ) ??
         BorderRadius.zero;
-    final borderSide = borderSide_borderSide?.asBorderSide(styleTypeName: styleTypeName) ?? BorderSide.none;
+    final borderSide =
+        borderSide_borderSide?.asBorderSide(styleTypeName: styleTypeName) ??
+            BorderSide.none;
     switch (type_enum_inputBorderType) {
       case InputBorderType.none:
         return InputBorder.none;

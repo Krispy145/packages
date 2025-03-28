@@ -32,8 +32,10 @@ class BottomAppbarModel with BottomAppbarModelMappable {
       color: color_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       height: height_double,
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }
@@ -65,7 +67,7 @@ class BottomAppbarModel with BottomAppbarModelMappable {
 // ignore_for_file: non_constant_identifier_names
 
 // import "package:flutter/material.dart";
-// 
+//
 // import "package:theme/data/models/edge_insets_model.dart";
 // import "package:theme/extensions/theme_color_string.dart";
 

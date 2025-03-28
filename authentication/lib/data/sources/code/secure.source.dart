@@ -1,7 +1,8 @@
 part of "_source.dart";
 
 /// [SecureCodeDataSource] is a class that implements [CodeDataSource] interface.
-class SecureCodeDataSource extends PaginatedSecureDataSource<CodeModel, void> implements CodeDataSource {
+class SecureCodeDataSource extends PaginatedSecureDataSource<CodeModel, void>
+    implements CodeDataSource {
   /// [SecureCodeDataSource] constructor.
   SecureCodeDataSource()
       : super(

@@ -36,12 +36,17 @@ class DrawerModel with DrawerModelMappable {
 
   DrawerThemeData asDrawerThemeData({String? styleTypeName}) {
     return DrawerThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      scrimColor: scrimColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      scrimColor:
+          scrimColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shape:
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       endShape: endShape_outlinedBorder?.asOutlinedBorder(
         styleTypeName: styleTypeName,
       ),

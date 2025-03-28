@@ -12,17 +12,25 @@ class PlaylistDataRepository {
   // }
 
   /// [getPagedPlaylistModels] returns a page of [PlaylistModel]s.
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<PlaylistModel?>>>> getPagedPlaylistModels({
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<PlaylistModel?>>>>
+      getPagedPlaylistModels({
     required PlaylistDataSource source,
     int? limit,
     ResponseModel? lastResponse,
     Map<String, dynamic>? queryParameters,
   }) async {
-    return source.getPage(size: limit, lastResponse: lastResponse, queryParameters: queryParameters);
+    return source.getPage(
+      size: limit,
+      lastResponse: lastResponse,
+      queryParameters: queryParameters,
+    );
   }
 
   /// [getPlaylistModel] returns a single [PlaylistModel].
-  Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel({required PlaylistDataSource source, required String id}) async {
+  Future<Pair<RequestResponse, PlaylistModel?>> getPlaylistModel({
+    required PlaylistDataSource source,
+    required String id,
+  }) async {
     return source.get(id);
   }
 

@@ -16,7 +16,8 @@ part "base_store.g.dart";
 class NotificationsStore = _NotificationsStore with _$NotificationsStore;
 
 /// [_NotificationsStore] is the base class for [NotificationsStore].
-abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map<String, dynamic>> with Store {
+abstract class _NotificationsStore
+    extends HiveDataSource<NotificationModel, Map<String, dynamic>> with Store {
   /// [_NotificationsStore] constructor.
   // ignore: unused_element
   _NotificationsStore()
@@ -28,24 +29,29 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
         );
 
   /// [localNotifications] is the local notifications plugin.
-  final FlutterLocalNotificationsPlugin localNotifications = FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin localNotifications =
+      FlutterLocalNotificationsPlugin();
 
   @observable
   NotificationModel? receivedNotification;
 
   /// [notifications] is a list of notifications from the local data source.
   @computed
-  ValueListenable<TypeBox<NotificationModel?>> get notifications => super.boxListenable;
+  ValueListenable<TypeBox<NotificationModel?>> get notifications =>
+      super.boxListenable;
 
   @action
-  void listenForReceivedNotification(void Function(NotificationModel notification) onNotificationReceived) {
+  void listenForReceivedNotification(
+    void Function(NotificationModel notification) onNotificationReceived,
+  ) {
     throw UnimplementedError();
   }
 
   /// [requestPermissions] requests permission for notifications.
   @action
   Future<void> requestPermissions({
-    NotificationsPermissionsModel permissions = NotificationsPermissionsModel.standard,
+    NotificationsPermissionsModel permissions =
+        NotificationsPermissionsModel.standard,
   }) async {
     throw UnimplementedError();
   }
@@ -89,7 +95,9 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
   /// [search] searches for notifications with the given [query].
   @override
   @action
-  Future<Pair<RequestResponse, List<NotificationModel?>>> searchAll(Map<String, dynamic> query) async {
+  Future<Pair<RequestResponse, List<NotificationModel?>>> searchAll(
+    Map<String, dynamic> query,
+  ) async {
     final results = <NotificationModel>[];
     for (final element in notifications.value.values) {
       if (element != null) {
@@ -108,7 +116,9 @@ abstract class _NotificationsStore extends HiveDataSource<NotificationModel, Map
   // [search] searches for the notification with the given [query].
   @override
   @action
-  Future<Pair<RequestResponse, NotificationModel?>> search(Map<String, dynamic> query) async {
+  Future<Pair<RequestResponse, NotificationModel?>> search(
+    Map<String, dynamic> query,
+  ) async {
     final results = await searchAll(query);
     final result = results.second.isNotEmpty ? results.second.first : null;
     if (result != null) {

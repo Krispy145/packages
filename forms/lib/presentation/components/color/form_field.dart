@@ -62,7 +62,8 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
                   label: "Opacity",
                   value: store.color.opacity,
                   onChanged: (opacity) => store.updateColor(opacity: opacity),
-                  fixedColor: Colors.black.withValues(alpha: store.color.opacity),
+                  fixedColor:
+                      Colors.black.withValues(alpha: store.color.opacity),
                   max: 1,
                 ),
                 ElevatedButton(
@@ -81,7 +82,10 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
     );
   }
 
-  void _openModalSheetForColorSelection(BuildContext context, ColorFormFieldStore store) {
+  void _openModalSheetForColorSelection(
+    BuildContext context,
+    ColorFormFieldStore store,
+  ) {
     showModalBottomSheet<void>(
       context: context,
       builder: (context) {

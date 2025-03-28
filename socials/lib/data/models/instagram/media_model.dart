@@ -44,7 +44,8 @@ class InstagramMediaModel with InstagramMediaModelMappable {
     username: "usernameTwo",
     caption: "captionTwo",
     mediaType: "video",
-    mediaUrl: "https://imgs.search.brave.com/-8FnEq0MJNNgmBKR671uUk2SDMIKJDerXGIgamvNEJo/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFPQ2ZkUGtDMEwu/anBn",
+    mediaUrl:
+        "https://imgs.search.brave.com/-8FnEq0MJNNgmBKR671uUk2SDMIKJDerXGIgamvNEJo/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFPQ2ZkUGtDMEwu/anBn",
     thumbnailUrl: "thumbnailUrlTwo",
     permalink: "permalinkTwo",
     timestamp: "timestampTwo",
@@ -55,7 +56,8 @@ class InstagramMediaModel with InstagramMediaModelMappable {
     username: "usernameThree",
     caption: "captionThree",
     mediaType: "carousel",
-    mediaUrl: "https://imgs.search.brave.com/IlB_nvUOjJsG9locmqVI7oP_NFFDLFZApOWMTqtpSpY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFkZXhWRUJMY0wu/anBn",
+    mediaUrl:
+        "https://imgs.search.brave.com/IlB_nvUOjJsG9locmqVI7oP_NFFDLFZApOWMTqtpSpY/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/OTFkZXhWRUJMY0wu/anBn",
     thumbnailUrl: "thumbnailUrlThree",
     permalink: "permalinkThree",
     timestamp: "timestampThree",

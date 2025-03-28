@@ -6,7 +6,8 @@ import "package:widgets/messages/warning_message.dart";
 
 import "store.dart";
 
-class ReorderableStreamedListBuilder<T extends Object, K extends Comparable<K>> extends StatelessWidget {
+class ReorderableStreamedListBuilder<T extends Object, K extends Comparable<K>>
+    extends StatelessWidget {
   final ReorderableStreamedListStore<T, K> store;
   final Widget? header;
   final Widget Function(BuildContext context, int index, T model) itemBuilder;
@@ -62,7 +63,8 @@ class ReorderableStreamedListBuilder<T extends Object, K extends Comparable<K>> 
     return PackageLoadStateBuilder(
       store: store,
       emptyBuilder: (context, empty) {
-        return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty);
+        return emptyBuilder?.call(context, empty) ??
+            WarningMessage.empty(title: "No Results", message: empty);
       },
       loadedBuilder: (context) {
         final contents = Column(
@@ -88,7 +90,9 @@ class ReorderableStreamedListBuilder<T extends Object, K extends Comparable<K>> 
         return contents;
       },
       loadingBuilder: (context) => const SizedBox.shrink(),
-      errorBuilder: (context, error) => errorBuilder?.call(context, error) ?? WarningMessage.error(title: "Error", message: error),
+      errorBuilder: (context, error) =>
+          errorBuilder?.call(context, error) ??
+          WarningMessage.error(title: "Error", message: error),
     );
   }
 

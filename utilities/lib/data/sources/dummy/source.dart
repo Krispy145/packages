@@ -13,7 +13,10 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
 
   @override
   Future<Pair<RequestResponse, T?>> get(String id) async {
-    return Pair(RequestResponse.success, fakeData.firstWhereOrNull((element) => matchesID(id, element)));
+    return Pair(
+      RequestResponse.success,
+      fakeData.firstWhereOrNull((element) => matchesID(id, element)),
+    );
   }
 
   @override
@@ -67,7 +70,10 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
 
   @override
   Future<Pair<RequestResponse, T?>> search(Q query) async {
-    final result = fakeData.where((element) => matchesQuery(query, element)).toList().firstOrNull;
+    final result = fakeData
+        .where((element) => matchesQuery(query, element))
+        .toList()
+        .firstOrNull;
     if (result == null) {
       return const Pair(RequestResponse.failure, null);
     }
@@ -76,7 +82,8 @@ abstract class DummyDataSource<T, Q> implements DataSource<T, Q> {
 
   @override
   Future<Pair<RequestResponse, List<T?>>> searchAll(Q query) async {
-    final result = fakeData.where((element) => matchesQuery(query, element)).toList();
+    final result =
+        fakeData.where((element) => matchesQuery(query, element)).toList();
     if (result.isEmpty) {
       return const Pair(RequestResponse.failure, []);
     }

@@ -11,6 +11,9 @@ class LYCachedNetworkImageProvider extends CachedNetworkImageProvider {
   }) : super(
           options?.getProxyAndHeaders(imageUrl).second ?? imageUrl,
           headers: options?.getProxyAndHeaders(imageUrl).third,
-          imageRenderMethodForWeb: options?.getProxyAndHeaders(imageUrl).first ?? false ? ImageRenderMethodForWeb.HttpGet : ImageRenderMethodForWeb.HtmlImage,
+          imageRenderMethodForWeb:
+              options?.getProxyAndHeaders(imageUrl).first ?? false
+                  ? ImageRenderMethodForWeb.HttpGet
+                  : ImageRenderMethodForWeb.HtmlImage,
         );
 }

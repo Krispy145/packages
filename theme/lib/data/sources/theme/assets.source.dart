@@ -4,7 +4,9 @@ import "package:utilities/data/sources/assets/source.dart";
 import "_source.dart";
 
 /// [AssetsThemeDataSource] is a class that implements [ThemeDataSource] interface.
-class AssetsThemeDataSource<T> extends AssetsDataSource<T, BasicSearchQueryModel> implements ThemeDataSource<T> {
+class AssetsThemeDataSource<T>
+    extends AssetsDataSource<T, BasicSearchQueryModel>
+    implements ThemeDataSource<T> {
   /// [AssetsThemeDataSource] constructor.
   AssetsThemeDataSource({
     required super.rootBundleKey,
@@ -15,6 +17,7 @@ class AssetsThemeDataSource<T> extends AssetsDataSource<T, BasicSearchQueryModel
   @override
   bool matchesQuery(BasicSearchQueryModel query, T item) {
     final map = convertDataTypeToMap(item);
-    return (map["name"] as String).contains(RegExp(query.searchTerm, caseSensitive: false));
+    return (map["name"] as String)
+        .contains(RegExp(query.searchTerm, caseSensitive: false));
   }
 }

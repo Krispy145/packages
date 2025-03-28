@@ -19,7 +19,9 @@ class AppDestinationModel with AppDestinationModelMappable {
   factory AppDestinationModel.fromStringMap(Map<String, dynamic> map) {
     return AppDestinationModel(
       routeName: map["route_name"] as String? ?? "unknown-route",
-      arguments: map["arguments"] != null ? map["arguments"]! as Map<String, String> : null,
+      arguments: map["arguments"] != null
+          ? map["arguments"]! as Map<String, String>
+          : null,
     );
   }
 

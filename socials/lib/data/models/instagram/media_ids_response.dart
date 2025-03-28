@@ -4,7 +4,8 @@ import "package:utilities/data/sources/paginated.dart";
 part "media_ids_response.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
-class InstagramMediaIdsResponse extends ResponseModel with InstagramMediaIdsResponseMappable {
+class InstagramMediaIdsResponse extends ResponseModel
+    with InstagramMediaIdsResponseMappable {
   final String id;
   final InstagramMedia? media;
 
@@ -131,12 +132,16 @@ class InstagramCursorsModel with InstagramCursorsModelMappable {
   static const fromJson = InstagramCursorsModelMapper.fromJson;
 
   static final cursorsOne = InstagramCursorsModel(
-    before: "QVFIUlZAsMnJGeEtYSDMzcjBoc3V5WVE1NV9ERlFLMkNrUjNfZAFFybk9mVDVqeHNKeVdQSC1aWm1IVFl4eWEwRExCLTYzd1J6MkktV215VWF1dFVQOTI1UVVB",
-    after: "QVFIUkk3NXFVaVlUZAlVzYVMwcEtwcXN0WnNGSHhUcEtCcTR0c3NGNkFyOXphbG5yTjhIcVZA6UlpQejhtUDVvV09fS1dQU1luTzNINjZAMY2xuc3FFZA0lNeGF3",
+    before:
+        "QVFIUlZAsMnJGeEtYSDMzcjBoc3V5WVE1NV9ERlFLMkNrUjNfZAFFybk9mVDVqeHNKeVdQSC1aWm1IVFl4eWEwRExCLTYzd1J6MkktV215VWF1dFVQOTI1UVVB",
+    after:
+        "QVFIUkk3NXFVaVlUZAlVzYVMwcEtwcXN0WnNGSHhUcEtCcTR0c3NGNkFyOXphbG5yTjhIcVZA6UlpQejhtUDVvV09fS1dQU1luTzNINjZAMY2xuc3FFZA0lNeGF3",
   );
 
   static final cursorsTwo = InstagramCursorsModel(
-    before: "QVFIUlZAsMnJGeEtYSDMzcjBoc3V5WVE1NV9ERlFLMkNrUjNfZAFFybk9mVDVqeHNKeVdQSC1aWm1IVFl4eWEwRExCLTYzd1J6MkktV215VWF1dFVQOTI1UVVB",
-    after: "QVFIUkk3NXFVaVlUZAlVzYVMwcEtwcXN0WnNGSHhUcEtCcTR0c3NGNkFyOXphbG5yTjhIcVZA6UlpQejhtUDVvV09fS1dQU1luTzNINjZAMY2xuc3FFZA0lNeGF3",
+    before:
+        "QVFIUlZAsMnJGeEtYSDMzcjBoc3V5WVE1NV9ERlFLMkNrUjNfZAFFybk9mVDVqeHNKeVdQSC1aWm1IVFl4eWEwRExCLTYzd1J6MkktV215VWF1dFVQOTI1UVVB",
+    after:
+        "QVFIUkk3NXFVaVlUZAlVzYVMwcEtwcXN0WnNGSHhUcEtCcTR0c3NGNkFyOXphbG5yTjhIcVZA6UlpQejhtUDVvV09fS1dQU1luTzNINjZAMY2xuc3FFZA0lNeGF3",
   );
 }

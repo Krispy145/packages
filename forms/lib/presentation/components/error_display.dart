@@ -58,8 +58,12 @@ class ReactiveFormErrorDisplay<T> extends StatelessWidget {
 
   bool get _showErrors => store.form.invalid; // && store.form.touched;
 
-  ValidationMessageFunction? _findValidationMessage(BuildContext context, String errorKey) {
-    if (validationMessages != null && validationMessages!.containsKey(errorKey)) {
+  ValidationMessageFunction? _findValidationMessage(
+    BuildContext context,
+    String errorKey,
+  ) {
+    if (validationMessages != null &&
+        validationMessages!.containsKey(errorKey)) {
       return validationMessages![errorKey];
     } else {
       final formConfig = ReactiveFormConfig.of(context);

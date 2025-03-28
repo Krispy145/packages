@@ -66,21 +66,29 @@ class SnackbarModel with SnackbarModelMappable {
 
   SnackBarThemeData asSnackBarThemeData({String? styleTypeName}) {
     return SnackBarThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      actionTextColor: actionTextColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledActionTextColor: disabledActionTextColor_themeColorString?.toColor(styleType: styleTypeName),
-      contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      actionTextColor:
+          actionTextColor_themeColorString?.toColor(styleType: styleTypeName),
+      disabledActionTextColor: disabledActionTextColor_themeColorString
+          ?.toColor(styleType: styleTypeName),
+      contentTextStyle: contentTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       elevation: elevation_double,
-      shape: shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
+      shape:
+          shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName),
       behavior: behavior_enum_snackBarBehavior.behavior,
       width: width_double,
-      insetPadding: insetPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      insetPadding:
+          insetPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       showCloseIcon: showCloseIcon_bool,
       actionOverflowThreshold: actionOverflowThreshold_double,
       actionBackgroundColor: actionBackgroundColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      disabledActionBackgroundColor: disabledActionBackgroundColor_themeColorString?.toColor(
+      disabledActionBackgroundColor:
+          disabledActionBackgroundColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
     );

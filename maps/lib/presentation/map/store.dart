@@ -1,22 +1,22 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_animations/flutter_map_animations.dart';
-import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:maps/constants/map_constants.dart';
-import 'package:maps/presentation/markers/helpers/cluster_data.dart';
-import 'package:maps/presentation/markers/icon_marker.dart';
-import 'package:maps/presentation/markers/number_marker.dart';
-import 'package:maps/utils/loggers.dart';
-import 'package:mobx/mobx.dart';
-import 'package:theme/app/app.dart';
-import 'package:utilities/helpers/ticker_provider.dart';
-import 'package:utilities/logger/logger.dart';
-import 'package:utilities/widgets/load_state/store.dart';
+import "package:flutter/material.dart";
+import "package:flutter_map/flutter_map.dart";
+import "package:flutter_map_animations/flutter_map_animations.dart";
+import "package:flutter_map_supercluster/flutter_map_supercluster.dart";
+import "package:latlong2/latlong.dart";
+import "package:maps/constants/map_constants.dart";
+import "package:maps/presentation/markers/helpers/cluster_data.dart";
+import "package:maps/presentation/markers/icon_marker.dart";
+import "package:maps/presentation/markers/number_marker.dart";
+import "package:maps/utils/loggers.dart";
+import "package:mobx/mobx.dart";
+import "package:theme/app/app.dart";
+import "package:utilities/helpers/ticker_provider.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/widgets/load_state/store.dart";
 
-import '../../data/models/marker_model.dart';
+import "../../data/models/marker_model.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 /// [MapStore] is a class that uses [_MapStore] to manage state of the map feature.
 class MapStore = _MapStore with _$MapStore;
@@ -66,12 +66,15 @@ abstract class _MapStore with LoadStateStore, Store {
         onTap: onMapTapped,
         onMapEvent: onMapEvent,
         onPositionChanged: onMapPositionChanged,
-        backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
+        backgroundColor:
+            AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
         interactionOptions: isLocked
             ? const InteractionOptions(
                 flags: InteractiveFlag.none,
               )
-            : const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
+            : const InteractionOptions(
+                flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+              ),
       );
 
   @observable
@@ -83,7 +86,8 @@ abstract class _MapStore with LoadStateStore, Store {
 
   final String mapTilesUrl;
   final String mapTilesUserPackageName = "ae.digitaloasis";
-  final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+  final String openStreetMapUrl =
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///
   /// INITIALIZATION
@@ -94,7 +98,10 @@ abstract class _MapStore with LoadStateStore, Store {
     AppLogger.print("Initialize markers", [MapLoggers.markers, MapLoggers.map]);
     // Get markers
     if (_markers.isNotEmpty) {
-      AppLogger.print("Initializing markers on map: ${_markers.length}", [MapLoggers.markers]);
+      AppLogger.print(
+        "Initializing markers on map: ${_markers.length}",
+        [MapLoggers.markers],
+      );
     } else {
       AppLogger.print("❌ Project markers is empty", [MapLoggers.markers]);
     }
@@ -108,24 +115,35 @@ abstract class _MapStore with LoadStateStore, Store {
   @action
   void addMarker(MarkerModel markerModel, {bool clearFirst = false}) {
     if (clearFirst) {
-      superclusterController.removeAll(_markers.map(buildSingleMarker).toList());
+      superclusterController
+          .removeAll(_markers.map(buildSingleMarker).toList());
       _markers.clear();
     }
     _markers.add(markerModel);
     superclusterController.add(buildSingleMarker(markerModel));
-    AppLogger.print("Added spot marker on map: ${markerModel.id}", [MapLoggers.markers]);
+    AppLogger.print(
+      "Added spot marker on map: ${markerModel.id}",
+      [MapLoggers.markers],
+    );
   }
 
   @action
-  void addMarkers(List<MarkerModel> newMarkerModels, {bool clearFirst = false}) {
-    AppLogger.print("Calling add markers (clear = $clearFirst)", [MapLoggers.markers]);
+  void addMarkers(
+    List<MarkerModel> newMarkerModels, {
+    bool clearFirst = false,
+  }) {
+    AppLogger.print(
+      "Calling add markers (clear = $clearFirst)",
+      [MapLoggers.markers],
+    );
 
     final newMarkerSet = newMarkerModels.toSet();
 
     if (clearFirst) {
       // Find markers to remove (present in _markers but not in newMarkerSet)
       final toRemove = _markers.difference(newMarkerSet).toList();
-      superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
+      superclusterController
+          .removeAll(toRemove.map(buildSingleMarker).toList());
       _markers.retainWhere((element) => newMarkerModels.contains(element));
     }
     // Find markers to add (present in newMarkerSet but not in _markers)
@@ -189,7 +207,10 @@ abstract class _MapStore with LoadStateStore, Store {
 
   @action
   Future<void> centerMarker(String markerId, LatLng coordinates) async {
-    AppLogger.print("Centering map on marker: $markerId, ${coordinates.toString()}", [MapLoggers.map]);
+    AppLogger.print(
+      "Centering map on marker: $markerId, $coordinates",
+      [MapLoggers.map],
+    );
     await animatedMapController.animateTo(dest: coordinates, zoom: 14);
   }
 
@@ -203,7 +224,6 @@ abstract class _MapStore with LoadStateStore, Store {
     await animatedMapController.animatedFitCamera(
       cameraFit: CameraFit.bounds(
         bounds: MapConstants.londonBounds,
-        padding: const EdgeInsets.all(0),
       ),
     );
     await initializeMarkers();
@@ -212,7 +232,10 @@ abstract class _MapStore with LoadStateStore, Store {
   }
 
   Future<void> onMarkerTapped(MarkerModel markerModel) async {
-    AppLogger.print("onMarkerTapped: LatLng: ${markerModel.id}", [MapLoggers.map]);
+    AppLogger.print(
+      "onMarkerTapped: LatLng: ${markerModel.id}",
+      [MapLoggers.map],
+    );
     if (markerModel.id != selectedMarkerId) {
       selectMarker(markerModel.id, markerModel.position);
       // Could go to marker details here...
@@ -222,7 +245,10 @@ abstract class _MapStore with LoadStateStore, Store {
   /// [onTopMarkerTapped] is a helper function for zooming a cluster marker,
   /// need to get the cluster markers to build a bounds to fit camera to
   Future<void> onTopMarkerTapped(MarkerModel markerModel) async {
-    AppLogger.print("onTopMarkerTapped: LatLng: ${markerModel.id}", [MapLoggers.map]);
+    AppLogger.print(
+      "onTopMarkerTapped: LatLng: ${markerModel.id}",
+      [MapLoggers.map],
+    );
     if (markerModel.id != selectedMarkerId) {
       animatedMapController.animateTo(
         dest: markerModel.position,
@@ -232,11 +258,17 @@ abstract class _MapStore with LoadStateStore, Store {
   }
 
   void onMapLongPress(TapPosition tapPosition, LatLng point) {
-    AppLogger.print("onMapLongPress: LatLng: ${point.toString()}", [MapLoggers.map]);
+    AppLogger.print(
+      "onMapLongPress: LatLng: $point",
+      [MapLoggers.map],
+    );
   }
 
   void onMapTapped(TapPosition tapPosition, LatLng point) {
-    AppLogger.print("onMapTapped: LatLng: ${point.toString()}", [MapLoggers.map]);
+    AppLogger.print(
+      "onMapTapped: LatLng: $point",
+      [MapLoggers.map],
+    );
     unselectMarker();
   }
 

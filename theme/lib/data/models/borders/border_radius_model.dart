@@ -60,13 +60,23 @@ class BorderRadiusModel with BorderRadiusModelMappable {
   BorderRadius? asBorderRadius({String? styleTypeName}) {
     switch (type_enum_borderRadiusType) {
       case BorderRadiusType.all:
-        return BorderRadius.all(all_double != null ? Radius.circular(all_double!) : Radius.zero);
+        return BorderRadius.all(
+          all_double != null ? Radius.circular(all_double!) : Radius.zero,
+        );
       case BorderRadiusType.only:
         return BorderRadius.only(
-          topLeft: topLeft_double != null ? Radius.circular(topLeft_double!) : Radius.zero,
-          topRight: topRight_double != null ? Radius.circular(topRight_double!) : Radius.zero,
-          bottomLeft: bottomLeft_double != null ? Radius.circular(bottomLeft_double!) : Radius.zero,
-          bottomRight: bottomRight_double != null ? Radius.circular(bottomRight_double!) : Radius.zero,
+          topLeft: topLeft_double != null
+              ? Radius.circular(topLeft_double!)
+              : Radius.zero,
+          topRight: topRight_double != null
+              ? Radius.circular(topRight_double!)
+              : Radius.zero,
+          bottomLeft: bottomLeft_double != null
+              ? Radius.circular(bottomLeft_double!)
+              : Radius.zero,
+          bottomRight: bottomRight_double != null
+              ? Radius.circular(bottomRight_double!)
+              : Radius.zero,
         );
       case BorderRadiusType.circular:
         return BorderRadius.circular(all_double != null ? all_double! : 0);
@@ -77,7 +87,7 @@ class BorderRadiusModel with BorderRadiusModelMappable {
 }
 
 // import "package:flutter/material.dart";
-// 
+//
 
 // part "border_radius_model.freezed.dart";
 // part "border_radius_model.g.dart";

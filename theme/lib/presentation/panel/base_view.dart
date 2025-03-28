@@ -19,7 +19,8 @@ class _ThemeChangerViewState extends State<ThemeChangerView> {
     setState(() {
       _options = ChangerOptions.values
           .where(
-            (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+            (element) =>
+                element.name.toLowerCase().contains(value.toLowerCase()),
           )
           .toList();
     });

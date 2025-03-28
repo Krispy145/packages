@@ -1,6 +1,6 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-part 'place_editorial_summary_model.mapper.dart';
+part "place_editorial_summary_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class PlaceEditorialSummary with PlaceEditorialSummaryMappable {

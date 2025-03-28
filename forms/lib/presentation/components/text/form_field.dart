@@ -22,7 +22,10 @@ class LYTextFormField extends BaseFormField<TextFormFieldStore> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (leading != null) ...[leading!, Sizes.s.spacer(axis: Axis.horizontal)],
+          if (leading != null) ...[
+            leading!,
+            Sizes.s.spacer(axis: Axis.horizontal),
+          ],
           Expanded(
             child: TextFormField(
               controller: store.textController,
@@ -60,7 +63,8 @@ class LYTextFormField extends BaseFormField<TextFormFieldStore> {
               enableSuggestions: store.enableSuggestions,
               smartDashesType: store.smartDashesType,
               smartQuotesType: store.smartQuotesType,
-              enableIMEPersonalizedLearning: store.enableIMEPersonalizedLearning,
+              enableIMEPersonalizedLearning:
+                  store.enableIMEPersonalizedLearning,
               textCapitalization: store.textCapitalization,
               style: store.style,
               strutStyle: store.strutStyle,

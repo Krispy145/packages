@@ -45,7 +45,8 @@ class EmailAuthWidget<T extends UserModel> extends StatefulWidget {
   State<EmailAuthWidget<T>> createState() => _EmailAuthWidgetState<T>();
 }
 
-class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T>> {
+class _EmailAuthWidgetState<T extends UserModel>
+    extends State<EmailAuthWidget<T>> {
   bool _isLoading = false;
   bool _showPassword = false;
   bool _forgotPassword = false;
@@ -97,7 +98,8 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
             formControlName: widget.store.passwordKey,
             validationMessages: {
               ValidationMessage.required: (_) => "A password is required",
-              ValidationMessage.minLength: (data) => "Password must be at least 8 characters",
+              ValidationMessage.minLength: (data) =>
+                  "Password must be at least 8 characters",
             },
             showErrors: (control) => control.invalid && control.dirty,
             decoration: InputDecoration(
@@ -119,14 +121,21 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
             ReactiveTextField<String>(
               formControlName: widget.store.confirmPasswordKey,
               validationMessages: {
-                ValidationMessage.required: (_) => "Please confirm your password",
-                ValidationMessage.minLength: (_) => "Password must be at least 8 characters",
+                ValidationMessage.required: (_) =>
+                    "Please confirm your password",
+                ValidationMessage.minLength: (_) =>
+                    "Password must be at least 8 characters",
                 ValidationMessage.mustMatch: (_) => "Passwords must match",
               },
               onChanged: (control) {
-                widget.store.form.control(widget.store.confirmPasswordKey).value = control.value;
+                widget.store.form
+                    .control(widget.store.confirmPasswordKey)
+                    .value = control.value;
               },
-              showErrors: (control) => control.invalid && control.dirty && widget.store.authAction == AuthAction.signUp,
+              showErrors: (control) =>
+                  control.invalid &&
+                  control.dirty &&
+                  widget.store.authAction == AuthAction.signUp,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.lock),
                 label: const Text("Confirm your password"),
@@ -154,7 +163,11 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                       strokeWidth: 1.5,
                     ),
                   )
-                : Text(widget.store.authAction == AuthAction.signIn ? "Sign In" : "Sign Up"),
+                : Text(
+                    widget.store.authAction == AuthAction.signIn
+                        ? "Sign In"
+                        : "Sign Up",
+                  ),
           ),
           Sizes.s.spacer(),
           if (widget.store.authAction == AuthAction.signIn) ...[
@@ -171,11 +184,14 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
             key: const ValueKey("toggleSignInButton"),
             onPressed: _toggleSignIn,
             child: Text(
-              widget.store.authAction == AuthAction.signIn ? "Don't have an account? Sign up" : "Already have an account? Sign in",
+              widget.store.authAction == AuthAction.signIn
+                  ? "Don't have an account? Sign up"
+                  : "Already have an account? Sign in",
             ),
           ),
         ],
-        if (widget.store.authAction == AuthAction.signIn && _forgotPassword) ...[
+        if (widget.store.authAction == AuthAction.signIn &&
+            _forgotPassword) ...[
           Sizes.s.spacer(),
           ElevatedButton(
             onPressed: _resetPassword,
@@ -201,7 +217,8 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       setState(() {
         _isLoading = true;
       });
-      final email = widget.store.form.control(widget.store.emailKey).value as String;
+      final email =
+          widget.store.form.control(widget.store.emailKey).value as String;
       await widget.store.sendPasswordResetEmail(email);
       widget.onPasswordResetEmailSent?.call();
       setState(() {
@@ -226,7 +243,9 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
     if (widget.store.form.invalid) {
       widget.store.form.markAllAsTouched();
       context.showSnackbar(
-        SnackbarConfiguration.error(title: "Please fill in all fields and fix any errors"),
+        SnackbarConfiguration.error(
+          title: "Please fill in all fields and fix any errors",
+        ),
       );
       return;
     }
@@ -243,7 +262,8 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       if (widget.onError == null && context.mounted) {
         AppLogger.print(error.message, [AuthenticationLoggers.authentication]);
         if (mounted) {
-          context.showSnackbar(SnackbarConfiguration.error(title: error.message));
+          context
+              .showSnackbar(SnackbarConfiguration.error(title: error.message));
         }
       } else {
         widget.onError?.call(error);
@@ -251,7 +271,9 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
     } catch (error) {
       if (widget.onError == null && mounted) {
         context.showSnackbar(
-          SnackbarConfiguration.error(title: "Unexpected error has occurred: $error"),
+          SnackbarConfiguration.error(
+            title: "Unexpected error has occurred: $error",
+          ),
         );
       } else {
         widget.onError?.call(error);
@@ -286,7 +308,8 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
   Future<void> _signIn() async {
     final params = AuthParams.email(
       email: widget.store.form.control(widget.store.emailKey).value as String,
-      password: widget.store.form.control(widget.store.passwordKey).value as String,
+      password:
+          widget.store.form.control(widget.store.passwordKey).value as String,
     );
 
     final response = await widget.store.signIn(

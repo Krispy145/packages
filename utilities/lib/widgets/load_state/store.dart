@@ -43,7 +43,8 @@ mixin LoadStateStore {
   // bool get isIdle => _isIdle.value;
 
   bool get hasShownNoMoreToLoadSnackBar => _hasShownNoMoreToLoadSnackBar.value;
-  set hasShownNoMoreToLoadSnackBar(bool value) => _hasShownNoMoreToLoadSnackBar.value = value;
+  set hasShownNoMoreToLoadSnackBar(bool value) =>
+      _hasShownNoMoreToLoadSnackBar.value = value;
   final Observable<bool> _hasShownNoMoreToLoadSnackBar = Observable(false);
 
   void setInitial() => setInitialAction.call([]);

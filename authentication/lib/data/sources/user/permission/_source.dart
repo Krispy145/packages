@@ -18,4 +18,5 @@ part "dummy.source.dart";
 part "firestore.source.dart";
 
 /// [UserPermissionDataSource] is an mixin that defines the basic CRUD operations for the [PermissionModel] entity.
-sealed class UserPermissionDataSource<Resp extends ResponseModel> with DataSource<PermissionModel, BasicSearchQueryModel> {}
+sealed class UserPermissionDataSource<Resp extends ResponseModel>
+    with DataSource<PermissionModel, BasicSearchQueryModel> {}

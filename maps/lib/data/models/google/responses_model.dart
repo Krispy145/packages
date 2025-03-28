@@ -1,8 +1,8 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-import 'place_model.dart';
+import "place_model.dart";
 
-part 'responses_model.mapper.dart';
+part "responses_model.mapper.dart";
 
 @MappableEnum(caseStyle: CaseStyle.upperSnakeCase)
 enum GoogleResponseStatus {

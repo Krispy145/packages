@@ -22,10 +22,16 @@ enum ExpandingPanelViewType {
 /// [ExpandingPanelViewBuilder] is a class that builds the panel view.
 class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context, ExpandingPanelViewStore panelStore) panelViewBuilder;
+  final Widget Function(
+    BuildContext context,
+    ExpandingPanelViewStore panelStore,
+  ) panelViewBuilder;
 
   /// [viewBuilder] is a function that builds the panel view with access to the [ExpandingPanelViewStore].
-  final Widget Function(BuildContext context, ExpandingPanelViewStore panelStore) viewBuilder;
+  final Widget Function(
+    BuildContext context,
+    ExpandingPanelViewStore panelStore,
+  ) viewBuilder;
 
   /// [type] is the [ExpandingPanelViewType] of the panel view.
   final ExpandingPanelViewType type;
@@ -68,17 +74,20 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
   /// [store] is the [ExpandingPanelViewStore] for the panel view.
   final ExpandingPanelViewStore store = ExpandingPanelViewStore();
 
-  Color? get _onSecondaryContainer => AppTheme.currentColorModel?.onSecondaryContainer;
+  Color? get _onSecondaryContainer =>
+      AppTheme.currentColorModel?.onSecondaryContainer;
 
   double _buildPanelViewWidth(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.left || type == ExpandingPanelViewType.right) {
+    if (type == ExpandingPanelViewType.left ||
+        type == ExpandingPanelViewType.right) {
       return context.screenWidth * percentage;
     }
     return context.screenWidth;
   }
 
   double _buildPanelViewHeight(BuildContext context, double percentage) {
-    if (type == ExpandingPanelViewType.top || type == ExpandingPanelViewType.bottom) {
+    if (type == ExpandingPanelViewType.top ||
+        type == ExpandingPanelViewType.bottom) {
       return context.screenHeight * percentage;
     }
     return context.screenHeight;
@@ -187,7 +196,8 @@ class ExpandingPanelViewBuilder extends StatelessWidget {
       duration: const Duration(milliseconds: 300),
       firstCurve: Curves.easeInOut,
       secondCurve: Curves.easeInOut,
-      crossFadeState: store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+      crossFadeState:
+          store.isOpen ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       firstChild: GestureDetector(
         onTap: store.toggle,
         child: SizedBox(

@@ -13,10 +13,14 @@ extension ThemeColorExtension on ThemeColorString {
     if (startsWith("#")) {
       return ColorMapper.getColorFromHex(this);
     }
-    final lightColorModel = AppTheme.colorStyles(styleTypeName: styleType).light.toMap();
-    final darkColorModel = AppTheme.colorStyles(styleTypeName: styleType).dark.toMap();
-    final currentColorModel = AppTheme.isDark ? darkColorModel : lightColorModel;
-    final currentColorAndKey = currentColorModel.entries.firstWhereOrNull((element) => element.key == this);
+    final lightColorModel =
+        AppTheme.colorStyles(styleTypeName: styleType).light.toMap();
+    final darkColorModel =
+        AppTheme.colorStyles(styleTypeName: styleType).dark.toMap();
+    final currentColorModel =
+        AppTheme.isDark ? darkColorModel : lightColorModel;
+    final currentColorAndKey = currentColorModel.entries
+        .firstWhereOrNull((element) => element.key == this);
     if (currentColorAndKey != null) {
       return const ColorMapper().decode(currentColorAndKey.value);
     }

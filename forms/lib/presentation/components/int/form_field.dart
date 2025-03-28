@@ -27,18 +27,21 @@ class IntFormField extends BaseFormField<IntFormFieldStore> {
               children: [
                 // if (widget.showButtons)
                 IconButton.filled(
-                  icon: Icon(Icons.remove, color: context.colorScheme.onPrimary),
+                  icon:
+                      Icon(Icons.remove, color: context.colorScheme.onPrimary),
                   onPressed: store.add,
                 ),
                 Sizes.s.spacer(axis: Axis.horizontal),
                 SizedBox(
                   width: 100,
                   child: TextField(
-                    decoration: const InputDecoration(border: UnderlineInputBorder()),
+                    decoration:
+                        const InputDecoration(border: UnderlineInputBorder()),
                     controller: store.textController,
                     keyboardType: TextInputType.number,
                     // enabled: widget.enabled,
-                    onChanged: (value) => store.onValueChanged(int.tryParse(value)),
+                    onChanged: (value) =>
+                        store.onValueChanged(int.tryParse(value)),
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
                     ],

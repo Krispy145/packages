@@ -21,7 +21,8 @@ class NavigationBarModel with NavigationBarModelMappable {
   final ShapeBorderModel? indicatorShape_shapeBorder;
   final TextStyleString? labelTextStyle_textStyleString;
   // @NavigationDestinationLabelConverter()
-  final NavigationDestinationLabelBehavior? labelBehavior_enum_navigationDestinationLabelBehavior;
+  final NavigationDestinationLabelBehavior?
+      labelBehavior_enum_navigationDestinationLabelBehavior;
 
   const NavigationBarModel({
     this.height_double,
@@ -41,16 +42,22 @@ class NavigationBarModel with NavigationBarModelMappable {
   NavigationBarThemeData asNavigationBarThemeData({String? styleTypeName}) {
     return NavigationBarThemeData(
       height: height_double,
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor:
+          indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
         styleTypeName: styleTypeName,
       ),
       labelTextStyle: WidgetStateProperty.all(
-        labelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+        labelTextStyle_textStyleString
+            ?.toTextStyleModel(styleType: styleTypeName)
+            ?.asTextStyle,
       ),
       labelBehavior: labelBehavior_enum_navigationDestinationLabelBehavior,
     );

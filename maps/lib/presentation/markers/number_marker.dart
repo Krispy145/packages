@@ -16,7 +16,10 @@ class NumberRingedMarker extends BaseClusterMarker {
           child: RingedMarkerWrapper(
             selected: isSelected(topMarkerModel),
             onTapped: () => onTopMarkerTapped?.call(topMarkerModel),
-            childBuilder: (context) => Text(markerCount.toString(), style: Theme.of(context).textTheme.titleMedium),
+            childBuilder: (context) => Text(
+              markerCount.toString(),
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
           ),
         );
 }

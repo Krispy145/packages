@@ -46,8 +46,10 @@ class UserDataRepository<T extends UserModel> {
     required this.titleFromType,
     this.baseUrl,
   });
-  BehaviorSubject<PermissionModel?> currentPermissionModelStream = BehaviorSubject<PermissionModel?>.seeded(null);
-  UserPermissionDataRepository permissionDataRepository(UUID userId) => UserPermissionDataRepository(
+  BehaviorSubject<PermissionModel?> currentPermissionModelStream =
+      BehaviorSubject<PermissionModel?>.seeded(null);
+  UserPermissionDataRepository permissionDataRepository(UUID userId) =>
+      UserPermissionDataRepository(
         userDataSourceType: source,
         userId: userId,
       );
@@ -62,7 +64,9 @@ class UserDataRepository<T extends UserModel> {
     }
     final _currentPermissionModel = currentPermissionModelStream.value;
     if (_currentPermissionModel == null) {
-      return permissionDataRepository(userId).getPermissionModel().then((value) {
+      return permissionDataRepository(userId)
+          .getPermissionModel()
+          .then((value) {
         currentPermissionModelStream.add(value.second);
       });
     }
@@ -73,7 +77,8 @@ class UserDataRepository<T extends UserModel> {
 
   Future<RequestResponse> initPermissions(UUID userId) async {
     if (hasPermissions) {
-      final result = await permissionDataRepository(userId).getPermissionModel();
+      final result =
+          await permissionDataRepository(userId).getPermissionModel();
 
       if (result.first == RequestResponse.success) {
         currentPermissionModelStream.add(result.second);
@@ -102,7 +107,8 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [searchPagedUserModels] returns a list of [UserModel]s based on the given [query].
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> searchPagedUserModels({
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>>
+      searchPagedUserModels({
     ResponseModel? lastResponse,
     int? size,
     required UserSearchQueryModel query,
@@ -115,7 +121,8 @@ class UserDataRepository<T extends UserModel> {
   }
 
   /// [getPagedUserModels] returns a page of [UserModel]s.
-  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>> getPagedUserModels({
+  Future<Pair<RequestResponse, Pair<ResponseModel?, List<T?>>>>
+      getPagedUserModels({
     ResponseModel? lastResponse,
     int? size,
     String? orderBy,

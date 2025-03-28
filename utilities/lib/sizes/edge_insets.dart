@@ -31,7 +31,9 @@ class AppEdgeInsets extends EdgeInsets {
     Sizes? vertical,
     SizeTypes type = SizeTypes.fixed,
   }) : super.symmetric(
-          horizontal: horizontal?.points(context, axis: Axis.horizontal, type: type) ?? 0,
+          horizontal:
+              horizontal?.points(context, axis: Axis.horizontal, type: type) ??
+                  0,
           vertical: vertical?.points(context, type: type) ?? 0,
         );
 

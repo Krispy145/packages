@@ -18,4 +18,7 @@ part "api.source.dart";
 part "dummy.source.dart";
 
 /// [PlaylistDataSource] is an mixin that defines the basic CRUD operations for the [PlaylistModel] entity.
-sealed class PlaylistDataSource<Resp extends ResponseModel> with DataSource<PlaylistModel, BasicSearchQueryModel>, Paginated<Resp, PlaylistModel, BasicSearchQueryModel> {}
+sealed class PlaylistDataSource<Resp extends ResponseModel>
+    with
+        DataSource<PlaylistModel, BasicSearchQueryModel>,
+        Paginated<Resp, PlaylistModel, BasicSearchQueryModel> {}

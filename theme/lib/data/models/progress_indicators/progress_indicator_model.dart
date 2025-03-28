@@ -30,7 +30,8 @@ class ProgressIndicatorModel with ProgressIndicatorModelMappable {
   }) {
     return ProgressIndicatorThemeData(
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      linearTrackColor: linearTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      linearTrackColor:
+          linearTrackColor_themeColorString?.toColor(styleType: styleTypeName),
       linearMinHeight: linearMinHeight_double,
       circularTrackColor: circularTrackColor_themeColorString?.toColor(
         styleType: styleTypeName,

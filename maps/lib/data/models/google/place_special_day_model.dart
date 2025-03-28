@@ -1,6 +1,6 @@
-import 'package:dart_mappable/dart_mappable.dart';
+import "package:dart_mappable/dart_mappable.dart";
 
-part 'place_special_day_model.mapper.dart';
+part "place_special_day_model.mapper.dart";
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class PlaceSpecialDay with PlaceSpecialDayMappable {

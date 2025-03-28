@@ -39,6 +39,7 @@ class FlavorConfig {
 
   /// [_setEnvironment] is a private method that sets the environment
   void _setEnvironment(String environmentName) {
-    environment = Environment.values.firstWhere((e) => e.name == environmentName);
+    environment =
+        Environment.values.firstWhere((e) => e.name == environmentName);
   }
 }

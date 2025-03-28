@@ -96,8 +96,10 @@ class _UploadImageWidgetState extends State<UploadImageWidget> {
   }
 
   Future<void> _setColorModelFromImage() async {
-    final _provider = kIsWeb ? Image.memory(_webImageFile!) : Image.file(_imageFile!);
-    final colorFromImage = await ColorModel.fromImage(provider: _provider.image);
+    final _provider =
+        kIsWeb ? Image.memory(_webImageFile!) : Image.file(_imageFile!);
+    final colorFromImage =
+        await ColorModel.fromImage(provider: _provider.image);
     setState(() {
       _primaryColor = colorFromImage.primary;
     });
@@ -159,17 +161,22 @@ class _ImageColorsState extends State<ImageColors> {
       region: newRegion,
       maximumColorCount: 50,
     );
-    final paletteColors = paletteGenerator?.paletteColors.map((e) => Pair(e.color, e.population)).toList();
+    final paletteColors = paletteGenerator?.paletteColors
+        .map((e) => Pair(e.color, e.population))
+        .toList();
 
     final distinctColors = <Pair<Color, int>>[];
     for (final color in paletteColors ?? <Pair<Color, int>>[]) {
-      if (distinctColors.every((c) => isSignificantlyDifferent(c.first, color.first))) {
+      if (distinctColors
+          .every((c) => isSignificantlyDifferent(c.first, color.first))) {
         distinctColors.add(color);
       }
     }
 
     for (final color in distinctColors) {
-      debugPrint("ColorImage Color: #${color.first.toString().substring(10)} - Population: ${color.second}");
+      debugPrint(
+        "ColorImage Color: #${color.first.toString().substring(10)} - Population: ${color.second}",
+      );
     }
     setState(() {});
   }
@@ -290,7 +297,8 @@ class PaletteSwatch extends StatelessWidget {
     final hslColor = HSLColor.fromColor(color ?? Colors.transparent);
     final backgroundAsHsl = HSLColor.fromColor(_kBackgroundColor);
     final colorDistance = math.sqrt(
-      math.pow(hslColor.saturation - backgroundAsHsl.saturation, 2.0) + math.pow(hslColor.lightness - backgroundAsHsl.lightness, 2.0),
+      math.pow(hslColor.saturation - backgroundAsHsl.saturation, 2.0) +
+          math.pow(hslColor.lightness - backgroundAsHsl.lightness, 2.0),
     );
 
     Widget swatch = Padding(
@@ -308,7 +316,9 @@ class PaletteSwatch extends StatelessWidget {
                 color: color,
                 border: Border.all(
                   color: _kPlaceholderColor,
-                  style: colorDistance < 0.2 ? BorderStyle.solid : BorderStyle.none,
+                  style: colorDistance < 0.2
+                      ? BorderStyle.solid
+                      : BorderStyle.none,
                 ),
               ),
               width: 34,

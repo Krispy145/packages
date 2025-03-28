@@ -32,10 +32,18 @@ class ImagePickerField extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(store.isEditing ? "Change Image" : "Add Image", style: context.textTheme.titleMedium),
+            Text(
+              store.isEditing ? "Change Image" : "Add Image",
+              style: context.textTheme.titleMedium,
+            ),
             Sizes.s.spacer(),
             // IMAGE PREVIEW
-            PreviewImage(store: store, axis: axis, aspectRatio: aspectRatio, decoration: decoration),
+            PreviewImage(
+              store: store,
+              axis: axis,
+              aspectRatio: aspectRatio,
+              decoration: decoration,
+            ),
             Sizes.s.spacer(),
             // IMAGE OPTIONS
             Flexible(child: _buildImageOptions(context)),

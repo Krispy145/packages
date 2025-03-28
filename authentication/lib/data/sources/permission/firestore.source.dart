@@ -1,7 +1,9 @@
 part of "_source.dart";
 
 /// [FirestorePermissionDataSource] is a class that implements [PermissionDataSource] interface.
-class FirestorePermissionDataSource extends PaginatedFirestoreDataSource<PermissionModel, BasicSearchQueryModel> implements PermissionDataSource<FirestoreResponseModel<PermissionModel?>> {
+class FirestorePermissionDataSource
+    extends PaginatedFirestoreDataSource<PermissionModel, BasicSearchQueryModel>
+    implements PermissionDataSource<FirestoreResponseModel<PermissionModel?>> {
   /// [FirestorePermissionDataSource] constructor.
   FirestorePermissionDataSource()
       : super(
@@ -12,7 +14,10 @@ class FirestorePermissionDataSource extends PaginatedFirestoreDataSource<Permiss
         );
 
   @override
-  Query<Map<String, dynamic>> buildQuery(BasicSearchQueryModel query, Query<Map<String, dynamic>> collectionReference) {
+  Query<Map<String, dynamic>> buildQuery(
+    BasicSearchQueryModel query,
+    Query<Map<String, dynamic>> collectionReference,
+  ) {
     // TODO: implement buildQuery
     throw UnimplementedError();
   }

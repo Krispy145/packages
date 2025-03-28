@@ -57,15 +57,24 @@ class ListTileModel with ListTileModelMappable {
     return ListTileThemeData(
       dense: dense_bool,
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
-      selectedColor: selectedColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedColor:
+          selectedColor_themeColorString?.toColor(styleType: styleTypeName),
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
       textColor: textColor_themeColorString?.toColor(styleType: styleTypeName),
-      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      subtitleTextStyle: subtitleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      leadingAndTrailingTextStyle: leadingAndTrailingTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentPadding: contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      titleTextStyle: titleTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      subtitleTextStyle: subtitleTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      leadingAndTrailingTextStyle: leadingAndTrailingTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      contentPadding:
+          contentPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       tileColor: tileColor_themeColorString?.toColor(styleType: styleTypeName),
-      selectedTileColor: selectedTileColor_themeColorString?.toColor(styleType: styleTypeName),
+      selectedTileColor:
+          selectedTileColor_themeColorString?.toColor(styleType: styleTypeName),
       horizontalTitleGap: horizontalTitleGap_double,
       minVerticalPadding: minVerticalPadding_double,
       minLeadingWidth: minLeadingWidth_double,

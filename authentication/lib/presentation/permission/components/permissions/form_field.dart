@@ -9,7 +9,8 @@ import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class ReactivePermissionsField extends ReactiveFormField<UserPermissionsModel, UserPermissionsModel> {
+class ReactivePermissionsField
+    extends ReactiveFormField<UserPermissionsModel, UserPermissionsModel> {
   final String title;
   ReactivePermissionsField({
     required this.title,
@@ -37,10 +38,12 @@ class ReactivePermissionsField extends ReactiveFormField<UserPermissionsModel, U
         );
 
   @override
-  ReactiveFormFieldState<UserPermissionsModel, UserPermissionsModel> createState() => _ReactivePermissionsFieldState<UserPermissionsModel>();
+  ReactiveFormFieldState<UserPermissionsModel, UserPermissionsModel>
+      createState() => _ReactivePermissionsFieldState<UserPermissionsModel>();
 }
 
-class _ReactivePermissionsFieldState<T> extends ReactiveFormFieldState<T, UserPermissionsModel> {
+class _ReactivePermissionsFieldState<T>
+    extends ReactiveFormFieldState<T, UserPermissionsModel> {
   _ReactivePermissionsFieldState();
 }
 
@@ -75,7 +78,10 @@ class PermissionChipsField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Permissions for $permissionName", style: context.textTheme.titleMedium),
+          Text(
+            "Permissions for $permissionName",
+            style: context.textTheme.titleMedium,
+          ),
           Wrap(
             children: fields.map((field) {
               return Observer(
@@ -101,7 +107,13 @@ class PermissionChipsField extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(field.title, style: context.textTheme.titleSmall?.copyWith(color: context.colorScheme.onSurface.withValues(alpha: 0.6))),
+                        Text(
+                          field.title,
+                          style: context.textTheme.titleSmall?.copyWith(
+                            color: context.colorScheme.onSurface
+                                .withValues(alpha: 0.6),
+                          ),
+                        ),
                         ...radios,
                         // SegmentedButton(
                         //   style: ButtonStyle(

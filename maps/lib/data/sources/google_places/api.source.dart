@@ -1,6 +1,7 @@
 import "package:dio/dio.dart";
 import "package:maps/constants/map_constants.dart";
 import "package:maps/data/models/google/responses_model.dart";
+import "package:maps/data/sources/google_places/api.source.dart";
 import "package:maps/utils/loggers.dart";
 import "package:utilities/constants/env.dart";
 import "package:utilities/data/sources/api/source.dart";
@@ -11,7 +12,9 @@ import "package:utilities/logger/logger.dart";
 import "_source.dart";
 
 /// [ApiGooglePlacesDataSource] is a class that implements [GooglePlacesDataSource] interface.
-class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<String, dynamic>> implements GooglePlacesDataSource {
+class ApiGooglePlacesDataSource
+    extends ApiDataSource<GoogleResponsesModel, Map<String, dynamic>>
+    implements GooglePlacesDataSource {
   final String googleApiKey;
 
   /// [ApiGooglePlacesDataSource.textSearch] constructor.
@@ -29,7 +32,10 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
             headers: PublicHeaders.map,
           ),
         ) {
-    AppLogger.print("API RESULT: Configuration set for Google Places API: $googleApiKey, ${MapConstants.googlePrefix}, ${MapConstants.googlePlaceSearchSuffix}", [MapLoggers.search]);
+    AppLogger.print(
+      "API RESULT: Configuration set for Google Places API: $googleApiKey, ${MapConstants.googlePrefix}, ${MapConstants.googlePlaceSearchSuffix}",
+      [MapLoggers.search],
+    );
   }
 
   @override
@@ -39,7 +45,10 @@ class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) {
-    AppLogger.print("API RESULT: Getting place with id: $id", [MapLoggers.search]);
+    AppLogger.print(
+      "API RESULT: Getting place with id: $id",
+      [MapLoggers.search],
+    );
     final query = queryParameters ?? {};
     query["place_id"] = id;
     return super.search(query, pathExtensions: pathExtensions);

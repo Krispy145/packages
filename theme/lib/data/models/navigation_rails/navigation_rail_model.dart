@@ -42,14 +42,20 @@ class NavigationRailModel with NavigationRailModelMappable {
 
   NavigationRailThemeData asNavigationRailThemeData({String? styleTypeName}) {
     return NavigationRailThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      unselectedLabelTextStyle: unselectedLabelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      selectedLabelTextStyle: selectedLabelTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      unselectedLabelTextStyle: unselectedLabelTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      selectedLabelTextStyle: selectedLabelTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       groupAlignment: groupAlignment_double,
       labelType: labelType_enum_navigationRailLabelType,
       useIndicator: useIndicator_bool,
-      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      indicatorColor:
+          indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
       indicatorShape: indicatorShape_shapeBorder?.asShapeBorder(
         styleTypeName: styleTypeName,
       ),

@@ -59,9 +59,13 @@ class PopupMenuModel with PopupMenuModelMappable {
       color: color_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      textStyle: textStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       enableFeedback: enableFeedback_bool,
       position: position.toPopupMenuPosition(),
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),

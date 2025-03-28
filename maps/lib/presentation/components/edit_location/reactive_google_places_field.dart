@@ -3,7 +3,8 @@ import "package:maps/presentation/components/search/form_field.dart";
 import "package:maps/presentation/components/search/store.dart";
 import "package:reactive_forms/reactive_forms.dart";
 
-class ReactiveGooglePlacesField extends ReactiveFormField<GooglePlace, GooglePlace> {
+class ReactiveGooglePlacesField
+    extends ReactiveFormField<GooglePlace, GooglePlace> {
   ReactiveGooglePlacesField({
     super.key,
     super.formControlName,
@@ -23,7 +24,9 @@ class ReactiveGooglePlacesField extends ReactiveFormField<GooglePlace, GooglePla
               title: "Search Locations",
               onValueChanged: (place) {
                 field.didChange(place);
-                onValueChanged?.call(field.control); // TODO: Check how this should be working
+                onValueChanged?.call(
+                  field.control,
+                ); // TODO: Check how this should be working
               },
             );
             return GooglePlaceSearchFormField(store: store);
@@ -31,5 +34,6 @@ class ReactiveGooglePlacesField extends ReactiveFormField<GooglePlace, GooglePla
         );
 
   @override
-  ReactiveFormFieldState<GooglePlace, GooglePlace> createState() => ReactiveFormFieldState<GooglePlace, GooglePlace>();
+  ReactiveFormFieldState<GooglePlace, GooglePlace> createState() =>
+      ReactiveFormFieldState<GooglePlace, GooglePlace>();
 }

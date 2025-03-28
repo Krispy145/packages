@@ -8,7 +8,8 @@ import "package:utilities/helpers/tuples.dart";
 part "paginated.mapper.dart";
 
 @MappableClass()
-class SupabaseResponseModel<T> extends ResponseModel with SupabaseResponseModelMappable<T> {
+class SupabaseResponseModel<T> extends ResponseModel
+    with SupabaseResponseModelMappable<T> {
   final PostgrestResponse<T>? lastPostgresResponse;
 
   SupabaseResponseModel({this.lastPostgresResponse});
@@ -19,7 +20,9 @@ class SupabaseResponseModel<T> extends ResponseModel with SupabaseResponseModelM
   }
 }
 
-abstract class PaginatedSupabaseDataSource<T, Q> extends SupabaseDataSource<T, Q> with Paginated<SupabaseResponseModel<T?>, T, Q> {
+abstract class PaginatedSupabaseDataSource<T, Q>
+    extends SupabaseDataSource<T, Q>
+    with Paginated<SupabaseResponseModel<T?>, T, Q> {
   SupabaseClient? _supabase;
 
   /// [PaginatedSupabaseDataSource] constructor
@@ -42,7 +45,8 @@ abstract class PaginatedSupabaseDataSource<T, Q> extends SupabaseDataSource<T, Q
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>> getPage({
+  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>>
+      getPage({
     SupabaseResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -54,7 +58,12 @@ abstract class PaginatedSupabaseDataSource<T, Q> extends SupabaseDataSource<T, Q
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>> searchPage({SupabaseResponseModel<T?>? lastResponse, int? size, required Q query}) {
+  Future<Pair<RequestResponse, Pair<SupabaseResponseModel<T?>?, List<T?>>>>
+      searchPage({
+    SupabaseResponseModel<T?>? lastResponse,
+    int? size,
+    required Q query,
+  }) {
     // TODO: implement searchPage
     throw UnimplementedError();
   }

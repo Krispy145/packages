@@ -30,7 +30,8 @@ class PermissionModel with PermissionModelMappable {
     return "PermissionModel(id: $id\nrole: $role\npermissions: $permissions\n)";
   }
 
-  static PermissionModel collectionViewer(String collectionName) => PermissionModel(
+  static PermissionModel collectionViewer(String collectionName) =>
+      PermissionModel(
         id: generateUniqueId(),
         role: "viewer",
         permissions: {

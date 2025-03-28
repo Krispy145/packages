@@ -19,7 +19,8 @@ class LYFilePicker implements BaseFilePicker {
 
   @override
   Future<List<XFile>> pickMultipleFiles() async {
-    final result = await _filePicker.pickFiles(allowMultiple: true, withData: true);
+    final result =
+        await _filePicker.pickFiles(allowMultiple: true, withData: true);
 
     if (result != null && result.files.isNotEmpty) {
       return result.files.map(_getXFileFromPlatformFile).toList();

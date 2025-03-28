@@ -107,7 +107,8 @@ class OverlayShellStructure extends StatelessWidget {
   Widget build(BuildContext context) {
     return OverlayPortal(
       controller: store.overlayPortalController,
-      overlayChildBuilder: (context) => _axis == Axis.vertical ? _buildRow() : _buildColumn(),
+      overlayChildBuilder: (context) =>
+          _axis == Axis.vertical ? _buildRow() : _buildColumn(),
       // overlayChildBuilder: (context) => _overlay(),
       child: body,
     );
@@ -116,7 +117,9 @@ class OverlayShellStructure extends StatelessWidget {
   Row _buildRow() {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: overlayPosition == OverlayPosition.left ? MainAxisAlignment.start : MainAxisAlignment.end,
+      mainAxisAlignment: overlayPosition == OverlayPosition.left
+          ? MainAxisAlignment.start
+          : MainAxisAlignment.end,
       children: [
         _overlay(),
       ],
@@ -126,7 +129,9 @@ class OverlayShellStructure extends StatelessWidget {
   Column _buildColumn() {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: overlayPosition == OverlayPosition.top ? MainAxisAlignment.start : MainAxisAlignment.end,
+      mainAxisAlignment: overlayPosition == OverlayPosition.top
+          ? MainAxisAlignment.start
+          : MainAxisAlignment.end,
       children: [
         _overlay(),
       ],
@@ -137,8 +142,14 @@ class OverlayShellStructure extends StatelessWidget {
     return Observer(
       builder: (context) {
         return SizedBox(
-          width: overlayPosition == OverlayPosition.left || overlayPosition == OverlayPosition.right ? _getOverlayWidth(context) : null,
-          height: overlayPosition == OverlayPosition.bottom || overlayPosition == OverlayPosition.top ? _getOverlayHeight(context) : null,
+          width: overlayPosition == OverlayPosition.left ||
+                  overlayPosition == OverlayPosition.right
+              ? _getOverlayWidth(context)
+              : null,
+          height: overlayPosition == OverlayPosition.bottom ||
+                  overlayPosition == OverlayPosition.top
+              ? _getOverlayHeight(context)
+              : null,
           child: overlay,
         );
       },

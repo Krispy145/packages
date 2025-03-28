@@ -34,7 +34,9 @@ class MultiStoreNotificationsView extends StatelessWidget {
           }
           return NotificationCard(
             notification: notification,
-            store: notification.isLocalNotification ? localNotificationsStore : pushNotificationsStore,
+            store: notification.isLocalNotification
+                ? localNotificationsStore
+                : pushNotificationsStore,
           );
         },
       ),

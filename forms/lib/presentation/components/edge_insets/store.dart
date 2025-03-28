@@ -6,9 +6,11 @@ import "../double/store.dart";
 
 part "store.g.dart";
 
-class EdgeInsetsFormFieldStore = _EdgeInsetsFormFieldStore with _$EdgeInsetsFormFieldStore;
+class EdgeInsetsFormFieldStore = _EdgeInsetsFormFieldStore
+    with _$EdgeInsetsFormFieldStore;
 
-abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsModel> with Store {
+abstract class _EdgeInsetsFormFieldStore
+    extends BaseFormFieldStore<EdgeInsetsModel> with Store {
   _EdgeInsetsFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
@@ -76,7 +78,8 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
   @computed
   bool get bottomEnabled => type == EdgeInsetsTypes.only;
   @computed
-  bool get leftEnabled => [EdgeInsetsTypes.symmetric, EdgeInsetsTypes.only].contains(type);
+  bool get leftEnabled =>
+      [EdgeInsetsTypes.symmetric, EdgeInsetsTypes.only].contains(type);
   @computed
   bool get rightEnabled => type == EdgeInsetsTypes.only;
 
@@ -85,13 +88,33 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     type = newType;
     switch (newType) {
       case EdgeInsetsTypes.all:
-        value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.top_double, right_double: value?.top_double, left_double: value?.top_double);
+        value = EdgeInsetsModel(
+          top_double: value?.top_double,
+          bottom_double: value?.top_double,
+          right_double: value?.top_double,
+          left_double: value?.top_double,
+        );
       case EdgeInsetsTypes.zero:
-        value = const EdgeInsetsModel(top_double: 0, bottom_double: 0, left_double: 0, right_double: 0);
+        value = const EdgeInsetsModel(
+          top_double: 0,
+          bottom_double: 0,
+          left_double: 0,
+          right_double: 0,
+        );
       case EdgeInsetsTypes.symmetric:
-        value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.top_double, right_double: value?.right_double, left_double: value?.left_double);
+        value = EdgeInsetsModel(
+          top_double: value?.top_double,
+          bottom_double: value?.top_double,
+          right_double: value?.right_double,
+          left_double: value?.left_double,
+        );
       case EdgeInsetsTypes.only:
-        value = EdgeInsetsModel(top_double: value?.top_double, bottom_double: value?.bottom_double, left_double: value?.left_double, right_double: value?.right_double);
+        value = EdgeInsetsModel(
+          top_double: value?.top_double,
+          bottom_double: value?.bottom_double,
+          left_double: value?.left_double,
+          right_double: value?.right_double,
+        );
     }
   }
 
@@ -108,7 +131,8 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
         );
       // value = EdgeInsets.all(newTop);
       case EdgeInsetsTypes.symmetric:
-        value = (value ?? const EdgeInsetsModel()).copyWith(top_double: newTop, bottom_double: newTop);
+        value = (value ?? const EdgeInsetsModel())
+            .copyWith(top_double: newTop, bottom_double: newTop);
       // value = EdgeInsets.symmetric(vertical: newTop, horizontal: value.left);
       case EdgeInsetsTypes.only:
         value = (value ?? const EdgeInsetsModel()).copyWith(top_double: newTop);
@@ -123,11 +147,13 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     final newLeft = leftValue ?? 0;
     switch (type) {
       case EdgeInsetsTypes.symmetric:
-        value = (value ?? const EdgeInsetsModel()).copyWith(left_double: newLeft, right_double: newLeft);
+        value = (value ?? const EdgeInsetsModel())
+            .copyWith(left_double: newLeft, right_double: newLeft);
       // value = EdgeInsets.symmetric(vertical: value.top, horizontal: newLeft);
       case EdgeInsetsTypes.only:
         // value = EdgeInsets.only(top: value.top, bottom: value.bottom, left: newLeft, right: value.right);
-        value = (value ?? const EdgeInsetsModel()).copyWith(left_double: newLeft);
+        value =
+            (value ?? const EdgeInsetsModel()).copyWith(left_double: newLeft);
       default:
         break;
     }
@@ -138,7 +164,8 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     final newRight = rightValue ?? 0;
     switch (type) {
       case EdgeInsetsTypes.only:
-        value = (value ?? const EdgeInsetsModel()).copyWith(right_double: newRight);
+        value =
+            (value ?? const EdgeInsetsModel()).copyWith(right_double: newRight);
         // value = EdgeInsets.only(top: value.top, bottom: value.bottom, left: value.left, right: newRight);
         break;
       default:
@@ -152,7 +179,8 @@ abstract class _EdgeInsetsFormFieldStore extends BaseFormFieldStore<EdgeInsetsMo
     switch (type) {
       case EdgeInsetsTypes.only:
         // value = EdgeInsets.only(top: value.top, bottom: newBottom, left: value.left, right: value.right);
-        value = (value ?? const EdgeInsetsModel()).copyWith(bottom_double: newBottom);
+        value = (value ?? const EdgeInsetsModel())
+            .copyWith(bottom_double: newBottom);
         break;
       default:
         break;

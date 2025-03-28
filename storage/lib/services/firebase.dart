@@ -11,7 +11,8 @@ class FirebaseStorageService implements BaseStorageService {
   final String? folderName;
   final FirebaseStorage _firebaseStorage;
 
-  FirebaseStorageService({this.folderName, FirebaseStorage? firebaseStorage}) : _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
+  FirebaseStorageService({this.folderName, FirebaseStorage? firebaseStorage})
+      : _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
 
   @override
   Future<String> uploadFile({

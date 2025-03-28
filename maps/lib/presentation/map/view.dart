@@ -1,17 +1,17 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
-import 'package:flutter_map_supercluster/flutter_map_supercluster.dart';
+import "package:auto_route/auto_route.dart";
+import "package:flutter/material.dart";
+import "package:flutter_map/flutter_map.dart";
+import "package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart";
+import "package:flutter_map_supercluster/flutter_map_supercluster.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
-import 'package:maps/constants/map_constants.dart';
-import 'package:maps/constants/marker_constants.dart';
-import 'package:maps/presentation/markers/base_marker.dart';
-import 'package:maps/presentation/markers/helpers/cluster_data.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:utilities/widgets/load_state/builder.dart';
+import "package:maps/constants/map_constants.dart";
+import "package:maps/constants/marker_constants.dart";
+import "package:maps/presentation/markers/base_marker.dart";
+import "package:maps/presentation/markers/helpers/cluster_data.dart";
+import "package:url_launcher/url_launcher.dart";
+import "package:utilities/widgets/load_state/builder.dart";
 
-import 'store.dart';
+import "store.dart";
 
 /// [MapView] of the app.
 @RoutePage()
@@ -24,18 +24,20 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-      return FlutterMap(
-        options: store.mapOptions,
-        mapController: store.animatedMapController.mapController,
-        children: [
-          buildAttribution(),
-          buildTileLayer(),
-          buildSuperclusterLayer(),
-          ...buildAdditionalChildren(context),
-        ],
-      );
-    });
+    return Observer(
+      builder: (context) {
+        return FlutterMap(
+          options: store.mapOptions,
+          mapController: store.animatedMapController.mapController,
+          children: [
+            buildAttribution(),
+            buildTileLayer(),
+            buildSuperclusterLayer(),
+            ...buildAdditionalChildren(context),
+          ],
+        );
+      },
+    );
   }
 
   List<Widget> buildAdditionalChildren(BuildContext context) {
@@ -50,21 +52,21 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
           "© Mapbox",
           prependCopyright: false,
           onTap: () => launchUrl(
-            Uri.parse('https://www.mapbox.com/about/maps/'),
+            Uri.parse("https://www.mapbox.com/about/maps/"),
           ),
         ),
         TextSourceAttribution(
           "© OpenStreetMap",
           prependCopyright: false,
           onTap: () => launchUrl(
-            Uri.parse('http://www.openstreetmap.org/copyright'),
+            Uri.parse("http://www.openstreetmap.org/copyright"),
           ),
         ),
         TextSourceAttribution(
           "Improve this map",
           prependCopyright: false,
           onTap: () => launchUrl(
-            Uri.parse('https://www.mapbox.com/map-feedback/'),
+            Uri.parse("https://www.mapbox.com/map-feedback/"),
           ),
         ),
       ],
@@ -93,7 +95,7 @@ class MapView<StoreType extends MapStore> extends StatelessWidget {
       loadingOverlayBuilder: (context) => const SizedBox.shrink(),
       clusterDataExtractor: (marker) => MarkerClusterData(marker as BaseMarker),
       builder: (context, position, markerCount, extraClusterData) {
-        final clusterData = extraClusterData as MarkerClusterData;
+        final clusterData = extraClusterData! as MarkerClusterData;
         final marker = clusterData.topMarker;
         if (markerCount == 1) {
           return store.buildSingleMarker(marker).child;

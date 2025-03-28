@@ -71,14 +71,17 @@ class EmailAuthWidget<T extends UserModel> extends StatefulWidget {
   State<EmailAuthWidget<T>> createState() => _EmailAuthWidgetState<T>();
 }
 
-class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T>> {
+class _EmailAuthWidgetState<T extends UserModel>
+    extends State<EmailAuthWidget<T>> {
   final _formKey = GlobalKey<FormState>();
   final _codeController = TextEditingController();
   final _emailController = TextEditingController(
     text: kDebugMode ? AuthEnv.email : null,
   );
-  final _passwordController = TextEditingController(text: kDebugMode ? AuthEnv.password : null);
-  late final Map<AdditionalDataField, TextEditingController> _additionalDataControllers;
+  final _passwordController =
+      TextEditingController(text: kDebugMode ? AuthEnv.password : null);
+  late final Map<AdditionalDataField, TextEditingController>
+      _additionalDataControllers;
 
   bool _isLoading = false;
   bool _showPassword = false;
@@ -135,12 +138,14 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (widget.additionalDataFields != null && widget.store.authAction == AuthAction.signUp)
+          if (widget.additionalDataFields != null &&
+              widget.store.authAction == AuthAction.signUp)
             ...widget.additionalDataFields!
                 .map(
                   (additionalDataField) => [
                     TextFormField(
-                      controller: _additionalDataControllers[additionalDataField],
+                      controller:
+                          _additionalDataControllers[additionalDataField],
                       decoration: InputDecoration(
                         label: Text(additionalDataField.label),
                         prefixIcon: additionalDataField.prefixIcon,
@@ -151,7 +156,8 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                   ],
                 )
                 .expand((element) => element),
-          if (widget.codeDataSourceType != null && widget.store.authAction == AuthAction.signUp) ...[
+          if (widget.codeDataSourceType != null &&
+              widget.store.authAction == AuthAction.signUp) ...[
             TextFormField(
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.password_rounded),
@@ -165,7 +171,9 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
             keyboardType: TextInputType.emailAddress,
             autofillHints: const [AutofillHints.email],
             validator: (value) {
-              if (value == null || value.isEmpty || !EmailValidator.validate(_emailController.text)) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !EmailValidator.validate(_emailController.text)) {
                 return "Please enter a valid email address";
               }
               return null;
@@ -211,7 +219,11 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
                         strokeWidth: 1.5,
                       ),
                     )
-                  : Text(widget.store.authAction == AuthAction.signIn ? "Sign In" : "Sign Up"),
+                  : Text(
+                      widget.store.authAction == AuthAction.signIn
+                          ? "Sign In"
+                          : "Sign Up",
+                    ),
               onPressed: () async {
                 if (!_formKey.currentState!.validate()) {
                   return;
@@ -271,11 +283,14 @@ class _EmailAuthWidgetState<T extends UserModel> extends State<EmailAuthWidget<T
               key: const ValueKey("toggleSignInButton"),
               onPressed: _toggleSignIn,
               child: Text(
-                widget.store.authAction == AuthAction.signIn ? "Don't have an account? Sign up" : "Already have an account? Sign in",
+                widget.store.authAction == AuthAction.signIn
+                    ? "Don't have an account? Sign up"
+                    : "Already have an account? Sign in",
               ),
             ),
           ],
-          if (widget.store.authAction == AuthAction.signIn && _forgotPassword) ...[
+          if (widget.store.authAction == AuthAction.signIn &&
+              _forgotPassword) ...[
             Sizes.s.spacer(),
             ElevatedButton(
               onPressed: _resetPassword,

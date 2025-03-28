@@ -26,12 +26,24 @@ class CombinedPickerOptions extends StatelessWidget {
                 // URL TAB
                 TextButton(
                   onPressed: () => store.changeTab(0),
-                  child: Text("URL", style: store.tabIndex == 0 ? context.textTheme.titleMedium?.copyWith(color: context.colorScheme.primary) : context.textTheme.titleMedium),
+                  child: Text(
+                    "URL",
+                    style: store.tabIndex == 0
+                        ? context.textTheme.titleMedium
+                            ?.copyWith(color: context.colorScheme.primary)
+                        : context.textTheme.titleMedium,
+                  ),
                 ),
                 // UPLOAD TAB
                 TextButton(
                   onPressed: () => store.changeTab(1),
-                  child: Text("Upload", style: store.tabIndex == 1 ? context.textTheme.titleMedium?.copyWith(color: context.colorScheme.primary) : context.textTheme.titleMedium),
+                  child: Text(
+                    "Upload",
+                    style: store.tabIndex == 1
+                        ? context.textTheme.titleMedium
+                            ?.copyWith(color: context.colorScheme.primary)
+                        : context.textTheme.titleMedium,
+                  ),
                 ),
               ],
             );

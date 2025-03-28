@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:maps/data/models/marker_model.dart';
-import 'package:maps/presentation/markers/base_marker.dart';
-import 'package:maps/presentation/markers/helpers/ringed_marker_wrapper.dart';
-import 'package:widgets/images/options/network.dart';
-import 'package:widgets/images/widget.dart';
+import "package:flutter/material.dart";
+import "package:maps/data/models/marker_model.dart";
+import "package:maps/presentation/markers/base_marker.dart";
+import "package:maps/presentation/markers/helpers/ringed_marker_wrapper.dart";
+import "package:widgets/images/options/network.dart";
+import "package:widgets/images/widget.dart";
 
 class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
   final String? logoUrl;
 
-  static const String fallbackUrl = "https://www.shutterstock.com/image-vector/red-circle-round-x-black-600nw-2145374435.jpg";
+  static const String fallbackUrl =
+      "https://www.shutterstock.com/image-vector/red-circle-round-x-black-600nw-2145374435.jpg";
 
   LogoRingedMarker({
     required super.markerModel,

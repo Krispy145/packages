@@ -60,7 +60,9 @@ class LYFileUploadManager implements BaseFileUploadManager {
 
   // Combined Picking and Uploading Functions
   @override
-  Future<String?> pickAndUploadSingleFile({FilePreviewCallback? previewCallback}) async {
+  Future<String?> pickAndUploadSingleFile({
+    FilePreviewCallback? previewCallback,
+  }) async {
     final file = await pickSingleFile();
     if (file != null) {
       var confirm = Pair(true, file);
@@ -75,7 +77,9 @@ class LYFileUploadManager implements BaseFileUploadManager {
   }
 
   @override
-  Future<List<String>?> pickAndUploadMultipleFiles({FilesPreviewCallback? previewCallback}) async {
+  Future<List<String>?> pickAndUploadMultipleFiles({
+    FilesPreviewCallback? previewCallback,
+  }) async {
     final files = await pickMultipleFiles();
     if (files != null && files.isNotEmpty) {
       var confirm = Pair(true, files);
@@ -90,7 +94,9 @@ class LYFileUploadManager implements BaseFileUploadManager {
   }
 
   @override
-  Future<String?> pickAndUploadSingleImage({FilePreviewCallback? previewCallback}) async {
+  Future<String?> pickAndUploadSingleImage({
+    FilePreviewCallback? previewCallback,
+  }) async {
     final image = await pickSingleImage();
     if (image != null) {
       var confirm = Pair(true, image);
@@ -105,7 +111,9 @@ class LYFileUploadManager implements BaseFileUploadManager {
   }
 
   @override
-  Future<String?> pickAndUploadCameraImage({FilePreviewCallback? previewCallback}) async {
+  Future<String?> pickAndUploadCameraImage({
+    FilePreviewCallback? previewCallback,
+  }) async {
     final image = await pickCameraImage();
     if (image != null) {
       var confirm = Pair(true, image);
@@ -120,7 +128,9 @@ class LYFileUploadManager implements BaseFileUploadManager {
   }
 
   @override
-  Future<List<String>?> pickAndUploadMultipleImages({FilesPreviewCallback? previewCallback}) async {
+  Future<List<String>?> pickAndUploadMultipleImages({
+    FilesPreviewCallback? previewCallback,
+  }) async {
     final images = await pickMultipleImages();
     if (images != null && images.isNotEmpty) {
       var confirm = Pair(true, images);

@@ -17,13 +17,19 @@ class GradientModel with GradientModelMappable {
   const GradientModel({
     this.type_enum_gradientType,
     this.colors_list_themeColorString,
-  }) : assert((colors_list_themeColorString ?? const []).length >= 2, "Gradient colors must have at least 2 colors");
+  }) : assert(
+          (colors_list_themeColorString ?? const []).length >= 2,
+          "Gradient colors must have at least 2 colors",
+        );
 
   static const fromMap = GradientModelMapper.fromMap;
   static const fromJson = GradientModelMapper.fromJson;
 
   Gradient asGradient({String? styleTypeName}) {
-    final colorsList = (colors_list_themeColorString ?? []).map((e) => e.toColor()).whereType<Color>().toList();
+    final colorsList = (colors_list_themeColorString ?? [])
+        .map((e) => e.toColor())
+        .whereType<Color>()
+        .toList();
     switch (type_enum_gradientType) {
       case GradientType.linear:
         return LinearGradient(

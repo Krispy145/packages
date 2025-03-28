@@ -36,7 +36,8 @@ class AwsS3StorageService implements BaseStorageService {
 
       final location = await _s3Client.getBucketLocation(bucket: _bucketName);
       final region = location.locationConstraint?.value ?? "us-east-1";
-      final fileUrl = "https://$_bucketName.s3.$region.amazonaws.com/${file.name}";
+      final fileUrl =
+          "https://$_bucketName.s3.$region.amazonaws.com/${file.name}";
 
       return fileUrl;
     } catch (e) {

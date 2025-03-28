@@ -13,9 +13,12 @@ class LatLngGenerator {
 
     // Generate random coordinates within London bounds
     final random = Random();
-    final latitude = minLatitude + random.nextDouble() * (maxLatitude - minLatitude);
-    final longitude = minLongitude + random.nextDouble() * (maxLongitude - minLongitude);
+    final latitude =
+        minLatitude + random.nextDouble() * (maxLatitude - minLatitude);
+    final longitude =
+        minLongitude + random.nextDouble() * (maxLongitude - minLongitude);
 
-    return const LatLngMapper().encode(LatLng(latitude, longitude)) as LatLngMapper;
+    return const LatLngMapper().encode(LatLng(latitude, longitude))
+        as LatLngMapper;
   }
 }

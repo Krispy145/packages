@@ -5,7 +5,8 @@ import "package:maps/data/models/google/place_model.dart";
 
 import "store.dart";
 
-class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFieldStore> {
+class GooglePlaceSearchFormField
+    extends BaseFormField<GooglePlaceSearchFormFieldStore> {
   GooglePlaceSearchFormField({
     super.key,
     required super.store,
@@ -29,7 +30,10 @@ class GooglePlaceSearchFormField extends BaseFormField<GooglePlaceSearchFormFiel
               color: Theme.of(context).primaryColor,
             ),
             title: Text(item.name ?? "Name not found"),
-            subtitle: Text(item.formattedAddress ?? "Address not found", style: const TextStyle(color: Colors.grey)),
+            subtitle: Text(
+              item.formattedAddress ?? "Address not found",
+              style: const TextStyle(color: Colors.grey),
+            ),
             trailing: isSelected ? const Icon(Icons.check) : null,
           );
         },

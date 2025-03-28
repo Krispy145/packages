@@ -43,7 +43,9 @@ class ScrollbarModel with ScrollbarModelMappable {
       thumbVisibility: WidgetStateProperty.all(thumbVisibility_bool),
       thickness: WidgetStateProperty.all(thickness_double),
       trackVisibility: WidgetStateProperty.all(trackVisibility_bool),
-      radius: radius_double != null ? Radius.circular(radius_double!) : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
+      radius: radius_double != null
+          ? Radius.circular(radius_double!)
+          : null, // radius_radius?.asBorderRadius(styleTypeName: styleTypeName),
       thumbColor: WidgetStateProperty.all(
         thumbColor_themeColorString?.toColor(styleType: styleTypeName),
       ),

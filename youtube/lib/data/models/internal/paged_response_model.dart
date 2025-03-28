@@ -12,9 +12,17 @@ class PagedResponse<T> extends ResponseModel {
   PagedResponse({this.items = const [], this.nextPageToken});
 
   /// [PagedResponse] from JSON.
-  static PagedResponse<T> fromJson<T>(Map<String, dynamic> json, T Function(Map<String, dynamic>) fromJson) {
-    final items = (json["items"] as List).map((e) => fromJson(e as Map<String, dynamic>)).toList();
-    return PagedResponse<T>(items: items, nextPageToken: json["nextPageToken"] as String?);
+  static PagedResponse<T> fromJson<T>(
+    Map<String, dynamic> json,
+    T Function(Map<String, dynamic>) fromJson,
+  ) {
+    final items = (json["items"] as List)
+        .map((e) => fromJson(e as Map<String, dynamic>))
+        .toList();
+    return PagedResponse<T>(
+      items: items,
+      nextPageToken: json["nextPageToken"] as String?,
+    );
   }
 
   /// [PagedResponse] to JSON.

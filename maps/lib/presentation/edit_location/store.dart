@@ -1,10 +1,10 @@
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:maps/data/models/marker_model.dart';
-import 'package:maps/presentation/map/store.dart';
-import 'package:mobx/mobx.dart';
+import "package:flutter_map/flutter_map.dart";
+import "package:latlong2/latlong.dart";
+import "package:maps/data/models/marker_model.dart";
+import "package:maps/presentation/map/store.dart";
+import "package:mobx/mobx.dart";
 
-part 'store.g.dart';
+part "store.g.dart";
 
 /// [EditLocationMapStore] is a class that uses [_EditLocationMapStore] to manage state of the map feature.
 class EditLocationMapStore = _EditLocationMapStore with _$EditLocationMapStore;
@@ -62,7 +62,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
     if (center == null) return;
     final newMarker = MarkerModel(
       position: center,
-      id: markers.firstOrNull?.id ?? '',
+      id: markers.firstOrNull?.id ?? "",
       score: markers.firstOrNull?.score ?? 0,
     );
     addMarker(newMarker, clearFirst: true);

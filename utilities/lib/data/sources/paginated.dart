@@ -14,5 +14,9 @@ mixin Paginated<LastResp extends ResponseModel, T, Q> on DataSource<T, Q> {
     Map<String, dynamic>? queryParameters,
   });
 
-  Future<Pair<RequestResponse, Pair<LastResp?, List<T?>>>> searchPage({LastResp? lastResponse, int? size, required Q query});
+  Future<Pair<RequestResponse, Pair<LastResp?, List<T?>>>> searchPage({
+    LastResp? lastResponse,
+    int? size,
+    required Q query,
+  });
 }

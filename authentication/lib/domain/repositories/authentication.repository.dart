@@ -46,7 +46,8 @@ class AuthenticationRepository<T extends UserModel> {
   /// [required] for web.
   final String? facebookAppId;
 
-  BehaviorSubject<T?> get currentUserModelStream => _authenticationDataRepository.userModelStream;
+  BehaviorSubject<T?> get currentUserModelStream =>
+      _authenticationDataRepository.userModelStream;
 
   bool isUserAuthenticated = false;
 
@@ -124,19 +125,20 @@ class AuthenticationRepository<T extends UserModel> {
     titleFromType: titleFromType,
   );
 
-  late final AuthenticationDataRepository<T> _authenticationDataRepository = authSource == AuthSourceTypes.api
-      ? dataRepository!
-      : authSource == AuthSourceTypes.firebase
-          ? FirebaseAuthDataRepository(
-              hasPermission: hasPermissions,
-              userDataRepository: userDataRepository,
-              convertDataTypeFromMap: convertDataTypeFromMap,
-              convertDataTypeToMap: convertDataTypeToMap,
-            )
-          : SupabaseAuthDataRepository(
-              convertDataTypeFromMap: convertDataTypeFromMap,
-              convertDataTypeToMap: convertDataTypeToMap,
-            );
+  late final AuthenticationDataRepository<T> _authenticationDataRepository =
+      authSource == AuthSourceTypes.api
+          ? dataRepository!
+          : authSource == AuthSourceTypes.firebase
+              ? FirebaseAuthDataRepository(
+                  hasPermission: hasPermissions,
+                  userDataRepository: userDataRepository,
+                  convertDataTypeFromMap: convertDataTypeFromMap,
+                  convertDataTypeToMap: convertDataTypeToMap,
+                )
+              : SupabaseAuthDataRepository(
+                  convertDataTypeFromMap: convertDataTypeFromMap,
+                  convertDataTypeToMap: convertDataTypeToMap,
+                );
 
   Future<Pair<RequestResponse, T>> updateCurrentUserModel(T userModel) async {
     try {
@@ -167,25 +169,35 @@ class AuthenticationRepository<T extends UserModel> {
     try {
       switch (params.authType) {
         case AuthType.email:
-          changedUserModel = await _authenticationDataRepository.signInWithEmail(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithEmail(params);
         case AuthType.google:
-          changedUserModel = await _authenticationDataRepository.signInWithGoogle(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithGoogle(params);
         case AuthType.facebook:
-          changedUserModel = await _authenticationDataRepository.signInWithFacebook(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithFacebook(params);
         case AuthType.apple:
-          changedUserModel = await _authenticationDataRepository.signInWithApple(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithApple(params);
         case AuthType.github:
-          changedUserModel = await _authenticationDataRepository.signInWithGitHub(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithGitHub(params);
         case AuthType.microsoft:
-          changedUserModel = await _authenticationDataRepository.signInWithMicrosoft(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithMicrosoft(params);
         case AuthType.anonymous:
-          changedUserModel = await _authenticationDataRepository.signInAnonymously(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInAnonymously(params);
         case AuthType.passwordless:
-          changedUserModel = await _authenticationDataRepository.signInWithPasswordlessEmail(params.email!, params.password!);
+          changedUserModel = await _authenticationDataRepository
+              .signInWithPasswordlessEmail(params.email!, params.password!);
         case AuthType.phone:
-          changedUserModel = await _authenticationDataRepository.signInWithPhoneNumber(params.phoneNumber!, params.password!);
+          changedUserModel = await _authenticationDataRepository
+              .signInWithPhoneNumber(params.phoneNumber!, params.password!);
         case AuthType.x:
-          changedUserModel = await _authenticationDataRepository.signInWithX(params);
+          changedUserModel =
+              await _authenticationDataRepository.signInWithX(params);
         case AuthType.empty:
           AppLogger.print(
             "${params.authType.name} not implemented for signIn",
@@ -198,10 +210,12 @@ class AuthenticationRepository<T extends UserModel> {
       _currentResponse["last_login_at_timestamp"] = DateTime.now();
       await userDataRepository.initPermissions(changedUserModel.id);
       if (userDataRepository.currentPermissionModelStream.value != null) {
-        _currentResponse["role"] = userDataRepository.currentPermissionModelStream.value!.role;
+        _currentResponse["role"] =
+            userDataRepository.currentPermissionModelStream.value!.role;
       }
       changedUserModel = convertDataTypeFromMap(_currentResponse);
-      final _currentUserResponse = await userDataRepository.getUserModel(id: changedUserModel.id);
+      final _currentUserResponse =
+          await userDataRepository.getUserModel(id: changedUserModel.id);
       final _isAuthorized = _currentUserResponse.second?.isAuthorized ?? false;
       if (_isAuthorized) {
         _currentResponse["is_authorized"] = true;
@@ -209,7 +223,8 @@ class AuthenticationRepository<T extends UserModel> {
       }
 
       await userDataRepository.updateUserModel(userModel: changedUserModel);
-      final _updatedUserResponse = await userDataRepository.getUserModel(id: changedUserModel.id);
+      final _updatedUserResponse =
+          await userDataRepository.getUserModel(id: changedUserModel.id);
       changedUserModel = _updatedUserResponse.second ?? changedUserModel;
       try {
         await _authenticationDataRepository.updateUserModel(changedUserModel);
@@ -234,7 +249,8 @@ class AuthenticationRepository<T extends UserModel> {
 
   Future<void> _verifyCode(T params, UserModel changedUserModel) async {
     if (params.code != null && _codeSource != null) {
-      final response = await _codeSource?.source.verifyAndConsumeCode(params.code!);
+      final response =
+          await _codeSource?.source.verifyAndConsumeCode(params.code!);
       if (response == RequestResponse.failure) {
         throw const AuthenticationException("Error in verifying code");
       }
@@ -248,7 +264,8 @@ class AuthenticationRepository<T extends UserModel> {
   /// [signOut] signs out the user.
   Future<bool> signOut() async {
     AppLogger.print("signOut attempt", [AuthenticationLoggers.authentication]);
-    final _currentResponse = convertDataTypeToMap(currentUserModelStream.value!);
+    final _currentResponse =
+        convertDataTypeToMap(currentUserModelStream.value!);
     _currentResponse["last_logout_at_timestamp"] = DateTime.now();
     _currentResponse["status"] = AuthStatus.unauthenticated;
     final changedUserModel = convertDataTypeFromMap(_currentResponse);
@@ -276,7 +293,9 @@ class AuthenticationRepository<T extends UserModel> {
       _currentResponse["id"] = result.id;
 
       for (final element in _currentResponse.entries) {
-        if (element.key != "email" && element.key != "password" && element.value != null) {
+        if (element.key != "email" &&
+            element.key != "password" &&
+            element.value != null) {
           _currentResponse[element.key.camelCaseToSnakeCase()] = element.value;
         }
       }
@@ -294,7 +313,9 @@ class AuthenticationRepository<T extends UserModel> {
     );
     final _user = await _authenticationDataRepository.reauthenticate(params);
     try {
-      await userDataRepository.updateUserModel(userModel: currentUserModelStream.value!);
+      await userDataRepository.updateUserModel(
+        userModel: currentUserModelStream.value!,
+      );
     } catch (e) {
       AppLogger.print(
         "Error in updating user model: $e",
@@ -318,7 +339,9 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   /// [sendPasswordResetEmail] sends a password reset email to the user.
-  Future<RequestResponse> sendPasswordResetEmail({required String email}) async {
+  Future<RequestResponse> sendPasswordResetEmail({
+    required String email,
+  }) async {
     AppLogger.print(
       "sendPasswordResetEmail attempt",
       [AuthenticationLoggers.authentication],
@@ -328,12 +351,15 @@ class AuthenticationRepository<T extends UserModel> {
   }
 
   /// [verifyAndUpdateEmail] verifies the email and updates the user's email.
-  Future<Pair<RequestResponse, T?>> verifyAndUpdateEmail({required String newEmail}) async {
+  Future<Pair<RequestResponse, T?>> verifyAndUpdateEmail({
+    required String newEmail,
+  }) async {
     AppLogger.print(
       "verifyAndUpdateEmail attempt",
       [AuthenticationLoggers.authentication],
     );
-    final _response = await _authenticationDataRepository.verifyAndUpdateEmail(newEmail);
+    final _response =
+        await _authenticationDataRepository.verifyAndUpdateEmail(newEmail);
     if (_response != null) {
       final _currentResponse = convertDataTypeToMap(_response);
       _currentResponse["email"] = newEmail;
@@ -356,7 +382,8 @@ class AuthenticationRepository<T extends UserModel> {
   Future<void> _initStreams() async {
     try {
       currentUserModelStream.listen((event) async {
-        if (event?.status == AuthStatus.authenticated && isUserAuthenticated == false) {
+        if (event?.status == AuthStatus.authenticated &&
+            isUserAuthenticated == false) {
           AppLogger.print(
             "User is authenticated",
             [AuthenticationLoggers.authentication],
@@ -366,7 +393,8 @@ class AuthenticationRepository<T extends UserModel> {
             final _user = convertDataTypeFromMap(convertDataTypeToMap(event));
             await userDataRepository.initPermissions(_user.id);
           }
-        } else if (event?.status == AuthStatus.unauthenticated && isUserAuthenticated == true) {
+        } else if (event?.status == AuthStatus.unauthenticated &&
+            isUserAuthenticated == true) {
           AppLogger.print(
             "User is unauthenticated",
             [AuthenticationLoggers.authentication],

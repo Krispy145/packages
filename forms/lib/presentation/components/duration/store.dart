@@ -6,9 +6,11 @@ import "../int/store.dart";
 
 part "store.g.dart";
 
-class DurationFormFieldStore = _DurationFormFieldStore with _$DurationFormFieldStore;
+class DurationFormFieldStore = _DurationFormFieldStore
+    with _$DurationFormFieldStore;
 
-abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel> with Store {
+abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
+    with Store {
   _DurationFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
@@ -27,7 +29,9 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     initialValue: value?.days_int,
     showButtons: false,
     onValueChanged: (days) {
-      if (days != null) value = (value ?? const DurationModel()).copyWith(days_int: days);
+      if (days != null) {
+        value = (value ?? const DurationModel()).copyWith(days_int: days);
+      }
     },
     title: "Days",
   );
@@ -36,7 +40,9 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     initialValue: value?.hours_int,
     showButtons: false,
     onValueChanged: (hours) {
-      if (hours != null) value = (value ?? const DurationModel()).copyWith(hours_int: hours);
+      if (hours != null) {
+        value = (value ?? const DurationModel()).copyWith(hours_int: hours);
+      }
     },
     title: "Hours",
   );
@@ -45,7 +51,9 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     initialValue: value?.minutes_int,
     showButtons: false,
     onValueChanged: (minutes) {
-      if (minutes != null) value = (value ?? const DurationModel()).copyWith(minutes_int: minutes);
+      if (minutes != null) {
+        value = (value ?? const DurationModel()).copyWith(minutes_int: minutes);
+      }
     },
     title: "Minutes",
   );
@@ -54,7 +62,9 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     initialValue: value?.seconds_int,
     showButtons: false,
     onValueChanged: (seconds) {
-      if (seconds != null) value = (value ?? const DurationModel()).copyWith(seconds_int: seconds);
+      if (seconds != null) {
+        value = (value ?? const DurationModel()).copyWith(seconds_int: seconds);
+      }
     },
     title: "Seconds",
   );
@@ -64,7 +74,8 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     showButtons: false,
     onValueChanged: (milliseconds) {
       if (milliseconds != null) {
-        value = (value ?? const DurationModel()).copyWith(milliseconds_int: milliseconds);
+        value = (value ?? const DurationModel())
+            .copyWith(milliseconds_int: milliseconds);
       }
     },
     title: "Milliseconds",
@@ -75,7 +86,8 @@ abstract class _DurationFormFieldStore extends BaseFormFieldStore<DurationModel>
     showButtons: false,
     onValueChanged: (microseconds) {
       if (microseconds != null) {
-        value = (value ?? const DurationModel()).copyWith(microseconds_int: microseconds);
+        value = (value ?? const DurationModel())
+            .copyWith(microseconds_int: microseconds);
       }
     },
     title: "Microseconds",

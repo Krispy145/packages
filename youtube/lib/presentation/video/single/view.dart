@@ -9,11 +9,19 @@ import "store.dart";
 @RoutePage()
 class VideoView extends StatelessWidget {
   /// [VideoView] constructor.
-  VideoView({super.key, required String? id, required Video? videoModel, required String apiKey, this.builder, required this.store}) {
+  VideoView({
+    super.key,
+    required String? id,
+    required Video? videoModel,
+    required String apiKey,
+    this.builder,
+    required this.store,
+  }) {
     store = VideoStore(id: id, initialVideoModel: videoModel, apiKey: apiKey);
   }
 
-  final Widget Function(BuildContext context, Widget player, Video video)? builder;
+  final Widget Function(BuildContext context, Widget player, Video video)?
+      builder;
 
   /// [store] is an instance of [VideoStore], used in the [PackageLoadStateBuilder].
   /// initialized in the constructor.

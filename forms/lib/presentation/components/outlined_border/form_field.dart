@@ -9,7 +9,8 @@ import "package:utilities/sizes/spacers.dart";
 
 import "store.dart";
 
-class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore> {
+class OutlinedBorderFormField
+    extends BaseFormField<OutlinedBorderFormFieldStore> {
   OutlinedBorderFormField({
     super.key,
     required super.store,
@@ -32,7 +33,8 @@ class OutlinedBorderFormField extends BaseFormField<OutlinedBorderFormFieldStore
                   )
                   .toList(),
               selected: {store.outlinedBorderType},
-              onSelectionChanged: (newSelection) => store.onTypeChanged(newSelection.first),
+              onSelectionChanged: (newSelection) =>
+                  store.onTypeChanged(newSelection.first),
             ),
             Sizes.m.spacer(),
             FilledButton(

@@ -12,7 +12,7 @@ class TextTrack {
       {required String mimetype,
       required String languageCode,
       required String uri}) {
-    return new TextTrack(mimetype, languageCode, uri);
+    return TextTrack(mimetype, languageCode, uri);
   }
 
   Map<String, dynamic> toJson() {

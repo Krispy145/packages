@@ -56,8 +56,10 @@ class CardModel with CardModelMappable {
   CardTheme asCardTheme({String? styleTypeName}) {
     return CardTheme(
       color: color_themeColorString?.toColor(styleType: styleTypeName),
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
-      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor:
+          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
       margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),

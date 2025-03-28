@@ -28,7 +28,8 @@ class BoxShadowModel with BoxShadowModelMappable {
   BoxShadow asBoxShadow({String? styleTypeName}) {
     return BoxShadow(
       color: color_themeColorString?.toColor() ?? const Color(0xFF000000),
-      offset: offset_offset?.asOffset(styleTypeName: styleTypeName) ?? Offset.zero,
+      offset:
+          offset_offset?.asOffset(styleTypeName: styleTypeName) ?? Offset.zero,
       blurRadius: blurRadius_double ?? 0.0,
       spreadRadius: spreadRadius_double ?? 0.0,
     );
@@ -58,9 +59,8 @@ class BoxShadowModel with BoxShadowModelMappable {
   // ];
 }
 
-
 // import "package:flutter/material.dart";
-// 
+//
 // import "package:theme/data/models/offset_model.dart";
 // import "package:theme/extensions/theme_color_string.dart";
 

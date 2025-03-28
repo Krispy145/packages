@@ -83,7 +83,10 @@ class TypeBox<T> extends Box<T> {
   @override
   T? get(dynamic key, {T? defaultValue}) {
     if (key is! String) {
-      AppLogger.print("Key is not a String", [UtilitiesLoggers.localDataSource]);
+      AppLogger.print(
+        "Key is not a String",
+        [UtilitiesLoggers.localDataSource],
+      );
       return null;
     }
     final rawValue = _box.get(key);
@@ -184,7 +187,8 @@ class TypeBox<T> extends Box<T> {
   @override
   Map<dynamic, T> toMap() {
     return _box.toMap().map(
-          (key, value) => MapEntry(key as String, convertDataTypeFromJson(value)),
+          (key, value) =>
+              MapEntry(key as String, convertDataTypeFromJson(value)),
         );
   }
 
@@ -193,7 +197,9 @@ class TypeBox<T> extends Box<T> {
 
   @override
   Iterable<T> valuesBetween({dynamic startKey, dynamic endKey}) {
-    return _box.valuesBetween(startKey: startKey, endKey: endKey).map(convertDataTypeFromJson);
+    return _box
+        .valuesBetween(startKey: startKey, endKey: endKey)
+        .map(convertDataTypeFromJson);
   }
 
   @override

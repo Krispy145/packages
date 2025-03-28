@@ -85,26 +85,38 @@ class MenuStyleModel with MenuStyleModelMappable {
   static const fromJson = MenuStyleModelMapper.fromJson;
 
   MenuStyle asMenuStyle({String? styleTypeName}) {
-    final backgroundColor = backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
-    final shadowColor = shadowColor_themeColorString?.toColor(styleType: styleTypeName);
-    final surfaceTintColor = surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
+    final backgroundColor =
+        backgroundColor_themeColorString?.toColor(styleType: styleTypeName);
+    final shadowColor =
+        shadowColor_themeColorString?.toColor(styleType: styleTypeName);
+    final surfaceTintColor =
+        surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName);
     final elevation = elevation_double;
-    final padding = padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
+    final padding =
+        padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName);
     final minimumSize = minimumSize_size?.asSize(styleTypeName: styleTypeName);
     final fixedSize = fixedSize_size?.asSize(styleTypeName: styleTypeName);
     final maximumSize = maximumSize_size?.asSize(styleTypeName: styleTypeName);
     final side = side_borderSide?.asBorderSide(styleTypeName: styleTypeName);
-    final shape = shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
+    final shape =
+        shape_outlinedBorder?.asOutlinedBorder(styleTypeName: styleTypeName);
     final alignment = alignment_enum_alignmentOptions?.alignment;
     return MenuStyle(
-      backgroundColor: backgroundColor != null ? WidgetStateProperty.all(backgroundColor) : null,
-      shadowColor: shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
-      surfaceTintColor: surfaceTintColor != null ? WidgetStateProperty.all(surfaceTintColor) : null,
+      backgroundColor: backgroundColor != null
+          ? WidgetStateProperty.all(backgroundColor)
+          : null,
+      shadowColor:
+          shadowColor != null ? WidgetStateProperty.all(shadowColor) : null,
+      surfaceTintColor: surfaceTintColor != null
+          ? WidgetStateProperty.all(surfaceTintColor)
+          : null,
       elevation: elevation != null ? WidgetStateProperty.all(elevation) : null,
       padding: padding != null ? WidgetStateProperty.all(padding) : null,
-      minimumSize: minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
+      minimumSize:
+          minimumSize != null ? WidgetStateProperty.all(minimumSize) : null,
       fixedSize: fixedSize != null ? WidgetStateProperty.all(fixedSize) : null,
-      maximumSize: maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
+      maximumSize:
+          maximumSize != null ? WidgetStateProperty.all(maximumSize) : null,
       side: side != null ? WidgetStateProperty.all(side) : null,
       shape: shape != null ? WidgetStateProperty.all(shape) : null,
       alignment: alignment,

@@ -59,14 +59,19 @@ class SliderModel with SliderModelMappable {
   SliderThemeData asSliderThemeData({String? styleTypeName}) {
     return SliderThemeData(
       trackHeight: trackHeight_double,
-      activeTrackColor: activeTrackColor_themeColorString?.toColor(styleType: styleTypeName),
+      activeTrackColor:
+          activeTrackColor_themeColorString?.toColor(styleType: styleTypeName),
       inactiveTrackColor: inactiveTrackColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      secondaryActiveTrackColor: secondaryActiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledActiveTrackColor: disabledActiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledInactiveTrackColor: disabledInactiveTrackColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledSecondaryActiveTrackColor: disabledSecondaryActiveTrackColor_themeColorString?.toColor(
+      secondaryActiveTrackColor: secondaryActiveTrackColor_themeColorString
+          ?.toColor(styleType: styleTypeName),
+      disabledActiveTrackColor: disabledActiveTrackColor_themeColorString
+          ?.toColor(styleType: styleTypeName),
+      disabledInactiveTrackColor: disabledInactiveTrackColor_themeColorString
+          ?.toColor(styleType: styleTypeName),
+      disabledSecondaryActiveTrackColor:
+          disabledSecondaryActiveTrackColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
       activeTickMarkColor: activeTickMarkColor_themeColorString?.toColor(
@@ -75,20 +80,27 @@ class SliderModel with SliderModelMappable {
       inactiveTickMarkColor: inactiveTickMarkColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      disabledActiveTickMarkColor: disabledActiveTickMarkColor_themeColorString?.toColor(styleType: styleTypeName),
-      disabledInactiveTickMarkColor: disabledInactiveTickMarkColor_themeColorString?.toColor(
+      disabledActiveTickMarkColor: disabledActiveTickMarkColor_themeColorString
+          ?.toColor(styleType: styleTypeName),
+      disabledInactiveTickMarkColor:
+          disabledInactiveTickMarkColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      thumbColor: thumbColor_themeColorString?.toColor(styleType: styleTypeName),
-      overlappingShapeStrokeColor: overlappingShapeStrokeColor_themeColorString?.toColor(styleType: styleTypeName),
+      thumbColor:
+          thumbColor_themeColorString?.toColor(styleType: styleTypeName),
+      overlappingShapeStrokeColor: overlappingShapeStrokeColor_themeColorString
+          ?.toColor(styleType: styleTypeName),
       disabledThumbColor: disabledThumbColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      overlayColor: overlayColor_themeColorString?.toColor(styleType: styleTypeName),
+      overlayColor:
+          overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       valueIndicatorColor: valueIndicatorColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      valueIndicatorTextStyle: valueIndicatorTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      valueIndicatorTextStyle: valueIndicatorTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       minThumbSeparation: minThumbSeparation_double,
     );
   }

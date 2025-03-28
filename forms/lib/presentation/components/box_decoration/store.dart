@@ -14,9 +14,11 @@ part "store.g.dart";
 
 // enum BoxDecorationTypes { all, symmetric, only, zero }
 
-class BoxDecorationFormFieldStore = _BoxDecorationFormFieldStore with _$BoxDecorationFormFieldStore;
+class BoxDecorationFormFieldStore = _BoxDecorationFormFieldStore
+    with _$BoxDecorationFormFieldStore;
 
-abstract class _BoxDecorationFormFieldStore extends BaseFormFieldStore<BoxDecorationModel> with Store {
+abstract class _BoxDecorationFormFieldStore
+    extends BaseFormFieldStore<BoxDecorationModel> with Store {
   _BoxDecorationFormFieldStore({
     super.initialValue = const BoxDecorationModel(),
     required super.onValueChanged,
@@ -55,22 +57,29 @@ abstract class _BoxDecorationFormFieldStore extends BaseFormFieldStore<BoxDecora
 
   @action
   void onShapeTypeChanged(BoxShapeType? shape) {
-    value = (value ?? const BoxDecorationModel()).copyWith(shape_enum_boxShape: shape);
+    value = (value ?? const BoxDecorationModel())
+        .copyWith(shape_enum_boxShape: shape);
   }
 
   @action
   void onBorderRadiusChanged(BorderRadiusModel? borderRadius) {
-    value = (value ?? const BoxDecorationModel()).copyWith(borderRadius_borderRadius: borderRadius);
+    value = (value ?? const BoxDecorationModel())
+        .copyWith(borderRadius_borderRadius: borderRadius);
   }
 
   @action
   void onColorChanged(String? colorString) {
-    value = (value ?? const BoxDecorationModel()).copyWith(color_themeColorString: colorString);
+    value = (value ?? const BoxDecorationModel())
+        .copyWith(color_themeColorString: colorString);
   }
 
   @action
   void onBoxBorderChanged(BorderSideModel? borderSide) {
-    value = (value ?? const BoxDecorationModel()).copyWith(border_boxBorder: BoxBorderModel.fromBorderSide(borderSide ?? const BorderSideModel()));
+    value = (value ?? const BoxDecorationModel()).copyWith(
+      border_boxBorder: BoxBorderModel.fromBorderSide(
+        borderSide ?? const BorderSideModel(),
+      ),
+    );
   }
 
   // @action

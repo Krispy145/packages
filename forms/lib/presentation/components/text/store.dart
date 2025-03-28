@@ -12,7 +12,8 @@ part "store.g.dart";
 
 class TextFormFieldStore = _TextFormFieldStore with _$TextFormFieldStore;
 
-abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store {
+abstract class _TextFormFieldStore extends BaseFormFieldStore<String>
+    with Store {
   // Validation
   final int? minChars;
   final MaxLengthEnforcement? maxLengthEnforcement;
@@ -21,7 +22,12 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store
   final int? maxLength;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
-  final Widget? Function(BuildContext, {required int currentLength, required bool isFocused, required int? maxLength})? buildCounter;
+  final Widget? Function(
+    BuildContext, {
+    required int currentLength,
+    required bool isFocused,
+    required int? maxLength,
+  })? buildCounter;
   final AutovalidateMode? autovalidateMode;
 
   // Style
@@ -92,7 +98,7 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store
   final Widget Function(BuildContext, EditableTextState)? contextMenuBuilder;
   final void Function(String, Map<String, dynamic>)? onAppPrivateCommand;
   final ContentInsertionConfiguration? contentInsertionConfiguration;
-  final MaterialStatesController? statesController;
+  final WidgetStatesController? statesController;
 
   _TextFormFieldStore({
     required super.initialValue,
@@ -182,7 +188,10 @@ abstract class _TextFormFieldStore extends BaseFormFieldStore<String> with Store
     }
 
     if (minChars != null && value.length < minChars!) {
-      return IncompleteFormFieldState(value: value, error: "Minimum $minChars characters required");
+      return IncompleteFormFieldState(
+        value: value,
+        error: "Minimum $minChars characters required",
+      );
     }
     return ValidFormFieldState(value);
   }

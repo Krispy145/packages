@@ -37,7 +37,8 @@ class ChipsFormField<T> extends BaseFormField<ChipsFormFieldStore<T>> {
                     return ChoiceChip(
                       label: Text(titleBuilder(filter)),
                       selected: filtersStore.isSelected(filter),
-                      onSelected: (selected) => filtersStore.selectFilter(filter),
+                      onSelected: (selected) =>
+                          filtersStore.selectFilter(filter),
                     );
                   },
                 ),

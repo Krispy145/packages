@@ -1,10 +1,13 @@
-import 'package:dart_mappable/dart_mappable.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:maps/data/models/lat_lng.mapper.dart';
+import "package:dart_mappable/dart_mappable.dart";
+import "package:latlong2/latlong.dart";
+import "package:maps/data/models/lat_lng.mapper.dart";
 
-part 'google_bounds_model.mapper.dart';
+part "google_bounds_model.mapper.dart";
 
-@MappableClass(caseStyle: CaseStyle.snakeCase, includeCustomMappers: [LatLngMapper()])
+@MappableClass(
+  caseStyle: CaseStyle.snakeCase,
+  includeCustomMappers: [LatLngMapper()],
+)
 class GoogleBounds with GoogleBoundsMappable {
   final LatLng northeast;
   final LatLng southwest;

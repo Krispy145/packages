@@ -11,7 +11,8 @@ import "package:utilities/widgets/load_state/store.dart";
 
 part "reactive_store.g.dart";
 
-abstract class ReactiveFormsModelStore<T> = _ReactiveFormsModelStore<T> with _$ReactiveFormsModelStore<T>;
+abstract class ReactiveFormsModelStore<T> = _ReactiveFormsModelStore<T>
+    with _$ReactiveFormsModelStore<T>;
 
 abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   final bool isAdding;
@@ -24,14 +25,16 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
 
   final String underReviewMessage = "Under Review";
 
-  final String permissionDeniedMessage = "You do not have permission to do this.";
+  final String permissionDeniedMessage =
+      "You do not have permission to do this.";
 
   final Future<RequestResponse> Function(bool isAdding, T value)? saveValue;
 
   @observable
   FormGroup form = FormGroup({});
 
-  FormControl<V> formControlByKey<V>(String key) => form.control(key) as FormControl<V>;
+  FormControl<V> formControlByKey<V>(String key) =>
+      form.control(key) as FormControl<V>;
 
   _ReactiveFormsModelStore({
     required this.saveValue,
@@ -47,7 +50,10 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
   }
 
   @action
-  Future<RequestResponse> submitPressed(void Function(SnackbarConfiguration configuration) showSnackbar, void Function(RequestResponse response) onBack) async {
+  Future<RequestResponse> submitPressed(
+    void Function(SnackbarConfiguration configuration) showSnackbar,
+    void Function(RequestResponse response) onBack,
+  ) async {
     setLoading();
     final value = await prepareValueFromForm();
     if (value == null) {
@@ -59,7 +65,8 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
       setError("Failed to save value");
       return RequestResponse.failure;
     }
-    if (response == RequestResponse.success || response == RequestResponse.underReview) {
+    if (response == RequestResponse.success ||
+        response == RequestResponse.underReview) {
       setLoaded();
     } else {
       setError("Failed to save value");
@@ -72,10 +79,14 @@ abstract class _ReactiveFormsModelStore<T> with LoadStateStore, Store {
         showSnackbar(SnackbarConfiguration.error(title: errorMessage));
         break;
       case RequestResponse.underReview:
-        showSnackbar(SnackbarConfiguration.information(title: underReviewMessage));
+        showSnackbar(
+          SnackbarConfiguration.information(title: underReviewMessage),
+        );
         break;
       case RequestResponse.denied:
-        showSnackbar(SnackbarConfiguration.error(title: permissionDeniedMessage));
+        showSnackbar(
+          SnackbarConfiguration.error(title: permissionDeniedMessage),
+        );
         break;
       case RequestResponse.cancelled:
         showSnackbar(SnackbarConfiguration.warning(title: "Request Cancelled"));

@@ -1,8 +1,10 @@
 part of "_source.dart";
 
 /// [FirestoreUserPermissionDataSource] is a class that implements [UserPermissionDataSource] interface.
-class FirestoreUserPermissionDataSource<T extends UserModel> extends FirestoreDataSource<PermissionModel, BasicSearchQueryModel>
-    implements UserPermissionDataSource<FirestoreResponseModel<PermissionModel?>> {
+class FirestoreUserPermissionDataSource<T extends UserModel>
+    extends FirestoreDataSource<PermissionModel, BasicSearchQueryModel>
+    implements
+        UserPermissionDataSource<FirestoreResponseModel<PermissionModel?>> {
   final UUID userId;
 
   /// [FirestoreUserPermissionDataSource] constructor.

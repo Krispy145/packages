@@ -26,7 +26,8 @@ extension PermissionDataSourceTypeExtension on UserDataSourceTypes {
 /// [PermissionRepository] is a class that defines the basic CRUD operations for the [PermissionModel] entity.
 class PermissionRepository {
   final UserDataSourceTypes sourceType;
-  final PermissionDataRepository _permissionDataRepository = DataRepositories.instance.permission;
+  final PermissionDataRepository _permissionDataRepository =
+      DataRepositories.instance.permission;
 
   /// [PermissionRepository] constructor.
   PermissionRepository({
@@ -36,12 +37,16 @@ class PermissionRepository {
   ResponseModel? _lastResponse;
 
   /// [getAllPermissionModels] fetches all [PermissionModel]s from the data source.
-  Future<Pair<RequestResponse, List<PermissionModel?>>> getAllPermissionModels() {
-    return _permissionDataRepository.getAllPermissionModels(source: sourceType.source);
+  Future<Pair<RequestResponse, List<PermissionModel?>>>
+      getAllPermissionModels() {
+    return _permissionDataRepository.getAllPermissionModels(
+      source: sourceType.source,
+    );
   }
 
   /// [getPagedPermissionModels] fetches a page of [PermissionModel]s from the data source.
-  Future<Pair<RequestResponse, List<PermissionModel?>>> getPagedPermissionModels({
+  Future<Pair<RequestResponse, List<PermissionModel?>>>
+      getPagedPermissionModels({
     int? limit,
     bool refresh = false,
   }) async {
@@ -55,7 +60,9 @@ class PermissionRepository {
   }
 
   /// [getPermissionModel] fetches a single [PermissionModel] from the data source.
-  Future<Pair<RequestResponse, PermissionModel?>> getPermissionModel(String id) {
+  Future<Pair<RequestResponse, PermissionModel?>> getPermissionModel(
+    String id,
+  ) {
     return _permissionDataRepository.getPermissionModel(
       source: sourceType.source,
       id: id,
@@ -63,7 +70,9 @@ class PermissionRepository {
   }
 
   /// [addPermissionModel] addits a single [PermissionModel] to the data source.
-  Future<Pair<RequestResponse, PermissionModel?>> addPermissionModel(PermissionModel permissionModel) {
+  Future<Pair<RequestResponse, PermissionModel?>> addPermissionModel(
+    PermissionModel permissionModel,
+  ) {
     return _permissionDataRepository.addPermissionModel(
       source: sourceType.source,
       permissionModel: permissionModel,
@@ -71,7 +80,9 @@ class PermissionRepository {
   }
 
   /// [updatePermissionModel] updates a single [PermissionModel] in the data source.
-  Future<RequestResponse> updatePermissionModel(PermissionModel permissionModel) {
+  Future<RequestResponse> updatePermissionModel(
+    PermissionModel permissionModel,
+  ) {
     return _permissionDataRepository.updatePermissionModel(
       source: sourceType.source,
       permissionModel: permissionModel,
@@ -79,7 +90,9 @@ class PermissionRepository {
   }
 
   /// [updateAllPermissionModels] updates all [PermissionModel]s in the data source.
-  Future<RequestResponse> updateAllPermissionModels(Map<String, PermissionModel> permissionModel) {
+  Future<RequestResponse> updateAllPermissionModels(
+    Map<String, PermissionModel> permissionModel,
+  ) {
     return _permissionDataRepository.updateAllPermissionModels(
       source: sourceType.source,
       permissionModels: permissionModel,
@@ -87,7 +100,9 @@ class PermissionRepository {
   }
 
   /// [addAllPermissionModels] adds all [PermissionModel]s to the data source.
-  Future<RequestResponse> addAllPermissionModels(List<PermissionModel> permissionModels) {
+  Future<RequestResponse> addAllPermissionModels(
+    List<PermissionModel> permissionModels,
+  ) {
     return _permissionDataRepository.addAllPermissionModels(
       source: sourceType.source,
       permissionModels: permissionModels,

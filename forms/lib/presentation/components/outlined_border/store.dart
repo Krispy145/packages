@@ -9,15 +9,18 @@ import "../border_side/store.dart";
 
 part "store.g.dart";
 
-class OutlinedBorderFormFieldStore = _OutlinedBorderFormFieldStore with _$OutlinedBorderFormFieldStore;
+class OutlinedBorderFormFieldStore = _OutlinedBorderFormFieldStore
+    with _$OutlinedBorderFormFieldStore;
 
-abstract class _OutlinedBorderFormFieldStore extends BaseFormFieldStore<OutlinedBorderModel> with Store {
+abstract class _OutlinedBorderFormFieldStore
+    extends BaseFormFieldStore<OutlinedBorderModel> with Store {
   _OutlinedBorderFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
     required super.title,
   }) {
-    outlinedBorderType = value?.type_enum_outlinedBorderType ?? OutlinedBorderType.roundedRectangleBorder;
+    outlinedBorderType = value?.type_enum_outlinedBorderType ??
+        OutlinedBorderType.roundedRectangleBorder;
 
     // On Type Changed
     // reaction<OutlinedBorderType>(
@@ -76,17 +79,20 @@ abstract class _OutlinedBorderFormFieldStore extends BaseFormFieldStore<Outlined
   @action
   void onTypeChanged(OutlinedBorderType type) {
     outlinedBorderType = type;
-    value = (value ?? const OutlinedBorderModel()).copyWith(type_enum_outlinedBorderType: type);
+    value = (value ?? const OutlinedBorderModel())
+        .copyWith(type_enum_outlinedBorderType: type);
   }
 
   @action
   void onBorderSideChanged(BorderSideModel? borderSide) {
-    value = (value ?? const OutlinedBorderModel()).copyWith(side_borderSide: borderSide);
+    value = (value ?? const OutlinedBorderModel())
+        .copyWith(side_borderSide: borderSide);
   }
 
   @action
   void onBorderRadiusChanged(BorderRadiusModel? borderRadius) {
-    value = (value ?? const OutlinedBorderModel()).copyWith(borderRadius_borderRadius: borderRadius);
+    value = (value ?? const OutlinedBorderModel())
+        .copyWith(borderRadius_borderRadius: borderRadius);
   }
 
   @computed

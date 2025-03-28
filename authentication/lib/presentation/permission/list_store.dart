@@ -10,7 +10,8 @@ part "list_store.g.dart";
 class PermissionsStore = _PermissionsStore with _$PermissionsStore;
 
 /// [_PermissionsStore] is a class that manages the state of the permissions feature.
-abstract class _PermissionsStore extends PaginatedListStore<PermissionModel, String> with Store {
+abstract class _PermissionsStore
+    extends PaginatedListStore<PermissionModel, String> with Store {
   final UserDataSourceTypes sourceType;
 
   /// [_PermissionsStore] constructor.
@@ -21,7 +22,8 @@ abstract class _PermissionsStore extends PaginatedListStore<PermissionModel, Str
   late final loadMoreFromRepository = repository.getPagedPermissionModels;
 
   /// [repository] is an instance of [PermissionRepository].
-  late final PermissionRepository repository = PermissionRepository(sourceType: sourceType);
+  late final PermissionRepository repository =
+      PermissionRepository(sourceType: sourceType);
 
   @action
   Future<void> deletePermissionModel(String id) async {

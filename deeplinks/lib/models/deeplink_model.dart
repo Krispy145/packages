@@ -48,7 +48,12 @@ class DeepLinkModel with DeepLinkModelMappable {
         title: title,
         contentDescription: contentDescription ?? "",
         imageUrl: imageUrl ?? "",
-        contentMetadata: _mapToBranchContentMetaData(metadata, title, contentDescription, imageUrl),
+        contentMetadata: _mapToBranchContentMetaData(
+          metadata,
+          title,
+          contentDescription,
+          imageUrl,
+        ),
         keywords: keywords,
         publiclyIndex: publicIndex,
         locallyIndex: localIndex,
@@ -85,11 +90,13 @@ class DeepLinkModel with DeepLinkModelMappable {
   AppDestinationModel? _extractDestinationFromBranchContentMetaData(
     BranchContentMetaData? contentMetadata,
   ) {
-    final destination = branchUniversalObject.contentMetadata?.toMap()["destination"] != null
-        ? AppDestinationModel.fromMap(
-            branchUniversalObject.contentMetadata?.toMap()["destination"] as Map<String, dynamic>,
-          )
-        : null;
+    final destination =
+        branchUniversalObject.contentMetadata?.toMap()["destination"] != null
+            ? AppDestinationModel.fromMap(
+                branchUniversalObject.contentMetadata?.toMap()["destination"]
+                    as Map<String, dynamic>,
+              )
+            : null;
     return destination;
   }
 
@@ -125,7 +132,10 @@ class DeepLinkModel with DeepLinkModelMappable {
       contentMetadata.addCustomMetadata(r"$og_image_url", _imageUrl.toString());
     }
     if (fallbackUrl != null || (fallbackUrl?.isNotEmpty ?? false)) {
-      contentMetadata.addCustomMetadata(r"$desktop_url", fallbackUrl.toString());
+      contentMetadata.addCustomMetadata(
+        r"$desktop_url",
+        fallbackUrl.toString(),
+      );
     }
     return contentMetadata;
   }

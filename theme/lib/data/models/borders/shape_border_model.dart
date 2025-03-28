@@ -76,7 +76,6 @@ class ShapeBorderModel with ShapeBorderModelMappable {
   // ];
 }
 
-
 // import "package:flutter/material.dart";
 // import "package:freezed_annotation/freezed_annotation.dart";
 // import "package:theme/data/models/borders/box_border_model.dart";

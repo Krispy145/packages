@@ -60,7 +60,8 @@ class VideoPlayer extends StatefulWidget {
   _VideoPlayerState createState() => _VideoPlayerState();
 }
 
-class _VideoPlayerState extends State<VideoPlayer> with PlayerObserver, MultiAudioSupport {
+class _VideoPlayerState extends State<VideoPlayer>
+    with PlayerObserver, MultiAudioSupport {
   // List<HLSManifestLanguage> _hlsLanguages = [];
 
   @override

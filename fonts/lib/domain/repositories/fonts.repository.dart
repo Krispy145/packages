@@ -5,7 +5,8 @@ import "/data/repositories/_repositories.dart";
 import "/data/repositories/fonts.repository.dart";
 
 class FontsRepository {
-  final FontsDataRepository _fontsDataRepository = DataRepositories.instance.fonts;
+  final FontsDataRepository _fontsDataRepository =
+      DataRepositories.instance.fonts;
 
   /// [FontsRepository] constructor.
   FontsRepository();

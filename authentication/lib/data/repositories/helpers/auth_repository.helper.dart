@@ -38,7 +38,10 @@ class AuthRepositoryHelper {
       accessToken: credentials.authorizationCode,
       nonce: nonce.toString(),
       email: credentials.email,
-      displayName: credentials.givenName != null && credentials.familyName != null ? "${credentials.givenName} ${credentials.familyName}" : null,
+      displayName:
+          credentials.givenName != null && credentials.familyName != null
+              ? "${credentials.givenName} ${credentials.familyName}"
+              : null,
     );
   }
 
