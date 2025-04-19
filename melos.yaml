@@ -21,6 +21,7 @@ packages:
   - media
   - storage
   - screen_capture_event
+  - payment
   # MELOS_PACKAGE_LIST_END
 
 scripts:

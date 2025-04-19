@@ -39,7 +39,6 @@ dependencies:
   flutter_stripe: ^11.3.0
   flutter_stripe_web: ^6.3.0
   dio: ^5.7.0
-  dart_mappable: ^4.3.1
   cloud_functions: ^5.0.0
   firebase_auth: ^5.0.0
   font_awesome_flutter: ^10.8.0
@@ -54,7 +53,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
-  dart_mappable_builder: ^4.3.1+1
+  dart_mappable_builder: ^4.3.0
   build_runner: ^2.4.13
 
 # For information on the generic Dart part of this file, see the

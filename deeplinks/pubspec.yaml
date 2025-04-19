@@ -22,8 +22,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   json_serializable: ^6.7.1
-  mobx_codegen: ^2.3.0
-  dart_mappable_builder: ^4.2.3
+  mobx_codegen: ^2.7.0
+  dart_mappable_builder: ^4.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

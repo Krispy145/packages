@@ -1,7 +1,6 @@
 import "package:dio/dio.dart";
 import "package:maps/constants/map_constants.dart";
 import "package:maps/data/models/google/responses_model.dart";
-import "package:maps/data/sources/google_places/api.source.dart";
 import "package:maps/utils/loggers.dart";
 import "package:utilities/constants/env.dart";
 import "package:utilities/data/sources/api/source.dart";
@@ -12,12 +11,10 @@ import "package:utilities/logger/logger.dart";
 import "_source.dart";
 
 /// [ApiGooglePlacesDataSource] is a class that implements [GooglePlacesDataSource] interface.
-class ApiGooglePlacesDataSource
-    extends ApiDataSource<GoogleResponsesModel, Map<String, dynamic>>
-    implements GooglePlacesDataSource {
+class ApiGooglePlacesDataSource extends ApiDataSource<GoogleResponsesModel, Map<String, dynamic>> implements GooglePlacesDataSource {
   final String googleApiKey;
 
-  /// [ApiGooglePlacesDataSource.textSearch] constructor.
+  /// [ApiGooglePlacesDataSource] constructor.
   ApiGooglePlacesDataSource({required this.googleApiKey})
       : super(
           MapConstants.googlePrefix,
