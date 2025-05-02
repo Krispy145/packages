@@ -2,6 +2,7 @@ import "dart:io";
 
 import "package:cached_network_image/cached_network_image.dart";
 import "package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart";
+import "package:cross_file/cross_file.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:theme/extensions/build_context.dart";
@@ -16,7 +17,7 @@ enum ImageType { file, memory, asset, network }
 class LYImage extends StatelessWidget {
   final ImageType imageType;
   final String? assetPath;
-  final File? file;
+  final XFile? file;
   final Uint8List? memory;
   final String? url;
 
@@ -32,7 +33,7 @@ class LYImage extends StatelessWidget {
   });
 
   factory LYImage.file(
-    File file, {
+    XFile file, {
     FileImageOptions? options,
   }) {
     return LYImage._(
@@ -79,10 +80,9 @@ class LYImage extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (imageType) {
       case ImageType.file:
-        final _assetOptions =
-            options as AssetImageOptions? ?? const AssetImageOptions();
+        final _assetOptions = options as FileImageOptions? ?? const FileImageOptions();
         return Image.file(
-          file!,
+          File(file!.path),
           frameBuilder: _assetOptions.frameBuilder,
           errorBuilder: _assetOptions.errorBuilder ??
               (context, error, stackTrace) => buildDefaultErrorImage(
@@ -105,8 +105,7 @@ class LYImage extends StatelessWidget {
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.memory:
-        final _memoryOptions =
-            options as MemoryImageOptions? ?? const MemoryImageOptions();
+        final _memoryOptions = options as MemoryImageOptions? ?? const MemoryImageOptions();
         return Image.memory(
           memory!,
           frameBuilder: _memoryOptions.frameBuilder,
@@ -131,8 +130,7 @@ class LYImage extends StatelessWidget {
           filterQuality: _memoryOptions.filterQuality,
         );
       case ImageType.asset:
-        final _assetOptions =
-            options as AssetImageOptions? ?? const AssetImageOptions();
+        final _assetOptions = options as AssetImageOptions? ?? const AssetImageOptions();
         return Image.asset(
           assetPath!,
           frameBuilder: _assetOptions.frameBuilder,
@@ -157,8 +155,7 @@ class LYImage extends StatelessWidget {
           filterQuality: _assetOptions.filterQuality,
         );
       case ImageType.network:
-        final _networkOptions =
-            options as NetworkImageOptions? ?? NetworkImageOptions();
+        final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions();
         if (url == null) {
           return _networkOptions.placeholder?.call(context, "") ??
               DecoratedBox(
@@ -208,9 +205,7 @@ class LYImage extends StatelessWidget {
           maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
           maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
           errorListener: _networkOptions.errorListener,
-          imageRenderMethodForWeb: _isUsingProxy
-              ? ImageRenderMethodForWeb.HttpGet
-              : _networkOptions.imageRenderMethodForWeb,
+          imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
         );
     }
   }
@@ -220,8 +215,7 @@ class LYImage extends StatelessWidget {
     String error,
     Object object,
   ) {
-    final _networkOptions = options as NetworkImageOptions? ??
-        NetworkImageOptions(); //.copyWith(proxy: WebServices.proxy);
+    final _networkOptions = options as NetworkImageOptions? ?? NetworkImageOptions(); //.copyWith(proxy: WebServices.proxy);
     final _isUsingProxy = _networkOptions.getProxyAndHeaders(url!).first;
     final _finalUrl = _networkOptions.getProxyAndHeaders(url!).second;
     final _httpHeaders = _networkOptions.getProxyAndHeaders(url!).third;
@@ -261,9 +255,7 @@ class LYImage extends StatelessWidget {
       maxWidthDiskCache: _networkOptions.maxWidthDiskCache,
       maxHeightDiskCache: _networkOptions.maxHeightDiskCache,
       errorListener: _networkOptions.errorListener,
-      imageRenderMethodForWeb: _isUsingProxy
-          ? ImageRenderMethodForWeb.HttpGet
-          : _networkOptions.imageRenderMethodForWeb,
+      imageRenderMethodForWeb: _isUsingProxy ? ImageRenderMethodForWeb.HttpGet : _networkOptions.imageRenderMethodForWeb,
     );
   }
 
@@ -283,12 +275,9 @@ class LYImage extends StatelessWidget {
         debugPrint(
           "Could not load error image after 3 tries: URL: $error\nERROR: $errorObject\nSTACKTRACE: $stackTrace",
         );
-        return options.errorBuilder?.call(context, error, stackTrace) ??
-            const Center(child: Icon(Icons.error_outline));
+        return options.errorBuilder?.call(context, error, stackTrace) ?? const Center(child: Icon(Icons.error_outline));
       },
-      scale: options.memCacheWidth != null || options.memCacheHeight != null
-          ? 1
-          : 1.5,
+      scale: options.memCacheWidth != null || options.memCacheHeight != null ? 1 : 1.5,
       cacheHeight: options.memCacheHeight,
       cacheWidth: options.memCacheWidth,
       color: options.color,

@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_mobx: ^2.0.6+5
-  flutter_secure_storage: ^9.0.0
+  flutter_secure_storage: ^9.0.0+1
   flutter_timezone: ^4.0.0
   geolocator: ^13.0.2
   get_it: ^7.6.4

@@ -12,12 +12,10 @@ import "package:utilities/utils/loggers.dart";
 part "store.g.dart";
 
 /// [StreamedListStore] is a class that uses [_StreamedListStore] to manage the state of the topTips feature.
-class StreamedListStore<T, K extends Comparable<K>> = _StreamedListStore<T, K>
-    with _$StreamedListStore<T, K>;
+class StreamedListStore<T, K extends Comparable<K>> = _StreamedListStore<T, K> with _$StreamedListStore<T, K>;
 
 /// [_StreamedListStore] is a class that manages the state of the topTips feature.
-abstract class _StreamedListStore<T, K extends Comparable<K>>
-    extends PaginatedListStore<T, K> with Store {
+abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedListStore<T, K> with Store {
   /// [_StreamedListStore] constructor.
   _StreamedListStore({
     super.limit = 12,
@@ -110,13 +108,19 @@ abstract class _StreamedListStore<T, K extends Comparable<K>>
     );
 
     scrollController.addListener(() {
-      if (scrollController.position.pixels ==
-          scrollController.position.maxScrollExtent) {
+      try {
+        if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+          AppLogger.print(
+            "Scroll reached the end. Loading more data...",
+            [UtilitiesLoggers.streamedListStore],
+          );
+          loadMore(limit: limit);
+        }
+      } catch (e, _) {
         AppLogger.print(
-          "Scroll reached the end. Loading more data...",
+          "Error while processing scroll listener: $e",
           [UtilitiesLoggers.streamedListStore],
         );
-        loadMore(limit: limit);
       }
     });
 

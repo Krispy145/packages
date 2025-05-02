@@ -63,11 +63,6 @@ abstract class _DeepLinksStore with Store {
   void _listenForReceivedDeepLink() {
     streamSubscription = FlutterBranchSdk.listSession().listen(
       (data) {
-        AppLogger.print(
-          "listenDynamicLinks - DeepLink Data: $data",
-          [DeeplinksLoggers.deeplinks],
-        );
-
         if (data.containsKey("+clicked_branch_link") && data["+clicked_branch_link"] == true) {
           final dataMap = <String, dynamic>{};
           if (data.containsKey(r"$canonical_identifier")) {

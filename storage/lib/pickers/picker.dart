@@ -1,5 +1,4 @@
 import "package:file_picker/file_picker.dart";
-import "package:flutter/foundation.dart";
 import "package:image_picker/image_picker.dart";
 import "package:storage/pickers/_base.dart";
 
@@ -12,18 +11,19 @@ class LYFilePicker implements BaseFilePicker {
     final result = await _filePicker.pickFiles(withData: true);
 
     if (result != null && result.files.isNotEmpty) {
-      return _getXFileFromPlatformFile(result.files.first);
+      return result.files.first.xFile;
+      // _getXFileFromPlatformFile(result.files.first);
     }
     return null; // No file selected
   }
 
   @override
   Future<List<XFile>> pickMultipleFiles() async {
-    final result =
-        await _filePicker.pickFiles(allowMultiple: true, withData: true);
+    final result = await _filePicker.pickFiles(allowMultiple: true, withData: true);
 
     if (result != null && result.files.isNotEmpty) {
-      return result.files.map(_getXFileFromPlatformFile).toList();
+      return result.files.map((e) => e.xFile).toList();
+      // result.files.map(_getXFileFromPlatformFile).toList();
     }
     return []; // No files selected
   }
@@ -43,9 +43,12 @@ class LYFilePicker implements BaseFilePicker {
     final images = await _imagePicker.pickMultiImage();
 
     if (images.isNotEmpty) {
-      return images.map((image) {
-        return XFile(image.path, name: _fileName(image.path));
+      final _images = images.map((image) async {
+        final _mimeType = image.mimeType;
+        final _size = await image.length();
+        return XFile(image.path, name: _fileName(image.path), mimeType: _mimeType, length: _size);
       }).toList();
+      return Future.wait(_images);
     }
     return []; // No images selected
   }
@@ -65,10 +68,10 @@ class LYFilePicker implements BaseFilePicker {
     return parts.last;
   }
 
-  XFile _getXFileFromPlatformFile(PlatformFile file) {
-    if (kIsWeb) {
-      return XFile(file.name, name: file.name, bytes: file.bytes);
-    }
-    return XFile(file.path!, name: _fileName(file.path!), bytes: file.bytes);
-  }
+  // XFile _getXFileFromPlatformFile(PlatformFile file) {
+  //   if (kIsWeb) {
+  //     return file.xFile;
+  //   }
+  //   return XFile(file.path!, name: _fileName(file.path!), bytes: file.bytes);
+  // }
 }

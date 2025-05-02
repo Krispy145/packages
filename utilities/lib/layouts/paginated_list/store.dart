@@ -3,16 +3,16 @@ import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/tuples.dart";
 import "package:utilities/layouts/list/store.dart";
+import "package:utilities/logger/logger.dart";
+import "package:utilities/utils/loggers.dart";
 
 part "store.g.dart";
 
 /// [PaginatedListStore] is a class that uses [_PaginatedListStore] to manage state of the topTips feature.
-class PaginatedListStore<T, K extends Comparable<K>> = _PaginatedListStore<T, K>
-    with _$PaginatedListStore<T, K>;
+class PaginatedListStore<T, K extends Comparable<K>> = _PaginatedListStore<T, K> with _$PaginatedListStore<T, K>;
 
 /// [_PaginatedListStore] is a class that manages the state of the topTips feature.
-abstract class _PaginatedListStore<T, K extends Comparable<K>>
-    extends ListStore<T, K> with Store {
+abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore<T, K> with Store {
   final int limit;
 
   /// [_PaginatedListStore] constructor.
@@ -26,9 +26,15 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>>
   Future<void> initialize() async {
     try {
       scrollController.addListener(() {
-        if (scrollController.position.pixels ==
-            scrollController.position.maxScrollExtent) {
-          loadMore(limit: limit);
+        try {
+          if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
+            loadMore(limit: limit);
+          }
+        } catch (e, _) {
+          AppLogger.print(
+            "Error while processing scroll listener: $e",
+            [UtilitiesLoggers.paginatedListStore],
+          );
         }
       });
       return loadMore(limit: limit);
@@ -57,8 +63,7 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>>
     if (isNoMoreToLoad && !refresh) return;
     try {
       setLoading();
-      final loadedResults =
-          await loadMoreFromRepository(limit: limit, refresh: refresh);
+      final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
       requestResponse = loadedResults.first;
       if (loadedResults.second.isNotEmpty || refresh) {
         if (refresh) results.clear();
