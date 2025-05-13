@@ -92,6 +92,11 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
             );
             setNoMoreToLoad();
           }
+          AppLogger.print(
+            "StreamedListStore initialization complete.",
+            [UtilitiesLoggers.streamedListStore],
+          );
+          setLoaded();
         } catch (e, _) {
           AppLogger.print(
             "Error while processing stream data for: $e",
@@ -109,12 +114,16 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
 
     scrollController.addListener(() {
       try {
-        if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-          AppLogger.print(
-            "Scroll reached the end. Loading more data...",
-            [UtilitiesLoggers.streamedListStore],
-          );
-          loadMore(limit: limit);
+        if (scrollController.position.pixels >= scrollController.position.maxScrollExtent) {
+          if (debounceTimer?.isActive ?? false) return;
+
+          debounceTimer = Timer(const Duration(milliseconds: 300), () {
+            AppLogger.print(
+              "Debounced scroll reached end. Loading more data...",
+              [UtilitiesLoggers.streamedListStore],
+            );
+            loadMore(limit: limit);
+          });
         }
       } catch (e, _) {
         AppLogger.print(
@@ -123,11 +132,5 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
         );
       }
     });
-
-    AppLogger.print(
-      "StreamedListStore initialization complete.",
-      [UtilitiesLoggers.streamedListStore],
-    );
-    setLoaded();
   }
 }

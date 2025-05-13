@@ -3,7 +3,7 @@ import "package:flutter_mobx/flutter_mobx.dart";
 import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/helpers/tuples.dart";
-import "package:utilities/layouts/list/builder.dart";
+import "package:utilities/layouts/paginated_list/builder.dart";
 import "package:utilities/sizes/spacers.dart";
 import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
@@ -11,8 +11,7 @@ import "package:widgets/messages/warning_message.dart";
 
 import "store.dart";
 
-class StreamedListBuilder<T, K extends Comparable<K>>
-    extends ListBuilder<T, K> {
+class StreamedListBuilder<T, K extends Comparable<K>> extends PaginatedListBuilder<T, K> {
   @override
   // ignore: overridden_fields
   final StreamedListStore<T, K> store;
@@ -143,16 +142,8 @@ class StreamedListBuilder<T, K extends Comparable<K>>
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-        return Observer(
-          builder: (context) {
-            return buildView(context, store.showLoadingSpinnerAtBottom);
-          },
-        );
+        return buildView(context, store.showLoadingSpinnerAtBottom);
       },
     );
   }
-
-  @override
-  Widget buildView(BuildContext context, bool isLoadingMore) =>
-      Observer(builder: (context) => super.buildView(context, isLoadingMore));
 }

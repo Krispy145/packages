@@ -1,3 +1,4 @@
+import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:theme/extensions/build_context.dart";
 import "package:utilities/sizes/spacers.dart";
@@ -36,8 +37,7 @@ class LYListTile extends StatefulWidget {
     this.trailing,
     this.trailingConstraints = const BoxConstraints(maxHeight: 64),
     this.expandWidth = false,
-    this.centrePadding =
-        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    this.centrePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     this.tilePadding = const EdgeInsets.all(8),
   })  : isHoverable = false,
         shouldMaintainSize = false,
@@ -61,15 +61,13 @@ class LYListTile extends StatefulWidget {
     this.trailing,
     this.trailingConstraints = const BoxConstraints(maxHeight: 64),
     this.showOnHoverTrailing = true,
-    this.centrePadding =
-        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    this.centrePadding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
     this.tilePadding = const EdgeInsets.all(8),
     this.replacementSize,
     this.expandWidth = false,
-  })  : isHoverable = true,
+  })  : isHoverable = kIsWeb,
         assert(
-          shouldMaintainSize == true && replacementSize != null ||
-              shouldMaintainSize == false && replacementSize == null,
+          shouldMaintainSize == true && replacementSize != null || shouldMaintainSize == false && replacementSize == null,
           "shouldMaintainSize and replacementSize must be set together",
         );
 
@@ -103,32 +101,25 @@ class _LYListTileState extends State<LYListTile> {
         decoration: widget.decoration,
         padding: widget.tilePadding,
         child: Row(
-          mainAxisSize:
-              widget.expandWidth ? MainAxisSize.max : MainAxisSize.min,
+          mainAxisSize: widget.expandWidth ? MainAxisSize.max : MainAxisSize.min,
           children: [
-            if (widget.shouldMaintainSize &&
-                (!isHovering && widget.leading != null))
+            if (widget.shouldMaintainSize && (!isHovering && widget.leading != null))
               SizedBox(
                 width: widget.replacementSize!.width,
                 height: widget.replacementSize!.height,
               ),
-            if ((isHovering && widget.isHoverable) ||
-                !widget.isHoverable ||
-                !widget.showOnHoverLeading)
+            if ((isHovering && widget.isHoverable) || !widget.isHoverable || !widget.showOnHoverLeading)
               ConstrainedBox(
                 constraints: widget.leadingConstraints,
                 child: widget.leading ?? const SizedBox.shrink(),
               ),
             _buildCenter(),
-            if (widget.shouldMaintainSize &&
-                (!isHovering || widget.trailing == null))
+            if (widget.shouldMaintainSize && (!isHovering || widget.trailing == null))
               SizedBox(
                 width: widget.replacementSize!.width,
                 height: widget.replacementSize!.height,
               ),
-            if ((isHovering && widget.isHoverable) ||
-                !widget.isHoverable ||
-                !widget.showOnHoverTrailing)
+            if ((isHovering && widget.isHoverable) || !widget.isHoverable || !widget.showOnHoverTrailing)
               ConstrainedBox(
                 constraints: widget.trailingConstraints,
                 child: widget.trailing ?? const SizedBox.shrink(),

@@ -1,3 +1,5 @@
+import "dart:async";
+
 import "package:collection/collection.dart";
 import "package:mobx/mobx.dart";
 import "package:utilities/data/sources/source.dart";
@@ -22,13 +24,23 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
     super.reverseList = false,
   });
 
+  Timer? debounceTimer;
+
   @override
   Future<void> initialize() async {
     try {
       scrollController.addListener(() {
         try {
-          if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-            loadMore(limit: limit);
+          if (scrollController.position.pixels >= scrollController.position.maxScrollExtent) {
+            if (debounceTimer?.isActive ?? false) return;
+
+            debounceTimer = Timer(const Duration(milliseconds: 300), () {
+              AppLogger.print(
+                "Debounced scroll reached end. Loading more data...",
+                [UtilitiesLoggers.streamedListStore],
+              );
+              loadMore(limit: limit);
+            });
           }
         } catch (e, _) {
           AppLogger.print(
@@ -60,31 +72,42 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
   /// [loadMore] loads all [T]s from the data source.
   @action
   Future<void> loadMore({int? limit, bool refresh = false}) async {
-    if (isNoMoreToLoad && !refresh) return;
+    if ((isNoMoreToLoad && !refresh) || isLoading) return;
     try {
       setLoading();
       final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
       requestResponse = loadedResults.first;
       if (loadedResults.second.isNotEmpty || refresh) {
-        if (refresh) results.clear();
-        results.addAll(loadedResults.second.whereType<T>());
-        results = ObservableList.of(results.toSet().toList());
+        if (refresh) {
+          results.clear();
+        }
+
+        // Add new items to the existing list
+        final newItems = loadedResults.second.whereType<T>().toList();
+        for (final item in newItems) {
+          if (!results.contains(item)) {
+            results.add(item);
+          }
+        }
 
         if (results.isEmpty) {
-          results.clear();
           return setEmpty("No results found");
         } else {
+          // Sort and reverse in place
           if (sortByKey != null) {
             results.sortBy(sortByKey!);
           }
           if (reverseList) {
-            results = ObservableList.of(results.reversed);
+            final items = results.toList();
+            results
+              ..clear()
+              ..addAll(items.reversed);
           }
+
           return setLoaded();
         }
       } else {
         if (results.isEmpty) {
-          results.clear();
           return setEmpty("No results found");
         }
         return setNoMoreToLoad();

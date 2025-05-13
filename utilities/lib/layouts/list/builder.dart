@@ -135,8 +135,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
           "Cannot have stacked widgets or header and use slivers",
         ),
         assert(
-          viewType == ListViewType.listView && gridDelegate == null ||
-              viewType == ListViewType.gridView && gridDelegate != null,
+          viewType == ListViewType.listView && gridDelegate == null || viewType == ListViewType.gridView && gridDelegate != null,
           "Grid view must have a grid delegate",
         ),
         assert(
@@ -152,8 +151,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
         store: store,
         emptyBuilder: (context, empty) {
           debugPrint("EMPTY BUILDER: $empty");
-          return emptyBuilder?.call(context, empty) ??
-              WarningMessage.empty(title: "No Results", message: empty);
+          return emptyBuilder?.call(context, empty) ?? WarningMessage.empty(title: "No Results", message: empty);
         },
         loadedBuilder: (context) {
           debugPrint("LOADED BUILDER");
@@ -172,10 +170,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
                 Expanded(
                   child: Observer(
                     builder: (context) {
-                      return buildView(
-                        context,
-                        store.showLoadingSpinnerAtBottom,
-                      );
+                      return buildView(context, store.showLoadingSpinnerAtBottom);
                     },
                   ),
                 ),
@@ -191,9 +186,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
               : contents;
         },
         loadingBuilder: (context) => const SizedBox.shrink(),
-        errorBuilder: (context, error) =>
-            errorBuilder?.call(context, error) ??
-            WarningMessage.error(title: "Error", message: error),
+        errorBuilder: (context, error) => errorBuilder?.call(context, error) ?? WarningMessage.error(title: "Error", message: error),
       );
     } else {
       return SliverPadding(
@@ -214,14 +207,12 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
             } else if (store.isEmpty) {
               final emptyState = store.currentState as EmptyLoadState;
               return SliverToBoxAdapter(
-                child: emptyBuilder?.call(context, emptyState.emptyMessage) ??
-                    WarningMessage.empty(message: emptyState.emptyMessage),
+                child: emptyBuilder?.call(context, emptyState.emptyMessage) ?? WarningMessage.empty(message: emptyState.emptyMessage),
               );
             } else if (store.isLoading) {
               return SliverToBoxAdapter(
                 child: Center(
-                  child: loadingBuilder?.call(context) ??
-                      const CircularProgressIndicator(),
+                  child: loadingBuilder?.call(context) ?? const CircularProgressIndicator(),
                 ),
               );
             } else {
@@ -234,9 +225,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
   }
 
   Widget buildView(BuildContext context, bool isLoadingMore) {
-    final resultsCount = maxItemsCutOff != null
-        ? min(maxItemsCutOff!, store.results.length)
-        : store.results.length;
+    final resultsCount = maxItemsCutOff != null ? min(maxItemsCutOff!, store.results.length) : store.results.length;
     final itemCount = resultsCount + (isLoadingMore ? 1 : 0);
     Widget? loadingOrItemBuilder(BuildContext context, int index) {
       if (index == store.results.length) {
@@ -244,8 +233,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
           height: 64,
           width: 64,
           child: Center(
-            child: loadingBuilder?.call(context) ??
-                const CircularProgressIndicator(),
+            child: loadingBuilder?.call(context) ?? const CircularProgressIndicator(),
           ),
         );
       }
@@ -273,6 +261,7 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
             itemCount: itemCount,
             itemBuilder: loadingOrItemBuilder,
             controller: store.scrollController,
+            addRepaintBoundaries: false,
             shrinkWrap: shrinkWrap,
           );
         }
@@ -289,24 +278,22 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
                 physics: physics,
                 reverse: store.reverseList,
                 itemCount: itemCount,
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                 controller: store.scrollController,
                 itemBuilder: loadingOrItemBuilder,
                 gridDelegate: gridDelegate!,
                 shrinkWrap: shrinkWrap,
               );
       case ListViewType.wrapView:
-        return Wrap(
-          direction: scrollDirection == Axis.vertical
-              ? Axis.horizontal
-              : Axis.vertical,
-          spacing: 8,
-          runSpacing: 8,
-          children: List.generate(
-            itemCount,
-            (index) =>
-                loadingOrItemBuilder(context, index) ?? const SizedBox.shrink(),
+        return SingleChildScrollView(
+          child: Wrap(
+            direction: scrollDirection == Axis.vertical ? Axis.horizontal : Axis.vertical,
+            spacing: 8,
+            runSpacing: 8,
+            children: List.generate(
+              itemCount,
+              (index) => loadingOrItemBuilder(context, index) ?? const SizedBox.shrink(),
+            ),
           ),
         );
     }

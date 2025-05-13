@@ -12,9 +12,7 @@ import "step_store.dart";
 
 part "store.g.dart";
 
-abstract class SteppedReactiveFormsModelStore<
-        T> = _SteppedReactiveFormsModelStore<T>
-    with _$SteppedReactiveFormsModelStore<T>;
+abstract class SteppedReactiveFormsModelStore<T> = _SteppedReactiveFormsModelStore<T> with _$SteppedReactiveFormsModelStore<T>;
 
 abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
   final String? successSnackbarTitle;
@@ -23,6 +21,7 @@ abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
   final String? deniedSnackbarTitle;
   final String? cancelledSnackbarTitle;
   final Map<Enum, ReactiveStepFormsModelStore> stepStores;
+  final List<Enum> steps;
   final Future<RequestResponse> Function(bool isAdding, T value)? saveValue;
 
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
@@ -51,6 +50,7 @@ abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
     this.deniedSnackbarTitle,
     this.cancelledSnackbarTitle,
     required this.convertDataTypeFromMap,
+    required this.steps,
   }) : isAdding = editingValue == null {
     initialize();
   }
@@ -65,12 +65,11 @@ abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
   bool get isFirstStep => currentStepIndex == 0;
 
   @computed
-  bool get isLastStep => currentStepIndex == stepStores.length - 1;
+  bool get isLastStep => currentStepIndex == steps.length - 1;
 
   @computed
   bool get canProceed {
-    final currentStore =
-        stepStores[stepStores.keys.elementAt(currentStepIndex)];
+    final currentStore = stepStores[steps.elementAt(currentStepIndex)];
     return currentStore?.form.valid ?? false;
   }
 
@@ -105,6 +104,7 @@ abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
 
     try {
       final value = await prepareValueFromForm();
+      print("STEPPED STORE::: value: $value");
       if (value == null) {
         setError("Failed to prepare value from form");
         return RequestResponse.failure;
@@ -116,8 +116,7 @@ abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
         return RequestResponse.failure;
       }
 
-      if (response == RequestResponse.success ||
-          response == RequestResponse.underReview) {
+      if (response == RequestResponse.success || response == RequestResponse.underReview) {
         setLoaded();
       } else {
         setError("Failed to save value");

@@ -10,8 +10,7 @@ import "package:utilities/snackbar/configuration.dart";
 import "package:utilities/widgets/load_state/builder.dart";
 import "package:widgets/messages/warning_message.dart";
 
-class PaginatedListBuilder<T, K extends Comparable<K>>
-    extends ListBuilder<T, K> {
+class PaginatedListBuilder<T, K extends Comparable<K>> extends ListBuilder<T, K> {
   final bool canRefresh;
 
   @override
@@ -179,6 +178,5 @@ class PaginatedListBuilder<T, K extends Comparable<K>>
   }
 
   @override
-  Widget buildView(BuildContext context, bool isLoadingMore) =>
-      Observer(builder: (context) => super.buildView(context, isLoadingMore));
+  Widget buildView(BuildContext context, bool isLoadingMore) => Observer(builder: (context) => super.buildView(context, isLoadingMore));
 }
