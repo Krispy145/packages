@@ -45,6 +45,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
               "Stream received an empty data list.",
               [UtilitiesLoggers.streamedListStore],
             );
+            setEmpty("No results found");
           }
 
           if (newData.first == RequestResponse.success) {
@@ -96,7 +97,6 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
             "StreamedListStore initialization complete.",
             [UtilitiesLoggers.streamedListStore],
           );
-          setLoaded();
         } catch (e, _) {
           AppLogger.print(
             "Error while processing stream data for: $e",
@@ -107,7 +107,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
         }
       },
       onError: (dynamic error) {
-        dataStream.cancel();
+        // dataStream.cancel();
         setError("Stream error: $error");
       },
     );

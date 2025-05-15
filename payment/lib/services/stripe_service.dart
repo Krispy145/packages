@@ -28,7 +28,7 @@ class StripeService extends BasePaymentService<PriceItemModel> {
       final sessionUrl = result.data['url'];
       return sessionUrl;
     } catch (e) {
-      AppLogger.print(e.toString(), [PaymentLoggers.stripe]);
+      AppLogger.print(e.toString(), [PaymentLoggers.stripe], type: LoggerType.error);
       rethrow;
     }
   }

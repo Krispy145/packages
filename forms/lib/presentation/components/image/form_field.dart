@@ -56,7 +56,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
                     store.imageUrl,
                     options: NetworkImageOptions(
                       headers: PublicHeaders.map,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
@@ -81,9 +81,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
   }
 
   Future<void> addOrEditImage(BuildContext context) async {
-    final _maxWidth = Platform.isAndroid || Platform.isIOS
-        ? context.screenWidth * 0.85
-        : context.screenWidth * 0.5;
+    final _maxWidth = Platform.isAndroid || Platform.isIOS ? context.screenWidth * 0.85 : context.screenWidth * 0.5;
     final result = await showDialog<Pair<String?, bool>>(
       context: context,
       builder: (context) {
@@ -107,8 +105,7 @@ class ImageFormField extends BaseFormField<ImageFormFieldStore> {
 
     if (result == null) return;
 
-    if ((result.first == "" || result.first == null) &&
-        result.second == false) {
+    if ((result.first == "" || result.first == null) && result.second == false) {
       onRemoved?.call();
       return store.removeImage();
     }

@@ -36,4 +36,7 @@ enum UtilitiesLoggers {
 
   /// [streamManager] is the feature reference for streamManager.
   streamManager,
+
+  /// [loadState] is the feature reference for loadStateBuilder.
+  loadState,
 }

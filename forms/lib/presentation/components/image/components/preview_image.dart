@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:forms/presentation/components/image/store.dart";
+import "package:pro_image_editor/pro_image_editor.dart";
 import "package:reactive_forms/reactive_forms.dart";
 import "package:theme/extensions/build_context.dart";
 import "package:utilities/constants/env.dart";
@@ -67,7 +68,7 @@ class PreviewImage extends StatelessWidget {
       return LYImage.memory(
         store.imageBytes!,
         options: const MemoryImageOptions(
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         ),
       );
     } else if (formControl.isNull) {
@@ -79,9 +80,24 @@ class PreviewImage extends StatelessWidget {
         formControl.value as String? ?? "",
         options: NetworkImageOptions(
           headers: PublicHeaders.map,
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         ),
       );
     }
+  }
+
+  void _showEditImageDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (context) => ProImageEditor.memory(
+        store.imageBytes!,
+        callbacks: ProImageEditorCallbacks(
+          onImageEditingComplete: (imageBytes) async {
+            await store.editImageBytes(imageBytes);
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
   }
 }

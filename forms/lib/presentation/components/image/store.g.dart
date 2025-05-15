@@ -93,6 +93,15 @@ mixin _$ImageFormFieldStore on _ImageFormFieldStore, Store {
     });
   }
 
+  late final _$editImageBytesAsyncAction =
+      AsyncAction('_ImageFormFieldStore.editImageBytes', context: context);
+
+  @override
+  Future<void> editImageBytes(Uint8List updatedImageBytes) {
+    return _$editImageBytesAsyncAction
+        .run(() => super.editImageBytes(updatedImageBytes));
+  }
+
   late final _$updateImageAsyncAction =
       AsyncAction('_ImageFormFieldStore.updateImage', context: context);
 

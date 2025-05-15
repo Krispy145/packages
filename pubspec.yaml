@@ -7,10 +7,10 @@ scripts:
 environment:
   sdk: ">=3.0.0 <4.0.0"
 dev_dependencies:
-  melos: ^5.2.2
+  melos: ^6.3.2
 dependencies:
   dio: ^5.4.2+1
-  firebase_crashlytics: ^4.0.0
+  firebase_crashlytics: ^4.3.5
   flutter_contacts: ^1.1.7+1
   universal_io: ^2.2.2
   equatable: ^2.0.5

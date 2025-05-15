@@ -148,92 +148,67 @@ class ComponentThemesModel with ComponentThemesModelMappable {
   T? getComponentThemeFromStyleType<T>(String styleType) {
     if (isSameType<T, ThemeData>()) {
       return ThemeData(
-        elevatedButtonTheme:
-            elevatedButtons?[styleType]?.toElevatedButtonThemeData(),
-        outlinedButtonTheme:
-            outlinedButtons?[styleType]?.toOutlinedButtonThemeData(),
+        elevatedButtonTheme: elevatedButtons?[styleType]?.toElevatedButtonThemeData(),
+        outlinedButtonTheme: outlinedButtons?[styleType]?.toOutlinedButtonThemeData(),
         textButtonTheme: textButtons?[styleType]?.toTextButtonThemeData(),
         iconButtonTheme: iconButtons?[styleType]?.toIconButtonThemeData(),
         filledButtonTheme: filledButtons?[styleType]?.toFilledButtonThemeData(),
         menuButtonTheme: menuButtons?[styleType]?.toMenuButtonThemeData(),
-        segmentedButtonTheme:
-            segmentedButtons?[styleType]?.toSegmentedButtonThemeData(),
-        toggleButtonsTheme:
-            toggleButtons?[styleType]?.asToggleButtonThemeData(),
-        floatingActionButtonTheme: floatingActionButtons?[styleType]
-            ?.asFloatingActionButtonThemeData(),
+        segmentedButtonTheme: segmentedButtons?[styleType]?.toSegmentedButtonThemeData(),
+        toggleButtonsTheme: toggleButtons?[styleType]?.asToggleButtonThemeData(),
+        floatingActionButtonTheme: floatingActionButtons?[styleType]?.asFloatingActionButtonThemeData(),
       ) as T;
     } else if (isSameType<T, InputDecorationTheme>()) {
-      return inputDecorations?[styleType]
-          ?.asInputDecorationTheme(styleTypeName: styleType) as T;
+      return inputDecorations?[styleType]?.asInputDecorationTheme(styleTypeName: styleType) as T;
     } else if (isSameType<T, BoxDecoration>()) {
-      return boxDecorations?[styleType]
-          ?.asBoxDecoration(styleTypeName: styleType) as T;
-    } else if (isSameType<T, CardTheme>()) {
-      return cards?[styleType]?.asCardTheme(styleTypeName: styleType) as T;
+      return boxDecorations?[styleType]?.asBoxDecoration(styleTypeName: styleType) as T;
+    } else if (isSameType<T, CardThemeData>()) {
+      return cards?[styleType]?.asCardThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, SnackBarThemeData>()) {
-      return snackbars?[styleType]
-          ?.asSnackBarThemeData(styleTypeName: styleType) as T;
+      return snackbars?[styleType]?.asSnackBarThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, BadgeThemeData>()) {
-      return badges?[styleType]?.asBadgeThemeData(styleTypeName: styleType)
-          as T;
+      return badges?[styleType]?.asBadgeThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, AppBarTheme>()) {
       return appbars?[styleType]?.asAppBarTheme(styleTypeName: styleType) as T;
-    } else if (isSameType<T, TabBarTheme>()) {
-      return tabBars?[styleType]?.asTabBarTheme(styleTypeName: styleType) as T;
+    } else if (isSameType<T, TabBarThemeData>()) {
+      return tabBars?[styleType]?.asTabBarThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, BottomAppBarTheme>()) {
-      return bottomAppbars?[styleType]
-          ?.asBottomAppBarTheme(styleTypeName: styleType) as T;
+      return bottomAppbars?[styleType]?.asBottomAppBarTheme(styleTypeName: styleType) as T;
     } else if (isSameType<T, DropdownMenuThemeData>()) {
-      return dropdowns?[styleType]
-          ?.asDropdownMenuThemeData(styleTypeName: styleType) as T;
+      return dropdowns?[styleType]?.asDropdownMenuThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, ChipThemeData>()) {
-      final chipTheme =
-          chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
+      final chipTheme = chips?[styleType]?.asChipThemeData(styleTypeName: styleType) as T;
       return chipTheme;
-    } else if (isSameType<T, DialogTheme>()) {
-      return dialogs?[styleType]?.asDialogTheme(styleTypeName: styleType) as T;
+    } else if (isSameType<T, DialogThemeData>()) {
+      return dialogs?[styleType]?.asDialogThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, PopupMenuThemeData>()) {
-      return popupMenus?[styleType]
-          ?.asPopupMenuThemeData(styleTypeName: styleType) as T;
+      return popupMenus?[styleType]?.asPopupMenuThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, SliderThemeData>()) {
-      return sliders?[styleType]?.asSliderThemeData(styleTypeName: styleType)
-          as T;
+      return sliders?[styleType]?.asSliderThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, ScrollbarThemeData>()) {
-      return scrollbars?[styleType]
-          ?.asScrollbarThemeData(styleTypeName: styleType) as T;
+      return scrollbars?[styleType]?.asScrollbarThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, TooltipThemeData>()) {
-      return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType)
-          as T;
+      return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, TooltipThemeData>()) {
-      return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType)
-          as T;
+      return tooltips?[styleType]?.asTooltipThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, NavigationRailThemeData>()) {
-      return navigationRails?[styleType]
-          ?.asNavigationRailThemeData(styleTypeName: styleType) as T;
+      return navigationRails?[styleType]?.asNavigationRailThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, CheckboxThemeData>()) {
-      return checkboxes?[styleType]
-          ?.asCheckboxThemeData(styleTypeName: styleType) as T;
+      return checkboxes?[styleType]?.asCheckboxThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, RadioThemeData>()) {
-      return radios?[styleType]?.asRadioThemeData(styleTypeName: styleType)
-          as T;
+      return radios?[styleType]?.asRadioThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, SwitchThemeData>()) {
-      return switches?[styleType]?.asSwitchThemeData(styleTypeName: styleType)
-          as T;
+      return switches?[styleType]?.asSwitchThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, DrawerThemeData>()) {
-      return drawers?[styleType]?.asDrawerThemeData(styleTypeName: styleType)
-          as T;
+      return drawers?[styleType]?.asDrawerThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, ListTileThemeData>()) {
-      return listTiles?[styleType]
-          ?.asListTileThemeData(styleTypeName: styleType) as T;
+      return listTiles?[styleType]?.asListTileThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, MenuStyle>()) {
       return menus?[styleType]?.asMenuStyle(styleTypeName: styleType) as T;
     } else if (isSameType<T, MenuBarThemeData>()) {
-      return menuBars?[styleType]?.asMenuBarThemeData(styleTypeName: styleType)
-          as T;
+      return menuBars?[styleType]?.asMenuBarThemeData(styleTypeName: styleType) as T;
     } else if (isSameType<T, NavigationBarThemeData>()) {
-      return navigationBars?[styleType]
-          ?.asNavigationBarThemeData(styleTypeName: styleType) as T;
+      return navigationBars?[styleType]?.asNavigationBarThemeData(styleTypeName: styleType) as T;
     } else {
       return null;
     }

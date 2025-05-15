@@ -23,8 +23,7 @@ enum ImagePickerType {
 
 class ImageFormFieldStore = _ImageFormFieldStore with _$ImageFormFieldStore;
 
-abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL>
-    with LoadStateStore, Store {
+abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL> with LoadStateStore, Store {
   final BaseFilePicker? filePicker;
   final StorageRepository? storageRepository;
   final ImagePickerType tabType;
@@ -61,8 +60,7 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL>
 
   final pageController = PageController();
 
-  final BoxDecoration defaultDecoration =
-      BoxDecoration(borderRadius: BorderRadius.circular(8));
+  final BoxDecoration defaultDecoration = BoxDecoration(borderRadius: BorderRadius.circular(8));
 
   @action
   void changeTab(int index) {
@@ -81,8 +79,7 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL>
 
   final imageUrlKey = "imageUrl";
   late final form = FormGroup({
-    imageUrlKey:
-        FormControl<URL>(value: imageUrl, validators: [Validators.required]),
+    imageUrlKey: FormControl<URL>(value: imageUrl, validators: [Validators.required]),
   });
 
   late final bool canStoreImage = storageRepository != null;
@@ -125,6 +122,22 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL>
   }
 
   @action
+  Future<void> editImageBytes(Uint8List updatedImageBytes) async {
+    imageBytes = updatedImageBytes;
+    final _length = await pickedImage?.length();
+    final _lastModified = await pickedImage?.lastModified();
+    pickedImage = XFile.fromData(
+      updatedImageBytes,
+      mimeType: pickedImage?.mimeType,
+      length: _length,
+      name: pickedImage?.name,
+      path: pickedImage?.path,
+      lastModified: _lastModified,
+    );
+    didPickImage = true;
+  }
+
+  @action
   Future<void> updateImage({required Pair<URL?, bool> newImageOptions}) async {
     imageUrl = newImageOptions.first;
     if (newImageOptions.second && fileUploadManager != null) {
@@ -149,7 +162,6 @@ abstract class _ImageFormFieldStore extends BaseFormFieldStore<URL>
   Future<void> removeImage() async {
     setLoading();
     imageUrl = null;
-    pickedImage = null;
     imageBytes = null;
     form.control(imageUrlKey).reset();
     setEmpty("No image selected");
