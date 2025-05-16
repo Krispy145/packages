@@ -178,7 +178,7 @@ class LYImage extends StatelessWidget {
         debugPrint("First try at loading Image");
         return CachedNetworkImage(
           imageUrl: _finalUrl,
-          httpHeaders: _httpHeaders,
+          httpHeaders: kIsWeb ? _httpHeaders : null,
           width: _networkOptions.width,
           height: _networkOptions.height,
           color: _networkOptions.color,
@@ -222,7 +222,7 @@ class LYImage extends StatelessWidget {
     debugPrint("Second try at loading Image");
     return CachedNetworkImage(
       imageUrl: _finalUrl,
-      httpHeaders: _httpHeaders,
+      httpHeaders: kIsWeb ? _httpHeaders : null,
       width: _networkOptions.width,
       height: _networkOptions.height,
       color: _networkOptions.color,

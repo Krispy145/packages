@@ -270,46 +270,55 @@ abstract class _DeepLinksStore with Store {
   }) async {
     final branchLinkProperties = linkProperties?.branchLinkProperties ?? BranchLinkProperties();
     final code = qrCode ?? QRCodeModel();
-    if (code.type == QRCodeType.raw) {
-      final response = await FlutterBranchSdk.getQRCodeAsData(
-        buo: deepLink.branchUniversalObject,
-        linkProperties: branchLinkProperties,
-        qrCode: code.branchQrCode,
-      );
-      if (response.success) {
-        AppLogger.print(
-          "QR code generated: ${response.result}",
-          [DeeplinksLoggers.deeplinks],
-          type: LoggerType.confirmation,
+    try {
+      if (code.type == QRCodeType.raw) {
+        final response = await FlutterBranchSdk.getQRCodeAsData(
+          buo: deepLink.branchUniversalObject,
+          linkProperties: branchLinkProperties,
+          qrCode: code.branchQrCode,
         );
-        return response.result;
+        if (response.success) {
+          AppLogger.print(
+            "QR code generated: ${response.result}",
+            [DeeplinksLoggers.deeplinks],
+            type: LoggerType.confirmation,
+          );
+          return response.result;
+        } else {
+          AppLogger.print(
+            "Error : ${response.errorCode} - ${response.errorMessage}",
+            [DeeplinksLoggers.deeplinks],
+            type: LoggerType.error,
+          );
+        }
       } else {
-        AppLogger.print(
-          "Error : ${response.errorCode} - ${response.errorMessage}",
-          [DeeplinksLoggers.deeplinks],
-          type: LoggerType.error,
+        final response = await FlutterBranchSdk.getQRCodeAsImage(
+          buo: deepLink.branchUniversalObject,
+          linkProperties: branchLinkProperties,
+          qrCode: code.branchQrCode,
         );
+        if (response.success) {
+          AppLogger.print(
+            "QR code generated: ${response.result}",
+            [DeeplinksLoggers.deeplinks],
+            type: LoggerType.confirmation,
+          );
+          return response.result;
+        } else {
+          AppLogger.print(
+            "Error : ${response.errorCode} - ${response.errorMessage}",
+            [DeeplinksLoggers.deeplinks],
+            type: LoggerType.error,
+          );
+        }
       }
-    } else {
-      final response = await FlutterBranchSdk.getQRCodeAsImage(
-        buo: deepLink.branchUniversalObject,
-        linkProperties: branchLinkProperties,
-        qrCode: code.branchQrCode,
+    } catch (e) {
+      AppLogger.print(
+        "Error : $e",
+        [DeeplinksLoggers.deeplinks],
+        type: LoggerType.error,
       );
-      if (response.success) {
-        AppLogger.print(
-          "QR code generated: ${response.result}",
-          [DeeplinksLoggers.deeplinks],
-          type: LoggerType.confirmation,
-        );
-        return response.result;
-      } else {
-        AppLogger.print(
-          "Error : ${response.errorCode} - ${response.errorMessage}",
-          [DeeplinksLoggers.deeplinks],
-          type: LoggerType.error,
-        );
-      }
+      return null;
     }
   }
 }

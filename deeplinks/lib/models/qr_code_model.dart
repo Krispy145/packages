@@ -25,7 +25,7 @@ class QRCodeModel {
 
   /// [QRCodeModel] constructor.
   QRCodeModel({
-    this.type = QRCodeType.raw,
+    this.type = QRCodeType.image,
     this.primaryColor,
     this.backgroundColor,
     this.centerLogoUrl,
