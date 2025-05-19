@@ -201,8 +201,10 @@ abstract class _DeepLinksStore with Store {
     try {
       AppLogger.print("Creating deep link...", [DeeplinksLoggers.deeplinks]);
       final branchLinkProperties = linkProperties?.branchLinkProperties ?? LinkPropertiesModel.defaultShareProperties;
+      final buo = deepLink.branchUniversalObject;
+
       final response = await FlutterBranchSdk.getShortUrl(
-        buo: deepLink.branchUniversalObject,
+        buo: buo,
         linkProperties: branchLinkProperties,
       );
       if (response.success) {

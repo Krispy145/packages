@@ -24,22 +24,22 @@ class DeepLinkModelMapper extends ClassMapperBase<DeepLinkModel> {
   static String _$canonicalIdentifier(DeepLinkModel v) => v.canonicalIdentifier;
   static const Field<DeepLinkModel, String> _f$canonicalIdentifier = Field(
       'canonicalIdentifier', _$canonicalIdentifier,
-      key: 'canonical_identifier');
+      key: r'canonical_identifier');
   static String _$title(DeepLinkModel v) => v.title;
   static const Field<DeepLinkModel, String> _f$title = Field('title', _$title);
   static String? _$contentDescription(DeepLinkModel v) => v.contentDescription;
   static const Field<DeepLinkModel, String> _f$contentDescription = Field(
       'contentDescription', _$contentDescription,
-      key: 'content_description', opt: true);
+      key: r'content_description', opt: true);
   static String? _$imageUrl(DeepLinkModel v) => v.imageUrl;
   static const Field<DeepLinkModel, String> _f$imageUrl =
-      Field('imageUrl', _$imageUrl, key: 'image_url', opt: true);
+      Field('imageUrl', _$imageUrl, key: r'image_url', opt: true);
   static String? _$canonicalUrl(DeepLinkModel v) => v.canonicalUrl;
   static const Field<DeepLinkModel, String> _f$canonicalUrl =
-      Field('canonicalUrl', _$canonicalUrl, key: 'canonical_url', opt: true);
+      Field('canonicalUrl', _$canonicalUrl, key: r'canonical_url', opt: true);
   static String? _$fallbackUrl(DeepLinkModel v) => v.fallbackUrl;
   static const Field<DeepLinkModel, String> _f$fallbackUrl =
-      Field('fallbackUrl', _$fallbackUrl, key: 'fallback_url', opt: true);
+      Field('fallbackUrl', _$fallbackUrl, key: r'fallback_url', opt: true);
   static AppDestinationModel? _$destination(DeepLinkModel v) => v.destination;
   static const Field<DeepLinkModel, AppDestinationModel> _f$destination =
       Field('destination', _$destination, opt: true);
@@ -52,15 +52,15 @@ class DeepLinkModelMapper extends ClassMapperBase<DeepLinkModel> {
   static bool _$publicIndex(DeepLinkModel v) => v.publicIndex;
   static const Field<DeepLinkModel, bool> _f$publicIndex = Field(
       'publicIndex', _$publicIndex,
-      key: 'public_index', opt: true, def: true);
+      key: r'public_index', opt: true, def: true);
   static bool _$localIndex(DeepLinkModel v) => v.localIndex;
   static const Field<DeepLinkModel, bool> _f$localIndex = Field(
       'localIndex', _$localIndex,
-      key: 'local_index', opt: true, def: true);
+      key: r'local_index', opt: true, def: true);
   static DateTime? _$expirationDate(DeepLinkModel v) => v.expirationDate;
   static const Field<DeepLinkModel, DateTime> _f$expirationDate = Field(
       'expirationDate', _$expirationDate,
-      key: 'expiration_date', opt: true);
+      key: r'expiration_date', opt: true);
 
   @override
   final MappableFields<DeepLinkModel> fields = const {

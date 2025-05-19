@@ -147,33 +147,84 @@ abstract class FirestoreDataSource<T, Q> with Mappable<T> implements DataSource<
         if (id.isEmpty) {
           await add(data);
         } else {
-          await collectionReference.doc(id).set(
-                convertToMap(data),
-                SetOptions(merge: true),
-              );
+          final rawMap = convertToMap(data);
+          final result = _prepareUpdateMap(rawMap, returnDotDeleteInfo: true);
+
+          final updateMap = result["map"] as Map<String, dynamic>;
+          final hasDotDeletes = result["hasDotDeletes"] as bool;
+
+          final docRef = collectionReference.doc(id);
+
+          if (hasDotDeletes) {
+            await docRef.update(updateMap);
+          } else {
+            await docRef.set(updateMap, SetOptions(merge: true));
+          }
         }
       } catch (e) {
         await add(data);
       }
       return null;
     });
+
     return response.first;
   }
 
   @override
   Future<RequestResponse> updateAll(Map<String, T> data) async {
     await _handleRequest("UPDATE_ALL", () async {
-      final result = <String, dynamic>{};
       final batch = firestore.batch();
-      data.forEach((id, item) {
+
+      for (final entry in data.entries) {
+        final id = entry.key;
+        final rawMap = convertToMap(entry.value);
+        final result = _prepareUpdateMap(rawMap, returnDotDeleteInfo: true);
+
+        final updateMap = result["map"] as Map<String, dynamic>;
+        final hasDotDeletes = result["hasDotDeletes"] as bool;
+
         final reference = collectionReference.doc(id);
-        batch.set(reference, convertToMap(item));
-        result[id] = true;
-      });
+        if (hasDotDeletes) {
+          batch.update(reference, updateMap);
+        } else {
+          batch.set(reference, updateMap, SetOptions(merge: true));
+        }
+      }
+
       await batch.commit();
       return null;
     });
+
     return RequestResponse.success;
+  }
+
+  Map<String, dynamic> _prepareUpdateMap(Map<String, dynamic> dataMap, {bool returnDotDeleteInfo = false}) {
+    final updateMap = <String, dynamic>{};
+    var usesDotDeletes = false;
+
+    dataMap.forEach((key, value) {
+      if (value is Map<String, dynamic>) {
+        final nestedMap = <String, dynamic>{};
+
+        value.forEach((nestedKey, nestedValue) {
+          if (nestedValue == null) {
+            final dotKey = "$key.$nestedKey";
+            updateMap[dotKey] = FieldValue.delete();
+            usesDotDeletes = true;
+          } else {
+            nestedMap[nestedKey] = nestedValue;
+          }
+        });
+
+        if (nestedMap.isNotEmpty) {
+          updateMap[key] = nestedMap;
+        }
+      } else {
+        updateMap[key] = value;
+      }
+    });
+
+    return returnDotDeleteInfo ? {"map": updateMap, "hasDotDeletes": usesDotDeletes} : updateMap;
   }
 
   @override

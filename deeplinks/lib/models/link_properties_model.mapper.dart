@@ -33,8 +33,9 @@ class LinkPropertiesModelMapper extends ClassMapperBase<LinkPropertiesModel> {
   static const Field<LinkPropertiesModel, String> _f$stage =
       Field('stage', _$stage, opt: true);
   static Duration? _$matchDuration(LinkPropertiesModel v) => v.matchDuration;
-  static const Field<LinkPropertiesModel, Duration> _f$matchDuration =
-      Field('matchDuration', _$matchDuration, key: 'match_duration', opt: true);
+  static const Field<LinkPropertiesModel, Duration> _f$matchDuration = Field(
+      'matchDuration', _$matchDuration,
+      key: r'match_duration', opt: true);
   static String? _$channel(LinkPropertiesModel v) => v.channel;
   static const Field<LinkPropertiesModel, String> _f$channel =
       Field('channel', _$channel, opt: true);
