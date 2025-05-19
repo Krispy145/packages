@@ -17,8 +17,7 @@ part "store.g.dart";
 class InstagramMediaStore = _InstagramMediaStore with _$InstagramMediaStore;
 
 /// [_InstagramMediaStore] is a class that manages the state of the Instagram feature.
-abstract class _InstagramMediaStore
-    extends PaginatedListStore<InstagramMediaModel, String> with Store {
+abstract class _InstagramMediaStore extends PaginatedListStore<InstagramMediaModel, String> with Store {
   final String? appId;
   final String? appSecret;
   final String appRedirectUrl;
@@ -45,7 +44,10 @@ abstract class _InstagramMediaStore
   );
 
   @override
-  late final loadMoreFromRepository = getUserMedia;
+  Future<Pair<RequestResponse, List<InstagramMediaModel?>>> Function({
+    int? limit,
+    bool refresh,
+  }) get loadMoreFromRepository => getUserMedia;
 
   @action
   Future<Pair<RequestResponse, List<InstagramMediaModel?>>> getUserMedia({
@@ -100,16 +102,13 @@ abstract class _InstagramMediaStore
       );
       AppLogger.print("mediaIds: $_response", [SocialsLoggers.instagram]);
       if (_response != null) {
-        final _merged =
-            <InstagramMediaIdModel?>{...mediaIds, ..._response}.toList();
+        final _merged = <InstagramMediaIdModel?>{...mediaIds, ..._response}.toList();
         mediaIds = _merged;
       }
     } catch (e) {
       AppLogger.print("getUserMediaIds: $e", [SocialsLoggers.instagram]);
       setError(
-        kDebugMode
-            ? "Error loading media ids"
-            : "There was a problem loading media",
+        kDebugMode ? "Error loading media ids" : "There was a problem loading media",
       );
     }
   }
