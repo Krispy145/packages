@@ -7,7 +7,8 @@ class StreamWrapper<T> {
   T? latestValue;
 
   /// Ensure the stream is a broadcast stream
-  StreamWrapper({required this.name, required Stream<T> stream}) : stream = stream.isBroadcast ? stream : stream.asBroadcastStream();
+  StreamWrapper({required this.name, required Stream<T> stream})
+      : stream = stream.isBroadcast ? stream : stream.asBroadcastStream();
 
   /// Create an empty StreamWrapper
   static StreamWrapper<T> empty<T>() {
@@ -18,7 +19,8 @@ class StreamWrapper<T> {
   }
 
   /// Start listening to the stream with an optional callback
-  void startListening({void Function(T value)? onData, void Function(dynamic error)? onError}) {
+  void startListening(
+      {void Function(T value)? onData, void Function(dynamic error)? onError,}) {
     _subscription = stream.listen(
       (value) {
         latestValue = value; // Cache the latest value

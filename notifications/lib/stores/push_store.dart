@@ -19,8 +19,7 @@ import "package:utilities/logger/logger.dart";
 part "push_store.g.dart";
 
 /// [PushNotificationsStore] is the base class for all push notifications stores.
-class PushNotificationsStore = _PushNotificationsStore
-    with _$PushNotificationsStore;
+class PushNotificationsStore = _PushNotificationsStore with _$PushNotificationsStore;
 
 /// [_PushNotificationsStore] is the base class for all notifications stores.
 abstract class _PushNotificationsStore extends NotificationsStore with Store {
@@ -70,8 +69,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   @override
   Future<Pair<String?, AuthorizationStatus>> requestPermissions({
-    NotificationsPermissionsModel permissions =
-        NotificationsPermissionsModel.standard,
+    NotificationsPermissionsModel permissions = NotificationsPermissionsModel.standard,
   }) async {
     // Request permissions if we don't already have them
     final settings = await _pushNotifications.requestPermission(
@@ -94,15 +92,13 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     );
     authorizationStatus = settings.authorizationStatus;
 
-    if (settings.authorizationStatus == AuthorizationStatus.authorized &&
-        fcmToken != null) {
+    if (settings.authorizationStatus == AuthorizationStatus.authorized && fcmToken != null) {
       AppLogger.print(
         "User granted permission",
         [NotificationsLoggers.notifications],
       );
       return Pair(fcmToken, authorizationStatus);
-    } else if (authorizationStatus == AuthorizationStatus.authorized &&
-        fcmToken == null) {
+    } else if (authorizationStatus == AuthorizationStatus.authorized && fcmToken == null) {
       AppLogger.print(
         "User granted permission but token is null",
         [NotificationsLoggers.notifications],
@@ -143,8 +139,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   /// [_updateActiveNotificationsList] updates the active notifications to the [notifications].
   @action
   Future<void> _updateActiveNotificationsList() async {
-    final activeNotificationsResponse =
-        await remoteDataSource?.getAll() ?? await getAll();
+    final activeNotificationsResponse = await remoteDataSource?.getAll() ?? await getAll();
     final activeNotifications = activeNotificationsResponse.second;
     final notificationMap = <String, NotificationModel>{};
     for (final notificationResponse in activeNotifications) {
@@ -270,8 +265,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
 
     // Also handle any interaction when the app is in the foreground via a Stream listener
     FirebaseMessaging.onMessage.listen((message) {
-      final notification =
-          _convertRemoteNotificationToNotificationModel(message.data);
+      final notification = _convertRemoteNotificationToNotificationModel(message.data);
       final android = message.notification?.android;
 
       // for Android, we create a local notification to show to users using the created channel.
@@ -333,8 +327,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   Future<String?> getToken({String? webVapidKey}) async {
     try {
-      final tokeResponse =
-          await _pushNotifications.getToken(vapidKey: webVapidKey);
+      final tokeResponse = await _pushNotifications.getToken(vapidKey: webVapidKey);
       if (tokeResponse == null) return null;
       AppLogger.print(
         "FCM Token: $tokeResponse",
@@ -407,10 +400,7 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
   @action
   AndroidNotificationChannel _createAndroidForegroundPushNotificationChannel() {
     // Create an Android Notification Channel using local notifications.
-    localNotifications
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.createNotificationChannel(androidPushNotificationsChannel);
+    localNotifications.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(androidPushNotificationsChannel);
     return androidPushNotificationsChannel;
   }
 
@@ -455,14 +445,10 @@ abstract class _PushNotificationsStore extends NotificationsStore with Store {
     );
 
     // Add quotes around values that are not objects, arrays, numbers, booleans, or null
-    correctedStr = correctedStr
-        .replaceAllMapped(RegExp(r":\s*([^,{}\[\]]+)\s*([,}])"), (m) {
+    correctedStr = correctedStr.replaceAllMapped(RegExp(r":\s*([^,{}\[\]]+)\s*([,}])"), (m) {
       final value = m[1]!.trim();
-      if (RegExp(r"^\d+$").hasMatch(value) ||
-          value == "true" ||
-          value == "false" ||
-          value == "null") {
-        return ': $value${m[2]}';
+      if (RegExp(r"^\d+$").hasMatch(value) || value == "true" || value == "false" || value == "null") {
+        return ": $value${m[2]}";
       } else {
         return ': "$value"${m[2]}';
       }

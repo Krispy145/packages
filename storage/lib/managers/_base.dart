@@ -38,6 +38,8 @@ abstract class BaseFileUploadManager {
   });
 
   /// download file/image
-  Future<XFile?> downloadFile({required String path, required bool downloadToDevice});
-  Future<List<XFile>?> downloadFiles({required List<String> paths, required bool downloadToDevice});
+  Future<XFile?> downloadFile(
+      {required String path, required bool downloadToDevice,});
+  Future<List<XFile>?> downloadFiles(
+      {required List<String> paths, required bool downloadToDevice,});
 }

@@ -188,8 +188,7 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
 
   void _onPlatformViewCreated(int viewId) {
     _platformViewId = viewId;
-    _methodChannel =
-        MethodChannel("ae.digitaloasis/NativeVideoPlayerMethodChannel_$viewId");
+    _methodChannel = MethodChannel("ae.digitaloasis/NativeVideoPlayerMethodChannel_$viewId");
   }
 
   /// The [desiredState] flag has changed so need to update playback to
@@ -215,21 +214,14 @@ class _InternalVideoPlayerState extends State<_InternalVideoPlayer> {
   }
 
   void _onPreferredAudioLanguageChanged() async {
-    if (_methodChannel != null &&
-        widget.preferredAudioLanguage != null &&
-        widget.preferredAudioLanguage!.isNotEmpty &&
-        !Platform.isIOS) {
-      _methodChannel!.invokeMethod(
-          "setPreferredAudioLanguage", {"code": widget.preferredAudioLanguage});
+    if (_methodChannel != null && widget.preferredAudioLanguage != null && widget.preferredAudioLanguage!.isNotEmpty && !Platform.isIOS) {
+      _methodChannel!.invokeMethod("setPreferredAudioLanguage", {"code": widget.preferredAudioLanguage});
     }
   }
 
   void _onPreferredTextLanguageChanged() async {
-    if (_methodChannel != null &&
-        widget.preferredTextLanguage != null &&
-        !Platform.isIOS) {
-      _methodChannel!.invokeMethod(
-          "setPreferredTextLanguage", {"code": widget.preferredTextLanguage});
+    if (_methodChannel != null && widget.preferredTextLanguage != null && !Platform.isIOS) {
+      _methodChannel!.invokeMethod("setPreferredTextLanguage", {"code": widget.preferredTextLanguage});
     }
   }
 

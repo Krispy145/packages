@@ -7,7 +7,8 @@ import "package:utilities/widgets/load_state/builder.dart";
 
 import "store.dart";
 
-abstract class SteppedReactiveFormsModelView<T, S extends SteppedReactiveFormsModelStore<T>> extends StatelessWidget {
+abstract class SteppedReactiveFormsModelView<T,
+    S extends SteppedReactiveFormsModelStore<T>> extends StatelessWidget {
   final S store;
   final Widget? header;
   final Widget Function(BuildContext context)? loadingBuilder;
@@ -44,7 +45,10 @@ abstract class SteppedReactiveFormsModelView<T, S extends SteppedReactiveFormsMo
         Observer(
           builder: (context) {
             return ReactiveForm(
-              formGroup: store.stepStores[store.stepStores.keys.elementAt(store.currentStepIndex)]!.form,
+              formGroup: store
+                  .stepStores[
+                      store.stepStores.keys.elementAt(store.currentStepIndex)]!
+                  .form,
               child: Column(
                 children: [
                   if (header != null) header!,
@@ -69,15 +73,18 @@ abstract class SteppedReactiveFormsModelView<T, S extends SteppedReactiveFormsMo
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (cancelButton != null && onCancel != null) cancelButton!(onCancel)!,
-          if (onCancel != null && cancelButton == null) StepCancelButton<T>(onCancel: onCancel!),
+          if (cancelButton != null && onCancel != null)
+            cancelButton!(onCancel)!,
+          if (onCancel != null && cancelButton == null)
+            StepCancelButton<T>(onCancel: onCancel!),
           if (backButton != null) backButton!,
           if (backButton == null) StepBackButton<T>(store: store),
           if (navigationButton != null) navigationButton!,
           if (navigationButton == null)
             StepNavigationButton<T>(
               store: store,
-              onCompleted: onBack != null ? (response) => onBack!(response) : null,
+              onCompleted:
+                  onBack != null ? (response) => onBack!(response) : null,
             ),
         ],
       ),

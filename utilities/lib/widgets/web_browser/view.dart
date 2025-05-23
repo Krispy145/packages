@@ -27,7 +27,12 @@ class WebBrowserBuilder extends StatelessWidget {
     return Scaffold(
       appBar: appBar ??
           AppBar(
-            backgroundColor: backgroundColor?.withValues(alpha: opacity ?? 0.4) ?? Theme.of(context).appBarTheme.backgroundColor?.withValues(alpha: 0.4),
+            backgroundColor:
+                backgroundColor?.withValues(alpha: opacity ?? 0.4) ??
+                    Theme.of(context)
+                        .appBarTheme
+                        .backgroundColor
+                        ?.withValues(alpha: 0.4),
             title: Text(store.title),
             leading: onBackPressed != null
                 ? IconButton(

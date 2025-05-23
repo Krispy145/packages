@@ -25,16 +25,27 @@ class PriceItemModelMapper extends ClassMapperBase<PriceItemModel> {
   static int _$quantity(PriceItemModel v) => v.quantity;
   static const Field<PriceItemModel, int> _f$quantity =
       Field('quantity', _$quantity);
+  static String _$productType(PriceItemModel v) => v.productType;
+  static const Field<PriceItemModel, String> _f$productType =
+      Field('productType', _$productType);
+  static bool _$isSubscription(PriceItemModel v) => v.isSubscription;
+  static const Field<PriceItemModel, bool> _f$isSubscription =
+      Field('isSubscription', _$isSubscription);
 
   @override
   final MappableFields<PriceItemModel> fields = const {
     #price: _f$price,
     #quantity: _f$quantity,
+    #productType: _f$productType,
+    #isSubscription: _f$isSubscription,
   };
 
   static PriceItemModel _instantiate(DecodingData data) {
     return PriceItemModel(
-        price: data.dec(_f$price), quantity: data.dec(_f$quantity));
+        price: data.dec(_f$price),
+        quantity: data.dec(_f$quantity),
+        productType: data.dec(_f$productType),
+        isSubscription: data.dec(_f$isSubscription));
   }
 
   @override
@@ -91,7 +102,11 @@ extension PriceItemModelValueCopy<$R, $Out>
 
 abstract class PriceItemModelCopyWith<$R, $In extends PriceItemModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? price, int? quantity});
+  $R call(
+      {String? price,
+      int? quantity,
+      String? productType,
+      bool? isSubscription});
   PriceItemModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -105,14 +120,23 @@ class _PriceItemModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PriceItemModel> $mapper =
       PriceItemModelMapper.ensureInitialized();
   @override
-  $R call({String? price, int? quantity}) => $apply(FieldCopyWithData({
+  $R call(
+          {String? price,
+          int? quantity,
+          String? productType,
+          bool? isSubscription}) =>
+      $apply(FieldCopyWithData({
         if (price != null) #price: price,
-        if (quantity != null) #quantity: quantity
+        if (quantity != null) #quantity: quantity,
+        if (productType != null) #productType: productType,
+        if (isSubscription != null) #isSubscription: isSubscription
       }));
   @override
   PriceItemModel $make(CopyWithData data) => PriceItemModel(
       price: data.get(#price, or: $value.price),
-      quantity: data.get(#quantity, or: $value.quantity));
+      quantity: data.get(#quantity, or: $value.quantity),
+      productType: data.get(#productType, or: $value.productType),
+      isSubscription: data.get(#isSubscription, or: $value.isSubscription));
 
   @override
   PriceItemModelCopyWith<$R2, PriceItemModel, $Out2> $chain<$R2, $Out2>(

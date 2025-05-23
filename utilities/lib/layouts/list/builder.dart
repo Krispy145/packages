@@ -2,6 +2,7 @@ import "dart:math";
 
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
+import "package:utilities/helpers/extensions/build_context.dart";
 import "package:utilities/layouts/components/types.dart";
 import "package:utilities/layouts/list/store.dart";
 import "package:utilities/sizes/spacers.dart";
@@ -170,7 +171,10 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
                 Expanded(
                   child: Observer(
                     builder: (context) {
-                      return buildView(context, store.showLoadingSpinnerAtBottom);
+                      return buildView(
+                        context,
+                        store.showLoadingSpinnerAtBottom,
+                      );
                     },
                   ),
                 ),
@@ -286,13 +290,21 @@ class ListBuilder<T, K extends Comparable<K>> extends StatelessWidget {
               );
       case ListViewType.wrapView:
         return SingleChildScrollView(
-          child: Wrap(
-            direction: scrollDirection == Axis.vertical ? Axis.horizontal : Axis.vertical,
-            spacing: 8,
-            runSpacing: 8,
-            children: List.generate(
-              itemCount,
-              (index) => loadingOrItemBuilder(context, index) ?? const SizedBox.shrink(),
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.only(bottom: context.minBottomPadding()),
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                runAlignment: WrapAlignment.center,
+                direction: scrollDirection == Axis.vertical ? Axis.horizontal : Axis.vertical,
+                spacing: 8,
+                runSpacing: 8,
+                children: List.generate(
+                  itemCount,
+                  (index) => loadingOrItemBuilder(context, index) ?? const SizedBox.shrink(),
+                ),
+              ),
             ),
           ),
         );

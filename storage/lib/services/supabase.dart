@@ -25,7 +25,8 @@ class SupabaseStorageService implements BaseStorageService {
   }
 
   @override
-  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
+  Future<XFile?> downloadFile(String url,
+      {required bool downloadToDevice,}) async {
     final _response = await _supabase.storage.from(bucketName).download(url);
     final _ioFile = File(url);
     await _ioFile.writeAsBytes(_response);

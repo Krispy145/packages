@@ -31,13 +31,18 @@ class PackageLoadStateBuilder extends BaseLoadStateBuilder {
 
   @override
   Widget buildInitialState(BuildContext context) {
-    AppLogger.print("PackageLoadStateBuilder::: buildInitialState", [UtilitiesLoggers.loadState]);
-    return initialBuilder?.call(context) ?? (slivers ? const SliverToBoxAdapter(child: SizedBox.shrink()) : const SizedBox.shrink());
+    AppLogger.print("PackageLoadStateBuilder::: buildInitialState",
+        [UtilitiesLoggers.loadState],);
+    return initialBuilder?.call(context) ??
+        (slivers
+            ? const SliverToBoxAdapter(child: SizedBox.shrink())
+            : const SizedBox.shrink());
   }
 
   @override
   Widget buildLoadingState(BuildContext context) {
-    AppLogger.print("PackageLoadStateBuilder::: buildLoadingState", [UtilitiesLoggers.loadState]);
+    AppLogger.print("PackageLoadStateBuilder::: buildLoadingState",
+        [UtilitiesLoggers.loadState],);
     return loadingBuilder?.call(context) ??
         (slivers
             ? const SliverToBoxAdapter(
@@ -48,25 +53,31 @@ class PackageLoadStateBuilder extends BaseLoadStateBuilder {
 
   @override
   Widget buildLoadedState(BuildContext context) {
-    AppLogger.print("PackageLoadStateBuilder::: buildLoadedState", [UtilitiesLoggers.loadState]);
+    AppLogger.print("PackageLoadStateBuilder::: buildLoadedState",
+        [UtilitiesLoggers.loadState],);
     return loadedBuilder(context);
   }
 
   @override
   Widget buildEmptyState(BuildContext context, String emptyMessage) {
-    AppLogger.print("PackageLoadStateBuilder::: buildEmptyState", [UtilitiesLoggers.loadState]);
-    return emptyBuilder?.call(context, emptyMessage) ?? WarningMessage.empty(message: emptyMessage);
+    AppLogger.print("PackageLoadStateBuilder::: buildEmptyState",
+        [UtilitiesLoggers.loadState],);
+    return emptyBuilder?.call(context, emptyMessage) ??
+        WarningMessage.empty(message: emptyMessage);
   }
 
   @override
   Widget buildErrorState(BuildContext context, String errorMessage) {
-    AppLogger.print("PackageLoadStateBuilder::: buildErrorState", [UtilitiesLoggers.loadState]);
-    return errorBuilder?.call(context, errorMessage) ?? WarningMessage.error(message: errorMessage);
+    AppLogger.print("PackageLoadStateBuilder::: buildErrorState",
+        [UtilitiesLoggers.loadState],);
+    return errorBuilder?.call(context, errorMessage) ??
+        WarningMessage.error(message: errorMessage);
   }
 
   @override
   Widget buildNoMoreToLoadState(BuildContext context) {
-    AppLogger.print("PackageLoadStateBuilder::: buildNoMoreToLoadState", [UtilitiesLoggers.loadState]);
+    AppLogger.print("PackageLoadStateBuilder::: buildNoMoreToLoadState",
+        [UtilitiesLoggers.loadState],);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!store.hasShownNoMoreToLoadSnackBar) {
         // Trigger a Snackbar or a similar mechanism

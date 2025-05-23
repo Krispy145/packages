@@ -30,9 +30,11 @@ abstract class _ReactiveStepFormsModelStore with LoadStateStore, Store {
   FormControl<V> formControlByKey<V>(String key) =>
       form.control(key) as FormControl<V>;
 
+  final bool isAdding;
+
   _ReactiveStepFormsModelStore({
     required this.editingValue,
-  }) {
+  }) : isAdding = editingValue == null {
     initialize();
   }
 

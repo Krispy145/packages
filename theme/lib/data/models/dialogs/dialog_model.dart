@@ -42,15 +42,22 @@ class DialogModel with DialogModelMappable {
 
   DialogThemeData asDialogThemeData({String? styleTypeName}) {
     return DialogThemeData(
-      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor:
+          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor:
+          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       alignment: alignment_enum_alignmentOptions?.alignment,
       iconColor: iconColor_themeColorString?.toColor(styleType: styleTypeName),
-      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      contentTextStyle: contentTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
-      actionsPadding: actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      titleTextStyle: titleTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      contentTextStyle: contentTextStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
+      actionsPadding:
+          actionsPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
     );
   }
 }

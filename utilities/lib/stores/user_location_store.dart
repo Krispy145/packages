@@ -72,16 +72,14 @@ abstract class _UserLocationStore with Store {
   @action
   Future<void> checkPermission() async {
     final permission = await Geolocator.checkPermission();
-    isPermissionGranted = permission == LocationPermission.always ||
-        permission == LocationPermission.whileInUse;
+    isPermissionGranted = permission == LocationPermission.always || permission == LocationPermission.whileInUse;
   }
 
   @action
   Future<void> requestPermission() async {
     if (isPermissionGranted) return;
     final permission = await Geolocator.requestPermission();
-    isPermissionGranted = permission == LocationPermission.always ||
-        permission == LocationPermission.whileInUse;
+    isPermissionGranted = permission == LocationPermission.always || permission == LocationPermission.whileInUse;
   }
 
   @action
@@ -125,8 +123,7 @@ abstract class _UserLocationStore with Store {
   void _setLocationSettings() {
     if (defaultTargetPlatform == TargetPlatform.android) {
       _locationSettings = androidSettings ?? AndroidSettings();
-    } else if (defaultTargetPlatform == TargetPlatform.iOS ||
-        defaultTargetPlatform == TargetPlatform.macOS) {
+    } else if (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS) {
       _locationSettings = appleSettings ?? AppleSettings();
     } else {
       _locationSettings = userLocationSettings;

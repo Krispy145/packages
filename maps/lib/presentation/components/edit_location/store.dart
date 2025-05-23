@@ -8,11 +8,9 @@ import "package:mobx/mobx.dart";
 
 part "store.g.dart";
 
-class EditLocationMapFormFieldStore = _EditLocationMapFormFieldStore
-    with _$EditLocationMapFormFieldStore;
+class EditLocationMapFormFieldStore = _EditLocationMapFormFieldStore with _$EditLocationMapFormFieldStore;
 
-abstract class _EditLocationMapFormFieldStore
-    extends BaseFormFieldStore<LatLng?> with Store {
+abstract class _EditLocationMapFormFieldStore extends BaseFormFieldStore<LatLng?> with Store {
   final String mapTilesUrl;
   final Marker Function(MarkerModel)? singleMarkerBuilder;
 
@@ -21,7 +19,6 @@ abstract class _EditLocationMapFormFieldStore
     required super.initialValue,
     required super.title,
     required super.onValueChanged,
-    // ignore: unused_element
     this.singleMarkerBuilder,
   }) {
     reaction((reaction) {
@@ -37,9 +34,7 @@ abstract class _EditLocationMapFormFieldStore
   late final EditLocationMapStore mapStore = EditLocationMapStore(
     mapTilesUrl: mapTilesUrl,
     singleMarkerBuilder: singleMarkerBuilder,
-    initialMarkers: value != null
-        ? [MarkerModel(id: "id", score: 1, position: value!)]
-        : [],
+    initialMarkers: value != null ? [MarkerModel(id: "id", score: 1, position: value!)] : [],
   );
 
   late final DoubleFormFieldStore latitudeStore = DoubleFormFieldStore(

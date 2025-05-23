@@ -14,9 +14,7 @@ abstract class _EditLocationMapStore extends MapStore with Store {
   final List<MarkerModel>? initialMarkers;
   _EditLocationMapStore({
     required super.mapTilesUrl,
-    // ignore: unused_element
     super.singleMarkerBuilder,
-    // ignore: unused_element
     this.initialMarkers,
     this.mapCenter,
     this.startZoomLevel = 12,

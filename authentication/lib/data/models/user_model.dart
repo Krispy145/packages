@@ -49,11 +49,16 @@ class UserModel extends AuthParams with UserModelMappable {
     displayName: "Anonymous",
   );
 
-  List<String>? searchCasesFromName(String? name) {
+  List<String>? searchCasesFromName(String? name, {String? surname}) {
     if (name == null) return null;
     final cases = <String>[];
     for (var i = 0; i < name.length; i++) {
       cases.add(name.substring(0, i + 1));
+    }
+    if (surname != null) {
+      for (var i = 0; i < surname.length; i++) {
+        cases.add(surname.substring(0, i + 1));
+      }
     }
     return cases;
   }

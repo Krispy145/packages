@@ -50,20 +50,28 @@ class TabBarModel with TabBarModelMappable {
         styleTypeName: styleTypeName,
       ),
       indicatorSize: TabBarIndicatorSize.label,
-      indicatorColor: indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
-      labelColor: labelColor_themeColorString?.toColor(styleType: styleTypeName),
-      labelPadding: labelPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
-      labelStyle: labelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      indicatorColor:
+          indicatorColor_themeColorString?.toColor(styleType: styleTypeName),
+      labelColor:
+          labelColor_themeColorString?.toColor(styleType: styleTypeName),
+      labelPadding:
+          labelPadding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
+      labelStyle: labelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       unselectedLabelColor: unselectedLabelColor_themeColorString?.toColor(
         styleType: styleTypeName,
       ),
-      unselectedLabelStyle: unselectedLabelStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      unselectedLabelStyle: unselectedLabelStyle_textStyleString
+          ?.toTextStyleModel(styleType: styleTypeName)
+          ?.asTextStyle,
       overlayColor: WidgetStateProperty.all(
         overlayColor_themeColorString?.toColor(styleType: styleTypeName),
       ),
       tabAlignment: tabAlignment_enum_tabAlignment,
       splashFactory: NoSplash.splashFactory,
-      dividerColor: dividerColor_themeColorString?.toColor(styleType: styleTypeName),
+      dividerColor:
+          dividerColor_themeColorString?.toColor(styleType: styleTypeName),
       dividerHeight: dividerHeight_double,
     );
   }

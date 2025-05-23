@@ -1,4 +1,4 @@
-library data.sources.payment;
+library;
 
 import "dart:async";
 

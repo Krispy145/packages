@@ -1,4 +1,4 @@
-library data.sources.payment;
+library;
 
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:payment/data/models/stripe_customer_model.dart";

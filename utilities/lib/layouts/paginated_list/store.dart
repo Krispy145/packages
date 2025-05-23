@@ -11,10 +11,12 @@ import "package:utilities/utils/loggers.dart";
 part "store.g.dart";
 
 /// [PaginatedListStore] is a class that uses [_PaginatedListStore] to manage state of the topTips feature.
-class PaginatedListStore<T, K extends Comparable<K>> = _PaginatedListStore<T, K> with _$PaginatedListStore<T, K>;
+class PaginatedListStore<T, K extends Comparable<K>> = _PaginatedListStore<T, K>
+    with _$PaginatedListStore<T, K>;
 
 /// [_PaginatedListStore] is a class that manages the state of the topTips feature.
-abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore<T, K> with Store {
+abstract class _PaginatedListStore<T, K extends Comparable<K>>
+    extends ListStore<T, K> with Store {
   final int limit;
 
   /// [_PaginatedListStore] constructor.
@@ -31,7 +33,8 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
     try {
       scrollController.addListener(() {
         try {
-          if (scrollController.position.pixels >= scrollController.position.maxScrollExtent) {
+          if (scrollController.position.pixels >=
+              scrollController.position.maxScrollExtent) {
             if (debounceTimer?.isActive ?? false) return;
 
             debounceTimer = Timer(const Duration(milliseconds: 300), () {
@@ -75,7 +78,8 @@ abstract class _PaginatedListStore<T, K extends Comparable<K>> extends ListStore
     if ((isNoMoreToLoad && !refresh) || isLoading) return;
     try {
       setLoading();
-      final loadedResults = await loadMoreFromRepository(limit: limit, refresh: refresh);
+      final loadedResults =
+          await loadMoreFromRepository(limit: limit, refresh: refresh);
       requestResponse = loadedResults.first;
       if (loadedResults.second.isNotEmpty || refresh) {
         if (refresh) {

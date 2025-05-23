@@ -80,7 +80,8 @@ extension ResponsiveSize on BuildContext {
   /// [isMobile] is a getter that returns whether the screen size is mobile.
   bool get isMobile => ResponsiveBreakpoints.of(this).isMobile;
 
-  bool get isScreenWidthGreaterThanTablet => screenWidth >= ScreenSize.tabletBreak.end;
+  bool get isScreenWidthGreaterThanTablet =>
+      screenWidth >= ScreenSize.tabletBreak.end;
 
   /// [isDesktop] is a getter that returns whether the screen size is desktop.
   bool get isDesktop => ResponsiveBreakpoints.of(this).isDesktop;
@@ -98,9 +99,14 @@ extension ResponsiveSize on BuildContext {
   /// This is useful for ensuring that the bottom of the screen is not covered by a floating action button or bottom navigation bar.
   /// adds 16 to the bottom padding to ensure that the floating action button is not covered by the bottom navigation bar.
   double minBottomPadding({double extraPadding = 16}) {
-    if (kFloatingActionButtonMargin + kBottomNavigationBarHeight > MediaQuery.viewInsetsOf(this).bottom) {
-      return kFloatingActionButtonMargin + kBottomNavigationBarHeight + extraPadding;
+    if (kFloatingActionButtonMargin + kBottomNavigationBarHeight >
+        MediaQuery.viewInsetsOf(this).bottom) {
+      return kFloatingActionButtonMargin +
+          kBottomNavigationBarHeight +
+          extraPadding;
     }
-    return kFloatingActionButtonMargin + kBottomNavigationBarHeight + extraPadding;
+    return kFloatingActionButtonMargin +
+        kBottomNavigationBarHeight +
+        extraPadding;
   }
 }

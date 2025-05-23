@@ -1,4 +1,4 @@
-library data.sources.payment_method;
+library;
 
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:dart_mappable/dart_mappable.dart";

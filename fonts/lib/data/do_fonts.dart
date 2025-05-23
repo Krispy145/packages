@@ -74,70 +74,6 @@ enum LYFonts {
             ): "https://fonts.gstatic.com/s/whisper/v5/q5uHsoqtKftx74K9qi5IBj5eiYQ.woff2",
           },
         );
-      // case LYFonts.proximaNovaAlt:
-      //   return LYFontFamily(
-      //     familyName: "ProximaNovaAlt",
-      //     variants: {
-      //       // Normal
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w100,
-      //       ): "https://drive.google.com/uc?export=download&id=1d5g7cX6Muf7ue5Dx8FzoRYb88HhirGrq",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w200,
-      //       ): "https://drive.google.com/uc?export=download&id=1GGkBzGw8WT6zjd_crg15SEr_lKhuKjV6",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w400,
-      //       ): "https://drive.google.com/uc?export=download&id=1EFaMOlorQdC5pibKvMWB9LlexT3NxD7d",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w600,
-      //       ): "https://drive.google.com/uc?export=download&id=1RxAkRfxVPKpQwsGpTYibIy0iNELIt3Vj",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w700,
-      //       ): "https://drive.google.com/uc?export=download&id=1pnmjPTXJT4anYc3Mp5LHmeharPzsZcJU",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w800,
-      //       ): "https://drive.google.com/uc?export=download&id=14E-Acc6uwEmEl4Tydpsab0cGhzjdgmKR",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.normal,
-      //         fontWeight: FontWeight.w900,
-      //       ): "https://drive.google.com/uc?export=download&id=1mkuozi1jqujG9XKtMShug44w4j-u4Ibv",
-      //       // Italic
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w100,
-      //       ): "https://drive.google.com/uc?export=download&id=1MBj0kq5sbtNX9oEdVsTFxQsKJt5Womh5",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w200,
-      //       ): "https://drive.google.com/uc?export=download&id=1yRyamnV9CRnNR3_ukXiupsTf01UoOLry",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w400,
-      //       ): "https://drive.google.com/uc?export=download&id=1yjqaXp8yMBVTfo_--Vf-Ash2tM5DrSRm",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w600,
-      //       ): "https://drive.google.com/uc?export=download&id=1_b4uMk9Ohdt6DisqteGb55lyusM6zo16",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w700,
-      //       ): "https://drive.google.com/uc?export=download&id=169Xii7bqL3R4VOCuSKKAWBwz4t6XWU7g",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w800,
-      //       ): "https://drive.google.com/uc?export=download&id=1EFG-HxOlBwFVhk1DTsRgawLON3FuQp5O",
-      //       const LYFontVariantDescriptor(
-      //         fontStyle: FontStyle.italic,
-      //         fontWeight: FontWeight.w900,
-      //       ): "https://drive.google.com/uc?export=download&id=1FnPEz2cFe1XD72qSbiM8v7-G6gh7NojP",
-      //     },
-      //   );
       case LYFonts.proximaNovaAlt:
         return LYFontFamily(
           familyName: "ProximaNovaAlt",
@@ -146,62 +82,126 @@ enum LYFonts {
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w100,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1d5g7cX6Muf7ue5Dx8FzoRYb88HhirGrq",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.w300,
-            ): null,
+              fontWeight: FontWeight.w200,
+            ): "https://drive.google.com/uc?export=download&id=1GGkBzGw8WT6zjd_crg15SEr_lKhuKjV6",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w400,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1EFaMOlorQdC5pibKvMWB9LlexT3NxD7d",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w600,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1RxAkRfxVPKpQwsGpTYibIy0iNELIt3Vj",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w700,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1pnmjPTXJT4anYc3Mp5LHmeharPzsZcJU",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w800,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=14E-Acc6uwEmEl4Tydpsab0cGhzjdgmKR",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.normal,
               fontWeight: FontWeight.w900,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1mkuozi1jqujG9XKtMShug44w4j-u4Ibv",
             // Italic
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w100,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1MBj0kq5sbtNX9oEdVsTFxQsKJt5Womh5",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.w300,
-            ): null,
+              fontWeight: FontWeight.w200,
+            ): "https://drive.google.com/uc?export=download&id=1yRyamnV9CRnNR3_ukXiupsTf01UoOLry",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w400,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1yjqaXp8yMBVTfo_--Vf-Ash2tM5DrSRm",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w600,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1_b4uMk9Ohdt6DisqteGb55lyusM6zo16",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w700,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=169Xii7bqL3R4VOCuSKKAWBwz4t6XWU7g",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w800,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1EFG-HxOlBwFVhk1DTsRgawLON3FuQp5O",
             const LYFontVariantDescriptor(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w900,
-            ): null,
+            ): "https://drive.google.com/uc?export=download&id=1FnPEz2cFe1XD72qSbiM8v7-G6gh7NojP",
           },
         );
+      // case LYFonts.proximaNovaAlt:
+      //   return LYFontFamily(
+      //     familyName: "ProximaNovaAlt",
+      //     variants: {
+      //       // Normal
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w100,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w300,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w400,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w600,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w700,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w800,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.normal,
+      //         fontWeight: FontWeight.w900,
+      //       ): null,
+      //       // Italic
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w100,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w300,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w400,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w600,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w700,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w800,
+      //       ): null,
+      //       const LYFontVariantDescriptor(
+      //         fontStyle: FontStyle.italic,
+      //         fontWeight: FontWeight.w900,
+      //       ): null,
+      //     },
+      //   );
       case LYFonts.figtree:
         return LYFontFamily(
           familyName: "Figtree",

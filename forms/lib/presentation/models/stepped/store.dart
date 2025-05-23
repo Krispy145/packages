@@ -12,7 +12,9 @@ import "step_store.dart";
 
 part "store.g.dart";
 
-abstract class SteppedReactiveFormsModelStore<T> = _SteppedReactiveFormsModelStore<T> with _$SteppedReactiveFormsModelStore<T>;
+abstract class SteppedReactiveFormsModelStore<
+        T> = _SteppedReactiveFormsModelStore<T>
+    with _$SteppedReactiveFormsModelStore<T>;
 
 abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
   final String? successSnackbarTitle;
@@ -116,7 +118,8 @@ abstract class _SteppedReactiveFormsModelStore<T> with LoadStateStore, Store {
         return RequestResponse.failure;
       }
 
-      if (response == RequestResponse.success || response == RequestResponse.underReview) {
+      if (response == RequestResponse.success ||
+          response == RequestResponse.underReview) {
         setLoaded();
       } else {
         setError("Failed to save value");

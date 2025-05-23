@@ -35,7 +35,8 @@ class ApiStorageService implements BaseStorageService {
   }
 
   @override
-  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
+  Future<XFile?> downloadFile(String url,
+      {required bool downloadToDevice,}) async {
     final response = await http.get(Uri.parse("$apiUrl/download/$url"));
 
     if (response.statusCode == 200) {

@@ -33,7 +33,8 @@ class CustomCardField extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: context.colorScheme.surfaceContainerHighest.withValues(alpha: 178),
+            color: context.colorScheme.surfaceContainerHighest
+                .withValues(alpha: 178),
             borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
@@ -74,7 +75,8 @@ class CustomCardField extends StatelessWidget {
                 ),
                 validationMessages: {
                   "required": (error) => "Card number is required",
-                  "pattern": (error) => "Please enter a valid 16-digit card number",
+                  "pattern": (error) =>
+                      "Please enter a valid 16-digit card number",
                 },
                 keyboardType: TextInputType.number,
               ),

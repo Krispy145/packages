@@ -12,7 +12,8 @@ class FirebaseStorageService implements BaseStorageService {
   final String? folderName;
   final FirebaseStorage _firebaseStorage;
 
-  FirebaseStorageService({this.folderName, FirebaseStorage? firebaseStorage}) : _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
+  FirebaseStorageService({this.folderName, FirebaseStorage? firebaseStorage})
+      : _firebaseStorage = firebaseStorage ?? FirebaseStorage.instance;
 
   @override
   Future<String> uploadFile({
@@ -58,7 +59,8 @@ class FirebaseStorageService implements BaseStorageService {
   }
 
   @override
-  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
+  Future<XFile?> downloadFile(String url,
+      {required bool downloadToDevice,}) async {
     try {
       if (kIsWeb) {
         // For web, create an anchor element and trigger download
@@ -79,7 +81,8 @@ class FirebaseStorageService implements BaseStorageService {
         final ref = _firebaseStorage.refFromURL(url);
         final downloadUrl = await ref.getDownloadURL();
         if (downloadToDevice) {
-          final canLaunch = await url_launcher.canLaunchUrl(Uri.parse(downloadUrl));
+          final canLaunch =
+              await url_launcher.canLaunchUrl(Uri.parse(downloadUrl));
           if (canLaunch) {
             await url_launcher.launchUrl(
               Uri.parse(downloadUrl),

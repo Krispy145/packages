@@ -11,7 +11,8 @@ import "package:widgets/messages/warning_message.dart";
 
 import "store.dart";
 
-class StreamedListBuilder<T, K extends Comparable<K>> extends PaginatedListBuilder<T, K> {
+class StreamedListBuilder<T, K extends Comparable<K>>
+    extends PaginatedListBuilder<T, K> {
   @override
   // ignore: overridden_fields
   final StreamedListStore<T, K> store;

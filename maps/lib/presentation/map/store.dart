@@ -66,8 +66,7 @@ abstract class _MapStore with LoadStateStore, Store {
         onTap: onMapTapped,
         onMapEvent: onMapEvent,
         onPositionChanged: onMapPositionChanged,
-        backgroundColor:
-            AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
+        backgroundColor: AppTheme.currentColorModel?.background ?? const Color(0xFFE0E0E0),
         interactionOptions: isLocked
             ? const InteractionOptions(
                 flags: InteractiveFlag.none,
@@ -86,8 +85,7 @@ abstract class _MapStore with LoadStateStore, Store {
 
   final String mapTilesUrl;
   final String mapTilesUserPackageName = "ae.digitaloasis";
-  final String openStreetMapUrl =
-      "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+  final String openStreetMapUrl = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
 
   ///
   /// INITIALIZATION
@@ -115,8 +113,7 @@ abstract class _MapStore with LoadStateStore, Store {
   @action
   void addMarker(MarkerModel markerModel, {bool clearFirst = false}) {
     if (clearFirst) {
-      superclusterController
-          .removeAll(_markers.map(buildSingleMarker).toList());
+      superclusterController.removeAll(_markers.map(buildSingleMarker).toList());
       _markers.clear();
     }
     _markers.add(markerModel);
@@ -142,8 +139,7 @@ abstract class _MapStore with LoadStateStore, Store {
     if (clearFirst) {
       // Find markers to remove (present in _markers but not in newMarkerSet)
       final toRemove = _markers.difference(newMarkerSet).toList();
-      superclusterController
-          .removeAll(toRemove.map(buildSingleMarker).toList());
+      superclusterController.removeAll(toRemove.map(buildSingleMarker).toList());
       _markers.retainWhere((element) => newMarkerModels.contains(element));
     }
     // Find markers to add (present in newMarkerSet but not in _markers)

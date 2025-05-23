@@ -34,8 +34,7 @@ abstract class _InstagramUserStore with AuthStateStore, Store {
     tryAuthenticate();
   }
 
-  final SecureInstagramDataSource _secureDataSource =
-      SecureInstagramDataSource();
+  final SecureInstagramDataSource _secureDataSource = SecureInstagramDataSource();
 
   @observable
   InstagramUserModel? user;
@@ -108,8 +107,7 @@ abstract class _InstagramUserStore with AuthStateStore, Store {
         if (uri.queryParameters.containsKey("code")) {
           final code = uri.queryParameters["code"]!;
           AppLogger.print("code: $code", [SocialsLoggers.instagram]);
-          final _shortLivedToken =
-              await repository.postShortLivedAccessToken(authCode: code);
+          final _shortLivedToken = await repository.postShortLivedAccessToken(authCode: code);
           if (_shortLivedToken != null) {
             AppLogger.print(
               "shortLivedToken: $_shortLivedToken",
@@ -125,8 +123,7 @@ abstract class _InstagramUserStore with AuthStateStore, Store {
                 [SocialsLoggers.instagram],
               );
               localUser = localUser.copyWith(longLivedToken: _longLivedToken);
-              final _user =
-                  await repository.getMe(accessTokenModel: _longLivedToken);
+              final _user = await repository.getMe(accessTokenModel: _longLivedToken);
               if (_user != null) {
                 localUser = localUser.copyWith(
                   id: _user.id,

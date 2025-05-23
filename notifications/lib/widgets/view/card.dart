@@ -20,7 +20,7 @@ class NotificationCard extends StatelessWidget {
   });
 
   String? get _subtitle => (notification.body ?? "").length >= 80
-      ? ("${notification.body?.substring(0, 80)}...")
+      ? "${notification.body?.substring(0, 80)}..."
       : notification.body;
 
   @override

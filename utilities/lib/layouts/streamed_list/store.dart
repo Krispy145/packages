@@ -132,5 +132,6 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
         );
       }
     });
+    setLoaded();
   }
 }

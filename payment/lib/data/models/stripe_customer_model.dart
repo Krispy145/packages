@@ -1,4 +1,4 @@
-library data.models.payment;
+library;
 
 import "package:dart_mappable/dart_mappable.dart";
 import "package:utilities/data/typedefs.dart";

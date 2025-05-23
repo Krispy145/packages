@@ -151,16 +151,19 @@ class DeepLinkModel with DeepLinkModelMappable {
       }
 
       if (destination != null) {
-        final destValue = kIsWeb ? jsonEncode(destination!.toMap()) : destination!.toMap();
+        final destValue =
+            kIsWeb ? jsonEncode(destination!.toMap()) : destination!.toMap();
         contentMetadata.addCustomMetadata("destination", destValue);
       }
 
       if (imageUrl != null || (imageUrl?.isNotEmpty ?? false)) {
         final _imageUrl = imageUrl?.replaceFirst("https://", "http://");
-        contentMetadata.addCustomMetadata(r"$og_image_url", _imageUrl.toString());
+        contentMetadata.addCustomMetadata(
+            r"$og_image_url", _imageUrl.toString(),);
       }
       if (fallbackUrl != null || (fallbackUrl?.isNotEmpty ?? false)) {
-        contentMetadata.addCustomMetadata(r"$desktop_url", fallbackUrl.toString());
+        contentMetadata.addCustomMetadata(
+            r"$desktop_url", fallbackUrl.toString(),);
       }
 
       return contentMetadata;
@@ -173,7 +176,9 @@ class DeepLinkModel with DeepLinkModelMappable {
   Map<String, dynamic> _sanitizeForWeb(Map<String, dynamic> input) {
     final output = <String, dynamic>{};
     input.forEach((key, value) {
-      if (value is Map || value is List || value is! String && value is! num && value is! bool) {
+      if (value is Map ||
+          value is List ||
+          value is! String && value is! num && value is! bool) {
         try {
           output[key] = jsonEncode(value);
         } catch (_) {

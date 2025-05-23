@@ -146,7 +146,9 @@ abstract class _DeepLinksStore with Store {
   }
 
   @action
-  Future<void> handleDeepLink(void Function(DeepLinkModel deepLink) onDeepLink) async {
+  Future<void> handleDeepLink(
+    void Function(DeepLinkModel deepLink) onDeepLink,
+  ) async {
     if (receivedDeepLink != null) {
       onDeepLink(receivedDeepLink!);
     }

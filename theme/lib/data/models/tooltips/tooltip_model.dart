@@ -50,7 +50,7 @@ class TooltipModel with TooltipModelMappable {
 
   TooltipThemeData asTooltipThemeData({String? styleTypeName}) {
     return TooltipThemeData(
-      height: height_double,
+      constraints: BoxConstraints(minHeight: height_double ?? 0),
       padding: padding_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       margin: margin_edgeInsets?.asEdgeInsets(styleTypeName: styleTypeName),
       verticalOffset: verticalOffset_double,
@@ -59,9 +59,7 @@ class TooltipModel with TooltipModelMappable {
       decoration: decoration_boxDecoration?.asBoxDecoration(
         styleTypeName: styleTypeName,
       ),
-      textStyle: textStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle,
+      textStyle: textStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
       enableFeedback: enableFeedback_bool,
     );
   }

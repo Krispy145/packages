@@ -25,7 +25,8 @@ class LocalStorageService implements BaseStorageService {
   }
 
   @override
-  Future<XFile?> downloadFile(String url, {required bool downloadToDevice}) async {
+  Future<XFile?> downloadFile(String url,
+      {required bool downloadToDevice,}) async {
     try {
       final file = File(url);
       if (file.existsSync()) {
