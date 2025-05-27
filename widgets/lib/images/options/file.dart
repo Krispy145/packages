@@ -37,5 +37,6 @@ class FileImageOptions extends ImageOptions {
     super.maxHeightDiskCache,
     super.errorListener,
     super.imageRenderMethodForWeb,
+    super.borderRadius,
   }) : super(loadingBuilder: null);
 }

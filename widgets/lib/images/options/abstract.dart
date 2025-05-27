@@ -4,15 +4,13 @@ import "package:flutter/material.dart";
 import "package:flutter_cache_manager/src/cache_managers/base_cache_manager.dart";
 
 abstract class ImageOptions {
-  final Widget Function(BuildContext context, Widget child, int?, bool)?
-      frameBuilder;
+  final Widget Function(BuildContext context, Widget child, int?, bool)? frameBuilder;
   final Widget Function(
     BuildContext context,
     Widget child,
     ImageChunkEvent? imageChunk,
   )? loadingBuilder;
-  final Widget Function(BuildContext context, Object, StackTrace? stackTrace)?
-      errorBuilder;
+  final Widget Function(BuildContext context, Object, StackTrace? stackTrace)? errorBuilder;
   // final String? semanticLabel;
   // final bool excludeFromSemantics;
   final double? width;
@@ -29,16 +27,14 @@ abstract class ImageOptions {
   // final bool isAntiAlias;
   final FilterQuality filterQuality;
 
-  final Widget Function(BuildContext context, ImageProvider<Object> provider)?
-      imageBuilder;
+  final Widget Function(BuildContext context, ImageProvider<Object> provider)? imageBuilder;
   final Widget Function(BuildContext context, String)? placeholder;
   final Widget Function(
     BuildContext context,
     String,
     DownloadProgress progress,
   )? progressIndicatorBuilder;
-  final Widget Function(BuildContext context, String errorMessage, Object)?
-      errorWidget;
+  final Widget Function(BuildContext context, String errorMessage, Object)? errorWidget;
   final Duration? fadeOutDuration;
   final Curve fadeOutCurve;
   final Duration fadeInDuration;
@@ -53,6 +49,7 @@ abstract class ImageOptions {
   final int? maxHeightDiskCache;
   final void Function(Object)? errorListener;
   final ImageRenderMethodForWeb imageRenderMethodForWeb;
+  final BorderRadius? borderRadius;
 
   const ImageOptions({
     this.frameBuilder,
@@ -91,5 +88,6 @@ abstract class ImageOptions {
     this.maxHeightDiskCache,
     this.errorListener,
     this.imageRenderMethodForWeb = ImageRenderMethodForWeb.HtmlImage,
+    this.borderRadius,
   });
 }

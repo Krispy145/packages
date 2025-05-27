@@ -15,5 +15,6 @@ class CachedNetworkProviderOptions extends NetworkImageOptions {
     super.cacheManager,
     super.cacheKey,
     super.imageRenderMethodForWeb,
+    super.borderRadius,
   });
 }
