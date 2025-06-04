@@ -10,7 +10,7 @@ AV Playout in Flutter
                        DESC
   s.homepage         = 'http://digitaloasis.ae'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Lets Yak' => 'hello@digitaloasis.ae' }
+  s.author           = { 'PLS' => 'hello@digitaloasis.ae' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'

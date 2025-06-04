@@ -51,11 +51,11 @@
 // // const _fakeResponseDifferentHash = '2a989d235f2408511069bc7d8460c62aec1a75ac399bd7f2a2ae740c4326dadf';
 // // const expectedDifferentCachedFile = 'Foo_regular_2a989d235f2408511069bc7d8460c62aec1a75ac399bd7f2a2ae740c4326dadf.ttf';
 
-// // final _fakeResponseFile = LYFontsFile(
+// // final _fakeResponseFile = PLSFontsFile(
 // //   _fakeResponseHash,
 // //   // _fakeResponseLengthInBytes,
 // // );
-// // final _fakeResponseDifferentFile = LYFontsFile(
+// // final _fakeResponseDifferentFile = PLSFontsFile(
 // //   _fakeResponseDifferentHash,
 // //   // _fakeResponseDifferentLengthInBytes,
 // // );

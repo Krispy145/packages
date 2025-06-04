@@ -2,7 +2,7 @@ import "dart:ui" as ui;
 
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
-import "package:fonts/data/do_fonts.dart";
+import "package:fonts/data/available_fonts.dart";
 import "package:fonts/data/models/font_descriptor_and_url.dart";
 import "package:fonts/data/models/font_family_and_variant.dart";
 import "package:fonts/data/models/font_variant_descriptor.dart";
@@ -43,7 +43,7 @@ class FontsStore = _FontsStore with _$FontsStore;
 /// [_FontsStore] is a class that manages the state of the fonts feature.
 abstract class _FontsStore with LoadStateStore, Store {
   void initialize({
-    List<LYFonts> fonts = LYFonts.values,
+    List<PLSFonts> fonts = PLSFonts.values,
     bool allowRuntimeFetching = true,
   }) {
     this.allowRuntimeFetching = allowRuntimeFetching;
@@ -113,7 +113,7 @@ abstract class _FontsStore with LoadStateStore, Store {
   }
 
   Future<void> loadFontIfNecessary(
-    LYFontVariantAndUrl fontVariantAndUrl, [
+    PLSFontVariantAndUrl fontVariantAndUrl, [
     FontLoader? fontLoader,
   ]) async {
     final familyWithVariantString = fontVariantAndUrl.familyWithVariant.toString();
@@ -141,16 +141,16 @@ abstract class _FontsStore with LoadStateStore, Store {
 
   void eagerlyLoadFamily({
     required String fontFamily,
-    required Map<LYFontVariantDescriptor, String?> fonts,
+    required Map<PLSFontVariantDescriptor, String?> fonts,
   }) {
     final loader = FontLoader(fontFamily);
     final futures = <Future<void>>[];
     for (final variant in fonts.keys) {
-      final familyWithVariant = LYFontFamilyAndVariant(
+      final familyWithVariant = PLSFontFamilyAndVariant(
         familyName: fontFamily,
         fontVariantDescriptor: variant,
       );
-      final descriptor = LYFontVariantAndUrl(
+      final descriptor = PLSFontVariantAndUrl(
         familyWithVariant: familyWithVariant,
         url: fonts[variant],
       );
@@ -166,7 +166,7 @@ abstract class _FontsStore with LoadStateStore, Store {
 
   void register(
     String familyName,
-    Map<LYFontVariantDescriptor, String?> variantMap, {
+    Map<PLSFontVariantDescriptor, String?> variantMap, {
     bool eager = false,
   }) {
     final style = styleBuilder(familyName, variantMap, eager);
@@ -250,7 +250,7 @@ abstract class _FontsStore with LoadStateStore, Store {
 
   TextStyleBuilder styleBuilder(
     String fontFamily,
-    Map<LYFontVariantDescriptor, String?> variantMap,
+    Map<PLSFontVariantDescriptor, String?> variantMap,
     bool eager,
   ) =>
       ({
@@ -304,17 +304,17 @@ abstract class _FontsStore with LoadStateStore, Store {
           return textStyle.copyWith(fontFamily: fontFamily);
         }
 
-        final variant = LYFontVariantDescriptor(
+        final variant = PLSFontVariantDescriptor(
           fontWeight: textStyle.fontWeight ?? FontWeight.w400,
           fontStyle: textStyle.fontStyle ?? FontStyle.normal,
         );
         final matchedVariant = variant.findClosestMatch(fonts.keys);
-        final familyWithVariant = LYFontFamilyAndVariant(
+        final familyWithVariant = PLSFontFamilyAndVariant(
           familyName: fontFamily,
           fontVariantDescriptor: matchedVariant,
         );
 
-        final descriptor = LYFontVariantAndUrl(
+        final descriptor = PLSFontVariantAndUrl(
           familyWithVariant: familyWithVariant,
           url: fonts[matchedVariant],
         );

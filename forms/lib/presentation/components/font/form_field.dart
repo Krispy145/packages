@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_mobx/flutter_mobx.dart";
-import "package:fonts/data/do_fonts.dart";
+import "package:fonts/data/available_fonts.dart";
 import "package:theme/app/app.dart";
 import "package:theme/utils/loggers.dart";
 import "package:utilities/logger/logger.dart";
@@ -19,8 +19,7 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
     TextStyle? textStyle;
 
     try {
-      textStyle =
-          AppTheme.fontsStore.getFont(store.value ?? LYFonts.values.first.name);
+      textStyle = AppTheme.fontsStore.getFont(store.value ?? PLSFonts.values.first.name);
     } catch (e) {
       AppLogger.print(
         "Get font failed: $e",
@@ -41,7 +40,7 @@ class FontFormField extends BaseFormField<FontFormFieldStore> {
               const MenuStyle(
                 alignment: Alignment.bottomLeft,
               ),
-          dropdownMenuEntries: LYFonts.values
+          dropdownMenuEntries: PLSFonts.values
               .map(
                 (e) => DropdownMenuEntry(
                   value: e.name,

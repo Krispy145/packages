@@ -18,7 +18,7 @@ enum Environment {
 
 /// [FlavorConfig] is a class that defines the configuration for each environment
 class FlavorConfig {
-  final String _environmentName;
+  final String environmentName;
 
   /// [environment] is the environment used for the app
   Environment? environment;
@@ -29,17 +29,16 @@ class FlavorConfig {
   final bool overrideFeatures;
 
   /// [FlavorConfig] is the constructor for the class
-  FlavorConfig(
-    this._environmentName, {
+  FlavorConfig({
+    required this.environmentName,
     required this.loggerFeatures,
     required this.overrideFeatures,
   }) {
-    _setEnvironment(_environmentName);
+    _setEnvironment(environmentName);
   }
 
   /// [_setEnvironment] is a private method that sets the environment
   void _setEnvironment(String environmentName) {
-    environment =
-        Environment.values.firstWhere((e) => e.name == environmentName);
+    environment = Environment.values.firstWhere((e) => e.name == environmentName);
   }
 }

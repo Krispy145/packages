@@ -5,14 +5,13 @@ import "/data/repositories/_repositories.dart";
 import "/data/repositories/fonts.repository.dart";
 
 class FontsRepository {
-  final FontsDataRepository _fontsDataRepository =
-      DataRepositories.instance.fonts;
+  final FontsDataRepository _fontsDataRepository = DataRepositories.instance.fonts;
 
   /// [FontsRepository] constructor.
   FontsRepository();
 
   LoadingFontData? loadFont(
-    LYFontVariantAndUrl fontVariantAndUrl,
+    PLSFontVariantAndUrl fontVariantAndUrl,
     bool allowApiFetching,
   ) async {
     LoadingFontData? loadingFont;

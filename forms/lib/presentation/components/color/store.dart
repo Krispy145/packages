@@ -7,16 +7,10 @@ import "../base/store.dart";
 
 part "store.g.dart";
 
-class ColorFormFieldStore = _ThemeColorStringFormFieldStore
-    with _$ColorFormFieldStore;
+class ColorFormFieldStore = _ThemeColorStringFormFieldStore with _$ColorFormFieldStore;
 
-abstract class _ThemeColorStringFormFieldStore
-    extends BaseFormFieldStore<LYColor> with Store {
-  _ThemeColorStringFormFieldStore({
-    required super.initialValue,
-    required super.title,
-    required super.onValueChanged,
-  });
+abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<PLSColor> with Store {
+  _ThemeColorStringFormFieldStore({required super.initialValue, required super.title, required super.onValueChanged});
 
   /// [color] to change.
   @observable
@@ -27,32 +21,14 @@ abstract class _ThemeColorStringFormFieldStore
   void onDone() {
     debugPrint("onDone: $value - $color");
     if (value?.key != null) {
-      value = MapEntry(
-        value!.key,
-        [
-          color.red.toDouble(),
-          color.green.toDouble(),
-          color.blue.toDouble(),
-          color.opacity,
-        ],
-      );
+      value = MapEntry(value!.key, [color.red.toDouble(), color.green.toDouble(), color.blue.toDouble(), color.opacity]);
     }
   }
 
   /// Updates the [color] property within the field (not the field's [value])
   @action
-  void updateColor({
-    double? red,
-    double? green,
-    double? blue,
-    double? opacity,
-  }) {
-    final newColorList = [
-      red?.roundToDouble() ?? color.red.toDouble(),
-      green?.roundToDouble() ?? color.green.toDouble(),
-      blue?.roundToDouble() ?? color.blue.toDouble(),
-      opacity ?? color.opacity,
-    ];
+  void updateColor({double? red, double? green, double? blue, double? opacity}) {
+    final newColorList = [red?.roundToDouble() ?? color.red.toDouble(), green?.roundToDouble() ?? color.green.toDouble(), blue?.roundToDouble() ?? color.blue.toDouble(), opacity ?? color.opacity];
     color = const ColorMapper().decode(newColorList);
   }
 }

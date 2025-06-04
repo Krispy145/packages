@@ -2,7 +2,7 @@ import "package:file_picker/file_picker.dart";
 import "package:image_picker/image_picker.dart";
 import "package:storage/pickers/_base.dart";
 
-class LYFilePicker implements BaseFilePicker {
+class PLSFilePicker implements BaseFilePicker {
   final ImagePicker _imagePicker = ImagePicker();
   final FilePicker _filePicker = FilePicker.platform;
 
@@ -19,8 +19,7 @@ class LYFilePicker implements BaseFilePicker {
 
   @override
   Future<List<XFile>> pickMultipleFiles() async {
-    final result =
-        await _filePicker.pickFiles(allowMultiple: true, withData: true);
+    final result = await _filePicker.pickFiles(allowMultiple: true, withData: true);
 
     if (result != null && result.files.isNotEmpty) {
       return result.files.map((e) => e.xFile).toList();
@@ -47,8 +46,12 @@ class LYFilePicker implements BaseFilePicker {
       final _images = images.map((image) async {
         final _mimeType = image.mimeType;
         final _size = await image.length();
-        return XFile(image.path,
-            name: _fileName(image.path), mimeType: _mimeType, length: _size,);
+        return XFile(
+          image.path,
+          name: _fileName(image.path),
+          mimeType: _mimeType,
+          length: _size,
+        );
       }).toList();
       return Future.wait(_images);
     }

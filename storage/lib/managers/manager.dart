@@ -4,11 +4,11 @@ import "package:storage/pickers/_base.dart";
 import "package:storage/repository.dart";
 import "package:utilities/helpers/tuples.dart";
 
-class LYFileUploadManager implements BaseFileUploadManager {
+class PLSFileUploadManager implements BaseFileUploadManager {
   final BaseFilePicker filePickerService;
   final StorageRepository storageRepository;
 
-  LYFileUploadManager({
+  PLSFileUploadManager({
     required this.filePickerService,
     required this.storageRepository,
   });
@@ -155,16 +155,24 @@ class LYFileUploadManager implements BaseFileUploadManager {
   }
 
   @override
-  Future<XFile?> downloadFile(
-      {required String path, required bool downloadToDevice,}) {
-    return storageRepository.downloadFile(path,
-        downloadToDevice: downloadToDevice,);
+  Future<XFile?> downloadFile({
+    required String path,
+    required bool downloadToDevice,
+  }) {
+    return storageRepository.downloadFile(
+      path,
+      downloadToDevice: downloadToDevice,
+    );
   }
 
   @override
-  Future<List<XFile>?> downloadFiles(
-      {required List<String> paths, required bool downloadToDevice,}) {
-    return storageRepository.downloadFiles(paths,
-        downloadToDevice: downloadToDevice,);
+  Future<List<XFile>?> downloadFiles({
+    required List<String> paths,
+    required bool downloadToDevice,
+  }) {
+    return storageRepository.downloadFiles(
+      paths,
+      downloadToDevice: downloadToDevice,
+    );
   }
 }

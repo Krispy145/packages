@@ -60,7 +60,7 @@ abstract class _ImagesFormFieldStore extends BaseFormFieldStore<List<URL>?> with
     imageFormFields.add(addingImageStore);
   }
 
-  late final picker = filePicker ?? LYFilePicker();
+  late final picker = filePicker ?? PLSFilePicker();
 
   @action
   void addImage({required URL imageUrl}) {

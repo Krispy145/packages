@@ -1,6 +1,6 @@
 import "package:flutter/scheduler.dart";
 
-class LYTickerProvider extends TickerProvider {
+class PLSTickerProvider extends TickerProvider {
   @override
   Ticker createTicker(TickerCallback onTick) {
     return Ticker(onTick);

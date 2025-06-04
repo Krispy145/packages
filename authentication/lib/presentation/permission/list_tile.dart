@@ -32,7 +32,7 @@ class PermissionListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final _title = permission.role.camelCaseToTitleCase();
     if (isEditable) {
-      return LYListTile.hoverable(
+      return PLSListTile.hoverable(
         onTap: onTap,
         title: _title,
         // titleStyle: titleTextStyle,
@@ -48,7 +48,7 @@ class PermissionListTile extends StatelessWidget {
         ),
       );
     }
-    return LYListTile(
+    return PLSListTile(
       onTap: onTap,
       expandWidth: expendWidth,
       title: _title,
@@ -62,8 +62,7 @@ class PermissionListTile extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           title: const Text("Delete Permission"),
-          content:
-              const Text("Are you sure you want to delete this permission?"),
+          content: const Text("Are you sure you want to delete this permission?"),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(false),

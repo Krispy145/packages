@@ -81,7 +81,7 @@ Packages with other changes:
 - **FEAT**: fonts updated to use Unbounded rather than Phonk and error handling added when font not found.
 - **FEAT**: dummy data source set up and polishing.
 - **FEAT**(forms): added forms package to monorepo (initial commit).
-- **FEAT**(font): added LYFont enum to font dropdown.
+- **FEAT**(font): added PLSFont enum to font dropdown.
 - **FEAT**(fonts): new fonts system integrated into theme.
 - **FEAT**(fonts): added proxima nova alt font.
 - **FEAT**(fonts): dynamic font loader added and partially organised.

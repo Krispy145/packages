@@ -1,8 +1,8 @@
 import "package:fonts/data/models/font_variant_descriptor.dart";
 
-class LYFontFamily {
+class PLSFontFamily {
   final String familyName;
-  final Map<LYFontVariantDescriptor, String?> variants;
+  final Map<PLSFontVariantDescriptor, String?> variants;
 
-  LYFontFamily({required this.familyName, required this.variants});
+  PLSFontFamily({required this.familyName, required this.variants});
 }

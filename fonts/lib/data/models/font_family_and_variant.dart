@@ -5,14 +5,14 @@
 import "package:fonts/data/models/font_variant_descriptor.dart";
 
 /// Represents a Google Fonts API variant in Flutter-specific types.
-class LYFontFamilyAndVariant {
-  const LYFontFamilyAndVariant({
+class PLSFontFamilyAndVariant {
+  const PLSFontFamilyAndVariant({
     required this.familyName,
     required this.fontVariantDescriptor,
   });
 
   final String familyName;
-  final LYFontVariantDescriptor fontVariantDescriptor;
+  final PLSFontVariantDescriptor fontVariantDescriptor;
 
   String toApiFilenamePrefix() {
     return "$familyName-${fontVariantDescriptor.toApiFilenamePart()}";

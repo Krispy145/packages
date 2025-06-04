@@ -23,7 +23,7 @@ class MapStore = _MapStore with _$MapStore;
 
 /// [_MapStore] is a class that manages the state of the map feature.
 abstract class _MapStore with LoadStateStore, Store {
-  final LYTickerProvider vsync = LYTickerProvider();
+  final PLSTickerProvider vsync = PLSTickerProvider();
   final Marker Function(MarkerModel marker)? singleMarkerBuilder;
   _MapStore({
     required this.mapTilesUrl,

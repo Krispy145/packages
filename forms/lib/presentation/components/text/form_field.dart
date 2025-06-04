@@ -4,10 +4,10 @@ import "package:utilities/sizes/spacers.dart";
 import "../base/form_field.dart";
 import "store.dart";
 
-class LYTextFormField extends BaseFormField<TextFormFieldStore> {
+class PLSTextFormField extends BaseFormField<TextFormFieldStore> {
   final Widget? leading;
   final List<Widget>? actions;
-  LYTextFormField({
+  PLSTextFormField({
     super.key,
     required super.store,
     super.showTitle,
@@ -63,8 +63,7 @@ class LYTextFormField extends BaseFormField<TextFormFieldStore> {
               enableSuggestions: store.enableSuggestions,
               smartDashesType: store.smartDashesType,
               smartQuotesType: store.smartQuotesType,
-              enableIMEPersonalizedLearning:
-                  store.enableIMEPersonalizedLearning,
+              enableIMEPersonalizedLearning: store.enableIMEPersonalizedLearning,
               textCapitalization: store.textCapitalization,
               style: store.style,
               strutStyle: store.strutStyle,

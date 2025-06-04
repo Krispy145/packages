@@ -10,13 +10,7 @@ class ZoomableImage extends StatelessWidget {
   final ZoomImageType myZoomImageType;
   final double elevation;
 
-  const ZoomableImage({
-    super.key,
-    required this.imageUrl,
-    required this.radius,
-    this.myZoomImageType = ZoomImageType.rectangle,
-    this.elevation = 8.0,
-  });
+  const ZoomableImage({super.key, required this.imageUrl, required this.radius, this.myZoomImageType = ZoomImageType.rectangle, this.elevation = 8.0});
 
   Future<void> _showImage(BuildContext context, ImageProvider provider) {
     return showDialog(
@@ -27,12 +21,7 @@ class ZoomableImage extends StatelessWidget {
           height: context.screenHeight,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Image(
-                image: provider,
-                fit: BoxFit.contain,
-              ),
-            ],
+            children: <Widget>[Image(image: provider, fit: BoxFit.contain)],
           ),
         );
       },
@@ -41,17 +30,12 @@ class ZoomableImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ImageProvider provider = LYCachedNetworkImageProvider(
-      imageUrl,
-    );
+    final ImageProvider provider = PLSCachedNetworkImageProvider(imageUrl);
 
     switch (myZoomImageType) {
       case ZoomImageType.circle:
         return InkWell(
-          child: CircleAvatar(
-            radius: radius,
-            backgroundImage: provider,
-          ),
+          child: CircleAvatar(radius: radius, backgroundImage: provider),
           onTap: () {
             _showImage(context, provider);
           },
@@ -59,17 +43,13 @@ class ZoomableImage extends StatelessWidget {
       case ZoomImageType.rectangle:
         return Material(
           clipBehavior: Clip.antiAliasWithSaveLayer,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(radius)),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(radius))),
           elevation: elevation,
           child: InkWell(
             child: Image(
               image: provider,
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => const Center(
-                child: Icon(Icons.error),
-              ),
+              errorBuilder: (context, error, stackTrace) => const Center(child: Icon(Icons.error)),
             ),
             onTap: () {
               _showImage(context, provider);

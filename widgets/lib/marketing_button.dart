@@ -3,11 +3,11 @@ import "package:theme/extensions/build_context.dart";
 import "package:url_launcher/url_launcher.dart";
 import "package:utilities/sizes/spacers.dart";
 
-class LYMarketingButton extends StatelessWidget {
+class PLSMarketingButton extends StatelessWidget {
   final String assetLogoPath;
   final String companyName;
   final String websiteUrl;
-  const LYMarketingButton({
+  const PLSMarketingButton({
     required this.assetLogoPath,
     required this.companyName,
     required this.websiteUrl,

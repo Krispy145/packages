@@ -60,11 +60,9 @@ import "package:utilities/logger/logger.dart";
 /// [ThemeChanger] is a class that is used to change the theme of the app.
 class ThemeChanger {
   /// [_themeStore] is a getter that returns the [ThemeStateStore] instance.
-  static ThemeStateStore get _themeStore =>
-      GetIt.instance.get<ThemeStateStore>();
+  static ThemeStateStore get _themeStore => GetIt.instance.get<ThemeStateStore>();
   static BaseThemeModel? get _baseThemeModel => _themeStore.baseThemeModel;
-  static ComponentThemesModel? get _componentThemesModel =>
-      _themeStore.componentThemesModel;
+  static ComponentThemesModel? get _componentThemesModel => _themeStore.componentThemesModel;
   static final String styleType = _themeStore.styleType;
 
   static Future<void> currentThemeChanger({
@@ -151,8 +149,7 @@ class ThemeChanger {
   }) {
     final themeColorStringStyles = _themeColorStringStyles(colorModel, false);
     if (themeColorStringStyles == null) return;
-    final newThemeModel =
-        _baseThemeModel?.copyWith(colors: themeColorStringStyles);
+    final newThemeModel = _baseThemeModel?.copyWith(colors: themeColorStringStyles);
     if (newThemeModel != null) {
       _themeStore.changeBaseThemeModel(newThemeModel);
       AppLogger.print(
@@ -168,8 +165,7 @@ class ThemeChanger {
   }) {
     final themeColorStringStyles = _themeColorStringStyles(colorModel, true);
     if (themeColorStringStyles == null) return;
-    final newThemeModel =
-        _baseThemeModel?.copyWith(colors: themeColorStringStyles);
+    final newThemeModel = _baseThemeModel?.copyWith(colors: themeColorStringStyles);
     if (newThemeModel != null) {
       _themeStore.changeBaseThemeModel(newThemeModel);
       AppLogger.print(
@@ -232,8 +228,7 @@ class ThemeChanger {
     if (currentComponentTheme != null) {
       componentThemeAsMap = convertComponentThemeToMap(currentComponentTheme);
     } else {
-      componentThemeAsMap =
-          convertComponentThemeToMap(convertComponentThemeFromMap({}));
+      componentThemeAsMap = convertComponentThemeToMap(convertComponentThemeFromMap({}));
     }
 
     final mergedMap = defaultComponentTheme != null
@@ -272,11 +267,9 @@ class ThemeChanger {
         buttonType: buttonType,
         buttonStyle: buttonStyle as ButtonModel,
       );
-    } else if (T.toString() == "ToggleButtonModel" ||
-        T.toString() == "ToggleButtonModel?") {
+    } else if (T.toString() == "ToggleButtonModel" || T.toString() == "ToggleButtonModel?") {
       changeToggleButtonStyle(buttonStyle: buttonStyle as ToggleButtonModel);
-    } else if (T.toString() == "FloatingActionButtonModel" ||
-        T.toString() == "FloatingActionButtonModel?") {
+    } else if (T.toString() == "FloatingActionButtonModel" || T.toString() == "FloatingActionButtonModel?") {
       changeFloatingActionButtonStyle(
         buttonStyle: buttonStyle as FloatingActionButtonModel,
       );
@@ -292,8 +285,7 @@ class ThemeChanger {
     required ToggleButtonModel buttonStyle,
   }) {
     final toggleButtonStyle = _toggleButtons(buttonStyle);
-    var newComponentThemesModel =
-        _componentThemesModel?.copyWith(toggleButtons: toggleButtonStyle);
+    var newComponentThemesModel = _componentThemesModel?.copyWith(toggleButtons: toggleButtonStyle);
     newComponentThemesModel ??= ComponentThemesModel(
       id: primaryThemeId,
       toggleButtons: toggleButtonStyle,
@@ -335,8 +327,7 @@ class ThemeChanger {
       return;
     }
     final checkboxStyles = _checkboxes(checkboxStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(checkboxes: checkboxStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(checkboxes: checkboxStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       checkboxes: checkboxStyles,
@@ -360,8 +351,7 @@ class ThemeChanger {
     }
     final radioStyles = _radios(radioStyle);
     var newThemeModel = _componentThemesModel?.copyWith(radios: radioStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, radios: radioStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, radios: radioStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print("Radio style changed: $radioStyle", [ThemeLoggers.changer]);
   }
@@ -406,8 +396,7 @@ class ThemeChanger {
       return;
     }
     final boxDecorationStyles = _boxDecorations(boxDecorationStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(boxDecorations: boxDecorationStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(boxDecorations: boxDecorationStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       boxDecorations: boxDecorationStyles,
@@ -431,8 +420,7 @@ class ThemeChanger {
     }
     final cardStyles = _cardStyles(cardStyle);
     var newThemeModel = _componentThemesModel?.copyWith(cards: cardStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, cards: cardStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, cards: cardStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print("Card style changed: $cardStyle", [ThemeLoggers.changer]);
   }
@@ -448,8 +436,7 @@ class ThemeChanger {
       return;
     }
     final snackbarStyles = _snackbarStyles(snackbarStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(snackbars: snackbarStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(snackbars: snackbarStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       snackbars: snackbarStyles,
@@ -473,8 +460,7 @@ class ThemeChanger {
     }
     final badgeStyles = _badgeStyles(badgeStyle);
     var newThemeModel = _componentThemesModel?.copyWith(badges: badgeStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, badges: badgeStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, badges: badgeStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print("Badge style changed: $badgeStyle", [ThemeLoggers.changer]);
   }
@@ -489,12 +475,10 @@ class ThemeChanger {
       );
       return;
     }
-    final appbarStyles =
-        _componentThemesModel?.appbars ?? {styleType: appbarStyle};
+    final appbarStyles = _componentThemesModel?.appbars ?? {styleType: appbarStyle};
     appbarStyles[styleType] = appbarStyle;
     var newThemeModel = _componentThemesModel?.copyWith(appbars: appbarStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, appbars: appbarStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, appbars: appbarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Appbar style changed: $newThemeModel",
@@ -515,8 +499,7 @@ class ThemeChanger {
       return;
     }
     final bottomAppbarStyles = _bottomAppbarStyles(bottomAppbarStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(bottomAppbars: bottomAppbarStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(bottomAppbars: bottomAppbarStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       bottomAppbars: bottomAppbarStyles,
@@ -539,8 +522,7 @@ class ThemeChanger {
       return;
     }
     final dropdownStyles = _dropdownStyles(dropdownStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(dropdowns: dropdownStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(dropdowns: dropdownStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       dropdowns: dropdownStyles,
@@ -564,8 +546,7 @@ class ThemeChanger {
     }
     final chipStyles = _chipStyles(chipStyle);
     var newThemeModel = _componentThemesModel?.copyWith(chips: chipStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, chips: chipStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, chips: chipStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Chip style changed (theme store): ${_themeStore.componentThemesModel?.chips}",
@@ -585,8 +566,7 @@ class ThemeChanger {
     }
     final dialogStyles = _dialogStyles(dialogStyle);
     var newThemeModel = _componentThemesModel?.copyWith(dialogs: dialogStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, dialogs: dialogStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, dialogs: dialogStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Dialog style changed: $dialogStyle",
@@ -605,8 +585,7 @@ class ThemeChanger {
       return;
     }
     final popupMenuStyles = _popupMenuStyles(popupMenuStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(popupMenus: popupMenuStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(popupMenus: popupMenuStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       popupMenus: popupMenuStyles,
@@ -630,8 +609,7 @@ class ThemeChanger {
     }
     final sliderStyles = _sliderStyles(sliderStyle);
     var newThemeModel = _componentThemesModel?.copyWith(sliders: sliderStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, sliders: sliderStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, sliders: sliderStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Slider style changed: $sliderStyle",
@@ -650,8 +628,7 @@ class ThemeChanger {
       return;
     }
     final scrollbarStyles = _scrollbarStyles(scrollbarStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(scrollbars: scrollbarStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(scrollbars: scrollbarStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       scrollbars: scrollbarStyles,
@@ -674,10 +651,8 @@ class ThemeChanger {
       return;
     }
     final tooltipStyles = _tooltipStyles(tooltipStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(tooltips: tooltipStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, tooltips: tooltipStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(tooltips: tooltipStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, tooltips: tooltipStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Tooltip style changed: $tooltipStyle",
@@ -698,8 +673,7 @@ class ThemeChanger {
       return;
     }
     final navigationRailStyles = _navigationRailStyles(navigationRailStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(navigationRails: navigationRailStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(navigationRails: navigationRailStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       navigationRails: navigationRailStyles,
@@ -723,8 +697,7 @@ class ThemeChanger {
     }
     final switchStyles = _switchStyles(switchStyle);
     var newThemeModel = _componentThemesModel?.copyWith(switches: switchStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, switches: switchStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, switches: switchStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Switch style changed: $switchStyle",
@@ -744,8 +717,7 @@ class ThemeChanger {
     }
     final drawerStyles = _drawerStyles(drawerStyle);
     var newThemeModel = _componentThemesModel?.copyWith(drawers: drawerStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, drawers: drawerStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, drawers: drawerStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Drawer style changed: $drawerStyle",
@@ -764,8 +736,7 @@ class ThemeChanger {
       return;
     }
     final listTileStyles = _listTileStyles(listTileStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(listTiles: listTileStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(listTiles: listTileStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       listTiles: listTileStyles,
@@ -789,8 +760,7 @@ class ThemeChanger {
     }
     final menuStyles = _menuStyles(menuStyle);
     var newThemeModel = _componentThemesModel?.copyWith(menus: menuStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, menus: menuStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, menus: menuStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print("Menu style changed: $menuStyle", [ThemeLoggers.changer]);
   }
@@ -806,10 +776,8 @@ class ThemeChanger {
       return;
     }
     final menuBarStyles = _menuBarStyles(menuBarStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(menuBars: menuBarStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, menuBars: menuBarStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(menuBars: menuBarStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, menuBars: menuBarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Menu bar style changed: $menuBarStyle",
@@ -830,8 +798,7 @@ class ThemeChanger {
       return;
     }
     final navigationBarStyles = _navigationBarStyles(navigationBarStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(navigationBars: navigationBarStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(navigationBars: navigationBarStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       navigationBars: navigationBarStyles,
@@ -855,8 +822,7 @@ class ThemeChanger {
       );
       return;
     }
-    final navigationDrawerStyles =
-        _navigationDrawerStyles(navigationDrawerStyle);
+    final navigationDrawerStyles = _navigationDrawerStyles(navigationDrawerStyle);
     var newThemeModel = _componentThemesModel?.copyWith(
       navigationDrawers: navigationDrawerStyles,
     );
@@ -883,8 +849,7 @@ class ThemeChanger {
       );
       return;
     }
-    final progressIndicatorStyles =
-        _progressIndicatorStyles(progressIndicatorStyle);
+    final progressIndicatorStyles = _progressIndicatorStyles(progressIndicatorStyle);
     var newThemeModel = _componentThemesModel?.copyWith(
       progressIndicators: progressIndicatorStyles,
     );
@@ -910,8 +875,7 @@ class ThemeChanger {
       return;
     }
     final searchBarStyles = _searchBarStyles(searchBarStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(searchBars: searchBarStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(searchBars: searchBarStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       searchBars: searchBarStyles,
@@ -936,8 +900,7 @@ class ThemeChanger {
       return;
     }
     final searchViewStyles = _searchViewStyles(searchViewStyle);
-    var newThemeModel =
-        _componentThemesModel?.copyWith(searchViews: searchViewStyles);
+    var newThemeModel = _componentThemesModel?.copyWith(searchViews: searchViewStyles);
     newThemeModel ??= ComponentThemesModel(
       id: _baseThemeModel!.id,
       searchViews: searchViewStyles,
@@ -961,8 +924,7 @@ class ThemeChanger {
     }
     final tabBarStyles = _tabBarStyles(tabBarStyle);
     var newThemeModel = _componentThemesModel?.copyWith(tabBars: tabBarStyles);
-    newThemeModel ??=
-        ComponentThemesModel(id: _baseThemeModel!.id, tabBars: tabBarStyles);
+    newThemeModel ??= ComponentThemesModel(id: _baseThemeModel!.id, tabBars: tabBarStyles);
     _themeStore.changeComponentThemesModel(newThemeModel);
     AppLogger.print(
       "Tab bar style changed: $tabBarStyle",
@@ -1004,7 +966,7 @@ class ThemeChanger {
   //     final store = AdditThemeStore(
   //       editingValue: (value ?? false) ? ThemeModelReference(themeId: AppTheme.baseThemeModel!.id, name: AppTheme.baseThemeModel!.name ?? "No Name") : null,
   //       onValueSaved: (isAdding, value) async {
-  //         final repository = LYRepository();
+  //         final repository = PLSRepository();
   //         var baseTheme = _baseThemeModel;
   //         var componentsTheme = _componentThemesModel;
   //         RequestResponse baseResult;
@@ -1072,10 +1034,9 @@ class ThemeChanger {
     final blob = html.Blob([Uint8List.fromList(zipBytes)]);
 
     // Create download link for the zip file
-    final anchor =
-        html.AnchorElement(href: html.Url.createObjectUrlFromBlob(blob))
-          ..style.display = "none"
-          ..download = "themes.zip";
+    final anchor = html.AnchorElement(href: html.Url.createObjectUrlFromBlob(blob))
+      ..style.display = "none"
+      ..download = "themes.zip";
 
     // Add the link to the body
     html.document.body?.children.add(anchor);
@@ -1120,8 +1081,7 @@ class ThemeChanger {
     ColorModel colorModel,
     bool isDark,
   ) {
-    var colorSchemes = _baseThemeModel?.colors[styleType] ??
-        ColorSchemesModel.defaultSchemes();
+    var colorSchemes = _baseThemeModel?.colors[styleType] ?? ColorSchemesModel.defaultSchemes();
     switch (isDark) {
       case true:
         colorSchemes = colorSchemes.copyWith(dark: colorModel);
@@ -1146,8 +1106,7 @@ class ThemeChanger {
     TextType textType,
     TextStyleSizesModel textStyle,
   ) {
-    var textTypes =
-        _baseThemeModel?.textStyles?[styleType] ?? const TextTypesModel();
+    var textTypes = _baseThemeModel?.textStyles?[styleType] ?? const TextTypesModel();
     switch (textType) {
       case TextType.display:
         textTypes = textTypes.copyWith(display: textStyle);
@@ -1184,38 +1143,31 @@ class ThemeChanger {
     switch (buttonType) {
       case ButtonModelType.elevated:
         final elevatedButtonStyle = _elevatedButtons(buttonStyle);
-        newComponentThemesModel = _componentThemesModel!
-            .copyWith(elevatedButtons: elevatedButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(elevatedButtons: elevatedButtonStyle);
         break;
       case ButtonModelType.outlined:
         final outlinedButtonStyle = _outlinedButtons(buttonStyle);
-        newComponentThemesModel = _componentThemesModel!
-            .copyWith(outlinedButtons: outlinedButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(outlinedButtons: outlinedButtonStyle);
         break;
       case ButtonModelType.text:
         final textButtonStyle = _textButtons(buttonStyle);
-        newComponentThemesModel =
-            _componentThemesModel!.copyWith(textButtons: textButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(textButtons: textButtonStyle);
         break;
       case ButtonModelType.icon:
         final iconButtonStyle = _iconButtons(buttonStyle);
-        newComponentThemesModel =
-            _componentThemesModel!.copyWith(iconButtons: iconButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(iconButtons: iconButtonStyle);
         break;
       case ButtonModelType.filled:
         final filledButtonStyle = _filledButtons(buttonStyle);
-        newComponentThemesModel =
-            _componentThemesModel!.copyWith(filledButtons: filledButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(filledButtons: filledButtonStyle);
         break;
       case ButtonModelType.menu:
         final menuButtonStyle = _menuButtons(buttonStyle);
-        newComponentThemesModel =
-            _componentThemesModel!.copyWith(menuButtons: menuButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(menuButtons: menuButtonStyle);
         break;
       case ButtonModelType.segmented:
         final segmentedButtonStyle = _segmentedButtons(buttonStyle);
-        newComponentThemesModel = _componentThemesModel!
-            .copyWith(segmentedButtons: segmentedButtonStyle);
+        newComponentThemesModel = _componentThemesModel!.copyWith(segmentedButtons: segmentedButtonStyle);
         break;
       default:
         break;
@@ -1226,36 +1178,31 @@ class ThemeChanger {
   }
 
   static Map<String, ButtonModel> _elevatedButtons(ButtonModel buttonStyle) {
-    final elevatedButtonStyle =
-        _componentThemesModel?.elevatedButtons ?? {styleType: buttonStyle};
+    final elevatedButtonStyle = _componentThemesModel?.elevatedButtons ?? {styleType: buttonStyle};
     elevatedButtonStyle[styleType] = buttonStyle;
     return elevatedButtonStyle;
   }
 
   static Map<String, ButtonModel> _filledButtons(ButtonModel buttonStyle) {
-    final filledButtonStyle =
-        _componentThemesModel?.filledButtons ?? {styleType: buttonStyle};
+    final filledButtonStyle = _componentThemesModel?.filledButtons ?? {styleType: buttonStyle};
     filledButtonStyle[styleType] = buttonStyle;
     return filledButtonStyle;
   }
 
   static Map<String, ButtonModel> _outlinedButtons(ButtonModel buttonStyle) {
-    final outlinedButtonStyle =
-        _componentThemesModel?.outlinedButtons ?? {styleType: buttonStyle};
+    final outlinedButtonStyle = _componentThemesModel?.outlinedButtons ?? {styleType: buttonStyle};
     outlinedButtonStyle[styleType] = buttonStyle;
     return outlinedButtonStyle;
   }
 
   static Map<String, ButtonModel> _menuButtons(ButtonModel buttonStyle) {
-    final menuButtonStyle =
-        _componentThemesModel?.menuButtons ?? {styleType: buttonStyle};
+    final menuButtonStyle = _componentThemesModel?.menuButtons ?? {styleType: buttonStyle};
     menuButtonStyle[styleType] = buttonStyle;
     return menuButtonStyle;
   }
 
   static Map<String, ButtonModel> _textButtons(ButtonModel buttonStyle) {
-    final textButtonStyle =
-        _componentThemesModel?.textButtons ?? {styleType: buttonStyle};
+    final textButtonStyle = _componentThemesModel?.textButtons ?? {styleType: buttonStyle};
     textButtonStyle[styleType] = buttonStyle;
     return textButtonStyle;
   }
@@ -1263,15 +1210,13 @@ class ThemeChanger {
   static Map<String, ToggleButtonModel> _toggleButtons(
     ToggleButtonModel buttonStyle,
   ) {
-    final toggleButtonStyle =
-        _componentThemesModel?.toggleButtons ?? {styleType: buttonStyle};
+    final toggleButtonStyle = _componentThemesModel?.toggleButtons ?? {styleType: buttonStyle};
     toggleButtonStyle[styleType] = buttonStyle;
     return toggleButtonStyle;
   }
 
   static Map<String, ButtonModel> _iconButtons(ButtonModel buttonStyle) {
-    final iconButtonStyle =
-        _componentThemesModel?.iconButtons ?? {styleType: buttonStyle};
+    final iconButtonStyle = _componentThemesModel?.iconButtons ?? {styleType: buttonStyle};
     iconButtonStyle[styleType] = buttonStyle;
     return iconButtonStyle;
   }
@@ -1279,30 +1224,25 @@ class ThemeChanger {
   static Map<String, FloatingActionButtonModel> _floatingActionButton(
     FloatingActionButtonModel buttonStyle,
   ) {
-    final floatingActionButtonStyle =
-        _componentThemesModel?.floatingActionButtons ??
-            {styleType: buttonStyle};
+    final floatingActionButtonStyle = _componentThemesModel?.floatingActionButtons ?? {styleType: buttonStyle};
     floatingActionButtonStyle[styleType] = buttonStyle;
     return floatingActionButtonStyle;
   }
 
   static Map<String, ButtonModel> _segmentedButtons(ButtonModel buttonStyle) {
-    final segmentedButtonStyle =
-        _componentThemesModel?.segmentedButtons ?? {styleType: buttonStyle};
+    final segmentedButtonStyle = _componentThemesModel?.segmentedButtons ?? {styleType: buttonStyle};
     segmentedButtonStyle[styleType] = buttonStyle;
     return segmentedButtonStyle;
   }
 
   static Map<String, CheckboxModel>? _checkboxes(CheckboxModel checkboxStyle) {
-    final checkboxStyles =
-        _componentThemesModel?.checkboxes ?? {styleType: checkboxStyle};
+    final checkboxStyles = _componentThemesModel?.checkboxes ?? {styleType: checkboxStyle};
     checkboxStyles[styleType] = checkboxStyle;
     return checkboxStyles;
   }
 
   static Map<String, RadioModel>? _radios(RadioModel radioStyle) {
-    final radioStyles =
-        _componentThemesModel?.radios ?? {styleType: radioStyle};
+    final radioStyles = _componentThemesModel?.radios ?? {styleType: radioStyle};
     radioStyles[styleType] = radioStyle;
     return radioStyles;
   }
@@ -1327,8 +1267,7 @@ class ThemeChanger {
   static Map<String, BoxDecorationModel>? _boxDecorations(
     BoxDecorationModel boxDecorationStyle,
   ) {
-    final boxDecorationStyles = _componentThemesModel?.boxDecorations ??
-        {styleType: boxDecorationStyle};
+    final boxDecorationStyles = _componentThemesModel?.boxDecorations ?? {styleType: boxDecorationStyle};
     boxDecorationStyles[styleType] = boxDecorationStyle;
     return boxDecorationStyles;
   }
@@ -1342,15 +1281,13 @@ class ThemeChanger {
   static Map<String, SnackbarModel>? _snackbarStyles(
     SnackbarModel snackbarStyle,
   ) {
-    final snackbarStyles =
-        _componentThemesModel?.snackbars ?? {styleType: snackbarStyle};
+    final snackbarStyles = _componentThemesModel?.snackbars ?? {styleType: snackbarStyle};
     snackbarStyles[styleType] = snackbarStyle;
     return snackbarStyles;
   }
 
   static Map<String, BadgeModel>? _badgeStyles(BadgeModel badgeStyle) {
-    final badgeStyles =
-        _componentThemesModel?.badges ?? {styleType: badgeStyle};
+    final badgeStyles = _componentThemesModel?.badges ?? {styleType: badgeStyle};
     badgeStyles[styleType] = badgeStyle;
     return badgeStyles;
   }
@@ -1358,8 +1295,7 @@ class ThemeChanger {
   static Map<String, BottomAppbarModel>? _bottomAppbarStyles(
     BottomAppbarModel bottomAppbarStyle,
   ) {
-    final bottomAppbarStyles =
-        _componentThemesModel?.bottomAppbars ?? {styleType: bottomAppbarStyle};
+    final bottomAppbarStyles = _componentThemesModel?.bottomAppbars ?? {styleType: bottomAppbarStyle};
     bottomAppbarStyles[styleType] = bottomAppbarStyle;
     return bottomAppbarStyles;
   }
@@ -1367,8 +1303,7 @@ class ThemeChanger {
   static Map<String, DropdownModel>? _dropdownStyles(
     DropdownModel dropdownStyle,
   ) {
-    final dropdownStyles =
-        _componentThemesModel?.dropdowns ?? {styleType: dropdownStyle};
+    final dropdownStyles = _componentThemesModel?.dropdowns ?? {styleType: dropdownStyle};
     dropdownStyles[styleType] = dropdownStyle;
     return dropdownStyles;
   }
@@ -1380,8 +1315,7 @@ class ThemeChanger {
   }
 
   static Map<String, DialogModel>? _dialogStyles(DialogModel dialogStyle) {
-    final dialogStyles =
-        _componentThemesModel?.dialogs ?? {styleType: dialogStyle};
+    final dialogStyles = _componentThemesModel?.dialogs ?? {styleType: dialogStyle};
     dialogStyles[styleType] = dialogStyle;
     return dialogStyles;
   }
@@ -1389,15 +1323,13 @@ class ThemeChanger {
   static Map<String, PopupMenuModel>? _popupMenuStyles(
     PopupMenuModel popupMenuStyle,
   ) {
-    final popupMenuStyles =
-        _componentThemesModel?.popupMenus ?? {styleType: popupMenuStyle};
+    final popupMenuStyles = _componentThemesModel?.popupMenus ?? {styleType: popupMenuStyle};
     popupMenuStyles[styleType] = popupMenuStyle;
     return popupMenuStyles;
   }
 
   static Map<String, SliderModel>? _sliderStyles(SliderModel sliderStyle) {
-    final sliderStyles =
-        _componentThemesModel?.sliders ?? {styleType: sliderStyle};
+    final sliderStyles = _componentThemesModel?.sliders ?? {styleType: sliderStyle};
     sliderStyles[styleType] = sliderStyle;
     return sliderStyles;
   }
@@ -1405,15 +1337,13 @@ class ThemeChanger {
   static Map<String, ScrollbarModel>? _scrollbarStyles(
     ScrollbarModel scrollbarStyle,
   ) {
-    final scrollbarStyles =
-        _componentThemesModel?.scrollbars ?? {styleType: scrollbarStyle};
+    final scrollbarStyles = _componentThemesModel?.scrollbars ?? {styleType: scrollbarStyle};
     scrollbarStyles[styleType] = scrollbarStyle;
     return scrollbarStyles;
   }
 
   static Map<String, TooltipModel>? _tooltipStyles(TooltipModel tooltipStyle) {
-    final tooltipStyles =
-        _componentThemesModel?.tooltips ?? {styleType: tooltipStyle};
+    final tooltipStyles = _componentThemesModel?.tooltips ?? {styleType: tooltipStyle};
     tooltipStyles[styleType] = tooltipStyle;
     return tooltipStyles;
   }
@@ -1421,22 +1351,19 @@ class ThemeChanger {
   static Map<String, NavigationRailModel>? _navigationRailStyles(
     NavigationRailModel navigationRailStyle,
   ) {
-    final navigationRailStyles = _componentThemesModel?.navigationRails ??
-        {styleType: navigationRailStyle};
+    final navigationRailStyles = _componentThemesModel?.navigationRails ?? {styleType: navigationRailStyle};
     navigationRailStyles[styleType] = navigationRailStyle;
     return navigationRailStyles;
   }
 
   static Map<String, SwitchModel>? _switchStyles(SwitchModel switchStyle) {
-    final switchStyles =
-        _componentThemesModel?.switches ?? {styleType: switchStyle};
+    final switchStyles = _componentThemesModel?.switches ?? {styleType: switchStyle};
     switchStyles[styleType] = switchStyle;
     return switchStyles;
   }
 
   static Map<String, DrawerModel>? _drawerStyles(DrawerModel drawerStyle) {
-    final drawerStyles =
-        _componentThemesModel?.drawers ?? {styleType: drawerStyle};
+    final drawerStyles = _componentThemesModel?.drawers ?? {styleType: drawerStyle};
     drawerStyles[styleType] = drawerStyle;
     return drawerStyles;
   }
@@ -1444,8 +1371,7 @@ class ThemeChanger {
   static Map<String, ListTileModel>? _listTileStyles(
     ListTileModel listTileStyle,
   ) {
-    final listTileStyles =
-        _componentThemesModel?.listTiles ?? {styleType: listTileStyle};
+    final listTileStyles = _componentThemesModel?.listTiles ?? {styleType: listTileStyle};
     listTileStyles[styleType] = listTileStyle;
     return listTileStyles;
   }
@@ -1457,8 +1383,7 @@ class ThemeChanger {
   }
 
   static Map<String, MenuBarModel>? _menuBarStyles(MenuBarModel menuBarStyle) {
-    final menuBarStyles =
-        _componentThemesModel?.menuBars ?? {styleType: menuBarStyle};
+    final menuBarStyles = _componentThemesModel?.menuBars ?? {styleType: menuBarStyle};
     menuBarStyles[styleType] = menuBarStyle;
     return menuBarStyles;
   }
@@ -1466,8 +1391,7 @@ class ThemeChanger {
   static Map<String, NavigationBarModel>? _navigationBarStyles(
     NavigationBarModel navigationBarStyle,
   ) {
-    final navigationBarStyles = _componentThemesModel?.navigationBars ??
-        {styleType: navigationBarStyle};
+    final navigationBarStyles = _componentThemesModel?.navigationBars ?? {styleType: navigationBarStyle};
     navigationBarStyles[styleType] = navigationBarStyle;
     return navigationBarStyles;
   }
@@ -1475,8 +1399,7 @@ class ThemeChanger {
   static Map<String, NavigationDrawerModel>? _navigationDrawerStyles(
     NavigationDrawerModel navigationDrawerStyle,
   ) {
-    final navigationDrawerStyles = _componentThemesModel?.navigationDrawers ??
-        {styleType: navigationDrawerStyle};
+    final navigationDrawerStyles = _componentThemesModel?.navigationDrawers ?? {styleType: navigationDrawerStyle};
     navigationDrawerStyles[styleType] = navigationDrawerStyle;
     return navigationDrawerStyles;
   }
@@ -1484,8 +1407,7 @@ class ThemeChanger {
   static Map<String, ProgressIndicatorModel>? _progressIndicatorStyles(
     ProgressIndicatorModel progressIndicatorStyle,
   ) {
-    final progressIndicatorStyles = _componentThemesModel?.progressIndicators ??
-        {styleType: progressIndicatorStyle};
+    final progressIndicatorStyles = _componentThemesModel?.progressIndicators ?? {styleType: progressIndicatorStyle};
     progressIndicatorStyles[styleType] = progressIndicatorStyle;
     return progressIndicatorStyles;
   }
@@ -1493,8 +1415,7 @@ class ThemeChanger {
   static Map<String, SearchBarModel>? _searchBarStyles(
     SearchBarModel searchBarStyle,
   ) {
-    final searchBarStyles =
-        _componentThemesModel?.searchBars ?? {styleType: searchBarStyle};
+    final searchBarStyles = _componentThemesModel?.searchBars ?? {styleType: searchBarStyle};
     searchBarStyles[styleType] = searchBarStyle;
     return searchBarStyles;
   }
@@ -1502,15 +1423,13 @@ class ThemeChanger {
   static Map<String, SearchViewModel>? _searchViewStyles(
     SearchViewModel searchViewStyle,
   ) {
-    final searchViewStyles =
-        _componentThemesModel?.searchViews ?? {styleType: searchViewStyle};
+    final searchViewStyles = _componentThemesModel?.searchViews ?? {styleType: searchViewStyle};
     searchViewStyles[styleType] = searchViewStyle;
     return searchViewStyles;
   }
 
   static Map<String, TabBarModel>? _tabBarStyles(TabBarModel tabBarStyle) {
-    final tabBarStyles =
-        _componentThemesModel?.tabBars ?? {styleType: tabBarStyle};
+    final tabBarStyles = _componentThemesModel?.tabBars ?? {styleType: tabBarStyle};
     tabBarStyles[styleType] = tabBarStyle;
     return tabBarStyles;
   }

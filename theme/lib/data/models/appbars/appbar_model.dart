@@ -45,29 +45,18 @@ class AppbarModel with AppbarModelMappable {
 
   AppBarTheme asAppBarTheme({String? styleTypeName}) {
     return AppBarTheme(
-      color: backgroundColor_themeColorString != null
-          ? null
-          : color_themeColorString?.toColor(styleType: styleTypeName),
-      backgroundColor:
-          backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
-      foregroundColor:
-          foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      color: backgroundColor_themeColorString != null ? null : color_themeColorString?.toColor(styleType: styleTypeName),
+      backgroundColor: backgroundColor_themeColorString?.toColor(styleType: styleTypeName),
+      foregroundColor: foregroundColor_themeColorString?.toColor(styleType: styleTypeName),
       elevation: elevation_double,
-      surfaceTintColor:
-          surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
-      shadowColor:
-          shadowColor_themeColorString?.toColor(styleType: styleTypeName),
+      surfaceTintColor: surfaceTintColor_themeColorString?.toColor(styleType: styleTypeName),
+      shadowColor: shadowColor_themeColorString?.toColor(styleType: styleTypeName),
       shape: shape_shapeBorder?.asShapeBorder(styleTypeName: styleTypeName),
       centerTitle: centerTitle_bool,
       titleSpacing: titleSpacing_double,
       toolbarHeight: toolbarHeight_double,
-      toolbarTextStyle: toolbarTextStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle,
-      titleTextStyle: titleTextStyle_textStyleString
-          ?.toTextStyleModel(styleType: styleTypeName)
-          ?.asTextStyle
-          .copyWith(
+      toolbarTextStyle: toolbarTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle,
+      titleTextStyle: titleTextStyle_textStyleString?.toTextStyleModel(styleType: styleTypeName)?.asTextStyle.copyWith(
             color: foregroundColor_themeColorString?.toColor(
               styleType: styleTypeName,
             ),
@@ -146,8 +135,8 @@ class AppbarModel with AppbarModelMappable {
 //   //   );
 //   // }
 
-//   LYAppBarTheme asAppBarTheme({String? styleTypeName}) {
-//     return LYAppBarTheme(
+//   PLSAppBarTheme asAppBarTheme({String? styleTypeName}) {
+//     return PLSAppBarTheme(
 //       color: color_themeColorString?.toColor(styleType: styleTypeName),
 //       backgroundColor:
 //           backgroundColor_themeColorString?.toColor(styleType: styleTypeName),

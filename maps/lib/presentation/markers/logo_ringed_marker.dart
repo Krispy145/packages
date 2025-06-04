@@ -8,8 +8,7 @@ import "package:widgets/images/widget.dart";
 class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
   final String? logoUrl;
 
-  static const String fallbackUrl =
-      "https://www.shutterstock.com/image-vector/red-circle-round-x-black-600nw-2145374435.jpg";
+  static const String fallbackUrl = "https://www.shutterstock.com/image-vector/red-circle-round-x-black-600nw-2145374435.jpg";
 
   LogoRingedMarker({
     required super.markerModel,
@@ -20,7 +19,7 @@ class LogoRingedMarker<T extends MarkerModel> extends BaseMarker {
           child: RingedMarkerWrapper(
             selected: isSelected(markerModel),
             onTapped: () => onMarkerTapped?.call(markerModel),
-            childBuilder: (context) => LYImage.network(
+            childBuilder: (context) => PLSImage.network(
               logoUrl ?? fallbackUrl,
               options: NetworkImageOptions(fit: BoxFit.cover),
             ),

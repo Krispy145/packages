@@ -8,24 +8,12 @@ class CircleImageMarker<T extends MarkerModel> extends BaseMarker {
   final String? logoUrl;
   final Widget? fallbackWidget;
 
-  CircleImageMarker({
-    required super.markerModel,
-    required super.isSelected,
-    this.fallbackWidget,
-    super.onMarkerTapped,
-    this.logoUrl,
-  }) : super(
-          child: logoUrl != null
-              ? CircleAvatar(
-                  backgroundImage: LYCachedNetworkImageProvider(logoUrl),
-                )
-              : fallbackWidget ??
-                  IconMarker(
-                    markerModel: markerModel,
-                    isSelected: isSelected,
-                    icon: Icons.location_pin,
-                  ).child,
-        );
+  CircleImageMarker({required super.markerModel, required super.isSelected, this.fallbackWidget, super.onMarkerTapped, this.logoUrl})
+    : super(
+        child: logoUrl != null
+            ? CircleAvatar(backgroundImage: PLSCachedNetworkImageProvider(logoUrl))
+            : fallbackWidget ?? IconMarker(markerModel: markerModel, isSelected: isSelected, icon: Icons.location_pin).child,
+      );
 
   @override
   int get hashCode => super.hashCode ^ markerModel.id.hashCode;

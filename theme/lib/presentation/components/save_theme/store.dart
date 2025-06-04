@@ -27,7 +27,7 @@
 //   }) {
 //     getFields();
 //   }
-//   final LYRepository repository = LYRepository();
+//   final PLSRepository repository = PLSRepository();
 //   @observable
 //   String themeId = generateUniqueId();
 
@@ -52,7 +52,7 @@
 //       themeName.value = newValue?.name;
 //       if (newValue != null) {
 //         formFields.addAll({
-//           "title": LYTextFormField(store: themeName..value = newValue.name ?? ""),
+//           "title": PLSTextFormField(store: themeName..value = newValue.name ?? ""),
 //         });
 //       }
 //       onValueChanged(
@@ -77,7 +77,7 @@
 //     if (!isAdding) {
 //       result["themes"] = DropdownFormField<BaseThemeModel>(store: doBaseThemes);
 //     } else {
-//       result["title"] = LYTextFormField(store: themeName);
+//       result["title"] = PLSTextFormField(store: themeName);
 //     }
 //     formFields = ObservableMap.of(result);
 //     setLoaded();

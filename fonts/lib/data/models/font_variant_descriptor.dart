@@ -5,24 +5,24 @@
 import "dart:ui";
 
 /// Represents a Google Fonts API variant in Flutter-specific types.
-class LYFontVariantDescriptor {
-  const LYFontVariantDescriptor({
+class PLSFontVariantDescriptor {
+  const PLSFontVariantDescriptor({
     required this.fontWeight,
     required this.fontStyle,
   });
 
-  /// Returns [LYFontVariantDescriptor] from [variantsToCompare] that most closely
-  /// matches this [LYFontVariantDescriptor] according to the [findClosestMatch] scoring function.
+  /// Returns [PLSFontVariantDescriptor] from [variantsToCompare] that most closely
+  /// matches this [PLSFontVariantDescriptor] according to the [findClosestMatch] scoring function.
   ///
   /// This logic is derived from the following section of the minikin library,
   /// which is ultimately how flutter handles matching fonts.
   /// https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L149
-  LYFontVariantDescriptor findClosestMatch(
-    // LYFontVariantDescriptor sourceVariant,
-    Iterable<LYFontVariantDescriptor> variantsToCompare,
+  PLSFontVariantDescriptor findClosestMatch(
+    // PLSFontVariantDescriptor sourceVariant,
+    Iterable<PLSFontVariantDescriptor> variantsToCompare,
   ) {
     int? bestScore;
-    late LYFontVariantDescriptor bestMatch;
+    late PLSFontVariantDescriptor bestMatch;
     for (final variantToCompare in variantsToCompare) {
       final score = _computeMatch(this, variantToCompare);
       if (bestScore == null || score < bestScore) {
@@ -36,7 +36,7 @@ class LYFontVariantDescriptor {
   // This logic is taken from the following section of the minikin library, which
 // is ultimately how flutter handles matching fonts.
 // * https://github.com/flutter/engine/blob/master/third_party/txt/src/minikin/FontFamily.cpp#L128
-  int _computeMatch(LYFontVariantDescriptor a, LYFontVariantDescriptor b) {
+  int _computeMatch(PLSFontVariantDescriptor a, PLSFontVariantDescriptor b) {
     if (a == b) {
       return 0;
     }
@@ -47,7 +47,7 @@ class LYFontVariantDescriptor {
     return score;
   }
 
-  /// Creates a [LYFontVariantDescriptor] from a Google Fonts API specific
+  /// Creates a [PLSFontVariantDescriptor] from a Google Fonts API specific
   /// filename part.
   ///
   /// A filename part is the part of the filename that does not include the
@@ -60,12 +60,12 @@ class LYFontVariantDescriptor {
   /// "Bold" -> weight: 700, style: normal
   /// "BoldItalic" -> weight: 700, style: italic
   ///
-  /// See [LYFontVariantDescriptor.toApiFilenamePart] for the inverse function.
-  LYFontVariantDescriptor.fromApiFilenamePart(String filenamePart)
+  /// See [PLSFontVariantDescriptor.toApiFilenamePart] for the inverse function.
+  PLSFontVariantDescriptor.fromApiFilenamePart(String filenamePart)
       : fontWeight = _extractFontWeightFromApiFilenamePart(filenamePart),
         fontStyle = _extractFontStyleFromApiFilenamePart(filenamePart);
 
-  /// Creates a [LYFontVariantDescriptor] from a Google Fonts API specific
+  /// Creates a [PLSFontVariantDescriptor] from a Google Fonts API specific
   /// variant name.
   ///
   /// The following table shows how these variant strings convert:
@@ -74,15 +74,10 @@ class LYFontVariantDescriptor {
   /// "700" -> weight: 700, style: normal
   /// "700italic" -> weight: 700, style: italic
   ///
-  /// See [LYFontVariantDescriptor.toString] for the inverse function.
-  LYFontVariantDescriptor.fromString(String variantString)
-      : fontWeight = FontWeight.values[variantString == _regular ||
-                variantString == _italic
-            ? 3
-            : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
-        fontStyle = variantString.contains(_italic)
-            ? FontStyle.italic
-            : FontStyle.normal;
+  /// See [PLSFontVariantDescriptor.toString] for the inverse function.
+  PLSFontVariantDescriptor.fromString(String variantString)
+      : fontWeight = FontWeight.values[variantString == _regular || variantString == _italic ? 3 : (int.parse(variantString.replaceAll(_italic, "")) ~/ 100) - 1],
+        fontStyle = variantString.contains(_italic) ? FontStyle.italic : FontStyle.normal;
 
   final FontWeight fontWeight;
   final FontStyle fontStyle;
@@ -111,14 +106,14 @@ class LYFontVariantDescriptor {
     return FontStyle.normal;
   }
 
-  /// Converts this [LYFontVariantDescriptor] to a Google Fonts API specific filename
+  /// Converts this [PLSFontVariantDescriptor] to a Google Fonts API specific filename
   /// part.
   ///
   /// A Filename part is the part of the filename that does not include the
   /// font family. For example: for the filename "Lato-Regular.ttf", the
   /// filename part is "Regular".
   ///
-  /// The following table shows how these [LYFontVariantDescriptor]s convert:
+  /// The following table shows how these [PLSFontVariantDescriptor]s convert:
   /// weight: 400, style: normal -> "Regular"
   /// weight: 400, style: italic -> "Italic"
   /// weight: 700, style: normal -> "Bold"
@@ -126,8 +121,7 @@ class LYFontVariantDescriptor {
   ///
   /// See [`GoogleFontsVariant.fromApiFilenamePart`] for the inverse function.
   String toApiFilenamePart() {
-    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ??
-        _fontWeightToFilenameWeightParts[FontWeight.w400]!;
+    final weightPrefix = _fontWeightToFilenameWeightParts[fontWeight] ?? _fontWeightToFilenameWeightParts[FontWeight.w400]!;
     final italicSuffix = fontStyle == FontStyle.italic ? "Italic" : "";
     if (weightPrefix == "Regular") {
       return italicSuffix == "" ? weightPrefix : italicSuffix;
@@ -135,7 +129,7 @@ class LYFontVariantDescriptor {
     return "$weightPrefix$italicSuffix";
   }
 
-  /// Converts this [LYFontVariantDescriptor] to a Google Fonts API specific variant
+  /// Converts this [PLSFontVariantDescriptor] to a Google Fonts API specific variant
   /// name string.
   ///
   /// The following table shows how these variant strings convert:
@@ -144,15 +138,11 @@ class LYFontVariantDescriptor {
   /// weight: 700, style: normal -> "700"
   /// weight: 700, style: italic -> "700italic"
   ///
-  /// See [LYFontVariantDescriptor.toString] for the inverse function.
+  /// See [PLSFontVariantDescriptor.toString] for the inverse function.
   @override
   String toString() {
-    final fontWeightString =
-        fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
-    final fontStyleString = fontStyle
-        .toString()
-        .replaceAll("FontStyle.", "")
-        .replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
+    final fontWeightString = fontWeight.index == 3 ? "" : (fontWeight.index + 1) * 100;
+    final fontStyleString = fontStyle.toString().replaceAll("FontStyle.", "").replaceFirst(_normal, fontWeight.index == 3 ? _regular : "");
     return "$fontWeightString$fontStyleString";
   }
 
@@ -167,9 +157,7 @@ class LYFontVariantDescriptor {
     if (other.runtimeType != runtimeType) {
       return false;
     }
-    return other is LYFontVariantDescriptor &&
-        other.fontWeight == fontWeight &&
-        other.fontStyle == fontStyle;
+    return other is PLSFontVariantDescriptor && other.fontWeight == fontWeight && other.fontStyle == fontStyle;
   }
 }
 
