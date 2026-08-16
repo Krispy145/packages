@@ -7,12 +7,10 @@ import "package:utilities/data/models/user_permissions_model.dart";
 part "store.g.dart";
 
 /// [PermissionsFormFieldStore] is a class that uses [_PermissionsFormFieldStore] to manage state of the filters feature.
-class PermissionsFormFieldStore = _PermissionsFormFieldStore
-    with _$PermissionsFormFieldStore;
+class PermissionsFormFieldStore = _PermissionsFormFieldStore with _$PermissionsFormFieldStore;
 
 /// [_PermissionsFormFieldStore] is a class that manages the state of the filters feature.
-abstract class _PermissionsFormFieldStore
-    extends BaseFormFieldStore<UserPermissionsModel> with Store {
+abstract class _PermissionsFormFieldStore extends BaseFormFieldStore<UserPermissionsModel> with Store {
   _PermissionsFormFieldStore({
     required super.title,
     required super.initialValue,
@@ -34,8 +32,7 @@ abstract class _PermissionsFormFieldStore
           },
           canSelectMultiple: false,
           onSelectedChanged: (collectionSelection) {
-            final updatedUserPermission =
-                changedPermissionLevel(value!, crud, collectionSelection);
+            final updatedUserPermission = changedPermissionLevel(value!, crud, collectionSelection);
             value = updatedUserPermission;
             onValueChanged(value);
           },

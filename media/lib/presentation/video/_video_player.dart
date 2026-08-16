@@ -36,7 +36,6 @@ class _InternalVideoPlayer extends StatefulWidget {
   final bool allowPictureInPicture;
 
   const _InternalVideoPlayer({
-    super.key,
     this.autoPlay = false,
     this.loop = false,
     this.showControls = true,
@@ -49,9 +48,8 @@ class _InternalVideoPlayer extends StatefulWidget {
     this.position = -1,
     this.onViewCreated,
     this.desiredState = PlayerState.PLAYING,
-    this.textTracks,
     this.allowPictureInPicture = false,
-  });
+  }) : textTracks = null;
 
   @override
   _InternalVideoPlayerState createState() => _InternalVideoPlayerState();

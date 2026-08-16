@@ -11,8 +11,7 @@ import "package:utilities/helpers/tuples.dart";
 part "paginated.mapper.dart";
 
 @MappableClass()
-class FirestoreResponseModel<T> extends ResponseModel
-    with FirestoreResponseModelMappable<T> {
+class FirestoreResponseModel<T> extends ResponseModel with FirestoreResponseModelMappable<T> {
   final QueryDocumentSnapshot<Map<String, dynamic>>? lastDocumentSnapshot;
 
   FirestoreResponseModel({this.lastDocumentSnapshot});
@@ -23,9 +22,7 @@ class FirestoreResponseModel<T> extends ResponseModel
   }
 }
 
-abstract class PaginatedFirestoreDataSource<T, Q>
-    extends FirestoreDataSource<T, Q>
-    with Paginated<FirestoreResponseModel<T?>, T, Q> {
+abstract class PaginatedFirestoreDataSource<T, Q> extends FirestoreDataSource<T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
   /// [PaginatedFirestoreDataSource] constructor
   PaginatedFirestoreDataSource(
     super.collectionName, {
@@ -35,8 +32,7 @@ abstract class PaginatedFirestoreDataSource<T, Q>
   });
 
   @override
-  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>
-      getPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> getPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -46,7 +42,7 @@ abstract class PaginatedFirestoreDataSource<T, Q>
     logRequest("GET_PAGE", null);
     try {
       final _collection = firestore.collection(collectionName);
-      Query query = _collection;
+      Query<Map<String, dynamic>> query = _collection;
 
       if (orderBy != null) {
         query = query.orderBy(orderBy, descending: descending);
@@ -60,21 +56,18 @@ abstract class PaginatedFirestoreDataSource<T, Q>
       }
 
       if (size != null) {
-        query = query.limit(size);
+        query = query.limit(size) as CollectionReference<Map<String, dynamic>>;
       }
 
       return query.get().then(
         (response) {
           final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
             FirestoreResponseModel<T?>(
-              lastDocumentSnapshot: response.docs.isNotEmpty
-                  ? response.docs.last
-                      as QueryDocumentSnapshot<Map<String, dynamic>>
-                  : lastResponse?.lastDocumentSnapshot,
+              lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot,
             ),
             List<T?>.from(
               response.docs.map(
-                (e) => convertFromMap(e.data()! as Map<String, dynamic>) as T?,
+                (e) => convertFromMap(e.data()) as T?,
               ),
             ),
           );
@@ -113,12 +106,11 @@ abstract class PaginatedFirestoreDataSource<T, Q>
       }
 
       if (orderBy != null) {
-        firestoreQuery =
-            firestoreQuery.orderBy(orderBy, descending: descending);
+        firestoreQuery = firestoreQuery.orderBy(orderBy, descending: descending) as CollectionReference<Map<String, dynamic>>;
       }
 
       if (size != null) {
-        firestoreQuery = firestoreQuery.limit(size);
+        firestoreQuery = firestoreQuery.limit(size) as CollectionReference<Map<String, dynamic>>;
       }
 
       final stream = firestoreQuery.snapshots().map(
@@ -142,8 +134,7 @@ abstract class PaginatedFirestoreDataSource<T, Q>
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>
-      searchPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> searchPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -155,8 +146,7 @@ abstract class PaginatedFirestoreDataSource<T, Q>
       var firestoreQuery = buildQuery(query, collectionReference);
 
       if (orderBy != null) {
-        firestoreQuery =
-            firestoreQuery.orderBy(orderBy, descending: descending);
+        firestoreQuery = firestoreQuery.orderBy(orderBy, descending: descending) as CollectionReference<Map<String, dynamic>>;
       }
       if (lastResponse != null) {
         if (lastResponse.lastDocumentSnapshot != null) {
@@ -173,8 +163,7 @@ abstract class PaginatedFirestoreDataSource<T, Q>
 
       final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
         FirestoreResponseModel<T?>(
-          lastDocumentSnapshot:
-              _result.docs.isNotEmpty ? _result.docs.last : null,
+          lastDocumentSnapshot: _result.docs.isNotEmpty ? _result.docs.last : null,
         ),
         List<T?>.from(
           _result.docs.map((e) => convertFromMap(e.data()) as T?),

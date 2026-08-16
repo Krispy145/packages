@@ -39,12 +39,10 @@ class ReactiveMapField extends ReactiveFormField<LatLng, LatLng> {
         );
 
   @override
-  ReactiveFormFieldState<LatLng, LatLng> createState() =>
-      _ReactiveMapFieldState();
+  ReactiveFormFieldState<LatLng, LatLng> createState() => _ReactiveMapFieldState();
 }
 
-class _ReactiveMapFieldState
-    extends ReactiveFocusableFormFieldState<LatLng, LatLng> {
+class _ReactiveMapFieldState extends ReactiveFocusableFormFieldState<LatLng, LatLng> {
   late EditLocationMapFormFieldStore _fieldStore;
 
   @override
@@ -60,8 +58,7 @@ class _ReactiveMapFieldState
     didChange(effectiveValue);
     _fieldStore.mapStore.setCenterMarker(center: effectiveValue);
     if (effectiveValue != null) {
-      _fieldStore.mapStore.animatedMapController.mapController
-          .move(effectiveValue, 10);
+      _fieldStore.mapStore.animatedMapController.mapController.move(effectiveValue, 10);
     }
     super.onControlValueChanged(value);
   }

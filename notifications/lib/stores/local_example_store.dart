@@ -41,7 +41,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
   Future<void> showNotificationWithActions(
     NotificationModel notification,
   ) async {
-    final AndroidNotificationDetails androidNotificationDetails =
+    final androidNotificationDetails =
         androidLocalNotificationDetails.copyWith(
       actions: [
         const AndroidNotificationAction(
@@ -109,7 +109,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
       allowGeneratedReplies: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails =
+    final androidNotificationDetails =
         androidLocalNotificationDetails.copyWith(
       actions: [
         textAction,
@@ -165,7 +165,7 @@ abstract class _LocalNotificationsExamplesStore extends LocalNotificationsStore
       contextual: true,
     );
 
-    final AndroidNotificationDetails androidNotificationDetails =
+    final androidNotificationDetails =
         androidLocalNotificationDetails.copyWith(
       actions: [androidAction],
     );

@@ -105,9 +105,9 @@ abstract class _InstagramUserStore with AuthStateStore, Store {
           [SocialsLoggers.instagram],
         );
         if (uri.queryParameters.containsKey("code")) {
-          final code = uri.queryParameters["code"]!;
+          final code = uri.queryParameters["code"];
           AppLogger.print("code: $code", [SocialsLoggers.instagram]);
-          final _shortLivedToken = await repository.postShortLivedAccessToken(authCode: code);
+          final _shortLivedToken = await repository.postShortLivedAccessToken(authCode: code!);
           if (_shortLivedToken != null) {
             AppLogger.print(
               "shortLivedToken: $_shortLivedToken",

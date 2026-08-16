@@ -3,8 +3,7 @@ part of "_source.dart";
 // typedef T<T> = T Function(Map<String, dynamic> json);
 
 /// [FirestoreReviewDataSource] is a class that extends [FirestoreDataSource].
-class FirestoreReviewDataSource<T>
-    extends ReviewDataSource<FirestoreResponseModel<ReviewModel?>, T> {
+class FirestoreReviewDataSource<T> extends ReviewDataSource<FirestoreResponseModel<ReviewModel?>, T> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   /// [FirestoreReviewDataSource] constructor.
@@ -15,15 +14,10 @@ class FirestoreReviewDataSource<T>
     required super.convertDataTypeToMap,
   });
 
-  CollectionReference<Map<String, dynamic>> get collectionReference =>
-      firestore.collection("$sourcePath-reviews");
+  CollectionReference<Map<String, dynamic>> get collectionReference => firestore.collection("$sourcePath-reviews");
 
   @override
-  Future<
-      Pair<
-          RequestResponse,
-          Pair<FirestoreResponseModel<ReviewModel?>?,
-              List<Pair<ReviewModel, T?>>>>> getPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<ReviewModel?>?, List<Pair<ReviewModel, T?>>>>> getPage({
     FirestoreResponseModel<ReviewModel?>? lastResponse,
     int? size,
     String? orderBy,
@@ -50,17 +44,13 @@ class FirestoreReviewDataSource<T>
       (response) {
         final result = response.docs.map((doc) {
           final review = ReviewModel.fromMap(doc.data());
-          final writeMapToType = review.writeData != null
-              ? convertDataTypeFromMap(review.writeData!)
-              : null;
+          final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
           return Pair(review, writeMapToType);
         }).toList();
         if (result.isEmpty) {
           return const Pair(RequestResponse.failure, Pair(null, []));
         }
-        final _lastSnapshot = response.docs.isNotEmpty
-            ? response.docs.last
-            : lastResponse?.lastDocumentSnapshot;
+        final _lastSnapshot = response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot;
         return Pair(
           RequestResponse.success,
           Pair(
@@ -73,17 +63,13 @@ class FirestoreReviewDataSource<T>
   }
 
   @override
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
-      getAllCRUDSpecific(CRUD crud) async {
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecific(CRUD crud) async {
     try {
       if (!_canReview) return const Pair(RequestResponse.denied, []);
-      final querySnapshot =
-          await collectionReference.where("crud", isEqualTo: crud.name).get();
+      final querySnapshot = await collectionReference.where("crud", isEqualTo: crud.name).get();
       final result = querySnapshot.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
-        final writeMapToType = review.writeData != null
-            ? convertDataTypeFromMap(review.writeData!)
-            : null;
+        final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
       if (result.isEmpty) {
@@ -97,8 +83,7 @@ class FirestoreReviewDataSource<T>
   }
 
   @override
-  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>>
-      getAllCRUDSpecificByUserId(
+  Future<Pair<RequestResponse, List<Pair<ReviewModel?, T?>>>> getAllCRUDSpecificByUserId(
     CRUD crud, {
     required UUID userId,
   }) async {
@@ -113,9 +98,7 @@ class FirestoreReviewDataSource<T>
           .get();
       final result = querySnapshot.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
-        final writeMapToType = review.writeData != null
-            ? convertDataTypeFromMap(review.writeData!)
-            : null;
+        final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
       if (result.isEmpty) {
@@ -129,18 +112,14 @@ class FirestoreReviewDataSource<T>
   }
 
   @override
-  Future<
-      Pair<
-          RequestResponse,
-          Pair<FirestoreResponseModel<ReviewModel?>?,
-              List<Pair<ReviewModel, T?>>>>> getAllPagedCRUD(
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<ReviewModel?>?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUD(
     CRUD crud, {
     FirestoreResponseModel<ReviewModel?>? lastResponse,
     int? size,
     String? orderBy,
   }) async {
     if (!_canReview) return const Pair(RequestResponse.denied, Pair(null, []));
-    Query query = collectionReference.where("crud", isEqualTo: crud.name);
+    var query = collectionReference.where("crud", isEqualTo: crud.name);
 
     if (orderBy != null) {
       query = query.orderBy(orderBy);
@@ -159,19 +138,14 @@ class FirestoreReviewDataSource<T>
     return query.get().then(
       (response) {
         final result = response.docs.map((doc) {
-          final review =
-              ReviewModel.fromMap(doc.data()! as Map<String, dynamic>);
-          final writeMapToType = review.writeData != null
-              ? convertDataTypeFromMap(review.writeData!)
-              : null;
+          final review = ReviewModel.fromMap(doc.data());
+          final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
           return Pair(review, writeMapToType);
         }).toList();
         if (result.isEmpty) {
           return const Pair(RequestResponse.failure, Pair(null, []));
         }
-        final _lastSnapshot = response.docs.isNotEmpty
-            ? response.docs.last as QueryDocumentSnapshot<Map<String, dynamic>>
-            : lastResponse?.lastDocumentSnapshot;
+        final _lastSnapshot = response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot;
         return Pair(
           RequestResponse.success,
           Pair(
@@ -184,14 +158,11 @@ class FirestoreReviewDataSource<T>
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>>
-      getCRUDSpecifReviewModel(String id) async {
+  Future<Pair<RequestResponse, Pair<ReviewModel?, T?>>> getCRUDSpecifReviewModel(String id) async {
     try {
       final documentSnapshot = await collectionReference.doc(id).get();
       final review = ReviewModel.fromMap(documentSnapshot.data()!);
-      final writeMapToType = review.writeData != null
-          ? convertDataTypeFromMap(review.writeData!)
-          : null;
+      final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
       return Pair(RequestResponse.success, Pair(review, writeMapToType));
     } catch (e) {
       AppLogger.print("Error: $e", [AuthenticationLoggers.review]);
@@ -215,11 +186,7 @@ class FirestoreReviewDataSource<T>
   }
 
   @override
-  Future<
-      Pair<
-          RequestResponse,
-          Pair<FirestoreResponseModel<ReviewModel?>?,
-              List<Pair<ReviewModel, T?>>>>> getAllPagedCRUDByUserId(
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<ReviewModel?>?, List<Pair<ReviewModel, T?>>>>> getAllPagedCRUDByUserId(
     CRUD crud, {
     required UUID userId,
     FirestoreResponseModel<ReviewModel?>? lastResponse,
@@ -254,9 +221,7 @@ class FirestoreReviewDataSource<T>
 
       final result = response.docs.map((doc) {
         final review = ReviewModel.fromMap(doc.data());
-        final writeMapToType = review.writeData != null
-            ? convertDataTypeFromMap(review.writeData!)
-            : null;
+        final writeMapToType = review.writeData != null ? convertDataTypeFromMap(review.writeData!) : null;
         return Pair(review, writeMapToType);
       }).toList();
       if (result.isEmpty) {
@@ -267,9 +232,7 @@ class FirestoreReviewDataSource<T>
         RequestResponse.success,
         Pair(
           FirestoreResponseModel(
-            lastDocumentSnapshot: response.docs.isNotEmpty
-                ? response.docs.last
-                : lastResponse?.lastDocumentSnapshot,
+            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot,
           ),
           result,
         ),

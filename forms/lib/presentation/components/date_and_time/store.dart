@@ -9,11 +9,9 @@ import "package:utilities/data/models/date_and_time_model.dart";
 
 part "store.g.dart";
 
-class DateAndTimeFormFieldStore = _DateAndTimeFormFieldStore
-    with _$DateAndTimeFormFieldStore;
+class DateAndTimeFormFieldStore = _DateAndTimeFormFieldStore with _$DateAndTimeFormFieldStore;
 
-abstract class _DateAndTimeFormFieldStore
-    extends BaseFormFieldStore<DateAndTime?> with Store {
+abstract class _DateAndTimeFormFieldStore extends BaseFormFieldStore<DateAndTime?> with Store {
   _DateAndTimeFormFieldStore({
     required super.initialValue,
     required super.onValueChanged,
@@ -54,12 +52,10 @@ abstract class _DateAndTimeFormFieldStore
   bool get hasDate => value?.dateTime != null;
 
   @computed
-  String? get formattedTime =>
-      value?.formattedTimeOnly(timezone: selectedTimeZone);
+  String? get formattedTime => value?.formattedTimeOnly(timezone: selectedTimeZone);
 
   @computed
-  String? get formattedDate =>
-      value?.formattedDateOnly(timezone: selectedTimeZone);
+  String? get formattedDate => value?.formattedDateOnly(timezone: selectedTimeZone);
 
   @action
   void updateTimezone(tz.Location? timezone) => selectedTimeZone = timezone;
@@ -76,8 +72,7 @@ abstract class _DateAndTimeFormFieldStore
 
   @action
   void updateTime(TimeOfDay? timeOfDay) {
-    final withNewTime = value?.copyWith(time: timeOfDay) ??
-        DateAndTime(DateTime.now(), timeOfDay);
+    final withNewTime = value?.copyWith(time: timeOfDay) ?? DateAndTime(DateTime.now(), timeOfDay);
     if (selectedTimeZone != null) {
       value = withNewTime.toUtc(timezone: selectedTimeZone);
     } else {

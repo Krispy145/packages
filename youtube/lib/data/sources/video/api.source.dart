@@ -1,9 +1,7 @@
 part of "_source.dart";
 
 /// [ApiVideoDataSource] is a class that implements [VideoDataSource] interface.
-class ApiVideoDataSource extends PaginatedApiDataSource<
-        PagedResponse<VideoModel>, VideoModel, BasicSearchQueryModel>
-    implements VideoDataSource<PagedResponse<VideoModel>> {
+class ApiVideoDataSource extends PaginatedApiDataSource<PagedResponse<VideoModel>, VideoModel, BasicSearchQueryModel> implements VideoDataSource<PagedResponse<VideoModel>> {
   final String apiKey;
 
   /// [ApiVideoDataSource] constructor.
@@ -11,10 +9,9 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
       : super(
           "https://www.googleapis.com/youtube/v3",
           sourceSuffix: "videos",
-          convertDataTypeFromMap: (map) => VideoModel.fromMap(map),
+          convertDataTypeFromMap: VideoModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
-          convertResponseTypeFromMap: (data) =>
-              PagedResponse.fromJson(data, VideoModel.fromMap),
+          convertResponseTypeFromMap: (data) => PagedResponse.fromJson(data, VideoModel.fromMap),
           getNexPageParametersFromResponse: (lastResponse, size, orderBy) {
             final parameters = <String, dynamic>{};
             if (lastResponse != null) {
@@ -33,10 +30,8 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
             },
             headers: {
               "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods":
-                  "GET, POST, PUT, DELETE, OPTIONS, HEAD",
-              "Access-Control-Allow-Headers":
-                  "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
+              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS, HEAD",
+              "Access-Control-Allow-Headers": "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale",
               "Content-Type": "application/json",
               "Access-Control-Allow-Credentials": "true",
             },
@@ -44,8 +39,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
         );
 
   @override
-  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) =>
-      Pair(url, {"id": id});
+  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) => Pair(url, {"id": id});
 
   @override
   Map<String, dynamic> buildQuery(BasicSearchQueryModel query) {
@@ -61,9 +55,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
     Map<String, dynamic>? queryParameters,
     bool cancelPreviousRequest = false,
   }) async {
-    final _url = pathExtensions != null
-        ? "$baseUrlWithSuffix/$pathExtensions"
-        : baseUrlWithSuffix;
+    final _url = pathExtensions != null ? "$baseUrlWithSuffix/$pathExtensions" : baseUrlWithSuffix;
     final cancelKey = "$_url/$id/get";
     if (cancelPreviousRequest) {
       cancel(cancelKey);
@@ -76,9 +68,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
       },
       cancelToken: getCancelToken(cancelKey),
     );
-    final convertedResponse = response.data != null
-        ? convertResponseTypeFromMap(response.data!)
-        : null;
+    final convertedResponse = response.data != null ? convertResponseTypeFromMap(response.data!) : null;
     if (convertedResponse == null) {
       return const Pair(RequestResponse.failure, null);
     }
@@ -104,15 +94,8 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<
-          Pair<RequestResponse,
-              Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>>
-      _handlePagedError(
-    Future<
-                Pair<RequestResponse,
-                    Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>>
-            Function()
-        apiCall,
+  Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> _handlePagedError(
+    Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> Function() apiCall,
   ) async {
     try {
       return await apiCall();
@@ -127,9 +110,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
   }
 
   @override
-  Future<
-      Pair<RequestResponse,
-          Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> getPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>?, List<VideoModel?>>>> getPage({
     PagedResponse<VideoModel>? lastResponse,
     int? size,
     String? orderBy,
@@ -150,9 +131,7 @@ class ApiVideoDataSource extends PaginatedApiDataSource<
   }
 
   @override
-  Future<
-      Pair<RequestResponse,
-          Pair<PagedResponse<VideoModel>, List<VideoModel?>>>> searchPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<VideoModel>, List<VideoModel?>>>> searchPage({
     PagedResponse<VideoModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,

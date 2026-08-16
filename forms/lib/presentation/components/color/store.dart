@@ -21,14 +21,14 @@ abstract class _ThemeColorStringFormFieldStore extends BaseFormFieldStore<PLSCol
   void onDone() {
     debugPrint("onDone: $value - $color");
     if (value?.key != null) {
-      value = MapEntry(value!.key, [color.red.toDouble(), color.green.toDouble(), color.blue.toDouble(), color.opacity]);
+      value = MapEntry(value!.key, [color.red.toDouble(), color.green.toDouble(), color.blue.toDouble(), color.a]);
     }
   }
 
   /// Updates the [color] property within the field (not the field's [value])
   @action
   void updateColor({double? red, double? green, double? blue, double? opacity}) {
-    final newColorList = [red?.roundToDouble() ?? color.red.toDouble(), green?.roundToDouble() ?? color.green.toDouble(), blue?.roundToDouble() ?? color.blue.toDouble(), opacity ?? color.opacity];
+    final newColorList = [red?.roundToDouble() ?? color.red.toDouble(), green?.roundToDouble() ?? color.green.toDouble(), blue?.roundToDouble() ?? color.blue.toDouble(), opacity ?? color.a];
     color = const ColorMapper().decode(newColorList);
   }
 }

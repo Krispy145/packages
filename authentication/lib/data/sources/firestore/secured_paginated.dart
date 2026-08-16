@@ -11,10 +11,7 @@ import "package:utilities/data/sources/source.dart";
 import "package:utilities/helpers/extensions/string.dart";
 import "package:utilities/helpers/tuples.dart";
 
-class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
-        Q extends BasicSearchQueryModel>
-    extends SecuredFirestoreDataSource<U, T, Q>
-    with Paginated<FirestoreResponseModel<T?>, T, Q> {
+class SecuredPaginatedFirestoreDataSource<U extends UserModel, T, Q extends BasicSearchQueryModel> extends SecuredFirestoreDataSource<U, T, Q> with Paginated<FirestoreResponseModel<T?>, T, Q> {
   /// [SecuredPaginatedFirestoreDataSource] constructor
   SecuredPaginatedFirestoreDataSource(
     super.collectionName, {
@@ -26,8 +23,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
   });
 
   @override
-  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>
-      getPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> getPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -37,8 +33,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
     final _collection = firestore.collection(collectionName);
     Query<Map<String, dynamic>> query = _collection;
 
-    final permissionsFirestoreQuery =
-        await _getPermissionBasedQueryForPage(query);
+    final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(query);
     if (permissionsFirestoreQuery == null) {
       return Pair(
         RequestResponse.denied,
@@ -65,9 +60,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
       (response) {
         final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
           FirestoreResponseModel<T?>(
-            lastDocumentSnapshot: response.docs.isNotEmpty
-                ? response.docs.last
-                : lastResponse?.lastDocumentSnapshot,
+            lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : lastResponse?.lastDocumentSnapshot,
           ),
           List<T?>.from(
             response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
@@ -83,8 +76,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
   }
 
   @override
-  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>>
-      searchPage({
+  Future<Pair<RequestResponse, Pair<FirestoreResponseModel<T?>, List<T?>>>> searchPage({
     FirestoreResponseModel<T?>? lastResponse,
     int? size,
     String? orderBy,
@@ -92,8 +84,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
   }) async {
     try {
       var firestoreQuery = buildQuery(query, collectionReference);
-      final permissionsFirestoreQuery =
-          await _getPermissionBasedQueryForPage(firestoreQuery);
+      final permissionsFirestoreQuery = await _getPermissionBasedQueryForPage(firestoreQuery);
       if (permissionsFirestoreQuery == null) {
         return Pair(
           RequestResponse.denied,
@@ -116,8 +107,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
         (response) {
           final _response = Pair<FirestoreResponseModel<T?>, List<T?>>(
             FirestoreResponseModel<T?>(
-              lastDocumentSnapshot:
-                  response.docs.isNotEmpty ? response.docs.last : null,
+              lastDocumentSnapshot: response.docs.isNotEmpty ? response.docs.last : null,
             ),
             List<T?>.from(
               response.docs.map((e) => convertDataTypeFromMap(e.data()) as T?),
@@ -148,10 +138,7 @@ class SecuredPaginatedFirestoreDataSource<U extends UserModel, T,
       final ids = <String>[
         ...checkPermissions
             .where(
-              (element) =>
-                  element.first.split("/").first == collectionName &&
-                  element.first.split("/").last != "all" &&
-                  element.second == PermissionLevel.yes,
+              (element) => element.first.split("/").first == collectionName && element.first.split("/").last != "all" && element.second == PermissionLevel.yes,
             )
             .map((e) => e.first.split("/").last),
       ];

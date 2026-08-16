@@ -14,8 +14,7 @@ import "../../models/user_model.dart";
 import "_repository.dart";
 
 /// [FirebaseAuthDataRepository] is a class that defines the basic CRUD operations for the [UserModel] entity.
-class FirebaseAuthDataRepository<T extends UserModel>
-    extends AuthenticationDataRepository<T> {
+class FirebaseAuthDataRepository<T extends UserModel> extends AuthenticationDataRepository<T> {
   /// [convertDataTypeFromMap] is the function that will be used to convert the data from [Map<String, dynamic>] to [T]
   final T Function(Map<String, dynamic>) convertDataTypeFromMap;
 
@@ -29,8 +28,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
   UserDataRepository<T>? userDataRepository;
 
   @override
-  late final BehaviorSubject<T?> userModelStream =
-      BehaviorSubject<T?>.seeded(null);
+  late final BehaviorSubject<T?> userModelStream = BehaviorSubject<T?>.seeded(null);
 
   /// [FirebaseAuthDataRepository] constructor.
   FirebaseAuthDataRepository({
@@ -72,30 +70,23 @@ class FirebaseAuthDataRepository<T extends UserModel>
             accessToken: params.accessToken,
             idToken: params.idToken,
           );
-          userCredential =
-              await _user!.reauthenticateWithCredential(credential);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
           break;
         case AuthType.facebook:
-          final credential =
-              FacebookAuthProvider.credential(params.accessToken!);
-          userCredential =
-              await _user!.reauthenticateWithCredential(credential);
+          final credential = FacebookAuthProvider.credential(params.accessToken!);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
           break;
         case AuthType.apple:
           final credential = AppleAuthProvider.credential(params.accessToken!);
-          userCredential =
-              await _user!.reauthenticateWithCredential(credential);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
           break;
         case AuthType.github:
           final credential = GithubAuthProvider.credential(params.accessToken!);
-          userCredential =
-              await _user!.reauthenticateWithCredential(credential);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
           break;
         case AuthType.microsoft:
-          final credential =
-              MicrosoftAuthProvider.credential(params.accessToken!);
-          userCredential =
-              await _user!.reauthenticateWithCredential(credential);
+          final credential = MicrosoftAuthProvider.credential(params.accessToken!);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
           break;
         case AuthType.x:
           final provider = TwitterAuthProvider();
@@ -107,8 +98,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
             email: params.email!,
             password: params.password!,
           );
-          userCredential =
-              await _user!.reauthenticateWithCredential(credential);
+          userCredential = await _user!.reauthenticateWithCredential(credential);
           break;
         case AuthType.phone:
         // TODO: Handle reauthenticate with phone.
@@ -200,15 +190,12 @@ class FirebaseAuthDataRepository<T extends UserModel>
   @override
   Future<T?> signInWithFacebook(AuthParams params) async {
     try {
-      final facebookParams =
-          await AuthRepositoryHelper.signInWithFacebook(params);
+      final facebookParams = await AuthRepositoryHelper.signInWithFacebook(params);
       // Create a credential from the access token
-      final facebookAuthCredential =
-          FacebookAuthProvider.credential(facebookParams.accessToken!);
+      final facebookAuthCredential = FacebookAuthProvider.credential(facebookParams.accessToken!);
 
       // Once signed in, return the UserCredential
-      final userCredential =
-          await _firebaseAuth.signInWithCredential(facebookAuthCredential);
+      final userCredential = await _firebaseAuth.signInWithCredential(facebookAuthCredential);
       final userModel = _userCredentialToUserModel(
         userCredential,
         facebookParams,
@@ -231,11 +218,9 @@ class FirebaseAuthDataRepository<T extends UserModel>
       final githubAuthProvider = GithubAuthProvider();
       UserCredential userCredential;
       if (kIsWeb) {
-        userCredential =
-            await _firebaseAuth.signInWithPopup(githubAuthProvider);
+        userCredential = await _firebaseAuth.signInWithPopup(githubAuthProvider);
       } else {
-        userCredential =
-            await _firebaseAuth.signInWithProvider(githubAuthProvider);
+        userCredential = await _firebaseAuth.signInWithProvider(githubAuthProvider);
       }
       final userModel = _userCredentialToUserModel(userCredential, params);
       return userModel;
@@ -293,8 +278,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
       if (kIsWeb) {
         userCredential = await _firebaseAuth.signInWithPopup(microsoftProvider);
       } else {
-        userCredential =
-            await _firebaseAuth.signInWithProvider(microsoftProvider);
+        userCredential = await _firebaseAuth.signInWithProvider(microsoftProvider);
       }
       final userModel = _userCredentialToUserModel(userCredential, params);
       return userModel;
@@ -347,8 +331,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
     String confirmationCode,
   ) async {
     try {
-      final confirmationResult =
-          await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
+      final confirmationResult = await _firebaseAuth.signInWithPhoneNumber(phoneNumber);
 
       final userCredential = await confirmationResult.confirm(confirmationCode);
 
@@ -477,7 +460,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
     } catch (e) {
       if (e is FirebaseAuthException) {
         if (e.code == "requires-recent-login") {
-          await reauthenticate(userModelStream.value!);
+          await reauthenticate(userModelStream.value! as AuthParams);
           return changePassword(password);
         }
       }
@@ -492,8 +475,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
 
   Future<void> _initStreams() async {
     if (_user != null && userModelStream.value == null) {
-      final databaseUser =
-          await userDataRepository?.getUserModel(id: _user!.uid);
+      final databaseUser = await userDataRepository?.getUserModel(id: _user!.uid);
       if (databaseUser?.second != null) {
         final _currentResponse = convertDataTypeToMap(databaseUser!.second!);
         _currentResponse["last_login_at_timestamp"] = DateTime.now();
@@ -508,7 +490,7 @@ class FirebaseAuthDataRepository<T extends UserModel>
     }
     _firebaseAuth.authStateChanges().listen((event) async {
       if (event?.uid != _user?.uid && userModelStream.value != null) {
-        final newUser = await reauthenticate(userModelStream.value!);
+        final newUser = await reauthenticate(userModelStream.value! as AuthParams);
         userModelStream.add(newUser);
       }
       if (event == null && userModelStream.value != null) {

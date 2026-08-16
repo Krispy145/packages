@@ -124,8 +124,7 @@ class ApiInstagramDataSource implements InstagramDataSource {
       final response = await _dio.get<Map<String, dynamic>>(
         _graphUrl + InstagramConstants.userMediaSuffix(userId: userId),
         queryParameters: {
-          "access_token":
-              lastMediaIdResponse?.media?.paging.cursors.after ?? accessToken,
+          "access_token": lastMediaIdResponse?.media?.paging.cursors.after ?? accessToken,
           "fields": "media",
         },
       );
@@ -143,8 +142,7 @@ class ApiInstagramDataSource implements InstagramDataSource {
     required String accessToken,
     List<InstagramMediaDetailsField>? fields,
   }) {
-    final _fields = fields?.map((e) => e.snakeCase()).join(",") ??
-        InstagramMediaDetailsField.values.map((e) => e.snakeCase()).join(",");
+    final _fields = fields?.map((e) => e.snakeCase()).join(",") ?? InstagramMediaDetailsField.values.map((e) => e.snakeCase()).join(",");
     return _handleError(() async {
       final response = await _dio.get<Map<String, dynamic>>(
         _graphUrl + mediaId,
@@ -175,8 +173,7 @@ class ApiInstagramDataSource implements InstagramDataSource {
     required String accessToken,
     List<InstagramMediaDetailsField>? fields,
   }) async {
-    final _fields = fields?.map((e) => e.snakeCase()).join(",") ??
-        InstagramMediaDetailsField.values.map((e) => e.snakeCase()).join(",");
+    final _fields = fields?.map((e) => e.snakeCase()).join(",") ?? InstagramMediaDetailsField.values.map((e) => e.snakeCase()).join(",");
     try {
       final response = await _dio.get<List<Map<String, dynamic>>>(
         _graphUrl + InstagramConstants.mediaAlbumSuffix(mediaId),
@@ -185,10 +182,7 @@ class ApiInstagramDataSource implements InstagramDataSource {
           "fields": _fields,
         },
       );
-      return response.data
-              ?.map((e) => InstagramMediaIdsResponse.fromMap(e))
-              .toList() ??
-          [];
+      return response.data?.map(InstagramMediaIdsResponse.fromMap).toList() ?? [];
     } catch (e) {
       AppLogger.print(
         "API RESULT: Failed request: $e",
@@ -204,8 +198,7 @@ class ApiInstagramDataSource implements InstagramDataSource {
     required String accessToken,
     List<InstagramUserDetailsField>? fields,
   }) {
-    final _fields = fields?.map((e) => e.snakeCase()).join(",") ??
-        InstagramUserDetailsField.values.map((e) => e.snakeCase()).join(",");
+    final _fields = fields?.map((e) => e.snakeCase()).join(",") ?? InstagramUserDetailsField.values.map((e) => e.snakeCase()).join(",");
     return _handleError(() async {
       final response = await _dio.get<Map<String, dynamic>>(
         _graphUrl + InstagramConstants.meSuffix,
@@ -224,8 +217,7 @@ class ApiInstagramDataSource implements InstagramDataSource {
     required String accessToken,
     List<InstagramUserDetailsField>? fields,
   }) {
-    final _fields = fields?.map((e) => e.snakeCase()).join(",") ??
-        InstagramUserDetailsField.values.map((e) => e.snakeCase()).join(",");
+    final _fields = fields?.map((e) => e.snakeCase()).join(",") ?? InstagramUserDetailsField.values.map((e) => e.snakeCase()).join(",");
     return _handleError(() async {
       final response = await _dio.get<Map<String, dynamic>>(
         _graphUrl + userId,

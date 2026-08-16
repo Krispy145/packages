@@ -1,10 +1,7 @@
 part of "_source.dart";
 
 /// [ApiPlaylistItemDataSource] is a class that implements [PlaylistItemDataSource] interface.
-class ApiPlaylistItemDataSource extends PaginatedApiDataSource<
-        PagedResponse<PlaylistItemModel>,
-        PlaylistItemModel,
-        BasicSearchQueryModel>
+class ApiPlaylistItemDataSource extends PaginatedApiDataSource<PagedResponse<PlaylistItemModel>, PlaylistItemModel, BasicSearchQueryModel>
     implements PlaylistItemDataSource<PagedResponse<PlaylistItemModel>> {
   final String apiKey;
 
@@ -13,7 +10,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<
       : super(
           "https://www.googleapis.com/youtube/v3",
           sourceSuffix: "playlistItems",
-          convertDataTypeFromMap: (map) => PlaylistItemModel.fromMap(map),
+          convertDataTypeFromMap: PlaylistItemModel.fromMap,
           convertDataTypeToMap: (data) => data.toMap(),
           convertResponseTypeFromMap: (data) {
             debugPrint(data.toString());
@@ -53,8 +50,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<
   }
 
   @override
-  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) =>
-      Pair(url, {"id": id});
+  Pair<String, Map<String, dynamic>?> createUrlWithId(String url, String id) => Pair(url, {"id": id});
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
@@ -75,18 +71,8 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<
 
   /// [_handleError] is an optional helper method that handles errors when calling the API.
   // ignore: unused_element
-  Future<
-      Pair<
-          RequestResponse,
-          Pair<PagedResponse<PlaylistItemModel>?,
-              List<PlaylistItemModel?>>>> _handlePagedError(
-    Future<
-                Pair<
-                    RequestResponse,
-                    Pair<PagedResponse<PlaylistItemModel>?,
-                        List<PlaylistItemModel?>>>>
-            Function()
-        apiCall,
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> _handlePagedError(
+    Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> Function() apiCall,
   ) async {
     try {
       return await apiCall();
@@ -101,11 +87,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<
   }
 
   @override
-  Future<
-      Pair<
-          RequestResponse,
-          Pair<PagedResponse<PlaylistItemModel>?,
-              List<PlaylistItemModel?>>>> getPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> getPage({
     PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     String? orderBy,
@@ -126,11 +108,7 @@ class ApiPlaylistItemDataSource extends PaginatedApiDataSource<
   }
 
   @override
-  Future<
-      Pair<
-          RequestResponse,
-          Pair<PagedResponse<PlaylistItemModel>?,
-              List<PlaylistItemModel?>>>> searchPage({
+  Future<Pair<RequestResponse, Pair<PagedResponse<PlaylistItemModel>?, List<PlaylistItemModel?>>>> searchPage({
     PagedResponse<PlaylistItemModel>? lastResponse,
     int? size,
     required BasicSearchQueryModel query,

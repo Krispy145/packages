@@ -5,8 +5,7 @@ import "package:utilities/widgets/load_state/store.dart";
 import "store.dart";
 
 // ignore: strict_raw_type
-abstract class BaseFormField<T extends BaseFormFieldStore>
-    extends StatelessWidget with LoadStateStore {
+abstract class BaseFormField<T extends BaseFormFieldStore> extends StatelessWidget with LoadStateStore {
   BaseFormField({
     super.key,
     required this.store,

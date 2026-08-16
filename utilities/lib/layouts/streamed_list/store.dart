@@ -97,7 +97,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
             "StreamedListStore initialization complete.",
             [UtilitiesLoggers.streamedListStore],
           );
-        } catch (e, _) {
+        } catch (e) {
           AppLogger.print(
             "Error while processing stream data for: $e",
             [UtilitiesLoggers.streamedListStore],
@@ -125,7 +125,7 @@ abstract class _StreamedListStore<T, K extends Comparable<K>> extends PaginatedL
             loadMore(limit: limit);
           });
         }
-      } catch (e, _) {
+      } catch (e) {
         AppLogger.print(
           "Error while processing scroll listener: $e",
           [UtilitiesLoggers.streamedListStore],
