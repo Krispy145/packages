@@ -60,10 +60,10 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
                 ),
                 _ThemeColorStringSlider(
                   label: "Opacity",
-                  value: store.color.opacity,
+                  value: store.color.a,
                   onChanged: (opacity) => store.updateColor(opacity: opacity),
                   fixedColor:
-                      Colors.black.withValues(alpha: store.color.opacity),
+                      Colors.black.withValues(alpha: store.color.a),
                   max: 1,
                 ),
                 ElevatedButton(
@@ -96,7 +96,7 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
               red: color.red.toDouble(),
               green: color.green.toDouble(),
               blue: color.blue.toDouble(),
-              opacity: color.opacity,
+              opacity: color.a,
             );
             Navigator.of(context).pop();
           },
@@ -106,7 +106,7 @@ class ColorFormField extends BaseFormField<ColorFormFieldStore> {
               red: color.red.toDouble(),
               green: color.green.toDouble(),
               blue: color.blue.toDouble(),
-              opacity: color.opacity,
+              opacity: color.a,
             );
             Navigator.of(context).pop();
           },

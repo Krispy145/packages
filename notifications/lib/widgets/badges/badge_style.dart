@@ -33,6 +33,7 @@ class NotificationBadgeStyle extends BadgeStyle {
   }) : super(badgeColor: Theme.of(context).colorScheme.inversePrimary);
 
   /// [copyWith] is a method that allows you to copy the style of the notification badge.
+  @override
   NotificationBadgeStyle copyWith({
     BadgeAnimation? animation,
     BadgePosition? position,

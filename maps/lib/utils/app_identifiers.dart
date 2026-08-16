@@ -16,19 +16,19 @@ enum MapApp {
   IconData get icon {
     switch (this) {
       case MapApp.appleMaps:
-        return FontAwesomeIcons.apple;
+        return FontAwesomeIcons.apple.data;
       case MapApp.googleMaps:
-        return FontAwesomeIcons.google;
+        return FontAwesomeIcons.google.data;
       case MapApp.waze:
-        return FontAwesomeIcons.waze;
+        return FontAwesomeIcons.waze.data;
       case MapApp.uber:
-        return FontAwesomeIcons.uber;
+        return FontAwesomeIcons.uber.data;
       case MapApp.lyft:
-        return FontAwesomeIcons.lyft;
+        return FontAwesomeIcons.lyft.data;
       case MapApp.cityMapper:
-        return FontAwesomeIcons.mapLocationDot;
+        return FontAwesomeIcons.mapLocationDot.data;
       case MapApp.freeNow:
-        return FontAwesomeIcons.taxi;
+        return FontAwesomeIcons.taxi.data;
     }
   }
 

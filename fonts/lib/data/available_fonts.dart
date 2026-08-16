@@ -10,7 +10,8 @@ enum PLSFonts {
   whisper,
   proximaNovaAlt,
   figtree,
-  unbounded;
+  unbounded,
+  prompt;
 
   String get name => family.familyName;
 
@@ -264,6 +265,84 @@ enum PLSFonts {
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w900,
             ): null,
+          },
+        );
+      case PLSFonts.prompt:
+        return PLSFontFamily(
+          familyName: "Prompt",
+          variants: {
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w100,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_9XJnvUD7dzB2CA-ofTkY.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w200,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2Cr_sIaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w300,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2Cy_gIaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w400,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W__XJnvUD7dzB2KYNod.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w500,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2Ck_kIaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w600,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2Cv_4IaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w700,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2C2_8IaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w800,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2Cx_wIaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.w900,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_8XJnvUD7dzB2C4_0IaWMu.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w100,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_7XJnvUD7dzB2KZeJ8fkQLfg.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w200,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeLQb1MsW5A.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w300,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeK0bFMsW5A.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w400,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_9XJnvUD7dzB2KZeofTkY.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w500,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeLsbVMsW5A.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w600,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeLAalMsW5A.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w700,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeKka1MsW5A.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w800,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeK4aFMsW5A.woff2",
+            const PLSFontVariantDescriptor(
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w900,
+            ): "https://fonts.gstatic.com/s/prompt/v12/-W_6XJnvUD7dzB2KZeKcaVMsW5A.woff2",
           },
         );
       case PLSFonts.unbounded:

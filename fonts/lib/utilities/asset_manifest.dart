@@ -5,7 +5,7 @@
 import "dart:convert" as convert;
 
 import "package:flutter/foundation.dart";
-import "package:flutter/services.dart" hide AssetManifest;
+import "package:flutter/services.dart" as services;
 
 /// A class to obtain and memoize the app's asset manifest.
 ///
@@ -25,14 +25,27 @@ class AssetManifest {
 
   Future<Map<String, List<String>>?> _loadAssetManifestJson() async {
     try {
-      final jsonString = await rootBundle.loadString(
+      final manifest = await services.AssetManifest.loadFromAssetBundle(services.rootBundle);
+      return {
+        for (final key in manifest.listAssets()) key: [key],
+      };
+    } catch (_) {
+      // Flutter web hot-restart can 404 the binary manifest.
+      // AssetManifest.json is no longer generated; skip it on web to avoid a 404.
+      if (kIsWeb) {
+        return <String, List<String>>{};
+      }
+    }
+    try {
+      final jsonString = await services.rootBundle.loadString(
         "AssetManifest.json",
         cache: enableCache,
       );
-      return _manifestParser(jsonString);
+      return await _manifestParser(jsonString);
     } catch (e) {
-      rootBundle.evict("AssetManifest.json");
-      rethrow;
+      services.rootBundle.evict("AssetManifest.json");
+      // Fonts can still load from network URLs when no local assets are registered.
+      return <String, List<String>>{};
     }
   }
 
